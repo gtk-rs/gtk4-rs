@@ -80,6 +80,10 @@ mod auto;
 mod functions;
 mod signal;
 
+#[macro_use]
+#[cfg(feature = "subclassing")]
+pub mod subclass;
+
 pub mod prelude;
 
 pub use auto::*;
