@@ -1,0 +1,38 @@
+[options]
+girs_dir = "gir-files"
+library = "Gsk"
+version = "4.0"
+min_cfg_version = "3.94"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+single_version_file = true
+deprecate_by_min_version = true
+
+generate = [
+    "Gsk.BlendMode",
+    "Gsk.Corner",
+    "Gsk.RenderNode",
+    "Gsk.RenderNodeType",
+    "Gsk.Renderer",
+    "Gsk.ScalingFilter",
+    "Gsk.SerializationError",
+]
+
+ignore = [
+    "Gsk.ColorStop",
+    "Gsk.RoundedRect",
+    "Gsk.Shadow",
+]
+
+[[object]]
+name = "Gsk.*"
+status = "generate"
+    [[object.function]]
+    # gir error
+    name = "border_node_peek_widths"
+    ignore = true
+    [[object.function]]
+    # binding generation error
+    name = "container_node_new"
+    ignore = true
