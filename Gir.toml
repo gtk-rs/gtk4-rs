@@ -1,0 +1,144 @@
+[options]
+girs_dir = "gir-files"
+library = "Gdk"
+version = "4.0"
+min_cfg_version = "3.94"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+single_version_file = true
+deprecate_by_min_version = true
+
+generate = [
+    "Gdk.AnchorHints",
+    "Gdk.AppLaunchContext",
+    "Gdk.AxisFlags",
+    "Gdk.AxisUse",
+    "Gdk.ByteOrder",
+    "Gdk.CairoContext",
+    "Gdk.Clipboard",
+    "Gdk.ContentDeserializer",
+    "Gdk.ContentFormatsBuilder",
+    "Gdk.ContentProvider",
+    "Gdk.ContentSerializer",
+    "Gdk.CrossingMode",
+    "Gdk.Cursor",
+    "Gdk.Device",
+    "Gdk.DevicePad",
+    "Gdk.DevicePadFeature",
+    "Gdk.DeviceTool",
+    "Gdk.DeviceToolType",
+    "Gdk.DeviceType",
+    "Gdk.Display",
+    "Gdk.DisplayManager",
+    "Gdk.Drag",
+    "Gdk.DragAction",
+    "Gdk.DragCancelReason",
+    "Gdk.DrawContext",
+    "Gdk.Drop",
+    "Gdk.Event",
+    "Gdk.EventMask",
+    "Gdk.EventSequence",
+    "Gdk.EventType",
+    "Gdk.FrameClock",
+    "Gdk.FrameClockPhase",
+    "Gdk.FrameTimings",
+    "Gdk.FullscreenMode",
+    "Gdk.GLContext",
+    "Gdk.GLError",
+    "Gdk.GLTexture",
+    "Gdk.GrabOwnership",
+    "Gdk.GrabStatus",
+    "Gdk.Gravity",
+    "Gdk.InputMode",
+    "Gdk.InputSource",
+    "Gdk.MemoryFormat",
+    "Gdk.MemoryTexture",
+    "Gdk.ModifierIntent",
+    "Gdk.ModifierType",
+    "Gdk.Monitor",
+    "Gdk.NotifyType",
+    "Gdk.Paintable",
+    "Gdk.PaintableFlags",
+    "Gdk.Rectangle",
+    "Gdk.ScrollDirection",
+    "Gdk.Seat",
+    "Gdk.SeatCapabilities",
+    "Gdk.Snapshot",
+    "Gdk.SubpixelLayout",
+    "Gdk.Surface",
+    "Gdk.SurfaceEdge",
+    "Gdk.SurfaceHints",
+    "Gdk.SurfaceState",
+    "Gdk.SurfaceType",
+    "Gdk.SurfaceTypeHint",
+    "Gdk.Texture",
+    "Gdk.TouchpadGesturePhase",
+    "Gdk.VulkanContext",
+    "Gdk.VulkanError",
+    "Gdk.WMDecoration",
+    "Gdk.WMFunction",
+]
+
+manual = [
+    "Gdk.Atom",
+    "Gdk.RGBA",
+]
+
+ignore = [
+    "Gdk.DevicePadInterface",
+    "Gdk.DrawingContext",
+    "Gdk.EventAny",
+    "Gdk.EventButton",
+    "Gdk.EventConfigure",
+    "Gdk.EventCrossing",
+    "Gdk.EventDND",
+    "Gdk.EventFocus",
+    "Gdk.EventGrabBroken",
+    "Gdk.EventKey",
+    "Gdk.EventMotion",
+    "Gdk.EventPadAxis",
+    "Gdk.EventPadButton",
+    "Gdk.EventPadGroupMode",
+    "Gdk.EventProximity",
+    "Gdk.EventScroll",
+    "Gdk.EventSetting",
+    "Gdk.EventTouch",
+    "Gdk.EventTouchpadPinch",
+    "Gdk.EventTouchpadSwipe",
+    "Gdk.Geometry",
+    "Gdk.KeymapKey",
+    "Gdk.PaintableInterface",
+    "Gdk.Point",
+    "Gdk.TimeCoord",
+]
+
+[[object]]
+name = "Gdk.*"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+        [[object.function.parameter]]
+        name = "surface"
+        const = true
+
+[[object]]
+name = "Gdk.ContentFormats"
+status = "generate"
+    [[object.function]]
+    # gir error
+    name = "get_gtypes"
+    ignore = true
+
+[[object]]
+name = "Gdk.Keymap"
+status = "generate"
+    [[object.function]]
+    name = "add_virtual_modifiers"
+    ignore = true
+    [[object.function]]
+    name = "map_virtual_modifiers"
+    ignore = true

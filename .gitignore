@@ -1,0 +1,12 @@
+test/bin/
+target/
+doc/
+configure.in
+config.log
+config.status
+*.dylib
+.rust
+*.so
+*.o
+*.swp
+Cargo.lock

@@ -1,0 +1,45 @@
+[package]
+name = "gdk4"
+license = "MIT"
+homepage = "http://gtk-rs.org/"
+authors = ["The Gtk-rs Project Developers"]
+keywords = ["gdk", "gdk4", "gtk", "gtk-rs", "gnome", "GUI"]
+readme = "README.md"
+documentation = "http://gtk-rs.org/docs/gdk4/"
+version = "0.10.0"
+description = "Rust bindings for the GDK 4 library"
+repository = "https://github.com/gtk-rs/gdk4"
+build = "build.rs"
+exclude = [
+    "gir-files/*",
+]
+
+[lib]
+name = "gdk4"
+
+[features]
+dox = ["gdk4-sys/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
+purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
+embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/embed-lgpl-docs", "gio/embed-lgpl-docs"]
+
+[build-dependencies.gtk-rs-lgpl-docs]
+version = "0.1.3"
+optional = true
+git = "https://github.com/gtk-rs/lgpl-docs"
+
+[dependencies]
+libc = "0.2"
+bitflags = "1.0"
+glib-sys = { git = "https://github.com/gtk-rs/sys" }
+gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
+gio-sys = { git = "https://github.com/gtk-rs/sys" }
+gobject-sys = { git = "https://github.com/gtk-rs/sys" }
+cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
+cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
+gdk-pixbuf = { git = "https://github.com/gtk-rs/gdk-pixbuf" }
+gio = { git = "https://github.com/gtk-rs/gio" }
+glib = { git = "https://github.com/gtk-rs/glib" }
+pango = { git = "https://github.com/gtk-rs/pango" }
+
+[dev-dependencies]
+gir-format-check = "^0.1"
