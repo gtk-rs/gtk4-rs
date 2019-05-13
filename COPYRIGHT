@@ -1,0 +1,68 @@
+The Gtk-rs Project is copyright 2013-2016, The Gtk-rs Project Developers:
+
+Adam Crume <adamcrume@gmail.com>
+Adolfo Ochagavía <aochagavia92@gmail.com>
+Andre Bogus <bogusandre@gmail.com>
+Anton Konjahin <koniahin.ant@yandex.ru>
+Arne Dussin <arne.dussin@live.de>
+Boden Garman <bpgarman@fastmail.fm>
+Brian Kropf <brian.kropf@gmail.com>
+Bryant Mairs <bryant@mai.rs>
+Chris Greenaway <cjgreenaway@gmail.com>
+Chris Palmer <pennstate5013@gmail.com>
+Corey Farwell <coreyf@rwell.org>
+Daniel Zalevskiy <dndanik@gmail.com>
+David Li <li.davidm96@gmail.com>
+Edward Shaw <edwardshaw9+git@gmail.com>
+Edward Yang <edward.yang6771@gmail.com>
+Esption <esption@gmail.com>
+Evgenii Pashkin <eapashkin@gmail.com>
+Geoffrey French <frondit1985@gmail.com>
+Gleb Kozyrev <gleb@gkoz.com>
+Glenn Watson <gw@intuitionlibrary.com>
+Google Inc.
+Guillaume Gomez <guillaume1.gomez@gmail.com>
+Gulshan Singh <gulshan@umich.edu>
+Jakob Gillich <jakob@gillich.me>
+James Shepherdson <james.shepherdson@gmail.com>
+Jeremy Letang <letang.jeremy@gmail.com>
+John Vrbanac <john.vrbanac@linux.com>
+kennytm <kennytm@gmail.com>
+Laurence Tratt <laurie@tratt.net>
+Lionel Flandrin <lionel.flandrin@gmail.com>
+Lucas Werkmeister <mail@lucaswerkmeister.de>
+Lukas Diekmann <lukas.diekmann@gmail.com>
+Mathijs Henquet <mathijs.henquet@gmail.com>
+Maxwell Koo <mjkoo90@gmail.com>
+mitaa <mitaa.ceb@gmail.com>
+Nick Herman <gerkola@gmail.com>
+Nicolas Koch <nioko1337@gmail.com>
+Oliver Schneider <github333195615777966@oli-obk.de>
+Ömer Sinan Ağacan <omeragacan@gmail.com>
+Ralph Giles <giles@thaumas.net>
+Paul Dennis <paul_a_dennis@yahoo.com>
+Paul Hendry <paul@pshendry.com>
+Philipp Brüschweiler <blei42@gmail.com>
+Raphael Nestler <raphael.nestler@gmail.com>
+Robertas <robertasjasmontas@gmail.com>
+Romain Gauthier <romain.gauthier@monkeypatch.me>
+S.J.R. van Schaik <stephan@synkhronix.com>
+Sebastian Schulze <me@bstr.eu>
+Silvio Fricke <silvio.fricke@gmail.com>
+Simon Sapin <simon.sapin@exyr.org>
+Steve Klabnik <steve@steveklabnik.com>
+Tobias Bales <tobias.raeder@gmail.com>
+trolleyman <cgtrolley@gmail.com>
+Umur Gedik <umurgdk@gmail.com>
+UrKr <Urban.kristan@gmail.com>
+Vojtech Kral <vojtech@kral.hk>
+Zach Oakes <zsoakes@gmail.com>
+Zach Ploskey <zach@ploskey.com>
+
+The Gtk-rs Project is licensed under the MIT license, see the LICENSE file
+or <http://opensource.org/licenses/MIT>.
+
+This project provides interoperability with various GNOME libraries but doesn't
+distribute any parts of them. Distributing compiled libraries and executables
+that link to those libraries may be subject to terms of the GNU LGPL, see the
+LGPL file.

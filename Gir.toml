@@ -1,0 +1,731 @@
+[options]
+girs_dir = "gir-files"
+library = "Gtk"
+version = "4.0"
+min_cfg_version = "3.94"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+deprecate_by_min_version = true
+single_version_file = true
+
+generate = [
+    "Gtk.Allocation",
+    "Gtk.AboutDialog",
+    "Gtk.AccelFlags",
+    "Gtk.AccelGroup",
+    "Gtk.AccelLabel",
+    "Gtk.AccelMap",
+    "Gtk.Accessible",
+    "Gtk.ActionBar",
+    "Gtk.Actionable",
+    "Gtk.Adjustment",
+    "Gtk.Align",
+    "Gtk.AppChooser",
+    "Gtk.AppChooserButton",
+    "Gtk.AppChooserDialog",
+    "Gtk.AppChooserWidget",
+    "Gtk.ApplicationInhibitFlags",
+    "Gtk.ApplicationWindow",
+    "Gtk.ArrowPlacement",
+    "Gtk.ArrowType",
+    "Gtk.AspectFrame",
+    "Gtk.Assistant",
+    "Gtk.AssistantPage",
+    "Gtk.AssistantPageType",
+    "Gtk.BaselinePosition",
+    "Gtk.Bin",
+    "Gtk.BooleanCellAccessible",
+    "Gtk.Border",
+    "Gtk.BorderStyle",
+    "Gtk.Box",
+    "Gtk.Buildable",
+    "Gtk.BuilderError",
+    "Gtk.Button",
+    "Gtk.ButtonAccessible",
+    "Gtk.ButtonRole",
+    "Gtk.ButtonsType",
+    "Gtk.Calendar",
+    "Gtk.CalendarDisplayOptions",
+    "Gtk.CellAccessible",
+    "Gtk.CellArea",
+    "Gtk.CellAreaBox",
+    "Gtk.CellAreaContext",
+    "Gtk.CellEditable",
+    "Gtk.CellLayout",
+    "Gtk.CellRenderer",
+    "Gtk.CellRendererAccel",
+    "Gtk.CellRendererAccelMode",
+    "Gtk.CellRendererCombo",
+    "Gtk.CellRendererMode",
+    "Gtk.CellRendererPixbuf",
+    "Gtk.CellRendererProgress",
+    "Gtk.CellRendererSpin",
+    "Gtk.CellRendererSpinner",
+    "Gtk.CellRendererState",
+    "Gtk.CellRendererText",
+    "Gtk.CellRendererToggle",
+    "Gtk.CenterBox",
+    "Gtk.CheckButton",
+    "Gtk.CheckMenuItem",
+    "Gtk.CheckMenuItemAccessible",
+    "Gtk.ColorButton",
+    "Gtk.ColorChooser",
+    "Gtk.ColorChooserDialog",
+    "Gtk.ColorChooserWidget",
+    "Gtk.ComboBoxAccessible",
+    "Gtk.ComboBoxText",
+    "Gtk.Container",
+    "Gtk.ContainerAccessible",
+    "Gtk.ContainerCellAccessible",
+    "Gtk.CornerType",
+    "Gtk.CssProvider",
+    "Gtk.CssProviderError",
+    "Gtk.CssSection",
+    "Gtk.CssSectionType",
+    "Gtk.DebugFlag",
+    "Gtk.DeleteType",
+    "Gtk.DestDefaults",
+    "Gtk.DialogFlags",
+    "Gtk.DirectionType",
+    "Gtk.DragResult",
+    "Gtk.DrawingArea",
+    "Gtk.Editable",
+    "Gtk.EditableProperties",
+    "Gtk.Entry",
+    "Gtk.EntryAccessible",
+    "Gtk.EntryBuffer",
+    "Gtk.EntryCompletion",
+    "Gtk.EntryIconAccessible",
+    "Gtk.EntryIconPosition",
+    "Gtk.EventController",
+    "Gtk.EventControllerKey",
+    "Gtk.EventControllerLegacy",
+    "Gtk.EventControllerMotion",
+    "Gtk.EventControllerScroll",
+    "Gtk.EventControllerScrollFlags",
+    "Gtk.EventSequenceState",
+    "Gtk.Expander",
+    "Gtk.ExpanderAccessible",
+    "Gtk.FileChooser",
+    "Gtk.FileChooserAction",
+    "Gtk.FileChooserButton",
+    "Gtk.FileChooserConfirmation",
+    "Gtk.FileChooserDialog",
+    "Gtk.FileChooserError",
+    "Gtk.FileChooserNative",
+    "Gtk.FileChooserWidget",
+    "Gtk.FileFilter",
+    "Gtk.FileFilterFlags",
+    "Gtk.FilterListModel",
+    "Gtk.Fixed",
+    "Gtk.FlattenListModel",
+    "Gtk.FlowBox",
+    "Gtk.FlowBoxAccessible",
+    "Gtk.FlowBoxChild",
+    "Gtk.FlowBoxChildAccessible",
+    "Gtk.FontButton",
+    "Gtk.FontChooser",
+    "Gtk.FontChooserDialog",
+    "Gtk.FontChooserLevel",
+    "Gtk.FontChooserWidget",
+    "Gtk.Frame",
+    "Gtk.FrameAccessible",
+    "Gtk.GLArea",
+    "Gtk.Gesture",
+    "Gtk.GestureDrag",
+    "Gtk.GestureLongPress",
+    "Gtk.GestureMultiPress",
+    "Gtk.GesturePan",
+    "Gtk.GestureRotate",
+    "Gtk.GestureSingle",
+    "Gtk.GestureStylus",
+    "Gtk.GestureSwipe",
+    "Gtk.GestureZoom",
+    "Gtk.Grid",
+    "Gtk.HeaderBar",
+    "Gtk.IMContext",
+    "Gtk.IMContextSimple",
+    "Gtk.IMMulticontext",
+    "Gtk.IconInfo",
+    "Gtk.IconLookupFlags",
+    "Gtk.IconSize",
+    "Gtk.IconThemeError",
+    "Gtk.IconViewAccessible",
+    "Gtk.IconViewDropPosition",
+    "Gtk.Image",
+    "Gtk.ImageAccessible",
+    "Gtk.ImageCellAccessible",
+    "Gtk.ImageType",
+    "Gtk.InfoBar",
+    "Gtk.InputHints",
+    "Gtk.InputPurpose",
+    "Gtk.Justification",
+    "Gtk.Label",
+    "Gtk.LabelAccessible",
+    "Gtk.Layout",
+    "Gtk.LevelBar",
+    "Gtk.LevelBarAccessible",
+    "Gtk.LevelBarMode",
+    "Gtk.License",
+    "Gtk.LinkButton",
+    "Gtk.LinkButtonAccessible",
+    "Gtk.ListBox",
+    "Gtk.ListBoxAccessible",
+    "Gtk.ListBoxRow",
+    "Gtk.ListBoxRowAccessible",
+    "Gtk.LockButton",
+    "Gtk.LockButtonAccessible",
+    "Gtk.MapListModel",
+    "Gtk.MediaControls",
+    "Gtk.MediaFile",
+    "Gtk.Menu",
+    "Gtk.MenuAccessible",
+    "Gtk.MenuBar",
+    "Gtk.MenuButton",
+    "Gtk.MenuButtonAccessible",
+    "Gtk.MenuDirectionType",
+    "Gtk.MenuItem",
+    "Gtk.MenuItemAccessible",
+    "Gtk.MenuShell",
+    "Gtk.MenuShellAccessible",
+    "Gtk.MenuToolButton",
+    "Gtk.MessageDialog",
+    "Gtk.MessageType",
+    "Gtk.ModelButton",
+    "Gtk.MountOperation",
+    "Gtk.MovementStep",
+    "Gtk.NativeDialog",
+    "Gtk.Notebook",
+    "Gtk.NotebookAccessible",
+    "Gtk.NotebookPage",
+    "Gtk.NotebookPageAccessible",
+    "Gtk.NotebookTab",
+    "Gtk.NumberUpLayout",
+    "Gtk.Orientable",
+    "Gtk.Orientation",
+    "Gtk.Overflow",
+    "Gtk.Overlay",
+    "Gtk.PackDirection",
+    "Gtk.PackType",
+    "Gtk.PadActionType",
+    "Gtk.PadController",
+    "Gtk.PageOrientation",
+    "Gtk.PageSet",
+    "Gtk.PageSetup",
+    "Gtk.PanDirection",
+    "Gtk.Paned",
+    "Gtk.PanedAccessible",
+    "Gtk.PasswordEntry",
+    "Gtk.Picture",
+    "Gtk.PlacesOpenFlags",
+    "Gtk.PolicyType",
+    "Gtk.Popover",
+    "Gtk.PopoverAccessible",
+    "Gtk.PopoverConstraint",
+    "Gtk.PopoverMenu",
+    "Gtk.PositionType",
+    "Gtk.PrintContext",
+    "Gtk.PrintDuplex",
+    "Gtk.PrintError",
+    "Gtk.PrintOperation",
+    "Gtk.PrintOperationAction",
+    "Gtk.PrintOperationPreview",
+    "Gtk.PrintOperationResult",
+    "Gtk.PrintPages",
+    "Gtk.PrintQuality",
+    "Gtk.PrintSettings",
+    "Gtk.PrintStatus",
+    "Gtk.ProgressBar",
+    "Gtk.ProgressBarAccessible",
+    "Gtk.PropagationPhase",
+    "Gtk.RadioButtonAccessible",
+    "Gtk.RadioMenuItemAccessible",
+    "Gtk.Range",
+    "Gtk.RangeAccessible",
+    "Gtk.RecentInfo",
+    "Gtk.RecentManager",
+    "Gtk.RecentManagerError",
+    "Gtk.ReliefStyle",
+    "Gtk.RendererCellAccessible",
+    "Gtk.Requisition",
+    "Gtk.Revealer",
+    "Gtk.RevealerTransitionType",
+    "Gtk.Root",
+    "Gtk.Scale",
+    "Gtk.ScaleAccessible",
+    "Gtk.ScaleButton",
+    "Gtk.ScaleButtonAccessible",
+    "Gtk.ScrollStep",
+    "Gtk.ScrollType",
+    "Gtk.Scrollable",
+    "Gtk.ScrollablePolicy",
+    "Gtk.Scrollbar",
+    "Gtk.ScrolledWindow",
+    "Gtk.ScrolledWindowAccessible",
+    "Gtk.SearchBar",
+    "Gtk.SearchEntry",
+    "Gtk.SelectionMode",
+    "Gtk.SelectionModel",
+    "Gtk.SensitivityType",
+    "Gtk.Separator",
+    "Gtk.SeparatorMenuItem",
+    "Gtk.SeparatorToolItem",
+    "Gtk.Settings",
+    "Gtk.ShadowType",
+    "Gtk.ShortcutLabel",
+    "Gtk.ShortcutType",
+    "Gtk.ShortcutsGroup",
+    "Gtk.ShortcutsSection",
+    "Gtk.ShortcutsShortcut",
+    "Gtk.ShortcutsWindow",
+    "Gtk.SingleSelection",
+    "Gtk.SizeGroup",
+    "Gtk.SizeGroupMode",
+    "Gtk.SizeRequestMode",
+    "Gtk.SliceListModel",
+    "Gtk.Snapshot",
+    "Gtk.SortListModel",
+    "Gtk.SortType",
+    "Gtk.SpinButton",
+    "Gtk.SpinButtonAccessible",
+    "Gtk.SpinButtonUpdatePolicy",
+    "Gtk.SpinType",
+    "Gtk.Spinner",
+    "Gtk.SpinnerAccessible",
+    "Gtk.Stack",
+    "Gtk.StackAccessible",
+    "Gtk.StackPage",
+    "Gtk.StackSidebar",
+    "Gtk.StackSwitcher",
+    "Gtk.StackTransitionType",
+    "Gtk.StateFlags",
+    "Gtk.Statusbar",
+    "Gtk.StatusbarAccessible",
+    "Gtk.StyleContext",
+    "Gtk.StyleContextPrintFlags",
+    "Gtk.StyleProvider",
+    "Gtk.Switch",
+    "Gtk.SwitchAccessible",
+    "Gtk.TextAccessible",
+    "Gtk.TextBuffer",
+    "Gtk.TextBufferTargetInfo",
+    "Gtk.TextCellAccessible",
+    "Gtk.TextChildAnchor",
+    "Gtk.TextDirection",
+    "Gtk.TextExtendSelection",
+    "Gtk.TextIter",
+    "Gtk.TextMark",
+    "Gtk.TextSearchFlags",
+    "Gtk.TextTag",
+    "Gtk.TextTagTable",
+    "Gtk.TextView",
+    "Gtk.TextViewAccessible",
+    "Gtk.TextViewLayer",
+    "Gtk.TextWindowType",
+    "Gtk.ToggleButton",
+    "Gtk.ToggleButtonAccessible",
+    "Gtk.ToggleToolButton",
+    "Gtk.ToolButton",
+    "Gtk.ToolItem",
+    "Gtk.ToolShell",
+    "Gtk.Toolbar",
+    "Gtk.ToolbarStyle",
+    "Gtk.Tooltip",
+    "Gtk.ToplevelAccessible",
+    "Gtk.Transform",
+    "Gtk.TransformType",
+    "Gtk.TreeDragDest",
+    "Gtk.TreeDragSource",
+    "Gtk.TreeIter",
+    "Gtk.TreeListModel",
+    "Gtk.TreeListRow",
+    "Gtk.TreeModelFilter",
+    "Gtk.TreeModelFlags",
+    "Gtk.TreeModelSort",
+    "Gtk.TreeRowReference",
+    "Gtk.TreeSelection",
+    "Gtk.TreeSortable",
+    "Gtk.TreeViewAccessible",
+    "Gtk.TreeViewColumn",
+    "Gtk.TreeViewColumnSizing",
+    "Gtk.TreeViewDropPosition",
+    "Gtk.TreeViewGridLines",
+    "Gtk.Unit",
+    "Gtk.Video",
+    "Gtk.Viewport",
+    "Gtk.VolumeButton",
+    "Gtk.Widget",
+    "Gtk.WidgetAccessible",
+    "Gtk.WidgetPaintable",
+    "Gtk.WidgetPath",
+    "Gtk.Window",
+    "Gtk.WindowAccessible",
+    "Gtk.WindowGroup",
+    "Gtk.WindowPosition",
+    "Gtk.WindowType",
+    "Gtk.WrapMode",
+]
+
+ignore = [
+    "Gtk.AccelGroupEntry",
+    "Gtk.AccelKey",
+    "Gtk.BindingArg",
+    "Gtk.BindingEntry",
+    "Gtk.BindingSet",
+    "Gtk.BindingSignal",
+    "Gtk.Clipboard",
+    "Gtk.FileFilterInfo",
+    "Gtk.LabelSelectionInfo",
+    "Gtk.PadActionEntry",
+    "Gtk.PageRange",
+    "Gtk.RecentData",
+    "Gtk.RequestedSize",
+    "Gtk.SettingsValue",
+    "Gtk.TextBTree",
+    "Gtk.WindowGeometryInfo",
+]
+
+manual = [
+    "Gio.Application",
+    "Gio.ApplicationFlags",
+    "GLib.Error",
+    "Gtk.ResponseType",
+]
+
+[[object]]
+name = "Gtk.*"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+        [[object.function.parameter]]
+        name = "surface"
+        const = true
+    [[object.function]]
+    pattern = "tree_[gs]et_row_drag_data"
+        [[object.function.parameter]]
+        name = "selection_data"
+        const = true
+    [[object.function]]
+    name = "selection_add_targets"
+    #array as pointer
+    ignore = true
+    [[object.function]]
+    name = "target_table_free"
+    #array as pointer
+    ignore = true
+    [[object.function]]
+    name = "target_table_new_from_list"
+    #array as pointer
+    ignore = true
+    [[object.function]]
+    name = "init"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "main_quit"
+    #manual
+    ignore = true
+    [[object.function]]
+    pattern = "get_(major|minor|micro)_version"
+    #manual skip_assert_initialized
+    ignore = true
+    [[object.function]]
+    pattern = "get_(binary|interface)_age"
+    #manual skip_assert_initialized
+    ignore = true
+    [[object.function]]
+    name = "check_version"
+    #manual skip_assert_initialized
+    ignore = true
+    [[object.function]]
+    pattern = "drag_.+"
+    #manual trait
+    ignore = true
+
+[[object]]
+name = "Gtk.Application"
+status = "generate"
+trait_name = "GtkApplicationExt"
+    [[object.function]]
+    name = "new"
+    ignore = true
+
+[[object]]
+name = "Gtk.Builder"
+status = "generate"
+manual_traits = ["BuilderExtManual"]
+    [[object.function]]
+    pattern = ".+_from_file"
+    #path
+    ignore = true
+
+[[object]]
+name = "Gtk.CellAccessibleParent"
+status = "generate"
+    [[object.function]]
+    name = "get_cell_position"
+    ignore = true
+
+[[object]]
+name = "Gtk.CellView"
+status = "generate"
+    [[object.function]]
+    name = "set_displayed_row"
+    [[object.function.parameter]]
+          name = "path"
+          nullable = false
+
+[[object]]
+name = "Gtk.ComboBox"
+status = "generate"
+manual_traits = ["ColorBoxExtManual"]
+    [[object.function]]
+    name = "set_active_iter"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.property]]
+    name = "active"
+    #manual Option
+    generate = ["notify"]
+
+[[object]]
+name = "Gtk.Dialog"
+status = "generate"
+manual_traits = ["DialogExtManual"]
+    [[object.function]]
+    name = "add_button"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_content_area"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_response_for_widget"
+    ignore = true
+    [[object.function]]
+    name = "run"
+    ignore = true
+
+[[object]]
+name = "Gtk.IconTheme"
+status = "generate"
+    [[object.function]]
+    name = "get_icon_sizes"
+    ignore = true
+
+[[object]]
+name = "Gtk.IconView"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+
+[[object]]
+name = "Gtk.ListStore"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+        [[object.function.parameter]]
+        name = "sibling"
+        const = true
+        [[object.function.parameter]]
+        name = "position"
+        const = true
+    [[object.function]]
+    name = "swap"
+        [[object.function.parameter]]
+        name = "a"
+        const = true
+        [[object.function.parameter]]
+        name = "b"
+        const = true
+
+[[object]]
+name = "Gtk.MediaStream"
+status = "generate"
+    [[object.function]]
+    name = "gerror"
+    # TODO: figure out error's ownership
+    ignore = true
+
+[[object]]
+name = "Gtk.PaperSize"
+status = "generate"
+    [[object.function]]
+    pattern = "(get|is)_.*"
+        [[object.function.parameter]]
+        name = "size"
+        const = true
+    [[object.function]]
+    name = "is_equal"
+        [[object.function.parameter]]
+        name = "size1"
+        const = true
+        [[object.function.parameter]]
+        name = "size2"
+        const = true
+
+[[object]]
+name = "Gtk.RadioButton"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    ignore = true
+    [[object.function]]
+    name = "new_with_label"
+    ignore = true
+    [[object.function]]
+    name = "new_with_mnemonic"
+    ignore = true
+    [[object.function]]
+    name = "set_group"
+    ignore = true
+
+[[object]]
+name = "Gtk.RadioMenuItem"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    ignore = true
+    [[object.function]]
+    name = "new_with_label"
+    ignore = true
+    [[object.function]]
+    name = "new_with_mnemonic"
+    ignore = true
+    [[object.function]]
+    name = "set_group"
+    ignore = true
+
+[[object]]
+name = "Gtk.RadioToolButton"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    ignore = true
+    [[object.function]]
+    name = "set_group"
+    ignore = true
+
+[[object]]
+name = "Gtk.SelectionData"
+status = "generate"
+    [[object.function]]
+    name = "get_data"
+    ignore = true
+
+[[object]]
+name = "Gtk.Text"
+status = "generate"
+    [[object.signal]]
+    # error generating emit_*
+    pattern = "*"
+    ignore = true
+
+[[object]]
+name = "Gtk.TreeModel"
+status = "generate"
+    [[object.function]]
+    name = "filter_new"
+    ignore = true
+    [[object.function]]
+    name = "iter_children"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+    [[object.function]]
+    name = "iter_n_children"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.function]]
+    name = "iter_nth_child"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+    [[object.function]]
+    name = "rows_reordered"
+    ignore = true
+    [[object.function]]
+    name = "rows_reordered_with_length"
+    ignore = true
+
+[[object]]
+name = "Gtk.TreePath"
+status = "generate"
+    [[object.function]]
+    name = "get_indices"
+    ignore = true
+
+[[object]]
+name = "Gtk.TreeStore"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.function]]
+    name = "append"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+    [[object.function]]
+    name = "insert"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+    [[object.function]]
+    name = "insert_after"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+        [[object.function.parameter]]
+        name = "sibling"
+        const = true
+    [[object.function]]
+    name = "insert_before"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+        [[object.function.parameter]]
+        name = "sibling"
+        const = true
+    [[object.function]]
+    name = "move_after"
+        [[object.function.parameter]]
+        name = "position"
+        const = true
+    [[object.function]]
+    name = "move_before"
+        [[object.function.parameter]]
+        name = "position"
+        const = true
+    [[object.function]]
+    name = "prepend"
+        [[object.function.parameter]]
+        name = "parent"
+        const = true
+    [[object.function]]
+    name = "sort_new_with_model"
+    ignore = true
+
+[[object]]
+name = "Gtk.TreeView"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
