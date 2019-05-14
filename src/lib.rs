@@ -86,6 +86,7 @@ pub use prelude::*;
 mod application;
 mod builder;
 mod dialog;
+mod entry_buffer;
 mod file_chooser_dialog;
 mod response_type;
 

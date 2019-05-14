@@ -4,13 +4,15 @@
 
 use ffi;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_ffi;
-use libc;
+use gobject_ffi;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -23,41 +25,22 @@ glib_wrapper! {
     }
 }
 
-impl EntryBuffer {
-    pub fn new(initial_chars: Option<&str>, n_initial_chars: i32) -> EntryBuffer {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_entry_buffer_new(initial_chars.to_glib_none().0, n_initial_chars))
-        }
-    }
-}
-
 pub const NONE_ENTRY_BUFFER: Option<&EntryBuffer> = None;
 
 pub trait EntryBufferExt: 'static {
-    fn delete_text(&self, position: u32, n_chars: i32) -> u32;
-
     fn emit_deleted_text(&self, position: u32, n_chars: u32);
 
     fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
 
-    fn get_bytes(&self) -> usize;
+    fn get_property_length(&self) -> u32;
 
-    fn get_length(&self) -> u32;
+    fn get_property_max_length(&self) -> i32;
 
-    fn get_max_length(&self) -> i32;
+    fn set_property_max_length(&self, max_length: i32);
 
-    fn get_text(&self) -> Option<GString>;
+    fn get_property_text(&self) -> Option<GString>;
 
-    fn insert_text(&self, position: u32, chars: &str, n_chars: i32) -> u32;
-
-    fn set_max_length(&self, max_length: i32);
-
-    fn set_text(&self, chars: &str, n_chars: i32);
-
-    fn connect_deleted_text<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_inserted_text<F: Fn(&Self, u32, &str, u32) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn set_property_text(&self, text: Option<&str>);
 
     fn connect_property_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -67,12 +50,6 @@ pub trait EntryBufferExt: 'static {
 }
 
 impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
-    fn delete_text(&self, position: u32, n_chars: i32) -> u32 {
-        unsafe {
-            ffi::gtk_entry_buffer_delete_text(self.as_ref().to_glib_none().0, position, n_chars)
-        }
-    }
-
     fn emit_deleted_text(&self, position: u32, n_chars: u32) {
         unsafe {
             ffi::gtk_entry_buffer_emit_deleted_text(self.as_ref().to_glib_none().0, position, n_chars);
@@ -85,61 +62,39 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
-    fn get_bytes(&self) -> usize {
+    fn get_property_length(&self) -> u32 {
         unsafe {
-            ffi::gtk_entry_buffer_get_bytes(self.as_ref().to_glib_none().0)
+            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"length\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
         }
     }
 
-    fn get_length(&self) -> u32 {
+    fn get_property_max_length(&self) -> i32 {
         unsafe {
-            ffi::gtk_entry_buffer_get_length(self.as_ref().to_glib_none().0)
+            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"max-length\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
         }
     }
 
-    fn get_max_length(&self) -> i32 {
+    fn set_property_max_length(&self, max_length: i32) {
         unsafe {
-            ffi::gtk_entry_buffer_get_max_length(self.as_ref().to_glib_none().0)
+            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"max-length\0".as_ptr() as *const _, Value::from(&max_length).to_glib_none().0);
         }
     }
 
-    fn get_text(&self) -> Option<GString> {
+    fn get_property_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_entry_buffer_get_text(self.as_ref().to_glib_none().0))
+            let mut value = Value::from_type(<GString as StaticType>::static_type());
+            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
         }
     }
 
-    fn insert_text(&self, position: u32, chars: &str, n_chars: i32) -> u32 {
+    fn set_property_text(&self, text: Option<&str>) {
         unsafe {
-            ffi::gtk_entry_buffer_insert_text(self.as_ref().to_glib_none().0, position, chars.to_glib_none().0, n_chars)
-        }
-    }
-
-    fn set_max_length(&self, max_length: i32) {
-        unsafe {
-            ffi::gtk_entry_buffer_set_max_length(self.as_ref().to_glib_none().0, max_length);
-        }
-    }
-
-    fn set_text(&self, chars: &str, n_chars: i32) {
-        unsafe {
-            ffi::gtk_entry_buffer_set_text(self.as_ref().to_glib_none().0, chars.to_glib_none().0, n_chars);
-        }
-    }
-
-    fn connect_deleted_text<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"deleted-text\0".as_ptr() as *const _,
-                Some(transmute(deleted_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_inserted_text<F: Fn(&Self, u32, &str, u32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"inserted-text\0".as_ptr() as *const _,
-                Some(transmute(inserted_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
         }
     }
 
@@ -166,18 +121,6 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
                 Some(transmute(notify_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn deleted_text_trampoline<P, F: Fn(&P, u32, u32) + 'static>(this: *mut ffi::GtkEntryBuffer, position: libc::c_uint, n_chars: libc::c_uint, f: glib_ffi::gpointer)
-where P: IsA<EntryBuffer> {
-    let f: &F = &*(f as *const F);
-    f(&EntryBuffer::from_glib_borrow(this).unsafe_cast(), position, n_chars)
-}
-
-unsafe extern "C" fn inserted_text_trampoline<P, F: Fn(&P, u32, &str, u32) + 'static>(this: *mut ffi::GtkEntryBuffer, position: libc::c_uint, chars: *mut libc::c_char, n_chars: libc::c_uint, f: glib_ffi::gpointer)
-where P: IsA<EntryBuffer> {
-    let f: &F = &*(f as *const F);
-    f(&EntryBuffer::from_glib_borrow(this).unsafe_cast(), position, &GString::from_glib_borrow(chars), n_chars)
 }
 
 unsafe extern "C" fn notify_length_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEntryBuffer, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)

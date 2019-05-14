@@ -8,3 +8,4 @@ pub use auto::traits::*;
 
 pub use builder::BuilderExtManual;
 pub use dialog::DialogExtManual;
+pub use entry_buffer::EntryBufferExtManual;

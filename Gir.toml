@@ -93,7 +93,6 @@ generate = [
     "Gtk.Editable",
     "Gtk.EditableProperties",
     "Gtk.EntryAccessible",
-    "Gtk.EntryBuffer",
     "Gtk.EntryCompletion",
     "Gtk.EntryIconAccessible",
     "Gtk.EntryIconPosition",
@@ -531,6 +530,43 @@ status = "generate"
         [[object.function.parameter]]
         name = "text"
         nullable = true
+
+[[object]]
+name = "Gtk.EntryBuffer"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    ignore = true
+    [[object.function]]
+    name = "delete_text"
+    ignore = true
+    [[object.function]]
+    name = "get_bytes"
+    ignore = true
+    [[object.function]]
+    name = "get_length"
+    ignore = true
+    [[object.function]]
+    name = "get_max_length"
+    ignore = true
+    [[object.function]]
+    name = "get_text"
+    ignore = true
+    [[object.function]]
+    name = "insert_text"
+    ignore = true
+    [[object.function]]
+    name = "set_max_length"
+    ignore = true
+    [[object.function]]
+    name = "set_text"
+    ignore = true
+    [[object.signal]]
+    name = "deleted-text"
+    ignore = true
+    [[object.signal]]
+    name = "inserted-text"
+    ignore = true
 
 [[object]]
 name = "Gtk.IconTheme"
