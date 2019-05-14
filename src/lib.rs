@@ -18,16 +18,17 @@ extern crate bitflags;
 #[macro_use]
 extern crate lazy_static;
 
-extern crate glib_sys as glib_ffi;
-extern crate gio_sys as gio_ffi;
-extern crate gdk4_sys as gdk_ffi;
-extern crate gdk_pixbuf_sys as gdk_pixbuf_ffi;
-extern crate gobject_sys as gobject_ffi;
-extern crate graphene_sys as graphene_ffi;
-extern crate gsk4_sys as gsk_ffi;
-extern crate gtk4_sys as ffi;
-extern crate cairo_sys as cairo_ffi;
-extern crate pango_sys as pango_ffi;
+extern crate glib_sys;
+extern crate gio_sys;
+extern crate gdk4_sys as gdk_sys;
+extern crate gdk_pixbuf_sys;
+extern crate gobject_sys;
+extern crate graphene_sys;
+extern crate gsk4_sys as gsk_sys;
+extern crate gtk4_sys as gtk_sys;
+extern crate cairo_sys;
+extern crate pango_sys;
+extern crate atk_sys;
 #[macro_use]
 extern crate glib;
 extern crate gio;
@@ -57,11 +58,11 @@ pub use glib::{
     Value,
 };
 
-pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
-pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
-pub const STYLE_PROVIDER_PRIORITY_SETTINGS: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS as u32;
-pub const STYLE_PROVIDER_PRIORITY_APPLICATION: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION as u32;
-pub const STYLE_PROVIDER_PRIORITY_USER: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_USER as u32;
+pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
+pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
+pub const STYLE_PROVIDER_PRIORITY_SETTINGS: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS as u32;
+pub const STYLE_PROVIDER_PRIORITY_APPLICATION: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION as u32;
+pub const STYLE_PROVIDER_PRIORITY_USER: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_USER as u32;
 
 
 #[macro_use]
@@ -72,6 +73,7 @@ mod rt;
 #[cfg_attr(feature = "cargo-clippy", allow(let_and_return))]
 #[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
 #[cfg_attr(feature = "cargo-clippy", allow(wrong_self_convention))]
+#[allow(unused_imports)]
 mod auto;
 
 mod signal;

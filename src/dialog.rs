@@ -2,7 +2,6 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-use ffi;
 use glib::object::Cast;
 use glib::translate::*;
 use std::ptr;
@@ -24,7 +23,7 @@ impl Dialog {
         assert_initialized_main_thread!();
         let ret: Dialog = unsafe {
             Widget::from_glib_none(
-                ffi::gtk_dialog_new_with_buttons(title.to_glib_none().0, parent.map(|p| p.as_ref()).to_glib_none().0,
+                gtk_sys::gtk_dialog_new_with_buttons(title.to_glib_none().0, parent.map(|p| p.as_ref()).to_glib_none().0,
                     flags.to_glib(), ptr::null_mut()))
                 .unsafe_cast()
         };
@@ -50,13 +49,13 @@ impl<O: IsA<Dialog>> DialogExtManual for O {
 
     fn run(&self) -> ResponseType {
         unsafe {
-            from_glib(ffi::gtk_dialog_run(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_dialog_run(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType {
         unsafe {
-            from_glib(ffi::gtk_dialog_get_response_for_widget(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_dialog_get_response_for_widget(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
         }
     }
 }
