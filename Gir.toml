@@ -473,9 +473,9 @@ name = "Gtk.CellView"
 status = "generate"
     [[object.function]]
     name = "set_displayed_row"
-    [[object.function.parameter]]
-          name = "path"
-          nullable = false
+        [[object.function.parameter]]
+        name = "path"
+        nullable = false
 
 [[object]]
 name = "Gtk.ComboBox"
