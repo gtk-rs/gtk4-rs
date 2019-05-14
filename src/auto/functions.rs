@@ -3,14 +3,17 @@
 // DO NOT EDIT
 
 use Error;
+use Orientation;
 use PageSetup;
 use PrintSettings;
 use SelectionData;
+use StyleContext;
 use TextDirection;
 use TreeModel;
 use TreePath;
 use Widget;
 use Window;
+use cairo;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -279,65 +282,98 @@ pub fn print_run_page_setup_dialog_async<P: IsA<Window>, Q: FnOnce(&PageSetup) +
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_requisition() }
 //}
 
-//pub fn render_activity<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_activity() }
-//}
+pub fn render_activity<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_activity(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_arrow<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, angle: f64, x: f64, y: f64, size: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_arrow() }
-//}
+pub fn render_arrow<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, angle: f64, x: f64, y: f64, size: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_arrow(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), angle, x, y, size);
+    }
+}
 
-//pub fn render_background<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_background() }
-//}
+pub fn render_background<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_background(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
 //pub fn render_background_get_clip<P: IsA<StyleContext>>(context: &P, x: f64, y: f64, width: f64, height: f64, out_clip: /*Ignored*/gdk::Rectangle) {
 //    unsafe { TODO: call gtk_sys:gtk_render_background_get_clip() }
 //}
 
-//pub fn render_check<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_check() }
-//}
+pub fn render_check<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_check(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_expander<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_expander() }
-//}
+pub fn render_expander<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_expander(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_focus<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_focus() }
-//}
+pub fn render_focus<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_focus(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_frame<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_frame() }
-//}
+pub fn render_frame<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_frame(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_handle<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_handle() }
-//}
+pub fn render_handle<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_handle(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_icon<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, texture: /*Ignored*/&gdk::Texture, x: f64, y: f64) {
+//pub fn render_icon<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, texture: /*Ignored*/&gdk::Texture, x: f64, y: f64) {
 //    unsafe { TODO: call gtk_sys:gtk_render_icon() }
 //}
 
-//pub fn render_insertion_cursor<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout, index: i32, direction: /*Ignored*/pango::Direction) {
+//pub fn render_insertion_cursor<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout, index: i32, direction: /*Ignored*/pango::Direction) {
 //    unsafe { TODO: call gtk_sys:gtk_render_insertion_cursor() }
 //}
 
-//pub fn render_layout<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout) {
+//pub fn render_layout<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout) {
 //    unsafe { TODO: call gtk_sys:gtk_render_layout() }
 //}
 
-//pub fn render_line<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x0: f64, y0: f64, x1: f64, y1: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_line() }
-//}
+pub fn render_line<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x0: f64, y0: f64, x1: f64, y1: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_line(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x0, y0, x1, y1);
+    }
+}
 
-//pub fn render_option<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_option() }
-//}
+pub fn render_option<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_option(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height);
+    }
+}
 
-//pub fn render_slider<P: IsA<StyleContext>>(context: &P, cr: /*Ignored*/&cairo::Context, x: f64, y: f64, width: f64, height: f64, orientation: Orientation) {
-//    unsafe { TODO: call gtk_sys:gtk_render_slider() }
-//}
+pub fn render_slider<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, width: f64, height: f64, orientation: Orientation) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_slider(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, width, height, orientation.to_glib());
+    }
+}
 
 pub fn rgb_to_hsv(r: f64, g: f64, b: f64) -> (f64, f64, f64) {
     assert_initialized_main_thread!();

@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use PageSetup;
+use cairo;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -25,9 +26,11 @@ impl PrintContext {
     //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_layout() }
     //}
 
-    //pub fn get_cairo_context(&self) -> /*Ignored*/Option<cairo::Context> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_cairo_context() }
-    //}
+    pub fn get_cairo_context(&self) -> Option<cairo::Context> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_print_context_get_cairo_context(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_dpi_x(&self) -> f64 {
         unsafe {
@@ -74,9 +77,11 @@ impl PrintContext {
         }
     }
 
-    //pub fn set_cairo_context(&self, cr: /*Ignored*/&mut cairo::Context, dpi_x: f64, dpi_y: f64) {
-    //    unsafe { TODO: call gtk_sys:gtk_print_context_set_cairo_context() }
-    //}
+    pub fn set_cairo_context(&self, cr: &mut cairo::Context, dpi_x: f64, dpi_y: f64) {
+        unsafe {
+            gtk_sys::gtk_print_context_set_cairo_context(self.to_glib_none().0, cr.to_glib_none_mut().0, dpi_x, dpi_y);
+        }
+    }
 }
 
 impl fmt::Display for PrintContext {

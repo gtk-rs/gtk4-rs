@@ -28,7 +28,7 @@ impl Snapshot {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_border() }
     //}
 
-    //pub fn append_cairo(&self, bounds: /*Ignored*/&graphene::Rect) -> /*Ignored*/Option<cairo::Context> {
+    //pub fn append_cairo(&self, bounds: /*Ignored*/&graphene::Rect) -> Option<cairo::Context> {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_cairo() }
     //}
 

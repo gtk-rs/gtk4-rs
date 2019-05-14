@@ -21,6 +21,7 @@ use Tooltip;
 use WidgetPath;
 use Window;
 use atk;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -83,7 +84,7 @@ pub trait WidgetExt: 'static {
 
     fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
 
-    //fn add_tick_callback(&self, callback: /*Unimplemented*/Fn(&Widget, /*Ignored*/gdk::FrameClock) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32;
+    fn add_tick_callback<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(&self, callback: P) -> u32;
 
     //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>);
 
@@ -203,7 +204,7 @@ pub trait WidgetExt: 'static {
 
     //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions>;
 
-    //fn get_frame_clock(&self) -> /*Ignored*/Option<gdk::FrameClock>;
+    fn get_frame_clock(&self) -> Option<gdk::FrameClock>;
 
     fn get_halign(&self) -> Align;
 
@@ -665,9 +666,25 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn add_tick_callback(&self, callback: /*Unimplemented*/Fn(&Widget, /*Ignored*/gdk::FrameClock) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_add_tick_callback() }
-    //}
+    fn add_tick_callback<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(&self, callback: P) -> u32 {
+        let callback_data: Box_<P> = Box::new(callback);
+        unsafe extern "C" fn callback_func<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(widget: *mut gtk_sys::GtkWidget, frame_clock: *mut gdk_sys::GdkFrameClock, user_data: glib_sys::gpointer) -> glib_sys::gboolean {
+            let widget = from_glib_borrow(widget);
+            let frame_clock = from_glib_borrow(frame_clock);
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&widget, &frame_clock);
+            res.to_glib()
+        }
+        let callback = Some(callback_func::<P> as _);
+        unsafe extern "C" fn notify_func<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(data: glib_sys::gpointer) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call3 = Some(notify_func::<P> as _);
+        let super_callback0: Box_<P> = callback_data;
+        unsafe {
+            gtk_sys::gtk_widget_add_tick_callback(self.as_ref().to_glib_none().0, callback, Box::into_raw(super_callback0) as *mut _, destroy_call3)
+        }
+    }
 
     //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>) {
     //    unsafe { TODO: call gtk_sys:gtk_widget_allocate() }
@@ -969,9 +986,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_options() }
     //}
 
-    //fn get_frame_clock(&self) -> /*Ignored*/Option<gdk::FrameClock> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_frame_clock() }
-    //}
+    fn get_frame_clock(&self) -> Option<gdk::FrameClock> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_frame_clock(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_halign(&self) -> Align {
         unsafe {
