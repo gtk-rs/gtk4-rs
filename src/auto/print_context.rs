@@ -77,9 +77,9 @@ impl PrintContext {
         }
     }
 
-    pub fn set_cairo_context(&self, cr: &mut cairo::Context, dpi_x: f64, dpi_y: f64) {
+    pub fn set_cairo_context(&self, cr: &cairo::Context, dpi_x: f64, dpi_y: f64) {
         unsafe {
-            gtk_sys::gtk_print_context_set_cairo_context(self.to_glib_none().0, cr.to_glib_none_mut().0, dpi_x, dpi_y);
+            gtk_sys::gtk_print_context_set_cairo_context(self.to_glib_none().0, mut_override(cr.to_glib_none().0), dpi_x, dpi_y);
         }
     }
 }

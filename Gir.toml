@@ -223,7 +223,6 @@ generate = [
     "Gtk.PopoverConstraint",
     "Gtk.PopoverMenu",
     "Gtk.PositionType",
-    "Gtk.PrintContext",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",
     "Gtk.PrintOperation",
@@ -633,6 +632,16 @@ status = "generate"
         const = true
         [[object.function.parameter]]
         name = "size2"
+        const = true
+
+[[object]]
+name = "Gtk.PrintContext"
+status = "generate"
+    [[object.function]]
+    name = "set_cairo_context"
+        [[object.function.parameter]]
+        name = "cr"
+        # cairo::Context is reference-counted
         const = true
 
 [[object]]
