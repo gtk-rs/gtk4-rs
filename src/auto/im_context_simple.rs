@@ -3,17 +3,27 @@
 // DO NOT EDIT
 
 use IMContext;
-use ffi;
+use InputHints;
+use InputPurpose;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct IMContextSimple(Object<ffi::GtkIMContextSimple, ffi::GtkIMContextSimpleClass, IMContextSimpleClass>) @extends IMContext;
+    pub struct IMContextSimple(Object<gtk_sys::GtkIMContextSimple, gtk_sys::GtkIMContextSimpleClass, IMContextSimpleClass>) @extends IMContext;
 
     match fn {
-        get_type => || ffi::gtk_im_context_simple_get_type(),
+        get_type => || gtk_sys::gtk_im_context_simple_get_type(),
     }
 }
 
@@ -21,7 +31,7 @@ impl IMContextSimple {
     pub fn new() -> IMContextSimple {
         assert_initialized_main_thread!();
         unsafe {
-            IMContext::from_glib_full(ffi::gtk_im_context_simple_new()).unsafe_cast()
+            IMContext::from_glib_full(gtk_sys::gtk_im_context_simple_new()).unsafe_cast()
         }
     }
 }
@@ -43,14 +53,14 @@ pub trait IMContextSimpleExt: 'static {
 impl<O: IsA<IMContextSimple>> IMContextSimpleExt for O {
     fn add_compose_file(&self, compose_file: &str) {
         unsafe {
-            ffi::gtk_im_context_simple_add_compose_file(self.as_ref().to_glib_none().0, compose_file.to_glib_none().0);
+            gtk_sys::gtk_im_context_simple_add_compose_file(self.as_ref().to_glib_none().0, compose_file.to_glib_none().0);
         }
     }
 
     fn add_table(&self, data: &[u16], n_seqs: i32) {
         let max_seq_len = data.len() as i32;
         unsafe {
-            ffi::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0, data.to_glib_none().0, max_seq_len, n_seqs);
+            gtk_sys::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0, data.to_glib_none().0, max_seq_len, n_seqs);
         }
     }
 }

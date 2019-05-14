@@ -3,24 +3,24 @@
 // DO NOT EDIT
 
 use FontChooserLevel;
-use ffi;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FontChooser(Interface<ffi::GtkFontChooser>);
+    pub struct FontChooser(Interface<gtk_sys::GtkFontChooser>);
 
     match fn {
-        get_type => || ffi::gtk_font_chooser_get_type(),
+        get_type => || gtk_sys::gtk_font_chooser_get_type(),
     }
 }
 
@@ -85,101 +85,101 @@ pub trait FontChooserExt: 'static {
 impl<O: IsA<FontChooser>> FontChooserExt for O {
     fn get_font(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_font_chooser_get_font(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_font_chooser_get_font(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription> {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_get_font_desc() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_desc() }
     //}
 
     //fn get_font_face(&self) -> /*Ignored*/Option<pango::FontFace> {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_get_font_face() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_face() }
     //}
 
     //fn get_font_family(&self) -> /*Ignored*/Option<pango::FontFamily> {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_get_font_family() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_family() }
     //}
 
     fn get_font_features(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_font_chooser_get_font_features(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_font_chooser_get_font_features(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_get_font_map() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_map() }
     //}
 
     fn get_font_size(&self) -> i32 {
         unsafe {
-            ffi::gtk_font_chooser_get_font_size(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_font_chooser_get_font_size(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_language(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_font_chooser_get_language(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_font_chooser_get_language(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_level(&self) -> FontChooserLevel {
         unsafe {
-            from_glib(ffi::gtk_font_chooser_get_level(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_font_chooser_get_level(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_preview_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_font_chooser_get_preview_text(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_font_chooser_get_preview_text(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_preview_entry(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_font_chooser_get_show_preview_entry(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_font_chooser_get_show_preview_entry(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn set_filter_func(&self, filter: /*Unimplemented*/Fn(/*Ignored*/pango::FontFamily, /*Ignored*/pango::FontFace) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_set_filter_func() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_filter_func() }
     //}
 
     fn set_font(&self, fontname: &str) {
         unsafe {
-            ffi::gtk_font_chooser_set_font(self.as_ref().to_glib_none().0, fontname.to_glib_none().0);
+            gtk_sys::gtk_font_chooser_set_font(self.as_ref().to_glib_none().0, fontname.to_glib_none().0);
         }
     }
 
     //fn set_font_desc(&self, font_desc: /*Ignored*/&pango::FontDescription) {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_set_font_desc() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_font_desc() }
     //}
 
     //fn set_font_map(&self, fontmap: /*Ignored*/Option<&pango::FontMap>) {
-    //    unsafe { TODO: call ffi::gtk_font_chooser_set_font_map() }
+    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_font_map() }
     //}
 
     fn set_language(&self, language: &str) {
         unsafe {
-            ffi::gtk_font_chooser_set_language(self.as_ref().to_glib_none().0, language.to_glib_none().0);
+            gtk_sys::gtk_font_chooser_set_language(self.as_ref().to_glib_none().0, language.to_glib_none().0);
         }
     }
 
     fn set_level(&self, level: FontChooserLevel) {
         unsafe {
-            ffi::gtk_font_chooser_set_level(self.as_ref().to_glib_none().0, level.to_glib());
+            gtk_sys::gtk_font_chooser_set_level(self.as_ref().to_glib_none().0, level.to_glib());
         }
     }
 
     fn set_preview_text(&self, text: &str) {
         unsafe {
-            ffi::gtk_font_chooser_set_preview_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_font_chooser_set_preview_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     fn set_show_preview_entry(&self, show_preview_entry: bool) {
         unsafe {
-            ffi::gtk_font_chooser_set_show_preview_entry(self.as_ref().to_glib_none().0, show_preview_entry.to_glib());
+            gtk_sys::gtk_font_chooser_set_show_preview_entry(self.as_ref().to_glib_none().0, show_preview_entry.to_glib());
         }
     }
 
@@ -248,49 +248,49 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
     }
 }
 
-unsafe extern "C" fn font_activated_trampoline<P, F: Fn(&P, &str) + 'static>(this: *mut ffi::GtkFontChooser, fontname: *mut libc::c_char, f: glib_ffi::gpointer)
+unsafe extern "C" fn font_activated_trampoline<P, F: Fn(&P, &str) + 'static>(this: *mut gtk_sys::GtkFontChooser, fontname: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(fontname))
 }
 
-unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_font_features_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_font_features_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_preview_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_preview_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_preview_entry_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFontChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_preview_entry_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFontChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FontChooser> {
     let f: &F = &*(f as *const F);
     f(&FontChooser::from_glib_borrow(this).unsafe_cast())

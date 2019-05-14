@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -11,29 +10,30 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FilterListModel(Object<ffi::GtkFilterListModel, ffi::GtkFilterListModelClass, FilterListModelClass>);
+    pub struct FilterListModel(Object<gtk_sys::GtkFilterListModel, gtk_sys::GtkFilterListModelClass, FilterListModelClass>);
 
     match fn {
-        get_type => || ffi::gtk_filter_list_model_get_type(),
+        get_type => || gtk_sys::gtk_filter_list_model_get_type(),
     }
 }
 
 impl FilterListModel {
     //pub fn new(model: /*Ignored*/&gio::ListModel, filter_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> FilterListModel {
-    //    unsafe { TODO: call ffi::gtk_filter_list_model_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_new() }
     //}
 
     pub fn new_for_type(item_type: glib::types::Type) -> FilterListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gtk_filter_list_model_new_for_type(item_type.to_glib()))
+            from_glib_full(gtk_sys::gtk_filter_list_model_new_for_type(item_type.to_glib()))
         }
     }
 }
@@ -60,33 +60,33 @@ pub trait FilterListModelExt: 'static {
 
 impl<O: IsA<FilterListModel>> FilterListModelExt for O {
     //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_filter_list_model_get_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_get_model() }
     //}
 
     fn has_filter(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_filter_list_model_has_filter(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_filter_list_model_has_filter(self.as_ref().to_glib_none().0))
         }
     }
 
     fn refilter(&self) {
         unsafe {
-            ffi::gtk_filter_list_model_refilter(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_filter_list_model_refilter(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn set_filter_func(&self, filter_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call ffi::gtk_filter_list_model_set_filter_func() }
+    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_set_filter_func() }
     //}
 
     //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
-    //    unsafe { TODO: call ffi::gtk_filter_list_model_set_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_set_model() }
     //}
 
     fn get_property_has_filter(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-filter\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-filter\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -94,7 +94,7 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {
             let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -108,7 +108,7 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
     }
 }
 
-unsafe extern "C" fn notify_has_filter_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFilterListModel, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_filter_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFilterListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FilterListModel> {
     let f: &F = &*(f as *const F);
     f(&FilterListModel::from_glib_borrow(this).unsafe_cast())

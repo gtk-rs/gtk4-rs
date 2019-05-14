@@ -15,7 +15,7 @@ pub use self::accel_label::{AccelLabel, AccelLabelClass, NONE_ACCEL_LABEL};
 pub use self::accel_label::AccelLabelExt;
 
 mod accel_map;
-pub use self::accel_map::{AccelMap, AccelMapClass, NONE_ACCEL_MAP};
+pub use self::accel_map::{AccelMap, AccelMapClass};
 
 mod accessible;
 pub use self::accessible::{Accessible, AccessibleClass, NONE_ACCESSIBLE};
@@ -66,8 +66,7 @@ pub use self::assistant::{Assistant, AssistantClass, NONE_ASSISTANT};
 pub use self::assistant::AssistantExt;
 
 mod assistant_page;
-pub use self::assistant_page::{AssistantPage, AssistantPageClass, NONE_ASSISTANT_PAGE};
-pub use self::assistant_page::AssistantPageExt;
+pub use self::assistant_page::{AssistantPage, AssistantPageClass};
 
 mod bin;
 pub use self::bin::{Bin, BinClass, NONE_BIN};
@@ -167,8 +166,7 @@ pub use self::cell_view::{CellView, CellViewClass, NONE_CELL_VIEW};
 pub use self::cell_view::CellViewExt;
 
 mod center_box;
-pub use self::center_box::{CenterBox, CenterBoxClass, NONE_CENTER_BOX};
-pub use self::center_box::CenterBoxExt;
+pub use self::center_box::{CenterBox, CenterBoxClass};
 
 mod check_button;
 pub use self::check_button::{CheckButton, CheckButtonClass, NONE_CHECK_BUTTON};
@@ -258,19 +256,16 @@ pub use self::event_controller::{EventController, EventControllerClass, NONE_EVE
 pub use self::event_controller::EventControllerExt;
 
 mod event_controller_key;
-pub use self::event_controller_key::{EventControllerKey, EventControllerKeyClass, NONE_EVENT_CONTROLLER_KEY};
-pub use self::event_controller_key::EventControllerKeyExt;
+pub use self::event_controller_key::{EventControllerKey, EventControllerKeyClass};
 
 mod event_controller_legacy;
-pub use self::event_controller_legacy::{EventControllerLegacy, EventControllerLegacyClass, NONE_EVENT_CONTROLLER_LEGACY};
+pub use self::event_controller_legacy::{EventControllerLegacy, EventControllerLegacyClass};
 
 mod event_controller_motion;
-pub use self::event_controller_motion::{EventControllerMotion, EventControllerMotionClass, NONE_EVENT_CONTROLLER_MOTION};
-pub use self::event_controller_motion::EventControllerMotionExt;
+pub use self::event_controller_motion::{EventControllerMotion, EventControllerMotionClass};
 
 mod event_controller_scroll;
-pub use self::event_controller_scroll::{EventControllerScroll, EventControllerScrollClass, NONE_EVENT_CONTROLLER_SCROLL};
-pub use self::event_controller_scroll::EventControllerScrollExt;
+pub use self::event_controller_scroll::{EventControllerScroll, EventControllerScrollClass};
 
 mod expander;
 pub use self::expander::{Expander, ExpanderClass, NONE_EXPANDER};
@@ -362,36 +357,29 @@ pub use self::gesture_drag::{GestureDrag, GestureDragClass, NONE_GESTURE_DRAG};
 pub use self::gesture_drag::GestureDragExt;
 
 mod gesture_long_press;
-pub use self::gesture_long_press::{GestureLongPress, GestureLongPressClass, NONE_GESTURE_LONG_PRESS};
-pub use self::gesture_long_press::GestureLongPressExt;
+pub use self::gesture_long_press::{GestureLongPress, GestureLongPressClass};
 
 mod gesture_multi_press;
-pub use self::gesture_multi_press::{GestureMultiPress, GestureMultiPressClass, NONE_GESTURE_MULTI_PRESS};
-pub use self::gesture_multi_press::GestureMultiPressExt;
+pub use self::gesture_multi_press::{GestureMultiPress, GestureMultiPressClass};
 
 mod gesture_pan;
-pub use self::gesture_pan::{GesturePan, GesturePanClass, NONE_GESTURE_PAN};
-pub use self::gesture_pan::GesturePanExt;
+pub use self::gesture_pan::{GesturePan, GesturePanClass};
 
 mod gesture_rotate;
-pub use self::gesture_rotate::{GestureRotate, GestureRotateClass, NONE_GESTURE_ROTATE};
-pub use self::gesture_rotate::GestureRotateExt;
+pub use self::gesture_rotate::{GestureRotate, GestureRotateClass};
 
 mod gesture_single;
 pub use self::gesture_single::{GestureSingle, GestureSingleClass, NONE_GESTURE_SINGLE};
 pub use self::gesture_single::GestureSingleExt;
 
 mod gesture_stylus;
-pub use self::gesture_stylus::{GestureStylus, GestureStylusClass, NONE_GESTURE_STYLUS};
-pub use self::gesture_stylus::GestureStylusExt;
+pub use self::gesture_stylus::{GestureStylus, GestureStylusClass};
 
 mod gesture_swipe;
-pub use self::gesture_swipe::{GestureSwipe, GestureSwipeClass, NONE_GESTURE_SWIPE};
-pub use self::gesture_swipe::GestureSwipeExt;
+pub use self::gesture_swipe::{GestureSwipe, GestureSwipeClass};
 
 mod gesture_zoom;
-pub use self::gesture_zoom::{GestureZoom, GestureZoomClass, NONE_GESTURE_ZOOM};
-pub use self::gesture_zoom::GestureZoomExt;
+pub use self::gesture_zoom::{GestureZoom, GestureZoomClass};
 
 mod grid;
 pub use self::grid::{Grid, GridClass, NONE_GRID};
@@ -414,8 +402,7 @@ pub use self::im_multicontext::{IMMulticontext, IMMulticontextClass, NONE_IM_MUL
 pub use self::im_multicontext::IMMulticontextExt;
 
 mod icon_info;
-pub use self::icon_info::{IconInfo, IconInfoClass, NONE_ICON_INFO};
-pub use self::icon_info::IconInfoExt;
+pub use self::icon_info::{IconInfo, IconInfoClass};
 
 mod icon_theme;
 pub use self::icon_theme::{IconTheme, IconThemeClass, NONE_ICON_THEME};
@@ -562,8 +549,7 @@ mod notebook_accessible;
 pub use self::notebook_accessible::{NotebookAccessible, NotebookAccessibleClass, NONE_NOTEBOOK_ACCESSIBLE};
 
 mod notebook_page;
-pub use self::notebook_page::{NotebookPage, NotebookPageClass, NONE_NOTEBOOK_PAGE};
-pub use self::notebook_page::NotebookPageExt;
+pub use self::notebook_page::{NotebookPage, NotebookPageClass};
 
 mod notebook_page_accessible;
 pub use self::notebook_page_accessible::{NotebookPageAccessible, NotebookPageAccessibleClass, NONE_NOTEBOOK_PAGE_ACCESSIBLE};
@@ -578,8 +564,7 @@ pub use self::overlay::{Overlay, OverlayClass, NONE_OVERLAY};
 pub use self::overlay::OverlayExt;
 
 mod pad_controller;
-pub use self::pad_controller::{PadController, PadControllerClass, NONE_PAD_CONTROLLER};
-pub use self::pad_controller::PadControllerExt;
+pub use self::pad_controller::{PadController, PadControllerClass};
 
 mod page_setup;
 pub use self::page_setup::{PageSetup, PageSetupClass};
@@ -728,20 +713,13 @@ pub use self::settings::{Settings, SettingsClass, NONE_SETTINGS};
 pub use self::settings::SettingsExt;
 
 mod shortcut_label;
-pub use self::shortcut_label::{ShortcutLabel, ShortcutLabelClass, NONE_SHORTCUT_LABEL};
-pub use self::shortcut_label::ShortcutLabelExt;
+pub use self::shortcut_label::{ShortcutLabel, ShortcutLabelClass};
 
 mod shortcuts_group;
-pub use self::shortcuts_group::{ShortcutsGroup, ShortcutsGroupClass, NONE_SHORTCUTS_GROUP};
-pub use self::shortcuts_group::ShortcutsGroupExt;
-
-mod shortcuts_section;
-pub use self::shortcuts_section::{ShortcutsSection, ShortcutsSectionClass, NONE_SHORTCUTS_SECTION};
-pub use self::shortcuts_section::ShortcutsSectionExt;
+pub use self::shortcuts_group::{ShortcutsGroup, ShortcutsGroupClass};
 
 mod shortcuts_shortcut;
-pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass, NONE_SHORTCUTS_SHORTCUT};
-pub use self::shortcuts_shortcut::ShortcutsShortcutExt;
+pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
 
 mod shortcuts_window;
 pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass, NONE_SHORTCUTS_WINDOW};
@@ -760,8 +738,7 @@ pub use self::slice_list_model::{SliceListModel, SliceListModelClass, NONE_SLICE
 pub use self::slice_list_model::SliceListModelExt;
 
 mod snapshot;
-pub use self::snapshot::{Snapshot, SnapshotClass, NONE_SNAPSHOT};
-pub use self::snapshot::SnapshotExt;
+pub use self::snapshot::{Snapshot, SnapshotClass};
 
 mod sort_list_model;
 pub use self::sort_list_model::{SortListModel, SortListModelClass, NONE_SORT_LIST_MODEL};
@@ -789,8 +766,7 @@ mod stack_accessible;
 pub use self::stack_accessible::{StackAccessible, StackAccessibleClass, NONE_STACK_ACCESSIBLE};
 
 mod stack_page;
-pub use self::stack_page::{StackPage, StackPageClass, NONE_STACK_PAGE};
-pub use self::stack_page::StackPageExt;
+pub use self::stack_page::{StackPage, StackPageClass};
 
 mod stack_sidebar;
 pub use self::stack_sidebar::{StackSidebar, StackSidebarClass, NONE_STACK_SIDEBAR};
@@ -1273,7 +1249,6 @@ pub mod traits {
     pub use super::ApplicationWindowExt;
     pub use super::AspectFrameExt;
     pub use super::AssistantExt;
-    pub use super::AssistantPageExt;
     pub use super::BinExt;
     pub use super::BoxExt;
     pub use super::BuildableExt;
@@ -1296,7 +1271,6 @@ pub mod traits {
     pub use super::CellRendererTextExt;
     pub use super::CellRendererToggleExt;
     pub use super::CellViewExt;
-    pub use super::CenterBoxExt;
     pub use super::CheckButtonExt;
     pub use super::CheckMenuItemExt;
     pub use super::ColorButtonExt;
@@ -1315,9 +1289,6 @@ pub mod traits {
     pub use super::EntryBufferExt;
     pub use super::EntryCompletionExt;
     pub use super::EventControllerExt;
-    pub use super::EventControllerKeyExt;
-    pub use super::EventControllerMotionExt;
-    pub use super::EventControllerScrollExt;
     pub use super::ExpanderExt;
     pub use super::FileChooserExt;
     pub use super::FileChooserButtonExt;
@@ -1335,20 +1306,12 @@ pub mod traits {
     pub use super::GLAreaExt;
     pub use super::GestureExt;
     pub use super::GestureDragExt;
-    pub use super::GestureLongPressExt;
-    pub use super::GestureMultiPressExt;
-    pub use super::GesturePanExt;
-    pub use super::GestureRotateExt;
     pub use super::GestureSingleExt;
-    pub use super::GestureStylusExt;
-    pub use super::GestureSwipeExt;
-    pub use super::GestureZoomExt;
     pub use super::GridExt;
     pub use super::HeaderBarExt;
     pub use super::IMContextExt;
     pub use super::IMContextSimpleExt;
     pub use super::IMMulticontextExt;
-    pub use super::IconInfoExt;
     pub use super::IconThemeExt;
     pub use super::IconViewExt;
     pub use super::ImageExt;
@@ -1373,11 +1336,9 @@ pub mod traits {
     pub use super::MountOperationExt;
     pub use super::NativeDialogExt;
     pub use super::NotebookExt;
-    pub use super::NotebookPageExt;
     pub use super::NotebookPageAccessibleExt;
     pub use super::OrientableExt;
     pub use super::OverlayExt;
-    pub use super::PadControllerExt;
     pub use super::PanedExt;
     pub use super::PasswordEntryExt;
     pub use super::PictureExt;
@@ -1404,20 +1365,14 @@ pub mod traits {
     pub use super::SelectionModelExt;
     pub use super::SeparatorToolItemExt;
     pub use super::SettingsExt;
-    pub use super::ShortcutLabelExt;
-    pub use super::ShortcutsGroupExt;
-    pub use super::ShortcutsSectionExt;
-    pub use super::ShortcutsShortcutExt;
     pub use super::ShortcutsWindowExt;
     pub use super::SingleSelectionExt;
     pub use super::SizeGroupExt;
     pub use super::SliceListModelExt;
-    pub use super::SnapshotExt;
     pub use super::SortListModelExt;
     pub use super::SpinButtonExt;
     pub use super::SpinnerExt;
     pub use super::StackExt;
-    pub use super::StackPageExt;
     pub use super::StackSidebarExt;
     pub use super::StackSwitcherExt;
     pub use super::StatusbarExt;

@@ -5,23 +5,26 @@
 use EventController;
 use Gesture;
 use GestureSingle;
-use ffi;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct GestureStylus(Object<ffi::GtkGestureStylus, ffi::GtkGestureStylusClass, GestureStylusClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureStylus(Object<gtk_sys::GtkGestureStylus, gtk_sys::GtkGestureStylusClass, GestureStylusClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_stylus_get_type(),
+        get_type => || gtk_sys::gtk_gesture_stylus_get_type(),
     }
 }
 
@@ -29,7 +32,55 @@ impl GestureStylus {
     pub fn new() -> GestureStylus {
         assert_initialized_main_thread!();
         unsafe {
-            Gesture::from_glib_full(ffi::gtk_gesture_stylus_new()).unsafe_cast()
+            Gesture::from_glib_full(gtk_sys::gtk_gesture_stylus_new()).unsafe_cast()
+        }
+    }
+
+    //pub fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 10, id: 5 }, values: Vec<f64>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_axes() }
+    //}
+
+    //pub fn get_axis(&self, axis: /*Ignored*/gdk::AxisUse) -> Option<f64> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_axis() }
+    //}
+
+    //pub fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_backlog() }
+    //}
+
+    //pub fn get_device_tool(&self) -> /*Ignored*/Option<gdk::DeviceTool> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_device_tool() }
+    //}
+
+    pub fn connect_down<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"down\0".as_ptr() as *const _,
+                Some(transmute(down_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+
+    pub fn connect_motion<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"motion\0".as_ptr() as *const _,
+                Some(transmute(motion_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+
+    pub fn connect_proximity<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"proximity\0".as_ptr() as *const _,
+                Some(transmute(proximity_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+
+    pub fn connect_up<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"up\0".as_ptr() as *const _,
+                Some(transmute(up_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 }
@@ -40,98 +91,24 @@ impl Default for GestureStylus {
     }
 }
 
-pub const NONE_GESTURE_STYLUS: Option<&GestureStylus> = None;
-
-pub trait GestureStylusExt: 'static {
-    //fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 10, id: 5 }, values: Vec<f64>) -> bool;
-
-    //fn get_axis(&self, axis: /*Ignored*/gdk::AxisUse) -> Option<f64>;
-
-    //fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32>;
-
-    //fn get_device_tool(&self) -> /*Ignored*/Option<gdk::DeviceTool>;
-
-    fn connect_down<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_motion<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_proximity<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_up<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<GestureStylus>> GestureStylusExt for O {
-    //fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 10, id: 5 }, values: Vec<f64>) -> bool {
-    //    unsafe { TODO: call ffi::gtk_gesture_stylus_get_axes() }
-    //}
-
-    //fn get_axis(&self, axis: /*Ignored*/gdk::AxisUse) -> Option<f64> {
-    //    unsafe { TODO: call ffi::gtk_gesture_stylus_get_axis() }
-    //}
-
-    //fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
-    //    unsafe { TODO: call ffi::gtk_gesture_stylus_get_backlog() }
-    //}
-
-    //fn get_device_tool(&self) -> /*Ignored*/Option<gdk::DeviceTool> {
-    //    unsafe { TODO: call ffi::gtk_gesture_stylus_get_device_tool() }
-    //}
-
-    fn connect_down<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"down\0".as_ptr() as *const _,
-                Some(transmute(down_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_motion<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"motion\0".as_ptr() as *const _,
-                Some(transmute(motion_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_proximity<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"proximity\0".as_ptr() as *const _,
-                Some(transmute(proximity_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_up<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"up\0".as_ptr() as *const _,
-                Some(transmute(up_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-}
-
-unsafe extern "C" fn down_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<GestureStylus> {
+unsafe extern "C" fn down_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&GestureStylus::from_glib_borrow(this).unsafe_cast(), object, p0)
+    f(&from_glib_borrow(this), object, p0)
 }
 
-unsafe extern "C" fn motion_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<GestureStylus> {
+unsafe extern "C" fn motion_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&GestureStylus::from_glib_borrow(this).unsafe_cast(), object, p0)
+    f(&from_glib_borrow(this), object, p0)
 }
 
-unsafe extern "C" fn proximity_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<GestureStylus> {
+unsafe extern "C" fn proximity_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&GestureStylus::from_glib_borrow(this).unsafe_cast(), object, p0)
+    f(&from_glib_borrow(this), object, p0)
 }
 
-unsafe extern "C" fn up_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<GestureStylus> {
+unsafe extern "C" fn up_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureStylus, object: libc::c_double, p0: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&GestureStylus::from_glib_borrow(this).unsafe_cast(), object, p0)
+    f(&from_glib_borrow(this), object, p0)
 }
 
 impl fmt::Display for GestureStylus {

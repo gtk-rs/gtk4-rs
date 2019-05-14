@@ -6,25 +6,28 @@ use Bin;
 use Buildable;
 use Container;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FlowBoxChild(Object<ffi::GtkFlowBoxChild, ffi::GtkFlowBoxChildClass, FlowBoxChildClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct FlowBoxChild(Object<gtk_sys::GtkFlowBoxChild, gtk_sys::GtkFlowBoxChildClass, FlowBoxChildClass>) @extends Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_flow_box_child_get_type(),
+        get_type => || gtk_sys::gtk_flow_box_child_get_type(),
     }
 }
 
@@ -32,7 +35,7 @@ impl FlowBoxChild {
     pub fn new() -> FlowBoxChild {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_flow_box_child_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_flow_box_child_new()).unsafe_cast()
         }
     }
 }
@@ -60,19 +63,19 @@ pub trait FlowBoxChildExt: 'static {
 impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     fn changed(&self) {
         unsafe {
-            ffi::gtk_flow_box_child_changed(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_flow_box_child_changed(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_index(&self) -> i32 {
         unsafe {
-            ffi::gtk_flow_box_child_get_index(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_flow_box_child_get_index(self.as_ref().to_glib_none().0)
         }
     }
 
     fn is_selected(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_flow_box_child_is_selected(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_flow_box_child_is_selected(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -85,11 +88,11 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("activate", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
     }
 }
 
-unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFlowBoxChild, f: glib_ffi::gpointer)
+unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFlowBoxChild, f: glib_sys::gpointer)
 where P: IsA<FlowBoxChild> {
     let f: &F = &*(f as *const F);
     f(&FlowBoxChild::from_glib_borrow(this).unsafe_cast())

@@ -4,16 +4,27 @@
 
 use Window;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
+use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ToplevelAccessible(Object<ffi::GtkToplevelAccessible, ffi::GtkToplevelAccessibleClass, ToplevelAccessibleClass>) @extends atk::Object;
+    pub struct ToplevelAccessible(Object<gtk_sys::GtkToplevelAccessible, gtk_sys::GtkToplevelAccessibleClass, ToplevelAccessibleClass>) @extends atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_toplevel_accessible_get_type(),
+        get_type => || gtk_sys::gtk_toplevel_accessible_get_type(),
     }
 }
 
@@ -26,7 +37,7 @@ pub trait ToplevelAccessibleExt: 'static {
 impl<O: IsA<ToplevelAccessible>> ToplevelAccessibleExt for O {
     fn get_children(&self) -> Vec<Window> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_toplevel_accessible_get_children(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_toplevel_accessible_get_children(self.as_ref().to_glib_none().0))
         }
     }
 }

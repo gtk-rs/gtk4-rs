@@ -10,7 +10,7 @@ use Orientable;
 use TreeModel;
 use TreePath;
 use Widget;
-use ffi;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -18,17 +18,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CellView(Object<ffi::GtkCellView, ffi::GtkCellViewClass, CellViewClass>) @extends Widget, @implements Buildable, CellLayout, Orientable;
+    pub struct CellView(Object<gtk_sys::GtkCellView, gtk_sys::GtkCellViewClass, CellViewClass>) @extends Widget, @implements Buildable, CellLayout, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_cell_view_get_type(),
+        get_type => || gtk_sys::gtk_cell_view_get_type(),
     }
 }
 
@@ -36,33 +37,33 @@ impl CellView {
     pub fn new() -> CellView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_cell_view_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_cell_view_new()).unsafe_cast()
         }
     }
 
     pub fn new_with_context<P: IsA<CellArea>, Q: IsA<CellAreaContext>>(area: &P, context: &Q) -> CellView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_cell_view_new_with_context(area.as_ref().to_glib_none().0, context.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_cell_view_new_with_context(area.as_ref().to_glib_none().0, context.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_markup(markup: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_cell_view_new_with_markup(markup.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_cell_view_new_with_markup(markup.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_text(text: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_cell_view_new_with_text(text.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_cell_view_new_with_text(text.to_glib_none().0)).unsafe_cast()
         }
     }
 
     //pub fn new_with_texture(texture: /*Ignored*/&gdk::Texture) -> CellView {
-    //    unsafe { TODO: call ffi::gtk_cell_view_new_with_texture() }
+    //    unsafe { TODO: call gtk_sys:gtk_cell_view_new_with_texture() }
     //}
 }
 
@@ -105,56 +106,56 @@ pub trait CellViewExt: 'static {
 impl<O: IsA<CellView>> CellViewExt for O {
     fn get_displayed_row(&self) -> Option<TreePath> {
         unsafe {
-            from_glib_full(ffi::gtk_cell_view_get_displayed_row(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_cell_view_get_displayed_row(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_draw_sensitive(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_cell_view_get_draw_sensitive(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_view_get_draw_sensitive(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_fit_model(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_cell_view_get_fit_model(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_view_get_fit_model(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_model(&self) -> Option<TreeModel> {
         unsafe {
-            from_glib_none(ffi::gtk_cell_view_get_model(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_cell_view_get_model(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_displayed_row(&self, path: &mut TreePath) {
         unsafe {
-            ffi::gtk_cell_view_set_displayed_row(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_cell_view_set_displayed_row(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
         }
     }
 
     fn set_draw_sensitive(&self, draw_sensitive: bool) {
         unsafe {
-            ffi::gtk_cell_view_set_draw_sensitive(self.as_ref().to_glib_none().0, draw_sensitive.to_glib());
+            gtk_sys::gtk_cell_view_set_draw_sensitive(self.as_ref().to_glib_none().0, draw_sensitive.to_glib());
         }
     }
 
     fn set_fit_model(&self, fit_model: bool) {
         unsafe {
-            ffi::gtk_cell_view_set_fit_model(self.as_ref().to_glib_none().0, fit_model.to_glib());
+            gtk_sys::gtk_cell_view_set_fit_model(self.as_ref().to_glib_none().0, fit_model.to_glib());
         }
     }
 
     fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
-            ffi::gtk_cell_view_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_cell_view_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn get_property_cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = Value::from_type(<CellArea as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"cell-area\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-area\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
@@ -162,7 +163,7 @@ impl<O: IsA<CellView>> CellViewExt for O {
     fn get_property_cell_area_context(&self) -> Option<CellAreaContext> {
         unsafe {
             let mut value = Value::from_type(<CellAreaContext as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"cell-area-context\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-area-context\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
@@ -192,19 +193,19 @@ impl<O: IsA<CellView>> CellViewExt for O {
     }
 }
 
-unsafe extern "C" fn notify_draw_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_draw_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellView> {
     let f: &F = &*(f as *const F);
     f(&CellView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_fit_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_fit_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellView> {
     let f: &F = &*(f as *const F);
     f(&CellView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellView> {
     let f: &F = &*(f as *const F);
     f(&CellView::from_glib_borrow(this).unsafe_cast())

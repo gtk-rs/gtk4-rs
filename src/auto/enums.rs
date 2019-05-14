@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::Quark;
 use glib::StaticType;
 use glib::Type;
@@ -12,7 +11,8 @@ use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
-use gobject_ffi;
+use gobject_sys;
+use gtk_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
@@ -42,23 +42,23 @@ impl fmt::Display for Align {
 
 #[doc(hidden)]
 impl ToGlib for Align {
-    type GlibType = ffi::GtkAlign;
+    type GlibType = gtk_sys::GtkAlign;
 
-    fn to_glib(&self) -> ffi::GtkAlign {
+    fn to_glib(&self) -> gtk_sys::GtkAlign {
         match *self {
-            Align::Fill => ffi::GTK_ALIGN_FILL,
-            Align::Start => ffi::GTK_ALIGN_START,
-            Align::End => ffi::GTK_ALIGN_END,
-            Align::Center => ffi::GTK_ALIGN_CENTER,
-            Align::Baseline => ffi::GTK_ALIGN_BASELINE,
+            Align::Fill => gtk_sys::GTK_ALIGN_FILL,
+            Align::Start => gtk_sys::GTK_ALIGN_START,
+            Align::End => gtk_sys::GTK_ALIGN_END,
+            Align::Center => gtk_sys::GTK_ALIGN_CENTER,
+            Align::Baseline => gtk_sys::GTK_ALIGN_BASELINE,
             Align::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkAlign> for Align {
-    fn from_glib(value: ffi::GtkAlign) -> Self {
+impl FromGlib<gtk_sys::GtkAlign> for Align {
+    fn from_glib(value: gtk_sys::GtkAlign) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Align::Fill,
@@ -73,7 +73,7 @@ impl FromGlib<ffi::GtkAlign> for Align {
 
 impl StaticType for Align {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_align_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_align_get_type()) }
     }
 }
 
@@ -85,13 +85,13 @@ impl<'a> FromValueOptional<'a> for Align {
 
 impl<'a> FromValue<'a> for Align {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Align {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -118,21 +118,21 @@ impl fmt::Display for ArrowPlacement {
 
 #[doc(hidden)]
 impl ToGlib for ArrowPlacement {
-    type GlibType = ffi::GtkArrowPlacement;
+    type GlibType = gtk_sys::GtkArrowPlacement;
 
-    fn to_glib(&self) -> ffi::GtkArrowPlacement {
+    fn to_glib(&self) -> gtk_sys::GtkArrowPlacement {
         match *self {
-            ArrowPlacement::Both => ffi::GTK_ARROWS_BOTH,
-            ArrowPlacement::Start => ffi::GTK_ARROWS_START,
-            ArrowPlacement::End => ffi::GTK_ARROWS_END,
+            ArrowPlacement::Both => gtk_sys::GTK_ARROWS_BOTH,
+            ArrowPlacement::Start => gtk_sys::GTK_ARROWS_START,
+            ArrowPlacement::End => gtk_sys::GTK_ARROWS_END,
             ArrowPlacement::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkArrowPlacement> for ArrowPlacement {
-    fn from_glib(value: ffi::GtkArrowPlacement) -> Self {
+impl FromGlib<gtk_sys::GtkArrowPlacement> for ArrowPlacement {
+    fn from_glib(value: gtk_sys::GtkArrowPlacement) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ArrowPlacement::Both,
@@ -145,7 +145,7 @@ impl FromGlib<ffi::GtkArrowPlacement> for ArrowPlacement {
 
 impl StaticType for ArrowPlacement {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_arrow_placement_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_arrow_placement_get_type()) }
     }
 }
 
@@ -157,13 +157,13 @@ impl<'a> FromValueOptional<'a> for ArrowPlacement {
 
 impl<'a> FromValue<'a> for ArrowPlacement {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ArrowPlacement {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -194,23 +194,23 @@ impl fmt::Display for ArrowType {
 
 #[doc(hidden)]
 impl ToGlib for ArrowType {
-    type GlibType = ffi::GtkArrowType;
+    type GlibType = gtk_sys::GtkArrowType;
 
-    fn to_glib(&self) -> ffi::GtkArrowType {
+    fn to_glib(&self) -> gtk_sys::GtkArrowType {
         match *self {
-            ArrowType::Up => ffi::GTK_ARROW_UP,
-            ArrowType::Down => ffi::GTK_ARROW_DOWN,
-            ArrowType::Left => ffi::GTK_ARROW_LEFT,
-            ArrowType::Right => ffi::GTK_ARROW_RIGHT,
-            ArrowType::None => ffi::GTK_ARROW_NONE,
+            ArrowType::Up => gtk_sys::GTK_ARROW_UP,
+            ArrowType::Down => gtk_sys::GTK_ARROW_DOWN,
+            ArrowType::Left => gtk_sys::GTK_ARROW_LEFT,
+            ArrowType::Right => gtk_sys::GTK_ARROW_RIGHT,
+            ArrowType::None => gtk_sys::GTK_ARROW_NONE,
             ArrowType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkArrowType> for ArrowType {
-    fn from_glib(value: ffi::GtkArrowType) -> Self {
+impl FromGlib<gtk_sys::GtkArrowType> for ArrowType {
+    fn from_glib(value: gtk_sys::GtkArrowType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ArrowType::Up,
@@ -225,7 +225,7 @@ impl FromGlib<ffi::GtkArrowType> for ArrowType {
 
 impl StaticType for ArrowType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_arrow_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_arrow_type_get_type()) }
     }
 }
 
@@ -237,13 +237,13 @@ impl<'a> FromValueOptional<'a> for ArrowType {
 
 impl<'a> FromValue<'a> for ArrowType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ArrowType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -276,24 +276,24 @@ impl fmt::Display for AssistantPageType {
 
 #[doc(hidden)]
 impl ToGlib for AssistantPageType {
-    type GlibType = ffi::GtkAssistantPageType;
+    type GlibType = gtk_sys::GtkAssistantPageType;
 
-    fn to_glib(&self) -> ffi::GtkAssistantPageType {
+    fn to_glib(&self) -> gtk_sys::GtkAssistantPageType {
         match *self {
-            AssistantPageType::Content => ffi::GTK_ASSISTANT_PAGE_CONTENT,
-            AssistantPageType::Intro => ffi::GTK_ASSISTANT_PAGE_INTRO,
-            AssistantPageType::Confirm => ffi::GTK_ASSISTANT_PAGE_CONFIRM,
-            AssistantPageType::Summary => ffi::GTK_ASSISTANT_PAGE_SUMMARY,
-            AssistantPageType::Progress => ffi::GTK_ASSISTANT_PAGE_PROGRESS,
-            AssistantPageType::Custom => ffi::GTK_ASSISTANT_PAGE_CUSTOM,
+            AssistantPageType::Content => gtk_sys::GTK_ASSISTANT_PAGE_CONTENT,
+            AssistantPageType::Intro => gtk_sys::GTK_ASSISTANT_PAGE_INTRO,
+            AssistantPageType::Confirm => gtk_sys::GTK_ASSISTANT_PAGE_CONFIRM,
+            AssistantPageType::Summary => gtk_sys::GTK_ASSISTANT_PAGE_SUMMARY,
+            AssistantPageType::Progress => gtk_sys::GTK_ASSISTANT_PAGE_PROGRESS,
+            AssistantPageType::Custom => gtk_sys::GTK_ASSISTANT_PAGE_CUSTOM,
             AssistantPageType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
-    fn from_glib(value: ffi::GtkAssistantPageType) -> Self {
+impl FromGlib<gtk_sys::GtkAssistantPageType> for AssistantPageType {
+    fn from_glib(value: gtk_sys::GtkAssistantPageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AssistantPageType::Content,
@@ -309,7 +309,7 @@ impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
 
 impl StaticType for AssistantPageType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_assistant_page_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_assistant_page_type_get_type()) }
     }
 }
 
@@ -321,13 +321,13 @@ impl<'a> FromValueOptional<'a> for AssistantPageType {
 
 impl<'a> FromValue<'a> for AssistantPageType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for AssistantPageType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -354,21 +354,21 @@ impl fmt::Display for BaselinePosition {
 
 #[doc(hidden)]
 impl ToGlib for BaselinePosition {
-    type GlibType = ffi::GtkBaselinePosition;
+    type GlibType = gtk_sys::GtkBaselinePosition;
 
-    fn to_glib(&self) -> ffi::GtkBaselinePosition {
+    fn to_glib(&self) -> gtk_sys::GtkBaselinePosition {
         match *self {
-            BaselinePosition::Top => ffi::GTK_BASELINE_POSITION_TOP,
-            BaselinePosition::Center => ffi::GTK_BASELINE_POSITION_CENTER,
-            BaselinePosition::Bottom => ffi::GTK_BASELINE_POSITION_BOTTOM,
+            BaselinePosition::Top => gtk_sys::GTK_BASELINE_POSITION_TOP,
+            BaselinePosition::Center => gtk_sys::GTK_BASELINE_POSITION_CENTER,
+            BaselinePosition::Bottom => gtk_sys::GTK_BASELINE_POSITION_BOTTOM,
             BaselinePosition::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkBaselinePosition> for BaselinePosition {
-    fn from_glib(value: ffi::GtkBaselinePosition) -> Self {
+impl FromGlib<gtk_sys::GtkBaselinePosition> for BaselinePosition {
+    fn from_glib(value: gtk_sys::GtkBaselinePosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BaselinePosition::Top,
@@ -381,7 +381,7 @@ impl FromGlib<ffi::GtkBaselinePosition> for BaselinePosition {
 
 impl StaticType for BaselinePosition {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_baseline_position_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_baseline_position_get_type()) }
     }
 }
 
@@ -393,13 +393,13 @@ impl<'a> FromValueOptional<'a> for BaselinePosition {
 
 impl<'a> FromValue<'a> for BaselinePosition {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BaselinePosition {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -440,28 +440,28 @@ impl fmt::Display for BorderStyle {
 
 #[doc(hidden)]
 impl ToGlib for BorderStyle {
-    type GlibType = ffi::GtkBorderStyle;
+    type GlibType = gtk_sys::GtkBorderStyle;
 
-    fn to_glib(&self) -> ffi::GtkBorderStyle {
+    fn to_glib(&self) -> gtk_sys::GtkBorderStyle {
         match *self {
-            BorderStyle::None => ffi::GTK_BORDER_STYLE_NONE,
-            BorderStyle::Solid => ffi::GTK_BORDER_STYLE_SOLID,
-            BorderStyle::Inset => ffi::GTK_BORDER_STYLE_INSET,
-            BorderStyle::Outset => ffi::GTK_BORDER_STYLE_OUTSET,
-            BorderStyle::Hidden => ffi::GTK_BORDER_STYLE_HIDDEN,
-            BorderStyle::Dotted => ffi::GTK_BORDER_STYLE_DOTTED,
-            BorderStyle::Dashed => ffi::GTK_BORDER_STYLE_DASHED,
-            BorderStyle::Double => ffi::GTK_BORDER_STYLE_DOUBLE,
-            BorderStyle::Groove => ffi::GTK_BORDER_STYLE_GROOVE,
-            BorderStyle::Ridge => ffi::GTK_BORDER_STYLE_RIDGE,
+            BorderStyle::None => gtk_sys::GTK_BORDER_STYLE_NONE,
+            BorderStyle::Solid => gtk_sys::GTK_BORDER_STYLE_SOLID,
+            BorderStyle::Inset => gtk_sys::GTK_BORDER_STYLE_INSET,
+            BorderStyle::Outset => gtk_sys::GTK_BORDER_STYLE_OUTSET,
+            BorderStyle::Hidden => gtk_sys::GTK_BORDER_STYLE_HIDDEN,
+            BorderStyle::Dotted => gtk_sys::GTK_BORDER_STYLE_DOTTED,
+            BorderStyle::Dashed => gtk_sys::GTK_BORDER_STYLE_DASHED,
+            BorderStyle::Double => gtk_sys::GTK_BORDER_STYLE_DOUBLE,
+            BorderStyle::Groove => gtk_sys::GTK_BORDER_STYLE_GROOVE,
+            BorderStyle::Ridge => gtk_sys::GTK_BORDER_STYLE_RIDGE,
             BorderStyle::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkBorderStyle> for BorderStyle {
-    fn from_glib(value: ffi::GtkBorderStyle) -> Self {
+impl FromGlib<gtk_sys::GtkBorderStyle> for BorderStyle {
+    fn from_glib(value: gtk_sys::GtkBorderStyle) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BorderStyle::None,
@@ -481,7 +481,7 @@ impl FromGlib<ffi::GtkBorderStyle> for BorderStyle {
 
 impl StaticType for BorderStyle {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_border_style_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_border_style_get_type()) }
     }
 }
 
@@ -493,13 +493,13 @@ impl<'a> FromValueOptional<'a> for BorderStyle {
 
 impl<'a> FromValue<'a> for BorderStyle {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BorderStyle {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -548,32 +548,32 @@ impl fmt::Display for BuilderError {
 
 #[doc(hidden)]
 impl ToGlib for BuilderError {
-    type GlibType = ffi::GtkBuilderError;
+    type GlibType = gtk_sys::GtkBuilderError;
 
-    fn to_glib(&self) -> ffi::GtkBuilderError {
+    fn to_glib(&self) -> gtk_sys::GtkBuilderError {
         match *self {
-            BuilderError::InvalidTypeFunction => ffi::GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION,
-            BuilderError::UnhandledTag => ffi::GTK_BUILDER_ERROR_UNHANDLED_TAG,
-            BuilderError::MissingAttribute => ffi::GTK_BUILDER_ERROR_MISSING_ATTRIBUTE,
-            BuilderError::InvalidAttribute => ffi::GTK_BUILDER_ERROR_INVALID_ATTRIBUTE,
-            BuilderError::InvalidTag => ffi::GTK_BUILDER_ERROR_INVALID_TAG,
-            BuilderError::MissingPropertyValue => ffi::GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE,
-            BuilderError::InvalidValue => ffi::GTK_BUILDER_ERROR_INVALID_VALUE,
-            BuilderError::VersionMismatch => ffi::GTK_BUILDER_ERROR_VERSION_MISMATCH,
-            BuilderError::DuplicateId => ffi::GTK_BUILDER_ERROR_DUPLICATE_ID,
-            BuilderError::ObjectTypeRefused => ffi::GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED,
-            BuilderError::TemplateMismatch => ffi::GTK_BUILDER_ERROR_TEMPLATE_MISMATCH,
-            BuilderError::InvalidProperty => ffi::GTK_BUILDER_ERROR_INVALID_PROPERTY,
-            BuilderError::InvalidSignal => ffi::GTK_BUILDER_ERROR_INVALID_SIGNAL,
-            BuilderError::InvalidId => ffi::GTK_BUILDER_ERROR_INVALID_ID,
+            BuilderError::InvalidTypeFunction => gtk_sys::GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION,
+            BuilderError::UnhandledTag => gtk_sys::GTK_BUILDER_ERROR_UNHANDLED_TAG,
+            BuilderError::MissingAttribute => gtk_sys::GTK_BUILDER_ERROR_MISSING_ATTRIBUTE,
+            BuilderError::InvalidAttribute => gtk_sys::GTK_BUILDER_ERROR_INVALID_ATTRIBUTE,
+            BuilderError::InvalidTag => gtk_sys::GTK_BUILDER_ERROR_INVALID_TAG,
+            BuilderError::MissingPropertyValue => gtk_sys::GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE,
+            BuilderError::InvalidValue => gtk_sys::GTK_BUILDER_ERROR_INVALID_VALUE,
+            BuilderError::VersionMismatch => gtk_sys::GTK_BUILDER_ERROR_VERSION_MISMATCH,
+            BuilderError::DuplicateId => gtk_sys::GTK_BUILDER_ERROR_DUPLICATE_ID,
+            BuilderError::ObjectTypeRefused => gtk_sys::GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED,
+            BuilderError::TemplateMismatch => gtk_sys::GTK_BUILDER_ERROR_TEMPLATE_MISMATCH,
+            BuilderError::InvalidProperty => gtk_sys::GTK_BUILDER_ERROR_INVALID_PROPERTY,
+            BuilderError::InvalidSignal => gtk_sys::GTK_BUILDER_ERROR_INVALID_SIGNAL,
+            BuilderError::InvalidId => gtk_sys::GTK_BUILDER_ERROR_INVALID_ID,
             BuilderError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkBuilderError> for BuilderError {
-    fn from_glib(value: ffi::GtkBuilderError) -> Self {
+impl FromGlib<gtk_sys::GtkBuilderError> for BuilderError {
+    fn from_glib(value: gtk_sys::GtkBuilderError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BuilderError::InvalidTypeFunction,
@@ -598,7 +598,7 @@ impl FromGlib<ffi::GtkBuilderError> for BuilderError {
 impl ErrorDomain for BuilderError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gtk_builder_error_quark()) }
+        unsafe { from_glib(gtk_sys::gtk_builder_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -629,7 +629,7 @@ impl ErrorDomain for BuilderError {
 
 impl StaticType for BuilderError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_builder_error_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_builder_error_get_type()) }
     }
 }
 
@@ -641,13 +641,13 @@ impl<'a> FromValueOptional<'a> for BuilderError {
 
 impl<'a> FromValue<'a> for BuilderError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BuilderError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -674,21 +674,21 @@ impl fmt::Display for ButtonRole {
 
 #[doc(hidden)]
 impl ToGlib for ButtonRole {
-    type GlibType = ffi::GtkButtonRole;
+    type GlibType = gtk_sys::GtkButtonRole;
 
-    fn to_glib(&self) -> ffi::GtkButtonRole {
+    fn to_glib(&self) -> gtk_sys::GtkButtonRole {
         match *self {
-            ButtonRole::Normal => ffi::GTK_BUTTON_ROLE_NORMAL,
-            ButtonRole::Check => ffi::GTK_BUTTON_ROLE_CHECK,
-            ButtonRole::Radio => ffi::GTK_BUTTON_ROLE_RADIO,
+            ButtonRole::Normal => gtk_sys::GTK_BUTTON_ROLE_NORMAL,
+            ButtonRole::Check => gtk_sys::GTK_BUTTON_ROLE_CHECK,
+            ButtonRole::Radio => gtk_sys::GTK_BUTTON_ROLE_RADIO,
             ButtonRole::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkButtonRole> for ButtonRole {
-    fn from_glib(value: ffi::GtkButtonRole) -> Self {
+impl FromGlib<gtk_sys::GtkButtonRole> for ButtonRole {
+    fn from_glib(value: gtk_sys::GtkButtonRole) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ButtonRole::Normal,
@@ -701,7 +701,7 @@ impl FromGlib<ffi::GtkButtonRole> for ButtonRole {
 
 impl StaticType for ButtonRole {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_button_role_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_button_role_get_type()) }
     }
 }
 
@@ -713,13 +713,13 @@ impl<'a> FromValueOptional<'a> for ButtonRole {
 
 impl<'a> FromValue<'a> for ButtonRole {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ButtonRole {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -752,24 +752,24 @@ impl fmt::Display for ButtonsType {
 
 #[doc(hidden)]
 impl ToGlib for ButtonsType {
-    type GlibType = ffi::GtkButtonsType;
+    type GlibType = gtk_sys::GtkButtonsType;
 
-    fn to_glib(&self) -> ffi::GtkButtonsType {
+    fn to_glib(&self) -> gtk_sys::GtkButtonsType {
         match *self {
-            ButtonsType::None => ffi::GTK_BUTTONS_NONE,
-            ButtonsType::Ok => ffi::GTK_BUTTONS_OK,
-            ButtonsType::Close => ffi::GTK_BUTTONS_CLOSE,
-            ButtonsType::Cancel => ffi::GTK_BUTTONS_CANCEL,
-            ButtonsType::YesNo => ffi::GTK_BUTTONS_YES_NO,
-            ButtonsType::OkCancel => ffi::GTK_BUTTONS_OK_CANCEL,
+            ButtonsType::None => gtk_sys::GTK_BUTTONS_NONE,
+            ButtonsType::Ok => gtk_sys::GTK_BUTTONS_OK,
+            ButtonsType::Close => gtk_sys::GTK_BUTTONS_CLOSE,
+            ButtonsType::Cancel => gtk_sys::GTK_BUTTONS_CANCEL,
+            ButtonsType::YesNo => gtk_sys::GTK_BUTTONS_YES_NO,
+            ButtonsType::OkCancel => gtk_sys::GTK_BUTTONS_OK_CANCEL,
             ButtonsType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkButtonsType> for ButtonsType {
-    fn from_glib(value: ffi::GtkButtonsType) -> Self {
+impl FromGlib<gtk_sys::GtkButtonsType> for ButtonsType {
+    fn from_glib(value: gtk_sys::GtkButtonsType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ButtonsType::None,
@@ -785,7 +785,7 @@ impl FromGlib<ffi::GtkButtonsType> for ButtonsType {
 
 impl StaticType for ButtonsType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_buttons_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_buttons_type_get_type()) }
     }
 }
 
@@ -797,13 +797,13 @@ impl<'a> FromValueOptional<'a> for ButtonsType {
 
 impl<'a> FromValue<'a> for ButtonsType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ButtonsType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -828,20 +828,20 @@ impl fmt::Display for CellRendererAccelMode {
 
 #[doc(hidden)]
 impl ToGlib for CellRendererAccelMode {
-    type GlibType = ffi::GtkCellRendererAccelMode;
+    type GlibType = gtk_sys::GtkCellRendererAccelMode;
 
-    fn to_glib(&self) -> ffi::GtkCellRendererAccelMode {
+    fn to_glib(&self) -> gtk_sys::GtkCellRendererAccelMode {
         match *self {
-            CellRendererAccelMode::Gtk => ffi::GTK_CELL_RENDERER_ACCEL_MODE_GTK,
-            CellRendererAccelMode::Other => ffi::GTK_CELL_RENDERER_ACCEL_MODE_OTHER,
+            CellRendererAccelMode::Gtk => gtk_sys::GTK_CELL_RENDERER_ACCEL_MODE_GTK,
+            CellRendererAccelMode::Other => gtk_sys::GTK_CELL_RENDERER_ACCEL_MODE_OTHER,
             CellRendererAccelMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
-    fn from_glib(value: ffi::GtkCellRendererAccelMode) -> Self {
+impl FromGlib<gtk_sys::GtkCellRendererAccelMode> for CellRendererAccelMode {
+    fn from_glib(value: gtk_sys::GtkCellRendererAccelMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CellRendererAccelMode::Gtk,
@@ -853,7 +853,7 @@ impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
 
 impl StaticType for CellRendererAccelMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_cell_renderer_accel_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_cell_renderer_accel_mode_get_type()) }
     }
 }
 
@@ -865,13 +865,13 @@ impl<'a> FromValueOptional<'a> for CellRendererAccelMode {
 
 impl<'a> FromValue<'a> for CellRendererAccelMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CellRendererAccelMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -898,21 +898,21 @@ impl fmt::Display for CellRendererMode {
 
 #[doc(hidden)]
 impl ToGlib for CellRendererMode {
-    type GlibType = ffi::GtkCellRendererMode;
+    type GlibType = gtk_sys::GtkCellRendererMode;
 
-    fn to_glib(&self) -> ffi::GtkCellRendererMode {
+    fn to_glib(&self) -> gtk_sys::GtkCellRendererMode {
         match *self {
-            CellRendererMode::Inert => ffi::GTK_CELL_RENDERER_MODE_INERT,
-            CellRendererMode::Activatable => ffi::GTK_CELL_RENDERER_MODE_ACTIVATABLE,
-            CellRendererMode::Editable => ffi::GTK_CELL_RENDERER_MODE_EDITABLE,
+            CellRendererMode::Inert => gtk_sys::GTK_CELL_RENDERER_MODE_INERT,
+            CellRendererMode::Activatable => gtk_sys::GTK_CELL_RENDERER_MODE_ACTIVATABLE,
+            CellRendererMode::Editable => gtk_sys::GTK_CELL_RENDERER_MODE_EDITABLE,
             CellRendererMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
-    fn from_glib(value: ffi::GtkCellRendererMode) -> Self {
+impl FromGlib<gtk_sys::GtkCellRendererMode> for CellRendererMode {
+    fn from_glib(value: gtk_sys::GtkCellRendererMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CellRendererMode::Inert,
@@ -925,7 +925,7 @@ impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
 
 impl StaticType for CellRendererMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_cell_renderer_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_cell_renderer_mode_get_type()) }
     }
 }
 
@@ -937,13 +937,13 @@ impl<'a> FromValueOptional<'a> for CellRendererMode {
 
 impl<'a> FromValue<'a> for CellRendererMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CellRendererMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -972,22 +972,22 @@ impl fmt::Display for CornerType {
 
 #[doc(hidden)]
 impl ToGlib for CornerType {
-    type GlibType = ffi::GtkCornerType;
+    type GlibType = gtk_sys::GtkCornerType;
 
-    fn to_glib(&self) -> ffi::GtkCornerType {
+    fn to_glib(&self) -> gtk_sys::GtkCornerType {
         match *self {
-            CornerType::TopLeft => ffi::GTK_CORNER_TOP_LEFT,
-            CornerType::BottomLeft => ffi::GTK_CORNER_BOTTOM_LEFT,
-            CornerType::TopRight => ffi::GTK_CORNER_TOP_RIGHT,
-            CornerType::BottomRight => ffi::GTK_CORNER_BOTTOM_RIGHT,
+            CornerType::TopLeft => gtk_sys::GTK_CORNER_TOP_LEFT,
+            CornerType::BottomLeft => gtk_sys::GTK_CORNER_BOTTOM_LEFT,
+            CornerType::TopRight => gtk_sys::GTK_CORNER_TOP_RIGHT,
+            CornerType::BottomRight => gtk_sys::GTK_CORNER_BOTTOM_RIGHT,
             CornerType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkCornerType> for CornerType {
-    fn from_glib(value: ffi::GtkCornerType) -> Self {
+impl FromGlib<gtk_sys::GtkCornerType> for CornerType {
+    fn from_glib(value: gtk_sys::GtkCornerType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CornerType::TopLeft,
@@ -1001,7 +1001,7 @@ impl FromGlib<ffi::GtkCornerType> for CornerType {
 
 impl StaticType for CornerType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_corner_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_corner_type_get_type()) }
     }
 }
 
@@ -1013,13 +1013,13 @@ impl<'a> FromValueOptional<'a> for CornerType {
 
 impl<'a> FromValue<'a> for CornerType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CornerType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1056,26 +1056,26 @@ impl fmt::Display for DeleteType {
 
 #[doc(hidden)]
 impl ToGlib for DeleteType {
-    type GlibType = ffi::GtkDeleteType;
+    type GlibType = gtk_sys::GtkDeleteType;
 
-    fn to_glib(&self) -> ffi::GtkDeleteType {
+    fn to_glib(&self) -> gtk_sys::GtkDeleteType {
         match *self {
-            DeleteType::Chars => ffi::GTK_DELETE_CHARS,
-            DeleteType::WordEnds => ffi::GTK_DELETE_WORD_ENDS,
-            DeleteType::Words => ffi::GTK_DELETE_WORDS,
-            DeleteType::DisplayLines => ffi::GTK_DELETE_DISPLAY_LINES,
-            DeleteType::DisplayLineEnds => ffi::GTK_DELETE_DISPLAY_LINE_ENDS,
-            DeleteType::ParagraphEnds => ffi::GTK_DELETE_PARAGRAPH_ENDS,
-            DeleteType::Paragraphs => ffi::GTK_DELETE_PARAGRAPHS,
-            DeleteType::Whitespace => ffi::GTK_DELETE_WHITESPACE,
+            DeleteType::Chars => gtk_sys::GTK_DELETE_CHARS,
+            DeleteType::WordEnds => gtk_sys::GTK_DELETE_WORD_ENDS,
+            DeleteType::Words => gtk_sys::GTK_DELETE_WORDS,
+            DeleteType::DisplayLines => gtk_sys::GTK_DELETE_DISPLAY_LINES,
+            DeleteType::DisplayLineEnds => gtk_sys::GTK_DELETE_DISPLAY_LINE_ENDS,
+            DeleteType::ParagraphEnds => gtk_sys::GTK_DELETE_PARAGRAPH_ENDS,
+            DeleteType::Paragraphs => gtk_sys::GTK_DELETE_PARAGRAPHS,
+            DeleteType::Whitespace => gtk_sys::GTK_DELETE_WHITESPACE,
             DeleteType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkDeleteType> for DeleteType {
-    fn from_glib(value: ffi::GtkDeleteType) -> Self {
+impl FromGlib<gtk_sys::GtkDeleteType> for DeleteType {
+    fn from_glib(value: gtk_sys::GtkDeleteType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DeleteType::Chars,
@@ -1093,7 +1093,7 @@ impl FromGlib<ffi::GtkDeleteType> for DeleteType {
 
 impl StaticType for DeleteType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_delete_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_delete_type_get_type()) }
     }
 }
 
@@ -1105,13 +1105,13 @@ impl<'a> FromValueOptional<'a> for DeleteType {
 
 impl<'a> FromValue<'a> for DeleteType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DeleteType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1144,24 +1144,24 @@ impl fmt::Display for DirectionType {
 
 #[doc(hidden)]
 impl ToGlib for DirectionType {
-    type GlibType = ffi::GtkDirectionType;
+    type GlibType = gtk_sys::GtkDirectionType;
 
-    fn to_glib(&self) -> ffi::GtkDirectionType {
+    fn to_glib(&self) -> gtk_sys::GtkDirectionType {
         match *self {
-            DirectionType::TabForward => ffi::GTK_DIR_TAB_FORWARD,
-            DirectionType::TabBackward => ffi::GTK_DIR_TAB_BACKWARD,
-            DirectionType::Up => ffi::GTK_DIR_UP,
-            DirectionType::Down => ffi::GTK_DIR_DOWN,
-            DirectionType::Left => ffi::GTK_DIR_LEFT,
-            DirectionType::Right => ffi::GTK_DIR_RIGHT,
+            DirectionType::TabForward => gtk_sys::GTK_DIR_TAB_FORWARD,
+            DirectionType::TabBackward => gtk_sys::GTK_DIR_TAB_BACKWARD,
+            DirectionType::Up => gtk_sys::GTK_DIR_UP,
+            DirectionType::Down => gtk_sys::GTK_DIR_DOWN,
+            DirectionType::Left => gtk_sys::GTK_DIR_LEFT,
+            DirectionType::Right => gtk_sys::GTK_DIR_RIGHT,
             DirectionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkDirectionType> for DirectionType {
-    fn from_glib(value: ffi::GtkDirectionType) -> Self {
+impl FromGlib<gtk_sys::GtkDirectionType> for DirectionType {
+    fn from_glib(value: gtk_sys::GtkDirectionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DirectionType::TabForward,
@@ -1177,7 +1177,7 @@ impl FromGlib<ffi::GtkDirectionType> for DirectionType {
 
 impl StaticType for DirectionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_direction_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_direction_type_get_type()) }
     }
 }
 
@@ -1189,13 +1189,13 @@ impl<'a> FromValueOptional<'a> for DirectionType {
 
 impl<'a> FromValue<'a> for DirectionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DirectionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1228,24 +1228,24 @@ impl fmt::Display for DragResult {
 
 #[doc(hidden)]
 impl ToGlib for DragResult {
-    type GlibType = ffi::GtkDragResult;
+    type GlibType = gtk_sys::GtkDragResult;
 
-    fn to_glib(&self) -> ffi::GtkDragResult {
+    fn to_glib(&self) -> gtk_sys::GtkDragResult {
         match *self {
-            DragResult::Success => ffi::GTK_DRAG_RESULT_SUCCESS,
-            DragResult::NoTarget => ffi::GTK_DRAG_RESULT_NO_TARGET,
-            DragResult::UserCancelled => ffi::GTK_DRAG_RESULT_USER_CANCELLED,
-            DragResult::TimeoutExpired => ffi::GTK_DRAG_RESULT_TIMEOUT_EXPIRED,
-            DragResult::GrabBroken => ffi::GTK_DRAG_RESULT_GRAB_BROKEN,
-            DragResult::Error => ffi::GTK_DRAG_RESULT_ERROR,
+            DragResult::Success => gtk_sys::GTK_DRAG_RESULT_SUCCESS,
+            DragResult::NoTarget => gtk_sys::GTK_DRAG_RESULT_NO_TARGET,
+            DragResult::UserCancelled => gtk_sys::GTK_DRAG_RESULT_USER_CANCELLED,
+            DragResult::TimeoutExpired => gtk_sys::GTK_DRAG_RESULT_TIMEOUT_EXPIRED,
+            DragResult::GrabBroken => gtk_sys::GTK_DRAG_RESULT_GRAB_BROKEN,
+            DragResult::Error => gtk_sys::GTK_DRAG_RESULT_ERROR,
             DragResult::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkDragResult> for DragResult {
-    fn from_glib(value: ffi::GtkDragResult) -> Self {
+impl FromGlib<gtk_sys::GtkDragResult> for DragResult {
+    fn from_glib(value: gtk_sys::GtkDragResult) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DragResult::Success,
@@ -1261,7 +1261,7 @@ impl FromGlib<ffi::GtkDragResult> for DragResult {
 
 impl StaticType for DragResult {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_drag_result_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_drag_result_get_type()) }
     }
 }
 
@@ -1273,13 +1273,13 @@ impl<'a> FromValueOptional<'a> for DragResult {
 
 impl<'a> FromValue<'a> for DragResult {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DragResult {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1316,26 +1316,26 @@ impl fmt::Display for EditableProperties {
 
 #[doc(hidden)]
 impl ToGlib for EditableProperties {
-    type GlibType = ffi::GtkEditableProperties;
+    type GlibType = gtk_sys::GtkEditableProperties;
 
-    fn to_glib(&self) -> ffi::GtkEditableProperties {
+    fn to_glib(&self) -> gtk_sys::GtkEditableProperties {
         match *self {
-            EditableProperties::PropText => ffi::GTK_EDITABLE_PROP_TEXT,
-            EditableProperties::PropCursorPosition => ffi::GTK_EDITABLE_PROP_CURSOR_POSITION,
-            EditableProperties::PropSelectionBound => ffi::GTK_EDITABLE_PROP_SELECTION_BOUND,
-            EditableProperties::PropEditable => ffi::GTK_EDITABLE_PROP_EDITABLE,
-            EditableProperties::PropWidthChars => ffi::GTK_EDITABLE_PROP_WIDTH_CHARS,
-            EditableProperties::PropMaxWidthChars => ffi::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
-            EditableProperties::PropXalign => ffi::GTK_EDITABLE_PROP_XALIGN,
-            EditableProperties::NumProperties => ffi::GTK_EDITABLE_NUM_PROPERTIES,
+            EditableProperties::PropText => gtk_sys::GTK_EDITABLE_PROP_TEXT,
+            EditableProperties::PropCursorPosition => gtk_sys::GTK_EDITABLE_PROP_CURSOR_POSITION,
+            EditableProperties::PropSelectionBound => gtk_sys::GTK_EDITABLE_PROP_SELECTION_BOUND,
+            EditableProperties::PropEditable => gtk_sys::GTK_EDITABLE_PROP_EDITABLE,
+            EditableProperties::PropWidthChars => gtk_sys::GTK_EDITABLE_PROP_WIDTH_CHARS,
+            EditableProperties::PropMaxWidthChars => gtk_sys::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
+            EditableProperties::PropXalign => gtk_sys::GTK_EDITABLE_PROP_XALIGN,
+            EditableProperties::NumProperties => gtk_sys::GTK_EDITABLE_NUM_PROPERTIES,
             EditableProperties::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
-    fn from_glib(value: ffi::GtkEditableProperties) -> Self {
+impl FromGlib<gtk_sys::GtkEditableProperties> for EditableProperties {
+    fn from_glib(value: gtk_sys::GtkEditableProperties) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EditableProperties::PropText,
@@ -1353,7 +1353,7 @@ impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
 
 impl StaticType for EditableProperties {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_editable_properties_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_editable_properties_get_type()) }
     }
 }
 
@@ -1365,13 +1365,13 @@ impl<'a> FromValueOptional<'a> for EditableProperties {
 
 impl<'a> FromValue<'a> for EditableProperties {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EditableProperties {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1396,20 +1396,20 @@ impl fmt::Display for EntryIconPosition {
 
 #[doc(hidden)]
 impl ToGlib for EntryIconPosition {
-    type GlibType = ffi::GtkEntryIconPosition;
+    type GlibType = gtk_sys::GtkEntryIconPosition;
 
-    fn to_glib(&self) -> ffi::GtkEntryIconPosition {
+    fn to_glib(&self) -> gtk_sys::GtkEntryIconPosition {
         match *self {
-            EntryIconPosition::Primary => ffi::GTK_ENTRY_ICON_PRIMARY,
-            EntryIconPosition::Secondary => ffi::GTK_ENTRY_ICON_SECONDARY,
+            EntryIconPosition::Primary => gtk_sys::GTK_ENTRY_ICON_PRIMARY,
+            EntryIconPosition::Secondary => gtk_sys::GTK_ENTRY_ICON_SECONDARY,
             EntryIconPosition::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkEntryIconPosition> for EntryIconPosition {
-    fn from_glib(value: ffi::GtkEntryIconPosition) -> Self {
+impl FromGlib<gtk_sys::GtkEntryIconPosition> for EntryIconPosition {
+    fn from_glib(value: gtk_sys::GtkEntryIconPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EntryIconPosition::Primary,
@@ -1421,7 +1421,7 @@ impl FromGlib<ffi::GtkEntryIconPosition> for EntryIconPosition {
 
 impl StaticType for EntryIconPosition {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_entry_icon_position_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_entry_icon_position_get_type()) }
     }
 }
 
@@ -1433,13 +1433,13 @@ impl<'a> FromValueOptional<'a> for EntryIconPosition {
 
 impl<'a> FromValue<'a> for EntryIconPosition {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EntryIconPosition {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1466,21 +1466,21 @@ impl fmt::Display for EventSequenceState {
 
 #[doc(hidden)]
 impl ToGlib for EventSequenceState {
-    type GlibType = ffi::GtkEventSequenceState;
+    type GlibType = gtk_sys::GtkEventSequenceState;
 
-    fn to_glib(&self) -> ffi::GtkEventSequenceState {
+    fn to_glib(&self) -> gtk_sys::GtkEventSequenceState {
         match *self {
-            EventSequenceState::None => ffi::GTK_EVENT_SEQUENCE_NONE,
-            EventSequenceState::Claimed => ffi::GTK_EVENT_SEQUENCE_CLAIMED,
-            EventSequenceState::Denied => ffi::GTK_EVENT_SEQUENCE_DENIED,
+            EventSequenceState::None => gtk_sys::GTK_EVENT_SEQUENCE_NONE,
+            EventSequenceState::Claimed => gtk_sys::GTK_EVENT_SEQUENCE_CLAIMED,
+            EventSequenceState::Denied => gtk_sys::GTK_EVENT_SEQUENCE_DENIED,
             EventSequenceState::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkEventSequenceState> for EventSequenceState {
-    fn from_glib(value: ffi::GtkEventSequenceState) -> Self {
+impl FromGlib<gtk_sys::GtkEventSequenceState> for EventSequenceState {
+    fn from_glib(value: gtk_sys::GtkEventSequenceState) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EventSequenceState::None,
@@ -1493,7 +1493,7 @@ impl FromGlib<ffi::GtkEventSequenceState> for EventSequenceState {
 
 impl StaticType for EventSequenceState {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_event_sequence_state_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_event_sequence_state_get_type()) }
     }
 }
 
@@ -1505,13 +1505,13 @@ impl<'a> FromValueOptional<'a> for EventSequenceState {
 
 impl<'a> FromValue<'a> for EventSequenceState {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EventSequenceState {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1540,22 +1540,22 @@ impl fmt::Display for FileChooserAction {
 
 #[doc(hidden)]
 impl ToGlib for FileChooserAction {
-    type GlibType = ffi::GtkFileChooserAction;
+    type GlibType = gtk_sys::GtkFileChooserAction;
 
-    fn to_glib(&self) -> ffi::GtkFileChooserAction {
+    fn to_glib(&self) -> gtk_sys::GtkFileChooserAction {
         match *self {
-            FileChooserAction::Open => ffi::GTK_FILE_CHOOSER_ACTION_OPEN,
-            FileChooserAction::Save => ffi::GTK_FILE_CHOOSER_ACTION_SAVE,
-            FileChooserAction::SelectFolder => ffi::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            FileChooserAction::CreateFolder => ffi::GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER,
+            FileChooserAction::Open => gtk_sys::GTK_FILE_CHOOSER_ACTION_OPEN,
+            FileChooserAction::Save => gtk_sys::GTK_FILE_CHOOSER_ACTION_SAVE,
+            FileChooserAction::SelectFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
+            FileChooserAction::CreateFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER,
             FileChooserAction::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkFileChooserAction> for FileChooserAction {
-    fn from_glib(value: ffi::GtkFileChooserAction) -> Self {
+impl FromGlib<gtk_sys::GtkFileChooserAction> for FileChooserAction {
+    fn from_glib(value: gtk_sys::GtkFileChooserAction) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FileChooserAction::Open,
@@ -1569,7 +1569,7 @@ impl FromGlib<ffi::GtkFileChooserAction> for FileChooserAction {
 
 impl StaticType for FileChooserAction {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_file_chooser_action_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_file_chooser_action_get_type()) }
     }
 }
 
@@ -1581,13 +1581,13 @@ impl<'a> FromValueOptional<'a> for FileChooserAction {
 
 impl<'a> FromValue<'a> for FileChooserAction {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FileChooserAction {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1614,21 +1614,21 @@ impl fmt::Display for FileChooserConfirmation {
 
 #[doc(hidden)]
 impl ToGlib for FileChooserConfirmation {
-    type GlibType = ffi::GtkFileChooserConfirmation;
+    type GlibType = gtk_sys::GtkFileChooserConfirmation;
 
-    fn to_glib(&self) -> ffi::GtkFileChooserConfirmation {
+    fn to_glib(&self) -> gtk_sys::GtkFileChooserConfirmation {
         match *self {
-            FileChooserConfirmation::Confirm => ffi::GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM,
-            FileChooserConfirmation::AcceptFilename => ffi::GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME,
-            FileChooserConfirmation::SelectAgain => ffi::GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN,
+            FileChooserConfirmation::Confirm => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM,
+            FileChooserConfirmation::AcceptFilename => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME,
+            FileChooserConfirmation::SelectAgain => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN,
             FileChooserConfirmation::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkFileChooserConfirmation> for FileChooserConfirmation {
-    fn from_glib(value: ffi::GtkFileChooserConfirmation) -> Self {
+impl FromGlib<gtk_sys::GtkFileChooserConfirmation> for FileChooserConfirmation {
+    fn from_glib(value: gtk_sys::GtkFileChooserConfirmation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FileChooserConfirmation::Confirm,
@@ -1641,7 +1641,7 @@ impl FromGlib<ffi::GtkFileChooserConfirmation> for FileChooserConfirmation {
 
 impl StaticType for FileChooserConfirmation {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_file_chooser_confirmation_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_file_chooser_confirmation_get_type()) }
     }
 }
 
@@ -1653,13 +1653,13 @@ impl<'a> FromValueOptional<'a> for FileChooserConfirmation {
 
 impl<'a> FromValue<'a> for FileChooserConfirmation {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FileChooserConfirmation {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1688,22 +1688,22 @@ impl fmt::Display for FileChooserError {
 
 #[doc(hidden)]
 impl ToGlib for FileChooserError {
-    type GlibType = ffi::GtkFileChooserError;
+    type GlibType = gtk_sys::GtkFileChooserError;
 
-    fn to_glib(&self) -> ffi::GtkFileChooserError {
+    fn to_glib(&self) -> gtk_sys::GtkFileChooserError {
         match *self {
-            FileChooserError::Nonexistent => ffi::GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
-            FileChooserError::BadFilename => ffi::GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
-            FileChooserError::AlreadyExists => ffi::GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
-            FileChooserError::IncompleteHostname => ffi::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME,
+            FileChooserError::Nonexistent => gtk_sys::GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
+            FileChooserError::BadFilename => gtk_sys::GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
+            FileChooserError::AlreadyExists => gtk_sys::GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
+            FileChooserError::IncompleteHostname => gtk_sys::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME,
             FileChooserError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
-    fn from_glib(value: ffi::GtkFileChooserError) -> Self {
+impl FromGlib<gtk_sys::GtkFileChooserError> for FileChooserError {
+    fn from_glib(value: gtk_sys::GtkFileChooserError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FileChooserError::Nonexistent,
@@ -1718,7 +1718,7 @@ impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
 impl ErrorDomain for FileChooserError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gtk_file_chooser_error_quark()) }
+        unsafe { from_glib(gtk_sys::gtk_file_chooser_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -1739,7 +1739,7 @@ impl ErrorDomain for FileChooserError {
 
 impl StaticType for FileChooserError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_file_chooser_error_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_file_chooser_error_get_type()) }
     }
 }
 
@@ -1751,13 +1751,13 @@ impl<'a> FromValueOptional<'a> for FileChooserError {
 
 impl<'a> FromValue<'a> for FileChooserError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FileChooserError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1784,21 +1784,21 @@ impl fmt::Display for IconSize {
 
 #[doc(hidden)]
 impl ToGlib for IconSize {
-    type GlibType = ffi::GtkIconSize;
+    type GlibType = gtk_sys::GtkIconSize;
 
-    fn to_glib(&self) -> ffi::GtkIconSize {
+    fn to_glib(&self) -> gtk_sys::GtkIconSize {
         match *self {
-            IconSize::Inherit => ffi::GTK_ICON_SIZE_INHERIT,
-            IconSize::Normal => ffi::GTK_ICON_SIZE_NORMAL,
-            IconSize::Large => ffi::GTK_ICON_SIZE_LARGE,
+            IconSize::Inherit => gtk_sys::GTK_ICON_SIZE_INHERIT,
+            IconSize::Normal => gtk_sys::GTK_ICON_SIZE_NORMAL,
+            IconSize::Large => gtk_sys::GTK_ICON_SIZE_LARGE,
             IconSize::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkIconSize> for IconSize {
-    fn from_glib(value: ffi::GtkIconSize) -> Self {
+impl FromGlib<gtk_sys::GtkIconSize> for IconSize {
+    fn from_glib(value: gtk_sys::GtkIconSize) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconSize::Inherit,
@@ -1811,7 +1811,7 @@ impl FromGlib<ffi::GtkIconSize> for IconSize {
 
 impl StaticType for IconSize {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_icon_size_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_icon_size_get_type()) }
     }
 }
 
@@ -1823,13 +1823,13 @@ impl<'a> FromValueOptional<'a> for IconSize {
 
 impl<'a> FromValue<'a> for IconSize {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for IconSize {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1854,20 +1854,20 @@ impl fmt::Display for IconThemeError {
 
 #[doc(hidden)]
 impl ToGlib for IconThemeError {
-    type GlibType = ffi::GtkIconThemeError;
+    type GlibType = gtk_sys::GtkIconThemeError;
 
-    fn to_glib(&self) -> ffi::GtkIconThemeError {
+    fn to_glib(&self) -> gtk_sys::GtkIconThemeError {
         match *self {
-            IconThemeError::NotFound => ffi::GTK_ICON_THEME_NOT_FOUND,
-            IconThemeError::Failed => ffi::GTK_ICON_THEME_FAILED,
+            IconThemeError::NotFound => gtk_sys::GTK_ICON_THEME_NOT_FOUND,
+            IconThemeError::Failed => gtk_sys::GTK_ICON_THEME_FAILED,
             IconThemeError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkIconThemeError> for IconThemeError {
-    fn from_glib(value: ffi::GtkIconThemeError) -> Self {
+impl FromGlib<gtk_sys::GtkIconThemeError> for IconThemeError {
+    fn from_glib(value: gtk_sys::GtkIconThemeError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconThemeError::NotFound,
@@ -1880,7 +1880,7 @@ impl FromGlib<ffi::GtkIconThemeError> for IconThemeError {
 impl ErrorDomain for IconThemeError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gtk_icon_theme_error_quark()) }
+        unsafe { from_glib(gtk_sys::gtk_icon_theme_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -1899,7 +1899,7 @@ impl ErrorDomain for IconThemeError {
 
 impl StaticType for IconThemeError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_icon_theme_error_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_icon_theme_error_get_type()) }
     }
 }
 
@@ -1911,13 +1911,13 @@ impl<'a> FromValueOptional<'a> for IconThemeError {
 
 impl<'a> FromValue<'a> for IconThemeError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for IconThemeError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1950,24 +1950,24 @@ impl fmt::Display for IconViewDropPosition {
 
 #[doc(hidden)]
 impl ToGlib for IconViewDropPosition {
-    type GlibType = ffi::GtkIconViewDropPosition;
+    type GlibType = gtk_sys::GtkIconViewDropPosition;
 
-    fn to_glib(&self) -> ffi::GtkIconViewDropPosition {
+    fn to_glib(&self) -> gtk_sys::GtkIconViewDropPosition {
         match *self {
-            IconViewDropPosition::NoDrop => ffi::GTK_ICON_VIEW_NO_DROP,
-            IconViewDropPosition::DropInto => ffi::GTK_ICON_VIEW_DROP_INTO,
-            IconViewDropPosition::DropLeft => ffi::GTK_ICON_VIEW_DROP_LEFT,
-            IconViewDropPosition::DropRight => ffi::GTK_ICON_VIEW_DROP_RIGHT,
-            IconViewDropPosition::DropAbove => ffi::GTK_ICON_VIEW_DROP_ABOVE,
-            IconViewDropPosition::DropBelow => ffi::GTK_ICON_VIEW_DROP_BELOW,
+            IconViewDropPosition::NoDrop => gtk_sys::GTK_ICON_VIEW_NO_DROP,
+            IconViewDropPosition::DropInto => gtk_sys::GTK_ICON_VIEW_DROP_INTO,
+            IconViewDropPosition::DropLeft => gtk_sys::GTK_ICON_VIEW_DROP_LEFT,
+            IconViewDropPosition::DropRight => gtk_sys::GTK_ICON_VIEW_DROP_RIGHT,
+            IconViewDropPosition::DropAbove => gtk_sys::GTK_ICON_VIEW_DROP_ABOVE,
+            IconViewDropPosition::DropBelow => gtk_sys::GTK_ICON_VIEW_DROP_BELOW,
             IconViewDropPosition::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
-    fn from_glib(value: ffi::GtkIconViewDropPosition) -> Self {
+impl FromGlib<gtk_sys::GtkIconViewDropPosition> for IconViewDropPosition {
+    fn from_glib(value: gtk_sys::GtkIconViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconViewDropPosition::NoDrop,
@@ -1983,7 +1983,7 @@ impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
 
 impl StaticType for IconViewDropPosition {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_icon_view_drop_position_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_icon_view_drop_position_get_type()) }
     }
 }
 
@@ -1995,13 +1995,13 @@ impl<'a> FromValueOptional<'a> for IconViewDropPosition {
 
 impl<'a> FromValue<'a> for IconViewDropPosition {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for IconViewDropPosition {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2030,22 +2030,22 @@ impl fmt::Display for ImageType {
 
 #[doc(hidden)]
 impl ToGlib for ImageType {
-    type GlibType = ffi::GtkImageType;
+    type GlibType = gtk_sys::GtkImageType;
 
-    fn to_glib(&self) -> ffi::GtkImageType {
+    fn to_glib(&self) -> gtk_sys::GtkImageType {
         match *self {
-            ImageType::Empty => ffi::GTK_IMAGE_EMPTY,
-            ImageType::IconName => ffi::GTK_IMAGE_ICON_NAME,
-            ImageType::Gicon => ffi::GTK_IMAGE_GICON,
-            ImageType::Paintable => ffi::GTK_IMAGE_PAINTABLE,
+            ImageType::Empty => gtk_sys::GTK_IMAGE_EMPTY,
+            ImageType::IconName => gtk_sys::GTK_IMAGE_ICON_NAME,
+            ImageType::Gicon => gtk_sys::GTK_IMAGE_GICON,
+            ImageType::Paintable => gtk_sys::GTK_IMAGE_PAINTABLE,
             ImageType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkImageType> for ImageType {
-    fn from_glib(value: ffi::GtkImageType) -> Self {
+impl FromGlib<gtk_sys::GtkImageType> for ImageType {
+    fn from_glib(value: gtk_sys::GtkImageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ImageType::Empty,
@@ -2059,7 +2059,7 @@ impl FromGlib<ffi::GtkImageType> for ImageType {
 
 impl StaticType for ImageType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_image_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_image_type_get_type()) }
     }
 }
 
@@ -2071,13 +2071,13 @@ impl<'a> FromValueOptional<'a> for ImageType {
 
 impl<'a> FromValue<'a> for ImageType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ImageType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2118,28 +2118,28 @@ impl fmt::Display for InputPurpose {
 
 #[doc(hidden)]
 impl ToGlib for InputPurpose {
-    type GlibType = ffi::GtkInputPurpose;
+    type GlibType = gtk_sys::GtkInputPurpose;
 
-    fn to_glib(&self) -> ffi::GtkInputPurpose {
+    fn to_glib(&self) -> gtk_sys::GtkInputPurpose {
         match *self {
-            InputPurpose::FreeForm => ffi::GTK_INPUT_PURPOSE_FREE_FORM,
-            InputPurpose::Alpha => ffi::GTK_INPUT_PURPOSE_ALPHA,
-            InputPurpose::Digits => ffi::GTK_INPUT_PURPOSE_DIGITS,
-            InputPurpose::Number => ffi::GTK_INPUT_PURPOSE_NUMBER,
-            InputPurpose::Phone => ffi::GTK_INPUT_PURPOSE_PHONE,
-            InputPurpose::Url => ffi::GTK_INPUT_PURPOSE_URL,
-            InputPurpose::Email => ffi::GTK_INPUT_PURPOSE_EMAIL,
-            InputPurpose::Name => ffi::GTK_INPUT_PURPOSE_NAME,
-            InputPurpose::Password => ffi::GTK_INPUT_PURPOSE_PASSWORD,
-            InputPurpose::Pin => ffi::GTK_INPUT_PURPOSE_PIN,
+            InputPurpose::FreeForm => gtk_sys::GTK_INPUT_PURPOSE_FREE_FORM,
+            InputPurpose::Alpha => gtk_sys::GTK_INPUT_PURPOSE_ALPHA,
+            InputPurpose::Digits => gtk_sys::GTK_INPUT_PURPOSE_DIGITS,
+            InputPurpose::Number => gtk_sys::GTK_INPUT_PURPOSE_NUMBER,
+            InputPurpose::Phone => gtk_sys::GTK_INPUT_PURPOSE_PHONE,
+            InputPurpose::Url => gtk_sys::GTK_INPUT_PURPOSE_URL,
+            InputPurpose::Email => gtk_sys::GTK_INPUT_PURPOSE_EMAIL,
+            InputPurpose::Name => gtk_sys::GTK_INPUT_PURPOSE_NAME,
+            InputPurpose::Password => gtk_sys::GTK_INPUT_PURPOSE_PASSWORD,
+            InputPurpose::Pin => gtk_sys::GTK_INPUT_PURPOSE_PIN,
             InputPurpose::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkInputPurpose> for InputPurpose {
-    fn from_glib(value: ffi::GtkInputPurpose) -> Self {
+impl FromGlib<gtk_sys::GtkInputPurpose> for InputPurpose {
+    fn from_glib(value: gtk_sys::GtkInputPurpose) -> Self {
         skip_assert_initialized!();
         match value {
             0 => InputPurpose::FreeForm,
@@ -2159,7 +2159,7 @@ impl FromGlib<ffi::GtkInputPurpose> for InputPurpose {
 
 impl StaticType for InputPurpose {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_input_purpose_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_input_purpose_get_type()) }
     }
 }
 
@@ -2171,13 +2171,13 @@ impl<'a> FromValueOptional<'a> for InputPurpose {
 
 impl<'a> FromValue<'a> for InputPurpose {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for InputPurpose {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2206,22 +2206,22 @@ impl fmt::Display for Justification {
 
 #[doc(hidden)]
 impl ToGlib for Justification {
-    type GlibType = ffi::GtkJustification;
+    type GlibType = gtk_sys::GtkJustification;
 
-    fn to_glib(&self) -> ffi::GtkJustification {
+    fn to_glib(&self) -> gtk_sys::GtkJustification {
         match *self {
-            Justification::Left => ffi::GTK_JUSTIFY_LEFT,
-            Justification::Right => ffi::GTK_JUSTIFY_RIGHT,
-            Justification::Center => ffi::GTK_JUSTIFY_CENTER,
-            Justification::Fill => ffi::GTK_JUSTIFY_FILL,
+            Justification::Left => gtk_sys::GTK_JUSTIFY_LEFT,
+            Justification::Right => gtk_sys::GTK_JUSTIFY_RIGHT,
+            Justification::Center => gtk_sys::GTK_JUSTIFY_CENTER,
+            Justification::Fill => gtk_sys::GTK_JUSTIFY_FILL,
             Justification::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkJustification> for Justification {
-    fn from_glib(value: ffi::GtkJustification) -> Self {
+impl FromGlib<gtk_sys::GtkJustification> for Justification {
+    fn from_glib(value: gtk_sys::GtkJustification) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Justification::Left,
@@ -2235,7 +2235,7 @@ impl FromGlib<ffi::GtkJustification> for Justification {
 
 impl StaticType for Justification {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_justification_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_justification_get_type()) }
     }
 }
 
@@ -2247,13 +2247,13 @@ impl<'a> FromValueOptional<'a> for Justification {
 
 impl<'a> FromValue<'a> for Justification {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Justification {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2278,20 +2278,20 @@ impl fmt::Display for LevelBarMode {
 
 #[doc(hidden)]
 impl ToGlib for LevelBarMode {
-    type GlibType = ffi::GtkLevelBarMode;
+    type GlibType = gtk_sys::GtkLevelBarMode;
 
-    fn to_glib(&self) -> ffi::GtkLevelBarMode {
+    fn to_glib(&self) -> gtk_sys::GtkLevelBarMode {
         match *self {
-            LevelBarMode::Continuous => ffi::GTK_LEVEL_BAR_MODE_CONTINUOUS,
-            LevelBarMode::Discrete => ffi::GTK_LEVEL_BAR_MODE_DISCRETE,
+            LevelBarMode::Continuous => gtk_sys::GTK_LEVEL_BAR_MODE_CONTINUOUS,
+            LevelBarMode::Discrete => gtk_sys::GTK_LEVEL_BAR_MODE_DISCRETE,
             LevelBarMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkLevelBarMode> for LevelBarMode {
-    fn from_glib(value: ffi::GtkLevelBarMode) -> Self {
+impl FromGlib<gtk_sys::GtkLevelBarMode> for LevelBarMode {
+    fn from_glib(value: gtk_sys::GtkLevelBarMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => LevelBarMode::Continuous,
@@ -2303,7 +2303,7 @@ impl FromGlib<ffi::GtkLevelBarMode> for LevelBarMode {
 
 impl StaticType for LevelBarMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_level_bar_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_level_bar_mode_get_type()) }
     }
 }
 
@@ -2315,13 +2315,13 @@ impl<'a> FromValueOptional<'a> for LevelBarMode {
 
 impl<'a> FromValue<'a> for LevelBarMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for LevelBarMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2372,33 +2372,33 @@ impl fmt::Display for License {
 
 #[doc(hidden)]
 impl ToGlib for License {
-    type GlibType = ffi::GtkLicense;
+    type GlibType = gtk_sys::GtkLicense;
 
-    fn to_glib(&self) -> ffi::GtkLicense {
+    fn to_glib(&self) -> gtk_sys::GtkLicense {
         match *self {
-            License::Unknown => ffi::GTK_LICENSE_UNKNOWN,
-            License::Custom => ffi::GTK_LICENSE_CUSTOM,
-            License::Gpl20 => ffi::GTK_LICENSE_GPL_2_0,
-            License::Gpl30 => ffi::GTK_LICENSE_GPL_3_0,
-            License::Lgpl21 => ffi::GTK_LICENSE_LGPL_2_1,
-            License::Lgpl30 => ffi::GTK_LICENSE_LGPL_3_0,
-            License::Bsd => ffi::GTK_LICENSE_BSD,
-            License::MitX11 => ffi::GTK_LICENSE_MIT_X11,
-            License::Artistic => ffi::GTK_LICENSE_ARTISTIC,
-            License::Gpl20Only => ffi::GTK_LICENSE_GPL_2_0_ONLY,
-            License::Gpl30Only => ffi::GTK_LICENSE_GPL_3_0_ONLY,
-            License::Lgpl21Only => ffi::GTK_LICENSE_LGPL_2_1_ONLY,
-            License::Lgpl30Only => ffi::GTK_LICENSE_LGPL_3_0_ONLY,
-            License::Agpl30 => ffi::GTK_LICENSE_AGPL_3_0,
-            License::Agpl30Only => ffi::GTK_LICENSE_AGPL_3_0_ONLY,
+            License::Unknown => gtk_sys::GTK_LICENSE_UNKNOWN,
+            License::Custom => gtk_sys::GTK_LICENSE_CUSTOM,
+            License::Gpl20 => gtk_sys::GTK_LICENSE_GPL_2_0,
+            License::Gpl30 => gtk_sys::GTK_LICENSE_GPL_3_0,
+            License::Lgpl21 => gtk_sys::GTK_LICENSE_LGPL_2_1,
+            License::Lgpl30 => gtk_sys::GTK_LICENSE_LGPL_3_0,
+            License::Bsd => gtk_sys::GTK_LICENSE_BSD,
+            License::MitX11 => gtk_sys::GTK_LICENSE_MIT_X11,
+            License::Artistic => gtk_sys::GTK_LICENSE_ARTISTIC,
+            License::Gpl20Only => gtk_sys::GTK_LICENSE_GPL_2_0_ONLY,
+            License::Gpl30Only => gtk_sys::GTK_LICENSE_GPL_3_0_ONLY,
+            License::Lgpl21Only => gtk_sys::GTK_LICENSE_LGPL_2_1_ONLY,
+            License::Lgpl30Only => gtk_sys::GTK_LICENSE_LGPL_3_0_ONLY,
+            License::Agpl30 => gtk_sys::GTK_LICENSE_AGPL_3_0,
+            License::Agpl30Only => gtk_sys::GTK_LICENSE_AGPL_3_0_ONLY,
             License::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkLicense> for License {
-    fn from_glib(value: ffi::GtkLicense) -> Self {
+impl FromGlib<gtk_sys::GtkLicense> for License {
+    fn from_glib(value: gtk_sys::GtkLicense) -> Self {
         skip_assert_initialized!();
         match value {
             0 => License::Unknown,
@@ -2423,7 +2423,7 @@ impl FromGlib<ffi::GtkLicense> for License {
 
 impl StaticType for License {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_license_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_license_get_type()) }
     }
 }
 
@@ -2435,13 +2435,13 @@ impl<'a> FromValueOptional<'a> for License {
 
 impl<'a> FromValue<'a> for License {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for License {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2470,22 +2470,22 @@ impl fmt::Display for MenuDirectionType {
 
 #[doc(hidden)]
 impl ToGlib for MenuDirectionType {
-    type GlibType = ffi::GtkMenuDirectionType;
+    type GlibType = gtk_sys::GtkMenuDirectionType;
 
-    fn to_glib(&self) -> ffi::GtkMenuDirectionType {
+    fn to_glib(&self) -> gtk_sys::GtkMenuDirectionType {
         match *self {
-            MenuDirectionType::Parent => ffi::GTK_MENU_DIR_PARENT,
-            MenuDirectionType::Child => ffi::GTK_MENU_DIR_CHILD,
-            MenuDirectionType::Next => ffi::GTK_MENU_DIR_NEXT,
-            MenuDirectionType::Prev => ffi::GTK_MENU_DIR_PREV,
+            MenuDirectionType::Parent => gtk_sys::GTK_MENU_DIR_PARENT,
+            MenuDirectionType::Child => gtk_sys::GTK_MENU_DIR_CHILD,
+            MenuDirectionType::Next => gtk_sys::GTK_MENU_DIR_NEXT,
+            MenuDirectionType::Prev => gtk_sys::GTK_MENU_DIR_PREV,
             MenuDirectionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkMenuDirectionType> for MenuDirectionType {
-    fn from_glib(value: ffi::GtkMenuDirectionType) -> Self {
+impl FromGlib<gtk_sys::GtkMenuDirectionType> for MenuDirectionType {
+    fn from_glib(value: gtk_sys::GtkMenuDirectionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MenuDirectionType::Parent,
@@ -2499,7 +2499,7 @@ impl FromGlib<ffi::GtkMenuDirectionType> for MenuDirectionType {
 
 impl StaticType for MenuDirectionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_menu_direction_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_menu_direction_type_get_type()) }
     }
 }
 
@@ -2511,13 +2511,13 @@ impl<'a> FromValueOptional<'a> for MenuDirectionType {
 
 impl<'a> FromValue<'a> for MenuDirectionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for MenuDirectionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2548,23 +2548,23 @@ impl fmt::Display for MessageType {
 
 #[doc(hidden)]
 impl ToGlib for MessageType {
-    type GlibType = ffi::GtkMessageType;
+    type GlibType = gtk_sys::GtkMessageType;
 
-    fn to_glib(&self) -> ffi::GtkMessageType {
+    fn to_glib(&self) -> gtk_sys::GtkMessageType {
         match *self {
-            MessageType::Info => ffi::GTK_MESSAGE_INFO,
-            MessageType::Warning => ffi::GTK_MESSAGE_WARNING,
-            MessageType::Question => ffi::GTK_MESSAGE_QUESTION,
-            MessageType::Error => ffi::GTK_MESSAGE_ERROR,
-            MessageType::Other => ffi::GTK_MESSAGE_OTHER,
+            MessageType::Info => gtk_sys::GTK_MESSAGE_INFO,
+            MessageType::Warning => gtk_sys::GTK_MESSAGE_WARNING,
+            MessageType::Question => gtk_sys::GTK_MESSAGE_QUESTION,
+            MessageType::Error => gtk_sys::GTK_MESSAGE_ERROR,
+            MessageType::Other => gtk_sys::GTK_MESSAGE_OTHER,
             MessageType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkMessageType> for MessageType {
-    fn from_glib(value: ffi::GtkMessageType) -> Self {
+impl FromGlib<gtk_sys::GtkMessageType> for MessageType {
+    fn from_glib(value: gtk_sys::GtkMessageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MessageType::Info,
@@ -2579,7 +2579,7 @@ impl FromGlib<ffi::GtkMessageType> for MessageType {
 
 impl StaticType for MessageType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_message_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_message_type_get_type()) }
     }
 }
 
@@ -2591,13 +2591,13 @@ impl<'a> FromValueOptional<'a> for MessageType {
 
 impl<'a> FromValue<'a> for MessageType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for MessageType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2638,28 +2638,28 @@ impl fmt::Display for MovementStep {
 
 #[doc(hidden)]
 impl ToGlib for MovementStep {
-    type GlibType = ffi::GtkMovementStep;
+    type GlibType = gtk_sys::GtkMovementStep;
 
-    fn to_glib(&self) -> ffi::GtkMovementStep {
+    fn to_glib(&self) -> gtk_sys::GtkMovementStep {
         match *self {
-            MovementStep::LogicalPositions => ffi::GTK_MOVEMENT_LOGICAL_POSITIONS,
-            MovementStep::VisualPositions => ffi::GTK_MOVEMENT_VISUAL_POSITIONS,
-            MovementStep::Words => ffi::GTK_MOVEMENT_WORDS,
-            MovementStep::DisplayLines => ffi::GTK_MOVEMENT_DISPLAY_LINES,
-            MovementStep::DisplayLineEnds => ffi::GTK_MOVEMENT_DISPLAY_LINE_ENDS,
-            MovementStep::Paragraphs => ffi::GTK_MOVEMENT_PARAGRAPHS,
-            MovementStep::ParagraphEnds => ffi::GTK_MOVEMENT_PARAGRAPH_ENDS,
-            MovementStep::Pages => ffi::GTK_MOVEMENT_PAGES,
-            MovementStep::BufferEnds => ffi::GTK_MOVEMENT_BUFFER_ENDS,
-            MovementStep::HorizontalPages => ffi::GTK_MOVEMENT_HORIZONTAL_PAGES,
+            MovementStep::LogicalPositions => gtk_sys::GTK_MOVEMENT_LOGICAL_POSITIONS,
+            MovementStep::VisualPositions => gtk_sys::GTK_MOVEMENT_VISUAL_POSITIONS,
+            MovementStep::Words => gtk_sys::GTK_MOVEMENT_WORDS,
+            MovementStep::DisplayLines => gtk_sys::GTK_MOVEMENT_DISPLAY_LINES,
+            MovementStep::DisplayLineEnds => gtk_sys::GTK_MOVEMENT_DISPLAY_LINE_ENDS,
+            MovementStep::Paragraphs => gtk_sys::GTK_MOVEMENT_PARAGRAPHS,
+            MovementStep::ParagraphEnds => gtk_sys::GTK_MOVEMENT_PARAGRAPH_ENDS,
+            MovementStep::Pages => gtk_sys::GTK_MOVEMENT_PAGES,
+            MovementStep::BufferEnds => gtk_sys::GTK_MOVEMENT_BUFFER_ENDS,
+            MovementStep::HorizontalPages => gtk_sys::GTK_MOVEMENT_HORIZONTAL_PAGES,
             MovementStep::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkMovementStep> for MovementStep {
-    fn from_glib(value: ffi::GtkMovementStep) -> Self {
+impl FromGlib<gtk_sys::GtkMovementStep> for MovementStep {
+    fn from_glib(value: gtk_sys::GtkMovementStep) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MovementStep::LogicalPositions,
@@ -2679,7 +2679,7 @@ impl FromGlib<ffi::GtkMovementStep> for MovementStep {
 
 impl StaticType for MovementStep {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_movement_step_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_movement_step_get_type()) }
     }
 }
 
@@ -2691,13 +2691,13 @@ impl<'a> FromValueOptional<'a> for MovementStep {
 
 impl<'a> FromValue<'a> for MovementStep {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for MovementStep {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2722,20 +2722,20 @@ impl fmt::Display for NotebookTab {
 
 #[doc(hidden)]
 impl ToGlib for NotebookTab {
-    type GlibType = ffi::GtkNotebookTab;
+    type GlibType = gtk_sys::GtkNotebookTab;
 
-    fn to_glib(&self) -> ffi::GtkNotebookTab {
+    fn to_glib(&self) -> gtk_sys::GtkNotebookTab {
         match *self {
-            NotebookTab::First => ffi::GTK_NOTEBOOK_TAB_FIRST,
-            NotebookTab::Last => ffi::GTK_NOTEBOOK_TAB_LAST,
+            NotebookTab::First => gtk_sys::GTK_NOTEBOOK_TAB_FIRST,
+            NotebookTab::Last => gtk_sys::GTK_NOTEBOOK_TAB_LAST,
             NotebookTab::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkNotebookTab> for NotebookTab {
-    fn from_glib(value: ffi::GtkNotebookTab) -> Self {
+impl FromGlib<gtk_sys::GtkNotebookTab> for NotebookTab {
+    fn from_glib(value: gtk_sys::GtkNotebookTab) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NotebookTab::First,
@@ -2747,7 +2747,7 @@ impl FromGlib<ffi::GtkNotebookTab> for NotebookTab {
 
 impl StaticType for NotebookTab {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_notebook_tab_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_notebook_tab_get_type()) }
     }
 }
 
@@ -2759,13 +2759,13 @@ impl<'a> FromValueOptional<'a> for NotebookTab {
 
 impl<'a> FromValue<'a> for NotebookTab {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for NotebookTab {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2802,26 +2802,26 @@ impl fmt::Display for NumberUpLayout {
 
 #[doc(hidden)]
 impl ToGlib for NumberUpLayout {
-    type GlibType = ffi::GtkNumberUpLayout;
+    type GlibType = gtk_sys::GtkNumberUpLayout;
 
-    fn to_glib(&self) -> ffi::GtkNumberUpLayout {
+    fn to_glib(&self) -> gtk_sys::GtkNumberUpLayout {
         match *self {
-            NumberUpLayout::Lrtb => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM,
-            NumberUpLayout::Lrbt => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP,
-            NumberUpLayout::Rltb => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM,
-            NumberUpLayout::Rlbt => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP,
-            NumberUpLayout::Tblr => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT,
-            NumberUpLayout::Tbrl => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT,
-            NumberUpLayout::Btlr => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT,
-            NumberUpLayout::Btrl => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT,
+            NumberUpLayout::Lrtb => gtk_sys::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM,
+            NumberUpLayout::Lrbt => gtk_sys::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP,
+            NumberUpLayout::Rltb => gtk_sys::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM,
+            NumberUpLayout::Rlbt => gtk_sys::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP,
+            NumberUpLayout::Tblr => gtk_sys::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT,
+            NumberUpLayout::Tbrl => gtk_sys::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT,
+            NumberUpLayout::Btlr => gtk_sys::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT,
+            NumberUpLayout::Btrl => gtk_sys::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT,
             NumberUpLayout::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkNumberUpLayout> for NumberUpLayout {
-    fn from_glib(value: ffi::GtkNumberUpLayout) -> Self {
+impl FromGlib<gtk_sys::GtkNumberUpLayout> for NumberUpLayout {
+    fn from_glib(value: gtk_sys::GtkNumberUpLayout) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NumberUpLayout::Lrtb,
@@ -2839,7 +2839,7 @@ impl FromGlib<ffi::GtkNumberUpLayout> for NumberUpLayout {
 
 impl StaticType for NumberUpLayout {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_number_up_layout_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_number_up_layout_get_type()) }
     }
 }
 
@@ -2851,13 +2851,13 @@ impl<'a> FromValueOptional<'a> for NumberUpLayout {
 
 impl<'a> FromValue<'a> for NumberUpLayout {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for NumberUpLayout {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2882,20 +2882,20 @@ impl fmt::Display for Orientation {
 
 #[doc(hidden)]
 impl ToGlib for Orientation {
-    type GlibType = ffi::GtkOrientation;
+    type GlibType = gtk_sys::GtkOrientation;
 
-    fn to_glib(&self) -> ffi::GtkOrientation {
+    fn to_glib(&self) -> gtk_sys::GtkOrientation {
         match *self {
-            Orientation::Horizontal => ffi::GTK_ORIENTATION_HORIZONTAL,
-            Orientation::Vertical => ffi::GTK_ORIENTATION_VERTICAL,
+            Orientation::Horizontal => gtk_sys::GTK_ORIENTATION_HORIZONTAL,
+            Orientation::Vertical => gtk_sys::GTK_ORIENTATION_VERTICAL,
             Orientation::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkOrientation> for Orientation {
-    fn from_glib(value: ffi::GtkOrientation) -> Self {
+impl FromGlib<gtk_sys::GtkOrientation> for Orientation {
+    fn from_glib(value: gtk_sys::GtkOrientation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Orientation::Horizontal,
@@ -2907,7 +2907,7 @@ impl FromGlib<ffi::GtkOrientation> for Orientation {
 
 impl StaticType for Orientation {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_orientation_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_orientation_get_type()) }
     }
 }
 
@@ -2919,13 +2919,13 @@ impl<'a> FromValueOptional<'a> for Orientation {
 
 impl<'a> FromValue<'a> for Orientation {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Orientation {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -2950,20 +2950,20 @@ impl fmt::Display for Overflow {
 
 #[doc(hidden)]
 impl ToGlib for Overflow {
-    type GlibType = ffi::GtkOverflow;
+    type GlibType = gtk_sys::GtkOverflow;
 
-    fn to_glib(&self) -> ffi::GtkOverflow {
+    fn to_glib(&self) -> gtk_sys::GtkOverflow {
         match *self {
-            Overflow::Visible => ffi::GTK_OVERFLOW_VISIBLE,
-            Overflow::Hidden => ffi::GTK_OVERFLOW_HIDDEN,
+            Overflow::Visible => gtk_sys::GTK_OVERFLOW_VISIBLE,
+            Overflow::Hidden => gtk_sys::GTK_OVERFLOW_HIDDEN,
             Overflow::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkOverflow> for Overflow {
-    fn from_glib(value: ffi::GtkOverflow) -> Self {
+impl FromGlib<gtk_sys::GtkOverflow> for Overflow {
+    fn from_glib(value: gtk_sys::GtkOverflow) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Overflow::Visible,
@@ -2975,7 +2975,7 @@ impl FromGlib<ffi::GtkOverflow> for Overflow {
 
 impl StaticType for Overflow {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_overflow_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_overflow_get_type()) }
     }
 }
 
@@ -2987,13 +2987,13 @@ impl<'a> FromValueOptional<'a> for Overflow {
 
 impl<'a> FromValue<'a> for Overflow {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Overflow {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3018,20 +3018,20 @@ impl fmt::Display for PackType {
 
 #[doc(hidden)]
 impl ToGlib for PackType {
-    type GlibType = ffi::GtkPackType;
+    type GlibType = gtk_sys::GtkPackType;
 
-    fn to_glib(&self) -> ffi::GtkPackType {
+    fn to_glib(&self) -> gtk_sys::GtkPackType {
         match *self {
-            PackType::Start => ffi::GTK_PACK_START,
-            PackType::End => ffi::GTK_PACK_END,
+            PackType::Start => gtk_sys::GTK_PACK_START,
+            PackType::End => gtk_sys::GTK_PACK_END,
             PackType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPackType> for PackType {
-    fn from_glib(value: ffi::GtkPackType) -> Self {
+impl FromGlib<gtk_sys::GtkPackType> for PackType {
+    fn from_glib(value: gtk_sys::GtkPackType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PackType::Start,
@@ -3043,7 +3043,7 @@ impl FromGlib<ffi::GtkPackType> for PackType {
 
 impl StaticType for PackType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_pack_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_pack_type_get_type()) }
     }
 }
 
@@ -3055,13 +3055,13 @@ impl<'a> FromValueOptional<'a> for PackType {
 
 impl<'a> FromValue<'a> for PackType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PackType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3088,21 +3088,21 @@ impl fmt::Display for PadActionType {
 
 #[doc(hidden)]
 impl ToGlib for PadActionType {
-    type GlibType = ffi::GtkPadActionType;
+    type GlibType = gtk_sys::GtkPadActionType;
 
-    fn to_glib(&self) -> ffi::GtkPadActionType {
+    fn to_glib(&self) -> gtk_sys::GtkPadActionType {
         match *self {
-            PadActionType::Button => ffi::GTK_PAD_ACTION_BUTTON,
-            PadActionType::Ring => ffi::GTK_PAD_ACTION_RING,
-            PadActionType::Strip => ffi::GTK_PAD_ACTION_STRIP,
+            PadActionType::Button => gtk_sys::GTK_PAD_ACTION_BUTTON,
+            PadActionType::Ring => gtk_sys::GTK_PAD_ACTION_RING,
+            PadActionType::Strip => gtk_sys::GTK_PAD_ACTION_STRIP,
             PadActionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPadActionType> for PadActionType {
-    fn from_glib(value: ffi::GtkPadActionType) -> Self {
+impl FromGlib<gtk_sys::GtkPadActionType> for PadActionType {
+    fn from_glib(value: gtk_sys::GtkPadActionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PadActionType::Button,
@@ -3115,7 +3115,7 @@ impl FromGlib<ffi::GtkPadActionType> for PadActionType {
 
 impl StaticType for PadActionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_pad_action_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_pad_action_type_get_type()) }
     }
 }
 
@@ -3127,13 +3127,13 @@ impl<'a> FromValueOptional<'a> for PadActionType {
 
 impl<'a> FromValue<'a> for PadActionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PadActionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3162,22 +3162,22 @@ impl fmt::Display for PageOrientation {
 
 #[doc(hidden)]
 impl ToGlib for PageOrientation {
-    type GlibType = ffi::GtkPageOrientation;
+    type GlibType = gtk_sys::GtkPageOrientation;
 
-    fn to_glib(&self) -> ffi::GtkPageOrientation {
+    fn to_glib(&self) -> gtk_sys::GtkPageOrientation {
         match *self {
-            PageOrientation::Portrait => ffi::GTK_PAGE_ORIENTATION_PORTRAIT,
-            PageOrientation::Landscape => ffi::GTK_PAGE_ORIENTATION_LANDSCAPE,
-            PageOrientation::ReversePortrait => ffi::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT,
-            PageOrientation::ReverseLandscape => ffi::GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE,
+            PageOrientation::Portrait => gtk_sys::GTK_PAGE_ORIENTATION_PORTRAIT,
+            PageOrientation::Landscape => gtk_sys::GTK_PAGE_ORIENTATION_LANDSCAPE,
+            PageOrientation::ReversePortrait => gtk_sys::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT,
+            PageOrientation::ReverseLandscape => gtk_sys::GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE,
             PageOrientation::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPageOrientation> for PageOrientation {
-    fn from_glib(value: ffi::GtkPageOrientation) -> Self {
+impl FromGlib<gtk_sys::GtkPageOrientation> for PageOrientation {
+    fn from_glib(value: gtk_sys::GtkPageOrientation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PageOrientation::Portrait,
@@ -3191,7 +3191,7 @@ impl FromGlib<ffi::GtkPageOrientation> for PageOrientation {
 
 impl StaticType for PageOrientation {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_page_orientation_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_page_orientation_get_type()) }
     }
 }
 
@@ -3203,13 +3203,13 @@ impl<'a> FromValueOptional<'a> for PageOrientation {
 
 impl<'a> FromValue<'a> for PageOrientation {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PageOrientation {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3236,21 +3236,21 @@ impl fmt::Display for PageSet {
 
 #[doc(hidden)]
 impl ToGlib for PageSet {
-    type GlibType = ffi::GtkPageSet;
+    type GlibType = gtk_sys::GtkPageSet;
 
-    fn to_glib(&self) -> ffi::GtkPageSet {
+    fn to_glib(&self) -> gtk_sys::GtkPageSet {
         match *self {
-            PageSet::All => ffi::GTK_PAGE_SET_ALL,
-            PageSet::Even => ffi::GTK_PAGE_SET_EVEN,
-            PageSet::Odd => ffi::GTK_PAGE_SET_ODD,
+            PageSet::All => gtk_sys::GTK_PAGE_SET_ALL,
+            PageSet::Even => gtk_sys::GTK_PAGE_SET_EVEN,
+            PageSet::Odd => gtk_sys::GTK_PAGE_SET_ODD,
             PageSet::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPageSet> for PageSet {
-    fn from_glib(value: ffi::GtkPageSet) -> Self {
+impl FromGlib<gtk_sys::GtkPageSet> for PageSet {
+    fn from_glib(value: gtk_sys::GtkPageSet) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PageSet::All,
@@ -3263,7 +3263,7 @@ impl FromGlib<ffi::GtkPageSet> for PageSet {
 
 impl StaticType for PageSet {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_page_set_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_page_set_get_type()) }
     }
 }
 
@@ -3275,13 +3275,13 @@ impl<'a> FromValueOptional<'a> for PageSet {
 
 impl<'a> FromValue<'a> for PageSet {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PageSet {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3310,22 +3310,22 @@ impl fmt::Display for PanDirection {
 
 #[doc(hidden)]
 impl ToGlib for PanDirection {
-    type GlibType = ffi::GtkPanDirection;
+    type GlibType = gtk_sys::GtkPanDirection;
 
-    fn to_glib(&self) -> ffi::GtkPanDirection {
+    fn to_glib(&self) -> gtk_sys::GtkPanDirection {
         match *self {
-            PanDirection::Left => ffi::GTK_PAN_DIRECTION_LEFT,
-            PanDirection::Right => ffi::GTK_PAN_DIRECTION_RIGHT,
-            PanDirection::Up => ffi::GTK_PAN_DIRECTION_UP,
-            PanDirection::Down => ffi::GTK_PAN_DIRECTION_DOWN,
+            PanDirection::Left => gtk_sys::GTK_PAN_DIRECTION_LEFT,
+            PanDirection::Right => gtk_sys::GTK_PAN_DIRECTION_RIGHT,
+            PanDirection::Up => gtk_sys::GTK_PAN_DIRECTION_UP,
+            PanDirection::Down => gtk_sys::GTK_PAN_DIRECTION_DOWN,
             PanDirection::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPanDirection> for PanDirection {
-    fn from_glib(value: ffi::GtkPanDirection) -> Self {
+impl FromGlib<gtk_sys::GtkPanDirection> for PanDirection {
+    fn from_glib(value: gtk_sys::GtkPanDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PanDirection::Left,
@@ -3339,7 +3339,7 @@ impl FromGlib<ffi::GtkPanDirection> for PanDirection {
 
 impl StaticType for PanDirection {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_pan_direction_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_pan_direction_get_type()) }
     }
 }
 
@@ -3351,13 +3351,13 @@ impl<'a> FromValueOptional<'a> for PanDirection {
 
 impl<'a> FromValue<'a> for PanDirection {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PanDirection {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3386,22 +3386,22 @@ impl fmt::Display for PolicyType {
 
 #[doc(hidden)]
 impl ToGlib for PolicyType {
-    type GlibType = ffi::GtkPolicyType;
+    type GlibType = gtk_sys::GtkPolicyType;
 
-    fn to_glib(&self) -> ffi::GtkPolicyType {
+    fn to_glib(&self) -> gtk_sys::GtkPolicyType {
         match *self {
-            PolicyType::Always => ffi::GTK_POLICY_ALWAYS,
-            PolicyType::Automatic => ffi::GTK_POLICY_AUTOMATIC,
-            PolicyType::Never => ffi::GTK_POLICY_NEVER,
-            PolicyType::External => ffi::GTK_POLICY_EXTERNAL,
+            PolicyType::Always => gtk_sys::GTK_POLICY_ALWAYS,
+            PolicyType::Automatic => gtk_sys::GTK_POLICY_AUTOMATIC,
+            PolicyType::Never => gtk_sys::GTK_POLICY_NEVER,
+            PolicyType::External => gtk_sys::GTK_POLICY_EXTERNAL,
             PolicyType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPolicyType> for PolicyType {
-    fn from_glib(value: ffi::GtkPolicyType) -> Self {
+impl FromGlib<gtk_sys::GtkPolicyType> for PolicyType {
+    fn from_glib(value: gtk_sys::GtkPolicyType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PolicyType::Always,
@@ -3415,7 +3415,7 @@ impl FromGlib<ffi::GtkPolicyType> for PolicyType {
 
 impl StaticType for PolicyType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_policy_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_policy_type_get_type()) }
     }
 }
 
@@ -3427,13 +3427,13 @@ impl<'a> FromValueOptional<'a> for PolicyType {
 
 impl<'a> FromValue<'a> for PolicyType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PolicyType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3458,20 +3458,20 @@ impl fmt::Display for PopoverConstraint {
 
 #[doc(hidden)]
 impl ToGlib for PopoverConstraint {
-    type GlibType = ffi::GtkPopoverConstraint;
+    type GlibType = gtk_sys::GtkPopoverConstraint;
 
-    fn to_glib(&self) -> ffi::GtkPopoverConstraint {
+    fn to_glib(&self) -> gtk_sys::GtkPopoverConstraint {
         match *self {
-            PopoverConstraint::None => ffi::GTK_POPOVER_CONSTRAINT_NONE,
-            PopoverConstraint::Window => ffi::GTK_POPOVER_CONSTRAINT_WINDOW,
+            PopoverConstraint::None => gtk_sys::GTK_POPOVER_CONSTRAINT_NONE,
+            PopoverConstraint::Window => gtk_sys::GTK_POPOVER_CONSTRAINT_WINDOW,
             PopoverConstraint::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPopoverConstraint> for PopoverConstraint {
-    fn from_glib(value: ffi::GtkPopoverConstraint) -> Self {
+impl FromGlib<gtk_sys::GtkPopoverConstraint> for PopoverConstraint {
+    fn from_glib(value: gtk_sys::GtkPopoverConstraint) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PopoverConstraint::None,
@@ -3483,7 +3483,7 @@ impl FromGlib<ffi::GtkPopoverConstraint> for PopoverConstraint {
 
 impl StaticType for PopoverConstraint {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_popover_constraint_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_popover_constraint_get_type()) }
     }
 }
 
@@ -3495,13 +3495,13 @@ impl<'a> FromValueOptional<'a> for PopoverConstraint {
 
 impl<'a> FromValue<'a> for PopoverConstraint {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PopoverConstraint {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3530,22 +3530,22 @@ impl fmt::Display for PositionType {
 
 #[doc(hidden)]
 impl ToGlib for PositionType {
-    type GlibType = ffi::GtkPositionType;
+    type GlibType = gtk_sys::GtkPositionType;
 
-    fn to_glib(&self) -> ffi::GtkPositionType {
+    fn to_glib(&self) -> gtk_sys::GtkPositionType {
         match *self {
-            PositionType::Left => ffi::GTK_POS_LEFT,
-            PositionType::Right => ffi::GTK_POS_RIGHT,
-            PositionType::Top => ffi::GTK_POS_TOP,
-            PositionType::Bottom => ffi::GTK_POS_BOTTOM,
+            PositionType::Left => gtk_sys::GTK_POS_LEFT,
+            PositionType::Right => gtk_sys::GTK_POS_RIGHT,
+            PositionType::Top => gtk_sys::GTK_POS_TOP,
+            PositionType::Bottom => gtk_sys::GTK_POS_BOTTOM,
             PositionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPositionType> for PositionType {
-    fn from_glib(value: ffi::GtkPositionType) -> Self {
+impl FromGlib<gtk_sys::GtkPositionType> for PositionType {
+    fn from_glib(value: gtk_sys::GtkPositionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PositionType::Left,
@@ -3559,7 +3559,7 @@ impl FromGlib<ffi::GtkPositionType> for PositionType {
 
 impl StaticType for PositionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_position_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_position_type_get_type()) }
     }
 }
 
@@ -3571,13 +3571,13 @@ impl<'a> FromValueOptional<'a> for PositionType {
 
 impl<'a> FromValue<'a> for PositionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PositionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3604,21 +3604,21 @@ impl fmt::Display for PrintDuplex {
 
 #[doc(hidden)]
 impl ToGlib for PrintDuplex {
-    type GlibType = ffi::GtkPrintDuplex;
+    type GlibType = gtk_sys::GtkPrintDuplex;
 
-    fn to_glib(&self) -> ffi::GtkPrintDuplex {
+    fn to_glib(&self) -> gtk_sys::GtkPrintDuplex {
         match *self {
-            PrintDuplex::Simplex => ffi::GTK_PRINT_DUPLEX_SIMPLEX,
-            PrintDuplex::Horizontal => ffi::GTK_PRINT_DUPLEX_HORIZONTAL,
-            PrintDuplex::Vertical => ffi::GTK_PRINT_DUPLEX_VERTICAL,
+            PrintDuplex::Simplex => gtk_sys::GTK_PRINT_DUPLEX_SIMPLEX,
+            PrintDuplex::Horizontal => gtk_sys::GTK_PRINT_DUPLEX_HORIZONTAL,
+            PrintDuplex::Vertical => gtk_sys::GTK_PRINT_DUPLEX_VERTICAL,
             PrintDuplex::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintDuplex> for PrintDuplex {
-    fn from_glib(value: ffi::GtkPrintDuplex) -> Self {
+impl FromGlib<gtk_sys::GtkPrintDuplex> for PrintDuplex {
+    fn from_glib(value: gtk_sys::GtkPrintDuplex) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintDuplex::Simplex,
@@ -3631,7 +3631,7 @@ impl FromGlib<ffi::GtkPrintDuplex> for PrintDuplex {
 
 impl StaticType for PrintDuplex {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_duplex_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_duplex_get_type()) }
     }
 }
 
@@ -3643,13 +3643,13 @@ impl<'a> FromValueOptional<'a> for PrintDuplex {
 
 impl<'a> FromValue<'a> for PrintDuplex {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintDuplex {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3678,22 +3678,22 @@ impl fmt::Display for PrintError {
 
 #[doc(hidden)]
 impl ToGlib for PrintError {
-    type GlibType = ffi::GtkPrintError;
+    type GlibType = gtk_sys::GtkPrintError;
 
-    fn to_glib(&self) -> ffi::GtkPrintError {
+    fn to_glib(&self) -> gtk_sys::GtkPrintError {
         match *self {
-            PrintError::General => ffi::GTK_PRINT_ERROR_GENERAL,
-            PrintError::InternalError => ffi::GTK_PRINT_ERROR_INTERNAL_ERROR,
-            PrintError::Nomem => ffi::GTK_PRINT_ERROR_NOMEM,
-            PrintError::InvalidFile => ffi::GTK_PRINT_ERROR_INVALID_FILE,
+            PrintError::General => gtk_sys::GTK_PRINT_ERROR_GENERAL,
+            PrintError::InternalError => gtk_sys::GTK_PRINT_ERROR_INTERNAL_ERROR,
+            PrintError::Nomem => gtk_sys::GTK_PRINT_ERROR_NOMEM,
+            PrintError::InvalidFile => gtk_sys::GTK_PRINT_ERROR_INVALID_FILE,
             PrintError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintError> for PrintError {
-    fn from_glib(value: ffi::GtkPrintError) -> Self {
+impl FromGlib<gtk_sys::GtkPrintError> for PrintError {
+    fn from_glib(value: gtk_sys::GtkPrintError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintError::General,
@@ -3708,7 +3708,7 @@ impl FromGlib<ffi::GtkPrintError> for PrintError {
 impl ErrorDomain for PrintError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gtk_print_error_quark()) }
+        unsafe { from_glib(gtk_sys::gtk_print_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -3729,7 +3729,7 @@ impl ErrorDomain for PrintError {
 
 impl StaticType for PrintError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_error_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_error_get_type()) }
     }
 }
 
@@ -3741,13 +3741,13 @@ impl<'a> FromValueOptional<'a> for PrintError {
 
 impl<'a> FromValue<'a> for PrintError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3776,22 +3776,22 @@ impl fmt::Display for PrintOperationAction {
 
 #[doc(hidden)]
 impl ToGlib for PrintOperationAction {
-    type GlibType = ffi::GtkPrintOperationAction;
+    type GlibType = gtk_sys::GtkPrintOperationAction;
 
-    fn to_glib(&self) -> ffi::GtkPrintOperationAction {
+    fn to_glib(&self) -> gtk_sys::GtkPrintOperationAction {
         match *self {
-            PrintOperationAction::PrintDialog => ffi::GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
-            PrintOperationAction::Print => ffi::GTK_PRINT_OPERATION_ACTION_PRINT,
-            PrintOperationAction::Preview => ffi::GTK_PRINT_OPERATION_ACTION_PREVIEW,
-            PrintOperationAction::Export => ffi::GTK_PRINT_OPERATION_ACTION_EXPORT,
+            PrintOperationAction::PrintDialog => gtk_sys::GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+            PrintOperationAction::Print => gtk_sys::GTK_PRINT_OPERATION_ACTION_PRINT,
+            PrintOperationAction::Preview => gtk_sys::GTK_PRINT_OPERATION_ACTION_PREVIEW,
+            PrintOperationAction::Export => gtk_sys::GTK_PRINT_OPERATION_ACTION_EXPORT,
             PrintOperationAction::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintOperationAction> for PrintOperationAction {
-    fn from_glib(value: ffi::GtkPrintOperationAction) -> Self {
+impl FromGlib<gtk_sys::GtkPrintOperationAction> for PrintOperationAction {
+    fn from_glib(value: gtk_sys::GtkPrintOperationAction) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintOperationAction::PrintDialog,
@@ -3805,7 +3805,7 @@ impl FromGlib<ffi::GtkPrintOperationAction> for PrintOperationAction {
 
 impl StaticType for PrintOperationAction {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_operation_action_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_operation_action_get_type()) }
     }
 }
 
@@ -3817,13 +3817,13 @@ impl<'a> FromValueOptional<'a> for PrintOperationAction {
 
 impl<'a> FromValue<'a> for PrintOperationAction {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintOperationAction {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3852,22 +3852,22 @@ impl fmt::Display for PrintOperationResult {
 
 #[doc(hidden)]
 impl ToGlib for PrintOperationResult {
-    type GlibType = ffi::GtkPrintOperationResult;
+    type GlibType = gtk_sys::GtkPrintOperationResult;
 
-    fn to_glib(&self) -> ffi::GtkPrintOperationResult {
+    fn to_glib(&self) -> gtk_sys::GtkPrintOperationResult {
         match *self {
-            PrintOperationResult::Error => ffi::GTK_PRINT_OPERATION_RESULT_ERROR,
-            PrintOperationResult::Apply => ffi::GTK_PRINT_OPERATION_RESULT_APPLY,
-            PrintOperationResult::Cancel => ffi::GTK_PRINT_OPERATION_RESULT_CANCEL,
-            PrintOperationResult::InProgress => ffi::GTK_PRINT_OPERATION_RESULT_IN_PROGRESS,
+            PrintOperationResult::Error => gtk_sys::GTK_PRINT_OPERATION_RESULT_ERROR,
+            PrintOperationResult::Apply => gtk_sys::GTK_PRINT_OPERATION_RESULT_APPLY,
+            PrintOperationResult::Cancel => gtk_sys::GTK_PRINT_OPERATION_RESULT_CANCEL,
+            PrintOperationResult::InProgress => gtk_sys::GTK_PRINT_OPERATION_RESULT_IN_PROGRESS,
             PrintOperationResult::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintOperationResult> for PrintOperationResult {
-    fn from_glib(value: ffi::GtkPrintOperationResult) -> Self {
+impl FromGlib<gtk_sys::GtkPrintOperationResult> for PrintOperationResult {
+    fn from_glib(value: gtk_sys::GtkPrintOperationResult) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintOperationResult::Error,
@@ -3881,7 +3881,7 @@ impl FromGlib<ffi::GtkPrintOperationResult> for PrintOperationResult {
 
 impl StaticType for PrintOperationResult {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_operation_result_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_operation_result_get_type()) }
     }
 }
 
@@ -3893,13 +3893,13 @@ impl<'a> FromValueOptional<'a> for PrintOperationResult {
 
 impl<'a> FromValue<'a> for PrintOperationResult {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintOperationResult {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -3928,22 +3928,22 @@ impl fmt::Display for PrintPages {
 
 #[doc(hidden)]
 impl ToGlib for PrintPages {
-    type GlibType = ffi::GtkPrintPages;
+    type GlibType = gtk_sys::GtkPrintPages;
 
-    fn to_glib(&self) -> ffi::GtkPrintPages {
+    fn to_glib(&self) -> gtk_sys::GtkPrintPages {
         match *self {
-            PrintPages::All => ffi::GTK_PRINT_PAGES_ALL,
-            PrintPages::Current => ffi::GTK_PRINT_PAGES_CURRENT,
-            PrintPages::Ranges => ffi::GTK_PRINT_PAGES_RANGES,
-            PrintPages::Selection => ffi::GTK_PRINT_PAGES_SELECTION,
+            PrintPages::All => gtk_sys::GTK_PRINT_PAGES_ALL,
+            PrintPages::Current => gtk_sys::GTK_PRINT_PAGES_CURRENT,
+            PrintPages::Ranges => gtk_sys::GTK_PRINT_PAGES_RANGES,
+            PrintPages::Selection => gtk_sys::GTK_PRINT_PAGES_SELECTION,
             PrintPages::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintPages> for PrintPages {
-    fn from_glib(value: ffi::GtkPrintPages) -> Self {
+impl FromGlib<gtk_sys::GtkPrintPages> for PrintPages {
+    fn from_glib(value: gtk_sys::GtkPrintPages) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintPages::All,
@@ -3957,7 +3957,7 @@ impl FromGlib<ffi::GtkPrintPages> for PrintPages {
 
 impl StaticType for PrintPages {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_pages_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_pages_get_type()) }
     }
 }
 
@@ -3969,13 +3969,13 @@ impl<'a> FromValueOptional<'a> for PrintPages {
 
 impl<'a> FromValue<'a> for PrintPages {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintPages {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4004,22 +4004,22 @@ impl fmt::Display for PrintQuality {
 
 #[doc(hidden)]
 impl ToGlib for PrintQuality {
-    type GlibType = ffi::GtkPrintQuality;
+    type GlibType = gtk_sys::GtkPrintQuality;
 
-    fn to_glib(&self) -> ffi::GtkPrintQuality {
+    fn to_glib(&self) -> gtk_sys::GtkPrintQuality {
         match *self {
-            PrintQuality::Low => ffi::GTK_PRINT_QUALITY_LOW,
-            PrintQuality::Normal => ffi::GTK_PRINT_QUALITY_NORMAL,
-            PrintQuality::High => ffi::GTK_PRINT_QUALITY_HIGH,
-            PrintQuality::Draft => ffi::GTK_PRINT_QUALITY_DRAFT,
+            PrintQuality::Low => gtk_sys::GTK_PRINT_QUALITY_LOW,
+            PrintQuality::Normal => gtk_sys::GTK_PRINT_QUALITY_NORMAL,
+            PrintQuality::High => gtk_sys::GTK_PRINT_QUALITY_HIGH,
+            PrintQuality::Draft => gtk_sys::GTK_PRINT_QUALITY_DRAFT,
             PrintQuality::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintQuality> for PrintQuality {
-    fn from_glib(value: ffi::GtkPrintQuality) -> Self {
+impl FromGlib<gtk_sys::GtkPrintQuality> for PrintQuality {
+    fn from_glib(value: gtk_sys::GtkPrintQuality) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintQuality::Low,
@@ -4033,7 +4033,7 @@ impl FromGlib<ffi::GtkPrintQuality> for PrintQuality {
 
 impl StaticType for PrintQuality {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_quality_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_quality_get_type()) }
     }
 }
 
@@ -4045,13 +4045,13 @@ impl<'a> FromValueOptional<'a> for PrintQuality {
 
 impl<'a> FromValue<'a> for PrintQuality {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintQuality {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4090,27 +4090,27 @@ impl fmt::Display for PrintStatus {
 
 #[doc(hidden)]
 impl ToGlib for PrintStatus {
-    type GlibType = ffi::GtkPrintStatus;
+    type GlibType = gtk_sys::GtkPrintStatus;
 
-    fn to_glib(&self) -> ffi::GtkPrintStatus {
+    fn to_glib(&self) -> gtk_sys::GtkPrintStatus {
         match *self {
-            PrintStatus::Initial => ffi::GTK_PRINT_STATUS_INITIAL,
-            PrintStatus::Preparing => ffi::GTK_PRINT_STATUS_PREPARING,
-            PrintStatus::GeneratingData => ffi::GTK_PRINT_STATUS_GENERATING_DATA,
-            PrintStatus::SendingData => ffi::GTK_PRINT_STATUS_SENDING_DATA,
-            PrintStatus::Pending => ffi::GTK_PRINT_STATUS_PENDING,
-            PrintStatus::PendingIssue => ffi::GTK_PRINT_STATUS_PENDING_ISSUE,
-            PrintStatus::Printing => ffi::GTK_PRINT_STATUS_PRINTING,
-            PrintStatus::Finished => ffi::GTK_PRINT_STATUS_FINISHED,
-            PrintStatus::FinishedAborted => ffi::GTK_PRINT_STATUS_FINISHED_ABORTED,
+            PrintStatus::Initial => gtk_sys::GTK_PRINT_STATUS_INITIAL,
+            PrintStatus::Preparing => gtk_sys::GTK_PRINT_STATUS_PREPARING,
+            PrintStatus::GeneratingData => gtk_sys::GTK_PRINT_STATUS_GENERATING_DATA,
+            PrintStatus::SendingData => gtk_sys::GTK_PRINT_STATUS_SENDING_DATA,
+            PrintStatus::Pending => gtk_sys::GTK_PRINT_STATUS_PENDING,
+            PrintStatus::PendingIssue => gtk_sys::GTK_PRINT_STATUS_PENDING_ISSUE,
+            PrintStatus::Printing => gtk_sys::GTK_PRINT_STATUS_PRINTING,
+            PrintStatus::Finished => gtk_sys::GTK_PRINT_STATUS_FINISHED,
+            PrintStatus::FinishedAborted => gtk_sys::GTK_PRINT_STATUS_FINISHED_ABORTED,
             PrintStatus::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPrintStatus> for PrintStatus {
-    fn from_glib(value: ffi::GtkPrintStatus) -> Self {
+impl FromGlib<gtk_sys::GtkPrintStatus> for PrintStatus {
+    fn from_glib(value: gtk_sys::GtkPrintStatus) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintStatus::Initial,
@@ -4129,7 +4129,7 @@ impl FromGlib<ffi::GtkPrintStatus> for PrintStatus {
 
 impl StaticType for PrintStatus {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_print_status_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_print_status_get_type()) }
     }
 }
 
@@ -4141,13 +4141,13 @@ impl<'a> FromValueOptional<'a> for PrintStatus {
 
 impl<'a> FromValue<'a> for PrintStatus {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PrintStatus {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4176,22 +4176,22 @@ impl fmt::Display for PropagationPhase {
 
 #[doc(hidden)]
 impl ToGlib for PropagationPhase {
-    type GlibType = ffi::GtkPropagationPhase;
+    type GlibType = gtk_sys::GtkPropagationPhase;
 
-    fn to_glib(&self) -> ffi::GtkPropagationPhase {
+    fn to_glib(&self) -> gtk_sys::GtkPropagationPhase {
         match *self {
-            PropagationPhase::None => ffi::GTK_PHASE_NONE,
-            PropagationPhase::Capture => ffi::GTK_PHASE_CAPTURE,
-            PropagationPhase::Bubble => ffi::GTK_PHASE_BUBBLE,
-            PropagationPhase::Target => ffi::GTK_PHASE_TARGET,
+            PropagationPhase::None => gtk_sys::GTK_PHASE_NONE,
+            PropagationPhase::Capture => gtk_sys::GTK_PHASE_CAPTURE,
+            PropagationPhase::Bubble => gtk_sys::GTK_PHASE_BUBBLE,
+            PropagationPhase::Target => gtk_sys::GTK_PHASE_TARGET,
             PropagationPhase::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkPropagationPhase> for PropagationPhase {
-    fn from_glib(value: ffi::GtkPropagationPhase) -> Self {
+impl FromGlib<gtk_sys::GtkPropagationPhase> for PropagationPhase {
+    fn from_glib(value: gtk_sys::GtkPropagationPhase) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PropagationPhase::None,
@@ -4205,7 +4205,7 @@ impl FromGlib<ffi::GtkPropagationPhase> for PropagationPhase {
 
 impl StaticType for PropagationPhase {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_propagation_phase_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_propagation_phase_get_type()) }
     }
 }
 
@@ -4217,13 +4217,13 @@ impl<'a> FromValueOptional<'a> for PropagationPhase {
 
 impl<'a> FromValue<'a> for PropagationPhase {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PropagationPhase {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4258,25 +4258,25 @@ impl fmt::Display for RecentManagerError {
 
 #[doc(hidden)]
 impl ToGlib for RecentManagerError {
-    type GlibType = ffi::GtkRecentManagerError;
+    type GlibType = gtk_sys::GtkRecentManagerError;
 
-    fn to_glib(&self) -> ffi::GtkRecentManagerError {
+    fn to_glib(&self) -> gtk_sys::GtkRecentManagerError {
         match *self {
-            RecentManagerError::NotFound => ffi::GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
-            RecentManagerError::InvalidUri => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_URI,
-            RecentManagerError::InvalidEncoding => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
-            RecentManagerError::NotRegistered => ffi::GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
-            RecentManagerError::Read => ffi::GTK_RECENT_MANAGER_ERROR_READ,
-            RecentManagerError::Write => ffi::GTK_RECENT_MANAGER_ERROR_WRITE,
-            RecentManagerError::Unknown => ffi::GTK_RECENT_MANAGER_ERROR_UNKNOWN,
+            RecentManagerError::NotFound => gtk_sys::GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
+            RecentManagerError::InvalidUri => gtk_sys::GTK_RECENT_MANAGER_ERROR_INVALID_URI,
+            RecentManagerError::InvalidEncoding => gtk_sys::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
+            RecentManagerError::NotRegistered => gtk_sys::GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
+            RecentManagerError::Read => gtk_sys::GTK_RECENT_MANAGER_ERROR_READ,
+            RecentManagerError::Write => gtk_sys::GTK_RECENT_MANAGER_ERROR_WRITE,
+            RecentManagerError::Unknown => gtk_sys::GTK_RECENT_MANAGER_ERROR_UNKNOWN,
             RecentManagerError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkRecentManagerError> for RecentManagerError {
-    fn from_glib(value: ffi::GtkRecentManagerError) -> Self {
+impl FromGlib<gtk_sys::GtkRecentManagerError> for RecentManagerError {
+    fn from_glib(value: gtk_sys::GtkRecentManagerError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RecentManagerError::NotFound,
@@ -4294,7 +4294,7 @@ impl FromGlib<ffi::GtkRecentManagerError> for RecentManagerError {
 impl ErrorDomain for RecentManagerError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gtk_recent_manager_error_quark()) }
+        unsafe { from_glib(gtk_sys::gtk_recent_manager_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -4318,7 +4318,7 @@ impl ErrorDomain for RecentManagerError {
 
 impl StaticType for RecentManagerError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_recent_manager_error_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_recent_manager_error_get_type()) }
     }
 }
 
@@ -4330,13 +4330,13 @@ impl<'a> FromValueOptional<'a> for RecentManagerError {
 
 impl<'a> FromValue<'a> for RecentManagerError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for RecentManagerError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4361,20 +4361,20 @@ impl fmt::Display for ReliefStyle {
 
 #[doc(hidden)]
 impl ToGlib for ReliefStyle {
-    type GlibType = ffi::GtkReliefStyle;
+    type GlibType = gtk_sys::GtkReliefStyle;
 
-    fn to_glib(&self) -> ffi::GtkReliefStyle {
+    fn to_glib(&self) -> gtk_sys::GtkReliefStyle {
         match *self {
-            ReliefStyle::Normal => ffi::GTK_RELIEF_NORMAL,
-            ReliefStyle::None => ffi::GTK_RELIEF_NONE,
+            ReliefStyle::Normal => gtk_sys::GTK_RELIEF_NORMAL,
+            ReliefStyle::None => gtk_sys::GTK_RELIEF_NONE,
             ReliefStyle::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkReliefStyle> for ReliefStyle {
-    fn from_glib(value: ffi::GtkReliefStyle) -> Self {
+impl FromGlib<gtk_sys::GtkReliefStyle> for ReliefStyle {
+    fn from_glib(value: gtk_sys::GtkReliefStyle) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ReliefStyle::Normal,
@@ -4386,7 +4386,7 @@ impl FromGlib<ffi::GtkReliefStyle> for ReliefStyle {
 
 impl StaticType for ReliefStyle {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_relief_style_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_relief_style_get_type()) }
     }
 }
 
@@ -4398,13 +4398,13 @@ impl<'a> FromValueOptional<'a> for ReliefStyle {
 
 impl<'a> FromValue<'a> for ReliefStyle {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ReliefStyle {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4445,28 +4445,28 @@ impl fmt::Display for RevealerTransitionType {
 
 #[doc(hidden)]
 impl ToGlib for RevealerTransitionType {
-    type GlibType = ffi::GtkRevealerTransitionType;
+    type GlibType = gtk_sys::GtkRevealerTransitionType;
 
-    fn to_glib(&self) -> ffi::GtkRevealerTransitionType {
+    fn to_glib(&self) -> gtk_sys::GtkRevealerTransitionType {
         match *self {
-            RevealerTransitionType::None => ffi::GTK_REVEALER_TRANSITION_TYPE_NONE,
-            RevealerTransitionType::Crossfade => ffi::GTK_REVEALER_TRANSITION_TYPE_CROSSFADE,
-            RevealerTransitionType::SlideRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT,
-            RevealerTransitionType::SlideLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT,
-            RevealerTransitionType::SlideUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP,
-            RevealerTransitionType::SlideDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN,
-            RevealerTransitionType::SwingRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT,
-            RevealerTransitionType::SwingLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
-            RevealerTransitionType::SwingUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
-            RevealerTransitionType::SwingDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
+            RevealerTransitionType::None => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_NONE,
+            RevealerTransitionType::Crossfade => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_CROSSFADE,
+            RevealerTransitionType::SlideRight => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT,
+            RevealerTransitionType::SlideLeft => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT,
+            RevealerTransitionType::SlideUp => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP,
+            RevealerTransitionType::SlideDown => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN,
+            RevealerTransitionType::SwingRight => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT,
+            RevealerTransitionType::SwingLeft => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
+            RevealerTransitionType::SwingUp => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
+            RevealerTransitionType::SwingDown => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
             RevealerTransitionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
-    fn from_glib(value: ffi::GtkRevealerTransitionType) -> Self {
+impl FromGlib<gtk_sys::GtkRevealerTransitionType> for RevealerTransitionType {
+    fn from_glib(value: gtk_sys::GtkRevealerTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RevealerTransitionType::None,
@@ -4486,7 +4486,7 @@ impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
 
 impl StaticType for RevealerTransitionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_revealer_transition_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_revealer_transition_type_get_type()) }
     }
 }
 
@@ -4498,13 +4498,13 @@ impl<'a> FromValueOptional<'a> for RevealerTransitionType {
 
 impl<'a> FromValue<'a> for RevealerTransitionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for RevealerTransitionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4537,24 +4537,24 @@ impl fmt::Display for ScrollStep {
 
 #[doc(hidden)]
 impl ToGlib for ScrollStep {
-    type GlibType = ffi::GtkScrollStep;
+    type GlibType = gtk_sys::GtkScrollStep;
 
-    fn to_glib(&self) -> ffi::GtkScrollStep {
+    fn to_glib(&self) -> gtk_sys::GtkScrollStep {
         match *self {
-            ScrollStep::Steps => ffi::GTK_SCROLL_STEPS,
-            ScrollStep::Pages => ffi::GTK_SCROLL_PAGES,
-            ScrollStep::Ends => ffi::GTK_SCROLL_ENDS,
-            ScrollStep::HorizontalSteps => ffi::GTK_SCROLL_HORIZONTAL_STEPS,
-            ScrollStep::HorizontalPages => ffi::GTK_SCROLL_HORIZONTAL_PAGES,
-            ScrollStep::HorizontalEnds => ffi::GTK_SCROLL_HORIZONTAL_ENDS,
+            ScrollStep::Steps => gtk_sys::GTK_SCROLL_STEPS,
+            ScrollStep::Pages => gtk_sys::GTK_SCROLL_PAGES,
+            ScrollStep::Ends => gtk_sys::GTK_SCROLL_ENDS,
+            ScrollStep::HorizontalSteps => gtk_sys::GTK_SCROLL_HORIZONTAL_STEPS,
+            ScrollStep::HorizontalPages => gtk_sys::GTK_SCROLL_HORIZONTAL_PAGES,
+            ScrollStep::HorizontalEnds => gtk_sys::GTK_SCROLL_HORIZONTAL_ENDS,
             ScrollStep::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkScrollStep> for ScrollStep {
-    fn from_glib(value: ffi::GtkScrollStep) -> Self {
+impl FromGlib<gtk_sys::GtkScrollStep> for ScrollStep {
+    fn from_glib(value: gtk_sys::GtkScrollStep) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollStep::Steps,
@@ -4570,7 +4570,7 @@ impl FromGlib<ffi::GtkScrollStep> for ScrollStep {
 
 impl StaticType for ScrollStep {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_scroll_step_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_scroll_step_get_type()) }
     }
 }
 
@@ -4582,13 +4582,13 @@ impl<'a> FromValueOptional<'a> for ScrollStep {
 
 impl<'a> FromValue<'a> for ScrollStep {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ScrollStep {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4641,34 +4641,34 @@ impl fmt::Display for ScrollType {
 
 #[doc(hidden)]
 impl ToGlib for ScrollType {
-    type GlibType = ffi::GtkScrollType;
+    type GlibType = gtk_sys::GtkScrollType;
 
-    fn to_glib(&self) -> ffi::GtkScrollType {
+    fn to_glib(&self) -> gtk_sys::GtkScrollType {
         match *self {
-            ScrollType::None => ffi::GTK_SCROLL_NONE,
-            ScrollType::Jump => ffi::GTK_SCROLL_JUMP,
-            ScrollType::StepBackward => ffi::GTK_SCROLL_STEP_BACKWARD,
-            ScrollType::StepForward => ffi::GTK_SCROLL_STEP_FORWARD,
-            ScrollType::PageBackward => ffi::GTK_SCROLL_PAGE_BACKWARD,
-            ScrollType::PageForward => ffi::GTK_SCROLL_PAGE_FORWARD,
-            ScrollType::StepUp => ffi::GTK_SCROLL_STEP_UP,
-            ScrollType::StepDown => ffi::GTK_SCROLL_STEP_DOWN,
-            ScrollType::PageUp => ffi::GTK_SCROLL_PAGE_UP,
-            ScrollType::PageDown => ffi::GTK_SCROLL_PAGE_DOWN,
-            ScrollType::StepLeft => ffi::GTK_SCROLL_STEP_LEFT,
-            ScrollType::StepRight => ffi::GTK_SCROLL_STEP_RIGHT,
-            ScrollType::PageLeft => ffi::GTK_SCROLL_PAGE_LEFT,
-            ScrollType::PageRight => ffi::GTK_SCROLL_PAGE_RIGHT,
-            ScrollType::Start => ffi::GTK_SCROLL_START,
-            ScrollType::End => ffi::GTK_SCROLL_END,
+            ScrollType::None => gtk_sys::GTK_SCROLL_NONE,
+            ScrollType::Jump => gtk_sys::GTK_SCROLL_JUMP,
+            ScrollType::StepBackward => gtk_sys::GTK_SCROLL_STEP_BACKWARD,
+            ScrollType::StepForward => gtk_sys::GTK_SCROLL_STEP_FORWARD,
+            ScrollType::PageBackward => gtk_sys::GTK_SCROLL_PAGE_BACKWARD,
+            ScrollType::PageForward => gtk_sys::GTK_SCROLL_PAGE_FORWARD,
+            ScrollType::StepUp => gtk_sys::GTK_SCROLL_STEP_UP,
+            ScrollType::StepDown => gtk_sys::GTK_SCROLL_STEP_DOWN,
+            ScrollType::PageUp => gtk_sys::GTK_SCROLL_PAGE_UP,
+            ScrollType::PageDown => gtk_sys::GTK_SCROLL_PAGE_DOWN,
+            ScrollType::StepLeft => gtk_sys::GTK_SCROLL_STEP_LEFT,
+            ScrollType::StepRight => gtk_sys::GTK_SCROLL_STEP_RIGHT,
+            ScrollType::PageLeft => gtk_sys::GTK_SCROLL_PAGE_LEFT,
+            ScrollType::PageRight => gtk_sys::GTK_SCROLL_PAGE_RIGHT,
+            ScrollType::Start => gtk_sys::GTK_SCROLL_START,
+            ScrollType::End => gtk_sys::GTK_SCROLL_END,
             ScrollType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkScrollType> for ScrollType {
-    fn from_glib(value: ffi::GtkScrollType) -> Self {
+impl FromGlib<gtk_sys::GtkScrollType> for ScrollType {
+    fn from_glib(value: gtk_sys::GtkScrollType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollType::None,
@@ -4694,7 +4694,7 @@ impl FromGlib<ffi::GtkScrollType> for ScrollType {
 
 impl StaticType for ScrollType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_scroll_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_scroll_type_get_type()) }
     }
 }
 
@@ -4706,13 +4706,13 @@ impl<'a> FromValueOptional<'a> for ScrollType {
 
 impl<'a> FromValue<'a> for ScrollType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ScrollType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4737,20 +4737,20 @@ impl fmt::Display for ScrollablePolicy {
 
 #[doc(hidden)]
 impl ToGlib for ScrollablePolicy {
-    type GlibType = ffi::GtkScrollablePolicy;
+    type GlibType = gtk_sys::GtkScrollablePolicy;
 
-    fn to_glib(&self) -> ffi::GtkScrollablePolicy {
+    fn to_glib(&self) -> gtk_sys::GtkScrollablePolicy {
         match *self {
-            ScrollablePolicy::Minimum => ffi::GTK_SCROLL_MINIMUM,
-            ScrollablePolicy::Natural => ffi::GTK_SCROLL_NATURAL,
+            ScrollablePolicy::Minimum => gtk_sys::GTK_SCROLL_MINIMUM,
+            ScrollablePolicy::Natural => gtk_sys::GTK_SCROLL_NATURAL,
             ScrollablePolicy::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkScrollablePolicy> for ScrollablePolicy {
-    fn from_glib(value: ffi::GtkScrollablePolicy) -> Self {
+impl FromGlib<gtk_sys::GtkScrollablePolicy> for ScrollablePolicy {
+    fn from_glib(value: gtk_sys::GtkScrollablePolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollablePolicy::Minimum,
@@ -4762,7 +4762,7 @@ impl FromGlib<ffi::GtkScrollablePolicy> for ScrollablePolicy {
 
 impl StaticType for ScrollablePolicy {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_scrollable_policy_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_scrollable_policy_get_type()) }
     }
 }
 
@@ -4774,13 +4774,13 @@ impl<'a> FromValueOptional<'a> for ScrollablePolicy {
 
 impl<'a> FromValue<'a> for ScrollablePolicy {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ScrollablePolicy {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4809,22 +4809,22 @@ impl fmt::Display for SelectionMode {
 
 #[doc(hidden)]
 impl ToGlib for SelectionMode {
-    type GlibType = ffi::GtkSelectionMode;
+    type GlibType = gtk_sys::GtkSelectionMode;
 
-    fn to_glib(&self) -> ffi::GtkSelectionMode {
+    fn to_glib(&self) -> gtk_sys::GtkSelectionMode {
         match *self {
-            SelectionMode::None => ffi::GTK_SELECTION_NONE,
-            SelectionMode::Single => ffi::GTK_SELECTION_SINGLE,
-            SelectionMode::Browse => ffi::GTK_SELECTION_BROWSE,
-            SelectionMode::Multiple => ffi::GTK_SELECTION_MULTIPLE,
+            SelectionMode::None => gtk_sys::GTK_SELECTION_NONE,
+            SelectionMode::Single => gtk_sys::GTK_SELECTION_SINGLE,
+            SelectionMode::Browse => gtk_sys::GTK_SELECTION_BROWSE,
+            SelectionMode::Multiple => gtk_sys::GTK_SELECTION_MULTIPLE,
             SelectionMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSelectionMode> for SelectionMode {
-    fn from_glib(value: ffi::GtkSelectionMode) -> Self {
+impl FromGlib<gtk_sys::GtkSelectionMode> for SelectionMode {
+    fn from_glib(value: gtk_sys::GtkSelectionMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SelectionMode::None,
@@ -4838,7 +4838,7 @@ impl FromGlib<ffi::GtkSelectionMode> for SelectionMode {
 
 impl StaticType for SelectionMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_selection_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_selection_mode_get_type()) }
     }
 }
 
@@ -4850,13 +4850,13 @@ impl<'a> FromValueOptional<'a> for SelectionMode {
 
 impl<'a> FromValue<'a> for SelectionMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SelectionMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4883,21 +4883,21 @@ impl fmt::Display for SensitivityType {
 
 #[doc(hidden)]
 impl ToGlib for SensitivityType {
-    type GlibType = ffi::GtkSensitivityType;
+    type GlibType = gtk_sys::GtkSensitivityType;
 
-    fn to_glib(&self) -> ffi::GtkSensitivityType {
+    fn to_glib(&self) -> gtk_sys::GtkSensitivityType {
         match *self {
-            SensitivityType::Auto => ffi::GTK_SENSITIVITY_AUTO,
-            SensitivityType::On => ffi::GTK_SENSITIVITY_ON,
-            SensitivityType::Off => ffi::GTK_SENSITIVITY_OFF,
+            SensitivityType::Auto => gtk_sys::GTK_SENSITIVITY_AUTO,
+            SensitivityType::On => gtk_sys::GTK_SENSITIVITY_ON,
+            SensitivityType::Off => gtk_sys::GTK_SENSITIVITY_OFF,
             SensitivityType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSensitivityType> for SensitivityType {
-    fn from_glib(value: ffi::GtkSensitivityType) -> Self {
+impl FromGlib<gtk_sys::GtkSensitivityType> for SensitivityType {
+    fn from_glib(value: gtk_sys::GtkSensitivityType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SensitivityType::Auto,
@@ -4910,7 +4910,7 @@ impl FromGlib<ffi::GtkSensitivityType> for SensitivityType {
 
 impl StaticType for SensitivityType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_sensitivity_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_sensitivity_type_get_type()) }
     }
 }
 
@@ -4922,13 +4922,13 @@ impl<'a> FromValueOptional<'a> for SensitivityType {
 
 impl<'a> FromValue<'a> for SensitivityType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SensitivityType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -4959,23 +4959,23 @@ impl fmt::Display for ShadowType {
 
 #[doc(hidden)]
 impl ToGlib for ShadowType {
-    type GlibType = ffi::GtkShadowType;
+    type GlibType = gtk_sys::GtkShadowType;
 
-    fn to_glib(&self) -> ffi::GtkShadowType {
+    fn to_glib(&self) -> gtk_sys::GtkShadowType {
         match *self {
-            ShadowType::None => ffi::GTK_SHADOW_NONE,
-            ShadowType::In => ffi::GTK_SHADOW_IN,
-            ShadowType::Out => ffi::GTK_SHADOW_OUT,
-            ShadowType::EtchedIn => ffi::GTK_SHADOW_ETCHED_IN,
-            ShadowType::EtchedOut => ffi::GTK_SHADOW_ETCHED_OUT,
+            ShadowType::None => gtk_sys::GTK_SHADOW_NONE,
+            ShadowType::In => gtk_sys::GTK_SHADOW_IN,
+            ShadowType::Out => gtk_sys::GTK_SHADOW_OUT,
+            ShadowType::EtchedIn => gtk_sys::GTK_SHADOW_ETCHED_IN,
+            ShadowType::EtchedOut => gtk_sys::GTK_SHADOW_ETCHED_OUT,
             ShadowType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkShadowType> for ShadowType {
-    fn from_glib(value: ffi::GtkShadowType) -> Self {
+impl FromGlib<gtk_sys::GtkShadowType> for ShadowType {
+    fn from_glib(value: gtk_sys::GtkShadowType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ShadowType::None,
@@ -4990,7 +4990,7 @@ impl FromGlib<ffi::GtkShadowType> for ShadowType {
 
 impl StaticType for ShadowType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_shadow_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_shadow_type_get_type()) }
     }
 }
 
@@ -5002,13 +5002,13 @@ impl<'a> FromValueOptional<'a> for ShadowType {
 
 impl<'a> FromValue<'a> for ShadowType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ShadowType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5049,28 +5049,28 @@ impl fmt::Display for ShortcutType {
 
 #[doc(hidden)]
 impl ToGlib for ShortcutType {
-    type GlibType = ffi::GtkShortcutType;
+    type GlibType = gtk_sys::GtkShortcutType;
 
-    fn to_glib(&self) -> ffi::GtkShortcutType {
+    fn to_glib(&self) -> gtk_sys::GtkShortcutType {
         match *self {
-            ShortcutType::Accelerator => ffi::GTK_SHORTCUT_ACCELERATOR,
-            ShortcutType::GesturePinch => ffi::GTK_SHORTCUT_GESTURE_PINCH,
-            ShortcutType::GestureStretch => ffi::GTK_SHORTCUT_GESTURE_STRETCH,
-            ShortcutType::GestureRotateClockwise => ffi::GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE,
-            ShortcutType::GestureRotateCounterclockwise => ffi::GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE,
-            ShortcutType::GestureTwoFingerSwipeLeft => ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT,
-            ShortcutType::GestureTwoFingerSwipeRight => ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT,
-            ShortcutType::Gesture => ffi::GTK_SHORTCUT_GESTURE,
-            ShortcutType::GestureSwipeLeft => ffi::GTK_SHORTCUT_GESTURE_SWIPE_LEFT,
-            ShortcutType::GestureSwipeRight => ffi::GTK_SHORTCUT_GESTURE_SWIPE_RIGHT,
+            ShortcutType::Accelerator => gtk_sys::GTK_SHORTCUT_ACCELERATOR,
+            ShortcutType::GesturePinch => gtk_sys::GTK_SHORTCUT_GESTURE_PINCH,
+            ShortcutType::GestureStretch => gtk_sys::GTK_SHORTCUT_GESTURE_STRETCH,
+            ShortcutType::GestureRotateClockwise => gtk_sys::GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE,
+            ShortcutType::GestureRotateCounterclockwise => gtk_sys::GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE,
+            ShortcutType::GestureTwoFingerSwipeLeft => gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT,
+            ShortcutType::GestureTwoFingerSwipeRight => gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT,
+            ShortcutType::Gesture => gtk_sys::GTK_SHORTCUT_GESTURE,
+            ShortcutType::GestureSwipeLeft => gtk_sys::GTK_SHORTCUT_GESTURE_SWIPE_LEFT,
+            ShortcutType::GestureSwipeRight => gtk_sys::GTK_SHORTCUT_GESTURE_SWIPE_RIGHT,
             ShortcutType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkShortcutType> for ShortcutType {
-    fn from_glib(value: ffi::GtkShortcutType) -> Self {
+impl FromGlib<gtk_sys::GtkShortcutType> for ShortcutType {
+    fn from_glib(value: gtk_sys::GtkShortcutType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ShortcutType::Accelerator,
@@ -5090,7 +5090,7 @@ impl FromGlib<ffi::GtkShortcutType> for ShortcutType {
 
 impl StaticType for ShortcutType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_shortcut_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_shortcut_type_get_type()) }
     }
 }
 
@@ -5102,13 +5102,13 @@ impl<'a> FromValueOptional<'a> for ShortcutType {
 
 impl<'a> FromValue<'a> for ShortcutType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ShortcutType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5137,22 +5137,22 @@ impl fmt::Display for SizeGroupMode {
 
 #[doc(hidden)]
 impl ToGlib for SizeGroupMode {
-    type GlibType = ffi::GtkSizeGroupMode;
+    type GlibType = gtk_sys::GtkSizeGroupMode;
 
-    fn to_glib(&self) -> ffi::GtkSizeGroupMode {
+    fn to_glib(&self) -> gtk_sys::GtkSizeGroupMode {
         match *self {
-            SizeGroupMode::None => ffi::GTK_SIZE_GROUP_NONE,
-            SizeGroupMode::Horizontal => ffi::GTK_SIZE_GROUP_HORIZONTAL,
-            SizeGroupMode::Vertical => ffi::GTK_SIZE_GROUP_VERTICAL,
-            SizeGroupMode::Both => ffi::GTK_SIZE_GROUP_BOTH,
+            SizeGroupMode::None => gtk_sys::GTK_SIZE_GROUP_NONE,
+            SizeGroupMode::Horizontal => gtk_sys::GTK_SIZE_GROUP_HORIZONTAL,
+            SizeGroupMode::Vertical => gtk_sys::GTK_SIZE_GROUP_VERTICAL,
+            SizeGroupMode::Both => gtk_sys::GTK_SIZE_GROUP_BOTH,
             SizeGroupMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSizeGroupMode> for SizeGroupMode {
-    fn from_glib(value: ffi::GtkSizeGroupMode) -> Self {
+impl FromGlib<gtk_sys::GtkSizeGroupMode> for SizeGroupMode {
+    fn from_glib(value: gtk_sys::GtkSizeGroupMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SizeGroupMode::None,
@@ -5166,7 +5166,7 @@ impl FromGlib<ffi::GtkSizeGroupMode> for SizeGroupMode {
 
 impl StaticType for SizeGroupMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_size_group_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_size_group_mode_get_type()) }
     }
 }
 
@@ -5178,13 +5178,13 @@ impl<'a> FromValueOptional<'a> for SizeGroupMode {
 
 impl<'a> FromValue<'a> for SizeGroupMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SizeGroupMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5211,21 +5211,21 @@ impl fmt::Display for SizeRequestMode {
 
 #[doc(hidden)]
 impl ToGlib for SizeRequestMode {
-    type GlibType = ffi::GtkSizeRequestMode;
+    type GlibType = gtk_sys::GtkSizeRequestMode;
 
-    fn to_glib(&self) -> ffi::GtkSizeRequestMode {
+    fn to_glib(&self) -> gtk_sys::GtkSizeRequestMode {
         match *self {
-            SizeRequestMode::HeightForWidth => ffi::GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH,
-            SizeRequestMode::WidthForHeight => ffi::GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
-            SizeRequestMode::ConstantSize => ffi::GTK_SIZE_REQUEST_CONSTANT_SIZE,
+            SizeRequestMode::HeightForWidth => gtk_sys::GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH,
+            SizeRequestMode::WidthForHeight => gtk_sys::GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
+            SizeRequestMode::ConstantSize => gtk_sys::GTK_SIZE_REQUEST_CONSTANT_SIZE,
             SizeRequestMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSizeRequestMode> for SizeRequestMode {
-    fn from_glib(value: ffi::GtkSizeRequestMode) -> Self {
+impl FromGlib<gtk_sys::GtkSizeRequestMode> for SizeRequestMode {
+    fn from_glib(value: gtk_sys::GtkSizeRequestMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SizeRequestMode::HeightForWidth,
@@ -5238,7 +5238,7 @@ impl FromGlib<ffi::GtkSizeRequestMode> for SizeRequestMode {
 
 impl StaticType for SizeRequestMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_size_request_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_size_request_mode_get_type()) }
     }
 }
 
@@ -5250,13 +5250,13 @@ impl<'a> FromValueOptional<'a> for SizeRequestMode {
 
 impl<'a> FromValue<'a> for SizeRequestMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SizeRequestMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5281,20 +5281,20 @@ impl fmt::Display for SortType {
 
 #[doc(hidden)]
 impl ToGlib for SortType {
-    type GlibType = ffi::GtkSortType;
+    type GlibType = gtk_sys::GtkSortType;
 
-    fn to_glib(&self) -> ffi::GtkSortType {
+    fn to_glib(&self) -> gtk_sys::GtkSortType {
         match *self {
-            SortType::Ascending => ffi::GTK_SORT_ASCENDING,
-            SortType::Descending => ffi::GTK_SORT_DESCENDING,
+            SortType::Ascending => gtk_sys::GTK_SORT_ASCENDING,
+            SortType::Descending => gtk_sys::GTK_SORT_DESCENDING,
             SortType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSortType> for SortType {
-    fn from_glib(value: ffi::GtkSortType) -> Self {
+impl FromGlib<gtk_sys::GtkSortType> for SortType {
+    fn from_glib(value: gtk_sys::GtkSortType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SortType::Ascending,
@@ -5306,7 +5306,7 @@ impl FromGlib<ffi::GtkSortType> for SortType {
 
 impl StaticType for SortType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_sort_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_sort_type_get_type()) }
     }
 }
 
@@ -5318,13 +5318,13 @@ impl<'a> FromValueOptional<'a> for SortType {
 
 impl<'a> FromValue<'a> for SortType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SortType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5349,20 +5349,20 @@ impl fmt::Display for SpinButtonUpdatePolicy {
 
 #[doc(hidden)]
 impl ToGlib for SpinButtonUpdatePolicy {
-    type GlibType = ffi::GtkSpinButtonUpdatePolicy;
+    type GlibType = gtk_sys::GtkSpinButtonUpdatePolicy;
 
-    fn to_glib(&self) -> ffi::GtkSpinButtonUpdatePolicy {
+    fn to_glib(&self) -> gtk_sys::GtkSpinButtonUpdatePolicy {
         match *self {
-            SpinButtonUpdatePolicy::Always => ffi::GTK_UPDATE_ALWAYS,
-            SpinButtonUpdatePolicy::IfValid => ffi::GTK_UPDATE_IF_VALID,
+            SpinButtonUpdatePolicy::Always => gtk_sys::GTK_UPDATE_ALWAYS,
+            SpinButtonUpdatePolicy::IfValid => gtk_sys::GTK_UPDATE_IF_VALID,
             SpinButtonUpdatePolicy::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
-    fn from_glib(value: ffi::GtkSpinButtonUpdatePolicy) -> Self {
+impl FromGlib<gtk_sys::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
+    fn from_glib(value: gtk_sys::GtkSpinButtonUpdatePolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SpinButtonUpdatePolicy::Always,
@@ -5374,7 +5374,7 @@ impl FromGlib<ffi::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
 
 impl StaticType for SpinButtonUpdatePolicy {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_spin_button_update_policy_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_spin_button_update_policy_get_type()) }
     }
 }
 
@@ -5386,13 +5386,13 @@ impl<'a> FromValueOptional<'a> for SpinButtonUpdatePolicy {
 
 impl<'a> FromValue<'a> for SpinButtonUpdatePolicy {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SpinButtonUpdatePolicy {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5427,25 +5427,25 @@ impl fmt::Display for SpinType {
 
 #[doc(hidden)]
 impl ToGlib for SpinType {
-    type GlibType = ffi::GtkSpinType;
+    type GlibType = gtk_sys::GtkSpinType;
 
-    fn to_glib(&self) -> ffi::GtkSpinType {
+    fn to_glib(&self) -> gtk_sys::GtkSpinType {
         match *self {
-            SpinType::StepForward => ffi::GTK_SPIN_STEP_FORWARD,
-            SpinType::StepBackward => ffi::GTK_SPIN_STEP_BACKWARD,
-            SpinType::PageForward => ffi::GTK_SPIN_PAGE_FORWARD,
-            SpinType::PageBackward => ffi::GTK_SPIN_PAGE_BACKWARD,
-            SpinType::Home => ffi::GTK_SPIN_HOME,
-            SpinType::End => ffi::GTK_SPIN_END,
-            SpinType::UserDefined => ffi::GTK_SPIN_USER_DEFINED,
+            SpinType::StepForward => gtk_sys::GTK_SPIN_STEP_FORWARD,
+            SpinType::StepBackward => gtk_sys::GTK_SPIN_STEP_BACKWARD,
+            SpinType::PageForward => gtk_sys::GTK_SPIN_PAGE_FORWARD,
+            SpinType::PageBackward => gtk_sys::GTK_SPIN_PAGE_BACKWARD,
+            SpinType::Home => gtk_sys::GTK_SPIN_HOME,
+            SpinType::End => gtk_sys::GTK_SPIN_END,
+            SpinType::UserDefined => gtk_sys::GTK_SPIN_USER_DEFINED,
             SpinType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkSpinType> for SpinType {
-    fn from_glib(value: ffi::GtkSpinType) -> Self {
+impl FromGlib<gtk_sys::GtkSpinType> for SpinType {
+    fn from_glib(value: gtk_sys::GtkSpinType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SpinType::StepForward,
@@ -5462,7 +5462,7 @@ impl FromGlib<ffi::GtkSpinType> for SpinType {
 
 impl StaticType for SpinType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_spin_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_spin_type_get_type()) }
     }
 }
 
@@ -5474,13 +5474,13 @@ impl<'a> FromValueOptional<'a> for SpinType {
 
 impl<'a> FromValue<'a> for SpinType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SpinType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5547,41 +5547,41 @@ impl fmt::Display for StackTransitionType {
 
 #[doc(hidden)]
 impl ToGlib for StackTransitionType {
-    type GlibType = ffi::GtkStackTransitionType;
+    type GlibType = gtk_sys::GtkStackTransitionType;
 
-    fn to_glib(&self) -> ffi::GtkStackTransitionType {
+    fn to_glib(&self) -> gtk_sys::GtkStackTransitionType {
         match *self {
-            StackTransitionType::None => ffi::GTK_STACK_TRANSITION_TYPE_NONE,
-            StackTransitionType::Crossfade => ffi::GTK_STACK_TRANSITION_TYPE_CROSSFADE,
-            StackTransitionType::SlideRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT,
-            StackTransitionType::SlideLeft => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT,
-            StackTransitionType::SlideUp => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP,
-            StackTransitionType::SlideDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN,
-            StackTransitionType::SlideLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT,
-            StackTransitionType::SlideUpDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN,
-            StackTransitionType::OverUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP,
-            StackTransitionType::OverDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN,
-            StackTransitionType::OverLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT,
-            StackTransitionType::OverRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT,
-            StackTransitionType::UnderUp => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_UP,
-            StackTransitionType::UnderDown => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_DOWN,
-            StackTransitionType::UnderLeft => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_LEFT,
-            StackTransitionType::UnderRight => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT,
-            StackTransitionType::OverUpDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN,
-            StackTransitionType::OverDownUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP,
-            StackTransitionType::OverLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT,
-            StackTransitionType::OverRightLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT,
-            StackTransitionType::RotateLeft => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT,
-            StackTransitionType::RotateRight => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT,
-            StackTransitionType::RotateLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT,
+            StackTransitionType::None => gtk_sys::GTK_STACK_TRANSITION_TYPE_NONE,
+            StackTransitionType::Crossfade => gtk_sys::GTK_STACK_TRANSITION_TYPE_CROSSFADE,
+            StackTransitionType::SlideRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT,
+            StackTransitionType::SlideLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT,
+            StackTransitionType::SlideUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_UP,
+            StackTransitionType::SlideDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN,
+            StackTransitionType::SlideLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT,
+            StackTransitionType::SlideUpDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN,
+            StackTransitionType::OverUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_UP,
+            StackTransitionType::OverDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_DOWN,
+            StackTransitionType::OverLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_LEFT,
+            StackTransitionType::OverRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT,
+            StackTransitionType::UnderUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_UNDER_UP,
+            StackTransitionType::UnderDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_UNDER_DOWN,
+            StackTransitionType::UnderLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_UNDER_LEFT,
+            StackTransitionType::UnderRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT,
+            StackTransitionType::OverUpDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN,
+            StackTransitionType::OverDownUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP,
+            StackTransitionType::OverLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT,
+            StackTransitionType::OverRightLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT,
+            StackTransitionType::RotateLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT,
+            StackTransitionType::RotateRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT,
+            StackTransitionType::RotateLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT,
             StackTransitionType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkStackTransitionType> for StackTransitionType {
-    fn from_glib(value: ffi::GtkStackTransitionType) -> Self {
+impl FromGlib<gtk_sys::GtkStackTransitionType> for StackTransitionType {
+    fn from_glib(value: gtk_sys::GtkStackTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => StackTransitionType::None,
@@ -5614,7 +5614,7 @@ impl FromGlib<ffi::GtkStackTransitionType> for StackTransitionType {
 
 impl StaticType for StackTransitionType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_stack_transition_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_stack_transition_type_get_type()) }
     }
 }
 
@@ -5626,13 +5626,13 @@ impl<'a> FromValueOptional<'a> for StackTransitionType {
 
 impl<'a> FromValue<'a> for StackTransitionType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for StackTransitionType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5659,21 +5659,21 @@ impl fmt::Display for TextBufferTargetInfo {
 
 #[doc(hidden)]
 impl ToGlib for TextBufferTargetInfo {
-    type GlibType = ffi::GtkTextBufferTargetInfo;
+    type GlibType = gtk_sys::GtkTextBufferTargetInfo;
 
-    fn to_glib(&self) -> ffi::GtkTextBufferTargetInfo {
+    fn to_glib(&self) -> gtk_sys::GtkTextBufferTargetInfo {
         match *self {
-            TextBufferTargetInfo::BufferContents => ffi::GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS,
-            TextBufferTargetInfo::RichText => ffi::GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT,
-            TextBufferTargetInfo::Text => ffi::GTK_TEXT_BUFFER_TARGET_INFO_TEXT,
+            TextBufferTargetInfo::BufferContents => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS,
+            TextBufferTargetInfo::RichText => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT,
+            TextBufferTargetInfo::Text => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_TEXT,
             TextBufferTargetInfo::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTextBufferTargetInfo> for TextBufferTargetInfo {
-    fn from_glib(value: ffi::GtkTextBufferTargetInfo) -> Self {
+impl FromGlib<gtk_sys::GtkTextBufferTargetInfo> for TextBufferTargetInfo {
+    fn from_glib(value: gtk_sys::GtkTextBufferTargetInfo) -> Self {
         skip_assert_initialized!();
         match value {
             -1 => TextBufferTargetInfo::BufferContents,
@@ -5686,7 +5686,7 @@ impl FromGlib<ffi::GtkTextBufferTargetInfo> for TextBufferTargetInfo {
 
 impl StaticType for TextBufferTargetInfo {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_buffer_target_info_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_text_buffer_target_info_get_type()) }
     }
 }
 
@@ -5698,13 +5698,13 @@ impl<'a> FromValueOptional<'a> for TextBufferTargetInfo {
 
 impl<'a> FromValue<'a> for TextBufferTargetInfo {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextBufferTargetInfo {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5731,21 +5731,21 @@ impl fmt::Display for TextDirection {
 
 #[doc(hidden)]
 impl ToGlib for TextDirection {
-    type GlibType = ffi::GtkTextDirection;
+    type GlibType = gtk_sys::GtkTextDirection;
 
-    fn to_glib(&self) -> ffi::GtkTextDirection {
+    fn to_glib(&self) -> gtk_sys::GtkTextDirection {
         match *self {
-            TextDirection::None => ffi::GTK_TEXT_DIR_NONE,
-            TextDirection::Ltr => ffi::GTK_TEXT_DIR_LTR,
-            TextDirection::Rtl => ffi::GTK_TEXT_DIR_RTL,
+            TextDirection::None => gtk_sys::GTK_TEXT_DIR_NONE,
+            TextDirection::Ltr => gtk_sys::GTK_TEXT_DIR_LTR,
+            TextDirection::Rtl => gtk_sys::GTK_TEXT_DIR_RTL,
             TextDirection::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTextDirection> for TextDirection {
-    fn from_glib(value: ffi::GtkTextDirection) -> Self {
+impl FromGlib<gtk_sys::GtkTextDirection> for TextDirection {
+    fn from_glib(value: gtk_sys::GtkTextDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextDirection::None,
@@ -5758,7 +5758,7 @@ impl FromGlib<ffi::GtkTextDirection> for TextDirection {
 
 impl StaticType for TextDirection {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_direction_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_text_direction_get_type()) }
     }
 }
 
@@ -5770,13 +5770,13 @@ impl<'a> FromValueOptional<'a> for TextDirection {
 
 impl<'a> FromValue<'a> for TextDirection {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextDirection {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5801,20 +5801,20 @@ impl fmt::Display for TextExtendSelection {
 
 #[doc(hidden)]
 impl ToGlib for TextExtendSelection {
-    type GlibType = ffi::GtkTextExtendSelection;
+    type GlibType = gtk_sys::GtkTextExtendSelection;
 
-    fn to_glib(&self) -> ffi::GtkTextExtendSelection {
+    fn to_glib(&self) -> gtk_sys::GtkTextExtendSelection {
         match *self {
-            TextExtendSelection::Word => ffi::GTK_TEXT_EXTEND_SELECTION_WORD,
-            TextExtendSelection::Line => ffi::GTK_TEXT_EXTEND_SELECTION_LINE,
+            TextExtendSelection::Word => gtk_sys::GTK_TEXT_EXTEND_SELECTION_WORD,
+            TextExtendSelection::Line => gtk_sys::GTK_TEXT_EXTEND_SELECTION_LINE,
             TextExtendSelection::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTextExtendSelection> for TextExtendSelection {
-    fn from_glib(value: ffi::GtkTextExtendSelection) -> Self {
+impl FromGlib<gtk_sys::GtkTextExtendSelection> for TextExtendSelection {
+    fn from_glib(value: gtk_sys::GtkTextExtendSelection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextExtendSelection::Word,
@@ -5826,7 +5826,7 @@ impl FromGlib<ffi::GtkTextExtendSelection> for TextExtendSelection {
 
 impl StaticType for TextExtendSelection {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_extend_selection_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_text_extend_selection_get_type()) }
     }
 }
 
@@ -5838,13 +5838,13 @@ impl<'a> FromValueOptional<'a> for TextExtendSelection {
 
 impl<'a> FromValue<'a> for TextExtendSelection {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextExtendSelection {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5869,20 +5869,20 @@ impl fmt::Display for TextViewLayer {
 
 #[doc(hidden)]
 impl ToGlib for TextViewLayer {
-    type GlibType = ffi::GtkTextViewLayer;
+    type GlibType = gtk_sys::GtkTextViewLayer;
 
-    fn to_glib(&self) -> ffi::GtkTextViewLayer {
+    fn to_glib(&self) -> gtk_sys::GtkTextViewLayer {
         match *self {
-            TextViewLayer::BelowText => ffi::GTK_TEXT_VIEW_LAYER_BELOW_TEXT,
-            TextViewLayer::AboveText => ffi::GTK_TEXT_VIEW_LAYER_ABOVE_TEXT,
+            TextViewLayer::BelowText => gtk_sys::GTK_TEXT_VIEW_LAYER_BELOW_TEXT,
+            TextViewLayer::AboveText => gtk_sys::GTK_TEXT_VIEW_LAYER_ABOVE_TEXT,
             TextViewLayer::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTextViewLayer> for TextViewLayer {
-    fn from_glib(value: ffi::GtkTextViewLayer) -> Self {
+impl FromGlib<gtk_sys::GtkTextViewLayer> for TextViewLayer {
+    fn from_glib(value: gtk_sys::GtkTextViewLayer) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextViewLayer::BelowText,
@@ -5894,7 +5894,7 @@ impl FromGlib<ffi::GtkTextViewLayer> for TextViewLayer {
 
 impl StaticType for TextViewLayer {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_view_layer_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_text_view_layer_get_type()) }
     }
 }
 
@@ -5906,13 +5906,13 @@ impl<'a> FromValueOptional<'a> for TextViewLayer {
 
 impl<'a> FromValue<'a> for TextViewLayer {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextViewLayer {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -5947,25 +5947,25 @@ impl fmt::Display for TextWindowType {
 
 #[doc(hidden)]
 impl ToGlib for TextWindowType {
-    type GlibType = ffi::GtkTextWindowType;
+    type GlibType = gtk_sys::GtkTextWindowType;
 
-    fn to_glib(&self) -> ffi::GtkTextWindowType {
+    fn to_glib(&self) -> gtk_sys::GtkTextWindowType {
         match *self {
-            TextWindowType::Private => ffi::GTK_TEXT_WINDOW_PRIVATE,
-            TextWindowType::Widget => ffi::GTK_TEXT_WINDOW_WIDGET,
-            TextWindowType::Text => ffi::GTK_TEXT_WINDOW_TEXT,
-            TextWindowType::Left => ffi::GTK_TEXT_WINDOW_LEFT,
-            TextWindowType::Right => ffi::GTK_TEXT_WINDOW_RIGHT,
-            TextWindowType::Top => ffi::GTK_TEXT_WINDOW_TOP,
-            TextWindowType::Bottom => ffi::GTK_TEXT_WINDOW_BOTTOM,
+            TextWindowType::Private => gtk_sys::GTK_TEXT_WINDOW_PRIVATE,
+            TextWindowType::Widget => gtk_sys::GTK_TEXT_WINDOW_WIDGET,
+            TextWindowType::Text => gtk_sys::GTK_TEXT_WINDOW_TEXT,
+            TextWindowType::Left => gtk_sys::GTK_TEXT_WINDOW_LEFT,
+            TextWindowType::Right => gtk_sys::GTK_TEXT_WINDOW_RIGHT,
+            TextWindowType::Top => gtk_sys::GTK_TEXT_WINDOW_TOP,
+            TextWindowType::Bottom => gtk_sys::GTK_TEXT_WINDOW_BOTTOM,
             TextWindowType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTextWindowType> for TextWindowType {
-    fn from_glib(value: ffi::GtkTextWindowType) -> Self {
+impl FromGlib<gtk_sys::GtkTextWindowType> for TextWindowType {
+    fn from_glib(value: gtk_sys::GtkTextWindowType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextWindowType::Private,
@@ -5982,7 +5982,7 @@ impl FromGlib<ffi::GtkTextWindowType> for TextWindowType {
 
 impl StaticType for TextWindowType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_window_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_text_window_type_get_type()) }
     }
 }
 
@@ -5994,13 +5994,13 @@ impl<'a> FromValueOptional<'a> for TextWindowType {
 
 impl<'a> FromValue<'a> for TextWindowType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextWindowType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6029,22 +6029,22 @@ impl fmt::Display for ToolbarStyle {
 
 #[doc(hidden)]
 impl ToGlib for ToolbarStyle {
-    type GlibType = ffi::GtkToolbarStyle;
+    type GlibType = gtk_sys::GtkToolbarStyle;
 
-    fn to_glib(&self) -> ffi::GtkToolbarStyle {
+    fn to_glib(&self) -> gtk_sys::GtkToolbarStyle {
         match *self {
-            ToolbarStyle::Icons => ffi::GTK_TOOLBAR_ICONS,
-            ToolbarStyle::Text => ffi::GTK_TOOLBAR_TEXT,
-            ToolbarStyle::Both => ffi::GTK_TOOLBAR_BOTH,
-            ToolbarStyle::BothHoriz => ffi::GTK_TOOLBAR_BOTH_HORIZ,
+            ToolbarStyle::Icons => gtk_sys::GTK_TOOLBAR_ICONS,
+            ToolbarStyle::Text => gtk_sys::GTK_TOOLBAR_TEXT,
+            ToolbarStyle::Both => gtk_sys::GTK_TOOLBAR_BOTH,
+            ToolbarStyle::BothHoriz => gtk_sys::GTK_TOOLBAR_BOTH_HORIZ,
             ToolbarStyle::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkToolbarStyle> for ToolbarStyle {
-    fn from_glib(value: ffi::GtkToolbarStyle) -> Self {
+impl FromGlib<gtk_sys::GtkToolbarStyle> for ToolbarStyle {
+    fn from_glib(value: gtk_sys::GtkToolbarStyle) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ToolbarStyle::Icons,
@@ -6058,7 +6058,7 @@ impl FromGlib<ffi::GtkToolbarStyle> for ToolbarStyle {
 
 impl StaticType for ToolbarStyle {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_toolbar_style_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_toolbar_style_get_type()) }
     }
 }
 
@@ -6070,13 +6070,13 @@ impl<'a> FromValueOptional<'a> for ToolbarStyle {
 
 impl<'a> FromValue<'a> for ToolbarStyle {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ToolbarStyle {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6103,21 +6103,21 @@ impl fmt::Display for TreeViewColumnSizing {
 
 #[doc(hidden)]
 impl ToGlib for TreeViewColumnSizing {
-    type GlibType = ffi::GtkTreeViewColumnSizing;
+    type GlibType = gtk_sys::GtkTreeViewColumnSizing;
 
-    fn to_glib(&self) -> ffi::GtkTreeViewColumnSizing {
+    fn to_glib(&self) -> gtk_sys::GtkTreeViewColumnSizing {
         match *self {
-            TreeViewColumnSizing::GrowOnly => ffi::GTK_TREE_VIEW_COLUMN_GROW_ONLY,
-            TreeViewColumnSizing::Autosize => ffi::GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-            TreeViewColumnSizing::Fixed => ffi::GTK_TREE_VIEW_COLUMN_FIXED,
+            TreeViewColumnSizing::GrowOnly => gtk_sys::GTK_TREE_VIEW_COLUMN_GROW_ONLY,
+            TreeViewColumnSizing::Autosize => gtk_sys::GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+            TreeViewColumnSizing::Fixed => gtk_sys::GTK_TREE_VIEW_COLUMN_FIXED,
             TreeViewColumnSizing::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
-    fn from_glib(value: ffi::GtkTreeViewColumnSizing) -> Self {
+impl FromGlib<gtk_sys::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
+    fn from_glib(value: gtk_sys::GtkTreeViewColumnSizing) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewColumnSizing::GrowOnly,
@@ -6130,7 +6130,7 @@ impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
 
 impl StaticType for TreeViewColumnSizing {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_tree_view_column_sizing_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_tree_view_column_sizing_get_type()) }
     }
 }
 
@@ -6142,13 +6142,13 @@ impl<'a> FromValueOptional<'a> for TreeViewColumnSizing {
 
 impl<'a> FromValue<'a> for TreeViewColumnSizing {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TreeViewColumnSizing {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6177,22 +6177,22 @@ impl fmt::Display for TreeViewDropPosition {
 
 #[doc(hidden)]
 impl ToGlib for TreeViewDropPosition {
-    type GlibType = ffi::GtkTreeViewDropPosition;
+    type GlibType = gtk_sys::GtkTreeViewDropPosition;
 
-    fn to_glib(&self) -> ffi::GtkTreeViewDropPosition {
+    fn to_glib(&self) -> gtk_sys::GtkTreeViewDropPosition {
         match *self {
-            TreeViewDropPosition::Before => ffi::GTK_TREE_VIEW_DROP_BEFORE,
-            TreeViewDropPosition::After => ffi::GTK_TREE_VIEW_DROP_AFTER,
-            TreeViewDropPosition::IntoOrBefore => ffi::GTK_TREE_VIEW_DROP_INTO_OR_BEFORE,
-            TreeViewDropPosition::IntoOrAfter => ffi::GTK_TREE_VIEW_DROP_INTO_OR_AFTER,
+            TreeViewDropPosition::Before => gtk_sys::GTK_TREE_VIEW_DROP_BEFORE,
+            TreeViewDropPosition::After => gtk_sys::GTK_TREE_VIEW_DROP_AFTER,
+            TreeViewDropPosition::IntoOrBefore => gtk_sys::GTK_TREE_VIEW_DROP_INTO_OR_BEFORE,
+            TreeViewDropPosition::IntoOrAfter => gtk_sys::GTK_TREE_VIEW_DROP_INTO_OR_AFTER,
             TreeViewDropPosition::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
-    fn from_glib(value: ffi::GtkTreeViewDropPosition) -> Self {
+impl FromGlib<gtk_sys::GtkTreeViewDropPosition> for TreeViewDropPosition {
+    fn from_glib(value: gtk_sys::GtkTreeViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewDropPosition::Before,
@@ -6206,7 +6206,7 @@ impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
 
 impl StaticType for TreeViewDropPosition {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_tree_view_drop_position_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_tree_view_drop_position_get_type()) }
     }
 }
 
@@ -6218,13 +6218,13 @@ impl<'a> FromValueOptional<'a> for TreeViewDropPosition {
 
 impl<'a> FromValue<'a> for TreeViewDropPosition {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TreeViewDropPosition {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6253,22 +6253,22 @@ impl fmt::Display for TreeViewGridLines {
 
 #[doc(hidden)]
 impl ToGlib for TreeViewGridLines {
-    type GlibType = ffi::GtkTreeViewGridLines;
+    type GlibType = gtk_sys::GtkTreeViewGridLines;
 
-    fn to_glib(&self) -> ffi::GtkTreeViewGridLines {
+    fn to_glib(&self) -> gtk_sys::GtkTreeViewGridLines {
         match *self {
-            TreeViewGridLines::None => ffi::GTK_TREE_VIEW_GRID_LINES_NONE,
-            TreeViewGridLines::Horizontal => ffi::GTK_TREE_VIEW_GRID_LINES_HORIZONTAL,
-            TreeViewGridLines::Vertical => ffi::GTK_TREE_VIEW_GRID_LINES_VERTICAL,
-            TreeViewGridLines::Both => ffi::GTK_TREE_VIEW_GRID_LINES_BOTH,
+            TreeViewGridLines::None => gtk_sys::GTK_TREE_VIEW_GRID_LINES_NONE,
+            TreeViewGridLines::Horizontal => gtk_sys::GTK_TREE_VIEW_GRID_LINES_HORIZONTAL,
+            TreeViewGridLines::Vertical => gtk_sys::GTK_TREE_VIEW_GRID_LINES_VERTICAL,
+            TreeViewGridLines::Both => gtk_sys::GTK_TREE_VIEW_GRID_LINES_BOTH,
             TreeViewGridLines::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
-    fn from_glib(value: ffi::GtkTreeViewGridLines) -> Self {
+impl FromGlib<gtk_sys::GtkTreeViewGridLines> for TreeViewGridLines {
+    fn from_glib(value: gtk_sys::GtkTreeViewGridLines) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewGridLines::None,
@@ -6282,7 +6282,7 @@ impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
 
 impl StaticType for TreeViewGridLines {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_tree_view_grid_lines_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_tree_view_grid_lines_get_type()) }
     }
 }
 
@@ -6294,13 +6294,13 @@ impl<'a> FromValueOptional<'a> for TreeViewGridLines {
 
 impl<'a> FromValue<'a> for TreeViewGridLines {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TreeViewGridLines {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6329,22 +6329,22 @@ impl fmt::Display for Unit {
 
 #[doc(hidden)]
 impl ToGlib for Unit {
-    type GlibType = ffi::GtkUnit;
+    type GlibType = gtk_sys::GtkUnit;
 
-    fn to_glib(&self) -> ffi::GtkUnit {
+    fn to_glib(&self) -> gtk_sys::GtkUnit {
         match *self {
-            Unit::None => ffi::GTK_UNIT_NONE,
-            Unit::Points => ffi::GTK_UNIT_POINTS,
-            Unit::Inch => ffi::GTK_UNIT_INCH,
-            Unit::Mm => ffi::GTK_UNIT_MM,
+            Unit::None => gtk_sys::GTK_UNIT_NONE,
+            Unit::Points => gtk_sys::GTK_UNIT_POINTS,
+            Unit::Inch => gtk_sys::GTK_UNIT_INCH,
+            Unit::Mm => gtk_sys::GTK_UNIT_MM,
             Unit::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkUnit> for Unit {
-    fn from_glib(value: ffi::GtkUnit) -> Self {
+impl FromGlib<gtk_sys::GtkUnit> for Unit {
+    fn from_glib(value: gtk_sys::GtkUnit) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Unit::None,
@@ -6358,7 +6358,7 @@ impl FromGlib<ffi::GtkUnit> for Unit {
 
 impl StaticType for Unit {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_unit_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_unit_get_type()) }
     }
 }
 
@@ -6370,13 +6370,13 @@ impl<'a> FromValueOptional<'a> for Unit {
 
 impl<'a> FromValue<'a> for Unit {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Unit {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6407,23 +6407,23 @@ impl fmt::Display for WindowPosition {
 
 #[doc(hidden)]
 impl ToGlib for WindowPosition {
-    type GlibType = ffi::GtkWindowPosition;
+    type GlibType = gtk_sys::GtkWindowPosition;
 
-    fn to_glib(&self) -> ffi::GtkWindowPosition {
+    fn to_glib(&self) -> gtk_sys::GtkWindowPosition {
         match *self {
-            WindowPosition::None => ffi::GTK_WIN_POS_NONE,
-            WindowPosition::Center => ffi::GTK_WIN_POS_CENTER,
-            WindowPosition::Mouse => ffi::GTK_WIN_POS_MOUSE,
-            WindowPosition::CenterAlways => ffi::GTK_WIN_POS_CENTER_ALWAYS,
-            WindowPosition::CenterOnParent => ffi::GTK_WIN_POS_CENTER_ON_PARENT,
+            WindowPosition::None => gtk_sys::GTK_WIN_POS_NONE,
+            WindowPosition::Center => gtk_sys::GTK_WIN_POS_CENTER,
+            WindowPosition::Mouse => gtk_sys::GTK_WIN_POS_MOUSE,
+            WindowPosition::CenterAlways => gtk_sys::GTK_WIN_POS_CENTER_ALWAYS,
+            WindowPosition::CenterOnParent => gtk_sys::GTK_WIN_POS_CENTER_ON_PARENT,
             WindowPosition::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkWindowPosition> for WindowPosition {
-    fn from_glib(value: ffi::GtkWindowPosition) -> Self {
+impl FromGlib<gtk_sys::GtkWindowPosition> for WindowPosition {
+    fn from_glib(value: gtk_sys::GtkWindowPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => WindowPosition::None,
@@ -6438,7 +6438,7 @@ impl FromGlib<ffi::GtkWindowPosition> for WindowPosition {
 
 impl StaticType for WindowPosition {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_window_position_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_window_position_get_type()) }
     }
 }
 
@@ -6450,13 +6450,13 @@ impl<'a> FromValueOptional<'a> for WindowPosition {
 
 impl<'a> FromValue<'a> for WindowPosition {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for WindowPosition {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6481,20 +6481,20 @@ impl fmt::Display for WindowType {
 
 #[doc(hidden)]
 impl ToGlib for WindowType {
-    type GlibType = ffi::GtkWindowType;
+    type GlibType = gtk_sys::GtkWindowType;
 
-    fn to_glib(&self) -> ffi::GtkWindowType {
+    fn to_glib(&self) -> gtk_sys::GtkWindowType {
         match *self {
-            WindowType::Toplevel => ffi::GTK_WINDOW_TOPLEVEL,
-            WindowType::Popup => ffi::GTK_WINDOW_POPUP,
+            WindowType::Toplevel => gtk_sys::GTK_WINDOW_TOPLEVEL,
+            WindowType::Popup => gtk_sys::GTK_WINDOW_POPUP,
             WindowType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkWindowType> for WindowType {
-    fn from_glib(value: ffi::GtkWindowType) -> Self {
+impl FromGlib<gtk_sys::GtkWindowType> for WindowType {
+    fn from_glib(value: gtk_sys::GtkWindowType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => WindowType::Toplevel,
@@ -6506,7 +6506,7 @@ impl FromGlib<ffi::GtkWindowType> for WindowType {
 
 impl StaticType for WindowType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_window_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_window_type_get_type()) }
     }
 }
 
@@ -6518,13 +6518,13 @@ impl<'a> FromValueOptional<'a> for WindowType {
 
 impl<'a> FromValue<'a> for WindowType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for WindowType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -6553,22 +6553,22 @@ impl fmt::Display for WrapMode {
 
 #[doc(hidden)]
 impl ToGlib for WrapMode {
-    type GlibType = ffi::GtkWrapMode;
+    type GlibType = gtk_sys::GtkWrapMode;
 
-    fn to_glib(&self) -> ffi::GtkWrapMode {
+    fn to_glib(&self) -> gtk_sys::GtkWrapMode {
         match *self {
-            WrapMode::None => ffi::GTK_WRAP_NONE,
-            WrapMode::Char => ffi::GTK_WRAP_CHAR,
-            WrapMode::Word => ffi::GTK_WRAP_WORD,
-            WrapMode::WordChar => ffi::GTK_WRAP_WORD_CHAR,
+            WrapMode::None => gtk_sys::GTK_WRAP_NONE,
+            WrapMode::Char => gtk_sys::GTK_WRAP_CHAR,
+            WrapMode::Word => gtk_sys::GTK_WRAP_WORD,
+            WrapMode::WordChar => gtk_sys::GTK_WRAP_WORD_CHAR,
             WrapMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GtkWrapMode> for WrapMode {
-    fn from_glib(value: ffi::GtkWrapMode) -> Self {
+impl FromGlib<gtk_sys::GtkWrapMode> for WrapMode {
+    fn from_glib(value: gtk_sys::GtkWrapMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => WrapMode::None,
@@ -6582,7 +6582,7 @@ impl FromGlib<ffi::GtkWrapMode> for WrapMode {
 
 impl StaticType for WrapMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_wrap_mode_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_wrap_mode_get_type()) }
     }
 }
 
@@ -6594,13 +6594,13 @@ impl<'a> FromValueOptional<'a> for WrapMode {
 
 impl<'a> FromValue<'a> for WrapMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for WrapMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 

@@ -9,7 +9,6 @@ use Button;
 use ButtonRole;
 use Container;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -18,17 +17,18 @@ use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ModelButton(Object<ffi::GtkModelButton, ModelButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct ModelButton(Object<gtk_sys::GtkModelButton, ModelButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_model_button_get_type(),
+        get_type => || gtk_sys::gtk_model_button_get_type(),
     }
 }
 
@@ -36,133 +36,133 @@ impl ModelButton {
     pub fn new() -> ModelButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_model_button_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_model_button_new()).unsafe_cast()
         }
     }
 
     pub fn get_property_active(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"active\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"active\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_active(&self, active: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"active\0".as_ptr() as *const _, Value::from(&active).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"active\0".as_ptr() as *const _, Value::from(&active).to_glib_none().0);
         }
     }
 
     pub fn get_property_centered(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"centered\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"centered\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_centered(&self, centered: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"centered\0".as_ptr() as *const _, Value::from(&centered).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"centered\0".as_ptr() as *const _, Value::from(&centered).to_glib_none().0);
         }
     }
 
     //pub fn get_property_icon(&self) -> /*Ignored*/Option<gio::Icon> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"icon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //pub fn set_property_icon(&self, icon: /*Ignored*/Option<&gio::Icon>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"icon\0".as_ptr() as *const _, Value::from(icon).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, Value::from(icon).to_glib_none().0);
     //    }
     //}
 
     pub fn get_property_iconic(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"iconic\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"iconic\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_iconic(&self, iconic: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"iconic\0".as_ptr() as *const _, Value::from(&iconic).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"iconic\0".as_ptr() as *const _, Value::from(&iconic).to_glib_none().0);
         }
     }
 
     pub fn get_property_inverted(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"inverted\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"inverted\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_inverted(&self, inverted: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"inverted\0".as_ptr() as *const _, Value::from(&inverted).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"inverted\0".as_ptr() as *const _, Value::from(&inverted).to_glib_none().0);
         }
     }
 
     pub fn get_property_menu_name(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"menu-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"menu-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     pub fn set_property_menu_name(&self, menu_name: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"menu-name\0".as_ptr() as *const _, Value::from(menu_name).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"menu-name\0".as_ptr() as *const _, Value::from(menu_name).to_glib_none().0);
         }
     }
 
     pub fn get_property_role(&self) -> ButtonRole {
         unsafe {
             let mut value = Value::from_type(<ButtonRole as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"role\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"role\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_role(&self, role: ButtonRole) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"role\0".as_ptr() as *const _, Value::from(&role).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"role\0".as_ptr() as *const _, Value::from(&role).to_glib_none().0);
         }
     }
 
     pub fn get_property_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     pub fn set_property_text(&self, text: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
         }
     }
 
     pub fn get_property_use_markup(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.as_ptr() as *mut gobject_ffi::GObject, b"use-markup\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"use-markup\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     pub fn set_property_use_markup(&self, use_markup: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.as_ptr() as *mut gobject_ffi::GObject, b"use-markup\0".as_ptr() as *const _, Value::from(&use_markup).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"use-markup\0".as_ptr() as *const _, Value::from(&use_markup).to_glib_none().0);
         }
     }
 
@@ -245,47 +245,47 @@ impl Default for ModelButton {
     }
 }
 
-unsafe extern "C" fn notify_active_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_active_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_centered_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_centered_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_icon_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_icon_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_iconic_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_iconic_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_menu_name_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_menu_name_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_role_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_role_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_text_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_text_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut ffi::GtkModelButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer) {
+unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
 }

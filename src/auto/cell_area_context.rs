@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use CellArea;
-use ffi;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -11,18 +10,19 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CellAreaContext(Object<ffi::GtkCellAreaContext, ffi::GtkCellAreaContextClass, CellAreaContextClass>);
+    pub struct CellAreaContext(Object<gtk_sys::GtkCellAreaContext, gtk_sys::GtkCellAreaContextClass, CellAreaContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_cell_area_context_get_type(),
+        get_type => || gtk_sys::gtk_cell_area_context_get_type(),
     }
 }
 
@@ -69,7 +69,7 @@ pub trait CellAreaContextExt: 'static {
 impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     fn allocate(&self, width: i32, height: i32) {
         unsafe {
-            ffi::gtk_cell_area_context_allocate(self.as_ref().to_glib_none().0, width, height);
+            gtk_sys::gtk_cell_area_context_allocate(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
@@ -77,14 +77,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         unsafe {
             let mut width = mem::uninitialized();
             let mut height = mem::uninitialized();
-            ffi::gtk_cell_area_context_get_allocation(self.as_ref().to_glib_none().0, &mut width, &mut height);
+            gtk_sys::gtk_cell_area_context_get_allocation(self.as_ref().to_glib_none().0, &mut width, &mut height);
             (width, height)
         }
     }
 
     fn get_area(&self) -> Option<CellArea> {
         unsafe {
-            from_glib_none(ffi::gtk_cell_area_context_get_area(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_cell_area_context_get_area(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -92,7 +92,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         unsafe {
             let mut minimum_height = mem::uninitialized();
             let mut natural_height = mem::uninitialized();
-            ffi::gtk_cell_area_context_get_preferred_height(self.as_ref().to_glib_none().0, &mut minimum_height, &mut natural_height);
+            gtk_sys::gtk_cell_area_context_get_preferred_height(self.as_ref().to_glib_none().0, &mut minimum_height, &mut natural_height);
             (minimum_height, natural_height)
         }
     }
@@ -101,7 +101,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         unsafe {
             let mut minimum_height = mem::uninitialized();
             let mut natural_height = mem::uninitialized();
-            ffi::gtk_cell_area_context_get_preferred_height_for_width(self.as_ref().to_glib_none().0, width, &mut minimum_height, &mut natural_height);
+            gtk_sys::gtk_cell_area_context_get_preferred_height_for_width(self.as_ref().to_glib_none().0, width, &mut minimum_height, &mut natural_height);
             (minimum_height, natural_height)
         }
     }
@@ -110,7 +110,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         unsafe {
             let mut minimum_width = mem::uninitialized();
             let mut natural_width = mem::uninitialized();
-            ffi::gtk_cell_area_context_get_preferred_width(self.as_ref().to_glib_none().0, &mut minimum_width, &mut natural_width);
+            gtk_sys::gtk_cell_area_context_get_preferred_width(self.as_ref().to_glib_none().0, &mut minimum_width, &mut natural_width);
             (minimum_width, natural_width)
         }
     }
@@ -119,33 +119,33 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         unsafe {
             let mut minimum_width = mem::uninitialized();
             let mut natural_width = mem::uninitialized();
-            ffi::gtk_cell_area_context_get_preferred_width_for_height(self.as_ref().to_glib_none().0, height, &mut minimum_width, &mut natural_width);
+            gtk_sys::gtk_cell_area_context_get_preferred_width_for_height(self.as_ref().to_glib_none().0, height, &mut minimum_width, &mut natural_width);
             (minimum_width, natural_width)
         }
     }
 
     fn push_preferred_height(&self, minimum_height: i32, natural_height: i32) {
         unsafe {
-            ffi::gtk_cell_area_context_push_preferred_height(self.as_ref().to_glib_none().0, minimum_height, natural_height);
+            gtk_sys::gtk_cell_area_context_push_preferred_height(self.as_ref().to_glib_none().0, minimum_height, natural_height);
         }
     }
 
     fn push_preferred_width(&self, minimum_width: i32, natural_width: i32) {
         unsafe {
-            ffi::gtk_cell_area_context_push_preferred_width(self.as_ref().to_glib_none().0, minimum_width, natural_width);
+            gtk_sys::gtk_cell_area_context_push_preferred_width(self.as_ref().to_glib_none().0, minimum_width, natural_width);
         }
     }
 
     fn reset(&self) {
         unsafe {
-            ffi::gtk_cell_area_context_reset(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_cell_area_context_reset(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_minimum_height(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"minimum-height\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"minimum-height\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -153,7 +153,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     fn get_property_minimum_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"minimum-width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"minimum-width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -161,7 +161,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     fn get_property_natural_height(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"natural-height\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"natural-height\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -169,7 +169,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     fn get_property_natural_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"natural-width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"natural-width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -207,25 +207,25 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     }
 }
 
-unsafe extern "C" fn notify_minimum_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellAreaContext, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_minimum_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellAreaContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellAreaContext> {
     let f: &F = &*(f as *const F);
     f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_minimum_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellAreaContext, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_minimum_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellAreaContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellAreaContext> {
     let f: &F = &*(f as *const F);
     f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_natural_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellAreaContext, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_natural_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellAreaContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellAreaContext> {
     let f: &F = &*(f as *const F);
     f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_natural_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellAreaContext, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_natural_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellAreaContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellAreaContext> {
     let f: &F = &*(f as *const F);
     f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())

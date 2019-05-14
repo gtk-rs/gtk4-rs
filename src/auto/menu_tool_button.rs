@@ -9,22 +9,26 @@ use Container;
 use ToolButton;
 use ToolItem;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MenuToolButton(Object<ffi::GtkMenuToolButton, ffi::GtkMenuToolButtonClass, MenuToolButtonClass>) @extends ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct MenuToolButton(Object<gtk_sys::GtkMenuToolButton, gtk_sys::GtkMenuToolButtonClass, MenuToolButtonClass>) @extends ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_menu_tool_button_get_type(),
+        get_type => || gtk_sys::gtk_menu_tool_button_get_type(),
     }
 }
 
@@ -32,7 +36,7 @@ impl MenuToolButton {
     pub fn new<P: IsA<Widget>>(icon_widget: Option<&P>, label: Option<&str>) -> MenuToolButton {
         assert_initialized_main_thread!();
         unsafe {
-            ToolItem::from_glib_none(ffi::gtk_menu_tool_button_new(icon_widget.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_menu_tool_button_new(icon_widget.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -56,25 +60,25 @@ pub trait MenuToolButtonExt: 'static {
 impl<O: IsA<MenuToolButton>> MenuToolButtonExt for O {
     fn get_menu(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_menu_tool_button_get_menu(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_menu_tool_button_get_menu(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_arrow_tooltip_markup(&self, markup: &str) {
         unsafe {
-            ffi::gtk_menu_tool_button_set_arrow_tooltip_markup(self.as_ref().to_glib_none().0, markup.to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_markup(self.as_ref().to_glib_none().0, markup.to_glib_none().0);
         }
     }
 
     fn set_arrow_tooltip_text(&self, text: &str) {
         unsafe {
-            ffi::gtk_menu_tool_button_set_arrow_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     fn set_menu<P: IsA<Widget>>(&self, menu: &P) {
         unsafe {
-            ffi::gtk_menu_tool_button_set_menu(self.as_ref().to_glib_none().0, menu.as_ref().to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_menu(self.as_ref().to_glib_none().0, menu.as_ref().to_glib_none().0);
         }
     }
 
@@ -95,13 +99,13 @@ impl<O: IsA<MenuToolButton>> MenuToolButtonExt for O {
     }
 }
 
-unsafe extern "C" fn show_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuToolButton, f: glib_ffi::gpointer)
+unsafe extern "C" fn show_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuToolButton, f: glib_sys::gpointer)
 where P: IsA<MenuToolButton> {
     let f: &F = &*(f as *const F);
     f(&MenuToolButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuToolButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MenuToolButton> {
     let f: &F = &*(f as *const F);
     f(&MenuToolButton::from_glib_borrow(this).unsafe_cast())

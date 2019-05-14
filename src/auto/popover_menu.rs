@@ -7,7 +7,6 @@ use Buildable;
 use Container;
 use Popover;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -16,17 +15,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct PopoverMenu(Object<ffi::GtkPopoverMenu, ffi::GtkPopoverMenuClass, PopoverMenuClass>) @extends Popover, Bin, Container, Widget, @implements Buildable;
+    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, gtk_sys::GtkPopoverMenuClass, PopoverMenuClass>) @extends Popover, Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_popover_menu_get_type(),
+        get_type => || gtk_sys::gtk_popover_menu_get_type(),
     }
 }
 
@@ -34,7 +34,7 @@ impl PopoverMenu {
     pub fn new() -> PopoverMenu {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_popover_menu_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_popover_menu_new()).unsafe_cast()
         }
     }
 }
@@ -62,27 +62,27 @@ pub trait PopoverMenuExt: 'static {
 impl<O: IsA<PopoverMenu>> PopoverMenuExt for O {
     fn add_submenu<P: IsA<Widget>>(&self, submenu: &P, name: &str) {
         unsafe {
-            ffi::gtk_popover_menu_add_submenu(self.as_ref().to_glib_none().0, submenu.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gtk_sys::gtk_popover_menu_add_submenu(self.as_ref().to_glib_none().0, submenu.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     fn open_submenu(&self, name: &str) {
         unsafe {
-            ffi::gtk_popover_menu_open_submenu(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gtk_sys::gtk_popover_menu_open_submenu(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     fn get_property_visible_submenu(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"visible-submenu\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"visible-submenu\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_visible_submenu(&self, visible_submenu: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"visible-submenu\0".as_ptr() as *const _, Value::from(visible_submenu).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"visible-submenu\0".as_ptr() as *const _, Value::from(visible_submenu).to_glib_none().0);
         }
     }
 
@@ -95,7 +95,7 @@ impl<O: IsA<PopoverMenu>> PopoverMenuExt for O {
     }
 }
 
-unsafe extern "C" fn notify_visible_submenu_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPopoverMenu, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_visible_submenu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopoverMenu, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<PopoverMenu> {
     let f: &F = &*(f as *const F);
     f(&PopoverMenu::from_glib_borrow(this).unsafe_cast())

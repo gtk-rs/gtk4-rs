@@ -7,22 +7,26 @@ use Buildable;
 use Container;
 use RevealerTransitionType;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Revealer(Object<ffi::GtkRevealer, ffi::GtkRevealerClass, RevealerClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct Revealer(Object<gtk_sys::GtkRevealer, gtk_sys::GtkRevealerClass, RevealerClass>) @extends Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_revealer_get_type(),
+        get_type => || gtk_sys::gtk_revealer_get_type(),
     }
 }
 
@@ -30,7 +34,7 @@ impl Revealer {
     pub fn new() -> Revealer {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_revealer_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_revealer_new()).unsafe_cast()
         }
     }
 }
@@ -70,43 +74,43 @@ pub trait RevealerExt: 'static {
 impl<O: IsA<Revealer>> RevealerExt for O {
     fn get_child_revealed(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_revealer_get_child_revealed(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_revealer_get_child_revealed(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_reveal_child(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_revealer_get_reveal_child(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_revealer_get_reveal_child(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_transition_duration(&self) -> u32 {
         unsafe {
-            ffi::gtk_revealer_get_transition_duration(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_revealer_get_transition_duration(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_transition_type(&self) -> RevealerTransitionType {
         unsafe {
-            from_glib(ffi::gtk_revealer_get_transition_type(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_revealer_get_transition_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_reveal_child(&self, reveal_child: bool) {
         unsafe {
-            ffi::gtk_revealer_set_reveal_child(self.as_ref().to_glib_none().0, reveal_child.to_glib());
+            gtk_sys::gtk_revealer_set_reveal_child(self.as_ref().to_glib_none().0, reveal_child.to_glib());
         }
     }
 
     fn set_transition_duration(&self, duration: u32) {
         unsafe {
-            ffi::gtk_revealer_set_transition_duration(self.as_ref().to_glib_none().0, duration);
+            gtk_sys::gtk_revealer_set_transition_duration(self.as_ref().to_glib_none().0, duration);
         }
     }
 
     fn set_transition_type(&self, transition: RevealerTransitionType) {
         unsafe {
-            ffi::gtk_revealer_set_transition_type(self.as_ref().to_glib_none().0, transition.to_glib());
+            gtk_sys::gtk_revealer_set_transition_type(self.as_ref().to_glib_none().0, transition.to_glib());
         }
     }
 
@@ -143,25 +147,25 @@ impl<O: IsA<Revealer>> RevealerExt for O {
     }
 }
 
-unsafe extern "C" fn notify_child_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRevealer, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_child_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Revealer> {
     let f: &F = &*(f as *const F);
     f(&Revealer::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_reveal_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRevealer, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_reveal_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Revealer> {
     let f: &F = &*(f as *const F);
     f(&Revealer::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRevealer, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Revealer> {
     let f: &F = &*(f as *const F);
     f(&Revealer::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRevealer, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Revealer> {
     let f: &F = &*(f as *const F);
     f(&Revealer::from_glib_borrow(this).unsafe_cast())

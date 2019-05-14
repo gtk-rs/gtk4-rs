@@ -6,18 +6,28 @@ use Actionable;
 use Bin;
 use Buildable;
 use Container;
+use Menu;
 use MenuItem;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SeparatorMenuItem(Object<ffi::GtkSeparatorMenuItem, ffi::GtkSeparatorMenuItemClass, SeparatorMenuItemClass>) @extends MenuItem, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct SeparatorMenuItem(Object<gtk_sys::GtkSeparatorMenuItem, gtk_sys::GtkSeparatorMenuItemClass, SeparatorMenuItemClass>) @extends MenuItem, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_separator_menu_item_get_type(),
+        get_type => || gtk_sys::gtk_separator_menu_item_get_type(),
     }
 }
 
@@ -25,7 +35,7 @@ impl SeparatorMenuItem {
     pub fn new() -> SeparatorMenuItem {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_separator_menu_item_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_separator_menu_item_new()).unsafe_cast()
         }
     }
 }

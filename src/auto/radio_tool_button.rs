@@ -11,24 +11,26 @@ use ToggleToolButton;
 use ToolButton;
 use ToolItem;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct RadioToolButton(Object<ffi::GtkRadioToolButton, ffi::GtkRadioToolButtonClass, RadioToolButtonClass>) @extends ToggleToolButton, ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct RadioToolButton(Object<gtk_sys::GtkRadioToolButton, gtk_sys::GtkRadioToolButtonClass, RadioToolButtonClass>) @extends ToggleToolButton, ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_radio_tool_button_get_type(),
+        get_type => || gtk_sys::gtk_radio_tool_button_get_type(),
     }
 }
 
@@ -36,7 +38,7 @@ impl RadioToolButton {
     pub fn new_from_widget<P: IsA<RadioToolButton>>(group: Option<&P>) -> RadioToolButton {
         assert_initialized_main_thread!();
         unsafe {
-            ToolItem::from_glib_none(ffi::gtk_radio_tool_button_new_from_widget(group.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_radio_tool_button_new_from_widget(group.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -54,13 +56,13 @@ pub trait RadioToolButtonExt: 'static {
 impl<O: IsA<RadioToolButton>> RadioToolButtonExt for O {
     fn get_group(&self) -> Vec<RadioButton> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_radio_tool_button_get_group(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_radio_tool_button_get_group(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_property_group(&self, group: Option<&RadioToolButton>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"group\0".as_ptr() as *const _, Value::from(group).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"group\0".as_ptr() as *const _, Value::from(group).to_glib_none().0);
         }
     }
 
@@ -73,7 +75,7 @@ impl<O: IsA<RadioToolButton>> RadioToolButtonExt for O {
     }
 }
 
-unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRadioToolButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRadioToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<RadioToolButton> {
     let f: &F = &*(f as *const F);
     f(&RadioToolButton::from_glib_borrow(this).unsafe_cast())

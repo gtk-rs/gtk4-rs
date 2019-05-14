@@ -5,23 +5,27 @@
 use Buildable;
 use MediaStream;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Video(Object<ffi::GtkVideo, ffi::GtkVideoClass, VideoClass>) @extends Widget, @implements Buildable;
+    pub struct Video(Object<gtk_sys::GtkVideo, gtk_sys::GtkVideoClass, VideoClass>) @extends Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_video_get_type(),
+        get_type => || gtk_sys::gtk_video_get_type(),
     }
 }
 
@@ -29,32 +33,32 @@ impl Video {
     pub fn new() -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_video_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_video_new()).unsafe_cast()
         }
     }
 
     //pub fn new_for_file(file: /*Ignored*/Option<&gio::File>) -> Video {
-    //    unsafe { TODO: call ffi::gtk_video_new_for_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_video_new_for_file() }
     //}
 
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_video_new_for_filename(filename.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_video_new_for_filename(filename.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_video_new_for_media_stream(stream.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_video_new_for_media_stream(stream.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_for_resource(resource_path: Option<&str>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_video_new_for_resource(resource_path.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_video_new_for_resource(resource_path.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -100,57 +104,57 @@ pub trait VideoExt: 'static {
 impl<O: IsA<Video>> VideoExt for O {
     fn get_autoplay(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_video_get_autoplay(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_video_get_autoplay(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_file(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe { TODO: call ffi::gtk_video_get_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_video_get_file() }
     //}
 
     fn get_loop(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_video_get_loop(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_video_get_loop(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_media_stream(&self) -> Option<MediaStream> {
         unsafe {
-            from_glib_none(ffi::gtk_video_get_media_stream(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_video_get_media_stream(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_autoplay(&self, autoplay: bool) {
         unsafe {
-            ffi::gtk_video_set_autoplay(self.as_ref().to_glib_none().0, autoplay.to_glib());
+            gtk_sys::gtk_video_set_autoplay(self.as_ref().to_glib_none().0, autoplay.to_glib());
         }
     }
 
     //fn set_file(&self, file: /*Ignored*/Option<&gio::File>) {
-    //    unsafe { TODO: call ffi::gtk_video_set_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_video_set_file() }
     //}
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {
-            ffi::gtk_video_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
+            gtk_sys::gtk_video_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
         }
     }
 
     fn set_loop(&self, loop_: bool) {
         unsafe {
-            ffi::gtk_video_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
+            gtk_sys::gtk_video_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
         }
     }
 
     fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
         unsafe {
-            ffi::gtk_video_set_media_stream(self.as_ref().to_glib_none().0, stream.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_video_set_media_stream(self.as_ref().to_glib_none().0, stream.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            ffi::gtk_video_set_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
+            gtk_sys::gtk_video_set_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
         }
     }
 
@@ -187,25 +191,25 @@ impl<O: IsA<Video>> VideoExt for O {
     }
 }
 
-unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkVideo, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Video> {
     let f: &F = &*(f as *const F);
     f(&Video::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkVideo, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Video> {
     let f: &F = &*(f as *const F);
     f(&Video::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkVideo, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Video> {
     let f: &F = &*(f as *const F);
     f(&Video::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkVideo, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Video> {
     let f: &F = &*(f as *const F);
     f(&Video::from_glib_borrow(this).unsafe_cast())

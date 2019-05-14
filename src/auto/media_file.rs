@@ -2,23 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use MediaStream;
-use ffi;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MediaFile(Object<ffi::GtkMediaFile, ffi::GtkMediaFileClass, MediaFileClass>) @extends MediaStream;
+    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass, MediaFileClass>) @extends MediaStream;
 
     match fn {
-        get_type => || ffi::gtk_media_file_get_type(),
+        get_type => || gtk_sys::gtk_media_file_get_type(),
     }
 }
 
@@ -26,29 +30,29 @@ impl MediaFile {
     pub fn new() -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(ffi::gtk_media_file_new()).unsafe_cast()
+            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new()).unsafe_cast()
         }
     }
 
     //pub fn new_for_file(file: /*Ignored*/Option<&gio::File>) -> MediaFile {
-    //    unsafe { TODO: call ffi::gtk_media_file_new_for_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_new_for_file() }
     //}
 
     pub fn new_for_filename(filename: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(ffi::gtk_media_file_new_for_filename(filename.to_glib_none().0)).unsafe_cast()
+            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_filename(filename.to_glib_none().0)).unsafe_cast()
         }
     }
 
     //pub fn new_for_input_stream(stream: /*Ignored*/Option<&gio::InputStream>) -> MediaFile {
-    //    unsafe { TODO: call ffi::gtk_media_file_new_for_input_stream() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_new_for_input_stream() }
     //}
 
     pub fn new_for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(ffi::gtk_media_file_new_for_resource(resource_path.to_glib_none().0)).unsafe_cast()
+            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_resource(resource_path.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -84,35 +88,35 @@ pub trait MediaFileExt: 'static {
 impl<O: IsA<MediaFile>> MediaFileExt for O {
     fn clear(&self) {
         unsafe {
-            ffi::gtk_media_file_clear(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_file_clear(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn get_file(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe { TODO: call ffi::gtk_media_file_get_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_get_file() }
     //}
 
     //fn get_input_stream(&self) -> /*Ignored*/Option<gio::InputStream> {
-    //    unsafe { TODO: call ffi::gtk_media_file_get_input_stream() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_get_input_stream() }
     //}
 
     //fn set_file(&self, file: /*Ignored*/Option<&gio::File>) {
-    //    unsafe { TODO: call ffi::gtk_media_file_set_file() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_set_file() }
     //}
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {
-            ffi::gtk_media_file_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
+            gtk_sys::gtk_media_file_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
         }
     }
 
     //fn set_input_stream(&self, stream: /*Ignored*/Option<&gio::InputStream>) {
-    //    unsafe { TODO: call ffi::gtk_media_file_set_input_stream() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_file_set_input_stream() }
     //}
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            ffi::gtk_media_file_set_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
+            gtk_sys::gtk_media_file_set_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
         }
     }
 
@@ -133,13 +137,13 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
     }
 }
 
-unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaFile, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaFile, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaFile> {
     let f: &F = &*(f as *const F);
     f(&MediaFile::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_input_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaFile, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_input_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaFile, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaFile> {
     let f: &F = &*(f as *const F);
     f(&MediaFile::from_glib_borrow(this).unsafe_cast())

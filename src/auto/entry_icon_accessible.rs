@@ -3,15 +3,26 @@
 // DO NOT EDIT
 
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
+use glib::object::ObjectType;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct EntryIconAccessible(Object<ffi::GtkEntryIconAccessible, EntryIconAccessibleClass>) @extends atk::Object;
+    pub struct EntryIconAccessible(Object<gtk_sys::GtkEntryIconAccessible, EntryIconAccessibleClass>) @extends atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_entry_icon_accessible_get_type(),
+        get_type => || gtk_sys::gtk_entry_icon_accessible_get_type(),
     }
 }
 

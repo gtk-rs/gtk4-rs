@@ -4,16 +4,16 @@
 
 use SelectionData;
 use TreePath;
-use ffi;
 use glib::object::IsA;
 use glib::translate::*;
+use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct TreeDragSource(Interface<ffi::GtkTreeDragSource>);
+    pub struct TreeDragSource(Interface<gtk_sys::GtkTreeDragSource>);
 
     match fn {
-        get_type => || ffi::gtk_tree_drag_source_get_type(),
+        get_type => || gtk_sys::gtk_tree_drag_source_get_type(),
     }
 }
 
@@ -30,19 +30,19 @@ pub trait TreeDragSourceExt: 'static {
 impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
     fn drag_data_delete(&self, path: &mut TreePath) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tree_drag_source_drag_data_delete(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_drag_source_drag_data_delete(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
         }
     }
 
     fn drag_data_get(&self, path: &mut TreePath, selection_data: &mut SelectionData) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tree_drag_source_drag_data_get(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0, selection_data.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_drag_source_drag_data_get(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0, selection_data.to_glib_none_mut().0))
         }
     }
 
     fn row_draggable(&self, path: &mut TreePath) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tree_drag_source_row_draggable(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_drag_source_row_draggable(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
         }
     }
 }

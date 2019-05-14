@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use CellRenderer;
+use CellRendererMode;
 use Orientable;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -13,17 +13,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CellRendererProgress(Object<ffi::GtkCellRendererProgress, ffi::GtkCellRendererProgressClass, CellRendererProgressClass>) @extends CellRenderer, @implements Orientable;
+    pub struct CellRendererProgress(Object<gtk_sys::GtkCellRendererProgress, gtk_sys::GtkCellRendererProgressClass, CellRendererProgressClass>) @extends CellRenderer, @implements Orientable;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_progress_get_type(),
+        get_type => || gtk_sys::gtk_cell_renderer_progress_get_type(),
     }
 }
 
@@ -31,7 +32,7 @@ impl CellRendererProgress {
     pub fn new() -> CellRendererProgress {
         assert_initialized_main_thread!();
         unsafe {
-            CellRenderer::from_glib_none(ffi::gtk_cell_renderer_progress_new()).unsafe_cast()
+            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_progress_new()).unsafe_cast()
         }
     }
 }
@@ -86,84 +87,84 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     fn get_property_inverted(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"inverted\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"inverted\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_inverted(&self, inverted: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"inverted\0".as_ptr() as *const _, Value::from(&inverted).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"inverted\0".as_ptr() as *const _, Value::from(&inverted).to_glib_none().0);
         }
     }
 
     fn get_property_pulse(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pulse\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pulse\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_pulse(&self, pulse: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pulse\0".as_ptr() as *const _, Value::from(&pulse).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pulse\0".as_ptr() as *const _, Value::from(&pulse).to_glib_none().0);
         }
     }
 
     fn get_property_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_text(&self, text: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
         }
     }
 
     fn get_property_text_xalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text-xalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text-xalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_text_xalign(&self, text_xalign: f32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text-xalign\0".as_ptr() as *const _, Value::from(&text_xalign).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text-xalign\0".as_ptr() as *const _, Value::from(&text_xalign).to_glib_none().0);
         }
     }
 
     fn get_property_text_yalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text-yalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text-yalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_text_yalign(&self, text_yalign: f32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"text-yalign\0".as_ptr() as *const _, Value::from(&text_yalign).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text-yalign\0".as_ptr() as *const _, Value::from(&text_yalign).to_glib_none().0);
         }
     }
 
     fn get_property_value(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"value\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"value\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_value(&self, value: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"value\0".as_ptr() as *const _, Value::from(&value).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"value\0".as_ptr() as *const _, Value::from(&value).to_glib_none().0);
         }
     }
 
@@ -216,37 +217,37 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 }
 
-unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pulse_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pulse_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_text_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_text_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_text_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_text_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererProgress, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererProgress> {
     let f: &F = &*(f as *const F);
     f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())

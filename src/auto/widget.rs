@@ -21,7 +21,6 @@ use Tooltip;
 use WidgetPath;
 use Window;
 use atk;
-use ffi;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -32,8 +31,9 @@ use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -41,29 +41,29 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass, WidgetClass>) @implements Buildable;
+    pub struct Widget(Object<gtk_sys::GtkWidget, gtk_sys::GtkWidgetClass, WidgetClass>) @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_widget_get_type(),
+        get_type => || gtk_sys::gtk_widget_get_type(),
     }
 }
 
 impl Widget {
     //pub fn new(type_: glib::types::Type, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Widget {
-    //    unsafe { TODO: call ffi::gtk_widget_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_new() }
     //}
 
     pub fn get_default_direction() -> TextDirection {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(ffi::gtk_widget_get_default_direction())
+            from_glib(gtk_sys::gtk_widget_get_default_direction())
         }
     }
 
     pub fn set_default_direction(dir: TextDirection) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_widget_set_default_direction(dir.to_glib());
+            gtk_sys::gtk_widget_set_default_direction(dir.to_glib());
         }
     }
 }
@@ -457,7 +457,7 @@ pub trait WidgetExt: 'static {
 
     //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32);
 
-    fn snapshot_child<P: IsA<Widget>, Q: IsA<Snapshot>>(&self, child: &P, snapshot: &Q);
+    fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot);
 
     fn translate_coordinates<P: IsA<Widget>>(&self, dest_widget: &P, src_x: i32, src_y: i32) -> Option<(i32, i32)>;
 
@@ -635,455 +635,455 @@ pub trait WidgetExt: 'static {
 impl<O: IsA<Widget>> WidgetExt for O {
     fn activate(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_activate(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_activate(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn activate_action(&self, name: &str, parameter: /*Ignored*/&glib::Variant) {
-    //    unsafe { TODO: call ffi::gtk_widget_activate_action() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_activate_action() }
     //}
 
     fn activate_default(&self) {
         unsafe {
-            ffi::gtk_widget_activate_default(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_activate_default(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn add_accelerator<P: IsA<AccelGroup>>(&self, accel_signal: &str, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, accel_flags: AccelFlags) {
-    //    unsafe { TODO: call ffi::gtk_widget_add_accelerator() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_add_accelerator() }
     //}
 
     fn add_controller<P: IsA<EventController>>(&self, controller: &P) {
         unsafe {
-            ffi::gtk_widget_add_controller(self.as_ref().to_glib_none().0, controller.as_ref().to_glib_full());
+            gtk_sys::gtk_widget_add_controller(self.as_ref().to_glib_none().0, controller.as_ref().to_glib_full());
         }
     }
 
     fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
         unsafe {
-            ffi::gtk_widget_add_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_add_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
         }
     }
 
     //fn add_tick_callback(&self, callback: /*Unimplemented*/Fn(&Widget, /*Ignored*/gdk::FrameClock) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
-    //    unsafe { TODO: call ffi::gtk_widget_add_tick_callback() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_add_tick_callback() }
     //}
 
     //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>) {
-    //    unsafe { TODO: call ffi::gtk_widget_allocate() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_allocate() }
     //}
 
     fn can_activate_accel(&self, signal_id: u32) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_can_activate_accel(self.as_ref().to_glib_none().0, signal_id))
+            from_glib(gtk_sys::gtk_widget_can_activate_accel(self.as_ref().to_glib_none().0, signal_id))
         }
     }
 
     fn child_focus(&self, direction: DirectionType) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_child_focus(self.as_ref().to_glib_none().0, direction.to_glib()))
+            from_glib(gtk_sys::gtk_widget_child_focus(self.as_ref().to_glib_none().0, direction.to_glib()))
         }
     }
 
     //fn compute_bounds<P: IsA<Widget>>(&self, target: &P, out_bounds: /*Ignored*/graphene::Rect) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_compute_bounds() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_bounds() }
     //}
 
     fn compute_expand(&self, orientation: Orientation) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_compute_expand(self.as_ref().to_glib_none().0, orientation.to_glib()))
+            from_glib(gtk_sys::gtk_widget_compute_expand(self.as_ref().to_glib_none().0, orientation.to_glib()))
         }
     }
 
     //fn compute_point<P: IsA<Widget>>(&self, target: &P, point: /*Ignored*/&graphene::Point, out_point: /*Ignored*/graphene::Point) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_compute_point() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_point() }
     //}
 
     //fn compute_transform<P: IsA<Widget>>(&self, target: &P, out_transform: /*Ignored*/graphene::Matrix) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_compute_transform() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_transform() }
     //}
 
     fn contains(&self, x: f64, y: f64) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_contains(self.as_ref().to_glib_none().0, x, y))
+            from_glib(gtk_sys::gtk_widget_contains(self.as_ref().to_glib_none().0, x, y))
         }
     }
 
     //fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call ffi::gtk_widget_create_pango_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_context() }
     //}
 
     //fn create_pango_layout(&self, text: Option<&str>) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call ffi::gtk_widget_create_pango_layout() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_layout() }
     //}
 
     fn destroy(&self) {
         unsafe {
-            ffi::gtk_widget_destroy(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_destroy(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn destroyed<P: IsA<Widget>>(&self, widget_pointer: &P) {
-    //    unsafe { TODO: call ffi::gtk_widget_destroyed() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_destroyed() }
     //}
 
     //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_device_is_shadowed() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_device_is_shadowed() }
     //}
 
     //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction, x: i32, y: i32) -> /*Ignored*/Option<gdk::Drag> {
-    //    unsafe { TODO: call ffi::gtk_drag_begin() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_begin() }
     //}
 
     fn drag_check_threshold(&self, start_x: i32, start_y: i32, current_x: i32, current_y: i32) -> bool {
         unsafe {
-            from_glib(ffi::gtk_drag_check_threshold(self.as_ref().to_glib_none().0, start_x, start_y, current_x, current_y))
+            from_glib(gtk_sys::gtk_drag_check_threshold(self.as_ref().to_glib_none().0, start_x, start_y, current_x, current_y))
         }
     }
 
     fn drag_dest_add_image_targets(&self) {
         unsafe {
-            ffi::gtk_drag_dest_add_image_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_dest_add_image_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_dest_add_text_targets(&self) {
         unsafe {
-            ffi::gtk_drag_dest_add_text_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_dest_add_text_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_dest_add_uri_targets(&self) {
         unsafe {
-            ffi::gtk_drag_dest_add_uri_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_dest_add_uri_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn drag_dest_find_target(&self, drop: /*Ignored*/&gdk::Drop, target_list: /*Ignored*/Option<&gdk::ContentFormats>) -> Option<GString> {
-    //    unsafe { TODO: call ffi::gtk_drag_dest_find_target() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_find_target() }
     //}
 
     //fn drag_dest_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe { TODO: call ffi::gtk_drag_dest_get_target_list() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_get_target_list() }
     //}
 
     fn drag_dest_get_track_motion(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_drag_dest_get_track_motion(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_drag_dest_get_track_motion(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn drag_dest_set(&self, flags: DestDefaults, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call ffi::gtk_drag_dest_set() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_set() }
     //}
 
     //fn drag_dest_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>) {
-    //    unsafe { TODO: call ffi::gtk_drag_dest_set_target_list() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_set_target_list() }
     //}
 
     fn drag_dest_set_track_motion(&self, track_motion: bool) {
         unsafe {
-            ffi::gtk_drag_dest_set_track_motion(self.as_ref().to_glib_none().0, track_motion.to_glib());
+            gtk_sys::gtk_drag_dest_set_track_motion(self.as_ref().to_glib_none().0, track_motion.to_glib());
         }
     }
 
     fn drag_dest_unset(&self) {
         unsafe {
-            ffi::gtk_drag_dest_unset(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_dest_unset(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn drag_get_data(&self, drop: /*Ignored*/&gdk::Drop, target: /*Ignored*/&gdk::Atom) {
-    //    unsafe { TODO: call ffi::gtk_drag_get_data() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_get_data() }
     //}
 
     fn drag_highlight(&self) {
         unsafe {
-            ffi::gtk_drag_highlight(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_highlight(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_source_add_image_targets(&self) {
         unsafe {
-            ffi::gtk_drag_source_add_image_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_source_add_image_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_source_add_text_targets(&self) {
         unsafe {
-            ffi::gtk_drag_source_add_text_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_source_add_text_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_source_add_uri_targets(&self) {
         unsafe {
-            ffi::gtk_drag_source_add_uri_targets(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_source_add_uri_targets(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn drag_source_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe { TODO: call ffi::gtk_drag_source_get_target_list() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_source_get_target_list() }
     //}
 
     //fn drag_source_set(&self, start_button_mask: /*Ignored*/gdk::ModifierType, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call ffi::gtk_drag_source_set() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set() }
     //}
 
     //fn drag_source_set_icon_gicon(&self, icon: /*Ignored*/&gio::Icon) {
-    //    unsafe { TODO: call ffi::gtk_drag_source_set_icon_gicon() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_icon_gicon() }
     //}
 
     fn drag_source_set_icon_name(&self, icon_name: &str) {
         unsafe {
-            ffi::gtk_drag_source_set_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
+            gtk_sys::gtk_drag_source_set_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     //fn drag_source_set_icon_paintable(&self, paintable: /*Ignored*/&gdk::Paintable) {
-    //    unsafe { TODO: call ffi::gtk_drag_source_set_icon_paintable() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_icon_paintable() }
     //}
 
     //fn drag_source_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>) {
-    //    unsafe { TODO: call ffi::gtk_drag_source_set_target_list() }
+    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_target_list() }
     //}
 
     fn drag_source_unset(&self) {
         unsafe {
-            ffi::gtk_drag_source_unset(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_source_unset(self.as_ref().to_glib_none().0);
         }
     }
 
     fn drag_unhighlight(&self) {
         unsafe {
-            ffi::gtk_drag_unhighlight(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_drag_unhighlight(self.as_ref().to_glib_none().0);
         }
     }
 
     fn error_bell(&self) {
         unsafe {
-            ffi::gtk_widget_error_bell(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_error_bell(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn event(&self, event: /*Ignored*/&gdk::Event) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_event() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_event() }
     //}
 
     fn get_accessible(&self) -> Option<atk::Object> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_accessible(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_accessible(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_action_group(&self, prefix: &str) -> /*Ignored*/Option<gio::ActionGroup> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_action_group() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_action_group() }
     //}
 
     fn get_allocated_baseline(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_allocated_baseline(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_allocated_baseline(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_allocated_height(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_allocated_height(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_allocated_height(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_allocated_width(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_allocated_width(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_allocated_width(self.as_ref().to_glib_none().0)
         }
     }
 
     //fn get_allocation(&self, allocation: /*Ignored*/&mut Allocation) {
-    //    unsafe { TODO: call ffi::gtk_widget_get_allocation() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_allocation() }
     //}
 
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_ancestor(self.as_ref().to_glib_none().0, widget_type.to_glib()))
+            from_glib_none(gtk_sys::gtk_widget_get_ancestor(self.as_ref().to_glib_none().0, widget_type.to_glib()))
         }
     }
 
     fn get_can_focus(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_can_focus(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_can_focus(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_can_target(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_can_target(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_can_target(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_child_visible(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_child_visible(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_child_visible(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_clipboard() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_clipboard() }
     //}
 
     //fn get_cursor(&self) -> /*Ignored*/Option<gdk::Cursor> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_cursor() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_cursor() }
     //}
 
     fn get_direction(&self) -> TextDirection {
         unsafe {
-            from_glib(ffi::gtk_widget_get_direction(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_direction(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_display() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_display() }
     //}
 
     fn get_first_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_first_child(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_first_child(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_focus_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_focus_child(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_focus_child(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_focus_on_click(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_focus_on_click(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_focus_on_click(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_font_map() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_map() }
     //}
 
     //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_font_options() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_options() }
     //}
 
     //fn get_frame_clock(&self) -> /*Ignored*/Option<gdk::FrameClock> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_frame_clock() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_frame_clock() }
     //}
 
     fn get_halign(&self) -> Align {
         unsafe {
-            from_glib(ffi::gtk_widget_get_halign(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_halign(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_has_surface(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_has_surface(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_has_surface(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_has_tooltip(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_has_tooltip(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_has_tooltip(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_height(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_height(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_height(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_hexpand(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_hexpand(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_hexpand(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_hexpand_set(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_hexpand_set(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_hexpand_set(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_last_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_last_child(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_last_child(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_layout_manager(&self) -> /*Ignored*/Option<LayoutManager> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_layout_manager() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_layout_manager() }
     //}
 
     fn get_mapped(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_mapped(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_mapped(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_margin_bottom(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_margin_bottom(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_margin_bottom(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_margin_end(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_margin_end(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_margin_end(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_margin_start(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_margin_start(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_margin_start(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_margin_top(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0)
         }
     }
 
     //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> /*Ignored*/gdk::ModifierType {
-    //    unsafe { TODO: call ffi::gtk_widget_get_modifier_mask() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_modifier_mask() }
     //}
 
     fn get_next_sibling(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_next_sibling(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_next_sibling(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_opacity(&self) -> f64 {
         unsafe {
-            ffi::gtk_widget_get_opacity(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_opacity(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_overflow(&self) -> Overflow {
         unsafe {
-            from_glib(ffi::gtk_widget_get_overflow(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_overflow(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_pango_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_pango_context() }
     //}
 
     fn get_parent(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_parent(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_parent(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_path(&self) -> Option<WidgetPath> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_path(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_path(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -1091,60 +1091,60 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
             let mut natural_size = Requisition::uninitialized();
-            ffi::gtk_widget_get_preferred_size(self.as_ref().to_glib_none().0, minimum_size.to_glib_none_mut().0, natural_size.to_glib_none_mut().0);
+            gtk_sys::gtk_widget_get_preferred_size(self.as_ref().to_glib_none().0, minimum_size.to_glib_none_mut().0, natural_size.to_glib_none_mut().0);
             (minimum_size, natural_size)
         }
     }
 
     fn get_prev_sibling(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_prev_sibling(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_prev_sibling(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_primary_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_primary_clipboard() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_primary_clipboard() }
     //}
 
     fn get_realized(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_realized(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_realized(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_receives_default(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_receives_default(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_receives_default(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            from_glib(ffi::gtk_widget_get_request_mode(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_request_mode(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_root(&self) -> Option<Root> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_root(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_root(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_scale_factor(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_scale_factor(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_scale_factor(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_sensitive(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_sensitive(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_sensitive(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_settings(&self) -> Option<Settings> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_settings(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_settings(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -1152,232 +1152,232 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe {
             let mut width = mem::uninitialized();
             let mut height = mem::uninitialized();
-            ffi::gtk_widget_get_size_request(self.as_ref().to_glib_none().0, &mut width, &mut height);
+            gtk_sys::gtk_widget_get_size_request(self.as_ref().to_glib_none().0, &mut width, &mut height);
             (width, height)
         }
     }
 
     fn get_state_flags(&self) -> StateFlags {
         unsafe {
-            from_glib(ffi::gtk_widget_get_state_flags(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_state_flags(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_style_context(&self) -> Option<StyleContext> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_style_context(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_style_context(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_support_multidevice(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_support_multidevice(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_support_multidevice(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_surface(&self) -> /*Ignored*/Option<gdk::Surface> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_surface() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_surface() }
     //}
 
     //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_template_child() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_template_child() }
     //}
 
     fn get_tooltip_markup(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_widget_get_tooltip_markup(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_widget_get_tooltip_markup(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_tooltip_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_widget_get_tooltip_text(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_widget_get_tooltip_text(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_tooltip_window(&self) -> Option<Window> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_tooltip_window(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_tooltip_window(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_toplevel(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_widget_get_toplevel(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_widget_get_toplevel(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_valign(&self) -> Align {
         unsafe {
-            from_glib(ffi::gtk_widget_get_valign(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_valign(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_vexpand(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_vexpand(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_vexpand(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_vexpand_set(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_vexpand_set(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_vexpand_set(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_visible(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_get_visible(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_get_visible(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_width(&self) -> i32 {
         unsafe {
-            ffi::gtk_widget_get_width(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_widget_get_width(self.as_ref().to_glib_none().0)
         }
     }
 
     fn grab_add(&self) {
         unsafe {
-            ffi::gtk_grab_add(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_grab_add(self.as_ref().to_glib_none().0);
         }
     }
 
     fn grab_focus(&self) {
         unsafe {
-            ffi::gtk_widget_grab_focus(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_grab_focus(self.as_ref().to_glib_none().0);
         }
     }
 
     fn grab_remove(&self) {
         unsafe {
-            ffi::gtk_grab_remove(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_grab_remove(self.as_ref().to_glib_none().0);
         }
     }
 
     fn has_default(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_has_default(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_has_default(self.as_ref().to_glib_none().0))
         }
     }
 
     fn has_focus(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_has_focus(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_has_focus(self.as_ref().to_glib_none().0))
         }
     }
 
     fn has_grab(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_has_grab(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_has_grab(self.as_ref().to_glib_none().0))
         }
     }
 
     fn has_visible_focus(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_has_visible_focus(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_has_visible_focus(self.as_ref().to_glib_none().0))
         }
     }
 
     fn hide(&self) {
         unsafe {
-            ffi::gtk_widget_hide(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_hide(self.as_ref().to_glib_none().0);
         }
     }
 
     fn in_destruction(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_in_destruction(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_in_destruction(self.as_ref().to_glib_none().0))
         }
     }
 
     fn init_template(&self) {
         unsafe {
-            ffi::gtk_widget_init_template(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_init_template(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn input_shape_combine_region(&self, region: /*Ignored*/Option<&mut cairo::Region>) {
-    //    unsafe { TODO: call ffi::gtk_widget_input_shape_combine_region() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_input_shape_combine_region() }
     //}
 
     //fn insert_action_group(&self, name: &str, group: /*Ignored*/Option<&gio::ActionGroup>) {
-    //    unsafe { TODO: call ffi::gtk_widget_insert_action_group() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_insert_action_group() }
     //}
 
     fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, previous_sibling: Option<&Q>) {
         unsafe {
-            ffi::gtk_widget_insert_after(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0, previous_sibling.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_widget_insert_after(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0, previous_sibling.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn insert_before<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, next_sibling: Option<&Q>) {
         unsafe {
-            ffi::gtk_widget_insert_before(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0, next_sibling.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_widget_insert_before(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0, next_sibling.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn is_ancestor<P: IsA<Widget>>(&self, ancestor: &P) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_ancestor(self.as_ref().to_glib_none().0, ancestor.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_ancestor(self.as_ref().to_glib_none().0, ancestor.as_ref().to_glib_none().0))
         }
     }
 
     fn is_drawable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_drawable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_drawable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_focus(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_focus(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_focus(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_sensitive(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_sensitive(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_sensitive(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_toplevel(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_toplevel(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_toplevel(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_visible(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_is_visible(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_widget_is_visible(self.as_ref().to_glib_none().0))
         }
     }
 
     fn keynav_failed(&self, direction: DirectionType) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_keynav_failed(self.as_ref().to_glib_none().0, direction.to_glib()))
+            from_glib(gtk_sys::gtk_widget_keynav_failed(self.as_ref().to_glib_none().0, direction.to_glib()))
         }
     }
 
     //fn list_accel_closures(&self) -> /*Ignored*/Vec<glib::Closure> {
-    //    unsafe { TODO: call ffi::gtk_widget_list_accel_closures() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_list_accel_closures() }
     //}
 
     fn list_action_prefixes(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gtk_widget_list_action_prefixes(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_widget_list_action_prefixes(self.as_ref().to_glib_none().0))
         }
     }
 
     fn list_mnemonic_labels(&self) -> Vec<Widget> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gtk_widget_list_mnemonic_labels(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_widget_list_mnemonic_labels(self.as_ref().to_glib_none().0))
         }
     }
 
     fn map(&self) {
         unsafe {
-            ffi::gtk_widget_map(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_map(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -1387,322 +1387,322 @@ impl<O: IsA<Widget>> WidgetExt for O {
             let mut natural = mem::uninitialized();
             let mut minimum_baseline = mem::uninitialized();
             let mut natural_baseline = mem::uninitialized();
-            ffi::gtk_widget_measure(self.as_ref().to_glib_none().0, orientation.to_glib(), for_size, &mut minimum, &mut natural, &mut minimum_baseline, &mut natural_baseline);
+            gtk_sys::gtk_widget_measure(self.as_ref().to_glib_none().0, orientation.to_glib(), for_size, &mut minimum, &mut natural, &mut minimum_baseline, &mut natural_baseline);
             (minimum, natural, minimum_baseline, natural_baseline)
         }
     }
 
     fn mnemonic_activate(&self, group_cycling: bool) -> bool {
         unsafe {
-            from_glib(ffi::gtk_widget_mnemonic_activate(self.as_ref().to_glib_none().0, group_cycling.to_glib()))
+            from_glib(gtk_sys::gtk_widget_mnemonic_activate(self.as_ref().to_glib_none().0, group_cycling.to_glib()))
         }
     }
 
     //fn observe_children(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_widget_observe_children() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_children() }
     //}
 
     //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_widget_observe_controllers() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_controllers() }
     //}
 
     //fn pick(&self, x: f64, y: f64, flags: /*Ignored*/PickFlags) -> Option<Widget> {
-    //    unsafe { TODO: call ffi::gtk_widget_pick() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_pick() }
     //}
 
     fn queue_allocate(&self) {
         unsafe {
-            ffi::gtk_widget_queue_allocate(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_queue_allocate(self.as_ref().to_glib_none().0);
         }
     }
 
     fn queue_compute_expand(&self) {
         unsafe {
-            ffi::gtk_widget_queue_compute_expand(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_queue_compute_expand(self.as_ref().to_glib_none().0);
         }
     }
 
     fn queue_draw(&self) {
         unsafe {
-            ffi::gtk_widget_queue_draw(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_queue_draw(self.as_ref().to_glib_none().0);
         }
     }
 
     fn queue_resize(&self) {
         unsafe {
-            ffi::gtk_widget_queue_resize(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_queue_resize(self.as_ref().to_glib_none().0);
         }
     }
 
     fn queue_resize_no_redraw(&self) {
         unsafe {
-            ffi::gtk_widget_queue_resize_no_redraw(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_queue_resize_no_redraw(self.as_ref().to_glib_none().0);
         }
     }
 
     fn realize(&self) {
         unsafe {
-            ffi::gtk_widget_realize(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_realize(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn register_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call ffi::gtk_widget_register_surface() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_register_surface() }
     //}
 
     //fn remove_accelerator<P: IsA<AccelGroup>>(&self, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool {
-    //    unsafe { TODO: call ffi::gtk_widget_remove_accelerator() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_remove_accelerator() }
     //}
 
     fn remove_controller<P: IsA<EventController>>(&self, controller: &P) {
         unsafe {
-            ffi::gtk_widget_remove_controller(self.as_ref().to_glib_none().0, controller.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_remove_controller(self.as_ref().to_glib_none().0, controller.as_ref().to_glib_none().0);
         }
     }
 
     fn remove_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
         unsafe {
-            ffi::gtk_widget_remove_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_remove_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
         }
     }
 
     fn remove_tick_callback(&self, id: u32) {
         unsafe {
-            ffi::gtk_widget_remove_tick_callback(self.as_ref().to_glib_none().0, id);
+            gtk_sys::gtk_widget_remove_tick_callback(self.as_ref().to_glib_none().0, id);
         }
     }
 
     fn reset_style(&self) {
         unsafe {
-            ffi::gtk_widget_reset_style(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_reset_style(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_accel_path<P: IsA<AccelGroup>>(&self, accel_path: Option<&str>, accel_group: Option<&P>) {
         unsafe {
-            ffi::gtk_widget_set_accel_path(self.as_ref().to_glib_none().0, accel_path.to_glib_none().0, accel_group.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_widget_set_accel_path(self.as_ref().to_glib_none().0, accel_path.to_glib_none().0, accel_group.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_can_focus(&self, can_focus: bool) {
         unsafe {
-            ffi::gtk_widget_set_can_focus(self.as_ref().to_glib_none().0, can_focus.to_glib());
+            gtk_sys::gtk_widget_set_can_focus(self.as_ref().to_glib_none().0, can_focus.to_glib());
         }
     }
 
     fn set_can_target(&self, can_target: bool) {
         unsafe {
-            ffi::gtk_widget_set_can_target(self.as_ref().to_glib_none().0, can_target.to_glib());
+            gtk_sys::gtk_widget_set_can_target(self.as_ref().to_glib_none().0, can_target.to_glib());
         }
     }
 
     fn set_child_visible(&self, child_visible: bool) {
         unsafe {
-            ffi::gtk_widget_set_child_visible(self.as_ref().to_glib_none().0, child_visible.to_glib());
+            gtk_sys::gtk_widget_set_child_visible(self.as_ref().to_glib_none().0, child_visible.to_glib());
         }
     }
 
     //fn set_cursor(&self, cursor: /*Ignored*/Option<&gdk::Cursor>) {
-    //    unsafe { TODO: call ffi::gtk_widget_set_cursor() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_cursor() }
     //}
 
     fn set_cursor_from_name(&self, name: Option<&str>) {
         unsafe {
-            ffi::gtk_widget_set_cursor_from_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gtk_sys::gtk_widget_set_cursor_from_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     fn set_direction(&self, dir: TextDirection) {
         unsafe {
-            ffi::gtk_widget_set_direction(self.as_ref().to_glib_none().0, dir.to_glib());
+            gtk_sys::gtk_widget_set_direction(self.as_ref().to_glib_none().0, dir.to_glib());
         }
     }
 
     fn set_focus_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            ffi::gtk_widget_set_focus_child(self.as_ref().to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_widget_set_focus_child(self.as_ref().to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_focus_on_click(&self, focus_on_click: bool) {
         unsafe {
-            ffi::gtk_widget_set_focus_on_click(self.as_ref().to_glib_none().0, focus_on_click.to_glib());
+            gtk_sys::gtk_widget_set_focus_on_click(self.as_ref().to_glib_none().0, focus_on_click.to_glib());
         }
     }
 
     //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>) {
-    //    unsafe { TODO: call ffi::gtk_widget_set_font_map() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_map() }
     //}
 
     //fn set_font_options(&self, options: /*Ignored*/Option<&cairo::FontOptions>) {
-    //    unsafe { TODO: call ffi::gtk_widget_set_font_options() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_options() }
     //}
 
     fn set_halign(&self, align: Align) {
         unsafe {
-            ffi::gtk_widget_set_halign(self.as_ref().to_glib_none().0, align.to_glib());
+            gtk_sys::gtk_widget_set_halign(self.as_ref().to_glib_none().0, align.to_glib());
         }
     }
 
     fn set_has_surface(&self, has_surface: bool) {
         unsafe {
-            ffi::gtk_widget_set_has_surface(self.as_ref().to_glib_none().0, has_surface.to_glib());
+            gtk_sys::gtk_widget_set_has_surface(self.as_ref().to_glib_none().0, has_surface.to_glib());
         }
     }
 
     fn set_has_tooltip(&self, has_tooltip: bool) {
         unsafe {
-            ffi::gtk_widget_set_has_tooltip(self.as_ref().to_glib_none().0, has_tooltip.to_glib());
+            gtk_sys::gtk_widget_set_has_tooltip(self.as_ref().to_glib_none().0, has_tooltip.to_glib());
         }
     }
 
     fn set_hexpand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_widget_set_hexpand(self.as_ref().to_glib_none().0, expand.to_glib());
+            gtk_sys::gtk_widget_set_hexpand(self.as_ref().to_glib_none().0, expand.to_glib());
         }
     }
 
     fn set_hexpand_set(&self, set: bool) {
         unsafe {
-            ffi::gtk_widget_set_hexpand_set(self.as_ref().to_glib_none().0, set.to_glib());
+            gtk_sys::gtk_widget_set_hexpand_set(self.as_ref().to_glib_none().0, set.to_glib());
         }
     }
 
     //fn set_layout_manager(&self, layout_manager: /*Ignored*/Option<&LayoutManager>) {
-    //    unsafe { TODO: call ffi::gtk_widget_set_layout_manager() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_layout_manager() }
     //}
 
     fn set_margin_bottom(&self, margin: i32) {
         unsafe {
-            ffi::gtk_widget_set_margin_bottom(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_widget_set_margin_bottom(self.as_ref().to_glib_none().0, margin);
         }
     }
 
     fn set_margin_end(&self, margin: i32) {
         unsafe {
-            ffi::gtk_widget_set_margin_end(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_widget_set_margin_end(self.as_ref().to_glib_none().0, margin);
         }
     }
 
     fn set_margin_start(&self, margin: i32) {
         unsafe {
-            ffi::gtk_widget_set_margin_start(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_widget_set_margin_start(self.as_ref().to_glib_none().0, margin);
         }
     }
 
     fn set_margin_top(&self, margin: i32) {
         unsafe {
-            ffi::gtk_widget_set_margin_top(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_widget_set_margin_top(self.as_ref().to_glib_none().0, margin);
         }
     }
 
     fn set_opacity(&self, opacity: f64) {
         unsafe {
-            ffi::gtk_widget_set_opacity(self.as_ref().to_glib_none().0, opacity);
+            gtk_sys::gtk_widget_set_opacity(self.as_ref().to_glib_none().0, opacity);
         }
     }
 
     fn set_overflow(&self, overflow: Overflow) {
         unsafe {
-            ffi::gtk_widget_set_overflow(self.as_ref().to_glib_none().0, overflow.to_glib());
+            gtk_sys::gtk_widget_set_overflow(self.as_ref().to_glib_none().0, overflow.to_glib());
         }
     }
 
     fn set_parent<P: IsA<Widget>>(&self, parent: &P) {
         unsafe {
-            ffi::gtk_widget_set_parent(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_set_parent(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0);
         }
     }
 
     fn set_receives_default(&self, receives_default: bool) {
         unsafe {
-            ffi::gtk_widget_set_receives_default(self.as_ref().to_glib_none().0, receives_default.to_glib());
+            gtk_sys::gtk_widget_set_receives_default(self.as_ref().to_glib_none().0, receives_default.to_glib());
         }
     }
 
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
-            ffi::gtk_widget_set_sensitive(self.as_ref().to_glib_none().0, sensitive.to_glib());
+            gtk_sys::gtk_widget_set_sensitive(self.as_ref().to_glib_none().0, sensitive.to_glib());
         }
     }
 
     fn set_size_request(&self, width: i32, height: i32) {
         unsafe {
-            ffi::gtk_widget_set_size_request(self.as_ref().to_glib_none().0, width, height);
+            gtk_sys::gtk_widget_set_size_request(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
     fn set_state_flags(&self, flags: StateFlags, clear: bool) {
         unsafe {
-            ffi::gtk_widget_set_state_flags(self.as_ref().to_glib_none().0, flags.to_glib(), clear.to_glib());
+            gtk_sys::gtk_widget_set_state_flags(self.as_ref().to_glib_none().0, flags.to_glib(), clear.to_glib());
         }
     }
 
     fn set_support_multidevice(&self, support_multidevice: bool) {
         unsafe {
-            ffi::gtk_widget_set_support_multidevice(self.as_ref().to_glib_none().0, support_multidevice.to_glib());
+            gtk_sys::gtk_widget_set_support_multidevice(self.as_ref().to_glib_none().0, support_multidevice.to_glib());
         }
     }
 
     //fn set_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call ffi::gtk_widget_set_surface() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_surface() }
     //}
 
     fn set_tooltip_markup(&self, markup: Option<&str>) {
         unsafe {
-            ffi::gtk_widget_set_tooltip_markup(self.as_ref().to_glib_none().0, markup.to_glib_none().0);
+            gtk_sys::gtk_widget_set_tooltip_markup(self.as_ref().to_glib_none().0, markup.to_glib_none().0);
         }
     }
 
     fn set_tooltip_text(&self, text: Option<&str>) {
         unsafe {
-            ffi::gtk_widget_set_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_widget_set_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     fn set_tooltip_window<P: IsA<Window>>(&self, custom_window: Option<&P>) {
         unsafe {
-            ffi::gtk_widget_set_tooltip_window(self.as_ref().to_glib_none().0, custom_window.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_widget_set_tooltip_window(self.as_ref().to_glib_none().0, custom_window.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_valign(&self, align: Align) {
         unsafe {
-            ffi::gtk_widget_set_valign(self.as_ref().to_glib_none().0, align.to_glib());
+            gtk_sys::gtk_widget_set_valign(self.as_ref().to_glib_none().0, align.to_glib());
         }
     }
 
     fn set_vexpand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_widget_set_vexpand(self.as_ref().to_glib_none().0, expand.to_glib());
+            gtk_sys::gtk_widget_set_vexpand(self.as_ref().to_glib_none().0, expand.to_glib());
         }
     }
 
     fn set_vexpand_set(&self, set: bool) {
         unsafe {
-            ffi::gtk_widget_set_vexpand_set(self.as_ref().to_glib_none().0, set.to_glib());
+            gtk_sys::gtk_widget_set_vexpand_set(self.as_ref().to_glib_none().0, set.to_glib());
         }
     }
 
     fn set_visible(&self, visible: bool) {
         unsafe {
-            ffi::gtk_widget_set_visible(self.as_ref().to_glib_none().0, visible.to_glib());
+            gtk_sys::gtk_widget_set_visible(self.as_ref().to_glib_none().0, visible.to_glib());
         }
     }
 
     fn show(&self) {
         unsafe {
-            ffi::gtk_widget_show(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_show(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32) {
-    //    unsafe { TODO: call ffi::gtk_widget_size_allocate() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_size_allocate() }
     //}
 
-    fn snapshot_child<P: IsA<Widget>, Q: IsA<Snapshot>>(&self, child: &P, snapshot: &Q) {
+    fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot) {
         unsafe {
-            ffi::gtk_widget_snapshot_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, snapshot.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_snapshot_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, snapshot.to_glib_none().0);
         }
     }
 
@@ -1710,49 +1710,49 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe {
             let mut dest_x = mem::uninitialized();
             let mut dest_y = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_widget_translate_coordinates(self.as_ref().to_glib_none().0, dest_widget.as_ref().to_glib_none().0, src_x, src_y, &mut dest_x, &mut dest_y));
+            let ret = from_glib(gtk_sys::gtk_widget_translate_coordinates(self.as_ref().to_glib_none().0, dest_widget.as_ref().to_glib_none().0, src_x, src_y, &mut dest_x, &mut dest_y));
             if ret { Some((dest_x, dest_y)) } else { None }
         }
     }
 
     fn trigger_tooltip_query(&self) {
         unsafe {
-            ffi::gtk_widget_trigger_tooltip_query(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_trigger_tooltip_query(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unmap(&self) {
         unsafe {
-            ffi::gtk_widget_unmap(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_unmap(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unparent(&self) {
         unsafe {
-            ffi::gtk_widget_unparent(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_unparent(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unrealize(&self) {
         unsafe {
-            ffi::gtk_widget_unrealize(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_widget_unrealize(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn unregister_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call ffi::gtk_widget_unregister_surface() }
+    //    unsafe { TODO: call gtk_sys:gtk_widget_unregister_surface() }
     //}
 
     fn unset_state_flags(&self, flags: StateFlags) {
         unsafe {
-            ffi::gtk_widget_unset_state_flags(self.as_ref().to_glib_none().0, flags.to_glib());
+            gtk_sys::gtk_widget_unset_state_flags(self.as_ref().to_glib_none().0, flags.to_glib());
         }
     }
 
     fn get_property_css_name(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"css-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"css-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
@@ -1760,21 +1760,21 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn get_property_expand(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"expand\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"expand\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_expand(&self, expand: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"expand\0".as_ptr() as *const _, Value::from(&expand).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"expand\0".as_ptr() as *const _, Value::from(&expand).to_glib_none().0);
         }
     }
 
     fn get_property_has_default(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-default\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-default\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -1782,70 +1782,70 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn get_property_has_focus(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_has_focus(&self, has_focus: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-focus\0".as_ptr() as *const _, Value::from(&has_focus).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-focus\0".as_ptr() as *const _, Value::from(&has_focus).to_glib_none().0);
         }
     }
 
     fn get_property_height_request(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"height-request\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"height-request\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_height_request(&self, height_request: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"height-request\0".as_ptr() as *const _, Value::from(&height_request).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"height-request\0".as_ptr() as *const _, Value::from(&height_request).to_glib_none().0);
         }
     }
 
     fn get_property_is_focus(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"is-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_is_focus(&self, is_focus: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"is-focus\0".as_ptr() as *const _, Value::from(&is_focus).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-focus\0".as_ptr() as *const _, Value::from(&is_focus).to_glib_none().0);
         }
     }
 
     fn get_property_margin(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"margin\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"margin\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_margin(&self, margin: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"margin\0".as_ptr() as *const _, Value::from(&margin).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"margin\0".as_ptr() as *const _, Value::from(&margin).to_glib_none().0);
         }
     }
 
     fn get_property_width_request(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"width-request\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width-request\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_width_request(&self, width_request: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"width-request\0".as_ptr() as *const _, Value::from(&width_request).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width-request\0".as_ptr() as *const _, Value::from(&width_request).to_glib_none().0);
         }
     }
 
@@ -1966,7 +1966,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn emit_move_focus(&self, direction: DirectionType) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("move-focus", &[&direction]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-focus", &[&direction]).unwrap() };
     }
 
     fn connect_popup_menu<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -1978,7 +1978,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn emit_popup_menu(&self) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("popup-menu", &[]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("popup-menu", &[]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -2327,325 +2327,325 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 }
 
-unsafe extern "C" fn accel_closures_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn accel_closures_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn can_activate_accel_trampoline<P, F: Fn(&P, u32) -> bool + 'static>(this: *mut ffi::GtkWidget, signal_id: libc::c_uint, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn can_activate_accel_trampoline<P, F: Fn(&P, u32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, signal_id: libc::c_uint, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), signal_id).to_glib()
 }
 
-unsafe extern "C" fn destroy_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn destroy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn direction_changed_trampoline<P, F: Fn(&P, TextDirection) + 'static>(this: *mut ffi::GtkWidget, previous_direction: ffi::GtkTextDirection, f: glib_ffi::gpointer)
+unsafe extern "C" fn direction_changed_trampoline<P, F: Fn(&P, TextDirection) + 'static>(this: *mut gtk_sys::GtkWidget, previous_direction: gtk_sys::GtkTextDirection, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(previous_direction))
 }
 
-unsafe extern "C" fn grab_notify_trampoline<P, F: Fn(&P, bool) + 'static>(this: *mut ffi::GtkWidget, was_grabbed: glib_ffi::gboolean, f: glib_ffi::gpointer)
+unsafe extern "C" fn grab_notify_trampoline<P, F: Fn(&P, bool) + 'static>(this: *mut gtk_sys::GtkWidget, was_grabbed: glib_sys::gboolean, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(was_grabbed))
 }
 
-unsafe extern "C" fn hide_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn hide_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> bool + 'static>(this: *mut ffi::GtkWidget, direction: ffi::GtkDirectionType, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction)).to_glib()
 }
 
-unsafe extern "C" fn map_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn map_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut ffi::GtkWidget, group_cycling: glib_ffi::gboolean, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, group_cycling: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(group_cycling)).to_glib()
 }
 
-unsafe extern "C" fn move_focus_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut ffi::GtkWidget, direction: ffi::GtkDirectionType, f: glib_ffi::gpointer)
+unsafe extern "C" fn move_focus_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction))
 }
 
-unsafe extern "C" fn popup_menu_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn popup_menu_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn query_tooltip_trampoline<P, F: Fn(&P, i32, i32, bool, &Tooltip) -> bool + 'static>(this: *mut ffi::GtkWidget, x: libc::c_int, y: libc::c_int, keyboard_mode: glib_ffi::gboolean, tooltip: *mut ffi::GtkTooltip, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn query_tooltip_trampoline<P, F: Fn(&P, i32, i32, bool, &Tooltip) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, x: libc::c_int, y: libc::c_int, keyboard_mode: glib_sys::gboolean, tooltip: *mut gtk_sys::GtkTooltip, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), x, y, from_glib(keyboard_mode), &from_glib_borrow(tooltip)).to_glib()
 }
 
-unsafe extern "C" fn realize_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn realize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn show_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn show_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn size_allocate_trampoline<P, F: Fn(&P, i32, i32, i32) + 'static>(this: *mut ffi::GtkWidget, width: libc::c_int, height: libc::c_int, baseline: libc::c_int, f: glib_ffi::gpointer)
+unsafe extern "C" fn size_allocate_trampoline<P, F: Fn(&P, i32, i32, i32) + 'static>(this: *mut gtk_sys::GtkWidget, width: libc::c_int, height: libc::c_int, baseline: libc::c_int, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), width, height, baseline)
 }
 
-unsafe extern "C" fn state_flags_changed_trampoline<P, F: Fn(&P, StateFlags) + 'static>(this: *mut ffi::GtkWidget, flags: ffi::GtkStateFlags, f: glib_ffi::gpointer)
+unsafe extern "C" fn state_flags_changed_trampoline<P, F: Fn(&P, StateFlags) + 'static>(this: *mut gtk_sys::GtkWidget, flags: gtk_sys::GtkStateFlags, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(flags))
 }
 
-unsafe extern "C" fn style_updated_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn style_updated_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn unmap_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn unmap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn unrealize_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, f: glib_ffi::gpointer)
+unsafe extern "C" fn unrealize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_can_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_can_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_can_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_can_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_focus_on_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_focus_on_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_halign_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_halign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_tooltip_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_tooltip_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_height_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_height_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_hexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_hexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_hexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_hexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_is_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_is_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_layout_manager_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_layout_manager_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_bottom_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_bottom_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_start_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_start_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_top_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_top_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_opacity_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_opacity_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_overflow_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_overflow_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_receives_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_receives_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_root_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_root_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_scale_factor_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_scale_factor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_tooltip_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_tooltip_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_tooltip_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_tooltip_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_valign_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_valign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_vexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_vexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_vexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_vexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_width_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_width_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast())

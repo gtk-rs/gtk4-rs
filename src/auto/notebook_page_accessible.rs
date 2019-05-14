@@ -5,17 +5,27 @@
 use NotebookAccessible;
 use Widget;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct NotebookPageAccessible(Object<ffi::GtkNotebookPageAccessible, ffi::GtkNotebookPageAccessibleClass, NotebookPageAccessibleClass>) @extends atk::Object;
+    pub struct NotebookPageAccessible(Object<gtk_sys::GtkNotebookPageAccessible, gtk_sys::GtkNotebookPageAccessibleClass, NotebookPageAccessibleClass>) @extends atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_notebook_page_accessible_get_type(),
+        get_type => || gtk_sys::gtk_notebook_page_accessible_get_type(),
     }
 }
 
@@ -23,7 +33,7 @@ impl NotebookPageAccessible {
     pub fn new<P: IsA<NotebookAccessible>, Q: IsA<Widget>>(notebook: &P, child: &Q) -> NotebookPageAccessible {
         skip_assert_initialized!();
         unsafe {
-            atk::Object::from_glib_full(ffi::gtk_notebook_page_accessible_new(notebook.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0)).unsafe_cast()
+            atk::Object::from_glib_full(gtk_sys::gtk_notebook_page_accessible_new(notebook.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -37,7 +47,7 @@ pub trait NotebookPageAccessibleExt: 'static {
 impl<O: IsA<NotebookPageAccessible>> NotebookPageAccessibleExt for O {
     fn invalidate(&self) {
         unsafe {
-            ffi::gtk_notebook_page_accessible_invalidate(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_notebook_page_accessible_invalidate(self.as_ref().to_glib_none().0);
         }
     }
 }

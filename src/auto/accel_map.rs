@@ -2,97 +2,97 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::translate::*;
+use gtk_sys;
 use std;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct AccelMap(Object<ffi::GtkAccelMap, ffi::GtkAccelMapClass, AccelMapClass>);
+    pub struct AccelMap(Object<gtk_sys::GtkAccelMap, gtk_sys::GtkAccelMapClass, AccelMapClass>);
 
     match fn {
-        get_type => || ffi::gtk_accel_map_get_type(),
+        get_type => || gtk_sys::gtk_accel_map_get_type(),
     }
 }
 
 impl AccelMap {
     //pub fn add_entry(accel_path: &str, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) {
-    //    unsafe { TODO: call ffi::gtk_accel_map_add_entry() }
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_add_entry() }
     //}
 
     pub fn add_filter(filter_pattern: &str) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_add_filter(filter_pattern.to_glib_none().0);
+            gtk_sys::gtk_accel_map_add_filter(filter_pattern.to_glib_none().0);
         }
     }
 
     //pub fn change_entry(accel_path: &str, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, replace: bool) -> bool {
-    //    unsafe { TODO: call ffi::gtk_accel_map_change_entry() }
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_change_entry() }
     //}
 
-    //pub fn foreach(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
-    //    unsafe { TODO: call ffi::gtk_accel_map_foreach() }
+    //pub fn foreach(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach() }
     //}
 
-    //pub fn foreach_unfiltered(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
-    //    unsafe { TODO: call ffi::gtk_accel_map_foreach_unfiltered() }
+    //pub fn foreach_unfiltered(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach_unfiltered() }
     //}
 
     pub fn get() -> Option<AccelMap> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::gtk_accel_map_get())
+            from_glib_none(gtk_sys::gtk_accel_map_get())
         }
     }
 
     pub fn load<P: AsRef<std::path::Path>>(file_name: P) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_load(file_name.as_ref().to_glib_none().0);
+            gtk_sys::gtk_accel_map_load(file_name.as_ref().to_glib_none().0);
         }
     }
 
     pub fn load_fd(fd: i32) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_load_fd(fd);
+            gtk_sys::gtk_accel_map_load_fd(fd);
         }
     }
 
     //pub fn load_scanner(scanner: /*Ignored*/&mut glib::Scanner) {
-    //    unsafe { TODO: call ffi::gtk_accel_map_load_scanner() }
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_load_scanner() }
     //}
 
     pub fn lock_path(accel_path: &str) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_lock_path(accel_path.to_glib_none().0);
+            gtk_sys::gtk_accel_map_lock_path(accel_path.to_glib_none().0);
         }
     }
 
     //pub fn lookup_entry(accel_path: &str, key: /*Ignored*/AccelKey) -> bool {
-    //    unsafe { TODO: call ffi::gtk_accel_map_lookup_entry() }
+    //    unsafe { TODO: call gtk_sys:gtk_accel_map_lookup_entry() }
     //}
 
     pub fn save<P: AsRef<std::path::Path>>(file_name: P) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_save(file_name.as_ref().to_glib_none().0);
+            gtk_sys::gtk_accel_map_save(file_name.as_ref().to_glib_none().0);
         }
     }
 
     pub fn save_fd(fd: i32) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_save_fd(fd);
+            gtk_sys::gtk_accel_map_save_fd(fd);
         }
     }
 
     pub fn unlock_path(accel_path: &str) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_accel_map_unlock_path(accel_path.to_glib_none().0);
+            gtk_sys::gtk_accel_map_unlock_path(accel_path.to_glib_none().0);
         }
     }
 
@@ -100,8 +100,6 @@ impl AccelMap {
     //    Ignored accel_mods: Gdk.ModifierType
     //}
 }
-
-pub const NONE_ACCEL_MAP: Option<&AccelMap> = None;
 
 impl fmt::Display for AccelMap {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -17,8 +17,8 @@ use TreeIter;
 use TreeModel;
 use TreePath;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -27,8 +27,9 @@ use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -37,10 +38,10 @@ use std::mem::transmute;
 use std::ptr;
 
 glib_wrapper! {
-    pub struct IconView(Object<ffi::GtkIconView, ffi::GtkIconViewClass, IconViewClass>) @extends Container, Widget, @implements Buildable, CellLayout, Scrollable;
+    pub struct IconView(Object<gtk_sys::GtkIconView, gtk_sys::GtkIconViewClass, IconViewClass>) @extends Container, Widget, @implements Buildable, CellLayout, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_icon_view_get_type(),
+        get_type => || gtk_sys::gtk_icon_view_get_type(),
     }
 }
 
@@ -48,21 +49,21 @@ impl IconView {
     pub fn new() -> IconView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_icon_view_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_icon_view_new()).unsafe_cast()
         }
     }
 
     pub fn new_with_area<P: IsA<CellArea>>(area: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_icon_view_new_with_area(area.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_area(area.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_model<P: IsA<TreeModel>>(model: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_icon_view_new_with_model(model.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_model(model.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -261,36 +262,36 @@ pub trait IconViewExt: 'static {
 
 impl<O: IsA<IconView>> IconViewExt for O {
     //fn create_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call ffi::gtk_icon_view_create_drag_icon() }
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_create_drag_icon() }
     //}
 
     //fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call ffi::gtk_icon_view_enable_model_drag_dest() }
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_dest() }
     //}
 
     //fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call ffi::gtk_icon_view_enable_model_drag_source() }
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_source() }
     //}
 
     fn get_activate_on_single_click(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_icon_view_get_activate_on_single_click(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_view_get_activate_on_single_click(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>, rect: /*Ignored*/gdk::Rectangle) -> bool {
-    //    unsafe { TODO: call ffi::gtk_icon_view_get_cell_rect() }
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_get_cell_rect() }
     //}
 
     fn get_column_spacing(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_column_spacing(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_column_spacing(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_columns(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_columns(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_columns(self.as_ref().to_glib_none().0)
         }
     }
 
@@ -298,7 +299,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
-            let ret = from_glib(ffi::gtk_icon_view_get_cursor(self.as_ref().to_glib_none().0, &mut path, &mut cell));
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_cursor(self.as_ref().to_glib_none().0, &mut path, &mut cell));
             if ret { Some((from_glib_full(path), from_glib_none(cell))) } else { None }
         }
     }
@@ -307,7 +308,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_icon_view_get_dest_item_at_pos(self.as_ref().to_glib_none().0, drag_x, drag_y, &mut path, &mut pos));
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_dest_item_at_pos(self.as_ref().to_glib_none().0, drag_x, drag_y, &mut path, &mut pos));
             if ret { Some((from_glib_full(path), from_glib(pos))) } else { None }
         }
     }
@@ -316,7 +317,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::uninitialized();
-            ffi::gtk_icon_view_get_drag_dest_item(self.as_ref().to_glib_none().0, &mut path, &mut pos);
+            gtk_sys::gtk_icon_view_get_drag_dest_item(self.as_ref().to_glib_none().0, &mut path, &mut pos);
             (from_glib_full(path), from_glib(pos))
         }
     }
@@ -325,110 +326,110 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
-            let ret = from_glib(ffi::gtk_icon_view_get_item_at_pos(self.as_ref().to_glib_none().0, x, y, &mut path, &mut cell));
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_item_at_pos(self.as_ref().to_glib_none().0, x, y, &mut path, &mut cell));
             if ret { Some((from_glib_full(path), from_glib_none(cell))) } else { None }
         }
     }
 
     fn get_item_column(&self, path: &TreePath) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_item_column(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0))
+            gtk_sys::gtk_icon_view_get_item_column(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0))
         }
     }
 
     fn get_item_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(ffi::gtk_icon_view_get_item_orientation(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_view_get_item_orientation(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_item_padding(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_item_padding(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_item_padding(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_item_row(&self, path: &TreePath) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_item_row(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0))
+            gtk_sys::gtk_icon_view_get_item_row(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0))
         }
     }
 
     fn get_item_width(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_item_width(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_item_width(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_margin(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_margin(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_margin(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_markup_column(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_markup_column(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_markup_column(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_model(&self) -> Option<TreeModel> {
         unsafe {
-            from_glib_none(ffi::gtk_icon_view_get_model(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_icon_view_get_model(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
         unsafe {
-            from_glib_full(ffi::gtk_icon_view_get_path_at_pos(self.as_ref().to_glib_none().0, x, y))
+            from_glib_full(gtk_sys::gtk_icon_view_get_path_at_pos(self.as_ref().to_glib_none().0, x, y))
         }
     }
 
     fn get_pixbuf_column(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_pixbuf_column(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_pixbuf_column(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_reorderable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_icon_view_get_reorderable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_view_get_reorderable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_row_spacing(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_row_spacing(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_row_spacing(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_selected_items(&self) -> Vec<TreePath> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_view_get_selected_items(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_view_get_selected_items(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_selection_mode(&self) -> SelectionMode {
         unsafe {
-            from_glib(ffi::gtk_icon_view_get_selection_mode(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_view_get_selection_mode(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_spacing(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_spacing(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_spacing(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_text_column(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_text_column(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_text_column(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_tooltip_column(&self) -> i32 {
         unsafe {
-            ffi::gtk_icon_view_get_tooltip_column(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_icon_view_get_tooltip_column(self.as_ref().to_glib_none().0)
         }
     }
 
@@ -437,7 +438,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
             let mut model = ptr::null_mut();
             let mut path = ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(ffi::gtk_icon_view_get_tooltip_context(self.as_ref().to_glib_none().0, x, y, keyboard_tip.to_glib(), &mut model, &mut path, iter.to_glib_none_mut().0));
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_tooltip_context(self.as_ref().to_glib_none().0, x, y, keyboard_tip.to_glib(), &mut model, &mut path, iter.to_glib_none_mut().0));
             if ret { Some((from_glib_none(model), from_glib_full(path), iter)) } else { None }
         }
     }
@@ -446,44 +447,44 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut start_path = ptr::null_mut();
             let mut end_path = ptr::null_mut();
-            let ret = from_glib(ffi::gtk_icon_view_get_visible_range(self.as_ref().to_glib_none().0, &mut start_path, &mut end_path));
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_visible_range(self.as_ref().to_glib_none().0, &mut start_path, &mut end_path));
             if ret { Some((from_glib_full(start_path), from_glib_full(end_path))) } else { None }
         }
     }
 
     fn item_activated(&self, path: &TreePath) {
         unsafe {
-            ffi::gtk_icon_view_item_activated(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
+            gtk_sys::gtk_icon_view_item_activated(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
     fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
-            from_glib(ffi::gtk_icon_view_path_is_selected(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
+            from_glib(gtk_sys::gtk_icon_view_path_is_selected(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
         }
     }
 
     fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32) {
         unsafe {
-            ffi::gtk_icon_view_scroll_to_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), use_align.to_glib(), row_align, col_align);
+            gtk_sys::gtk_icon_view_scroll_to_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), use_align.to_glib(), row_align, col_align);
         }
     }
 
     fn select_all(&self) {
         unsafe {
-            ffi::gtk_icon_view_select_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_select_all(self.as_ref().to_glib_none().0);
         }
     }
 
     fn select_path(&self, path: &TreePath) {
         unsafe {
-            ffi::gtk_icon_view_select_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
+            gtk_sys::gtk_icon_view_select_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
     fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
-        unsafe extern "C" fn func_func<P: FnMut(&IconView, &TreePath)>(icon_view: *mut ffi::GtkIconView, path: *mut ffi::GtkTreePath, data: glib_ffi::gpointer) {
+        unsafe extern "C" fn func_func<P: FnMut(&IconView, &TreePath)>(icon_view: *mut gtk_sys::GtkIconView, path: *mut gtk_sys::GtkTreePath, data: glib_sys::gpointer) {
             let icon_view = from_glib_borrow(icon_view);
             let path = from_glib_borrow(path);
             let callback: *mut P = data as *const _ as usize as *mut P;
@@ -492,158 +493,158 @@ impl<O: IsA<IconView>> IconViewExt for O {
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
         unsafe {
-            ffi::gtk_icon_view_selected_foreach(self.as_ref().to_glib_none().0, func, super_callback0 as *const _ as usize as *mut _);
+            gtk_sys::gtk_icon_view_selected_foreach(self.as_ref().to_glib_none().0, func, super_callback0 as *const _ as usize as *mut _);
         }
     }
 
     fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
-            ffi::gtk_icon_view_set_activate_on_single_click(self.as_ref().to_glib_none().0, single.to_glib());
+            gtk_sys::gtk_icon_view_set_activate_on_single_click(self.as_ref().to_glib_none().0, single.to_glib());
         }
     }
 
     fn set_column_spacing(&self, column_spacing: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_column_spacing(self.as_ref().to_glib_none().0, column_spacing);
+            gtk_sys::gtk_icon_view_set_column_spacing(self.as_ref().to_glib_none().0, column_spacing);
         }
     }
 
     fn set_columns(&self, columns: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_columns(self.as_ref().to_glib_none().0, columns);
+            gtk_sys::gtk_icon_view_set_columns(self.as_ref().to_glib_none().0, columns);
         }
     }
 
     fn set_cursor<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>, start_editing: bool) {
         unsafe {
-            ffi::gtk_icon_view_set_cursor(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), cell.map(|p| p.as_ref()).to_glib_none().0, start_editing.to_glib());
+            gtk_sys::gtk_icon_view_set_cursor(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), cell.map(|p| p.as_ref()).to_glib_none().0, start_editing.to_glib());
         }
     }
 
     fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
         unsafe {
-            ffi::gtk_icon_view_set_drag_dest_item(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), pos.to_glib());
+            gtk_sys::gtk_icon_view_set_drag_dest_item(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), pos.to_glib());
         }
     }
 
     fn set_item_orientation(&self, orientation: Orientation) {
         unsafe {
-            ffi::gtk_icon_view_set_item_orientation(self.as_ref().to_glib_none().0, orientation.to_glib());
+            gtk_sys::gtk_icon_view_set_item_orientation(self.as_ref().to_glib_none().0, orientation.to_glib());
         }
     }
 
     fn set_item_padding(&self, item_padding: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_item_padding(self.as_ref().to_glib_none().0, item_padding);
+            gtk_sys::gtk_icon_view_set_item_padding(self.as_ref().to_glib_none().0, item_padding);
         }
     }
 
     fn set_item_width(&self, item_width: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_item_width(self.as_ref().to_glib_none().0, item_width);
+            gtk_sys::gtk_icon_view_set_item_width(self.as_ref().to_glib_none().0, item_width);
         }
     }
 
     fn set_margin(&self, margin: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_margin(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_icon_view_set_margin(self.as_ref().to_glib_none().0, margin);
         }
     }
 
     fn set_markup_column(&self, column: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_markup_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_markup_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
-            ffi::gtk_icon_view_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_icon_view_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_pixbuf_column(&self, column: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_pixbuf_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_pixbuf_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            ffi::gtk_icon_view_set_reorderable(self.as_ref().to_glib_none().0, reorderable.to_glib());
+            gtk_sys::gtk_icon_view_set_reorderable(self.as_ref().to_glib_none().0, reorderable.to_glib());
         }
     }
 
     fn set_row_spacing(&self, row_spacing: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_row_spacing(self.as_ref().to_glib_none().0, row_spacing);
+            gtk_sys::gtk_icon_view_set_row_spacing(self.as_ref().to_glib_none().0, row_spacing);
         }
     }
 
     fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
-            ffi::gtk_icon_view_set_selection_mode(self.as_ref().to_glib_none().0, mode.to_glib());
+            gtk_sys::gtk_icon_view_set_selection_mode(self.as_ref().to_glib_none().0, mode.to_glib());
         }
     }
 
     fn set_spacing(&self, spacing: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_spacing(self.as_ref().to_glib_none().0, spacing);
+            gtk_sys::gtk_icon_view_set_spacing(self.as_ref().to_glib_none().0, spacing);
         }
     }
 
     fn set_text_column(&self, column: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_text_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_text_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_tooltip_cell<P: IsA<CellRenderer>>(&self, tooltip: &Tooltip, path: &TreePath, cell: Option<&P>) {
         unsafe {
-            ffi::gtk_icon_view_set_tooltip_cell(self.as_ref().to_glib_none().0, tooltip.to_glib_none().0, mut_override(path.to_glib_none().0), cell.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_icon_view_set_tooltip_cell(self.as_ref().to_glib_none().0, tooltip.to_glib_none().0, mut_override(path.to_glib_none().0), cell.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_tooltip_column(&self, column: i32) {
         unsafe {
-            ffi::gtk_icon_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
-            ffi::gtk_icon_view_set_tooltip_item(self.as_ref().to_glib_none().0, tooltip.to_glib_none().0, mut_override(path.to_glib_none().0));
+            gtk_sys::gtk_icon_view_set_tooltip_item(self.as_ref().to_glib_none().0, tooltip.to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
     fn unselect_all(&self) {
         unsafe {
-            ffi::gtk_icon_view_unselect_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unselect_all(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unselect_path(&self, path: &TreePath) {
         unsafe {
-            ffi::gtk_icon_view_unselect_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
+            gtk_sys::gtk_icon_view_unselect_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
     fn unset_model_drag_dest(&self) {
         unsafe {
-            ffi::gtk_icon_view_unset_model_drag_dest(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unset_model_drag_dest(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unset_model_drag_source(&self) {
         unsafe {
-            ffi::gtk_icon_view_unset_model_drag_source(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unset_model_drag_source(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = Value::from_type(<CellArea as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"cell-area\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-area\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
@@ -657,7 +658,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_activate_cursor_item(&self) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("activate-cursor-item", &[]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate-cursor-item", &[]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -678,7 +679,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_move_cursor(&self, step: MovementStep, count: i32) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("move-cursor", &[&step, &count]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-cursor", &[&step, &count]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -691,7 +692,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_select_all(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("select-all", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("select-all", &[]).unwrap() };
     }
 
     fn connect_select_cursor_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -703,7 +704,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_select_cursor_item(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("select-cursor-item", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("select-cursor-item", &[]).unwrap() };
     }
 
     fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -723,7 +724,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_toggle_cursor_item(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("toggle-cursor-item", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("toggle-cursor-item", &[]).unwrap() };
     }
 
     fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -735,7 +736,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 
     fn emit_unselect_all(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("unselect-all", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("unselect-all", &[]).unwrap() };
     }
 
     fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -867,145 +868,145 @@ impl<O: IsA<IconView>> IconViewExt for O {
     }
 }
 
-unsafe extern "C" fn activate_cursor_item_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn activate_cursor_item_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn item_activated_trampoline<P, F: Fn(&P, &TreePath) + 'static>(this: *mut ffi::GtkIconView, path: *mut ffi::GtkTreePath, f: glib_ffi::gpointer)
+unsafe extern "C" fn item_activated_trampoline<P, F: Fn(&P, &TreePath) + 'static>(this: *mut gtk_sys::GtkIconView, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path))
 }
 
-unsafe extern "C" fn move_cursor_trampoline<P, F: Fn(&P, MovementStep, i32) -> bool + 'static>(this: *mut ffi::GtkIconView, step: ffi::GtkMovementStep, count: libc::c_int, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn move_cursor_trampoline<P, F: Fn(&P, MovementStep, i32) -> bool + 'static>(this: *mut gtk_sys::GtkIconView, step: gtk_sys::GtkMovementStep, count: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast(), from_glib(step), count).to_glib()
 }
 
-unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer)
+unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn select_cursor_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer)
+unsafe extern "C" fn select_cursor_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer)
+unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn toggle_cursor_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer)
+unsafe extern "C" fn toggle_cursor_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, f: glib_ffi::gpointer)
+unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_activate_on_single_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_activate_on_single_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_columns_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_columns_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_item_orientation_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_item_orientation_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_item_padding_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_item_padding_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_item_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_item_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_markup_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_markup_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pixbuf_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pixbuf_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_selection_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_selection_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_text_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_text_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_tooltip_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkIconView, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_tooltip_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconView, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<IconView> {
     let f: &F = &*(f as *const F);
     f(&IconView::from_glib_borrow(this).unsafe_cast())

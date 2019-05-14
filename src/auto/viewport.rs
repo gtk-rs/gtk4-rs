@@ -9,22 +9,26 @@ use Container;
 use Scrollable;
 use ShadowType;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Viewport(Object<ffi::GtkViewport, ffi::GtkViewportClass, ViewportClass>) @extends Bin, Container, Widget, @implements Buildable, Scrollable;
+    pub struct Viewport(Object<gtk_sys::GtkViewport, gtk_sys::GtkViewportClass, ViewportClass>) @extends Bin, Container, Widget, @implements Buildable, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_viewport_get_type(),
+        get_type => || gtk_sys::gtk_viewport_get_type(),
     }
 }
 
@@ -32,7 +36,7 @@ impl Viewport {
     pub fn new<P: IsA<Adjustment>, Q: IsA<Adjustment>>(hadjustment: Option<&P>, vadjustment: Option<&Q>) -> Viewport {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_viewport_new(hadjustment.map(|p| p.as_ref()).to_glib_none().0, vadjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_viewport_new(hadjustment.map(|p| p.as_ref()).to_glib_none().0, vadjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -50,13 +54,13 @@ pub trait ViewportExt: 'static {
 impl<O: IsA<Viewport>> ViewportExt for O {
     fn get_shadow_type(&self) -> ShadowType {
         unsafe {
-            from_glib(ffi::gtk_viewport_get_shadow_type(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_viewport_get_shadow_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_shadow_type(&self, type_: ShadowType) {
         unsafe {
-            ffi::gtk_viewport_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
+            gtk_sys::gtk_viewport_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
         }
     }
 
@@ -69,7 +73,7 @@ impl<O: IsA<Viewport>> ViewportExt for O {
     }
 }
 
-unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkViewport, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkViewport, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Viewport> {
     let f: &F = &*(f as *const F);
     f(&Viewport::from_glib_borrow(this).unsafe_cast())

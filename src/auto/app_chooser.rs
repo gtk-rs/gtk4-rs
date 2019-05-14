@@ -4,17 +4,17 @@
 
 use Buildable;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
+use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct AppChooser(Interface<ffi::GtkAppChooser>) @requires Widget, Buildable;
+    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_app_chooser_get_type(),
+        get_type => || gtk_sys::gtk_app_chooser_get_type(),
     }
 }
 
@@ -30,18 +30,18 @@ pub trait AppChooserExt: 'static {
 
 impl<O: IsA<AppChooser>> AppChooserExt for O {
     //fn get_app_info(&self) -> /*Ignored*/Option<gio::AppInfo> {
-    //    unsafe { TODO: call ffi::gtk_app_chooser_get_app_info() }
+    //    unsafe { TODO: call gtk_sys:gtk_app_chooser_get_app_info() }
     //}
 
     fn get_content_type(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(ffi::gtk_app_chooser_get_content_type(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_app_chooser_get_content_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn refresh(&self) {
         unsafe {
-            ffi::gtk_app_chooser_refresh(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_app_chooser_refresh(self.as_ref().to_glib_none().0);
         }
     }
 }

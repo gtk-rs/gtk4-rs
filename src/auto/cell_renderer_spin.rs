@@ -4,8 +4,9 @@
 
 use Adjustment;
 use CellRenderer;
+use CellRendererMode;
 use CellRendererText;
-use ffi;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -13,17 +14,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CellRendererSpin(Object<ffi::GtkCellRendererSpin, ffi::GtkCellRendererSpinClass, CellRendererSpinClass>) @extends CellRendererText, CellRenderer;
+    pub struct CellRendererSpin(Object<gtk_sys::GtkCellRendererSpin, gtk_sys::GtkCellRendererSpinClass, CellRendererSpinClass>) @extends CellRendererText, CellRenderer;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_spin_get_type(),
+        get_type => || gtk_sys::gtk_cell_renderer_spin_get_type(),
     }
 }
 
@@ -31,7 +33,7 @@ impl CellRendererSpin {
     pub fn new() -> CellRendererSpin {
         assert_initialized_main_thread!();
         unsafe {
-            CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spin_new()).unsafe_cast()
+            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_spin_new()).unsafe_cast()
         }
     }
 }
@@ -68,42 +70,42 @@ impl<O: IsA<CellRendererSpin>> CellRendererSpinExt for O {
     fn get_property_adjustment(&self) -> Option<Adjustment> {
         unsafe {
             let mut value = Value::from_type(<Adjustment as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"adjustment\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"adjustment\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_adjustment(&self, adjustment: Option<&Adjustment>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"adjustment\0".as_ptr() as *const _, Value::from(adjustment).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"adjustment\0".as_ptr() as *const _, Value::from(adjustment).to_glib_none().0);
         }
     }
 
     fn get_property_climb_rate(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"climb-rate\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"climb-rate\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_climb_rate(&self, climb_rate: f64) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"climb-rate\0".as_ptr() as *const _, Value::from(&climb_rate).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"climb-rate\0".as_ptr() as *const _, Value::from(&climb_rate).to_glib_none().0);
         }
     }
 
     fn get_property_digits(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"digits\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"digits\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_digits(&self, digits: u32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"digits\0".as_ptr() as *const _, Value::from(&digits).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"digits\0".as_ptr() as *const _, Value::from(&digits).to_glib_none().0);
         }
     }
 
@@ -132,19 +134,19 @@ impl<O: IsA<CellRendererSpin>> CellRendererSpinExt for O {
     }
 }
 
-unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererSpin, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererSpin, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererSpin> {
     let f: &F = &*(f as *const F);
     f(&CellRendererSpin::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_climb_rate_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererSpin, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_climb_rate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererSpin, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererSpin> {
     let f: &F = &*(f as *const F);
     f(&CellRendererSpin::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererSpin, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererSpin, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererSpin> {
     let f: &F = &*(f as *const F);
     f(&CellRendererSpin::from_glib_borrow(this).unsafe_cast())

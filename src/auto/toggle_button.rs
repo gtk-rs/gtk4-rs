@@ -8,22 +8,26 @@ use Buildable;
 use Button;
 use Container;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ToggleButton(Object<ffi::GtkToggleButton, ffi::GtkToggleButtonClass, ToggleButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct ToggleButton(Object<gtk_sys::GtkToggleButton, gtk_sys::GtkToggleButtonClass, ToggleButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_toggle_button_get_type(),
+        get_type => || gtk_sys::gtk_toggle_button_get_type(),
     }
 }
 
@@ -31,21 +35,21 @@ impl ToggleButton {
     pub fn new() -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_toggle_button_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new()).unsafe_cast()
         }
     }
 
     pub fn new_with_label(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_toggle_button_new_with_label(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_label(label.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_mnemonic(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_toggle_button_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -73,19 +77,19 @@ pub trait ToggleButtonExt: 'static {
 impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
     fn get_active(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_toggle_button_get_active(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_toggle_button_get_active(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_active(&self, is_active: bool) {
         unsafe {
-            ffi::gtk_toggle_button_set_active(self.as_ref().to_glib_none().0, is_active.to_glib());
+            gtk_sys::gtk_toggle_button_set_active(self.as_ref().to_glib_none().0, is_active.to_glib());
         }
     }
 
     fn toggled(&self) {
         unsafe {
-            ffi::gtk_toggle_button_toggled(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_toggle_button_toggled(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -106,13 +110,13 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
     }
 }
 
-unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToggleButton, f: glib_ffi::gpointer)
+unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToggleButton, f: glib_sys::gpointer)
 where P: IsA<ToggleButton> {
     let f: &F = &*(f as *const F);
     f(&ToggleButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToggleButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToggleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToggleButton> {
     let f: &F = &*(f as *const F);
     f(&ToggleButton::from_glib_borrow(this).unsafe_cast())

@@ -7,22 +7,26 @@ use Buildable;
 use Orientable;
 use Orientation;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Scrollbar(Object<ffi::GtkScrollbar, ffi::GtkScrollbarClass, ScrollbarClass>) @extends Widget, @implements Buildable, Orientable;
+    pub struct Scrollbar(Object<gtk_sys::GtkScrollbar, gtk_sys::GtkScrollbarClass, ScrollbarClass>) @extends Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_scrollbar_get_type(),
+        get_type => || gtk_sys::gtk_scrollbar_get_type(),
     }
 }
 
@@ -30,7 +34,7 @@ impl Scrollbar {
     pub fn new<P: IsA<Adjustment>>(orientation: Orientation, adjustment: Option<&P>) -> Scrollbar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_scrollbar_new(orientation.to_glib(), adjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_scrollbar_new(orientation.to_glib(), adjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -48,13 +52,13 @@ pub trait ScrollbarExt: 'static {
 impl<O: IsA<Scrollbar>> ScrollbarExt for O {
     fn get_adjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(ffi::gtk_scrollbar_get_adjustment(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_scrollbar_get_adjustment(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
-            ffi::gtk_scrollbar_set_adjustment(self.as_ref().to_glib_none().0, adjustment.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_scrollbar_set_adjustment(self.as_ref().to_glib_none().0, adjustment.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
@@ -67,7 +71,7 @@ impl<O: IsA<Scrollbar>> ScrollbarExt for O {
     }
 }
 
-unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrollbar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollbar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Scrollbar> {
     let f: &F = &*(f as *const F);
     f(&Scrollbar::from_glib_borrow(this).unsafe_cast())

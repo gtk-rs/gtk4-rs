@@ -6,16 +6,25 @@ use Buildable;
 use Orientable;
 use Orientation;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Separator(Object<ffi::GtkSeparator, ffi::GtkSeparatorClass, SeparatorClass>) @extends Widget, @implements Buildable, Orientable;
+    pub struct Separator(Object<gtk_sys::GtkSeparator, gtk_sys::GtkSeparatorClass, SeparatorClass>) @extends Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_separator_get_type(),
+        get_type => || gtk_sys::gtk_separator_get_type(),
     }
 }
 
@@ -23,7 +32,7 @@ impl Separator {
     pub fn new(orientation: Orientation) -> Separator {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_separator_new(orientation.to_glib())).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_separator_new(orientation.to_glib())).unsafe_cast()
         }
     }
 }

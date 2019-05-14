@@ -5,13 +5,16 @@
 use EventController;
 use Gesture;
 use GestureSingle;
-use ffi;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -19,10 +22,10 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct GestureDrag(Object<ffi::GtkGestureDrag, ffi::GtkGestureDragClass, GestureDragClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureDrag(Object<gtk_sys::GtkGestureDrag, gtk_sys::GtkGestureDragClass, GestureDragClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_drag_get_type(),
+        get_type => || gtk_sys::gtk_gesture_drag_get_type(),
     }
 }
 
@@ -30,7 +33,7 @@ impl GestureDrag {
     pub fn new() -> GestureDrag {
         assert_initialized_main_thread!();
         unsafe {
-            Gesture::from_glib_full(ffi::gtk_gesture_drag_new()).unsafe_cast()
+            Gesture::from_glib_full(gtk_sys::gtk_gesture_drag_new()).unsafe_cast()
         }
     }
 }
@@ -60,7 +63,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_gesture_drag_get_offset(self.as_ref().to_glib_none().0, &mut x, &mut y));
+            let ret = from_glib(gtk_sys::gtk_gesture_drag_get_offset(self.as_ref().to_glib_none().0, &mut x, &mut y));
             if ret { Some((x, y)) } else { None }
         }
     }
@@ -69,7 +72,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_gesture_drag_get_start_point(self.as_ref().to_glib_none().0, &mut x, &mut y));
+            let ret = from_glib(gtk_sys::gtk_gesture_drag_get_start_point(self.as_ref().to_glib_none().0, &mut x, &mut y));
             if ret { Some((x, y)) } else { None }
         }
     }
@@ -99,19 +102,19 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
     }
 }
 
-unsafe extern "C" fn drag_begin_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureDrag, start_x: libc::c_double, start_y: libc::c_double, f: glib_ffi::gpointer)
+unsafe extern "C" fn drag_begin_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureDrag, start_x: libc::c_double, start_y: libc::c_double, f: glib_sys::gpointer)
 where P: IsA<GestureDrag> {
     let f: &F = &*(f as *const F);
     f(&GestureDrag::from_glib_borrow(this).unsafe_cast(), start_x, start_y)
 }
 
-unsafe extern "C" fn drag_end_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureDrag, offset_x: libc::c_double, offset_y: libc::c_double, f: glib_ffi::gpointer)
+unsafe extern "C" fn drag_end_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureDrag, offset_x: libc::c_double, offset_y: libc::c_double, f: glib_sys::gpointer)
 where P: IsA<GestureDrag> {
     let f: &F = &*(f as *const F);
     f(&GestureDrag::from_glib_borrow(this).unsafe_cast(), offset_x, offset_y)
 }
 
-unsafe extern "C" fn drag_update_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkGestureDrag, offset_x: libc::c_double, offset_y: libc::c_double, f: glib_ffi::gpointer)
+unsafe extern "C" fn drag_update_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureDrag, offset_x: libc::c_double, offset_y: libc::c_double, f: glib_sys::gpointer)
 where P: IsA<GestureDrag> {
     let f: &F = &*(f as *const F);
     f(&GestureDrag::from_glib_borrow(this).unsafe_cast(), offset_x, offset_y)

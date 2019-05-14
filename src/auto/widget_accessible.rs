@@ -4,15 +4,26 @@
 
 use Accessible;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
+use glib::object::Cast;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct WidgetAccessible(Object<ffi::GtkWidgetAccessible, ffi::GtkWidgetAccessibleClass, WidgetAccessibleClass>) @extends Accessible, atk::Object;
+    pub struct WidgetAccessible(Object<gtk_sys::GtkWidgetAccessible, gtk_sys::GtkWidgetAccessibleClass, WidgetAccessibleClass>) @extends Accessible, atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_widget_accessible_get_type(),
+        get_type => || gtk_sys::gtk_widget_accessible_get_type(),
     }
 }
 

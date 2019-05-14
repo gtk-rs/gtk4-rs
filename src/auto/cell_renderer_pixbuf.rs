@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use CellRenderer;
+use CellRendererMode;
 use IconSize;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -13,17 +13,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CellRendererPixbuf(Object<ffi::GtkCellRendererPixbuf, ffi::GtkCellRendererPixbufClass, CellRendererPixbufClass>) @extends CellRenderer;
+    pub struct CellRendererPixbuf(Object<gtk_sys::GtkCellRendererPixbuf, gtk_sys::GtkCellRendererPixbufClass, CellRendererPixbufClass>) @extends CellRenderer;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_pixbuf_get_type(),
+        get_type => || gtk_sys::gtk_cell_renderer_pixbuf_get_type(),
     }
 }
 
@@ -31,7 +32,7 @@ impl CellRendererPixbuf {
     pub fn new() -> CellRendererPixbuf {
         assert_initialized_main_thread!();
         unsafe {
-            CellRenderer::from_glib_none(ffi::gtk_cell_renderer_pixbuf_new()).unsafe_cast()
+            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_pixbuf_new()).unsafe_cast()
         }
     }
 }
@@ -90,90 +91,90 @@ impl<O: IsA<CellRendererPixbuf>> CellRendererPixbufExt for O {
     //fn get_property_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
     //    }
     //}
 
     fn get_property_icon_name(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"icon-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-name\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"icon-name\0".as_ptr() as *const _, Value::from(icon_name).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-name\0".as_ptr() as *const _, Value::from(icon_name).to_glib_none().0);
         }
     }
 
     fn get_property_icon_size(&self) -> IconSize {
         unsafe {
             let mut value = Value::from_type(<IconSize as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"icon-size\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-size\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_icon_size(&self, icon_size: IconSize) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"icon-size\0".as_ptr() as *const _, Value::from(&icon_size).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-size\0".as_ptr() as *const _, Value::from(&icon_size).to_glib_none().0);
         }
     }
 
     //fn set_property_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pixbuf\0".as_ptr() as *const _, Value::from(pixbuf).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pixbuf\0".as_ptr() as *const _, Value::from(pixbuf).to_glib_none().0);
     //    }
     //}
 
     //fn get_property_pixbuf_expander_closed(&self) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //fn set_property_pixbuf_expander_closed(&self, pixbuf_expander_closed: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, Value::from(pixbuf_expander_closed).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, Value::from(pixbuf_expander_closed).to_glib_none().0);
     //    }
     //}
 
     //fn get_property_pixbuf_expander_open(&self) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //fn set_property_pixbuf_expander_open(&self, pixbuf_expander_open: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, Value::from(pixbuf_expander_open).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, Value::from(pixbuf_expander_open).to_glib_none().0);
     //    }
     //}
 
     //fn get_property_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"texture\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"texture\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //fn set_property_texture(&self, texture: /*Ignored*/Option<&gdk::Texture>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"texture\0".as_ptr() as *const _, Value::from(texture).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"texture\0".as_ptr() as *const _, Value::from(texture).to_glib_none().0);
     //    }
     //}
 
@@ -234,43 +235,43 @@ impl<O: IsA<CellRendererPixbuf>> CellRendererPixbufExt for O {
     }
 }
 
-unsafe extern "C" fn notify_gicon_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_gicon_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_icon_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_icon_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pixbuf_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pixbuf_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pixbuf_expander_closed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pixbuf_expander_closed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pixbuf_expander_open_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pixbuf_expander_open_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_texture_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCellRendererPixbuf, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_texture_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererPixbuf, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererPixbuf> {
     let f: &F = &*(f as *const F);
     f(&CellRendererPixbuf::from_glib_borrow(this).unsafe_cast())

@@ -5,7 +5,6 @@
 use Buildable;
 use Editable;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -14,17 +13,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct PasswordEntry(Object<ffi::GtkPasswordEntry, ffi::GtkPasswordEntryClass, PasswordEntryClass>) @extends Widget, @implements Buildable, Editable;
+    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass, PasswordEntryClass>) @extends Widget, @implements Buildable, Editable;
 
     match fn {
-        get_type => || ffi::gtk_password_entry_get_type(),
+        get_type => || gtk_sys::gtk_password_entry_get_type(),
     }
 }
 
@@ -32,7 +32,7 @@ impl PasswordEntry {
     pub fn new() -> PasswordEntry {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_password_entry_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_password_entry_new()).unsafe_cast()
         }
     }
 }
@@ -68,41 +68,41 @@ pub trait PasswordEntryExt: 'static {
 impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
     fn get_show_peek_icon(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_password_entry_get_show_peek_icon(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_password_entry_get_show_peek_icon(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_show_peek_icon(&self, show_peek_icon: bool) {
         unsafe {
-            ffi::gtk_password_entry_set_show_peek_icon(self.as_ref().to_glib_none().0, show_peek_icon.to_glib());
+            gtk_sys::gtk_password_entry_set_show_peek_icon(self.as_ref().to_glib_none().0, show_peek_icon.to_glib());
         }
     }
 
     fn get_property_activates_default(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"activates-default\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"activates-default\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_activates_default(&self, activates_default: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"activates-default\0".as_ptr() as *const _, Value::from(&activates_default).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"activates-default\0".as_ptr() as *const _, Value::from(&activates_default).to_glib_none().0);
         }
     }
 
     fn get_property_placeholder_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"placeholder-text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"placeholder-text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"placeholder-text\0".as_ptr() as *const _, Value::from(placeholder_text).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"placeholder-text\0".as_ptr() as *const _, Value::from(placeholder_text).to_glib_none().0);
         }
     }
 
@@ -131,19 +131,19 @@ impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
     }
 }
 
-unsafe extern "C" fn notify_activates_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPasswordEntry, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_activates_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPasswordEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<PasswordEntry> {
     let f: &F = &*(f as *const F);
     f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPasswordEntry, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPasswordEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<PasswordEntry> {
     let f: &F = &*(f as *const F);
     f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_peek_icon_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPasswordEntry, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_peek_icon_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPasswordEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<PasswordEntry> {
     let f: &F = &*(f as *const F);
     f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())

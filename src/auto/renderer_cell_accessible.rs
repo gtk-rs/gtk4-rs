@@ -6,20 +6,27 @@ use Accessible;
 use CellAccessible;
 use CellRenderer;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct RendererCellAccessible(Object<ffi::GtkRendererCellAccessible, ffi::GtkRendererCellAccessibleClass, RendererCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
+    pub struct RendererCellAccessible(Object<gtk_sys::GtkRendererCellAccessible, gtk_sys::GtkRendererCellAccessibleClass, RendererCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_renderer_cell_accessible_get_type(),
+        get_type => || gtk_sys::gtk_renderer_cell_accessible_get_type(),
     }
 }
 
@@ -27,7 +34,7 @@ impl RendererCellAccessible {
     pub fn new<P: IsA<CellRenderer>>(renderer: &P) -> RendererCellAccessible {
         skip_assert_initialized!();
         unsafe {
-            atk::Object::from_glib_full(ffi::gtk_renderer_cell_accessible_new(renderer.as_ref().to_glib_none().0)).unsafe_cast()
+            atk::Object::from_glib_full(gtk_sys::gtk_renderer_cell_accessible_new(renderer.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -42,7 +49,7 @@ impl<O: IsA<RendererCellAccessible>> RendererCellAccessibleExt for O {
     fn get_property_renderer(&self) -> Option<CellRenderer> {
         unsafe {
             let mut value = Value::from_type(<CellRenderer as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"renderer\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"renderer\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }

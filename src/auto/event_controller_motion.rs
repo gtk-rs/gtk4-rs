@@ -4,26 +4,26 @@
 
 use EventController;
 use Widget;
-use ffi;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct EventControllerMotion(Object<ffi::GtkEventControllerMotion, ffi::GtkEventControllerMotionClass, EventControllerMotionClass>) @extends EventController;
+    pub struct EventControllerMotion(Object<gtk_sys::GtkEventControllerMotion, gtk_sys::GtkEventControllerMotionClass, EventControllerMotionClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_motion_get_type(),
+        get_type => || gtk_sys::gtk_event_controller_motion_get_type(),
     }
 }
 
@@ -31,7 +31,69 @@ impl EventControllerMotion {
     pub fn new() -> EventControllerMotion {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(ffi::gtk_event_controller_motion_new()).unsafe_cast()
+            EventController::from_glib_full(gtk_sys::gtk_event_controller_motion_new()).unsafe_cast()
+        }
+    }
+
+    pub fn get_pointer_origin(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_event_controller_motion_get_pointer_origin(self.to_glib_none().0))
+        }
+    }
+
+    pub fn get_pointer_target(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_event_controller_motion_get_pointer_target(self.to_glib_none().0))
+        }
+    }
+
+    pub fn get_property_contains_pointer_focus(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"contains-pointer-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
+
+    pub fn get_property_is_pointer_focus(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"is-pointer-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
+
+    //pub fn connect_enter<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored crossing_mode: Gdk.CrossingMode
+    //    Ignored notify_type: Gdk.NotifyType
+    //}
+
+    //pub fn connect_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored crossing_mode: Gdk.CrossingMode
+    //    Ignored notify_type: Gdk.NotifyType
+    //}
+
+    pub fn connect_motion<F: Fn(&EventControllerMotion, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"motion\0".as_ptr() as *const _,
+                Some(transmute(motion_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+
+    pub fn connect_property_contains_pointer_focus_notify<F: Fn(&EventControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::contains-pointer-focus\0".as_ptr() as *const _,
+                Some(transmute(notify_contains_pointer_focus_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+
+    pub fn connect_property_is_pointer_focus_notify<F: Fn(&EventControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::is-pointer-focus\0".as_ptr() as *const _,
+                Some(transmute(notify_is_pointer_focus_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 }
@@ -42,108 +104,19 @@ impl Default for EventControllerMotion {
     }
 }
 
-pub const NONE_EVENT_CONTROLLER_MOTION: Option<&EventControllerMotion> = None;
-
-pub trait EventControllerMotionExt: 'static {
-    fn get_pointer_origin(&self) -> Option<Widget>;
-
-    fn get_pointer_target(&self) -> Option<Widget>;
-
-    fn get_property_contains_pointer_focus(&self) -> bool;
-
-    fn get_property_is_pointer_focus(&self) -> bool;
-
-    //fn connect_enter<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
-    //fn connect_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_motion<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_contains_pointer_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_is_pointer_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<EventControllerMotion>> EventControllerMotionExt for O {
-    fn get_pointer_origin(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_event_controller_motion_get_pointer_origin(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_pointer_target(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_event_controller_motion_get_pointer_target(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_property_contains_pointer_focus(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"contains-pointer-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get().unwrap()
-        }
-    }
-
-    fn get_property_is_pointer_focus(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"is-pointer-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get().unwrap()
-        }
-    }
-
-    //fn connect_enter<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored crossing_mode: Gdk.CrossingMode
-    //    Ignored notify_type: Gdk.NotifyType
-    //}
-
-    //fn connect_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored crossing_mode: Gdk.CrossingMode
-    //    Ignored notify_type: Gdk.NotifyType
-    //}
-
-    fn connect_motion<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"motion\0".as_ptr() as *const _,
-                Some(transmute(motion_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_property_contains_pointer_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::contains-pointer-focus\0".as_ptr() as *const _,
-                Some(transmute(notify_contains_pointer_focus_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_property_is_pointer_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::is-pointer-focus\0".as_ptr() as *const _,
-                Some(transmute(notify_is_pointer_focus_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-}
-
-unsafe extern "C" fn motion_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<EventControllerMotion> {
+unsafe extern "C" fn motion_trampoline<F: Fn(&EventControllerMotion, f64, f64) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerMotion::from_glib_borrow(this).unsafe_cast(), x, y)
+    f(&from_glib_borrow(this), x, y)
 }
 
-unsafe extern "C" fn notify_contains_pointer_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventControllerMotion, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<EventControllerMotion> {
+unsafe extern "C" fn notify_contains_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerMotion::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_is_pointer_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventControllerMotion, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<EventControllerMotion> {
+unsafe extern "C" fn notify_is_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerMotion::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for EventControllerMotion {

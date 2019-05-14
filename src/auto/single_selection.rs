@@ -3,28 +3,28 @@
 // DO NOT EDIT
 
 use SelectionModel;
-use ffi;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SingleSelection(Object<ffi::GtkSingleSelection, ffi::GtkSingleSelectionClass, SingleSelectionClass>) @implements SelectionModel;
+    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements SelectionModel;
 
     match fn {
-        get_type => || ffi::gtk_single_selection_get_type(),
+        get_type => || gtk_sys::gtk_single_selection_get_type(),
     }
 }
 
 impl SingleSelection {
     //pub fn new(model: /*Ignored*/&gio::ListModel) -> SingleSelection {
-    //    unsafe { TODO: call ffi::gtk_single_selection_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_single_selection_new() }
     //}
 }
 
@@ -63,55 +63,55 @@ pub trait SingleSelectionExt: 'static {
 impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
     fn get_autoselect(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_single_selection_get_autoselect(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_single_selection_get_autoselect(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_can_unselect(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_single_selection_get_can_unselect(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_single_selection_get_can_unselect(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_selected(&self) -> u32 {
         unsafe {
-            ffi::gtk_single_selection_get_selected(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_single_selection_get_selected(self.as_ref().to_glib_none().0)
         }
     }
 
     //fn get_selected_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi::gtk_single_selection_get_selected_item() }
+    //    unsafe { TODO: call gtk_sys:gtk_single_selection_get_selected_item() }
     //}
 
     fn set_autoselect(&self, autoselect: bool) {
         unsafe {
-            ffi::gtk_single_selection_set_autoselect(self.as_ref().to_glib_none().0, autoselect.to_glib());
+            gtk_sys::gtk_single_selection_set_autoselect(self.as_ref().to_glib_none().0, autoselect.to_glib());
         }
     }
 
     fn set_can_unselect(&self, can_unselect: bool) {
         unsafe {
-            ffi::gtk_single_selection_set_can_unselect(self.as_ref().to_glib_none().0, can_unselect.to_glib());
+            gtk_sys::gtk_single_selection_set_can_unselect(self.as_ref().to_glib_none().0, can_unselect.to_glib());
         }
     }
 
     fn set_selected(&self, position: u32) {
         unsafe {
-            ffi::gtk_single_selection_set_selected(self.as_ref().to_glib_none().0, position);
+            gtk_sys::gtk_single_selection_set_selected(self.as_ref().to_glib_none().0, position);
         }
     }
 
     //fn get_property_model(&self) -> /*Ignored*/Option<gio::ListModel> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"model\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
     //fn set_property_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"model\0".as_ptr() as *const _, Value::from(model).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, Value::from(model).to_glib_none().0);
     //    }
     //}
 
@@ -156,31 +156,31 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
     }
 }
 
-unsafe extern "C" fn notify_autoselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSingleSelection, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_autoselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSingleSelection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SingleSelection> {
     let f: &F = &*(f as *const F);
     f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_can_unselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSingleSelection, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_can_unselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSingleSelection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SingleSelection> {
     let f: &F = &*(f as *const F);
     f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSingleSelection, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSingleSelection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SingleSelection> {
     let f: &F = &*(f as *const F);
     f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_selected_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSingleSelection, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_selected_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSingleSelection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SingleSelection> {
     let f: &F = &*(f as *const F);
     f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_selected_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSingleSelection, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_selected_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSingleSelection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SingleSelection> {
     let f: &F = &*(f as *const F);
     f(&SingleSelection::from_glib_borrow(this).unsafe_cast())

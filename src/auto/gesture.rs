@@ -4,20 +4,26 @@
 
 use EventController;
 use EventSequenceState;
-use ffi;
 use glib::StaticType;
 use glib::Value;
+use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Gesture(Object<ffi::GtkGesture, ffi::GtkGestureClass, GestureClass>) @extends EventController;
+    pub struct Gesture(Object<gtk_sys::GtkGesture, gtk_sys::GtkGestureClass, GestureClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_get_type(),
+        get_type => || gtk_sys::gtk_gesture_get_type(),
     }
 }
 
@@ -73,96 +79,96 @@ pub trait GestureExt: 'static {
 
 impl<O: IsA<Gesture>> GestureExt for O {
     //fn get_bounding_box(&self, rect: /*Ignored*/gdk::Rectangle) -> bool {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_bounding_box() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_bounding_box() }
     //}
 
     fn get_bounding_box_center(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_gesture_get_bounding_box_center(self.as_ref().to_glib_none().0, &mut x, &mut y));
+            let ret = from_glib(gtk_sys::gtk_gesture_get_bounding_box_center(self.as_ref().to_glib_none().0, &mut x, &mut y));
             if ret { Some((x, y)) } else { None }
         }
     }
 
     //fn get_device(&self) -> /*Ignored*/Option<gdk::Device> {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_device() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_device() }
     //}
 
     fn get_group(&self) -> Vec<Gesture> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gtk_gesture_get_group(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_gesture_get_group(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_last_event(&self, sequence: /*Ignored*/Option<&mut gdk::EventSequence>) -> /*Ignored*/Option<gdk::Event> {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_last_event() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_last_event() }
     //}
 
     //fn get_last_updated_sequence(&self) -> /*Ignored*/Option<gdk::EventSequence> {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_last_updated_sequence() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_last_updated_sequence() }
     //}
 
     //fn get_point(&self, sequence: /*Ignored*/Option<&mut gdk::EventSequence>) -> Option<(f64, f64)> {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_point() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_point() }
     //}
 
     //fn get_sequence_state(&self, sequence: /*Ignored*/&mut gdk::EventSequence) -> EventSequenceState {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_sequence_state() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_sequence_state() }
     //}
 
     //fn get_sequences(&self) -> /*Ignored*/Vec<gdk::EventSequence> {
-    //    unsafe { TODO: call ffi::gtk_gesture_get_sequences() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_get_sequences() }
     //}
 
     fn group<P: IsA<Gesture>>(&self, gesture: &P) {
         unsafe {
-            ffi::gtk_gesture_group(self.as_ref().to_glib_none().0, gesture.as_ref().to_glib_none().0);
+            gtk_sys::gtk_gesture_group(self.as_ref().to_glib_none().0, gesture.as_ref().to_glib_none().0);
         }
     }
 
     //fn handles_sequence(&self, sequence: /*Ignored*/Option<&mut gdk::EventSequence>) -> bool {
-    //    unsafe { TODO: call ffi::gtk_gesture_handles_sequence() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_handles_sequence() }
     //}
 
     fn is_active(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gesture_is_active(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gesture_is_active(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_grouped_with<P: IsA<Gesture>>(&self, other: &P) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gesture_is_grouped_with(self.as_ref().to_glib_none().0, other.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gesture_is_grouped_with(self.as_ref().to_glib_none().0, other.as_ref().to_glib_none().0))
         }
     }
 
     fn is_recognized(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gesture_is_recognized(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gesture_is_recognized(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn set_sequence_state(&self, sequence: /*Ignored*/&mut gdk::EventSequence, state: EventSequenceState) -> bool {
-    //    unsafe { TODO: call ffi::gtk_gesture_set_sequence_state() }
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_set_sequence_state() }
     //}
 
     fn set_state(&self, state: EventSequenceState) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gesture_set_state(self.as_ref().to_glib_none().0, state.to_glib()))
+            from_glib(gtk_sys::gtk_gesture_set_state(self.as_ref().to_glib_none().0, state.to_glib()))
         }
     }
 
     fn ungroup(&self) {
         unsafe {
-            ffi::gtk_gesture_ungroup(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_gesture_ungroup(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_n_points(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"n-points\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"n-points\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }

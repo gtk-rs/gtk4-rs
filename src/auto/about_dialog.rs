@@ -10,24 +10,29 @@ use License;
 use Root;
 use Widget;
 use Window;
-use ffi;
+use WindowPosition;
+use WindowType;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct AboutDialog(Object<ffi::GtkAboutDialog, ffi::GtkAboutDialogClass, AboutDialogClass>) @extends Dialog, Window, Bin, Container, Widget, @implements Buildable, Root;
+    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, gtk_sys::GtkAboutDialogClass, AboutDialogClass>) @extends Dialog, Window, Bin, Container, Widget, @implements Buildable, Root;
 
     match fn {
-        get_type => || ffi::gtk_about_dialog_get_type(),
+        get_type => || gtk_sys::gtk_about_dialog_get_type(),
     }
 }
 
@@ -35,7 +40,7 @@ impl AboutDialog {
     pub fn new() -> AboutDialog {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_about_dialog_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_about_dialog_new()).unsafe_cast()
         }
     }
 }
@@ -153,195 +158,195 @@ pub trait AboutDialogExt: 'static {
 impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     fn add_credit_section(&self, section_name: &str, people: &[&str]) {
         unsafe {
-            ffi::gtk_about_dialog_add_credit_section(self.as_ref().to_glib_none().0, section_name.to_glib_none().0, people.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_add_credit_section(self.as_ref().to_glib_none().0, section_name.to_glib_none().0, people.to_glib_none().0);
         }
     }
 
     fn get_artists(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_artists(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_about_dialog_get_artists(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_authors(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_authors(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_about_dialog_get_authors(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_comments(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_comments(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_comments(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_copyright(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_copyright(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_copyright(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_documenters(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_documenters(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_about_dialog_get_documenters(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_license(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_license(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_license(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_license_type(&self) -> License {
         unsafe {
-            from_glib(ffi::gtk_about_dialog_get_license_type(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_about_dialog_get_license_type(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_logo(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call ffi::gtk_about_dialog_get_logo() }
+    //    unsafe { TODO: call gtk_sys:gtk_about_dialog_get_logo() }
     //}
 
     fn get_logo_icon_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_logo_icon_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_logo_icon_name(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_program_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_program_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_program_name(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_system_information(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_system_information(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_system_information(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_translator_credits(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_translator_credits(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_translator_credits(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_version(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_version(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_version(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_website(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_website(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_website(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_website_label(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_about_dialog_get_website_label(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_about_dialog_get_website_label(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_wrap_license(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_about_dialog_get_wrap_license(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_about_dialog_get_wrap_license(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_artists(&self, artists: &[&str]) {
         unsafe {
-            ffi::gtk_about_dialog_set_artists(self.as_ref().to_glib_none().0, artists.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_artists(self.as_ref().to_glib_none().0, artists.to_glib_none().0);
         }
     }
 
     fn set_authors(&self, authors: &[&str]) {
         unsafe {
-            ffi::gtk_about_dialog_set_authors(self.as_ref().to_glib_none().0, authors.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_authors(self.as_ref().to_glib_none().0, authors.to_glib_none().0);
         }
     }
 
     fn set_comments(&self, comments: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_comments(self.as_ref().to_glib_none().0, comments.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_comments(self.as_ref().to_glib_none().0, comments.to_glib_none().0);
         }
     }
 
     fn set_copyright(&self, copyright: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_copyright(self.as_ref().to_glib_none().0, copyright.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_copyright(self.as_ref().to_glib_none().0, copyright.to_glib_none().0);
         }
     }
 
     fn set_documenters(&self, documenters: &[&str]) {
         unsafe {
-            ffi::gtk_about_dialog_set_documenters(self.as_ref().to_glib_none().0, documenters.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_documenters(self.as_ref().to_glib_none().0, documenters.to_glib_none().0);
         }
     }
 
     fn set_license(&self, license: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_license(self.as_ref().to_glib_none().0, license.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_license(self.as_ref().to_glib_none().0, license.to_glib_none().0);
         }
     }
 
     fn set_license_type(&self, license_type: License) {
         unsafe {
-            ffi::gtk_about_dialog_set_license_type(self.as_ref().to_glib_none().0, license_type.to_glib());
+            gtk_sys::gtk_about_dialog_set_license_type(self.as_ref().to_glib_none().0, license_type.to_glib());
         }
     }
 
     //fn set_logo(&self, logo: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call ffi::gtk_about_dialog_set_logo() }
+    //    unsafe { TODO: call gtk_sys:gtk_about_dialog_set_logo() }
     //}
 
     fn set_logo_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_logo_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_logo_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     fn set_program_name(&self, name: &str) {
         unsafe {
-            ffi::gtk_about_dialog_set_program_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_program_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     fn set_system_information(&self, system_information: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_system_information(self.as_ref().to_glib_none().0, system_information.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_system_information(self.as_ref().to_glib_none().0, system_information.to_glib_none().0);
         }
     }
 
     fn set_translator_credits(&self, translator_credits: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_translator_credits(self.as_ref().to_glib_none().0, translator_credits.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_translator_credits(self.as_ref().to_glib_none().0, translator_credits.to_glib_none().0);
         }
     }
 
     fn set_version(&self, version: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_version(self.as_ref().to_glib_none().0, version.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_version(self.as_ref().to_glib_none().0, version.to_glib_none().0);
         }
     }
 
     fn set_website(&self, website: Option<&str>) {
         unsafe {
-            ffi::gtk_about_dialog_set_website(self.as_ref().to_glib_none().0, website.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_website(self.as_ref().to_glib_none().0, website.to_glib_none().0);
         }
     }
 
     fn set_website_label(&self, website_label: &str) {
         unsafe {
-            ffi::gtk_about_dialog_set_website_label(self.as_ref().to_glib_none().0, website_label.to_glib_none().0);
+            gtk_sys::gtk_about_dialog_set_website_label(self.as_ref().to_glib_none().0, website_label.to_glib_none().0);
         }
     }
 
     fn set_wrap_license(&self, wrap_license: bool) {
         unsafe {
-            ffi::gtk_about_dialog_set_wrap_license(self.as_ref().to_glib_none().0, wrap_license.to_glib());
+            gtk_sys::gtk_about_dialog_set_wrap_license(self.as_ref().to_glib_none().0, wrap_license.to_glib());
         }
     }
 
@@ -482,103 +487,103 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 }
 
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> bool + 'static>(this: *mut ffi::GtkAboutDialog, uri: *mut libc::c_char, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> bool + 'static>(this: *mut gtk_sys::GtkAboutDialog, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()
 }
 
-unsafe extern "C" fn notify_artists_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_artists_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_authors_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_authors_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_comments_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_comments_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_copyright_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_copyright_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_documenters_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_documenters_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_license_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_license_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_logo_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_logo_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_logo_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_logo_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_program_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_program_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_system_information_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_system_information_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_translator_credits_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_translator_credits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_version_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_version_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_website_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_website_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_website_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_website_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_wrap_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAboutDialog, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_wrap_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast())

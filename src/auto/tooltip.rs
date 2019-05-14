@@ -3,54 +3,54 @@
 // DO NOT EDIT
 
 use Widget;
-use ffi;
 use glib::object::IsA;
 use glib::translate::*;
+use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct Tooltip(Object<ffi::GtkTooltip, TooltipClass>);
+    pub struct Tooltip(Object<gtk_sys::GtkTooltip, TooltipClass>);
 
     match fn {
-        get_type => || ffi::gtk_tooltip_get_type(),
+        get_type => || gtk_sys::gtk_tooltip_get_type(),
     }
 }
 
 impl Tooltip {
     pub fn set_custom<P: IsA<Widget>>(&self, custom_widget: Option<&P>) {
         unsafe {
-            ffi::gtk_tooltip_set_custom(self.to_glib_none().0, custom_widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_tooltip_set_custom(self.to_glib_none().0, custom_widget.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     //pub fn set_icon(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call ffi::gtk_tooltip_set_icon() }
+    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_icon() }
     //}
 
     //pub fn set_icon_from_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe { TODO: call ffi::gtk_tooltip_set_icon_from_gicon() }
+    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_icon_from_gicon() }
     //}
 
     pub fn set_icon_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            ffi::gtk_tooltip_set_icon_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            gtk_sys::gtk_tooltip_set_icon_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     pub fn set_markup(&self, markup: Option<&str>) {
         unsafe {
-            ffi::gtk_tooltip_set_markup(self.to_glib_none().0, markup.to_glib_none().0);
+            gtk_sys::gtk_tooltip_set_markup(self.to_glib_none().0, markup.to_glib_none().0);
         }
     }
 
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
-            ffi::gtk_tooltip_set_text(self.to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_tooltip_set_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     //pub fn set_tip_area(&self, rect: /*Ignored*/&gdk::Rectangle) {
-    //    unsafe { TODO: call ffi::gtk_tooltip_set_tip_area() }
+    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_tip_area() }
     //}
 }
 

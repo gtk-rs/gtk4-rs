@@ -3,16 +3,22 @@
 // DO NOT EDIT
 
 use EventController;
-use ffi;
 use glib::object::Cast;
+use glib::object::ObjectType;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct EventControllerLegacy(Object<ffi::GtkEventControllerLegacy, ffi::GtkEventControllerLegacyClass, EventControllerLegacyClass>) @extends EventController;
+    pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass, EventControllerLegacyClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_legacy_get_type(),
+        get_type => || gtk_sys::gtk_event_controller_legacy_get_type(),
     }
 }
 
@@ -20,7 +26,7 @@ impl EventControllerLegacy {
     pub fn new() -> EventControllerLegacy {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(ffi::gtk_event_controller_legacy_new()).unsafe_cast()
+            EventController::from_glib_full(gtk_sys::gtk_event_controller_legacy_new()).unsafe_cast()
         }
     }
 
@@ -34,8 +40,6 @@ impl Default for EventControllerLegacy {
         Self::new()
     }
 }
-
-pub const NONE_EVENT_CONTROLLER_LEGACY: Option<&EventControllerLegacy> = None;
 
 impl fmt::Display for EventControllerLegacy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -2,17 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::translate::*;
+use gtk_sys;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct Requisition(Boxed<ffi::GtkRequisition>);
+    pub struct Requisition(Boxed<gtk_sys::GtkRequisition>);
 
     match fn {
-        copy => |ptr| ffi::gtk_requisition_copy(mut_override(ptr)),
-        free => |ptr| ffi::gtk_requisition_free(ptr),
-        get_type => || ffi::gtk_requisition_get_type(),
+        copy => |ptr| gtk_sys::gtk_requisition_copy(mut_override(ptr)),
+        free => |ptr| gtk_sys::gtk_requisition_free(ptr),
+        get_type => || gtk_sys::gtk_requisition_get_type(),
     }
 }
 
@@ -20,7 +20,7 @@ impl Requisition {
     pub fn new() -> Requisition {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gtk_requisition_new())
+            from_glib_full(gtk_sys::gtk_requisition_new())
         }
     }
 }

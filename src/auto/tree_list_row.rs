@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -10,17 +9,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct TreeListRow(Object<ffi::GtkTreeListRow, ffi::GtkTreeListRowClass, TreeListRowClass>);
+    pub struct TreeListRow(Object<gtk_sys::GtkTreeListRow, gtk_sys::GtkTreeListRowClass, TreeListRowClass>);
 
     match fn {
-        get_type => || ffi::gtk_tree_list_row_get_type(),
+        get_type => || gtk_sys::gtk_tree_list_row_get_type(),
     }
 }
 
@@ -61,58 +61,58 @@ pub trait TreeListRowExt: 'static {
 impl<O: IsA<TreeListRow>> TreeListRowExt for O {
     fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
-            from_glib_full(ffi::gtk_tree_list_row_get_child_row(self.as_ref().to_glib_none().0, position))
+            from_glib_full(gtk_sys::gtk_tree_list_row_get_child_row(self.as_ref().to_glib_none().0, position))
         }
     }
 
     //fn get_children(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_tree_list_row_get_children() }
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_row_get_children() }
     //}
 
     fn get_depth(&self) -> u32 {
         unsafe {
-            ffi::gtk_tree_list_row_get_depth(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_tree_list_row_get_depth(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_expanded(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tree_list_row_get_expanded(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tree_list_row_get_expanded(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_item(&self) -> /*Ignored*/Option<glib::Object> {
-    //    unsafe { TODO: call ffi::gtk_tree_list_row_get_item() }
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_row_get_item() }
     //}
 
     fn get_parent(&self) -> Option<TreeListRow> {
         unsafe {
-            from_glib_full(ffi::gtk_tree_list_row_get_parent(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_tree_list_row_get_parent(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_position(&self) -> u32 {
         unsafe {
-            ffi::gtk_tree_list_row_get_position(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_tree_list_row_get_position(self.as_ref().to_glib_none().0)
         }
     }
 
     fn is_expandable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tree_list_row_is_expandable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tree_list_row_is_expandable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_expanded(&self, expanded: bool) {
         unsafe {
-            ffi::gtk_tree_list_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
+            gtk_sys::gtk_tree_list_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
         }
     }
 
     fn get_property_expandable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"expandable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"expandable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -158,31 +158,31 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
     }
 }
 
-unsafe extern "C" fn notify_children_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkTreeListRow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_children_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeListRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<TreeListRow> {
     let f: &F = &*(f as *const F);
     f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_depth_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkTreeListRow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_depth_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeListRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<TreeListRow> {
     let f: &F = &*(f as *const F);
     f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_expandable_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkTreeListRow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_expandable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeListRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<TreeListRow> {
     let f: &F = &*(f as *const F);
     f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkTreeListRow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeListRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<TreeListRow> {
     let f: &F = &*(f as *const F);
     f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkTreeListRow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeListRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<TreeListRow> {
     let f: &F = &*(f as *const F);
     f(&TreeListRow::from_glib_borrow(this).unsafe_cast())

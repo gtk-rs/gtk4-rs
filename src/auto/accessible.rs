@@ -4,22 +4,27 @@
 
 use Widget;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Accessible(Object<ffi::GtkAccessible, ffi::GtkAccessibleClass, AccessibleClass>) @extends atk::Object;
+    pub struct Accessible(Object<gtk_sys::GtkAccessible, gtk_sys::GtkAccessibleClass, AccessibleClass>) @extends atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_accessible_get_type(),
+        get_type => || gtk_sys::gtk_accessible_get_type(),
     }
 }
 
@@ -36,13 +41,13 @@ pub trait AccessibleExt: 'static {
 impl<O: IsA<Accessible>> AccessibleExt for O {
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_accessible_get_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_accessible_get_widget(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            ffi::gtk_accessible_set_widget(self.as_ref().to_glib_none().0, widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_accessible_set_widget(self.as_ref().to_glib_none().0, widget.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
@@ -55,7 +60,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     }
 }
 
-unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAccessible, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccessible, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Accessible> {
     let f: &F = &*(f as *const F);
     f(&Accessible::from_glib_borrow(this).unsafe_cast())

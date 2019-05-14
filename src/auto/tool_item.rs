@@ -9,7 +9,7 @@ use Orientation;
 use SizeGroup;
 use ToolbarStyle;
 use Widget;
-use ffi;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -17,17 +17,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ToolItem(Object<ffi::GtkToolItem, ffi::GtkToolItemClass, ToolItemClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct ToolItem(Object<gtk_sys::GtkToolItem, gtk_sys::GtkToolItemClass, ToolItemClass>) @extends Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_tool_item_get_type(),
+        get_type => || gtk_sys::gtk_tool_item_get_type(),
     }
 }
 
@@ -35,7 +36,7 @@ impl ToolItem {
     pub fn new() -> ToolItem {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::gtk_tool_item_new())
+            from_glib_none(gtk_sys::gtk_tool_item_new())
         }
     }
 }
@@ -112,140 +113,140 @@ pub trait ToolItemExt: 'static {
 
 impl<O: IsA<ToolItem>> ToolItemExt for O {
     //fn get_ellipsize_mode(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call ffi::gtk_tool_item_get_ellipsize_mode() }
+    //    unsafe { TODO: call gtk_sys:gtk_tool_item_get_ellipsize_mode() }
     //}
 
     fn get_expand(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_expand(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_expand(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_homogeneous(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_homogeneous(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_is_important(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_is_important(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_is_important(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_orientation(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_orientation(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_proxy_menu_item(&self, menu_item_id: &str) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_tool_item_get_proxy_menu_item(self.as_ref().to_glib_none().0, menu_item_id.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_tool_item_get_proxy_menu_item(self.as_ref().to_glib_none().0, menu_item_id.to_glib_none().0))
         }
     }
 
     fn get_text_alignment(&self) -> f32 {
         unsafe {
-            ffi::gtk_tool_item_get_text_alignment(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_tool_item_get_text_alignment(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_text_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_text_orientation(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_text_orientation(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_text_size_group(&self) -> Option<SizeGroup> {
         unsafe {
-            from_glib_none(ffi::gtk_tool_item_get_text_size_group(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_tool_item_get_text_size_group(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_toolbar_style(&self) -> ToolbarStyle {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_toolbar_style(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_toolbar_style(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_visible_horizontal(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_visible_horizontal(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_visible_horizontal(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_visible_vertical(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_tool_item_get_visible_vertical(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_tool_item_get_visible_vertical(self.as_ref().to_glib_none().0))
         }
     }
 
     fn rebuild_menu(&self) {
         unsafe {
-            ffi::gtk_tool_item_rebuild_menu(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_tool_item_rebuild_menu(self.as_ref().to_glib_none().0);
         }
     }
 
     fn retrieve_proxy_menu_item(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_tool_item_retrieve_proxy_menu_item(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_tool_item_retrieve_proxy_menu_item(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_expand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_tool_item_set_expand(self.as_ref().to_glib_none().0, expand.to_glib());
+            gtk_sys::gtk_tool_item_set_expand(self.as_ref().to_glib_none().0, expand.to_glib());
         }
     }
 
     fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::gtk_tool_item_set_homogeneous(self.as_ref().to_glib_none().0, homogeneous.to_glib());
+            gtk_sys::gtk_tool_item_set_homogeneous(self.as_ref().to_glib_none().0, homogeneous.to_glib());
         }
     }
 
     fn set_is_important(&self, is_important: bool) {
         unsafe {
-            ffi::gtk_tool_item_set_is_important(self.as_ref().to_glib_none().0, is_important.to_glib());
+            gtk_sys::gtk_tool_item_set_is_important(self.as_ref().to_glib_none().0, is_important.to_glib());
         }
     }
 
     fn set_proxy_menu_item<P: IsA<Widget>>(&self, menu_item_id: &str, menu_item: Option<&P>) {
         unsafe {
-            ffi::gtk_tool_item_set_proxy_menu_item(self.as_ref().to_glib_none().0, menu_item_id.to_glib_none().0, menu_item.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_tool_item_set_proxy_menu_item(self.as_ref().to_glib_none().0, menu_item_id.to_glib_none().0, menu_item.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_visible_horizontal(&self, visible_horizontal: bool) {
         unsafe {
-            ffi::gtk_tool_item_set_visible_horizontal(self.as_ref().to_glib_none().0, visible_horizontal.to_glib());
+            gtk_sys::gtk_tool_item_set_visible_horizontal(self.as_ref().to_glib_none().0, visible_horizontal.to_glib());
         }
     }
 
     fn set_visible_vertical(&self, visible_vertical: bool) {
         unsafe {
-            ffi::gtk_tool_item_set_visible_vertical(self.as_ref().to_glib_none().0, visible_vertical.to_glib());
+            gtk_sys::gtk_tool_item_set_visible_vertical(self.as_ref().to_glib_none().0, visible_vertical.to_glib());
         }
     }
 
     fn toolbar_reconfigured(&self) {
         unsafe {
-            ffi::gtk_tool_item_toolbar_reconfigured(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_tool_item_toolbar_reconfigured(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_expand_item(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"expand-item\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"expand-item\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_expand_item(&self, expand_item: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"expand-item\0".as_ptr() as *const _, Value::from(&expand_item).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"expand-item\0".as_ptr() as *const _, Value::from(&expand_item).to_glib_none().0);
         }
     }
 
@@ -306,43 +307,43 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 }
 
-unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkToolItem, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn toolbar_reconfigured_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, f: glib_ffi::gpointer)
+unsafe extern "C" fn toolbar_reconfigured_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_expand_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_expand_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_is_important_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_is_important_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_visible_horizontal_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_visible_horizontal_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_visible_vertical_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_visible_vertical_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast())

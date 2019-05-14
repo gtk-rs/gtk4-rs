@@ -3,41 +3,41 @@
 // DO NOT EDIT
 
 use PageSetup;
-use ffi;
 use glib::translate::*;
+use gtk_sys;
 use std::fmt;
 use std::mem;
 
 glib_wrapper! {
-    pub struct PrintContext(Object<ffi::GtkPrintContext, PrintContextClass>);
+    pub struct PrintContext(Object<gtk_sys::GtkPrintContext, PrintContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_print_context_get_type(),
+        get_type => || gtk_sys::gtk_print_context_get_type(),
     }
 }
 
 impl PrintContext {
     //pub fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call ffi::gtk_print_context_create_pango_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_context() }
     //}
 
     //pub fn create_pango_layout(&self) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call ffi::gtk_print_context_create_pango_layout() }
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_layout() }
     //}
 
     //pub fn get_cairo_context(&self) -> /*Ignored*/Option<cairo::Context> {
-    //    unsafe { TODO: call ffi::gtk_print_context_get_cairo_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_cairo_context() }
     //}
 
     pub fn get_dpi_x(&self) -> f64 {
         unsafe {
-            ffi::gtk_print_context_get_dpi_x(self.to_glib_none().0)
+            gtk_sys::gtk_print_context_get_dpi_x(self.to_glib_none().0)
         }
     }
 
     pub fn get_dpi_y(&self) -> f64 {
         unsafe {
-            ffi::gtk_print_context_get_dpi_y(self.to_glib_none().0)
+            gtk_sys::gtk_print_context_get_dpi_y(self.to_glib_none().0)
         }
     }
 
@@ -47,35 +47,35 @@ impl PrintContext {
             let mut bottom = mem::uninitialized();
             let mut left = mem::uninitialized();
             let mut right = mem::uninitialized();
-            let ret = from_glib(ffi::gtk_print_context_get_hard_margins(self.to_glib_none().0, &mut top, &mut bottom, &mut left, &mut right));
+            let ret = from_glib(gtk_sys::gtk_print_context_get_hard_margins(self.to_glib_none().0, &mut top, &mut bottom, &mut left, &mut right));
             if ret { Some((top, bottom, left, right)) } else { None }
         }
     }
 
     pub fn get_height(&self) -> f64 {
         unsafe {
-            ffi::gtk_print_context_get_height(self.to_glib_none().0)
+            gtk_sys::gtk_print_context_get_height(self.to_glib_none().0)
         }
     }
 
     pub fn get_page_setup(&self) -> Option<PageSetup> {
         unsafe {
-            from_glib_none(ffi::gtk_print_context_get_page_setup(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_print_context_get_page_setup(self.to_glib_none().0))
         }
     }
 
     //pub fn get_pango_fontmap(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call ffi::gtk_print_context_get_pango_fontmap() }
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_pango_fontmap() }
     //}
 
     pub fn get_width(&self) -> f64 {
         unsafe {
-            ffi::gtk_print_context_get_width(self.to_glib_none().0)
+            gtk_sys::gtk_print_context_get_width(self.to_glib_none().0)
         }
     }
 
     //pub fn set_cairo_context(&self, cr: /*Ignored*/&mut cairo::Context, dpi_x: f64, dpi_y: f64) {
-    //    unsafe { TODO: call ffi::gtk_print_context_set_cairo_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_set_cairo_context() }
     //}
 }
 

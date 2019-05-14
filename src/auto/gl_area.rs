@@ -5,13 +5,17 @@
 use Buildable;
 use Error;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -19,10 +23,10 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct GLArea(Object<ffi::GtkGLArea, ffi::GtkGLAreaClass, GLAreaClass>) @extends Widget, @implements Buildable;
+    pub struct GLArea(Object<gtk_sys::GtkGLArea, gtk_sys::GtkGLAreaClass, GLAreaClass>) @extends Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_gl_area_get_type(),
+        get_type => || gtk_sys::gtk_gl_area_get_type(),
     }
 }
 
@@ -30,7 +34,7 @@ impl GLArea {
     pub fn new() -> GLArea {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_gl_area_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_gl_area_new()).unsafe_cast()
         }
     }
 }
@@ -96,35 +100,35 @@ pub trait GLAreaExt: 'static {
 impl<O: IsA<GLArea>> GLAreaExt for O {
     fn attach_buffers(&self) {
         unsafe {
-            ffi::gtk_gl_area_attach_buffers(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_gl_area_attach_buffers(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_auto_render(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gl_area_get_auto_render(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gl_area_get_auto_render(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_context(&self) -> /*Ignored*/Option<gdk::GLContext> {
-    //    unsafe { TODO: call ffi::gtk_gl_area_get_context() }
+    //    unsafe { TODO: call gtk_sys:gtk_gl_area_get_context() }
     //}
 
     fn get_error(&self) -> Option<Error> {
         unsafe {
-            from_glib_none(ffi::gtk_gl_area_get_error(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_gl_area_get_error(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_has_depth_buffer(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gl_area_get_has_depth_buffer(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gl_area_get_has_depth_buffer(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_has_stencil_buffer(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gl_area_get_has_stencil_buffer(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gl_area_get_has_stencil_buffer(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -132,62 +136,62 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         unsafe {
             let mut major = mem::uninitialized();
             let mut minor = mem::uninitialized();
-            ffi::gtk_gl_area_get_required_version(self.as_ref().to_glib_none().0, &mut major, &mut minor);
+            gtk_sys::gtk_gl_area_get_required_version(self.as_ref().to_glib_none().0, &mut major, &mut minor);
             (major, minor)
         }
     }
 
     fn get_use_es(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_gl_area_get_use_es(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_gl_area_get_use_es(self.as_ref().to_glib_none().0))
         }
     }
 
     fn make_current(&self) {
         unsafe {
-            ffi::gtk_gl_area_make_current(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_gl_area_make_current(self.as_ref().to_glib_none().0);
         }
     }
 
     fn queue_render(&self) {
         unsafe {
-            ffi::gtk_gl_area_queue_render(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_gl_area_queue_render(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_auto_render(&self, auto_render: bool) {
         unsafe {
-            ffi::gtk_gl_area_set_auto_render(self.as_ref().to_glib_none().0, auto_render.to_glib());
+            gtk_sys::gtk_gl_area_set_auto_render(self.as_ref().to_glib_none().0, auto_render.to_glib());
         }
     }
 
     fn set_error(&self, error: Option<&Error>) {
         unsafe {
-            ffi::gtk_gl_area_set_error(self.as_ref().to_glib_none().0, error.to_glib_none().0);
+            gtk_sys::gtk_gl_area_set_error(self.as_ref().to_glib_none().0, error.to_glib_none().0);
         }
     }
 
     fn set_has_depth_buffer(&self, has_depth_buffer: bool) {
         unsafe {
-            ffi::gtk_gl_area_set_has_depth_buffer(self.as_ref().to_glib_none().0, has_depth_buffer.to_glib());
+            gtk_sys::gtk_gl_area_set_has_depth_buffer(self.as_ref().to_glib_none().0, has_depth_buffer.to_glib());
         }
     }
 
     fn set_has_stencil_buffer(&self, has_stencil_buffer: bool) {
         unsafe {
-            ffi::gtk_gl_area_set_has_stencil_buffer(self.as_ref().to_glib_none().0, has_stencil_buffer.to_glib());
+            gtk_sys::gtk_gl_area_set_has_stencil_buffer(self.as_ref().to_glib_none().0, has_stencil_buffer.to_glib());
         }
     }
 
     fn set_required_version(&self, major: i32, minor: i32) {
         unsafe {
-            ffi::gtk_gl_area_set_required_version(self.as_ref().to_glib_none().0, major, minor);
+            gtk_sys::gtk_gl_area_set_required_version(self.as_ref().to_glib_none().0, major, minor);
         }
     }
 
     fn set_use_es(&self, use_es: bool) {
         unsafe {
-            ffi::gtk_gl_area_set_use_es(self.as_ref().to_glib_none().0, use_es.to_glib());
+            gtk_sys::gtk_gl_area_set_use_es(self.as_ref().to_glib_none().0, use_es.to_glib());
         }
     }
 
@@ -248,37 +252,37 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 }
 
-unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut ffi::GtkGLArea, width: libc::c_int, height: libc::c_int, f: glib_ffi::gpointer)
+unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gtk_sys::GtkGLArea, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast(), width, height)
 }
 
-unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkGLArea, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkGLArea, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkGLArea, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkGLArea, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkGLArea, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast())

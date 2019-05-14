@@ -6,7 +6,6 @@ use Buildable;
 use IconSize;
 use ImageType;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -15,18 +14,19 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Image(Object<ffi::GtkImage, ffi::GtkImageClass, ImageClass>) @extends Widget, @implements Buildable;
+    pub struct Image(Object<gtk_sys::GtkImage, gtk_sys::GtkImageClass, ImageClass>) @extends Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_image_get_type(),
+        get_type => || gtk_sys::gtk_image_get_type(),
     }
 }
 
@@ -34,40 +34,40 @@ impl Image {
     pub fn new() -> Image {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_image_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_image_new()).unsafe_cast()
         }
     }
 
     pub fn new_from_file<P: AsRef<std::path::Path>>(filename: P) -> Image {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_image_new_from_file(filename.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_file(filename.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
     //pub fn new_from_gicon(icon: /*Ignored*/&gio::Icon) -> Image {
-    //    unsafe { TODO: call ffi::gtk_image_new_from_gicon() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_gicon() }
     //}
 
     pub fn new_from_icon_name(icon_name: Option<&str>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_image_new_from_icon_name(icon_name.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_icon_name(icon_name.to_glib_none().0)).unsafe_cast()
         }
     }
 
     //pub fn new_from_paintable(paintable: /*Ignored*/Option<&gdk::Paintable>) -> Image {
-    //    unsafe { TODO: call ffi::gtk_image_new_from_paintable() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_paintable() }
     //}
 
     //pub fn new_from_pixbuf(pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) -> Image {
-    //    unsafe { TODO: call ffi::gtk_image_new_from_pixbuf() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_pixbuf() }
     //}
 
     pub fn new_from_resource(resource_path: &str) -> Image {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_image_new_from_resource(resource_path.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_resource(resource_path.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -151,141 +151,141 @@ pub trait ImageExt: 'static {
 impl<O: IsA<Image>> ImageExt for O {
     fn clear(&self) {
         unsafe {
-            ffi::gtk_image_clear(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_image_clear(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn get_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe { TODO: call ffi::gtk_image_get_gicon() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_get_gicon() }
     //}
 
     fn get_icon_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_image_get_icon_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_image_get_icon_name(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_icon_size(&self) -> IconSize {
         unsafe {
-            from_glib(ffi::gtk_image_get_icon_size(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_image_get_icon_size(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call ffi::gtk_image_get_paintable() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_get_paintable() }
     //}
 
     fn get_pixel_size(&self) -> i32 {
         unsafe {
-            ffi::gtk_image_get_pixel_size(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_image_get_pixel_size(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_storage_type(&self) -> ImageType {
         unsafe {
-            from_glib(ffi::gtk_image_get_storage_type(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_image_get_storage_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_from_file<P: AsRef<std::path::Path>>(&self, filename: P) {
         unsafe {
-            ffi::gtk_image_set_from_file(self.as_ref().to_glib_none().0, filename.as_ref().to_glib_none().0);
+            gtk_sys::gtk_image_set_from_file(self.as_ref().to_glib_none().0, filename.as_ref().to_glib_none().0);
         }
     }
 
     //fn set_from_gicon(&self, icon: /*Ignored*/&gio::Icon) {
-    //    unsafe { TODO: call ffi::gtk_image_set_from_gicon() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_gicon() }
     //}
 
     fn set_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            ffi::gtk_image_set_from_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
+            gtk_sys::gtk_image_set_from_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     //fn set_from_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call ffi::gtk_image_set_from_paintable() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_paintable() }
     //}
 
     //fn set_from_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
-    //    unsafe { TODO: call ffi::gtk_image_set_from_pixbuf() }
+    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_pixbuf() }
     //}
 
     fn set_from_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            ffi::gtk_image_set_from_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
+            gtk_sys::gtk_image_set_from_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
         }
     }
 
     fn set_icon_size(&self, icon_size: IconSize) {
         unsafe {
-            ffi::gtk_image_set_icon_size(self.as_ref().to_glib_none().0, icon_size.to_glib());
+            gtk_sys::gtk_image_set_icon_size(self.as_ref().to_glib_none().0, icon_size.to_glib());
         }
     }
 
     fn set_pixel_size(&self, pixel_size: i32) {
         unsafe {
-            ffi::gtk_image_set_pixel_size(self.as_ref().to_glib_none().0, pixel_size);
+            gtk_sys::gtk_image_set_pixel_size(self.as_ref().to_glib_none().0, pixel_size);
         }
     }
 
     fn get_property_file(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"file\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"file\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_file(&self, file: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"file\0".as_ptr() as *const _, Value::from(file).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"file\0".as_ptr() as *const _, Value::from(file).to_glib_none().0);
         }
     }
 
     //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
     //    }
     //}
 
     fn set_property_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"icon-name\0".as_ptr() as *const _, Value::from(icon_name).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-name\0".as_ptr() as *const _, Value::from(icon_name).to_glib_none().0);
         }
     }
 
     //fn set_property_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
     //    unsafe {
-    //        gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"paintable\0".as_ptr() as *const _, Value::from(paintable).to_glib_none().0);
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paintable\0".as_ptr() as *const _, Value::from(paintable).to_glib_none().0);
     //    }
     //}
 
     fn get_property_resource(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resource\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resource\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
     fn set_property_resource(&self, resource: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resource\0".as_ptr() as *const _, Value::from(resource).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resource\0".as_ptr() as *const _, Value::from(resource).to_glib_none().0);
         }
     }
 
     fn get_property_use_fallback(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"use-fallback\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"use-fallback\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_use_fallback(&self, use_fallback: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"use-fallback\0".as_ptr() as *const _, Value::from(&use_fallback).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"use-fallback\0".as_ptr() as *const _, Value::from(&use_fallback).to_glib_none().0);
         }
     }
 
@@ -362,55 +362,55 @@ impl<O: IsA<Image>> ImageExt for O {
     }
 }
 
-unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_gicon_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_gicon_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_icon_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_icon_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_paintable_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_paintable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pixel_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pixel_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_resource_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_resource_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_storage_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_storage_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkImage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkImage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Image> {
     let f: &F = &*(f as *const F);
     f(&Image::from_glib_borrow(this).unsafe_cast())

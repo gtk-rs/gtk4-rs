@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -11,29 +10,30 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass, SliceListModelClass>);
+    pub struct SliceListModel(Object<gtk_sys::GtkSliceListModel, gtk_sys::GtkSliceListModelClass, SliceListModelClass>);
 
     match fn {
-        get_type => || ffi::gtk_slice_list_model_get_type(),
+        get_type => || gtk_sys::gtk_slice_list_model_get_type(),
     }
 }
 
 impl SliceListModel {
     //pub fn new(model: /*Ignored*/&gio::ListModel, offset: u32, size: u32) -> SliceListModel {
-    //    unsafe { TODO: call ffi::gtk_slice_list_model_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_new() }
     //}
 
     pub fn new_for_type(item_type: glib::types::Type) -> SliceListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gtk_slice_list_model_new_for_type(item_type.to_glib()))
+            from_glib_full(gtk_sys::gtk_slice_list_model_new_for_type(item_type.to_glib()))
         }
     }
 }
@@ -64,41 +64,41 @@ pub trait SliceListModelExt: 'static {
 
 impl<O: IsA<SliceListModel>> SliceListModelExt for O {
     //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_slice_list_model_get_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_get_model() }
     //}
 
     fn get_offset(&self) -> u32 {
         unsafe {
-            ffi::gtk_slice_list_model_get_offset(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_slice_list_model_get_offset(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_size(&self) -> u32 {
         unsafe {
-            ffi::gtk_slice_list_model_get_size(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_slice_list_model_get_size(self.as_ref().to_glib_none().0)
         }
     }
 
     //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
-    //    unsafe { TODO: call ffi::gtk_slice_list_model_set_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_set_model() }
     //}
 
     fn set_offset(&self, offset: u32) {
         unsafe {
-            ffi::gtk_slice_list_model_set_offset(self.as_ref().to_glib_none().0, offset);
+            gtk_sys::gtk_slice_list_model_set_offset(self.as_ref().to_glib_none().0, offset);
         }
     }
 
     fn set_size(&self, size: u32) {
         unsafe {
-            ffi::gtk_slice_list_model_set_size(self.as_ref().to_glib_none().0, size);
+            gtk_sys::gtk_slice_list_model_set_size(self.as_ref().to_glib_none().0, size);
         }
     }
 
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {
             let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -128,19 +128,19 @@ impl<O: IsA<SliceListModel>> SliceListModelExt for O {
     }
 }
 
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSliceListModel, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSliceListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SliceListModel> {
     let f: &F = &*(f as *const F);
     f(&SliceListModel::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_offset_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSliceListModel, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_offset_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSliceListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SliceListModel> {
     let f: &F = &*(f as *const F);
     f(&SliceListModel::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSliceListModel, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSliceListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SliceListModel> {
     let f: &F = &*(f as *const F);
     f(&SliceListModel::from_glib_borrow(this).unsafe_cast())

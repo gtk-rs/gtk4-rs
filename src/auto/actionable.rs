@@ -4,23 +4,23 @@
 
 use Buildable;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Actionable(Interface<ffi::GtkActionable>) @requires Widget, Buildable;
+    pub struct Actionable(Interface<gtk_sys::GtkActionable>) @requires Widget, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_actionable_get_type(),
+        get_type => || gtk_sys::gtk_actionable_get_type(),
     }
 }
 
@@ -49,38 +49,38 @@ pub trait ActionableExt: 'static {
 impl<O: IsA<Actionable>> ActionableExt for O {
     fn get_action_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_actionable_get_action_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_actionable_get_action_name(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_action_target_value(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call ffi::gtk_actionable_get_action_target_value() }
+    //    unsafe { TODO: call gtk_sys:gtk_actionable_get_action_target_value() }
     //}
 
     fn set_action_name(&self, action_name: Option<&str>) {
         unsafe {
-            ffi::gtk_actionable_set_action_name(self.as_ref().to_glib_none().0, action_name.to_glib_none().0);
+            gtk_sys::gtk_actionable_set_action_name(self.as_ref().to_glib_none().0, action_name.to_glib_none().0);
         }
     }
 
     //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi::gtk_actionable_set_action_target() }
+    //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target() }
     //}
 
     //fn set_action_target_value(&self, target_value: /*Ignored*/Option<&glib::Variant>) {
-    //    unsafe { TODO: call ffi::gtk_actionable_set_action_target_value() }
+    //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target_value() }
     //}
 
     fn set_detailed_action_name(&self, detailed_action_name: &str) {
         unsafe {
-            ffi::gtk_actionable_set_detailed_action_name(self.as_ref().to_glib_none().0, detailed_action_name.to_glib_none().0);
+            gtk_sys::gtk_actionable_set_detailed_action_name(self.as_ref().to_glib_none().0, detailed_action_name.to_glib_none().0);
         }
     }
 
     //fn get_property_action_target(&self) -> /*Ignored*/Option<glib::Variant> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"action-target\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"action-target\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
@@ -102,13 +102,13 @@ impl<O: IsA<Actionable>> ActionableExt for O {
     }
 }
 
-unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkActionable, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Actionable> {
     let f: &F = &*(f as *const F);
     f(&Actionable::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkActionable, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Actionable> {
     let f: &F = &*(f as *const F);
     f(&Actionable::from_glib_borrow(this).unsafe_cast())

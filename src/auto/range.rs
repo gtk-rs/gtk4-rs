@@ -7,16 +7,19 @@ use Buildable;
 use Orientable;
 use ScrollType;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -24,10 +27,10 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass, RangeClass>) @extends Widget, @implements Buildable, Orientable;
+    pub struct Range(Object<gtk_sys::GtkRange, gtk_sys::GtkRangeClass, RangeClass>) @extends Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_range_get_type(),
+        get_type => || gtk_sys::gtk_range_get_type(),
     }
 }
 
@@ -104,47 +107,47 @@ pub trait RangeExt: 'static {
 impl<O: IsA<Range>> RangeExt for O {
     fn get_adjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(ffi::gtk_range_get_adjustment(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_range_get_adjustment(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_fill_level(&self) -> f64 {
         unsafe {
-            ffi::gtk_range_get_fill_level(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_range_get_fill_level(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_flippable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_range_get_flippable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_range_get_flippable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_inverted(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_range_get_inverted(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_range_get_inverted(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn get_range_rect(&self, range_rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call ffi::gtk_range_get_range_rect() }
+    //    unsafe { TODO: call gtk_sys:gtk_range_get_range_rect() }
     //}
 
     fn get_restrict_to_fill_level(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_range_get_restrict_to_fill_level(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_range_get_restrict_to_fill_level(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_round_digits(&self) -> i32 {
         unsafe {
-            ffi::gtk_range_get_round_digits(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_range_get_round_digits(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_show_fill_level(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_range_get_show_fill_level(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_range_get_show_fill_level(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -152,86 +155,86 @@ impl<O: IsA<Range>> RangeExt for O {
         unsafe {
             let mut slider_start = mem::uninitialized();
             let mut slider_end = mem::uninitialized();
-            ffi::gtk_range_get_slider_range(self.as_ref().to_glib_none().0, &mut slider_start, &mut slider_end);
+            gtk_sys::gtk_range_get_slider_range(self.as_ref().to_glib_none().0, &mut slider_start, &mut slider_end);
             (slider_start, slider_end)
         }
     }
 
     fn get_slider_size_fixed(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_range_get_slider_size_fixed(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_range_get_slider_size_fixed(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_value(&self) -> f64 {
         unsafe {
-            ffi::gtk_range_get_value(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_range_get_value(self.as_ref().to_glib_none().0)
         }
     }
 
     fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
         unsafe {
-            ffi::gtk_range_set_adjustment(self.as_ref().to_glib_none().0, adjustment.as_ref().to_glib_none().0);
+            gtk_sys::gtk_range_set_adjustment(self.as_ref().to_glib_none().0, adjustment.as_ref().to_glib_none().0);
         }
     }
 
     fn set_fill_level(&self, fill_level: f64) {
         unsafe {
-            ffi::gtk_range_set_fill_level(self.as_ref().to_glib_none().0, fill_level);
+            gtk_sys::gtk_range_set_fill_level(self.as_ref().to_glib_none().0, fill_level);
         }
     }
 
     fn set_flippable(&self, flippable: bool) {
         unsafe {
-            ffi::gtk_range_set_flippable(self.as_ref().to_glib_none().0, flippable.to_glib());
+            gtk_sys::gtk_range_set_flippable(self.as_ref().to_glib_none().0, flippable.to_glib());
         }
     }
 
     fn set_increments(&self, step: f64, page: f64) {
         unsafe {
-            ffi::gtk_range_set_increments(self.as_ref().to_glib_none().0, step, page);
+            gtk_sys::gtk_range_set_increments(self.as_ref().to_glib_none().0, step, page);
         }
     }
 
     fn set_inverted(&self, setting: bool) {
         unsafe {
-            ffi::gtk_range_set_inverted(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_range_set_inverted(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_range(&self, min: f64, max: f64) {
         unsafe {
-            ffi::gtk_range_set_range(self.as_ref().to_glib_none().0, min, max);
+            gtk_sys::gtk_range_set_range(self.as_ref().to_glib_none().0, min, max);
         }
     }
 
     fn set_restrict_to_fill_level(&self, restrict_to_fill_level: bool) {
         unsafe {
-            ffi::gtk_range_set_restrict_to_fill_level(self.as_ref().to_glib_none().0, restrict_to_fill_level.to_glib());
+            gtk_sys::gtk_range_set_restrict_to_fill_level(self.as_ref().to_glib_none().0, restrict_to_fill_level.to_glib());
         }
     }
 
     fn set_round_digits(&self, round_digits: i32) {
         unsafe {
-            ffi::gtk_range_set_round_digits(self.as_ref().to_glib_none().0, round_digits);
+            gtk_sys::gtk_range_set_round_digits(self.as_ref().to_glib_none().0, round_digits);
         }
     }
 
     fn set_show_fill_level(&self, show_fill_level: bool) {
         unsafe {
-            ffi::gtk_range_set_show_fill_level(self.as_ref().to_glib_none().0, show_fill_level.to_glib());
+            gtk_sys::gtk_range_set_show_fill_level(self.as_ref().to_glib_none().0, show_fill_level.to_glib());
         }
     }
 
     fn set_slider_size_fixed(&self, size_fixed: bool) {
         unsafe {
-            ffi::gtk_range_set_slider_size_fixed(self.as_ref().to_glib_none().0, size_fixed.to_glib());
+            gtk_sys::gtk_range_set_slider_size_fixed(self.as_ref().to_glib_none().0, size_fixed.to_glib());
         }
     }
 
     fn set_value(&self, value: f64) {
         unsafe {
-            ffi::gtk_range_set_value(self.as_ref().to_glib_none().0, value);
+            gtk_sys::gtk_range_set_value(self.as_ref().to_glib_none().0, value);
         }
     }
 
@@ -260,7 +263,7 @@ impl<O: IsA<Range>> RangeExt for O {
     }
 
     fn emit_move_slider(&self, step: ScrollType) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("move-slider", &[&step]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-slider", &[&step]).unwrap() };
     }
 
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -320,61 +323,61 @@ impl<O: IsA<Range>> RangeExt for O {
     }
 }
 
-unsafe extern "C" fn adjust_bounds_trampoline<P, F: Fn(&P, f64) + 'static>(this: *mut ffi::GtkRange, value: libc::c_double, f: glib_ffi::gpointer)
+unsafe extern "C" fn adjust_bounds_trampoline<P, F: Fn(&P, f64) + 'static>(this: *mut gtk_sys::GtkRange, value: libc::c_double, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast(), value)
 }
 
-unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType, f64) -> bool + 'static>(this: *mut ffi::GtkRange, scroll: ffi::GtkScrollType, value: libc::c_double, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType, f64) -> bool + 'static>(this: *mut gtk_sys::GtkRange, scroll: gtk_sys::GtkScrollType, value: libc::c_double, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast(), from_glib(scroll), value).to_glib()
 }
 
-unsafe extern "C" fn move_slider_trampoline<P, F: Fn(&P, ScrollType) + 'static>(this: *mut ffi::GtkRange, step: ffi::GtkScrollType, f: glib_ffi::gpointer)
+unsafe extern "C" fn move_slider_trampoline<P, F: Fn(&P, ScrollType) + 'static>(this: *mut gtk_sys::GtkRange, step: gtk_sys::GtkScrollType, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast(), from_glib(step))
 }
 
-unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, f: glib_ffi::gpointer)
+unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_restrict_to_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_restrict_to_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_round_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_round_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkRange, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_fill_level_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRange, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast())

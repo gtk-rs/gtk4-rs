@@ -5,23 +5,26 @@
 use Buildable;
 use Orientable;
 use Widget;
-use ffi;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ProgressBar(Object<ffi::GtkProgressBar, ffi::GtkProgressBarClass, ProgressBarClass>) @extends Widget, @implements Buildable, Orientable;
+    pub struct ProgressBar(Object<gtk_sys::GtkProgressBar, gtk_sys::GtkProgressBarClass, ProgressBarClass>) @extends Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_progress_bar_get_type(),
+        get_type => || gtk_sys::gtk_progress_bar_get_type(),
     }
 }
 
@@ -29,7 +32,7 @@ impl ProgressBar {
     pub fn new() -> ProgressBar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_progress_bar_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_progress_bar_new()).unsafe_cast()
         }
     }
 }
@@ -84,76 +87,76 @@ pub trait ProgressBarExt: 'static {
 
 impl<O: IsA<ProgressBar>> ProgressBarExt for O {
     //fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call ffi::gtk_progress_bar_get_ellipsize() }
+    //    unsafe { TODO: call gtk_sys:gtk_progress_bar_get_ellipsize() }
     //}
 
     fn get_fraction(&self) -> f64 {
         unsafe {
-            ffi::gtk_progress_bar_get_fraction(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_progress_bar_get_fraction(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_inverted(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_progress_bar_get_inverted(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_progress_bar_get_inverted(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_pulse_step(&self) -> f64 {
         unsafe {
-            ffi::gtk_progress_bar_get_pulse_step(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_progress_bar_get_pulse_step(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_show_text(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_progress_bar_get_show_text(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_progress_bar_get_show_text(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_progress_bar_get_text(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_progress_bar_get_text(self.as_ref().to_glib_none().0))
         }
     }
 
     fn pulse(&self) {
         unsafe {
-            ffi::gtk_progress_bar_pulse(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_progress_bar_pulse(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode) {
-    //    unsafe { TODO: call ffi::gtk_progress_bar_set_ellipsize() }
+    //    unsafe { TODO: call gtk_sys:gtk_progress_bar_set_ellipsize() }
     //}
 
     fn set_fraction(&self, fraction: f64) {
         unsafe {
-            ffi::gtk_progress_bar_set_fraction(self.as_ref().to_glib_none().0, fraction);
+            gtk_sys::gtk_progress_bar_set_fraction(self.as_ref().to_glib_none().0, fraction);
         }
     }
 
     fn set_inverted(&self, inverted: bool) {
         unsafe {
-            ffi::gtk_progress_bar_set_inverted(self.as_ref().to_glib_none().0, inverted.to_glib());
+            gtk_sys::gtk_progress_bar_set_inverted(self.as_ref().to_glib_none().0, inverted.to_glib());
         }
     }
 
     fn set_pulse_step(&self, fraction: f64) {
         unsafe {
-            ffi::gtk_progress_bar_set_pulse_step(self.as_ref().to_glib_none().0, fraction);
+            gtk_sys::gtk_progress_bar_set_pulse_step(self.as_ref().to_glib_none().0, fraction);
         }
     }
 
     fn set_show_text(&self, show_text: bool) {
         unsafe {
-            ffi::gtk_progress_bar_set_show_text(self.as_ref().to_glib_none().0, show_text.to_glib());
+            gtk_sys::gtk_progress_bar_set_show_text(self.as_ref().to_glib_none().0, show_text.to_glib());
         }
     }
 
     fn set_text(&self, text: Option<&str>) {
         unsafe {
-            ffi::gtk_progress_bar_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_progress_bar_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
@@ -206,37 +209,37 @@ impl<O: IsA<ProgressBar>> ProgressBarExt for O {
     }
 }
 
-unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_fraction_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_fraction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_pulse_step_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_pulse_step_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkProgressBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ProgressBar> {
     let f: &F = &*(f as *const F);
     f(&ProgressBar::from_glib_borrow(this).unsafe_cast())

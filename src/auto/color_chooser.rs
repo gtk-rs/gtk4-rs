@@ -2,22 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ColorChooser(Interface<ffi::GtkColorChooser>);
+    pub struct ColorChooser(Interface<gtk_sys::GtkColorChooser>);
 
     match fn {
-        get_type => || ffi::gtk_color_chooser_get_type(),
+        get_type => || gtk_sys::gtk_color_chooser_get_type(),
     }
 }
 
@@ -43,26 +43,26 @@ pub trait ColorChooserExt: 'static {
 
 impl<O: IsA<ColorChooser>> ColorChooserExt for O {
     //fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: /*Ignored*/&[&gdk::RGBA]) {
-    //    unsafe { TODO: call ffi::gtk_color_chooser_add_palette() }
+    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_add_palette() }
     //}
 
     //fn get_rgba(&self, color: /*Ignored*/gdk::RGBA) {
-    //    unsafe { TODO: call ffi::gtk_color_chooser_get_rgba() }
+    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_get_rgba() }
     //}
 
     fn get_use_alpha(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_color_chooser_get_use_alpha(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_color_chooser_get_use_alpha(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn set_rgba(&self, color: /*Ignored*/&gdk::RGBA) {
-    //    unsafe { TODO: call ffi::gtk_color_chooser_set_rgba() }
+    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_set_rgba() }
     //}
 
     fn set_use_alpha(&self, use_alpha: bool) {
         unsafe {
-            ffi::gtk_color_chooser_set_use_alpha(self.as_ref().to_glib_none().0, use_alpha.to_glib());
+            gtk_sys::gtk_color_chooser_set_use_alpha(self.as_ref().to_glib_none().0, use_alpha.to_glib());
         }
     }
 
@@ -87,13 +87,13 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
     }
 }
 
-unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkColorChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ColorChooser> {
     let f: &F = &*(f as *const F);
     f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkColorChooser, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ColorChooser> {
     let f: &F = &*(f as *const F);
     f(&ColorChooser::from_glib_borrow(this).unsafe_cast())

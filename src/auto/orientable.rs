@@ -3,22 +3,22 @@
 // DO NOT EDIT
 
 use Orientation;
-use ffi;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Orientable(Interface<ffi::GtkOrientable>);
+    pub struct Orientable(Interface<gtk_sys::GtkOrientable>);
 
     match fn {
-        get_type => || ffi::gtk_orientable_get_type(),
+        get_type => || gtk_sys::gtk_orientable_get_type(),
     }
 }
 
@@ -35,13 +35,13 @@ pub trait OrientableExt: 'static {
 impl<O: IsA<Orientable>> OrientableExt for O {
     fn get_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(ffi::gtk_orientable_get_orientation(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_orientable_get_orientation(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
-            ffi::gtk_orientable_set_orientation(self.as_ref().to_glib_none().0, orientation.to_glib());
+            gtk_sys::gtk_orientable_set_orientation(self.as_ref().to_glib_none().0, orientation.to_glib());
         }
     }
 
@@ -54,7 +54,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
     }
 }
 
-unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkOrientable, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkOrientable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Orientable> {
     let f: &F = &*(f as *const F);
     f(&Orientable::from_glib_borrow(this).unsafe_cast())

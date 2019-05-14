@@ -5,22 +5,26 @@
 use Buildable;
 use Container;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ActionBar(Object<ffi::GtkActionBar, ffi::GtkActionBarClass, ActionBarClass>) @extends Container, Widget, @implements Buildable;
+    pub struct ActionBar(Object<gtk_sys::GtkActionBar, gtk_sys::GtkActionBarClass, ActionBarClass>) @extends Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_action_bar_get_type(),
+        get_type => || gtk_sys::gtk_action_bar_get_type(),
     }
 }
 
@@ -28,7 +32,7 @@ impl ActionBar {
     pub fn new() -> ActionBar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_action_bar_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_action_bar_new()).unsafe_cast()
         }
     }
 }
@@ -60,37 +64,37 @@ pub trait ActionBarExt: 'static {
 impl<O: IsA<ActionBar>> ActionBarExt for O {
     fn get_center_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_action_bar_get_center_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_action_bar_get_center_widget(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_revealed(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_action_bar_get_revealed(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_action_bar_get_revealed(self.as_ref().to_glib_none().0))
         }
     }
 
     fn pack_end<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_action_bar_pack_end(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_action_bar_pack_end(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn pack_start<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_action_bar_pack_start(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_action_bar_pack_start(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn set_center_widget<P: IsA<Widget>>(&self, center_widget: Option<&P>) {
         unsafe {
-            ffi::gtk_action_bar_set_center_widget(self.as_ref().to_glib_none().0, center_widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_action_bar_set_center_widget(self.as_ref().to_glib_none().0, center_widget.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_revealed(&self, revealed: bool) {
         unsafe {
-            ffi::gtk_action_bar_set_revealed(self.as_ref().to_glib_none().0, revealed.to_glib());
+            gtk_sys::gtk_action_bar_set_revealed(self.as_ref().to_glib_none().0, revealed.to_glib());
         }
     }
 
@@ -103,7 +107,7 @@ impl<O: IsA<ActionBar>> ActionBarExt for O {
     }
 }
 
-unsafe extern "C" fn notify_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkActionBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ActionBar> {
     let f: &F = &*(f as *const F);
     f(&ActionBar::from_glib_borrow(this).unsafe_cast())

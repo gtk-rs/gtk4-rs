@@ -4,15 +4,15 @@
 
 use Buildable;
 use FileFilterFlags;
-use ffi;
 use glib::translate::*;
+use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct FileFilter(Object<ffi::GtkFileFilter, FileFilterClass>) @implements Buildable;
+    pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_file_filter_get_type(),
+        get_type => || gtk_sys::gtk_file_filter_get_type(),
     }
 }
 
@@ -20,48 +20,48 @@ impl FileFilter {
     pub fn new() -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::gtk_file_filter_new())
+            from_glib_none(gtk_sys::gtk_file_filter_new())
         }
     }
 
     //pub fn new_from_gvariant(variant: /*Ignored*/&glib::Variant) -> FileFilter {
-    //    unsafe { TODO: call ffi::gtk_file_filter_new_from_gvariant() }
+    //    unsafe { TODO: call gtk_sys:gtk_file_filter_new_from_gvariant() }
     //}
 
     //pub fn add_custom(&self, needed: FileFilterFlags, func: /*Unimplemented*/Fn(/*Ignored*/FileFilterInfo) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call ffi::gtk_file_filter_add_custom() }
+    //    unsafe { TODO: call gtk_sys:gtk_file_filter_add_custom() }
     //}
 
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {
-            ffi::gtk_file_filter_add_mime_type(self.to_glib_none().0, mime_type.to_glib_none().0);
+            gtk_sys::gtk_file_filter_add_mime_type(self.to_glib_none().0, mime_type.to_glib_none().0);
         }
     }
 
     pub fn add_pattern(&self, pattern: &str) {
         unsafe {
-            ffi::gtk_file_filter_add_pattern(self.to_glib_none().0, pattern.to_glib_none().0);
+            gtk_sys::gtk_file_filter_add_pattern(self.to_glib_none().0, pattern.to_glib_none().0);
         }
     }
 
     pub fn add_pixbuf_formats(&self) {
         unsafe {
-            ffi::gtk_file_filter_add_pixbuf_formats(self.to_glib_none().0);
+            gtk_sys::gtk_file_filter_add_pixbuf_formats(self.to_glib_none().0);
         }
     }
 
     //pub fn filter(&self, filter_info: /*Ignored*/&FileFilterInfo) -> bool {
-    //    unsafe { TODO: call ffi::gtk_file_filter_filter() }
+    //    unsafe { TODO: call gtk_sys:gtk_file_filter_filter() }
     //}
 
     pub fn get_needed(&self) -> FileFilterFlags {
         unsafe {
-            from_glib(ffi::gtk_file_filter_get_needed(self.to_glib_none().0))
+            from_glib(gtk_sys::gtk_file_filter_get_needed(self.to_glib_none().0))
         }
     }
 
     //pub fn to_gvariant(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call ffi::gtk_file_filter_to_gvariant() }
+    //    unsafe { TODO: call gtk_sys:gtk_file_filter_to_gvariant() }
     //}
 }
 

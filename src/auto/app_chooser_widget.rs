@@ -5,23 +5,26 @@
 use AppChooser;
 use Buildable;
 use Widget;
-use ffi;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct AppChooserWidget(Object<ffi::GtkAppChooserWidget, ffi::GtkAppChooserWidgetClass, AppChooserWidgetClass>) @extends Widget, @implements Buildable, AppChooser;
+    pub struct AppChooserWidget(Object<gtk_sys::GtkAppChooserWidget, gtk_sys::GtkAppChooserWidgetClass, AppChooserWidgetClass>) @extends Widget, @implements Buildable, AppChooser;
 
     match fn {
-        get_type => || ffi::gtk_app_chooser_widget_get_type(),
+        get_type => || gtk_sys::gtk_app_chooser_widget_get_type(),
     }
 }
 
@@ -29,7 +32,7 @@ impl AppChooserWidget {
     pub fn new(content_type: &str) -> AppChooserWidget {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_app_chooser_widget_new(content_type.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_app_chooser_widget_new(content_type.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -83,73 +86,73 @@ pub trait AppChooserWidgetExt: 'static {
 impl<O: IsA<AppChooserWidget>> AppChooserWidgetExt for O {
     fn get_default_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_app_chooser_widget_get_default_text(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_app_chooser_widget_get_default_text(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_all(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_app_chooser_widget_get_show_all(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_app_chooser_widget_get_show_all(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_default(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_app_chooser_widget_get_show_default(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_app_chooser_widget_get_show_default(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_fallback(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_app_chooser_widget_get_show_fallback(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_app_chooser_widget_get_show_fallback(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_other(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_app_chooser_widget_get_show_other(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_app_chooser_widget_get_show_other(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_recommended(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_app_chooser_widget_get_show_recommended(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_app_chooser_widget_get_show_recommended(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_default_text(&self, text: &str) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_default_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_app_chooser_widget_set_default_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     fn set_show_all(&self, setting: bool) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_show_all(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_app_chooser_widget_set_show_all(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_show_default(&self, setting: bool) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_show_default(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_app_chooser_widget_set_show_default(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_show_fallback(&self, setting: bool) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_show_fallback(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_app_chooser_widget_set_show_fallback(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_show_other(&self, setting: bool) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_show_other(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_app_chooser_widget_set_show_other(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_show_recommended(&self, setting: bool) {
         unsafe {
-            ffi::gtk_app_chooser_widget_set_show_recommended(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_app_chooser_widget_set_show_recommended(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
@@ -214,37 +217,37 @@ impl<O: IsA<AppChooserWidget>> AppChooserWidgetExt for O {
     }
 }
 
-unsafe extern "C" fn notify_default_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_default_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_other_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_other_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_recommended_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAppChooserWidget, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_recommended_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<AppChooserWidget> {
     let f: &F = &*(f as *const F);
     f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast())

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use Error;
-use ffi;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -11,17 +10,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MediaStream(Object<ffi::GtkMediaStream, ffi::GtkMediaStreamClass, MediaStreamClass>);
+    pub struct MediaStream(Object<gtk_sys::GtkMediaStream, gtk_sys::GtkMediaStreamClass, MediaStreamClass>);
 
     match fn {
-        get_type => || ffi::gtk_media_stream_get_type(),
+        get_type => || gtk_sys::gtk_media_stream_get_type(),
     }
 }
 
@@ -136,228 +136,228 @@ pub trait MediaStreamExt: 'static {
 impl<O: IsA<MediaStream>> MediaStreamExt for O {
     fn ended(&self) {
         unsafe {
-            ffi::gtk_media_stream_ended(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_ended(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn error(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi::gtk_media_stream_error() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_error() }
     //}
 
     //fn error_valist(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi::gtk_media_stream_error_valist() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_error_valist() }
     //}
 
     fn get_duration(&self) -> i64 {
         unsafe {
-            ffi::gtk_media_stream_get_duration(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_media_stream_get_duration(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_ended(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_get_ended(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_get_ended(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_error(&self) -> Option<Error> {
         unsafe {
-            from_glib_none(ffi::gtk_media_stream_get_error(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_media_stream_get_error(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_loop(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_get_loop(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_get_loop(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_muted(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_get_muted(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_get_muted(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_playing(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_get_playing(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_get_playing(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_timestamp(&self) -> i64 {
         unsafe {
-            ffi::gtk_media_stream_get_timestamp(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_media_stream_get_timestamp(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_volume(&self) -> f64 {
         unsafe {
-            ffi::gtk_media_stream_get_volume(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_media_stream_get_volume(self.as_ref().to_glib_none().0)
         }
     }
 
     fn has_audio(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_has_audio(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_has_audio(self.as_ref().to_glib_none().0))
         }
     }
 
     fn has_video(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_has_video(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_has_video(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_prepared(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_is_prepared(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_is_prepared(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_seekable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_is_seekable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_is_seekable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_seeking(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_media_stream_is_seeking(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_media_stream_is_seeking(self.as_ref().to_glib_none().0))
         }
     }
 
     fn pause(&self) {
         unsafe {
-            ffi::gtk_media_stream_pause(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_pause(self.as_ref().to_glib_none().0);
         }
     }
 
     fn play(&self) {
         unsafe {
-            ffi::gtk_media_stream_play(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_play(self.as_ref().to_glib_none().0);
         }
     }
 
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64) {
         unsafe {
-            ffi::gtk_media_stream_prepared(self.as_ref().to_glib_none().0, has_audio.to_glib(), has_video.to_glib(), seekable.to_glib(), duration);
+            gtk_sys::gtk_media_stream_prepared(self.as_ref().to_glib_none().0, has_audio.to_glib(), has_video.to_glib(), seekable.to_glib(), duration);
         }
     }
 
     //fn realize(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call ffi::gtk_media_stream_realize() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_realize() }
     //}
 
     fn seek(&self, timestamp: i64) {
         unsafe {
-            ffi::gtk_media_stream_seek(self.as_ref().to_glib_none().0, timestamp);
+            gtk_sys::gtk_media_stream_seek(self.as_ref().to_glib_none().0, timestamp);
         }
     }
 
     fn seek_failed(&self) {
         unsafe {
-            ffi::gtk_media_stream_seek_failed(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_seek_failed(self.as_ref().to_glib_none().0);
         }
     }
 
     fn seek_success(&self) {
         unsafe {
-            ffi::gtk_media_stream_seek_success(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_seek_success(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_loop(&self, loop_: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
+            gtk_sys::gtk_media_stream_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
         }
     }
 
     fn set_muted(&self, muted: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_muted(self.as_ref().to_glib_none().0, muted.to_glib());
+            gtk_sys::gtk_media_stream_set_muted(self.as_ref().to_glib_none().0, muted.to_glib());
         }
     }
 
     fn set_playing(&self, playing: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_playing(self.as_ref().to_glib_none().0, playing.to_glib());
+            gtk_sys::gtk_media_stream_set_playing(self.as_ref().to_glib_none().0, playing.to_glib());
         }
     }
 
     fn set_volume(&self, volume: f64) {
         unsafe {
-            ffi::gtk_media_stream_set_volume(self.as_ref().to_glib_none().0, volume);
+            gtk_sys::gtk_media_stream_set_volume(self.as_ref().to_glib_none().0, volume);
         }
     }
 
     fn unprepared(&self) {
         unsafe {
-            ffi::gtk_media_stream_unprepared(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_media_stream_unprepared(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn unrealize(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call ffi::gtk_media_stream_unrealize() }
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_unrealize() }
     //}
 
     fn update(&self, timestamp: i64) {
         unsafe {
-            ffi::gtk_media_stream_update(self.as_ref().to_glib_none().0, timestamp);
+            gtk_sys::gtk_media_stream_update(self.as_ref().to_glib_none().0, timestamp);
         }
     }
 
     fn set_property_error(&self, error: Option<&Error>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"error\0".as_ptr() as *const _, Value::from(error).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"error\0".as_ptr() as *const _, Value::from(error).to_glib_none().0);
         }
     }
 
     fn get_property_has_audio(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-audio\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-audio\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_has_audio(&self, has_audio: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-audio\0".as_ptr() as *const _, Value::from(&has_audio).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-audio\0".as_ptr() as *const _, Value::from(&has_audio).to_glib_none().0);
         }
     }
 
     fn get_property_has_video(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-video\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-video\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_has_video(&self, has_video: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"has-video\0".as_ptr() as *const _, Value::from(&has_video).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-video\0".as_ptr() as *const _, Value::from(&has_video).to_glib_none().0);
         }
     }
 
     fn get_property_prepared(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"prepared\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"prepared\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_prepared(&self, prepared: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"prepared\0".as_ptr() as *const _, Value::from(&prepared).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"prepared\0".as_ptr() as *const _, Value::from(&prepared).to_glib_none().0);
         }
     }
 
     fn get_property_seekable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"seekable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"seekable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -365,7 +365,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     fn get_property_seeking(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"seeking\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"seeking\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -475,79 +475,79 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 }
 
-unsafe extern "C" fn notify_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_ended_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_ended_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_audio_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_audio_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_video_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_video_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_muted_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_muted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_playing_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_playing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_prepared_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_prepared_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_seekable_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_seekable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_seeking_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_seeking_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_timestamp_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_timestamp_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_volume_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaStream, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_volume_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaStream> {
     let f: &F = &*(f as *const F);
     f(&MediaStream::from_glib_borrow(this).unsafe_cast())

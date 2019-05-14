@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::translate::*;
+use gtk_sys;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TreeIter(Boxed<ffi::GtkTreeIter>);
+    pub struct TreeIter(Boxed<gtk_sys::GtkTreeIter>);
 
     match fn {
-        copy => |ptr| ffi::gtk_tree_iter_copy(mut_override(ptr)),
-        free => |ptr| ffi::gtk_tree_iter_free(ptr),
-        get_type => || ffi::gtk_tree_iter_get_type(),
+        copy => |ptr| gtk_sys::gtk_tree_iter_copy(mut_override(ptr)),
+        free => |ptr| gtk_sys::gtk_tree_iter_free(ptr),
+        get_type => || gtk_sys::gtk_tree_iter_get_type(),
     }
 }

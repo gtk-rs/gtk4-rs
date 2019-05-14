@@ -5,16 +5,27 @@
 use Accessible;
 use CellAccessible;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
+use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ContainerCellAccessible(Object<ffi::GtkContainerCellAccessible, ffi::GtkContainerCellAccessibleClass, ContainerCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
+    pub struct ContainerCellAccessible(Object<gtk_sys::GtkContainerCellAccessible, gtk_sys::GtkContainerCellAccessibleClass, ContainerCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_container_cell_accessible_get_type(),
+        get_type => || gtk_sys::gtk_container_cell_accessible_get_type(),
     }
 }
 
@@ -22,7 +33,7 @@ impl ContainerCellAccessible {
     pub fn new() -> ContainerCellAccessible {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gtk_container_cell_accessible_new())
+            from_glib_full(gtk_sys::gtk_container_cell_accessible_new())
         }
     }
 }
@@ -46,19 +57,19 @@ pub trait ContainerCellAccessibleExt: 'static {
 impl<O: IsA<ContainerCellAccessible>> ContainerCellAccessibleExt for O {
     fn add_child<P: IsA<CellAccessible>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_container_cell_accessible_add_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_container_cell_accessible_add_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn get_children(&self) -> Vec<CellAccessible> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gtk_container_cell_accessible_get_children(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_container_cell_accessible_get_children(self.as_ref().to_glib_none().0))
         }
     }
 
     fn remove_child<P: IsA<CellAccessible>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_container_cell_accessible_remove_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_container_cell_accessible_remove_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 }

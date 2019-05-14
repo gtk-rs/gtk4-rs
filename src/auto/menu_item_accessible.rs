@@ -6,15 +6,26 @@ use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
 use atk;
-use ffi;
+use atk_sys;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
+use glib::object::Cast;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MenuItemAccessible(Object<ffi::GtkMenuItemAccessible, ffi::GtkMenuItemAccessibleClass, MenuItemAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
+    pub struct MenuItemAccessible(Object<gtk_sys::GtkMenuItemAccessible, gtk_sys::GtkMenuItemAccessibleClass, MenuItemAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
-        get_type => || ffi::gtk_menu_item_accessible_get_type(),
+        get_type => || gtk_sys::gtk_menu_item_accessible_get_type(),
     }
 }
 

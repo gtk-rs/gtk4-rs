@@ -2,108 +2,67 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
-use glib::object::IsA;
 use glib::translate::*;
+use gtk_sys;
 use std;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct IconInfo(Object<ffi::GtkIconInfo, ffi::GtkIconInfoClass, IconInfoClass>);
+    pub struct IconInfo(Object<gtk_sys::GtkIconInfo, gtk_sys::GtkIconInfoClass, IconInfoClass>);
 
     match fn {
-        get_type => || ffi::gtk_icon_info_get_type(),
+        get_type => || gtk_sys::gtk_icon_info_get_type(),
     }
 }
 
 impl IconInfo {
     //pub fn new_for_pixbuf<P: IsA<IconTheme>>(icon_theme: &P, pixbuf: /*Ignored*/&gdk_pixbuf::Pixbuf) -> IconInfo {
-    //    unsafe { TODO: call ffi::gtk_icon_info_new_for_pixbuf() }
-    //}
-}
-
-pub const NONE_ICON_INFO: Option<&IconInfo> = None;
-
-pub trait IconInfoExt: 'static {
-    fn get_base_scale(&self) -> i32;
-
-    fn get_base_size(&self) -> i32;
-
-    fn get_filename(&self) -> Option<std::path::PathBuf>;
-
-    fn is_symbolic(&self) -> bool;
-
-    //fn load_icon(&self) -> Result</*Ignored*/gdk_pixbuf::Pixbuf, Error>;
-
-    //fn load_icon_async<P: FnOnce(Result</*Ignored*/gdk_pixbuf::Pixbuf, Error>) + Send + 'static>(&self, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P);
-
-    //#[cfg(feature = "futures")]
-    //fn load_icon_async_future(&self) -> Box_<futures_core::Future<Item = (Self, /*Ignored*/gdk_pixbuf::Pixbuf), Error = (Self, Error)>> where Self: Sized + Clone;
-
-    //fn load_symbolic(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>;
-
-    //fn load_symbolic_async<P: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P);
-
-    //#[cfg(feature = "futures")]
-    //fn load_symbolic_async_future(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Box_<futures_core::Future<Item = (Self, (/*Ignored*/gdk_pixbuf::Pixbuf, bool)), Error = (Self, Error)>> where Self: Sized + Clone;
-
-    //fn load_symbolic_for_context<P: IsA<StyleContext>>(&self, context: &P) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>;
-
-    //fn load_symbolic_for_context_async<P: IsA<StyleContext>, Q: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, context: &P, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: Q);
-
-    //#[cfg(feature = "futures")]
-    //fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(&self, context: &P) -> Box_<futures_core::Future<Item = (Self, (/*Ignored*/gdk_pixbuf::Pixbuf, bool)), Error = (Self, Error)>> where Self: Sized + Clone;
-
-    //fn load_texture(&self) -> /*Ignored*/Option<gdk::Texture>;
-}
-
-impl<O: IsA<IconInfo>> IconInfoExt for O {
-    fn get_base_scale(&self) -> i32 {
-        unsafe {
-            ffi::gtk_icon_info_get_base_scale(self.as_ref().to_glib_none().0)
-        }
-    }
-
-    fn get_base_size(&self) -> i32 {
-        unsafe {
-            ffi::gtk_icon_info_get_base_size(self.as_ref().to_glib_none().0)
-        }
-    }
-
-    fn get_filename(&self) -> Option<std::path::PathBuf> {
-        unsafe {
-            from_glib_none(ffi::gtk_icon_info_get_filename(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn is_symbolic(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_icon_info_is_symbolic(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    //fn load_icon(&self) -> Result</*Ignored*/gdk_pixbuf::Pixbuf, Error> {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_icon() }
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_new_for_pixbuf() }
     //}
 
-    //fn load_icon_async<P: FnOnce(Result</*Ignored*/gdk_pixbuf::Pixbuf, Error>) + Send + 'static>(&self, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_icon_async() }
+    pub fn get_base_scale(&self) -> i32 {
+        unsafe {
+            gtk_sys::gtk_icon_info_get_base_scale(self.to_glib_none().0)
+        }
+    }
+
+    pub fn get_base_size(&self) -> i32 {
+        unsafe {
+            gtk_sys::gtk_icon_info_get_base_size(self.to_glib_none().0)
+        }
+    }
+
+    pub fn get_filename(&self) -> Option<std::path::PathBuf> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_icon_info_get_filename(self.to_glib_none().0))
+        }
+    }
+
+    pub fn is_symbolic(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_icon_info_is_symbolic(self.to_glib_none().0))
+        }
+    }
+
+    //pub fn load_icon(&self) -> Result</*Ignored*/gdk_pixbuf::Pixbuf, Error> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_icon() }
+    //}
+
+    //pub fn load_icon_async<P: FnOnce(Result</*Ignored*/gdk_pixbuf::Pixbuf, Error>) + Send + 'static>(&self, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_icon_async() }
     //}
 
     //#[cfg(feature = "futures")]
-    //fn load_icon_async_future(&self) -> Box_<futures_core::Future<Item = (Self, /*Ignored*/gdk_pixbuf::Pixbuf), Error = (Self, Error)>> where Self: Sized + Clone {
+    //pub fn load_icon_async_future(&self) -> Box_<future::Future<Output = Result</*Ignored*/gdk_pixbuf::Pixbuf, Error>> + std::marker::Unpin> {
         //use gio::GioFuture;
         //use fragile::Fragile;
 
         //GioFuture::new(self, move |obj, send| {
         //    let cancellable = gio::Cancellable::new();
         //    let send = Fragile::new(send);
-        //    let obj_clone = Fragile::new(obj.clone());
         //    obj.load_icon_async(
         //        Some(&cancellable),
         //        move |res| {
-        //            let obj = obj_clone.into_inner();
-        //            let res = res.map(|v| (obj.clone(), v)).map_err(|v| (obj.clone(), v));
         //            let _ = send.into_inner().send(res);
         //        },
         //    );
@@ -112,16 +71,16 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //})
     //}
 
-    //fn load_symbolic(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error> {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_symbolic() }
+    //pub fn load_symbolic(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic() }
     //}
 
-    //fn load_symbolic_async<P: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_symbolic_async() }
+    //pub fn load_symbolic_async<P: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic_async() }
     //}
 
     //#[cfg(feature = "futures")]
-    //fn load_symbolic_async_future(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Box_<futures_core::Future<Item = (Self, (/*Ignored*/gdk_pixbuf::Pixbuf, bool)), Error = (Self, Error)>> where Self: Sized + Clone {
+    //pub fn load_symbolic_async_future(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Box_<future::Future<Output = Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
         //use gio::GioFuture;
         //use fragile::Fragile;
 
@@ -132,7 +91,6 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //GioFuture::new(self, move |obj, send| {
         //    let cancellable = gio::Cancellable::new();
         //    let send = Fragile::new(send);
-        //    let obj_clone = Fragile::new(obj.clone());
         //    obj.load_symbolic_async(
         //        &fg,
         //        success_color.as_ref().map(::std::borrow::Borrow::borrow),
@@ -140,8 +98,6 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //        error_color.as_ref().map(::std::borrow::Borrow::borrow),
         //        Some(&cancellable),
         //        move |res| {
-        //            let obj = obj_clone.into_inner();
-        //            let res = res.map(|v| (obj.clone(), v)).map_err(|v| (obj.clone(), v));
         //            let _ = send.into_inner().send(res);
         //        },
         //    );
@@ -150,16 +106,16 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //})
     //}
 
-    //fn load_symbolic_for_context<P: IsA<StyleContext>>(&self, context: &P) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error> {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_symbolic_for_context() }
+    //pub fn load_symbolic_for_context<P: IsA<StyleContext>>(&self, context: &P) -> Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic_for_context() }
     //}
 
-    //fn load_symbolic_for_context_async<P: IsA<StyleContext>, Q: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, context: &P, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: Q) {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_symbolic_for_context_async() }
+    //pub fn load_symbolic_for_context_async<P: IsA<StyleContext>, Q: FnOnce(Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, context: &P, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: Q) {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic_for_context_async() }
     //}
 
     //#[cfg(feature = "futures")]
-    //fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(&self, context: &P) -> Box_<futures_core::Future<Item = (Self, (/*Ignored*/gdk_pixbuf::Pixbuf, bool)), Error = (Self, Error)>> where Self: Sized + Clone {
+    //pub fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(&self, context: &P) -> Box_<future::Future<Output = Result<(/*Ignored*/gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
         //use gio::GioFuture;
         //use fragile::Fragile;
 
@@ -167,13 +123,10 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //GioFuture::new(self, move |obj, send| {
         //    let cancellable = gio::Cancellable::new();
         //    let send = Fragile::new(send);
-        //    let obj_clone = Fragile::new(obj.clone());
         //    obj.load_symbolic_for_context_async(
         //        &context,
         //        Some(&cancellable),
         //        move |res| {
-        //            let obj = obj_clone.into_inner();
-        //            let res = res.map(|v| (obj.clone(), v)).map_err(|v| (obj.clone(), v));
         //            let _ = send.into_inner().send(res);
         //        },
         //    );
@@ -182,8 +135,8 @@ impl<O: IsA<IconInfo>> IconInfoExt for O {
         //})
     //}
 
-    //fn load_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
-    //    unsafe { TODO: call ffi::gtk_icon_info_load_texture() }
+    //pub fn load_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_texture() }
     //}
 }
 

@@ -10,7 +10,7 @@ use Container;
 use Orientable;
 use ScaleButton;
 use Widget;
-use ffi;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -18,17 +18,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct VolumeButton(Object<ffi::GtkVolumeButton, ffi::GtkVolumeButtonClass, VolumeButtonClass>) @extends ScaleButton, Button, Bin, Container, Widget, @implements Buildable, Actionable, Orientable;
+    pub struct VolumeButton(Object<gtk_sys::GtkVolumeButton, gtk_sys::GtkVolumeButtonClass, VolumeButtonClass>) @extends ScaleButton, Button, Bin, Container, Widget, @implements Buildable, Actionable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_volume_button_get_type(),
+        get_type => || gtk_sys::gtk_volume_button_get_type(),
     }
 }
 
@@ -36,7 +37,7 @@ impl VolumeButton {
     pub fn new() -> VolumeButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_volume_button_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_volume_button_new()).unsafe_cast()
         }
     }
 }
@@ -61,14 +62,14 @@ impl<O: IsA<VolumeButton>> VolumeButtonExt for O {
     fn get_property_use_symbolic(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"use-symbolic\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"use-symbolic\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_use_symbolic(&self, use_symbolic: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"use-symbolic\0".as_ptr() as *const _, Value::from(&use_symbolic).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"use-symbolic\0".as_ptr() as *const _, Value::from(&use_symbolic).to_glib_none().0);
         }
     }
 
@@ -81,7 +82,7 @@ impl<O: IsA<VolumeButton>> VolumeButtonExt for O {
     }
 }
 
-unsafe extern "C" fn notify_use_symbolic_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkVolumeButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_symbolic_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVolumeButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<VolumeButton> {
     let f: &F = &*(f as *const F);
     f(&VolumeButton::from_glib_borrow(this).unsafe_cast())

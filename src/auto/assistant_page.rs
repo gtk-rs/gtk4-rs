@@ -4,143 +4,115 @@
 
 use AssistantPageType;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct AssistantPage(Object<ffi::GtkAssistantPage, ffi::GtkAssistantPageClass, AssistantPageClass>);
+    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, gtk_sys::GtkAssistantPageClass, AssistantPageClass>);
 
     match fn {
-        get_type => || ffi::gtk_assistant_page_get_type(),
+        get_type => || gtk_sys::gtk_assistant_page_get_type(),
     }
 }
 
-pub const NONE_ASSISTANT_PAGE: Option<&AssistantPage> = None;
-
-pub trait AssistantPageExt: 'static {
-    fn get_child(&self) -> Option<Widget>;
-
-    fn get_property_complete(&self) -> bool;
-
-    fn set_property_complete(&self, complete: bool);
-
-    fn get_property_page_type(&self) -> AssistantPageType;
-
-    fn set_property_page_type(&self, page_type: AssistantPageType);
-
-    fn get_property_title(&self) -> Option<GString>;
-
-    fn set_property_title(&self, title: Option<&str>);
-
-    fn connect_property_complete_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_page_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<AssistantPage>> AssistantPageExt for O {
-    fn get_child(&self) -> Option<Widget> {
+impl AssistantPage {
+    pub fn get_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_assistant_page_get_child(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_assistant_page_get_child(self.to_glib_none().0))
         }
     }
 
-    fn get_property_complete(&self) -> bool {
+    pub fn get_property_complete(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"complete\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"complete\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
-    fn set_property_complete(&self, complete: bool) {
+    pub fn set_property_complete(&self, complete: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"complete\0".as_ptr() as *const _, Value::from(&complete).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"complete\0".as_ptr() as *const _, Value::from(&complete).to_glib_none().0);
         }
     }
 
-    fn get_property_page_type(&self) -> AssistantPageType {
+    pub fn get_property_page_type(&self) -> AssistantPageType {
         unsafe {
             let mut value = Value::from_type(<AssistantPageType as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"page-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"page-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
-    fn set_property_page_type(&self, page_type: AssistantPageType) {
+    pub fn set_property_page_type(&self, page_type: AssistantPageType) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"page-type\0".as_ptr() as *const _, Value::from(&page_type).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"page-type\0".as_ptr() as *const _, Value::from(&page_type).to_glib_none().0);
         }
     }
 
-    fn get_property_title(&self) -> Option<GString> {
+    pub fn get_property_title(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"title\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"title\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }
 
-    fn set_property_title(&self, title: Option<&str>) {
+    pub fn set_property_title(&self, title: Option<&str>) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"title\0".as_ptr() as *const _, Value::from(title).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"title\0".as_ptr() as *const _, Value::from(title).to_glib_none().0);
         }
     }
 
-    fn connect_property_complete_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_property_complete_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::complete\0".as_ptr() as *const _,
-                Some(transmute(notify_complete_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(notify_complete_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_property_page_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_property_page_type_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::page-type\0".as_ptr() as *const _,
-                Some(transmute(notify_page_type_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(notify_page_type_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_property_title_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(notify_title_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 }
 
-unsafe extern "C" fn notify_complete_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAssistantPage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<AssistantPage> {
+unsafe extern "C" fn notify_complete_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&AssistantPage::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_page_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAssistantPage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<AssistantPage> {
+unsafe extern "C" fn notify_page_type_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&AssistantPage::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkAssistantPage, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<AssistantPage> {
+unsafe extern "C" fn notify_title_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&AssistantPage::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for AssistantPage {

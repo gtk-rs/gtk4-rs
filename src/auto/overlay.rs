@@ -6,17 +6,26 @@ use Bin;
 use Buildable;
 use Container;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Overlay(Object<ffi::GtkOverlay, ffi::GtkOverlayClass, OverlayClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct Overlay(Object<gtk_sys::GtkOverlay, gtk_sys::GtkOverlayClass, OverlayClass>) @extends Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_overlay_get_type(),
+        get_type => || gtk_sys::gtk_overlay_get_type(),
     }
 }
 
@@ -24,7 +33,7 @@ impl Overlay {
     pub fn new() -> Overlay {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_overlay_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_overlay_new()).unsafe_cast()
         }
     }
 }
@@ -54,31 +63,31 @@ pub trait OverlayExt: 'static {
 impl<O: IsA<Overlay>> OverlayExt for O {
     fn add_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            ffi::gtk_overlay_add_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0);
+            gtk_sys::gtk_overlay_add_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
     fn get_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(ffi::gtk_overlay_get_clip_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_overlay_get_clip_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
         }
     }
 
     fn get_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(ffi::gtk_overlay_get_measure_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_overlay_get_measure_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
         }
     }
 
     fn set_clip_overlay<P: IsA<Widget>>(&self, widget: &P, clip_overlay: bool) {
         unsafe {
-            ffi::gtk_overlay_set_clip_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, clip_overlay.to_glib());
+            gtk_sys::gtk_overlay_set_clip_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, clip_overlay.to_glib());
         }
     }
 
     fn set_measure_overlay<P: IsA<Widget>>(&self, widget: &P, measure: bool) {
         unsafe {
-            ffi::gtk_overlay_set_measure_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, measure.to_glib());
+            gtk_sys::gtk_overlay_set_measure_overlay(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, measure.to_glib());
         }
     }
 

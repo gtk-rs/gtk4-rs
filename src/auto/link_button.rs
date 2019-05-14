@@ -8,23 +8,26 @@ use Buildable;
 use Button;
 use Container;
 use Widget;
-use ffi;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct LinkButton(Object<ffi::GtkLinkButton, ffi::GtkLinkButtonClass, LinkButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct LinkButton(Object<gtk_sys::GtkLinkButton, gtk_sys::GtkLinkButtonClass, LinkButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_link_button_get_type(),
+        get_type => || gtk_sys::gtk_link_button_get_type(),
     }
 }
 
@@ -32,14 +35,14 @@ impl LinkButton {
     pub fn new(uri: &str) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_link_button_new(uri.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_link_button_new(uri.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_label(uri: &str, label: Option<&str>) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_link_button_new_with_label(uri.to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_link_button_new_with_label(uri.to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -65,25 +68,25 @@ pub trait LinkButtonExt: 'static {
 impl<O: IsA<LinkButton>> LinkButtonExt for O {
     fn get_uri(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_link_button_get_uri(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_link_button_get_uri(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_visited(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_link_button_get_visited(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_link_button_get_visited(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_uri(&self, uri: &str) {
         unsafe {
-            ffi::gtk_link_button_set_uri(self.as_ref().to_glib_none().0, uri.to_glib_none().0);
+            gtk_sys::gtk_link_button_set_uri(self.as_ref().to_glib_none().0, uri.to_glib_none().0);
         }
     }
 
     fn set_visited(&self, visited: bool) {
         unsafe {
-            ffi::gtk_link_button_set_visited(self.as_ref().to_glib_none().0, visited.to_glib());
+            gtk_sys::gtk_link_button_set_visited(self.as_ref().to_glib_none().0, visited.to_glib());
         }
     }
 
@@ -112,19 +115,19 @@ impl<O: IsA<LinkButton>> LinkButtonExt for O {
     }
 }
 
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkLinkButton, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkLinkButton, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<LinkButton> {
     let f: &F = &*(f as *const F);
     f(&LinkButton::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn notify_uri_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkLinkButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_uri_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLinkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<LinkButton> {
     let f: &F = &*(f as *const F);
     f(&LinkButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_visited_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkLinkButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_visited_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLinkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<LinkButton> {
     let f: &F = &*(f as *const F);
     f(&LinkButton::from_glib_borrow(this).unsafe_cast())

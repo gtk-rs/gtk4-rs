@@ -10,8 +10,8 @@ use ScrollType;
 use SpinButtonUpdatePolicy;
 use SpinType;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -20,18 +20,19 @@ use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SpinButton(Object<ffi::GtkSpinButton, ffi::GtkSpinButtonClass, SpinButtonClass>) @extends Widget, @implements Buildable, Editable, Orientable;
+    pub struct SpinButton(Object<gtk_sys::GtkSpinButton, gtk_sys::GtkSpinButtonClass, SpinButtonClass>) @extends Widget, @implements Buildable, Editable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_spin_button_get_type(),
+        get_type => || gtk_sys::gtk_spin_button_get_type(),
     }
 }
 
@@ -39,14 +40,14 @@ impl SpinButton {
     pub fn new<P: IsA<Adjustment>>(adjustment: Option<&P>, climb_rate: f64, digits: u32) -> SpinButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_spin_button_new(adjustment.map(|p| p.as_ref()).to_glib_none().0, climb_rate, digits)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_spin_button_new(adjustment.map(|p| p.as_ref()).to_glib_none().0, climb_rate, digits)).unsafe_cast()
         }
     }
 
     pub fn new_with_range(min: f64, max: f64, step: f64) -> SpinButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_spin_button_new_with_range(min, max, step)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_spin_button_new_with_range(min, max, step)).unsafe_cast()
         }
     }
 }
@@ -134,19 +135,19 @@ pub trait SpinButtonExt: 'static {
 impl<O: IsA<SpinButton>> SpinButtonExt for O {
     fn configure<P: IsA<Adjustment>>(&self, adjustment: Option<&P>, climb_rate: f64, digits: u32) {
         unsafe {
-            ffi::gtk_spin_button_configure(self.as_ref().to_glib_none().0, adjustment.map(|p| p.as_ref()).to_glib_none().0, climb_rate, digits);
+            gtk_sys::gtk_spin_button_configure(self.as_ref().to_glib_none().0, adjustment.map(|p| p.as_ref()).to_glib_none().0, climb_rate, digits);
         }
     }
 
     fn get_adjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(ffi::gtk_spin_button_get_adjustment(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_spin_button_get_adjustment(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_digits(&self) -> u32 {
         unsafe {
-            ffi::gtk_spin_button_get_digits(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_spin_button_get_digits(self.as_ref().to_glib_none().0)
         }
     }
 
@@ -154,14 +155,14 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
         unsafe {
             let mut step = mem::uninitialized();
             let mut page = mem::uninitialized();
-            ffi::gtk_spin_button_get_increments(self.as_ref().to_glib_none().0, &mut step, &mut page);
+            gtk_sys::gtk_spin_button_get_increments(self.as_ref().to_glib_none().0, &mut step, &mut page);
             (step, page)
         }
     }
 
     fn get_numeric(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_spin_button_get_numeric(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_spin_button_get_numeric(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -169,118 +170,118 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
         unsafe {
             let mut min = mem::uninitialized();
             let mut max = mem::uninitialized();
-            ffi::gtk_spin_button_get_range(self.as_ref().to_glib_none().0, &mut min, &mut max);
+            gtk_sys::gtk_spin_button_get_range(self.as_ref().to_glib_none().0, &mut min, &mut max);
             (min, max)
         }
     }
 
     fn get_snap_to_ticks(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_spin_button_get_snap_to_ticks(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_spin_button_get_snap_to_ticks(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_update_policy(&self) -> SpinButtonUpdatePolicy {
         unsafe {
-            from_glib(ffi::gtk_spin_button_get_update_policy(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_spin_button_get_update_policy(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_value(&self) -> f64 {
         unsafe {
-            ffi::gtk_spin_button_get_value(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_spin_button_get_value(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_value_as_int(&self) -> i32 {
         unsafe {
-            ffi::gtk_spin_button_get_value_as_int(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_spin_button_get_value_as_int(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_wrap(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_spin_button_get_wrap(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_spin_button_get_wrap(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
         unsafe {
-            ffi::gtk_spin_button_set_adjustment(self.as_ref().to_glib_none().0, adjustment.as_ref().to_glib_none().0);
+            gtk_sys::gtk_spin_button_set_adjustment(self.as_ref().to_glib_none().0, adjustment.as_ref().to_glib_none().0);
         }
     }
 
     fn set_digits(&self, digits: u32) {
         unsafe {
-            ffi::gtk_spin_button_set_digits(self.as_ref().to_glib_none().0, digits);
+            gtk_sys::gtk_spin_button_set_digits(self.as_ref().to_glib_none().0, digits);
         }
     }
 
     fn set_increments(&self, step: f64, page: f64) {
         unsafe {
-            ffi::gtk_spin_button_set_increments(self.as_ref().to_glib_none().0, step, page);
+            gtk_sys::gtk_spin_button_set_increments(self.as_ref().to_glib_none().0, step, page);
         }
     }
 
     fn set_numeric(&self, numeric: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_numeric(self.as_ref().to_glib_none().0, numeric.to_glib());
+            gtk_sys::gtk_spin_button_set_numeric(self.as_ref().to_glib_none().0, numeric.to_glib());
         }
     }
 
     fn set_range(&self, min: f64, max: f64) {
         unsafe {
-            ffi::gtk_spin_button_set_range(self.as_ref().to_glib_none().0, min, max);
+            gtk_sys::gtk_spin_button_set_range(self.as_ref().to_glib_none().0, min, max);
         }
     }
 
     fn set_snap_to_ticks(&self, snap_to_ticks: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_snap_to_ticks(self.as_ref().to_glib_none().0, snap_to_ticks.to_glib());
+            gtk_sys::gtk_spin_button_set_snap_to_ticks(self.as_ref().to_glib_none().0, snap_to_ticks.to_glib());
         }
     }
 
     fn set_update_policy(&self, policy: SpinButtonUpdatePolicy) {
         unsafe {
-            ffi::gtk_spin_button_set_update_policy(self.as_ref().to_glib_none().0, policy.to_glib());
+            gtk_sys::gtk_spin_button_set_update_policy(self.as_ref().to_glib_none().0, policy.to_glib());
         }
     }
 
     fn set_value(&self, value: f64) {
         unsafe {
-            ffi::gtk_spin_button_set_value(self.as_ref().to_glib_none().0, value);
+            gtk_sys::gtk_spin_button_set_value(self.as_ref().to_glib_none().0, value);
         }
     }
 
     fn set_wrap(&self, wrap: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_wrap(self.as_ref().to_glib_none().0, wrap.to_glib());
+            gtk_sys::gtk_spin_button_set_wrap(self.as_ref().to_glib_none().0, wrap.to_glib());
         }
     }
 
     fn spin(&self, direction: SpinType, increment: f64) {
         unsafe {
-            ffi::gtk_spin_button_spin(self.as_ref().to_glib_none().0, direction.to_glib(), increment);
+            gtk_sys::gtk_spin_button_spin(self.as_ref().to_glib_none().0, direction.to_glib(), increment);
         }
     }
 
     fn update(&self) {
         unsafe {
-            ffi::gtk_spin_button_update(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_spin_button_update(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_climb_rate(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"climb-rate\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"climb-rate\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_climb_rate(&self, climb_rate: f64) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"climb-rate\0".as_ptr() as *const _, Value::from(&climb_rate).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"climb-rate\0".as_ptr() as *const _, Value::from(&climb_rate).to_glib_none().0);
         }
     }
 
@@ -293,7 +294,7 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
     }
 
     fn emit_change_value(&self, scroll: ScrollType) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("change-value", &[&scroll]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("change-value", &[&scroll]).unwrap() };
     }
 
     //fn connect_input<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
@@ -389,73 +390,73 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
     }
 }
 
-unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType) + 'static>(this: *mut ffi::GtkSpinButton, scroll: ffi::GtkScrollType, f: glib_ffi::gpointer)
+unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType) + 'static>(this: *mut gtk_sys::GtkSpinButton, scroll: gtk_sys::GtkScrollType, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast(), from_glib(scroll))
 }
 
-unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkSpinButton, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkSpinButton, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, f: glib_ffi::gpointer)
+unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn wrapped_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, f: glib_ffi::gpointer)
+unsafe extern "C" fn wrapped_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_climb_rate_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_climb_rate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_numeric_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_numeric_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_snap_to_ticks_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_snap_to_ticks_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_update_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_update_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSpinButton, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast())

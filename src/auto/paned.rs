@@ -8,8 +8,8 @@ use Orientable;
 use Orientation;
 use ScrollType;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -18,17 +18,18 @@ use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Paned(Object<ffi::GtkPaned, ffi::GtkPanedClass, PanedClass>) @extends Container, Widget, @implements Buildable, Orientable;
+    pub struct Paned(Object<gtk_sys::GtkPaned, gtk_sys::GtkPanedClass, PanedClass>) @extends Container, Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_paned_get_type(),
+        get_type => || gtk_sys::gtk_paned_get_type(),
     }
 }
 
@@ -36,7 +37,7 @@ impl Paned {
     pub fn new(orientation: Orientation) -> Paned {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_paned_new(orientation.to_glib())).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_paned_new(orientation.to_glib())).unsafe_cast()
         }
     }
 }
@@ -134,68 +135,68 @@ pub trait PanedExt: 'static {
 impl<O: IsA<Paned>> PanedExt for O {
     fn add1<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_paned_add1(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_paned_add1(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn add2<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_paned_add2(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_paned_add2(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn get_child1(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_paned_get_child1(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_paned_get_child1(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_child2(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_paned_get_child2(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_paned_get_child2(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_position(&self) -> i32 {
         unsafe {
-            ffi::gtk_paned_get_position(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_paned_get_position(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_wide_handle(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_paned_get_wide_handle(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_paned_get_wide_handle(self.as_ref().to_glib_none().0))
         }
     }
 
     fn pack1<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool) {
         unsafe {
-            ffi::gtk_paned_pack1(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, resize.to_glib(), shrink.to_glib());
+            gtk_sys::gtk_paned_pack1(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, resize.to_glib(), shrink.to_glib());
         }
     }
 
     fn pack2<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool) {
         unsafe {
-            ffi::gtk_paned_pack2(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, resize.to_glib(), shrink.to_glib());
+            gtk_sys::gtk_paned_pack2(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, resize.to_glib(), shrink.to_glib());
         }
     }
 
     fn set_position(&self, position: i32) {
         unsafe {
-            ffi::gtk_paned_set_position(self.as_ref().to_glib_none().0, position);
+            gtk_sys::gtk_paned_set_position(self.as_ref().to_glib_none().0, position);
         }
     }
 
     fn set_wide_handle(&self, wide: bool) {
         unsafe {
-            ffi::gtk_paned_set_wide_handle(self.as_ref().to_glib_none().0, wide.to_glib());
+            gtk_sys::gtk_paned_set_wide_handle(self.as_ref().to_glib_none().0, wide.to_glib());
         }
     }
 
     fn get_property_max_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"max-position\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"max-position\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -203,7 +204,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     fn get_property_min_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"min-position\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"min-position\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -211,70 +212,70 @@ impl<O: IsA<Paned>> PanedExt for O {
     fn get_property_position_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"position-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"position-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_position_set(&self, position_set: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"position-set\0".as_ptr() as *const _, Value::from(&position_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"position-set\0".as_ptr() as *const _, Value::from(&position_set).to_glib_none().0);
         }
     }
 
     fn get_property_resize_child1(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resize-child1\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resize-child1\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_resize_child1(&self, resize_child1: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resize-child1\0".as_ptr() as *const _, Value::from(&resize_child1).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resize-child1\0".as_ptr() as *const _, Value::from(&resize_child1).to_glib_none().0);
         }
     }
 
     fn get_property_resize_child2(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resize-child2\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resize-child2\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_resize_child2(&self, resize_child2: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"resize-child2\0".as_ptr() as *const _, Value::from(&resize_child2).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"resize-child2\0".as_ptr() as *const _, Value::from(&resize_child2).to_glib_none().0);
         }
     }
 
     fn get_property_shrink_child1(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"shrink-child1\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"shrink-child1\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_shrink_child1(&self, shrink_child1: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"shrink-child1\0".as_ptr() as *const _, Value::from(&shrink_child1).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"shrink-child1\0".as_ptr() as *const _, Value::from(&shrink_child1).to_glib_none().0);
         }
     }
 
     fn get_property_shrink_child2(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"shrink-child2\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"shrink-child2\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_shrink_child2(&self, shrink_child2: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"shrink-child2\0".as_ptr() as *const _, Value::from(&shrink_child2).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"shrink-child2\0".as_ptr() as *const _, Value::from(&shrink_child2).to_glib_none().0);
         }
     }
 
@@ -287,7 +288,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_accept_position(&self) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("accept-position", &[]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("accept-position", &[]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -300,7 +301,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_cancel_position(&self) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("cancel-position", &[]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("cancel-position", &[]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -313,7 +314,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_cycle_child_focus(&self, reversed: bool) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("cycle-child-focus", &[&reversed]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("cycle-child-focus", &[&reversed]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -326,7 +327,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_cycle_handle_focus(&self, reversed: bool) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("cycle-handle-focus", &[&reversed]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("cycle-handle-focus", &[&reversed]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -339,7 +340,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_move_handle(&self, scroll_type: ScrollType) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("move-handle", &[&scroll_type]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-handle", &[&scroll_type]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -352,7 +353,7 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 
     fn emit_toggle_handle_focus(&self) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("toggle-handle-focus", &[]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("toggle-handle-focus", &[]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -429,91 +430,91 @@ impl<O: IsA<Paned>> PanedExt for O {
     }
 }
 
-unsafe extern "C" fn accept_position_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkPaned, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn accept_position_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn cancel_position_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkPaned, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn cancel_position_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn cycle_child_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut ffi::GtkPaned, reversed: glib_ffi::gboolean, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn cycle_child_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, reversed: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast(), from_glib(reversed)).to_glib()
 }
 
-unsafe extern "C" fn cycle_handle_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut ffi::GtkPaned, reversed: glib_ffi::gboolean, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn cycle_handle_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, reversed: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast(), from_glib(reversed)).to_glib()
 }
 
-unsafe extern "C" fn move_handle_trampoline<P, F: Fn(&P, ScrollType) -> bool + 'static>(this: *mut ffi::GtkPaned, scroll_type: ffi::GtkScrollType, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn move_handle_trampoline<P, F: Fn(&P, ScrollType) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, scroll_type: gtk_sys::GtkScrollType, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast(), from_glib(scroll_type)).to_glib()
 }
 
-unsafe extern "C" fn toggle_handle_focus_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkPaned, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn toggle_handle_focus_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkPaned, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn notify_max_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_max_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_min_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_min_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_position_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_position_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_resize_child1_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_resize_child1_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_resize_child2_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_resize_child2_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_shrink_child1_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_shrink_child1_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_shrink_child2_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_shrink_child2_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_wide_handle_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkPaned, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_wide_handle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPaned, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Paned> {
     let f: &F = &*(f as *const F);
     f(&Paned::from_glib_borrow(this).unsafe_cast())

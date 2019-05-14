@@ -4,22 +4,22 @@
 
 use PropagationPhase;
 use Widget;
-use ffi;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct EventController(Object<ffi::GtkEventController, ffi::GtkEventControllerClass, EventControllerClass>);
+    pub struct EventController(Object<gtk_sys::GtkEventController, gtk_sys::GtkEventControllerClass, EventControllerClass>);
 
     match fn {
-        get_type => || ffi::gtk_event_controller_get_type(),
+        get_type => || gtk_sys::gtk_event_controller_get_type(),
     }
 }
 
@@ -44,29 +44,29 @@ pub trait EventControllerExt: 'static {
 impl<O: IsA<EventController>> EventControllerExt for O {
     fn get_propagation_phase(&self) -> PropagationPhase {
         unsafe {
-            from_glib(ffi::gtk_event_controller_get_propagation_phase(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_event_controller_get_propagation_phase(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_event_controller_get_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_event_controller_get_widget(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn handle_event(&self, event: /*Ignored*/&gdk::Event) -> bool {
-    //    unsafe { TODO: call ffi::gtk_event_controller_handle_event() }
+    //    unsafe { TODO: call gtk_sys:gtk_event_controller_handle_event() }
     //}
 
     fn reset(&self) {
         unsafe {
-            ffi::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_propagation_phase(&self, phase: PropagationPhase) {
         unsafe {
-            ffi::gtk_event_controller_set_propagation_phase(self.as_ref().to_glib_none().0, phase.to_glib());
+            gtk_sys::gtk_event_controller_set_propagation_phase(self.as_ref().to_glib_none().0, phase.to_glib());
         }
     }
 
@@ -87,13 +87,13 @@ impl<O: IsA<EventController>> EventControllerExt for O {
     }
 }
 
-unsafe extern "C" fn notify_propagation_phase_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventController, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_propagation_phase_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEventController, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<EventController> {
     let f: &F = &*(f as *const F);
     f(&EventController::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventController, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEventController, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<EventController> {
     let f: &F = &*(f as *const F);
     f(&EventController::from_glib_borrow(this).unsafe_cast())

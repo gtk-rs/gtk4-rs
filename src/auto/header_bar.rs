@@ -5,7 +5,6 @@
 use Buildable;
 use Container;
 use Widget;
-use ffi;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -14,17 +13,18 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct HeaderBar(Object<ffi::GtkHeaderBar, ffi::GtkHeaderBarClass, HeaderBarClass>) @extends Container, Widget, @implements Buildable;
+    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar, gtk_sys::GtkHeaderBarClass, HeaderBarClass>) @extends Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_header_bar_get_type(),
+        get_type => || gtk_sys::gtk_header_bar_get_type(),
     }
 }
 
@@ -32,7 +32,7 @@ impl HeaderBar {
     pub fn new() -> HeaderBar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_header_bar_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_header_bar_new()).unsafe_cast()
         }
     }
 }
@@ -102,113 +102,113 @@ pub trait HeaderBarExt: 'static {
 impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     fn get_custom_title(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_header_bar_get_custom_title(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_header_bar_get_custom_title(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_decoration_layout(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_header_bar_get_decoration_layout(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_header_bar_get_decoration_layout(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_has_subtitle(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_header_bar_get_has_subtitle(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_header_bar_get_has_subtitle(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_show_title_buttons(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_header_bar_get_show_title_buttons(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_header_bar_get_show_title_buttons(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_subtitle(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_header_bar_get_subtitle(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_header_bar_get_subtitle(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_title(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_header_bar_get_title(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_header_bar_get_title(self.as_ref().to_glib_none().0))
         }
     }
 
     fn pack_end<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_header_bar_pack_end(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_header_bar_pack_end(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn pack_start<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            ffi::gtk_header_bar_pack_start(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
+            gtk_sys::gtk_header_bar_pack_start(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     fn set_custom_title<P: IsA<Widget>>(&self, title_widget: Option<&P>) {
         unsafe {
-            ffi::gtk_header_bar_set_custom_title(self.as_ref().to_glib_none().0, title_widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_header_bar_set_custom_title(self.as_ref().to_glib_none().0, title_widget.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
-            ffi::gtk_header_bar_set_decoration_layout(self.as_ref().to_glib_none().0, layout.to_glib_none().0);
+            gtk_sys::gtk_header_bar_set_decoration_layout(self.as_ref().to_glib_none().0, layout.to_glib_none().0);
         }
     }
 
     fn set_has_subtitle(&self, setting: bool) {
         unsafe {
-            ffi::gtk_header_bar_set_has_subtitle(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_header_bar_set_has_subtitle(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_show_title_buttons(&self, setting: bool) {
         unsafe {
-            ffi::gtk_header_bar_set_show_title_buttons(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_header_bar_set_show_title_buttons(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_subtitle(&self, subtitle: Option<&str>) {
         unsafe {
-            ffi::gtk_header_bar_set_subtitle(self.as_ref().to_glib_none().0, subtitle.to_glib_none().0);
+            gtk_sys::gtk_header_bar_set_subtitle(self.as_ref().to_glib_none().0, subtitle.to_glib_none().0);
         }
     }
 
     fn set_title(&self, title: Option<&str>) {
         unsafe {
-            ffi::gtk_header_bar_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
+            gtk_sys::gtk_header_bar_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     fn get_property_decoration_layout_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"decoration-layout-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"decoration-layout-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_decoration_layout_set(&self, decoration_layout_set: bool) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"decoration-layout-set\0".as_ptr() as *const _, Value::from(&decoration_layout_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"decoration-layout-set\0".as_ptr() as *const _, Value::from(&decoration_layout_set).to_glib_none().0);
         }
     }
 
     fn get_property_spacing(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"spacing\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"spacing\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_spacing(&self, spacing: i32) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"spacing\0".as_ptr() as *const _, Value::from(&spacing).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"spacing\0".as_ptr() as *const _, Value::from(&spacing).to_glib_none().0);
         }
     }
 
@@ -277,49 +277,49 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 }
 
-unsafe extern "C" fn notify_custom_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_custom_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_decoration_layout_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_decoration_layout_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_has_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_has_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_show_title_buttons_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_show_title_buttons_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkHeaderBar, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<HeaderBar> {
     let f: &F = &*(f as *const F);
     f(&HeaderBar::from_glib_borrow(this).unsafe_cast())

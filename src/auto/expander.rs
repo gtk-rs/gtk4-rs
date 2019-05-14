@@ -5,26 +5,28 @@
 use Buildable;
 use Container;
 use Widget;
-use ffi;
 use glib;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Expander(Object<ffi::GtkExpander, ffi::GtkExpanderClass, ExpanderClass>) @extends Container, Widget, @implements Buildable;
+    pub struct Expander(Object<gtk_sys::GtkExpander, gtk_sys::GtkExpanderClass, ExpanderClass>) @extends Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_expander_get_type(),
+        get_type => || gtk_sys::gtk_expander_get_type(),
     }
 }
 
@@ -32,14 +34,14 @@ impl Expander {
     pub fn new(label: Option<&str>) -> Expander {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_expander_new(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_expander_new(label.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_mnemonic(label: Option<&str>) -> Expander {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_expander_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_expander_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -91,73 +93,73 @@ pub trait ExpanderExt: 'static {
 impl<O: IsA<Expander>> ExpanderExt for O {
     fn get_expanded(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_expander_get_expanded(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_expander_get_expanded(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_label(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_expander_get_label(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_expander_get_label(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_label_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_expander_get_label_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_expander_get_label_widget(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_resize_toplevel(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_expander_get_resize_toplevel(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_expander_get_resize_toplevel(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_use_markup(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_expander_get_use_markup(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_expander_get_use_markup(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_use_underline(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_expander_get_use_underline(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_expander_get_use_underline(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_expanded(&self, expanded: bool) {
         unsafe {
-            ffi::gtk_expander_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
+            gtk_sys::gtk_expander_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
         }
     }
 
     fn set_label(&self, label: Option<&str>) {
         unsafe {
-            ffi::gtk_expander_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
+            gtk_sys::gtk_expander_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
         }
     }
 
     fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>) {
         unsafe {
-            ffi::gtk_expander_set_label_widget(self.as_ref().to_glib_none().0, label_widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_expander_set_label_widget(self.as_ref().to_glib_none().0, label_widget.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_resize_toplevel(&self, resize_toplevel: bool) {
         unsafe {
-            ffi::gtk_expander_set_resize_toplevel(self.as_ref().to_glib_none().0, resize_toplevel.to_glib());
+            gtk_sys::gtk_expander_set_resize_toplevel(self.as_ref().to_glib_none().0, resize_toplevel.to_glib());
         }
     }
 
     fn set_use_markup(&self, use_markup: bool) {
         unsafe {
-            ffi::gtk_expander_set_use_markup(self.as_ref().to_glib_none().0, use_markup.to_glib());
+            gtk_sys::gtk_expander_set_use_markup(self.as_ref().to_glib_none().0, use_markup.to_glib());
         }
     }
 
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            ffi::gtk_expander_set_use_underline(self.as_ref().to_glib_none().0, use_underline.to_glib());
+            gtk_sys::gtk_expander_set_use_underline(self.as_ref().to_glib_none().0, use_underline.to_glib());
         }
     }
 
@@ -170,7 +172,7 @@ impl<O: IsA<Expander>> ExpanderExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("activate", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
     }
 
     fn connect_property_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -222,43 +224,43 @@ impl<O: IsA<Expander>> ExpanderExt for O {
     }
 }
 
-unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, f: glib_ffi::gpointer)
+unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_label_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_label_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_resize_toplevel_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_resize_toplevel_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkExpander, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkExpander, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Expander> {
     let f: &F = &*(f as *const F);
     f(&Expander::from_glib_borrow(this).unsafe_cast())

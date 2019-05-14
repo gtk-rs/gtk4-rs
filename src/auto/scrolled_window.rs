@@ -13,8 +13,8 @@ use PositionType;
 use ScrollType;
 use ShadowType;
 use Widget;
-use ffi;
 use glib;
+use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -23,18 +23,19 @@ use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ScrolledWindow(Object<ffi::GtkScrolledWindow, ffi::GtkScrolledWindowClass, ScrolledWindowClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct ScrolledWindow(Object<gtk_sys::GtkScrolledWindow, gtk_sys::GtkScrolledWindowClass, ScrolledWindowClass>) @extends Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_scrolled_window_get_type(),
+        get_type => || gtk_sys::gtk_scrolled_window_get_type(),
     }
 }
 
@@ -42,7 +43,7 @@ impl ScrolledWindow {
     pub fn new<P: IsA<Adjustment>, Q: IsA<Adjustment>>(hadjustment: Option<&P>, vadjustment: Option<&Q>) -> ScrolledWindow {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_scrolled_window_new(hadjustment.map(|p| p.as_ref()).to_glib_none().0, vadjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_scrolled_window_new(hadjustment.map(|p| p.as_ref()).to_glib_none().0, vadjustment.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -168,61 +169,61 @@ pub trait ScrolledWindowExt: 'static {
 impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
     fn get_capture_button_press(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_capture_button_press(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_capture_button_press(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_hadjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(ffi::gtk_scrolled_window_get_hadjustment(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_scrolled_window_get_hadjustment(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_hscrollbar(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_scrolled_window_get_hscrollbar(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_scrolled_window_get_hscrollbar(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_kinetic_scrolling(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_kinetic_scrolling(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_kinetic_scrolling(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_max_content_height(&self) -> i32 {
         unsafe {
-            ffi::gtk_scrolled_window_get_max_content_height(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_scrolled_window_get_max_content_height(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_max_content_width(&self) -> i32 {
         unsafe {
-            ffi::gtk_scrolled_window_get_max_content_width(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_scrolled_window_get_max_content_width(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_min_content_height(&self) -> i32 {
         unsafe {
-            ffi::gtk_scrolled_window_get_min_content_height(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_scrolled_window_get_min_content_height(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_min_content_width(&self) -> i32 {
         unsafe {
-            ffi::gtk_scrolled_window_get_min_content_width(self.as_ref().to_glib_none().0)
+            gtk_sys::gtk_scrolled_window_get_min_content_width(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_overlay_scrolling(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_overlay_scrolling(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_overlay_scrolling(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_placement(&self) -> CornerType {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_placement(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_placement(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -230,170 +231,170 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
         unsafe {
             let mut hscrollbar_policy = mem::uninitialized();
             let mut vscrollbar_policy = mem::uninitialized();
-            ffi::gtk_scrolled_window_get_policy(self.as_ref().to_glib_none().0, &mut hscrollbar_policy, &mut vscrollbar_policy);
+            gtk_sys::gtk_scrolled_window_get_policy(self.as_ref().to_glib_none().0, &mut hscrollbar_policy, &mut vscrollbar_policy);
             (from_glib(hscrollbar_policy), from_glib(vscrollbar_policy))
         }
     }
 
     fn get_propagate_natural_height(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_propagate_natural_height(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_propagate_natural_height(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_propagate_natural_width(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_propagate_natural_width(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_propagate_natural_width(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_shadow_type(&self) -> ShadowType {
         unsafe {
-            from_glib(ffi::gtk_scrolled_window_get_shadow_type(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_scrolled_window_get_shadow_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_vadjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(ffi::gtk_scrolled_window_get_vadjustment(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_scrolled_window_get_vadjustment(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_vscrollbar(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_scrolled_window_get_vscrollbar(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_scrolled_window_get_vscrollbar(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_capture_button_press(&self, capture_button_press: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_capture_button_press(self.as_ref().to_glib_none().0, capture_button_press.to_glib());
+            gtk_sys::gtk_scrolled_window_set_capture_button_press(self.as_ref().to_glib_none().0, capture_button_press.to_glib());
         }
     }
 
     fn set_hadjustment<P: IsA<Adjustment>>(&self, hadjustment: &P) {
         unsafe {
-            ffi::gtk_scrolled_window_set_hadjustment(self.as_ref().to_glib_none().0, hadjustment.as_ref().to_glib_none().0);
+            gtk_sys::gtk_scrolled_window_set_hadjustment(self.as_ref().to_glib_none().0, hadjustment.as_ref().to_glib_none().0);
         }
     }
 
     fn set_kinetic_scrolling(&self, kinetic_scrolling: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_kinetic_scrolling(self.as_ref().to_glib_none().0, kinetic_scrolling.to_glib());
+            gtk_sys::gtk_scrolled_window_set_kinetic_scrolling(self.as_ref().to_glib_none().0, kinetic_scrolling.to_glib());
         }
     }
 
     fn set_max_content_height(&self, height: i32) {
         unsafe {
-            ffi::gtk_scrolled_window_set_max_content_height(self.as_ref().to_glib_none().0, height);
+            gtk_sys::gtk_scrolled_window_set_max_content_height(self.as_ref().to_glib_none().0, height);
         }
     }
 
     fn set_max_content_width(&self, width: i32) {
         unsafe {
-            ffi::gtk_scrolled_window_set_max_content_width(self.as_ref().to_glib_none().0, width);
+            gtk_sys::gtk_scrolled_window_set_max_content_width(self.as_ref().to_glib_none().0, width);
         }
     }
 
     fn set_min_content_height(&self, height: i32) {
         unsafe {
-            ffi::gtk_scrolled_window_set_min_content_height(self.as_ref().to_glib_none().0, height);
+            gtk_sys::gtk_scrolled_window_set_min_content_height(self.as_ref().to_glib_none().0, height);
         }
     }
 
     fn set_min_content_width(&self, width: i32) {
         unsafe {
-            ffi::gtk_scrolled_window_set_min_content_width(self.as_ref().to_glib_none().0, width);
+            gtk_sys::gtk_scrolled_window_set_min_content_width(self.as_ref().to_glib_none().0, width);
         }
     }
 
     fn set_overlay_scrolling(&self, overlay_scrolling: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_overlay_scrolling(self.as_ref().to_glib_none().0, overlay_scrolling.to_glib());
+            gtk_sys::gtk_scrolled_window_set_overlay_scrolling(self.as_ref().to_glib_none().0, overlay_scrolling.to_glib());
         }
     }
 
     fn set_placement(&self, window_placement: CornerType) {
         unsafe {
-            ffi::gtk_scrolled_window_set_placement(self.as_ref().to_glib_none().0, window_placement.to_glib());
+            gtk_sys::gtk_scrolled_window_set_placement(self.as_ref().to_glib_none().0, window_placement.to_glib());
         }
     }
 
     fn set_policy(&self, hscrollbar_policy: PolicyType, vscrollbar_policy: PolicyType) {
         unsafe {
-            ffi::gtk_scrolled_window_set_policy(self.as_ref().to_glib_none().0, hscrollbar_policy.to_glib(), vscrollbar_policy.to_glib());
+            gtk_sys::gtk_scrolled_window_set_policy(self.as_ref().to_glib_none().0, hscrollbar_policy.to_glib(), vscrollbar_policy.to_glib());
         }
     }
 
     fn set_propagate_natural_height(&self, propagate: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_propagate_natural_height(self.as_ref().to_glib_none().0, propagate.to_glib());
+            gtk_sys::gtk_scrolled_window_set_propagate_natural_height(self.as_ref().to_glib_none().0, propagate.to_glib());
         }
     }
 
     fn set_propagate_natural_width(&self, propagate: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_propagate_natural_width(self.as_ref().to_glib_none().0, propagate.to_glib());
+            gtk_sys::gtk_scrolled_window_set_propagate_natural_width(self.as_ref().to_glib_none().0, propagate.to_glib());
         }
     }
 
     fn set_shadow_type(&self, type_: ShadowType) {
         unsafe {
-            ffi::gtk_scrolled_window_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
+            gtk_sys::gtk_scrolled_window_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
         }
     }
 
     fn set_vadjustment<P: IsA<Adjustment>>(&self, vadjustment: &P) {
         unsafe {
-            ffi::gtk_scrolled_window_set_vadjustment(self.as_ref().to_glib_none().0, vadjustment.as_ref().to_glib_none().0);
+            gtk_sys::gtk_scrolled_window_set_vadjustment(self.as_ref().to_glib_none().0, vadjustment.as_ref().to_glib_none().0);
         }
     }
 
     fn unset_placement(&self) {
         unsafe {
-            ffi::gtk_scrolled_window_unset_placement(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_scrolled_window_unset_placement(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_hscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"hscrollbar-policy\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"hscrollbar-policy\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"hscrollbar-policy\0".as_ptr() as *const _, Value::from(&hscrollbar_policy).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"hscrollbar-policy\0".as_ptr() as *const _, Value::from(&hscrollbar_policy).to_glib_none().0);
         }
     }
 
     fn get_property_vscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"vscrollbar-policy\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"vscrollbar-policy\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"vscrollbar-policy\0".as_ptr() as *const _, Value::from(&vscrollbar_policy).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"vscrollbar-policy\0".as_ptr() as *const _, Value::from(&vscrollbar_policy).to_glib_none().0);
         }
     }
 
     fn get_property_window_placement(&self) -> CornerType {
         unsafe {
             let mut value = Value::from_type(<CornerType as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"window-placement\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"window-placement\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn set_property_window_placement(&self, window_placement: CornerType) {
         unsafe {
-            gobject_ffi::g_object_set_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"window-placement\0".as_ptr() as *const _, Value::from(&window_placement).to_glib_none().0);
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"window-placement\0".as_ptr() as *const _, Value::from(&window_placement).to_glib_none().0);
         }
     }
 
@@ -422,7 +423,7 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
     }
 
     fn emit_move_focus_out(&self, direction_type: DirectionType) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("move-focus-out", &[&direction_type]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-focus-out", &[&direction_type]).unwrap() };
     }
 
     fn connect_scroll_child<F: Fn(&Self, ScrollType, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -434,7 +435,7 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
     }
 
     fn emit_scroll_child(&self, scroll: ScrollType, horizontal: bool) -> bool {
-        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("scroll-child", &[&scroll, &horizontal]).unwrap() };
+        let res = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("scroll-child", &[&scroll, &horizontal]).unwrap() };
         res.unwrap().get().unwrap()
     }
 
@@ -551,109 +552,109 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
     }
 }
 
-unsafe extern "C" fn edge_overshot_trampoline<P, F: Fn(&P, PositionType) + 'static>(this: *mut ffi::GtkScrolledWindow, pos: ffi::GtkPositionType, f: glib_ffi::gpointer)
+unsafe extern "C" fn edge_overshot_trampoline<P, F: Fn(&P, PositionType) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, pos: gtk_sys::GtkPositionType, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast(), from_glib(pos))
 }
 
-unsafe extern "C" fn edge_reached_trampoline<P, F: Fn(&P, PositionType) + 'static>(this: *mut ffi::GtkScrolledWindow, pos: ffi::GtkPositionType, f: glib_ffi::gpointer)
+unsafe extern "C" fn edge_reached_trampoline<P, F: Fn(&P, PositionType) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, pos: gtk_sys::GtkPositionType, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast(), from_glib(pos))
 }
 
-unsafe extern "C" fn move_focus_out_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut ffi::GtkScrolledWindow, direction_type: ffi::GtkDirectionType, f: glib_ffi::gpointer)
+unsafe extern "C" fn move_focus_out_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, direction_type: gtk_sys::GtkDirectionType, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast(), from_glib(direction_type))
 }
 
-unsafe extern "C" fn scroll_child_trampoline<P, F: Fn(&P, ScrollType, bool) -> bool + 'static>(this: *mut ffi::GtkScrolledWindow, scroll: ffi::GtkScrollType, horizontal: glib_ffi::gboolean, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn scroll_child_trampoline<P, F: Fn(&P, ScrollType, bool) -> bool + 'static>(this: *mut gtk_sys::GtkScrolledWindow, scroll: gtk_sys::GtkScrollType, horizontal: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast(), from_glib(scroll), from_glib(horizontal)).to_glib()
 }
 
-unsafe extern "C" fn notify_hadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_hadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_hscrollbar_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_hscrollbar_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_kinetic_scrolling_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_kinetic_scrolling_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_max_content_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_max_content_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_max_content_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_max_content_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_min_content_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_min_content_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_min_content_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_min_content_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_overlay_scrolling_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_overlay_scrolling_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_propagate_natural_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_propagate_natural_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_propagate_natural_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_propagate_natural_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_vadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_vadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_vscrollbar_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_vscrollbar_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_window_placement_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkScrolledWindow, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_window_placement_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrolledWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<ScrolledWindow> {
     let f: &F = &*(f as *const F);
     f(&ScrolledWindow::from_glib_borrow(this).unsafe_cast())

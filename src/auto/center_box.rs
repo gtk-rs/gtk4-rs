@@ -6,22 +6,27 @@ use BaselinePosition;
 use Buildable;
 use Orientable;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct CenterBox(Object<ffi::GtkCenterBox, ffi::GtkCenterBoxClass, CenterBoxClass>) @extends Widget, @implements Buildable, Orientable;
+    pub struct CenterBox(Object<gtk_sys::GtkCenterBox, gtk_sys::GtkCenterBoxClass, CenterBoxClass>) @extends Widget, @implements Buildable, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_center_box_get_type(),
+        get_type => || gtk_sys::gtk_center_box_get_type(),
     }
 }
 
@@ -29,7 +34,63 @@ impl CenterBox {
     pub fn new() -> CenterBox {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_center_box_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_center_box_new()).unsafe_cast()
+        }
+    }
+
+    pub fn get_baseline_position(&self) -> BaselinePosition {
+        unsafe {
+            from_glib(gtk_sys::gtk_center_box_get_baseline_position(self.to_glib_none().0))
+        }
+    }
+
+    pub fn get_center_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_center_box_get_center_widget(self.to_glib_none().0))
+        }
+    }
+
+    pub fn get_end_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_center_box_get_end_widget(self.to_glib_none().0))
+        }
+    }
+
+    pub fn get_start_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_center_box_get_start_widget(self.to_glib_none().0))
+        }
+    }
+
+    pub fn set_baseline_position(&self, position: BaselinePosition) {
+        unsafe {
+            gtk_sys::gtk_center_box_set_baseline_position(self.to_glib_none().0, position.to_glib());
+        }
+    }
+
+    pub fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_center_box_set_center_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
+
+    pub fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_center_box_set_end_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
+
+    pub fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_center_box_set_start_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
+
+    pub fn connect_property_baseline_position_notify<F: Fn(&CenterBox) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::baseline-position\0".as_ptr() as *const _,
+                Some(transmute(notify_baseline_position_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 }
@@ -40,90 +101,9 @@ impl Default for CenterBox {
     }
 }
 
-pub const NONE_CENTER_BOX: Option<&CenterBox> = None;
-
-pub trait CenterBoxExt: 'static {
-    fn get_baseline_position(&self) -> BaselinePosition;
-
-    fn get_center_widget(&self) -> Option<Widget>;
-
-    fn get_end_widget(&self) -> Option<Widget>;
-
-    fn get_start_widget(&self) -> Option<Widget>;
-
-    fn set_baseline_position(&self, position: BaselinePosition);
-
-    fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>);
-
-    fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>);
-
-    fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>);
-
-    fn connect_property_baseline_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CenterBox>> CenterBoxExt for O {
-    fn get_baseline_position(&self) -> BaselinePosition {
-        unsafe {
-            from_glib(ffi::gtk_center_box_get_baseline_position(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_center_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_box_get_center_widget(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_end_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_box_get_end_widget(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_start_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_box_get_start_widget(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn set_baseline_position(&self, position: BaselinePosition) {
-        unsafe {
-            ffi::gtk_center_box_set_baseline_position(self.as_ref().to_glib_none().0, position.to_glib());
-        }
-    }
-
-    fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
-        unsafe {
-            ffi::gtk_center_box_set_center_widget(self.as_ref().to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
-        }
-    }
-
-    fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
-        unsafe {
-            ffi::gtk_center_box_set_end_widget(self.as_ref().to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
-        }
-    }
-
-    fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
-        unsafe {
-            ffi::gtk_center_box_set_start_widget(self.as_ref().to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
-        }
-    }
-
-    fn connect_property_baseline_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute(notify_baseline_position_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-}
-
-unsafe extern "C" fn notify_baseline_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkCenterBox, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<CenterBox> {
+unsafe extern "C" fn notify_baseline_position_trampoline<F: Fn(&CenterBox) + 'static>(this: *mut gtk_sys::GtkCenterBox, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&CenterBox::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for CenterBox {

@@ -4,23 +4,23 @@
 
 use EventController;
 use EventControllerScrollFlags;
-use ffi;
 use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct EventControllerScroll(Object<ffi::GtkEventControllerScroll, ffi::GtkEventControllerScrollClass, EventControllerScrollClass>) @extends EventController;
+    pub struct EventControllerScroll(Object<gtk_sys::GtkEventControllerScroll, gtk_sys::GtkEventControllerScrollClass, EventControllerScrollClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_scroll_get_type(),
+        get_type => || gtk_sys::gtk_event_controller_scroll_get_type(),
     }
 }
 
@@ -28,111 +28,86 @@ impl EventControllerScroll {
     pub fn new(flags: EventControllerScrollFlags) -> EventControllerScroll {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(ffi::gtk_event_controller_scroll_new(flags.to_glib())).unsafe_cast()
+            EventController::from_glib_full(gtk_sys::gtk_event_controller_scroll_new(flags.to_glib())).unsafe_cast()
         }
     }
-}
 
-pub const NONE_EVENT_CONTROLLER_SCROLL: Option<&EventControllerScroll> = None;
-
-pub trait EventControllerScrollExt: 'static {
-    fn get_flags(&self) -> EventControllerScrollFlags;
-
-    fn set_flags(&self, flags: EventControllerScrollFlags);
-
-    fn connect_decelerate<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_scroll<F: Fn(&Self, f64, f64) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_scroll_begin<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_scroll_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_flags_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<EventControllerScroll>> EventControllerScrollExt for O {
-    fn get_flags(&self) -> EventControllerScrollFlags {
+    pub fn get_flags(&self) -> EventControllerScrollFlags {
         unsafe {
-            from_glib(ffi::gtk_event_controller_scroll_get_flags(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_event_controller_scroll_get_flags(self.to_glib_none().0))
         }
     }
 
-    fn set_flags(&self, flags: EventControllerScrollFlags) {
+    pub fn set_flags(&self, flags: EventControllerScrollFlags) {
         unsafe {
-            ffi::gtk_event_controller_scroll_set_flags(self.as_ref().to_glib_none().0, flags.to_glib());
+            gtk_sys::gtk_event_controller_scroll_set_flags(self.to_glib_none().0, flags.to_glib());
         }
     }
 
-    fn connect_decelerate<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_decelerate<F: Fn(&EventControllerScroll, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"decelerate\0".as_ptr() as *const _,
-                Some(transmute(decelerate_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(decelerate_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_scroll<F: Fn(&Self, f64, f64) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scroll<F: Fn(&EventControllerScroll, f64, f64) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"scroll\0".as_ptr() as *const _,
-                Some(transmute(scroll_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(scroll_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_scroll_begin<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scroll_begin<F: Fn(&EventControllerScroll) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"scroll-begin\0".as_ptr() as *const _,
-                Some(transmute(scroll_begin_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(scroll_begin_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_scroll_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scroll_end<F: Fn(&EventControllerScroll) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"scroll-end\0".as_ptr() as *const _,
-                Some(transmute(scroll_end_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(scroll_end_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 
-    fn connect_property_flags_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_property_flags_notify<F: Fn(&EventControllerScroll) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::flags\0".as_ptr() as *const _,
-                Some(transmute(notify_flags_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+                Some(transmute(notify_flags_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
 }
 
-unsafe extern "C" fn decelerate_trampoline<P, F: Fn(&P, f64, f64) + 'static>(this: *mut ffi::GtkEventControllerScroll, vel_x: libc::c_double, vel_y: libc::c_double, f: glib_ffi::gpointer)
-where P: IsA<EventControllerScroll> {
+unsafe extern "C" fn decelerate_trampoline<F: Fn(&EventControllerScroll, f64, f64) + 'static>(this: *mut gtk_sys::GtkEventControllerScroll, vel_x: libc::c_double, vel_y: libc::c_double, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerScroll::from_glib_borrow(this).unsafe_cast(), vel_x, vel_y)
+    f(&from_glib_borrow(this), vel_x, vel_y)
 }
 
-unsafe extern "C" fn scroll_trampoline<P, F: Fn(&P, f64, f64) -> bool + 'static>(this: *mut ffi::GtkEventControllerScroll, dx: libc::c_double, dy: libc::c_double, f: glib_ffi::gpointer) -> glib_ffi::gboolean
-where P: IsA<EventControllerScroll> {
+unsafe extern "C" fn scroll_trampoline<F: Fn(&EventControllerScroll, f64, f64) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerScroll, dx: libc::c_double, dy: libc::c_double, f: glib_sys::gpointer) -> glib_sys::gboolean {
     let f: &F = &*(f as *const F);
-    f(&EventControllerScroll::from_glib_borrow(this).unsafe_cast(), dx, dy).to_glib()
+    f(&from_glib_borrow(this), dx, dy).to_glib()
 }
 
-unsafe extern "C" fn scroll_begin_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventControllerScroll, f: glib_ffi::gpointer)
-where P: IsA<EventControllerScroll> {
+unsafe extern "C" fn scroll_begin_trampoline<F: Fn(&EventControllerScroll) + 'static>(this: *mut gtk_sys::GtkEventControllerScroll, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerScroll::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn scroll_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventControllerScroll, f: glib_ffi::gpointer)
-where P: IsA<EventControllerScroll> {
+unsafe extern "C" fn scroll_end_trampoline<F: Fn(&EventControllerScroll) + 'static>(this: *mut gtk_sys::GtkEventControllerScroll, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerScroll::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn notify_flags_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkEventControllerScroll, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<EventControllerScroll> {
+unsafe extern "C" fn notify_flags_trampoline<F: Fn(&EventControllerScroll) + 'static>(this: *mut gtk_sys::GtkEventControllerScroll, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
-    f(&EventControllerScroll::from_glib_borrow(this).unsafe_cast())
+    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for EventControllerScroll {

@@ -5,22 +5,26 @@
 use Buildable;
 use MediaStream;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MediaControls(Object<ffi::GtkMediaControls, ffi::GtkMediaControlsClass, MediaControlsClass>) @extends Widget, @implements Buildable;
+    pub struct MediaControls(Object<gtk_sys::GtkMediaControls, gtk_sys::GtkMediaControlsClass, MediaControlsClass>) @extends Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_media_controls_get_type(),
+        get_type => || gtk_sys::gtk_media_controls_get_type(),
     }
 }
 
@@ -28,7 +32,7 @@ impl MediaControls {
     pub fn new<P: IsA<MediaStream>>(stream: Option<&P>) -> MediaControls {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_media_controls_new(stream.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_media_controls_new(stream.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -46,13 +50,13 @@ pub trait MediaControlsExt: 'static {
 impl<O: IsA<MediaControls>> MediaControlsExt for O {
     fn get_media_stream(&self) -> Option<MediaStream> {
         unsafe {
-            from_glib_none(ffi::gtk_media_controls_get_media_stream(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_media_controls_get_media_stream(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
         unsafe {
-            ffi::gtk_media_controls_set_media_stream(self.as_ref().to_glib_none().0, stream.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_media_controls_set_media_stream(self.as_ref().to_glib_none().0, stream.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
@@ -65,7 +69,7 @@ impl<O: IsA<MediaControls>> MediaControlsExt for O {
     }
 }
 
-unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMediaControls, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaControls, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MediaControls> {
     let f: &F = &*(f as *const F);
     f(&MediaControls::from_glib_borrow(this).unsafe_cast())

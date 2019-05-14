@@ -4,60 +4,51 @@
 
 use EventController;
 use PadActionType;
-use ffi;
-use glib::object::IsA;
+use glib::object::ObjectType;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct PadController(Object<ffi::GtkPadController, ffi::GtkPadControllerClass, PadControllerClass>) @extends EventController;
+    pub struct PadController(Object<gtk_sys::GtkPadController, gtk_sys::GtkPadControllerClass, PadControllerClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_pad_controller_get_type(),
+        get_type => || gtk_sys::gtk_pad_controller_get_type(),
     }
 }
 
 impl PadController {
     //pub fn new(group: /*Ignored*/&gio::ActionGroup, pad: /*Ignored*/Option<&gdk::Device>) -> PadController {
-    //    unsafe { TODO: call ffi::gtk_pad_controller_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_pad_controller_new() }
     //}
-}
 
-pub const NONE_PAD_CONTROLLER: Option<&PadController> = None;
-
-pub trait PadControllerExt: 'static {
-    fn set_action(&self, type_: PadActionType, index: i32, mode: i32, label: &str, action_name: &str);
-
-    //fn set_action_entries(&self, entries: /*Ignored*/&[&PadActionEntry]);
-
-    //fn get_property_action_group(&self) -> /*Ignored*/Option<gio::ActionGroup>;
-
-    //fn get_property_pad(&self) -> /*Ignored*/Option<gdk::Device>;
-}
-
-impl<O: IsA<PadController>> PadControllerExt for O {
-    fn set_action(&self, type_: PadActionType, index: i32, mode: i32, label: &str, action_name: &str) {
+    pub fn set_action(&self, type_: PadActionType, index: i32, mode: i32, label: &str, action_name: &str) {
         unsafe {
-            ffi::gtk_pad_controller_set_action(self.as_ref().to_glib_none().0, type_.to_glib(), index, mode, label.to_glib_none().0, action_name.to_glib_none().0);
+            gtk_sys::gtk_pad_controller_set_action(self.to_glib_none().0, type_.to_glib(), index, mode, label.to_glib_none().0, action_name.to_glib_none().0);
         }
     }
 
-    //fn set_action_entries(&self, entries: /*Ignored*/&[&PadActionEntry]) {
-    //    unsafe { TODO: call ffi::gtk_pad_controller_set_action_entries() }
+    //pub fn set_action_entries(&self, entries: /*Ignored*/&[&PadActionEntry]) {
+    //    unsafe { TODO: call gtk_sys:gtk_pad_controller_set_action_entries() }
     //}
 
-    //fn get_property_action_group(&self) -> /*Ignored*/Option<gio::ActionGroup> {
+    //pub fn get_property_action_group(&self) -> /*Ignored*/Option<gio::ActionGroup> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"action-group\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"action-group\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}
 
-    //fn get_property_pad(&self) -> /*Ignored*/Option<gdk::Device> {
+    //pub fn get_property_pad(&self) -> /*Ignored*/Option<gdk::Device> {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"pad\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"pad\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get()
     //    }
     //}

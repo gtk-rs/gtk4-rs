@@ -8,27 +8,29 @@ use Buildable;
 use Container;
 use Menu;
 use Widget;
-use ffi;
 use glib;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MenuItem(Object<ffi::GtkMenuItem, ffi::GtkMenuItemClass, MenuItemClass>) @extends Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct MenuItem(Object<gtk_sys::GtkMenuItem, gtk_sys::GtkMenuItemClass, MenuItemClass>) @extends Bin, Container, Widget, @implements Buildable, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_menu_item_get_type(),
+        get_type => || gtk_sys::gtk_menu_item_get_type(),
     }
 }
 
@@ -36,21 +38,21 @@ impl MenuItem {
     pub fn new() -> MenuItem {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_menu_item_new()).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_menu_item_new()).unsafe_cast()
         }
     }
 
     pub fn new_with_label(label: &str) -> MenuItem {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_menu_item_new_with_label(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_menu_item_new_with_label(label.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn new_with_mnemonic(label: &str) -> MenuItem {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_menu_item_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_menu_item_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -120,91 +122,91 @@ pub trait MenuItemExt: 'static {
 impl<O: IsA<MenuItem>> MenuItemExt for O {
     fn activate(&self) {
         unsafe {
-            ffi::gtk_menu_item_activate(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_menu_item_activate(self.as_ref().to_glib_none().0);
         }
     }
 
     fn deselect(&self) {
         unsafe {
-            ffi::gtk_menu_item_deselect(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_menu_item_deselect(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_accel_path(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_menu_item_get_accel_path(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_menu_item_get_accel_path(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_label(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gtk_menu_item_get_label(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_menu_item_get_label(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_reserve_indicator(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_menu_item_get_reserve_indicator(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_menu_item_get_reserve_indicator(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_submenu(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(ffi::gtk_menu_item_get_submenu(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_menu_item_get_submenu(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_use_underline(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_menu_item_get_use_underline(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_menu_item_get_use_underline(self.as_ref().to_glib_none().0))
         }
     }
 
     fn select(&self) {
         unsafe {
-            ffi::gtk_menu_item_select(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_menu_item_select(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_accel_path(&self, accel_path: Option<&str>) {
         unsafe {
-            ffi::gtk_menu_item_set_accel_path(self.as_ref().to_glib_none().0, accel_path.to_glib_none().0);
+            gtk_sys::gtk_menu_item_set_accel_path(self.as_ref().to_glib_none().0, accel_path.to_glib_none().0);
         }
     }
 
     fn set_label(&self, label: &str) {
         unsafe {
-            ffi::gtk_menu_item_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
+            gtk_sys::gtk_menu_item_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
         }
     }
 
     fn set_reserve_indicator(&self, reserve: bool) {
         unsafe {
-            ffi::gtk_menu_item_set_reserve_indicator(self.as_ref().to_glib_none().0, reserve.to_glib());
+            gtk_sys::gtk_menu_item_set_reserve_indicator(self.as_ref().to_glib_none().0, reserve.to_glib());
         }
     }
 
     fn set_submenu<P: IsA<Menu>>(&self, submenu: Option<&P>) {
         unsafe {
-            ffi::gtk_menu_item_set_submenu(self.as_ref().to_glib_none().0, submenu.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_menu_item_set_submenu(self.as_ref().to_glib_none().0, submenu.map(|p| p.as_ref()).to_glib_none().0);
         }
     }
 
     fn set_use_underline(&self, setting: bool) {
         unsafe {
-            ffi::gtk_menu_item_set_use_underline(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_menu_item_set_use_underline(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn toggle_size_allocate(&self, allocation: i32) {
         unsafe {
-            ffi::gtk_menu_item_toggle_size_allocate(self.as_ref().to_glib_none().0, allocation);
+            gtk_sys::gtk_menu_item_toggle_size_allocate(self.as_ref().to_glib_none().0, allocation);
         }
     }
 
     fn toggle_size_request(&self, requisition: &mut i32) {
         unsafe {
-            ffi::gtk_menu_item_toggle_size_request(self.as_ref().to_glib_none().0, requisition);
+            gtk_sys::gtk_menu_item_toggle_size_request(self.as_ref().to_glib_none().0, requisition);
         }
     }
 
@@ -217,7 +219,7 @@ impl<O: IsA<MenuItem>> MenuItemExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("activate", &[]).unwrap() };
+        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
     }
 
     fn connect_activate_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -289,55 +291,55 @@ impl<O: IsA<MenuItem>> MenuItemExt for O {
     }
 }
 
-unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, f: glib_ffi::gpointer)
+unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn activate_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, f: glib_ffi::gpointer)
+unsafe extern "C" fn activate_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn deselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, f: glib_ffi::gpointer)
+unsafe extern "C" fn deselect_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn select_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, f: glib_ffi::gpointer)
+unsafe extern "C" fn select_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn toggle_size_allocate_trampoline<P, F: Fn(&P, i32) + 'static>(this: *mut ffi::GtkMenuItem, object: libc::c_int, f: glib_ffi::gpointer)
+unsafe extern "C" fn toggle_size_allocate_trampoline<P, F: Fn(&P, i32) + 'static>(this: *mut gtk_sys::GtkMenuItem, object: libc::c_int, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast(), object)
 }
 
-unsafe extern "C" fn notify_accel_path_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_accel_path_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_submenu_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_submenu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkMenuItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<MenuItem> {
     let f: &F = &*(f as *const F);
     f(&MenuItem::from_glib_borrow(this).unsafe_cast())

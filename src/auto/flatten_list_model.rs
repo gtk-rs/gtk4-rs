@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -11,23 +10,24 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FlattenListModel(Object<ffi::GtkFlattenListModel, ffi::GtkFlattenListModelClass, FlattenListModelClass>);
+    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass, FlattenListModelClass>);
 
     match fn {
-        get_type => || ffi::gtk_flatten_list_model_get_type(),
+        get_type => || gtk_sys::gtk_flatten_list_model_get_type(),
     }
 }
 
 impl FlattenListModel {
     //pub fn new(item_type: glib::types::Type, model: /*Ignored*/Option<&gio::ListModel>) -> FlattenListModel {
-    //    unsafe { TODO: call ffi::gtk_flatten_list_model_new() }
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_new() }
     //}
 }
 
@@ -45,17 +45,17 @@ pub trait FlattenListModelExt: 'static {
 
 impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
     //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call ffi::gtk_flatten_list_model_get_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_get_model() }
     //}
 
     //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
-    //    unsafe { TODO: call ffi::gtk_flatten_list_model_set_model() }
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_set_model() }
     //}
 
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {
             let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
@@ -69,7 +69,7 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
     }
 }
 
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkFlattenListModel, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFlattenListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<FlattenListModel> {
     let f: &F = &*(f as *const F);
     f(&FlattenListModel::from_glib_borrow(this).unsafe_cast())

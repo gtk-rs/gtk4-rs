@@ -7,22 +7,26 @@ use Buildable;
 use Container;
 use ToolItem;
 use Widget;
-use ffi;
+use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SeparatorToolItem(Object<ffi::GtkSeparatorToolItem, ffi::GtkSeparatorToolItemClass, SeparatorToolItemClass>) @extends ToolItem, Bin, Container, Widget, @implements Buildable;
+    pub struct SeparatorToolItem(Object<gtk_sys::GtkSeparatorToolItem, gtk_sys::GtkSeparatorToolItemClass, SeparatorToolItemClass>) @extends ToolItem, Bin, Container, Widget, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_separator_tool_item_get_type(),
+        get_type => || gtk_sys::gtk_separator_tool_item_get_type(),
     }
 }
 
@@ -30,7 +34,7 @@ impl SeparatorToolItem {
     pub fn new() -> SeparatorToolItem {
         assert_initialized_main_thread!();
         unsafe {
-            ToolItem::from_glib_none(ffi::gtk_separator_tool_item_new()).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_separator_tool_item_new()).unsafe_cast()
         }
     }
 }
@@ -54,13 +58,13 @@ pub trait SeparatorToolItemExt: 'static {
 impl<O: IsA<SeparatorToolItem>> SeparatorToolItemExt for O {
     fn get_draw(&self) -> bool {
         unsafe {
-            from_glib(ffi::gtk_separator_tool_item_get_draw(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_separator_tool_item_get_draw(self.as_ref().to_glib_none().0))
         }
     }
 
     fn set_draw(&self, draw: bool) {
         unsafe {
-            ffi::gtk_separator_tool_item_set_draw(self.as_ref().to_glib_none().0, draw.to_glib());
+            gtk_sys::gtk_separator_tool_item_set_draw(self.as_ref().to_glib_none().0, draw.to_glib());
         }
     }
 
@@ -73,7 +77,7 @@ impl<O: IsA<SeparatorToolItem>> SeparatorToolItemExt for O {
     }
 }
 
-unsafe extern "C" fn notify_draw_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GtkSeparatorToolItem, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
+unsafe extern "C" fn notify_draw_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSeparatorToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<SeparatorToolItem> {
     let f: &F = &*(f as *const F);
     f(&SeparatorToolItem::from_glib_borrow(this).unsafe_cast())
