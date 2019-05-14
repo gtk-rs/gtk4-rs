@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use StyleProvider;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -34,9 +35,12 @@ impl Settings {
         }
     }
 
-    //pub fn get_for_display(display: /*Ignored*/&gdk::Display) -> Option<Settings> {
-    //    unsafe { TODO: call gtk_sys:gtk_settings_get_for_display() }
-    //}
+    pub fn get_for_display(display: &gdk::Display) -> Option<Settings> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(gtk_sys::gtk_settings_get_for_display(display.to_glib_none().0))
+        }
+    }
 }
 
 pub const NONE_SETTINGS: Option<&Settings> = None;

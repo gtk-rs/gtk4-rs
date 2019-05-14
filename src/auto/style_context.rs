@@ -8,6 +8,7 @@ use StateFlags;
 use StyleContextPrintFlags;
 use StyleProvider;
 use WidgetPath;
+use gdk;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -36,17 +37,26 @@ impl StyleContext {
         }
     }
 
-    //pub fn add_provider_for_display<P: IsA<StyleProvider>>(display: /*Ignored*/&gdk::Display, provider: &P, priority: u32) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_add_provider_for_display() }
-    //}
+    pub fn add_provider_for_display<P: IsA<StyleProvider>>(display: &gdk::Display, provider: &P, priority: u32) {
+        skip_assert_initialized!();
+        unsafe {
+            gtk_sys::gtk_style_context_add_provider_for_display(display.to_glib_none().0, provider.as_ref().to_glib_none().0, priority);
+        }
+    }
 
-    //pub fn remove_provider_for_display<P: IsA<StyleProvider>>(display: /*Ignored*/&gdk::Display, provider: &P) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_remove_provider_for_display() }
-    //}
+    pub fn remove_provider_for_display<P: IsA<StyleProvider>>(display: &gdk::Display, provider: &P) {
+        skip_assert_initialized!();
+        unsafe {
+            gtk_sys::gtk_style_context_remove_provider_for_display(display.to_glib_none().0, provider.as_ref().to_glib_none().0);
+        }
+    }
 
-    //pub fn reset_widgets(display: /*Ignored*/&gdk::Display) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_reset_widgets() }
-    //}
+    pub fn reset_widgets(display: &gdk::Display) {
+        assert_initialized_main_thread!();
+        unsafe {
+            gtk_sys::gtk_style_context_reset_widgets(display.to_glib_none().0);
+        }
+    }
 }
 
 impl Default for StyleContext {
@@ -68,7 +78,7 @@ pub trait StyleContextExt: 'static {
 
     //fn get_color(&self, color: /*Ignored*/gdk::RGBA);
 
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display>;
+    fn get_display(&self) -> Option<gdk::Display>;
 
     fn get_margin(&self) -> Border;
 
@@ -102,7 +112,7 @@ pub trait StyleContextExt: 'static {
 
     fn save(&self);
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display);
+    fn set_display(&self, display: &gdk::Display);
 
     fn set_parent<P: IsA<StyleContext>>(&self, parent: Option<&P>);
 
@@ -150,9 +160,11 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_style_context_get_color() }
     //}
 
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_display() }
-    //}
+    fn get_display(&self) -> Option<gdk::Display> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_style_context_get_display(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_margin(&self) -> Border {
         unsafe {
@@ -248,9 +260,11 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_set_display() }
-    //}
+    fn set_display(&self, display: &gdk::Display) {
+        unsafe {
+            gtk_sys::gtk_style_context_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+        }
+    }
 
     fn set_parent<P: IsA<StyleContext>>(&self, parent: Option<&P>) {
         unsafe {

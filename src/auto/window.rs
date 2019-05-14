@@ -12,6 +12,7 @@ use Widget;
 use WindowGroup;
 use WindowPosition;
 use WindowType;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -194,7 +195,7 @@ pub trait WindowExt: 'static {
 
     fn set_destroy_with_parent(&self, setting: bool);
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display);
+    fn set_display(&self, display: &gdk::Display);
 
     fn set_focus_on_map(&self, setting: bool);
 
@@ -626,9 +627,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display) {
-    //    unsafe { TODO: call gtk_sys:gtk_window_set_display() }
-    //}
+    fn set_display(&self, display: &gdk::Display) {
+        unsafe {
+            gtk_sys::gtk_window_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+        }
+    }
 
     fn set_focus_on_map(&self, setting: bool) {
         unsafe {

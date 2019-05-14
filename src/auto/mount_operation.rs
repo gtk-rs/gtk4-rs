@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Window;
+use gdk;
 use gio_sys;
 use glib::GString;
 use glib::StaticType;
@@ -36,13 +37,13 @@ impl MountOperation {
 pub const NONE_MOUNT_OPERATION: Option<&MountOperation> = None;
 
 pub trait MountOperationExt: 'static {
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display>;
+    fn get_display(&self) -> Option<gdk::Display>;
 
     fn get_parent(&self) -> Option<Window>;
 
     fn is_showing(&self) -> bool;
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display);
+    fn set_display(&self, display: &gdk::Display);
 
     fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>);
 
@@ -56,9 +57,11 @@ pub trait MountOperationExt: 'static {
 }
 
 impl<O: IsA<MountOperation>> MountOperationExt for O {
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
-    //    unsafe { TODO: call gtk_sys:gtk_mount_operation_get_display() }
-    //}
+    fn get_display(&self) -> Option<gdk::Display> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_mount_operation_get_display(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_parent(&self) -> Option<Window> {
         unsafe {
@@ -72,9 +75,11 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
         }
     }
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display) {
-    //    unsafe { TODO: call gtk_sys:gtk_mount_operation_set_display() }
-    //}
+    fn set_display(&self, display: &gdk::Display) {
+        unsafe {
+            gtk_sys::gtk_mount_operation_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+        }
+    }
 
     fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>) {
         unsafe {

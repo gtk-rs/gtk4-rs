@@ -192,7 +192,7 @@ pub trait WidgetExt: 'static {
 
     fn get_direction(&self) -> TextDirection;
 
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display>;
+    fn get_display(&self) -> Option<gdk::Display>;
 
     fn get_first_child(&self) -> Option<Widget>;
 
@@ -956,9 +956,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_display() }
-    //}
+    fn get_display(&self) -> Option<gdk::Display> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_display(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_first_child(&self) -> Option<Widget> {
         unsafe {

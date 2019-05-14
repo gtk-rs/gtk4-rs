@@ -4,6 +4,7 @@
 
 use IconInfo;
 use IconLookupFlags;
+use gdk;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -42,9 +43,12 @@ impl IconTheme {
         }
     }
 
-    //pub fn get_for_display(display: /*Ignored*/&gdk::Display) -> Option<IconTheme> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_get_for_display() }
-    //}
+    pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(gtk_sys::gtk_icon_theme_get_for_display(display.to_glib_none().0))
+        }
+    }
 }
 
 impl Default for IconTheme {
@@ -92,7 +96,7 @@ pub trait IconThemeExt: 'static {
 
     fn set_custom_theme(&self, theme_name: Option<&str>);
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display);
+    fn set_display(&self, display: &gdk::Display);
 
     fn set_search_path(&self, path: &[&std::path::Path]);
 
@@ -203,9 +207,11 @@ impl<O: IsA<IconTheme>> IconThemeExt for O {
         }
     }
 
-    //fn set_display(&self, display: /*Ignored*/&gdk::Display) {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_set_display() }
-    //}
+    fn set_display(&self, display: &gdk::Display) {
+        unsafe {
+            gtk_sys::gtk_icon_theme_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+        }
+    }
 
     fn set_search_path(&self, path: &[&std::path::Path]) {
         let n_elements = path.len() as i32;

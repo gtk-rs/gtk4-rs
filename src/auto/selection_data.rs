@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -31,9 +32,11 @@ impl SelectionData {
         }
     }
 
-    //pub fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_display() }
-    //}
+    pub fn get_display(&self) -> Option<gdk::Display> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_selection_data_get_display(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_format(&self) -> i32 {
         unsafe {

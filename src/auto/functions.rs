@@ -38,7 +38,7 @@ use std::ptr;
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_get_label() }
 //}
 
-//pub fn accelerator_get_label_with_keycode(display: /*Ignored*/Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
+//pub fn accelerator_get_label_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_get_label_with_keycode() }
 //}
 
@@ -46,7 +46,7 @@ use std::ptr;
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_name() }
 //}
 
-//pub fn accelerator_name_with_keycode(display: /*Ignored*/Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
+//pub fn accelerator_name_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_name_with_keycode() }
 //}
 
