@@ -45,7 +45,8 @@ extern crate fragile;
 #[cfg(feature = "futures")]
 extern crate futures_core;
 
-pub use glib::{
+#[allow(unused_imports)]
+use glib::{
     Cast,
     Continue,
     Error,
