@@ -74,6 +74,8 @@ mod rt;
 #[cfg_attr(feature = "cargo-clippy", allow(wrong_self_convention))]
 mod auto;
 
+mod signal;
+
 pub mod prelude;
 
 pub use auto::*;

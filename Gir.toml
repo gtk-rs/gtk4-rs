@@ -358,7 +358,6 @@ generate = [
     "Gtk.WidgetAccessible",
     "Gtk.WidgetPaintable",
     "Gtk.WidgetPath",
-    "Gtk.Window",
     "Gtk.WindowAccessible",
     "Gtk.WindowGroup",
     "Gtk.WindowPosition",
@@ -750,3 +749,10 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+
+[[object]]
+name = "Gtk.Window"
+status = "generate"
+    [[object.signal]]
+    name = "close-request"
+    inhibit = true

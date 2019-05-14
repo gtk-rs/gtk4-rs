@@ -25,6 +25,7 @@ use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_ffi;
 use gobject_ffi;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -263,7 +264,7 @@ pub trait WindowExt: 'static {
 
     fn emit_activate_focus(&self);
 
-    fn connect_close_request<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_close_request<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_enable_debugging<F: Fn(&Self, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -841,7 +842,7 @@ impl<O: IsA<Window>> WindowExt for O {
         let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_ffi::GObject).emit("activate-focus", &[]).unwrap() };
     }
 
-    fn connect_close_request<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_close_request<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"close-request\0".as_ptr() as *const _,
@@ -1075,7 +1076,7 @@ where P: IsA<Window> {
     f(&Window::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn close_request_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut ffi::GtkWindow, f: glib_ffi::gpointer) -> glib_ffi::gboolean
+unsafe extern "C" fn close_request_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut ffi::GtkWindow, f: glib_ffi::gpointer) -> glib_ffi::gboolean
 where P: IsA<Window> {
     let f: &F = &*(f as *const F);
     f(&Window::from_glib_borrow(this).unsafe_cast()).to_glib()
