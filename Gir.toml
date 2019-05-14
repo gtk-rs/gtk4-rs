@@ -92,7 +92,6 @@ generate = [
     "Gtk.DrawingArea",
     "Gtk.Editable",
     "Gtk.EditableProperties",
-    "Gtk.Entry",
     "Gtk.EntryAccessible",
     "Gtk.EntryBuffer",
     "Gtk.EntryCompletion",
@@ -511,6 +510,28 @@ manual_traits = ["DialogExtManual"]
     [[object.function]]
     name = "run"
     ignore = true
+
+[[object]]
+name = "Gtk.Entry"
+status = "generate"
+    [[object.function]]
+    name = "get_buffer"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_invisible_char"
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "set_invisible_char"
+        [[object.function.parameter]]
+        name = "ch"
+        nullable = true
+    [[object.function]]
+    name = "set_placeholder_text"
+        [[object.function.parameter]]
+        name = "text"
+        nullable = true
 
 [[object]]
 name = "Gtk.IconTheme"

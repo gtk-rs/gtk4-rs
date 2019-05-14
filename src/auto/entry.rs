@@ -66,7 +66,7 @@ pub trait EntryExt: 'static {
 
     //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList>;
 
-    fn get_buffer(&self) -> Option<EntryBuffer>;
+    fn get_buffer(&self) -> EntryBuffer;
 
     fn get_completion(&self) -> Option<EntryCompletion>;
 
@@ -98,7 +98,7 @@ pub trait EntryExt: 'static {
 
     fn get_input_purpose(&self) -> InputPurpose;
 
-    fn get_invisible_char(&self) -> char;
+    fn get_invisible_char(&self) -> Option<char>;
 
     fn get_max_length(&self) -> i32;
 
@@ -152,7 +152,7 @@ pub trait EntryExt: 'static {
 
     fn set_input_purpose(&self, purpose: InputPurpose);
 
-    fn set_invisible_char(&self, ch: char);
+    fn set_invisible_char(&self, ch: Option<char>);
 
     fn set_max_length(&self, max: i32);
 
@@ -354,7 +354,7 @@ impl<O: IsA<Entry>> EntryExt for O {
     //    unsafe { TODO: call ffi::gtk_entry_get_attributes() }
     //}
 
-    fn get_buffer(&self) -> Option<EntryBuffer> {
+    fn get_buffer(&self) -> EntryBuffer {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_buffer(self.as_ref().to_glib_none().0))
         }
@@ -444,7 +444,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_invisible_char(&self) -> char {
+    fn get_invisible_char(&self) -> Option<char> {
         unsafe {
             from_glib(ffi::gtk_entry_get_invisible_char(self.as_ref().to_glib_none().0))
         }
@@ -596,7 +596,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_invisible_char(&self, ch: char) {
+    fn set_invisible_char(&self, ch: Option<char>) {
         unsafe {
             ffi::gtk_entry_set_invisible_char(self.as_ref().to_glib_none().0, ch.to_glib());
         }
