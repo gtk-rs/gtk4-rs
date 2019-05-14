@@ -274,7 +274,6 @@ generate = [
     "Gtk.ShortcutLabel",
     "Gtk.ShortcutType",
     "Gtk.ShortcutsGroup",
-    "Gtk.ShortcutsSection",
     "Gtk.ShortcutsShortcut",
     "Gtk.ShortcutsWindow",
     "Gtk.SingleSelection",
@@ -379,6 +378,7 @@ ignore = [
     "Gtk.RecentData",
     "Gtk.RequestedSize",
     "Gtk.SettingsValue",
+    "Gtk.ShortcutsSection",
     "Gtk.TextBTree",
     "Gtk.WindowGeometryInfo",
 ]
