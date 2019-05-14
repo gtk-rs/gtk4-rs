@@ -385,6 +385,7 @@ ignore = [
 manual = [
     "Atk.Object",
     "cairo.Context",
+    "Gdk.Display",
     "Gdk.FrameClock",
     "Gio.Application",
     "Gio.ApplicationFlags",
