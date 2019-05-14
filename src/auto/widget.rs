@@ -20,6 +20,7 @@ use TextDirection;
 use Tooltip;
 use WidgetPath;
 use Window;
+use atk;
 use ffi;
 use glib;
 use glib::GString;
@@ -164,7 +165,7 @@ pub trait WidgetExt: 'static {
 
     //fn event(&self, event: /*Ignored*/&gdk::Event) -> bool;
 
-    //fn get_accessible(&self) -> /*Ignored*/Option<atk::Object>;
+    fn get_accessible(&self) -> Option<atk::Object>;
 
     //fn get_action_group(&self, prefix: &str) -> /*Ignored*/Option<gio::ActionGroup>;
 
@@ -868,9 +869,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call ffi::gtk_widget_event() }
     //}
 
-    //fn get_accessible(&self) -> /*Ignored*/Option<atk::Object> {
-    //    unsafe { TODO: call ffi::gtk_widget_get_accessible() }
-    //}
+    fn get_accessible(&self) -> Option<atk::Object> {
+        unsafe {
+            from_glib_none(ffi::gtk_widget_get_accessible(self.as_ref().to_glib_none().0))
+        }
+    }
 
     //fn get_action_group(&self, prefix: &str) -> /*Ignored*/Option<gio::ActionGroup> {
     //    unsafe { TODO: call ffi::gtk_widget_get_action_group() }

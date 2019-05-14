@@ -5,12 +5,13 @@
 use Accessible;
 use CellAccessible;
 use RendererCellAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct TextCellAccessible(Object<ffi::GtkTextCellAccessible, ffi::GtkTextCellAccessibleClass, TextCellAccessibleClass>) @extends RendererCellAccessible, CellAccessible, Accessible;
+    pub struct TextCellAccessible(Object<ffi::GtkTextCellAccessible, ffi::GtkTextCellAccessibleClass, TextCellAccessibleClass>) @extends RendererCellAccessible, CellAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_text_cell_accessible_get_type(),

@@ -4,12 +4,13 @@
 
 use Accessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct StatusbarAccessible(Object<ffi::GtkStatusbarAccessible, ffi::GtkStatusbarAccessibleClass, StatusbarAccessibleClass>) @extends WidgetAccessible, Accessible;
+    pub struct StatusbarAccessible(Object<ffi::GtkStatusbarAccessible, ffi::GtkStatusbarAccessibleClass, StatusbarAccessibleClass>) @extends WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_statusbar_accessible_get_type(),

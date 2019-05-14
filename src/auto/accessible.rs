@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Widget;
+use atk;
 use ffi;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -15,7 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Accessible(Object<ffi::GtkAccessible, ffi::GtkAccessibleClass, AccessibleClass>);
+    pub struct Accessible(Object<ffi::GtkAccessible, ffi::GtkAccessibleClass, AccessibleClass>) @extends atk::Object;
 
     match fn {
         get_type => || ffi::gtk_accessible_get_type(),

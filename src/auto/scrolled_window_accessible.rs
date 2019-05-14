@@ -5,12 +5,13 @@
 use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ScrolledWindowAccessible(Object<ffi::GtkScrolledWindowAccessible, ffi::GtkScrolledWindowAccessibleClass, ScrolledWindowAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct ScrolledWindowAccessible(Object<ffi::GtkScrolledWindowAccessible, ffi::GtkScrolledWindowAccessibleClass, ScrolledWindowAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_scrolled_window_accessible_get_type(),

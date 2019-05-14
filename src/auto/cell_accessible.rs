@@ -3,12 +3,13 @@
 // DO NOT EDIT
 
 use Accessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct CellAccessible(Object<ffi::GtkCellAccessible, ffi::GtkCellAccessibleClass, CellAccessibleClass>) @extends Accessible;
+    pub struct CellAccessible(Object<ffi::GtkCellAccessible, ffi::GtkCellAccessibleClass, CellAccessibleClass>) @extends Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_cell_accessible_get_type(),

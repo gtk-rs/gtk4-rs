@@ -6,12 +6,13 @@ use Accessible;
 use ButtonAccessible;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ScaleButtonAccessible(Object<ffi::GtkScaleButtonAccessible, ffi::GtkScaleButtonAccessibleClass, ScaleButtonAccessibleClass>) @extends ButtonAccessible, ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct ScaleButtonAccessible(Object<ffi::GtkScaleButtonAccessible, ffi::GtkScaleButtonAccessibleClass, ScaleButtonAccessibleClass>) @extends ButtonAccessible, ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_scale_button_accessible_get_type(),

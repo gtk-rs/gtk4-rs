@@ -5,12 +5,13 @@
 use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct NotebookAccessible(Object<ffi::GtkNotebookAccessible, ffi::GtkNotebookAccessibleClass, NotebookAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct NotebookAccessible(Object<ffi::GtkNotebookAccessible, ffi::GtkNotebookAccessibleClass, NotebookAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_notebook_accessible_get_type(),

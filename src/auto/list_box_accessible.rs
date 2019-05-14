@@ -5,12 +5,13 @@
 use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ListBoxAccessible(Object<ffi::GtkListBoxAccessible, ffi::GtkListBoxAccessibleClass, ListBoxAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct ListBoxAccessible(Object<ffi::GtkListBoxAccessible, ffi::GtkListBoxAccessibleClass, ListBoxAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_list_box_accessible_get_type(),

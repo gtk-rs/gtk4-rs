@@ -2,13 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use NotebookAccessible;
+use Widget;
+use atk;
 use ffi;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct NotebookPageAccessible(Object<ffi::GtkNotebookPageAccessible, ffi::GtkNotebookPageAccessibleClass, NotebookPageAccessibleClass>);
+    pub struct NotebookPageAccessible(Object<ffi::GtkNotebookPageAccessible, ffi::GtkNotebookPageAccessibleClass, NotebookPageAccessibleClass>) @extends atk::Object;
 
     match fn {
         get_type => || ffi::gtk_notebook_page_accessible_get_type(),
@@ -16,9 +20,12 @@ glib_wrapper! {
 }
 
 impl NotebookPageAccessible {
-    //pub fn new<P: IsA<NotebookAccessible>, Q: IsA<Widget>>(notebook: &P, child: &Q) -> NotebookPageAccessible {
-    //    unsafe { TODO: call ffi::gtk_notebook_page_accessible_new() }
-    //}
+    pub fn new<P: IsA<NotebookAccessible>, Q: IsA<Widget>>(notebook: &P, child: &Q) -> NotebookPageAccessible {
+        skip_assert_initialized!();
+        unsafe {
+            atk::Object::from_glib_full(ffi::gtk_notebook_page_accessible_new(notebook.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 pub const NONE_NOTEBOOK_PAGE_ACCESSIBLE: Option<&NotebookPageAccessible> = None;

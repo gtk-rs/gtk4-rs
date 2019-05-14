@@ -6,12 +6,13 @@ use Accessible;
 use CellAccessibleParent;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct TreeViewAccessible(Object<ffi::GtkTreeViewAccessible, ffi::GtkTreeViewAccessibleClass, TreeViewAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, @implements CellAccessibleParent;
+    pub struct TreeViewAccessible(Object<ffi::GtkTreeViewAccessible, ffi::GtkTreeViewAccessibleClass, TreeViewAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object, @implements CellAccessibleParent;
 
     match fn {
         get_type => || ffi::gtk_tree_view_accessible_get_type(),

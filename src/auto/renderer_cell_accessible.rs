@@ -5,16 +5,18 @@
 use Accessible;
 use CellAccessible;
 use CellRenderer;
+use atk;
 use ffi;
 use glib::StaticType;
 use glib::Value;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use gobject_ffi;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct RendererCellAccessible(Object<ffi::GtkRendererCellAccessible, ffi::GtkRendererCellAccessibleClass, RendererCellAccessibleClass>) @extends CellAccessible, Accessible;
+    pub struct RendererCellAccessible(Object<ffi::GtkRendererCellAccessible, ffi::GtkRendererCellAccessibleClass, RendererCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_renderer_cell_accessible_get_type(),
@@ -22,9 +24,12 @@ glib_wrapper! {
 }
 
 impl RendererCellAccessible {
-    //pub fn new<P: IsA<CellRenderer>>(renderer: &P) -> RendererCellAccessible {
-    //    unsafe { TODO: call ffi::gtk_renderer_cell_accessible_new() }
-    //}
+    pub fn new<P: IsA<CellRenderer>>(renderer: &P) -> RendererCellAccessible {
+        skip_assert_initialized!();
+        unsafe {
+            atk::Object::from_glib_full(ffi::gtk_renderer_cell_accessible_new(renderer.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 pub const NONE_RENDERER_CELL_ACCESSIBLE: Option<&RendererCellAccessible> = None;

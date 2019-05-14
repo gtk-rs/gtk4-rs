@@ -5,12 +5,13 @@
 use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct PanedAccessible(Object<ffi::GtkPanedAccessible, ffi::GtkPanedAccessibleClass, PanedAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct PanedAccessible(Object<ffi::GtkPanedAccessible, ffi::GtkPanedAccessibleClass, PanedAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_paned_accessible_get_type(),

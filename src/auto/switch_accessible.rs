@@ -4,12 +4,13 @@
 
 use Accessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct SwitchAccessible(Object<ffi::GtkSwitchAccessible, ffi::GtkSwitchAccessibleClass, SwitchAccessibleClass>) @extends WidgetAccessible, Accessible;
+    pub struct SwitchAccessible(Object<ffi::GtkSwitchAccessible, ffi::GtkSwitchAccessibleClass, SwitchAccessibleClass>) @extends WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_switch_accessible_get_type(),

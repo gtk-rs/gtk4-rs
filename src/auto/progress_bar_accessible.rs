@@ -4,12 +4,13 @@
 
 use Accessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ProgressBarAccessible(Object<ffi::GtkProgressBarAccessible, ffi::GtkProgressBarAccessibleClass, ProgressBarAccessibleClass>) @extends WidgetAccessible, Accessible;
+    pub struct ProgressBarAccessible(Object<ffi::GtkProgressBarAccessible, ffi::GtkProgressBarAccessibleClass, ProgressBarAccessibleClass>) @extends WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_progress_bar_accessible_get_type(),

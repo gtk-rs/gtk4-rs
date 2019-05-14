@@ -6,12 +6,13 @@ use Accessible;
 use ContainerAccessible;
 use MenuItemAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct CheckMenuItemAccessible(Object<ffi::GtkCheckMenuItemAccessible, ffi::GtkCheckMenuItemAccessibleClass, CheckMenuItemAccessibleClass>) @extends MenuItemAccessible, ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct CheckMenuItemAccessible(Object<ffi::GtkCheckMenuItemAccessible, ffi::GtkCheckMenuItemAccessibleClass, CheckMenuItemAccessibleClass>) @extends MenuItemAccessible, ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_check_menu_item_accessible_get_type(),

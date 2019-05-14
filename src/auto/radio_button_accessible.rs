@@ -7,12 +7,13 @@ use ButtonAccessible;
 use ContainerAccessible;
 use ToggleButtonAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct RadioButtonAccessible(Object<ffi::GtkRadioButtonAccessible, ffi::GtkRadioButtonAccessibleClass, RadioButtonAccessibleClass>) @extends ToggleButtonAccessible, ButtonAccessible, ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct RadioButtonAccessible(Object<ffi::GtkRadioButtonAccessible, ffi::GtkRadioButtonAccessibleClass, RadioButtonAccessibleClass>) @extends ToggleButtonAccessible, ButtonAccessible, ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_radio_button_accessible_get_type(),

@@ -384,6 +384,7 @@ ignore = [
 ]
 
 manual = [
+    "Atk.Object",
     "Gio.Application",
     "Gio.ApplicationFlags",
     "GLib.Error",

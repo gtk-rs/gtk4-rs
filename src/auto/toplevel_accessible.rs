@@ -3,13 +3,14 @@
 // DO NOT EDIT
 
 use Window;
+use atk;
 use ffi;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ToplevelAccessible(Object<ffi::GtkToplevelAccessible, ffi::GtkToplevelAccessibleClass, ToplevelAccessibleClass>);
+    pub struct ToplevelAccessible(Object<ffi::GtkToplevelAccessible, ffi::GtkToplevelAccessibleClass, ToplevelAccessibleClass>) @extends atk::Object;
 
     match fn {
         get_type => || ffi::gtk_toplevel_accessible_get_type(),

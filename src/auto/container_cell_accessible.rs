@@ -4,13 +4,14 @@
 
 use Accessible;
 use CellAccessible;
+use atk;
 use ffi;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ContainerCellAccessible(Object<ffi::GtkContainerCellAccessible, ffi::GtkContainerCellAccessibleClass, ContainerCellAccessibleClass>) @extends CellAccessible, Accessible;
+    pub struct ContainerCellAccessible(Object<ffi::GtkContainerCellAccessible, ffi::GtkContainerCellAccessibleClass, ContainerCellAccessibleClass>) @extends CellAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_container_cell_accessible_get_type(),

@@ -2,12 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct EntryIconAccessible(Object<ffi::GtkEntryIconAccessible, EntryIconAccessibleClass>);
+    pub struct EntryIconAccessible(Object<ffi::GtkEntryIconAccessible, EntryIconAccessibleClass>) @extends atk::Object;
 
     match fn {
         get_type => || ffi::gtk_entry_icon_accessible_get_type(),

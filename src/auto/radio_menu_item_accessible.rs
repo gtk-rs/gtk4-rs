@@ -7,12 +7,13 @@ use CheckMenuItemAccessible;
 use ContainerAccessible;
 use MenuItemAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct RadioMenuItemAccessible(Object<ffi::GtkRadioMenuItemAccessible, ffi::GtkRadioMenuItemAccessibleClass, RadioMenuItemAccessibleClass>) @extends CheckMenuItemAccessible, MenuItemAccessible, ContainerAccessible, WidgetAccessible, Accessible;
+    pub struct RadioMenuItemAccessible(Object<ffi::GtkRadioMenuItemAccessible, ffi::GtkRadioMenuItemAccessibleClass, RadioMenuItemAccessibleClass>) @extends CheckMenuItemAccessible, MenuItemAccessible, ContainerAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_radio_menu_item_accessible_get_type(),

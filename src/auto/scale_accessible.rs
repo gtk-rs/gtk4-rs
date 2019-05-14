@@ -5,12 +5,13 @@
 use Accessible;
 use RangeAccessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ScaleAccessible(Object<ffi::GtkScaleAccessible, ffi::GtkScaleAccessibleClass, ScaleAccessibleClass>) @extends RangeAccessible, WidgetAccessible, Accessible;
+    pub struct ScaleAccessible(Object<ffi::GtkScaleAccessible, ffi::GtkScaleAccessibleClass, ScaleAccessibleClass>) @extends RangeAccessible, WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_scale_accessible_get_type(),

@@ -4,12 +4,13 @@
 
 use Accessible;
 use WidgetAccessible;
+use atk;
 use ffi;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ImageAccessible(Object<ffi::GtkImageAccessible, ffi::GtkImageAccessibleClass, ImageAccessibleClass>) @extends WidgetAccessible, Accessible;
+    pub struct ImageAccessible(Object<ffi::GtkImageAccessible, ffi::GtkImageAccessibleClass, ImageAccessibleClass>) @extends WidgetAccessible, Accessible, atk::Object;
 
     match fn {
         get_type => || ffi::gtk_image_accessible_get_type(),
