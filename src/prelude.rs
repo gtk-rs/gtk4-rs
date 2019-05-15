@@ -10,4 +10,5 @@ pub use builder::BuilderExtManual;
 pub use combo_box::ComboBoxExtManual;
 pub use dialog::DialogExtManual;
 pub use entry_buffer::EntryBufferExtManual;
+pub use spin_button::SpinButtonExtManual;
 pub use widget::WidgetExtManual;

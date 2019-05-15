@@ -19,6 +19,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -109,7 +110,7 @@ impl EventControllerKey {
         }
     }
 
-    pub fn connect_key_pressed<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_key_pressed<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"key-pressed\0".as_ptr() as *const _,
@@ -125,7 +126,7 @@ impl EventControllerKey {
         }
     }
 
-    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"modifiers\0".as_ptr() as *const _,
@@ -161,7 +162,7 @@ unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(
     f(&from_glib_borrow(this))
 }
 
-unsafe extern "C" fn key_pressed_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+unsafe extern "C" fn key_pressed_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this), keyval, keycode, from_glib(state)).to_glib()
 }
@@ -171,7 +172,7 @@ unsafe extern "C" fn key_released_trampoline<F: Fn(&EventControllerKey, u32, u32
     f(&from_glib_borrow(this), keyval, keycode, from_glib(state))
 }
 
-unsafe extern "C" fn modifiers_trampoline<F: Fn(&EventControllerKey, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+unsafe extern "C" fn modifiers_trampoline<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this), from_glib(keyval)).to_glib()
 }

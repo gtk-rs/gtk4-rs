@@ -95,6 +95,7 @@ mod dialog;
 mod entry_buffer;
 mod file_chooser_dialog;
 mod response_type;
+mod spin_button;
 mod widget;
 
 pub use response_type::ResponseType;

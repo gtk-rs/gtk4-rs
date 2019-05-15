@@ -22,6 +22,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -108,7 +109,7 @@ pub trait SpinButtonExt: 'static {
 
     //fn connect_input<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_output<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_output<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -300,7 +301,7 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
     //    Out new_value: *.Double
     //}
 
-    fn connect_output<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_output<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"output\0".as_ptr() as *const _,
@@ -395,7 +396,7 @@ where P: IsA<SpinButton> {
     f(&SpinButton::from_glib_borrow(this).unsafe_cast(), from_glib(scroll))
 }
 
-unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkSpinButton, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkSpinButton, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<SpinButton> {
     let f: &F = &*(f as *const F);
     f(&SpinButton::from_glib_borrow(this).unsafe_cast()).to_glib()
