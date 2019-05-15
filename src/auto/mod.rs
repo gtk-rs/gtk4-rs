@@ -317,6 +317,10 @@ pub use self::fixed::FixedExt;
 mod fixed_layout;
 pub use self::fixed_layout::{FixedLayout, FixedLayoutClass, NONE_FIXED_LAYOUT};
 
+mod fixed_layout_child;
+pub use self::fixed_layout_child::{FixedLayoutChild, FixedLayoutChildClass, NONE_FIXED_LAYOUT_CHILD};
+pub use self::fixed_layout_child::FixedLayoutChildExt;
+
 mod flatten_list_model;
 pub use self::flatten_list_model::{FlattenListModel, FlattenListModelClass, NONE_FLATTEN_LIST_MODEL};
 pub use self::flatten_list_model::FlattenListModelExt;
@@ -401,6 +405,10 @@ pub use self::grid::GridExt;
 mod grid_layout;
 pub use self::grid_layout::{GridLayout, GridLayoutClass, NONE_GRID_LAYOUT};
 pub use self::grid_layout::GridLayoutExt;
+
+mod grid_layout_child;
+pub use self::grid_layout_child::{GridLayoutChild, GridLayoutChildClass, NONE_GRID_LAYOUT_CHILD};
+pub use self::grid_layout_child::GridLayoutChildExt;
 
 mod header_bar;
 pub use self::header_bar::{HeaderBar, HeaderBarClass, NONE_HEADER_BAR};
@@ -1323,6 +1331,7 @@ pub mod traits {
     pub use super::FileChooserWidgetExt;
     pub use super::FilterListModelExt;
     pub use super::FixedExt;
+    pub use super::FixedLayoutChildExt;
     pub use super::FlattenListModelExt;
     pub use super::FlowBoxExt;
     pub use super::FlowBoxChildExt;
@@ -1336,6 +1345,7 @@ pub mod traits {
     pub use super::GestureSingleExt;
     pub use super::GridExt;
     pub use super::GridLayoutExt;
+    pub use super::GridLayoutChildExt;
     pub use super::HeaderBarExt;
     pub use super::IMContextExt;
     pub use super::IMContextSimpleExt;
