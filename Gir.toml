@@ -405,7 +405,6 @@ manual = [
     "Gio.Icon",
     "GLib.Error",
     "GLib.Variant",
-    "Gsk.Transform",
     "Gtk.ResponseType",
 ]
 
