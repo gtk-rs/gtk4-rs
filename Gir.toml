@@ -119,6 +119,7 @@ generate = [
     "Gtk.FilterListModel",
     "Gtk.Fixed",
     "Gtk.FixedLayout",
+    "Gtk.FixedLayoutChild",
     "Gtk.FlattenListModel",
     "Gtk.FlowBox",
     "Gtk.FlowBoxAccessible",
@@ -144,6 +145,7 @@ generate = [
     "Gtk.GestureZoom",
     "Gtk.Grid",
     "Gtk.GridLayout",
+    "Gtk.GridLayoutChild",
     "Gtk.HeaderBar",
     "Gtk.IMContext",
     "Gtk.IMContextSimple",
@@ -403,6 +405,7 @@ manual = [
     "Gio.Icon",
     "GLib.Error",
     "GLib.Variant",
+    "Gsk.Transform",
     "Gtk.ResponseType",
 ]
 
