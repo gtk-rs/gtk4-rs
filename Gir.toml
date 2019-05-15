@@ -427,6 +427,18 @@ status = "generate"
     #array as pointer
     ignore = true
     [[object.function]]
+    name = "targets_include_image"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "targets_include_text"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "targets_include_uri"
+    #manual
+    ignore = true
+    [[object.function]]
     name = "target_table_free"
     #array as pointer
     ignore = true
