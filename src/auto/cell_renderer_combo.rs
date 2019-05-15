@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use CellRenderer;
-use CellRendererMode;
 use CellRendererText;
 use TreeIter;
 use TreeModel;

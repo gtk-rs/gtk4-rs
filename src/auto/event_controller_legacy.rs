@@ -4,15 +4,9 @@
 
 use EventController;
 use glib::object::Cast;
-use glib::object::ObjectType;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass, EventControllerLegacyClass>) @extends EventController;

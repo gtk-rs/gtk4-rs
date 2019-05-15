@@ -5,7 +5,6 @@
 use ApplicationInhibitFlags;
 use Window;
 use gio;
-use gio_sys;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;

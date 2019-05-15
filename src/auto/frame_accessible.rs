@@ -6,20 +6,9 @@ use Accessible;
 use ContainerAccessible;
 use WidgetAccessible;
 use atk;
-use atk_sys;
-use glib::GString;
-use glib::StaticType;
-use glib::Value;
-use glib::object::Cast;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_sys;
-use gobject_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct FrameAccessible(Object<gtk_sys::GtkFrameAccessible, gtk_sys::GtkFrameAccessibleClass, FrameAccessibleClass>) @extends ContainerAccessible, WidgetAccessible, Accessible, atk::Object;

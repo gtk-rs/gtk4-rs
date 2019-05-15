@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use CellRenderer;
-use CellRendererMode;
 use Orientable;
 use glib::GString;
 use glib::StaticType;

@@ -10,8 +10,6 @@ use Container;
 use Root;
 use Widget;
 use Window;
-use WindowPosition;
-use WindowType;
 use glib;
 use glib::GString;
 use glib::StaticType;

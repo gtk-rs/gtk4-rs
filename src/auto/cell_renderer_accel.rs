@@ -4,7 +4,6 @@
 
 use CellRenderer;
 use CellRendererAccelMode;
-use CellRendererMode;
 use CellRendererText;
 use gdk;
 use gdk_sys;

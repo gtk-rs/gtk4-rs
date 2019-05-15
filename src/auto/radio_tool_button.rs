@@ -11,8 +11,6 @@ use ToggleToolButton;
 use ToolButton;
 use ToolItem;
 use Widget;
-use glib::GString;
-use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;

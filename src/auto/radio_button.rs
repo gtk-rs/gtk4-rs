@@ -10,8 +10,6 @@ use CheckButton;
 use Container;
 use ToggleButton;
 use Widget;
-use glib::GString;
-use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;

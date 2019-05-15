@@ -7,7 +7,6 @@ use Buildable;
 use Container;
 use Editable;
 use Widget;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;

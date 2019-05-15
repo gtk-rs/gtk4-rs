@@ -10,8 +10,6 @@ use MessageType;
 use Root;
 use Widget;
 use Window;
-use WindowPosition;
-use WindowType;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;

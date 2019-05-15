@@ -452,6 +452,30 @@ pub fn show_uri_on_window<P: IsA<Window>>(parent: Option<&P>, uri: &str, timesta
     }
 }
 
+pub fn targets_include_image(targets: &[&gdk::Atom], writable: bool) -> bool {
+    assert_initialized_main_thread!();
+    let n_targets = targets.len() as i32;
+    unsafe {
+        from_glib(gtk_sys::gtk_targets_include_image(targets.to_glib_none().0, n_targets, writable.to_glib()))
+    }
+}
+
+pub fn targets_include_text(targets: &[&gdk::Atom]) -> bool {
+    assert_initialized_main_thread!();
+    let n_targets = targets.len() as i32;
+    unsafe {
+        from_glib(gtk_sys::gtk_targets_include_text(targets.to_glib_none().0, n_targets))
+    }
+}
+
+pub fn targets_include_uri(targets: &[&gdk::Atom]) -> bool {
+    assert_initialized_main_thread!();
+    let n_targets = targets.len() as i32;
+    unsafe {
+        from_glib(gtk_sys::gtk_targets_include_uri(targets.to_glib_none().0, n_targets))
+    }
+}
+
 //pub fn test_init(argvp: /*Unimplemented*/Vec<GString>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call gtk_sys:gtk_test_init() }
 //}

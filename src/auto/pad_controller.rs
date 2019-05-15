@@ -5,14 +5,9 @@
 use EventController;
 use PadActionType;
 use glib::object::ObjectType;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct PadController(Object<gtk_sys::GtkPadController, gtk_sys::GtkPadControllerClass, PadControllerClass>) @extends EventController;

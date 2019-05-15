@@ -4,8 +4,6 @@
 
 use Window;
 use gdk;
-use gio_sys;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;

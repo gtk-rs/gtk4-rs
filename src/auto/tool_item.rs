@@ -9,7 +9,6 @@ use Orientation;
 use SizeGroup;
 use ToolbarStyle;
 use Widget;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;

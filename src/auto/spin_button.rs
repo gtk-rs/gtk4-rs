@@ -11,7 +11,6 @@ use SpinButtonUpdatePolicy;
 use SpinType;
 use Widget;
 use glib;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;

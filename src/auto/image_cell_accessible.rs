@@ -4,23 +4,11 @@
 
 use Accessible;
 use CellAccessible;
-use CellRenderer;
 use RendererCellAccessible;
 use atk;
-use atk_sys;
-use glib::GString;
-use glib::StaticType;
-use glib::Value;
-use glib::object::Cast;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_sys;
-use gobject_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct ImageCellAccessible(Object<gtk_sys::GtkImageCellAccessible, gtk_sys::GtkImageCellAccessibleClass, ImageCellAccessibleClass>) @extends RendererCellAccessible, CellAccessible, Accessible, atk::Object;

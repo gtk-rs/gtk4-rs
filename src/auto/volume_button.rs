@@ -10,7 +10,6 @@ use Container;
 use Orientable;
 use ScaleButton;
 use Widget;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;

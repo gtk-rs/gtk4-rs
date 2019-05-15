@@ -4,15 +4,12 @@
 
 use EventController;
 use Gesture;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::ObjectType;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;

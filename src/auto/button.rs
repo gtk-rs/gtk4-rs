@@ -10,8 +10,6 @@ use ReliefStyle;
 use Widget;
 use glib;
 use glib::GString;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
