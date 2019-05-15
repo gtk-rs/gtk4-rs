@@ -77,12 +77,14 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
+mod functions;
 mod signal;
 
 pub mod prelude;
 
 pub use auto::*;
 pub use auto::functions::*;
+pub use functions::*;
 pub use rt::*;
 pub use prelude::*;
 

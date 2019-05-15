@@ -144,7 +144,7 @@ pub trait WidgetExt: 'static {
 
     fn drag_dest_unset(&self);
 
-    //fn drag_get_data(&self, drop: &gdk::Drop, target: /*Ignored*/&gdk::Atom);
+    fn drag_get_data(&self, drop: &gdk::Drop, target: &gdk::Atom);
 
     fn drag_highlight(&self);
 
@@ -830,9 +830,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_get_data(&self, drop: &gdk::Drop, target: /*Ignored*/&gdk::Atom) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_get_data() }
-    //}
+    fn drag_get_data(&self, drop: &gdk::Drop, target: &gdk::Atom) {
+        unsafe {
+            gtk_sys::gtk_drag_get_data(self.as_ref().to_glib_none().0, drop.to_glib_none().0, target.to_glib_none().0);
+        }
+    }
 
     fn drag_highlight(&self) {
         unsafe {

@@ -10,6 +10,7 @@ use Orientable;
 use TreeModel;
 use TreePath;
 use Widget;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -62,9 +63,12 @@ impl CellView {
         }
     }
 
-    //pub fn new_with_texture(texture: /*Ignored*/&gdk::Texture) -> CellView {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_view_new_with_texture() }
-    //}
+    pub fn new_with_texture<P: IsA<gdk::Texture>>(texture: &P) -> CellView {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_cell_view_new_with_texture(texture.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 impl Default for CellView {

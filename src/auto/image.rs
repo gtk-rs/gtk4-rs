@@ -6,6 +6,7 @@ use Buildable;
 use IconSize;
 use ImageType;
 use Widget;
+use gdk_pixbuf;
 use gio;
 use glib::GString;
 use glib::StaticType;
@@ -64,9 +65,12 @@ impl Image {
     //    unsafe { TODO: call gtk_sys:gtk_image_new_from_paintable() }
     //}
 
-    //pub fn new_from_pixbuf(pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) -> Image {
-    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_pixbuf() }
-    //}
+    pub fn new_from_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Image {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_pixbuf(pixbuf.to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_from_resource(resource_path: &str) -> Image {
         assert_initialized_main_thread!();
@@ -107,7 +111,7 @@ pub trait ImageExt: 'static {
 
     //fn set_from_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>);
 
-    //fn set_from_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>);
+    fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>);
 
     fn set_from_resource(&self, resource_path: Option<&str>);
 
@@ -215,9 +219,11 @@ impl<O: IsA<Image>> ImageExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_image_set_from_paintable() }
     //}
 
-    //fn set_from_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
-    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_pixbuf() }
-    //}
+    fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
+        unsafe {
+            gtk_sys::gtk_image_set_from_pixbuf(self.as_ref().to_glib_none().0, pixbuf.to_glib_none().0);
+        }
+    }
 
     fn set_from_resource(&self, resource_path: Option<&str>) {
         unsafe {

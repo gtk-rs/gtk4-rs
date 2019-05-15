@@ -385,9 +385,12 @@ pub fn render_handle<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: 
     }
 }
 
-//pub fn render_icon<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, texture: /*Ignored*/&gdk::Texture, x: f64, y: f64) {
-//    unsafe { TODO: call gtk_sys:gtk_render_icon() }
-//}
+pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(context: &P, cr: &cairo::Context, texture: &Q, x: f64, y: f64) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_icon(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), texture.as_ref().to_glib_none().0, x, y);
+    }
+}
 
 //pub fn render_insertion_cursor<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout, index: i32, direction: /*Ignored*/pango::Direction) {
 //    unsafe { TODO: call gtk_sys:gtk_render_insertion_cursor() }
@@ -448,18 +451,6 @@ pub fn show_uri_on_window<P: IsA<Window>>(parent: Option<&P>, uri: &str, timesta
         if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
     }
 }
-
-//pub fn targets_include_image(targets: /*Ignored*/&[&gdk::Atom], writable: bool) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_targets_include_image() }
-//}
-
-//pub fn targets_include_text(targets: /*Ignored*/&[&gdk::Atom]) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_targets_include_text() }
-//}
-
-//pub fn targets_include_uri(targets: /*Ignored*/&[&gdk::Atom]) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_targets_include_uri() }
-//}
 
 //pub fn test_init(argvp: /*Unimplemented*/Vec<GString>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call gtk_sys:gtk_test_init() }

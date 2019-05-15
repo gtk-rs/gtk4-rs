@@ -2,9 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use IconInfo;
 use IconLookupFlags;
 use gdk;
+use gdk_pixbuf;
 use gio;
 use glib::GString;
 use glib::object::Cast;
@@ -79,9 +81,9 @@ pub trait IconThemeExt: 'static {
 
     fn list_icons(&self, context: Option<&str>) -> Vec<GString>;
 
-    //fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result</*Ignored*/Option<gdk_pixbuf::Pixbuf>, Error>;
+    fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
 
-    //fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result</*Ignored*/Option<gdk_pixbuf::Pixbuf>, Error>;
+    fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
 
     fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
 
@@ -162,13 +164,21 @@ impl<O: IsA<IconTheme>> IconThemeExt for O {
         }
     }
 
-    //fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result</*Ignored*/Option<gdk_pixbuf::Pixbuf>, Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_load_icon() }
-    //}
+    fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_icon_theme_load_icon(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, flags.to_glib(), &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
-    //fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result</*Ignored*/Option<gdk_pixbuf::Pixbuf>, Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_load_icon_for_scale() }
-    //}
+    fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_icon_theme_load_icon_for_scale(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, scale, flags.to_glib(), &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
         unsafe {

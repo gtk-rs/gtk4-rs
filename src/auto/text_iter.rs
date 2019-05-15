@@ -7,6 +7,7 @@ use TextChildAnchor;
 use TextMark;
 use TextSearchFlags;
 use TextTag;
+use gdk;
 use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
@@ -425,9 +426,11 @@ impl TextIter {
         }
     }
 
-    //pub fn get_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
-    //    unsafe { TODO: call gtk_sys:gtk_text_iter_get_texture() }
-    //}
+    pub fn get_texture(&self) -> Option<gdk::Texture> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_text_iter_get_texture(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_toggled_tags(&self, toggled_on: bool) -> Vec<TextTag> {
         unsafe {

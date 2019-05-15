@@ -387,6 +387,7 @@ ignore = [
 manual = [
     "Atk.Object",
     "cairo.Context",
+    "Gdk.Atom",
     "Gdk.ContentFormats",
     "Gdk.Display",
     "Gdk.Drag",
@@ -395,6 +396,8 @@ manual = [
     "Gdk.FrameClock",
     "Gdk.ModifierType",
     "Gdk.Surface",
+    "Gdk.Texture",
+    "GdkPixbuf.Pixbuf",
     "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.Icon",
@@ -709,6 +712,37 @@ status = "generate"
     [[object.function]]
     name = "get_data"
     ignore = true
+    [[object.function]]
+    name = "get_data_type"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_data_with_length"
+    ignore = true
+    [[object.function]]
+    name = "get_target"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "set"
+        [[object.function.parameter]]
+        name = "selection_data"
+        const = true
+    [[object.function]]
+    name = "set_pixbuf"
+        [[object.function.parameter]]
+        name = "selection_data"
+        const = true
+    [[object.function]]
+    name = "set_text"
+        [[object.function.parameter]]
+        name = "selection_data"
+        const = true
+    [[object.function]]
+    name = "set_uris"
+        [[object.function.parameter]]
+        name = "selection_data"
+        const = true
 
 [[object]]
 name = "Gtk.Text"

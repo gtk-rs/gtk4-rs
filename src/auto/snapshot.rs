@@ -60,7 +60,7 @@ impl Snapshot {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_repeating_linear_gradient() }
     //}
 
-    //pub fn append_texture(&self, texture: /*Ignored*/&gdk::Texture, bounds: /*Ignored*/&graphene::Rect) {
+    //pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: /*Ignored*/&graphene::Rect) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_texture() }
     //}
 

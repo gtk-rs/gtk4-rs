@@ -8,6 +8,7 @@ use TextMark;
 use TextTag;
 use TextTagTable;
 use gdk;
+use gdk_sys;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -134,7 +135,7 @@ pub trait TextBufferExt: 'static {
 
     fn insert_range_interactive(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter, default_editable: bool) -> bool;
 
-    //fn insert_texture(&self, iter: &mut TextIter, texture: /*Ignored*/&gdk::Texture);
+    fn insert_texture<P: IsA<gdk::Texture>>(&self, iter: &mut TextIter, texture: &P);
 
     //fn insert_with_tags<P: IsA<TextTag>>(&self, iter: &mut TextIter, text: &str, first_tag: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
@@ -182,7 +183,7 @@ pub trait TextBufferExt: 'static {
 
     fn connect_insert_text<F: Fn(&Self, &TextIter, &str, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_insert_texture<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -495,9 +496,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn insert_texture(&self, iter: &mut TextIter, texture: /*Ignored*/&gdk::Texture) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_insert_texture() }
-    //}
+    fn insert_texture<P: IsA<gdk::Texture>>(&self, iter: &mut TextIter, texture: &P) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_insert_texture(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, texture.as_ref().to_glib_none().0);
+        }
+    }
 
     //fn insert_with_tags<P: IsA<TextTag>>(&self, iter: &mut TextIter, text: &str, first_tag: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_text_buffer_insert_with_tags() }
@@ -650,9 +653,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn connect_insert_texture<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored texture: Gdk.Texture
-    //}
+    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"insert-texture\0".as_ptr() as *const _,
+                Some(transmute(insert_texture_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -771,6 +778,12 @@ unsafe extern "C" fn insert_text_trampoline<P, F: Fn(&P, &TextIter, &str, i32) +
 where P: IsA<TextBuffer> {
     let f: &F = &*(f as *const F);
     f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &GString::from_glib_borrow(text), len)
+}
+
+unsafe extern "C" fn insert_texture_trampoline<P, F: Fn(&P, &TextIter, &gdk::Texture) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, texture: *mut gdk_sys::GdkTexture, f: glib_sys::gpointer)
+where P: IsA<TextBuffer> {
+    let f: &F = &*(f as *const F);
+    f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &from_glib_borrow(texture))
 }
 
 unsafe extern "C" fn mark_deleted_trampoline<P, F: Fn(&P, &TextMark) + 'static>(this: *mut gtk_sys::GtkTextBuffer, mark: *mut gtk_sys::GtkTextMark, f: glib_sys::gpointer)

@@ -4,6 +4,7 @@
 
 use Buildable;
 use Widget;
+use gdk_pixbuf;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -51,9 +52,12 @@ impl Picture {
     //    unsafe { TODO: call gtk_sys:gtk_picture_new_for_paintable() }
     //}
 
-    //pub fn new_for_pixbuf(pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) -> Picture {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_new_for_pixbuf() }
-    //}
+    pub fn new_for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_pixbuf(pixbuf.to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_resource(resource_path: Option<&str>) -> Picture {
         assert_initialized_main_thread!();
@@ -94,7 +98,7 @@ pub trait PictureExt: 'static {
 
     //fn set_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>);
 
-    //fn set_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>);
+    fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>);
 
     fn set_resource(&self, resource_path: Option<&str>);
 
@@ -168,9 +172,11 @@ impl<O: IsA<Picture>> PictureExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_picture_set_paintable() }
     //}
 
-    //fn set_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_set_pixbuf() }
-    //}
+    fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
+        unsafe {
+            gtk_sys::gtk_picture_set_pixbuf(self.as_ref().to_glib_none().0, pixbuf.to_glib_none().0);
+        }
+    }
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {

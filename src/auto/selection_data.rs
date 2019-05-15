@@ -3,10 +3,13 @@
 // DO NOT EDIT
 
 use gdk;
+use gdk_pixbuf;
 use glib::GString;
+use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::mem;
+use std::ptr;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -20,15 +23,9 @@ glib_wrapper! {
 }
 
 impl SelectionData {
-    //pub fn get_data_type(&self) -> /*Ignored*/Option<gdk::Atom> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_data_type() }
-    //}
-
-    pub fn get_data_with_length(&self) -> Vec<u8> {
+    pub fn get_data_type(&self) -> gdk::Atom {
         unsafe {
-            let mut length = mem::uninitialized();
-            let ret = FromGlibContainer::from_glib_none_num(gtk_sys::gtk_selection_data_get_data_with_length(self.to_glib_none().0, &mut length), length as usize);
-            ret
+            from_glib_none(gtk_sys::gtk_selection_data_get_data_type(self.to_glib_none().0))
         }
     }
 
@@ -50,17 +47,26 @@ impl SelectionData {
         }
     }
 
-    //pub fn get_pixbuf(&self) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_pixbuf() }
-    //}
+    pub fn get_pixbuf(&self) -> Option<gdk_pixbuf::Pixbuf> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_selection_data_get_pixbuf(self.to_glib_none().0))
+        }
+    }
 
-    //pub fn get_target(&self) -> /*Ignored*/Option<gdk::Atom> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_target() }
-    //}
+    pub fn get_target(&self) -> gdk::Atom {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_selection_data_get_target(self.to_glib_none().0))
+        }
+    }
 
-    //pub fn get_targets(&self, targets: /*Ignored*/Vec<gdk::Atom>) -> Option<i32> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_targets() }
-    //}
+    pub fn get_targets(&self) -> Option<Vec<gdk::Atom>> {
+        unsafe {
+            let mut targets = ptr::null_mut();
+            let mut n_atoms = mem::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_selection_data_get_targets(self.to_glib_none().0, &mut targets, &mut n_atoms));
+            if ret { Some(FromGlibContainer::from_glib_container_num(targets, n_atoms as usize)) } else { None }
+        }
+    }
 
     pub fn get_text(&self) -> Option<GString> {
         unsafe {
@@ -68,9 +74,11 @@ impl SelectionData {
         }
     }
 
-    //pub fn get_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_get_texture() }
-    //}
+    pub fn get_texture(&self) -> Option<gdk::Texture> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_selection_data_get_texture(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_uris(&self) -> Vec<GString> {
         unsafe {
@@ -78,28 +86,35 @@ impl SelectionData {
         }
     }
 
-    //pub fn set(&mut self, type_: /*Ignored*/&gdk::Atom, format: i32, data: &[u8]) {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_set() }
-    //}
-
-    //pub fn set_pixbuf(&mut self, pixbuf: /*Ignored*/&gdk_pixbuf::Pixbuf) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_set_pixbuf() }
-    //}
-
-    pub fn set_text(&mut self, str: &str) -> bool {
-        let len = str.len() as i32;
+    pub fn set(&self, type_: &gdk::Atom, format: i32, data: &[u8]) {
+        let length = data.len() as i32;
         unsafe {
-            from_glib(gtk_sys::gtk_selection_data_set_text(self.to_glib_none_mut().0, str.to_glib_none().0, len))
+            gtk_sys::gtk_selection_data_set(mut_override(self.to_glib_none().0), type_.to_glib_none().0, format, data.to_glib_none().0, length);
         }
     }
 
-    //pub fn set_texture(&mut self, texture: /*Ignored*/&gdk::Texture) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_data_set_texture() }
-    //}
-
-    pub fn set_uris(&mut self, uris: &[&str]) -> bool {
+    pub fn set_pixbuf(&self, pixbuf: &gdk_pixbuf::Pixbuf) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_data_set_uris(self.to_glib_none_mut().0, uris.to_glib_none().0))
+            from_glib(gtk_sys::gtk_selection_data_set_pixbuf(mut_override(self.to_glib_none().0), pixbuf.to_glib_none().0))
+        }
+    }
+
+    pub fn set_text(&self, str: &str) -> bool {
+        let len = str.len() as i32;
+        unsafe {
+            from_glib(gtk_sys::gtk_selection_data_set_text(mut_override(self.to_glib_none().0), str.to_glib_none().0, len))
+        }
+    }
+
+    pub fn set_texture<P: IsA<gdk::Texture>>(&mut self, texture: &P) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_selection_data_set_texture(self.to_glib_none_mut().0, texture.as_ref().to_glib_none().0))
+        }
+    }
+
+    pub fn set_uris(&self, uris: &[&str]) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_selection_data_set_uris(mut_override(self.to_glib_none().0), uris.to_glib_none().0))
         }
     }
 
