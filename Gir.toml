@@ -35,10 +35,12 @@ generate = [
     "Gtk.AssistantPageType",
     "Gtk.BaselinePosition",
     "Gtk.Bin",
+    "Gtk.BinLayout",
     "Gtk.BooleanCellAccessible",
     "Gtk.Border",
     "Gtk.BorderStyle",
     "Gtk.Box",
+    "Gtk.BoxLayout",
     "Gtk.Buildable",
     "Gtk.BuilderError",
     "Gtk.Button",
@@ -80,9 +82,8 @@ generate = [
     "Gtk.ContainerCellAccessible",
     "Gtk.CornerType",
     "Gtk.CssProvider",
-    "Gtk.CssProviderError",
     "Gtk.CssSection",
-    "Gtk.CssSectionType",
+    "Gtk.CustomLayout",
     "Gtk.DebugFlag",
     "Gtk.DeleteType",
     "Gtk.DestDefaults",
@@ -117,6 +118,7 @@ generate = [
     "Gtk.FileFilterFlags",
     "Gtk.FilterListModel",
     "Gtk.Fixed",
+    "Gtk.FixedLayout",
     "Gtk.FlattenListModel",
     "Gtk.FlowBox",
     "Gtk.FlowBoxAccessible",
@@ -141,6 +143,7 @@ generate = [
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.Grid",
+    "Gtk.GridLayout",
     "Gtk.HeaderBar",
     "Gtk.IMContext",
     "Gtk.IMContextSimple",
@@ -161,7 +164,8 @@ generate = [
     "Gtk.Justification",
     "Gtk.Label",
     "Gtk.LabelAccessible",
-    "Gtk.Layout",
+    "Gtk.LayoutChild",
+    "Gtk.LayoutManager",
     "Gtk.LevelBar",
     "Gtk.LevelBarAccessible",
     "Gtk.LevelBarMode",
@@ -204,7 +208,6 @@ generate = [
     "Gtk.Orientation",
     "Gtk.Overflow",
     "Gtk.Overlay",
-    "Gtk.PackDirection",
     "Gtk.PackType",
     "Gtk.PadActionType",
     "Gtk.PadController",
@@ -215,6 +218,7 @@ generate = [
     "Gtk.Paned",
     "Gtk.PanedAccessible",
     "Gtk.PasswordEntry",
+    "Gtk.PickFlags",
     "Gtk.Picture",
     "Gtk.PlacesOpenFlags",
     "Gtk.PolicyType",
@@ -329,8 +333,6 @@ generate = [
     "Gtk.ToolbarStyle",
     "Gtk.Tooltip",
     "Gtk.ToplevelAccessible",
-    "Gtk.Transform",
-    "Gtk.TransformType",
     "Gtk.TreeDragDest",
     "Gtk.TreeDragSource",
     "Gtk.TreeIter",
@@ -369,6 +371,7 @@ ignore = [
     "Gtk.BindingSet",
     "Gtk.BindingSignal",
     "Gtk.Clipboard",
+    "Gtk.CssLocation",
     "Gtk.FileFilterInfo",
     "Gtk.LabelSelectionInfo",
     "Gtk.PadActionEntry",
@@ -384,11 +387,19 @@ ignore = [
 manual = [
     "Atk.Object",
     "cairo.Context",
+    "Gdk.ContentFormats",
     "Gdk.Display",
+    "Gdk.Drag",
+    "Gdk.DragAction",
+    "Gdk.Drop",
     "Gdk.FrameClock",
+    "Gdk.ModifierType",
+    "Gdk.Surface",
     "Gio.Application",
     "Gio.ApplicationFlags",
+    "Gio.Icon",
     "GLib.Error",
+    "GLib.Variant",
     "Gtk.ResponseType",
 ]
 
@@ -808,6 +819,11 @@ status = "generate"
 name = "Gtk.Widget"
 status = "generate"
 manual_traits = ["WidgetExtManual"]
+    [[object.signal]]
+    name = "drag-data-get"
+        [[object.signal.parameter]]
+        name = "data"
+        transformation = "borrow"
 
 [[object]]
 name = "Gtk.Window"

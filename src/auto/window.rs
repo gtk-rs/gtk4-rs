@@ -135,7 +135,7 @@ pub trait WindowExt: 'static {
 
     fn get_icon_name(&self) -> Option<GString>;
 
-    //fn get_mnemonic_modifier(&self) -> /*Ignored*/gdk::ModifierType;
+    fn get_mnemonic_modifier(&self) -> gdk::ModifierType;
 
     fn get_mnemonics_visible(&self) -> bool;
 
@@ -165,7 +165,7 @@ pub trait WindowExt: 'static {
 
     fn maximize(&self);
 
-    //fn mnemonic_activate(&self, keyval: u32, modifier: /*Ignored*/gdk::ModifierType) -> bool;
+    fn mnemonic_activate(&self, keyval: u32, modifier: gdk::ModifierType) -> bool;
 
     fn present(&self);
 
@@ -211,7 +211,7 @@ pub trait WindowExt: 'static {
 
     fn set_keep_below(&self, setting: bool);
 
-    //fn set_mnemonic_modifier(&self, modifier: /*Ignored*/gdk::ModifierType);
+    fn set_mnemonic_modifier(&self, modifier: gdk::ModifierType);
 
     fn set_mnemonics_visible(&self, setting: bool);
 
@@ -452,9 +452,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn get_mnemonic_modifier(&self) -> /*Ignored*/gdk::ModifierType {
-    //    unsafe { TODO: call gtk_sys:gtk_window_get_mnemonic_modifier() }
-    //}
+    fn get_mnemonic_modifier(&self) -> gdk::ModifierType {
+        unsafe {
+            from_glib(gtk_sys::gtk_window_get_mnemonic_modifier(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_mnemonics_visible(&self) -> bool {
         unsafe {
@@ -541,9 +543,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn mnemonic_activate(&self, keyval: u32, modifier: /*Ignored*/gdk::ModifierType) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_window_mnemonic_activate() }
-    //}
+    fn mnemonic_activate(&self, keyval: u32, modifier: gdk::ModifierType) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_window_mnemonic_activate(self.as_ref().to_glib_none().0, keyval, modifier.to_glib()))
+        }
+    }
 
     fn present(&self) {
         unsafe {
@@ -675,9 +679,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn set_mnemonic_modifier(&self, modifier: /*Ignored*/gdk::ModifierType) {
-    //    unsafe { TODO: call gtk_sys:gtk_window_set_mnemonic_modifier() }
-    //}
+    fn set_mnemonic_modifier(&self, modifier: gdk::ModifierType) {
+        unsafe {
+            gtk_sys::gtk_window_set_mnemonic_modifier(self.as_ref().to_glib_none().0, modifier.to_glib());
+        }
+    }
 
     fn set_mnemonics_visible(&self, setting: bool) {
         unsafe {

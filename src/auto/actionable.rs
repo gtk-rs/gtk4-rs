@@ -4,13 +4,17 @@
 
 use Buildable;
 use Widget;
+use glib;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -29,17 +33,17 @@ pub const NONE_ACTIONABLE: Option<&Actionable> = None;
 pub trait ActionableExt: 'static {
     fn get_action_name(&self) -> Option<GString>;
 
-    //fn get_action_target_value(&self) -> /*Ignored*/Option<glib::Variant>;
+    fn get_action_target_value(&self) -> Option<glib::Variant>;
 
     fn set_action_name(&self, action_name: Option<&str>);
 
     //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    //fn set_action_target_value(&self, target_value: /*Ignored*/Option<&glib::Variant>);
+    fn set_action_target_value(&self, target_value: Option<&glib::Variant>);
 
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
-    //fn get_property_action_target(&self) -> /*Ignored*/Option<glib::Variant>;
+    fn get_property_action_target(&self) -> Option<glib::Variant>;
 
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -53,9 +57,11 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    //fn get_action_target_value(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call gtk_sys:gtk_actionable_get_action_target_value() }
-    //}
+    fn get_action_target_value(&self) -> Option<glib::Variant> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_actionable_get_action_target_value(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn set_action_name(&self, action_name: Option<&str>) {
         unsafe {
@@ -67,9 +73,11 @@ impl<O: IsA<Actionable>> ActionableExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target() }
     //}
 
-    //fn set_action_target_value(&self, target_value: /*Ignored*/Option<&glib::Variant>) {
-    //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target_value() }
-    //}
+    fn set_action_target_value(&self, target_value: Option<&glib::Variant>) {
+        unsafe {
+            gtk_sys::gtk_actionable_set_action_target_value(self.as_ref().to_glib_none().0, target_value.to_glib_none().0);
+        }
+    }
 
     fn set_detailed_action_name(&self, detailed_action_name: &str) {
         unsafe {
@@ -77,13 +85,13 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    //fn get_property_action_target(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"action-target\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_action_target(&self) -> Option<glib::Variant> {
+        unsafe {
+            let mut value = Value::from_type(<glib::Variant as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"action-target\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

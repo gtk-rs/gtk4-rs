@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -43,25 +44,25 @@ impl Default for AccelGroup {
 pub const NONE_ACCEL_GROUP: Option<&AccelGroup> = None;
 
 pub trait AccelGroupExt: 'static {
-    //fn activate(&self, accel_quark: /*Ignored*/glib::Quark, acceleratable: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool;
+    //fn activate(&self, accel_quark: /*Ignored*/glib::Quark, acceleratable: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: gdk::ModifierType) -> bool;
 
-    //fn connect(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, accel_flags: AccelFlags, closure: /*Ignored*/&glib::Closure);
+    //fn connect(&self, accel_key: u32, accel_mods: gdk::ModifierType, accel_flags: AccelFlags, closure: /*Ignored*/&glib::Closure);
 
     //fn connect_by_path(&self, accel_path: &str, closure: /*Ignored*/&glib::Closure);
 
     //fn disconnect(&self, closure: /*Ignored*/Option<&glib::Closure>) -> bool;
 
-    //fn disconnect_key(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool;
+    fn disconnect_key(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> bool;
 
     //fn find(&self, find_func: /*Unimplemented*/FnMut(/*Ignored*/AccelKey, /*Ignored*/glib::Closure) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> /*Ignored*/Option<AccelKey>;
 
     fn get_is_locked(&self) -> bool;
 
-    //fn get_modifier_mask(&self) -> /*Ignored*/gdk::ModifierType;
+    fn get_modifier_mask(&self) -> gdk::ModifierType;
 
     fn lock(&self);
 
-    //fn query(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry>;
+    //fn query(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry>;
 
     fn unlock(&self);
 
@@ -75,11 +76,11 @@ pub trait AccelGroupExt: 'static {
 }
 
 impl<O: IsA<AccelGroup>> AccelGroupExt for O {
-    //fn activate(&self, accel_quark: /*Ignored*/glib::Quark, acceleratable: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool {
+    //fn activate(&self, accel_quark: /*Ignored*/glib::Quark, acceleratable: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_accel_group_activate() }
     //}
 
-    //fn connect(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, accel_flags: AccelFlags, closure: /*Ignored*/&glib::Closure) {
+    //fn connect(&self, accel_key: u32, accel_mods: gdk::ModifierType, accel_flags: AccelFlags, closure: /*Ignored*/&glib::Closure) {
     //    unsafe { TODO: call gtk_sys:gtk_accel_group_connect() }
     //}
 
@@ -91,9 +92,11 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_accel_group_disconnect() }
     //}
 
-    //fn disconnect_key(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_group_disconnect_key() }
-    //}
+    fn disconnect_key(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_accel_group_disconnect_key(self.as_ref().to_glib_none().0, accel_key, accel_mods.to_glib()))
+        }
+    }
 
     //fn find(&self, find_func: /*Unimplemented*/FnMut(/*Ignored*/AccelKey, /*Ignored*/glib::Closure) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> /*Ignored*/Option<AccelKey> {
     //    unsafe { TODO: call gtk_sys:gtk_accel_group_find() }
@@ -105,9 +108,11 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
         }
     }
 
-    //fn get_modifier_mask(&self) -> /*Ignored*/gdk::ModifierType {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_group_get_modifier_mask() }
-    //}
+    fn get_modifier_mask(&self) -> gdk::ModifierType {
+        unsafe {
+            from_glib(gtk_sys::gtk_accel_group_get_modifier_mask(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn lock(&self) {
         unsafe {
@@ -115,7 +120,7 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
         }
     }
 
-    //fn query(&self, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry> {
+    //fn query(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry> {
     //    unsafe { TODO: call gtk_sys:gtk_accel_group_query() }
     //}
 
@@ -127,11 +132,9 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
 
     //fn connect_accel_activate<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Ignored acceleratable: GObject.Object
-    //    Ignored modifier: Gdk.ModifierType
     //}
 
     //fn connect_accel_changed<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored modifier: Gdk.ModifierType
     //    Ignored accel_closure: GObject.Closure
     //}
 

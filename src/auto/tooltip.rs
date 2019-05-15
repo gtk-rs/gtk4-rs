@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Widget;
+use gio;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -27,9 +28,11 @@ impl Tooltip {
     //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_icon() }
     //}
 
-    //pub fn set_icon_from_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_icon_from_gicon() }
-    //}
+    pub fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_tooltip_set_icon_from_gicon(self.to_glib_none().0, gicon.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     pub fn set_icon_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {

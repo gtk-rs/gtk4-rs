@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Unit;
+use glib;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -33,9 +34,12 @@ impl PaperSize {
         }
     }
 
-    //pub fn new_from_gvariant(variant: /*Ignored*/&glib::Variant) -> PaperSize {
-    //    unsafe { TODO: call gtk_sys:gtk_paper_size_new_from_gvariant() }
-    //}
+    pub fn new_from_gvariant(variant: &glib::Variant) -> PaperSize {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_paper_size_new_from_gvariant(variant.to_glib_none().0))
+        }
+    }
 
     pub fn new_from_ipp(ipp_name: &str, width: f64, height: f64) -> PaperSize {
         assert_initialized_main_thread!();
@@ -133,9 +137,11 @@ impl PaperSize {
         }
     }
 
-    //pub fn to_gvariant(&mut self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call gtk_sys:gtk_paper_size_to_gvariant() }
-    //}
+    pub fn to_gvariant(&mut self) -> Option<glib::Variant> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_paper_size_to_gvariant(self.to_glib_none_mut().0))
+        }
+    }
 
     //pub fn to_key_file(&mut self, key_file: /*Ignored*/&glib::KeyFile, group_name: &str) {
     //    unsafe { TODO: call gtk_sys:gtk_paper_size_to_key_file() }

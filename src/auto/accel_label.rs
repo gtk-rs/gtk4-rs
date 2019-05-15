@@ -4,6 +4,7 @@
 
 use Buildable;
 use Widget;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -17,6 +18,7 @@ use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
@@ -39,7 +41,7 @@ impl AccelLabel {
 pub const NONE_ACCEL_LABEL: Option<&AccelLabel> = None;
 
 pub trait AccelLabelExt: 'static {
-    //fn get_accel(&self) -> (u32, /*Ignored*/gdk::ModifierType);
+    fn get_accel(&self) -> (u32, gdk::ModifierType);
 
     fn get_accel_widget(&self) -> Option<Widget>;
 
@@ -51,7 +53,7 @@ pub trait AccelLabelExt: 'static {
 
     fn refetch(&self) -> bool;
 
-    //fn set_accel(&self, accelerator_key: u32, accelerator_mods: /*Ignored*/gdk::ModifierType);
+    fn set_accel(&self, accelerator_key: u32, accelerator_mods: gdk::ModifierType);
 
     //fn set_accel_closure(&self, accel_closure: /*Ignored*/Option<&glib::Closure>);
 
@@ -73,9 +75,14 @@ pub trait AccelLabelExt: 'static {
 }
 
 impl<O: IsA<AccelLabel>> AccelLabelExt for O {
-    //fn get_accel(&self) -> (u32, /*Ignored*/gdk::ModifierType) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_label_get_accel() }
-    //}
+    fn get_accel(&self) -> (u32, gdk::ModifierType) {
+        unsafe {
+            let mut accelerator_key = mem::uninitialized();
+            let mut accelerator_mods = mem::uninitialized();
+            gtk_sys::gtk_accel_label_get_accel(self.as_ref().to_glib_none().0, &mut accelerator_key, &mut accelerator_mods);
+            (accelerator_key, from_glib(accelerator_mods))
+        }
+    }
 
     fn get_accel_widget(&self) -> Option<Widget> {
         unsafe {
@@ -107,9 +114,11 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
-    //fn set_accel(&self, accelerator_key: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_label_set_accel() }
-    //}
+    fn set_accel(&self, accelerator_key: u32, accelerator_mods: gdk::ModifierType) {
+        unsafe {
+            gtk_sys::gtk_accel_label_set_accel(self.as_ref().to_glib_none().0, accelerator_key, accelerator_mods.to_glib());
+        }
+    }
 
     //fn set_accel_closure(&self, accel_closure: /*Ignored*/Option<&glib::Closure>) {
     //    unsafe { TODO: call gtk_sys:gtk_accel_label_set_accel_closure() }

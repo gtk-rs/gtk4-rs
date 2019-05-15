@@ -5,6 +5,7 @@
 use AppChooser;
 use Buildable;
 use Widget;
+use gio;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -41,7 +42,7 @@ impl AppChooserButton {
 pub const NONE_APP_CHOOSER_BUTTON: Option<&AppChooserButton> = None;
 
 pub trait AppChooserButtonExt: 'static {
-    //fn append_custom_item(&self, name: &str, label: &str, icon: /*Ignored*/&gio::Icon);
+    fn append_custom_item<P: IsA<gio::Icon>>(&self, name: &str, label: &str, icon: &P);
 
     fn append_separator(&self);
 
@@ -71,9 +72,11 @@ pub trait AppChooserButtonExt: 'static {
 }
 
 impl<O: IsA<AppChooserButton>> AppChooserButtonExt for O {
-    //fn append_custom_item(&self, name: &str, label: &str, icon: /*Ignored*/&gio::Icon) {
-    //    unsafe { TODO: call gtk_sys:gtk_app_chooser_button_append_custom_item() }
-    //}
+    fn append_custom_item<P: IsA<gio::Icon>>(&self, name: &str, label: &str, icon: &P) {
+        unsafe {
+            gtk_sys::gtk_app_chooser_button_append_custom_item(self.as_ref().to_glib_none().0, name.to_glib_none().0, label.to_glib_none().0, icon.as_ref().to_glib_none().0);
+        }
+    }
 
     fn append_separator(&self) {
         unsafe {

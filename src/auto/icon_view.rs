@@ -17,6 +17,7 @@ use TreeIter;
 use TreeModel;
 use TreePath;
 use Widget;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -79,9 +80,9 @@ pub const NONE_ICON_VIEW: Option<&IconView> = None;
 pub trait IconViewExt: 'static {
     //fn create_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable>;
 
-    //fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction);
+    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
-    //fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction);
+    fn enable_model_drag_source(&self, start_button_mask: gdk::ModifierType, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
     fn get_activate_on_single_click(&self) -> bool;
 
@@ -265,13 +266,17 @@ impl<O: IsA<IconView>> IconViewExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_icon_view_create_drag_icon() }
     //}
 
-    //fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_dest() }
-    //}
+    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_icon_view_enable_model_drag_dest(self.as_ref().to_glib_none().0, formats.to_glib_none().0, actions.to_glib());
+        }
+    }
 
-    //fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_source() }
-    //}
+    fn enable_model_drag_source(&self, start_button_mask: gdk::ModifierType, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_icon_view_enable_model_drag_source(self.as_ref().to_glib_none().0, start_button_mask.to_glib(), formats.to_glib_none().0, actions.to_glib());
+        }
+    }
 
     fn get_activate_on_single_click(&self) -> bool {
         unsafe {

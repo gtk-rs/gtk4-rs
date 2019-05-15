@@ -17,6 +17,7 @@ use TreeViewColumn;
 use TreeViewDropPosition;
 use TreeViewGridLines;
 use Widget;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -92,9 +93,9 @@ pub trait TreeViewExt: 'static {
 
     //fn create_row_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable>;
 
-    //fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction);
+    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
-    //fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction);
+    fn enable_model_drag_source(&self, start_button_mask: gdk::ModifierType, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
     fn expand_all(&self);
 
@@ -422,13 +423,17 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_tree_view_create_row_drag_icon() }
     //}
 
-    //fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_enable_model_drag_dest() }
-    //}
+    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_tree_view_enable_model_drag_dest(self.as_ref().to_glib_none().0, formats.to_glib_none().0, actions.to_glib());
+        }
+    }
 
-    //fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_enable_model_drag_source() }
-    //}
+    fn enable_model_drag_source(&self, start_button_mask: gdk::ModifierType, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_tree_view_enable_model_drag_source(self.as_ref().to_glib_none().0, start_button_mask.to_glib(), formats.to_glib_none().0, actions.to_glib());
+        }
+    }
 
     fn expand_all(&self) {
         unsafe {

@@ -2,10 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use gdk_sys;
+use glib::GString;
+use glib::object::ObjectType;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
 use gtk_sys;
+use libc;
 use std;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
     pub struct AccelMap(Object<gtk_sys::GtkAccelMap, gtk_sys::GtkAccelMapClass, AccelMapClass>);
@@ -16,9 +26,12 @@ glib_wrapper! {
 }
 
 impl AccelMap {
-    //pub fn add_entry(accel_path: &str, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_map_add_entry() }
-    //}
+    pub fn add_entry(accel_path: &str, accel_key: u32, accel_mods: gdk::ModifierType) {
+        assert_initialized_main_thread!();
+        unsafe {
+            gtk_sys::gtk_accel_map_add_entry(accel_path.to_glib_none().0, accel_key, accel_mods.to_glib());
+        }
+    }
 
     pub fn add_filter(filter_pattern: &str) {
         assert_initialized_main_thread!();
@@ -27,15 +40,18 @@ impl AccelMap {
         }
     }
 
-    //pub fn change_entry(accel_path: &str, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, replace: bool) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_map_change_entry() }
-    //}
+    pub fn change_entry(accel_path: &str, accel_key: u32, accel_mods: gdk::ModifierType, replace: bool) -> bool {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib(gtk_sys::gtk_accel_map_change_entry(accel_path.to_glib_none().0, accel_key, accel_mods.to_glib(), replace.to_glib()))
+        }
+    }
 
-    //pub fn foreach(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
+    //pub fn foreach(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, &gdk::ModifierType, bool)) {
     //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach() }
     //}
 
-    //pub fn foreach_unfiltered(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, /*Ignored*/gdk::ModifierType, bool)) {
+    //pub fn foreach_unfiltered(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, &gdk::ModifierType, bool)) {
     //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach_unfiltered() }
     //}
 
@@ -96,9 +112,18 @@ impl AccelMap {
         }
     }
 
-    //pub fn connect_changed<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored accel_mods: Gdk.ModifierType
-    //}
+    pub fn connect_changed<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
+                Some(transmute(changed_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
+}
+
+unsafe extern "C" fn changed_trampoline<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkAccelMap, accel_path: *mut libc::c_char, accel_key: libc::c_uint, accel_mods: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), &GString::from_glib_borrow(accel_path), accel_key, from_glib(accel_mods))
 }
 
 impl fmt::Display for AccelMap {

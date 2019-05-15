@@ -6,6 +6,7 @@ use Buildable;
 use ShortcutType;
 use SizeGroup;
 use Widget;
+use gio;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -63,19 +64,19 @@ impl ShortcutsShortcut {
         }
     }
 
-    //pub fn get_property_icon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    pub fn get_property_icon(&self) -> Option<gio::Icon> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //pub fn set_property_icon(&self, icon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, Value::from(icon).to_glib_none().0);
-    //    }
-    //}
+    pub fn set_property_icon(&self, icon: Option<&gio::Icon>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"icon\0".as_ptr() as *const _, Value::from(icon).to_glib_none().0);
+        }
+    }
 
     pub fn get_property_icon_set(&self) -> bool {
         unsafe {

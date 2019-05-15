@@ -14,6 +14,8 @@ use TreePath;
 use Widget;
 use Window;
 use cairo;
+use gdk;
+use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -22,7 +24,7 @@ use std::mem;
 use std::ptr;
 
 
-//pub fn accel_groups_activate(object: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool {
+//pub fn accel_groups_activate(object: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_accel_groups_activate() }
 //}
 
@@ -30,43 +32,70 @@ use std::ptr;
 //    unsafe { TODO: call gtk_sys:gtk_accel_groups_from_object() }
 //}
 
-//pub fn accelerator_get_default_mod_mask() -> /*Ignored*/gdk::ModifierType {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_get_default_mod_mask() }
-//}
+pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib(gtk_sys::gtk_accelerator_get_default_mod_mask())
+    }
+}
 
-//pub fn accelerator_get_label(accelerator_key: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_get_label() }
-//}
+pub fn accelerator_get_label(accelerator_key: u32, accelerator_mods: gdk::ModifierType) -> Option<GString> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_accelerator_get_label(accelerator_key, accelerator_mods.to_glib()))
+    }
+}
 
-//pub fn accelerator_get_label_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_get_label_with_keycode() }
-//}
+pub fn accelerator_get_label_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: gdk::ModifierType) -> Option<GString> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_accelerator_get_label_with_keycode(display.to_glib_none().0, accelerator_key, keycode, accelerator_mods.to_glib()))
+    }
+}
 
-//pub fn accelerator_name(accelerator_key: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_name() }
-//}
+pub fn accelerator_name(accelerator_key: u32, accelerator_mods: gdk::ModifierType) -> Option<GString> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_accelerator_name(accelerator_key, accelerator_mods.to_glib()))
+    }
+}
 
-//pub fn accelerator_name_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: /*Ignored*/gdk::ModifierType) -> Option<GString> {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_name_with_keycode() }
-//}
+pub fn accelerator_name_with_keycode(display: Option<&gdk::Display>, accelerator_key: u32, keycode: u32, accelerator_mods: gdk::ModifierType) -> Option<GString> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_accelerator_name_with_keycode(display.to_glib_none().0, accelerator_key, keycode, accelerator_mods.to_glib()))
+    }
+}
 
-//pub fn accelerator_parse(accelerator: &str) -> (u32, /*Ignored*/gdk::ModifierType) {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_parse() }
-//}
+pub fn accelerator_parse(accelerator: &str) -> (u32, gdk::ModifierType) {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut accelerator_key = mem::uninitialized();
+        let mut accelerator_mods = mem::uninitialized();
+        gtk_sys::gtk_accelerator_parse(accelerator.to_glib_none().0, &mut accelerator_key, &mut accelerator_mods);
+        (accelerator_key, from_glib(accelerator_mods))
+    }
+}
 
-//pub fn accelerator_parse_with_keycode(accelerator: &str, accelerator_codes: Vec<u32>) -> (u32, /*Ignored*/gdk::ModifierType) {
+//pub fn accelerator_parse_with_keycode(accelerator: &str, accelerator_codes: Vec<u32>) -> (u32, gdk::ModifierType) {
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_parse_with_keycode() }
 //}
 
-//pub fn accelerator_set_default_mod_mask(default_mod_mask: /*Ignored*/gdk::ModifierType) {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_set_default_mod_mask() }
-//}
+pub fn accelerator_set_default_mod_mask(default_mod_mask: gdk::ModifierType) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gtk_sys::gtk_accelerator_set_default_mod_mask(default_mod_mask.to_glib());
+    }
+}
 
-//pub fn accelerator_valid(keyval: u32, modifiers: /*Ignored*/gdk::ModifierType) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_accelerator_valid() }
-//}
+pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib(gtk_sys::gtk_accelerator_valid(keyval, modifiers.to_glib()))
+    }
+}
 
-//pub fn bindings_activate(object: /*Ignored*/&glib::Object, keyval: u32, modifiers: /*Ignored*/gdk::ModifierType) -> bool {
+//pub fn bindings_activate(object: /*Ignored*/&glib::Object, keyval: u32, modifiers: gdk::ModifierType) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_bindings_activate() }
 //}
 
@@ -74,17 +103,26 @@ use std::ptr;
 //    unsafe { TODO: call gtk_sys:gtk_bindings_activate_event() }
 //}
 
-//pub fn content_formats_add_image_targets(list: /*Ignored*/&gdk::ContentFormats, writable: bool) -> /*Ignored*/Option<gdk::ContentFormats> {
-//    unsafe { TODO: call gtk_sys:gtk_content_formats_add_image_targets() }
-//}
+pub fn content_formats_add_image_targets(list: &gdk::ContentFormats, writable: bool) -> Option<gdk::ContentFormats> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_content_formats_add_image_targets(list.to_glib_none().0, writable.to_glib()))
+    }
+}
 
-//pub fn content_formats_add_text_targets(list: /*Ignored*/&gdk::ContentFormats) -> /*Ignored*/Option<gdk::ContentFormats> {
-//    unsafe { TODO: call gtk_sys:gtk_content_formats_add_text_targets() }
-//}
+pub fn content_formats_add_text_targets(list: &gdk::ContentFormats) -> Option<gdk::ContentFormats> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_content_formats_add_text_targets(list.to_glib_none().0))
+    }
+}
 
-//pub fn content_formats_add_uri_targets(list: /*Ignored*/&gdk::ContentFormats) -> /*Ignored*/Option<gdk::ContentFormats> {
-//    unsafe { TODO: call gtk_sys:gtk_content_formats_add_uri_targets() }
-//}
+pub fn content_formats_add_uri_targets(list: &gdk::ContentFormats) -> Option<gdk::ContentFormats> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_content_formats_add_uri_targets(list.to_glib_none().0))
+    }
+}
 
 //pub fn device_grab_add<P: IsA<Widget>>(widget: &P, device: /*Ignored*/&gdk::Device, block_others: bool) {
 //    unsafe { TODO: call gtk_sys:gtk_device_grab_add() }
@@ -120,9 +158,14 @@ pub fn events_pending() -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_get_current_event_device() }
 //}
 
-//pub fn get_current_event_state() -> Option</*Ignored*/gdk::ModifierType> {
-//    unsafe { TODO: call gtk_sys:gtk_get_current_event_state() }
-//}
+pub fn get_current_event_state() -> Option<gdk::ModifierType> {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut state = mem::uninitialized();
+        let ret = from_glib(gtk_sys::gtk_get_current_event_state(&mut state));
+        if ret { Some(from_glib(state)) } else { None }
+    }
+}
 
 pub fn get_current_event_time() -> u32 {
     assert_initialized_main_thread!();

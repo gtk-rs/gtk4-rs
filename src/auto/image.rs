@@ -6,6 +6,7 @@ use Buildable;
 use IconSize;
 use ImageType;
 use Widget;
+use gio;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -45,9 +46,12 @@ impl Image {
         }
     }
 
-    //pub fn new_from_gicon(icon: /*Ignored*/&gio::Icon) -> Image {
-    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_gicon() }
-    //}
+    pub fn new_from_gicon<P: IsA<gio::Icon>>(icon: &P) -> Image {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_gicon(icon.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_from_icon_name(icon_name: Option<&str>) -> Image {
         assert_initialized_main_thread!();
@@ -83,7 +87,7 @@ pub const NONE_IMAGE: Option<&Image> = None;
 pub trait ImageExt: 'static {
     fn clear(&self);
 
-    //fn get_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
+    fn get_gicon(&self) -> Option<gio::Icon>;
 
     fn get_icon_name(&self) -> Option<GString>;
 
@@ -97,7 +101,7 @@ pub trait ImageExt: 'static {
 
     fn set_from_file<P: AsRef<std::path::Path>>(&self, filename: P);
 
-    //fn set_from_gicon(&self, icon: /*Ignored*/&gio::Icon);
+    fn set_from_gicon<P: IsA<gio::Icon>>(&self, icon: &P);
 
     fn set_from_icon_name(&self, icon_name: Option<&str>);
 
@@ -115,7 +119,7 @@ pub trait ImageExt: 'static {
 
     fn set_property_file(&self, file: Option<&str>);
 
-    //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>);
+    fn set_property_gicon(&self, gicon: Option<&gio::Icon>);
 
     fn set_property_icon_name(&self, icon_name: Option<&str>);
 
@@ -155,9 +159,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn get_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe { TODO: call gtk_sys:gtk_image_get_gicon() }
-    //}
+    fn get_gicon(&self) -> Option<gio::Icon> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_image_get_gicon(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -193,9 +199,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn set_from_gicon(&self, icon: /*Ignored*/&gio::Icon) {
-    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_gicon() }
-    //}
+    fn set_from_gicon<P: IsA<gio::Icon>>(&self, icon: &P) {
+        unsafe {
+            gtk_sys::gtk_image_set_from_gicon(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0);
+        }
+    }
 
     fn set_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
@@ -243,11 +251,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_gicon(&self, gicon: Option<&gio::Icon>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
+        }
+    }
 
     fn set_property_icon_name(&self, icon_name: Option<&str>) {
         unsafe {

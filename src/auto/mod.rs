@@ -72,12 +72,19 @@ mod bin;
 pub use self::bin::{Bin, BinClass, NONE_BIN};
 pub use self::bin::BinExt;
 
+mod bin_layout;
+pub use self::bin_layout::{BinLayout, BinLayoutClass, NONE_BIN_LAYOUT};
+
 mod boolean_cell_accessible;
 pub use self::boolean_cell_accessible::{BooleanCellAccessible, BooleanCellAccessibleClass, NONE_BOOLEAN_CELL_ACCESSIBLE};
 
 mod box_;
 pub use self::box_::{Box, BoxClass, NONE_BOX};
 pub use self::box_::BoxExt;
+
+mod box_layout;
+pub use self::box_layout::{BoxLayout, BoxLayoutClass, NONE_BOX_LAYOUT};
+pub use self::box_layout::BoxLayoutExt;
 
 mod buildable;
 pub use self::buildable::{Buildable, NONE_BUILDABLE};
@@ -221,6 +228,9 @@ mod css_provider;
 pub use self::css_provider::{CssProvider, CssProviderClass, NONE_CSS_PROVIDER};
 pub use self::css_provider::CssProviderExt;
 
+mod custom_layout;
+pub use self::custom_layout::{CustomLayout, CustomLayoutClass, NONE_CUSTOM_LAYOUT};
+
 mod dialog;
 pub use self::dialog::{Dialog, DialogClass, NONE_DIALOG};
 pub use self::dialog::DialogExt;
@@ -304,6 +314,9 @@ mod fixed;
 pub use self::fixed::{Fixed, FixedClass, NONE_FIXED};
 pub use self::fixed::FixedExt;
 
+mod fixed_layout;
+pub use self::fixed_layout::{FixedLayout, FixedLayoutClass, NONE_FIXED_LAYOUT};
+
 mod flatten_list_model;
 pub use self::flatten_list_model::{FlattenListModel, FlattenListModelClass, NONE_FLATTEN_LIST_MODEL};
 pub use self::flatten_list_model::FlattenListModelExt;
@@ -385,6 +398,10 @@ mod grid;
 pub use self::grid::{Grid, GridClass, NONE_GRID};
 pub use self::grid::GridExt;
 
+mod grid_layout;
+pub use self::grid_layout::{GridLayout, GridLayoutClass, NONE_GRID_LAYOUT};
+pub use self::grid_layout::GridLayoutExt;
+
 mod header_bar;
 pub use self::header_bar::{HeaderBar, HeaderBarClass, NONE_HEADER_BAR};
 pub use self::header_bar::HeaderBarExt;
@@ -435,6 +452,14 @@ pub use self::label::LabelExt;
 
 mod label_accessible;
 pub use self::label_accessible::{LabelAccessible, LabelAccessibleClass, NONE_LABEL_ACCESSIBLE};
+
+mod layout_child;
+pub use self::layout_child::{LayoutChild, LayoutChildClass, NONE_LAYOUT_CHILD};
+pub use self::layout_child::LayoutChildExt;
+
+mod layout_manager;
+pub use self::layout_manager::{LayoutManager, LayoutManagerClass, NONE_LAYOUT_MANAGER};
+pub use self::layout_manager::LayoutManagerExt;
 
 mod level_bar;
 pub use self::level_bar::{LevelBar, LevelBarClass, NONE_LEVEL_BAR};
@@ -1082,6 +1107,7 @@ pub use self::flags::FileFilterFlags;
 pub use self::flags::FontChooserLevel;
 pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
+pub use self::flags::PickFlags;
 pub use self::flags::PlacesOpenFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
@@ -1251,6 +1277,7 @@ pub mod traits {
     pub use super::AssistantExt;
     pub use super::BinExt;
     pub use super::BoxExt;
+    pub use super::BoxLayoutExt;
     pub use super::BuildableExt;
     pub use super::BuilderExt;
     pub use super::ButtonExt;
@@ -1308,6 +1335,7 @@ pub mod traits {
     pub use super::GestureDragExt;
     pub use super::GestureSingleExt;
     pub use super::GridExt;
+    pub use super::GridLayoutExt;
     pub use super::HeaderBarExt;
     pub use super::IMContextExt;
     pub use super::IMContextSimpleExt;
@@ -1317,6 +1345,8 @@ pub mod traits {
     pub use super::ImageExt;
     pub use super::InfoBarExt;
     pub use super::LabelExt;
+    pub use super::LayoutChildExt;
+    pub use super::LayoutManagerExt;
     pub use super::LevelBarExt;
     pub use super::LinkButtonExt;
     pub use super::ListBoxExt;

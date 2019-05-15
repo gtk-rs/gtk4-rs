@@ -2,15 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use AccelFlags;
 use AccelGroup;
 use Align;
 use Buildable;
+use DestDefaults;
 use DirectionType;
+use DragResult;
 use EventController;
+use LayoutManager;
 use Orientation;
 use Overflow;
+use PickFlags;
 use Requisition;
 use Root;
+use SelectionData;
 use Settings;
 use SizeRequestMode;
 use Snapshot;
@@ -22,6 +28,8 @@ use WidgetPath;
 use Window;
 use atk;
 use gdk;
+use gdk_sys;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -74,11 +82,11 @@ pub const NONE_WIDGET: Option<&Widget> = None;
 pub trait WidgetExt: 'static {
     fn activate(&self) -> bool;
 
-    //fn activate_action(&self, name: &str, parameter: /*Ignored*/&glib::Variant);
+    fn activate_action(&self, name: &str, parameter: &glib::Variant);
 
     fn activate_default(&self);
 
-    //fn add_accelerator<P: IsA<AccelGroup>>(&self, accel_signal: &str, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, accel_flags: AccelFlags);
+    fn add_accelerator<P: IsA<AccelGroup>>(&self, accel_signal: &str, accel_group: &P, accel_key: u32, accel_mods: gdk::ModifierType, accel_flags: AccelFlags);
 
     fn add_controller<P: IsA<EventController>>(&self, controller: &P);
 
@@ -112,7 +120,7 @@ pub trait WidgetExt: 'static {
 
     //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool;
 
-    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction, x: i32, y: i32) -> /*Ignored*/Option<gdk::Drag>;
+    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag>;
 
     fn drag_check_threshold(&self, start_x: i32, start_y: i32, current_x: i32, current_y: i32) -> bool;
 
@@ -122,21 +130,21 @@ pub trait WidgetExt: 'static {
 
     fn drag_dest_add_uri_targets(&self);
 
-    //fn drag_dest_find_target(&self, drop: /*Ignored*/&gdk::Drop, target_list: /*Ignored*/Option<&gdk::ContentFormats>) -> Option<GString>;
+    fn drag_dest_find_target(&self, drop: &gdk::Drop, target_list: Option<&gdk::ContentFormats>) -> Option<GString>;
 
-    //fn drag_dest_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
+    fn drag_dest_get_target_list(&self) -> Option<gdk::ContentFormats>;
 
     fn drag_dest_get_track_motion(&self) -> bool;
 
-    //fn drag_dest_set(&self, flags: DestDefaults, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction);
+    fn drag_dest_set(&self, flags: DestDefaults, targets: Option<&gdk::ContentFormats>, actions: gdk::DragAction);
 
-    //fn drag_dest_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>);
+    fn drag_dest_set_target_list(&self, target_list: Option<&gdk::ContentFormats>);
 
     fn drag_dest_set_track_motion(&self, track_motion: bool);
 
     fn drag_dest_unset(&self);
 
-    //fn drag_get_data(&self, drop: /*Ignored*/&gdk::Drop, target: /*Ignored*/&gdk::Atom);
+    //fn drag_get_data(&self, drop: &gdk::Drop, target: /*Ignored*/&gdk::Atom);
 
     fn drag_highlight(&self);
 
@@ -146,17 +154,17 @@ pub trait WidgetExt: 'static {
 
     fn drag_source_add_uri_targets(&self);
 
-    //fn drag_source_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
+    fn drag_source_get_target_list(&self) -> Option<gdk::ContentFormats>;
 
-    //fn drag_source_set(&self, start_button_mask: /*Ignored*/gdk::ModifierType, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction);
+    fn drag_source_set(&self, start_button_mask: gdk::ModifierType, targets: Option<&gdk::ContentFormats>, actions: gdk::DragAction);
 
-    //fn drag_source_set_icon_gicon(&self, icon: /*Ignored*/&gio::Icon);
+    fn drag_source_set_icon_gicon<P: IsA<gio::Icon>>(&self, icon: &P);
 
     fn drag_source_set_icon_name(&self, icon_name: &str);
 
     //fn drag_source_set_icon_paintable(&self, paintable: /*Ignored*/&gdk::Paintable);
 
-    //fn drag_source_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>);
+    fn drag_source_set_target_list(&self, target_list: Option<&gdk::ContentFormats>);
 
     fn drag_source_unset(&self);
 
@@ -220,7 +228,7 @@ pub trait WidgetExt: 'static {
 
     fn get_last_child(&self) -> Option<Widget>;
 
-    //fn get_layout_manager(&self) -> /*Ignored*/Option<LayoutManager>;
+    fn get_layout_manager(&self) -> Option<LayoutManager>;
 
     fn get_mapped(&self) -> bool;
 
@@ -232,7 +240,7 @@ pub trait WidgetExt: 'static {
 
     fn get_margin_top(&self) -> i32;
 
-    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> /*Ignored*/gdk::ModifierType;
+    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> gdk::ModifierType;
 
     fn get_next_sibling(&self) -> Option<Widget>;
 
@@ -274,7 +282,7 @@ pub trait WidgetExt: 'static {
 
     fn get_support_multidevice(&self) -> bool;
 
-    //fn get_surface(&self) -> /*Ignored*/Option<gdk::Surface>;
+    fn get_surface(&self) -> Option<gdk::Surface>;
 
     //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object>;
 
@@ -354,7 +362,7 @@ pub trait WidgetExt: 'static {
 
     //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel>;
 
-    //fn pick(&self, x: f64, y: f64, flags: /*Ignored*/PickFlags) -> Option<Widget>;
+    fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget>;
 
     fn queue_allocate(&self);
 
@@ -368,9 +376,9 @@ pub trait WidgetExt: 'static {
 
     fn realize(&self);
 
-    //fn register_surface(&self, surface: /*Ignored*/&gdk::Surface);
+    fn register_surface<P: IsA<gdk::Surface>>(&self, surface: &P);
 
-    //fn remove_accelerator<P: IsA<AccelGroup>>(&self, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool;
+    fn remove_accelerator<P: IsA<AccelGroup>>(&self, accel_group: &P, accel_key: u32, accel_mods: gdk::ModifierType) -> bool;
 
     fn remove_controller<P: IsA<EventController>>(&self, controller: &P);
 
@@ -412,7 +420,7 @@ pub trait WidgetExt: 'static {
 
     fn set_hexpand_set(&self, set: bool);
 
-    //fn set_layout_manager(&self, layout_manager: /*Ignored*/Option<&LayoutManager>);
+    fn set_layout_manager<P: IsA<LayoutManager>>(&self, layout_manager: Option<&P>);
 
     fn set_margin_bottom(&self, margin: i32);
 
@@ -438,7 +446,7 @@ pub trait WidgetExt: 'static {
 
     fn set_support_multidevice(&self, support_multidevice: bool);
 
-    //fn set_surface(&self, surface: /*Ignored*/&gdk::Surface);
+    fn set_surface<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     fn set_tooltip_markup(&self, markup: Option<&str>);
 
@@ -470,7 +478,7 @@ pub trait WidgetExt: 'static {
 
     fn unrealize(&self);
 
-    //fn unregister_surface(&self, surface: /*Ignored*/&gdk::Surface);
+    fn unregister_surface<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     fn unset_state_flags(&self, flags: StateFlags);
 
@@ -510,23 +518,23 @@ pub trait WidgetExt: 'static {
 
     fn connect_direction_changed<F: Fn(&Self, TextDirection) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_begin<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_begin<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_data_delete<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_data_delete<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_data_get<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_data_get<F: Fn(&Self, &gdk::Drag, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_data_received<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_data_received<F: Fn(&Self, &gdk::Drop, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_drop<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_end<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_end<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_failed<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_leave<F: Fn(&Self, &gdk::Drop) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_drag_motion<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_grab_notify<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -640,9 +648,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn activate_action(&self, name: &str, parameter: /*Ignored*/&glib::Variant) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_activate_action() }
-    //}
+    fn activate_action(&self, name: &str, parameter: &glib::Variant) {
+        unsafe {
+            gtk_sys::gtk_widget_activate_action(self.as_ref().to_glib_none().0, name.to_glib_none().0, parameter.to_glib_none().0);
+        }
+    }
 
     fn activate_default(&self) {
         unsafe {
@@ -650,9 +660,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn add_accelerator<P: IsA<AccelGroup>>(&self, accel_signal: &str, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType, accel_flags: AccelFlags) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_add_accelerator() }
-    //}
+    fn add_accelerator<P: IsA<AccelGroup>>(&self, accel_signal: &str, accel_group: &P, accel_key: u32, accel_mods: gdk::ModifierType, accel_flags: AccelFlags) {
+        unsafe {
+            gtk_sys::gtk_widget_add_accelerator(self.as_ref().to_glib_none().0, accel_signal.to_glib_none().0, accel_group.as_ref().to_glib_none().0, accel_key, accel_mods.to_glib(), accel_flags.to_glib());
+        }
+    }
 
     fn add_controller<P: IsA<EventController>>(&self, controller: &P) {
         unsafe {
@@ -748,7 +760,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_device_is_shadowed() }
     //}
 
-    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction, x: i32, y: i32) -> /*Ignored*/Option<gdk::Drag> {
+    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag> {
     //    unsafe { TODO: call gtk_sys:gtk_drag_begin() }
     //}
 
@@ -776,13 +788,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_dest_find_target(&self, drop: /*Ignored*/&gdk::Drop, target_list: /*Ignored*/Option<&gdk::ContentFormats>) -> Option<GString> {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_find_target() }
-    //}
+    fn drag_dest_find_target(&self, drop: &gdk::Drop, target_list: Option<&gdk::ContentFormats>) -> Option<GString> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_drag_dest_find_target(self.as_ref().to_glib_none().0, drop.to_glib_none().0, target_list.to_glib_none().0))
+        }
+    }
 
-    //fn drag_dest_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_get_target_list() }
-    //}
+    fn drag_dest_get_target_list(&self) -> Option<gdk::ContentFormats> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_drag_dest_get_target_list(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn drag_dest_get_track_motion(&self) -> bool {
         unsafe {
@@ -790,13 +806,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_dest_set(&self, flags: DestDefaults, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_set() }
-    //}
+    fn drag_dest_set(&self, flags: DestDefaults, targets: Option<&gdk::ContentFormats>, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_drag_dest_set(self.as_ref().to_glib_none().0, flags.to_glib(), targets.to_glib_none().0, actions.to_glib());
+        }
+    }
 
-    //fn drag_dest_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_dest_set_target_list() }
-    //}
+    fn drag_dest_set_target_list(&self, target_list: Option<&gdk::ContentFormats>) {
+        unsafe {
+            gtk_sys::gtk_drag_dest_set_target_list(self.as_ref().to_glib_none().0, target_list.to_glib_none().0);
+        }
+    }
 
     fn drag_dest_set_track_motion(&self, track_motion: bool) {
         unsafe {
@@ -810,7 +830,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_get_data(&self, drop: /*Ignored*/&gdk::Drop, target: /*Ignored*/&gdk::Atom) {
+    //fn drag_get_data(&self, drop: &gdk::Drop, target: /*Ignored*/&gdk::Atom) {
     //    unsafe { TODO: call gtk_sys:gtk_drag_get_data() }
     //}
 
@@ -838,17 +858,23 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_source_get_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_source_get_target_list() }
-    //}
+    fn drag_source_get_target_list(&self) -> Option<gdk::ContentFormats> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_drag_source_get_target_list(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn drag_source_set(&self, start_button_mask: /*Ignored*/gdk::ModifierType, targets: /*Ignored*/Option<&gdk::ContentFormats>, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set() }
-    //}
+    fn drag_source_set(&self, start_button_mask: gdk::ModifierType, targets: Option<&gdk::ContentFormats>, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_drag_source_set(self.as_ref().to_glib_none().0, start_button_mask.to_glib(), targets.to_glib_none().0, actions.to_glib());
+        }
+    }
 
-    //fn drag_source_set_icon_gicon(&self, icon: /*Ignored*/&gio::Icon) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_icon_gicon() }
-    //}
+    fn drag_source_set_icon_gicon<P: IsA<gio::Icon>>(&self, icon: &P) {
+        unsafe {
+            gtk_sys::gtk_drag_source_set_icon_gicon(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0);
+        }
+    }
 
     fn drag_source_set_icon_name(&self, icon_name: &str) {
         unsafe {
@@ -860,9 +886,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_icon_paintable() }
     //}
 
-    //fn drag_source_set_target_list(&self, target_list: /*Ignored*/Option<&gdk::ContentFormats>) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_target_list() }
-    //}
+    fn drag_source_set_target_list(&self, target_list: Option<&gdk::ContentFormats>) {
+        unsafe {
+            gtk_sys::gtk_drag_source_set_target_list(self.as_ref().to_glib_none().0, target_list.to_glib_none().0);
+        }
+    }
 
     fn drag_source_unset(&self) {
         unsafe {
@@ -1036,9 +1064,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_layout_manager(&self) -> /*Ignored*/Option<LayoutManager> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_layout_manager() }
-    //}
+    fn get_layout_manager(&self) -> Option<LayoutManager> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_layout_manager(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_mapped(&self) -> bool {
         unsafe {
@@ -1070,7 +1100,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> /*Ignored*/gdk::ModifierType {
+    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> gdk::ModifierType {
     //    unsafe { TODO: call gtk_sys:gtk_widget_get_modifier_mask() }
     //}
 
@@ -1196,9 +1226,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_surface(&self) -> /*Ignored*/Option<gdk::Surface> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_surface() }
-    //}
+    fn get_surface(&self) -> Option<gdk::Surface> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_surface(self.as_ref().to_glib_none().0))
+        }
+    }
 
     //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object> {
     //    unsafe { TODO: call gtk_sys:gtk_widget_get_template_child() }
@@ -1427,9 +1459,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_observe_controllers() }
     //}
 
-    //fn pick(&self, x: f64, y: f64, flags: /*Ignored*/PickFlags) -> Option<Widget> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_pick() }
-    //}
+    fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_pick(self.as_ref().to_glib_none().0, x, y, flags.to_glib()))
+        }
+    }
 
     fn queue_allocate(&self) {
         unsafe {
@@ -1467,13 +1501,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn register_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_register_surface() }
-    //}
+    fn register_surface<P: IsA<gdk::Surface>>(&self, surface: &P) {
+        unsafe {
+            gtk_sys::gtk_widget_register_surface(self.as_ref().to_glib_none().0, surface.as_ref().to_glib_none().0);
+        }
+    }
 
-    //fn remove_accelerator<P: IsA<AccelGroup>>(&self, accel_group: &P, accel_key: u32, accel_mods: /*Ignored*/gdk::ModifierType) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_remove_accelerator() }
-    //}
+    fn remove_accelerator<P: IsA<AccelGroup>>(&self, accel_group: &P, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_remove_accelerator(self.as_ref().to_glib_none().0, accel_group.as_ref().to_glib_none().0, accel_key, accel_mods.to_glib()))
+        }
+    }
 
     fn remove_controller<P: IsA<EventController>>(&self, controller: &P) {
         unsafe {
@@ -1589,9 +1627,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn set_layout_manager(&self, layout_manager: /*Ignored*/Option<&LayoutManager>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_set_layout_manager() }
-    //}
+    fn set_layout_manager<P: IsA<LayoutManager>>(&self, layout_manager: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_widget_set_layout_manager(self.as_ref().to_glib_none().0, layout_manager.map(|p| p.as_ref()).to_glib_full());
+        }
+    }
 
     fn set_margin_bottom(&self, margin: i32) {
         unsafe {
@@ -1665,9 +1705,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn set_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_set_surface() }
-    //}
+    fn set_surface<P: IsA<gdk::Surface>>(&self, surface: &P) {
+        unsafe {
+            gtk_sys::gtk_widget_set_surface(self.as_ref().to_glib_none().0, surface.as_ref().to_glib_full());
+        }
+    }
 
     fn set_tooltip_markup(&self, markup: Option<&str>) {
         unsafe {
@@ -1760,9 +1802,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn unregister_surface(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_unregister_surface() }
-    //}
+    fn unregister_surface<P: IsA<gdk::Surface>>(&self, surface: &P) {
+        unsafe {
+            gtk_sys::gtk_widget_unregister_surface(self.as_ref().to_glib_none().0, surface.as_ref().to_glib_none().0);
+        }
+    }
 
     fn unset_state_flags(&self, flags: StateFlags) {
         unsafe {
@@ -1902,41 +1946,77 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn connect_drag_begin<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drag
-    //}
+    fn connect_drag_begin<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-begin\0".as_ptr() as *const _,
+                Some(transmute(drag_begin_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_data_delete<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drag
-    //}
+    fn connect_drag_data_delete<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-data-delete\0".as_ptr() as *const _,
+                Some(transmute(drag_data_delete_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_data_get<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drag
-    //}
+    fn connect_drag_data_get<F: Fn(&Self, &gdk::Drag, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-data-get\0".as_ptr() as *const _,
+                Some(transmute(drag_data_get_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_data_received<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored drop: Gdk.Drop
-    //}
+    fn connect_drag_data_received<F: Fn(&Self, &gdk::Drop, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-data-received\0".as_ptr() as *const _,
+                Some(transmute(drag_data_received_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_drop<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored drop: Gdk.Drop
-    //}
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-drop\0".as_ptr() as *const _,
+                Some(transmute(drag_drop_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_end<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drag
-    //}
+    fn connect_drag_end<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-end\0".as_ptr() as *const _,
+                Some(transmute(drag_end_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_failed<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drag
-    //}
+    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-failed\0".as_ptr() as *const _,
+                Some(transmute(drag_failed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.Drop
-    //}
+    fn connect_drag_leave<F: Fn(&Self, &gdk::Drop) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-leave\0".as_ptr() as *const _,
+                Some(transmute(drag_leave_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_drag_motion<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored drop: Gdk.Drop
-    //}
+    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"drag-motion\0".as_ptr() as *const _,
+                Some(transmute(drag_motion_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_grab_notify<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -2370,6 +2450,60 @@ unsafe extern "C" fn direction_changed_trampoline<P, F: Fn(&P, TextDirection) + 
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(previous_direction))
+}
+
+unsafe extern "C" fn drag_begin_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+}
+
+unsafe extern "C" fn drag_data_delete_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+}
+
+unsafe extern "C" fn drag_data_get_trampoline<P, F: Fn(&P, &gdk::Drag, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, data: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), &from_glib_borrow(data))
+}
+
+unsafe extern "C" fn drag_data_received_trampoline<P, F: Fn(&P, &gdk::Drop, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), &from_glib_borrow(x))
+}
+
+unsafe extern "C" fn drag_drop_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
+}
+
+unsafe extern "C" fn drag_end_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+}
+
+unsafe extern "C" fn drag_failed_trampoline<P, F: Fn(&P, &gdk::Drag, DragResult) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, result: gtk_sys::GtkDragResult, f: glib_sys::gpointer) -> glib_sys::gboolean
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), from_glib(result)).to_glib()
+}
+
+unsafe extern "C" fn drag_leave_trampoline<P, F: Fn(&P, &gdk::Drop) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrop, f: glib_sys::gpointer)
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+}
+
+unsafe extern "C" fn drag_motion_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+where P: IsA<Widget> {
+    let f: &F = &*(f as *const F);
+    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
 }
 
 unsafe extern "C" fn grab_notify_trampoline<P, F: Fn(&P, bool) + 'static>(this: *mut gtk_sys::GtkWidget, was_grabbed: glib_sys::gboolean, f: glib_sys::gpointer)

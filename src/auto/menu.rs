@@ -84,7 +84,7 @@ pub trait MenuExt: 'static {
 
     //fn popup_at_pointer(&self, trigger_event: /*Ignored*/Option<&gdk::Event>);
 
-    //fn popup_at_rect(&self, rect_surface: /*Ignored*/&gdk::Surface, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>);
+    //fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>);
 
     //fn popup_at_widget<P: IsA<Widget>>(&self, widget: &P, widget_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>);
 
@@ -208,7 +208,7 @@ impl<O: IsA<Menu>> MenuExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_menu_popup_at_pointer() }
     //}
 
-    //fn popup_at_rect(&self, rect_surface: /*Ignored*/&gdk::Surface, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>) {
+    //fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>) {
     //    unsafe { TODO: call gtk_sys:gtk_menu_popup_at_rect() }
     //}
 

@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Error;
+use gdk;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -66,7 +67,7 @@ pub trait MediaStreamExt: 'static {
 
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
-    //fn realize(&self, surface: /*Ignored*/&gdk::Surface);
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     fn seek(&self, timestamp: i64);
 
@@ -84,7 +85,7 @@ pub trait MediaStreamExt: 'static {
 
     fn unprepared(&self);
 
-    //fn unrealize(&self, surface: /*Ignored*/&gdk::Surface);
+    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     fn update(&self, timestamp: i64);
 
@@ -244,9 +245,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    //fn realize(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call gtk_sys:gtk_media_stream_realize() }
-    //}
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) {
+        unsafe {
+            gtk_sys::gtk_media_stream_realize(self.as_ref().to_glib_none().0, surface.as_ref().to_glib_none().0);
+        }
+    }
 
     fn seek(&self, timestamp: i64) {
         unsafe {
@@ -296,9 +299,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    //fn unrealize(&self, surface: /*Ignored*/&gdk::Surface) {
-    //    unsafe { TODO: call gtk_sys:gtk_media_stream_unrealize() }
-    //}
+    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P) {
+        unsafe {
+            gtk_sys::gtk_media_stream_unrealize(self.as_ref().to_glib_none().0, surface.as_ref().to_glib_none().0);
+        }
+    }
 
     fn update(&self, timestamp: i64) {
         unsafe {

@@ -4,6 +4,7 @@
 
 use Buildable;
 use Widget;
+use gdk;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -27,9 +28,12 @@ glib_wrapper! {
 }
 
 impl Root {
-    //pub fn get_for_surface(surface: /*Ignored*/&gdk::Surface) -> Option<Widget> {
-    //    unsafe { TODO: call gtk_sys:gtk_root_get_for_surface() }
-    //}
+    pub fn get_for_surface<P: IsA<gdk::Surface>>(surface: &P) -> Option<Widget> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(gtk_sys::gtk_root_get_for_surface(surface.as_ref().to_glib_none().0))
+        }
+    }
 }
 
 pub const NONE_ROOT: Option<&Root> = None;

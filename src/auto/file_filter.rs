@@ -4,6 +4,7 @@
 
 use Buildable;
 use FileFilterFlags;
+use glib;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -24,9 +25,12 @@ impl FileFilter {
         }
     }
 
-    //pub fn new_from_gvariant(variant: /*Ignored*/&glib::Variant) -> FileFilter {
-    //    unsafe { TODO: call gtk_sys:gtk_file_filter_new_from_gvariant() }
-    //}
+    pub fn new_from_gvariant(variant: &glib::Variant) -> FileFilter {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(variant.to_glib_none().0))
+        }
+    }
 
     //pub fn add_custom(&self, needed: FileFilterFlags, func: /*Unimplemented*/Fn(/*Ignored*/FileFilterInfo) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
     //    unsafe { TODO: call gtk_sys:gtk_file_filter_add_custom() }
@@ -60,9 +64,11 @@ impl FileFilter {
         }
     }
 
-    //pub fn to_gvariant(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call gtk_sys:gtk_file_filter_to_gvariant() }
-    //}
+    pub fn to_gvariant(&self) -> Option<glib::Variant> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0))
+        }
+    }
 }
 
 impl Default for FileFilter {

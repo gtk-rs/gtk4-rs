@@ -5,6 +5,7 @@
 use IconInfo;
 use IconLookupFlags;
 use gdk;
+use gio;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -82,9 +83,9 @@ pub trait IconThemeExt: 'static {
 
     //fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result</*Ignored*/Option<gdk_pixbuf::Pixbuf>, Error>;
 
-    //fn lookup_by_gicon(&self, icon: /*Ignored*/&gio::Icon, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
 
-    //fn lookup_by_gicon_for_scale(&self, icon: /*Ignored*/&gio::Icon, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo>;
 
     fn lookup_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
 
@@ -169,13 +170,17 @@ impl<O: IsA<IconTheme>> IconThemeExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_icon_theme_load_icon_for_scale() }
     //}
 
-    //fn lookup_by_gicon(&self, icon: /*Ignored*/&gio::Icon, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_lookup_by_gicon() }
-    //}
+    fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0, size, flags.to_glib()))
+        }
+    }
 
-    //fn lookup_by_gicon_for_scale(&self, icon: /*Ignored*/&gio::Icon, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_lookup_by_gicon_for_scale() }
-    //}
+    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon_for_scale(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0, size, scale, flags.to_glib()))
+        }
+    }
 
     fn lookup_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
         unsafe {

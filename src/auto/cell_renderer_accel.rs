@@ -6,6 +6,8 @@ use CellRenderer;
 use CellRendererAccelMode;
 use CellRendererMode;
 use CellRendererText;
+use gdk;
+use gdk_sys;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -56,9 +58,9 @@ pub trait CellRendererAccelExt: 'static {
 
     fn set_property_accel_mode(&self, accel_mode: CellRendererAccelMode);
 
-    //fn get_property_accel_mods(&self) -> /*Ignored*/gdk::ModifierType;
+    fn get_property_accel_mods(&self) -> gdk::ModifierType;
 
-    //fn set_property_accel_mods(&self, accel_mods: /*Ignored*/gdk::ModifierType);
+    fn set_property_accel_mods(&self, accel_mods: gdk::ModifierType);
 
     fn get_property_keycode(&self) -> u32;
 
@@ -66,7 +68,7 @@ pub trait CellRendererAccelExt: 'static {
 
     fn connect_accel_cleared<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_accel_edited<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_accel_edited<F: Fn(&Self, &str, u32, gdk::ModifierType, u32) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_accel_key_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -106,19 +108,19 @@ impl<O: IsA<CellRendererAccel>> CellRendererAccelExt for O {
         }
     }
 
-    //fn get_property_accel_mods(&self) -> /*Ignored*/gdk::ModifierType {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_accel_mods(&self) -> gdk::ModifierType {
+        unsafe {
+            let mut value = Value::from_type(<gdk::ModifierType as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_accel_mods(&self, accel_mods: /*Ignored*/gdk::ModifierType) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, Value::from(&accel_mods).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_accel_mods(&self, accel_mods: gdk::ModifierType) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, Value::from(&accel_mods).to_glib_none().0);
+        }
+    }
 
     fn get_property_keycode(&self) -> u32 {
         unsafe {
@@ -142,9 +144,13 @@ impl<O: IsA<CellRendererAccel>> CellRendererAccelExt for O {
         }
     }
 
-    //fn connect_accel_edited<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored accel_mods: Gdk.ModifierType
-    //}
+    fn connect_accel_edited<F: Fn(&Self, &str, u32, gdk::ModifierType, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"accel-edited\0".as_ptr() as *const _,
+                Some(transmute(accel_edited_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_property_accel_key_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -183,6 +189,12 @@ unsafe extern "C" fn accel_cleared_trampoline<P, F: Fn(&P, &str) + 'static>(this
 where P: IsA<CellRendererAccel> {
     let f: &F = &*(f as *const F);
     f(&CellRendererAccel::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(path_string))
+}
+
+unsafe extern "C" fn accel_edited_trampoline<P, F: Fn(&P, &str, u32, gdk::ModifierType, u32) + 'static>(this: *mut gtk_sys::GtkCellRendererAccel, path_string: *mut libc::c_char, accel_key: libc::c_uint, accel_mods: gdk_sys::GdkModifierType, hardware_keycode: libc::c_uint, f: glib_sys::gpointer)
+where P: IsA<CellRendererAccel> {
+    let f: &F = &*(f as *const F);
+    f(&CellRendererAccel::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(path_string), accel_key, from_glib(accel_mods), hardware_keycode)
 }
 
 unsafe extern "C" fn notify_accel_key_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererAccel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)

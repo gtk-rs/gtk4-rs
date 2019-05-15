@@ -5,6 +5,8 @@
 use EventController;
 use IMContext;
 use Widget;
+use gdk;
+use gdk_sys;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -16,6 +18,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
+use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -106,17 +109,29 @@ impl EventControllerKey {
         }
     }
 
-    //pub fn connect_key_pressed<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored state: Gdk.ModifierType
-    //}
+    pub fn connect_key_pressed<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"key-pressed\0".as_ptr() as *const _,
+                Some(transmute(key_pressed_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //pub fn connect_key_released<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored state: Gdk.ModifierType
-    //}
+    pub fn connect_key_released<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"key-released\0".as_ptr() as *const _,
+                Some(transmute(key_released_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //pub fn connect_modifiers<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored keyval: Gdk.ModifierType
-    //}
+    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"modifiers\0".as_ptr() as *const _,
+                Some(transmute(modifiers_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     pub fn connect_property_contains_focus_notify<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -144,6 +159,21 @@ impl Default for EventControllerKey {
 unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, f: glib_sys::gpointer) {
     let f: &F = &*(f as *const F);
     f(&from_glib_borrow(this))
+}
+
+unsafe extern "C" fn key_pressed_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), keyval, keycode, from_glib(state)).to_glib()
+}
+
+unsafe extern "C" fn key_released_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), keyval, keycode, from_glib(state))
+}
+
+unsafe extern "C" fn modifiers_trampoline<F: Fn(&EventControllerKey, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), from_glib(keyval)).to_glib()
 }
 
 unsafe extern "C" fn notify_contains_focus_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {

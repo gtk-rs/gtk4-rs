@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gio;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -73,9 +74,11 @@ impl RecentInfo {
         }
     }
 
-    //pub fn get_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe { TODO: call gtk_sys:gtk_recent_info_get_gicon() }
-    //}
+    pub fn get_gicon(&self) -> Option<gio::Icon> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_recent_info_get_gicon(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_groups(&self) -> Vec<GString> {
         unsafe {

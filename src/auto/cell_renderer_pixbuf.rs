@@ -5,6 +5,7 @@
 use CellRenderer;
 use CellRendererMode;
 use IconSize;
+use gio;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -46,9 +47,9 @@ impl Default for CellRendererPixbuf {
 pub const NONE_CELL_RENDERER_PIXBUF: Option<&CellRendererPixbuf> = None;
 
 pub trait CellRendererPixbufExt: 'static {
-    //fn get_property_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
+    fn get_property_gicon(&self) -> Option<gio::Icon>;
 
-    //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>);
+    fn set_property_gicon(&self, gicon: Option<&gio::Icon>);
 
     fn get_property_icon_name(&self) -> Option<GString>;
 
@@ -88,19 +89,19 @@ pub trait CellRendererPixbufExt: 'static {
 }
 
 impl<O: IsA<CellRendererPixbuf>> CellRendererPixbufExt for O {
-    //fn get_property_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_gicon(&self) -> Option<gio::Icon> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_gicon(&self, gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_gicon(&self, gicon: Option<&gio::Icon>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
+        }
+    }
 
     fn get_property_icon_name(&self) -> Option<GString> {
         unsafe {

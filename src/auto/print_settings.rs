@@ -11,6 +11,7 @@ use PrintDuplex;
 use PrintPages;
 use PrintQuality;
 use Unit;
+use glib;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -43,9 +44,12 @@ impl PrintSettings {
         }
     }
 
-    //pub fn new_from_gvariant(variant: /*Ignored*/&glib::Variant) -> PrintSettings {
-    //    unsafe { TODO: call gtk_sys:gtk_print_settings_new_from_gvariant() }
-    //}
+    pub fn new_from_gvariant(variant: &glib::Variant) -> PrintSettings {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_print_settings_new_from_gvariant(variant.to_glib_none().0))
+        }
+    }
 
     //pub fn new_from_key_file(key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) -> Result<PrintSettings, Error> {
     //    unsafe { TODO: call gtk_sys:gtk_print_settings_new_from_key_file() }
@@ -472,9 +476,11 @@ impl PrintSettings {
         }
     }
 
-    //pub fn to_gvariant(&self) -> /*Ignored*/Option<glib::Variant> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_settings_to_gvariant() }
-    //}
+    pub fn to_gvariant(&self) -> Option<glib::Variant> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_print_settings_to_gvariant(self.to_glib_none().0))
+        }
+    }
 
     //pub fn to_key_file(&self, key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) {
     //    unsafe { TODO: call gtk_sys:gtk_print_settings_to_key_file() }

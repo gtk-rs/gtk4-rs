@@ -644,6 +644,55 @@ impl SetValue for InputHints {
 }
 
 bitflags! {
+    pub struct PickFlags: u32 {
+        const DEFAULT = 0;
+        const INSENSITIVE = 1;
+        const NON_TARGETABLE = 2;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for PickFlags {
+    type GlibType = gtk_sys::GtkPickFlags;
+
+    fn to_glib(&self) -> gtk_sys::GtkPickFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkPickFlags> for PickFlags {
+    fn from_glib(value: gtk_sys::GtkPickFlags) -> PickFlags {
+        skip_assert_initialized!();
+        PickFlags::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for PickFlags {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_pick_flags_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for PickFlags {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for PickFlags {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for PickFlags {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+bitflags! {
     pub struct PlacesOpenFlags: u32 {
         const NORMAL = 1;
         const NEW_TAB = 2;

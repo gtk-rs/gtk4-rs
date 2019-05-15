@@ -7,6 +7,7 @@ use TextIter;
 use TextMark;
 use TextTag;
 use TextTagTable;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -161,11 +162,11 @@ pub trait TextBufferExt: 'static {
 
     fn set_text(&self, text: &str);
 
-    //fn get_property_copy_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
+    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats>;
 
     fn get_property_cursor_position(&self) -> i32;
 
-    //fn get_property_paste_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
+    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats>;
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -569,13 +570,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn get_property_copy_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"copy-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"copy-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
@@ -585,13 +586,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn get_property_paste_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paste-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paste-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

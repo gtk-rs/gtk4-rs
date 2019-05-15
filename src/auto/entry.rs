@@ -12,6 +12,8 @@ use ImageType;
 use InputHints;
 use InputPurpose;
 use Widget;
+use gdk;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -80,7 +82,7 @@ pub trait EntryExt: 'static {
 
     fn get_icon_at_pos(&self, x: i32, y: i32) -> i32;
 
-    //fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gio::Icon>;
+    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon>;
 
     fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<GString>;
 
@@ -134,9 +136,9 @@ pub trait EntryExt: 'static {
 
     fn set_icon_activatable(&self, icon_pos: EntryIconPosition, activatable: bool);
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction);
+    fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
-    //fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: /*Ignored*/Option<&gio::Icon>);
+    fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, icon_pos: EntryIconPosition, icon: Option<&P>);
 
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>);
 
@@ -190,9 +192,9 @@ pub trait EntryExt: 'static {
 
     fn set_property_primary_icon_activatable(&self, primary_icon_activatable: bool);
 
-    //fn get_property_primary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
+    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    //fn set_property_primary_icon_gicon(&self, primary_icon_gicon: /*Ignored*/Option<&gio::Icon>);
+    fn set_property_primary_icon_gicon(&self, primary_icon_gicon: Option<&gio::Icon>);
 
     fn get_property_primary_icon_name(&self) -> Option<GString>;
 
@@ -222,9 +224,9 @@ pub trait EntryExt: 'static {
 
     fn set_property_secondary_icon_activatable(&self, secondary_icon_activatable: bool);
 
-    //fn get_property_secondary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
+    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    //fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: /*Ignored*/Option<&gio::Icon>);
+    fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: Option<&gio::Icon>);
 
     fn get_property_secondary_icon_name(&self) -> Option<GString>;
 
@@ -394,9 +396,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_gicon() }
-    //}
+    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_entry_get_icon_gicon(self.as_ref().to_glib_none().0, icon_pos.to_glib()))
+        }
+    }
 
     fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<GString> {
         unsafe {
@@ -548,13 +552,17 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_drag_source() }
-    //}
+    fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+        unsafe {
+            gtk_sys::gtk_entry_set_icon_drag_source(self.as_ref().to_glib_none().0, icon_pos.to_glib(), formats.to_glib_none().0, actions.to_glib());
+        }
+    }
 
-    //fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_from_gicon() }
-    //}
+    fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, icon_pos: EntryIconPosition, icon: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_entry_set_icon_from_gicon(self.as_ref().to_glib_none().0, icon_pos.to_glib(), icon.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>) {
         unsafe {
@@ -718,19 +726,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_property_primary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_primary_icon_gicon(&self, primary_icon_gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, Value::from(primary_icon_gicon).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_primary_icon_gicon(&self, primary_icon_gicon: Option<&gio::Icon>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, Value::from(primary_icon_gicon).to_glib_none().0);
+        }
+    }
 
     fn get_property_primary_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -832,19 +840,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_property_secondary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, Value::from(secondary_icon_gicon).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: Option<&gio::Icon>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, Value::from(secondary_icon_gicon).to_glib_none().0);
+        }
+    }
 
     fn get_property_secondary_icon_name(&self) -> Option<GString> {
         unsafe {
