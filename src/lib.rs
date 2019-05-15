@@ -88,9 +88,11 @@ pub use prelude::*;
 
 mod application;
 mod builder;
+mod combo_box;
 mod dialog;
 mod entry_buffer;
 mod file_chooser_dialog;
 mod response_type;
+mod widget;
 
 pub use response_type::ResponseType;

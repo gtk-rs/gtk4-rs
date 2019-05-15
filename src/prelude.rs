@@ -7,5 +7,7 @@
 pub use auto::traits::*;
 
 pub use builder::BuilderExtManual;
+pub use combo_box::ComboBoxExtManual;
 pub use dialog::DialogExtManual;
 pub use entry_buffer::EntryBufferExtManual;
+pub use widget::WidgetExtManual;

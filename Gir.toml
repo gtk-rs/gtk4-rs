@@ -351,7 +351,6 @@ generate = [
     "Gtk.Video",
     "Gtk.Viewport",
     "Gtk.VolumeButton",
-    "Gtk.Widget",
     "Gtk.WidgetAccessible",
     "Gtk.WidgetPaintable",
     "Gtk.WidgetPath",
@@ -482,12 +481,18 @@ status = "generate"
 [[object]]
 name = "Gtk.ComboBox"
 status = "generate"
-manual_traits = ["ColorBoxExtManual"]
+manual_traits = ["ComboBoxExtManual"]
     [[object.function]]
     name = "set_active_iter"
         [[object.function.parameter]]
         name = "iter"
         const = true
+    [[object.function]]
+    name = "set_active"
+    ignore = true
+    [[object.function]]
+    name = "get_active"
+    ignore = true
     [[object.property]]
     name = "active"
     #manual Option
@@ -798,6 +803,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+
+[[object]]
+name = "Gtk.Widget"
+status = "generate"
+manual_traits = ["WidgetExtManual"]
 
 [[object]]
 name = "Gtk.Window"
