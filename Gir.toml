@@ -400,8 +400,15 @@ manual = [
     "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.Icon",
+    "Gio.ListModel",
     "GLib.Error",
+    "GLib.KeyFile",
+    "GLib.Quark",
     "GLib.Variant",
+    "GLib.VariantType",
+    "GObject.Closure",
+    "GObject.Object",
+    "GObject.Value",
     "Gtk.ResponseType",
 ]
 
