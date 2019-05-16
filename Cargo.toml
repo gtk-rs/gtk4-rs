@@ -55,7 +55,7 @@ gsk4-sys = { git = "https://github.com/gtk-rs/sys" }
 gtk4-sys = { git = "https://github.com/gtk-rs/sys" }
 pango-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
-gio = { git = "https://github.com/gtk-rs/gio" }
+gio = { git = "https://github.com/gtk-rs/gio", features = ["v2_44"] }
 glib = { git = "https://github.com/gtk-rs/glib" }
 gdk4 = { git = "https://github.com/gtk-rs/gdk4" }
 graphene = { git = "https://github.com/gtk-rs/graphene" }
