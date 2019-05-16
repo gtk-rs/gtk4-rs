@@ -799,6 +799,14 @@ status = "generate"
 name = "Gtk.TreeModel"
 status = "generate"
     [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.function]]
     name = "filter_new"
     ignore = true
     [[object.function]]
@@ -816,6 +824,17 @@ status = "generate"
         [[object.function.parameter]]
         name = "parent"
         const = true
+    [[object.function]]
+    name = "iter_parent"
+        [[object.function.parameter]]
+        name = "child"
+        const = true
+    [[object.function]]
+    name = 'unref_node'
+    ignore = true
+    [[object.function]]
+    name = 'ref_node'
+    ignore = true
     [[object.function]]
     name = "rows_reordered"
     ignore = true
