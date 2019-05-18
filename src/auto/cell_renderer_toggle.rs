@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use CellRenderer;
-use glib::GString;
+use TreePath;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -61,7 +61,7 @@ pub trait CellRendererToggleExt: 'static {
 
     fn set_property_inconsistent(&self, inconsistent: bool);
 
-    fn connect_toggled<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_toggled<F: Fn(&Self, TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -123,7 +123,7 @@ impl<O: IsA<CellRendererToggle>> CellRendererToggleExt for O {
         }
     }
 
-    fn connect_toggled<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_toggled<F: Fn(&Self, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"toggled\0".as_ptr() as *const _,
@@ -164,10 +164,11 @@ impl<O: IsA<CellRendererToggle>> CellRendererToggleExt for O {
     }
 }
 
-unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P, &str) + 'static>(this: *mut gtk_sys::GtkCellRendererToggle, path: *mut libc::c_char, f: glib_sys::gpointer)
+unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P, TreePath) + 'static>(this: *mut gtk_sys::GtkCellRendererToggle, path: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<CellRendererToggle> {
     let f: &F = &*(f as *const F);
-    f(&CellRendererToggle::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(path))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+    f(&CellRendererToggle::from_glib_borrow(this).unsafe_cast(), path)
 }
 
 unsafe extern "C" fn notify_activatable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererToggle, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)

@@ -499,7 +499,7 @@ pub use self::list_box_row_accessible::{ListBoxRowAccessible, ListBoxRowAccessib
 
 mod list_store;
 pub use self::list_store::{ListStore, ListStoreClass, NONE_LIST_STORE};
-pub use self::list_store::ListStoreExt;
+pub use self::list_store::GtkListStoreExt;
 
 mod lock_button;
 pub use self::lock_button::{LockButton, LockButtonClass, NONE_LOCK_BUTTON};
@@ -1361,7 +1361,7 @@ pub mod traits {
     pub use super::LinkButtonExt;
     pub use super::ListBoxExt;
     pub use super::ListBoxRowExt;
-    pub use super::ListStoreExt;
+    pub use super::GtkListStoreExt;
     pub use super::LockButtonExt;
     pub use super::MapListModelExt;
     pub use super::MediaControlsExt;
