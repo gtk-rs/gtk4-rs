@@ -94,6 +94,7 @@ mod combo_box;
 mod dialog;
 mod entry_buffer;
 mod file_chooser_dialog;
+mod list_store;
 mod response_type;
 mod spin_button;
 mod widget;

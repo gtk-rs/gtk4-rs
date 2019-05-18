@@ -66,7 +66,6 @@ generate = [
     "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
     "Gtk.CellRendererText",
-    "Gtk.CellRendererToggle",
     "Gtk.CenterBox",
     "Gtk.CheckButton",
     "Gtk.CheckMenuItem",
@@ -502,6 +501,15 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "Gtk.CellRendererToggle"
+status = "generate"
+    [[object.signal]]
+    name = "toggled"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "treepath"
+
+[[object]]
 name = "Gtk.CellView"
 status = "generate"
     [[object.function]]
@@ -637,6 +645,8 @@ status = "generate"
 [[object]]
 name = "Gtk.ListStore"
 status = "generate"
+trait_name = "GtkListStoreExt"
+manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -648,6 +658,9 @@ status = "generate"
         [[object.function.parameter]]
         name = "position"
         const = true
+    [[object.function]]
+    name = "set_value"
+    ignore = true
     [[object.function]]
     name = "swap"
         [[object.function.parameter]]
