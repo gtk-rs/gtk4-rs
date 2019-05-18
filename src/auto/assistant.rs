@@ -10,6 +10,7 @@ use Container;
 use Root;
 use Widget;
 use Window;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -73,7 +74,7 @@ pub trait AssistantExt: 'static {
 
     fn get_page_type<P: IsA<Widget>>(&self, page: &P) -> AssistantPageType;
 
-    //fn get_pages(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn get_pages(&self) -> Option<gio::ListModel>;
 
     fn insert_page<P: IsA<Widget>>(&self, page: &P, position: i32) -> i32;
 
@@ -177,9 +178,11 @@ impl<O: IsA<Assistant>> AssistantExt for O {
         }
     }
 
-    //fn get_pages(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_assistant_get_pages() }
-    //}
+    fn get_pages(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_assistant_get_pages(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn insert_page<P: IsA<Widget>>(&self, page: &P, position: i32) -> i32 {
         unsafe {

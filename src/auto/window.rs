@@ -13,6 +13,7 @@ use WindowGroup;
 use WindowPosition;
 use WindowType;
 use gdk;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -55,9 +56,12 @@ impl Window {
         }
     }
 
-    //pub fn get_toplevels() -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_window_get_toplevels() }
-    //}
+    pub fn get_toplevels() -> Option<gio::ListModel> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(gtk_sys::gtk_window_get_toplevels())
+        }
+    }
 
     pub fn list_toplevels() -> Vec<Widget> {
         assert_initialized_main_thread!();

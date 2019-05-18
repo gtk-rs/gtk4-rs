@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gio;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -18,7 +19,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SliceListModel(Object<gtk_sys::GtkSliceListModel, gtk_sys::GtkSliceListModelClass, SliceListModelClass>);
+    pub struct SliceListModel(Object<gtk_sys::GtkSliceListModel, gtk_sys::GtkSliceListModelClass, SliceListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_slice_list_model_get_type(),
@@ -26,9 +27,12 @@ glib_wrapper! {
 }
 
 impl SliceListModel {
-    //pub fn new(model: /*Ignored*/&gio::ListModel, offset: u32, size: u32) -> SliceListModel {
-    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_new() }
-    //}
+    pub fn new<P: IsA<gio::ListModel>>(model: &P, offset: u32, size: u32) -> SliceListModel {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_slice_list_model_new(model.as_ref().to_glib_none().0, offset, size))
+        }
+    }
 
     pub fn new_for_type(item_type: glib::types::Type) -> SliceListModel {
         assert_initialized_main_thread!();
@@ -41,13 +45,13 @@ impl SliceListModel {
 pub const NONE_SLICE_LIST_MODEL: Option<&SliceListModel> = None;
 
 pub trait SliceListModelExt: 'static {
-    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn get_model(&self) -> Option<gio::ListModel>;
 
     fn get_offset(&self) -> u32;
 
     fn get_size(&self) -> u32;
 
-    //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>);
+    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
     fn set_offset(&self, offset: u32);
 
@@ -63,9 +67,11 @@ pub trait SliceListModelExt: 'static {
 }
 
 impl<O: IsA<SliceListModel>> SliceListModelExt for O {
-    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_get_model() }
-    //}
+    fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_slice_list_model_get_model(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_offset(&self) -> u32 {
         unsafe {
@@ -79,9 +85,11 @@ impl<O: IsA<SliceListModel>> SliceListModelExt for O {
         }
     }
 
-    //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
-    //    unsafe { TODO: call gtk_sys:gtk_slice_list_model_set_model() }
-    //}
+    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_slice_list_model_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_offset(&self, offset: u32) {
         unsafe {

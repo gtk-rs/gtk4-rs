@@ -31,9 +31,9 @@ pub const NONE_MEDIA_STREAM: Option<&MediaStream> = None;
 pub trait MediaStreamExt: 'static {
     fn ended(&self);
 
-    //fn error(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    //fn error_valist(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported);
+    //fn error_valist(&self, domain: glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
     fn get_duration(&self) -> i64;
 
@@ -141,11 +141,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    //fn error(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_media_stream_error() }
     //}
 
-    //fn error_valist(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
+    //fn error_valist(&self, domain: glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call gtk_sys:gtk_media_stream_error_valist() }
     //}
 

@@ -74,17 +74,17 @@ pub trait BuilderExt: 'static {
 
     //fn connect_signals(&self, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
-    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, /*Ignored*/glib::Object, &str, &str, /*Ignored*/Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
+    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, &Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
-    //fn expose_object(&self, name: &str, object: /*Ignored*/&glib::Object);
+    fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P);
 
     fn extend_with_template<P: IsA<Widget>>(&self, widget: &P, template_type: glib::types::Type, buffer: &str) -> Result<(), Error>;
 
     fn get_application(&self) -> Option<Application>;
 
-    //fn get_object(&self, name: &str) -> /*Ignored*/Option<glib::Object>;
+    fn get_object(&self, name: &str) -> Option<glib::Object>;
 
-    //fn get_objects(&self) -> /*Ignored*/Vec<glib::Object>;
+    fn get_objects(&self) -> Vec<glib::Object>;
 
     fn get_translation_domain(&self) -> Option<GString>;
 
@@ -96,9 +96,9 @@ pub trait BuilderExt: 'static {
 
     fn set_translation_domain(&self, domain: Option<&str>);
 
-    //fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str, value: /*Ignored*/glib::Value) -> Result<(), Error>;
+    //fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, Error>;
 
-    //fn value_from_string_type(&self, type_: glib::types::Type, string: &str, value: /*Ignored*/glib::Value) -> Result<(), Error>;
+    fn value_from_string_type(&self, type_: glib::types::Type, string: &str) -> Result<glib::Value, Error>;
 
     fn connect_property_translation_domain_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -150,13 +150,15 @@ impl<O: IsA<Builder>> BuilderExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_builder_connect_signals() }
     //}
 
-    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, /*Ignored*/glib::Object, &str, &str, /*Ignored*/Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
+    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, &Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
     //    unsafe { TODO: call gtk_sys:gtk_builder_connect_signals_full() }
     //}
 
-    //fn expose_object(&self, name: &str, object: /*Ignored*/&glib::Object) {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_expose_object() }
-    //}
+    fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P) {
+        unsafe {
+            gtk_sys::gtk_builder_expose_object(self.as_ref().to_glib_none().0, name.to_glib_none().0, object.as_ref().to_glib_none().0);
+        }
+    }
 
     fn extend_with_template<P: IsA<Widget>>(&self, widget: &P, template_type: glib::types::Type, buffer: &str) -> Result<(), Error> {
         let length = buffer.len() as isize;
@@ -173,13 +175,17 @@ impl<O: IsA<Builder>> BuilderExt for O {
         }
     }
 
-    //fn get_object(&self, name: &str) -> /*Ignored*/Option<glib::Object> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_get_object() }
-    //}
+    fn get_object(&self, name: &str) -> Option<glib::Object> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_builder_get_object(self.as_ref().to_glib_none().0, name.to_glib_none().0))
+        }
+    }
 
-    //fn get_objects(&self) -> /*Ignored*/Vec<glib::Object> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_get_objects() }
-    //}
+    fn get_objects(&self) -> Vec<glib::Object> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_builder_get_objects(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_translation_domain(&self) -> Option<GString> {
         unsafe {
@@ -209,13 +215,18 @@ impl<O: IsA<Builder>> BuilderExt for O {
         }
     }
 
-    //fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str, value: /*Ignored*/glib::Value) -> Result<(), Error> {
+    //fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, Error> {
     //    unsafe { TODO: call gtk_sys:gtk_builder_value_from_string() }
     //}
 
-    //fn value_from_string_type(&self, type_: glib::types::Type, string: &str, value: /*Ignored*/glib::Value) -> Result<(), Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_value_from_string_type() }
-    //}
+    fn value_from_string_type(&self, type_: glib::types::Type, string: &str) -> Result<glib::Value, Error> {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            let mut error = ptr::null_mut();
+            let _ = gtk_sys::gtk_builder_value_from_string_type(self.as_ref().to_glib_none().0, type_.to_glib(), string.to_glib_none().0, value.to_glib_none_mut().0, &mut error);
+            if error.is_null() { Ok(value) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     fn connect_property_translation_domain_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

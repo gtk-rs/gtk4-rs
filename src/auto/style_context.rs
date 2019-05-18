@@ -9,6 +9,7 @@ use StyleContextPrintFlags;
 use StyleProvider;
 use WidgetPath;
 use gdk;
+use glib;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -88,7 +89,7 @@ pub trait StyleContextExt: 'static {
 
     fn get_path(&self) -> Option<WidgetPath>;
 
-    //fn get_property(&self, property: &str, value: /*Ignored*/glib::Value);
+    fn get_property(&self, property: &str) -> glib::Value;
 
     fn get_scale(&self) -> i32;
 
@@ -194,9 +195,13 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    //fn get_property(&self, property: &str, value: /*Ignored*/glib::Value) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_property() }
-    //}
+    fn get_property(&self, property: &str) -> glib::Value {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            gtk_sys::gtk_style_context_get_property(self.as_ref().to_glib_none().0, property.to_glib_none().0, value.to_glib_none_mut().0);
+            value
+        }
+    }
 
     fn get_scale(&self) -> i32 {
         unsafe {

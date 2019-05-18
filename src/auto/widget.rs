@@ -284,7 +284,7 @@ pub trait WidgetExt: 'static {
 
     fn get_surface(&self) -> Option<gdk::Surface>;
 
-    //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object>;
+    fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object>;
 
     fn get_tooltip_markup(&self) -> Option<GString>;
 
@@ -346,7 +346,7 @@ pub trait WidgetExt: 'static {
 
     fn keynav_failed(&self, direction: DirectionType) -> bool;
 
-    //fn list_accel_closures(&self) -> /*Ignored*/Vec<glib::Closure>;
+    fn list_accel_closures(&self) -> Vec<glib::Closure>;
 
     fn list_action_prefixes(&self) -> Vec<GString>;
 
@@ -358,9 +358,9 @@ pub trait WidgetExt: 'static {
 
     fn mnemonic_activate(&self, group_cycling: bool) -> bool;
 
-    //fn observe_children(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn observe_children(&self) -> Option<gio::ListModel>;
 
-    //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn observe_controllers(&self) -> Option<gio::ListModel>;
 
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget>;
 
@@ -1234,9 +1234,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_template_child() }
-    //}
+    fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_template_child(self.as_ref().to_glib_none().0, widget_type.to_glib(), name.to_glib_none().0))
+        }
+    }
 
     fn get_tooltip_markup(&self) -> Option<GString> {
         unsafe {
@@ -1414,9 +1416,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn list_accel_closures(&self) -> /*Ignored*/Vec<glib::Closure> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_list_accel_closures() }
-    //}
+    fn list_accel_closures(&self) -> Vec<glib::Closure> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_widget_list_accel_closures(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn list_action_prefixes(&self) -> Vec<GString> {
         unsafe {
@@ -1453,13 +1457,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn observe_children(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_children() }
-    //}
+    fn observe_children(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_widget_observe_children(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_controllers() }
-    //}
+    fn observe_controllers(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_widget_observe_controllers(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget> {
         unsafe {

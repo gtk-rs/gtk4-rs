@@ -31,13 +31,13 @@ pub const NONE_TREE_MODEL: Option<&TreeModel> = None;
 pub trait TreeModelExt: 'static {
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
 
-    //fn get(&self, iter: &mut TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
     fn get_column_type(&self, index_: i32) -> glib::types::Type;
 
     fn get_flags(&self) -> TreeModelFlags;
 
-    fn get_iter(&self, path: &mut TreePath) -> Option<TreeIter>;
+    fn get_iter(&self, path: &TreePath) -> Option<TreeIter>;
 
     fn get_iter_first(&self) -> Option<TreeIter>;
 
@@ -45,41 +45,37 @@ pub trait TreeModelExt: 'static {
 
     fn get_n_columns(&self) -> i32;
 
-    fn get_path(&self, iter: &mut TreeIter) -> Option<TreePath>;
+    fn get_path(&self, iter: &TreeIter) -> Option<TreePath>;
 
-    fn get_string_from_iter(&self, iter: &mut TreeIter) -> Option<GString>;
+    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<GString>;
 
-    //fn get_valist(&self, iter: &mut TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
+    //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
-    //fn get_value(&self, iter: &mut TreeIter, column: i32, value: /*Ignored*/glib::Value);
+    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
 
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
 
-    fn iter_has_child(&self, iter: &mut TreeIter) -> bool;
+    fn iter_has_child(&self, iter: &TreeIter) -> bool;
 
     fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32;
 
-    fn iter_next(&self, iter: &mut TreeIter) -> bool;
+    fn iter_next(&self, iter: &TreeIter) -> bool;
 
     fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter>;
 
-    fn iter_parent(&self, child: &mut TreeIter) -> Option<TreeIter>;
+    fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter>;
 
-    fn iter_previous(&self, iter: &mut TreeIter) -> bool;
+    fn iter_previous(&self, iter: &TreeIter) -> bool;
 
-    fn ref_node(&self, iter: &mut TreeIter);
+    fn row_changed(&self, path: &TreePath, iter: &TreeIter);
 
-    fn row_changed(&self, path: &mut TreePath, iter: &mut TreeIter);
+    fn row_deleted(&self, path: &TreePath);
 
-    fn row_deleted(&self, path: &mut TreePath);
+    fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter);
 
-    fn row_has_child_toggled(&self, path: &mut TreePath, iter: &mut TreeIter);
-
-    fn row_inserted(&self, path: &mut TreePath, iter: &mut TreeIter);
+    fn row_inserted(&self, path: &TreePath, iter: &TreeIter);
 
     fn sort_new_with_model(&self) -> Option<TreeModel>;
-
-    fn unref_node(&self, iter: &mut TreeIter);
 
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -110,7 +106,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    //fn get(&self, iter: &mut TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_tree_model_get() }
     //}
 
@@ -126,10 +122,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_iter(&self, path: &mut TreePath) -> Option<TreeIter> {
+    fn get_iter(&self, path: &TreePath) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_get_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, path.to_glib_none_mut().0));
+            let ret = from_glib(gtk_sys::gtk_tree_model_get_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, mut_override(path.to_glib_none().0)));
             if ret { Some(iter) } else { None }
         }
     }
@@ -156,25 +152,29 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_path(&self, iter: &mut TreeIter) -> Option<TreePath> {
+    fn get_path(&self, iter: &TreeIter) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_get_path(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_model_get_path(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
-    fn get_string_from_iter(&self, iter: &mut TreeIter) -> Option<GString> {
+    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_get_string_from_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_model_get_string_from_iter(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
-    //fn get_valist(&self, iter: &mut TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
+    //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call gtk_sys:gtk_tree_model_get_valist() }
     //}
 
-    //fn get_value(&self, iter: &mut TreeIter, column: i32, value: /*Ignored*/glib::Value) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_model_get_value() }
-    //}
+    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            gtk_sys::gtk_tree_model_get_value(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), column, value.to_glib_none_mut().0);
+            value
+        }
+    }
 
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter> {
         unsafe {
@@ -184,9 +184,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn iter_has_child(&self, iter: &mut TreeIter) -> bool {
+    fn iter_has_child(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_has_child(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_model_iter_has_child(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
@@ -196,9 +196,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn iter_next(&self, iter: &mut TreeIter) -> bool {
+    fn iter_next(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_next(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_model_iter_next(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
@@ -210,59 +210,47 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn iter_parent(&self, child: &mut TreeIter) -> Option<TreeIter> {
+    fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_iter_parent(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, child.to_glib_none_mut().0));
+            let ret = from_glib(gtk_sys::gtk_tree_model_iter_parent(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, mut_override(child.to_glib_none().0)));
             if ret { Some(iter) } else { None }
         }
     }
 
-    fn iter_previous(&self, iter: &mut TreeIter) -> bool {
+    fn iter_previous(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_previous(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_model_iter_previous(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
-    fn ref_node(&self, iter: &mut TreeIter) {
+    fn row_changed(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_ref_node(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_model_row_changed(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), mut_override(iter.to_glib_none().0));
         }
     }
 
-    fn row_changed(&self, path: &mut TreePath, iter: &mut TreeIter) {
+    fn row_deleted(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_changed(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_model_row_deleted(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
-    fn row_deleted(&self, path: &mut TreePath) {
+    fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_deleted(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_model_row_has_child_toggled(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), mut_override(iter.to_glib_none().0));
         }
     }
 
-    fn row_has_child_toggled(&self, path: &mut TreePath, iter: &mut TreeIter) {
+    fn row_inserted(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_has_child_toggled(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0, iter.to_glib_none_mut().0);
-        }
-    }
-
-    fn row_inserted(&self, path: &mut TreePath, iter: &mut TreeIter) {
-        unsafe {
-            gtk_sys::gtk_tree_model_row_inserted(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_model_row_inserted(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), mut_override(iter.to_glib_none().0));
         }
     }
 
     fn sort_new_with_model(&self) -> Option<TreeModel> {
         unsafe {
             from_glib_full(gtk_sys::gtk_tree_model_sort_new_with_model(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn unref_node(&self, iter: &mut TreeIter) {
-        unsafe {
-            gtk_sys::gtk_tree_model_unref_node(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
         }
     }
 

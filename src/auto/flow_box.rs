@@ -10,6 +10,7 @@ use MovementStep;
 use Orientable;
 use SelectionMode;
 use Widget;
+use gio;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -53,7 +54,7 @@ impl Default for FlowBox {
 pub const NONE_FLOW_BOX: Option<&FlowBox> = None;
 
 pub trait FlowBoxExt: 'static {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::ListModel>, create_widget_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> Widget, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
+    fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(&self, model: Option<&P>, create_widget_func: Q);
 
     fn get_activate_on_single_click(&self) -> bool;
 
@@ -159,9 +160,24 @@ pub trait FlowBoxExt: 'static {
 }
 
 impl<O: IsA<FlowBox>> FlowBoxExt for O {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::ListModel>, create_widget_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> Widget, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call gtk_sys:gtk_flow_box_bind_model() }
-    //}
+    fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(&self, model: Option<&P>, create_widget_func: Q) {
+        let create_widget_func_data: Box_<Q> = Box::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(item: *mut gobject_sys::GObject, user_data: glib_sys::gpointer) -> *mut gtk_sys::GtkWidget {
+            let item = from_glib_borrow(item);
+            let callback: &Q = &*(user_data as *mut _);
+            let res = (*callback)(&item);
+            res.to_glib_full()
+        }
+        let create_widget_func = Some(create_widget_func_func::<P, Q> as _);
+        unsafe extern "C" fn user_data_free_func_func<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(data: glib_sys::gpointer) {
+            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call4 = Some(user_data_free_func_func::<P, Q> as _);
+        let super_callback0: Box_<Q> = create_widget_func_data;
+        unsafe {
+            gtk_sys::gtk_flow_box_bind_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0, create_widget_func, Box::into_raw(super_callback0) as *mut _, destroy_call4);
+        }
+    }
 
     fn get_activate_on_single_click(&self) -> bool {
         unsafe {

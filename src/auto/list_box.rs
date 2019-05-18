@@ -9,6 +9,7 @@ use ListBoxRow;
 use MovementStep;
 use SelectionMode;
 use Widget;
+use gio;
 use glib;
 use glib::StaticType;
 use glib::Value;
@@ -52,7 +53,7 @@ impl Default for ListBox {
 pub const NONE_LIST_BOX: Option<&ListBox> = None;
 
 pub trait ListBoxExt: 'static {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::ListModel>, create_widget_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> Widget, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
+    fn bind_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>, create_widget_func: Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>>);
 
     fn drag_highlight_row<P: IsA<ListBoxRow>>(&self, row: &P);
 
@@ -150,9 +151,28 @@ pub trait ListBoxExt: 'static {
 }
 
 impl<O: IsA<ListBox>> ListBoxExt for O {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::ListModel>, create_widget_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> Widget, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call gtk_sys:gtk_list_box_bind_model() }
-    //}
+    fn bind_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>, create_widget_func: Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>>) {
+        let create_widget_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>>> = Box::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<P: IsA<gio::ListModel>>(item: *mut gobject_sys::GObject, user_data: glib_sys::gpointer) -> *mut gtk_sys::GtkWidget {
+            let item = from_glib_borrow(item);
+            let callback: &Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>> = &*(user_data as *mut _);
+            let res = if let Some(ref callback) = *callback {
+                callback(&item)
+            } else {
+                panic!("cannot get closure...")
+            };
+            res.to_glib_full()
+        }
+        let create_widget_func = if create_widget_func_data.is_some() { Some(create_widget_func_func::<P> as _) } else { None };
+        unsafe extern "C" fn user_data_free_func_func<P: IsA<gio::ListModel>>(data: glib_sys::gpointer) {
+            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>>> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call4 = Some(user_data_free_func_func::<P> as _);
+        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> Widget + 'static>>> = create_widget_func_data;
+        unsafe {
+            gtk_sys::gtk_list_box_bind_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0, create_widget_func, Box::into_raw(super_callback0) as *mut _, destroy_call4);
+        }
+    }
 
     fn drag_highlight_row<P: IsA<ListBoxRow>>(&self, row: &P) {
         unsafe {

@@ -2,11 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use Unit;
 use glib;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
+use std::ptr;
 
 glib_wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -48,9 +50,14 @@ impl PaperSize {
         }
     }
 
-    //pub fn new_from_key_file(key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) -> Result<PaperSize, Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_paper_size_new_from_key_file() }
-    //}
+    pub fn new_from_key_file(key_file: &glib::KeyFile, group_name: Option<&str>) -> Result<PaperSize, Error> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_paper_size_new_from_key_file(key_file.to_glib_none().0, group_name.to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     pub fn new_from_ppd(ppd_name: &str, ppd_display_name: &str, width: f64, height: f64) -> PaperSize {
         assert_initialized_main_thread!();
@@ -143,9 +150,11 @@ impl PaperSize {
         }
     }
 
-    //pub fn to_key_file(&mut self, key_file: /*Ignored*/&glib::KeyFile, group_name: &str) {
-    //    unsafe { TODO: call gtk_sys:gtk_paper_size_to_key_file() }
-    //}
+    pub fn to_key_file(&mut self, key_file: &glib::KeyFile, group_name: &str) {
+        unsafe {
+            gtk_sys::gtk_paper_size_to_key_file(self.to_glib_none_mut().0, key_file.to_glib_none().0, group_name.to_glib_none().0);
+        }
+    }
 
     pub fn get_default() -> Option<GString> {
         assert_initialized_main_thread!();

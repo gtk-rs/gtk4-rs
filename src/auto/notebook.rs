@@ -10,6 +10,7 @@ use NotebookTab;
 use PackType;
 use PositionType;
 use Widget;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -76,7 +77,7 @@ pub trait NotebookExt: 'static {
 
     fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<NotebookPage>;
 
-    //fn get_pages(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn get_pages(&self) -> Option<gio::ListModel>;
 
     fn get_scrollable(&self) -> bool;
 
@@ -262,9 +263,11 @@ impl<O: IsA<Notebook>> NotebookExt for O {
         }
     }
 
-    //fn get_pages(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_notebook_get_pages() }
-    //}
+    fn get_pages(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_notebook_get_pages(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_scrollable(&self) -> bool {
         unsafe {

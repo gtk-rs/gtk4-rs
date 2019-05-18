@@ -45,9 +45,14 @@ impl PageSetup {
         }
     }
 
-    //pub fn new_from_key_file(key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) -> Result<PageSetup, Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_page_setup_new_from_key_file() }
-    //}
+    pub fn new_from_key_file(key_file: &glib::KeyFile, group_name: Option<&str>) -> Result<PageSetup, Error> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_page_setup_new_from_key_file(key_file.to_glib_none().0, group_name.to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     pub fn copy(&self) -> Option<PageSetup> {
         unsafe {
@@ -123,9 +128,13 @@ impl PageSetup {
         }
     }
 
-    //pub fn load_key_file(&self, key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) -> Result<(), Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_page_setup_load_key_file() }
-    //}
+    pub fn load_key_file(&self, key_file: &glib::KeyFile, group_name: Option<&str>) -> Result<(), Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let _ = gtk_sys::gtk_page_setup_load_key_file(self.to_glib_none().0, key_file.to_glib_none().0, group_name.to_glib_none().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     pub fn set_bottom_margin(&self, margin: f64, unit: Unit) {
         unsafe {
@@ -183,9 +192,11 @@ impl PageSetup {
         }
     }
 
-    //pub fn to_key_file(&self, key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>) {
-    //    unsafe { TODO: call gtk_sys:gtk_page_setup_to_key_file() }
-    //}
+    pub fn to_key_file(&self, key_file: &glib::KeyFile, group_name: Option<&str>) {
+        unsafe {
+            gtk_sys::gtk_page_setup_to_key_file(self.to_glib_none().0, key_file.to_glib_none().0, group_name.to_glib_none().0);
+        }
+    }
 }
 
 impl Default for PageSetup {

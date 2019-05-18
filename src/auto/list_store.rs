@@ -8,6 +8,7 @@ use TreeDragSource;
 use TreeIter;
 use TreeModel;
 use TreeSortable;
+use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -46,7 +47,7 @@ pub trait ListStoreExt: 'static {
 
     //fn insert_with_values(&self, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter;
 
-    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: /*Ignored*/&[&glib::Value]) -> TreeIter;
+    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter;
 
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
@@ -66,9 +67,9 @@ pub trait ListStoreExt: 'static {
 
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
-    //fn set_value(&self, iter: &TreeIter, column: i32, value: /*Ignored*/&mut glib::Value);
+    fn set_value(&self, iter: &TreeIter, column: i32, value: &mut glib::Value);
 
-    //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: /*Ignored*/&[&glib::Value]);
+    //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: &[&glib::Value]);
 
     fn swap(&self, a: &TreeIter, b: &TreeIter);
 }
@@ -116,7 +117,7 @@ impl<O: IsA<ListStore>> ListStoreExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_list_store_insert_with_values() }
     //}
 
-    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: /*Ignored*/&[&glib::Value]) -> TreeIter {
+    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter {
     //    unsafe { TODO: call gtk_sys:gtk_list_store_insert_with_valuesv() }
     //}
 
@@ -168,11 +169,13 @@ impl<O: IsA<ListStore>> ListStoreExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_list_store_set_valist() }
     //}
 
-    //fn set_value(&self, iter: &TreeIter, column: i32, value: /*Ignored*/&mut glib::Value) {
-    //    unsafe { TODO: call gtk_sys:gtk_list_store_set_value() }
-    //}
+    fn set_value(&self, iter: &TreeIter, column: i32, value: &mut glib::Value) {
+        unsafe {
+            gtk_sys::gtk_list_store_set_value(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), column, value.to_glib_none_mut().0);
+        }
+    }
 
-    //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: /*Ignored*/&[&glib::Value]) {
+    //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: &[&glib::Value]) {
     //    unsafe { TODO: call gtk_sys:gtk_list_store_set_valuesv() }
     //}
 

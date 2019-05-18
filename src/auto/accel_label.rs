@@ -5,13 +5,17 @@
 use Buildable;
 use Widget;
 use gdk;
+use glib;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -52,7 +56,7 @@ pub trait AccelLabelExt: 'static {
 
     fn set_accel(&self, accelerator_key: u32, accelerator_mods: gdk::ModifierType);
 
-    //fn set_accel_closure(&self, accel_closure: /*Ignored*/Option<&glib::Closure>);
+    fn set_accel_closure(&self, accel_closure: Option<&glib::Closure>);
 
     fn set_accel_widget<P: IsA<Widget>>(&self, accel_widget: Option<&P>);
 
@@ -60,7 +64,7 @@ pub trait AccelLabelExt: 'static {
 
     fn set_use_underline(&self, setting: bool);
 
-    //fn get_property_accel_closure(&self) -> /*Ignored*/Option<glib::Closure>;
+    fn get_property_accel_closure(&self) -> Option<glib::Closure>;
 
     fn connect_property_accel_closure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -117,9 +121,11 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
-    //fn set_accel_closure(&self, accel_closure: /*Ignored*/Option<&glib::Closure>) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_label_set_accel_closure() }
-    //}
+    fn set_accel_closure(&self, accel_closure: Option<&glib::Closure>) {
+        unsafe {
+            gtk_sys::gtk_accel_label_set_accel_closure(self.as_ref().to_glib_none().0, accel_closure.to_glib_none().0);
+        }
+    }
 
     fn set_accel_widget<P: IsA<Widget>>(&self, accel_widget: Option<&P>) {
         unsafe {
@@ -139,13 +145,13 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
         }
     }
 
-    //fn get_property_accel_closure(&self) -> /*Ignored*/Option<glib::Closure> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-closure\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_accel_closure(&self) -> Option<glib::Closure> {
+        unsafe {
+            let mut value = Value::from_type(<glib::Closure as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"accel-closure\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn connect_property_accel_closure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

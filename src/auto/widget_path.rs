@@ -132,13 +132,17 @@ impl WidgetPath {
         }
     }
 
-    //pub fn iter_has_qclass(&self, pos: i32, qname: /*Ignored*/glib::Quark) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_path_iter_has_qclass() }
-    //}
+    pub fn iter_has_qclass(&self, pos: i32, qname: glib::Quark) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_path_iter_has_qclass(self.to_glib_none().0, pos, qname.to_glib()))
+        }
+    }
 
-    //pub fn iter_has_qname(&self, pos: i32, qname: /*Ignored*/glib::Quark) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_path_iter_has_qname() }
-    //}
+    pub fn iter_has_qname(&self, pos: i32, qname: glib::Quark) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_path_iter_has_qname(self.to_glib_none().0, pos, qname.to_glib()))
+        }
+    }
 
     pub fn iter_list_classes(&self, pos: i32) -> Vec<GString> {
         unsafe {

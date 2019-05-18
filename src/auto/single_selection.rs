@@ -3,19 +3,23 @@
 // DO NOT EDIT
 
 use SelectionModel;
+use gio;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements SelectionModel;
+    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
         get_type => || gtk_sys::gtk_single_selection_get_type(),
@@ -23,9 +27,12 @@ glib_wrapper! {
 }
 
 impl SingleSelection {
-    //pub fn new(model: /*Ignored*/&gio::ListModel) -> SingleSelection {
-    //    unsafe { TODO: call gtk_sys:gtk_single_selection_new() }
-    //}
+    pub fn new<P: IsA<gio::ListModel>>(model: &P) -> SingleSelection {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_single_selection_new(model.as_ref().to_glib_none().0))
+        }
+    }
 }
 
 pub const NONE_SINGLE_SELECTION: Option<&SingleSelection> = None;
@@ -45,9 +52,9 @@ pub trait SingleSelectionExt: 'static {
 
     fn set_selected(&self, position: u32);
 
-    //fn get_property_model(&self) -> /*Ignored*/Option<gio::ListModel>;
+    fn get_property_model(&self) -> Option<gio::ListModel>;
 
-    //fn set_property_model(&self, model: /*Ignored*/Option<&gio::ListModel>);
+    fn set_property_model(&self, model: Option<&gio::ListModel>);
 
     fn connect_property_autoselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -101,19 +108,19 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
-    //fn get_property_model(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_model(&self) -> Option<gio::ListModel> {
+        unsafe {
+            let mut value = Value::from_type(<gio::ListModel as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, Value::from(model).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_model(&self, model: Option<&gio::ListModel>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"model\0".as_ptr() as *const _, Value::from(model).to_glib_none().0);
+        }
+    }
 
     fn connect_property_autoselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

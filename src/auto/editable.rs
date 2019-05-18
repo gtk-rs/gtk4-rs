@@ -30,11 +30,11 @@ glib_wrapper! {
 }
 
 impl Editable {
-    //pub fn delegate_get_property(object: /*Ignored*/&glib::Object, prop_id: u32, value: /*Ignored*/&mut glib::Value, pspec: /*Ignored*/&glib::ParamSpec) -> bool {
+    //pub fn delegate_get_property<P: IsA<glib::Object>>(object: &P, prop_id: u32, value: &mut glib::Value, pspec: /*Ignored*/&glib::ParamSpec) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_editable_delegate_get_property() }
     //}
 
-    //pub fn delegate_set_property(object: /*Ignored*/&glib::Object, prop_id: u32, value: /*Ignored*/&glib::Value, pspec: /*Ignored*/&glib::ParamSpec) -> bool {
+    //pub fn delegate_set_property<P: IsA<glib::Object>>(object: &P, prop_id: u32, value: &glib::Value, pspec: /*Ignored*/&glib::ParamSpec) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_editable_delegate_set_property() }
     //}
 

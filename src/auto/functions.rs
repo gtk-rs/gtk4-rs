@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use AccelGroup;
 use Error;
 use Orientation;
 use PageSetup;
@@ -15,6 +16,7 @@ use Widget;
 use Window;
 use cairo;
 use gdk;
+use glib;
 use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
@@ -24,13 +26,19 @@ use std::mem;
 use std::ptr;
 
 
-//pub fn accel_groups_activate(object: /*Ignored*/&glib::Object, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_accel_groups_activate() }
-//}
+pub fn accel_groups_activate<P: IsA<glib::Object>>(object: &P, accel_key: u32, accel_mods: gdk::ModifierType) -> bool {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib(gtk_sys::gtk_accel_groups_activate(object.as_ref().to_glib_none().0, accel_key, accel_mods.to_glib()))
+    }
+}
 
-//pub fn accel_groups_from_object(object: /*Ignored*/&glib::Object) -> Vec<AccelGroup> {
-//    unsafe { TODO: call gtk_sys:gtk_accel_groups_from_object() }
-//}
+pub fn accel_groups_from_object<P: IsA<glib::Object>>(object: &P) -> Vec<AccelGroup> {
+    assert_initialized_main_thread!();
+    unsafe {
+        FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_accel_groups_from_object(object.as_ref().to_glib_none().0))
+    }
+}
 
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
     assert_initialized_main_thread!();
@@ -95,11 +103,14 @@ pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
     }
 }
 
-//pub fn bindings_activate(object: /*Ignored*/&glib::Object, keyval: u32, modifiers: gdk::ModifierType) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_bindings_activate() }
-//}
+pub fn bindings_activate<P: IsA<glib::Object>>(object: &P, keyval: u32, modifiers: gdk::ModifierType) -> bool {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib(gtk_sys::gtk_bindings_activate(object.as_ref().to_glib_none().0, keyval, modifiers.to_glib()))
+    }
+}
 
-//pub fn bindings_activate_event(object: /*Ignored*/&glib::Object, event: /*Ignored*/&mut gdk::EventKey) -> bool {
+//pub fn bindings_activate_event<P: IsA<glib::Object>>(object: &P, event: /*Ignored*/&mut gdk::EventKey) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_bindings_activate_event() }
 //}
 
@@ -305,23 +316,23 @@ pub fn print_run_page_setup_dialog_async<P: IsA<Window>, Q: FnOnce(&PageSetup) +
 //    unsafe { TODO: call gtk_sys:gtk_propagate_event() }
 //}
 
-//pub fn rc_property_parse_border(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: /*Ignored*/&mut glib::Value) -> bool {
+//pub fn rc_property_parse_border(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: &mut glib::Value) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_border() }
 //}
 
-//pub fn rc_property_parse_color(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: /*Ignored*/&mut glib::Value) -> bool {
+//pub fn rc_property_parse_color(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: &mut glib::Value) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_color() }
 //}
 
-//pub fn rc_property_parse_enum(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: /*Ignored*/&mut glib::Value) -> bool {
+//pub fn rc_property_parse_enum(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: &mut glib::Value) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_enum() }
 //}
 
-//pub fn rc_property_parse_flags(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: /*Ignored*/&mut glib::Value) -> bool {
+//pub fn rc_property_parse_flags(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: &mut glib::Value) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_flags() }
 //}
 
-//pub fn rc_property_parse_requisition(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: /*Ignored*/&mut glib::Value) -> bool {
+//pub fn rc_property_parse_requisition(pspec: /*Ignored*/&glib::ParamSpec, gstring: /*Ignored*/&glib::String, property_value: &mut glib::Value) -> bool {
 //    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_requisition() }
 //}
 
