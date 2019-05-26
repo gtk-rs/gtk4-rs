@@ -421,6 +421,23 @@ manual = [
     "GObject.Object",
     "GObject.Value",
     "Gtk.ResponseType",
+    "Pango.Alignment",
+    "Pango.AttrList",
+    "Pango.Context",
+    "Pango.Direction",
+    "Pango.EllipsizeMode",
+    "Pango.FontDescription",
+    "Pango.FontFace",
+    "Pango.FontFamily",
+    "Pango.FontMap",
+    "Pango.Language",
+    "Pango.Layout",
+    "Pango.Stretch",
+    "Pango.Style",
+    "Pango.TabArray",
+    "Pango.Underline",
+    "Pango.Variant",
+    "Pango.WrapMode",
 ]
 
 [[object]]
