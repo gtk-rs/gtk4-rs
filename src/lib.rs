@@ -102,6 +102,7 @@ mod css_location;
 mod dialog;
 mod editable;
 mod entry_buffer;
+mod entry_completion;
 mod file_chooser_dialog;
 mod file_filter_info;
 mod im_context_simple;

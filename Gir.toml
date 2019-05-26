@@ -836,6 +836,7 @@ status = "generate"
 
 [[object]]
 name = "Gtk.EntryCompletion"
+manual_traits = ["EntryCompletionExtManual"]
 status = "generate"
     [[object.signal]]
     name = "insert-prefix"
@@ -846,6 +847,9 @@ status = "generate"
     [[object.signal]]
     name = "cursor-on-match"
     inhibit = true
+    [[object.function]]
+    name = "get_entry"
+    ignore = true
 
 [[object]]
 name = "Gtk.EventControllerKey"
