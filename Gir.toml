@@ -316,7 +316,6 @@ generate = [
     "Gtk.TextSearchFlags",
     "Gtk.TextTag",
     "Gtk.TextTagTable",
-    "Gtk.TextView",
     "Gtk.TextViewAccessible",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
@@ -607,6 +606,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "text"
         nullable = true
+    [[object.function]]
+    name = "set_tabs"
+        [[object.function.parameter]]
+        name = "tabs"
+        const = true
 
 [[object]]
 name = "Gtk.EntryBuffer"
@@ -881,6 +885,20 @@ status = "generate"
     # error generating emit_*
     pattern = "*"
     ignore = true
+    [[object.function]]
+    name = "set_tabs"
+        [[object.function.parameter]]
+        name = "tabs"
+        const = true
+
+[[object]]
+name = "Gtk.TextView"
+status = "generate"
+    [[object.function]]
+    name = "set_tabs"
+        [[object.function.parameter]]
+        name = "tabs"
+        const = true
 
 [[object]]
 name = "Gtk.TreeModel"
