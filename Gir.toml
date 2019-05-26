@@ -946,6 +946,11 @@ manual_traits = ["WidgetExtManual"]
         [[object.signal.parameter]]
         name = "data"
         transformation = "borrow"
+    [[object.function]]
+    name = "input_shape_combine_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
 
 [[object]]
 name = "Gtk.Window"
