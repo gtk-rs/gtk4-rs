@@ -1015,6 +1015,21 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+    [[object.function]]
+    name = "get_selection"
+        [object.function.return]
+        nullable = false
+    [[object.signal]]
+    pattern = ".+"
+        [[object.signal.parameter]]
+        name = "iter"
+        transformation = "borrow"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "borrow"
+    [[object.signal]]
+    pattern = "test-.+"
+    inhibit = true
 
 [[object]]
 name = "Gtk.Widget"
