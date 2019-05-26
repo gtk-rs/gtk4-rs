@@ -198,7 +198,6 @@ generate = [
     "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.NativeDialog",
-    "Gtk.Notebook",
     "Gtk.NotebookAccessible",
     "Gtk.NotebookPage",
     "Gtk.NotebookPageAccessible",
@@ -689,6 +688,51 @@ status = "generate"
     [[object.function]]
     name = "gerror"
     # TODO: figure out error's ownership
+    ignore = true
+
+[[object]]
+name = "Gtk.Notebook"
+status = "generate"
+manual_traits = ["NotebookExtManual"]
+    # The following functions need integer type adjustments
+    [[object.function]]
+    name = "append_page"
+    ignore = true
+    [[object.function]]
+    name = "append_page_menu"
+    ignore = true
+    [[object.function]]
+    name = "get_current_page"
+    ignore = true
+    [[object.function]]
+    name = "get_n_pages"
+    ignore = true
+    [[object.function]]
+    name = "get_nth_page"
+    ignore = true
+    [[object.function]]
+    name = "insert_page"
+    ignore = true
+    [[object.function]]
+    name = "insert_page_menu"
+    ignore = true
+    [[object.function]]
+    name = "page_num"
+    ignore = true
+    [[object.function]]
+    name = "prepend_page"
+    ignore = true
+    [[object.function]]
+    name = "prepend_page_menu"
+    ignore = true
+    [[object.function]]
+    name = "remove_page"
+    ignore = true
+    [[object.function]]
+    name = "reorder_child"
+    ignore = true
+    [[object.function]]
+    name = "set_current_page"
     ignore = true
 
 [[object]]

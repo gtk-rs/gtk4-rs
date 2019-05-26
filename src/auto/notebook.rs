@@ -55,25 +55,15 @@ impl Default for Notebook {
 pub const NONE_NOTEBOOK: Option<&Notebook> = None;
 
 pub trait NotebookExt: 'static {
-    fn append_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>) -> i32;
-
-    fn append_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>) -> i32;
-
     fn detach_tab<P: IsA<Widget>>(&self, child: &P);
 
     fn get_action_widget(&self, pack_type: PackType) -> Option<Widget>;
-
-    fn get_current_page(&self) -> i32;
 
     fn get_group_name(&self) -> Option<GString>;
 
     fn get_menu_label<P: IsA<Widget>>(&self, child: &P) -> Option<Widget>;
 
     fn get_menu_label_text<P: IsA<Widget>>(&self, child: &P) -> Option<GString>;
-
-    fn get_n_pages(&self) -> i32;
-
-    fn get_nth_page(&self, page_num: i32) -> Option<Widget>;
 
     fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<NotebookPage>;
 
@@ -95,31 +85,15 @@ pub trait NotebookExt: 'static {
 
     fn get_tab_reorderable<P: IsA<Widget>>(&self, child: &P) -> bool;
 
-    fn insert_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, position: i32) -> i32;
-
-    fn insert_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>, position: i32) -> i32;
-
     fn next_page(&self);
-
-    fn page_num<P: IsA<Widget>>(&self, child: &P) -> i32;
 
     fn popup_disable(&self);
 
     fn popup_enable(&self);
 
-    fn prepend_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>) -> i32;
-
-    fn prepend_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>) -> i32;
-
     fn prev_page(&self);
 
-    fn remove_page(&self, page_num: i32);
-
-    fn reorder_child<P: IsA<Widget>>(&self, child: &P, position: i32);
-
     fn set_action_widget<P: IsA<Widget>>(&self, widget: &P, pack_type: PackType);
-
-    fn set_current_page(&self, page_num: i32);
 
     fn set_group_name(&self, group_name: Option<&str>);
 
@@ -197,18 +171,6 @@ pub trait NotebookExt: 'static {
 }
 
 impl<O: IsA<Notebook>> NotebookExt for O {
-    fn append_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_append_page(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0)
-        }
-    }
-
-    fn append_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_append_page_menu(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0, menu_label.map(|p| p.as_ref()).to_glib_none().0)
-        }
-    }
-
     fn detach_tab<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             gtk_sys::gtk_notebook_detach_tab(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0);
@@ -218,12 +180,6 @@ impl<O: IsA<Notebook>> NotebookExt for O {
     fn get_action_widget(&self, pack_type: PackType) -> Option<Widget> {
         unsafe {
             from_glib_none(gtk_sys::gtk_notebook_get_action_widget(self.as_ref().to_glib_none().0, pack_type.to_glib()))
-        }
-    }
-
-    fn get_current_page(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_get_current_page(self.as_ref().to_glib_none().0)
         }
     }
 
@@ -242,18 +198,6 @@ impl<O: IsA<Notebook>> NotebookExt for O {
     fn get_menu_label_text<P: IsA<Widget>>(&self, child: &P) -> Option<GString> {
         unsafe {
             from_glib_none(gtk_sys::gtk_notebook_get_menu_label_text(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_n_pages(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_get_n_pages(self.as_ref().to_glib_none().0)
-        }
-    }
-
-    fn get_nth_page(&self, page_num: i32) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_notebook_get_nth_page(self.as_ref().to_glib_none().0, page_num))
         }
     }
 
@@ -317,27 +261,9 @@ impl<O: IsA<Notebook>> NotebookExt for O {
         }
     }
 
-    fn insert_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, position: i32) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_insert_page(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0, position)
-        }
-    }
-
-    fn insert_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>, position: i32) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_insert_page_menu(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0, menu_label.map(|p| p.as_ref()).to_glib_none().0, position)
-        }
-    }
-
     fn next_page(&self) {
         unsafe {
             gtk_sys::gtk_notebook_next_page(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn page_num<P: IsA<Widget>>(&self, child: &P) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_page_num(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0)
         }
     }
 
@@ -353,45 +279,15 @@ impl<O: IsA<Notebook>> NotebookExt for O {
         }
     }
 
-    fn prepend_page<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_prepend_page(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0)
-        }
-    }
-
-    fn prepend_page_menu<P: IsA<Widget>, Q: IsA<Widget>, R: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>, menu_label: Option<&R>) -> i32 {
-        unsafe {
-            gtk_sys::gtk_notebook_prepend_page_menu(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, tab_label.map(|p| p.as_ref()).to_glib_none().0, menu_label.map(|p| p.as_ref()).to_glib_none().0)
-        }
-    }
-
     fn prev_page(&self) {
         unsafe {
             gtk_sys::gtk_notebook_prev_page(self.as_ref().to_glib_none().0);
         }
     }
 
-    fn remove_page(&self, page_num: i32) {
-        unsafe {
-            gtk_sys::gtk_notebook_remove_page(self.as_ref().to_glib_none().0, page_num);
-        }
-    }
-
-    fn reorder_child<P: IsA<Widget>>(&self, child: &P, position: i32) {
-        unsafe {
-            gtk_sys::gtk_notebook_reorder_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, position);
-        }
-    }
-
     fn set_action_widget<P: IsA<Widget>>(&self, widget: &P, pack_type: PackType) {
         unsafe {
             gtk_sys::gtk_notebook_set_action_widget(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, pack_type.to_glib());
-        }
-    }
-
-    fn set_current_page(&self, page_num: i32) {
-        unsafe {
-            gtk_sys::gtk_notebook_set_current_page(self.as_ref().to_glib_none().0, page_num);
         }
     }
 
