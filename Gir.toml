@@ -520,6 +520,10 @@ manual_traits = ["BuilderExtManual"]
     pattern = ".+_from_file"
     #path
     ignore = true
+    [[object.function]]
+    name = "get_object"
+    #downcast
+    ignore = true
 
 [[object]]
 name = "Gtk.CellAccessibleParent"
