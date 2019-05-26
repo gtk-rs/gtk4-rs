@@ -18,6 +18,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -34,7 +35,7 @@ glib_wrapper! {
 pub const NONE_RANGE: Option<&Range> = None;
 
 pub trait RangeExt: 'static {
-    fn get_adjustment(&self) -> Option<Adjustment>;
+    fn get_adjustment(&self) -> Adjustment;
 
     fn get_fill_level(&self) -> f64;
 
@@ -80,7 +81,7 @@ pub trait RangeExt: 'static {
 
     fn connect_adjust_bounds<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_move_slider<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -102,7 +103,7 @@ pub trait RangeExt: 'static {
 }
 
 impl<O: IsA<Range>> RangeExt for O {
-    fn get_adjustment(&self) -> Option<Adjustment> {
+    fn get_adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(gtk_sys::gtk_range_get_adjustment(self.as_ref().to_glib_none().0))
         }
@@ -243,7 +244,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"change-value\0".as_ptr() as *const _,
@@ -326,7 +327,7 @@ where P: IsA<Range> {
     f(&Range::from_glib_borrow(this).unsafe_cast(), value)
 }
 
-unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType, f64) -> bool + 'static>(this: *mut gtk_sys::GtkRange, scroll: gtk_sys::GtkScrollType, value: libc::c_double, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn change_value_trampoline<P, F: Fn(&P, ScrollType, f64) -> Inhibit + 'static>(this: *mut gtk_sys::GtkRange, scroll: gtk_sys::GtkScrollType, value: libc::c_double, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Range> {
     let f: &F = &*(f as *const F);
     f(&Range::from_glib_borrow(this).unsafe_cast(), from_glib(scroll), value).to_glib()

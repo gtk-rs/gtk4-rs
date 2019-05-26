@@ -48,7 +48,7 @@ impl ScaleButton {
 pub const NONE_SCALE_BUTTON: Option<&ScaleButton> = None;
 
 pub trait ScaleButtonExt: 'static {
-    fn get_adjustment(&self) -> Option<Adjustment>;
+    fn get_adjustment(&self) -> Adjustment;
 
     fn get_minus_button(&self) -> Option<Button>;
 
@@ -84,7 +84,7 @@ pub trait ScaleButtonExt: 'static {
 }
 
 impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
-    fn get_adjustment(&self) -> Option<Adjustment> {
+    fn get_adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(gtk_sys::gtk_scale_button_get_adjustment(self.as_ref().to_glib_none().0))
         }

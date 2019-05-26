@@ -57,7 +57,7 @@ pub const NONE_SPIN_BUTTON: Option<&SpinButton> = None;
 pub trait SpinButtonExt: 'static {
     fn configure<P: IsA<Adjustment>>(&self, adjustment: Option<&P>, climb_rate: f64, digits: u32);
 
-    fn get_adjustment(&self) -> Option<Adjustment>;
+    fn get_adjustment(&self) -> Adjustment;
 
     fn get_digits(&self) -> u32;
 
@@ -139,7 +139,7 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
         }
     }
 
-    fn get_adjustment(&self) -> Option<Adjustment> {
+    fn get_adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(gtk_sys::gtk_spin_button_get_adjustment(self.as_ref().to_glib_none().0))
         }
