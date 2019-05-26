@@ -4,8 +4,12 @@
 
 use EventController;
 use PadActionType;
+use gio;
+use glib::StaticType;
+use glib::Value;
 use glib::object::ObjectType;
 use glib::translate::*;
+use gobject_sys;
 use gtk_sys;
 use std::fmt;
 
@@ -18,7 +22,7 @@ glib_wrapper! {
 }
 
 impl PadController {
-    //pub fn new(group: /*Ignored*/&gio::ActionGroup, pad: /*Ignored*/Option<&gdk::Device>) -> PadController {
+    //pub fn new<P: IsA<gio::ActionGroup>>(group: &P, pad: /*Ignored*/Option<&gdk::Device>) -> PadController {
     //    unsafe { TODO: call gtk_sys:gtk_pad_controller_new() }
     //}
 
@@ -32,13 +36,13 @@ impl PadController {
     //    unsafe { TODO: call gtk_sys:gtk_pad_controller_set_action_entries() }
     //}
 
-    //pub fn get_property_action_group(&self) -> /*Ignored*/Option<gio::ActionGroup> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"action-group\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    pub fn get_property_action_group(&self) -> Option<gio::ActionGroup> {
+        unsafe {
+            let mut value = Value::from_type(<gio::ActionGroup as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"action-group\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     //pub fn get_property_pad(&self) -> /*Ignored*/Option<gdk::Device> {
     //    unsafe {

@@ -27,6 +27,7 @@ use Tooltip;
 use WidgetPath;
 use Window;
 use atk;
+use cairo;
 use gdk;
 use gdk_sys;
 use gio;
@@ -176,7 +177,7 @@ pub trait WidgetExt: 'static {
 
     fn get_accessible(&self) -> Option<atk::Object>;
 
-    //fn get_action_group(&self, prefix: &str) -> /*Ignored*/Option<gio::ActionGroup>;
+    fn get_action_group(&self, prefix: &str) -> Option<gio::ActionGroup>;
 
     fn get_allocated_baseline(&self) -> i32;
 
@@ -210,7 +211,7 @@ pub trait WidgetExt: 'static {
 
     //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap>;
 
-    //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions>;
+    fn get_font_options(&self) -> Option<cairo::FontOptions>;
 
     fn get_frame_clock(&self) -> Option<gdk::FrameClock>;
 
@@ -324,9 +325,9 @@ pub trait WidgetExt: 'static {
 
     fn init_template(&self);
 
-    //fn input_shape_combine_region(&self, region: /*Ignored*/Option<&mut cairo::Region>);
+    fn input_shape_combine_region(&self, region: Option<&mut cairo::Region>);
 
-    //fn insert_action_group(&self, name: &str, group: /*Ignored*/Option<&gio::ActionGroup>);
+    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>);
 
     fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, previous_sibling: Option<&Q>);
 
@@ -408,7 +409,7 @@ pub trait WidgetExt: 'static {
 
     //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>);
 
-    //fn set_font_options(&self, options: /*Ignored*/Option<&cairo::FontOptions>);
+    fn set_font_options(&self, options: Option<&cairo::FontOptions>);
 
     fn set_halign(&self, align: Align);
 
@@ -922,9 +923,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_action_group(&self, prefix: &str) -> /*Ignored*/Option<gio::ActionGroup> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_action_group() }
-    //}
+    fn get_action_group(&self, prefix: &str) -> Option<gio::ActionGroup> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_action_group(self.as_ref().to_glib_none().0, prefix.to_glib_none().0))
+        }
+    }
 
     fn get_allocated_baseline(&self) -> i32 {
         unsafe {
@@ -1014,9 +1017,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_map() }
     //}
 
-    //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_options() }
-    //}
+    fn get_font_options(&self) -> Option<cairo::FontOptions> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_font_options(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_frame_clock(&self) -> Option<gdk::FrameClock> {
         unsafe {
@@ -1354,13 +1359,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn input_shape_combine_region(&self, region: /*Ignored*/Option<&mut cairo::Region>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_input_shape_combine_region() }
-    //}
+    fn input_shape_combine_region(&self, region: Option<&mut cairo::Region>) {
+        unsafe {
+            gtk_sys::gtk_widget_input_shape_combine_region(self.as_ref().to_glib_none().0, region.to_glib_none_mut().0);
+        }
+    }
 
-    //fn insert_action_group(&self, name: &str, group: /*Ignored*/Option<&gio::ActionGroup>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_insert_action_group() }
-    //}
+    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_widget_insert_action_group(self.as_ref().to_glib_none().0, name.to_glib_none().0, group.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, previous_sibling: Option<&Q>) {
         unsafe {
@@ -1603,9 +1612,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_map() }
     //}
 
-    //fn set_font_options(&self, options: /*Ignored*/Option<&cairo::FontOptions>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_options() }
-    //}
+    fn set_font_options(&self, options: Option<&cairo::FontOptions>) {
+        unsafe {
+            gtk_sys::gtk_widget_set_font_options(self.as_ref().to_glib_none().0, options.to_glib_none().0);
+        }
+    }
 
     fn set_halign(&self, align: Align) {
         unsafe {

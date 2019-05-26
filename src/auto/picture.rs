@@ -5,6 +5,7 @@
 use Buildable;
 use Widget;
 use gdk_pixbuf;
+use gio;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -34,9 +35,12 @@ impl Picture {
         }
     }
 
-    //pub fn new_for_file(file: /*Ignored*/Option<&gio::File>) -> Picture {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_new_for_file() }
-    //}
+    pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Picture {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_file(file.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Picture {
         assert_initialized_main_thread!();
@@ -77,7 +81,7 @@ pub trait PictureExt: 'static {
 
     fn get_can_shrink(&self) -> bool;
 
-    //fn get_file(&self) -> /*Ignored*/Option<gio::File>;
+    fn get_file(&self) -> Option<gio::File>;
 
     fn get_keep_aspect_ratio(&self) -> bool;
 
@@ -87,7 +91,7 @@ pub trait PictureExt: 'static {
 
     fn set_can_shrink(&self, can_shrink: bool);
 
-    //fn set_file(&self, file: /*Ignored*/Option<&gio::File>);
+    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
 
     fn set_filename(&self, filename: Option<&str>);
 
@@ -123,9 +127,11 @@ impl<O: IsA<Picture>> PictureExt for O {
         }
     }
 
-    //fn get_file(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_get_file() }
-    //}
+    fn get_file(&self) -> Option<gio::File> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_picture_get_file(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_keep_aspect_ratio(&self) -> bool {
         unsafe {
@@ -149,9 +155,11 @@ impl<O: IsA<Picture>> PictureExt for O {
         }
     }
 
-    //fn set_file(&self, file: /*Ignored*/Option<&gio::File>) {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_set_file() }
-    //}
+    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_picture_set_file(self.as_ref().to_glib_none().0, file.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {

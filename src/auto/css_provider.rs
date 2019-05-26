@@ -5,6 +5,7 @@
 use CssSection;
 use Error;
 use StyleProvider;
+use gio;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -45,7 +46,7 @@ pub const NONE_CSS_PROVIDER: Option<&CssProvider> = None;
 pub trait CssProviderExt: 'static {
     fn load_from_data(&self, data: &[u8]);
 
-    //fn load_from_file(&self, file: /*Ignored*/&gio::File);
+    fn load_from_file<P: IsA<gio::File>>(&self, file: &P);
 
     fn load_from_path(&self, path: &str);
 
@@ -66,9 +67,11 @@ impl<O: IsA<CssProvider>> CssProviderExt for O {
         }
     }
 
-    //fn load_from_file(&self, file: /*Ignored*/&gio::File) {
-    //    unsafe { TODO: call gtk_sys:gtk_css_provider_load_from_file() }
-    //}
+    fn load_from_file<P: IsA<gio::File>>(&self, file: &P) {
+        unsafe {
+            gtk_sys::gtk_css_provider_load_from_file(self.as_ref().to_glib_none().0, file.as_ref().to_glib_none().0);
+        }
+    }
 
     fn load_from_path(&self, path: &str) {
         unsafe {

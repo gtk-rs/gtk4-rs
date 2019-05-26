@@ -8,6 +8,7 @@ use Buildable;
 use Button;
 use Container;
 use Widget;
+use gio;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -32,17 +33,20 @@ glib_wrapper! {
 }
 
 impl LockButton {
-    //pub fn new(permission: /*Ignored*/Option<&gio::Permission>) -> LockButton {
-    //    unsafe { TODO: call gtk_sys:gtk_lock_button_new() }
-    //}
+    pub fn new<P: IsA<gio::Permission>>(permission: Option<&P>) -> LockButton {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_lock_button_new(permission.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 pub const NONE_LOCK_BUTTON: Option<&LockButton> = None;
 
 pub trait LockButtonExt: 'static {
-    //fn get_permission(&self) -> /*Ignored*/Option<gio::Permission>;
+    fn get_permission(&self) -> Option<gio::Permission>;
 
-    //fn set_permission(&self, permission: /*Ignored*/Option<&gio::Permission>);
+    fn set_permission<P: IsA<gio::Permission>>(&self, permission: Option<&P>);
 
     fn get_property_text_lock(&self) -> Option<GString>;
 
@@ -78,13 +82,17 @@ pub trait LockButtonExt: 'static {
 }
 
 impl<O: IsA<LockButton>> LockButtonExt for O {
-    //fn get_permission(&self) -> /*Ignored*/Option<gio::Permission> {
-    //    unsafe { TODO: call gtk_sys:gtk_lock_button_get_permission() }
-    //}
+    fn get_permission(&self) -> Option<gio::Permission> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_lock_button_get_permission(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn set_permission(&self, permission: /*Ignored*/Option<&gio::Permission>) {
-    //    unsafe { TODO: call gtk_sys:gtk_lock_button_set_permission() }
-    //}
+    fn set_permission<P: IsA<gio::Permission>>(&self, permission: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_lock_button_set_permission(self.as_ref().to_glib_none().0, permission.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn get_property_text_lock(&self) -> Option<GString> {
         unsafe {

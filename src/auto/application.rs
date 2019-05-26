@@ -21,7 +21,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @extends gio::Application;
+    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
 
     match fn {
         get_type => || gtk_sys::gtk_application_get_type(),
@@ -39,11 +39,11 @@ pub trait GtkApplicationExt: 'static {
 
     fn get_active_window(&self) -> Option<Window>;
 
-    //fn get_app_menu(&self) -> /*Ignored*/Option<gio::MenuModel>;
+    fn get_app_menu(&self) -> Option<gio::MenuModel>;
 
-    //fn get_menu_by_id(&self, id: &str) -> /*Ignored*/Option<gio::Menu>;
+    fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu>;
 
-    //fn get_menubar(&self) -> /*Ignored*/Option<gio::MenuModel>;
+    fn get_menubar(&self) -> Option<gio::MenuModel>;
 
     fn get_window_by_id(&self, id: u32) -> Option<Window>;
 
@@ -59,9 +59,9 @@ pub trait GtkApplicationExt: 'static {
 
     fn set_accels_for_action(&self, detailed_action_name: &str, accels: &[&str]);
 
-    //fn set_app_menu(&self, app_menu: /*Ignored*/Option<&gio::MenuModel>);
+    fn set_app_menu<P: IsA<gio::MenuModel>>(&self, app_menu: Option<&P>);
 
-    //fn set_menubar(&self, menubar: /*Ignored*/Option<&gio::MenuModel>);
+    fn set_menubar<P: IsA<gio::MenuModel>>(&self, menubar: Option<&P>);
 
     fn uninhibit(&self, cookie: u32);
 
@@ -113,17 +113,23 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    //fn get_app_menu(&self) -> /*Ignored*/Option<gio::MenuModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_application_get_app_menu() }
-    //}
+    fn get_app_menu(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_application_get_app_menu(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn get_menu_by_id(&self, id: &str) -> /*Ignored*/Option<gio::Menu> {
-    //    unsafe { TODO: call gtk_sys:gtk_application_get_menu_by_id() }
-    //}
+    fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_application_get_menu_by_id(self.as_ref().to_glib_none().0, id.to_glib_none().0))
+        }
+    }
 
-    //fn get_menubar(&self) -> /*Ignored*/Option<gio::MenuModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_application_get_menubar() }
-    //}
+    fn get_menubar(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_application_get_menubar(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_window_by_id(&self, id: u32) -> Option<Window> {
         unsafe {
@@ -167,13 +173,17 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    //fn set_app_menu(&self, app_menu: /*Ignored*/Option<&gio::MenuModel>) {
-    //    unsafe { TODO: call gtk_sys:gtk_application_set_app_menu() }
-    //}
+    fn set_app_menu<P: IsA<gio::MenuModel>>(&self, app_menu: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_application_set_app_menu(self.as_ref().to_glib_none().0, app_menu.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
-    //fn set_menubar(&self, menubar: /*Ignored*/Option<&gio::MenuModel>) {
-    //    unsafe { TODO: call gtk_sys:gtk_application_set_menubar() }
-    //}
+    fn set_menubar<P: IsA<gio::MenuModel>>(&self, menubar: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_application_set_menubar(self.as_ref().to_glib_none().0, menubar.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn uninhibit(&self, cookie: u32) {
         unsafe {

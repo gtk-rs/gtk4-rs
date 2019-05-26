@@ -4,7 +4,10 @@
 
 use AppChooser;
 use Buildable;
+use Menu;
 use Widget;
+use gio;
+use gio_sys;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -61,11 +64,11 @@ pub trait AppChooserWidgetExt: 'static {
 
     fn set_show_recommended(&self, setting: bool);
 
-    //fn connect_application_activated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_application_activated<F: Fn(&Self, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_application_selected<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_application_selected<F: Fn(&Self, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_populate_popup<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_populate_popup<F: Fn(&Self, &Menu, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_default_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -153,17 +156,29 @@ impl<O: IsA<AppChooserWidget>> AppChooserWidgetExt for O {
         }
     }
 
-    //fn connect_application_activated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored application: Gio.AppInfo
-    //}
+    fn connect_application_activated<F: Fn(&Self, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"application-activated\0".as_ptr() as *const _,
+                Some(transmute(application_activated_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_application_selected<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored application: Gio.AppInfo
-    //}
+    fn connect_application_selected<F: Fn(&Self, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"application-selected\0".as_ptr() as *const _,
+                Some(transmute(application_selected_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_populate_popup<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored application: Gio.AppInfo
-    //}
+    fn connect_populate_popup<F: Fn(&Self, &Menu, &gio::AppInfo) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"populate-popup\0".as_ptr() as *const _,
+                Some(transmute(populate_popup_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_property_default_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -212,6 +227,24 @@ impl<O: IsA<AppChooserWidget>> AppChooserWidgetExt for O {
                 Some(transmute(notify_show_recommended_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
+}
+
+unsafe extern "C" fn application_activated_trampoline<P, F: Fn(&P, &gio::AppInfo) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, application: *mut gio_sys::GAppInfo, f: glib_sys::gpointer)
+where P: IsA<AppChooserWidget> {
+    let f: &F = &*(f as *const F);
+    f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(application))
+}
+
+unsafe extern "C" fn application_selected_trampoline<P, F: Fn(&P, &gio::AppInfo) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, application: *mut gio_sys::GAppInfo, f: glib_sys::gpointer)
+where P: IsA<AppChooserWidget> {
+    let f: &F = &*(f as *const F);
+    f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(application))
+}
+
+unsafe extern "C" fn populate_popup_trampoline<P, F: Fn(&P, &Menu, &gio::AppInfo) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, menu: *mut gtk_sys::GtkMenu, application: *mut gio_sys::GAppInfo, f: glib_sys::gpointer)
+where P: IsA<AppChooserWidget> {
+    let f: &F = &*(f as *const F);
+    f(&AppChooserWidget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(menu), &from_glib_borrow(application))
 }
 
 unsafe extern "C" fn notify_default_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAppChooserWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)

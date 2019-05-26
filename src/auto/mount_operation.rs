@@ -4,6 +4,7 @@
 
 use Window;
 use gdk;
+use gio;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -19,7 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MountOperation(Object<gtk_sys::GtkMountOperation, gtk_sys::GtkMountOperationClass, MountOperationClass>);
+    pub struct MountOperation(Object<gtk_sys::GtkMountOperation, gtk_sys::GtkMountOperationClass, MountOperationClass>) @extends gio::MountOperation;
 
     match fn {
         get_type => || gtk_sys::gtk_mount_operation_get_type(),
@@ -27,9 +28,12 @@ glib_wrapper! {
 }
 
 impl MountOperation {
-    //pub fn new<P: IsA<Window>>(parent: Option<&P>) -> MountOperation {
-    //    unsafe { TODO: call gtk_sys:gtk_mount_operation_new() }
-    //}
+    pub fn new<P: IsA<Window>>(parent: Option<&P>) -> MountOperation {
+        assert_initialized_main_thread!();
+        unsafe {
+            gio::MountOperation::from_glib_full(gtk_sys::gtk_mount_operation_new(parent.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 pub const NONE_MOUNT_OPERATION: Option<&MountOperation> = None;

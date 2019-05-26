@@ -12,6 +12,7 @@ use Menu;
 use Popover;
 use ToggleButton;
 use Widget;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -53,7 +54,7 @@ pub trait MenuButtonExt: 'static {
 
     fn get_direction(&self) -> ArrowType;
 
-    //fn get_menu_model(&self) -> /*Ignored*/Option<gio::MenuModel>;
+    fn get_menu_model(&self) -> Option<gio::MenuModel>;
 
     fn get_popover(&self) -> Option<Popover>;
 
@@ -65,7 +66,7 @@ pub trait MenuButtonExt: 'static {
 
     fn set_direction(&self, direction: ArrowType);
 
-    //fn set_menu_model(&self, menu_model: /*Ignored*/Option<&gio::MenuModel>);
+    fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>);
 
     fn set_popover<P: IsA<Widget>>(&self, popover: Option<&P>);
 
@@ -99,9 +100,11 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
         }
     }
 
-    //fn get_menu_model(&self) -> /*Ignored*/Option<gio::MenuModel> {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_button_get_menu_model() }
-    //}
+    fn get_menu_model(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_menu_button_get_menu_model(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_popover(&self) -> Option<Popover> {
         unsafe {
@@ -133,9 +136,11 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
         }
     }
 
-    //fn set_menu_model(&self, menu_model: /*Ignored*/Option<&gio::MenuModel>) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_button_set_menu_model() }
-    //}
+    fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_menu_button_set_menu_model(self.as_ref().to_glib_none().0, menu_model.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_popover<P: IsA<Widget>>(&self, popover: Option<&P>) {
         unsafe {

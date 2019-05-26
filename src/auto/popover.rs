@@ -8,6 +8,7 @@ use Container;
 use PopoverConstraint;
 use PositionType;
 use Widget;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -35,15 +36,18 @@ impl Popover {
         }
     }
 
-    //pub fn new_from_model<P: IsA<Widget>>(relative_to: Option<&P>, model: /*Ignored*/&gio::MenuModel) -> Popover {
-    //    unsafe { TODO: call gtk_sys:gtk_popover_new_from_model() }
-    //}
+    pub fn new_from_model<P: IsA<Widget>, Q: IsA<gio::MenuModel>>(relative_to: Option<&P>, model: &Q) -> Popover {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_popover_new_from_model(relative_to.map(|p| p.as_ref()).to_glib_none().0, model.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 pub const NONE_POPOVER: Option<&Popover> = None;
 
 pub trait PopoverExt: 'static {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::MenuModel>, action_namespace: Option<&str>);
+    fn bind_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>, action_namespace: Option<&str>);
 
     fn get_constrain_to(&self) -> PopoverConstraint;
 
@@ -89,9 +93,11 @@ pub trait PopoverExt: 'static {
 }
 
 impl<O: IsA<Popover>> PopoverExt for O {
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::MenuModel>, action_namespace: Option<&str>) {
-    //    unsafe { TODO: call gtk_sys:gtk_popover_bind_model() }
-    //}
+    fn bind_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>, action_namespace: Option<&str>) {
+        unsafe {
+            gtk_sys::gtk_popover_bind_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0, action_namespace.to_glib_none().0);
+        }
+    }
 
     fn get_constrain_to(&self) -> PopoverConstraint {
         unsafe {

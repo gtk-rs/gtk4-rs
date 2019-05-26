@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gio;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -19,7 +20,7 @@ glib_wrapper! {
 }
 
 impl CssSection {
-    //pub fn new(file: /*Ignored*/Option<&gio::File>, start: /*Ignored*/&CssLocation, end: /*Ignored*/&CssLocation) -> CssSection {
+    //pub fn new<P: IsA<gio::File>>(file: Option<&P>, start: /*Ignored*/&CssLocation, end: /*Ignored*/&CssLocation) -> CssSection {
     //    unsafe { TODO: call gtk_sys:gtk_css_section_new() }
     //}
 
@@ -27,9 +28,11 @@ impl CssSection {
     //    unsafe { TODO: call gtk_sys:gtk_css_section_get_end_location() }
     //}
 
-    //pub fn get_file(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe { TODO: call gtk_sys:gtk_css_section_get_file() }
-    //}
+    pub fn get_file(&self) -> Option<gio::File> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_css_section_get_file(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_parent(&self) -> Option<CssSection> {
         unsafe {

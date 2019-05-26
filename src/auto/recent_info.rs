@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use gio;
 use glib::GString;
 use glib::translate::*;
@@ -22,9 +23,13 @@ glib_wrapper! {
 }
 
 impl RecentInfo {
-    //pub fn create_app_info(&self, app_name: Option<&str>) -> Result</*Ignored*/Option<gio::AppInfo>, Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_recent_info_create_app_info() }
-    //}
+    pub fn create_app_info(&self, app_name: Option<&str>) -> Result<Option<gio::AppInfo>, Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_recent_info_create_app_info(self.to_glib_none().0, app_name.to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     pub fn exists(&self) -> bool {
         unsafe {

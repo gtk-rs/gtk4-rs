@@ -6,7 +6,9 @@ use Buildable;
 use Container;
 use MenuShell;
 use Widget;
+use gio;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -27,9 +29,12 @@ impl MenuBar {
         }
     }
 
-    //pub fn new_from_model(model: /*Ignored*/&gio::MenuModel) -> MenuBar {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_bar_new_from_model() }
-    //}
+    pub fn new_from_model<P: IsA<gio::MenuModel>>(model: &P) -> MenuBar {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_menu_bar_new_from_model(model.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 impl Default for MenuBar {

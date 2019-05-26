@@ -8,6 +8,7 @@ use DirectionType;
 use MenuDirectionType;
 use MenuItem;
 use Widget;
+use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -38,7 +39,7 @@ pub trait MenuShellExt: 'static {
 
     fn append<P: IsA<MenuItem>>(&self, child: &P);
 
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::MenuModel>, action_namespace: Option<&str>, with_separators: bool);
+    fn bind_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>, action_namespace: Option<&str>, with_separators: bool);
 
     fn cancel(&self);
 
@@ -102,9 +103,11 @@ impl<O: IsA<MenuShell>> MenuShellExt for O {
         }
     }
 
-    //fn bind_model(&self, model: /*Ignored*/Option<&gio::MenuModel>, action_namespace: Option<&str>, with_separators: bool) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_shell_bind_model() }
-    //}
+    fn bind_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>, action_namespace: Option<&str>, with_separators: bool) {
+        unsafe {
+            gtk_sys::gtk_menu_shell_bind_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0, action_namespace.to_glib_none().0, with_separators.to_glib());
+        }
+    }
 
     fn cancel(&self) {
         unsafe {

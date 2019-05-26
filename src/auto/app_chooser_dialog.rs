@@ -11,13 +11,17 @@ use DialogFlags;
 use Root;
 use Widget;
 use Window;
+use gio;
 use glib::GString;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -32,9 +36,12 @@ glib_wrapper! {
 }
 
 impl AppChooserDialog {
-    //pub fn new<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, file: /*Ignored*/&gio::File) -> AppChooserDialog {
-    //    unsafe { TODO: call gtk_sys:gtk_app_chooser_dialog_new() }
-    //}
+    pub fn new<P: IsA<Window>, Q: IsA<gio::File>>(parent: Option<&P>, flags: DialogFlags, file: &Q) -> AppChooserDialog {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_app_chooser_dialog_new(parent.map(|p| p.as_ref()).to_glib_none().0, flags.to_glib(), file.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_content_type<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, content_type: &str) -> AppChooserDialog {
         assert_initialized_main_thread!();
@@ -53,7 +60,7 @@ pub trait AppChooserDialogExt: 'static {
 
     fn set_heading(&self, heading: &str);
 
-    //fn get_property_gfile(&self) -> /*Ignored*/Option<gio::File>;
+    fn get_property_gfile(&self) -> Option<gio::File>;
 
     fn connect_property_heading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -77,13 +84,13 @@ impl<O: IsA<AppChooserDialog>> AppChooserDialogExt for O {
         }
     }
 
-    //fn get_property_gfile(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gfile\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_gfile(&self) -> Option<gio::File> {
+        unsafe {
+            let mut value = Value::from_type(<gio::File as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"gfile\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn connect_property_heading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

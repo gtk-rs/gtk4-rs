@@ -5,6 +5,7 @@
 use Buildable;
 use MediaStream;
 use Widget;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -33,9 +34,12 @@ impl Video {
         }
     }
 
-    //pub fn new_for_file(file: /*Ignored*/Option<&gio::File>) -> Video {
-    //    unsafe { TODO: call gtk_sys:gtk_video_new_for_file() }
-    //}
+    pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_video_new_for_file(file.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
@@ -70,7 +74,7 @@ pub const NONE_VIDEO: Option<&Video> = None;
 pub trait VideoExt: 'static {
     fn get_autoplay(&self) -> bool;
 
-    //fn get_file(&self) -> /*Ignored*/Option<gio::File>;
+    fn get_file(&self) -> Option<gio::File>;
 
     fn get_loop(&self) -> bool;
 
@@ -78,7 +82,7 @@ pub trait VideoExt: 'static {
 
     fn set_autoplay(&self, autoplay: bool);
 
-    //fn set_file(&self, file: /*Ignored*/Option<&gio::File>);
+    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
 
     fn set_filename(&self, filename: Option<&str>);
 
@@ -104,9 +108,11 @@ impl<O: IsA<Video>> VideoExt for O {
         }
     }
 
-    //fn get_file(&self) -> /*Ignored*/Option<gio::File> {
-    //    unsafe { TODO: call gtk_sys:gtk_video_get_file() }
-    //}
+    fn get_file(&self) -> Option<gio::File> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_video_get_file(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_loop(&self) -> bool {
         unsafe {
@@ -126,9 +132,11 @@ impl<O: IsA<Video>> VideoExt for O {
         }
     }
 
-    //fn set_file(&self, file: /*Ignored*/Option<&gio::File>) {
-    //    unsafe { TODO: call gtk_sys:gtk_video_set_file() }
-    //}
+    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_video_set_file(self.as_ref().to_glib_none().0, file.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {

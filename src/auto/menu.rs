@@ -8,6 +8,7 @@ use Container;
 use MenuShell;
 use ScrollType;
 use Widget;
+use gio;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -41,9 +42,12 @@ impl Menu {
         }
     }
 
-    //pub fn new_from_model(model: /*Ignored*/&gio::MenuModel) -> Menu {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_new_from_model() }
-    //}
+    pub fn new_from_model<P: IsA<gio::MenuModel>>(model: &P) -> Menu {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_menu_new_from_model(model.as_ref().to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn get_for_attach_widget<P: IsA<Widget>>(widget: &P) -> Vec<Widget> {
         skip_assert_initialized!();

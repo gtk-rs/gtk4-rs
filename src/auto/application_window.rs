@@ -10,6 +10,7 @@ use Root;
 use ShortcutsWindow;
 use Widget;
 use Window;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -22,7 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct ApplicationWindow(Object<gtk_sys::GtkApplicationWindow, gtk_sys::GtkApplicationWindowClass, ApplicationWindowClass>) @extends Window, Bin, Container, Widget, @implements Buildable, Root;
+    pub struct ApplicationWindow(Object<gtk_sys::GtkApplicationWindow, gtk_sys::GtkApplicationWindowClass, ApplicationWindowClass>) @extends Window, Bin, Container, Widget, @implements Buildable, Root, gio::ActionGroup, gio::ActionMap;
 
     match fn {
         get_type => || gtk_sys::gtk_application_window_get_type(),
