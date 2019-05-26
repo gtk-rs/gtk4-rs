@@ -74,7 +74,7 @@ pub trait BuilderExt: 'static {
 
     //fn connect_signals(&self, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
-    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, &Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
+    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, Option<&glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
     fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P);
 
@@ -150,7 +150,7 @@ impl<O: IsA<Builder>> BuilderExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_builder_connect_signals() }
     //}
 
-    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, &Option<glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
+    //fn connect_signals_full(&self, func: /*Unimplemented*/FnMut(&Builder, &glib::Object, &str, &str, Option<&glib::Object>, /*Ignored*/glib::ConnectFlags), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
     //    unsafe { TODO: call gtk_sys:gtk_builder_connect_signals_full() }
     //}
 

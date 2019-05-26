@@ -45,6 +45,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -111,9 +112,9 @@ pub trait WidgetExt: 'static {
 
     fn contains(&self, x: f64, y: f64) -> bool;
 
-    //fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context>;
+    fn create_pango_context(&self) -> Option<pango::Context>;
 
-    //fn create_pango_layout(&self, text: Option<&str>) -> /*Ignored*/Option<pango::Layout>;
+    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout>;
 
     fn destroy(&self);
 
@@ -209,7 +210,7 @@ pub trait WidgetExt: 'static {
 
     fn get_focus_on_click(&self) -> bool;
 
-    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap>;
+    fn get_font_map(&self) -> Option<pango::FontMap>;
 
     fn get_font_options(&self) -> Option<cairo::FontOptions>;
 
@@ -249,7 +250,7 @@ pub trait WidgetExt: 'static {
 
     fn get_overflow(&self) -> Overflow;
 
-    //fn get_pango_context(&self) -> /*Ignored*/Option<pango::Context>;
+    fn get_pango_context(&self) -> Option<pango::Context>;
 
     fn get_parent(&self) -> Option<Widget>;
 
@@ -407,7 +408,7 @@ pub trait WidgetExt: 'static {
 
     fn set_focus_on_click(&self, focus_on_click: bool);
 
-    //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>);
+    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>);
 
     fn set_font_options(&self, options: Option<&cairo::FontOptions>);
 
@@ -739,13 +740,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_context() }
-    //}
+    fn create_pango_context(&self) -> Option<pango::Context> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_widget_create_pango_context(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn create_pango_layout(&self, text: Option<&str>) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_layout() }
-    //}
+    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_widget_create_pango_layout(self.as_ref().to_glib_none().0, text.to_glib_none().0))
+        }
+    }
 
     fn destroy(&self) {
         unsafe {
@@ -1013,9 +1018,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_map() }
-    //}
+    fn get_font_map(&self) -> Option<pango::FontMap> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_font_map(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_font_options(&self) -> Option<cairo::FontOptions> {
         unsafe {
@@ -1129,9 +1136,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_pango_context() }
-    //}
+    fn get_pango_context(&self) -> Option<pango::Context> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_pango_context(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_parent(&self) -> Option<Widget> {
         unsafe {
@@ -1608,9 +1617,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_map() }
-    //}
+    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_widget_set_font_map(self.as_ref().to_glib_none().0, font_map.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_font_options(&self, options: Option<&cairo::FontOptions>) {
         unsafe {

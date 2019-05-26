@@ -17,6 +17,7 @@ use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -59,7 +60,7 @@ pub trait ScaleExt: 'static {
 
     fn get_has_origin(&self) -> bool;
 
-    //fn get_layout(&self) -> /*Ignored*/Option<pango::Layout>;
+    fn get_layout(&self) -> Option<pango::Layout>;
 
     fn get_layout_offsets(&self) -> (i32, i32);
 
@@ -115,9 +116,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    //fn get_layout(&self) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call gtk_sys:gtk_scale_get_layout() }
-    //}
+    fn get_layout(&self) -> Option<pango::Layout> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_scale_get_layout(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_layout_offsets(&self) -> (i32, i32) {
         unsafe {

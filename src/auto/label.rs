@@ -21,6 +21,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -53,23 +54,23 @@ impl Label {
 pub const NONE_LABEL: Option<&Label> = None;
 
 pub trait LabelExt: 'static {
-    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList>;
+    fn get_attributes(&self) -> Option<pango::AttrList>;
 
     fn get_current_uri(&self) -> Option<GString>;
 
-    //fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode;
+    fn get_ellipsize(&self) -> pango::EllipsizeMode;
 
     fn get_justify(&self) -> Justification;
 
     fn get_label(&self) -> Option<GString>;
 
-    //fn get_layout(&self) -> /*Ignored*/Option<pango::Layout>;
+    fn get_layout(&self) -> Option<pango::Layout>;
 
     fn get_layout_offsets(&self) -> (i32, i32);
 
     fn get_line_wrap(&self) -> bool;
 
-    //fn get_line_wrap_mode(&self) -> /*Ignored*/pango::WrapMode;
+    fn get_line_wrap_mode(&self) -> pango::WrapMode;
 
     fn get_lines(&self) -> i32;
 
@@ -101,9 +102,9 @@ pub trait LabelExt: 'static {
 
     fn select_region(&self, start_offset: i32, end_offset: i32);
 
-    //fn set_attributes(&self, attrs: /*Ignored*/Option<&pango::AttrList>);
+    fn set_attributes(&self, attrs: Option<&pango::AttrList>);
 
-    //fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode);
+    fn set_ellipsize(&self, mode: pango::EllipsizeMode);
 
     fn set_justify(&self, jtype: Justification);
 
@@ -111,7 +112,7 @@ pub trait LabelExt: 'static {
 
     fn set_line_wrap(&self, wrap: bool);
 
-    //fn set_line_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode);
+    fn set_line_wrap_mode(&self, wrap_mode: pango::WrapMode);
 
     fn set_lines(&self, lines: i32);
 
@@ -153,9 +154,9 @@ pub trait LabelExt: 'static {
 
     fn set_property_wrap(&self, wrap: bool);
 
-    //fn get_property_wrap_mode(&self) -> /*Ignored*/pango::WrapMode;
+    fn get_property_wrap_mode(&self) -> pango::WrapMode;
 
-    //fn set_property_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode);
+    fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode);
 
     fn connect_activate_current_link<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -217,9 +218,11 @@ pub trait LabelExt: 'static {
 }
 
 impl<O: IsA<Label>> LabelExt for O {
-    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
-    //    unsafe { TODO: call gtk_sys:gtk_label_get_attributes() }
-    //}
+    fn get_attributes(&self) -> Option<pango::AttrList> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_label_get_attributes(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_current_uri(&self) -> Option<GString> {
         unsafe {
@@ -227,9 +230,11 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call gtk_sys:gtk_label_get_ellipsize() }
-    //}
+    fn get_ellipsize(&self) -> pango::EllipsizeMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_label_get_ellipsize(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_justify(&self) -> Justification {
         unsafe {
@@ -243,9 +248,11 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn get_layout(&self) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call gtk_sys:gtk_label_get_layout() }
-    //}
+    fn get_layout(&self) -> Option<pango::Layout> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_label_get_layout(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_layout_offsets(&self) -> (i32, i32) {
         unsafe {
@@ -262,9 +269,11 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn get_line_wrap_mode(&self) -> /*Ignored*/pango::WrapMode {
-    //    unsafe { TODO: call gtk_sys:gtk_label_get_line_wrap_mode() }
-    //}
+    fn get_line_wrap_mode(&self) -> pango::WrapMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_label_get_line_wrap_mode(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_lines(&self) -> i32 {
         unsafe {
@@ -359,13 +368,17 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn set_attributes(&self, attrs: /*Ignored*/Option<&pango::AttrList>) {
-    //    unsafe { TODO: call gtk_sys:gtk_label_set_attributes() }
-    //}
+    fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
+        unsafe {
+            gtk_sys::gtk_label_set_attributes(self.as_ref().to_glib_none().0, attrs.to_glib_none().0);
+        }
+    }
 
-    //fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode) {
-    //    unsafe { TODO: call gtk_sys:gtk_label_set_ellipsize() }
-    //}
+    fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
+        unsafe {
+            gtk_sys::gtk_label_set_ellipsize(self.as_ref().to_glib_none().0, mode.to_glib());
+        }
+    }
 
     fn set_justify(&self, jtype: Justification) {
         unsafe {
@@ -385,9 +398,11 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn set_line_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode) {
-    //    unsafe { TODO: call gtk_sys:gtk_label_set_line_wrap_mode() }
-    //}
+    fn set_line_wrap_mode(&self, wrap_mode: pango::WrapMode) {
+        unsafe {
+            gtk_sys::gtk_label_set_line_wrap_mode(self.as_ref().to_glib_none().0, wrap_mode.to_glib());
+        }
+    }
 
     fn set_lines(&self, lines: i32) {
         unsafe {
@@ -515,19 +530,19 @@ impl<O: IsA<Label>> LabelExt for O {
         }
     }
 
-    //fn get_property_wrap_mode(&self) -> /*Ignored*/pango::WrapMode {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_wrap_mode(&self) -> pango::WrapMode {
+        unsafe {
+            let mut value = Value::from_type(<pango::WrapMode as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, Value::from(&wrap_mode).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, Value::from(&wrap_mode).to_glib_none().0);
+        }
+    }
 
     fn connect_activate_current_link<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

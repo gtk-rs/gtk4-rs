@@ -21,6 +21,7 @@ use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
@@ -192,9 +193,12 @@ pub fn get_debug_flags() -> u32 {
     }
 }
 
-//pub fn get_default_language() -> /*Ignored*/Option<pango::Language> {
-//    unsafe { TODO: call gtk_sys:gtk_get_default_language() }
-//}
+pub fn get_default_language() -> Option<pango::Language> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_none(gtk_sys::gtk_get_default_language())
+    }
+}
 
 //pub fn get_event_target(event: /*Ignored*/&gdk::Event) -> Option<Widget> {
 //    unsafe { TODO: call gtk_sys:gtk_get_event_target() }
@@ -403,13 +407,19 @@ pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(context: &P, cr: 
     }
 }
 
-//pub fn render_insertion_cursor<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout, index: i32, direction: /*Ignored*/pango::Direction) {
-//    unsafe { TODO: call gtk_sys:gtk_render_insertion_cursor() }
-//}
+pub fn render_insertion_cursor<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: &pango::Layout, index: i32, direction: pango::Direction) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_insertion_cursor(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, layout.to_glib_none().0, index, direction.to_glib());
+    }
+}
 
-//pub fn render_layout<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: /*Ignored*/&pango::Layout) {
-//    unsafe { TODO: call gtk_sys:gtk_render_layout() }
-//}
+pub fn render_layout<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x: f64, y: f64, layout: &pango::Layout) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_render_layout(context.as_ref().to_glib_none().0, mut_override(cr.to_glib_none().0), x, y, layout.to_glib_none().0);
+    }
+}
 
 pub fn render_line<P: IsA<StyleContext>>(context: &P, cr: &cairo::Context, x0: f64, y0: f64, x1: f64, y1: f64) {
     skip_assert_initialized!();

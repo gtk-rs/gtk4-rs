@@ -10,6 +10,7 @@ use Widget;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
+use pango;
 use std::fmt;
 
 glib_wrapper! {
@@ -23,7 +24,7 @@ glib_wrapper! {
 pub const NONE_TOOL_SHELL: Option<&ToolShell> = None;
 
 pub trait ToolShellExt: 'static {
-    //fn get_ellipsize_mode(&self) -> /*Ignored*/pango::EllipsizeMode;
+    fn get_ellipsize_mode(&self) -> pango::EllipsizeMode;
 
     fn get_orientation(&self) -> Orientation;
 
@@ -39,9 +40,11 @@ pub trait ToolShellExt: 'static {
 }
 
 impl<O: IsA<ToolShell>> ToolShellExt for O {
-    //fn get_ellipsize_mode(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call gtk_sys:gtk_tool_shell_get_ellipsize_mode() }
-    //}
+    fn get_ellipsize_mode(&self) -> pango::EllipsizeMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_tool_shell_get_ellipsize_mode(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_orientation(&self) -> Orientation {
         unsafe {

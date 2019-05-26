@@ -6,6 +6,7 @@ use PageSetup;
 use cairo;
 use glib::translate::*;
 use gtk_sys;
+use pango;
 use std::fmt;
 use std::mem;
 
@@ -18,13 +19,17 @@ glib_wrapper! {
 }
 
 impl PrintContext {
-    //pub fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_context() }
-    //}
+    pub fn create_pango_context(&self) -> Option<pango::Context> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_print_context_create_pango_context(self.to_glib_none().0))
+        }
+    }
 
-    //pub fn create_pango_layout(&self) -> /*Ignored*/Option<pango::Layout> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_layout() }
-    //}
+    pub fn create_pango_layout(&self) -> Option<pango::Layout> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_print_context_create_pango_layout(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_cairo_context(&self) -> Option<cairo::Context> {
         unsafe {
@@ -67,9 +72,11 @@ impl PrintContext {
         }
     }
 
-    //pub fn get_pango_fontmap(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_pango_fontmap() }
-    //}
+    pub fn get_pango_fontmap(&self) -> Option<pango::FontMap> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_print_context_get_pango_fontmap(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_width(&self) -> f64 {
         unsafe {

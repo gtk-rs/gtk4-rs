@@ -7,7 +7,7 @@ use Widget;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
-use glib::object::ObjectType;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;

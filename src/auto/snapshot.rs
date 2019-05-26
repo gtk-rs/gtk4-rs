@@ -6,6 +6,7 @@ use StyleContext;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
+use pango;
 use std::fmt;
 
 glib_wrapper! {
@@ -40,7 +41,7 @@ impl Snapshot {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_inset_shadow() }
     //}
 
-    //pub fn append_layout(&self, layout: /*Ignored*/&pango::Layout, color: /*Ignored*/&gdk::RGBA) {
+    //pub fn append_layout(&self, layout: &pango::Layout, color: /*Ignored*/&gdk::RGBA) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_layout() }
     //}
 
@@ -148,13 +149,17 @@ impl Snapshot {
         }
     }
 
-    //pub fn render_insertion_cursor<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: /*Ignored*/&pango::Layout, index: i32, direction: /*Ignored*/pango::Direction) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_render_insertion_cursor() }
-    //}
+    pub fn render_insertion_cursor<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: &pango::Layout, index: i32, direction: pango::Direction) {
+        unsafe {
+            gtk_sys::gtk_snapshot_render_insertion_cursor(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, layout.to_glib_none().0, index, direction.to_glib());
+        }
+    }
 
-    //pub fn render_layout<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: /*Ignored*/&pango::Layout) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_render_layout() }
-    //}
+    pub fn render_layout<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: &pango::Layout) {
+        unsafe {
+            gtk_sys::gtk_snapshot_render_layout(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, layout.to_glib_none().0);
+        }
+    }
 
     pub fn restore(&self) {
         unsafe {

@@ -33,6 +33,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -131,7 +132,7 @@ pub trait TextViewExt: 'static {
 
     fn get_right_margin(&self) -> i32;
 
-    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray>;
+    fn get_tabs(&self) -> Option<pango::TabArray>;
 
     fn get_top_margin(&self) -> i32;
 
@@ -193,7 +194,7 @@ pub trait TextViewExt: 'static {
 
     fn set_right_margin(&self, right_margin: i32);
 
-    //fn set_tabs(&self, tabs: /*Ignored*/&mut pango::TabArray);
+    fn set_tabs(&self, tabs: &mut pango::TabArray);
 
     fn set_top_margin(&self, top_margin: i32);
 
@@ -505,9 +506,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
-    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_tabs() }
-    //}
+    fn get_tabs(&self) -> Option<pango::TabArray> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_text_view_get_tabs(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_top_margin(&self) -> i32 {
         unsafe {
@@ -685,9 +688,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn set_tabs(&self, tabs: /*Ignored*/&mut pango::TabArray) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_view_set_tabs() }
-    //}
+    fn set_tabs(&self, tabs: &mut pango::TabArray) {
+        unsafe {
+            gtk_sys::gtk_text_view_set_tabs(self.as_ref().to_glib_none().0, tabs.to_glib_none_mut().0);
+        }
+    }
 
     fn set_top_margin(&self, top_margin: i32) {
         unsafe {

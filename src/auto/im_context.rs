@@ -17,6 +17,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -42,7 +43,7 @@ pub trait IMContextExt: 'static {
 
     fn focus_out(&self);
 
-    //fn get_preedit_string(&self, attrs: /*Ignored*/pango::AttrList) -> (GString, i32);
+    fn get_preedit_string(&self) -> (GString, pango::AttrList, i32);
 
     fn get_surrounding(&self) -> Option<(GString, i32)>;
 
@@ -104,9 +105,15 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    //fn get_preedit_string(&self, attrs: /*Ignored*/pango::AttrList) -> (GString, i32) {
-    //    unsafe { TODO: call gtk_sys:gtk_im_context_get_preedit_string() }
-    //}
+    fn get_preedit_string(&self) -> (GString, pango::AttrList, i32) {
+        unsafe {
+            let mut str = ptr::null_mut();
+            let mut attrs = ptr::null_mut();
+            let mut cursor_pos = mem::uninitialized();
+            gtk_sys::gtk_im_context_get_preedit_string(self.as_ref().to_glib_none().0, &mut str, &mut attrs, &mut cursor_pos);
+            (from_glib_full(str), from_glib_full(attrs), cursor_pos)
+        }
+    }
 
     fn get_surrounding(&self) -> Option<(GString, i32)> {
         unsafe {

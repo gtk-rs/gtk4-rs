@@ -150,7 +150,7 @@ pub trait PrintOperationExt: 'static {
 
     fn connect_paginate<F: Fn(&Self, &PrintContext) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_preview<F: Fn(&Self, &PrintOperationPreview, &PrintContext, &Option<Window>) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_preview<F: Fn(&Self, &PrintOperationPreview, &PrintContext, Option<&Window>) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_request_page_setup<F: Fn(&Self, &PrintContext, i32, &PageSetup) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -510,7 +510,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn connect_preview<F: Fn(&Self, &PrintOperationPreview, &PrintContext, &Option<Window>) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_preview<F: Fn(&Self, &PrintOperationPreview, &PrintContext, Option<&Window>) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"preview\0".as_ptr() as *const _,
@@ -729,10 +729,10 @@ where P: IsA<PrintOperation> {
     f(&PrintOperation::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context)).to_glib()
 }
 
-unsafe extern "C" fn preview_trampoline<P, F: Fn(&P, &PrintOperationPreview, &PrintContext, &Option<Window>) -> bool + 'static>(this: *mut gtk_sys::GtkPrintOperation, preview: *mut gtk_sys::GtkPrintOperationPreview, context: *mut gtk_sys::GtkPrintContext, parent: *mut gtk_sys::GtkWindow, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn preview_trampoline<P, F: Fn(&P, &PrintOperationPreview, &PrintContext, Option<&Window>) -> bool + 'static>(this: *mut gtk_sys::GtkPrintOperation, preview: *mut gtk_sys::GtkPrintOperationPreview, context: *mut gtk_sys::GtkPrintContext, parent: *mut gtk_sys::GtkWindow, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<PrintOperation> {
     let f: &F = &*(f as *const F);
-    f(&PrintOperation::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(preview), &from_glib_borrow(context), &from_glib_borrow(parent)).to_glib()
+    f(&PrintOperation::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(preview), &from_glib_borrow(context), Option::<Window>::from_glib_borrow(parent).as_ref()).to_glib()
 }
 
 unsafe extern "C" fn request_page_setup_trampoline<P, F: Fn(&P, &PrintContext, i32, &PageSetup) + 'static>(this: *mut gtk_sys::GtkPrintOperation, context: *mut gtk_sys::GtkPrintContext, page_nr: libc::c_int, setup: *mut gtk_sys::GtkPageSetup, f: glib_sys::gpointer)

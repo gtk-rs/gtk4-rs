@@ -16,6 +16,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -100,9 +101,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_font(&self, font: Option<&str>);
 
-    //fn get_property_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription>;
+    fn get_property_font_desc(&self) -> Option<pango::FontDescription>;
 
-    //fn set_property_font_desc(&self, font_desc: /*Ignored*/Option<&pango::FontDescription>);
+    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>);
 
     fn get_property_font_features(&self) -> Option<GString>;
 
@@ -242,9 +243,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_size_set(&self, size_set: bool);
 
-    //fn get_property_stretch(&self) -> /*Ignored*/pango::Stretch;
+    fn get_property_stretch(&self) -> pango::Stretch;
 
-    //fn set_property_stretch(&self, stretch: /*Ignored*/pango::Stretch);
+    fn set_property_stretch(&self, stretch: pango::Stretch);
 
     fn get_property_stretch_set(&self) -> bool;
 
@@ -266,25 +267,25 @@ pub trait TextTagExt: 'static {
 
     fn set_property_strikethrough_set(&self, strikethrough_set: bool);
 
-    //fn get_property_style(&self) -> /*Ignored*/pango::Style;
+    fn get_property_style(&self) -> pango::Style;
 
-    //fn set_property_style(&self, style: /*Ignored*/pango::Style);
+    fn set_property_style(&self, style: pango::Style);
 
     fn get_property_style_set(&self) -> bool;
 
     fn set_property_style_set(&self, style_set: bool);
 
-    //fn get_property_tabs(&self) -> /*Ignored*/Option<pango::TabArray>;
+    fn get_property_tabs(&self) -> Option<pango::TabArray>;
 
-    //fn set_property_tabs(&self, tabs: /*Ignored*/Option<&pango::TabArray>);
+    fn set_property_tabs(&self, tabs: Option<&pango::TabArray>);
 
     fn get_property_tabs_set(&self) -> bool;
 
     fn set_property_tabs_set(&self, tabs_set: bool);
 
-    //fn get_property_underline(&self) -> /*Ignored*/pango::Underline;
+    fn get_property_underline(&self) -> pango::Underline;
 
-    //fn set_property_underline(&self, underline: /*Ignored*/pango::Underline);
+    fn set_property_underline(&self, underline: pango::Underline);
 
     //fn get_property_underline_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
 
@@ -298,9 +299,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_underline_set(&self, underline_set: bool);
 
-    //fn get_property_variant(&self) -> /*Ignored*/pango::Variant;
+    fn get_property_variant(&self) -> pango::Variant;
 
-    //fn set_property_variant(&self, variant: /*Ignored*/pango::Variant);
+    fn set_property_variant(&self, variant: pango::Variant);
 
     fn get_property_variant_set(&self) -> bool;
 
@@ -670,19 +671,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
+        unsafe {
+            let mut value = Value::from_type(<pango::FontDescription as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_font_desc(&self, font_desc: /*Ignored*/Option<&pango::FontDescription>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, Value::from(font_desc).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, Value::from(font_desc).to_glib_none().0);
+        }
+    }
 
     fn get_property_font_features(&self) -> Option<GString> {
         unsafe {
@@ -1166,19 +1167,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_stretch(&self) -> /*Ignored*/pango::Stretch {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_stretch(&self) -> pango::Stretch {
+        unsafe {
+            let mut value = Value::from_type(<pango::Stretch as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_stretch(&self, stretch: /*Ignored*/pango::Stretch) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, Value::from(&stretch).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_stretch(&self, stretch: pango::Stretch) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, Value::from(&stretch).to_glib_none().0);
+        }
+    }
 
     fn get_property_stretch_set(&self) -> bool {
         unsafe {
@@ -1250,19 +1251,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_style(&self) -> /*Ignored*/pango::Style {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_style(&self) -> pango::Style {
+        unsafe {
+            let mut value = Value::from_type(<pango::Style as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_style(&self, style: /*Ignored*/pango::Style) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, Value::from(&style).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_style(&self, style: pango::Style) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, Value::from(&style).to_glib_none().0);
+        }
+    }
 
     fn get_property_style_set(&self) -> bool {
         unsafe {
@@ -1278,19 +1279,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tabs\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_tabs(&self) -> Option<pango::TabArray> {
+        unsafe {
+            let mut value = Value::from_type(<pango::TabArray as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tabs\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_tabs(&self, tabs: /*Ignored*/Option<&pango::TabArray>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tabs\0".as_ptr() as *const _, Value::from(tabs).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_tabs(&self, tabs: Option<&pango::TabArray>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tabs\0".as_ptr() as *const _, Value::from(tabs).to_glib_none().0);
+        }
+    }
 
     fn get_property_tabs_set(&self) -> bool {
         unsafe {
@@ -1306,19 +1307,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_underline(&self) -> /*Ignored*/pango::Underline {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_underline(&self) -> pango::Underline {
+        unsafe {
+            let mut value = Value::from_type(<pango::Underline as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_underline(&self, underline: /*Ignored*/pango::Underline) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, Value::from(&underline).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_underline(&self, underline: pango::Underline) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, Value::from(&underline).to_glib_none().0);
+        }
+    }
 
     //fn get_property_underline_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
     //    unsafe {
@@ -1362,19 +1363,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_variant(&self) -> /*Ignored*/pango::Variant {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_variant(&self) -> pango::Variant {
+        unsafe {
+            let mut value = Value::from_type(<pango::Variant as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_variant(&self, variant: /*Ignored*/pango::Variant) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, Value::from(&variant).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_variant(&self, variant: pango::Variant) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, Value::from(&variant).to_glib_none().0);
+        }
+    }
 
     fn get_property_variant_set(&self) -> bool {
         unsafe {

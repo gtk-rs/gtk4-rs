@@ -27,6 +27,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -66,7 +67,7 @@ pub const NONE_ENTRY: Option<&Entry> = None;
 pub trait EntryExt: 'static {
     fn get_activates_default(&self) -> bool;
 
-    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList>;
+    fn get_attributes(&self) -> Option<pango::AttrList>;
 
     fn get_buffer(&self) -> EntryBuffer;
 
@@ -112,7 +113,7 @@ pub trait EntryExt: 'static {
 
     fn get_progress_pulse_step(&self) -> f64;
 
-    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray>;
+    fn get_tabs(&self) -> Option<pango::TabArray>;
 
     fn get_text_length(&self) -> u16;
 
@@ -126,7 +127,7 @@ pub trait EntryExt: 'static {
 
     fn set_activates_default(&self, setting: bool);
 
-    //fn set_attributes(&self, attrs: /*Ignored*/&pango::AttrList);
+    fn set_attributes(&self, attrs: &pango::AttrList);
 
     fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P);
 
@@ -166,7 +167,7 @@ pub trait EntryExt: 'static {
 
     fn set_progress_pulse_step(&self, fraction: f64);
 
-    //fn set_tabs(&self, tabs: /*Ignored*/Option<&mut pango::TabArray>);
+    fn set_tabs(&self, tabs: Option<&mut pango::TabArray>);
 
     fn set_visibility(&self, visible: bool);
 
@@ -352,9 +353,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_get_attributes() }
-    //}
+    fn get_attributes(&self) -> Option<pango::AttrList> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_entry_get_attributes(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_buffer(&self) -> EntryBuffer {
         unsafe {
@@ -484,9 +487,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_get_tabs() }
-    //}
+    fn get_tabs(&self) -> Option<pango::TabArray> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_entry_get_tabs(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_text_length(&self) -> u16 {
         unsafe {
@@ -524,9 +529,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_attributes(&self, attrs: /*Ignored*/&pango::AttrList) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_attributes() }
-    //}
+    fn set_attributes(&self, attrs: &pango::AttrList) {
+        unsafe {
+            gtk_sys::gtk_entry_set_attributes(self.as_ref().to_glib_none().0, attrs.to_glib_none().0);
+        }
+    }
 
     fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
@@ -640,9 +647,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_tabs(&self, tabs: /*Ignored*/Option<&mut pango::TabArray>) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_tabs() }
-    //}
+    fn set_tabs(&self, tabs: Option<&mut pango::TabArray>) {
+        unsafe {
+            gtk_sys::gtk_entry_set_tabs(self.as_ref().to_glib_none().0, tabs.to_glib_none_mut().0);
+        }
+    }
 
     fn set_visibility(&self, visible: bool) {
         unsafe {

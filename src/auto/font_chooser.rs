@@ -12,6 +12,7 @@ use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use libc;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -29,15 +30,15 @@ pub const NONE_FONT_CHOOSER: Option<&FontChooser> = None;
 pub trait FontChooserExt: 'static {
     fn get_font(&self) -> Option<GString>;
 
-    //fn get_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription>;
+    fn get_font_desc(&self) -> Option<pango::FontDescription>;
 
-    //fn get_font_face(&self) -> /*Ignored*/Option<pango::FontFace>;
+    fn get_font_face(&self) -> Option<pango::FontFace>;
 
-    //fn get_font_family(&self) -> /*Ignored*/Option<pango::FontFamily>;
+    fn get_font_family(&self) -> Option<pango::FontFamily>;
 
     fn get_font_features(&self) -> Option<GString>;
 
-    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap>;
+    fn get_font_map(&self) -> Option<pango::FontMap>;
 
     fn get_font_size(&self) -> i32;
 
@@ -49,13 +50,13 @@ pub trait FontChooserExt: 'static {
 
     fn get_show_preview_entry(&self) -> bool;
 
-    //fn set_filter_func(&self, filter: /*Unimplemented*/Fn(/*Ignored*/pango::FontFamily, /*Ignored*/pango::FontFace) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
+    fn set_filter_func(&self, filter: Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>);
 
     fn set_font(&self, fontname: &str);
 
-    //fn set_font_desc(&self, font_desc: /*Ignored*/&pango::FontDescription);
+    fn set_font_desc(&self, font_desc: &pango::FontDescription);
 
-    //fn set_font_map(&self, fontmap: /*Ignored*/Option<&pango::FontMap>);
+    fn set_font_map<P: IsA<pango::FontMap>>(&self, fontmap: Option<&P>);
 
     fn set_language(&self, language: &str);
 
@@ -89,17 +90,23 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    //fn get_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription> {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_desc() }
-    //}
+    fn get_font_desc(&self) -> Option<pango::FontDescription> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_font_chooser_get_font_desc(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn get_font_face(&self) -> /*Ignored*/Option<pango::FontFace> {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_face() }
-    //}
+    fn get_font_face(&self) -> Option<pango::FontFace> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_font_chooser_get_font_face(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn get_font_family(&self) -> /*Ignored*/Option<pango::FontFamily> {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_family() }
-    //}
+    fn get_font_family(&self) -> Option<pango::FontFamily> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_font_chooser_get_font_family(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_font_features(&self) -> Option<GString> {
         unsafe {
@@ -107,9 +114,11 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap> {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_get_font_map() }
-    //}
+    fn get_font_map(&self) -> Option<pango::FontMap> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_font_chooser_get_font_map(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_font_size(&self) -> i32 {
         unsafe {
@@ -141,9 +150,29 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    //fn set_filter_func(&self, filter: /*Unimplemented*/Fn(/*Ignored*/pango::FontFamily, /*Ignored*/pango::FontFace) -> bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_filter_func() }
-    //}
+    fn set_filter_func(&self, filter: Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>) {
+        let filter_data: Box_<Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>> = Box::new(filter);
+        unsafe extern "C" fn filter_func(family: *const pango_sys::PangoFontFamily, face: *const pango_sys::PangoFontFace, data: glib_sys::gpointer) -> glib_sys::gboolean {
+            let family = from_glib_borrow(family);
+            let face = from_glib_borrow(face);
+            let callback: &Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>> = &*(data as *mut _);
+            let res = if let Some(ref callback) = *callback {
+                callback(&family, &face)
+            } else {
+                panic!("cannot get closure...")
+            };
+            res.to_glib()
+        }
+        let filter = if filter_data.is_some() { Some(filter_func as _) } else { None };
+        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+            let _callback: Box_<Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call3 = Some(destroy_func as _);
+        let super_callback0: Box_<Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>> = filter_data;
+        unsafe {
+            gtk_sys::gtk_font_chooser_set_filter_func(self.as_ref().to_glib_none().0, filter, Box::into_raw(super_callback0) as *mut _, destroy_call3);
+        }
+    }
 
     fn set_font(&self, fontname: &str) {
         unsafe {
@@ -151,13 +180,17 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    //fn set_font_desc(&self, font_desc: /*Ignored*/&pango::FontDescription) {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_font_desc() }
-    //}
+    fn set_font_desc(&self, font_desc: &pango::FontDescription) {
+        unsafe {
+            gtk_sys::gtk_font_chooser_set_font_desc(self.as_ref().to_glib_none().0, font_desc.to_glib_none().0);
+        }
+    }
 
-    //fn set_font_map(&self, fontmap: /*Ignored*/Option<&pango::FontMap>) {
-    //    unsafe { TODO: call gtk_sys:gtk_font_chooser_set_font_map() }
-    //}
+    fn set_font_map<P: IsA<pango::FontMap>>(&self, fontmap: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_font_chooser_set_font_map(self.as_ref().to_glib_none().0, fontmap.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_language(&self, language: &str) {
         unsafe {

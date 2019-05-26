@@ -97,7 +97,7 @@ pub trait ListBoxExt: 'static {
 
     fn set_filter_func(&self, filter_func: Option<Box<dyn Fn(&ListBoxRow) -> bool + 'static>>);
 
-    fn set_header_func(&self, update_header: Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>>);
+    fn set_header_func(&self, update_header: Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>);
 
     fn set_placeholder<P: IsA<Widget>>(&self, placeholder: Option<&P>);
 
@@ -125,7 +125,7 @@ pub trait ListBoxExt: 'static {
 
     fn connect_row_activated<F: Fn(&Self, &ListBoxRow) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_row_selected<F: Fn(&Self, &Option<ListBoxRow>) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_row_selected<F: Fn(&Self, Option<&ListBoxRow>) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -326,24 +326,24 @@ impl<O: IsA<ListBox>> ListBoxExt for O {
         }
     }
 
-    fn set_header_func(&self, update_header: Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>>) {
-        let update_header_data: Box_<Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>>> = Box::new(update_header);
+    fn set_header_func(&self, update_header: Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>) {
+        let update_header_data: Box_<Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>> = Box::new(update_header);
         unsafe extern "C" fn update_header_func(row: *mut gtk_sys::GtkListBoxRow, before: *mut gtk_sys::GtkListBoxRow, user_data: glib_sys::gpointer) {
             let row = from_glib_borrow(row);
-            let before = from_glib_borrow(before);
-            let callback: &Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>> = &*(user_data as *mut _);
+            let before: Option<ListBoxRow> = from_glib_borrow(before);
+            let callback: &Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>> = &*(user_data as *mut _);
             if let Some(ref callback) = *callback {
-                callback(&row, &before)
+                callback(&row, before.as_ref())
             } else {
                 panic!("cannot get closure...")
             };
         }
         let update_header = if update_header_data.is_some() { Some(update_header_func as _) } else { None };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>>> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>> = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&ListBoxRow, &Option<ListBoxRow>) + 'static>>> = update_header_data;
+        let super_callback0: Box_<Option<Box<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>> = update_header_data;
         unsafe {
             gtk_sys::gtk_list_box_set_header_func(self.as_ref().to_glib_none().0, update_header, Box::into_raw(super_callback0) as *mut _, destroy_call3);
         }
@@ -449,7 +449,7 @@ impl<O: IsA<ListBox>> ListBoxExt for O {
         }
     }
 
-    fn connect_row_selected<F: Fn(&Self, &Option<ListBoxRow>) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_row_selected<F: Fn(&Self, Option<&ListBoxRow>) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"row-selected\0".as_ptr() as *const _,
@@ -552,10 +552,10 @@ where P: IsA<ListBox> {
     f(&ListBox::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(row))
 }
 
-unsafe extern "C" fn row_selected_trampoline<P, F: Fn(&P, &Option<ListBoxRow>) + 'static>(this: *mut gtk_sys::GtkListBox, row: *mut gtk_sys::GtkListBoxRow, f: glib_sys::gpointer)
+unsafe extern "C" fn row_selected_trampoline<P, F: Fn(&P, Option<&ListBoxRow>) + 'static>(this: *mut gtk_sys::GtkListBox, row: *mut gtk_sys::GtkListBoxRow, f: glib_sys::gpointer)
 where P: IsA<ListBox> {
     let f: &F = &*(f as *const F);
-    f(&ListBox::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(row))
+    f(&ListBox::from_glib_borrow(this).unsafe_cast(), Option::<ListBoxRow>::from_glib_borrow(row).as_ref())
 }
 
 unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkListBox, f: glib_sys::gpointer)

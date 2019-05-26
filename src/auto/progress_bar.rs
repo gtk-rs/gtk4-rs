@@ -13,6 +13,7 @@ use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -43,7 +44,7 @@ impl Default for ProgressBar {
 pub const NONE_PROGRESS_BAR: Option<&ProgressBar> = None;
 
 pub trait ProgressBarExt: 'static {
-    //fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode;
+    fn get_ellipsize(&self) -> pango::EllipsizeMode;
 
     fn get_fraction(&self) -> f64;
 
@@ -57,7 +58,7 @@ pub trait ProgressBarExt: 'static {
 
     fn pulse(&self);
 
-    //fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode);
+    fn set_ellipsize(&self, mode: pango::EllipsizeMode);
 
     fn set_fraction(&self, fraction: f64);
 
@@ -83,9 +84,11 @@ pub trait ProgressBarExt: 'static {
 }
 
 impl<O: IsA<ProgressBar>> ProgressBarExt for O {
-    //fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call gtk_sys:gtk_progress_bar_get_ellipsize() }
-    //}
+    fn get_ellipsize(&self) -> pango::EllipsizeMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_progress_bar_get_ellipsize(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_fraction(&self) -> f64 {
         unsafe {
@@ -123,9 +126,11 @@ impl<O: IsA<ProgressBar>> ProgressBarExt for O {
         }
     }
 
-    //fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode) {
-    //    unsafe { TODO: call gtk_sys:gtk_progress_bar_set_ellipsize() }
-    //}
+    fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
+        unsafe {
+            gtk_sys::gtk_progress_bar_set_ellipsize(self.as_ref().to_glib_none().0, mode.to_glib());
+        }
+    }
 
     fn set_fraction(&self, fraction: f64) {
         unsafe {

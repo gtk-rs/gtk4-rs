@@ -19,6 +19,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -49,7 +50,7 @@ impl Default for ToolItem {
 pub const NONE_TOOL_ITEM: Option<&ToolItem> = None;
 
 pub trait ToolItemExt: 'static {
-    //fn get_ellipsize_mode(&self) -> /*Ignored*/pango::EllipsizeMode;
+    fn get_ellipsize_mode(&self) -> pango::EllipsizeMode;
 
     fn get_expand(&self) -> bool;
 
@@ -111,9 +112,11 @@ pub trait ToolItemExt: 'static {
 }
 
 impl<O: IsA<ToolItem>> ToolItemExt for O {
-    //fn get_ellipsize_mode(&self) -> /*Ignored*/pango::EllipsizeMode {
-    //    unsafe { TODO: call gtk_sys:gtk_tool_item_get_ellipsize_mode() }
-    //}
+    fn get_ellipsize_mode(&self) -> pango::EllipsizeMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_tool_item_get_ellipsize_mode(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_expand(&self) -> bool {
         unsafe {
