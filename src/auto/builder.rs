@@ -82,8 +82,6 @@ pub trait BuilderExt: 'static {
 
     fn get_application(&self) -> Option<Application>;
 
-    fn get_object(&self, name: &str) -> Option<glib::Object>;
-
     fn get_objects(&self) -> Vec<glib::Object>;
 
     fn get_translation_domain(&self) -> Option<GString>;
@@ -172,12 +170,6 @@ impl<O: IsA<Builder>> BuilderExt for O {
     fn get_application(&self) -> Option<Application> {
         unsafe {
             from_glib_none(gtk_sys::gtk_builder_get_application(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_object(&self, name: &str) -> Option<glib::Object> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_builder_get_object(self.as_ref().to_glib_none().0, name.to_glib_none().0))
         }
     }
 
