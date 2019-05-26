@@ -180,9 +180,9 @@ impl Text {
         }
     }
 
-    pub fn set_tabs(&self, tabs: Option<&mut pango::TabArray>) {
+    pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
-            gtk_sys::gtk_text_set_tabs(self.to_glib_none().0, tabs.to_glib_none_mut().0);
+            gtk_sys::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
         }
     }
 

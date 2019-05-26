@@ -167,7 +167,7 @@ pub trait EntryExt: 'static {
 
     fn set_progress_pulse_step(&self, fraction: f64);
 
-    fn set_tabs(&self, tabs: Option<&mut pango::TabArray>);
+    fn set_tabs(&self, tabs: Option<&pango::TabArray>);
 
     fn set_visibility(&self, visible: bool);
 
@@ -647,9 +647,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_tabs(&self, tabs: Option<&mut pango::TabArray>) {
+    fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
-            gtk_sys::gtk_entry_set_tabs(self.as_ref().to_glib_none().0, tabs.to_glib_none_mut().0);
+            gtk_sys::gtk_entry_set_tabs(self.as_ref().to_glib_none().0, mut_override(tabs.to_glib_none().0));
         }
     }
 

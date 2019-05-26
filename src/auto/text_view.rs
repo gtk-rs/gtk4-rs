@@ -194,7 +194,7 @@ pub trait TextViewExt: 'static {
 
     fn set_right_margin(&self, right_margin: i32);
 
-    fn set_tabs(&self, tabs: &mut pango::TabArray);
+    fn set_tabs(&self, tabs: &pango::TabArray);
 
     fn set_top_margin(&self, top_margin: i32);
 
@@ -688,9 +688,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn set_tabs(&self, tabs: &mut pango::TabArray) {
+    fn set_tabs(&self, tabs: &pango::TabArray) {
         unsafe {
-            gtk_sys::gtk_text_view_set_tabs(self.as_ref().to_glib_none().0, tabs.to_glib_none_mut().0);
+            gtk_sys::gtk_text_view_set_tabs(self.as_ref().to_glib_none().0, mut_override(tabs.to_glib_none().0));
         }
     }
 
