@@ -32,6 +32,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -159,7 +160,7 @@ pub trait TreeViewExt: 'static {
 
     //fn get_search_position_func(&self) -> Option<Box<dyn Fn(&TreeView, &Widget) + 'static>>;
 
-    fn get_selection(&self) -> Option<TreeSelection>;
+    fn get_selection(&self) -> TreeSelection;
 
     fn get_show_expanders(&self) -> bool;
 
@@ -293,9 +294,9 @@ pub trait TreeViewExt: 'static {
 
     fn emit_start_interactive_search(&self) -> bool;
 
-    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -625,7 +626,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_search_position_func() }
     //}
 
-    fn get_selection(&self) -> Option<TreeSelection> {
+    fn get_selection(&self) -> TreeSelection {
         unsafe {
             from_glib_none(gtk_sys::gtk_tree_view_get_selection(self.as_ref().to_glib_none().0))
         }
@@ -1145,7 +1146,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         res.unwrap().get().unwrap()
     }
 
-    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"test-collapse-row\0".as_ptr() as *const _,
@@ -1153,7 +1154,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"test-expand-row\0".as_ptr() as *const _,
@@ -1390,13 +1391,13 @@ where P: IsA<TreeView> {
     f(&TreeView::from_glib_borrow(this).unsafe_cast()).to_glib()
 }
 
-unsafe extern "C" fn test_collapse_row_trampoline<P, F: Fn(&P, &TreeIter, &TreePath) -> bool + 'static>(this: *mut gtk_sys::GtkTreeView, iter: *mut gtk_sys::GtkTreeIter, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn test_collapse_row_trampoline<P, F: Fn(&P, &TreeIter, &TreePath) -> Inhibit + 'static>(this: *mut gtk_sys::GtkTreeView, iter: *mut gtk_sys::GtkTreeIter, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<TreeView> {
     let f: &F = &*(f as *const F);
     f(&TreeView::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(iter), &from_glib_borrow(path)).to_glib()
 }
 
-unsafe extern "C" fn test_expand_row_trampoline<P, F: Fn(&P, &TreeIter, &TreePath) -> bool + 'static>(this: *mut gtk_sys::GtkTreeView, iter: *mut gtk_sys::GtkTreeIter, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn test_expand_row_trampoline<P, F: Fn(&P, &TreeIter, &TreePath) -> Inhibit + 'static>(this: *mut gtk_sys::GtkTreeView, iter: *mut gtk_sys::GtkTreeIter, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<TreeView> {
     let f: &F = &*(f as *const F);
     f(&TreeView::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(iter), &from_glib_borrow(path)).to_glib()
