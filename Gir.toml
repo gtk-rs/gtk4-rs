@@ -241,7 +241,6 @@ generate = [
     "Gtk.PropagationPhase",
     "Gtk.RadioButtonAccessible",
     "Gtk.RadioMenuItemAccessible",
-    "Gtk.Range",
     "Gtk.RangeAccessible",
     "Gtk.RecentInfo",
     "Gtk.RecentManager",
@@ -254,7 +253,6 @@ generate = [
     "Gtk.Root",
     "Gtk.Scale",
     "Gtk.ScaleAccessible",
-    "Gtk.ScaleButton",
     "Gtk.ScaleButtonAccessible",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
@@ -830,6 +828,25 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "Gtk.Range"
+status = "generate"
+    [[object.function]]
+    name = "get_adjustment"
+        [object.function.return]
+        nullable = false
+    [[object.signal]]
+    name = "change-value"
+    inhibit = true
+
+[[object]]
+name = "Gtk.ScaleButton"
+status = "generate"
+    [[object.function]]
+    name = "get_adjustment"
+        [object.function.return]
+        nullable = false
+
+[[object]]
 name = "Gtk.SelectionData"
 status = "generate"
     [[object.function]]
@@ -871,6 +888,10 @@ status = "generate"
 name = "Gtk.SpinButton"
 status = "generate"
 manual_traits = ["SpinButtonExtManual"]
+    [[object.function]]
+    name = "get_adjustment"
+        [object.function.return]
+        nullable = false
     [[object.signal]]
     name = "output"
     inhibit = true
