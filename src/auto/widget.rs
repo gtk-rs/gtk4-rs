@@ -325,7 +325,7 @@ pub trait WidgetExt: 'static {
 
     fn init_template(&self);
 
-    fn input_shape_combine_region(&self, region: Option<&mut cairo::Region>);
+    fn input_shape_combine_region(&self, region: Option<&cairo::Region>);
 
     fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>);
 
@@ -1359,9 +1359,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn input_shape_combine_region(&self, region: Option<&mut cairo::Region>) {
+    fn input_shape_combine_region(&self, region: Option<&cairo::Region>) {
         unsafe {
-            gtk_sys::gtk_widget_input_shape_combine_region(self.as_ref().to_glib_none().0, region.to_glib_none_mut().0);
+            gtk_sys::gtk_widget_input_shape_combine_region(self.as_ref().to_glib_none().0, mut_override(region.to_glib_none().0));
         }
     }
 
