@@ -44,17 +44,17 @@ pub trait TreeSelectionExt: 'static {
 
     //fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer>;
 
-    fn iter_is_selected(&self, iter: &mut TreeIter) -> bool;
+    fn iter_is_selected(&self, iter: &TreeIter) -> bool;
 
-    fn path_is_selected(&self, path: &mut TreePath) -> bool;
+    fn path_is_selected(&self, path: &TreePath) -> bool;
 
     fn select_all(&self);
 
-    fn select_iter(&self, iter: &mut TreeIter);
+    fn select_iter(&self, iter: &TreeIter);
 
-    fn select_path(&self, path: &mut TreePath);
+    fn select_path(&self, path: &TreePath);
 
-    fn select_range(&self, start_path: &mut TreePath, end_path: &mut TreePath);
+    fn select_range(&self, start_path: &TreePath, end_path: &TreePath);
 
     fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P);
 
@@ -64,11 +64,11 @@ pub trait TreeSelectionExt: 'static {
 
     fn unselect_all(&self);
 
-    fn unselect_iter(&self, iter: &mut TreeIter);
+    fn unselect_iter(&self, iter: &TreeIter);
 
-    fn unselect_path(&self, path: &mut TreePath);
+    fn unselect_path(&self, path: &TreePath);
 
-    fn unselect_range(&self, start_path: &mut TreePath, end_path: &mut TreePath);
+    fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath);
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -119,15 +119,15 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_tree_selection_get_user_data() }
     //}
 
-    fn iter_is_selected(&self, iter: &mut TreeIter) -> bool {
+    fn iter_is_selected(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_selection_iter_is_selected(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_selection_iter_is_selected(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
         }
     }
 
-    fn path_is_selected(&self, path: &mut TreePath) -> bool {
+    fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_selection_path_is_selected(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_selection_path_is_selected(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
         }
     }
 
@@ -137,21 +137,21 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         }
     }
 
-    fn select_iter(&self, iter: &mut TreeIter) {
+    fn select_iter(&self, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_selection_select_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_select_iter(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0));
         }
     }
 
-    fn select_path(&self, path: &mut TreePath) {
+    fn select_path(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_selection_select_path(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_select_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
-    fn select_range(&self, start_path: &mut TreePath, end_path: &mut TreePath) {
+    fn select_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_selection_select_range(self.as_ref().to_glib_none().0, start_path.to_glib_none_mut().0, end_path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_select_range(self.as_ref().to_glib_none().0, mut_override(start_path.to_glib_none().0), mut_override(end_path.to_glib_none().0));
         }
     }
 
@@ -209,21 +209,21 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         }
     }
 
-    fn unselect_iter(&self, iter: &mut TreeIter) {
+    fn unselect_iter(&self, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_selection_unselect_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_unselect_iter(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0));
         }
     }
 
-    fn unselect_path(&self, path: &mut TreePath) {
+    fn unselect_path(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_selection_unselect_path(self.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_unselect_path(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
-    fn unselect_range(&self, start_path: &mut TreePath, end_path: &mut TreePath) {
+    fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_selection_unselect_range(self.as_ref().to_glib_none().0, start_path.to_glib_none_mut().0, end_path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_selection_unselect_range(self.as_ref().to_glib_none().0, mut_override(start_path.to_glib_none().0), mut_override(end_path.to_glib_none().0));
         }
     }
 
