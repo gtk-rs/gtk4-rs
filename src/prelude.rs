@@ -13,4 +13,5 @@ pub use entry_buffer::EntryBufferExtManual;
 pub use list_store::GtkListStoreExtManual;
 pub use notebook::NotebookExtManual;
 pub use spin_button::SpinButtonExtManual;
+pub use tree_store::TreeStoreExtManual;
 pub use widget::WidgetExtManual;

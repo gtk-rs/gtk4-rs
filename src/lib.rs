@@ -98,6 +98,9 @@ mod list_store;
 mod notebook;
 mod response_type;
 mod spin_button;
+mod tree_model_sort;
+mod tree_path;
+mod tree_store;
 mod widget;
 
 pub use response_type::ResponseType;

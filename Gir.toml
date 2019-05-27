@@ -334,7 +334,6 @@ generate = [
     "Gtk.TreeListRow",
     "Gtk.TreeModelFilter",
     "Gtk.TreeModelFlags",
-    "Gtk.TreeModelSort",
     "Gtk.TreeRowReference",
     "Gtk.TreeSelection",
     "Gtk.TreeSortable",
@@ -973,32 +972,80 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "Gtk.TreeModelSort"
+status = "generate"
+    [[object.function]]
+    name = "convert_child_path_to_path"
+        [[object.function.parameter]]
+        name = "child_path"
+        const = true
+    [[object.function]]
+    name = "convert_path_to_child_path"
+        [[object.function.parameter]]
+        name = "sorted_path"
+        const = true
+    [[object.function]]
+    name = "convert_iter_to_child_iter"
+        [[object.function.parameter]]
+        name = "sorted_iter"
+        const = true
+    [[object.function]]
+    name = "convert_child_iter_to_iter"
+        [[object.function.parameter]]
+        name = "child_iter"
+        const = true
+    [[object.function]]
+    name = "iter_is_valid"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.function]]
+    name = "get_model"
+        [object.function.return]
+        nullable = false
+
+[[object]]
 name = "Gtk.TreePath"
 status = "generate"
     [[object.function]]
+    name = "get_depth"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+    [[object.function]]
+    name = "is_ancestor"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+        [[object.function.parameter]]
+        name = "descendant"
+        const = true
+    [[object.function]]
+    name = "is_descendant"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+        [[object.function.parameter]]
+        name = "ancestor"
+        const = true
+    [[object.function]]
     name = "get_indices"
     ignore = true
+    [[object.function]]
+    name = "to_string"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
 
 [[object]]
 name = "Gtk.TreeStore"
 status = "generate"
+manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
         name = "iter"
         const = true
-    [[object.function]]
-    name = "append"
-        [[object.function.parameter]]
-        name = "parent"
-        const = true
-    [[object.function]]
-    name = "insert"
-        [[object.function.parameter]]
-        name = "parent"
-        const = true
-    [[object.function]]
-    name = "insert_after"
         [[object.function.parameter]]
         name = "parent"
         const = true
@@ -1006,12 +1053,9 @@ status = "generate"
         name = "sibling"
         const = true
     [[object.function]]
-    name = "insert_before"
+    name = "is_ancestor"
         [[object.function.parameter]]
-        name = "parent"
-        const = true
-        [[object.function.parameter]]
-        name = "sibling"
+        name = "descendant"
         const = true
     [[object.function]]
     name = "move_after"
@@ -1029,8 +1073,20 @@ status = "generate"
         name = "parent"
         const = true
     [[object.function]]
-    name = "sort_new_with_model"
+    name = "set_value"
     ignore = true
+    [[object.function]]
+    name = "sort_new_with_model"
+    # TODO
+    ignore = true
+    [[object.function]]
+    name = "swap"
+        [[object.function.parameter]]
+        name = "a"
+        const = true
+        [[object.function.parameter]]
+        name = "b"
+        const = true
 
 [[object]]
 name = "Gtk.TreeView"

@@ -72,9 +72,9 @@ impl TreePath {
         }
     }
 
-    pub fn get_depth(&mut self) -> i32 {
+    pub fn get_depth(&self) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_path_get_depth(self.to_glib_none_mut().0)
+            gtk_sys::gtk_tree_path_get_depth(mut_override(self.to_glib_none().0))
         }
     }
 
@@ -86,15 +86,15 @@ impl TreePath {
         }
     }
 
-    pub fn is_ancestor(&mut self, descendant: &mut TreePath) -> bool {
+    pub fn is_ancestor(&self, descendant: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_path_is_ancestor(self.to_glib_none_mut().0, descendant.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_path_is_ancestor(mut_override(self.to_glib_none().0), mut_override(descendant.to_glib_none().0)))
         }
     }
 
-    pub fn is_descendant(&mut self, ancestor: &mut TreePath) -> bool {
+    pub fn is_descendant(&self, ancestor: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_path_is_descendant(self.to_glib_none_mut().0, ancestor.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_path_is_descendant(mut_override(self.to_glib_none().0), mut_override(ancestor.to_glib_none().0)))
         }
     }
 
@@ -116,9 +116,9 @@ impl TreePath {
         }
     }
 
-    fn to_string(&mut self) -> GString {
+    fn to_string(&self) -> GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_path_to_string(self.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_path_to_string(mut_override(self.to_glib_none().0)))
         }
     }
 
