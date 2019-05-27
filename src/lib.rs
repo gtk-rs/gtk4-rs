@@ -95,6 +95,7 @@ mod dialog;
 mod entry_buffer;
 mod file_chooser_dialog;
 mod list_store;
+mod message_dialog;
 mod notebook;
 mod response_type;
 mod spin_button;

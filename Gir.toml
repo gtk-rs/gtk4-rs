@@ -335,7 +335,6 @@ generate = [
     "Gtk.TreeModelFilter",
     "Gtk.TreeModelFlags",
     "Gtk.TreeRowReference",
-    "Gtk.TreeSelection",
     "Gtk.TreeSortable",
     "Gtk.TreeViewAccessible",
     "Gtk.TreeViewColumn",
@@ -1035,6 +1034,26 @@ status = "generate"
     name = "to_string"
         [[object.function.parameter]]
         name = "path"
+        const = true
+
+[[object]]
+name = "Gtk.TreeSelection"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+    [[object.function]]
+    pattern = "(un)?select_range"
+        [[object.function.parameter]]
+        name = "start_path"
+        const = true
+        [[object.function.parameter]]
+        name = "end_path"
         const = true
 
 [[object]]
