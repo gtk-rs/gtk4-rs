@@ -6,15 +6,12 @@ use Buildable;
 use Widget;
 use glib;
 use glib::GString;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -43,11 +40,7 @@ pub trait ActionableExt: 'static {
 
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
-    fn get_property_action_target(&self) -> Option<glib::Variant>;
-
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Actionable>> ActionableExt for O {
@@ -85,14 +78,6 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    fn get_property_action_target(&self) -> Option<glib::Variant> {
-        unsafe {
-            let mut value = Value::from_type(<glib::Variant as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"action-target\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get()
-        }
-    }
-
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -100,23 +85,9 @@ impl<O: IsA<Actionable>> ActionableExt for O {
                 Some(transmute(notify_action_name_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-
-    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::action-target\0".as_ptr() as *const _,
-                Some(transmute(notify_action_target_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
 }
 
 unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Actionable> {
-    let f: &F = &*(f as *const F);
-    f(&Actionable::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<Actionable> {
     let f: &F = &*(f as *const F);
     f(&Actionable::from_glib_borrow(this).unsafe_cast())

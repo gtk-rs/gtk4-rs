@@ -70,8 +70,6 @@ pub trait AccelGroupExt: 'static {
 
     fn lock(&self);
 
-    //fn query(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry>;
-
     fn unlock(&self);
 
     fn connect_accel_activate<F: Fn(&Self, &glib::Object, u32, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
@@ -135,10 +133,6 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
             gtk_sys::gtk_accel_group_lock(self.as_ref().to_glib_none().0);
         }
     }
-
-    //fn query(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> /*Ignored*/Vec<AccelGroupEntry> {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_group_query() }
-    //}
 
     fn unlock(&self) {
         unsafe {

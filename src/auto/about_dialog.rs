@@ -20,6 +20,7 @@ use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -116,7 +117,7 @@ pub trait AboutDialogExt: 'static {
 
     fn set_wrap_license(&self, wrap_license: bool);
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_artists_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -350,7 +351,7 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
         }
     }
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
@@ -487,7 +488,7 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 }
 
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> bool + 'static>(this: *mut gtk_sys::GtkAboutDialog, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkAboutDialog, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<AboutDialog> {
     let f: &F = &*(f as *const F);
     f(&AboutDialog::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()

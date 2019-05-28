@@ -56,7 +56,7 @@ pub const NONE_APP_CHOOSER_DIALOG: Option<&AppChooserDialog> = None;
 pub trait AppChooserDialogExt: 'static {
     fn get_heading(&self) -> Option<GString>;
 
-    fn get_widget(&self) -> Option<Widget>;
+    fn get_widget(&self) -> Widget;
 
     fn set_heading(&self, heading: &str);
 
@@ -72,7 +72,7 @@ impl<O: IsA<AppChooserDialog>> AppChooserDialogExt for O {
         }
     }
 
-    fn get_widget(&self) -> Option<Widget> {
+    fn get_widget(&self) -> Widget {
         unsafe {
             from_glib_none(gtk_sys::gtk_app_chooser_dialog_get_widget(self.as_ref().to_glib_none().0))
         }
