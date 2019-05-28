@@ -90,6 +90,7 @@ pub use prelude::*;
 
 mod application;
 mod builder;
+mod color_chooser;
 mod combo_box;
 mod dialog;
 mod entry_buffer;
@@ -99,6 +100,7 @@ mod message_dialog;
 mod notebook;
 mod response_type;
 mod spin_button;
+mod text_buffer;
 mod tree_model_sort;
 mod tree_path;
 mod tree_store;

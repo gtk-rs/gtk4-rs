@@ -71,7 +71,6 @@ generate = [
     "Gtk.CheckMenuItem",
     "Gtk.CheckMenuItemAccessible",
     "Gtk.ColorButton",
-    "Gtk.ColorChooser",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",
     "Gtk.ComboBoxAccessible",
@@ -131,7 +130,6 @@ generate = [
     "Gtk.Frame",
     "Gtk.FrameAccessible",
     "Gtk.GLArea",
-    "Gtk.Gesture",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
     "Gtk.GestureMultiPress",
@@ -303,7 +301,6 @@ generate = [
     "Gtk.StyleProvider",
     "Gtk.SwitchAccessible",
     "Gtk.TextAccessible",
-    "Gtk.TextBuffer",
     "Gtk.TextBufferTargetInfo",
     "Gtk.TextCellAccessible",
     "Gtk.TextChildAnchor",
@@ -378,22 +375,46 @@ ignore = [
 
 manual = [
     "Atk.Object",
+    "Atk.CoordType",
+    "Atk.RelationSet",
     "cairo.Context",
     "cairo.FontOptions",
     "cairo.RectangleInt",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.AnchorHints",
     "Gdk.Atom",
+    "Gdk.AxisUse",
+    "Gdk.Clipboard",
     "Gdk.ContentFormats",
+    "Gdk.CrossingMode",
+    "Gdk.Cursor",
+    "Gdk.Device",
+    "Gdk.DeviceTool",
     "Gdk.Display",
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.Drop",
+    "Gdk.Event",
+    # TODO "Gdk.EventKey",
+    "Gdk.EventSequence",
     "Gdk.FrameClock",
+    "Gdk.GLContext",
+    "Gdk.Gravity",
+    "Gdk.ModifierIntent",
     "Gdk.ModifierType",
+    "Gdk.Monitor",
+    "Gdk.NotifyType",
+    "Gdk.Paintable",
+    "Gdk.Rectangle",
+    "Gdk.RGBA",
     "Gdk.Surface",
+    "Gdk.SurfaceEdge",
+    "Gdk.SurfaceTypeHint",
     "Gdk.Texture",
+    # TODO "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
+    "Gio.Action",
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.AppInfo",
@@ -402,19 +423,37 @@ manual = [
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
+    "Gio.InputStream",
     "Gio.ListModel",
     "Gio.Menu",
     "Gio.MenuModel",
     "Gio.MountOperation",
     "Gio.Permission",
+    "GLib.ConnectFlags",
     "GLib.Error",
     "GLib.KeyFile",
+    "GLib.MarkupParser",
     "GLib.Quark",
+    # TODO "GLib.Scanner",
+    "GLib.String",
     "GLib.Variant",
     "GLib.VariantType",
     "GObject.Closure",
     "GObject.Object",
     "GObject.Value",
+    "Graphene.Matrix",
+    "Graphene.Point",
+    "Graphene.Point3D",
+    "Graphene.Rect",
+    "Graphene.Size",
+    "Graphene.Vec3",
+    "Graphene.Vec4",
+    "Gsk.BlendMode",
+    # TODO "Gsk.ColorStop",
+    # TODO "Gsk.RoundedRect",
+    "Gsk.RenderNode",
+    # TODO "Gsk.Shadow",
+    # TODO "Gsk.Transform",
     "Gtk.ResponseType",
     "Pango.Alignment",
     "Pango.AttrList",
@@ -547,6 +586,15 @@ status = "generate"
         nullable = false
 
 [[object]]
+name = "Gtk.ColorChooser"
+status = "generate"
+manual_traits = ["ColorChooserExtManual"]
+    [[object.function]]
+    name = "add_palette"
+    #array with size
+    ignore = true
+
+[[object]]
 name = "Gtk.ComboBox"
 status = "generate"
 manual_traits = ["ComboBoxExtManual"]
@@ -658,6 +706,15 @@ status = "generate"
     [[object.signal]]
     name = "modifiers"
     inhibit = true
+
+[[object]]
+name = "Gtk.Gesture"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "sequence"
+        const = true
 
 [[object]]
 name = "Gtk.IconTheme"
@@ -913,6 +970,30 @@ status = "generate"
         [[object.function.parameter]]
         name = "tabs"
         const = true
+
+[[object]]
+name = "Gtk.TextBuffer"
+status = "generate"
+manual_traits = ["TextBufferExtManual"]
+    [[object.function]]
+    name = "register_deserialize_tagset"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "register_serialize_tagset"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "paste_clipboard"
+        [[object.function.parameter]]
+        name = "override_location"
+        const = true
+    [[object.function]]
+    name = "register_serialize_format"
+    ignore = true
+    [[object.signal]]
+    name = "insert-text"
+    ignore = true
 
 [[object]]
 name = "Gtk.TextView"
