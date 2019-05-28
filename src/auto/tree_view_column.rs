@@ -14,6 +14,7 @@ use Widget;
 use gdk;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -59,6 +60,191 @@ impl TreeViewColumn {
 impl Default for TreeViewColumn {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+pub struct TreeViewColumnBuilder {
+    alignment: Option<f32>,
+    cell_area: Option<CellArea>,
+    clickable: Option<bool>,
+    expand: Option<bool>,
+    fixed_width: Option<i32>,
+    max_width: Option<i32>,
+    min_width: Option<i32>,
+    reorderable: Option<bool>,
+    resizable: Option<bool>,
+    sizing: Option<TreeViewColumnSizing>,
+    sort_column_id: Option<i32>,
+    sort_indicator: Option<bool>,
+    sort_order: Option<SortType>,
+    spacing: Option<i32>,
+    title: Option<String>,
+    visible: Option<bool>,
+    widget: Option<Widget>,
+}
+
+impl TreeViewColumnBuilder {
+    pub fn new() -> Self {
+        Self {
+            alignment: None,
+            cell_area: None,
+            clickable: None,
+            expand: None,
+            fixed_width: None,
+            max_width: None,
+            min_width: None,
+            reorderable: None,
+            resizable: None,
+            sizing: None,
+            sort_column_id: None,
+            sort_indicator: None,
+            sort_order: None,
+            spacing: None,
+            title: None,
+            visible: None,
+            widget: None,
+        }
+    }
+
+    pub fn build(self) -> TreeViewColumn {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref alignment) = self.alignment {
+            properties.push(("alignment", alignment));
+        }
+        if let Some(ref cell_area) = self.cell_area {
+            properties.push(("cell-area", cell_area));
+        }
+        if let Some(ref clickable) = self.clickable {
+            properties.push(("clickable", clickable));
+        }
+        if let Some(ref expand) = self.expand {
+            properties.push(("expand", expand));
+        }
+        if let Some(ref fixed_width) = self.fixed_width {
+            properties.push(("fixed-width", fixed_width));
+        }
+        if let Some(ref max_width) = self.max_width {
+            properties.push(("max-width", max_width));
+        }
+        if let Some(ref min_width) = self.min_width {
+            properties.push(("min-width", min_width));
+        }
+        if let Some(ref reorderable) = self.reorderable {
+            properties.push(("reorderable", reorderable));
+        }
+        if let Some(ref resizable) = self.resizable {
+            properties.push(("resizable", resizable));
+        }
+        if let Some(ref sizing) = self.sizing {
+            properties.push(("sizing", sizing));
+        }
+        if let Some(ref sort_column_id) = self.sort_column_id {
+            properties.push(("sort-column-id", sort_column_id));
+        }
+        if let Some(ref sort_indicator) = self.sort_indicator {
+            properties.push(("sort-indicator", sort_indicator));
+        }
+        if let Some(ref sort_order) = self.sort_order {
+            properties.push(("sort-order", sort_order));
+        }
+        if let Some(ref spacing) = self.spacing {
+            properties.push(("spacing", spacing));
+        }
+        if let Some(ref title) = self.title {
+            properties.push(("title", title));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref widget) = self.widget {
+            properties.push(("widget", widget));
+        }
+        glib::Object::new(TreeViewColumn::static_type(), &properties).expect("object new").downcast().expect("downcast")
+    }
+
+    pub fn alignment(mut self, alignment: f32) -> Self {
+        self.alignment = Some(alignment);
+        self
+    }
+
+    pub fn cell_area(mut self, cell_area: &CellArea) -> Self {
+        self.cell_area = Some(cell_area.clone());
+        self
+    }
+
+    pub fn clickable(mut self, clickable: bool) -> Self {
+        self.clickable = Some(clickable);
+        self
+    }
+
+    pub fn expand(mut self, expand: bool) -> Self {
+        self.expand = Some(expand);
+        self
+    }
+
+    pub fn fixed_width(mut self, fixed_width: i32) -> Self {
+        self.fixed_width = Some(fixed_width);
+        self
+    }
+
+    pub fn max_width(mut self, max_width: i32) -> Self {
+        self.max_width = Some(max_width);
+        self
+    }
+
+    pub fn min_width(mut self, min_width: i32) -> Self {
+        self.min_width = Some(min_width);
+        self
+    }
+
+    pub fn reorderable(mut self, reorderable: bool) -> Self {
+        self.reorderable = Some(reorderable);
+        self
+    }
+
+    pub fn resizable(mut self, resizable: bool) -> Self {
+        self.resizable = Some(resizable);
+        self
+    }
+
+    pub fn sizing(mut self, sizing: TreeViewColumnSizing) -> Self {
+        self.sizing = Some(sizing);
+        self
+    }
+
+    pub fn sort_column_id(mut self, sort_column_id: i32) -> Self {
+        self.sort_column_id = Some(sort_column_id);
+        self
+    }
+
+    pub fn sort_indicator(mut self, sort_indicator: bool) -> Self {
+        self.sort_indicator = Some(sort_indicator);
+        self
+    }
+
+    pub fn sort_order(mut self, sort_order: SortType) -> Self {
+        self.sort_order = Some(sort_order);
+        self
+    }
+
+    pub fn spacing(mut self, spacing: i32) -> Self {
+        self.spacing = Some(spacing);
+        self
+    }
+
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn widget(mut self, widget: &Widget) -> Self {
+        self.widget = Some(widget.clone());
+        self
     }
 }
 

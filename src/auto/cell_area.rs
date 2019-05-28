@@ -19,6 +19,8 @@ use gdk;
 use gdk_sys;
 use glib;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -37,6 +39,31 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_cell_area_get_type(),
+    }
+}
+
+pub struct CellAreaBuilder {
+    focus_cell: Option<CellRenderer>,
+}
+
+impl CellAreaBuilder {
+    pub fn new() -> Self {
+        Self {
+            focus_cell: None,
+        }
+    }
+
+    pub fn build(self) -> CellArea {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref focus_cell) = self.focus_cell {
+            properties.push(("focus-cell", focus_cell));
+        }
+        glib::Object::new(CellArea::static_type(), &properties).expect("object new").downcast().expect("downcast")
+    }
+
+    pub fn focus_cell(mut self, focus_cell: &CellRenderer) -> Self {
+        self.focus_cell = Some(focus_cell.clone());
+        self
     }
 }
 

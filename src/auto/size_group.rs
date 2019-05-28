@@ -5,6 +5,8 @@
 use Buildable;
 use SizeGroupMode;
 use Widget;
+use glib::StaticType;
+use glib::ToValue;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -30,6 +32,31 @@ impl SizeGroup {
         unsafe {
             from_glib_full(gtk_sys::gtk_size_group_new(mode.to_glib()))
         }
+    }
+}
+
+pub struct SizeGroupBuilder {
+    mode: Option<SizeGroupMode>,
+}
+
+impl SizeGroupBuilder {
+    pub fn new() -> Self {
+        Self {
+            mode: None,
+        }
+    }
+
+    pub fn build(self) -> SizeGroup {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref mode) = self.mode {
+            properties.push(("mode", mode));
+        }
+        glib::Object::new(SizeGroup::static_type(), &properties).expect("object new").downcast().expect("downcast")
+    }
+
+    pub fn mode(mut self, mode: SizeGroupMode) -> Self {
+        self.mode = Some(mode);
+        self
     }
 }
 

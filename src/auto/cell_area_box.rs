@@ -7,6 +7,8 @@ use CellArea;
 use CellLayout;
 use CellRenderer;
 use Orientable;
+use glib::StaticType;
+use glib::ToValue;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -38,6 +40,41 @@ impl CellAreaBox {
 impl Default for CellAreaBox {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+pub struct CellAreaBoxBuilder {
+    spacing: Option<i32>,
+    focus_cell: Option<CellRenderer>,
+}
+
+impl CellAreaBoxBuilder {
+    pub fn new() -> Self {
+        Self {
+            spacing: None,
+            focus_cell: None,
+        }
+    }
+
+    pub fn build(self) -> CellAreaBox {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref spacing) = self.spacing {
+            properties.push(("spacing", spacing));
+        }
+        if let Some(ref focus_cell) = self.focus_cell {
+            properties.push(("focus-cell", focus_cell));
+        }
+        glib::Object::new(CellAreaBox::static_type(), &properties).expect("object new").downcast().expect("downcast")
+    }
+
+    pub fn spacing(mut self, spacing: i32) -> Self {
+        self.spacing = Some(spacing);
+        self
+    }
+
+    pub fn focus_cell(mut self, focus_cell: &CellRenderer) -> Self {
+        self.focus_cell = Some(focus_cell.clone());
+        self
     }
 }
 
