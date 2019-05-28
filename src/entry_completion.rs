@@ -16,12 +16,11 @@ pub trait EntryCompletionExtManual: 'static {
 
 impl<O: IsA<EntryCompletion>> EntryCompletionExtManual for O {
     fn get_entry(&self) -> Option<Entry> {
-        let widget: Option<Widget> = unsafe {
-            from_glib_none(gtk_sys::gtk_entry_completion_get_entry(self.as_ref().to_glib_none().0))
-        };
-        match widget {
-            Some(w) => w.downcast().ok(),
-            None => None,
+        unsafe {
+	    Option::<Widget>::from_glib_none(
+                gtk_sys::gtk_entry_completion_get_entry(self.as_ref().to_glib_none().0)
+            ).map(|widget| widget.downcast()
+                                 .expect("Non-Entry widget received from get_entry method"))
         }
     }
 }
