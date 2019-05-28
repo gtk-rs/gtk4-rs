@@ -11,19 +11,15 @@ single_version_file = true
 
 generate = [
     "Gtk.Allocation",
-    "Gtk.AboutDialog",
     "Gtk.AccelFlags",
-    "Gtk.AccelGroup",
     "Gtk.AccelLabel",
     "Gtk.AccelMap",
     "Gtk.Accessible",
     "Gtk.ActionBar",
-    "Gtk.Actionable",
     "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.AppChooser",
     "Gtk.AppChooserButton",
-    "Gtk.AppChooserDialog",
     "Gtk.AppChooserWidget",
     "Gtk.ApplicationInhibitFlags",
     "Gtk.ApplicationWindow",
@@ -352,6 +348,7 @@ generate = [
     "Gtk.WrapMode",
 ]
 
+# TODO
 ignore = [
     "Gtk.AccelGroupEntry",
     "Gtk.AccelKey",
@@ -538,6 +535,38 @@ status = "generate"
     pattern = "drag_.+"
     #manual trait
     ignore = true
+
+[[object]]
+name = "Gtk.AboutDialog"
+status = "generate"
+    [[object.signal]]
+    name = "activate-link"
+    inhibit = true
+
+[[object]]
+name = "Gtk.AccelGroup"
+status = "generate"
+    [[object.function]]
+    name = "query"
+    # It's not a part of public API
+    # See https://mail.gnome.org/archives/commits-list/2012-May/msg07052.html
+    ignore = true
+
+[[object]]
+name = "Gtk.Actionable"
+status = "generate"
+    [[object.property]]
+    #value glib.Variant
+    name = "action-target"
+    ignore = true
+
+[[object]]
+name = "Gtk.AppChooserDialog"
+status = "generate"
+    [[object.function]]
+    name = "get_widget"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Gtk.Application"
