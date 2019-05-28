@@ -6,7 +6,7 @@ use CellRenderer;
 use CellRendererText;
 use TreeIter;
 use TreeModel;
-use glib::GString;
+use TreePath;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -60,7 +60,7 @@ pub trait CellRendererComboExt: 'static {
 
     fn set_property_text_column(&self, text_column: i32);
 
-    fn connect_changed<F: Fn(&Self, &str, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_changed<F: Fn(&Self, TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_has_entry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -112,7 +112,7 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
         }
     }
 
-    fn connect_changed<F: Fn(&Self, &str, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_changed<F: Fn(&Self, TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
@@ -145,10 +145,11 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
     }
 }
 
-unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, &str, &TreeIter) + 'static>(this: *mut gtk_sys::GtkCellRendererCombo, path_string: *mut libc::c_char, new_iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
+unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkCellRendererCombo, path_string: *mut libc::c_char, new_iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
 where P: IsA<CellRendererCombo> {
     let f: &F = &*(f as *const F);
-    f(&CellRendererCombo::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(path_string), &from_glib_borrow(new_iter))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path_string));
+    f(&CellRendererCombo::from_glib_borrow(this).unsafe_cast(), path, &from_glib_borrow(new_iter))
 }
 
 unsafe extern "C" fn notify_has_entry_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererCombo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)

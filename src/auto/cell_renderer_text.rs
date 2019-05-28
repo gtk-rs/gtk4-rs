@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use CellRenderer;
+use TreePath;
 use gdk;
 use glib::GString;
 use glib::StaticType;
@@ -57,10 +58,6 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_alignment(&self, alignment: pango::Alignment);
 
-    fn get_property_attributes(&self) -> Option<pango::AttrList>;
-
-    fn set_property_attributes(&self, attributes: Option<&pango::AttrList>);
-
     fn set_property_background(&self, background: Option<&str>);
 
     fn get_property_background_rgba(&self) -> Option<gdk::RGBA>;
@@ -98,10 +95,6 @@ pub trait CellRendererTextExt: 'static {
     fn get_property_font(&self) -> Option<GString>;
 
     fn set_property_font(&self, font: Option<&str>);
-
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription>;
-
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>);
 
     fn set_property_foreground(&self, foreground: Option<&str>);
 
@@ -227,13 +220,11 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_wrap_width(&self, wrap_width: i32);
 
-    fn connect_edited<F: Fn(&Self, &str, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -254,8 +245,6 @@ pub trait CellRendererTextExt: 'static {
     fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -354,20 +343,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn set_property_alignment(&self, alignment: pango::Alignment) {
         unsafe {
             gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"alignment\0".as_ptr() as *const _, Value::from(&alignment).to_glib_none().0);
-        }
-    }
-
-    fn get_property_attributes(&self) -> Option<pango::AttrList> {
-        unsafe {
-            let mut value = Value::from_type(<pango::AttrList as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get()
-        }
-    }
-
-    fn set_property_attributes(&self, attributes: Option<&pango::AttrList>) {
-        unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, Value::from(attributes).to_glib_none().0);
         }
     }
 
@@ -500,20 +475,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn set_property_font(&self, font: Option<&str>) {
         unsafe {
             gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font\0".as_ptr() as *const _, Value::from(font).to_glib_none().0);
-        }
-    }
-
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
-        unsafe {
-            let mut value = Value::from_type(<pango::FontDescription as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get()
-        }
-    }
-
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, Value::from(font_desc).to_glib_none().0);
         }
     }
 
@@ -949,7 +910,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn connect_edited<F: Fn(&Self, &str, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"edited\0".as_ptr() as *const _,
@@ -970,14 +931,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::alignment\0".as_ptr() as *const _,
                 Some(transmute(notify_alignment_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute(notify_attributes_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
 
@@ -1058,14 +1011,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::font\0".as_ptr() as *const _,
                 Some(transmute(notify_font_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
-    fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::font-desc\0".as_ptr() as *const _,
-                Some(transmute(notify_font_desc_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
 
@@ -1326,10 +1271,11 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 }
 
-unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, &str, &str) + 'static>(this: *mut gtk_sys::GtkCellRendererText, path: *mut libc::c_char, new_text: *mut libc::c_char, f: glib_sys::gpointer)
+unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, TreePath, &str) + 'static>(this: *mut gtk_sys::GtkCellRendererText, path: *mut libc::c_char, new_text: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<CellRendererText> {
     let f: &F = &*(f as *const F);
-    f(&CellRendererText::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(path), &GString::from_glib_borrow(new_text))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+    f(&CellRendererText::from_glib_borrow(this).unsafe_cast(), path, &GString::from_glib_borrow(new_text))
 }
 
 unsafe extern "C" fn notify_align_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
@@ -1339,12 +1285,6 @@ where P: IsA<CellRendererText> {
 }
 
 unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererText> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererText> {
     let f: &F = &*(f as *const F);
     f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
@@ -1405,12 +1345,6 @@ where P: IsA<CellRendererText> {
 }
 
 unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererText> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
 where P: IsA<CellRendererText> {
     let f: &F = &*(f as *const F);
     f(&CellRendererText::from_glib_borrow(this).unsafe_cast())

@@ -14,10 +14,10 @@ use SizeRequestMode;
 use Snapshot;
 use TreeIter;
 use TreeModel;
+use TreePath;
 use Widget;
 use gdk;
 use gdk_sys;
-use glib;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -80,7 +80,7 @@ pub trait CellAreaExt: 'static {
 
     //fn add_with_properties<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn apply_attributes<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &mut TreeIter, is_expander: bool, is_expanded: bool);
+    fn apply_attributes<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &TreeIter, is_expander: bool, is_expanded: bool);
 
     fn attribute_connect<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str, column: i32);
 
@@ -90,13 +90,9 @@ pub trait CellAreaExt: 'static {
 
     //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn cell_get_property<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str, value: &mut glib::Value);
-
     //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    fn cell_set_property<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str, value: &glib::Value);
 
     //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
@@ -158,11 +154,11 @@ pub trait CellAreaExt: 'static {
 
     fn stop_editing(&self, canceled: bool);
 
-    fn connect_add_editable<F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_add_editable<F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_focus_changed<F: Fn(&Self, &CellRenderer, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_remove_editable<F: Fn(&Self, &CellRenderer, &CellEditable) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -202,9 +198,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_cell_area_add_with_properties() }
     //}
 
-    fn apply_attributes<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &mut TreeIter, is_expander: bool, is_expanded: bool) {
+    fn apply_attributes<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &TreeIter, is_expander: bool, is_expanded: bool) {
         unsafe {
-            gtk_sys::gtk_cell_area_apply_attributes(self.as_ref().to_glib_none().0, tree_model.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, is_expander.to_glib(), is_expanded.to_glib());
+            gtk_sys::gtk_cell_area_apply_attributes(self.as_ref().to_glib_none().0, tree_model.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), is_expander.to_glib(), is_expanded.to_glib());
         }
     }
 
@@ -230,12 +226,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_get() }
     //}
 
-    fn cell_get_property<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str, value: &mut glib::Value) {
-        unsafe {
-            gtk_sys::gtk_cell_area_cell_get_property(self.as_ref().to_glib_none().0, renderer.as_ref().to_glib_none().0, property_name.to_glib_none().0, value.to_glib_none_mut().0);
-        }
-    }
-
     //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_get_valist() }
     //}
@@ -243,12 +233,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_set() }
     //}
-
-    fn cell_set_property<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str, value: &glib::Value) {
-        unsafe {
-            gtk_sys::gtk_cell_area_cell_set_property(self.as_ref().to_glib_none().0, renderer.as_ref().to_glib_none().0, property_name.to_glib_none().0, value.to_glib_none().0);
-        }
-    }
 
     //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_set_valist() }
@@ -469,7 +453,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn connect_add_editable<F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_add_editable<F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"add-editable\0".as_ptr() as *const _,
@@ -485,7 +469,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn connect_focus_changed<F: Fn(&Self, &CellRenderer, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"focus-changed\0".as_ptr() as *const _,
@@ -526,10 +510,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 }
 
-unsafe extern "C" fn add_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, &str) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, cell_area: *mut gdk_sys::GdkRectangle, path: *mut libc::c_char, f: glib_sys::gpointer)
+unsafe extern "C" fn add_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, cell_area: *mut gdk_sys::GdkRectangle, path: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<CellArea> {
     let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable), &from_glib_borrow(cell_area), &GString::from_glib_borrow(path))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable), &from_glib_borrow(cell_area), path)
 }
 
 unsafe extern "C" fn apply_attributes_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter, bool, bool) + 'static>(this: *mut gtk_sys::GtkCellArea, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, is_expander: glib_sys::gboolean, is_expanded: glib_sys::gboolean, f: glib_sys::gpointer)
@@ -538,10 +523,11 @@ where P: IsA<CellArea> {
     f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter), from_glib(is_expander), from_glib(is_expanded))
 }
 
-unsafe extern "C" fn focus_changed_trampoline<P, F: Fn(&P, &CellRenderer, &str) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, path: *mut libc::c_char, f: glib_sys::gpointer)
+unsafe extern "C" fn focus_changed_trampoline<P, F: Fn(&P, &CellRenderer, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, path: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<CellArea> {
     let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &GString::from_glib_borrow(path))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), path)
 }
 
 unsafe extern "C" fn remove_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, f: glib_sys::gpointer)

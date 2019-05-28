@@ -9,9 +9,9 @@ use Requisition;
 use SizeRequestMode;
 use Snapshot;
 use StateFlags;
+use TreePath;
 use Widget;
 use gdk;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -135,7 +135,7 @@ pub trait CellRendererExt: 'static {
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_editing_started<F: Fn(&Self, &CellEditable, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_cell_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -509,7 +509,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn connect_editing_started<F: Fn(&Self, &CellEditable, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"editing-started\0".as_ptr() as *const _,
@@ -644,10 +644,11 @@ where P: IsA<CellRenderer> {
     f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn editing_started_trampoline<P, F: Fn(&P, &CellEditable, &str) + 'static>(this: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, path: *mut libc::c_char, f: glib_sys::gpointer)
+unsafe extern "C" fn editing_started_trampoline<P, F: Fn(&P, &CellEditable, TreePath) + 'static>(this: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, path: *mut libc::c_char, f: glib_sys::gpointer)
 where P: IsA<CellRenderer> {
     let f: &F = &*(f as *const F);
-    f(&CellRenderer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(editable), &GString::from_glib_borrow(path))
+    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+    f(&CellRenderer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(editable), path)
 }
 
 unsafe extern "C" fn notify_cell_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
