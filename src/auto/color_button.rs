@@ -5,6 +5,7 @@
 use Buildable;
 use ColorChooser;
 use Widget;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -36,9 +37,12 @@ impl ColorButton {
         }
     }
 
-    //pub fn new_with_rgba(rgba: /*Ignored*/&gdk::RGBA) -> ColorButton {
-    //    unsafe { TODO: call gtk_sys:gtk_color_button_new_with_rgba() }
-    //}
+    pub fn new_with_rgba(rgba: &gdk::RGBA) -> ColorButton {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_color_button_new_with_rgba(rgba.to_glib_none().0)).unsafe_cast()
+        }
+    }
 }
 
 impl Default for ColorButton {

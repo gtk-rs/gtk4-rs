@@ -77,7 +77,7 @@ pub trait StyleContextExt: 'static {
 
     fn get_border(&self) -> Border;
 
-    //fn get_color(&self, color: /*Ignored*/gdk::RGBA);
+    fn get_color(&self) -> gdk::RGBA;
 
     fn get_display(&self) -> Option<gdk::Display>;
 
@@ -103,7 +103,7 @@ pub trait StyleContextExt: 'static {
 
     fn list_classes(&self) -> Vec<GString>;
 
-    //fn lookup_color(&self, color_name: &str, color: /*Ignored*/gdk::RGBA) -> bool;
+    fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA>;
 
     fn remove_class(&self, class_name: &str);
 
@@ -157,9 +157,13 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    //fn get_color(&self, color: /*Ignored*/gdk::RGBA) {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_color() }
-    //}
+    fn get_color(&self) -> gdk::RGBA {
+        unsafe {
+            let mut color = gdk::RGBA::uninitialized();
+            gtk_sys::gtk_style_context_get_color(self.as_ref().to_glib_none().0, color.to_glib_none_mut().0);
+            color
+        }
+    }
 
     fn get_display(&self) -> Option<gdk::Display> {
         unsafe {
@@ -237,9 +241,13 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    //fn lookup_color(&self, color_name: &str, color: /*Ignored*/gdk::RGBA) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_style_context_lookup_color() }
-    //}
+    fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut color = gdk::RGBA::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_style_context_lookup_color(self.as_ref().to_glib_none().0, color_name.to_glib_none().0, color.to_glib_none_mut().0));
+            if ret { Some(color) } else { None }
+        }
+    }
 
     fn remove_class(&self, class_name: &str) {
         unsafe {

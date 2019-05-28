@@ -19,6 +19,7 @@ use TextMark;
 use TextWindowType;
 use Widget;
 use WrapMode;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -94,7 +95,7 @@ pub trait TextViewExt: 'static {
 
     fn get_buffer(&self) -> Option<TextBuffer>;
 
-    //fn get_cursor_locations(&self, iter: Option<&TextIter>, strong: /*Ignored*/gdk::Rectangle, weak: /*Ignored*/gdk::Rectangle);
+    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
 
     fn get_cursor_visible(&self) -> bool;
 
@@ -110,7 +111,7 @@ pub trait TextViewExt: 'static {
 
     fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
 
-    //fn get_iter_location(&self, iter: &TextIter, location: /*Ignored*/gdk::Rectangle);
+    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
 
     fn get_justification(&self) -> Justification;
 
@@ -136,7 +137,7 @@ pub trait TextViewExt: 'static {
 
     fn get_top_margin(&self) -> i32;
 
-    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle);
+    fn get_visible_rect(&self) -> gdk::Rectangle;
 
     fn get_wrap_mode(&self) -> WrapMode;
 
@@ -385,9 +386,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn get_cursor_locations(&self, iter: Option<&TextIter>, strong: /*Ignored*/gdk::Rectangle, weak: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_cursor_locations() }
-    //}
+    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
+        unsafe {
+            let mut strong = gdk::Rectangle::uninitialized();
+            let mut weak = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_text_view_get_cursor_locations(self.as_ref().to_glib_none().0, iter.to_glib_none().0, strong.to_glib_none_mut().0, weak.to_glib_none_mut().0);
+            (strong, weak)
+        }
+    }
 
     fn get_cursor_visible(&self) -> bool {
         unsafe {
@@ -436,9 +442,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn get_iter_location(&self, iter: &TextIter, location: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_iter_location() }
-    //}
+    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
+        unsafe {
+            let mut location = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_text_view_get_iter_location(self.as_ref().to_glib_none().0, iter.to_glib_none().0, location.to_glib_none_mut().0);
+            location
+        }
+    }
 
     fn get_justification(&self) -> Justification {
         unsafe {
@@ -518,9 +528,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_visible_rect() }
-    //}
+    fn get_visible_rect(&self) -> gdk::Rectangle {
+        unsafe {
+            let mut visible_rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_text_view_get_visible_rect(self.as_ref().to_glib_none().0, visible_rect.to_glib_none_mut().0);
+            visible_rect
+        }
+    }
 
     fn get_wrap_mode(&self) -> WrapMode {
         unsafe {

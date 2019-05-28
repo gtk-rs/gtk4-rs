@@ -3,10 +3,18 @@
 // DO NOT EDIT
 
 use EventController;
+use gdk;
+use gdk_sys;
 use glib::object::Cast;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::SignalHandlerId;
+use glib::signal::connect_raw;
 use glib::translate::*;
+use glib_sys;
 use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 
 glib_wrapper! {
     pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass, EventControllerLegacyClass>) @extends EventController;
@@ -24,15 +32,24 @@ impl EventControllerLegacy {
         }
     }
 
-    //pub fn connect_event<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored event: Gdk.Event
-    //}
+    pub fn connect_event<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"event\0".as_ptr() as *const _,
+                Some(transmute(event_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 }
 
 impl Default for EventControllerLegacy {
     fn default() -> Self {
         Self::new()
     }
+}
+
+unsafe extern "C" fn event_trampoline<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerLegacy, event: *mut gdk_sys::GdkEvent, f: glib_sys::gpointer) -> glib_sys::gboolean {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
 }
 
 impl fmt::Display for EventControllerLegacy {

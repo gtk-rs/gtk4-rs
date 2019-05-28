@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Widget;
+use gdk;
 use gio;
 use glib::object::IsA;
 use glib::translate::*;
@@ -24,9 +25,11 @@ impl Tooltip {
         }
     }
 
-    //pub fn set_icon(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_icon() }
-    //}
+    pub fn set_icon<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_tooltip_set_icon(self.to_glib_none().0, paintable.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     pub fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
@@ -52,9 +55,11 @@ impl Tooltip {
         }
     }
 
-    //pub fn set_tip_area(&self, rect: /*Ignored*/&gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_tooltip_set_tip_area() }
-    //}
+    pub fn set_tip_area(&self, rect: &gdk::Rectangle) {
+        unsafe {
+            gtk_sys::gtk_tooltip_set_tip_area(self.to_glib_none().0, rect.to_glib_none().0);
+        }
+    }
 }
 
 impl fmt::Display for Tooltip {

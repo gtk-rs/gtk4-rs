@@ -5,4 +5,4 @@
 #[allow(unused_imports)]
 use auto::*;
 
-pub type Allocation = /*Ignored*/gdk::Rectangle;
+pub type Allocation = gdk::Rectangle;

@@ -11,6 +11,7 @@ use TreeIter;
 use TreeModel;
 use TreeViewColumnSizing;
 use Widget;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -66,7 +67,7 @@ pub const NONE_TREE_VIEW_COLUMN: Option<&TreeViewColumn> = None;
 pub trait TreeViewColumnExt: 'static {
     fn cell_get_position<P: IsA<CellRenderer>>(&self, cell_renderer: &P) -> Option<(i32, i32)>;
 
-    //fn cell_get_size(&self, cell_area: /*Ignored*/Option<&gdk::Rectangle>) -> (i32, i32, i32, i32);
+    fn cell_get_size(&self, cell_area: Option<&gdk::Rectangle>) -> (i32, i32, i32, i32);
 
     fn cell_is_visible(&self) -> bool;
 
@@ -203,9 +204,16 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
         }
     }
 
-    //fn cell_get_size(&self, cell_area: /*Ignored*/Option<&gdk::Rectangle>) -> (i32, i32, i32, i32) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_column_cell_get_size() }
-    //}
+    fn cell_get_size(&self, cell_area: Option<&gdk::Rectangle>) -> (i32, i32, i32, i32) {
+        unsafe {
+            let mut x_offset = mem::uninitialized();
+            let mut y_offset = mem::uninitialized();
+            let mut width = mem::uninitialized();
+            let mut height = mem::uninitialized();
+            gtk_sys::gtk_tree_view_column_cell_get_size(self.as_ref().to_glib_none().0, cell_area.to_glib_none().0, &mut x_offset, &mut y_offset, &mut width, &mut height);
+            (x_offset, y_offset, width, height)
+        }
+    }
 
     fn cell_is_visible(&self) -> bool {
         unsafe {

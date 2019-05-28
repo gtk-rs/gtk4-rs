@@ -92,7 +92,7 @@ pub trait TreeViewExt: 'static {
 
     fn convert_widget_to_tree_coords(&self, wx: i32, wy: i32) -> (i32, i32);
 
-    //fn create_row_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable>;
+    fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable>;
 
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
@@ -106,9 +106,9 @@ pub trait TreeViewExt: 'static {
 
     fn get_activate_on_single_click(&self) -> bool;
 
-    //fn get_background_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>, rect: /*Ignored*/gdk::Rectangle);
+    fn get_background_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>) -> gdk::Rectangle;
 
-    //fn get_cell_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>, rect: /*Ignored*/gdk::Rectangle);
+    fn get_cell_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>) -> gdk::Rectangle;
 
     fn get_column(&self, n: i32) -> Option<TreeViewColumn>;
 
@@ -170,7 +170,7 @@ pub trait TreeViewExt: 'static {
 
     fn get_visible_range(&self) -> Option<(TreePath, TreePath)>;
 
-    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle);
+    fn get_visible_rect(&self) -> gdk::Rectangle;
 
     fn insert_column<P: IsA<TreeViewColumn>>(&self, column: &P, position: i32) -> i32;
 
@@ -420,9 +420,11 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn create_row_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_create_row_drag_icon() }
-    //}
+    fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_tree_view_create_row_drag_icon(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
+        }
+    }
 
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
@@ -460,13 +462,21 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn get_background_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>, rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_background_area() }
-    //}
+    fn get_background_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>) -> gdk::Rectangle {
+        unsafe {
+            let mut rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_tree_view_get_background_area(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), column.map(|p| p.as_ref()).to_glib_none().0, rect.to_glib_none_mut().0);
+            rect
+        }
+    }
 
-    //fn get_cell_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>, rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_cell_area() }
-    //}
+    fn get_cell_area<P: IsA<TreeViewColumn>>(&self, path: Option<&TreePath>, column: Option<&P>) -> gdk::Rectangle {
+        unsafe {
+            let mut rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_tree_view_get_cell_area(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), column.map(|p| p.as_ref()).to_glib_none().0, rect.to_glib_none_mut().0);
+            rect
+        }
+    }
 
     fn get_column(&self, n: i32) -> Option<TreeViewColumn> {
         unsafe {
@@ -663,9 +673,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_visible_rect() }
-    //}
+    fn get_visible_rect(&self) -> gdk::Rectangle {
+        unsafe {
+            let mut visible_rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_tree_view_get_visible_rect(self.as_ref().to_glib_none().0, visible_rect.to_glib_none_mut().0);
+            visible_rect
+        }
+    }
 
     fn insert_column<P: IsA<TreeViewColumn>>(&self, column: &P, position: i32) -> i32 {
         unsafe {

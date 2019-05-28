@@ -6,6 +6,7 @@ use Buildable;
 use IconSize;
 use ImageType;
 use Widget;
+use gdk;
 use gdk_pixbuf;
 use gio;
 use glib::GString;
@@ -61,9 +62,12 @@ impl Image {
         }
     }
 
-    //pub fn new_from_paintable(paintable: /*Ignored*/Option<&gdk::Paintable>) -> Image {
-    //    unsafe { TODO: call gtk_sys:gtk_image_new_from_paintable() }
-    //}
+    pub fn new_from_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Image {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_image_new_from_paintable(paintable.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_from_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Image {
         assert_initialized_main_thread!();
@@ -97,7 +101,7 @@ pub trait ImageExt: 'static {
 
     fn get_icon_size(&self) -> IconSize;
 
-    //fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_paintable(&self) -> Option<gdk::Paintable>;
 
     fn get_pixel_size(&self) -> i32;
 
@@ -109,7 +113,7 @@ pub trait ImageExt: 'static {
 
     fn set_from_icon_name(&self, icon_name: Option<&str>);
 
-    //fn set_from_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_from_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>);
 
     fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>);
 
@@ -127,7 +131,7 @@ pub trait ImageExt: 'static {
 
     fn set_property_icon_name(&self, icon_name: Option<&str>);
 
-    //fn set_property_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_property_paintable(&self, paintable: Option<&gdk::Paintable>);
 
     fn get_property_resource(&self) -> Option<GString>;
 
@@ -181,9 +185,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_image_get_paintable() }
-    //}
+    fn get_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_image_get_paintable(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_pixel_size(&self) -> i32 {
         unsafe {
@@ -215,9 +221,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn set_from_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call gtk_sys:gtk_image_set_from_paintable() }
-    //}
+    fn set_from_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_image_set_from_paintable(self.as_ref().to_glib_none().0, paintable.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
@@ -269,11 +277,11 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    //fn set_property_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paintable\0".as_ptr() as *const _, Value::from(paintable).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_paintable(&self, paintable: Option<&gdk::Paintable>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paintable\0".as_ptr() as *const _, Value::from(paintable).to_glib_none().0);
+        }
+    }
 
     fn get_property_resource(&self) -> Option<GString> {
         unsafe {

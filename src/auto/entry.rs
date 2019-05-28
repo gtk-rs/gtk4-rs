@@ -79,7 +79,7 @@ pub trait EntryExt: 'static {
 
     fn get_icon_activatable(&self, icon_pos: EntryIconPosition) -> bool;
 
-    //fn get_icon_area(&self, icon_pos: EntryIconPosition, icon_area: /*Ignored*/gdk::Rectangle);
+    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle;
 
     fn get_icon_at_pos(&self, x: i32, y: i32) -> i32;
 
@@ -87,7 +87,7 @@ pub trait EntryExt: 'static {
 
     fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<GString>;
 
-    //fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable>;
 
     fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool;
 
@@ -143,7 +143,7 @@ pub trait EntryExt: 'static {
 
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>);
 
-    //fn set_icon_from_paintable(&self, icon_pos: EntryIconPosition, paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_icon_from_paintable<P: IsA<gdk::Paintable>>(&self, icon_pos: EntryIconPosition, paintable: Option<&P>);
 
     fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool);
 
@@ -201,9 +201,9 @@ pub trait EntryExt: 'static {
 
     fn set_property_primary_icon_name(&self, primary_icon_name: Option<&str>);
 
-    //fn get_property_primary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    //fn set_property_primary_icon_paintable(&self, primary_icon_paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_property_primary_icon_paintable(&self, primary_icon_paintable: Option<&gdk::Paintable>);
 
     fn get_property_primary_icon_sensitive(&self) -> bool;
 
@@ -233,9 +233,9 @@ pub trait EntryExt: 'static {
 
     fn set_property_secondary_icon_name(&self, secondary_icon_name: Option<&str>);
 
-    //fn get_property_secondary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    //fn set_property_secondary_icon_paintable(&self, secondary_icon_paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_property_secondary_icon_paintable(&self, secondary_icon_paintable: Option<&gdk::Paintable>);
 
     fn get_property_secondary_icon_sensitive(&self) -> bool;
 
@@ -389,9 +389,13 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_icon_area(&self, icon_pos: EntryIconPosition, icon_area: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_area() }
-    //}
+    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle {
+        unsafe {
+            let mut icon_area = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_entry_get_icon_area(self.as_ref().to_glib_none().0, icon_pos.to_glib(), icon_area.to_glib_none_mut().0);
+            icon_area
+        }
+    }
 
     fn get_icon_at_pos(&self, x: i32, y: i32) -> i32 {
         unsafe {
@@ -411,9 +415,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_paintable() }
-    //}
+    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_entry_get_icon_paintable(self.as_ref().to_glib_none().0, icon_pos.to_glib()))
+        }
+    }
 
     fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
@@ -577,9 +583,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_icon_from_paintable(&self, icon_pos: EntryIconPosition, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_from_paintable() }
-    //}
+    fn set_icon_from_paintable<P: IsA<gdk::Paintable>>(&self, icon_pos: EntryIconPosition, paintable: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_entry_set_icon_from_paintable(self.as_ref().to_glib_none().0, icon_pos.to_glib(), paintable.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool) {
         unsafe {
@@ -763,19 +771,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_property_primary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::Paintable as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_primary_icon_paintable(&self, primary_icon_paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, Value::from(primary_icon_paintable).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_primary_icon_paintable(&self, primary_icon_paintable: Option<&gdk::Paintable>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, Value::from(primary_icon_paintable).to_glib_none().0);
+        }
+    }
 
     fn get_property_primary_icon_sensitive(&self) -> bool {
         unsafe {
@@ -877,19 +885,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn get_property_secondary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::Paintable as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_secondary_icon_paintable(&self, secondary_icon_paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, Value::from(secondary_icon_paintable).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_secondary_icon_paintable(&self, secondary_icon_paintable: Option<&gdk::Paintable>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, Value::from(secondary_icon_paintable).to_glib_none().0);
+        }
+    }
 
     fn get_property_secondary_icon_sensitive(&self) -> bool {
         unsafe {

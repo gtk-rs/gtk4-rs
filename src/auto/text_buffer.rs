@@ -20,7 +20,6 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -47,7 +46,7 @@ pub const NONE_TEXT_BUFFER: Option<&TextBuffer> = None;
 pub trait TextBufferExt: 'static {
     fn add_mark<P: IsA<TextMark>>(&self, mark: &P, where_: &TextIter);
 
-    //fn add_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
+    fn add_selection_clipboard(&self, clipboard: &gdk::Clipboard);
 
     fn apply_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter);
 
@@ -57,7 +56,7 @@ pub trait TextBufferExt: 'static {
 
     fn begin_user_action(&self);
 
-    //fn copy_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
+    fn copy_clipboard(&self, clipboard: &gdk::Clipboard);
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor>;
 
@@ -65,7 +64,7 @@ pub trait TextBufferExt: 'static {
 
     //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<TextTag>;
 
-    //fn cut_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, default_editable: bool);
+    fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool);
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter);
 
@@ -145,13 +144,13 @@ pub trait TextBufferExt: 'static {
 
     fn move_mark_by_name(&self, name: &str, where_: &TextIter);
 
-    //fn paste_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, override_location: Option<&mut TextIter>, default_editable: bool);
+    fn paste_clipboard(&self, clipboard: &gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool);
 
     fn place_cursor(&self, where_: &TextIter);
 
     fn remove_all_tags(&self, start: &TextIter, end: &TextIter);
 
-    //fn remove_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
+    fn remove_selection_clipboard(&self, clipboard: &gdk::Clipboard);
 
     fn remove_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter);
 
@@ -181,8 +180,6 @@ pub trait TextBufferExt: 'static {
 
     fn connect_insert_child_anchor<F: Fn(&Self, &TextIter, &TextChildAnchor) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_insert_text<F: Fn(&Self, &TextIter, &str, i32) + 'static>(&self, f: F) -> SignalHandlerId;
-
     fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -191,7 +188,7 @@ pub trait TextBufferExt: 'static {
 
     fn connect_modified_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_paste_done<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -213,9 +210,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn add_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_add_selection_clipboard() }
-    //}
+    fn add_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_add_selection_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+        }
+    }
 
     fn apply_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
@@ -241,9 +240,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn copy_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_copy_clipboard() }
-    //}
+    fn copy_clipboard(&self, clipboard: &gdk::Clipboard) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_copy_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+        }
+    }
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor> {
         unsafe {
@@ -261,9 +262,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_text_buffer_create_tag() }
     //}
 
-    //fn cut_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, default_editable: bool) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_cut_clipboard() }
-    //}
+    fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_cut_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0, default_editable.to_glib());
+        }
+    }
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter) {
         unsafe {
@@ -522,9 +525,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn paste_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, override_location: Option<&mut TextIter>, default_editable: bool) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_paste_clipboard() }
-    //}
+    fn paste_clipboard(&self, clipboard: &gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_paste_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0, mut_override(override_location.to_glib_none().0), default_editable.to_glib());
+        }
+    }
 
     fn place_cursor(&self, where_: &TextIter) {
         unsafe {
@@ -538,9 +543,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn remove_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_remove_selection_clipboard() }
-    //}
+    fn remove_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
+        unsafe {
+            gtk_sys::gtk_text_buffer_remove_selection_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+        }
+    }
 
     fn remove_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
@@ -645,14 +652,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn connect_insert_text<F: Fn(&Self, &TextIter, &str, i32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"insert-text\0".as_ptr() as *const _,
-                Some(transmute(insert_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
-        }
-    }
-
     fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -685,9 +684,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn connect_paste_done<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored clipboard: Gdk.Clipboard
-    //}
+    fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"paste-done\0".as_ptr() as *const _,
+                Some(transmute(paste_done_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -774,12 +777,6 @@ where P: IsA<TextBuffer> {
     f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &from_glib_borrow(anchor))
 }
 
-unsafe extern "C" fn insert_text_trampoline<P, F: Fn(&P, &TextIter, &str, i32) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, text: *mut libc::c_char, len: libc::c_int, f: glib_sys::gpointer)
-where P: IsA<TextBuffer> {
-    let f: &F = &*(f as *const F);
-    f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &GString::from_glib_borrow(text), len)
-}
-
 unsafe extern "C" fn insert_texture_trampoline<P, F: Fn(&P, &TextIter, &gdk::Texture) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, texture: *mut gdk_sys::GdkTexture, f: glib_sys::gpointer)
 where P: IsA<TextBuffer> {
     let f: &F = &*(f as *const F);
@@ -802,6 +799,12 @@ unsafe extern "C" fn modified_changed_trampoline<P, F: Fn(&P) + 'static>(this: *
 where P: IsA<TextBuffer> {
     let f: &F = &*(f as *const F);
     f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
+}
+
+unsafe extern "C" fn paste_done_trampoline<P, F: Fn(&P, &gdk::Clipboard) + 'static>(this: *mut gtk_sys::GtkTextBuffer, clipboard: *mut gdk_sys::GdkClipboard, f: glib_sys::gpointer)
+where P: IsA<TextBuffer> {
+    let f: &F = &*(f as *const F);
+    f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(clipboard))
 }
 
 unsafe extern "C" fn remove_tag_trampoline<P, F: Fn(&P, &TextTag, &TextIter, &TextIter) + 'static>(this: *mut gtk_sys::GtkTextBuffer, tag: *mut gtk_sys::GtkTextTag, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer)

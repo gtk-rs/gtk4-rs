@@ -103,7 +103,7 @@ pub trait WindowExt: 'static {
 
     fn begin_move_drag(&self, button: i32, x: i32, y: i32, timestamp: u32);
 
-    //fn begin_resize_drag(&self, edge: /*Ignored*/gdk::SurfaceEdge, button: i32, x: i32, y: i32, timestamp: u32);
+    fn begin_resize_drag(&self, edge: gdk::SurfaceEdge, button: i32, x: i32, y: i32, timestamp: u32);
 
     fn close(&self);
 
@@ -111,7 +111,7 @@ pub trait WindowExt: 'static {
 
     fn fullscreen(&self);
 
-    //fn fullscreen_on_monitor(&self, monitor: /*Ignored*/&gdk::Monitor);
+    fn fullscreen_on_monitor(&self, monitor: &gdk::Monitor);
 
     fn get_accept_focus(&self) -> bool;
 
@@ -155,7 +155,7 @@ pub trait WindowExt: 'static {
 
     fn get_transient_for(&self) -> Option<Window>;
 
-    //fn get_type_hint(&self) -> /*Ignored*/gdk::SurfaceTypeHint;
+    fn get_type_hint(&self) -> gdk::SurfaceTypeHint;
 
     fn get_window_type(&self) -> WindowType;
 
@@ -233,7 +233,7 @@ pub trait WindowExt: 'static {
 
     fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>);
 
-    //fn set_type_hint(&self, hint: /*Ignored*/gdk::SurfaceTypeHint);
+    fn set_type_hint(&self, hint: gdk::SurfaceTypeHint);
 
     fn stick(&self);
 
@@ -349,9 +349,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn begin_resize_drag(&self, edge: /*Ignored*/gdk::SurfaceEdge, button: i32, x: i32, y: i32, timestamp: u32) {
-    //    unsafe { TODO: call gtk_sys:gtk_window_begin_resize_drag() }
-    //}
+    fn begin_resize_drag(&self, edge: gdk::SurfaceEdge, button: i32, x: i32, y: i32, timestamp: u32) {
+        unsafe {
+            gtk_sys::gtk_window_begin_resize_drag(self.as_ref().to_glib_none().0, edge.to_glib(), button, x, y, timestamp);
+        }
+    }
 
     fn close(&self) {
         unsafe {
@@ -371,9 +373,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn fullscreen_on_monitor(&self, monitor: /*Ignored*/&gdk::Monitor) {
-    //    unsafe { TODO: call gtk_sys:gtk_window_fullscreen_on_monitor() }
-    //}
+    fn fullscreen_on_monitor(&self, monitor: &gdk::Monitor) {
+        unsafe {
+            gtk_sys::gtk_window_fullscreen_on_monitor(self.as_ref().to_glib_none().0, monitor.to_glib_none().0);
+        }
+    }
 
     fn get_accept_focus(&self) -> bool {
         unsafe {
@@ -507,9 +511,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn get_type_hint(&self) -> /*Ignored*/gdk::SurfaceTypeHint {
-    //    unsafe { TODO: call gtk_sys:gtk_window_get_type_hint() }
-    //}
+    fn get_type_hint(&self) -> gdk::SurfaceTypeHint {
+        unsafe {
+            from_glib(gtk_sys::gtk_window_get_type_hint(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_window_type(&self) -> WindowType {
         unsafe {
@@ -737,9 +743,11 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn set_type_hint(&self, hint: /*Ignored*/gdk::SurfaceTypeHint) {
-    //    unsafe { TODO: call gtk_sys:gtk_window_set_type_hint() }
-    //}
+    fn set_type_hint(&self, hint: gdk::SurfaceTypeHint) {
+        unsafe {
+            gtk_sys::gtk_window_set_type_hint(self.as_ref().to_glib_none().0, hint.to_glib());
+        }
+    }
 
     fn stick(&self) {
         unsafe {

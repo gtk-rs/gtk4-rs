@@ -5,6 +5,8 @@
 use Buildable;
 use Error;
 use Widget;
+use gdk;
+use gdk_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -48,7 +50,7 @@ pub trait GLAreaExt: 'static {
 
     fn get_auto_render(&self) -> bool;
 
-    //fn get_context(&self) -> /*Ignored*/Option<gdk::GLContext>;
+    fn get_context(&self) -> Option<gdk::GLContext>;
 
     fn get_error(&self) -> Option<Error>;
 
@@ -76,9 +78,9 @@ pub trait GLAreaExt: 'static {
 
     fn set_use_es(&self, use_es: bool);
 
-    //fn connect_create_context<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_create_context<F: Fn(&Self) -> gdk::GLContext + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_render<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -106,9 +108,11 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    //fn get_context(&self) -> /*Ignored*/Option<gdk::GLContext> {
-    //    unsafe { TODO: call gtk_sys:gtk_gl_area_get_context() }
-    //}
+    fn get_context(&self) -> Option<gdk::GLContext> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_gl_area_get_context(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_error(&self) -> Option<Error> {
         unsafe {
@@ -191,13 +195,21 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    //fn connect_create_context<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored return value Gdk.GLContext
-    //}
+    fn connect_create_context<F: Fn(&Self) -> gdk::GLContext + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"create-context\0".as_ptr() as *const _,
+                Some(transmute(create_context_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //fn connect_render<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored context: Gdk.GLContext
-    //}
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"render\0".as_ptr() as *const _,
+                Some(transmute(render_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -246,6 +258,18 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
                 Some(transmute(notify_use_es_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
+}
+
+unsafe extern "C" fn create_context_trampoline<P, F: Fn(&P) -> gdk::GLContext + 'static>(this: *mut gtk_sys::GtkGLArea, f: glib_sys::gpointer) -> *mut gdk_sys::GdkGLContext
+where P: IsA<GLArea> {
+    let f: &F = &*(f as *const F);
+    f(&GLArea::from_glib_borrow(this).unsafe_cast()).to_glib_full()
+}
+
+unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> bool + 'static>(this: *mut gtk_sys::GtkGLArea, context: *mut gdk_sys::GdkGLContext, f: glib_sys::gpointer) -> glib_sys::gboolean
+where P: IsA<GLArea> {
+    let f: &F = &*(f as *const F);
+    f(&GLArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context)).to_glib()
 }
 
 unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gtk_sys::GtkGLArea, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)

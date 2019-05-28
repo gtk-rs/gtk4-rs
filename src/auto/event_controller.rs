@@ -4,6 +4,7 @@
 
 use PropagationPhase;
 use Widget;
+use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -30,7 +31,7 @@ pub trait EventControllerExt: 'static {
 
     fn get_widget(&self) -> Option<Widget>;
 
-    //fn handle_event(&self, event: /*Ignored*/&gdk::Event) -> bool;
+    fn handle_event(&self, event: &gdk::Event) -> bool;
 
     fn reset(&self);
 
@@ -54,9 +55,11 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    //fn handle_event(&self, event: /*Ignored*/&gdk::Event) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_event_controller_handle_event() }
-    //}
+    fn handle_event(&self, event: &gdk::Event) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_event_controller_handle_event(self.as_ref().to_glib_none().0, event.to_glib_none().0))
+        }
+    }
 
     fn reset(&self) {
         unsafe {

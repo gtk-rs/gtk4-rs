@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Widget;
+use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -15,7 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct WidgetPaintable(Object<gtk_sys::GtkWidgetPaintable, gtk_sys::GtkWidgetPaintableClass, WidgetPaintableClass>);
+    pub struct WidgetPaintable(Object<gtk_sys::GtkWidgetPaintable, gtk_sys::GtkWidgetPaintableClass, WidgetPaintableClass>) @implements gdk::Paintable;
 
     match fn {
         get_type => || gtk_sys::gtk_widget_paintable_get_type(),

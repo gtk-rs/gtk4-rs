@@ -5,6 +5,7 @@
 use InputHints;
 use InputPurpose;
 use Widget;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -51,7 +52,7 @@ pub trait IMContextExt: 'static {
 
     fn set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
 
-    //fn set_cursor_location(&self, area: /*Ignored*/&gdk::Rectangle);
+    fn set_cursor_location(&self, area: &gdk::Rectangle);
 
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
@@ -136,9 +137,11 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    //fn set_cursor_location(&self, area: /*Ignored*/&gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_im_context_set_cursor_location() }
-    //}
+    fn set_cursor_location(&self, area: &gdk::Rectangle) {
+        unsafe {
+            gtk_sys::gtk_im_context_set_cursor_location(self.as_ref().to_glib_none().0, area.to_glib_none().0);
+        }
+    }
 
     fn set_surrounding(&self, text: &str, cursor_index: i32) {
         let len = text.len() as i32;

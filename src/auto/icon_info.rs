@@ -105,40 +105,57 @@ impl IconInfo {
         })
     }
 
-    //pub fn load_symbolic(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic() }
-    //}
+    pub fn load_symbolic(&self, fg: &gdk::RGBA, success_color: Option<&gdk::RGBA>, warning_color: Option<&gdk::RGBA>, error_color: Option<&gdk::RGBA>) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
+        unsafe {
+            let mut was_symbolic = mem::uninitialized();
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_icon_info_load_symbolic(self.to_glib_none().0, fg.to_glib_none().0, success_color.to_glib_none().0, warning_color.to_glib_none().0, error_color.to_glib_none().0, &mut was_symbolic, &mut error);
+            if error.is_null() { Ok((from_glib_full(ret), from_glib(was_symbolic))) } else { Err(from_glib_full(error)) }
+        }
+    }
 
-    //pub fn load_symbolic_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>, cancellable: Option<&P>, callback: Q) {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_info_load_symbolic_async() }
-    //}
+    pub fn load_symbolic_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(&self, fg: &gdk::RGBA, success_color: Option<&gdk::RGBA>, warning_color: Option<&gdk::RGBA>, error_color: Option<&gdk::RGBA>, cancellable: Option<&P>, callback: Q) {
+        let user_data: Box<Q> = Box::new(callback);
+        unsafe extern "C" fn load_symbolic_async_trampoline<Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+            let mut error = ptr::null_mut();
+            let mut was_symbolic = mem::uninitialized();
+            let ret = gtk_sys::gtk_icon_info_load_symbolic_finish(_source_object as *mut _, res, &mut was_symbolic, &mut error);
+            let result = if error.is_null() { Ok((from_glib_full(ret), from_glib(was_symbolic))) } else { Err(from_glib_full(error)) };
+            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            callback(result);
+        }
+        let callback = load_symbolic_async_trampoline::<Q>;
+        unsafe {
+            gtk_sys::gtk_icon_info_load_symbolic_async(self.to_glib_none().0, fg.to_glib_none().0, success_color.to_glib_none().0, warning_color.to_glib_none().0, error_color.to_glib_none().0, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+        }
+    }
 
-    //#[cfg(feature = "futures")]
-    //pub fn load_symbolic_async_future(&self, fg: /*Ignored*/&gdk::RGBA, success_color: /*Ignored*/Option<&gdk::RGBA>, warning_color: /*Ignored*/Option<&gdk::RGBA>, error_color: /*Ignored*/Option<&gdk::RGBA>) -> Box_<future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
-        //use gio::GioFuture;
-        //use fragile::Fragile;
+    #[cfg(feature = "futures")]
+    pub fn load_symbolic_async_future(&self, fg: &gdk::RGBA, success_color: Option<&gdk::RGBA>, warning_color: Option<&gdk::RGBA>, error_color: Option<&gdk::RGBA>) -> Box_<future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
+        use gio::GioFuture;
+        use fragile::Fragile;
 
-        //let fg = fg.clone();
-        //let success_color = success_color.map(ToOwned::to_owned);
-        //let warning_color = warning_color.map(ToOwned::to_owned);
-        //let error_color = error_color.map(ToOwned::to_owned);
-        //GioFuture::new(self, move |obj, send| {
-        //    let cancellable = gio::Cancellable::new();
-        //    let send = Fragile::new(send);
-        //    obj.load_symbolic_async(
-        //        &fg,
-        //        success_color.as_ref().map(::std::borrow::Borrow::borrow),
-        //        warning_color.as_ref().map(::std::borrow::Borrow::borrow),
-        //        error_color.as_ref().map(::std::borrow::Borrow::borrow),
-        //        Some(&cancellable),
-        //        move |res| {
-        //            let _ = send.into_inner().send(res);
-        //        },
-        //    );
+        let fg = fg.clone();
+        let success_color = success_color.map(ToOwned::to_owned);
+        let warning_color = warning_color.map(ToOwned::to_owned);
+        let error_color = error_color.map(ToOwned::to_owned);
+        GioFuture::new(self, move |obj, send| {
+            let cancellable = gio::Cancellable::new();
+            let send = Fragile::new(send);
+            obj.load_symbolic_async(
+                &fg,
+                success_color.as_ref().map(::std::borrow::Borrow::borrow),
+                warning_color.as_ref().map(::std::borrow::Borrow::borrow),
+                error_color.as_ref().map(::std::borrow::Borrow::borrow),
+                Some(&cancellable),
+                move |res| {
+                    let _ = send.into_inner().send(res);
+                },
+            );
 
-        //    cancellable
-        //})
-    //}
+            cancellable
+        })
+    }
 
     pub fn load_symbolic_for_context<P: IsA<StyleContext>>(&self, context: &P) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
         unsafe {

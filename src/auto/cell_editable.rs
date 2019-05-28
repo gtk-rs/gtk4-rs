@@ -4,6 +4,7 @@
 
 use Buildable;
 use Widget;
+use gdk;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -33,7 +34,7 @@ pub trait CellEditableExt: 'static {
 
     fn remove_widget(&self);
 
-    //fn start_editing(&self, event: /*Ignored*/Option<&gdk::Event>);
+    fn start_editing(&self, event: Option<&gdk::Event>);
 
     fn get_property_editing_canceled(&self) -> bool;
 
@@ -59,9 +60,11 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    //fn start_editing(&self, event: /*Ignored*/Option<&gdk::Event>) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_editable_start_editing() }
-    //}
+    fn start_editing(&self, event: Option<&gdk::Event>) {
+        unsafe {
+            gtk_sys::gtk_cell_editable_start_editing(self.as_ref().to_glib_none().0, event.to_glib_none().0);
+        }
+    }
 
     fn get_property_editing_canceled(&self) -> bool {
         unsafe {

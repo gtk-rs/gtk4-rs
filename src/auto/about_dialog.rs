@@ -10,6 +10,7 @@ use License;
 use Root;
 use Widget;
 use Window;
+use gdk;
 use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -65,7 +66,7 @@ pub trait AboutDialogExt: 'static {
 
     fn get_license_type(&self) -> License;
 
-    //fn get_logo(&self) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_logo(&self) -> Option<gdk::Paintable>;
 
     fn get_logo_icon_name(&self) -> Option<GString>;
 
@@ -97,7 +98,7 @@ pub trait AboutDialogExt: 'static {
 
     fn set_license_type(&self, license_type: License);
 
-    //fn set_logo(&self, logo: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_logo<P: IsA<gdk::Paintable>>(&self, logo: Option<&P>);
 
     fn set_logo_icon_name(&self, icon_name: Option<&str>);
 
@@ -199,9 +200,11 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
         }
     }
 
-    //fn get_logo(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_about_dialog_get_logo() }
-    //}
+    fn get_logo(&self) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_about_dialog_get_logo(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_logo_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -293,9 +296,11 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
         }
     }
 
-    //fn set_logo(&self, logo: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call gtk_sys:gtk_about_dialog_set_logo() }
-    //}
+    fn set_logo<P: IsA<gdk::Paintable>>(&self, logo: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_about_dialog_set_logo(self.as_ref().to_glib_none().0, logo.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_logo_icon_name(&self, icon_name: Option<&str>) {
         unsafe {

@@ -5,6 +5,7 @@
 use Justification;
 use TextDirection;
 use WrapMode;
+use gdk;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -61,9 +62,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_background_full_height_set(&self, background_full_height_set: bool);
 
-    //fn get_property_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
+    fn get_property_background_rgba(&self) -> Option<gdk::RGBA>;
 
-    //fn set_property_background_rgba(&self, background_rgba: /*Ignored*/Option<&gdk::RGBA>);
+    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
 
     fn get_property_background_set(&self) -> bool;
 
@@ -115,9 +116,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_foreground(&self, foreground: Option<&str>);
 
-    //fn get_property_foreground_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
+    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA>;
 
-    //fn set_property_foreground_rgba(&self, foreground_rgba: /*Ignored*/Option<&gdk::RGBA>);
+    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
 
     fn get_property_foreground_set(&self) -> bool;
 
@@ -175,9 +176,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_paragraph_background(&self, paragraph_background: Option<&str>);
 
-    //fn get_property_paragraph_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
+    fn get_property_paragraph_background_rgba(&self) -> Option<gdk::RGBA>;
 
-    //fn set_property_paragraph_background_rgba(&self, paragraph_background_rgba: /*Ignored*/Option<&gdk::RGBA>);
+    fn set_property_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>);
 
     fn get_property_paragraph_background_set(&self) -> bool;
 
@@ -255,9 +256,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_strikethrough(&self, strikethrough: bool);
 
-    //fn get_property_strikethrough_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
+    fn get_property_strikethrough_rgba(&self) -> Option<gdk::RGBA>;
 
-    //fn set_property_strikethrough_rgba(&self, strikethrough_rgba: /*Ignored*/Option<&gdk::RGBA>);
+    fn set_property_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>);
 
     fn get_property_strikethrough_rgba_set(&self) -> bool;
 
@@ -287,9 +288,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_underline(&self, underline: pango::Underline);
 
-    //fn get_property_underline_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
+    fn get_property_underline_rgba(&self) -> Option<gdk::RGBA>;
 
-    //fn set_property_underline_rgba(&self, underline_rgba: /*Ignored*/Option<&gdk::RGBA>);
+    fn set_property_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>);
 
     fn get_property_underline_rgba_set(&self) -> bool;
 
@@ -531,19 +532,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_background_rgba(&self) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_background_rgba(&self, background_rgba: /*Ignored*/Option<&gdk::RGBA>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, Value::from(background_rgba).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, Value::from(background_rgba).to_glib_none().0);
+        }
+    }
 
     fn get_property_background_set(&self) -> bool {
         unsafe {
@@ -719,19 +720,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_foreground_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_foreground_rgba(&self, foreground_rgba: /*Ignored*/Option<&gdk::RGBA>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, Value::from(foreground_rgba).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, Value::from(foreground_rgba).to_glib_none().0);
+        }
+    }
 
     fn get_property_foreground_set(&self) -> bool {
         unsafe {
@@ -929,19 +930,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_paragraph_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paragraph-background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_paragraph_background_rgba(&self) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paragraph-background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_paragraph_background_rgba(&self, paragraph_background_rgba: /*Ignored*/Option<&gdk::RGBA>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paragraph-background-rgba\0".as_ptr() as *const _, Value::from(paragraph_background_rgba).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paragraph-background-rgba\0".as_ptr() as *const _, Value::from(paragraph_background_rgba).to_glib_none().0);
+        }
+    }
 
     fn get_property_paragraph_background_set(&self) -> bool {
         unsafe {
@@ -1209,19 +1210,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_strikethrough_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_strikethrough_rgba(&self) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_strikethrough_rgba(&self, strikethrough_rgba: /*Ignored*/Option<&gdk::RGBA>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-rgba\0".as_ptr() as *const _, Value::from(strikethrough_rgba).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-rgba\0".as_ptr() as *const _, Value::from(strikethrough_rgba).to_glib_none().0);
+        }
+    }
 
     fn get_property_strikethrough_rgba_set(&self) -> bool {
         unsafe {
@@ -1321,19 +1322,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_underline_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_underline_rgba(&self) -> Option<gdk::RGBA> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
-    //fn set_property_underline_rgba(&self, underline_rgba: /*Ignored*/Option<&gdk::RGBA>) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-rgba\0".as_ptr() as *const _, Value::from(underline_rgba).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-rgba\0".as_ptr() as *const _, Value::from(underline_rgba).to_glib_none().0);
+        }
+    }
 
     fn get_property_underline_rgba_set(&self) -> bool {
         unsafe {

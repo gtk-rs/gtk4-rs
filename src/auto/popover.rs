@@ -8,6 +8,7 @@ use Container;
 use PopoverConstraint;
 use PositionType;
 use Widget;
+use gdk;
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -55,7 +56,7 @@ pub trait PopoverExt: 'static {
 
     fn get_modal(&self) -> bool;
 
-    //fn get_pointing_to(&self, rect: /*Ignored*/gdk::Rectangle) -> bool;
+    fn get_pointing_to(&self) -> Option<gdk::Rectangle>;
 
     fn get_position(&self) -> PositionType;
 
@@ -71,7 +72,7 @@ pub trait PopoverExt: 'static {
 
     fn set_modal(&self, modal: bool);
 
-    //fn set_pointing_to(&self, rect: /*Ignored*/&gdk::Rectangle);
+    fn set_pointing_to(&self, rect: &gdk::Rectangle);
 
     fn set_position(&self, position: PositionType);
 
@@ -117,9 +118,13 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    //fn get_pointing_to(&self, rect: /*Ignored*/gdk::Rectangle) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_popover_get_pointing_to() }
-    //}
+    fn get_pointing_to(&self) -> Option<gdk::Rectangle> {
+        unsafe {
+            let mut rect = gdk::Rectangle::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_popover_get_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none_mut().0));
+            if ret { Some(rect) } else { None }
+        }
+    }
 
     fn get_position(&self) -> PositionType {
         unsafe {
@@ -163,9 +168,11 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    //fn set_pointing_to(&self, rect: /*Ignored*/&gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_popover_set_pointing_to() }
-    //}
+    fn set_pointing_to(&self, rect: &gdk::Rectangle) {
+        unsafe {
+            gtk_sys::gtk_popover_set_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none().0);
+        }
+    }
 
     fn set_position(&self, position: PositionType) {
         unsafe {

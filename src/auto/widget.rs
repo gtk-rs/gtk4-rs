@@ -5,6 +5,7 @@
 use AccelFlags;
 use AccelGroup;
 use Align;
+use Allocation;
 use Buildable;
 use DestDefaults;
 use DirectionType;
@@ -43,6 +44,7 @@ use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
 use gobject_sys;
+use graphene;
 use gtk_sys;
 use libc;
 use pango;
@@ -102,13 +104,13 @@ pub trait WidgetExt: 'static {
 
     fn child_focus(&self, direction: DirectionType) -> bool;
 
-    //fn compute_bounds<P: IsA<Widget>>(&self, target: &P, out_bounds: /*Ignored*/graphene::Rect) -> bool;
+    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect>;
 
     fn compute_expand(&self, orientation: Orientation) -> bool;
 
-    //fn compute_point<P: IsA<Widget>>(&self, target: &P, point: /*Ignored*/&graphene::Point, out_point: /*Ignored*/graphene::Point) -> bool;
+    fn compute_point<P: IsA<Widget>>(&self, target: &P, point: &graphene::Point) -> Option<graphene::Point>;
 
-    //fn compute_transform<P: IsA<Widget>>(&self, target: &P, out_transform: /*Ignored*/graphene::Matrix) -> bool;
+    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix>;
 
     fn contains(&self, x: f64, y: f64) -> bool;
 
@@ -120,9 +122,9 @@ pub trait WidgetExt: 'static {
 
     //fn destroyed<P: IsA<Widget>>(&self, widget_pointer: &P);
 
-    //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool;
+    fn device_is_shadowed(&self, device: &gdk::Device) -> bool;
 
-    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag>;
+    fn drag_begin(&self, device: Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag>;
 
     fn drag_check_threshold(&self, start_x: i32, start_y: i32, current_x: i32, current_y: i32) -> bool;
 
@@ -164,7 +166,7 @@ pub trait WidgetExt: 'static {
 
     fn drag_source_set_icon_name(&self, icon_name: &str);
 
-    //fn drag_source_set_icon_paintable(&self, paintable: /*Ignored*/&gdk::Paintable);
+    fn drag_source_set_icon_paintable<P: IsA<gdk::Paintable>>(&self, paintable: &P);
 
     fn drag_source_set_target_list(&self, target_list: Option<&gdk::ContentFormats>);
 
@@ -174,7 +176,7 @@ pub trait WidgetExt: 'static {
 
     fn error_bell(&self);
 
-    //fn event(&self, event: /*Ignored*/&gdk::Event) -> bool;
+    fn event(&self, event: &gdk::Event) -> bool;
 
     fn get_accessible(&self) -> Option<atk::Object>;
 
@@ -186,7 +188,7 @@ pub trait WidgetExt: 'static {
 
     fn get_allocated_width(&self) -> i32;
 
-    //fn get_allocation(&self, allocation: /*Ignored*/&mut Allocation);
+    fn get_allocation(&self) -> Allocation;
 
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
 
@@ -196,9 +198,9 @@ pub trait WidgetExt: 'static {
 
     fn get_child_visible(&self) -> bool;
 
-    //fn get_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard>;
+    fn get_clipboard(&self) -> Option<gdk::Clipboard>;
 
-    //fn get_cursor(&self) -> /*Ignored*/Option<gdk::Cursor>;
+    fn get_cursor(&self) -> Option<gdk::Cursor>;
 
     fn get_direction(&self) -> TextDirection;
 
@@ -242,7 +244,7 @@ pub trait WidgetExt: 'static {
 
     fn get_margin_top(&self) -> i32;
 
-    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> gdk::ModifierType;
+    fn get_modifier_mask(&self, intent: gdk::ModifierIntent) -> gdk::ModifierType;
 
     fn get_next_sibling(&self) -> Option<Widget>;
 
@@ -260,7 +262,7 @@ pub trait WidgetExt: 'static {
 
     fn get_prev_sibling(&self) -> Option<Widget>;
 
-    //fn get_primary_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard>;
+    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard>;
 
     fn get_realized(&self) -> bool;
 
@@ -398,7 +400,7 @@ pub trait WidgetExt: 'static {
 
     fn set_child_visible(&self, child_visible: bool);
 
-    //fn set_cursor(&self, cursor: /*Ignored*/Option<&gdk::Cursor>);
+    fn set_cursor(&self, cursor: Option<&gdk::Cursor>);
 
     fn set_cursor_from_name(&self, name: Option<&str>);
 
@@ -466,7 +468,7 @@ pub trait WidgetExt: 'static {
 
     fn show(&self);
 
-    //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32);
+    fn size_allocate(&self, allocation: &Allocation, baseline: i32);
 
     fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot);
 
@@ -716,9 +718,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn compute_bounds<P: IsA<Widget>>(&self, target: &P, out_bounds: /*Ignored*/graphene::Rect) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_bounds() }
-    //}
+    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect> {
+        unsafe {
+            let mut out_bounds = graphene::Rect::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_widget_compute_bounds(self.as_ref().to_glib_none().0, target.as_ref().to_glib_none().0, out_bounds.to_glib_none_mut().0));
+            if ret { Some(out_bounds) } else { None }
+        }
+    }
 
     fn compute_expand(&self, orientation: Orientation) -> bool {
         unsafe {
@@ -726,13 +732,21 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn compute_point<P: IsA<Widget>>(&self, target: &P, point: /*Ignored*/&graphene::Point, out_point: /*Ignored*/graphene::Point) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_point() }
-    //}
+    fn compute_point<P: IsA<Widget>>(&self, target: &P, point: &graphene::Point) -> Option<graphene::Point> {
+        unsafe {
+            let mut out_point = graphene::Point::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_widget_compute_point(self.as_ref().to_glib_none().0, target.as_ref().to_glib_none().0, point.to_glib_none().0, out_point.to_glib_none_mut().0));
+            if ret { Some(out_point) } else { None }
+        }
+    }
 
-    //fn compute_transform<P: IsA<Widget>>(&self, target: &P, out_transform: /*Ignored*/graphene::Matrix) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_transform() }
-    //}
+    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix> {
+        unsafe {
+            let mut out_transform = graphene::Matrix::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_widget_compute_transform(self.as_ref().to_glib_none().0, target.as_ref().to_glib_none().0, out_transform.to_glib_none_mut().0));
+            if ret { Some(out_transform) } else { None }
+        }
+    }
 
     fn contains(&self, x: f64, y: f64) -> bool {
         unsafe {
@@ -762,13 +776,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_destroyed() }
     //}
 
-    //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_device_is_shadowed() }
-    //}
+    fn device_is_shadowed(&self, device: &gdk::Device) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_device_is_shadowed(self.as_ref().to_glib_none().0, device.to_glib_none().0))
+        }
+    }
 
-    //fn drag_begin(&self, device: /*Ignored*/Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag> {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_begin() }
-    //}
+    fn drag_begin(&self, device: Option<&gdk::Device>, targets: &gdk::ContentFormats, actions: gdk::DragAction, x: i32, y: i32) -> Option<gdk::Drag> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_drag_begin(self.as_ref().to_glib_none().0, device.to_glib_none().0, targets.to_glib_none().0, actions.to_glib(), x, y))
+        }
+    }
 
     fn drag_check_threshold(&self, start_x: i32, start_y: i32, current_x: i32, current_y: i32) -> bool {
         unsafe {
@@ -890,9 +908,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn drag_source_set_icon_paintable(&self, paintable: /*Ignored*/&gdk::Paintable) {
-    //    unsafe { TODO: call gtk_sys:gtk_drag_source_set_icon_paintable() }
-    //}
+    fn drag_source_set_icon_paintable<P: IsA<gdk::Paintable>>(&self, paintable: &P) {
+        unsafe {
+            gtk_sys::gtk_drag_source_set_icon_paintable(self.as_ref().to_glib_none().0, paintable.as_ref().to_glib_none().0);
+        }
+    }
 
     fn drag_source_set_target_list(&self, target_list: Option<&gdk::ContentFormats>) {
         unsafe {
@@ -918,9 +938,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn event(&self, event: /*Ignored*/&gdk::Event) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_event() }
-    //}
+    fn event(&self, event: &gdk::Event) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_event(self.as_ref().to_glib_none().0, event.to_glib_none().0))
+        }
+    }
 
     fn get_accessible(&self) -> Option<atk::Object> {
         unsafe {
@@ -952,9 +974,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_allocation(&self, allocation: /*Ignored*/&mut Allocation) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_allocation() }
-    //}
+    fn get_allocation(&self) -> Allocation {
+        unsafe {
+            let mut allocation = Allocation::uninitialized();
+            gtk_sys::gtk_widget_get_allocation(self.as_ref().to_glib_none().0, allocation.to_glib_none_mut().0);
+            allocation
+        }
+    }
 
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
         unsafe {
@@ -980,13 +1006,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_clipboard() }
-    //}
+    fn get_clipboard(&self) -> Option<gdk::Clipboard> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_clipboard(self.as_ref().to_glib_none().0))
+        }
+    }
 
-    //fn get_cursor(&self) -> /*Ignored*/Option<gdk::Cursor> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_cursor() }
-    //}
+    fn get_cursor(&self) -> Option<gdk::Cursor> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_cursor(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_direction(&self) -> TextDirection {
         unsafe {
@@ -1114,9 +1144,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> gdk::ModifierType {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_modifier_mask() }
-    //}
+    fn get_modifier_mask(&self, intent: gdk::ModifierIntent) -> gdk::ModifierType {
+        unsafe {
+            from_glib(gtk_sys::gtk_widget_get_modifier_mask(self.as_ref().to_glib_none().0, intent.to_glib()))
+        }
+    }
 
     fn get_next_sibling(&self) -> Option<Widget> {
         unsafe {
@@ -1169,9 +1201,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn get_primary_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_primary_clipboard() }
-    //}
+    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_primary_clipboard(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn get_realized(&self) -> bool {
         unsafe {
@@ -1589,9 +1623,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn set_cursor(&self, cursor: /*Ignored*/Option<&gdk::Cursor>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_set_cursor() }
-    //}
+    fn set_cursor(&self, cursor: Option<&gdk::Cursor>) {
+        unsafe {
+            gtk_sys::gtk_widget_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
+        }
+    }
 
     fn set_cursor_from_name(&self, name: Option<&str>) {
         unsafe {
@@ -1791,9 +1827,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_size_allocate() }
-    //}
+    fn size_allocate(&self, allocation: &Allocation, baseline: i32) {
+        unsafe {
+            gtk_sys::gtk_widget_size_allocate(self.as_ref().to_glib_none().0, allocation.to_glib_none().0, baseline);
+        }
+    }
 
     fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot) {
         unsafe {

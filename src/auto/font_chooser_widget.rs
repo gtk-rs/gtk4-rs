@@ -5,12 +5,16 @@
 use Buildable;
 use FontChooser;
 use Widget;
+use gio;
+use glib::StaticType;
+use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -42,19 +46,19 @@ impl Default for FontChooserWidget {
 pub const NONE_FONT_CHOOSER_WIDGET: Option<&FontChooserWidget> = None;
 
 pub trait FontChooserWidgetExt: 'static {
-    //fn get_property_tweak_action(&self) -> /*Ignored*/Option<gio::Action>;
+    fn get_property_tweak_action(&self) -> Option<gio::Action>;
 
     fn connect_property_tweak_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<FontChooserWidget>> FontChooserWidgetExt for O {
-    //fn get_property_tweak_action(&self) -> /*Ignored*/Option<gio::Action> {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tweak-action\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get()
-    //    }
-    //}
+    fn get_property_tweak_action(&self) -> Option<gio::Action> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Action as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"tweak-action\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get()
+        }
+    }
 
     fn connect_property_tweak_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

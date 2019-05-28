@@ -4,6 +4,7 @@
 
 use Buildable;
 use Widget;
+use gdk;
 use gdk_pixbuf;
 use gio;
 use glib::GString;
@@ -49,9 +50,12 @@ impl Picture {
         }
     }
 
-    //pub fn new_for_paintable(paintable: /*Ignored*/Option<&gdk::Paintable>) -> Picture {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_new_for_paintable() }
-    //}
+    pub fn new_for_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Picture {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_paintable(paintable.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
         assert_initialized_main_thread!();
@@ -85,7 +89,7 @@ pub trait PictureExt: 'static {
 
     fn get_keep_aspect_ratio(&self) -> bool;
 
-    //fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
+    fn get_paintable(&self) -> Option<gdk::Paintable>;
 
     fn set_alternative_text(&self, alternative_text: Option<&str>);
 
@@ -97,7 +101,7 @@ pub trait PictureExt: 'static {
 
     fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool);
 
-    //fn set_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>);
+    fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>);
 
     fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>);
 
@@ -139,9 +143,11 @@ impl<O: IsA<Picture>> PictureExt for O {
         }
     }
 
-    //fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_get_paintable() }
-    //}
+    fn get_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_picture_get_paintable(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn set_alternative_text(&self, alternative_text: Option<&str>) {
         unsafe {
@@ -173,9 +179,11 @@ impl<O: IsA<Picture>> PictureExt for O {
         }
     }
 
-    //fn set_paintable(&self, paintable: /*Ignored*/Option<&gdk::Paintable>) {
-    //    unsafe { TODO: call gtk_sys:gtk_picture_set_paintable() }
-    //}
+    fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_picture_set_paintable(self.as_ref().to_glib_none().0, paintable.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {

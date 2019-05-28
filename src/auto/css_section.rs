@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gio;
+use glib;
 use glib::GString;
 use glib::translate::*;
 use gtk_sys;
@@ -44,9 +45,11 @@ impl CssSection {
     //    unsafe { TODO: call gtk_sys:gtk_css_section_get_start_location() }
     //}
 
-    //pub fn print(&self, string: /*Ignored*/&mut glib::String) {
-    //    unsafe { TODO: call gtk_sys:gtk_css_section_print() }
-    //}
+    pub fn print(&self, string: &mut glib::String) {
+        unsafe {
+            gtk_sys::gtk_css_section_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+        }
+    }
 
     fn to_string(&self) -> GString {
         unsafe {

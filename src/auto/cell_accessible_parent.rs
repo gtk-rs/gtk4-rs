@@ -4,10 +4,13 @@
 
 use CellAccessible;
 use CellRendererState;
+use atk;
+use gdk;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use std::mem;
 
 glib_wrapper! {
     pub struct CellAccessibleParent(Interface<gtk_sys::GtkCellAccessibleParent>);
@@ -26,9 +29,9 @@ pub trait CellAccessibleParentExt: 'static {
 
     fn expand_collapse<P: IsA<CellAccessible>>(&self, cell: &P);
 
-    //fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P, cell_rect: /*Ignored*/gdk::Rectangle);
+    fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P) -> gdk::Rectangle;
 
-    //fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: /*Ignored*/atk::CoordType) -> (i32, i32, i32, i32);
+    fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: atk::CoordType) -> (i32, i32, i32, i32);
 
     fn get_child_index<P: IsA<CellAccessible>>(&self, cell: &P) -> i32;
 
@@ -40,7 +43,7 @@ pub trait CellAccessibleParentExt: 'static {
 
     fn grab_focus<P: IsA<CellAccessible>>(&self, cell: &P) -> bool;
 
-    //fn update_relationset<P: IsA<CellAccessible>>(&self, cell: &P, relationset: /*Ignored*/&atk::RelationSet);
+    fn update_relationset<P: IsA<CellAccessible>, Q: IsA<atk::RelationSet>>(&self, cell: &P, relationset: &Q);
 }
 
 impl<O: IsA<CellAccessibleParent>> CellAccessibleParentExt for O {
@@ -62,13 +65,24 @@ impl<O: IsA<CellAccessibleParent>> CellAccessibleParentExt for O {
         }
     }
 
-    //fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P, cell_rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_cell_area() }
-    //}
+    fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P) -> gdk::Rectangle {
+        unsafe {
+            let mut cell_rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_cell_accessible_parent_get_cell_area(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, cell_rect.to_glib_none_mut().0);
+            cell_rect
+        }
+    }
 
-    //fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: /*Ignored*/atk::CoordType) -> (i32, i32, i32, i32) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_cell_extents() }
-    //}
+    fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: atk::CoordType) -> (i32, i32, i32, i32) {
+        unsafe {
+            let mut x = mem::uninitialized();
+            let mut y = mem::uninitialized();
+            let mut width = mem::uninitialized();
+            let mut height = mem::uninitialized();
+            gtk_sys::gtk_cell_accessible_parent_get_cell_extents(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, &mut x, &mut y, &mut width, &mut height, coord_type.to_glib());
+            (x, y, width, height)
+        }
+    }
 
     fn get_child_index<P: IsA<CellAccessible>>(&self, cell: &P) -> i32 {
         unsafe {
@@ -96,9 +110,11 @@ impl<O: IsA<CellAccessibleParent>> CellAccessibleParentExt for O {
         }
     }
 
-    //fn update_relationset<P: IsA<CellAccessible>>(&self, cell: &P, relationset: /*Ignored*/&atk::RelationSet) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_update_relationset() }
-    //}
+    fn update_relationset<P: IsA<CellAccessible>, Q: IsA<atk::RelationSet>>(&self, cell: &P, relationset: &Q) {
+        unsafe {
+            gtk_sys::gtk_cell_accessible_parent_update_relationset(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, relationset.as_ref().to_glib_none().0);
+        }
+    }
 }
 
 impl fmt::Display for CellAccessibleParent {

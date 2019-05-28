@@ -7,6 +7,7 @@ use Buildable;
 use Orientable;
 use ScrollType;
 use Widget;
+use gdk;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -43,7 +44,7 @@ pub trait RangeExt: 'static {
 
     fn get_inverted(&self) -> bool;
 
-    //fn get_range_rect(&self, range_rect: /*Ignored*/gdk::Rectangle);
+    fn get_range_rect(&self) -> gdk::Rectangle;
 
     fn get_restrict_to_fill_level(&self) -> bool;
 
@@ -127,9 +128,13 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    //fn get_range_rect(&self, range_rect: /*Ignored*/gdk::Rectangle) {
-    //    unsafe { TODO: call gtk_sys:gtk_range_get_range_rect() }
-    //}
+    fn get_range_rect(&self) -> gdk::Rectangle {
+        unsafe {
+            let mut range_rect = gdk::Rectangle::uninitialized();
+            gtk_sys::gtk_range_get_range_rect(self.as_ref().to_glib_none().0, range_rect.to_glib_none_mut().0);
+            range_rect
+        }
+    }
 
     fn get_restrict_to_fill_level(&self) -> bool {
         unsafe {

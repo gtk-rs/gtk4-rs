@@ -13,6 +13,7 @@ use TreeIter;
 use TreeModel;
 use Widget;
 use atk;
+use gdk;
 use glib;
 use glib::GString;
 use glib::StaticType;
@@ -102,7 +103,7 @@ pub trait ComboBoxExt: 'static {
 
     fn popup(&self);
 
-    //fn popup_for_device(&self, device: /*Ignored*/&gdk::Device);
+    fn popup_for_device(&self, device: &gdk::Device);
 
     fn set_active_id(&self, active_id: Option<&str>) -> bool;
 
@@ -234,9 +235,11 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    //fn popup_for_device(&self, device: /*Ignored*/&gdk::Device) {
-    //    unsafe { TODO: call gtk_sys:gtk_combo_box_popup_for_device() }
-    //}
+    fn popup_for_device(&self, device: &gdk::Device) {
+        unsafe {
+            gtk_sys::gtk_combo_box_popup_for_device(self.as_ref().to_glib_none().0, device.to_glib_none().0);
+        }
+    }
 
     fn set_active_id(&self, active_id: Option<&str>) -> bool {
         unsafe {

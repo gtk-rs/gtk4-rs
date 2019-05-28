@@ -8,6 +8,7 @@ use Container;
 use MenuShell;
 use ScrollType;
 use Widget;
+use gdk;
 use gio;
 use glib;
 use glib::GString;
@@ -82,15 +83,15 @@ pub trait MenuExt: 'static {
 
     fn get_reserve_toggle_size(&self) -> bool;
 
-    //fn place_on_monitor(&self, monitor: /*Ignored*/&gdk::Monitor);
+    fn place_on_monitor(&self, monitor: &gdk::Monitor);
 
     fn popdown(&self);
 
-    //fn popup_at_pointer(&self, trigger_event: /*Ignored*/Option<&gdk::Event>);
+    fn popup_at_pointer(&self, trigger_event: Option<&gdk::Event>);
 
-    //fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>);
+    fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: &gdk::Rectangle, rect_anchor: gdk::Gravity, menu_anchor: gdk::Gravity, trigger_event: Option<&gdk::Event>);
 
-    //fn popup_at_widget<P: IsA<Widget>>(&self, widget: &P, widget_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>);
+    fn popup_at_widget<P: IsA<Widget>>(&self, widget: &P, widget_anchor: gdk::Gravity, menu_anchor: gdk::Gravity, trigger_event: Option<&gdk::Event>);
 
     fn reorder_child<P: IsA<Widget>>(&self, child: &P, position: i32);
 
@@ -106,15 +107,15 @@ pub trait MenuExt: 'static {
 
     fn set_reserve_toggle_size(&self, reserve_toggle_size: bool);
 
-    //fn get_property_anchor_hints(&self) -> /*Ignored*/gdk::AnchorHints;
+    fn get_property_anchor_hints(&self) -> gdk::AnchorHints;
 
-    //fn set_property_anchor_hints(&self, anchor_hints: /*Ignored*/gdk::AnchorHints);
+    fn set_property_anchor_hints(&self, anchor_hints: gdk::AnchorHints);
 
     fn set_property_attach_widget(&self, attach_widget: Option<&Widget>);
 
-    //fn get_property_menu_type_hint(&self) -> /*Ignored*/gdk::SurfaceTypeHint;
+    fn get_property_menu_type_hint(&self) -> gdk::SurfaceTypeHint;
 
-    //fn set_property_menu_type_hint(&self, menu_type_hint: /*Ignored*/gdk::SurfaceTypeHint);
+    fn set_property_menu_type_hint(&self, menu_type_hint: gdk::SurfaceTypeHint);
 
     fn get_property_rect_anchor_dx(&self) -> i32;
 
@@ -198,9 +199,11 @@ impl<O: IsA<Menu>> MenuExt for O {
         }
     }
 
-    //fn place_on_monitor(&self, monitor: /*Ignored*/&gdk::Monitor) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_place_on_monitor() }
-    //}
+    fn place_on_monitor(&self, monitor: &gdk::Monitor) {
+        unsafe {
+            gtk_sys::gtk_menu_place_on_monitor(self.as_ref().to_glib_none().0, monitor.to_glib_none().0);
+        }
+    }
 
     fn popdown(&self) {
         unsafe {
@@ -208,17 +211,23 @@ impl<O: IsA<Menu>> MenuExt for O {
         }
     }
 
-    //fn popup_at_pointer(&self, trigger_event: /*Ignored*/Option<&gdk::Event>) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_popup_at_pointer() }
-    //}
+    fn popup_at_pointer(&self, trigger_event: Option<&gdk::Event>) {
+        unsafe {
+            gtk_sys::gtk_menu_popup_at_pointer(self.as_ref().to_glib_none().0, trigger_event.to_glib_none().0);
+        }
+    }
 
-    //fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: /*Ignored*/&gdk::Rectangle, rect_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_popup_at_rect() }
-    //}
+    fn popup_at_rect<P: IsA<gdk::Surface>>(&self, rect_surface: &P, rect: &gdk::Rectangle, rect_anchor: gdk::Gravity, menu_anchor: gdk::Gravity, trigger_event: Option<&gdk::Event>) {
+        unsafe {
+            gtk_sys::gtk_menu_popup_at_rect(self.as_ref().to_glib_none().0, rect_surface.as_ref().to_glib_none().0, rect.to_glib_none().0, rect_anchor.to_glib(), menu_anchor.to_glib(), trigger_event.to_glib_none().0);
+        }
+    }
 
-    //fn popup_at_widget<P: IsA<Widget>>(&self, widget: &P, widget_anchor: /*Ignored*/gdk::Gravity, menu_anchor: /*Ignored*/gdk::Gravity, trigger_event: /*Ignored*/Option<&gdk::Event>) {
-    //    unsafe { TODO: call gtk_sys:gtk_menu_popup_at_widget() }
-    //}
+    fn popup_at_widget<P: IsA<Widget>>(&self, widget: &P, widget_anchor: gdk::Gravity, menu_anchor: gdk::Gravity, trigger_event: Option<&gdk::Event>) {
+        unsafe {
+            gtk_sys::gtk_menu_popup_at_widget(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, widget_anchor.to_glib(), menu_anchor.to_glib(), trigger_event.to_glib_none().0);
+        }
+    }
 
     fn reorder_child<P: IsA<Widget>>(&self, child: &P, position: i32) {
         unsafe {
@@ -262,19 +271,19 @@ impl<O: IsA<Menu>> MenuExt for O {
         }
     }
 
-    //fn get_property_anchor_hints(&self) -> /*Ignored*/gdk::AnchorHints {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"anchor-hints\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_anchor_hints(&self) -> gdk::AnchorHints {
+        unsafe {
+            let mut value = Value::from_type(<gdk::AnchorHints as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"anchor-hints\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_anchor_hints(&self, anchor_hints: /*Ignored*/gdk::AnchorHints) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"anchor-hints\0".as_ptr() as *const _, Value::from(&anchor_hints).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_anchor_hints(&self, anchor_hints: gdk::AnchorHints) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"anchor-hints\0".as_ptr() as *const _, Value::from(&anchor_hints).to_glib_none().0);
+        }
+    }
 
     fn set_property_attach_widget(&self, attach_widget: Option<&Widget>) {
         unsafe {
@@ -282,19 +291,19 @@ impl<O: IsA<Menu>> MenuExt for O {
         }
     }
 
-    //fn get_property_menu_type_hint(&self) -> /*Ignored*/gdk::SurfaceTypeHint {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"menu-type-hint\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().unwrap()
-    //    }
-    //}
+    fn get_property_menu_type_hint(&self) -> gdk::SurfaceTypeHint {
+        unsafe {
+            let mut value = Value::from_type(<gdk::SurfaceTypeHint as StaticType>::static_type());
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"menu-type-hint\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            value.get().unwrap()
+        }
+    }
 
-    //fn set_property_menu_type_hint(&self, menu_type_hint: /*Ignored*/gdk::SurfaceTypeHint) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"menu-type-hint\0".as_ptr() as *const _, Value::from(&menu_type_hint).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_menu_type_hint(&self, menu_type_hint: gdk::SurfaceTypeHint) {
+        unsafe {
+            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"menu-type-hint\0".as_ptr() as *const _, Value::from(&menu_type_hint).to_glib_none().0);
+        }
+    }
 
     fn get_property_rect_anchor_dx(&self) -> i32 {
         unsafe {

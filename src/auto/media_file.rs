@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use MediaStream;
+use gdk;
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -16,7 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass, MediaFileClass>) @extends MediaStream;
+    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass, MediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
 
     match fn {
         get_type => || gtk_sys::gtk_media_file_get_type(),
@@ -45,9 +46,12 @@ impl MediaFile {
         }
     }
 
-    //pub fn new_for_input_stream(stream: /*Ignored*/Option<&gio::InputStream>) -> MediaFile {
-    //    unsafe { TODO: call gtk_sys:gtk_media_file_new_for_input_stream() }
-    //}
+    pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: Option<&P>) -> MediaFile {
+        assert_initialized_main_thread!();
+        unsafe {
+            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_input_stream(stream.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+        }
+    }
 
     pub fn new_for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
@@ -70,13 +74,13 @@ pub trait MediaFileExt: 'static {
 
     fn get_file(&self) -> Option<gio::File>;
 
-    //fn get_input_stream(&self) -> /*Ignored*/Option<gio::InputStream>;
+    fn get_input_stream(&self) -> Option<gio::InputStream>;
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
 
     fn set_filename(&self, filename: Option<&str>);
 
-    //fn set_input_stream(&self, stream: /*Ignored*/Option<&gio::InputStream>);
+    fn set_input_stream<P: IsA<gio::InputStream>>(&self, stream: Option<&P>);
 
     fn set_resource(&self, resource_path: Option<&str>);
 
@@ -98,9 +102,11 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    //fn get_input_stream(&self) -> /*Ignored*/Option<gio::InputStream> {
-    //    unsafe { TODO: call gtk_sys:gtk_media_file_get_input_stream() }
-    //}
+    fn get_input_stream(&self) -> Option<gio::InputStream> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_media_file_get_input_stream(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
@@ -114,9 +120,11 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    //fn set_input_stream(&self, stream: /*Ignored*/Option<&gio::InputStream>) {
-    //    unsafe { TODO: call gtk_sys:gtk_media_file_set_input_stream() }
-    //}
+    fn set_input_stream<P: IsA<gio::InputStream>>(&self, stream: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_media_file_set_input_stream(self.as_ref().to_glib_none().0, stream.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {

@@ -77,7 +77,7 @@ impl Default for IconView {
 pub const NONE_ICON_VIEW: Option<&IconView> = None;
 
 pub trait IconViewExt: 'static {
-    //fn create_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable>;
+    fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable>;
 
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
@@ -85,7 +85,7 @@ pub trait IconViewExt: 'static {
 
     fn get_activate_on_single_click(&self) -> bool;
 
-    //fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>, rect: /*Ignored*/gdk::Rectangle) -> bool;
+    fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>) -> Option<gdk::Rectangle>;
 
     fn get_column_spacing(&self) -> i32;
 
@@ -261,9 +261,11 @@ pub trait IconViewExt: 'static {
 }
 
 impl<O: IsA<IconView>> IconViewExt for O {
-    //fn create_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_view_create_drag_icon() }
-    //}
+    fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_icon_view_create_drag_icon(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
+        }
+    }
 
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
@@ -283,9 +285,13 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    //fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>, rect: /*Ignored*/gdk::Rectangle) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_view_get_cell_rect() }
-    //}
+    fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>) -> Option<gdk::Rectangle> {
+        unsafe {
+            let mut rect = gdk::Rectangle::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_icon_view_get_cell_rect(self.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0), cell.map(|p| p.as_ref()).to_glib_none().0, rect.to_glib_none_mut().0));
+            if ret { Some(rect) } else { None }
+        }
+    }
 
     fn get_column_spacing(&self) -> i32 {
         unsafe {

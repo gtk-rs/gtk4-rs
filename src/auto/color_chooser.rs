@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use gdk_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::SignalHandlerId;
@@ -24,17 +26,15 @@ glib_wrapper! {
 pub const NONE_COLOR_CHOOSER: Option<&ColorChooser> = None;
 
 pub trait ColorChooserExt: 'static {
-    //fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: /*Ignored*/&[&gdk::RGBA]);
-
-    //fn get_rgba(&self, color: /*Ignored*/gdk::RGBA);
+    fn get_rgba(&self) -> gdk::RGBA;
 
     fn get_use_alpha(&self) -> bool;
 
-    //fn set_rgba(&self, color: /*Ignored*/&gdk::RGBA);
+    fn set_rgba(&self, color: &gdk::RGBA);
 
     fn set_use_alpha(&self, use_alpha: bool);
 
-    //fn connect_color_activated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -42,13 +42,13 @@ pub trait ColorChooserExt: 'static {
 }
 
 impl<O: IsA<ColorChooser>> ColorChooserExt for O {
-    //fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: /*Ignored*/&[&gdk::RGBA]) {
-    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_add_palette() }
-    //}
-
-    //fn get_rgba(&self, color: /*Ignored*/gdk::RGBA) {
-    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_get_rgba() }
-    //}
+    fn get_rgba(&self) -> gdk::RGBA {
+        unsafe {
+            let mut color = gdk::RGBA::uninitialized();
+            gtk_sys::gtk_color_chooser_get_rgba(self.as_ref().to_glib_none().0, color.to_glib_none_mut().0);
+            color
+        }
+    }
 
     fn get_use_alpha(&self) -> bool {
         unsafe {
@@ -56,9 +56,11 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    //fn set_rgba(&self, color: /*Ignored*/&gdk::RGBA) {
-    //    unsafe { TODO: call gtk_sys:gtk_color_chooser_set_rgba() }
-    //}
+    fn set_rgba(&self, color: &gdk::RGBA) {
+        unsafe {
+            gtk_sys::gtk_color_chooser_set_rgba(self.as_ref().to_glib_none().0, color.to_glib_none().0);
+        }
+    }
 
     fn set_use_alpha(&self, use_alpha: bool) {
         unsafe {
@@ -66,9 +68,13 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    //fn connect_color_activated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored color: Gdk.RGBA
-    //}
+    fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"color-activated\0".as_ptr() as *const _,
+                Some(transmute(color_activated_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_property_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -85,6 +91,12 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
                 Some(transmute(notify_use_alpha_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
+}
+
+unsafe extern "C" fn color_activated_trampoline<P, F: Fn(&P, &gdk::RGBA) + 'static>(this: *mut gtk_sys::GtkColorChooser, color: *mut gdk_sys::GdkRGBA, f: glib_sys::gpointer)
+where P: IsA<ColorChooser> {
+    let f: &F = &*(f as *const F);
+    f(&ColorChooser::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(color))
 }
 
 unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)

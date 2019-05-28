@@ -92,15 +92,21 @@ impl EventControllerKey {
         }
     }
 
-    //pub fn connect_focus_in<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored mode: Gdk.CrossingMode
-    //    Ignored detail: Gdk.NotifyType
-    //}
+    pub fn connect_focus_in<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"focus-in\0".as_ptr() as *const _,
+                Some(transmute(focus_in_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 
-    //pub fn connect_focus_out<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored mode: Gdk.CrossingMode
-    //    Ignored detail: Gdk.NotifyType
-    //}
+    pub fn connect_focus_out<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"focus-out\0".as_ptr() as *const _,
+                Some(transmute(focus_out_trampoline::<F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     pub fn connect_im_update<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
@@ -155,6 +161,16 @@ impl Default for EventControllerKey {
     fn default() -> Self {
         Self::new()
     }
+}
+
+unsafe extern "C" fn focus_in_trampoline<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, mode: gdk_sys::GdkCrossingMode, detail: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), from_glib(mode), from_glib(detail))
+}
+
+unsafe extern "C" fn focus_out_trampoline<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, mode: gdk_sys::GdkCrossingMode, detail: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+    let f: &F = &*(f as *const F);
+    f(&from_glib_borrow(this), from_glib(mode), from_glib(detail))
 }
 
 unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, f: glib_sys::gpointer) {
