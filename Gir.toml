@@ -393,7 +393,6 @@ builders = [
     "Gtk.GLAreaBuilder",
     "Gtk.GridBuilder",
     "Gtk.HeaderBarBuilder",
-    "Gtk.IconViewBuilder",
     "Gtk.ImageBuilder",
     "Gtk.InfoBarBuilder",
     "Gtk.LabelBuilder",
