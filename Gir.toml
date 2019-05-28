@@ -46,22 +46,17 @@ generate = [
     "Gtk.Calendar",
     "Gtk.CalendarDisplayOptions",
     "Gtk.CellAccessible",
-    "Gtk.CellArea",
     "Gtk.CellAreaBox",
     "Gtk.CellAreaContext",
     "Gtk.CellEditable",
     "Gtk.CellLayout",
-    "Gtk.CellRenderer",
-    "Gtk.CellRendererAccel",
     "Gtk.CellRendererAccelMode",
-    "Gtk.CellRendererCombo",
     "Gtk.CellRendererMode",
     "Gtk.CellRendererPixbuf",
     "Gtk.CellRendererProgress",
     "Gtk.CellRendererSpin",
     "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
-    "Gtk.CellRendererText",
     "Gtk.CenterBox",
     "Gtk.CheckButton",
     "Gtk.CheckMenuItem",
@@ -709,6 +704,81 @@ name = "Gtk.CellAccessibleParent"
 status = "generate"
     [[object.function]]
     name = "get_cell_position"
+    # TODO
+    ignore = true
+
+[[object]]
+name = "Gtk.CellArea"
+status = "generate"
+    [[object.function]]
+    pattern = "cell_[gs]et_property"
+    ignore = true
+    [[object.function]]
+    name = "apply_attributes"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+    [[object.signal]]
+    name = "add-editable"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "treepath"
+    [[object.signal]]
+    name = "focus-changed"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "treepath"
+
+[[object]]
+name = "Gtk.CellRenderer"
+status = "generate"
+    [[object.signal]]
+    name = "editing-started"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "treepath"
+
+[[object]]
+name = "Gtk.CellRendererAccel"
+status = "generate"
+    [[object.signal]]
+    name = "accel-cleared"
+        [[object.signal.parameter]]
+        name = "path_string"
+        transformation = "treepath"
+        new_name = "path"
+    [[object.signal]]
+    name = "accel-edited"
+        [[object.signal.parameter]]
+        name = "path_string"
+        transformation = "treepath"
+        new_name = "path"
+
+[[object]]
+name = "Gtk.CellRendererCombo"
+status = "generate"
+    [[object.signal]]
+    name = "changed"
+        [[object.signal.parameter]]
+        name = "path_string"
+        transformation = "treepath"
+        new_name = "path"
+
+[[object]]
+name = "Gtk.CellRendererText"
+status = "generate"
+    [[object.signal]]
+    name = "edited"
+        [[object.signal.parameter]]
+        name = "path"
+        transformation = "treepath"
+    [[object.property]]
+    name = "font-desc"
+    #value pango::FontDescription
+    ignore = true
+    [[object.property]]
+    name = "attributes"
+    #value pango::AttrList
     ignore = true
 
 [[object]]
