@@ -98,8 +98,6 @@ pub trait EditableExt: 'static {
 
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_insert_text<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
     fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -285,10 +283,6 @@ impl<O: IsA<Editable>> EditableExt for O {
                 Some(transmute(delete_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-
-    //fn connect_insert_text<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    InOut position: *.Int
-    //}
 
     fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {

@@ -14,6 +14,7 @@ use glib::ToValue;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use gsk;
 use gtk_sys;
 use std::fmt;
 use std::mem;
@@ -371,13 +372,13 @@ pub const NONE_FIXED: Option<&Fixed> = None;
 pub trait FixedExt: 'static {
     fn get_child_position<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
 
-    //fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> /*Ignored*/Option<gsk::Transform>;
+    fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform>;
 
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: i32, y: i32);
 
     fn put<P: IsA<Widget>>(&self, widget: &P, x: i32, y: i32);
 
-    //fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: /*Ignored*/Option<&gsk::Transform>);
+    fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>);
 }
 
 impl<O: IsA<Fixed>> FixedExt for O {
@@ -390,9 +391,11 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    //fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> /*Ignored*/Option<gsk::Transform> {
-    //    unsafe { TODO: call gtk_sys:gtk_fixed_get_child_transform() }
-    //}
+    fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_fixed_get_child_transform(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
+        }
+    }
 
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: i32, y: i32) {
         unsafe {
@@ -406,9 +409,11 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    //fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: /*Ignored*/Option<&gsk::Transform>) {
-    //    unsafe { TODO: call gtk_sys:gtk_fixed_set_child_transform() }
-    //}
+    fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>) {
+        unsafe {
+            gtk_sys::gtk_fixed_set_child_transform(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, transform.to_glib_none().0);
+        }
+    }
 }
 
 impl fmt::Display for Fixed {

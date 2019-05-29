@@ -21,6 +21,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -217,11 +218,11 @@ pub trait EntryCompletionExt: 'static {
 
     fn connect_action_activated<F: Fn(&Self, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_insert_prefix<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_insert_prefix<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_no_matches<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -424,7 +425,7 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"cursor-on-match\0".as_ptr() as *const _,
@@ -432,7 +433,7 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_insert_prefix<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_insert_prefix<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"insert-prefix\0".as_ptr() as *const _,
@@ -440,7 +441,7 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"match-selected\0".as_ptr() as *const _,
@@ -527,19 +528,19 @@ where P: IsA<EntryCompletion> {
     f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), index)
 }
 
-unsafe extern "C" fn cursor_on_match_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> bool + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn cursor_on_match_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<EntryCompletion> {
     let f: &F = &*(f as *const F);
     f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()
 }
 
-unsafe extern "C" fn insert_prefix_trampoline<P, F: Fn(&P, &str) -> bool + 'static>(this: *mut gtk_sys::GtkEntryCompletion, prefix: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn insert_prefix_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, prefix: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<EntryCompletion> {
     let f: &F = &*(f as *const F);
     f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(prefix)).to_glib()
 }
 
-unsafe extern "C" fn match_selected_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> bool + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn match_selected_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<EntryCompletion> {
     let f: &F = &*(f as *const F);
     f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()

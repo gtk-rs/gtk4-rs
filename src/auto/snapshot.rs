@@ -235,9 +235,11 @@ impl Snapshot {
         }
     }
 
-    //pub fn transform(&self, transform: /*Ignored*/Option<&gsk::Transform>) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_transform() }
-    //}
+    pub fn transform(&self, transform: Option<&gsk::Transform>) {
+        unsafe {
+            gtk_sys::gtk_snapshot_transform(self.to_glib_none().0, transform.to_glib_none().0);
+        }
+    }
 
     pub fn transform_matrix(&self, matrix: &graphene::Matrix) {
         unsafe {

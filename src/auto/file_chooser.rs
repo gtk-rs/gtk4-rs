@@ -33,8 +33,6 @@ glib_wrapper! {
 pub const NONE_FILE_CHOOSER: Option<&FileChooser> = None;
 
 pub trait FileChooserExt: 'static {
-    fn add_choice(&self, id: &str, label: &str, options: &[&str], option_labels: &[&str]);
-
     fn add_filter(&self, filter: &FileFilter);
 
     fn add_shortcut_folder<P: AsRef<std::path::Path>>(&self, folder: P) -> Result<(), Error>;
@@ -193,12 +191,6 @@ pub trait FileChooserExt: 'static {
 }
 
 impl<O: IsA<FileChooser>> FileChooserExt for O {
-    fn add_choice(&self, id: &str, label: &str, options: &[&str], option_labels: &[&str]) {
-        unsafe {
-            gtk_sys::gtk_file_chooser_add_choice(self.as_ref().to_glib_none().0, id.to_glib_none().0, label.to_glib_none().0, options.to_glib_none().0, option_labels.to_glib_none().0);
-        }
-    }
-
     fn add_filter(&self, filter: &FileFilter) {
         unsafe {
             gtk_sys::gtk_file_chooser_add_filter(self.as_ref().to_glib_none().0, filter.to_glib_full());

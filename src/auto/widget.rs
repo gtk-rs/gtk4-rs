@@ -45,6 +45,7 @@ use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use graphene;
+use gsk;
 use gtk_sys;
 use libc;
 use pango;
@@ -98,7 +99,7 @@ pub trait WidgetExt: 'static {
 
     fn add_tick_callback<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(&self, callback: P) -> u32;
 
-    //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>);
+    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>);
 
     fn can_activate_accel(&self, signal_id: u32) -> bool;
 
@@ -702,9 +703,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>) {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_allocate() }
-    //}
+    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>) {
+        unsafe {
+            gtk_sys::gtk_widget_allocate(self.as_ref().to_glib_none().0, width, height, baseline, transform.to_glib_none().0);
+        }
+    }
 
     fn can_activate_accel(&self, signal_id: u32) -> bool {
         unsafe {
