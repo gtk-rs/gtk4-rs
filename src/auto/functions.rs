@@ -92,13 +92,6 @@ pub fn cairo_node_new(bounds: &graphene::Rect) -> Option<RenderNode> {
     }
 }
 
-pub fn cairo_node_peek_surface(node: &RenderNode) -> Option<cairo::Surface> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_none(gsk_sys::gsk_cairo_node_peek_surface(node.to_glib_none().0))
-    }
-}
-
 pub fn clip_node_get_child(node: &RenderNode) -> Option<RenderNode> {
     assert_initialized_main_thread!();
     unsafe {
@@ -443,12 +436,9 @@ pub fn text_node_peek_font(node: &RenderNode) -> Option<pango::Font> {
     }
 }
 
-pub fn text_node_peek_glyphs(node: &RenderNode) -> Option<pango::GlyphInfo> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_none(gsk_sys::gsk_text_node_peek_glyphs(node.to_glib_none().0))
-    }
-}
+//pub fn text_node_peek_glyphs(node: &RenderNode) -> /*Ignored*/Option<pango::GlyphInfo> {
+//    unsafe { TODO: call gsk_sys:gsk_text_node_peek_glyphs() }
+//}
 
 pub fn texture_node_get_texture(node: &RenderNode) -> Option<gdk::Texture> {
     assert_initialized_main_thread!();

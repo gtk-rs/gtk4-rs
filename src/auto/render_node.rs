@@ -23,9 +23,9 @@ glib_wrapper! {
 }
 
 impl RenderNode {
-    pub fn draw(&self, cr: &mut cairo::Context) {
+    pub fn draw(&self, cr: &cairo::Context) {
         unsafe {
-            gsk_sys::gsk_render_node_draw(self.to_glib_none().0, cr.to_glib_none_mut().0);
+            gsk_sys::gsk_render_node_draw(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
         }
     }
 
