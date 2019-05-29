@@ -80,10 +80,8 @@ generate = [
     "Gtk.DirectionType",
     "Gtk.DragResult",
     "Gtk.DrawingArea",
-    "Gtk.Editable",
     "Gtk.EditableProperties",
     "Gtk.EntryAccessible",
-    "Gtk.EntryCompletion",
     "Gtk.EntryIconAccessible",
     "Gtk.EntryIconPosition",
     "Gtk.EventController",
@@ -94,7 +92,6 @@ generate = [
     "Gtk.EventSequenceState",
     "Gtk.Expander",
     "Gtk.ExpanderAccessible",
-    "Gtk.FileChooser",
     "Gtk.FileChooserAction",
     "Gtk.FileChooserButton",
     "Gtk.FileChooserConfirmation",
@@ -105,7 +102,7 @@ generate = [
     "Gtk.FileFilter",
     "Gtk.FileFilterFlags",
     "Gtk.FilterListModel",
-    "Gtk.Fixed",
+    "Gtk.Fixed", # TODO: get_child_*() may need fixing: https://github.com/gtk-rs/gtk/issues/565
     "Gtk.FixedLayout",
     "Gtk.FixedLayoutChild",
     "Gtk.FlattenListModel",
@@ -536,7 +533,6 @@ manual = [
     "Gio.MenuModel",
     "Gio.MountOperation",
     "Gio.Permission",
-    "GLib.ConnectFlags",
     "GLib.Error",
     "GLib.KeyFile",
     "GLib.MarkupParser",
@@ -546,7 +542,10 @@ manual = [
     "GLib.Variant",
     "GLib.VariantType",
     "GObject.Closure",
+    # "GObject.ConnectFlags",
     "GObject.Object",
+    # "GObject.ObjectClass",
+    # "GObject.ParamSpec",
     "GObject.Value",
     "Graphene.Matrix",
     "Graphene.Point",
@@ -560,7 +559,7 @@ manual = [
     # TODO "Gsk.RoundedRect",
     "Gsk.RenderNode",
     # TODO "Gsk.Shadow",
-    # TODO "Gsk.Transform",
+    "Gsk.Transform",
     "Gtk.ResponseType",
     "Pango.Alignment",
     "Pango.AttrList",
@@ -848,6 +847,14 @@ manual_traits = ["DialogExtManual"]
     ignore = true
 
 [[object]]
+name = "Gtk.Editable"
+status = "generate"
+manual_traits = ["EditableExtManual"]
+    [[object.signal]]
+    pattern = "insert-text"
+    ignore = true #out #manual
+
+[[object]]
 name = "Gtk.Entry"
 status = "generate"
     [[object.function]]
@@ -912,6 +919,19 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "Gtk.EntryCompletion"
+status = "generate"
+    [[object.signal]]
+    name = "insert-prefix"
+    inhibit = true
+    [[object.signal]]
+    name = "match-selected"
+    inhibit = true
+    [[object.signal]]
+    name = "cursor-on-match"
+    inhibit = true
+
+[[object]]
 name = "Gtk.EventControllerKey"
 status = "generate"
     [[object.signal]]
@@ -920,6 +940,13 @@ status = "generate"
     [[object.signal]]
     name = "modifiers"
     inhibit = true
+
+[[object]]
+name = "Gtk.FileChooser"
+status = "generate"
+    [[object.function]]
+    name = "add_choice"
+    ignore = true  #strange type of options and option_labels
 
 [[object]]
 name = "Gtk.Gesture"

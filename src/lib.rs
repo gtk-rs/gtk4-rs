@@ -93,6 +93,7 @@ mod builder;
 mod color_chooser;
 mod combo_box;
 mod dialog;
+mod editable;
 mod entry_buffer;
 mod file_chooser_dialog;
 mod list_store;

@@ -10,6 +10,7 @@ pub use builder::BuilderExtManual;
 pub use color_chooser::ColorChooserExtManual;
 pub use combo_box::ComboBoxExtManual;
 pub use dialog::DialogExtManual;
+pub use editable::EditableExtManual;
 pub use entry_buffer::EntryBufferExtManual;
 pub use list_store::GtkListStoreExtManual;
 pub use notebook::NotebookExtManual;
