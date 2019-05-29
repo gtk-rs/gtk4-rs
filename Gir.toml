@@ -15,7 +15,6 @@ generate = [
     "Gsk.CairoRenderer",
     "Gsk.Corner",
     "Gsk.GLRenderer",
-    "Gsk.RenderNode",
     "Gsk.RenderNodeType",
     "Gsk.Renderer",
     "Gsk.ScalingFilter",
@@ -42,7 +41,7 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Pango.Font",
-    "Pango.GlyphInfo",
+    # "Pango.GlyphInfo", # missing from pango
     "Pango.GlyphString",
 ]
 
@@ -63,3 +62,16 @@ status = "generate"
     # binding generation error
     name = "container_node_new"
     ignore = true
+    [[object.function]]
+    name = "cairo_node_peek_surface"
+    # TODO
+    ignore = true
+
+[[object]]
+name = "Gsk.RenderNode"
+status = "generate"
+    [[object.function]]
+    name = "draw"
+        [[object.function.parameter]]
+            name = "cr"
+            const = true

@@ -22,6 +22,9 @@ extern crate libc;
 #[macro_use]
 extern crate bitflags;
 
+extern crate gdk4 as gdk;
+extern crate graphene;
+
 // GSK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
     () => ()
