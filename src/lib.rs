@@ -8,15 +8,15 @@
 #![cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ptr))]
 #![cfg_attr(feature = "cargo-clippy", allow(trivially_copy_pass_by_ref))]
 
-extern crate glib_sys as glib_ffi;
-extern crate gdk4_sys as gdk_ffi;
-extern crate graphene_sys as graphene_ffi;
-extern crate gsk4_sys as ffi;
+extern crate glib_sys;
+extern crate gdk4_sys as gdk_sys;
+extern crate graphene_sys;
+extern crate gsk4_sys as gsk_sys;
 #[macro_use]
 extern crate glib;
-extern crate gobject_sys as gobject_ffi;
+extern crate gobject_sys;
 extern crate cairo;
-extern crate cairo_sys as cairo_ffi;
+extern crate cairo_sys;
 extern crate pango;
 extern crate libc;
 #[macro_use]
