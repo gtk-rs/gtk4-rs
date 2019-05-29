@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
 use glib::Quark;
 use glib::StaticType;
 use glib::Type;
@@ -12,7 +11,8 @@ use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
-use gobject_ffi;
+use gobject_sys;
+use gsk_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
@@ -64,34 +64,34 @@ impl fmt::Display for BlendMode {
 
 #[doc(hidden)]
 impl ToGlib for BlendMode {
-    type GlibType = ffi::GskBlendMode;
+    type GlibType = gsk_sys::GskBlendMode;
 
-    fn to_glib(&self) -> ffi::GskBlendMode {
+    fn to_glib(&self) -> gsk_sys::GskBlendMode {
         match *self {
-            BlendMode::Default => ffi::GSK_BLEND_MODE_DEFAULT,
-            BlendMode::Multiply => ffi::GSK_BLEND_MODE_MULTIPLY,
-            BlendMode::Screen => ffi::GSK_BLEND_MODE_SCREEN,
-            BlendMode::Overlay => ffi::GSK_BLEND_MODE_OVERLAY,
-            BlendMode::Darken => ffi::GSK_BLEND_MODE_DARKEN,
-            BlendMode::Lighten => ffi::GSK_BLEND_MODE_LIGHTEN,
-            BlendMode::ColorDodge => ffi::GSK_BLEND_MODE_COLOR_DODGE,
-            BlendMode::ColorBurn => ffi::GSK_BLEND_MODE_COLOR_BURN,
-            BlendMode::HardLight => ffi::GSK_BLEND_MODE_HARD_LIGHT,
-            BlendMode::SoftLight => ffi::GSK_BLEND_MODE_SOFT_LIGHT,
-            BlendMode::Difference => ffi::GSK_BLEND_MODE_DIFFERENCE,
-            BlendMode::Exclusion => ffi::GSK_BLEND_MODE_EXCLUSION,
-            BlendMode::Color => ffi::GSK_BLEND_MODE_COLOR,
-            BlendMode::Hue => ffi::GSK_BLEND_MODE_HUE,
-            BlendMode::Saturation => ffi::GSK_BLEND_MODE_SATURATION,
-            BlendMode::Luminosity => ffi::GSK_BLEND_MODE_LUMINOSITY,
+            BlendMode::Default => gsk_sys::GSK_BLEND_MODE_DEFAULT,
+            BlendMode::Multiply => gsk_sys::GSK_BLEND_MODE_MULTIPLY,
+            BlendMode::Screen => gsk_sys::GSK_BLEND_MODE_SCREEN,
+            BlendMode::Overlay => gsk_sys::GSK_BLEND_MODE_OVERLAY,
+            BlendMode::Darken => gsk_sys::GSK_BLEND_MODE_DARKEN,
+            BlendMode::Lighten => gsk_sys::GSK_BLEND_MODE_LIGHTEN,
+            BlendMode::ColorDodge => gsk_sys::GSK_BLEND_MODE_COLOR_DODGE,
+            BlendMode::ColorBurn => gsk_sys::GSK_BLEND_MODE_COLOR_BURN,
+            BlendMode::HardLight => gsk_sys::GSK_BLEND_MODE_HARD_LIGHT,
+            BlendMode::SoftLight => gsk_sys::GSK_BLEND_MODE_SOFT_LIGHT,
+            BlendMode::Difference => gsk_sys::GSK_BLEND_MODE_DIFFERENCE,
+            BlendMode::Exclusion => gsk_sys::GSK_BLEND_MODE_EXCLUSION,
+            BlendMode::Color => gsk_sys::GSK_BLEND_MODE_COLOR,
+            BlendMode::Hue => gsk_sys::GSK_BLEND_MODE_HUE,
+            BlendMode::Saturation => gsk_sys::GSK_BLEND_MODE_SATURATION,
+            BlendMode::Luminosity => gsk_sys::GSK_BLEND_MODE_LUMINOSITY,
             BlendMode::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GskBlendMode> for BlendMode {
-    fn from_glib(value: ffi::GskBlendMode) -> Self {
+impl FromGlib<gsk_sys::GskBlendMode> for BlendMode {
+    fn from_glib(value: gsk_sys::GskBlendMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BlendMode::Default,
@@ -117,7 +117,7 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 
 impl StaticType for BlendMode {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
+        unsafe { from_glib(gsk_sys::gsk_blend_mode_get_type()) }
     }
 }
 
@@ -129,13 +129,13 @@ impl<'a> FromValueOptional<'a> for BlendMode {
 
 impl<'a> FromValue<'a> for BlendMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BlendMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -164,22 +164,22 @@ impl fmt::Display for Corner {
 
 #[doc(hidden)]
 impl ToGlib for Corner {
-    type GlibType = ffi::GskCorner;
+    type GlibType = gsk_sys::GskCorner;
 
-    fn to_glib(&self) -> ffi::GskCorner {
+    fn to_glib(&self) -> gsk_sys::GskCorner {
         match *self {
-            Corner::TopLeft => ffi::GSK_CORNER_TOP_LEFT,
-            Corner::TopRight => ffi::GSK_CORNER_TOP_RIGHT,
-            Corner::BottomRight => ffi::GSK_CORNER_BOTTOM_RIGHT,
-            Corner::BottomLeft => ffi::GSK_CORNER_BOTTOM_LEFT,
+            Corner::TopLeft => gsk_sys::GSK_CORNER_TOP_LEFT,
+            Corner::TopRight => gsk_sys::GSK_CORNER_TOP_RIGHT,
+            Corner::BottomRight => gsk_sys::GSK_CORNER_BOTTOM_RIGHT,
+            Corner::BottomLeft => gsk_sys::GSK_CORNER_BOTTOM_LEFT,
             Corner::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GskCorner> for Corner {
-    fn from_glib(value: ffi::GskCorner) -> Self {
+impl FromGlib<gsk_sys::GskCorner> for Corner {
+    fn from_glib(value: gsk_sys::GskCorner) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Corner::TopLeft,
@@ -193,7 +193,7 @@ impl FromGlib<ffi::GskCorner> for Corner {
 
 impl StaticType for Corner {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_corner_get_type()) }
+        unsafe { from_glib(gsk_sys::gsk_corner_get_type()) }
     }
 }
 
@@ -205,13 +205,13 @@ impl<'a> FromValueOptional<'a> for Corner {
 
 impl<'a> FromValue<'a> for Corner {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Corner {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -276,40 +276,40 @@ impl fmt::Display for RenderNodeType {
 
 #[doc(hidden)]
 impl ToGlib for RenderNodeType {
-    type GlibType = ffi::GskRenderNodeType;
+    type GlibType = gsk_sys::GskRenderNodeType;
 
-    fn to_glib(&self) -> ffi::GskRenderNodeType {
+    fn to_glib(&self) -> gsk_sys::GskRenderNodeType {
         match *self {
-            RenderNodeType::NotARenderNode => ffi::GSK_NOT_A_RENDER_NODE,
-            RenderNodeType::ContainerNode => ffi::GSK_CONTAINER_NODE,
-            RenderNodeType::CairoNode => ffi::GSK_CAIRO_NODE,
-            RenderNodeType::ColorNode => ffi::GSK_COLOR_NODE,
-            RenderNodeType::LinearGradientNode => ffi::GSK_LINEAR_GRADIENT_NODE,
-            RenderNodeType::RepeatingLinearGradientNode => ffi::GSK_REPEATING_LINEAR_GRADIENT_NODE,
-            RenderNodeType::BorderNode => ffi::GSK_BORDER_NODE,
-            RenderNodeType::TextureNode => ffi::GSK_TEXTURE_NODE,
-            RenderNodeType::InsetShadowNode => ffi::GSK_INSET_SHADOW_NODE,
-            RenderNodeType::OutsetShadowNode => ffi::GSK_OUTSET_SHADOW_NODE,
-            RenderNodeType::TransformNode => ffi::GSK_TRANSFORM_NODE,
-            RenderNodeType::OpacityNode => ffi::GSK_OPACITY_NODE,
-            RenderNodeType::ColorMatrixNode => ffi::GSK_COLOR_MATRIX_NODE,
-            RenderNodeType::RepeatNode => ffi::GSK_REPEAT_NODE,
-            RenderNodeType::ClipNode => ffi::GSK_CLIP_NODE,
-            RenderNodeType::RoundedClipNode => ffi::GSK_ROUNDED_CLIP_NODE,
-            RenderNodeType::ShadowNode => ffi::GSK_SHADOW_NODE,
-            RenderNodeType::BlendNode => ffi::GSK_BLEND_NODE,
-            RenderNodeType::CrossFadeNode => ffi::GSK_CROSS_FADE_NODE,
-            RenderNodeType::TextNode => ffi::GSK_TEXT_NODE,
-            RenderNodeType::BlurNode => ffi::GSK_BLUR_NODE,
-            RenderNodeType::DebugNode => ffi::GSK_DEBUG_NODE,
+            RenderNodeType::NotARenderNode => gsk_sys::GSK_NOT_A_RENDER_NODE,
+            RenderNodeType::ContainerNode => gsk_sys::GSK_CONTAINER_NODE,
+            RenderNodeType::CairoNode => gsk_sys::GSK_CAIRO_NODE,
+            RenderNodeType::ColorNode => gsk_sys::GSK_COLOR_NODE,
+            RenderNodeType::LinearGradientNode => gsk_sys::GSK_LINEAR_GRADIENT_NODE,
+            RenderNodeType::RepeatingLinearGradientNode => gsk_sys::GSK_REPEATING_LINEAR_GRADIENT_NODE,
+            RenderNodeType::BorderNode => gsk_sys::GSK_BORDER_NODE,
+            RenderNodeType::TextureNode => gsk_sys::GSK_TEXTURE_NODE,
+            RenderNodeType::InsetShadowNode => gsk_sys::GSK_INSET_SHADOW_NODE,
+            RenderNodeType::OutsetShadowNode => gsk_sys::GSK_OUTSET_SHADOW_NODE,
+            RenderNodeType::TransformNode => gsk_sys::GSK_TRANSFORM_NODE,
+            RenderNodeType::OpacityNode => gsk_sys::GSK_OPACITY_NODE,
+            RenderNodeType::ColorMatrixNode => gsk_sys::GSK_COLOR_MATRIX_NODE,
+            RenderNodeType::RepeatNode => gsk_sys::GSK_REPEAT_NODE,
+            RenderNodeType::ClipNode => gsk_sys::GSK_CLIP_NODE,
+            RenderNodeType::RoundedClipNode => gsk_sys::GSK_ROUNDED_CLIP_NODE,
+            RenderNodeType::ShadowNode => gsk_sys::GSK_SHADOW_NODE,
+            RenderNodeType::BlendNode => gsk_sys::GSK_BLEND_NODE,
+            RenderNodeType::CrossFadeNode => gsk_sys::GSK_CROSS_FADE_NODE,
+            RenderNodeType::TextNode => gsk_sys::GSK_TEXT_NODE,
+            RenderNodeType::BlurNode => gsk_sys::GSK_BLUR_NODE,
+            RenderNodeType::DebugNode => gsk_sys::GSK_DEBUG_NODE,
             RenderNodeType::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
-    fn from_glib(value: ffi::GskRenderNodeType) -> Self {
+impl FromGlib<gsk_sys::GskRenderNodeType> for RenderNodeType {
+    fn from_glib(value: gsk_sys::GskRenderNodeType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RenderNodeType::NotARenderNode,
@@ -341,7 +341,7 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 
 impl StaticType for RenderNodeType {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
+        unsafe { from_glib(gsk_sys::gsk_render_node_type_get_type()) }
     }
 }
 
@@ -353,13 +353,13 @@ impl<'a> FromValueOptional<'a> for RenderNodeType {
 
 impl<'a> FromValue<'a> for RenderNodeType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for RenderNodeType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -386,21 +386,21 @@ impl fmt::Display for ScalingFilter {
 
 #[doc(hidden)]
 impl ToGlib for ScalingFilter {
-    type GlibType = ffi::GskScalingFilter;
+    type GlibType = gsk_sys::GskScalingFilter;
 
-    fn to_glib(&self) -> ffi::GskScalingFilter {
+    fn to_glib(&self) -> gsk_sys::GskScalingFilter {
         match *self {
-            ScalingFilter::Linear => ffi::GSK_SCALING_FILTER_LINEAR,
-            ScalingFilter::Nearest => ffi::GSK_SCALING_FILTER_NEAREST,
-            ScalingFilter::Trilinear => ffi::GSK_SCALING_FILTER_TRILINEAR,
+            ScalingFilter::Linear => gsk_sys::GSK_SCALING_FILTER_LINEAR,
+            ScalingFilter::Nearest => gsk_sys::GSK_SCALING_FILTER_NEAREST,
+            ScalingFilter::Trilinear => gsk_sys::GSK_SCALING_FILTER_TRILINEAR,
             ScalingFilter::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
-    fn from_glib(value: ffi::GskScalingFilter) -> Self {
+impl FromGlib<gsk_sys::GskScalingFilter> for ScalingFilter {
+    fn from_glib(value: gsk_sys::GskScalingFilter) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScalingFilter::Linear,
@@ -413,7 +413,7 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 
 impl StaticType for ScalingFilter {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
+        unsafe { from_glib(gsk_sys::gsk_scaling_filter_get_type()) }
     }
 }
 
@@ -425,13 +425,13 @@ impl<'a> FromValueOptional<'a> for ScalingFilter {
 
 impl<'a> FromValue<'a> for ScalingFilter {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ScalingFilter {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -458,21 +458,21 @@ impl fmt::Display for SerializationError {
 
 #[doc(hidden)]
 impl ToGlib for SerializationError {
-    type GlibType = ffi::GskSerializationError;
+    type GlibType = gsk_sys::GskSerializationError;
 
-    fn to_glib(&self) -> ffi::GskSerializationError {
+    fn to_glib(&self) -> gsk_sys::GskSerializationError {
         match *self {
-            SerializationError::UnsupportedFormat => ffi::GSK_SERIALIZATION_UNSUPPORTED_FORMAT,
-            SerializationError::UnsupportedVersion => ffi::GSK_SERIALIZATION_UNSUPPORTED_VERSION,
-            SerializationError::InvalidData => ffi::GSK_SERIALIZATION_INVALID_DATA,
+            SerializationError::UnsupportedFormat => gsk_sys::GSK_SERIALIZATION_UNSUPPORTED_FORMAT,
+            SerializationError::UnsupportedVersion => gsk_sys::GSK_SERIALIZATION_UNSUPPORTED_VERSION,
+            SerializationError::InvalidData => gsk_sys::GSK_SERIALIZATION_INVALID_DATA,
             SerializationError::__Unknown(value) => value
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<ffi::GskSerializationError> for SerializationError {
-    fn from_glib(value: ffi::GskSerializationError) -> Self {
+impl FromGlib<gsk_sys::GskSerializationError> for SerializationError {
+    fn from_glib(value: gsk_sys::GskSerializationError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SerializationError::UnsupportedFormat,
@@ -486,7 +486,7 @@ impl FromGlib<ffi::GskSerializationError> for SerializationError {
 impl ErrorDomain for SerializationError {
     fn domain() -> Quark {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gsk_serialization_error_quark()) }
+        unsafe { from_glib(gsk_sys::gsk_serialization_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -506,7 +506,7 @@ impl ErrorDomain for SerializationError {
 
 impl StaticType for SerializationError {
     fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
+        unsafe { from_glib(gsk_sys::gsk_serialization_error_get_type()) }
     }
 }
 
@@ -518,13 +518,101 @@ impl<'a> FromValueOptional<'a> for SerializationError {
 
 impl<'a> FromValue<'a> for SerializationError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SerializationError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy)]
+pub enum TransformCategory {
+    Unknown,
+    Any,
+    _3d,
+    _2d,
+    _2dAffine,
+    _2dTranslate,
+    Identity,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for TransformCategory {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "TransformCategory::{}", match *self {
+            TransformCategory::Unknown => "Unknown",
+            TransformCategory::Any => "Any",
+            TransformCategory::_3d => "_3d",
+            TransformCategory::_2d => "_2d",
+            TransformCategory::_2dAffine => "_2dAffine",
+            TransformCategory::_2dTranslate => "_2dTranslate",
+            TransformCategory::Identity => "Identity",
+            _ => "Unknown",
+        })
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for TransformCategory {
+    type GlibType = gsk_sys::GskTransformCategory;
+
+    fn to_glib(&self) -> gsk_sys::GskTransformCategory {
+        match *self {
+            TransformCategory::Unknown => gsk_sys::GSK_TRANSFORM_CATEGORY_UNKNOWN,
+            TransformCategory::Any => gsk_sys::GSK_TRANSFORM_CATEGORY_ANY,
+            TransformCategory::_3d => gsk_sys::GSK_TRANSFORM_CATEGORY_3D,
+            TransformCategory::_2d => gsk_sys::GSK_TRANSFORM_CATEGORY_2D,
+            TransformCategory::_2dAffine => gsk_sys::GSK_TRANSFORM_CATEGORY_2D_AFFINE,
+            TransformCategory::_2dTranslate => gsk_sys::GSK_TRANSFORM_CATEGORY_2D_TRANSLATE,
+            TransformCategory::Identity => gsk_sys::GSK_TRANSFORM_CATEGORY_IDENTITY,
+            TransformCategory::__Unknown(value) => value
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gsk_sys::GskTransformCategory> for TransformCategory {
+    fn from_glib(value: gsk_sys::GskTransformCategory) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => TransformCategory::Unknown,
+            1 => TransformCategory::Any,
+            2 => TransformCategory::_3d,
+            3 => TransformCategory::_2d,
+            4 => TransformCategory::_2dAffine,
+            5 => TransformCategory::_2dTranslate,
+            6 => TransformCategory::Identity,
+            value => TransformCategory::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for TransformCategory {
+    fn static_type() -> Type {
+        unsafe { from_glib(gsk_sys::gsk_transform_category_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for TransformCategory {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for TransformCategory {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for TransformCategory {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 

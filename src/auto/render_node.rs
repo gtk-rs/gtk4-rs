@@ -2,45 +2,62 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use RenderNodeType;
-use ffi;
+use cairo;
+use glib;
 use glib::translate::*;
+use graphene;
+use gsk_sys;
+use std::ptr;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct RenderNode(Shared<ffi::GskRenderNode>);
+    pub struct RenderNode(Shared<gsk_sys::GskRenderNode>);
 
     match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr),
-        get_type => || ffi::gsk_render_node_get_type(),
+        ref => |ptr| gsk_sys::gsk_render_node_ref(ptr),
+        unref => |ptr| gsk_sys::gsk_render_node_unref(ptr),
+        get_type => || gsk_sys::gsk_render_node_get_type(),
     }
 }
 
 impl RenderNode {
-    //pub fn draw(&self, cr: /*Ignored*/&mut cairo::Context) {
-    //    unsafe { TODO: call ffi::gsk_render_node_draw() }
-    //}
-
-    //pub fn get_bounds(&self, bounds: /*Ignored*/graphene::Rect) {
-    //    unsafe { TODO: call ffi::gsk_render_node_get_bounds() }
-    //}
-
-    pub fn get_node_type(&self) -> RenderNodeType {
+    pub fn draw(&self, cr: &mut cairo::Context) {
         unsafe {
-            from_glib(ffi::gsk_render_node_get_node_type(self.to_glib_none().0))
+            gsk_sys::gsk_render_node_draw(self.to_glib_none().0, cr.to_glib_none_mut().0);
         }
     }
 
-    //pub fn serialize(&self) -> /*Ignored*/Option<glib::Bytes> {
-    //    unsafe { TODO: call ffi::gsk_render_node_serialize() }
-    //}
+    pub fn get_bounds(&self) -> graphene::Rect {
+        unsafe {
+            let mut bounds = graphene::Rect::uninitialized();
+            gsk_sys::gsk_render_node_get_bounds(self.to_glib_none().0, bounds.to_glib_none_mut().0);
+            bounds
+        }
+    }
 
-    //pub fn write_to_file(&self, filename: &str, error: /*Ignored*/Option<Error>) -> bool {
-    //    unsafe { TODO: call ffi::gsk_render_node_write_to_file() }
-    //}
+    pub fn get_node_type(&self) -> RenderNodeType {
+        unsafe {
+            from_glib(gsk_sys::gsk_render_node_get_node_type(self.to_glib_none().0))
+        }
+    }
 
-    //pub fn deserialize(bytes: /*Ignored*/&glib::Bytes, error_func: /*Unimplemented*/Fn(/*Unimplemented*/Fundamental: Pointer, /*Ignored*/Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
-    //    unsafe { TODO: call ffi::gsk_render_node_deserialize() }
+    pub fn serialize(&self) -> Option<glib::Bytes> {
+        unsafe {
+            from_glib_full(gsk_sys::gsk_render_node_serialize(self.to_glib_none().0))
+        }
+    }
+
+    pub fn write_to_file(&self, filename: &str) -> Result<(), Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let _ = gsk_sys::gsk_render_node_write_to_file(self.to_glib_none().0, filename.to_glib_none().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
+
+    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/Fn(/*Unimplemented*/Fundamental: Pointer, &Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
+    //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
     //}
 }

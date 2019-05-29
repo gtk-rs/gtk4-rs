@@ -2,12 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+mod broadway_renderer;
+pub use self::broadway_renderer::{BroadwayRenderer, BroadwayRendererClass};
+
+mod cairo_renderer;
+pub use self::cairo_renderer::{CairoRenderer, CairoRendererClass};
+
+mod gl_renderer;
+pub use self::gl_renderer::{GLRenderer, GLRendererClass};
+
 mod renderer;
 pub use self::renderer::{Renderer, RendererClass, NONE_RENDERER};
 pub use self::renderer::RendererExt;
 
+mod vulkan_renderer;
+pub use self::vulkan_renderer::{VulkanRenderer, VulkanRendererClass};
+
 mod render_node;
 pub use self::render_node::RenderNode;
+
+mod transform;
+pub use self::transform::Transform;
 
 mod enums;
 pub use self::enums::BlendMode;
@@ -15,6 +30,7 @@ pub use self::enums::Corner;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;
+pub use self::enums::TransformCategory;
 
 pub mod functions;
 
