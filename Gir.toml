@@ -11,18 +11,45 @@ deprecate_by_min_version = true
 
 generate = [
     "Gsk.BlendMode",
+    "Gsk.BroadwayRenderer",
+    "Gsk.CairoRenderer",
     "Gsk.Corner",
+    "Gsk.GLRenderer",
     "Gsk.RenderNode",
     "Gsk.RenderNodeType",
     "Gsk.Renderer",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
+    "Gsk.Transform",
+    "Gsk.TransformCategory",
+    "Gsk.VulkanRenderer",
+]
+
+manual = [
+    "cairo.Context",
+    "cairo.Region",
+    "cairo.Surface",
+    "Gdk.RGBA",
+    "Gdk.Surface",
+    "Gdk.Texture",
+    "GLib.Bytes",
+    "GLib.Error",
+    "GLib.String",
+    "Graphene.Matrix",
+    "Graphene.Point",
+    "Graphene.Point3D",
+    "Graphene.Rect",
+    "Graphene.Vec3",
+    "Graphene.Vec4",
+    "Pango.Font",
+    "Pango.GlyphInfo",
+    "Pango.GlyphString",
 ]
 
 ignore = [
-    "Gsk.ColorStop",
-    "Gsk.RoundedRect",
-    "Gsk.Shadow",
+    "Gsk.ColorStop", # Missing memory management functions
+    "Gsk.RoundedRect", # Missing memory management functions
+    "Gsk.Shadow", # Missing memory management functions
 ]
 
 [[object]]
