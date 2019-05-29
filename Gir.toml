@@ -64,8 +64,7 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "cairo_node_peek_surface"
-    # TODO
-    ignore = true
+    ignore = true # no impl FromGlibPtrNone<*const cairo_surface_t> for Surface, probably by mistake
 
 [[object]]
 name = "Gsk.RenderNode"
