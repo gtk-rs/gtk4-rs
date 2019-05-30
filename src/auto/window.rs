@@ -653,8 +653,8 @@ impl WindowBuilder {
 
 pub const NONE_WINDOW: Option<&Window> = None;
 
-pub trait WindowExt: 'static {
-    //fn activate_key(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool;
+pub trait GtkWindowExt: 'static {
+    //fn activate_key(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
 
     fn add_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P);
 
@@ -734,7 +734,7 @@ pub trait WindowExt: 'static {
 
     fn present_with_time(&self, timestamp: u32);
 
-    //fn propagate_key_event(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool;
+    //fn propagate_key_event(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
 
     fn remove_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P);
 
@@ -885,8 +885,8 @@ pub trait WindowExt: 'static {
     fn connect_property_window_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Window>> WindowExt for O {
-    //fn activate_key(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool {
+impl<O: IsA<Window>> GtkWindowExt for O {
+    //fn activate_key(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_window_activate_key() }
     //}
 
@@ -1130,7 +1130,7 @@ impl<O: IsA<Window>> WindowExt for O {
         }
     }
 
-    //fn propagate_key_event(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool {
+    //fn propagate_key_event(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_window_propagate_key_event() }
     //}
 

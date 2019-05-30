@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Error;
+use RecentData;
 use RecentInfo;
 use glib::GString;
 use glib::StaticType;
@@ -53,7 +54,7 @@ impl Default for RecentManager {
 pub const NONE_RECENT_MANAGER: Option<&RecentManager> = None;
 
 pub trait RecentManagerExt: 'static {
-    //fn add_full(&self, uri: &str, recent_data: /*Ignored*/&RecentData) -> bool;
+    fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool;
 
     fn add_item(&self, uri: &str) -> bool;
 
@@ -79,9 +80,11 @@ pub trait RecentManagerExt: 'static {
 }
 
 impl<O: IsA<RecentManager>> RecentManagerExt for O {
-    //fn add_full(&self, uri: &str, recent_data: /*Ignored*/&RecentData) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_add_full() }
-    //}
+    fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_recent_manager_add_full(self.as_ref().to_glib_none().0, uri.to_glib_none().0, recent_data.to_glib_none().0))
+        }
+    }
 
     fn add_item(&self, uri: &str) -> bool {
         unsafe {

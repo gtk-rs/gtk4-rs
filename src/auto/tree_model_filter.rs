@@ -28,13 +28,13 @@ pub const NONE_TREE_MODEL_FILTER: Option<&TreeModelFilter> = None;
 pub trait TreeModelFilterExt: 'static {
     fn clear_cache(&self);
 
-    fn convert_child_iter_to_iter(&self, child_iter: &mut TreeIter) -> Option<TreeIter>;
+    fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
 
-    fn convert_child_path_to_path(&self, child_path: &mut TreePath) -> Option<TreePath>;
+    fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
 
-    fn convert_iter_to_child_iter(&self, filter_iter: &mut TreeIter) -> TreeIter;
+    fn convert_iter_to_child_iter(&self, filter_iter: &TreeIter) -> TreeIter;
 
-    fn convert_path_to_child_path(&self, filter_path: &mut TreePath) -> Option<TreePath>;
+    fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath>;
 
     fn get_model(&self) -> Option<TreeModel>;
 
@@ -47,8 +47,6 @@ pub trait TreeModelFilterExt: 'static {
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
     fn get_property_child_model(&self) -> Option<TreeModel>;
-
-    fn get_property_virtual_root(&self) -> Option<TreePath>;
 }
 
 impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
@@ -58,31 +56,31 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
-    fn convert_child_iter_to_iter(&self, child_iter: &mut TreeIter) -> Option<TreeIter> {
+    fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut filter_iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_filter_convert_child_iter_to_iter(self.as_ref().to_glib_none().0, filter_iter.to_glib_none_mut().0, child_iter.to_glib_none_mut().0));
+            let ret = from_glib(gtk_sys::gtk_tree_model_filter_convert_child_iter_to_iter(self.as_ref().to_glib_none().0, filter_iter.to_glib_none_mut().0, mut_override(child_iter.to_glib_none().0)));
             if ret { Some(filter_iter) } else { None }
         }
     }
 
-    fn convert_child_path_to_path(&self, child_path: &mut TreePath) -> Option<TreePath> {
+    fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_filter_convert_child_path_to_path(self.as_ref().to_glib_none().0, child_path.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_model_filter_convert_child_path_to_path(self.as_ref().to_glib_none().0, mut_override(child_path.to_glib_none().0)))
         }
     }
 
-    fn convert_iter_to_child_iter(&self, filter_iter: &mut TreeIter) -> TreeIter {
+    fn convert_iter_to_child_iter(&self, filter_iter: &TreeIter) -> TreeIter {
         unsafe {
             let mut child_iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_model_filter_convert_iter_to_child_iter(self.as_ref().to_glib_none().0, child_iter.to_glib_none_mut().0, filter_iter.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_model_filter_convert_iter_to_child_iter(self.as_ref().to_glib_none().0, child_iter.to_glib_none_mut().0, mut_override(filter_iter.to_glib_none().0));
             child_iter
         }
     }
 
-    fn convert_path_to_child_path(&self, filter_path: &mut TreePath) -> Option<TreePath> {
+    fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_filter_convert_path_to_child_path(self.as_ref().to_glib_none().0, filter_path.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_model_filter_convert_path_to_child_path(self.as_ref().to_glib_none().0, mut_override(filter_path.to_glib_none().0)))
         }
     }
 
@@ -132,14 +130,6 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         unsafe {
             let mut value = Value::from_type(<TreeModel as StaticType>::static_type());
             gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"child-model\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-            value.get()
-        }
-    }
-
-    fn get_property_virtual_root(&self) -> Option<TreePath> {
-        unsafe {
-            let mut value = Value::from_type(<TreePath as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"virtual-root\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get()
         }
     }

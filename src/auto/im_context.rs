@@ -38,7 +38,7 @@ pub const NONE_IM_CONTEXT: Option<&IMContext> = None;
 pub trait IMContextExt: 'static {
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
-    //fn filter_keypress(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool;
+    //fn filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
 
     fn focus_in(&self);
 
@@ -90,7 +90,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    //fn filter_keypress(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool {
+    //fn filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_im_context_filter_keypress() }
     //}
 

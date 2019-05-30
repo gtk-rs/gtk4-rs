@@ -21,49 +21,49 @@ glib_wrapper! {
 }
 
 impl TreeRowReference {
-    pub fn new<P: IsA<TreeModel>>(model: &P, path: &mut TreePath) -> TreeRowReference {
+    pub fn new<P: IsA<TreeModel>>(model: &P, path: &TreePath) -> Option<TreeRowReference> {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_row_reference_new(model.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_row_reference_new(model.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
         }
     }
 
-    pub fn new_proxy<P: IsA<glib::Object>, Q: IsA<TreeModel>>(proxy: &P, model: &Q, path: &mut TreePath) -> TreeRowReference {
+    pub fn new_proxy<P: IsA<glib::Object>, Q: IsA<TreeModel>>(proxy: &P, model: &Q, path: &TreePath) -> Option<TreeRowReference> {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_row_reference_new_proxy(proxy.as_ref().to_glib_none().0, model.as_ref().to_glib_none().0, path.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_row_reference_new_proxy(proxy.as_ref().to_glib_none().0, model.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0)))
         }
     }
 
-    pub fn get_model(&mut self) -> Option<TreeModel> {
+    pub fn get_model(&self) -> TreeModel {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_row_reference_get_model(self.to_glib_none_mut().0))
+            from_glib_none(gtk_sys::gtk_tree_row_reference_get_model(mut_override(self.to_glib_none().0)))
         }
     }
 
-    pub fn get_path(&mut self) -> Option<TreePath> {
+    pub fn get_path(&self) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_row_reference_get_path(self.to_glib_none_mut().0))
+            from_glib_full(gtk_sys::gtk_tree_row_reference_get_path(mut_override(self.to_glib_none().0)))
         }
     }
 
-    pub fn valid(&mut self) -> bool {
+    pub fn valid(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_row_reference_valid(self.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_row_reference_valid(mut_override(self.to_glib_none().0)))
         }
     }
 
-    pub fn deleted<P: IsA<glib::Object>>(proxy: &P, path: &mut TreePath) {
+    pub fn deleted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
         assert_initialized_main_thread!();
         unsafe {
-            gtk_sys::gtk_tree_row_reference_deleted(proxy.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_row_reference_deleted(proxy.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 
-    pub fn inserted<P: IsA<glib::Object>>(proxy: &P, path: &mut TreePath) {
+    pub fn inserted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
         assert_initialized_main_thread!();
         unsafe {
-            gtk_sys::gtk_tree_row_reference_inserted(proxy.as_ref().to_glib_none().0, path.to_glib_none_mut().0);
+            gtk_sys::gtk_tree_row_reference_inserted(proxy.as_ref().to_glib_none().0, mut_override(path.to_glib_none().0));
         }
     }
 

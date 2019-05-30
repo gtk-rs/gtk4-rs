@@ -28,6 +28,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -433,7 +434,7 @@ pub trait ToolbarExt: 'static {
 
     fn connect_orientation_changed<F: Fn(&Self, Orientation) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_style_changed<F: Fn(&Self, ToolbarStyle) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -538,7 +539,7 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
         }
     }
 
-    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"popup-context-menu\0".as_ptr() as *const _,
@@ -583,7 +584,7 @@ where P: IsA<Toolbar> {
     f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(orientation))
 }
 
-unsafe extern "C" fn popup_context_menu_trampoline<P, F: Fn(&P, i32, i32, i32) -> bool + 'static>(this: *mut gtk_sys::GtkToolbar, x: libc::c_int, y: libc::c_int, button: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn popup_context_menu_trampoline<P, F: Fn(&P, i32, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolbar, x: libc::c_int, y: libc::c_int, button: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Toolbar> {
     let f: &F = &*(f as *const F);
     f(&Toolbar::from_glib_borrow(this).unsafe_cast(), x, y, button).to_glib()

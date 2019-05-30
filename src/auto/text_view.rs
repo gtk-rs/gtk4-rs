@@ -39,6 +39,7 @@ use gobject_sys;
 use gtk_sys;
 use libc;
 use pango;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -680,7 +681,7 @@ pub trait TextViewExt: 'static {
 
     fn get_wrap_mode(&self) -> WrapMode;
 
-    //fn im_context_filter_keypress(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool;
+    //fn im_context_filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
 
     fn move_child<P: IsA<Widget>>(&self, child: &P, xpos: i32, ypos: i32);
 
@@ -768,7 +769,7 @@ pub trait TextViewExt: 'static {
 
     fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32);
 
-    fn connect_extend_selection<F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_extend_selection<F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1081,7 +1082,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    //fn im_context_filter_keypress(&self, event: /*Ignored*/&mut gdk::EventKey) -> bool {
+    //fn im_context_filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_text_view_im_context_filter_keypress() }
     //}
 
@@ -1350,7 +1351,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("delete-from-cursor", &[&type_, &count]).unwrap() };
     }
 
-    fn connect_extend_selection<F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_extend_selection<F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"extend-selection\0".as_ptr() as *const _,
@@ -1679,7 +1680,7 @@ where P: IsA<TextView> {
     f(&TextView::from_glib_borrow(this).unsafe_cast(), from_glib(type_), count)
 }
 
-unsafe extern "C" fn extend_selection_trampoline<P, F: Fn(&P, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> bool + 'static>(this: *mut gtk_sys::GtkTextView, granularity: gtk_sys::GtkTextExtendSelection, location: *mut gtk_sys::GtkTextIter, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn extend_selection_trampoline<P, F: Fn(&P, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkTextView, granularity: gtk_sys::GtkTextExtendSelection, location: *mut gtk_sys::GtkTextIter, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<TextView> {
     let f: &F = &*(f as *const F);
     f(&TextView::from_glib_borrow(this).unsafe_cast(), from_glib(granularity), &from_glib_borrow(location), &from_glib_borrow(start), &from_glib_borrow(end)).to_glib()

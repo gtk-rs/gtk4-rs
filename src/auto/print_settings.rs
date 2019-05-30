@@ -5,6 +5,7 @@
 use Error;
 use NumberUpLayout;
 use PageOrientation;
+use PageRange;
 use PageSet;
 use PaperSize;
 use PrintDuplex;
@@ -17,6 +18,7 @@ use glib::translate::*;
 use gtk_sys;
 use std;
 use std::fmt;
+use std::mem;
 use std::ptr;
 
 glib_wrapper! {
@@ -189,9 +191,13 @@ impl PrintSettings {
         }
     }
 
-    //pub fn get_page_ranges(&self) -> /*Ignored*/Vec<PageRange> {
-    //    unsafe { TODO: call gtk_sys:gtk_print_settings_get_page_ranges() }
-    //}
+    pub fn get_page_ranges(&self) -> Vec<PageRange> {
+        unsafe {
+            let mut num_ranges = mem::uninitialized();
+            let ret = FromGlibContainer::from_glib_full_num(gtk_sys::gtk_print_settings_get_page_ranges(self.to_glib_none().0, &mut num_ranges), num_ranges as usize);
+            ret
+        }
+    }
 
     pub fn get_page_set(&self) -> PageSet {
         unsafe {

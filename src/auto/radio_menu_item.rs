@@ -38,24 +38,24 @@ glib_wrapper! {
 }
 
 impl RadioMenuItem {
-    pub fn new_from_widget<P: IsA<RadioMenuItem>>(group: Option<&P>) -> RadioMenuItem {
-        assert_initialized_main_thread!();
+    pub fn new_from_widget<P: IsA<RadioMenuItem>>(group: &P) -> RadioMenuItem {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_from_widget(group.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_from_widget(group.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
-    pub fn new_with_label_from_widget<P: IsA<RadioMenuItem>>(group: Option<&P>, label: Option<&str>) -> RadioMenuItem {
-        assert_initialized_main_thread!();
+    pub fn new_with_label_from_widget<P: IsA<RadioMenuItem>>(group: &P, label: Option<&str>) -> RadioMenuItem {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_with_label_from_widget(group.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_with_label_from_widget(group.as_ref().to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 
-    pub fn new_with_mnemonic_from_widget<P: IsA<RadioMenuItem>>(group: Option<&P>, label: Option<&str>) -> RadioMenuItem {
-        assert_initialized_main_thread!();
+    pub fn new_with_mnemonic_from_widget<P: IsA<RadioMenuItem>>(group: &P, label: Option<&str>) -> RadioMenuItem {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_with_mnemonic_from_widget(group.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_menu_item_new_with_mnemonic_from_widget(group.as_ref().to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 }

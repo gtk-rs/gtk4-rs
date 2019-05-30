@@ -49,6 +49,7 @@ use gsk;
 use gtk_sys;
 use libc;
 use pango;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -96,8 +97,6 @@ pub trait WidgetExt: 'static {
     fn add_controller<P: IsA<EventController>>(&self, controller: &P);
 
     fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
-
-    fn add_tick_callback<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(&self, callback: P) -> u32;
 
     fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>);
 
@@ -199,7 +198,7 @@ pub trait WidgetExt: 'static {
 
     fn get_child_visible(&self) -> bool;
 
-    fn get_clipboard(&self) -> Option<gdk::Clipboard>;
+    fn get_clipboard(&self) -> gdk::Clipboard;
 
     fn get_cursor(&self) -> Option<gdk::Cursor>;
 
@@ -257,7 +256,7 @@ pub trait WidgetExt: 'static {
 
     fn get_parent(&self) -> Option<Widget>;
 
-    fn get_path(&self) -> Option<WidgetPath>;
+    fn get_path(&self) -> WidgetPath;
 
     fn get_preferred_size(&self) -> (Requisition, Requisition);
 
@@ -283,7 +282,7 @@ pub trait WidgetExt: 'static {
 
     fn get_state_flags(&self) -> StateFlags;
 
-    fn get_style_context(&self) -> Option<StyleContext>;
+    fn get_style_context(&self) -> StyleContext;
 
     fn get_support_multidevice(&self) -> bool;
 
@@ -388,8 +387,6 @@ pub trait WidgetExt: 'static {
     fn remove_controller<P: IsA<EventController>>(&self, controller: &P);
 
     fn remove_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
-
-    fn remove_tick_callback(&self, id: u32);
 
     fn reset_style(&self);
 
@@ -531,25 +528,25 @@ pub trait WidgetExt: 'static {
 
     fn connect_drag_data_received<F: Fn(&Self, &gdk::Drop, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_drag_end<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_drag_leave<F: Fn(&Self, &gdk::Drop) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_grab_notify<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_hide<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_map<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_move_focus<F: Fn(&Self, DirectionType) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -680,26 +677,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
         unsafe {
             gtk_sys::gtk_widget_add_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn add_tick_callback<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(&self, callback: P) -> u32 {
-        let callback_data: Box_<P> = Box::new(callback);
-        unsafe extern "C" fn callback_func<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(widget: *mut gtk_sys::GtkWidget, frame_clock: *mut gdk_sys::GdkFrameClock, user_data: glib_sys::gpointer) -> glib_sys::gboolean {
-            let widget = from_glib_borrow(widget);
-            let frame_clock = from_glib_borrow(frame_clock);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&widget, &frame_clock);
-            res.to_glib()
-        }
-        let callback = Some(callback_func::<P> as _);
-        unsafe extern "C" fn notify_func<P: Fn(&Widget, &gdk::FrameClock) -> bool + 'static>(data: glib_sys::gpointer) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(notify_func::<P> as _);
-        let super_callback0: Box_<P> = callback_data;
-        unsafe {
-            gtk_sys::gtk_widget_add_tick_callback(self.as_ref().to_glib_none().0, callback, Box::into_raw(super_callback0) as *mut _, destroy_call3)
         }
     }
 
@@ -1009,7 +986,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_clipboard(&self) -> Option<gdk::Clipboard> {
+    fn get_clipboard(&self) -> gdk::Clipboard {
         unsafe {
             from_glib_none(gtk_sys::gtk_widget_get_clipboard(self.as_ref().to_glib_none().0))
         }
@@ -1183,7 +1160,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_path(&self) -> Option<WidgetPath> {
+    fn get_path(&self) -> WidgetPath {
         unsafe {
             from_glib_none(gtk_sys::gtk_widget_get_path(self.as_ref().to_glib_none().0))
         }
@@ -1267,7 +1244,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_style_context(&self) -> Option<StyleContext> {
+    fn get_style_context(&self) -> StyleContext {
         unsafe {
             from_glib_none(gtk_sys::gtk_widget_get_style_context(self.as_ref().to_glib_none().0))
         }
@@ -1587,12 +1564,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn remove_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
         unsafe {
             gtk_sys::gtk_widget_remove_mnemonic_label(self.as_ref().to_glib_none().0, label.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn remove_tick_callback(&self, id: u32) {
-        unsafe {
-            gtk_sys::gtk_widget_remove_tick_callback(self.as_ref().to_glib_none().0, id);
         }
     }
 
@@ -2051,7 +2022,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-drop\0".as_ptr() as *const _,
@@ -2067,7 +2038,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-failed\0".as_ptr() as *const _,
@@ -2083,7 +2054,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-motion\0".as_ptr() as *const _,
@@ -2107,7 +2078,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"keynav-failed\0".as_ptr() as *const _,
@@ -2123,7 +2094,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"mnemonic-activate\0".as_ptr() as *const _,
@@ -2549,7 +2520,7 @@ where P: IsA<Widget> {
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), &from_glib_borrow(x))
 }
 
-unsafe extern "C" fn drag_drop_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn drag_drop_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
@@ -2561,7 +2532,7 @@ where P: IsA<Widget> {
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
 }
 
-unsafe extern "C" fn drag_failed_trampoline<P, F: Fn(&P, &gdk::Drag, DragResult) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, result: gtk_sys::GtkDragResult, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn drag_failed_trampoline<P, F: Fn(&P, &gdk::Drag, DragResult) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, result: gtk_sys::GtkDragResult, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), from_glib(result)).to_glib()
@@ -2573,7 +2544,7 @@ where P: IsA<Widget> {
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
 }
 
-unsafe extern "C" fn drag_motion_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn drag_motion_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
@@ -2591,7 +2562,7 @@ where P: IsA<Widget> {
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction)).to_glib()
@@ -2603,7 +2574,7 @@ where P: IsA<Widget> {
     f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, group_cycling: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, group_cycling: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Widget> {
     let f: &F = &*(f as *const F);
     f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(group_cycling)).to_glib()

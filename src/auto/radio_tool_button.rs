@@ -39,10 +39,10 @@ glib_wrapper! {
 }
 
 impl RadioToolButton {
-    pub fn new_from_widget<P: IsA<RadioToolButton>>(group: Option<&P>) -> RadioToolButton {
-        assert_initialized_main_thread!();
+    pub fn new_from_widget<P: IsA<RadioToolButton>>(group: &P) -> RadioToolButton {
+        skip_assert_initialized!();
         unsafe {
-            ToolItem::from_glib_none(gtk_sys::gtk_radio_tool_button_new_from_widget(group.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_radio_tool_button_new_from_widget(group.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 }

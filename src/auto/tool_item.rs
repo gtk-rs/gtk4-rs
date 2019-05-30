@@ -25,6 +25,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use pango;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -476,7 +477,7 @@ pub trait ToolItemExt: 'static {
 
     fn set_property_expand_item(&self, expand_item: bool);
 
-    fn connect_create_menu_proxy<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_create_menu_proxy<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_toolbar_reconfigured<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -632,7 +633,7 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
         }
     }
 
-    fn connect_create_menu_proxy<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_create_menu_proxy<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"create-menu-proxy\0".as_ptr() as *const _,
@@ -689,7 +690,7 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 }
 
-unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<ToolItem> {
     let f: &F = &*(f as *const F);
     f(&ToolItem::from_glib_borrow(this).unsafe_cast()).to_glib()

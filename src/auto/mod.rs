@@ -928,15 +928,12 @@ pub use self::widget_paintable::WidgetPaintableExt;
 
 mod window;
 pub use self::window::{Window, WindowClass, NONE_WINDOW};
-pub use self::window::WindowExt;
+pub use self::window::GtkWindowExt;
 pub use self::window::WindowBuilder;
 
 mod window_group;
 pub use self::window_group::{WindowGroup, WindowGroupClass, NONE_WINDOW_GROUP};
 pub use self::window_group::WindowGroupExt;
-
-mod border;
-pub use self::border::Border;
 
 mod css_section;
 pub use self::css_section::CssSection;
@@ -946,9 +943,6 @@ pub use self::paper_size::PaperSize;
 
 mod recent_info;
 pub use self::recent_info::RecentInfo;
-
-mod requisition;
-pub use self::requisition::Requisition;
 
 mod selection_data;
 pub use self::selection_data::SelectionData;
@@ -1393,6 +1387,6 @@ pub mod traits {
     pub use super::VolumeButtonExt;
     pub use super::WidgetExt;
     pub use super::WidgetPaintableExt;
-    pub use super::WindowExt;
+    pub use super::GtkWindowExt;
     pub use super::WindowGroupExt;
 }

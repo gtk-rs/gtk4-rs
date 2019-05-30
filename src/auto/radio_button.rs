@@ -39,24 +39,24 @@ glib_wrapper! {
 }
 
 impl RadioButton {
-    pub fn new_from_widget<P: IsA<RadioButton>>(radio_group_member: Option<&P>) -> RadioButton {
-        assert_initialized_main_thread!();
+    pub fn new_from_widget<P: IsA<RadioButton>>(radio_group_member: &P) -> RadioButton {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_from_widget(radio_group_member.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_from_widget(radio_group_member.as_ref().to_glib_none().0)).unsafe_cast()
         }
     }
 
-    pub fn new_with_label_from_widget<P: IsA<RadioButton>>(radio_group_member: Option<&P>, label: &str) -> RadioButton {
-        assert_initialized_main_thread!();
+    pub fn new_with_label_from_widget<P: IsA<RadioButton>>(radio_group_member: &P, label: &str) -> RadioButton {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_with_label_from_widget(radio_group_member.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_with_label_from_widget(radio_group_member.as_ref().to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 
-    pub fn new_with_mnemonic_from_widget<P: IsA<RadioButton>>(radio_group_member: Option<&P>, label: &str) -> RadioButton {
-        assert_initialized_main_thread!();
+    pub fn new_with_mnemonic_from_widget<P: IsA<RadioButton>>(radio_group_member: &P, label: &str) -> RadioButton {
+        skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_with_mnemonic_from_widget(radio_group_member.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_radio_button_new_with_mnemonic_from_widget(radio_group_member.as_ref().to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
         }
     }
 }

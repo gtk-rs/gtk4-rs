@@ -257,7 +257,7 @@ pub trait TreeViewColumnExt: 'static {
 
     fn cell_is_visible(&self) -> bool;
 
-    fn cell_set_cell_data<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &mut TreeIter, is_expander: bool, is_expanded: bool);
+    fn cell_set_cell_data<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &TreeIter, is_expander: bool, is_expanded: bool);
 
     fn clicked(&self);
 
@@ -407,9 +407,9 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
         }
     }
 
-    fn cell_set_cell_data<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &mut TreeIter, is_expander: bool, is_expanded: bool) {
+    fn cell_set_cell_data<P: IsA<TreeModel>>(&self, tree_model: &P, iter: &TreeIter, is_expander: bool, is_expanded: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_column_cell_set_cell_data(self.as_ref().to_glib_none().0, tree_model.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, is_expander.to_glib(), is_expanded.to_glib());
+            gtk_sys::gtk_tree_view_column_cell_set_cell_data(self.as_ref().to_glib_none().0, tree_model.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), is_expander.to_glib(), is_expanded.to_glib());
         }
     }
 
