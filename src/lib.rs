@@ -100,6 +100,9 @@ mod im_context_simple;
 mod list_store;
 mod message_dialog;
 mod notebook;
+mod overlay;
+mod pad_action_entry;
+mod pad_controller;
 mod response_type;
 mod spin_button;
 mod text_buffer;
@@ -108,4 +111,5 @@ mod tree_path;
 mod tree_store;
 mod widget;
 
+pub use pad_action_entry::PadActionEntry;
 pub use response_type::ResponseType;

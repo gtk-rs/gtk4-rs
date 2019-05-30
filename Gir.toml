@@ -157,13 +157,10 @@ generate = [
     "Gtk.Orientable",
     "Gtk.Orientation",
     "Gtk.Overflow",
-    "Gtk.Overlay",
     "Gtk.PackType",
     "Gtk.PadActionType",
-    "Gtk.PadController",
     "Gtk.PageOrientation",
     "Gtk.PageSet",
-    "Gtk.PageSetup",
     "Gtk.PanDirection",
     "Gtk.Paned",
     "Gtk.PasswordEntry",
@@ -183,7 +180,6 @@ generate = [
     "Gtk.PrintOperationResult",
     "Gtk.PrintPages",
     "Gtk.PrintQuality",
-    "Gtk.PrintSettings",
     "Gtk.PrintStatus",
     "Gtk.ProgressBar",
     "Gtk.PropagationPhase",
@@ -409,7 +405,6 @@ ignore = [
     "Gtk.CssLocation",
     "Gtk.FileFilterInfo",
     "Gtk.LabelSelectionInfo",
-    "Gtk.PadActionEntry",
     "Gtk.PageRange",
     "Gtk.RecentData",
     "Gtk.RequestedSize",
@@ -502,6 +497,7 @@ manual = [
     "Gsk.RenderNode",
     # TODO "Gsk.Shadow",
     "Gsk.Transform",
+    "Gtk.PadActionEntry",
     "Gtk.ResponseType",
     "Pango.Alignment",
     "Pango.AttrList",
@@ -1051,6 +1047,32 @@ manual_traits = ["NotebookExtManual"]
     ignore = true
 
 [[object]]
+name = "Gtk.Overlay"
+status = "generate"
+manual_traits = ["OverlayExtManual"]
+
+[[object]]
+name = "Gtk.PadController"
+status = "generate"
+manual_traits = ["PadControllerExtManual"]
+    [[object.function]]
+    name = "set_action_entries"
+    ignore = true
+
+[[object]]
+name = "Gtk.PageSetup"
+status = "generate"
+    [[object.function]]
+    name = "get_paper_size"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    pattern = "set_paper_size.*"
+        [[object.function.parameter]]
+        name = "size"
+        const = true
+
+[[object]]
 name = "Gtk.PaperSize"
 status = "generate"
     [[object.function]]
@@ -1075,6 +1097,22 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         # cairo::Context is reference-counted
+        const = true
+
+[[object]]
+name = "Gtk.PrintSettings"
+status = "generate"
+    [[object.function]]
+    name = "get_paper_size"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "set_page_ranges"
+    ignore = true
+    [[object.function]]
+    name = "set_paper_size"
+        [[object.function.parameter]]
+        name = "paper_size"
         const = true
 
 [[object]]
