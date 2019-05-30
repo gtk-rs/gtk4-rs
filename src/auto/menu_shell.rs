@@ -26,6 +26,7 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -424,7 +425,7 @@ pub trait MenuShellExt: 'static {
 
     fn emit_move_current(&self, direction: MenuDirectionType);
 
-    fn connect_move_selected<F: Fn(&Self, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_move_selected<F: Fn(&Self, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_selection_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -580,7 +581,7 @@ impl<O: IsA<MenuShell>> MenuShellExt for O {
         let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("move-current", &[&direction]).unwrap() };
     }
 
-    fn connect_move_selected<F: Fn(&Self, i32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_move_selected<F: Fn(&Self, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"move-selected\0".as_ptr() as *const _,
@@ -641,7 +642,7 @@ where P: IsA<MenuShell> {
     f(&MenuShell::from_glib_borrow(this).unsafe_cast(), from_glib(direction))
 }
 
-unsafe extern "C" fn move_selected_trampoline<P, F: Fn(&P, i32) -> bool + 'static>(this: *mut gtk_sys::GtkMenuShell, distance: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn move_selected_trampoline<P, F: Fn(&P, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkMenuShell, distance: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<MenuShell> {
     let f: &F = &*(f as *const F);
     f(&MenuShell::from_glib_borrow(this).unsafe_cast(), distance).to_glib()

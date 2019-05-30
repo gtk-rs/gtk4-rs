@@ -20,6 +20,7 @@ use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use libc;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -448,9 +449,9 @@ pub trait GLAreaExt: 'static {
 
     fn set_use_es(&self, use_es: bool);
 
-    fn connect_create_context<F: Fn(&Self) -> gdk::GLContext + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -565,7 +566,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_create_context<F: Fn(&Self) -> gdk::GLContext + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"create-context\0".as_ptr() as *const _,
@@ -573,7 +574,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"render\0".as_ptr() as *const _,
@@ -630,13 +631,13 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 }
 
-unsafe extern "C" fn create_context_trampoline<P, F: Fn(&P) -> gdk::GLContext + 'static>(this: *mut gtk_sys::GtkGLArea, f: glib_sys::gpointer) -> *mut gdk_sys::GdkGLContext
+unsafe extern "C" fn create_context_trampoline<P, F: Fn(&P) -> Option<gdk::GLContext> + 'static>(this: *mut gtk_sys::GtkGLArea, f: glib_sys::gpointer) -> *mut gdk_sys::GdkGLContext
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast()).to_glib_full()
 }
 
-unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> bool + 'static>(this: *mut gtk_sys::GtkGLArea, context: *mut gdk_sys::GdkGLContext, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> Inhibit + 'static>(this: *mut gtk_sys::GtkGLArea, context: *mut gdk_sys::GdkGLContext, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<GLArea> {
     let f: &F = &*(f as *const F);
     f(&GLArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context)).to_glib()

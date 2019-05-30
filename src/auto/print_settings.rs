@@ -205,7 +205,7 @@ impl PrintSettings {
         }
     }
 
-    pub fn get_paper_size(&self) -> Option<PaperSize> {
+    pub fn get_paper_size(&self) -> PaperSize {
         unsafe {
             from_glib_full(gtk_sys::gtk_print_settings_get_paper_size(self.to_glib_none().0))
         }
@@ -395,10 +395,6 @@ impl PrintSettings {
         }
     }
 
-    //pub fn set_page_ranges(&self, page_ranges: /*Ignored*/&[&PageRange]) {
-    //    unsafe { TODO: call gtk_sys:gtk_print_settings_set_page_ranges() }
-    //}
-
     pub fn set_page_set(&self, page_set: PageSet) {
         unsafe {
             gtk_sys::gtk_print_settings_set_page_set(self.to_glib_none().0, page_set.to_glib());
@@ -411,9 +407,9 @@ impl PrintSettings {
         }
     }
 
-    pub fn set_paper_size(&self, paper_size: &mut PaperSize) {
+    pub fn set_paper_size(&self, paper_size: &PaperSize) {
         unsafe {
-            gtk_sys::gtk_print_settings_set_paper_size(self.to_glib_none().0, paper_size.to_glib_none_mut().0);
+            gtk_sys::gtk_print_settings_set_paper_size(self.to_glib_none().0, mut_override(paper_size.to_glib_none().0));
         }
     }
 

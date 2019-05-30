@@ -4,7 +4,6 @@
 
 use IMContext;
 use glib::object::Cast;
-use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -33,27 +32,6 @@ impl Default for IMContextSimple {
 }
 
 pub const NONE_IM_CONTEXT_SIMPLE: Option<&IMContextSimple> = None;
-
-pub trait IMContextSimpleExt: 'static {
-    fn add_compose_file(&self, compose_file: &str);
-
-    fn add_table(&self, data: &[u16], n_seqs: i32);
-}
-
-impl<O: IsA<IMContextSimple>> IMContextSimpleExt for O {
-    fn add_compose_file(&self, compose_file: &str) {
-        unsafe {
-            gtk_sys::gtk_im_context_simple_add_compose_file(self.as_ref().to_glib_none().0, compose_file.to_glib_none().0);
-        }
-    }
-
-    fn add_table(&self, data: &[u16], n_seqs: i32) {
-        let max_seq_len = data.len() as i32;
-        unsafe {
-            gtk_sys::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0, data.to_glib_none().0, max_seq_len, n_seqs);
-        }
-    }
-}
 
 impl fmt::Display for IMContextSimple {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

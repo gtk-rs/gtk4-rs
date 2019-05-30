@@ -434,7 +434,7 @@ impl MenuItemBuilder {
 
 pub const NONE_MENU_ITEM: Option<&MenuItem> = None;
 
-pub trait MenuItemExt: 'static {
+pub trait GtkMenuItemExt: 'static {
     fn activate(&self);
 
     fn deselect(&self);
@@ -488,7 +488,7 @@ pub trait MenuItemExt: 'static {
     fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<MenuItem>> MenuItemExt for O {
+impl<O: IsA<MenuItem>> GtkMenuItemExt for O {
     fn activate(&self) {
         unsafe {
             gtk_sys::gtk_menu_item_activate(self.as_ref().to_glib_none().0);

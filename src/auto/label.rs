@@ -27,6 +27,7 @@ use gobject_sys;
 use gtk_sys;
 use libc;
 use pango;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -672,7 +673,7 @@ pub trait LabelExt: 'static {
 
     fn emit_activate_current_link(&self);
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1066,7 +1067,7 @@ impl<O: IsA<Label>> LabelExt for O {
         let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate-current-link", &[]).unwrap() };
     }
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
@@ -1281,7 +1282,7 @@ where P: IsA<Label> {
     f(&Label::from_glib_borrow(this).unsafe_cast())
 }
 
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> bool + 'static>(this: *mut gtk_sys::GtkLabel, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkLabel, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<Label> {
     let f: &F = &*(f as *const F);
     f(&Label::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()

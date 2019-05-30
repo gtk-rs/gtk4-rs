@@ -96,7 +96,7 @@ impl PageSetup {
         }
     }
 
-    pub fn get_paper_size(&self) -> Option<PaperSize> {
+    pub fn get_paper_size(&self) -> PaperSize {
         unsafe {
             from_glib_none(gtk_sys::gtk_page_setup_get_paper_size(self.to_glib_none().0))
         }
@@ -154,15 +154,15 @@ impl PageSetup {
         }
     }
 
-    pub fn set_paper_size(&self, size: &mut PaperSize) {
+    pub fn set_paper_size(&self, size: &PaperSize) {
         unsafe {
-            gtk_sys::gtk_page_setup_set_paper_size(self.to_glib_none().0, size.to_glib_none_mut().0);
+            gtk_sys::gtk_page_setup_set_paper_size(self.to_glib_none().0, mut_override(size.to_glib_none().0));
         }
     }
 
-    pub fn set_paper_size_and_default_margins(&self, size: &mut PaperSize) {
+    pub fn set_paper_size_and_default_margins(&self, size: &PaperSize) {
         unsafe {
-            gtk_sys::gtk_page_setup_set_paper_size_and_default_margins(self.to_glib_none().0, size.to_glib_none_mut().0);
+            gtk_sys::gtk_page_setup_set_paper_size_and_default_margins(self.to_glib_none().0, mut_override(size.to_glib_none().0));
         }
     }
 

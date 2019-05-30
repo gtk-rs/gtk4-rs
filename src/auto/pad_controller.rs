@@ -37,10 +37,6 @@ impl PadController {
         }
     }
 
-    //pub fn set_action_entries(&self, entries: /*Ignored*/&[&PadActionEntry]) {
-    //    unsafe { TODO: call gtk_sys:gtk_pad_controller_set_action_entries() }
-    //}
-
     pub fn get_property_action_group(&self) -> Option<gio::ActionGroup> {
         unsafe {
             let mut value = Value::from_type(<gio::ActionGroup as StaticType>::static_type());

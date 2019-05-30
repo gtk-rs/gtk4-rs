@@ -23,6 +23,7 @@ use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
+use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -447,7 +448,7 @@ pub trait LinkButtonExt: 'static {
 
     fn set_visited(&self, visited: bool);
 
-    fn connect_activate_link<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_activate_link<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -479,7 +480,7 @@ impl<O: IsA<LinkButton>> LinkButtonExt for O {
         }
     }
 
-    fn connect_activate_link<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+    fn connect_activate_link<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
@@ -504,7 +505,7 @@ impl<O: IsA<LinkButton>> LinkButtonExt for O {
     }
 }
 
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkLinkButton, f: glib_sys::gpointer) -> glib_sys::gboolean
+unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkLinkButton, f: glib_sys::gpointer) -> glib_sys::gboolean
 where P: IsA<LinkButton> {
     let f: &F = &*(f as *const F);
     f(&LinkButton::from_glib_borrow(this).unsafe_cast()).to_glib()

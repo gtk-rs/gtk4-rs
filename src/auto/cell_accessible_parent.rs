@@ -2,15 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use CellAccessible;
-use CellRendererState;
-use atk;
-use gdk;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
-use std::mem;
 
 glib_wrapper! {
     pub struct CellAccessibleParent(Interface<gtk_sys::GtkCellAccessibleParent>);
@@ -23,98 +18,73 @@ glib_wrapper! {
 pub const NONE_CELL_ACCESSIBLE_PARENT: Option<&CellAccessibleParent> = None;
 
 pub trait CellAccessibleParentExt: 'static {
-    fn activate<P: IsA<CellAccessible>>(&self, cell: &P);
+    //fn activate(&self, cell: /*Ignored*/&CellAccessible);
 
-    fn edit<P: IsA<CellAccessible>>(&self, cell: &P);
+    //fn edit(&self, cell: /*Ignored*/&CellAccessible);
 
-    fn expand_collapse<P: IsA<CellAccessible>>(&self, cell: &P);
+    //fn expand_collapse(&self, cell: /*Ignored*/&CellAccessible);
 
-    fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P) -> gdk::Rectangle;
+    //fn get_cell_area(&self, cell: /*Ignored*/&CellAccessible) -> gdk::Rectangle;
 
-    fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: atk::CoordType) -> (i32, i32, i32, i32);
+    //fn get_cell_extents(&self, cell: /*Ignored*/&CellAccessible, coord_type: atk::CoordType) -> (i32, i32, i32, i32);
 
-    fn get_child_index<P: IsA<CellAccessible>>(&self, cell: &P) -> i32;
+    //fn get_child_index(&self, cell: /*Ignored*/&CellAccessible) -> i32;
 
-    //fn get_column_header_cells<P: IsA<CellAccessible>>(&self, cell: &P) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 };
+    //fn get_column_header_cells(&self, cell: /*Ignored*/&CellAccessible) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 };
 
-    fn get_renderer_state<P: IsA<CellAccessible>>(&self, cell: &P) -> CellRendererState;
+    //fn get_renderer_state(&self, cell: /*Ignored*/&CellAccessible) -> CellRendererState;
 
-    //fn get_row_header_cells<P: IsA<CellAccessible>>(&self, cell: &P) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 };
+    //fn get_row_header_cells(&self, cell: /*Ignored*/&CellAccessible) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 };
 
-    fn grab_focus<P: IsA<CellAccessible>>(&self, cell: &P) -> bool;
+    //fn grab_focus(&self, cell: /*Ignored*/&CellAccessible) -> bool;
 
-    fn update_relationset<P: IsA<CellAccessible>, Q: IsA<atk::RelationSet>>(&self, cell: &P, relationset: &Q);
+    //fn update_relationset<P: IsA<atk::RelationSet>>(&self, cell: /*Ignored*/&CellAccessible, relationset: &P);
 }
 
 impl<O: IsA<CellAccessibleParent>> CellAccessibleParentExt for O {
-    fn activate<P: IsA<CellAccessible>>(&self, cell: &P) {
-        unsafe {
-            gtk_sys::gtk_cell_accessible_parent_activate(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0);
-        }
-    }
+    //fn activate(&self, cell: /*Ignored*/&CellAccessible) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_activate() }
+    //}
 
-    fn edit<P: IsA<CellAccessible>>(&self, cell: &P) {
-        unsafe {
-            gtk_sys::gtk_cell_accessible_parent_edit(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0);
-        }
-    }
+    //fn edit(&self, cell: /*Ignored*/&CellAccessible) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_edit() }
+    //}
 
-    fn expand_collapse<P: IsA<CellAccessible>>(&self, cell: &P) {
-        unsafe {
-            gtk_sys::gtk_cell_accessible_parent_expand_collapse(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0);
-        }
-    }
+    //fn expand_collapse(&self, cell: /*Ignored*/&CellAccessible) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_expand_collapse() }
+    //}
 
-    fn get_cell_area<P: IsA<CellAccessible>>(&self, cell: &P) -> gdk::Rectangle {
-        unsafe {
-            let mut cell_rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_accessible_parent_get_cell_area(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, cell_rect.to_glib_none_mut().0);
-            cell_rect
-        }
-    }
+    //fn get_cell_area(&self, cell: /*Ignored*/&CellAccessible) -> gdk::Rectangle {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_cell_area() }
+    //}
 
-    fn get_cell_extents<P: IsA<CellAccessible>>(&self, cell: &P, coord_type: atk::CoordType) -> (i32, i32, i32, i32) {
-        unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            let mut width = mem::uninitialized();
-            let mut height = mem::uninitialized();
-            gtk_sys::gtk_cell_accessible_parent_get_cell_extents(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, &mut x, &mut y, &mut width, &mut height, coord_type.to_glib());
-            (x, y, width, height)
-        }
-    }
+    //fn get_cell_extents(&self, cell: /*Ignored*/&CellAccessible, coord_type: atk::CoordType) -> (i32, i32, i32, i32) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_cell_extents() }
+    //}
 
-    fn get_child_index<P: IsA<CellAccessible>>(&self, cell: &P) -> i32 {
-        unsafe {
-            gtk_sys::gtk_cell_accessible_parent_get_child_index(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0)
-        }
-    }
+    //fn get_child_index(&self, cell: /*Ignored*/&CellAccessible) -> i32 {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_child_index() }
+    //}
 
-    //fn get_column_header_cells<P: IsA<CellAccessible>>(&self, cell: &P) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 } {
+    //fn get_column_header_cells(&self, cell: /*Ignored*/&CellAccessible) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 } {
     //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_column_header_cells() }
     //}
 
-    fn get_renderer_state<P: IsA<CellAccessible>>(&self, cell: &P) -> CellRendererState {
-        unsafe {
-            from_glib(gtk_sys::gtk_cell_accessible_parent_get_renderer_state(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0))
-        }
-    }
+    //fn get_renderer_state(&self, cell: /*Ignored*/&CellAccessible) -> CellRendererState {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_renderer_state() }
+    //}
 
-    //fn get_row_header_cells<P: IsA<CellAccessible>>(&self, cell: &P) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 } {
+    //fn get_row_header_cells(&self, cell: /*Ignored*/&CellAccessible) -> /*Unknown conversion*//*Unimplemented*/PtrArray TypeId { ns_id: 4, id: 9 } {
     //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_get_row_header_cells() }
     //}
 
-    fn grab_focus<P: IsA<CellAccessible>>(&self, cell: &P) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_cell_accessible_parent_grab_focus(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0))
-        }
-    }
+    //fn grab_focus(&self, cell: /*Ignored*/&CellAccessible) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_grab_focus() }
+    //}
 
-    fn update_relationset<P: IsA<CellAccessible>, Q: IsA<atk::RelationSet>>(&self, cell: &P, relationset: &Q) {
-        unsafe {
-            gtk_sys::gtk_cell_accessible_parent_update_relationset(self.as_ref().to_glib_none().0, cell.as_ref().to_glib_none().0, relationset.as_ref().to_glib_none().0);
-        }
-    }
+    //fn update_relationset<P: IsA<atk::RelationSet>>(&self, cell: /*Ignored*/&CellAccessible, relationset: &P) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_accessible_parent_update_relationset() }
+    //}
 }
 
 impl fmt::Display for CellAccessibleParent {

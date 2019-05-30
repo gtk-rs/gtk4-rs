@@ -505,7 +505,7 @@ impl MenuBuilder {
 
 pub const NONE_MENU: Option<&Menu> = None;
 
-pub trait MenuExt: 'static {
+pub trait GtkMenuExt: 'static {
     //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box<dyn FnOnce(&Widget, &Menu) + 'static>>);
 
     fn detach(&self);
@@ -591,7 +591,7 @@ pub trait MenuExt: 'static {
     fn connect_property_reserve_toggle_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Menu>> MenuExt for O {
+impl<O: IsA<Menu>> GtkMenuExt for O {
     //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box<dyn FnOnce(&Widget, &Menu) + 'static>>) {
     //    unsafe { TODO: call gtk_sys:gtk_menu_attach_to_widget() }
     //}

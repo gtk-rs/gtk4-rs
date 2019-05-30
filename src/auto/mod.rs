@@ -85,9 +85,6 @@ pub use self::bin::BinBuilder;
 mod bin_layout;
 pub use self::bin_layout::{BinLayout, BinLayoutClass, NONE_BIN_LAYOUT};
 
-mod boolean_cell_accessible;
-pub use self::boolean_cell_accessible::{BooleanCellAccessible, BooleanCellAccessibleClass, NONE_BOOLEAN_CELL_ACCESSIBLE};
-
 mod box_;
 pub use self::box_::{Box, BoxClass, NONE_BOX};
 pub use self::box_::BoxExt;
@@ -110,16 +107,10 @@ pub use self::button::{Button, ButtonClass, NONE_BUTTON};
 pub use self::button::ButtonExt;
 pub use self::button::ButtonBuilder;
 
-mod button_accessible;
-pub use self::button_accessible::{ButtonAccessible, ButtonAccessibleClass, NONE_BUTTON_ACCESSIBLE};
-
 mod calendar;
 pub use self::calendar::{Calendar, CalendarClass, NONE_CALENDAR};
 pub use self::calendar::CalendarExt;
 pub use self::calendar::CalendarBuilder;
-
-mod cell_accessible;
-pub use self::cell_accessible::{CellAccessible, CellAccessibleClass, NONE_CELL_ACCESSIBLE};
 
 mod cell_accessible_parent;
 pub use self::cell_accessible_parent::{CellAccessibleParent, NONE_CELL_ACCESSIBLE_PARENT};
@@ -202,9 +193,6 @@ pub use self::check_menu_item::{CheckMenuItem, CheckMenuItemClass, NONE_CHECK_ME
 pub use self::check_menu_item::CheckMenuItemExt;
 pub use self::check_menu_item::CheckMenuItemBuilder;
 
-mod check_menu_item_accessible;
-pub use self::check_menu_item_accessible::{CheckMenuItemAccessible, CheckMenuItemAccessibleClass, NONE_CHECK_MENU_ITEM_ACCESSIBLE};
-
 mod color_button;
 pub use self::color_button::{ColorButton, ColorButtonClass, NONE_COLOR_BUTTON};
 pub use self::color_button::ColorButtonExt;
@@ -229,9 +217,6 @@ pub use self::combo_box::{ComboBox, ComboBoxClass, NONE_COMBO_BOX};
 pub use self::combo_box::ComboBoxExt;
 pub use self::combo_box::ComboBoxBuilder;
 
-mod combo_box_accessible;
-pub use self::combo_box_accessible::{ComboBoxAccessible, ComboBoxAccessibleClass, NONE_COMBO_BOX_ACCESSIBLE};
-
 mod combo_box_text;
 pub use self::combo_box_text::{ComboBoxText, ComboBoxTextClass, NONE_COMBO_BOX_TEXT};
 pub use self::combo_box_text::ComboBoxTextExt;
@@ -241,13 +226,6 @@ mod container;
 pub use self::container::{Container, ContainerClass, NONE_CONTAINER};
 pub use self::container::ContainerExt;
 pub use self::container::ContainerBuilder;
-
-mod container_accessible;
-pub use self::container_accessible::{ContainerAccessible, ContainerAccessibleClass, NONE_CONTAINER_ACCESSIBLE};
-
-mod container_cell_accessible;
-pub use self::container_cell_accessible::{ContainerCellAccessible, ContainerCellAccessibleClass, NONE_CONTAINER_CELL_ACCESSIBLE};
-pub use self::container_cell_accessible::ContainerCellAccessibleExt;
 
 mod css_provider;
 pub use self::css_provider::{CssProvider, CssProviderClass, NONE_CSS_PROVIDER};
@@ -275,9 +253,6 @@ pub use self::entry::{Entry, EntryClass, NONE_ENTRY};
 pub use self::entry::EntryExt;
 pub use self::entry::EntryBuilder;
 
-mod entry_accessible;
-pub use self::entry_accessible::{EntryAccessible, EntryAccessibleClass, NONE_ENTRY_ACCESSIBLE};
-
 mod entry_buffer;
 pub use self::entry_buffer::{EntryBuffer, EntryBufferClass, NONE_ENTRY_BUFFER};
 pub use self::entry_buffer::EntryBufferExt;
@@ -286,9 +261,6 @@ mod entry_completion;
 pub use self::entry_completion::{EntryCompletion, EntryCompletionClass, NONE_ENTRY_COMPLETION};
 pub use self::entry_completion::EntryCompletionExt;
 pub use self::entry_completion::EntryCompletionBuilder;
-
-mod entry_icon_accessible;
-pub use self::entry_icon_accessible::{EntryIconAccessible, EntryIconAccessibleClass};
 
 mod event_controller;
 pub use self::event_controller::{EventController, EventControllerClass, NONE_EVENT_CONTROLLER};
@@ -310,9 +282,6 @@ mod expander;
 pub use self::expander::{Expander, ExpanderClass, NONE_EXPANDER};
 pub use self::expander::ExpanderExt;
 pub use self::expander::ExpanderBuilder;
-
-mod expander_accessible;
-pub use self::expander_accessible::{ExpanderAccessible, ExpanderAccessibleClass, NONE_EXPANDER_ACCESSIBLE};
 
 mod file_chooser;
 pub use self::file_chooser::{FileChooser, NONE_FILE_CHOOSER};
@@ -364,16 +333,10 @@ pub use self::flow_box::{FlowBox, FlowBoxClass, NONE_FLOW_BOX};
 pub use self::flow_box::FlowBoxExt;
 pub use self::flow_box::FlowBoxBuilder;
 
-mod flow_box_accessible;
-pub use self::flow_box_accessible::{FlowBoxAccessible, FlowBoxAccessibleClass, NONE_FLOW_BOX_ACCESSIBLE};
-
 mod flow_box_child;
 pub use self::flow_box_child::{FlowBoxChild, FlowBoxChildClass, NONE_FLOW_BOX_CHILD};
 pub use self::flow_box_child::FlowBoxChildExt;
 pub use self::flow_box_child::FlowBoxChildBuilder;
-
-mod flow_box_child_accessible;
-pub use self::flow_box_child_accessible::{FlowBoxChildAccessible, FlowBoxChildAccessibleClass, NONE_FLOW_BOX_CHILD_ACCESSIBLE};
 
 mod font_button;
 pub use self::font_button::{FontButton, FontButtonClass, NONE_FONT_BUTTON};
@@ -397,9 +360,6 @@ mod frame;
 pub use self::frame::{Frame, FrameClass, NONE_FRAME};
 pub use self::frame::FrameExt;
 pub use self::frame::FrameBuilder;
-
-mod frame_accessible;
-pub use self::frame_accessible::{FrameAccessible, FrameAccessibleClass, NONE_FRAME_ACCESSIBLE};
 
 mod gl_area;
 pub use self::gl_area::{GLArea, GLAreaClass, NONE_GL_AREA};
@@ -463,7 +423,6 @@ pub use self::im_context::IMContextExt;
 
 mod im_context_simple;
 pub use self::im_context_simple::{IMContextSimple, IMContextSimpleClass, NONE_IM_CONTEXT_SIMPLE};
-pub use self::im_context_simple::IMContextSimpleExt;
 
 mod im_multicontext;
 pub use self::im_multicontext::{IMMulticontext, IMMulticontextClass, NONE_IM_MULTICONTEXT};
@@ -480,19 +439,10 @@ mod icon_view;
 pub use self::icon_view::{IconView, IconViewClass, NONE_ICON_VIEW};
 pub use self::icon_view::IconViewExt;
 
-mod icon_view_accessible;
-pub use self::icon_view_accessible::{IconViewAccessible, IconViewAccessibleClass, NONE_ICON_VIEW_ACCESSIBLE};
-
 mod image;
 pub use self::image::{Image, ImageClass, NONE_IMAGE};
 pub use self::image::ImageExt;
 pub use self::image::ImageBuilder;
-
-mod image_accessible;
-pub use self::image_accessible::{ImageAccessible, ImageAccessibleClass, NONE_IMAGE_ACCESSIBLE};
-
-mod image_cell_accessible;
-pub use self::image_cell_accessible::{ImageCellAccessible, ImageCellAccessibleClass, NONE_IMAGE_CELL_ACCESSIBLE};
 
 mod info_bar;
 pub use self::info_bar::{InfoBar, InfoBarClass, NONE_INFO_BAR};
@@ -503,9 +453,6 @@ mod label;
 pub use self::label::{Label, LabelClass, NONE_LABEL};
 pub use self::label::LabelExt;
 pub use self::label::LabelBuilder;
-
-mod label_accessible;
-pub use self::label_accessible::{LabelAccessible, LabelAccessibleClass, NONE_LABEL_ACCESSIBLE};
 
 mod layout_child;
 pub use self::layout_child::{LayoutChild, LayoutChildClass, NONE_LAYOUT_CHILD};
@@ -520,32 +467,20 @@ pub use self::level_bar::{LevelBar, LevelBarClass, NONE_LEVEL_BAR};
 pub use self::level_bar::LevelBarExt;
 pub use self::level_bar::LevelBarBuilder;
 
-mod level_bar_accessible;
-pub use self::level_bar_accessible::{LevelBarAccessible, LevelBarAccessibleClass, NONE_LEVEL_BAR_ACCESSIBLE};
-
 mod link_button;
 pub use self::link_button::{LinkButton, LinkButtonClass, NONE_LINK_BUTTON};
 pub use self::link_button::LinkButtonExt;
 pub use self::link_button::LinkButtonBuilder;
-
-mod link_button_accessible;
-pub use self::link_button_accessible::{LinkButtonAccessible, LinkButtonAccessibleClass, NONE_LINK_BUTTON_ACCESSIBLE};
 
 mod list_box;
 pub use self::list_box::{ListBox, ListBoxClass, NONE_LIST_BOX};
 pub use self::list_box::ListBoxExt;
 pub use self::list_box::ListBoxBuilder;
 
-mod list_box_accessible;
-pub use self::list_box_accessible::{ListBoxAccessible, ListBoxAccessibleClass, NONE_LIST_BOX_ACCESSIBLE};
-
 mod list_box_row;
 pub use self::list_box_row::{ListBoxRow, ListBoxRowClass, NONE_LIST_BOX_ROW};
 pub use self::list_box_row::ListBoxRowExt;
 pub use self::list_box_row::ListBoxRowBuilder;
-
-mod list_box_row_accessible;
-pub use self::list_box_row_accessible::{ListBoxRowAccessible, ListBoxRowAccessibleClass, NONE_LIST_BOX_ROW_ACCESSIBLE};
 
 mod list_store;
 pub use self::list_store::{ListStore, ListStoreClass, NONE_LIST_STORE};
@@ -555,9 +490,6 @@ mod lock_button;
 pub use self::lock_button::{LockButton, LockButtonClass, NONE_LOCK_BUTTON};
 pub use self::lock_button::LockButtonExt;
 pub use self::lock_button::LockButtonBuilder;
-
-mod lock_button_accessible;
-pub use self::lock_button_accessible::{LockButtonAccessible, LockButtonAccessibleClass, NONE_LOCK_BUTTON_ACCESSIBLE};
 
 mod map_list_model;
 pub use self::map_list_model::{MapListModel, MapListModelClass, NONE_MAP_LIST_MODEL};
@@ -578,11 +510,8 @@ pub use self::media_stream::MediaStreamExt;
 
 mod menu;
 pub use self::menu::{Menu, MenuClass, NONE_MENU};
-pub use self::menu::MenuExt;
+pub use self::menu::GtkMenuExt;
 pub use self::menu::MenuBuilder;
-
-mod menu_accessible;
-pub use self::menu_accessible::{MenuAccessible, MenuAccessibleClass, NONE_MENU_ACCESSIBLE};
 
 mod menu_bar;
 pub use self::menu_bar::{MenuBar, MenuBarClass, NONE_MENU_BAR};
@@ -593,24 +522,15 @@ pub use self::menu_button::{MenuButton, MenuButtonClass, NONE_MENU_BUTTON};
 pub use self::menu_button::MenuButtonExt;
 pub use self::menu_button::MenuButtonBuilder;
 
-mod menu_button_accessible;
-pub use self::menu_button_accessible::{MenuButtonAccessible, MenuButtonAccessibleClass, NONE_MENU_BUTTON_ACCESSIBLE};
-
 mod menu_item;
 pub use self::menu_item::{MenuItem, MenuItemClass, NONE_MENU_ITEM};
-pub use self::menu_item::MenuItemExt;
+pub use self::menu_item::GtkMenuItemExt;
 pub use self::menu_item::MenuItemBuilder;
-
-mod menu_item_accessible;
-pub use self::menu_item_accessible::{MenuItemAccessible, MenuItemAccessibleClass, NONE_MENU_ITEM_ACCESSIBLE};
 
 mod menu_shell;
 pub use self::menu_shell::{MenuShell, MenuShellClass, NONE_MENU_SHELL};
 pub use self::menu_shell::MenuShellExt;
 pub use self::menu_shell::MenuShellBuilder;
-
-mod menu_shell_accessible;
-pub use self::menu_shell_accessible::{MenuShellAccessible, MenuShellAccessibleClass, NONE_MENU_SHELL_ACCESSIBLE};
 
 mod menu_tool_button;
 pub use self::menu_tool_button::{MenuToolButton, MenuToolButtonClass, NONE_MENU_TOOL_BUTTON};
@@ -639,15 +559,8 @@ pub use self::notebook::{Notebook, NotebookClass, NONE_NOTEBOOK};
 pub use self::notebook::NotebookExt;
 pub use self::notebook::NotebookBuilder;
 
-mod notebook_accessible;
-pub use self::notebook_accessible::{NotebookAccessible, NotebookAccessibleClass, NONE_NOTEBOOK_ACCESSIBLE};
-
 mod notebook_page;
 pub use self::notebook_page::{NotebookPage, NotebookPageClass};
-
-mod notebook_page_accessible;
-pub use self::notebook_page_accessible::{NotebookPageAccessible, NotebookPageAccessibleClass, NONE_NOTEBOOK_PAGE_ACCESSIBLE};
-pub use self::notebook_page_accessible::NotebookPageAccessibleExt;
 
 mod orientable;
 pub use self::orientable::{Orientable, NONE_ORIENTABLE};
@@ -669,9 +582,6 @@ pub use self::paned::{Paned, PanedClass, NONE_PANED};
 pub use self::paned::PanedExt;
 pub use self::paned::PanedBuilder;
 
-mod paned_accessible;
-pub use self::paned_accessible::{PanedAccessible, PanedAccessibleClass, NONE_PANED_ACCESSIBLE};
-
 mod password_entry;
 pub use self::password_entry::{PasswordEntry, PasswordEntryClass, NONE_PASSWORD_ENTRY};
 pub use self::password_entry::PasswordEntryExt;
@@ -686,9 +596,6 @@ mod popover;
 pub use self::popover::{Popover, PopoverClass, NONE_POPOVER};
 pub use self::popover::PopoverExt;
 pub use self::popover::PopoverBuilder;
-
-mod popover_accessible;
-pub use self::popover_accessible::{PopoverAccessible, PopoverAccessibleClass, NONE_POPOVER_ACCESSIBLE};
 
 mod popover_menu;
 pub use self::popover_menu::{PopoverMenu, PopoverMenuClass, NONE_POPOVER_MENU};
@@ -714,24 +621,15 @@ pub use self::progress_bar::{ProgressBar, ProgressBarClass, NONE_PROGRESS_BAR};
 pub use self::progress_bar::ProgressBarExt;
 pub use self::progress_bar::ProgressBarBuilder;
 
-mod progress_bar_accessible;
-pub use self::progress_bar_accessible::{ProgressBarAccessible, ProgressBarAccessibleClass, NONE_PROGRESS_BAR_ACCESSIBLE};
-
 mod radio_button;
 pub use self::radio_button::{RadioButton, RadioButtonClass, NONE_RADIO_BUTTON};
 pub use self::radio_button::RadioButtonExt;
 pub use self::radio_button::RadioButtonBuilder;
 
-mod radio_button_accessible;
-pub use self::radio_button_accessible::{RadioButtonAccessible, RadioButtonAccessibleClass, NONE_RADIO_BUTTON_ACCESSIBLE};
-
 mod radio_menu_item;
 pub use self::radio_menu_item::{RadioMenuItem, RadioMenuItemClass, NONE_RADIO_MENU_ITEM};
 pub use self::radio_menu_item::RadioMenuItemExt;
 pub use self::radio_menu_item::RadioMenuItemBuilder;
-
-mod radio_menu_item_accessible;
-pub use self::radio_menu_item_accessible::{RadioMenuItemAccessible, RadioMenuItemAccessibleClass, NONE_RADIO_MENU_ITEM_ACCESSIBLE};
 
 mod radio_tool_button;
 pub use self::radio_tool_button::{RadioToolButton, RadioToolButtonClass, NONE_RADIO_TOOL_BUTTON};
@@ -743,16 +641,9 @@ pub use self::range::{Range, RangeClass, NONE_RANGE};
 pub use self::range::RangeExt;
 pub use self::range::RangeBuilder;
 
-mod range_accessible;
-pub use self::range_accessible::{RangeAccessible, RangeAccessibleClass, NONE_RANGE_ACCESSIBLE};
-
 mod recent_manager;
 pub use self::recent_manager::{RecentManager, RecentManagerClass, NONE_RECENT_MANAGER};
 pub use self::recent_manager::RecentManagerExt;
-
-mod renderer_cell_accessible;
-pub use self::renderer_cell_accessible::{RendererCellAccessible, RendererCellAccessibleClass, NONE_RENDERER_CELL_ACCESSIBLE};
-pub use self::renderer_cell_accessible::RendererCellAccessibleExt;
 
 mod revealer;
 pub use self::revealer::{Revealer, RevealerClass, NONE_REVEALER};
@@ -768,16 +659,10 @@ pub use self::scale::{Scale, ScaleClass, NONE_SCALE};
 pub use self::scale::ScaleExt;
 pub use self::scale::ScaleBuilder;
 
-mod scale_accessible;
-pub use self::scale_accessible::{ScaleAccessible, ScaleAccessibleClass, NONE_SCALE_ACCESSIBLE};
-
 mod scale_button;
 pub use self::scale_button::{ScaleButton, ScaleButtonClass, NONE_SCALE_BUTTON};
 pub use self::scale_button::ScaleButtonExt;
 pub use self::scale_button::ScaleButtonBuilder;
-
-mod scale_button_accessible;
-pub use self::scale_button_accessible::{ScaleButtonAccessible, ScaleButtonAccessibleClass, NONE_SCALE_BUTTON_ACCESSIBLE};
 
 mod scrollable;
 pub use self::scrollable::{Scrollable, NONE_SCROLLABLE};
@@ -792,9 +677,6 @@ mod scrolled_window;
 pub use self::scrolled_window::{ScrolledWindow, ScrolledWindowClass, NONE_SCROLLED_WINDOW};
 pub use self::scrolled_window::ScrolledWindowExt;
 pub use self::scrolled_window::ScrolledWindowBuilder;
-
-mod scrolled_window_accessible;
-pub use self::scrolled_window_accessible::{ScrolledWindowAccessible, ScrolledWindowAccessibleClass, NONE_SCROLLED_WINDOW_ACCESSIBLE};
 
 mod search_bar;
 pub use self::search_bar::{SearchBar, SearchBarClass, NONE_SEARCH_BAR};
@@ -869,24 +751,15 @@ pub use self::spin_button::{SpinButton, SpinButtonClass, NONE_SPIN_BUTTON};
 pub use self::spin_button::SpinButtonExt;
 pub use self::spin_button::SpinButtonBuilder;
 
-mod spin_button_accessible;
-pub use self::spin_button_accessible::{SpinButtonAccessible, SpinButtonAccessibleClass, NONE_SPIN_BUTTON_ACCESSIBLE};
-
 mod spinner;
 pub use self::spinner::{Spinner, SpinnerClass, NONE_SPINNER};
 pub use self::spinner::SpinnerExt;
 pub use self::spinner::SpinnerBuilder;
 
-mod spinner_accessible;
-pub use self::spinner_accessible::{SpinnerAccessible, SpinnerAccessibleClass, NONE_SPINNER_ACCESSIBLE};
-
 mod stack;
 pub use self::stack::{Stack, StackClass, NONE_STACK};
 pub use self::stack::StackExt;
 pub use self::stack::StackBuilder;
-
-mod stack_accessible;
-pub use self::stack_accessible::{StackAccessible, StackAccessibleClass, NONE_STACK_ACCESSIBLE};
 
 mod stack_page;
 pub use self::stack_page::{StackPage, StackPageClass};
@@ -906,9 +779,6 @@ pub use self::statusbar::{Statusbar, StatusbarClass, NONE_STATUSBAR};
 pub use self::statusbar::StatusbarExt;
 pub use self::statusbar::StatusbarBuilder;
 
-mod statusbar_accessible;
-pub use self::statusbar_accessible::{StatusbarAccessible, StatusbarAccessibleClass, NONE_STATUSBAR_ACCESSIBLE};
-
 mod style_context;
 pub use self::style_context::{StyleContext, StyleContextClass, NONE_STYLE_CONTEXT};
 pub use self::style_context::StyleContextExt;
@@ -922,22 +792,13 @@ pub use self::switch::{Switch, SwitchClass, NONE_SWITCH};
 pub use self::switch::SwitchExt;
 pub use self::switch::SwitchBuilder;
 
-mod switch_accessible;
-pub use self::switch_accessible::{SwitchAccessible, SwitchAccessibleClass, NONE_SWITCH_ACCESSIBLE};
-
 mod text;
 pub use self::text::{Text, TextClass};
 pub use self::text::TextBuilder;
 
-mod text_accessible;
-pub use self::text_accessible::{TextAccessible, TextAccessibleClass, NONE_TEXT_ACCESSIBLE};
-
 mod text_buffer;
 pub use self::text_buffer::{TextBuffer, TextBufferClass, NONE_TEXT_BUFFER};
 pub use self::text_buffer::TextBufferExt;
-
-mod text_cell_accessible;
-pub use self::text_cell_accessible::{TextCellAccessible, TextCellAccessibleClass, NONE_TEXT_CELL_ACCESSIBLE};
 
 mod text_child_anchor;
 pub use self::text_child_anchor::{TextChildAnchor, TextChildAnchorClass, NONE_TEXT_CHILD_ANCHOR};
@@ -960,16 +821,10 @@ pub use self::text_view::{TextView, TextViewClass, NONE_TEXT_VIEW};
 pub use self::text_view::TextViewExt;
 pub use self::text_view::TextViewBuilder;
 
-mod text_view_accessible;
-pub use self::text_view_accessible::{TextViewAccessible, TextViewAccessibleClass, NONE_TEXT_VIEW_ACCESSIBLE};
-
 mod toggle_button;
 pub use self::toggle_button::{ToggleButton, ToggleButtonClass, NONE_TOGGLE_BUTTON};
 pub use self::toggle_button::ToggleButtonExt;
 pub use self::toggle_button::ToggleButtonBuilder;
-
-mod toggle_button_accessible;
-pub use self::toggle_button_accessible::{ToggleButtonAccessible, ToggleButtonAccessibleClass, NONE_TOGGLE_BUTTON_ACCESSIBLE};
 
 mod toggle_tool_button;
 pub use self::toggle_tool_button::{ToggleToolButton, ToggleToolButtonClass, NONE_TOGGLE_TOOL_BUTTON};
@@ -997,10 +852,6 @@ pub use self::toolbar::ToolbarBuilder;
 
 mod tooltip;
 pub use self::tooltip::{Tooltip, TooltipClass};
-
-mod toplevel_accessible;
-pub use self::toplevel_accessible::{ToplevelAccessible, ToplevelAccessibleClass, NONE_TOPLEVEL_ACCESSIBLE};
-pub use self::toplevel_accessible::ToplevelAccessibleExt;
 
 mod tree_drag_dest;
 pub use self::tree_drag_dest::{TreeDragDest, NONE_TREE_DRAG_DEST};
@@ -1047,9 +898,6 @@ pub use self::tree_view::{TreeView, TreeViewClass, NONE_TREE_VIEW};
 pub use self::tree_view::TreeViewExt;
 pub use self::tree_view::TreeViewBuilder;
 
-mod tree_view_accessible;
-pub use self::tree_view_accessible::{TreeViewAccessible, TreeViewAccessibleClass, NONE_TREE_VIEW_ACCESSIBLE};
-
 mod tree_view_column;
 pub use self::tree_view_column::{TreeViewColumn, TreeViewColumnClass, NONE_TREE_VIEW_COLUMN};
 pub use self::tree_view_column::TreeViewColumnExt;
@@ -1074,9 +922,6 @@ mod widget;
 pub use self::widget::{Widget, WidgetClass, NONE_WIDGET};
 pub use self::widget::WidgetExt;
 
-mod widget_accessible;
-pub use self::widget_accessible::{WidgetAccessible, WidgetAccessibleClass, NONE_WIDGET_ACCESSIBLE};
-
 mod widget_paintable;
 pub use self::widget_paintable::{WidgetPaintable, WidgetPaintableClass, NONE_WIDGET_PAINTABLE};
 pub use self::widget_paintable::WidgetPaintableExt;
@@ -1085,9 +930,6 @@ mod window;
 pub use self::window::{Window, WindowClass, NONE_WINDOW};
 pub use self::window::WindowExt;
 pub use self::window::WindowBuilder;
-
-mod window_accessible;
-pub use self::window_accessible::{WindowAccessible, WindowAccessibleClass, NONE_WINDOW_ACCESSIBLE};
 
 mod window_group;
 pub use self::window_group::{WindowGroup, WindowGroupClass, NONE_WINDOW_GROUP};
@@ -1422,7 +1264,6 @@ pub mod traits {
     pub use super::ComboBoxExt;
     pub use super::ComboBoxTextExt;
     pub use super::ContainerExt;
-    pub use super::ContainerCellAccessibleExt;
     pub use super::CssProviderExt;
     pub use super::DialogExt;
     pub use super::DrawingAreaExt;
@@ -1455,7 +1296,6 @@ pub mod traits {
     pub use super::GridLayoutChildExt;
     pub use super::HeaderBarExt;
     pub use super::IMContextExt;
-    pub use super::IMContextSimpleExt;
     pub use super::IMMulticontextExt;
     pub use super::IconThemeExt;
     pub use super::IconViewExt;
@@ -1474,16 +1314,15 @@ pub mod traits {
     pub use super::MediaControlsExt;
     pub use super::MediaFileExt;
     pub use super::MediaStreamExt;
-    pub use super::MenuExt;
+    pub use super::GtkMenuExt;
     pub use super::MenuButtonExt;
-    pub use super::MenuItemExt;
+    pub use super::GtkMenuItemExt;
     pub use super::MenuShellExt;
     pub use super::MenuToolButtonExt;
     pub use super::MessageDialogExt;
     pub use super::MountOperationExt;
     pub use super::NativeDialogExt;
     pub use super::NotebookExt;
-    pub use super::NotebookPageAccessibleExt;
     pub use super::OrientableExt;
     pub use super::OverlayExt;
     pub use super::PanedExt;
@@ -1499,7 +1338,6 @@ pub mod traits {
     pub use super::RadioToolButtonExt;
     pub use super::RangeExt;
     pub use super::RecentManagerExt;
-    pub use super::RendererCellAccessibleExt;
     pub use super::RevealerExt;
     pub use super::RootExt;
     pub use super::ScaleExt;
@@ -1538,7 +1376,6 @@ pub mod traits {
     pub use super::ToolItemExt;
     pub use super::ToolShellExt;
     pub use super::ToolbarExt;
-    pub use super::ToplevelAccessibleExt;
     pub use super::TreeDragDestExt;
     pub use super::TreeDragSourceExt;
     pub use super::TreeListModelExt;
