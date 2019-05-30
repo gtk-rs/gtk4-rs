@@ -96,6 +96,7 @@ mod dialog;
 mod editable;
 mod entry_buffer;
 mod file_chooser_dialog;
+mod im_context_simple;
 mod list_store;
 mod message_dialog;
 mod notebook;

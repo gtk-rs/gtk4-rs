@@ -12,6 +12,7 @@ pub use combo_box::ComboBoxExtManual;
 pub use dialog::DialogExtManual;
 pub use editable::EditableExtManual;
 pub use entry_buffer::EntryBufferExtManual;
+pub use im_context_simple::IMContextSimpleExtManual;
 pub use list_store::GtkListStoreExtManual;
 pub use notebook::NotebookExtManual;
 pub use spin_button::SpinButtonExtManual;

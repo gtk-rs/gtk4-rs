@@ -32,7 +32,6 @@ generate = [
     "Gtk.BaselinePosition",
     "Gtk.Bin",
     "Gtk.BinLayout",
-    "Gtk.BooleanCellAccessible",
     "Gtk.Border",
     "Gtk.BorderStyle",
     "Gtk.Box",
@@ -40,12 +39,10 @@ generate = [
     "Gtk.Buildable",
     "Gtk.BuilderError",
     "Gtk.Button",
-    "Gtk.ButtonAccessible",
     "Gtk.ButtonRole",
     "Gtk.ButtonsType",
     "Gtk.Calendar",
     "Gtk.CalendarDisplayOptions",
-    "Gtk.CellAccessible",
     "Gtk.CellAreaBox",
     "Gtk.CellAreaContext",
     "Gtk.CellEditable",
@@ -60,15 +57,11 @@ generate = [
     "Gtk.CenterBox",
     "Gtk.CheckButton",
     "Gtk.CheckMenuItem",
-    "Gtk.CheckMenuItemAccessible",
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",
-    "Gtk.ComboBoxAccessible",
     "Gtk.ComboBoxText",
     "Gtk.Container",
-    "Gtk.ContainerAccessible",
-    "Gtk.ContainerCellAccessible",
     "Gtk.CornerType",
     "Gtk.CssProvider",
     "Gtk.CssSection",
@@ -81,8 +74,6 @@ generate = [
     "Gtk.DragResult",
     "Gtk.DrawingArea",
     "Gtk.EditableProperties",
-    "Gtk.EntryAccessible",
-    "Gtk.EntryIconAccessible",
     "Gtk.EntryIconPosition",
     "Gtk.EventController",
     "Gtk.EventControllerLegacy",
@@ -91,7 +82,6 @@ generate = [
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
     "Gtk.Expander",
-    "Gtk.ExpanderAccessible",
     "Gtk.FileChooserAction",
     "Gtk.FileChooserButton",
     "Gtk.FileChooserConfirmation",
@@ -107,17 +97,13 @@ generate = [
     "Gtk.FixedLayoutChild",
     "Gtk.FlattenListModel",
     "Gtk.FlowBox",
-    "Gtk.FlowBoxAccessible",
     "Gtk.FlowBoxChild",
-    "Gtk.FlowBoxChildAccessible",
     "Gtk.FontButton",
     "Gtk.FontChooser",
     "Gtk.FontChooserDialog",
     "Gtk.FontChooserLevel",
     "Gtk.FontChooserWidget",
     "Gtk.Frame",
-    "Gtk.FrameAccessible",
-    "Gtk.GLArea",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
     "Gtk.GestureMultiPress",
@@ -132,51 +118,32 @@ generate = [
     "Gtk.GridLayoutChild",
     "Gtk.HeaderBar",
     "Gtk.IMContext",
-    "Gtk.IMContextSimple",
     "Gtk.IMMulticontext",
     "Gtk.IconInfo",
     "Gtk.IconLookupFlags",
     "Gtk.IconSize",
     "Gtk.IconThemeError",
-    "Gtk.IconViewAccessible",
     "Gtk.IconViewDropPosition",
     "Gtk.Image",
-    "Gtk.ImageAccessible",
-    "Gtk.ImageCellAccessible",
     "Gtk.ImageType",
     "Gtk.InfoBar",
     "Gtk.InputHints",
     "Gtk.InputPurpose",
     "Gtk.Justification",
-    "Gtk.Label",
-    "Gtk.LabelAccessible",
     "Gtk.LayoutChild",
     "Gtk.LayoutManager",
     "Gtk.LevelBar",
-    "Gtk.LevelBarAccessible",
     "Gtk.LevelBarMode",
     "Gtk.License",
-    "Gtk.LinkButton",
-    "Gtk.LinkButtonAccessible",
     "Gtk.ListBox",
-    "Gtk.ListBoxAccessible",
     "Gtk.ListBoxRow",
-    "Gtk.ListBoxRowAccessible",
     "Gtk.LockButton",
-    "Gtk.LockButtonAccessible",
     "Gtk.MapListModel",
     "Gtk.MediaControls",
     "Gtk.MediaFile",
-    "Gtk.Menu",
-    "Gtk.MenuAccessible",
     "Gtk.MenuBar",
     "Gtk.MenuButton",
-    "Gtk.MenuButtonAccessible",
     "Gtk.MenuDirectionType",
-    "Gtk.MenuItem",
-    "Gtk.MenuItemAccessible",
-    "Gtk.MenuShell",
-    "Gtk.MenuShellAccessible",
     "Gtk.MenuToolButton",
     "Gtk.MessageDialog",
     "Gtk.MessageType",
@@ -184,9 +151,7 @@ generate = [
     "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.NativeDialog",
-    "Gtk.NotebookAccessible",
     "Gtk.NotebookPage",
-    "Gtk.NotebookPageAccessible",
     "Gtk.NotebookTab",
     "Gtk.NumberUpLayout",
     "Gtk.Orientable",
@@ -201,14 +166,12 @@ generate = [
     "Gtk.PageSetup",
     "Gtk.PanDirection",
     "Gtk.Paned",
-    "Gtk.PanedAccessible",
     "Gtk.PasswordEntry",
     "Gtk.PickFlags",
     "Gtk.Picture",
     "Gtk.PlacesOpenFlags",
     "Gtk.PolicyType",
     "Gtk.Popover",
-    "Gtk.PopoverAccessible",
     "Gtk.PopoverConstraint",
     "Gtk.PopoverMenu",
     "Gtk.PositionType",
@@ -223,30 +186,22 @@ generate = [
     "Gtk.PrintSettings",
     "Gtk.PrintStatus",
     "Gtk.ProgressBar",
-    "Gtk.ProgressBarAccessible",
     "Gtk.PropagationPhase",
-    "Gtk.RadioButtonAccessible",
-    "Gtk.RadioMenuItemAccessible",
-    "Gtk.RangeAccessible",
     "Gtk.RecentInfo",
     "Gtk.RecentManager",
     "Gtk.RecentManagerError",
     "Gtk.ReliefStyle",
-    "Gtk.RendererCellAccessible",
     "Gtk.Requisition",
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
     "Gtk.Scale",
-    "Gtk.ScaleAccessible",
-    "Gtk.ScaleButtonAccessible",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
     "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
     "Gtk.Scrollbar",
     "Gtk.ScrolledWindow",
-    "Gtk.ScrolledWindowAccessible",
     "Gtk.SearchBar",
     "Gtk.SearchEntry",
     "Gtk.SelectionMode",
@@ -270,27 +225,20 @@ generate = [
     "Gtk.Snapshot",
     "Gtk.SortListModel",
     "Gtk.SortType",
-    "Gtk.SpinButtonAccessible",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.SpinType",
     "Gtk.Spinner",
-    "Gtk.SpinnerAccessible",
     "Gtk.Stack",
-    "Gtk.StackAccessible",
     "Gtk.StackPage",
     "Gtk.StackSidebar",
     "Gtk.StackSwitcher",
     "Gtk.StackTransitionType",
     "Gtk.StateFlags",
     "Gtk.Statusbar",
-    "Gtk.StatusbarAccessible",
     "Gtk.StyleContext",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
-    "Gtk.SwitchAccessible",
-    "Gtk.TextAccessible",
     "Gtk.TextBufferTargetInfo",
-    "Gtk.TextCellAccessible",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",
@@ -299,11 +247,9 @@ generate = [
     "Gtk.TextSearchFlags",
     "Gtk.TextTag",
     "Gtk.TextTagTable",
-    "Gtk.TextViewAccessible",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
     "Gtk.ToggleButton",
-    "Gtk.ToggleButtonAccessible",
     "Gtk.ToggleToolButton",
     "Gtk.ToolButton",
     "Gtk.ToolItem",
@@ -311,7 +257,6 @@ generate = [
     "Gtk.Toolbar",
     "Gtk.ToolbarStyle",
     "Gtk.Tooltip",
-    "Gtk.ToplevelAccessible",
     "Gtk.TreeDragDest",
     "Gtk.TreeDragSource",
     "Gtk.TreeIter",
@@ -321,7 +266,6 @@ generate = [
     "Gtk.TreeModelFlags",
     "Gtk.TreeRowReference",
     "Gtk.TreeSortable",
-    "Gtk.TreeViewAccessible",
     "Gtk.TreeViewColumn",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
@@ -330,10 +274,8 @@ generate = [
     "Gtk.Video",
     "Gtk.Viewport",
     "Gtk.VolumeButton",
-    "Gtk.WidgetAccessible",
     "Gtk.WidgetPaintable",
     "Gtk.WidgetPath",
-    "Gtk.WindowAccessible",
     "Gtk.WindowGroup",
     "Gtk.WindowPosition",
     "Gtk.WindowType",
@@ -463,7 +405,7 @@ ignore = [
     "Gtk.BindingEntry",
     "Gtk.BindingSet",
     "Gtk.BindingSignal",
-    "Gtk.Clipboard",
+    "Gtk.Clipboard", # Not part of gtk4 public API
     "Gtk.CssLocation",
     "Gtk.FileFilterInfo",
     "Gtk.LabelSelectionInfo",
@@ -500,7 +442,7 @@ manual = [
     "Gdk.DragAction",
     "Gdk.Drop",
     "Gdk.Event",
-    # TODO "Gdk.EventKey",
+    # "Gdk.EventKey", # Not part of gdk4 public API
     "Gdk.EventSequence",
     "Gdk.FrameClock",
     "Gdk.GLContext",
@@ -958,11 +900,34 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gtk.GLArea"
+status = "generate"
+    [[object.signal]]
+    pattern = "render"
+    inhibit = true
+    [[object.signal]]
+    name = "create-context"
+        [object.signal.return]
+        nullable = true
+
+[[object]]
 name = "Gtk.IconTheme"
 status = "generate"
     [[object.function]]
     name = "get_icon_sizes"
     ignore = true
+    # TODO gtk3 ignored some more array functions
+
+[[object]]
+name = "Gtk.IMContextSimple"
+status = "generate"
+manual_traits = ["IMContextSimpleExtManual"]
+    [[object.function]]
+    name = "add_compose_file"
+    ignore = true
+    [[object.function]]
+    name = "add_table"
+    ignore = true # We don't understand API
 
 [[object]]
 name = "Gtk.IconView"
@@ -972,6 +937,20 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+
+[[object]]
+name = "Gtk.Label"
+status = "generate"
+    [[object.signal]]
+    name = "activate-link"
+    inhibit = true
+
+[[object]]
+name = "Gtk.LinkButton"
+status = "generate"
+    [[object.signal]]
+    name = "activate-link"
+    inhibit = true
 
 [[object]]
 name = "Gtk.ListStore"
@@ -1008,6 +987,23 @@ status = "generate"
     name = "gerror"
     # TODO: figure out error's ownership
     ignore = true
+
+[[object]]
+name = "Gtk.Menu"
+status = "generate"
+trait_name = "GtkMenuExt"
+
+[[object]]
+name = "Gtk.MenuItem"
+status = "generate"
+trait_name = "GtkMenuItemExt"
+
+[[object]]
+name = "Gtk.MenuShell"
+status = "generate"
+    [[object.signal]]
+    name = "move-selected"
+    inhibit = true
 
 [[object]]
 name = "Gtk.Notebook"
