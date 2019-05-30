@@ -9,12 +9,10 @@ use PadActionEntry;
 use PadController;
 
 pub trait PadControllerExtManual: 'static {
-    #[cfg(any(feature = "v3_22", feature = "dox"))]
     fn set_action_entries(&self, entries: &[PadActionEntry]);
 }
 
 impl<O: IsA<PadController>> PadControllerExtManual for O {
-    #[cfg(any(feature = "v3_22", feature = "dox"))]
     fn set_action_entries(&self, entries: &[PadActionEntry]) {
         let n_entries = entries.len() as i32;
         let entries = entries.as_ptr();

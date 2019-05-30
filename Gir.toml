@@ -32,7 +32,6 @@ generate = [
     "Gtk.BaselinePosition",
     "Gtk.Bin",
     "Gtk.BinLayout",
-    "Gtk.Border",
     "Gtk.BorderStyle",
     "Gtk.Box",
     "Gtk.BoxLayout",
@@ -117,7 +116,6 @@ generate = [
     "Gtk.GridLayout",
     "Gtk.GridLayoutChild",
     "Gtk.HeaderBar",
-    "Gtk.IMContext",
     "Gtk.IMMulticontext",
     "Gtk.IconInfo",
     "Gtk.IconLookupFlags",
@@ -187,7 +185,6 @@ generate = [
     "Gtk.RecentManager",
     "Gtk.RecentManagerError",
     "Gtk.ReliefStyle",
-    "Gtk.Requisition",
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
@@ -241,16 +238,13 @@ generate = [
     "Gtk.TextIter",
     "Gtk.TextMark",
     "Gtk.TextSearchFlags",
-    "Gtk.TextTag",
     "Gtk.TextTagTable",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
     "Gtk.ToggleButton",
     "Gtk.ToggleToolButton",
     "Gtk.ToolButton",
-    "Gtk.ToolItem",
     "Gtk.ToolShell",
-    "Gtk.Toolbar",
     "Gtk.ToolbarStyle",
     "Gtk.Tooltip",
     "Gtk.TreeDragDest",
@@ -258,11 +252,7 @@ generate = [
     "Gtk.TreeIter",
     "Gtk.TreeListModel",
     "Gtk.TreeListRow",
-    "Gtk.TreeModelFilter",
     "Gtk.TreeModelFlags",
-    "Gtk.TreeRowReference",
-    "Gtk.TreeSortable",
-    "Gtk.TreeViewColumn",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
     "Gtk.TreeViewGridLines",
@@ -405,8 +395,6 @@ ignore = [
     "Gtk.CssLocation",
     "Gtk.FileFilterInfo",
     "Gtk.LabelSelectionInfo",
-    "Gtk.PageRange",
-    "Gtk.RecentData",
     "Gtk.RequestedSize",
     "Gtk.SettingsValue",
     "Gtk.ShortcutsSection",
@@ -497,7 +485,11 @@ manual = [
     "Gsk.RenderNode",
     # TODO "Gsk.Shadow",
     "Gsk.Transform",
+    "Gtk.Border",
     "Gtk.PadActionEntry",
+    "Gtk.PageRange",
+    "Gtk.RecentData",
+    "Gtk.Requisition",
     "Gtk.ResponseType",
     "Pango.Alignment",
     "Pango.AttrList",
@@ -709,14 +701,18 @@ status = "generate"
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
-    [[object.property]]
-    name = "font-desc"
-    #value pango::FontDescription
-    ignore = true
-    [[object.property]]
-    name = "attributes"
-    #value pango::AttrList
-    ignore = true
+
+    # TODO
+    # [[object.property]]
+    # name = "font-desc"
+    # #value pango::FontDescription
+    # ignore = true
+
+    # TODO
+    # [[object.property]]
+    # name = "attributes"
+    # #value pango::AttrList
+    # ignore = true
 
 [[object]]
 name = "Gtk.CellRendererToggle"
@@ -822,6 +818,7 @@ status = "generate"
 [[object]]
 name = "Gtk.EntryBuffer"
 status = "generate"
+    #manual
     [[object.function]]
     name = "new"
     ignore = true
@@ -913,6 +910,15 @@ status = "generate"
     name = "get_icon_sizes"
     ignore = true
     # TODO gtk3 ignored some more array functions
+
+[[object]]
+name = "Gtk.IMContext"
+status = "generate"
+    [[object.function]]
+    name = "filter_keypress"
+        [[object.function.parameter]]
+        name = "event"
+        const = true
 
 [[object]]
 name = "Gtk.IMContextSimple"
@@ -1119,13 +1125,21 @@ status = "generate"
 name = "Gtk.RadioButton"
 status = "generate"
     [[object.function]]
+    pattern = ".+_from_widget"
+        [[object.function.parameter]]
+        name = "radio_group_member"
+        nullable = false
+    [[object.function]]
     name = "new"
+    #manual
     ignore = true
     [[object.function]]
     name = "new_with_label"
+    #manual
     ignore = true
     [[object.function]]
     name = "new_with_mnemonic"
+    #manual
     ignore = true
     [[object.function]]
     name = "set_group"
@@ -1135,13 +1149,21 @@ status = "generate"
 name = "Gtk.RadioMenuItem"
 status = "generate"
     [[object.function]]
+    pattern = ".+_from_widget"
+        [[object.function.parameter]]
+        name = "group"
+        nullable = false
+    [[object.function]]
     name = "new"
+    #manual
     ignore = true
     [[object.function]]
     name = "new_with_label"
+    #manual
     ignore = true
     [[object.function]]
     name = "new_with_mnemonic"
+    #manual
     ignore = true
     [[object.function]]
     name = "set_group"
@@ -1151,7 +1173,17 @@ status = "generate"
 name = "Gtk.RadioToolButton"
 status = "generate"
     [[object.function]]
+    pattern = ".+_from_widget"
+        [[object.function.parameter]]
+        name = "group"
+        nullable = false
+    [[object.function]]
     name = "new"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "new_from_stock"
+    #manual
     ignore = true
     [[object.function]]
     name = "set_group"
@@ -1237,7 +1269,7 @@ status = "generate"
 name = "Gtk.Text"
 status = "generate"
     [[object.signal]]
-    # error generating emit_*
+    # TODO: error generating emit_*
     pattern = "*"
     ignore = true
     [[object.function]]
@@ -1271,13 +1303,50 @@ manual_traits = ["TextBufferExtManual"]
     ignore = true
 
 [[object]]
+name = "Gtk.TextTag"
+status = "generate"
+    # TODO
+    # [[object.property]]
+    # name = "font-desc"
+    # #value pango::FontDescription
+    # ignore = true
+
+    # TODO
+    # [[object.property]]
+    # name = "tabs"
+    # #value pango::TabArray
+    # ignore = true
+
+[[object]]
 name = "Gtk.TextView"
 status = "generate"
+    [[object.function]]
+    name = "im_context_filter_keypress"
+        [[object.function.parameter]]
+        name = "event"
+        const = true
+    [[object.signal]]
+    name = "extend-selection"
+    inhibit = true
     [[object.function]]
     name = "set_tabs"
         [[object.function.parameter]]
         name = "tabs"
         const = true
+
+[[object]]
+name = "Gtk.Toolbar"
+status = "generate"
+    [[object.signal]]
+    name = "popup-context-menu"
+    inhibit = true
+
+[[object]]
+name = "Gtk.ToolItem"
+status = "generate"
+    [[object.signal]]
+    name = "create-menu-proxy"
+    inhibit = true
 
 [[object]]
 name = "Gtk.TreeModel"
@@ -1292,6 +1361,7 @@ status = "generate"
         const = true
     [[object.function]]
     name = "filter_new"
+    # Replaced by TreeModelFilter::new
     ignore = true
     [[object.function]]
     name = "iter_children"
@@ -1314,9 +1384,6 @@ status = "generate"
         name = "child"
         const = true
     [[object.function]]
-    name = 'unref_node'
-    ignore = true
-    [[object.function]]
     name = 'ref_node'
     ignore = true
     [[object.function]]
@@ -1324,6 +1391,41 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "rows_reordered_with_length"
+    ignore = true
+    [[object.function]]
+    name = "sort_new_with_model"
+    # Replaced by TreeModelSort::new
+    ignore = true
+    [[object.function]]
+    name = 'unref_node'
+    ignore = true
+
+[[object]]
+name = "Gtk.TreeModelFilter"
+status = "generate"
+    [[object.function]]
+    name = "convert_child_path_to_path"
+        [[object.function.parameter]]
+        name = "child_path"
+        const = true
+    [[object.function]]
+    name = "convert_path_to_child_path"
+        [[object.function.parameter]]
+        name = "filter_path"
+        const = true
+    [[object.function]]
+    name = "convert_iter_to_child_iter"
+        [[object.function.parameter]]
+        name = "filter_iter"
+        const = true
+    [[object.function]]
+    name = "convert_child_iter_to_iter"
+        [[object.function.parameter]]
+        name = "child_iter"
+        const = true
+    [[object.property]]
+    name = "virtual-root"
+    #value recordboxed
     ignore = true
 
 [[object]]
@@ -1393,6 +1495,51 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gtk.TreeRowReference"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "new_proxy"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "get_model"
+        [[object.function.parameter]]
+        name = "reference"
+        const = true
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_path"
+        [[object.function.parameter]]
+        name = "reference"
+        const = true
+    [[object.function]]
+    name = "valid"
+        [[object.function.parameter]]
+        name = "reference"
+        const = true
+    [[object.function]]
+    name = "inserted"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+    [[object.function]]
+    name = "deleted"
+        [[object.function.parameter]]
+        name = "path"
+        const = true
+
+[[object]]
 name = "Gtk.TreeSelection"
 status = "generate"
     [[object.function]]
@@ -1411,6 +1558,22 @@ status = "generate"
         [[object.function.parameter]]
         name = "end_path"
         const = true
+
+[[object]]
+name = "Gtk.TreeSortable"
+status = "generate"
+manual_traits = ["TreeSortableExtManual"]
+    [[object.function]]
+    pattern = "[gs]et_sort_column_id"
+    ignore = true
+    [[object.function]]
+    pattern = "set_sort_func"
+    # return type u32 -> Ordering
+    ignore = true
+    [[object.function]]
+    pattern = "set_default_sort_func"
+    # return type u32 -> Ordering
+    ignore = true
 
 [[object]]
 name = "Gtk.TreeStore"
@@ -1451,10 +1614,6 @@ manual_traits = ["TreeStoreExtManual"]
     name = "set_value"
     ignore = true
     [[object.function]]
-    name = "sort_new_with_model"
-    # TODO
-    ignore = true
-    [[object.function]]
     name = "swap"
         [[object.function.parameter]]
         name = "a"
@@ -1488,23 +1647,77 @@ status = "generate"
     inhibit = true
 
 [[object]]
+name = "Gtk.TreeViewColumn"
+status = "generate"
+    [[object.function]]
+    name = "cell_set_cell_data"
+        [[object.function.parameter]]
+        name = "iter"
+        const = true
+
+[[object]]
 name = "Gtk.Widget"
 status = "generate"
 manual_traits = ["WidgetExtManual"]
-    [[object.signal]]
-    name = "drag-data-get"
-        [[object.signal.parameter]]
-        name = "data"
-        transformation = "borrow"
+    [[object.function]]
+    name = "add_tick_callback"
+    ignore = true
+    [[object.function]]
+    name = "remove_tick_callback"
+    ignore = true
+    [[object.function]]
+    name = "get_clipboard"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_path"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_style_context"
+        [object.function.return]
+        nullable = false
     [[object.function]]
     name = "input_shape_combine_region"
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.signal]]
+    name = "drag-data-get"
+        [[object.signal.parameter]]
+        name = "data"
+        transformation = "borrow"
+    [[object.signal]]
+    name = "drag-drop"
+    inhibit = true
+    [[object.signal]]
+    name = "drag-failed"
+    inhibit = true
+    [[object.signal]]
+    name = "drag-motion"
+    inhibit = true
+    [[object.signal]]
+    name = "keynav-failed"
+    inhibit = true
+    [[object.signal]]
+    name = "mnemonic-activate"
+    inhibit = true
 
 [[object]]
 name = "Gtk.Window"
 status = "generate"
+trait_name = "GtkWindowExt"
+manual_traits = ["GtkWindowExtManual"]
+    [[object.function]]
+    name = "activate_key"
+        [[object.function.parameter]]
+        name = "event"
+        const = true
+    [[object.function]]
+    name = "propagate_key_event"
+        [[object.function.parameter]]
+        name = "event"
+        const = true
     [[object.signal]]
     name = "close-request"
     inhibit = true
