@@ -31,7 +31,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 glib-sys = { git = "https://github.com/gtk-rs/sys" }
-gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
+gdk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 gio-sys = { git = "https://github.com/gtk-rs/sys" }
 gobject-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
