@@ -46,20 +46,20 @@ atk = { git = "https://github.com/gtk-rs/atk" }
 atk-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
 gdk-pixbuf-sys = { git = "https://github.com/gtk-rs/sys" }
-gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
+gdk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 gio-sys = { git = "https://github.com/gtk-rs/sys" }
 glib-sys = { git = "https://github.com/gtk-rs/sys" }
 gobject-sys = { git = "https://github.com/gtk-rs/sys" }
-graphene-sys = { git = "https://github.com/gtk-rs/sys" }
-gsk4-sys = { git = "https://github.com/gtk-rs/sys" }
-gtk4-sys = { git = "https://github.com/gtk-rs/sys" }
+graphene-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+gsk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+gtk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 pango-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
 gio = { git = "https://github.com/gtk-rs/gio", features = ["v2_44"] }
 glib = { git = "https://github.com/gtk-rs/glib" }
-gdk4 = { git = "https://github.com/gtk-rs/gdk4" }
-graphene = { git = "https://github.com/gtk-rs/graphene" }
-gsk4 = { git = "https://github.com/gtk-rs/gsk4" }
+gdk4 = { git = "https://github.com/sfanxiang/gtk-rs-gdk4" }
+graphene = { git = "https://github.com/sfanxiang/gtk-rs-graphene" }
+gsk4 = { git = "https://github.com/sfanxiang/gtk-rs-gsk4" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gdk-pixbuf" }
 pango = { git = "https://github.com/gtk-rs/pango" }
 
