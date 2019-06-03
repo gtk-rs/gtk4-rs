@@ -31,15 +31,15 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 glib-sys = { git = "https://github.com/gtk-rs/sys" }
-gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
-graphene-sys = { git = "https://github.com/gtk-rs/sys" }
-gsk4-sys = { git = "https://github.com/gtk-rs/sys" }
+gdk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+graphene-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+gsk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 gobject-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
 cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
 glib = { git = "https://github.com/gtk-rs/glib" }
-gdk4 = { git = "https://github.com/gtk-rs/gdk4" }
-graphene = { git = "https://github.com/gtk-rs/graphene" }
+gdk4 = { git = "https://github.com/sfanxiang/gtk-rs-gdk4" }
+graphene = { git = "https://github.com/sfanxiang/gtk-rs-graphene" }
 pango = { git = "https://github.com/gtk-rs/pango" }
 
 [dev-dependencies]
