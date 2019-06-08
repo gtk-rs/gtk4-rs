@@ -34,7 +34,8 @@ cc = "^1.0"
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"
 optional = true
-git = "https://github.com/gtk-rs/lgpl-docs"
+git = "https://github.com/sfanxiang/gtk-rs-lgpl-docs"
+branch = "gtk4"
 
 [dependencies]
 libc = "0.2"
