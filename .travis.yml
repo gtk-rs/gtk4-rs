@@ -18,6 +18,14 @@ addons:
     - libmount-dev
 script:
   - rustc --version
+  - mkdir .cargo
+  - echo 'paths = ["."]' > .cargo/config
+  - git clone -q --depth 50 https://github.com/sfanxiang/gtk-rs-examples4 _examples
+  - cd _examples
+  - ./build_travis.sh
+  - cd ..
+  - export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig:$HOME/local/share/pkgconfig"
+  - rustc --version
   - if [ "$TRAVIS_RUST_VERSION" == "nightly" ] && [ "$GTK" == "3.96" ]; then
     make regen_check;
     fi
@@ -27,9 +35,3 @@ script:
   # catch any sneaked in lgpl docs
   - cargo build --features "$FEATURES,purge-lgpl-docs" --jobs 1
   - git diff -R --exit-code
-  - rustc --version
-  - mkdir .cargo
-  - echo 'paths = ["."]' > .cargo/config
-  - git clone -q --depth 50 https://github.com/sfanxiang/gtk-rs-examples4 _examples
-  - cd _examples
-  - ./build_travis.sh
