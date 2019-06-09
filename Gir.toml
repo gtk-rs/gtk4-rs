@@ -15,8 +15,8 @@ generate = [
     "Gsk.CairoRenderer",
     "Gsk.Corner",
     "Gsk.GLRenderer",
-    "Gsk.RenderNodeType",
     "Gsk.Renderer",
+    "Gsk.RenderNodeType",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.Transform",
@@ -25,6 +25,7 @@ generate = [
 ]
 
 manual = [
+    # "Pango.GlyphInfo", # missing from pango
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
@@ -41,7 +42,6 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Pango.Font",
-    # "Pango.GlyphInfo", # missing from pango
     "Pango.GlyphString",
 ]
 
