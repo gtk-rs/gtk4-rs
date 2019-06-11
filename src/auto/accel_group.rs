@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use AccelFlags;
+use AccelKey;
 use gdk;
 use gdk_sys;
 use glib;
@@ -62,7 +63,7 @@ pub trait AccelGroupExt: 'static {
 
     fn disconnect_key(&self, accel_key: u32, accel_mods: gdk::ModifierType) -> bool;
 
-    //fn find(&self, find_func: /*Unimplemented*/FnMut(/*Ignored*/AccelKey, &glib::Closure) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> /*Ignored*/Option<AccelKey>;
+    fn find<P: FnMut(&AccelKey, &glib::Closure) -> bool>(&self, find_func: P) -> Option<AccelKey>;
 
     fn get_is_locked(&self) -> bool;
 
@@ -112,9 +113,21 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
         }
     }
 
-    //fn find(&self, find_func: /*Unimplemented*/FnMut(/*Ignored*/AccelKey, &glib::Closure) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> /*Ignored*/Option<AccelKey> {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_group_find() }
-    //}
+    fn find<P: FnMut(&AccelKey, &glib::Closure) -> bool>(&self, find_func: P) -> Option<AccelKey> {
+        let find_func_data: P = find_func;
+        unsafe extern "C" fn find_func_func<P: FnMut(&AccelKey, &glib::Closure) -> bool>(key: *mut gtk_sys::GtkAccelKey, closure: *mut gobject_sys::GClosure, data: glib_sys::gpointer) -> glib_sys::gboolean {
+            let key = from_glib_borrow(key);
+            let closure = from_glib_borrow(closure);
+            let callback: *mut P = data as *const _ as usize as *mut P;
+            let res = (*callback)(&key, &closure);
+            res.to_glib()
+        }
+        let find_func = Some(find_func_func::<P> as _);
+        let super_callback0: &P = &find_func_data;
+        unsafe {
+            from_glib_none(gtk_sys::gtk_accel_group_find(self.as_ref().to_glib_none().0, find_func, super_callback0 as *const _ as usize as *mut _))
+        }
+    }
 
     fn get_is_locked(&self) -> bool {
         unsafe {

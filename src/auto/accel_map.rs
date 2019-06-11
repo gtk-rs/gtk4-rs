@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use AccelKey;
 use gdk;
 use gdk_sys;
 use glib::GString;
@@ -87,9 +88,14 @@ impl AccelMap {
         }
     }
 
-    //pub fn lookup_entry(accel_path: &str, key: /*Ignored*/AccelKey) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_map_lookup_entry() }
-    //}
+    pub fn lookup_entry(accel_path: &str) -> Option<AccelKey> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut key = AccelKey::uninitialized();
+            let ret = from_glib(gtk_sys::gtk_accel_map_lookup_entry(accel_path.to_glib_none().0, key.to_glib_none_mut().0));
+            if ret { Some(key) } else { None }
+        }
+    }
 
     pub fn save<P: AsRef<std::path::Path>>(file_name: P) {
         assert_initialized_main_thread!();

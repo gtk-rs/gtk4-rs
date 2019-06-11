@@ -88,6 +88,7 @@ pub use functions::*;
 pub use rt::*;
 pub use prelude::*;
 
+mod accel_key;
 mod application;
 mod border;
 mod builder;
@@ -117,6 +118,7 @@ mod tree_sortable;
 mod tree_store;
 mod widget;
 
+pub use accel_key::AccelKey;
 pub use border::Border;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;

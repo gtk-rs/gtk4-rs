@@ -386,7 +386,6 @@ builders = [
 # TODO
 ignore = [
     "Gtk.AccelGroupEntry",
-    "Gtk.AccelKey",
     "Gtk.BindingArg",
     "Gtk.BindingEntry",
     "Gtk.BindingSet",
@@ -485,6 +484,7 @@ manual = [
     "Gsk.BlendMode",
     "Gsk.RenderNode",
     "Gsk.Transform",
+    "Gtk.AccelKey",
     "Gtk.Border",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
