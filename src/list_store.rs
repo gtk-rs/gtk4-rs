@@ -25,12 +25,12 @@ impl ListStore {
 }
 
 pub trait GtkListStoreExtManual: 'static {
-    fn insert_with_values(&self, position: Option<u32>, columns: &[u32], values: &[&ToValue])
+    fn insert_with_values(&self, position: Option<u32>, columns: &[u32], values: &[&dyn ToValue])
             -> TreeIter;
 
     fn reorder(&self, new_order: &[u32]);
 
-    fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&ToValue]);
+    fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&dyn ToValue]);
 
     fn set_value(&self, iter: &TreeIter, column: u32, value: &Value);
 }
@@ -40,7 +40,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
         &self,
         position: Option<u32>,
         columns: &[u32],
-        values: &[&ToValue],
+        values: &[&dyn ToValue],
     ) -> TreeIter {
         unsafe {
             assert!(position.unwrap_or(0) <= i32::max_value() as u32);
@@ -90,7 +90,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
         }
     }
 
-    fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&ToValue]) {
+    fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&dyn ToValue]) {
         unsafe {
             assert_eq!(columns.len(), values.len());
             let n_columns = gtk_sys::gtk_tree_model_get_n_columns(self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0) as u32;
