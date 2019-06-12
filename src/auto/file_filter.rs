@@ -4,9 +4,11 @@
 
 use Buildable;
 use FileFilterFlags;
+use FileFilterInfo;
 use glib;
 use glib::translate::*;
 use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
 
 glib_wrapper! {
@@ -32,9 +34,24 @@ impl FileFilter {
         }
     }
 
-    //pub fn add_custom(&self, needed: FileFilterFlags, func: /*Unimplemented*/Fn(/*Ignored*/FileFilterInfo) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call gtk_sys:gtk_file_filter_add_custom() }
-    //}
+    pub fn add_custom<P: Fn(&FileFilterInfo) -> bool + 'static>(&self, needed: FileFilterFlags, func: P) {
+        let func_data: Box_<P> = Box::new(func);
+        unsafe extern "C" fn func_func<P: Fn(&FileFilterInfo) -> bool + 'static>(filter_info: *const gtk_sys::GtkFileFilterInfo, data: glib_sys::gpointer) -> glib_sys::gboolean {
+            let filter_info = from_glib_borrow(filter_info);
+            let callback: &P = &*(data as *mut _);
+            let res = (*callback)(&filter_info);
+            res.to_glib()
+        }
+        let func = Some(func_func::<P> as _);
+        unsafe extern "C" fn notify_func<P: Fn(&FileFilterInfo) -> bool + 'static>(data: glib_sys::gpointer) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call4 = Some(notify_func::<P> as _);
+        let super_callback0: Box_<P> = func_data;
+        unsafe {
+            gtk_sys::gtk_file_filter_add_custom(self.to_glib_none().0, needed.to_glib(), func, Box::into_raw(super_callback0) as *mut _, destroy_call4);
+        }
+    }
 
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {
@@ -54,9 +71,11 @@ impl FileFilter {
         }
     }
 
-    //pub fn filter(&self, filter_info: /*Ignored*/&FileFilterInfo) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_file_filter_filter() }
-    //}
+    pub fn filter(&self, filter_info: &FileFilterInfo) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_file_filter_filter(self.to_glib_none().0, filter_info.to_glib_none().0))
+        }
+    }
 
     pub fn get_needed(&self) -> FileFilterFlags {
         unsafe {
