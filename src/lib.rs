@@ -94,6 +94,7 @@ mod border;
 mod builder;
 mod color_chooser;
 mod combo_box;
+mod css_location;
 mod dialog;
 mod editable;
 mod entry_buffer;
@@ -120,6 +121,7 @@ mod widget;
 
 pub use accel_key::AccelKey;
 pub use border::Border;
+pub use css_location::CssLocation;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
 pub use recent_data::RecentData;

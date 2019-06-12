@@ -2,9 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use CssLocation;
 use gio;
 use glib;
 use glib::GString;
+use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -21,13 +23,18 @@ glib_wrapper! {
 }
 
 impl CssSection {
-    //pub fn new<P: IsA<gio::File>>(file: Option<&P>, start: /*Ignored*/&CssLocation, end: /*Ignored*/&CssLocation) -> CssSection {
-    //    unsafe { TODO: call gtk_sys:gtk_css_section_new() }
-    //}
+    pub fn new<P: IsA<gio::File>>(file: Option<&P>, start: &CssLocation, end: &CssLocation) -> CssSection {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_css_section_new(file.map(|p| p.as_ref()).to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0))
+        }
+    }
 
-    //pub fn get_end_location(&self) -> /*Ignored*/Option<CssLocation> {
-    //    unsafe { TODO: call gtk_sys:gtk_css_section_get_end_location() }
-    //}
+    pub fn get_end_location(&self) -> Option<CssLocation> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_css_section_get_end_location(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_file(&self) -> Option<gio::File> {
         unsafe {
@@ -41,9 +48,11 @@ impl CssSection {
         }
     }
 
-    //pub fn get_start_location(&self) -> /*Ignored*/Option<CssLocation> {
-    //    unsafe { TODO: call gtk_sys:gtk_css_section_get_start_location() }
-    //}
+    pub fn get_start_location(&self) -> Option<CssLocation> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_css_section_get_start_location(self.to_glib_none().0))
+        }
+    }
 
     pub fn print(&self, string: &mut glib::String) {
         unsafe {
