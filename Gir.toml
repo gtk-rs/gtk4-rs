@@ -385,20 +385,14 @@ builders = [
 
 # TODO
 ignore = [
-    "Gtk.AccelGroupEntry",
     "Gtk.BindingArg",
     "Gtk.BindingEntry",
     "Gtk.BindingSet",
     "Gtk.BindingSignal",
-    "Gtk.Clipboard", # Not part of gtk4 public API
     "Gtk.CssLocation",
     "Gtk.FileFilterInfo",
-    "Gtk.LabelSelectionInfo",
     "Gtk.RequestedSize",
-    "Gtk.SettingsValue",
     "Gtk.ShortcutsSection",
-    "Gtk.TextBTree",
-    "Gtk.WindowGeometryInfo",
 ]
 
 manual = [
