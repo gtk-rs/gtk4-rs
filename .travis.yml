@@ -27,6 +27,7 @@ script:
   - export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig:$HOME/local/share/pkgconfig"
   - rustc --version
   - if [ "$TRAVIS_RUST_VERSION" == "nightly" ] && [ "$GTK" == "3.96" ]; then
+    rustup component add rustfmt;
     make regen_check;
     fi
   - ./check_init_asserts
