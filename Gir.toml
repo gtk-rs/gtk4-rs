@@ -390,7 +390,6 @@ ignore = [
     "Gtk.BindingSet",
     "Gtk.BindingSignal",
     "Gtk.RequestedSize",
-    "Gtk.ShortcutsSection",
 ]
 
 manual = [
@@ -1239,6 +1238,14 @@ status = "generate"
         [[object.function.parameter]]
         name = "selection_data"
         const = true
+
+[[object]]
+name = "Gtk.ShortcutsSection"
+status = "generate"
+    [[object.signal]]
+    name = "change-current-page"
+    #manual
+    ignore = true
 
 [[object]]
 name = "Gtk.SpinButton"
