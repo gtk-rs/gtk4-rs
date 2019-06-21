@@ -393,7 +393,6 @@ ignore = [
 ]
 
 manual = [
-    # "Gdk.EventKey", # Not part of gdk4 public API
     # "GObject.ConnectFlags",
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
