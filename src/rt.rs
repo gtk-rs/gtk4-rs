@@ -90,7 +90,7 @@ pub fn init() -> Result<(), glib::BoolError> {
         panic!("Attempted to initialize GTK from two different threads.");
     }
     unsafe {
-        if pre_init() && from_glib(gtk_sys::gtk_init_check()) {
+        if from_glib(gtk_sys::gtk_init_check()) {
             if !glib::MainContext::default().acquire() {
                 return Err(glib_bool_error!("Failed to acquire default main context"));
             }
@@ -102,14 +102,6 @@ pub fn init() -> Result<(), glib::BoolError> {
             Err(glib_bool_error!("Failed to initialize GTK"))
         }
     }
-}
-
-fn pre_init() -> bool {
-    skip_assert_initialized!();
-
-    // TODO: Ensure `libgtk-4` was built with safety assertions.
-    // CLI option `--gtk-debug=misc` no longer exist, we only have GTK_DEBUG=misc env.
-    true
 }
 
 pub fn main_quit() {
