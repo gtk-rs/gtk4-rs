@@ -98,6 +98,12 @@ impl<O: IsA<TextTagTable>> TextTagTableExt for O {
     }
 
     fn connect_tag_added<F: Fn(&Self, &TextTag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn tag_added_trampoline<P, F: Fn(&P, &TextTag) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, f: glib_sys::gpointer)
+            where P: IsA<TextTagTable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"tag-added\0".as_ptr() as *const _,
@@ -106,6 +112,12 @@ impl<O: IsA<TextTagTable>> TextTagTableExt for O {
     }
 
     fn connect_tag_changed<F: Fn(&Self, &TextTag, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn tag_changed_trampoline<P, F: Fn(&P, &TextTag, bool) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, size_changed: glib_sys::gboolean, f: glib_sys::gpointer)
+            where P: IsA<TextTagTable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag), from_glib(size_changed))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"tag-changed\0".as_ptr() as *const _,
@@ -114,30 +126,18 @@ impl<O: IsA<TextTagTable>> TextTagTableExt for O {
     }
 
     fn connect_tag_removed<F: Fn(&Self, &TextTag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn tag_removed_trampoline<P, F: Fn(&P, &TextTag) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, f: glib_sys::gpointer)
+            where P: IsA<TextTagTable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"tag-removed\0".as_ptr() as *const _,
                 Some(transmute(tag_removed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn tag_added_trampoline<P, F: Fn(&P, &TextTag) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, f: glib_sys::gpointer)
-where P: IsA<TextTagTable> {
-    let f: &F = &*(f as *const F);
-    f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag))
-}
-
-unsafe extern "C" fn tag_changed_trampoline<P, F: Fn(&P, &TextTag, bool) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, size_changed: glib_sys::gboolean, f: glib_sys::gpointer)
-where P: IsA<TextTagTable> {
-    let f: &F = &*(f as *const F);
-    f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag), from_glib(size_changed))
-}
-
-unsafe extern "C" fn tag_removed_trampoline<P, F: Fn(&P, &TextTag) + 'static>(this: *mut gtk_sys::GtkTextTagTable, tag: *mut gtk_sys::GtkTextTag, f: glib_sys::gpointer)
-where P: IsA<TextTagTable> {
-    let f: &F = &*(f as *const F);
-    f(&TextTagTable::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag))
 }
 
 impl fmt::Display for TextTagTable {

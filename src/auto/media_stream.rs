@@ -376,6 +376,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::duration\0".as_ptr() as *const _,
@@ -384,6 +390,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ended_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::ended\0".as_ptr() as *const _,
@@ -392,6 +404,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::error\0".as_ptr() as *const _,
@@ -400,6 +418,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_audio_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-audio\0".as_ptr() as *const _,
@@ -408,6 +432,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_video_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-video\0".as_ptr() as *const _,
@@ -416,6 +446,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::loop\0".as_ptr() as *const _,
@@ -424,6 +460,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_muted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::muted\0".as_ptr() as *const _,
@@ -432,6 +474,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_playing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::playing\0".as_ptr() as *const _,
@@ -440,6 +488,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_prepared_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::prepared\0".as_ptr() as *const _,
@@ -448,6 +502,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_seekable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::seekable\0".as_ptr() as *const _,
@@ -456,6 +516,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_seeking_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::seeking\0".as_ptr() as *const _,
@@ -464,6 +530,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_timestamp_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::timestamp\0".as_ptr() as *const _,
@@ -472,90 +544,18 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn connect_property_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_volume_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MediaStream>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::volume\0".as_ptr() as *const _,
                 Some(transmute(notify_volume_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_ended_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_audio_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_video_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_muted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_playing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_prepared_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_seekable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_seeking_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_timestamp_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_volume_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMediaStream, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MediaStream> {
-    let f: &F = &*(f as *const F);
-    f(&MediaStream::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for MediaStream {

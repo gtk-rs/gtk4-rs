@@ -1056,6 +1056,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_activate_current_link<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_current_link_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-current-link\0".as_ptr() as *const _,
@@ -1068,6 +1074,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkLabel, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
@@ -1076,6 +1088,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn copy_clipboard_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"copy-clipboard\0".as_ptr() as *const _,
@@ -1088,6 +1106,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn move_cursor_trampoline<P, F: Fn(&P, MovementStep, i32, bool) + 'static>(this: *mut gtk_sys::GtkLabel, step: gtk_sys::GtkMovementStep, count: libc::c_int, extend_selection: glib_sys::gboolean, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast(), from_glib(step), count, from_glib(extend_selection))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"move-cursor\0".as_ptr() as *const _,
@@ -1100,6 +1124,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_populate_popup<F: Fn(&Self, &Menu) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn populate_popup_trampoline<P, F: Fn(&P, &Menu) + 'static>(this: *mut gtk_sys::GtkLabel, menu: *mut gtk_sys::GtkMenu, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(menu))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"populate-popup\0".as_ptr() as *const _,
@@ -1108,6 +1138,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::attributes\0".as_ptr() as *const _,
@@ -1116,6 +1152,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::cursor-position\0".as_ptr() as *const _,
@@ -1124,6 +1166,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::ellipsize\0".as_ptr() as *const _,
@@ -1132,6 +1180,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_justify_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_justify_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::justify\0".as_ptr() as *const _,
@@ -1140,6 +1194,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::label\0".as_ptr() as *const _,
@@ -1148,6 +1208,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::lines\0".as_ptr() as *const _,
@@ -1156,6 +1222,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::max-width-chars\0".as_ptr() as *const _,
@@ -1164,6 +1236,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_mnemonic_keyval_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mnemonic_keyval_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::mnemonic-keyval\0".as_ptr() as *const _,
@@ -1172,6 +1250,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_mnemonic_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mnemonic_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::mnemonic-widget\0".as_ptr() as *const _,
@@ -1180,6 +1264,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_pattern_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pattern_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pattern\0".as_ptr() as *const _,
@@ -1188,6 +1278,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_selectable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::selectable\0".as_ptr() as *const _,
@@ -1196,6 +1292,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_selection_bound_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::selection-bound\0".as_ptr() as *const _,
@@ -1204,6 +1306,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_single_line_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_single_line_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::single-line-mode\0".as_ptr() as *const _,
@@ -1212,6 +1320,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_track_visited_links_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_track_visited_links_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::track-visited-links\0".as_ptr() as *const _,
@@ -1220,6 +1334,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-markup\0".as_ptr() as *const _,
@@ -1228,6 +1348,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-underline\0".as_ptr() as *const _,
@@ -1236,6 +1362,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::width-chars\0".as_ptr() as *const _,
@@ -1244,6 +1376,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::wrap\0".as_ptr() as *const _,
@@ -1252,6 +1390,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::wrap-mode\0".as_ptr() as *const _,
@@ -1260,6 +1404,12 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::xalign\0".as_ptr() as *const _,
@@ -1268,168 +1418,18 @@ impl<O: IsA<Label>> LabelExt for O {
     }
 
     fn connect_property_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Label>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Label::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::yalign\0".as_ptr() as *const _,
                 Some(transmute(notify_yalign_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn activate_current_link_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkLabel, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()
-}
-
-unsafe extern "C" fn copy_clipboard_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn move_cursor_trampoline<P, F: Fn(&P, MovementStep, i32, bool) + 'static>(this: *mut gtk_sys::GtkLabel, step: gtk_sys::GtkMovementStep, count: libc::c_int, extend_selection: glib_sys::gboolean, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast(), from_glib(step), count, from_glib(extend_selection))
-}
-
-unsafe extern "C" fn populate_popup_trampoline<P, F: Fn(&P, &Menu) + 'static>(this: *mut gtk_sys::GtkLabel, menu: *mut gtk_sys::GtkMenu, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(menu))
-}
-
-unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_justify_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_mnemonic_keyval_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_mnemonic_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pattern_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_selectable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_selection_bound_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_single_line_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_track_visited_links_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Label> {
-    let f: &F = &*(f as *const F);
-    f(&Label::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Label {

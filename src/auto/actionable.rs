@@ -79,18 +79,18 @@ impl<O: IsA<Actionable>> ActionableExt for O {
     }
 
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Actionable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Actionable::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::action-name\0".as_ptr() as *const _,
                 Some(transmute(notify_action_name_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkActionable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Actionable> {
-    let f: &F = &*(f as *const F);
-    f(&Actionable::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Actionable {

@@ -168,6 +168,12 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::inverted\0".as_ptr() as *const _,
@@ -176,6 +182,12 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_pulse_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pulse_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pulse\0".as_ptr() as *const _,
@@ -184,6 +196,12 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
@@ -192,6 +210,12 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_text_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text-xalign\0".as_ptr() as *const _,
@@ -200,6 +224,12 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_text_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text-yalign\0".as_ptr() as *const _,
@@ -208,48 +238,18 @@ impl<O: IsA<CellRendererProgress>> CellRendererProgressExt for O {
     }
 
     fn connect_property_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellRendererProgress>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::value\0".as_ptr() as *const _,
                 Some(transmute(notify_value_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pulse_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_text_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_text_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererProgress, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellRendererProgress> {
-    let f: &F = &*(f as *const F);
-    f(&CellRendererProgress::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for CellRendererProgress {

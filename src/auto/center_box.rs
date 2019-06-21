@@ -89,6 +89,10 @@ impl CenterBox {
     }
 
     pub fn connect_property_baseline_position_notify<F: Fn(&CenterBox) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_baseline_position_trampoline<F: Fn(&CenterBox) + 'static>(this: *mut gtk_sys::GtkCenterBox, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::baseline-position\0".as_ptr() as *const _,
@@ -436,11 +440,6 @@ impl CenterBoxBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_baseline_position_trampoline<F: Fn(&CenterBox) + 'static>(this: *mut gtk_sys::GtkCenterBox, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for CenterBox {

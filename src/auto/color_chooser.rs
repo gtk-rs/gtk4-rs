@@ -69,6 +69,12 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
     }
 
     fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn color_activated_trampoline<P, F: Fn(&P, &gdk::RGBA) + 'static>(this: *mut gtk_sys::GtkColorChooser, color: *mut gdk_sys::GdkRGBA, f: glib_sys::gpointer)
+            where P: IsA<ColorChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ColorChooser::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(color))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"color-activated\0".as_ptr() as *const _,
@@ -77,6 +83,12 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
     }
 
     fn connect_property_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ColorChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::rgba\0".as_ptr() as *const _,
@@ -85,30 +97,18 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
     }
 
     fn connect_property_use_alpha_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ColorChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-alpha\0".as_ptr() as *const _,
                 Some(transmute(notify_use_alpha_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn color_activated_trampoline<P, F: Fn(&P, &gdk::RGBA) + 'static>(this: *mut gtk_sys::GtkColorChooser, color: *mut gdk_sys::GdkRGBA, f: glib_sys::gpointer)
-where P: IsA<ColorChooser> {
-    let f: &F = &*(f as *const F);
-    f(&ColorChooser::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(color))
-}
-
-unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ColorChooser> {
-    let f: &F = &*(f as *const F);
-    f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ColorChooser> {
-    let f: &F = &*(f as *const F);
-    f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for ColorChooser {

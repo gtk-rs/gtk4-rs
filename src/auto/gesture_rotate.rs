@@ -39,6 +39,10 @@ impl GestureRotate {
     }
 
     pub fn connect_angle_changed<F: Fn(&GestureRotate, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn angle_changed_trampoline<F: Fn(&GestureRotate, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureRotate, angle: libc::c_double, angle_delta: libc::c_double, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), angle, angle_delta)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"angle-changed\0".as_ptr() as *const _,
@@ -51,11 +55,6 @@ impl Default for GestureRotate {
     fn default() -> Self {
         Self::new()
     }
-}
-
-unsafe extern "C" fn angle_changed_trampoline<F: Fn(&GestureRotate, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureRotate, angle: libc::c_double, angle_delta: libc::c_double, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), angle, angle_delta)
 }
 
 impl fmt::Display for GestureRotate {

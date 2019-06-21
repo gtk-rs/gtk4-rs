@@ -97,6 +97,10 @@ impl StackPage {
     }
 
     pub fn connect_property_icon_name_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::icon-name\0".as_ptr() as *const _,
@@ -105,6 +109,10 @@ impl StackPage {
     }
 
     pub fn connect_property_needs_attention_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_needs_attention_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::needs-attention\0".as_ptr() as *const _,
@@ -113,6 +121,10 @@ impl StackPage {
     }
 
     pub fn connect_property_title_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
@@ -121,32 +133,16 @@ impl StackPage {
     }
 
     pub fn connect_property_visible_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible\0".as_ptr() as *const _,
                 Some(transmute(notify_visible_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_needs_attention_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_title_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_visible_trampoline<F: Fn(&StackPage) + 'static>(this: *mut gtk_sys::GtkStackPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for StackPage {

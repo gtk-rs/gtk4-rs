@@ -813,6 +813,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_message_area_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_message_area_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::message-area\0".as_ptr() as *const _,
@@ -821,6 +827,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_message_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_message_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::message-type\0".as_ptr() as *const _,
@@ -829,6 +841,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_secondary_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::secondary-text\0".as_ptr() as *const _,
@@ -837,6 +855,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_secondary_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_secondary_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::secondary-use-markup\0".as_ptr() as *const _,
@@ -845,6 +869,12 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
@@ -853,48 +883,18 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
     }
 
     fn connect_property_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MessageDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-markup\0".as_ptr() as *const _,
                 Some(transmute(notify_use_markup_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_message_area_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_message_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_secondary_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_secondary_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMessageDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MessageDialog> {
-    let f: &F = &*(f as *const F);
-    f(&MessageDialog::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for MessageDialog {

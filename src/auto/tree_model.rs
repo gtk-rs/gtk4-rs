@@ -247,6 +247,12 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn row_changed_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
+            where P: IsA<TreeModel>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"row-changed\0".as_ptr() as *const _,
@@ -255,6 +261,12 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn row_deleted_trampoline<P, F: Fn(&P, &TreePath) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer)
+            where P: IsA<TreeModel>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"row-deleted\0".as_ptr() as *const _,
@@ -263,6 +275,12 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     fn connect_row_has_child_toggled<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn row_has_child_toggled_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
+            where P: IsA<TreeModel>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"row-has-child-toggled\0".as_ptr() as *const _,
@@ -271,6 +289,12 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     fn connect_row_inserted<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn row_inserted_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
+            where P: IsA<TreeModel>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"row-inserted\0".as_ptr() as *const _,
@@ -281,30 +305,6 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     //fn connect_rows_reordered<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Unimplemented new_order: *.Pointer
     //}
-}
-
-unsafe extern "C" fn row_changed_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
-where P: IsA<TreeModel> {
-    let f: &F = &*(f as *const F);
-    f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
-}
-
-unsafe extern "C" fn row_deleted_trampoline<P, F: Fn(&P, &TreePath) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, f: glib_sys::gpointer)
-where P: IsA<TreeModel> {
-    let f: &F = &*(f as *const F);
-    f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path))
-}
-
-unsafe extern "C" fn row_has_child_toggled_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
-where P: IsA<TreeModel> {
-    let f: &F = &*(f as *const F);
-    f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
-}
-
-unsafe extern "C" fn row_inserted_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(this: *mut gtk_sys::GtkTreeModel, path: *mut gtk_sys::GtkTreePath, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer)
-where P: IsA<TreeModel> {
-    let f: &F = &*(f as *const F);
-    f(&TreeModel::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(path), &from_glib_borrow(iter))
 }
 
 impl fmt::Display for TreeModel {

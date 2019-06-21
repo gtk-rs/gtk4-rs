@@ -87,6 +87,10 @@ impl ShortcutsGroup {
     }
 
     pub fn connect_property_accel_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accel_size_group_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::accel-size-group\0".as_ptr() as *const _,
@@ -95,6 +99,10 @@ impl ShortcutsGroup {
     }
 
     pub fn connect_property_height_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_height_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::height\0".as_ptr() as *const _,
@@ -103,6 +111,10 @@ impl ShortcutsGroup {
     }
 
     pub fn connect_property_title_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
@@ -111,6 +123,10 @@ impl ShortcutsGroup {
     }
 
     pub fn connect_property_title_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_size_group_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title-size-group\0".as_ptr() as *const _,
@@ -119,6 +135,10 @@ impl ShortcutsGroup {
     }
 
     pub fn connect_property_view_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_view_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::view\0".as_ptr() as *const _,
@@ -520,31 +540,6 @@ impl ShortcutsGroupBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_accel_size_group_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_height_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_title_size_group_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_view_trampoline<F: Fn(&ShortcutsGroup) + 'static>(this: *mut gtk_sys::GtkShortcutsGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for ShortcutsGroup {

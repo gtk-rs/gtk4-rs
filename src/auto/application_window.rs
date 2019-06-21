@@ -660,18 +660,18 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
     }
 
     fn connect_property_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_menubar_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplicationWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ApplicationWindow>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ApplicationWindow::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::show-menubar\0".as_ptr() as *const _,
                 Some(transmute(notify_show_menubar_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_show_menubar_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplicationWindow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ApplicationWindow> {
-    let f: &F = &*(f as *const F);
-    f(&ApplicationWindow::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for ApplicationWindow {

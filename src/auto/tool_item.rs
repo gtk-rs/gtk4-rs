@@ -634,6 +634,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_create_menu_proxy<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast()).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"create-menu-proxy\0".as_ptr() as *const _,
@@ -642,6 +648,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_toolbar_reconfigured<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn toolbar_reconfigured_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"toolbar-reconfigured\0".as_ptr() as *const _,
@@ -650,6 +662,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_property_expand_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expand_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::expand-item\0".as_ptr() as *const _,
@@ -658,6 +676,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::homogeneous\0".as_ptr() as *const _,
@@ -666,6 +690,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_property_is_important_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_important_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::is-important\0".as_ptr() as *const _,
@@ -674,6 +704,12 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_property_visible_horizontal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_horizontal_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible-horizontal\0".as_ptr() as *const _,
@@ -682,54 +718,18 @@ impl<O: IsA<ToolItem>> ToolItemExt for O {
     }
 
     fn connect_property_visible_vertical_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_vertical_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ToolItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToolItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible-vertical\0".as_ptr() as *const _,
                 Some(transmute(notify_visible_vertical_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn create_menu_proxy_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast()).to_glib()
-}
-
-unsafe extern "C" fn toolbar_reconfigured_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_expand_item_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_is_important_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_horizontal_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_vertical_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ToolItem> {
-    let f: &F = &*(f as *const F);
-    f(&ToolItem::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for ToolItem {

@@ -477,6 +477,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate\0".as_ptr() as *const _,
@@ -489,6 +495,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_next_match<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn next_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"next-match\0".as_ptr() as *const _,
@@ -501,6 +513,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_previous_match<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn previous_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"previous-match\0".as_ptr() as *const _,
@@ -513,6 +531,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_search_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn search_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"search-changed\0".as_ptr() as *const _,
@@ -521,6 +545,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_search_started<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn search_started_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"search-started\0".as_ptr() as *const _,
@@ -529,6 +559,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_stop_search<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn stop_search_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"stop-search\0".as_ptr() as *const _,
@@ -541,6 +577,12 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_property_activates_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activates_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::activates-default\0".as_ptr() as *const _,
@@ -549,60 +591,18 @@ impl<O: IsA<SearchEntry>> SearchEntryExt for O {
     }
 
     fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<SearchEntry>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::placeholder-text\0".as_ptr() as *const _,
                 Some(transmute(notify_placeholder_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn next_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn previous_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn search_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn search_started_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn stop_search_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_activates_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchEntry, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<SearchEntry> {
-    let f: &F = &*(f as *const F);
-    f(&SearchEntry::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for SearchEntry {

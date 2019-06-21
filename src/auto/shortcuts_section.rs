@@ -94,6 +94,10 @@ impl ShortcutsSection {
     }
 
     pub fn connect_property_max_height_notify<F: Fn(&ShortcutsSection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_height_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::max-height\0".as_ptr() as *const _,
@@ -102,6 +106,10 @@ impl ShortcutsSection {
     }
 
     pub fn connect_property_section_name_notify<F: Fn(&ShortcutsSection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_section_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::section-name\0".as_ptr() as *const _,
@@ -110,6 +118,10 @@ impl ShortcutsSection {
     }
 
     pub fn connect_property_title_notify<F: Fn(&ShortcutsSection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
@@ -118,6 +130,10 @@ impl ShortcutsSection {
     }
 
     pub fn connect_property_view_name_notify<F: Fn(&ShortcutsSection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_view_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::view-name\0".as_ptr() as *const _,
@@ -519,26 +535,6 @@ impl ShortcutsSectionBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_max_height_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_section_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_view_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(this: *mut gtk_sys::GtkShortcutsSection, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for ShortcutsSection {

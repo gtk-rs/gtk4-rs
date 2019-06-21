@@ -430,6 +430,12 @@ impl<O: IsA<Statusbar>> StatusbarExt for O {
     }
 
     fn connect_text_popped<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn text_popped_trampoline<P, F: Fn(&P, u32, &str) + 'static>(this: *mut gtk_sys::GtkStatusbar, context_id: libc::c_uint, text: *mut libc::c_char, f: glib_sys::gpointer)
+            where P: IsA<Statusbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Statusbar::from_glib_borrow(this).unsafe_cast(), context_id, &GString::from_glib_borrow(text))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"text-popped\0".as_ptr() as *const _,
@@ -438,24 +444,18 @@ impl<O: IsA<Statusbar>> StatusbarExt for O {
     }
 
     fn connect_text_pushed<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn text_pushed_trampoline<P, F: Fn(&P, u32, &str) + 'static>(this: *mut gtk_sys::GtkStatusbar, context_id: libc::c_uint, text: *mut libc::c_char, f: glib_sys::gpointer)
+            where P: IsA<Statusbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Statusbar::from_glib_borrow(this).unsafe_cast(), context_id, &GString::from_glib_borrow(text))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"text-pushed\0".as_ptr() as *const _,
                 Some(transmute(text_pushed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn text_popped_trampoline<P, F: Fn(&P, u32, &str) + 'static>(this: *mut gtk_sys::GtkStatusbar, context_id: libc::c_uint, text: *mut libc::c_char, f: glib_sys::gpointer)
-where P: IsA<Statusbar> {
-    let f: &F = &*(f as *const F);
-    f(&Statusbar::from_glib_borrow(this).unsafe_cast(), context_id, &GString::from_glib_borrow(text))
-}
-
-unsafe extern "C" fn text_pushed_trampoline<P, F: Fn(&P, u32, &str) + 'static>(this: *mut gtk_sys::GtkStatusbar, context_id: libc::c_uint, text: *mut libc::c_char, f: glib_sys::gpointer)
-where P: IsA<Statusbar> {
-    let f: &F = &*(f as *const F);
-    f(&Statusbar::from_glib_borrow(this).unsafe_cast(), context_id, &GString::from_glib_borrow(text))
 }
 
 impl fmt::Display for Statusbar {

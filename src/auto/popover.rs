@@ -577,6 +577,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn closed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"closed\0".as_ptr() as *const _,
@@ -585,6 +591,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_constrain_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_constrain_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::constrain-to\0".as_ptr() as *const _,
@@ -593,6 +605,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_default_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::default-widget\0".as_ptr() as *const _,
@@ -601,6 +619,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::modal\0".as_ptr() as *const _,
@@ -609,6 +633,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pointing_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pointing-to\0".as_ptr() as *const _,
@@ -617,6 +647,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::position\0".as_ptr() as *const _,
@@ -625,54 +661,18 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn connect_property_relative_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_relative_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Popover>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::relative-to\0".as_ptr() as *const _,
                 Some(transmute(notify_relative_to_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn closed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_constrain_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_default_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pointing_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_relative_to_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkPopover, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Popover> {
-    let f: &F = &*(f as *const F);
-    f(&Popover::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Popover {

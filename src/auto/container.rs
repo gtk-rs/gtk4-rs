@@ -471,6 +471,12 @@ impl<O: IsA<Container>> ContainerExt for O {
     }
 
     fn connect_add<F: Fn(&Self, &Widget) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn add_trampoline<P, F: Fn(&P, &Widget) + 'static>(this: *mut gtk_sys::GtkContainer, object: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Container>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Container::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(object))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"add\0".as_ptr() as *const _,
@@ -479,24 +485,18 @@ impl<O: IsA<Container>> ContainerExt for O {
     }
 
     fn connect_remove<F: Fn(&Self, &Widget) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn remove_trampoline<P, F: Fn(&P, &Widget) + 'static>(this: *mut gtk_sys::GtkContainer, object: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Container>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Container::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(object))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"remove\0".as_ptr() as *const _,
                 Some(transmute(remove_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn add_trampoline<P, F: Fn(&P, &Widget) + 'static>(this: *mut gtk_sys::GtkContainer, object: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Container> {
-    let f: &F = &*(f as *const F);
-    f(&Container::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(object))
-}
-
-unsafe extern "C" fn remove_trampoline<P, F: Fn(&P, &Widget) + 'static>(this: *mut gtk_sys::GtkContainer, object: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Container> {
-    let f: &F = &*(f as *const F);
-    f(&Container::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(object))
 }
 
 impl fmt::Display for Container {

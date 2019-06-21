@@ -408,6 +408,12 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     }
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFlowBoxChild, f: glib_sys::gpointer)
+            where P: IsA<FlowBoxChild>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FlowBoxChild::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate\0".as_ptr() as *const _,
@@ -418,12 +424,6 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     fn emit_activate(&self) {
         let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
     }
-}
-
-unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFlowBoxChild, f: glib_sys::gpointer)
-where P: IsA<FlowBoxChild> {
-    let f: &F = &*(f as *const F);
-    f(&FlowBoxChild::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for FlowBoxChild {

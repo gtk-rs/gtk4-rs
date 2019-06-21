@@ -623,6 +623,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_custom_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_custom_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::custom-title\0".as_ptr() as *const _,
@@ -631,6 +637,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_decoration_layout_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::decoration-layout\0".as_ptr() as *const _,
@@ -639,6 +651,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_decoration_layout_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_decoration_layout_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::decoration-layout-set\0".as_ptr() as *const _,
@@ -647,6 +665,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_has_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-subtitle\0".as_ptr() as *const _,
@@ -655,6 +679,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_show_title_buttons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_title_buttons_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::show-title-buttons\0".as_ptr() as *const _,
@@ -663,6 +693,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::spacing\0".as_ptr() as *const _,
@@ -671,6 +707,12 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::subtitle\0".as_ptr() as *const _,
@@ -679,60 +721,18 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
     }
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<HeaderBar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
                 Some(transmute(notify_title_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_custom_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_decoration_layout_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_show_title_buttons_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkHeaderBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<HeaderBar> {
-    let f: &F = &*(f as *const F);
-    f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for HeaderBar {

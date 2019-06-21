@@ -76,6 +76,10 @@ impl AssistantPage {
     }
 
     pub fn connect_property_complete_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_complete_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::complete\0".as_ptr() as *const _,
@@ -84,6 +88,10 @@ impl AssistantPage {
     }
 
     pub fn connect_property_page_type_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_page_type_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::page-type\0".as_ptr() as *const _,
@@ -92,27 +100,16 @@ impl AssistantPage {
     }
 
     pub fn connect_property_title_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
                 Some(transmute(notify_title_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_complete_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_page_type_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_title_trampoline<F: Fn(&AssistantPage) + 'static>(this: *mut gtk_sys::GtkAssistantPage, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for AssistantPage {

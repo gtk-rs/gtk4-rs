@@ -174,6 +174,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_active_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::active\0".as_ptr() as *const _,
@@ -182,6 +186,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_centered_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_centered_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::centered\0".as_ptr() as *const _,
@@ -190,6 +198,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_icon_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::icon\0".as_ptr() as *const _,
@@ -198,6 +210,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_iconic_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_iconic_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::iconic\0".as_ptr() as *const _,
@@ -206,6 +222,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_inverted_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::inverted\0".as_ptr() as *const _,
@@ -214,6 +234,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_menu_name_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_name_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::menu-name\0".as_ptr() as *const _,
@@ -222,6 +246,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_role_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_role_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::role\0".as_ptr() as *const _,
@@ -230,6 +258,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_text_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
@@ -238,6 +270,10 @@ impl ModelButton {
     }
 
     pub fn connect_property_use_markup_notify<F: Fn(&ModelButton) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-markup\0".as_ptr() as *const _,
@@ -705,51 +741,6 @@ impl ModelButtonBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_active_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_centered_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_icon_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_iconic_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_menu_name_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_role_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_text_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&ModelButton) + 'static>(this: *mut gtk_sys::GtkModelButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for ModelButton {

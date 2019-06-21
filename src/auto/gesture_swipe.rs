@@ -44,6 +44,10 @@ impl GestureSwipe {
     }
 
     pub fn connect_swipe<F: Fn(&GestureSwipe, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn swipe_trampoline<F: Fn(&GestureSwipe, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureSwipe, velocity_x: libc::c_double, velocity_y: libc::c_double, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), velocity_x, velocity_y)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"swipe\0".as_ptr() as *const _,
@@ -56,11 +60,6 @@ impl Default for GestureSwipe {
     fn default() -> Self {
         Self::new()
     }
-}
-
-unsafe extern "C" fn swipe_trampoline<F: Fn(&GestureSwipe, f64, f64) + 'static>(this: *mut gtk_sys::GtkGestureSwipe, velocity_x: libc::c_double, velocity_y: libc::c_double, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), velocity_x, velocity_y)
 }
 
 impl fmt::Display for GestureSwipe {

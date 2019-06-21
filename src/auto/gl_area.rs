@@ -567,6 +567,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn create_context_trampoline<P, F: Fn(&P) -> Option<gdk::GLContext> + 'static>(this: *mut gtk_sys::GtkGLArea, f: glib_sys::gpointer) -> *mut gdk_sys::GdkGLContext
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast()).to_glib_full()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"create-context\0".as_ptr() as *const _,
@@ -575,6 +581,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_render<F: Fn(&Self, &gdk::GLContext) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> Inhibit + 'static>(this: *mut gtk_sys::GtkGLArea, context: *mut gdk_sys::GdkGLContext, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"render\0".as_ptr() as *const _,
@@ -583,6 +595,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gtk_sys::GtkGLArea, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast(), width, height)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"resize\0".as_ptr() as *const _,
@@ -591,6 +609,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_property_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::auto-render\0".as_ptr() as *const _,
@@ -599,6 +623,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_property_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::context\0".as_ptr() as *const _,
@@ -607,6 +637,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_property_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-depth-buffer\0".as_ptr() as *const _,
@@ -615,6 +651,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_property_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-stencil-buffer\0".as_ptr() as *const _,
@@ -623,60 +665,18 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
     }
 
     fn connect_property_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GLArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GLArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-es\0".as_ptr() as *const _,
                 Some(transmute(notify_use_es_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn create_context_trampoline<P, F: Fn(&P) -> Option<gdk::GLContext> + 'static>(this: *mut gtk_sys::GtkGLArea, f: glib_sys::gpointer) -> *mut gdk_sys::GdkGLContext
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast()).to_glib_full()
-}
-
-unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> Inhibit + 'static>(this: *mut gtk_sys::GtkGLArea, context: *mut gdk_sys::GdkGLContext, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context)).to_glib()
-}
-
-unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gtk_sys::GtkGLArea, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast(), width, height)
-}
-
-unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGLArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GLArea> {
-    let f: &F = &*(f as *const F);
-    f(&GLArea::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for GLArea {

@@ -1085,6 +1085,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkAboutDialog, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
@@ -1093,6 +1099,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_artists_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_artists_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::artists\0".as_ptr() as *const _,
@@ -1101,6 +1113,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_authors_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_authors_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::authors\0".as_ptr() as *const _,
@@ -1109,6 +1127,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_comments_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_comments_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::comments\0".as_ptr() as *const _,
@@ -1117,6 +1141,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_copyright_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_copyright_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::copyright\0".as_ptr() as *const _,
@@ -1125,6 +1155,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_documenters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_documenters_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::documenters\0".as_ptr() as *const _,
@@ -1133,6 +1169,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_license_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::license\0".as_ptr() as *const _,
@@ -1141,6 +1183,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_license_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_license_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::license-type\0".as_ptr() as *const _,
@@ -1149,6 +1197,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_logo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_logo_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::logo\0".as_ptr() as *const _,
@@ -1157,6 +1211,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_logo_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_logo_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::logo-icon-name\0".as_ptr() as *const _,
@@ -1165,6 +1225,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_program_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_program_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::program-name\0".as_ptr() as *const _,
@@ -1173,6 +1239,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_system_information_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_system_information_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::system-information\0".as_ptr() as *const _,
@@ -1181,6 +1253,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_translator_credits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_translator_credits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::translator-credits\0".as_ptr() as *const _,
@@ -1189,6 +1267,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_version_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_version_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::version\0".as_ptr() as *const _,
@@ -1197,6 +1281,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_website_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_website_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::website\0".as_ptr() as *const _,
@@ -1205,6 +1295,12 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_website_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_website_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::website-label\0".as_ptr() as *const _,
@@ -1213,114 +1309,18 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
     }
 
     fn connect_property_wrap_license_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wrap_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AboutDialog>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::wrap-license\0".as_ptr() as *const _,
                 Some(transmute(notify_wrap_license_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkAboutDialog, uri: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(uri)).to_glib()
-}
-
-unsafe extern "C" fn notify_artists_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_authors_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_comments_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_copyright_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_documenters_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_license_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_logo_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_logo_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_program_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_system_information_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_translator_credits_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_version_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_website_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_website_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_wrap_license_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAboutDialog, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AboutDialog> {
-    let f: &F = &*(f as *const F);
-    f(&AboutDialog::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for AboutDialog {

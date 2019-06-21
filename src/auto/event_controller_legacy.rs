@@ -33,6 +33,10 @@ impl EventControllerLegacy {
     }
 
     pub fn connect_event<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn event_trampoline<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerLegacy, event: *mut gdk_sys::GdkEvent, f: glib_sys::gpointer) -> glib_sys::gboolean {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"event\0".as_ptr() as *const _,
@@ -45,11 +49,6 @@ impl Default for EventControllerLegacy {
     fn default() -> Self {
         Self::new()
     }
-}
-
-unsafe extern "C" fn event_trampoline<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(this: *mut gtk_sys::GtkEventControllerLegacy, event: *mut gdk_sys::GdkEvent, f: glib_sys::gpointer) -> glib_sys::gboolean {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
 }
 
 impl fmt::Display for EventControllerLegacy {

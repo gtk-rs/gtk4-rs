@@ -67,6 +67,10 @@ impl ShortcutLabel {
     }
 
     pub fn connect_property_accelerator_notify<F: Fn(&ShortcutLabel) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accelerator_trampoline<F: Fn(&ShortcutLabel) + 'static>(this: *mut gtk_sys::GtkShortcutLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::accelerator\0".as_ptr() as *const _,
@@ -75,6 +79,10 @@ impl ShortcutLabel {
     }
 
     pub fn connect_property_disabled_text_notify<F: Fn(&ShortcutLabel) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_disabled_text_trampoline<F: Fn(&ShortcutLabel) + 'static>(this: *mut gtk_sys::GtkShortcutLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::disabled-text\0".as_ptr() as *const _,
@@ -456,16 +464,6 @@ impl ShortcutLabelBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_accelerator_trampoline<F: Fn(&ShortcutLabel) + 'static>(this: *mut gtk_sys::GtkShortcutLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_disabled_text_trampoline<F: Fn(&ShortcutLabel) + 'static>(this: *mut gtk_sys::GtkShortcutLabel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for ShortcutLabel {

@@ -681,6 +681,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn clicked_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"clicked\0".as_ptr() as *const _,
@@ -689,6 +695,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::alignment\0".as_ptr() as *const _,
@@ -697,6 +709,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_clickable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_clickable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::clickable\0".as_ptr() as *const _,
@@ -705,6 +723,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::expand\0".as_ptr() as *const _,
@@ -713,6 +737,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fixed_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::fixed-width\0".as_ptr() as *const _,
@@ -721,6 +751,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_max_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::max-width\0".as_ptr() as *const _,
@@ -729,6 +765,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_min_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_min_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::min-width\0".as_ptr() as *const _,
@@ -737,6 +779,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::reorderable\0".as_ptr() as *const _,
@@ -745,6 +793,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_resizable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::resizable\0".as_ptr() as *const _,
@@ -753,6 +807,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_sizing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sizing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::sizing\0".as_ptr() as *const _,
@@ -761,6 +821,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_sort_column_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sort_column_id_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::sort-column-id\0".as_ptr() as *const _,
@@ -769,6 +835,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_sort_indicator_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sort_indicator_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::sort-indicator\0".as_ptr() as *const _,
@@ -777,6 +849,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_sort_order_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sort_order_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::sort-order\0".as_ptr() as *const _,
@@ -785,6 +863,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::spacing\0".as_ptr() as *const _,
@@ -793,6 +877,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
@@ -801,6 +891,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible\0".as_ptr() as *const _,
@@ -809,6 +905,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::widget\0".as_ptr() as *const _,
@@ -817,6 +919,12 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::width\0".as_ptr() as *const _,
@@ -825,126 +933,18 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     }
 
     fn connect_property_x_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_x_offset_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TreeViewColumn>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::x-offset\0".as_ptr() as *const _,
                 Some(transmute(notify_x_offset_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn clicked_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_clickable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_fixed_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_max_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_min_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_resizable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_sizing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_sort_column_id_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_sort_indicator_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_sort_order_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_x_offset_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTreeViewColumn, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TreeViewColumn> {
-    let f: &F = &*(f as *const F);
-    f(&TreeViewColumn::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for TreeViewColumn {

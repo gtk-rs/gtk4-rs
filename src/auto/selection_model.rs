@@ -108,18 +108,18 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
     }
 
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(this: *mut gtk_sys::GtkSelectionModel, position: libc::c_uint, n_items: libc::c_uint, f: glib_sys::gpointer)
+            where P: IsA<SelectionModel>
+        {
+            let f: &F = &*(f as *const F);
+            f(&SelectionModel::from_glib_borrow(this).unsafe_cast(), position, n_items)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"selection-changed\0".as_ptr() as *const _,
                 Some(transmute(selection_changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(this: *mut gtk_sys::GtkSelectionModel, position: libc::c_uint, n_items: libc::c_uint, f: glib_sys::gpointer)
-where P: IsA<SelectionModel> {
-    let f: &F = &*(f as *const F);
-    f(&SelectionModel::from_glib_borrow(this).unsafe_cast(), position, n_items)
 }
 
 impl fmt::Display for SelectionModel {

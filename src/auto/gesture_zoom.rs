@@ -39,6 +39,10 @@ impl GestureZoom {
     }
 
     pub fn connect_scale_changed<F: Fn(&GestureZoom, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn scale_changed_trampoline<F: Fn(&GestureZoom, f64) + 'static>(this: *mut gtk_sys::GtkGestureZoom, scale: libc::c_double, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), scale)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"scale-changed\0".as_ptr() as *const _,
@@ -51,11 +55,6 @@ impl Default for GestureZoom {
     fn default() -> Self {
         Self::new()
     }
-}
-
-unsafe extern "C" fn scale_changed_trampoline<F: Fn(&GestureZoom, f64) + 'static>(this: *mut gtk_sys::GtkGestureZoom, scale: libc::c_double, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), scale)
 }
 
 impl fmt::Display for GestureZoom {

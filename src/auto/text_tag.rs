@@ -1449,6 +1449,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_accumulative_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accumulative_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::accumulative-margin\0".as_ptr() as *const _,
@@ -1457,6 +1463,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::background\0".as_ptr() as *const _,
@@ -1465,6 +1477,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_background_full_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_full_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::background-full-height\0".as_ptr() as *const _,
@@ -1473,6 +1491,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_background_full_height_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_full_height_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::background-full-height-set\0".as_ptr() as *const _,
@@ -1481,6 +1505,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::background-rgba\0".as_ptr() as *const _,
@@ -1489,6 +1519,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::background-set\0".as_ptr() as *const _,
@@ -1497,6 +1533,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_direction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::direction\0".as_ptr() as *const _,
@@ -1505,6 +1547,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::editable\0".as_ptr() as *const _,
@@ -1513,6 +1561,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::editable-set\0".as_ptr() as *const _,
@@ -1521,6 +1575,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::fallback\0".as_ptr() as *const _,
@@ -1529,6 +1589,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_fallback_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fallback_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::fallback-set\0".as_ptr() as *const _,
@@ -1537,6 +1603,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::family\0".as_ptr() as *const _,
@@ -1545,6 +1617,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::family-set\0".as_ptr() as *const _,
@@ -1553,6 +1631,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::font\0".as_ptr() as *const _,
@@ -1561,6 +1645,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::font-desc\0".as_ptr() as *const _,
@@ -1569,6 +1659,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_font_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_font_features_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::font-features\0".as_ptr() as *const _,
@@ -1577,6 +1673,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_font_features_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_font_features_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::font-features-set\0".as_ptr() as *const _,
@@ -1585,6 +1687,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::foreground\0".as_ptr() as *const _,
@@ -1593,6 +1701,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::foreground-rgba\0".as_ptr() as *const _,
@@ -1601,6 +1715,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::foreground-set\0".as_ptr() as *const _,
@@ -1609,6 +1729,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::indent\0".as_ptr() as *const _,
@@ -1617,6 +1743,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_indent_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::indent-set\0".as_ptr() as *const _,
@@ -1625,6 +1757,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_invisible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::invisible\0".as_ptr() as *const _,
@@ -1633,6 +1771,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_invisible_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_invisible_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::invisible-set\0".as_ptr() as *const _,
@@ -1641,6 +1785,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::justification\0".as_ptr() as *const _,
@@ -1649,6 +1799,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_justification_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_justification_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::justification-set\0".as_ptr() as *const _,
@@ -1657,6 +1813,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::language\0".as_ptr() as *const _,
@@ -1665,6 +1827,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::language-set\0".as_ptr() as *const _,
@@ -1673,6 +1841,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::left-margin\0".as_ptr() as *const _,
@@ -1681,6 +1855,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_left_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_left_margin_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::left-margin-set\0".as_ptr() as *const _,
@@ -1689,6 +1869,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_letter_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_letter_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::letter-spacing\0".as_ptr() as *const _,
@@ -1697,6 +1883,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_letter_spacing_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_letter_spacing_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::letter-spacing-set\0".as_ptr() as *const _,
@@ -1705,6 +1897,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_paragraph_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paragraph_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::paragraph-background\0".as_ptr() as *const _,
@@ -1713,6 +1911,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_paragraph_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paragraph_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::paragraph-background-rgba\0".as_ptr() as *const _,
@@ -1721,6 +1925,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_paragraph_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paragraph_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::paragraph-background-set\0".as_ptr() as *const _,
@@ -1729,6 +1939,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-above-lines\0".as_ptr() as *const _,
@@ -1737,6 +1953,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_above_lines_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_above_lines_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-above-lines-set\0".as_ptr() as *const _,
@@ -1745,6 +1967,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-below-lines\0".as_ptr() as *const _,
@@ -1753,6 +1981,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_below_lines_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_below_lines_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-below-lines-set\0".as_ptr() as *const _,
@@ -1761,6 +1995,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-inside-wrap\0".as_ptr() as *const _,
@@ -1769,6 +2009,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_pixels_inside_wrap_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pixels_inside_wrap_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pixels-inside-wrap-set\0".as_ptr() as *const _,
@@ -1777,6 +2023,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::right-margin\0".as_ptr() as *const _,
@@ -1785,6 +2037,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_right_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_right_margin_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::right-margin-set\0".as_ptr() as *const _,
@@ -1793,6 +2051,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::rise\0".as_ptr() as *const _,
@@ -1801,6 +2065,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::rise-set\0".as_ptr() as *const _,
@@ -1809,6 +2079,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::scale\0".as_ptr() as *const _,
@@ -1817,6 +2093,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::scale-set\0".as_ptr() as *const _,
@@ -1825,6 +2107,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::size\0".as_ptr() as *const _,
@@ -1833,6 +2121,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::size-points\0".as_ptr() as *const _,
@@ -1841,6 +2135,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::size-set\0".as_ptr() as *const _,
@@ -1849,6 +2149,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::stretch\0".as_ptr() as *const _,
@@ -1857,6 +2163,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::stretch-set\0".as_ptr() as *const _,
@@ -1865,6 +2177,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough\0".as_ptr() as *const _,
@@ -1873,6 +2191,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_strikethrough_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough-rgba\0".as_ptr() as *const _,
@@ -1881,6 +2205,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_strikethrough_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_rgba_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough-rgba-set\0".as_ptr() as *const _,
@@ -1889,6 +2219,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough-set\0".as_ptr() as *const _,
@@ -1897,6 +2233,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::style\0".as_ptr() as *const _,
@@ -1905,6 +2247,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::style-set\0".as_ptr() as *const _,
@@ -1913,6 +2261,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::tabs\0".as_ptr() as *const _,
@@ -1921,6 +2275,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tabs_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::tabs-set\0".as_ptr() as *const _,
@@ -1929,6 +2289,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::underline\0".as_ptr() as *const _,
@@ -1937,6 +2303,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_underline_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_underline_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::underline-rgba\0".as_ptr() as *const _,
@@ -1945,6 +2317,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_underline_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_underline_rgba_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::underline-rgba-set\0".as_ptr() as *const _,
@@ -1953,6 +2331,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::underline-set\0".as_ptr() as *const _,
@@ -1961,6 +2345,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::variant\0".as_ptr() as *const _,
@@ -1969,6 +2359,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::variant-set\0".as_ptr() as *const _,
@@ -1977,6 +2373,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::weight\0".as_ptr() as *const _,
@@ -1985,6 +2387,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::weight-set\0".as_ptr() as *const _,
@@ -1993,6 +2401,12 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::wrap-mode\0".as_ptr() as *const _,
@@ -2001,432 +2415,18 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn connect_property_wrap_mode_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wrap_mode_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<TextTag>
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::wrap-mode-set\0".as_ptr() as *const _,
                 Some(transmute(notify_wrap_mode_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_accumulative_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_background_full_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_background_full_height_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_direction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_fallback_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_fallback_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_font_features_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_font_features_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_indent_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_invisible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_invisible_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_justification_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_left_margin_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_letter_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_letter_spacing_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_paragraph_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_paragraph_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_paragraph_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_above_lines_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_below_lines_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pixels_inside_wrap_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_right_margin_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_strikethrough_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_strikethrough_rgba_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_tabs_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_underline_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_underline_rgba_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_wrap_mode_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextTag, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<TextTag> {
-    let f: &F = &*(f as *const F);
-    f(&TextTag::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for TextTag {

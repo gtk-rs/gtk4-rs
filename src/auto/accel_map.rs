@@ -119,17 +119,16 @@ impl AccelMap {
     }
 
     pub fn connect_changed<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn changed_trampoline<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkAccelMap, accel_path: *mut libc::c_char, accel_key: libc::c_uint, accel_mods: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &GString::from_glib_borrow(accel_path), accel_key, from_glib(accel_mods))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
                 Some(transmute(changed_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn changed_trampoline<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkAccelMap, accel_path: *mut libc::c_char, accel_key: libc::c_uint, accel_mods: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), &GString::from_glib_borrow(accel_path), accel_key, from_glib(accel_mods))
 }
 
 impl fmt::Display for AccelMap {

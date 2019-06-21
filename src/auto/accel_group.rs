@@ -154,6 +154,12 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
     }
 
     fn connect_accel_activate<F: Fn(&Self, &glib::Object, u32, gdk::ModifierType) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn accel_activate_trampoline<P, F: Fn(&P, &glib::Object, u32, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkAccelGroup, acceleratable: *mut gobject_sys::GObject, keyval: libc::c_uint, modifier: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<AccelGroup>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AccelGroup::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(acceleratable), keyval, from_glib(modifier)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"accel-activate\0".as_ptr() as *const _,
@@ -162,6 +168,12 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
     }
 
     fn connect_accel_changed<F: Fn(&Self, u32, gdk::ModifierType, &glib::Closure) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn accel_changed_trampoline<P, F: Fn(&P, u32, gdk::ModifierType, &glib::Closure) + 'static>(this: *mut gtk_sys::GtkAccelGroup, keyval: libc::c_uint, modifier: gdk_sys::GdkModifierType, accel_closure: *mut gobject_sys::GClosure, f: glib_sys::gpointer)
+            where P: IsA<AccelGroup>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AccelGroup::from_glib_borrow(this).unsafe_cast(), keyval, from_glib(modifier), &from_glib_borrow(accel_closure))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"accel-changed\0".as_ptr() as *const _,
@@ -170,6 +182,12 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
     }
 
     fn connect_property_is_locked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_locked_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccelGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AccelGroup>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AccelGroup::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::is-locked\0".as_ptr() as *const _,
@@ -178,36 +196,18 @@ impl<O: IsA<AccelGroup>> AccelGroupExt for O {
     }
 
     fn connect_property_modifier_mask_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_modifier_mask_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccelGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<AccelGroup>
+        {
+            let f: &F = &*(f as *const F);
+            f(&AccelGroup::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::modifier-mask\0".as_ptr() as *const _,
                 Some(transmute(notify_modifier_mask_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn accel_activate_trampoline<P, F: Fn(&P, &glib::Object, u32, gdk::ModifierType) -> bool + 'static>(this: *mut gtk_sys::GtkAccelGroup, acceleratable: *mut gobject_sys::GObject, keyval: libc::c_uint, modifier: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<AccelGroup> {
-    let f: &F = &*(f as *const F);
-    f(&AccelGroup::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(acceleratable), keyval, from_glib(modifier)).to_glib()
-}
-
-unsafe extern "C" fn accel_changed_trampoline<P, F: Fn(&P, u32, gdk::ModifierType, &glib::Closure) + 'static>(this: *mut gtk_sys::GtkAccelGroup, keyval: libc::c_uint, modifier: gdk_sys::GdkModifierType, accel_closure: *mut gobject_sys::GClosure, f: glib_sys::gpointer)
-where P: IsA<AccelGroup> {
-    let f: &F = &*(f as *const F);
-    f(&AccelGroup::from_glib_borrow(this).unsafe_cast(), keyval, from_glib(modifier), &from_glib_borrow(accel_closure))
-}
-
-unsafe extern "C" fn notify_is_locked_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccelGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AccelGroup> {
-    let f: &F = &*(f as *const F);
-    f(&AccelGroup::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_modifier_mask_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccelGroup, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<AccelGroup> {
-    let f: &F = &*(f as *const F);
-    f(&AccelGroup::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for AccelGroup {

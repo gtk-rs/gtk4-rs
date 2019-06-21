@@ -472,6 +472,12 @@ impl<O: IsA<Revealer>> RevealerExt for O {
     }
 
     fn connect_property_child_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Revealer>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Revealer::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::child-revealed\0".as_ptr() as *const _,
@@ -480,6 +486,12 @@ impl<O: IsA<Revealer>> RevealerExt for O {
     }
 
     fn connect_property_reveal_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_reveal_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Revealer>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Revealer::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::reveal-child\0".as_ptr() as *const _,
@@ -488,6 +500,12 @@ impl<O: IsA<Revealer>> RevealerExt for O {
     }
 
     fn connect_property_transition_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Revealer>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Revealer::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::transition-duration\0".as_ptr() as *const _,
@@ -496,36 +514,18 @@ impl<O: IsA<Revealer>> RevealerExt for O {
     }
 
     fn connect_property_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Revealer>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Revealer::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::transition-type\0".as_ptr() as *const _,
                 Some(transmute(notify_transition_type_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_child_revealed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Revealer> {
-    let f: &F = &*(f as *const F);
-    f(&Revealer::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_reveal_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Revealer> {
-    let f: &F = &*(f as *const F);
-    f(&Revealer::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Revealer> {
-    let f: &F = &*(f as *const F);
-    f(&Revealer::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRevealer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Revealer> {
-    let f: &F = &*(f as *const F);
-    f(&Revealer::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Revealer {

@@ -578,6 +578,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_confirm_overwrite<F: Fn(&Self) -> FileChooserConfirmation + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn confirm_overwrite_trampoline<P, F: Fn(&P) -> FileChooserConfirmation + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer) -> gtk_sys::GtkFileChooserConfirmation
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast()).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"confirm-overwrite\0".as_ptr() as *const _,
@@ -586,6 +592,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_current_folder_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn current_folder_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"current-folder-changed\0".as_ptr() as *const _,
@@ -594,6 +606,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_file_activated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn file_activated_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"file-activated\0".as_ptr() as *const _,
@@ -602,6 +620,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"selection-changed\0".as_ptr() as *const _,
@@ -610,6 +634,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_update_preview<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn update_preview_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"update-preview\0".as_ptr() as *const _,
@@ -618,6 +648,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_action_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::action\0".as_ptr() as *const _,
@@ -626,6 +662,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_create_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_create_folders_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::create-folders\0".as_ptr() as *const _,
@@ -634,6 +676,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_do_overwrite_confirmation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_do_overwrite_confirmation_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::do-overwrite-confirmation\0".as_ptr() as *const _,
@@ -642,6 +690,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_extra_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_extra_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::extra-widget\0".as_ptr() as *const _,
@@ -650,6 +704,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_filter_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::filter\0".as_ptr() as *const _,
@@ -658,6 +718,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_local_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_local_only_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::local-only\0".as_ptr() as *const _,
@@ -666,6 +732,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_preview_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_preview_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::preview-widget\0".as_ptr() as *const _,
@@ -674,6 +746,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_preview_widget_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_preview_widget_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::preview-widget-active\0".as_ptr() as *const _,
@@ -682,6 +760,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_select_multiple_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::select-multiple\0".as_ptr() as *const _,
@@ -690,6 +774,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_show_hidden_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_hidden_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::show-hidden\0".as_ptr() as *const _,
@@ -698,108 +788,18 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
     }
 
     fn connect_property_use_preview_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_preview_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<FileChooser>
+        {
+            let f: &F = &*(f as *const F);
+            f(&FileChooser::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-preview-label\0".as_ptr() as *const _,
                 Some(transmute(notify_use_preview_label_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn confirm_overwrite_trampoline<P, F: Fn(&P) -> FileChooserConfirmation + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer) -> gtk_sys::GtkFileChooserConfirmation
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast()).to_glib()
-}
-
-unsafe extern "C" fn current_folder_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn file_activated_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn update_preview_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_action_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_create_folders_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_do_overwrite_confirmation_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_extra_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_filter_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_local_only_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_preview_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_preview_widget_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_select_multiple_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_show_hidden_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_preview_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkFileChooser, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<FileChooser> {
-    let f: &F = &*(f as *const F);
-    f(&FileChooser::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for FileChooser {

@@ -112,6 +112,12 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
     }
 
     fn connect_property_hadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Scrollable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::hadjustment\0".as_ptr() as *const _,
@@ -120,6 +126,12 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
     }
 
     fn connect_property_hscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hscroll_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Scrollable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::hscroll-policy\0".as_ptr() as *const _,
@@ -128,6 +140,12 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
     }
 
     fn connect_property_vadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Scrollable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::vadjustment\0".as_ptr() as *const _,
@@ -136,36 +154,18 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
     }
 
     fn connect_property_vscroll_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vscroll_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Scrollable>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::vscroll-policy\0".as_ptr() as *const _,
                 Some(transmute(notify_vscroll_policy_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_hadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Scrollable> {
-    let f: &F = &*(f as *const F);
-    f(&Scrollable::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_hscroll_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Scrollable> {
-    let f: &F = &*(f as *const F);
-    f(&Scrollable::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_vadjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Scrollable> {
-    let f: &F = &*(f as *const F);
-    f(&Scrollable::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_vscroll_policy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScrollable, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Scrollable> {
-    let f: &F = &*(f as *const F);
-    f(&Scrollable::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Scrollable {

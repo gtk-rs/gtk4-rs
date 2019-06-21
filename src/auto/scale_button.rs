@@ -542,6 +542,12 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_popdown<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn popdown_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"popdown\0".as_ptr() as *const _,
@@ -554,6 +560,12 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn popup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"popup\0".as_ptr() as *const _,
@@ -566,6 +578,12 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P, f64) + 'static>(this: *mut gtk_sys::GtkScaleButton, value: libc::c_double, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast(), value)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"value-changed\0".as_ptr() as *const _,
@@ -574,6 +592,12 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_property_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::adjustment\0".as_ptr() as *const _,
@@ -582,6 +606,12 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_property_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icons_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::icons\0".as_ptr() as *const _,
@@ -590,48 +620,18 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn connect_property_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<ScaleButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::value\0".as_ptr() as *const _,
                 Some(transmute(notify_value_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn popdown_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn popup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P, f64) + 'static>(this: *mut gtk_sys::GtkScaleButton, value: libc::c_double, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast(), value)
-}
-
-unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_icons_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkScaleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<ScaleButton> {
-    let f: &F = &*(f as *const F);
-    f(&ScaleButton::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for ScaleButton {

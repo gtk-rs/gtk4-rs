@@ -87,7 +87,7 @@ impl IconInfo {
     }
 
     #[cfg(feature = "futures")]
-    pub fn load_icon_async_future(&self) -> Box_<future::Future<Output = Result<gdk_pixbuf::Pixbuf, Error>> + std::marker::Unpin> {
+    pub fn load_icon_async_future(&self) -> Box_<dyn future::Future<Output = Result<gdk_pixbuf::Pixbuf, Error>> + std::marker::Unpin> {
         use gio::GioFuture;
         use fragile::Fragile;
 
@@ -131,7 +131,7 @@ impl IconInfo {
     }
 
     #[cfg(feature = "futures")]
-    pub fn load_symbolic_async_future(&self, fg: &gdk::RGBA, success_color: Option<&gdk::RGBA>, warning_color: Option<&gdk::RGBA>, error_color: Option<&gdk::RGBA>) -> Box_<future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
+    pub fn load_symbolic_async_future(&self, fg: &gdk::RGBA, success_color: Option<&gdk::RGBA>, warning_color: Option<&gdk::RGBA>, error_color: Option<&gdk::RGBA>) -> Box_<dyn future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
         use gio::GioFuture;
         use fragile::Fragile;
 
@@ -183,7 +183,7 @@ impl IconInfo {
     }
 
     #[cfg(feature = "futures")]
-    pub fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(&self, context: &P) -> Box_<future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
+    pub fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(&self, context: &P) -> Box_<dyn future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin> {
         use gio::GioFuture;
         use fragile::Fragile;
 

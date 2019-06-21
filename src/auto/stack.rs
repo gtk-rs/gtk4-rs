@@ -664,6 +664,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_hhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hhomogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::hhomogeneous\0".as_ptr() as *const _,
@@ -672,6 +678,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::homogeneous\0".as_ptr() as *const _,
@@ -680,6 +692,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_interpolate_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::interpolate-size\0".as_ptr() as *const _,
@@ -688,6 +706,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pages_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::pages\0".as_ptr() as *const _,
@@ -696,6 +720,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_transition_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::transition-duration\0".as_ptr() as *const _,
@@ -704,6 +734,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_transition_running_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_running_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::transition-running\0".as_ptr() as *const _,
@@ -712,6 +748,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::transition-type\0".as_ptr() as *const _,
@@ -720,6 +762,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_vhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vhomogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::vhomogeneous\0".as_ptr() as *const _,
@@ -728,6 +776,12 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible-child\0".as_ptr() as *const _,
@@ -736,72 +790,18 @@ impl<O: IsA<Stack>> StackExt for O {
     }
 
     fn connect_property_visible_child_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_child_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Stack>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Stack::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible-child-name\0".as_ptr() as *const _,
                 Some(transmute(notify_visible_child_name_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_hhomogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_interpolate_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_pages_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_transition_duration_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_transition_running_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_transition_type_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_vhomogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_child_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_child_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStack, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Stack> {
-    let f: &F = &*(f as *const F);
-    f(&Stack::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Stack {

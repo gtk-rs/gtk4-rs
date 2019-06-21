@@ -22,6 +22,8 @@ glib_wrapper! {
     match fn {
         copy => |ptr| gtk_sys::gtk_text_iter_copy(mut_override(ptr)),
         free => |ptr| gtk_sys::gtk_text_iter_free(ptr),
+        init => |_ptr| (),
+        clear => |_ptr| (),
         get_type => || gtk_sys::gtk_text_iter_get_type(),
     }
 }

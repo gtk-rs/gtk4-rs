@@ -528,6 +528,12 @@ impl<O: IsA<CheckMenuItem>> CheckMenuItemExt for O {
     }
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, f: glib_sys::gpointer)
+            where P: IsA<CheckMenuItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"toggled\0".as_ptr() as *const _,
@@ -536,6 +542,12 @@ impl<O: IsA<CheckMenuItem>> CheckMenuItemExt for O {
     }
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CheckMenuItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::active\0".as_ptr() as *const _,
@@ -544,6 +556,12 @@ impl<O: IsA<CheckMenuItem>> CheckMenuItemExt for O {
     }
 
     fn connect_property_draw_as_radio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_draw_as_radio_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CheckMenuItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::draw-as-radio\0".as_ptr() as *const _,
@@ -552,36 +570,18 @@ impl<O: IsA<CheckMenuItem>> CheckMenuItemExt for O {
     }
 
     fn connect_property_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inconsistent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CheckMenuItem>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::inconsistent\0".as_ptr() as *const _,
                 Some(transmute(notify_inconsistent_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, f: glib_sys::gpointer)
-where P: IsA<CheckMenuItem> {
-    let f: &F = &*(f as *const F);
-    f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CheckMenuItem> {
-    let f: &F = &*(f as *const F);
-    f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_draw_as_radio_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CheckMenuItem> {
-    let f: &F = &*(f as *const F);
-    f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_inconsistent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCheckMenuItem, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CheckMenuItem> {
-    let f: &F = &*(f as *const F);
-    f(&CheckMenuItem::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for CheckMenuItem {

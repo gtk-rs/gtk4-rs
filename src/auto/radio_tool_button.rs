@@ -516,18 +516,18 @@ impl<O: IsA<RadioToolButton>> RadioToolButtonExt for O {
     }
 
     fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRadioToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<RadioToolButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&RadioToolButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::group\0".as_ptr() as *const _,
                 Some(transmute(notify_group_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRadioToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<RadioToolButton> {
-    let f: &F = &*(f as *const F);
-    f(&RadioToolButton::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for RadioToolButton {

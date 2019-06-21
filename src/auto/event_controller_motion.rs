@@ -66,6 +66,10 @@ impl EventControllerMotion {
     }
 
     pub fn connect_enter<F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn enter_trampoline<F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, crossing_mode: gdk_sys::GdkCrossingMode, notify_type: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), x, y, from_glib(crossing_mode), from_glib(notify_type))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"enter\0".as_ptr() as *const _,
@@ -74,6 +78,10 @@ impl EventControllerMotion {
     }
 
     pub fn connect_leave<F: Fn(&EventControllerMotion, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn leave_trampoline<F: Fn(&EventControllerMotion, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, crossing_mode: gdk_sys::GdkCrossingMode, notify_type: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(crossing_mode), from_glib(notify_type))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"leave\0".as_ptr() as *const _,
@@ -82,6 +90,10 @@ impl EventControllerMotion {
     }
 
     pub fn connect_motion<F: Fn(&EventControllerMotion, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn motion_trampoline<F: Fn(&EventControllerMotion, f64, f64) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), x, y)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"motion\0".as_ptr() as *const _,
@@ -90,6 +102,10 @@ impl EventControllerMotion {
     }
 
     pub fn connect_property_contains_pointer_focus_notify<F: Fn(&EventControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_contains_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::contains-pointer-focus\0".as_ptr() as *const _,
@@ -98,6 +114,10 @@ impl EventControllerMotion {
     }
 
     pub fn connect_property_is_pointer_focus_notify<F: Fn(&EventControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::is-pointer-focus\0".as_ptr() as *const _,
@@ -110,31 +130,6 @@ impl Default for EventControllerMotion {
     fn default() -> Self {
         Self::new()
     }
-}
-
-unsafe extern "C" fn enter_trampoline<F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, crossing_mode: gdk_sys::GdkCrossingMode, notify_type: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), x, y, from_glib(crossing_mode), from_glib(notify_type))
-}
-
-unsafe extern "C" fn leave_trampoline<F: Fn(&EventControllerMotion, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, crossing_mode: gdk_sys::GdkCrossingMode, notify_type: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), from_glib(crossing_mode), from_glib(notify_type))
-}
-
-unsafe extern "C" fn motion_trampoline<F: Fn(&EventControllerMotion, f64, f64) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, x: libc::c_double, y: libc::c_double, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), x, y)
-}
-
-unsafe extern "C" fn notify_contains_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_is_pointer_focus_trampoline<F: Fn(&EventControllerMotion) + 'static>(this: *mut gtk_sys::GtkEventControllerMotion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for EventControllerMotion {

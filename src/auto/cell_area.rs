@@ -454,6 +454,13 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_add_editable<F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn add_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, cell_area: *mut gdk_sys::GdkRectangle, path: *mut libc::c_char, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable), &from_glib_borrow(cell_area), path)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"add-editable\0".as_ptr() as *const _,
@@ -462,6 +469,12 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn apply_attributes_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter, bool, bool) + 'static>(this: *mut gtk_sys::GtkCellArea, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, is_expander: glib_sys::gboolean, is_expanded: glib_sys::gboolean, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter), from_glib(is_expander), from_glib(is_expanded))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"apply-attributes\0".as_ptr() as *const _,
@@ -470,6 +483,13 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn focus_changed_trampoline<P, F: Fn(&P, &CellRenderer, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, path: *mut libc::c_char, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), path)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"focus-changed\0".as_ptr() as *const _,
@@ -478,6 +498,12 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_remove_editable<F: Fn(&Self, &CellRenderer, &CellEditable) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn remove_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"remove-editable\0".as_ptr() as *const _,
@@ -486,6 +512,12 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_property_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_edit_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::edit-widget\0".as_ptr() as *const _,
@@ -494,6 +526,12 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_property_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_edited_cell_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::edited-cell\0".as_ptr() as *const _,
@@ -502,56 +540,18 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     fn connect_property_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_focus_cell_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<CellArea>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::focus-cell\0".as_ptr() as *const _,
                 Some(transmute(notify_focus_cell_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn add_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, cell_area: *mut gdk_sys::GdkRectangle, path: *mut libc::c_char, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable), &from_glib_borrow(cell_area), path)
-}
-
-unsafe extern "C" fn apply_attributes_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter, bool, bool) + 'static>(this: *mut gtk_sys::GtkCellArea, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, is_expander: glib_sys::gboolean, is_expanded: glib_sys::gboolean, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter), from_glib(is_expander), from_glib(is_expanded))
-}
-
-unsafe extern "C" fn focus_changed_trampoline<P, F: Fn(&P, &CellRenderer, TreePath) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, path: *mut libc::c_char, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), path)
-}
-
-unsafe extern "C" fn remove_editable_trampoline<P, F: Fn(&P, &CellRenderer, &CellEditable) + 'static>(this: *mut gtk_sys::GtkCellArea, renderer: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(renderer), &from_glib_borrow(editable))
-}
-
-unsafe extern "C" fn notify_edit_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_edited_cell_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_focus_cell_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellArea, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<CellArea> {
-    let f: &F = &*(f as *const F);
-    f(&CellArea::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for CellArea {

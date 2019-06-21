@@ -98,18 +98,18 @@ impl<O: IsA<CssProvider>> CssProviderExt for O {
     }
 
     fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn parsing_error_trampoline<P, F: Fn(&P, &CssSection, &Error) + 'static>(this: *mut gtk_sys::GtkCssProvider, section: *mut gtk_sys::GtkCssSection, error: *mut glib_sys::GError, f: glib_sys::gpointer)
+            where P: IsA<CssProvider>
+        {
+            let f: &F = &*(f as *const F);
+            f(&CssProvider::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(section), &from_glib_borrow(error))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"parsing-error\0".as_ptr() as *const _,
                 Some(transmute(parsing_error_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn parsing_error_trampoline<P, F: Fn(&P, &CssSection, &Error) + 'static>(this: *mut gtk_sys::GtkCssProvider, section: *mut gtk_sys::GtkCssSection, error: *mut glib_sys::GError, f: glib_sys::gpointer)
-where P: IsA<CssProvider> {
-    let f: &F = &*(f as *const F);
-    f(&CssProvider::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(section), &from_glib_borrow(error))
 }
 
 impl fmt::Display for CssProvider {

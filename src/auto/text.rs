@@ -296,6 +296,10 @@ impl Text {
     }
 
     pub fn connect_property_activates_default_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activates_default_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::activates-default\0".as_ptr() as *const _,
@@ -304,6 +308,10 @@ impl Text {
     }
 
     pub fn connect_property_attributes_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::attributes\0".as_ptr() as *const _,
@@ -312,6 +320,10 @@ impl Text {
     }
 
     pub fn connect_property_buffer_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_buffer_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::buffer\0".as_ptr() as *const _,
@@ -320,6 +332,10 @@ impl Text {
     }
 
     pub fn connect_property_enable_emoji_completion_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_enable_emoji_completion_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::enable-emoji-completion\0".as_ptr() as *const _,
@@ -328,6 +344,10 @@ impl Text {
     }
 
     pub fn connect_property_im_module_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_im_module_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::im-module\0".as_ptr() as *const _,
@@ -336,6 +356,10 @@ impl Text {
     }
 
     pub fn connect_property_input_hints_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_hints_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::input-hints\0".as_ptr() as *const _,
@@ -344,6 +368,10 @@ impl Text {
     }
 
     pub fn connect_property_input_purpose_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_purpose_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::input-purpose\0".as_ptr() as *const _,
@@ -352,6 +380,10 @@ impl Text {
     }
 
     pub fn connect_property_invisible_char_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_invisible_char_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::invisible-char\0".as_ptr() as *const _,
@@ -360,6 +392,10 @@ impl Text {
     }
 
     pub fn connect_property_invisible_char_set_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_invisible_char_set_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::invisible-char-set\0".as_ptr() as *const _,
@@ -368,6 +404,10 @@ impl Text {
     }
 
     pub fn connect_property_max_length_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_length_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::max-length\0".as_ptr() as *const _,
@@ -376,6 +416,10 @@ impl Text {
     }
 
     pub fn connect_property_overwrite_mode_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_overwrite_mode_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::overwrite-mode\0".as_ptr() as *const _,
@@ -384,6 +428,10 @@ impl Text {
     }
 
     pub fn connect_property_placeholder_text_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::placeholder-text\0".as_ptr() as *const _,
@@ -392,6 +440,10 @@ impl Text {
     }
 
     pub fn connect_property_populate_all_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_populate_all_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::populate-all\0".as_ptr() as *const _,
@@ -400,6 +452,10 @@ impl Text {
     }
 
     pub fn connect_property_propagate_text_width_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_propagate_text_width_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::propagate-text-width\0".as_ptr() as *const _,
@@ -408,6 +464,10 @@ impl Text {
     }
 
     pub fn connect_property_scroll_offset_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scroll_offset_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::scroll-offset\0".as_ptr() as *const _,
@@ -416,6 +476,10 @@ impl Text {
     }
 
     pub fn connect_property_tabs_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::tabs\0".as_ptr() as *const _,
@@ -424,6 +488,10 @@ impl Text {
     }
 
     pub fn connect_property_truncate_multiline_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_truncate_multiline_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::truncate-multiline\0".as_ptr() as *const _,
@@ -432,6 +500,10 @@ impl Text {
     }
 
     pub fn connect_property_visibility_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visibility_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visibility\0".as_ptr() as *const _,
@@ -939,96 +1011,6 @@ impl TextBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
-
-unsafe extern "C" fn notify_activates_default_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_buffer_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_enable_emoji_completion_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_im_module_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_input_hints_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_input_purpose_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_invisible_char_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_invisible_char_set_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_max_length_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_overwrite_mode_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_populate_all_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_propagate_text_width_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_scroll_offset_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_truncate_multiline_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn notify_visibility_trampoline<F: Fn(&Text) + 'static>(this: *mut gtk_sys::GtkText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for Text {

@@ -418,6 +418,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_action_activated<F: Fn(&Self, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn action_activated_trampoline<P, F: Fn(&P, i32) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, index: libc::c_int, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), index)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"action-activated\0".as_ptr() as *const _,
@@ -426,6 +432,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn cursor_on_match_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"cursor-on-match\0".as_ptr() as *const _,
@@ -434,6 +446,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_insert_prefix<F: Fn(&Self, &str) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn insert_prefix_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, prefix: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(prefix)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"insert-prefix\0".as_ptr() as *const _,
@@ -442,6 +460,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn match_selected_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"match-selected\0".as_ptr() as *const _,
@@ -450,6 +474,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_no_matches<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn no_matches_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"no-matches\0".as_ptr() as *const _,
@@ -458,6 +488,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_inline_completion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inline_completion_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::inline-completion\0".as_ptr() as *const _,
@@ -466,6 +502,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_inline_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_inline_selection_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::inline-selection\0".as_ptr() as *const _,
@@ -474,6 +516,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_minimum_key_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_minimum_key_length_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::minimum-key-length\0".as_ptr() as *const _,
@@ -482,6 +530,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::model\0".as_ptr() as *const _,
@@ -490,6 +544,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_popup_completion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_popup_completion_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::popup-completion\0".as_ptr() as *const _,
@@ -498,6 +558,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_popup_set_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_popup_set_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::popup-set-width\0".as_ptr() as *const _,
@@ -506,6 +572,12 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_popup_single_match_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_popup_single_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::popup-single-match\0".as_ptr() as *const _,
@@ -514,90 +586,18 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn connect_property_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<EntryCompletion>
+        {
+            let f: &F = &*(f as *const F);
+            f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::text-column\0".as_ptr() as *const _,
                 Some(transmute(notify_text_column_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn action_activated_trampoline<P, F: Fn(&P, i32) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, index: libc::c_int, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), index)
-}
-
-unsafe extern "C" fn cursor_on_match_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()
-}
-
-unsafe extern "C" fn insert_prefix_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, prefix: *mut libc::c_char, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &GString::from_glib_borrow(prefix)).to_glib()
-}
-
-unsafe extern "C" fn match_selected_trampoline<P, F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEntryCompletion, model: *mut gtk_sys::GtkTreeModel, iter: *mut gtk_sys::GtkTreeIter, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(model), &from_glib_borrow(iter)).to_glib()
-}
-
-unsafe extern "C" fn no_matches_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_inline_completion_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_inline_selection_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_minimum_key_length_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_popup_completion_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_popup_set_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_popup_single_match_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_text_column_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkEntryCompletion, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<EntryCompletion> {
-    let f: &F = &*(f as *const F);
-    f(&EntryCompletion::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for EntryCompletion {

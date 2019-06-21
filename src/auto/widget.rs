@@ -1959,6 +1959,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_accel_closures_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn accel_closures_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"accel-closures-changed\0".as_ptr() as *const _,
@@ -1967,6 +1973,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_can_activate_accel<F: Fn(&Self, u32) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn can_activate_accel_trampoline<P, F: Fn(&P, u32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, signal_id: libc::c_uint, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), signal_id).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"can-activate-accel\0".as_ptr() as *const _,
@@ -1975,6 +1987,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_destroy<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn destroy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"destroy\0".as_ptr() as *const _,
@@ -1983,6 +2001,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_direction_changed<F: Fn(&Self, TextDirection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn direction_changed_trampoline<P, F: Fn(&P, TextDirection) + 'static>(this: *mut gtk_sys::GtkWidget, previous_direction: gtk_sys::GtkTextDirection, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(previous_direction))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"direction-changed\0".as_ptr() as *const _,
@@ -1991,6 +2015,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_begin<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_begin_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-begin\0".as_ptr() as *const _,
@@ -1999,6 +2029,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_data_delete<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_data_delete_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-data-delete\0".as_ptr() as *const _,
@@ -2007,6 +2043,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_data_get<F: Fn(&Self, &gdk::Drag, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_data_get_trampoline<P, F: Fn(&P, &gdk::Drag, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, data: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), &from_glib_borrow(data))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-data-get\0".as_ptr() as *const _,
@@ -2015,6 +2057,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_data_received<F: Fn(&Self, &gdk::Drop, &SelectionData) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_data_received_trampoline<P, F: Fn(&P, &gdk::Drop, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), &from_glib_borrow(x))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-data-received\0".as_ptr() as *const _,
@@ -2023,6 +2071,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_drop_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-drop\0".as_ptr() as *const _,
@@ -2031,6 +2085,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_end<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_end_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-end\0".as_ptr() as *const _,
@@ -2039,6 +2099,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_failed_trampoline<P, F: Fn(&P, &gdk::Drag, DragResult) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, result: gtk_sys::GtkDragResult, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), from_glib(result)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-failed\0".as_ptr() as *const _,
@@ -2047,6 +2113,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_leave<F: Fn(&Self, &gdk::Drop) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_leave_trampoline<P, F: Fn(&P, &gdk::Drop) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrop, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-leave\0".as_ptr() as *const _,
@@ -2055,6 +2127,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn drag_motion_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"drag-motion\0".as_ptr() as *const _,
@@ -2063,6 +2141,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_grab_notify<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn grab_notify_trampoline<P, F: Fn(&P, bool) + 'static>(this: *mut gtk_sys::GtkWidget, was_grabbed: glib_sys::gboolean, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(was_grabbed))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"grab-notify\0".as_ptr() as *const _,
@@ -2071,6 +2155,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_hide<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn hide_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"hide\0".as_ptr() as *const _,
@@ -2079,6 +2169,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"keynav-failed\0".as_ptr() as *const _,
@@ -2087,6 +2183,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_map<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn map_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"map\0".as_ptr() as *const _,
@@ -2095,6 +2197,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_mnemonic_activate<F: Fn(&Self, bool) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, group_cycling: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(group_cycling)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"mnemonic-activate\0".as_ptr() as *const _,
@@ -2103,6 +2211,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_move_focus<F: Fn(&Self, DirectionType) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn move_focus_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"move-focus\0".as_ptr() as *const _,
@@ -2115,6 +2229,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_popup_menu<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn popup_menu_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast()).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"popup-menu\0".as_ptr() as *const _,
@@ -2128,6 +2248,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_query_tooltip<F: Fn(&Self, i32, i32, bool, &Tooltip) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn query_tooltip_trampoline<P, F: Fn(&P, i32, i32, bool, &Tooltip) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, x: libc::c_int, y: libc::c_int, keyboard_mode: glib_sys::gboolean, tooltip: *mut gtk_sys::GtkTooltip, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), x, y, from_glib(keyboard_mode), &from_glib_borrow(tooltip)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"query-tooltip\0".as_ptr() as *const _,
@@ -2136,6 +2262,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_realize<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn realize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"realize\0".as_ptr() as *const _,
@@ -2144,6 +2276,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn show_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"show\0".as_ptr() as *const _,
@@ -2152,6 +2290,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_size_allocate<F: Fn(&Self, i32, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn size_allocate_trampoline<P, F: Fn(&P, i32, i32, i32) + 'static>(this: *mut gtk_sys::GtkWidget, width: libc::c_int, height: libc::c_int, baseline: libc::c_int, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), width, height, baseline)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"size-allocate\0".as_ptr() as *const _,
@@ -2160,6 +2304,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_state_flags_changed<F: Fn(&Self, StateFlags) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn state_flags_changed_trampoline<P, F: Fn(&P, StateFlags) + 'static>(this: *mut gtk_sys::GtkWidget, flags: gtk_sys::GtkStateFlags, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(flags))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"state-flags-changed\0".as_ptr() as *const _,
@@ -2168,6 +2318,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_style_updated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn style_updated_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"style-updated\0".as_ptr() as *const _,
@@ -2176,6 +2332,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_unmap<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn unmap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"unmap\0".as_ptr() as *const _,
@@ -2184,6 +2346,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_unrealize<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn unrealize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"unrealize\0".as_ptr() as *const _,
@@ -2192,6 +2360,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_can_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::can-focus\0".as_ptr() as *const _,
@@ -2200,6 +2374,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_can_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::can-target\0".as_ptr() as *const _,
@@ -2208,6 +2388,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::cursor\0".as_ptr() as *const _,
@@ -2216,6 +2402,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::expand\0".as_ptr() as *const _,
@@ -2224,6 +2416,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_focus_on_click_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_focus_on_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::focus-on-click\0".as_ptr() as *const _,
@@ -2232,6 +2430,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_halign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_halign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::halign\0".as_ptr() as *const _,
@@ -2240,6 +2444,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_has_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-default\0".as_ptr() as *const _,
@@ -2248,6 +2458,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_has_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-focus\0".as_ptr() as *const _,
@@ -2256,6 +2472,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_has_tooltip_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_tooltip_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::has-tooltip\0".as_ptr() as *const _,
@@ -2264,6 +2486,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_height_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_height_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::height-request\0".as_ptr() as *const _,
@@ -2272,6 +2500,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_hexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::hexpand\0".as_ptr() as *const _,
@@ -2280,6 +2514,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_hexpand_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::hexpand-set\0".as_ptr() as *const _,
@@ -2288,6 +2528,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_is_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::is-focus\0".as_ptr() as *const _,
@@ -2296,6 +2542,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_layout_manager_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_layout_manager_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::layout-manager\0".as_ptr() as *const _,
@@ -2304,6 +2556,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::margin\0".as_ptr() as *const _,
@@ -2312,6 +2570,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_margin_bottom_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_bottom_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::margin-bottom\0".as_ptr() as *const _,
@@ -2320,6 +2584,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_margin_end_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::margin-end\0".as_ptr() as *const _,
@@ -2328,6 +2598,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_margin_start_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_start_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::margin-start\0".as_ptr() as *const _,
@@ -2336,6 +2612,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_margin_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_top_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::margin-top\0".as_ptr() as *const _,
@@ -2344,6 +2626,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::name\0".as_ptr() as *const _,
@@ -2352,6 +2640,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_opacity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_opacity_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::opacity\0".as_ptr() as *const _,
@@ -2360,6 +2654,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_overflow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_overflow_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::overflow\0".as_ptr() as *const _,
@@ -2368,6 +2668,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::parent\0".as_ptr() as *const _,
@@ -2376,6 +2682,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_receives_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_receives_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::receives-default\0".as_ptr() as *const _,
@@ -2384,6 +2696,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_root_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::root\0".as_ptr() as *const _,
@@ -2392,6 +2710,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_scale_factor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scale_factor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::scale-factor\0".as_ptr() as *const _,
@@ -2400,6 +2724,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::sensitive\0".as_ptr() as *const _,
@@ -2408,6 +2738,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::surface\0".as_ptr() as *const _,
@@ -2416,6 +2752,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_tooltip_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tooltip_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::tooltip-markup\0".as_ptr() as *const _,
@@ -2424,6 +2766,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_tooltip_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tooltip_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::tooltip-text\0".as_ptr() as *const _,
@@ -2432,6 +2780,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_valign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_valign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::valign\0".as_ptr() as *const _,
@@ -2440,6 +2794,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_vexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::vexpand\0".as_ptr() as *const _,
@@ -2448,6 +2808,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_vexpand_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::vexpand-set\0".as_ptr() as *const _,
@@ -2456,6 +2822,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::visible\0".as_ptr() as *const _,
@@ -2464,390 +2836,18 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn connect_property_width_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_width_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Widget>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Widget::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::width-request\0".as_ptr() as *const _,
                 Some(transmute(notify_width_request_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn accel_closures_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn can_activate_accel_trampoline<P, F: Fn(&P, u32) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, signal_id: libc::c_uint, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), signal_id).to_glib()
-}
-
-unsafe extern "C" fn destroy_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn direction_changed_trampoline<P, F: Fn(&P, TextDirection) + 'static>(this: *mut gtk_sys::GtkWidget, previous_direction: gtk_sys::GtkTextDirection, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(previous_direction))
-}
-
-unsafe extern "C" fn drag_begin_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
-}
-
-unsafe extern "C" fn drag_data_delete_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
-}
-
-unsafe extern "C" fn drag_data_get_trampoline<P, F: Fn(&P, &gdk::Drag, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, data: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), &from_glib_borrow(data))
-}
-
-unsafe extern "C" fn drag_data_received_trampoline<P, F: Fn(&P, &gdk::Drop, &SelectionData) + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: *mut gtk_sys::GtkSelectionData, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), &from_glib_borrow(x))
-}
-
-unsafe extern "C" fn drag_drop_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
-}
-
-unsafe extern "C" fn drag_end_trampoline<P, F: Fn(&P, &gdk::Drag) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
-}
-
-unsafe extern "C" fn drag_failed_trampoline<P, F: Fn(&P, &gdk::Drag, DragResult) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrag, result: gtk_sys::GtkDragResult, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context), from_glib(result)).to_glib()
-}
-
-unsafe extern "C" fn drag_leave_trampoline<P, F: Fn(&P, &gdk::Drop) + 'static>(this: *mut gtk_sys::GtkWidget, context: *mut gdk_sys::GdkDrop, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(context))
-}
-
-unsafe extern "C" fn drag_motion_trampoline<P, F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, drop: *mut gdk_sys::GdkDrop, x: libc::c_int, y: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(drop), x, y).to_glib()
-}
-
-unsafe extern "C" fn grab_notify_trampoline<P, F: Fn(&P, bool) + 'static>(this: *mut gtk_sys::GtkWidget, was_grabbed: glib_sys::gboolean, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(was_grabbed))
-}
-
-unsafe extern "C" fn hide_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn keynav_failed_trampoline<P, F: Fn(&P, DirectionType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction)).to_glib()
-}
-
-unsafe extern "C" fn map_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> Inhibit + 'static>(this: *mut gtk_sys::GtkWidget, group_cycling: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(group_cycling)).to_glib()
-}
-
-unsafe extern "C" fn move_focus_trampoline<P, F: Fn(&P, DirectionType) + 'static>(this: *mut gtk_sys::GtkWidget, direction: gtk_sys::GtkDirectionType, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(direction))
-}
-
-unsafe extern "C" fn popup_menu_trampoline<P, F: Fn(&P) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast()).to_glib()
-}
-
-unsafe extern "C" fn query_tooltip_trampoline<P, F: Fn(&P, i32, i32, bool, &Tooltip) -> bool + 'static>(this: *mut gtk_sys::GtkWidget, x: libc::c_int, y: libc::c_int, keyboard_mode: glib_sys::gboolean, tooltip: *mut gtk_sys::GtkTooltip, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), x, y, from_glib(keyboard_mode), &from_glib_borrow(tooltip)).to_glib()
-}
-
-unsafe extern "C" fn realize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn show_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn size_allocate_trampoline<P, F: Fn(&P, i32, i32, i32) + 'static>(this: *mut gtk_sys::GtkWidget, width: libc::c_int, height: libc::c_int, baseline: libc::c_int, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), width, height, baseline)
-}
-
-unsafe extern "C" fn state_flags_changed_trampoline<P, F: Fn(&P, StateFlags) + 'static>(this: *mut gtk_sys::GtkWidget, flags: gtk_sys::GtkStateFlags, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast(), from_glib(flags))
-}
-
-unsafe extern "C" fn style_updated_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn unmap_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn unrealize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_can_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_can_target_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_expand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_focus_on_click_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_halign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_has_tooltip_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_height_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_hexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_hexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_is_focus_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_layout_manager_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_margin_bottom_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_margin_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_margin_start_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_margin_top_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_opacity_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_overflow_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_receives_default_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_root_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_scale_factor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_tooltip_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_tooltip_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_valign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_vexpand_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_vexpand_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_width_request_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkWidget, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Widget> {
-    let f: &F = &*(f as *const F);
-    f(&Widget::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Widget {

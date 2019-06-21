@@ -100,6 +100,12 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
     }
 
     fn connect_property_column_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_column_span_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GridLayoutChild>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::column-span\0".as_ptr() as *const _,
@@ -108,6 +114,12 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
     }
 
     fn connect_property_left_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_left_attach_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GridLayoutChild>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::left-attach\0".as_ptr() as *const _,
@@ -116,6 +128,12 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
     }
 
     fn connect_property_row_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_span_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GridLayoutChild>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::row-span\0".as_ptr() as *const _,
@@ -124,36 +142,18 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
     }
 
     fn connect_property_top_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_top_attach_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<GridLayoutChild>
+        {
+            let f: &F = &*(f as *const F);
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::top-attach\0".as_ptr() as *const _,
                 Some(transmute(notify_top_attach_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_column_span_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GridLayoutChild> {
-    let f: &F = &*(f as *const F);
-    f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_left_attach_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GridLayoutChild> {
-    let f: &F = &*(f as *const F);
-    f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_row_span_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GridLayoutChild> {
-    let f: &F = &*(f as *const F);
-    f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_top_attach_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGridLayoutChild, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<GridLayoutChild> {
-    let f: &F = &*(f as *const F);
-    f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for GridLayoutChild {

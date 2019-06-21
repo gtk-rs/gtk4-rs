@@ -603,6 +603,12 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_align_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_align_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::align-widget\0".as_ptr() as *const _,
@@ -611,6 +617,12 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_direction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::direction\0".as_ptr() as *const _,
@@ -619,6 +631,12 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::menu-model\0".as_ptr() as *const _,
@@ -627,6 +645,12 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_popover_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_popover_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::popover\0".as_ptr() as *const _,
@@ -635,6 +659,12 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_popup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_popup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::popup\0".as_ptr() as *const _,
@@ -643,48 +673,18 @@ impl<O: IsA<MenuButton>> MenuButtonExt for O {
     }
 
     fn connect_property_use_popover_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_popover_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<MenuButton>
+        {
+            let f: &F = &*(f as *const F);
+            f(&MenuButton::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::use-popover\0".as_ptr() as *const _,
                 Some(transmute(notify_use_popover_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_align_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_direction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_menu_model_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_popover_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_popup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_use_popover_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<MenuButton> {
-    let f: &F = &*(f as *const F);
-    f(&MenuButton::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for MenuButton {

@@ -519,6 +519,12 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_focus_home_or_end<F: Fn(&Self, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn focus_home_or_end_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkToolbar, focus_home: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(focus_home)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"focus-home-or-end\0".as_ptr() as *const _,
@@ -532,6 +538,12 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_orientation_changed<F: Fn(&Self, Orientation) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn orientation_changed_trampoline<P, F: Fn(&P, Orientation) + 'static>(this: *mut gtk_sys::GtkToolbar, orientation: gtk_sys::GtkOrientation, f: glib_sys::gpointer)
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(orientation))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"orientation-changed\0".as_ptr() as *const _,
@@ -540,6 +552,12 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn popup_context_menu_trampoline<P, F: Fn(&P, i32, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolbar, x: libc::c_int, y: libc::c_int, button: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast(), x, y, button).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"popup-context-menu\0".as_ptr() as *const _,
@@ -548,6 +566,12 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_style_changed<F: Fn(&Self, ToolbarStyle) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn style_changed_trampoline<P, F: Fn(&P, ToolbarStyle) + 'static>(this: *mut gtk_sys::GtkToolbar, style: gtk_sys::GtkToolbarStyle, f: glib_sys::gpointer)
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(style))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"style-changed\0".as_ptr() as *const _,
@@ -556,6 +580,12 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_property_show_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_arrow_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolbar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::show-arrow\0".as_ptr() as *const _,
@@ -564,48 +594,18 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
     }
 
     fn connect_property_toolbar_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_toolbar_style_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolbar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Toolbar>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Toolbar::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::toolbar-style\0".as_ptr() as *const _,
                 Some(transmute(notify_toolbar_style_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn focus_home_or_end_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(this: *mut gtk_sys::GtkToolbar, focus_home: glib_sys::gboolean, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(focus_home)).to_glib()
-}
-
-unsafe extern "C" fn orientation_changed_trampoline<P, F: Fn(&P, Orientation) + 'static>(this: *mut gtk_sys::GtkToolbar, orientation: gtk_sys::GtkOrientation, f: glib_sys::gpointer)
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(orientation))
-}
-
-unsafe extern "C" fn popup_context_menu_trampoline<P, F: Fn(&P, i32, i32, i32) -> Inhibit + 'static>(this: *mut gtk_sys::GtkToolbar, x: libc::c_int, y: libc::c_int, button: libc::c_int, f: glib_sys::gpointer) -> glib_sys::gboolean
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast(), x, y, button).to_glib()
-}
-
-unsafe extern "C" fn style_changed_trampoline<P, F: Fn(&P, ToolbarStyle) + 'static>(this: *mut gtk_sys::GtkToolbar, style: gtk_sys::GtkToolbarStyle, f: glib_sys::gpointer)
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast(), from_glib(style))
-}
-
-unsafe extern "C" fn notify_show_arrow_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolbar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_toolbar_style_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToolbar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Toolbar> {
-    let f: &F = &*(f as *const F);
-    f(&Toolbar::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Toolbar {

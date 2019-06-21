@@ -534,6 +534,12 @@ impl<O: IsA<Video>> VideoExt for O {
     }
 
     fn connect_property_autoplay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Video>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Video::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::autoplay\0".as_ptr() as *const _,
@@ -542,6 +548,12 @@ impl<O: IsA<Video>> VideoExt for O {
     }
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Video>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Video::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::file\0".as_ptr() as *const _,
@@ -550,6 +562,12 @@ impl<O: IsA<Video>> VideoExt for O {
     }
 
     fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Video>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Video::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::loop\0".as_ptr() as *const _,
@@ -558,36 +576,18 @@ impl<O: IsA<Video>> VideoExt for O {
     }
 
     fn connect_property_media_stream_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Video>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Video::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::media-stream\0".as_ptr() as *const _,
                 Some(transmute(notify_media_stream_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Video> {
-    let f: &F = &*(f as *const F);
-    f(&Video::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Video> {
-    let f: &F = &*(f as *const F);
-    f(&Video::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Video> {
-    let f: &F = &*(f as *const F);
-    f(&Video::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkVideo, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-where P: IsA<Video> {
-    let f: &F = &*(f as *const F);
-    f(&Video::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Video {
