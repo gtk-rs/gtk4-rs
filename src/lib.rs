@@ -41,6 +41,7 @@ mod auto;
 mod alias;
 pub mod prelude;
 mod rgba;
+mod time_coord;
 
 pub use auto::*;
 pub use self::auto::functions::*;
@@ -48,5 +49,6 @@ pub use self::auto::functions::*;
 pub use alias::*;
 pub use prelude::*;
 pub use rgba::{RGBA, RgbaParseError};
+pub use time_coord::TimeCoord;
 
 pub use glib::Error;

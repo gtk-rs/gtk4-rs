@@ -23,7 +23,6 @@ generate = [
     "Gdk.ContentSerializer",
     "Gdk.CrossingMode",
     "Gdk.Cursor",
-    "Gdk.Device",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceTool",
@@ -83,6 +82,7 @@ generate = [
 manual = [
     "Gdk.Atom",
     "Gdk.RGBA",
+    "Gdk.TimeCoord",
 ]
 
 ignore = [
@@ -92,7 +92,6 @@ ignore = [
     "Gdk.KeymapKey",
     "Gdk.PaintableInterface",
     "Gdk.Point",
-    "Gdk.TimeCoord",
 ]
 
 [[object]]
@@ -113,6 +112,18 @@ status = "generate"
     [[object.function]]
     # gir error
     name = "get_gtypes"
+    ignore = true
+
+[[object]]
+name = "Gdk.Device"
+status = "generate"
+    [[object.function]]
+    name = "get_history"
+    # skip
+    ignore = true
+    [[object.function]]
+    name = "free_history"
+    # skip
     ignore = true
 
 [[object]]
