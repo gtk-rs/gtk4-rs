@@ -15,6 +15,7 @@ use NotifyType;
 use ScrollDirection;
 use Seat;
 use Surface;
+use TimeCoord;
 use TouchpadGesturePhase;
 use ffi;
 use glib::translate::*;
@@ -186,9 +187,11 @@ impl Event {
         }
     }
 
-    //pub fn get_motion_history(&self) -> /*Ignored*/Vec<TimeCoord> {
-    //    unsafe { TODO: call ffi::gdk_event_get_motion_history() }
-    //}
+    pub fn get_motion_history(&self) -> Vec<TimeCoord> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_container(ffi::gdk_event_get_motion_history(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_pad_axis_value(&self) -> Option<(u32, f64)> {
         unsafe {

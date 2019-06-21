@@ -81,10 +81,6 @@ impl Device {
         }
     }
 
-    //pub fn get_history<P: IsA<Surface>>(&self, surface: &P, start: u32, stop: u32, events: /*Ignored*/Vec<TimeCoord>) -> Option<i32> {
-    //    unsafe { TODO: call ffi::gdk_device_get_history() }
-    //}
-
     pub fn get_key(&self, index_: u32) -> Option<(u32, ModifierType)> {
         unsafe {
             let mut keyval = mem::uninitialized();
@@ -251,10 +247,6 @@ impl Device {
             value.get().unwrap()
         }
     }
-
-    //pub fn free_history(events: /*Ignored*/&[&TimeCoord]) {
-    //    unsafe { TODO: call ffi::gdk_device_free_history() }
-    //}
 
     pub fn connect_changed<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe {
