@@ -622,14 +622,6 @@ manual_traits = ["BuilderExtManual"]
     ignore = true
 
 [[object]]
-name = "Gtk.CellAccessibleParent"
-status = "generate"
-    [[object.function]]
-    name = "get_cell_position"
-    # TODO
-    ignore = true
-
-[[object]]
 name = "Gtk.CellArea"
 status = "generate"
     [[object.function]]
