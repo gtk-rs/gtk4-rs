@@ -3,16 +3,16 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use ffi;
+use gdk_sys;
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct TimeCoord(ffi::GdkTimeCoord);
+pub struct TimeCoord(gdk_sys::GdkTimeCoord);
 
 impl TimeCoord {
     pub fn new(time: u32, axes: [f64; 128]) -> TimeCoord {
         assert_initialized_main_thread!();
-        TimeCoord(ffi::GdkTimeCoord {
+        TimeCoord(gdk_sys::GdkTimeCoord {
             time,
             axes
         })
@@ -29,21 +29,21 @@ impl TimeCoord {
 
 #[doc(hidden)]
 impl GlibPtrDefault for TimeCoord {
-    type GlibType = *mut ffi::GdkTimeCoord;
+    type GlibType = *mut gdk_sys::GdkTimeCoord;
 }
 
 #[doc(hidden)]
-impl FromGlibPtrNone<*mut ffi::GdkTimeCoord> for TimeCoord {
-    unsafe fn from_glib_none(ptr: *mut ffi::GdkTimeCoord) -> Self {
+impl FromGlibPtrNone<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_none(ptr: *mut gdk_sys::GdkTimeCoord) -> Self {
         TimeCoord((*ptr).clone())
     }
 }
 
 #[doc(hidden)]
-impl FromGlibPtrFull<*mut ffi::GdkTimeCoord> for TimeCoord {
-    unsafe fn from_glib_full(ptr: *mut ffi::GdkTimeCoord) -> Self {
+impl FromGlibPtrFull<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_full(ptr: *mut gdk_sys::GdkTimeCoord) -> Self {
         let res = from_glib_none(ptr);
-        glib_ffi::g_free(ptr as *mut _);
+        glib_sys::g_free(ptr as *mut _);
         res
     }
 }
