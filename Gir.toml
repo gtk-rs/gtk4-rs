@@ -387,7 +387,6 @@ ignore = [
     "Gtk.BindingEntry",
     "Gtk.BindingSet",
     "Gtk.BindingSignal",
-    "Gtk.RequestedSize",
 ]
 
 manual = [
