@@ -13,6 +13,8 @@ glib_wrapper! {
     match fn {
         copy => |ptr| gobject_sys::g_boxed_copy(gdk_sys::gdk_rectangle_get_type(), ptr as *mut _) as *mut gdk_sys::GdkRectangle,
         free => |ptr| gobject_sys::g_boxed_free(gdk_sys::gdk_rectangle_get_type(), ptr as *mut _),
+        init => |_ptr| (),
+        clear => |_ptr| (),
         get_type => || gdk_sys::gdk_rectangle_get_type(),
     }
 }
