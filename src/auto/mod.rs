@@ -112,10 +112,6 @@ pub use self::calendar::{Calendar, CalendarClass, NONE_CALENDAR};
 pub use self::calendar::CalendarExt;
 pub use self::calendar::CalendarBuilder;
 
-mod cell_accessible_parent;
-pub use self::cell_accessible_parent::{CellAccessibleParent, NONE_CELL_ACCESSIBLE_PARENT};
-pub use self::cell_accessible_parent::CellAccessibleParentExt;
-
 mod cell_area;
 pub use self::cell_area::{CellArea, CellAreaClass, NONE_CELL_AREA};
 pub use self::cell_area::CellAreaExt;
@@ -1237,7 +1233,6 @@ pub mod traits {
     pub use super::BuilderExt;
     pub use super::ButtonExt;
     pub use super::CalendarExt;
-    pub use super::CellAccessibleParentExt;
     pub use super::CellAreaExt;
     pub use super::CellAreaBoxExt;
     pub use super::CellAreaContextExt;
