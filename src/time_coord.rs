@@ -47,3 +47,28 @@ impl FromGlibPtrFull<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
         res
     }
 }
+
+#[doc(hidden)]
+impl FromGlibContainerAsVec<gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_none_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+        if num == 0 || ptr.is_null() {
+            return Vec::new();
+        }
+
+        let mut res = Vec::with_capacity(num);
+        for i in 0..num {
+            res.push(from_glib_none(ptr.add(i)));
+        }
+        res
+    }
+
+    unsafe fn from_glib_container_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+        let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
+        glib_sys::g_free(ptr as *mut _);
+        res
+    }
+
+    unsafe fn from_glib_full_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+        FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
+    }
+}
