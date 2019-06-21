@@ -7,7 +7,6 @@ use CellArea;
 use CellLayout;
 use TreeIter;
 use TreeModel;
-use Widget;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -172,8 +171,6 @@ pub trait EntryCompletionExt: 'static {
 
     fn get_completion_prefix(&self) -> Option<GString>;
 
-    fn get_entry(&self) -> Option<Widget>;
-
     fn get_inline_completion(&self) -> bool;
 
     fn get_inline_selection(&self) -> bool;
@@ -265,12 +262,6 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     fn get_completion_prefix(&self) -> Option<GString> {
         unsafe {
             from_glib_none(gtk_sys::gtk_entry_completion_get_completion_prefix(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    fn get_entry(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_entry_completion_get_entry(self.as_ref().to_glib_none().0))
         }
     }
 
