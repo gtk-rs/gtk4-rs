@@ -17,17 +17,17 @@ use Seat;
 use Surface;
 use TimeCoord;
 use TouchpadGesturePhase;
-use ffi;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
 use std::ptr;
 
 glib_wrapper! {
-    pub struct Event(Object<ffi::GdkEvent, EventClass>);
+    pub struct Event(Object<gdk_sys::GdkEvent, EventClass>);
 
     match fn {
-        get_type => || ffi::gdk_event_get_type(),
+        get_type => || gdk_sys::gdk_event_get_type(),
     }
 }
 
@@ -35,13 +35,13 @@ impl Event {
     pub fn new(type_: EventType) -> Event {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gdk_event_new(type_.to_glib()))
+            from_glib_full(gdk_sys::gdk_event_new(type_.to_glib()))
         }
     }
 
     pub fn copy(&self) -> Option<Event> {
         unsafe {
-            from_glib_full(ffi::gdk_event_copy(self.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_event_copy(self.to_glib_none().0))
         }
     }
 
@@ -49,7 +49,7 @@ impl Event {
         unsafe {
             let mut axes = ptr::null_mut();
             let mut n_axes = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_axes(self.to_glib_none().0, &mut axes, &mut n_axes));
+            let ret = from_glib(gdk_sys::gdk_event_get_axes(self.to_glib_none().0, &mut axes, &mut n_axes));
             if ret { Some(FromGlibContainer::from_glib_none_num(axes, n_axes as usize)) } else { None }
         }
     }
@@ -57,7 +57,7 @@ impl Event {
     pub fn get_axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_axis(self.to_glib_none().0, axis_use.to_glib(), &mut value));
+            let ret = from_glib(gdk_sys::gdk_event_get_axis(self.to_glib_none().0, axis_use.to_glib(), &mut value));
             if ret { Some(value) } else { None }
         }
     }
@@ -65,7 +65,7 @@ impl Event {
     pub fn get_button(&self) -> Option<u32> {
         unsafe {
             let mut button = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_button(self.to_glib_none().0, &mut button));
+            let ret = from_glib(gdk_sys::gdk_event_get_button(self.to_glib_none().0, &mut button));
             if ret { Some(button) } else { None }
         }
     }
@@ -73,7 +73,7 @@ impl Event {
     pub fn get_click_count(&self) -> Option<u32> {
         unsafe {
             let mut click_count = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_click_count(self.to_glib_none().0, &mut click_count));
+            let ret = from_glib(gdk_sys::gdk_event_get_click_count(self.to_glib_none().0, &mut click_count));
             if ret { Some(click_count) } else { None }
         }
     }
@@ -82,7 +82,7 @@ impl Event {
         unsafe {
             let mut x_win = mem::uninitialized();
             let mut y_win = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_coords(self.to_glib_none().0, &mut x_win, &mut y_win));
+            let ret = from_glib(gdk_sys::gdk_event_get_coords(self.to_glib_none().0, &mut x_win, &mut y_win));
             if ret { Some((x_win, y_win)) } else { None }
         }
     }
@@ -90,7 +90,7 @@ impl Event {
     pub fn get_crossing_detail(&self) -> Option<NotifyType> {
         unsafe {
             let mut detail = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_crossing_detail(self.to_glib_none().0, &mut detail));
+            let ret = from_glib(gdk_sys::gdk_event_get_crossing_detail(self.to_glib_none().0, &mut detail));
             if ret { Some(from_glib(detail)) } else { None }
         }
     }
@@ -98,51 +98,51 @@ impl Event {
     pub fn get_crossing_mode(&self) -> Option<CrossingMode> {
         unsafe {
             let mut mode = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_crossing_mode(self.to_glib_none().0, &mut mode));
+            let ret = from_glib(gdk_sys::gdk_event_get_crossing_mode(self.to_glib_none().0, &mut mode));
             if ret { Some(from_glib(mode)) } else { None }
         }
     }
 
     pub fn get_device(&self) -> Option<Device> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_device(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_device(self.to_glib_none().0))
         }
     }
 
     pub fn get_device_tool(&self) -> Option<DeviceTool> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_device_tool(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_device_tool(self.to_glib_none().0))
         }
     }
 
     pub fn get_display(&self) -> Option<Display> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_display(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_display(self.to_glib_none().0))
         }
     }
 
     pub fn get_drop(&self) -> Option<Drop> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_drop(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_drop(self.to_glib_none().0))
         }
     }
 
     pub fn get_event_sequence(&self) -> Option<EventSequence> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_event_sequence(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_event_sequence(self.to_glib_none().0))
         }
     }
 
     pub fn get_event_type(&self) -> EventType {
         unsafe {
-            from_glib(ffi::gdk_event_get_event_type(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_get_event_type(self.to_glib_none().0))
         }
     }
 
     pub fn get_focus_in(&self) -> Option<bool> {
         unsafe {
             let mut focus_in = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_focus_in(self.to_glib_none().0, &mut focus_in));
+            let ret = from_glib(gdk_sys::gdk_event_get_focus_in(self.to_glib_none().0, &mut focus_in));
             if ret { Some(from_glib(focus_in)) } else { None }
         }
     }
@@ -150,7 +150,7 @@ impl Event {
     pub fn get_grab_surface(&self) -> Option<Surface> {
         unsafe {
             let mut surface = ptr::null_mut();
-            let ret = from_glib(ffi::gdk_event_get_grab_surface(self.to_glib_none().0, &mut surface));
+            let ret = from_glib(gdk_sys::gdk_event_get_grab_surface(self.to_glib_none().0, &mut surface));
             if ret { Some(from_glib_none(surface)) } else { None }
         }
     }
@@ -158,7 +158,7 @@ impl Event {
     pub fn get_key_group(&self) -> Option<u32> {
         unsafe {
             let mut group = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_key_group(self.to_glib_none().0, &mut group));
+            let ret = from_glib(gdk_sys::gdk_event_get_key_group(self.to_glib_none().0, &mut group));
             if ret { Some(group) } else { None }
         }
     }
@@ -166,7 +166,7 @@ impl Event {
     pub fn get_key_is_modifier(&self) -> Option<bool> {
         unsafe {
             let mut is_modifier = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_key_is_modifier(self.to_glib_none().0, &mut is_modifier));
+            let ret = from_glib(gdk_sys::gdk_event_get_key_is_modifier(self.to_glib_none().0, &mut is_modifier));
             if ret { Some(from_glib(is_modifier)) } else { None }
         }
     }
@@ -174,7 +174,7 @@ impl Event {
     pub fn get_keycode(&self) -> Option<u16> {
         unsafe {
             let mut keycode = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_keycode(self.to_glib_none().0, &mut keycode));
+            let ret = from_glib(gdk_sys::gdk_event_get_keycode(self.to_glib_none().0, &mut keycode));
             if ret { Some(keycode) } else { None }
         }
     }
@@ -182,14 +182,14 @@ impl Event {
     pub fn get_keyval(&self) -> Option<u32> {
         unsafe {
             let mut keyval = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_keyval(self.to_glib_none().0, &mut keyval));
+            let ret = from_glib(gdk_sys::gdk_event_get_keyval(self.to_glib_none().0, &mut keyval));
             if ret { Some(keyval) } else { None }
         }
     }
 
     pub fn get_motion_history(&self) -> Vec<TimeCoord> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gdk_event_get_motion_history(self.to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gdk_sys::gdk_event_get_motion_history(self.to_glib_none().0))
         }
     }
 
@@ -197,7 +197,7 @@ impl Event {
         unsafe {
             let mut index = mem::uninitialized();
             let mut value = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_pad_axis_value(self.to_glib_none().0, &mut index, &mut value));
+            let ret = from_glib(gdk_sys::gdk_event_get_pad_axis_value(self.to_glib_none().0, &mut index, &mut value));
             if ret { Some((index, value)) } else { None }
         }
     }
@@ -205,7 +205,7 @@ impl Event {
     pub fn get_pad_button(&self) -> Option<u32> {
         unsafe {
             let mut button = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_pad_button(self.to_glib_none().0, &mut button));
+            let ret = from_glib(gdk_sys::gdk_event_get_pad_button(self.to_glib_none().0, &mut button));
             if ret { Some(button) } else { None }
         }
     }
@@ -214,14 +214,14 @@ impl Event {
         unsafe {
             let mut group = mem::uninitialized();
             let mut mode = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_pad_group_mode(self.to_glib_none().0, &mut group, &mut mode));
+            let ret = from_glib(gdk_sys::gdk_event_get_pad_group_mode(self.to_glib_none().0, &mut group, &mut mode));
             if ret { Some((group, mode)) } else { None }
         }
     }
 
     pub fn get_pointer_emulated(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_event_get_pointer_emulated(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_get_pointer_emulated(self.to_glib_none().0))
         }
     }
 
@@ -229,14 +229,14 @@ impl Event {
         unsafe {
             let mut x_root = mem::uninitialized();
             let mut y_root = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_root_coords(self.to_glib_none().0, &mut x_root, &mut y_root));
+            let ret = from_glib(gdk_sys::gdk_event_get_root_coords(self.to_glib_none().0, &mut x_root, &mut y_root));
             if ret { Some((x_root, y_root)) } else { None }
         }
     }
 
     pub fn get_scancode(&self) -> i32 {
         unsafe {
-            ffi::gdk_event_get_scancode(self.to_glib_none().0)
+            gdk_sys::gdk_event_get_scancode(self.to_glib_none().0)
         }
     }
 
@@ -244,7 +244,7 @@ impl Event {
         unsafe {
             let mut delta_x = mem::uninitialized();
             let mut delta_y = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_scroll_deltas(self.to_glib_none().0, &mut delta_x, &mut delta_y));
+            let ret = from_glib(gdk_sys::gdk_event_get_scroll_deltas(self.to_glib_none().0, &mut delta_x, &mut delta_y));
             if ret { Some((delta_x, delta_y)) } else { None }
         }
     }
@@ -252,47 +252,47 @@ impl Event {
     pub fn get_scroll_direction(&self) -> Option<ScrollDirection> {
         unsafe {
             let mut direction = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_scroll_direction(self.to_glib_none().0, &mut direction));
+            let ret = from_glib(gdk_sys::gdk_event_get_scroll_direction(self.to_glib_none().0, &mut direction));
             if ret { Some(from_glib(direction)) } else { None }
         }
     }
 
     pub fn get_seat(&self) -> Option<Seat> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_seat(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_seat(self.to_glib_none().0))
         }
     }
 
     pub fn get_source_device(&self) -> Option<Device> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_source_device(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_source_device(self.to_glib_none().0))
         }
     }
 
     pub fn get_state(&self) -> Option<ModifierType> {
         unsafe {
             let mut state = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_state(self.to_glib_none().0, &mut state));
+            let ret = from_glib(gdk_sys::gdk_event_get_state(self.to_glib_none().0, &mut state));
             if ret { Some(from_glib(state)) } else { None }
         }
     }
 
     pub fn get_surface(&self) -> Option<Surface> {
         unsafe {
-            from_glib_none(ffi::gdk_event_get_surface(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_event_get_surface(self.to_glib_none().0))
         }
     }
 
     pub fn get_time(&self) -> u32 {
         unsafe {
-            ffi::gdk_event_get_time(self.to_glib_none().0)
+            gdk_sys::gdk_event_get_time(self.to_glib_none().0)
         }
     }
 
     pub fn get_touch_emulating_pointer(&self) -> Option<bool> {
         unsafe {
             let mut emulating = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touch_emulating_pointer(self.to_glib_none().0, &mut emulating));
+            let ret = from_glib(gdk_sys::gdk_event_get_touch_emulating_pointer(self.to_glib_none().0, &mut emulating));
             if ret { Some(from_glib(emulating)) } else { None }
         }
     }
@@ -300,7 +300,7 @@ impl Event {
     pub fn get_touchpad_angle_delta(&self) -> Option<f64> {
         unsafe {
             let mut delta = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touchpad_angle_delta(self.to_glib_none().0, &mut delta));
+            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_angle_delta(self.to_glib_none().0, &mut delta));
             if ret { Some(delta) } else { None }
         }
     }
@@ -309,7 +309,7 @@ impl Event {
         unsafe {
             let mut dx = mem::uninitialized();
             let mut dy = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touchpad_deltas(self.to_glib_none().0, &mut dx, &mut dy));
+            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_deltas(self.to_glib_none().0, &mut dx, &mut dy));
             if ret { Some((dx, dy)) } else { None }
         }
     }
@@ -317,7 +317,7 @@ impl Event {
     pub fn get_touchpad_gesture_n_fingers(&self) -> Option<u32> {
         unsafe {
             let mut n_fingers = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touchpad_gesture_n_fingers(self.to_glib_none().0, &mut n_fingers));
+            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_gesture_n_fingers(self.to_glib_none().0, &mut n_fingers));
             if ret { Some(n_fingers) } else { None }
         }
     }
@@ -325,7 +325,7 @@ impl Event {
     pub fn get_touchpad_gesture_phase(&self) -> Option<TouchpadGesturePhase> {
         unsafe {
             let mut phase = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touchpad_gesture_phase(self.to_glib_none().0, &mut phase));
+            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_gesture_phase(self.to_glib_none().0, &mut phase));
             if ret { Some(from_glib(phase)) } else { None }
         }
     }
@@ -333,62 +333,62 @@ impl Event {
     pub fn get_touchpad_scale(&self) -> Option<f64> {
         unsafe {
             let mut scale = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_event_get_touchpad_scale(self.to_glib_none().0, &mut scale));
+            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_scale(self.to_glib_none().0, &mut scale));
             if ret { Some(scale) } else { None }
         }
     }
 
     pub fn is_scroll_stop_event(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_event_is_scroll_stop_event(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_is_scroll_stop_event(self.to_glib_none().0))
         }
     }
 
     pub fn is_sent(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_event_is_sent(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_is_sent(self.to_glib_none().0))
         }
     }
 
     pub fn set_coords(&self, x: f64, y: f64) {
         unsafe {
-            ffi::gdk_event_set_coords(self.to_glib_none().0, x, y);
+            gdk_sys::gdk_event_set_coords(self.to_glib_none().0, x, y);
         }
     }
 
     pub fn set_device(&self, device: &Device) {
         unsafe {
-            ffi::gdk_event_set_device(self.to_glib_none().0, device.to_glib_none().0);
+            gdk_sys::gdk_event_set_device(self.to_glib_none().0, device.to_glib_none().0);
         }
     }
 
     pub fn set_device_tool(&self, tool: Option<&DeviceTool>) {
         unsafe {
-            ffi::gdk_event_set_device_tool(self.to_glib_none().0, tool.to_glib_none().0);
+            gdk_sys::gdk_event_set_device_tool(self.to_glib_none().0, tool.to_glib_none().0);
         }
     }
 
     pub fn set_display(&self, display: &Display) {
         unsafe {
-            ffi::gdk_event_set_display(self.to_glib_none().0, display.to_glib_none().0);
+            gdk_sys::gdk_event_set_display(self.to_glib_none().0, display.to_glib_none().0);
         }
     }
 
     pub fn set_keyval(&self, keyval: u32) {
         unsafe {
-            ffi::gdk_event_set_keyval(self.to_glib_none().0, keyval);
+            gdk_sys::gdk_event_set_keyval(self.to_glib_none().0, keyval);
         }
     }
 
     pub fn set_source_device(&self, device: &Device) {
         unsafe {
-            ffi::gdk_event_set_source_device(self.to_glib_none().0, device.to_glib_none().0);
+            gdk_sys::gdk_event_set_source_device(self.to_glib_none().0, device.to_glib_none().0);
         }
     }
 
     pub fn triggers_context_menu(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_event_triggers_context_menu(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_triggers_context_menu(self.to_glib_none().0))
         }
     }
 }

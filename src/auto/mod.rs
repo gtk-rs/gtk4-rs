@@ -54,25 +54,22 @@ mod event;
 pub use self::event::{Event, EventClass};
 
 mod frame_clock;
-pub use self::frame_clock::{FrameClock, FrameClockClass, NONE_FRAME_CLOCK};
-pub use self::frame_clock::FrameClockExt;
+pub use self::frame_clock::{FrameClock, FrameClockClass};
 
 mod gl_context;
 pub use self::gl_context::{GLContext, GLContextClass};
 
 mod gl_texture;
-pub use self::gl_texture::{GLTexture, GLTextureClass, NONE_GL_TEXTURE};
-pub use self::gl_texture::GLTextureExt;
+pub use self::gl_texture::{GLTexture, GLTextureClass};
 
 mod keymap;
 pub use self::keymap::{Keymap, KeymapClass};
 
 mod memory_texture;
-pub use self::memory_texture::{MemoryTexture, MemoryTextureClass, NONE_MEMORY_TEXTURE};
+pub use self::memory_texture::{MemoryTexture, MemoryTextureClass};
 
 mod monitor;
-pub use self::monitor::{Monitor, MonitorClass, NONE_MONITOR};
-pub use self::monitor::MonitorExt;
+pub use self::monitor::{Monitor, MonitorClass};
 
 mod paintable;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};
@@ -82,7 +79,7 @@ mod seat;
 pub use self::seat::{Seat, SeatClass};
 
 mod snapshot;
-pub use self::snapshot::{Snapshot, SnapshotClass, NONE_SNAPSHOT};
+pub use self::snapshot::{Snapshot, SnapshotClass};
 
 mod surface;
 pub use self::surface::{Surface, SurfaceClass, NONE_SURFACE};
@@ -158,9 +155,6 @@ pub mod traits {
     pub use super::ContentProviderExt;
     pub use super::DevicePadExt;
     pub use super::DrawContextExt;
-    pub use super::FrameClockExt;
-    pub use super::GLTextureExt;
-    pub use super::MonitorExt;
     pub use super::PaintableExt;
     pub use super::SurfaceExt;
     pub use super::TextureExt;

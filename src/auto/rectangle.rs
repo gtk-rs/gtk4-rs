@@ -2,38 +2,38 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
+use gdk_sys;
 use glib::translate::*;
-use gobject_ffi;
+use gobject_sys;
 
 glib_wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
-    pub struct Rectangle(Boxed<ffi::GdkRectangle>);
+    pub struct Rectangle(Boxed<gdk_sys::GdkRectangle>);
 
     match fn {
-        copy => |ptr| gobject_ffi::g_boxed_copy(ffi::gdk_rectangle_get_type(), ptr as *mut _) as *mut ffi::GdkRectangle,
-        free => |ptr| gobject_ffi::g_boxed_free(ffi::gdk_rectangle_get_type(), ptr as *mut _),
-        get_type => || ffi::gdk_rectangle_get_type(),
+        copy => |ptr| gobject_sys::g_boxed_copy(gdk_sys::gdk_rectangle_get_type(), ptr as *mut _) as *mut gdk_sys::GdkRectangle,
+        free => |ptr| gobject_sys::g_boxed_free(gdk_sys::gdk_rectangle_get_type(), ptr as *mut _),
+        get_type => || gdk_sys::gdk_rectangle_get_type(),
     }
 }
 
 impl Rectangle {
     pub fn contains_point(&self, x: i32, y: i32) -> bool {
         unsafe {
-            from_glib(ffi::gdk_rectangle_contains_point(self.to_glib_none().0, x, y))
+            from_glib(gdk_sys::gdk_rectangle_contains_point(self.to_glib_none().0, x, y))
         }
     }
 
     fn equal(&self, rect2: &Rectangle) -> bool {
         unsafe {
-            from_glib(ffi::gdk_rectangle_equal(self.to_glib_none().0, rect2.to_glib_none().0))
+            from_glib(gdk_sys::gdk_rectangle_equal(self.to_glib_none().0, rect2.to_glib_none().0))
         }
     }
 
     pub fn intersect(&self, src2: &Rectangle) -> Option<Rectangle> {
         unsafe {
             let mut dest = Rectangle::uninitialized();
-            let ret = from_glib(ffi::gdk_rectangle_intersect(self.to_glib_none().0, src2.to_glib_none().0, dest.to_glib_none_mut().0));
+            let ret = from_glib(gdk_sys::gdk_rectangle_intersect(self.to_glib_none().0, src2.to_glib_none().0, dest.to_glib_none_mut().0));
             if ret { Some(dest) } else { None }
         }
     }
@@ -41,7 +41,7 @@ impl Rectangle {
     pub fn union(&self, src2: &Rectangle) -> Rectangle {
         unsafe {
             let mut dest = Rectangle::uninitialized();
-            ffi::gdk_rectangle_union(self.to_glib_none().0, src2.to_glib_none().0, dest.to_glib_none_mut().0);
+            gdk_sys::gdk_rectangle_union(self.to_glib_none().0, src2.to_glib_none().0, dest.to_glib_none_mut().0);
             dest
         }
     }

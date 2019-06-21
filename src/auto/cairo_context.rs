@@ -3,21 +3,21 @@
 // DO NOT EDIT
 
 use DrawContext;
-use ffi;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct CairoContext(Object<ffi::GdkCairoContext, CairoContextClass>) @extends DrawContext;
+    pub struct CairoContext(Object<gdk_sys::GdkCairoContext, CairoContextClass>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_cairo_context_get_type(),
+        get_type => || gdk_sys::gdk_cairo_context_get_type(),
     }
 }
 
 impl CairoContext {
     //pub fn cairo_create(&self) -> /*Ignored*/Option<cairo::Context> {
-    //    unsafe { TODO: call ffi::gdk_cairo_context_cairo_create() }
+    //    unsafe { TODO: call gdk_sys:gdk_cairo_context_cairo_create() }
     //}
 }
 

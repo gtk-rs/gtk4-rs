@@ -3,29 +3,29 @@
 // DO NOT EDIT
 
 use DrawContext;
-use ffi;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
 
 glib_wrapper! {
-    pub struct GLContext(Object<ffi::GdkGLContext, GLContextClass>) @extends DrawContext;
+    pub struct GLContext(Object<gdk_sys::GdkGLContext, GLContextClass>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_gl_context_get_type(),
+        get_type => || gdk_sys::gdk_gl_context_get_type(),
     }
 }
 
 impl GLContext {
     pub fn get_debug_enabled(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_gl_context_get_debug_enabled(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_get_debug_enabled(self.to_glib_none().0))
         }
     }
 
     pub fn get_forward_compatible(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_gl_context_get_forward_compatible(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_get_forward_compatible(self.to_glib_none().0))
         }
     }
 
@@ -33,20 +33,20 @@ impl GLContext {
         unsafe {
             let mut major = mem::uninitialized();
             let mut minor = mem::uninitialized();
-            ffi::gdk_gl_context_get_required_version(self.to_glib_none().0, &mut major, &mut minor);
+            gdk_sys::gdk_gl_context_get_required_version(self.to_glib_none().0, &mut major, &mut minor);
             (major, minor)
         }
     }
 
     pub fn get_shared_context(&self) -> Option<GLContext> {
         unsafe {
-            from_glib_none(ffi::gdk_gl_context_get_shared_context(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_gl_context_get_shared_context(self.to_glib_none().0))
         }
     }
 
     pub fn get_use_es(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_gl_context_get_use_es(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_get_use_es(self.to_glib_none().0))
         }
     }
 
@@ -54,62 +54,62 @@ impl GLContext {
         unsafe {
             let mut major = mem::uninitialized();
             let mut minor = mem::uninitialized();
-            ffi::gdk_gl_context_get_version(self.to_glib_none().0, &mut major, &mut minor);
+            gdk_sys::gdk_gl_context_get_version(self.to_glib_none().0, &mut major, &mut minor);
             (major, minor)
         }
     }
 
     pub fn is_legacy(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_gl_context_is_legacy(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_is_legacy(self.to_glib_none().0))
         }
     }
 
     pub fn make_current(&self) {
         unsafe {
-            ffi::gdk_gl_context_make_current(self.to_glib_none().0);
+            gdk_sys::gdk_gl_context_make_current(self.to_glib_none().0);
         }
     }
 
     //pub fn realize(&self, error: /*Ignored*/Option<Error>) -> bool {
-    //    unsafe { TODO: call ffi::gdk_gl_context_realize() }
+    //    unsafe { TODO: call gdk_sys:gdk_gl_context_realize() }
     //}
 
     pub fn set_debug_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::gdk_gl_context_set_debug_enabled(self.to_glib_none().0, enabled.to_glib());
+            gdk_sys::gdk_gl_context_set_debug_enabled(self.to_glib_none().0, enabled.to_glib());
         }
     }
 
     pub fn set_forward_compatible(&self, compatible: bool) {
         unsafe {
-            ffi::gdk_gl_context_set_forward_compatible(self.to_glib_none().0, compatible.to_glib());
+            gdk_sys::gdk_gl_context_set_forward_compatible(self.to_glib_none().0, compatible.to_glib());
         }
     }
 
     pub fn set_required_version(&self, major: i32, minor: i32) {
         unsafe {
-            ffi::gdk_gl_context_set_required_version(self.to_glib_none().0, major, minor);
+            gdk_sys::gdk_gl_context_set_required_version(self.to_glib_none().0, major, minor);
         }
     }
 
     pub fn set_use_es(&self, use_es: i32) {
         unsafe {
-            ffi::gdk_gl_context_set_use_es(self.to_glib_none().0, use_es);
+            gdk_sys::gdk_gl_context_set_use_es(self.to_glib_none().0, use_es);
         }
     }
 
     pub fn clear_current() {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gdk_gl_context_clear_current();
+            gdk_sys::gdk_gl_context_clear_current();
         }
     }
 
     pub fn get_current() -> Option<GLContext> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::gdk_gl_context_get_current())
+            from_glib_none(gdk_sys::gdk_gl_context_get_current())
         }
     }
 }

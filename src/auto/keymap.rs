@@ -5,82 +5,82 @@
 use Display;
 use ModifierIntent;
 use ModifierType;
-use ffi;
-use glib::object::ObjectType;
+use gdk_sys;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Keymap(Object<ffi::GdkKeymap, KeymapClass>);
+    pub struct Keymap(Object<gdk_sys::GdkKeymap, KeymapClass>);
 
     match fn {
-        get_type => || ffi::gdk_keymap_get_type(),
+        get_type => || gdk_sys::gdk_keymap_get_type(),
     }
 }
 
 impl Keymap {
     pub fn get_caps_lock_state(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_keymap_get_caps_lock_state(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_keymap_get_caps_lock_state(self.to_glib_none().0))
         }
     }
 
     //pub fn get_direction(&self) -> /*Ignored*/pango::Direction {
-    //    unsafe { TODO: call ffi::gdk_keymap_get_direction() }
+    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_direction() }
     //}
 
     pub fn get_display(&self) -> Option<Display> {
         unsafe {
-            from_glib_none(ffi::gdk_keymap_get_display(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_keymap_get_display(self.to_glib_none().0))
         }
     }
 
     //pub fn get_entries_for_keycode(&self, hardware_keycode: u32, keys: /*Ignored*/Vec<KeymapKey>) -> Option<Vec<u32>> {
-    //    unsafe { TODO: call ffi::gdk_keymap_get_entries_for_keycode() }
+    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_entries_for_keycode() }
     //}
 
     //pub fn get_entries_for_keyval(&self, keyval: u32, keys: /*Ignored*/Vec<KeymapKey>) -> Option<i32> {
-    //    unsafe { TODO: call ffi::gdk_keymap_get_entries_for_keyval() }
+    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_entries_for_keyval() }
     //}
 
     pub fn get_modifier_mask(&self, intent: ModifierIntent) -> ModifierType {
         unsafe {
-            from_glib(ffi::gdk_keymap_get_modifier_mask(self.to_glib_none().0, intent.to_glib()))
+            from_glib(gdk_sys::gdk_keymap_get_modifier_mask(self.to_glib_none().0, intent.to_glib()))
         }
     }
 
     pub fn get_modifier_state(&self) -> u32 {
         unsafe {
-            ffi::gdk_keymap_get_modifier_state(self.to_glib_none().0)
+            gdk_sys::gdk_keymap_get_modifier_state(self.to_glib_none().0)
         }
     }
 
     pub fn get_num_lock_state(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_keymap_get_num_lock_state(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_keymap_get_num_lock_state(self.to_glib_none().0))
         }
     }
 
     pub fn get_scroll_lock_state(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_keymap_get_scroll_lock_state(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_keymap_get_scroll_lock_state(self.to_glib_none().0))
         }
     }
 
     pub fn have_bidi_layouts(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_keymap_have_bidi_layouts(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_keymap_have_bidi_layouts(self.to_glib_none().0))
         }
     }
 
     //pub fn lookup_key(&self, key: /*Ignored*/&KeymapKey) -> u32 {
-    //    unsafe { TODO: call ffi::gdk_keymap_lookup_key() }
+    //    unsafe { TODO: call gdk_sys:gdk_keymap_lookup_key() }
     //}
 
     pub fn translate_keyboard_state(&self, hardware_keycode: u32, state: ModifierType, group: i32) -> Option<(u32, i32, i32, ModifierType)> {
@@ -89,12 +89,16 @@ impl Keymap {
             let mut effective_group = mem::uninitialized();
             let mut level = mem::uninitialized();
             let mut consumed_modifiers = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_keymap_translate_keyboard_state(self.to_glib_none().0, hardware_keycode, state.to_glib(), group, &mut keyval, &mut effective_group, &mut level, &mut consumed_modifiers));
+            let ret = from_glib(gdk_sys::gdk_keymap_translate_keyboard_state(self.to_glib_none().0, hardware_keycode, state.to_glib(), group, &mut keyval, &mut effective_group, &mut level, &mut consumed_modifiers));
             if ret { Some((keyval, effective_group, level, from_glib(consumed_modifiers))) } else { None }
         }
     }
 
     pub fn connect_direction_changed<F: Fn(&Keymap) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn direction_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut gdk_sys::GdkKeymap, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"direction-changed\0".as_ptr() as *const _,
@@ -103,6 +107,10 @@ impl Keymap {
     }
 
     pub fn connect_keys_changed<F: Fn(&Keymap) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn keys_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut gdk_sys::GdkKeymap, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"keys-changed\0".as_ptr() as *const _,
@@ -111,27 +119,16 @@ impl Keymap {
     }
 
     pub fn connect_state_changed<F: Fn(&Keymap) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn state_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut gdk_sys::GdkKeymap, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"state-changed\0".as_ptr() as *const _,
                 Some(transmute(state_changed_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn direction_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut ffi::GdkKeymap, f: glib_ffi::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn keys_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut ffi::GdkKeymap, f: glib_ffi::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
-}
-
-unsafe extern "C" fn state_changed_trampoline<F: Fn(&Keymap) + 'static>(this: *mut ffi::GdkKeymap, f: glib_ffi::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for Keymap {

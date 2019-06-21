@@ -4,25 +4,23 @@
 
 use Paintable;
 use Texture;
-use ffi;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass, MemoryTextureClass>) @extends Texture, @implements Paintable;
+    pub struct MemoryTexture(Object<gdk_sys::GdkMemoryTexture, gdk_sys::GdkMemoryTextureClass, MemoryTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || ffi::gdk_memory_texture_get_type(),
+        get_type => || gdk_sys::gdk_memory_texture_get_type(),
     }
 }
 
 impl MemoryTexture {
     //pub fn new(width: i32, height: i32, format: MemoryFormat, bytes: /*Ignored*/&glib::Bytes, stride: usize) -> MemoryTexture {
-    //    unsafe { TODO: call ffi::gdk_memory_texture_new() }
+    //    unsafe { TODO: call gdk_sys:gdk_memory_texture_new() }
     //}
 }
-
-pub const NONE_MEMORY_TEXTURE: Option<&MemoryTexture> = None;
 
 impl fmt::Display for MemoryTexture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

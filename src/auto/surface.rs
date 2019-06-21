@@ -21,7 +21,7 @@ use SurfaceTypeHint;
 use Texture;
 use WMDecoration;
 use WMFunction;
-use ffi;
+use gdk_sys;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -29,8 +29,8 @@ use glib::object::IsA;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
-use gobject_ffi;
+use glib_sys;
+use gobject_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -38,10 +38,10 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Surface(Object<ffi::GdkSurface, ffi::GdkSurfaceClass, SurfaceClass>);
+    pub struct Surface(Object<gdk_sys::GdkSurface, gdk_sys::GdkSurfaceClass, SurfaceClass>);
 
     match fn {
-        get_type => || ffi::gdk_surface_get_type(),
+        get_type => || gdk_sys::gdk_surface_get_type(),
     }
 }
 
@@ -49,33 +49,33 @@ impl Surface {
     pub fn new_child<P: IsA<Surface>>(parent: &P, position: &Rectangle) -> Surface {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(ffi::gdk_surface_new_child(parent.as_ref().to_glib_none().0, position.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_surface_new_child(parent.as_ref().to_glib_none().0, position.to_glib_none().0))
         }
     }
 
     pub fn new_popup(display: &Display, position: &Rectangle) -> Surface {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(ffi::gdk_surface_new_popup(display.to_glib_none().0, position.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_surface_new_popup(display.to_glib_none().0, position.to_glib_none().0))
         }
     }
 
     pub fn new_temp(display: &Display) -> Surface {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(ffi::gdk_surface_new_temp(display.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_surface_new_temp(display.to_glib_none().0))
         }
     }
 
     pub fn new_toplevel(display: &Display, width: i32, height: i32) -> Surface {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(ffi::gdk_surface_new_toplevel(display.to_glib_none().0, width, height))
+            from_glib_full(gdk_sys::gdk_surface_new_toplevel(display.to_glib_none().0, width, height))
         }
     }
 
     //pub fn constrain_size(geometry: /*Ignored*/&mut Geometry, flags: SurfaceHints, width: i32, height: i32) -> (i32, i32) {
-    //    unsafe { TODO: call ffi::gdk_surface_constrain_size() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_constrain_size() }
     //}
 }
 
@@ -114,7 +114,7 @@ pub trait SurfaceExt: 'static {
 
     fn fullscreen(&self);
 
-    fn fullscreen_on_monitor<P: IsA<Monitor>>(&self, monitor: &P);
+    fn fullscreen_on_monitor(&self, monitor: &Monitor);
 
     fn get_accept_focus(&self) -> bool;
 
@@ -292,31 +292,31 @@ pub trait SurfaceExt: 'static {
 impl<O: IsA<Surface>> SurfaceExt for O {
     fn beep(&self) {
         unsafe {
-            ffi::gdk_surface_beep(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_beep(self.as_ref().to_glib_none().0);
         }
     }
 
     fn begin_move_drag(&self, button: i32, x: i32, y: i32, timestamp: u32) {
         unsafe {
-            ffi::gdk_surface_begin_move_drag(self.as_ref().to_glib_none().0, button, x, y, timestamp);
+            gdk_sys::gdk_surface_begin_move_drag(self.as_ref().to_glib_none().0, button, x, y, timestamp);
         }
     }
 
     fn begin_move_drag_for_device(&self, device: &Device, button: i32, x: i32, y: i32, timestamp: u32) {
         unsafe {
-            ffi::gdk_surface_begin_move_drag_for_device(self.as_ref().to_glib_none().0, device.to_glib_none().0, button, x, y, timestamp);
+            gdk_sys::gdk_surface_begin_move_drag_for_device(self.as_ref().to_glib_none().0, device.to_glib_none().0, button, x, y, timestamp);
         }
     }
 
     fn begin_resize_drag(&self, edge: SurfaceEdge, button: i32, x: i32, y: i32, timestamp: u32) {
         unsafe {
-            ffi::gdk_surface_begin_resize_drag(self.as_ref().to_glib_none().0, edge.to_glib(), button, x, y, timestamp);
+            gdk_sys::gdk_surface_begin_resize_drag(self.as_ref().to_glib_none().0, edge.to_glib(), button, x, y, timestamp);
         }
     }
 
     fn begin_resize_drag_for_device(&self, edge: SurfaceEdge, device: &Device, button: i32, x: i32, y: i32, timestamp: u32) {
         unsafe {
-            ffi::gdk_surface_begin_resize_drag_for_device(self.as_ref().to_glib_none().0, edge.to_glib(), device.to_glib_none().0, button, x, y, timestamp);
+            gdk_sys::gdk_surface_begin_resize_drag_for_device(self.as_ref().to_glib_none().0, edge.to_glib(), device.to_glib_none().0, button, x, y, timestamp);
         }
     }
 
@@ -324,7 +324,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            ffi::gdk_surface_coords_from_parent(self.as_ref().to_glib_none().0, parent_x, parent_y, &mut x, &mut y);
+            gdk_sys::gdk_surface_coords_from_parent(self.as_ref().to_glib_none().0, parent_x, parent_y, &mut x, &mut y);
             (x, y)
         }
     }
@@ -333,94 +333,94 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut parent_x = mem::uninitialized();
             let mut parent_y = mem::uninitialized();
-            ffi::gdk_surface_coords_to_parent(self.as_ref().to_glib_none().0, x, y, &mut parent_x, &mut parent_y);
+            gdk_sys::gdk_surface_coords_to_parent(self.as_ref().to_glib_none().0, x, y, &mut parent_x, &mut parent_y);
             (parent_x, parent_y)
         }
     }
 
     fn create_cairo_context(&self) -> Option<CairoContext> {
         unsafe {
-            from_glib_full(ffi::gdk_surface_create_cairo_context(self.as_ref().to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_surface_create_cairo_context(self.as_ref().to_glib_none().0))
         }
     }
 
     //fn create_gl_context(&self, error: /*Ignored*/Option<Error>) -> Option<GLContext> {
-    //    unsafe { TODO: call ffi::gdk_surface_create_gl_context() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_create_gl_context() }
     //}
 
     //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> /*Ignored*/Option<cairo::Surface> {
-    //    unsafe { TODO: call ffi::gdk_surface_create_similar_surface() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_create_similar_surface() }
     //}
 
     //fn create_vulkan_context(&self, error: /*Ignored*/Option<Error>) -> Option<VulkanContext> {
-    //    unsafe { TODO: call ffi::gdk_surface_create_vulkan_context() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_create_vulkan_context() }
     //}
 
     fn deiconify(&self) {
         unsafe {
-            ffi::gdk_surface_deiconify(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_deiconify(self.as_ref().to_glib_none().0);
         }
     }
 
     fn destroy(&self) {
         unsafe {
-            ffi::gdk_surface_destroy(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_destroy(self.as_ref().to_glib_none().0);
         }
     }
 
     fn focus(&self, timestamp: u32) {
         unsafe {
-            ffi::gdk_surface_focus(self.as_ref().to_glib_none().0, timestamp);
+            gdk_sys::gdk_surface_focus(self.as_ref().to_glib_none().0, timestamp);
         }
     }
 
     fn freeze_updates(&self) {
         unsafe {
-            ffi::gdk_surface_freeze_updates(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_freeze_updates(self.as_ref().to_glib_none().0);
         }
     }
 
     fn fullscreen(&self) {
         unsafe {
-            ffi::gdk_surface_fullscreen(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_fullscreen(self.as_ref().to_glib_none().0);
         }
     }
 
-    fn fullscreen_on_monitor<P: IsA<Monitor>>(&self, monitor: &P) {
+    fn fullscreen_on_monitor(&self, monitor: &Monitor) {
         unsafe {
-            ffi::gdk_surface_fullscreen_on_monitor(self.as_ref().to_glib_none().0, monitor.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_fullscreen_on_monitor(self.as_ref().to_glib_none().0, monitor.to_glib_none().0);
         }
     }
 
     fn get_accept_focus(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_get_accept_focus(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_accept_focus(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_children(&self) -> Vec<Surface> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gdk_surface_get_children(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gdk_sys::gdk_surface_get_children(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_cursor(&self) -> Option<Cursor> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_cursor(self.as_ref().to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_cursor(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_decorations(&self) -> Option<WMDecoration> {
         unsafe {
             let mut decorations = mem::uninitialized();
-            let ret = from_glib(ffi::gdk_surface_get_decorations(self.as_ref().to_glib_none().0, &mut decorations));
+            let ret = from_glib(gdk_sys::gdk_surface_get_decorations(self.as_ref().to_glib_none().0, &mut decorations));
             if ret { Some(from_glib(decorations)) } else { None }
         }
     }
 
     fn get_device_cursor(&self, device: &Device) -> Option<Cursor> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_device_cursor(self.as_ref().to_glib_none().0, device.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_device_cursor(self.as_ref().to_glib_none().0, device.to_glib_none().0))
         }
     }
 
@@ -429,40 +429,40 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
             let mut mask = mem::uninitialized();
-            let ret = from_glib_none(ffi::gdk_surface_get_device_position(self.as_ref().to_glib_none().0, device.to_glib_none().0, &mut x, &mut y, &mut mask));
+            let ret = from_glib_none(gdk_sys::gdk_surface_get_device_position(self.as_ref().to_glib_none().0, device.to_glib_none().0, &mut x, &mut y, &mut mask));
             (ret, x, y, from_glib(mask))
         }
     }
 
     fn get_display(&self) -> Option<Display> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_display(self.as_ref().to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_display(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_focus_on_map(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_get_focus_on_map(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_focus_on_map(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_frame_clock(&self) -> Option<FrameClock> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_frame_clock(self.as_ref().to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_frame_clock(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_frame_extents(&self) -> Rectangle {
         unsafe {
             let mut rect = Rectangle::uninitialized();
-            ffi::gdk_surface_get_frame_extents(self.as_ref().to_glib_none().0, rect.to_glib_none_mut().0);
+            gdk_sys::gdk_surface_get_frame_extents(self.as_ref().to_glib_none().0, rect.to_glib_none_mut().0);
             rect
         }
     }
 
     fn get_fullscreen_mode(&self) -> FullscreenMode {
         unsafe {
-            from_glib(ffi::gdk_surface_get_fullscreen_mode(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_fullscreen_mode(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -472,20 +472,20 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             let mut y = mem::uninitialized();
             let mut width = mem::uninitialized();
             let mut height = mem::uninitialized();
-            ffi::gdk_surface_get_geometry(self.as_ref().to_glib_none().0, &mut x, &mut y, &mut width, &mut height);
+            gdk_sys::gdk_surface_get_geometry(self.as_ref().to_glib_none().0, &mut x, &mut y, &mut width, &mut height);
             (x, y, width, height)
         }
     }
 
     fn get_height(&self) -> i32 {
         unsafe {
-            ffi::gdk_surface_get_height(self.as_ref().to_glib_none().0)
+            gdk_sys::gdk_surface_get_height(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_modal_hint(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_get_modal_hint(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_modal_hint(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -493,20 +493,20 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            let ret = ffi::gdk_surface_get_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            let ret = gdk_sys::gdk_surface_get_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
             (ret, x, y)
         }
     }
 
     fn get_parent(&self) -> Option<Surface> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_parent(self.as_ref().to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_parent(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_pass_through(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_get_pass_through(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_pass_through(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -514,7 +514,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            ffi::gdk_surface_get_position(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            gdk_sys::gdk_surface_get_position(self.as_ref().to_glib_none().0, &mut x, &mut y);
             (x, y)
         }
     }
@@ -523,7 +523,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut root_x = mem::uninitialized();
             let mut root_y = mem::uninitialized();
-            ffi::gdk_surface_get_root_coords(self.as_ref().to_glib_none().0, x, y, &mut root_x, &mut root_y);
+            gdk_sys::gdk_surface_get_root_coords(self.as_ref().to_glib_none().0, x, y, &mut root_x, &mut root_y);
             (root_x, root_y)
         }
     }
@@ -532,362 +532,368 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            ffi::gdk_surface_get_root_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            gdk_sys::gdk_surface_get_root_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
             (x, y)
         }
     }
 
     fn get_scale_factor(&self) -> i32 {
         unsafe {
-            ffi::gdk_surface_get_scale_factor(self.as_ref().to_glib_none().0)
+            gdk_sys::gdk_surface_get_scale_factor(self.as_ref().to_glib_none().0)
         }
     }
 
     fn get_state(&self) -> SurfaceState {
         unsafe {
-            from_glib(ffi::gdk_surface_get_state(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_state(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_support_multidevice(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_get_support_multidevice(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_support_multidevice(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_surface_type(&self) -> SurfaceType {
         unsafe {
-            from_glib(ffi::gdk_surface_get_surface_type(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_surface_type(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_toplevel(&self) -> Option<Surface> {
         unsafe {
-            from_glib_none(ffi::gdk_surface_get_toplevel(self.as_ref().to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_surface_get_toplevel(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_type_hint(&self) -> SurfaceTypeHint {
         unsafe {
-            from_glib(ffi::gdk_surface_get_type_hint(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_get_type_hint(self.as_ref().to_glib_none().0))
         }
     }
 
     fn get_width(&self) -> i32 {
         unsafe {
-            ffi::gdk_surface_get_width(self.as_ref().to_glib_none().0)
+            gdk_sys::gdk_surface_get_width(self.as_ref().to_glib_none().0)
         }
     }
 
     fn has_native(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_has_native(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_has_native(self.as_ref().to_glib_none().0))
         }
     }
 
     fn hide(&self) {
         unsafe {
-            ffi::gdk_surface_hide(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_hide(self.as_ref().to_glib_none().0);
         }
     }
 
     fn iconify(&self) {
         unsafe {
-            ffi::gdk_surface_iconify(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_iconify(self.as_ref().to_glib_none().0);
         }
     }
 
     //fn input_shape_combine_region(&self, shape_region: /*Ignored*/&cairo::Region, offset_x: i32, offset_y: i32) {
-    //    unsafe { TODO: call ffi::gdk_surface_input_shape_combine_region() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_input_shape_combine_region() }
     //}
 
     fn is_destroyed(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_is_destroyed(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_is_destroyed(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_input_only(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_is_input_only(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_is_input_only(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_viewable(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_is_viewable(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_is_viewable(self.as_ref().to_glib_none().0))
         }
     }
 
     fn is_visible(&self) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_is_visible(self.as_ref().to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_is_visible(self.as_ref().to_glib_none().0))
         }
     }
 
     fn lower(&self) {
         unsafe {
-            ffi::gdk_surface_lower(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_lower(self.as_ref().to_glib_none().0);
         }
     }
 
     fn maximize(&self) {
         unsafe {
-            ffi::gdk_surface_maximize(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_maximize(self.as_ref().to_glib_none().0);
         }
     }
 
     fn merge_child_input_shapes(&self) {
         unsafe {
-            ffi::gdk_surface_merge_child_input_shapes(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_merge_child_input_shapes(self.as_ref().to_glib_none().0);
         }
     }
 
     fn move_(&self, x: i32, y: i32) {
         unsafe {
-            ffi::gdk_surface_move(self.as_ref().to_glib_none().0, x, y);
+            gdk_sys::gdk_surface_move(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
     fn move_resize(&self, x: i32, y: i32, width: i32, height: i32) {
         unsafe {
-            ffi::gdk_surface_move_resize(self.as_ref().to_glib_none().0, x, y, width, height);
+            gdk_sys::gdk_surface_move_resize(self.as_ref().to_glib_none().0, x, y, width, height);
         }
     }
 
     fn move_to_rect(&self, rect: &Rectangle, rect_anchor: Gravity, surface_anchor: Gravity, anchor_hints: AnchorHints, rect_anchor_dx: i32, rect_anchor_dy: i32) {
         unsafe {
-            ffi::gdk_surface_move_to_rect(self.as_ref().to_glib_none().0, rect.to_glib_none().0, rect_anchor.to_glib(), surface_anchor.to_glib(), anchor_hints.to_glib(), rect_anchor_dx, rect_anchor_dy);
+            gdk_sys::gdk_surface_move_to_rect(self.as_ref().to_glib_none().0, rect.to_glib_none().0, rect_anchor.to_glib(), surface_anchor.to_glib(), anchor_hints.to_glib(), rect_anchor_dx, rect_anchor_dy);
         }
     }
 
     fn peek_children(&self) -> Vec<Surface> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::gdk_surface_peek_children(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gdk_sys::gdk_surface_peek_children(self.as_ref().to_glib_none().0))
         }
     }
 
     fn queue_expose(&self) {
         unsafe {
-            ffi::gdk_surface_queue_expose(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_queue_expose(self.as_ref().to_glib_none().0);
         }
     }
 
     fn raise(&self) {
         unsafe {
-            ffi::gdk_surface_raise(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_raise(self.as_ref().to_glib_none().0);
         }
     }
 
     fn register_dnd(&self) {
         unsafe {
-            ffi::gdk_surface_register_dnd(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_register_dnd(self.as_ref().to_glib_none().0);
         }
     }
 
     fn resize(&self, width: i32, height: i32) {
         unsafe {
-            ffi::gdk_surface_resize(self.as_ref().to_glib_none().0, width, height);
+            gdk_sys::gdk_surface_resize(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
     fn restack<P: IsA<Surface>>(&self, sibling: Option<&P>, above: bool) {
         unsafe {
-            ffi::gdk_surface_restack(self.as_ref().to_glib_none().0, sibling.map(|p| p.as_ref()).to_glib_none().0, above.to_glib());
+            gdk_sys::gdk_surface_restack(self.as_ref().to_glib_none().0, sibling.map(|p| p.as_ref()).to_glib_none().0, above.to_glib());
         }
     }
 
     fn set_accept_focus(&self, accept_focus: bool) {
         unsafe {
-            ffi::gdk_surface_set_accept_focus(self.as_ref().to_glib_none().0, accept_focus.to_glib());
+            gdk_sys::gdk_surface_set_accept_focus(self.as_ref().to_glib_none().0, accept_focus.to_glib());
         }
     }
 
     fn set_child_input_shapes(&self) {
         unsafe {
-            ffi::gdk_surface_set_child_input_shapes(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_set_child_input_shapes(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_cursor(&self, cursor: Option<&Cursor>) {
         unsafe {
-            ffi::gdk_surface_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
+            gdk_sys::gdk_surface_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
         }
     }
 
     fn set_decorations(&self, decorations: WMDecoration) {
         unsafe {
-            ffi::gdk_surface_set_decorations(self.as_ref().to_glib_none().0, decorations.to_glib());
+            gdk_sys::gdk_surface_set_decorations(self.as_ref().to_glib_none().0, decorations.to_glib());
         }
     }
 
     fn set_device_cursor(&self, device: &Device, cursor: &Cursor) {
         unsafe {
-            ffi::gdk_surface_set_device_cursor(self.as_ref().to_glib_none().0, device.to_glib_none().0, cursor.to_glib_none().0);
+            gdk_sys::gdk_surface_set_device_cursor(self.as_ref().to_glib_none().0, device.to_glib_none().0, cursor.to_glib_none().0);
         }
     }
 
     fn set_focus_on_map(&self, focus_on_map: bool) {
         unsafe {
-            ffi::gdk_surface_set_focus_on_map(self.as_ref().to_glib_none().0, focus_on_map.to_glib());
+            gdk_sys::gdk_surface_set_focus_on_map(self.as_ref().to_glib_none().0, focus_on_map.to_glib());
         }
     }
 
     fn set_fullscreen_mode(&self, mode: FullscreenMode) {
         unsafe {
-            ffi::gdk_surface_set_fullscreen_mode(self.as_ref().to_glib_none().0, mode.to_glib());
+            gdk_sys::gdk_surface_set_fullscreen_mode(self.as_ref().to_glib_none().0, mode.to_glib());
         }
     }
 
     fn set_functions(&self, functions: WMFunction) {
         unsafe {
-            ffi::gdk_surface_set_functions(self.as_ref().to_glib_none().0, functions.to_glib());
+            gdk_sys::gdk_surface_set_functions(self.as_ref().to_glib_none().0, functions.to_glib());
         }
     }
 
     //fn set_geometry_hints(&self, geometry: /*Ignored*/&Geometry, geom_mask: SurfaceHints) {
-    //    unsafe { TODO: call ffi::gdk_surface_set_geometry_hints() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_set_geometry_hints() }
     //}
 
     fn set_icon_list(&self, surfaces: &[Texture]) {
         unsafe {
-            ffi::gdk_surface_set_icon_list(self.as_ref().to_glib_none().0, surfaces.to_glib_none().0);
+            gdk_sys::gdk_surface_set_icon_list(self.as_ref().to_glib_none().0, surfaces.to_glib_none().0);
         }
     }
 
     fn set_icon_name(&self, name: Option<&str>) {
         unsafe {
-            ffi::gdk_surface_set_icon_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gdk_sys::gdk_surface_set_icon_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     fn set_keep_above(&self, setting: bool) {
         unsafe {
-            ffi::gdk_surface_set_keep_above(self.as_ref().to_glib_none().0, setting.to_glib());
+            gdk_sys::gdk_surface_set_keep_above(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_keep_below(&self, setting: bool) {
         unsafe {
-            ffi::gdk_surface_set_keep_below(self.as_ref().to_glib_none().0, setting.to_glib());
+            gdk_sys::gdk_surface_set_keep_below(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_modal_hint(&self, modal: bool) {
         unsafe {
-            ffi::gdk_surface_set_modal_hint(self.as_ref().to_glib_none().0, modal.to_glib());
+            gdk_sys::gdk_surface_set_modal_hint(self.as_ref().to_glib_none().0, modal.to_glib());
         }
     }
 
     fn set_opacity(&self, opacity: f64) {
         unsafe {
-            ffi::gdk_surface_set_opacity(self.as_ref().to_glib_none().0, opacity);
+            gdk_sys::gdk_surface_set_opacity(self.as_ref().to_glib_none().0, opacity);
         }
     }
 
     //fn set_opaque_region(&self, region: /*Ignored*/Option<&mut cairo::Region>) {
-    //    unsafe { TODO: call ffi::gdk_surface_set_opaque_region() }
+    //    unsafe { TODO: call gdk_sys:gdk_surface_set_opaque_region() }
     //}
 
     fn set_pass_through(&self, pass_through: bool) {
         unsafe {
-            ffi::gdk_surface_set_pass_through(self.as_ref().to_glib_none().0, pass_through.to_glib());
+            gdk_sys::gdk_surface_set_pass_through(self.as_ref().to_glib_none().0, pass_through.to_glib());
         }
     }
 
     fn set_shadow_width(&self, left: i32, right: i32, top: i32, bottom: i32) {
         unsafe {
-            ffi::gdk_surface_set_shadow_width(self.as_ref().to_glib_none().0, left, right, top, bottom);
+            gdk_sys::gdk_surface_set_shadow_width(self.as_ref().to_glib_none().0, left, right, top, bottom);
         }
     }
 
     fn set_startup_id(&self, startup_id: &str) {
         unsafe {
-            ffi::gdk_surface_set_startup_id(self.as_ref().to_glib_none().0, startup_id.to_glib_none().0);
+            gdk_sys::gdk_surface_set_startup_id(self.as_ref().to_glib_none().0, startup_id.to_glib_none().0);
         }
     }
 
     fn set_support_multidevice(&self, support_multidevice: bool) {
         unsafe {
-            ffi::gdk_surface_set_support_multidevice(self.as_ref().to_glib_none().0, support_multidevice.to_glib());
+            gdk_sys::gdk_surface_set_support_multidevice(self.as_ref().to_glib_none().0, support_multidevice.to_glib());
         }
     }
 
     fn set_title(&self, title: &str) {
         unsafe {
-            ffi::gdk_surface_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
+            gdk_sys::gdk_surface_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     fn set_transient_for<P: IsA<Surface>>(&self, parent: &P) {
         unsafe {
-            ffi::gdk_surface_set_transient_for(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_set_transient_for(self.as_ref().to_glib_none().0, parent.as_ref().to_glib_none().0);
         }
     }
 
     fn set_type_hint(&self, hint: SurfaceTypeHint) {
         unsafe {
-            ffi::gdk_surface_set_type_hint(self.as_ref().to_glib_none().0, hint.to_glib());
+            gdk_sys::gdk_surface_set_type_hint(self.as_ref().to_glib_none().0, hint.to_glib());
         }
     }
 
     fn show(&self) {
         unsafe {
-            ffi::gdk_surface_show(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_show(self.as_ref().to_glib_none().0);
         }
     }
 
     fn show_unraised(&self) {
         unsafe {
-            ffi::gdk_surface_show_unraised(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_show_unraised(self.as_ref().to_glib_none().0);
         }
     }
 
     fn show_window_menu(&self, event: &Event) -> bool {
         unsafe {
-            from_glib(ffi::gdk_surface_show_window_menu(self.as_ref().to_glib_none().0, event.to_glib_none().0))
+            from_glib(gdk_sys::gdk_surface_show_window_menu(self.as_ref().to_glib_none().0, event.to_glib_none().0))
         }
     }
 
     fn stick(&self) {
         unsafe {
-            ffi::gdk_surface_stick(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_stick(self.as_ref().to_glib_none().0);
         }
     }
 
     fn thaw_updates(&self) {
         unsafe {
-            ffi::gdk_surface_thaw_updates(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_thaw_updates(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unfullscreen(&self) {
         unsafe {
-            ffi::gdk_surface_unfullscreen(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_unfullscreen(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unmaximize(&self) {
         unsafe {
-            ffi::gdk_surface_unmaximize(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_unmaximize(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unstick(&self) {
         unsafe {
-            ffi::gdk_surface_unstick(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_surface_unstick(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_mapped(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut gobject_ffi::GObject, b"mapped\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"mapped\0".as_ptr() as *const _, value.to_glib_none_mut().0);
             value.get().unwrap()
         }
     }
 
     fn connect_event<F: Fn(&Self, &Event) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn event_trampoline<P, F: Fn(&P, &Event) -> bool + 'static>(this: *mut gdk_sys::GdkSurface, event: *mut gdk_sys::GdkEvent, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(event)).to_glib()
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"event\0".as_ptr() as *const _,
@@ -905,6 +911,12 @@ impl<O: IsA<Surface>> SurfaceExt for O {
     //}
 
     fn connect_size_changed<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn size_changed_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gdk_sys::GdkSurface, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast(), width, height)
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"size-changed\0".as_ptr() as *const _,
@@ -913,6 +925,12 @@ impl<O: IsA<Surface>> SurfaceExt for O {
     }
 
     fn connect_property_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkSurface, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::cursor\0".as_ptr() as *const _,
@@ -921,6 +939,12 @@ impl<O: IsA<Surface>> SurfaceExt for O {
     }
 
     fn connect_property_mapped_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mapped_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkSurface, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::mapped\0".as_ptr() as *const _,
@@ -929,42 +953,18 @@ impl<O: IsA<Surface>> SurfaceExt for O {
     }
 
     fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_state_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkSurface, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast())
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::state\0".as_ptr() as *const _,
                 Some(transmute(notify_state_trampoline::<Self, F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn event_trampoline<P, F: Fn(&P, &Event) -> bool + 'static>(this: *mut ffi::GdkSurface, event: *mut ffi::GdkEvent, f: glib_ffi::gpointer) -> glib_ffi::gboolean
-where P: IsA<Surface> {
-    let f: &F = &*(f as *const F);
-    f(&Surface::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(event)).to_glib()
-}
-
-unsafe extern "C" fn size_changed_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut ffi::GdkSurface, width: libc::c_int, height: libc::c_int, f: glib_ffi::gpointer)
-where P: IsA<Surface> {
-    let f: &F = &*(f as *const F);
-    f(&Surface::from_glib_borrow(this).unsafe_cast(), width, height)
-}
-
-unsafe extern "C" fn notify_cursor_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GdkSurface, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<Surface> {
-    let f: &F = &*(f as *const F);
-    f(&Surface::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_mapped_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GdkSurface, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<Surface> {
-    let f: &F = &*(f as *const F);
-    f(&Surface::from_glib_borrow(this).unsafe_cast())
-}
-
-unsafe extern "C" fn notify_state_trampoline<P, F: Fn(&P) + 'static>(this: *mut ffi::GdkSurface, _param_spec: glib_ffi::gpointer, f: glib_ffi::gpointer)
-where P: IsA<Surface> {
-    let f: &F = &*(f as *const F);
-    f(&Surface::from_glib_borrow(this).unsafe_cast())
 }
 
 impl fmt::Display for Surface {

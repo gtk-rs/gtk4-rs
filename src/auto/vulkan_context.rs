@@ -3,37 +3,36 @@
 // DO NOT EDIT
 
 use DrawContext;
-use ffi;
-use glib::object::ObjectType;
+use gdk_sys;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
-use glib_ffi;
+use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct VulkanContext(Object<ffi::GdkVulkanContext, VulkanContextClass>) @extends DrawContext;
+    pub struct VulkanContext(Object<gdk_sys::GdkVulkanContext, VulkanContextClass>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_vulkan_context_get_type(),
+        get_type => || gdk_sys::gdk_vulkan_context_get_type(),
     }
 }
 
 impl VulkanContext {
     pub fn connect_images_updated<F: Fn(&VulkanContext) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn images_updated_trampoline<F: Fn(&VulkanContext) + 'static>(this: *mut gdk_sys::GdkVulkanContext, f: glib_sys::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"images-updated\0".as_ptr() as *const _,
                 Some(transmute(images_updated_trampoline::<F> as usize)), Box_::into_raw(f))
         }
     }
-}
-
-unsafe extern "C" fn images_updated_trampoline<F: Fn(&VulkanContext) + 'static>(this: *mut ffi::GdkVulkanContext, f: glib_ffi::gpointer) {
-    let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this))
 }
 
 impl fmt::Display for VulkanContext {

@@ -2,21 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct Snapshot(Object<ffi::GdkSnapshot, ffi::GdkSnapshotClass, SnapshotClass>);
+    pub struct Snapshot(Object<gdk_sys::GdkSnapshot, gdk_sys::GdkSnapshotClass, SnapshotClass>);
 
     match fn {
-        get_type => || ffi::gdk_snapshot_get_type(),
+        get_type => || gdk_sys::gdk_snapshot_get_type(),
     }
 }
 
 impl Snapshot {}
-
-pub const NONE_SNAPSHOT: Option<&Snapshot> = None;
 
 impl fmt::Display for Snapshot {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

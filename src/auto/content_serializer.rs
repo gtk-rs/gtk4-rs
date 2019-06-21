@@ -2,71 +2,71 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
+use gdk_sys;
 use glib;
 use glib::GString;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ContentSerializer(Object<ffi::GdkContentSerializer, ContentSerializerClass>);
+    pub struct ContentSerializer(Object<gdk_sys::GdkContentSerializer, ContentSerializerClass>);
 
     match fn {
-        get_type => || ffi::gdk_content_serializer_get_type(),
+        get_type => || gdk_sys::gdk_content_serializer_get_type(),
     }
 }
 
 impl ContentSerializer {
     //pub fn get_cancellable(&self) -> /*Ignored*/Option<gio::Cancellable> {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_get_cancellable() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_cancellable() }
     //}
 
     pub fn get_gtype(&self) -> glib::types::Type {
         unsafe {
-            from_glib(ffi::gdk_content_serializer_get_gtype(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_content_serializer_get_gtype(self.to_glib_none().0))
         }
     }
 
     pub fn get_mime_type(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(ffi::gdk_content_serializer_get_mime_type(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_content_serializer_get_mime_type(self.to_glib_none().0))
         }
     }
 
     //pub fn get_output_stream(&self) -> /*Ignored*/Option<gio::OutputStream> {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_get_output_stream() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_output_stream() }
     //}
 
     pub fn get_priority(&self) -> i32 {
         unsafe {
-            ffi::gdk_content_serializer_get_priority(self.to_glib_none().0)
+            gdk_sys::gdk_content_serializer_get_priority(self.to_glib_none().0)
         }
     }
 
     //pub fn get_task_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_get_task_data() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_task_data() }
     //}
 
     //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_get_user_data() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_user_data() }
     //}
 
     //pub fn get_value(&self) -> /*Ignored*/Option<glib::Value> {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_get_value() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_value() }
     //}
 
     //pub fn return_error(&self, error: /*Ignored*/&mut Error) {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_return_error() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_return_error() }
     //}
 
     pub fn return_success(&self) {
         unsafe {
-            ffi::gdk_content_serializer_return_success(self.to_glib_none().0);
+            gdk_sys::gdk_content_serializer_return_success(self.to_glib_none().0);
         }
     }
 
     //pub fn set_task_data(&self, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call ffi::gdk_content_serializer_set_task_data() }
+    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_set_task_data() }
     //}
 }
 

@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ffi;
-use gobject_ffi;
+use gdk_sys;
+use gobject_sys;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct EventSequence(Boxed<ffi::GdkEventSequence>);
+    pub struct EventSequence(Boxed<gdk_sys::GdkEventSequence>);
 
     match fn {
-        copy => |ptr| gobject_ffi::g_boxed_copy(ffi::gdk_event_sequence_get_type(), ptr as *mut _) as *mut ffi::GdkEventSequence,
-        free => |ptr| gobject_ffi::g_boxed_free(ffi::gdk_event_sequence_get_type(), ptr as *mut _),
-        get_type => || ffi::gdk_event_sequence_get_type(),
+        copy => |ptr| gobject_sys::g_boxed_copy(gdk_sys::gdk_event_sequence_get_type(), ptr as *mut _) as *mut gdk_sys::GdkEventSequence,
+        free => |ptr| gobject_sys::g_boxed_free(gdk_sys::gdk_event_sequence_get_type(), ptr as *mut _),
+        get_type => || gdk_sys::gdk_event_sequence_get_type(),
     }
 }

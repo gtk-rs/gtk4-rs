@@ -4,35 +4,26 @@
 
 use Paintable;
 use Texture;
-use ffi;
-use glib::object::IsA;
+use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct GLTexture(Object<ffi::GdkGLTexture, ffi::GdkGLTextureClass, GLTextureClass>) @extends Texture, @implements Paintable;
+    pub struct GLTexture(Object<gdk_sys::GdkGLTexture, gdk_sys::GdkGLTextureClass, GLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || ffi::gdk_gl_texture_get_type(),
+        get_type => || gdk_sys::gdk_gl_texture_get_type(),
     }
 }
 
 impl GLTexture {
     //pub fn new(context: &GLContext, id: u32, width: i32, height: i32, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> GLTexture {
-    //    unsafe { TODO: call ffi::gdk_gl_texture_new() }
+    //    unsafe { TODO: call gdk_sys:gdk_gl_texture_new() }
     //}
-}
 
-pub const NONE_GL_TEXTURE: Option<&GLTexture> = None;
-
-pub trait GLTextureExt: 'static {
-    fn release(&self);
-}
-
-impl<O: IsA<GLTexture>> GLTextureExt for O {
-    fn release(&self) {
+    pub fn release(&self) {
         unsafe {
-            ffi::gdk_gl_texture_release(self.as_ref().to_glib_none().0);
+            gdk_sys::gdk_gl_texture_release(self.to_glib_none().0);
         }
     }
 }
