@@ -14,6 +14,8 @@ glib_wrapper! {
     match fn {
         copy => |ptr| gtk_sys::gtk_border_copy(mut_override(ptr)),
         free => |ptr| gtk_sys::gtk_border_free(ptr),
+        init => |_ptr| (),
+        clear => |_ptr| (),
         get_type => || gtk_sys::gtk_border_get_type(),
     }
 }
