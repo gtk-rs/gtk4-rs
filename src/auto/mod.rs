@@ -717,6 +717,10 @@ mod shortcuts_group;
 pub use self::shortcuts_group::{ShortcutsGroup, ShortcutsGroupClass};
 pub use self::shortcuts_group::ShortcutsGroupBuilder;
 
+mod shortcuts_section;
+pub use self::shortcuts_section::{ShortcutsSection, ShortcutsSectionClass};
+pub use self::shortcuts_section::ShortcutsSectionBuilder;
+
 mod shortcuts_shortcut;
 pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
 pub use self::shortcuts_shortcut::ShortcutsShortcutBuilder;
