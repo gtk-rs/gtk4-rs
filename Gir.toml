@@ -1089,11 +1089,9 @@ manual_traits = ["OverlayExtManual"]
 [[object]]
 name = "Gtk.PadController"
 status = "generate"
-manual_traits = ["PadControllerExtManual"]
     [[object.function]]
     name = "set_action_entries"
     ignore = true
-    doc_trait_name = "PadControllerExtManual"
 
 [[object]]
 name = "Gtk.PageSetup"
