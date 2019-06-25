@@ -50,5 +50,7 @@ pub use prelude::*;
 pub use glib::Error;
 
 mod rounded_rect;
+mod shadow;
 
 pub use rounded_rect::RoundedRect;
+pub use shadow::Shadow;
