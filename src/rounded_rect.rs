@@ -5,7 +5,7 @@
 use glib::translate::*;
 use graphene::{Point, Rect, Size};
 use gsk_sys;
-use std::mem::MaybeUninit;
+use std::mem;
 
 #[derive(Clone, Debug)]
 pub struct RoundedRect(gsk_sys::GskRoundedRect);
@@ -13,19 +13,19 @@ pub struct RoundedRect(gsk_sys::GskRoundedRect);
 impl RoundedRect {
     pub fn new(bounds: Rect, top_left: Size, top_right: Size, bottom_right: Size, bottom_left: Size) -> RoundedRect {
         assert_initialized_main_thread!();
-        let mut rounded_rect = MaybeUninit::uninit();
         unsafe {
-            gsk_sys::gsk_rounded_rect_init(rounded_rect.as_mut_ptr(), bounds.to_glib_none().0, top_left.to_glib_none().0, top_right.to_glib_none().0, bottom_right.to_glib_none().0, bottom_left.to_glib_none().0);
-            RoundedRect(rounded_rect.assume_init())
+            let mut rounded_rect = mem::uninitialized();
+            gsk_sys::gsk_rounded_rect_init(&mut rounded_rect, bounds.to_glib_none().0, top_left.to_glib_none().0, top_right.to_glib_none().0, bottom_right.to_glib_none().0, bottom_left.to_glib_none().0);
+            RoundedRect(rounded_rect)
         }
     }
 
     pub fn new_from_rect(bounds: Rect, radius: f32) -> RoundedRect {
         assert_initialized_main_thread!();
-        let mut rounded_rect = MaybeUninit::uninit();
         unsafe {
-            gsk_sys::gsk_rounded_rect_init_from_rect(rounded_rect.as_mut_ptr(), bounds.to_glib_none().0, radius);
-            RoundedRect(rounded_rect.assume_init())
+            let mut rounded_rect = mem::uninitialized();
+            gsk_sys::gsk_rounded_rect_init_from_rect(&mut rounded_rect, bounds.to_glib_none().0, radius);
+            RoundedRect(rounded_rect)
         }
     }
 
