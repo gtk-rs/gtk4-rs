@@ -159,9 +159,11 @@ impl Snapshot {
         }
     }
 
-    //pub fn push_shadow(&self, shadow: /*Ignored*/&gsk::Shadow, n_shadows: usize) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_push_shadow() }
-    //}
+    pub fn push_shadow(&self, shadow: &gsk::Shadow, n_shadows: usize) {
+        unsafe {
+            gtk_sys::gtk_snapshot_push_shadow(self.to_glib_none().0, shadow.to_glib_none().0, n_shadows);
+        }
+    }
 
     pub fn render_background<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, width: f64, height: f64) {
         unsafe {
