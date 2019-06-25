@@ -48,3 +48,7 @@ pub use self::auto::functions::*;
 pub use prelude::*;
 
 pub use glib::Error;
+
+mod rounded_rect;
+
+pub use rounded_rect::RoundedRect;
