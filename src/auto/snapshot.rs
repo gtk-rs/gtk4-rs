@@ -29,7 +29,7 @@ impl Snapshot {
         }
     }
 
-    //pub fn append_border(&self, outline: /*Ignored*/&gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 10, id: 94 }; 4) {
+    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 10, id: 94 }; 4) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_border() }
     //}
 
@@ -45,9 +45,11 @@ impl Snapshot {
         }
     }
 
-    //pub fn append_inset_shadow(&self, outline: /*Ignored*/&gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_inset_shadow() }
-    //}
+    pub fn append_inset_shadow(&self, outline: &gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
+        unsafe {
+            gtk_sys::gtk_snapshot_append_inset_shadow(self.to_glib_none().0, outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius);
+        }
+    }
 
     pub fn append_layout(&self, layout: &pango::Layout, color: &gdk::RGBA) {
         unsafe {
@@ -65,9 +67,11 @@ impl Snapshot {
         }
     }
 
-    //pub fn append_outset_shadow(&self, outline: /*Ignored*/&gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_outset_shadow() }
-    //}
+    pub fn append_outset_shadow(&self, outline: &gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
+        unsafe {
+            gtk_sys::gtk_snapshot_append_outset_shadow(self.to_glib_none().0, outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius);
+        }
+    }
 
     //pub fn append_repeating_linear_gradient(&self, bounds: &graphene::Rect, start_point: &graphene::Point, end_point: &graphene::Point, stops: /*Ignored*/&[&gsk::ColorStop]) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_repeating_linear_gradient() }
@@ -149,9 +153,11 @@ impl Snapshot {
         }
     }
 
-    //pub fn push_rounded_clip(&self, bounds: /*Ignored*/&gsk::RoundedRect) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_push_rounded_clip() }
-    //}
+    pub fn push_rounded_clip(&self, bounds: &gsk::RoundedRect) {
+        unsafe {
+            gtk_sys::gtk_snapshot_push_rounded_clip(self.to_glib_none().0, bounds.to_glib_none().0);
+        }
+    }
 
     //pub fn push_shadow(&self, shadow: /*Ignored*/&gsk::Shadow, n_shadows: usize) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_push_shadow() }
