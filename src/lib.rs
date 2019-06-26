@@ -50,9 +50,11 @@ pub use prelude::*;
 pub use glib::Error;
 
 mod color_stop;
+mod render_nodes;
 mod rounded_rect;
 mod shadow;
 
 pub use color_stop::ColorStop;
+pub use render_nodes::*;
 pub use rounded_rect::RoundedRect;
 pub use shadow::Shadow;
