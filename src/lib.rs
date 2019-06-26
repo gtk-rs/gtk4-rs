@@ -117,6 +117,7 @@ mod recent_data;
 mod requisition;
 mod response_type;
 mod shortcuts_section;
+mod snapshot;
 mod spin_button;
 mod text_buffer;
 mod tree_model_filter;

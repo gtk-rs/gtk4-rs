@@ -215,7 +215,6 @@ generate = [
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
     "Gtk.SliceListModel",
-    "Gtk.Snapshot",
     "Gtk.SortListModel",
     "Gtk.SortType",
     "Gtk.SpinButtonUpdatePolicy",
@@ -394,7 +393,6 @@ manual = [
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
-    # TODO "Gsk.ColorStop",
     "Atk.CoordType",
     "Atk.Object",
     "Atk.RelationSet",
@@ -467,6 +465,7 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.BlendMode",
+    "Gsk.ColorStop",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
@@ -1236,6 +1235,18 @@ name = "Gtk.ShortcutsSection"
 status = "generate"
     [[object.signal]]
     name = "change-current-page"
+    #manual
+    ignore = true
+
+[[object]]
+name = "Gtk.Snapshot"
+status = "generate"
+    [[object.function]]
+    name = "append_linear_gradient"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "append_repeating_linear_gradient"
     #manual
     ignore = true
 
