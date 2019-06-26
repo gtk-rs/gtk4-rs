@@ -4,6 +4,7 @@
 
 use BlendMode;
 use RenderNode;
+use RoundedRect;
 use cairo;
 use gdk;
 use glib::GString;
@@ -63,7 +64,7 @@ pub fn blur_node_new(child: &RenderNode, radius: f64) -> Option<RenderNode> {
     }
 }
 
-//pub fn border_node_new(outline: /*Ignored*/&RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 9, id: 94 }; 4) -> Option<RenderNode> {
+//pub fn border_node_new(outline: &RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 9, id: 94 }; 4) -> Option<RenderNode> {
 //    unsafe { TODO: call gsk_sys:gsk_border_node_new() }
 //}
 
@@ -74,9 +75,12 @@ pub fn border_node_peek_colors(node: &RenderNode) -> Option<gdk::RGBA> {
     }
 }
 
-//pub fn border_node_peek_outline(node: &RenderNode) -> /*Ignored*/Option<RoundedRect> {
-//    unsafe { TODO: call gsk_sys:gsk_border_node_peek_outline() }
-//}
+pub fn border_node_peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_none(gsk_sys::gsk_border_node_peek_outline(node.to_glib_none().0))
+    }
+}
 
 pub fn cairo_node_get_draw_context(node: &RenderNode) -> Option<cairo::Context> {
     assert_initialized_main_thread!();
@@ -246,9 +250,12 @@ pub fn inset_shadow_node_get_spread(node: &RenderNode) -> f32 {
     }
 }
 
-//pub fn inset_shadow_node_new(outline: /*Ignored*/&RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
-//    unsafe { TODO: call gsk_sys:gsk_inset_shadow_node_new() }
-//}
+pub fn inset_shadow_node_new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gsk_sys::gsk_inset_shadow_node_new(outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius))
+    }
+}
 
 pub fn inset_shadow_node_peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
     assert_initialized_main_thread!();
@@ -257,9 +264,12 @@ pub fn inset_shadow_node_peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
     }
 }
 
-//pub fn inset_shadow_node_peek_outline(node: &RenderNode) -> /*Ignored*/Option<RoundedRect> {
-//    unsafe { TODO: call gsk_sys:gsk_inset_shadow_node_peek_outline() }
-//}
+pub fn inset_shadow_node_peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_outline(node.to_glib_none().0))
+    }
+}
 
 pub fn linear_gradient_node_get_n_color_stops(node: &RenderNode) -> usize {
     assert_initialized_main_thread!();
@@ -267,14 +277,6 @@ pub fn linear_gradient_node_get_n_color_stops(node: &RenderNode) -> usize {
         gsk_sys::gsk_linear_gradient_node_get_n_color_stops(node.to_glib_none().0)
     }
 }
-
-//pub fn linear_gradient_node_new(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: /*Ignored*/&[&ColorStop]) -> Option<RenderNode> {
-//    unsafe { TODO: call gsk_sys:gsk_linear_gradient_node_new() }
-//}
-
-//pub fn linear_gradient_node_peek_color_stops(node: &RenderNode) -> /*Ignored*/Option<ColorStop> {
-//    unsafe { TODO: call gsk_sys:gsk_linear_gradient_node_peek_color_stops() }
-//}
 
 pub fn linear_gradient_node_peek_end(node: &RenderNode) -> Option<graphene::Point> {
     assert_initialized_main_thread!();
@@ -339,9 +341,12 @@ pub fn outset_shadow_node_get_spread(node: &RenderNode) -> f32 {
     }
 }
 
-//pub fn outset_shadow_node_new(outline: /*Ignored*/&RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
-//    unsafe { TODO: call gsk_sys:gsk_outset_shadow_node_new() }
-//}
+pub fn outset_shadow_node_new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gsk_sys::gsk_outset_shadow_node_new(outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius))
+    }
+}
 
 pub fn outset_shadow_node_peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
     assert_initialized_main_thread!();
@@ -350,9 +355,12 @@ pub fn outset_shadow_node_peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
     }
 }
 
-//pub fn outset_shadow_node_peek_outline(node: &RenderNode) -> /*Ignored*/Option<RoundedRect> {
-//    unsafe { TODO: call gsk_sys:gsk_outset_shadow_node_peek_outline() }
-//}
+pub fn outset_shadow_node_peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(node.to_glib_none().0))
+    }
+}
 
 pub fn repeat_node_get_child(node: &RenderNode) -> Option<RenderNode> {
     assert_initialized_main_thread!();
@@ -375,10 +383,6 @@ pub fn repeat_node_peek_child_bounds(node: &RenderNode) -> Option<graphene::Rect
     }
 }
 
-//pub fn repeating_linear_gradient_node_new(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: /*Ignored*/&[&ColorStop]) -> Option<RenderNode> {
-//    unsafe { TODO: call gsk_sys:gsk_repeating_linear_gradient_node_new() }
-//}
-
 pub fn rounded_clip_node_get_child(node: &RenderNode) -> Option<RenderNode> {
     assert_initialized_main_thread!();
     unsafe {
@@ -386,13 +390,19 @@ pub fn rounded_clip_node_get_child(node: &RenderNode) -> Option<RenderNode> {
     }
 }
 
-//pub fn rounded_clip_node_new(child: &RenderNode, clip: /*Ignored*/&RoundedRect) -> Option<RenderNode> {
-//    unsafe { TODO: call gsk_sys:gsk_rounded_clip_node_new() }
-//}
+pub fn rounded_clip_node_new(child: &RenderNode, clip: &RoundedRect) -> Option<RenderNode> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gsk_sys::gsk_rounded_clip_node_new(child.to_glib_none().0, clip.to_glib_none().0))
+    }
+}
 
-//pub fn rounded_clip_node_peek_clip(node: &RenderNode) -> /*Ignored*/Option<RoundedRect> {
-//    unsafe { TODO: call gsk_sys:gsk_rounded_clip_node_peek_clip() }
-//}
+pub fn rounded_clip_node_peek_clip(node: &RenderNode) -> Option<RoundedRect> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(node.to_glib_none().0))
+    }
+}
 
 pub fn text_node_get_num_glyphs(node: &RenderNode) -> u32 {
     assert_initialized_main_thread!();
