@@ -57,10 +57,6 @@ impl Snapshot {
         }
     }
 
-    //pub fn append_linear_gradient(&self, bounds: &graphene::Rect, start_point: &graphene::Point, end_point: &graphene::Point, stops: /*Ignored*/&[&gsk::ColorStop]) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_linear_gradient() }
-    //}
-
     pub fn append_node(&self, node: &gsk::RenderNode) {
         unsafe {
             gtk_sys::gtk_snapshot_append_node(self.to_glib_none().0, node.to_glib_none().0);
@@ -72,10 +68,6 @@ impl Snapshot {
             gtk_sys::gtk_snapshot_append_outset_shadow(self.to_glib_none().0, outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius);
         }
     }
-
-    //pub fn append_repeating_linear_gradient(&self, bounds: &graphene::Rect, start_point: &graphene::Point, end_point: &graphene::Point, stops: /*Ignored*/&[&gsk::ColorStop]) {
-    //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_repeating_linear_gradient() }
-    //}
 
     pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: &graphene::Rect) {
         unsafe {
