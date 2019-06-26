@@ -85,6 +85,13 @@ impl RoundedRect {
 }
 
 #[doc(hidden)]
+impl FromGlibPtrNone<*const gsk_sys::GskRoundedRect> for RoundedRect {
+    unsafe fn from_glib_none(ptr: *const gsk_sys::GskRoundedRect) -> Self {
+        RoundedRect((*ptr).clone())
+    }
+}
+
+#[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *const gsk_sys::GskRoundedRect> for RoundedRect {
     type Storage = &'a Self;
 
