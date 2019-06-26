@@ -61,7 +61,19 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "cairo_node_peek_surface"
-    ignore = true # no impl FromGlibPtrNone<*const cairo_surface_t> for Surface, probably by mistake
+    ignore = true # no impl FromGlibPtrNone<*const cairo_surface_t> for Surface
+    [[object.function]]
+    name = "linear_gradient_node_new"
+    # TODO: array
+    ignore = true
+    [[object.function]]
+    name = "linear_gradient_node_peek_color_stops"
+    # TODO: array without size
+    ignore = true
+    [[object.function]]
+    name = "repeating_linear_gradient_node_new"
+    # TODO: array
+    ignore = true
 
 [[object]]
 name = "Gsk.RenderNode"
