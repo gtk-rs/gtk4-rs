@@ -32,6 +32,9 @@ manual = [
     "Gdk.RGBA",
     "Gdk.Surface",
     "Gdk.Texture",
+    "Gsk.ColorStop",
+    "Gsk.RoundedRect",
+    "Gsk.Shadow",
     "GLib.Bytes",
     "GLib.Error",
     "GLib.String",
@@ -43,12 +46,6 @@ manual = [
     "Graphene.Vec4",
     "Pango.Font",
     "Pango.GlyphString",
-]
-
-ignore = [
-    "Gsk.ColorStop", # Missing memory management functions
-    "Gsk.RoundedRect", # Missing memory management functions
-    "Gsk.Shadow", # Missing memory management functions
 ]
 
 [[object]]
