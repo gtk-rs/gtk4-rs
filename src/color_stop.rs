@@ -36,14 +36,18 @@ impl<'a> ToGlibContainerFromSlice<'a, *const gsk_sys::GskColorStop> for ColorSto
     type Storage = &'a [Self];
 
     fn to_glib_none_from_slice(t: &'a [Self]) -> (*const gsk_sys::GskColorStop, &'a [Self]) {
+        assert_initialized_main_thread!();
         (t.as_ptr() as *const _, t)
     }
 
     fn to_glib_container_from_slice(t: &'a [Self]) -> (*const gsk_sys::GskColorStop, &'a [Self]) {
+        assert_initialized_main_thread!();
         (ToGlibContainerFromSlice::to_glib_full_from_slice(t), t)
     }
 
     fn to_glib_full_from_slice(t: &[Self]) -> *const gsk_sys::GskColorStop {
+        assert_initialized_main_thread!();
+
         if t.len() == 0 {
             return ptr::null_mut();
         }
