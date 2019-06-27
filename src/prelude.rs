@@ -6,6 +6,7 @@
 
 pub use auto::traits::*;
 
+pub use actionable::ActionableExtManual;
 pub use builder::BuilderExtManual;
 pub use color_chooser::ColorChooserExtManual;
 pub use combo_box::ComboBoxExtManual;
