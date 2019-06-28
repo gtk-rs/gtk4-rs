@@ -86,8 +86,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: text_node_peek_glyphs()
-
 impl BlendNode {
     pub fn get_blend_mode(self: &BlendNode) -> BlendMode {
         assert_initialized_main_thread!();
