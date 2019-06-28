@@ -85,7 +85,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: border_node_peek_widths()
 // TODO: cairo_node_peek_surface()
 // TODO: container_node_new()
 // TODO: linear_gradient_node_new()
@@ -168,6 +167,14 @@ impl BorderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_border_node_peek_outline(self.to_glib_none().0))
+        }
+    }
+
+    pub fn peek_widths(self: &BorderNode) -> [f32; 4] {
+        assert_initialized_main_thread!();
+        unsafe {
+            let widths = gsk_sys::gsk_border_node_peek_widths(self.to_glib_none().0);
+            [*widths, *widths.add(1), *widths.add(2), *widths.add(3)]
         }
     }
 }
