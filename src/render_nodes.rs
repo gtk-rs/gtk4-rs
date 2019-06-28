@@ -85,7 +85,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: container_node_new()
 // TODO: linear_gradient_node_new()
 // TODO: linear_gradient_node_peek_color_stops()
 // TODO: repeating_linear_gradient_node_new()
@@ -288,6 +287,15 @@ impl ContainerNode {
         unsafe {
             gsk_sys::gsk_container_node_get_n_children(self.to_glib_none().0)
         }
+    }
+
+    pub fn new(children: &[RenderNode]) -> ContainerNode {
+        assert_initialized_main_thread!();
+        let n_children = children.len() as u32;
+        let node: RenderNode = unsafe {
+            from_glib_full(gsk_sys::gsk_container_node_new(children.to_glib_none().0, n_children))
+        };
+        node.try_into().unwrap()
     }
 }
 
