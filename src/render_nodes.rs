@@ -85,7 +85,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: border_node_new()
 // TODO: border_node_peek_widths()
 // TODO: cairo_node_peek_surface()
 // TODO: container_node_new()
@@ -150,6 +149,14 @@ impl BlurNode {
 }
 
 impl BorderNode {
+    pub fn new(outline: &RoundedRect, border_width: &[f32; 4], border_color: &[gdk::RGBA; 4]) -> BorderNode {
+        assert_initialized_main_thread!();
+        let node: RenderNode = unsafe {
+            from_glib_full(gsk_sys::gsk_border_node_new(outline.to_glib_none().0, border_width.to_glib_none().0 as *const _, border_color.as_ptr() as *const _))
+        };
+        node.try_into().unwrap()
+    }
+
     pub fn peek_colors(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
