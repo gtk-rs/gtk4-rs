@@ -86,7 +86,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: linear_gradient_node_peek_color_stops()
 // TODO: repeating_linear_gradient_node_new()
 // TODO: text_node_peek_glyphs()
 
@@ -421,6 +420,14 @@ impl LinearGradientNode {
             from_glib_full(gsk_sys::gsk_linear_gradient_node_new(bounds.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, color_stops.to_glib_none().0, n_color_stops))
         };
         node.try_into().unwrap()
+    }
+
+    pub fn peek_color_stops(self: &LinearGradientNode) -> Vec<ColorStop> {
+        assert_initialized_main_thread!();
+        let n = self.get_n_color_stops();
+        unsafe {
+            FromGlibContainerAsVec::from_glib_none_num_as_vec(gsk_sys::gsk_linear_gradient_node_peek_color_stops(self.to_glib_none().0), n)
+        }
     }
 
     pub fn peek_end(self: &LinearGradientNode) -> graphene::Point {
