@@ -86,7 +86,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: repeating_linear_gradient_node_new()
 // TODO: text_node_peek_glyphs()
 
 impl BlendNode {
@@ -418,6 +417,15 @@ impl LinearGradientNode {
         let n_color_stops = color_stops.len() as usize;
         let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_linear_gradient_node_new(bounds.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, color_stops.to_glib_none().0, n_color_stops))
+        };
+        node.try_into().unwrap()
+    }
+
+    pub fn new_repeating(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: &[ColorStop]) -> LinearGradientNode {
+        assert_initialized_main_thread!();
+        let n_color_stops = color_stops.len() as usize;
+        let node: RenderNode = unsafe {
+            from_glib_full(gsk_sys::gsk_repeating_linear_gradient_node_new(bounds.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, color_stops.to_glib_none().0, n_color_stops))
         };
         node.try_into().unwrap()
     }
