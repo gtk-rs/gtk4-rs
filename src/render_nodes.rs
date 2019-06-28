@@ -274,10 +274,10 @@ impl ColorNode {
 }
 
 impl ContainerNode {
-    pub fn get_child(node: &RenderNode, idx: u32) -> RenderNode {
+    pub fn get_child(self: &ContainerNode, idx: u32) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_container_node_get_child(node.to_glib_none().0, idx))
+            from_glib_full(gsk_sys::gsk_container_node_get_child(self.to_glib_none().0, idx))
         }
     }
 
@@ -591,11 +591,12 @@ impl TextNode {
         }
     }
 
-    pub fn new<P: IsA<pango::Font>>(font: &P, glyphs: &mut pango::GlyphString, color: &gdk::RGBA, x: f32, y: f32) -> Option<RenderNode> {
+    pub fn new<P: IsA<pango::Font>>(font: &P, glyphs: &mut pango::GlyphString, color: &gdk::RGBA, x: f32, y: f32) -> Option<TextNode> {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: Option<RenderNode> = unsafe {
             from_glib_full(gsk_sys::gsk_text_node_new(font.as_ref().to_glib_none().0, glyphs.to_glib_none_mut().0, color.to_glib_none().0, x, y))
-        }
+        };
+        node.map(|node| node.try_into().unwrap())
     }
 
     pub fn peek_color(self: &TextNode) -> gdk::RGBA {
