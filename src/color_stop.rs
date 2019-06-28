@@ -32,6 +32,31 @@ impl ColorStop {
 }
 
 #[doc(hidden)]
+impl FromGlibContainerAsVec<gsk_sys::GskColorStop, *const gsk_sys::GskColorStop> for ColorStop {
+    unsafe fn from_glib_none_num_as_vec(ptr: *const gsk_sys::GskColorStop, num: usize) -> Vec<Self> {
+        if num == 0 || ptr.is_null() {
+            return Vec::new();
+        }
+
+        let mut res = Vec::with_capacity(num);
+        for i in 0..num {
+            res.push(ColorStop(ptr::read(ptr.add(i))));
+        }
+        res
+    }
+
+    unsafe fn from_glib_container_num_as_vec(_: *const gsk_sys::GskColorStop, _: usize) -> Vec<Self> {
+        // Can't really free a *const
+        unimplemented!();
+    }
+
+    unsafe fn from_glib_full_num_as_vec(_: *const gsk_sys::GskColorStop, _: usize) -> Vec<Self> {
+        // Can't really free a *const
+        unimplemented!();
+    }
+}
+
+#[doc(hidden)]
 impl<'a> ToGlibContainerFromSlice<'a, *const gsk_sys::GskColorStop> for ColorStop {
     type Storage = &'a [Self];
 
