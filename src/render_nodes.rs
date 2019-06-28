@@ -88,21 +88,18 @@ subtype!(TextureNode = TextureNode);
 
 impl BlendNode {
     pub fn get_blend_mode(self: &BlendNode) -> BlendMode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib(gsk_sys::gsk_blend_node_get_blend_mode(self.to_glib_none().0))
         }
     }
 
     pub fn get_bottom_child(self: &BlendNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blend_node_get_bottom_child(self.to_glib_none().0))
         }
     }
 
     pub fn get_top_child(self: &BlendNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blend_node_get_top_child(self.to_glib_none().0))
         }
@@ -119,14 +116,12 @@ impl BlendNode {
 
 impl BlurNode {
     pub fn get_child(self: &BlurNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blur_node_get_child(self.to_glib_none().0))
         }
     }
 
     pub fn get_radius(self: &BlurNode) -> f64 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_blur_node_get_radius(self.to_glib_none().0)
         }
@@ -151,21 +146,18 @@ impl BorderNode {
     }
 
     pub fn peek_colors(self: &BorderNode) -> gdk::RGBA {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_border_node_peek_colors(self.to_glib_none().0))
         }
     }
 
     pub fn peek_outline(self: &BorderNode) -> RoundedRect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_border_node_peek_outline(self.to_glib_none().0))
         }
     }
 
     pub fn peek_widths(self: &BorderNode) -> [f32; 4] {
-        assert_initialized_main_thread!();
         unsafe {
             let widths = gsk_sys::gsk_border_node_peek_widths(self.to_glib_none().0);
             [*widths, *widths.add(1), *widths.add(2), *widths.add(3)]
@@ -175,7 +167,6 @@ impl BorderNode {
 
 impl CairoNode {
     pub fn get_draw_context(self: &CairoNode) -> cairo::Context {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cairo_node_get_draw_context(self.to_glib_none().0))
         }
@@ -191,7 +182,6 @@ impl CairoNode {
 
     /* TODO `const cairo_surface_t *` isn't supported
     pub fn peek_surface(self: &CairoNode) -> cairo::Surface {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_cairo_node_peek_surface(self.to_glib_none().0))
         }
@@ -200,7 +190,6 @@ impl CairoNode {
 
 impl ClipNode {
     pub fn get_child(self: &ClipNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_clip_node_get_child(self.to_glib_none().0))
         }
@@ -215,7 +204,6 @@ impl ClipNode {
     }
 
     pub fn peek_clip(self: &ClipNode) -> graphene::Rect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_clip_node_peek_clip(self.to_glib_none().0))
         }
@@ -224,7 +212,6 @@ impl ClipNode {
 
 impl ColorMatrixNode {
     pub fn get_child(self: &ColorMatrixNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_get_child(self.to_glib_none().0))
         }
@@ -239,14 +226,12 @@ impl ColorMatrixNode {
     }
 
     pub fn peek_color_matrix(self: &ColorMatrixNode) -> graphene::Matrix {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_matrix(self.to_glib_none().0))
         }
     }
 
     pub fn peek_color_offset(self: &ColorMatrixNode) -> graphene::Vec4 {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_offset(self.to_glib_none().0))
         }
@@ -263,7 +248,6 @@ impl ColorNode {
     }
 
     pub fn peek_color(self: &ColorNode) -> gdk::RGBA {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_node_peek_color(self.to_glib_none().0))
         }
@@ -272,14 +256,12 @@ impl ColorNode {
 
 impl ContainerNode {
     pub fn get_child(self: &ContainerNode, idx: u32) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_container_node_get_child(self.to_glib_none().0, idx))
         }
     }
 
     pub fn get_n_children(self: &ContainerNode) -> u32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_container_node_get_n_children(self.to_glib_none().0)
         }
@@ -297,21 +279,18 @@ impl ContainerNode {
 
 impl CrossFadeNode {
     pub fn get_end_child(self: &CrossFadeNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cross_fade_node_get_end_child(self.to_glib_none().0))
         }
     }
 
     pub fn get_progress(self: &CrossFadeNode) -> f64 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_cross_fade_node_get_progress(self.to_glib_none().0)
         }
     }
 
     pub fn get_start_child(self: &CrossFadeNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cross_fade_node_get_start_child(self.to_glib_none().0))
         }
@@ -328,14 +307,12 @@ impl CrossFadeNode {
 
 impl DebugNode {
     pub fn get_child(self: &DebugNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_debug_node_get_child(self.to_glib_none().0))
         }
     }
 
     pub fn get_message(self: &DebugNode) -> GString {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_debug_node_get_message(self.to_glib_none().0))
         }
@@ -352,28 +329,24 @@ impl DebugNode {
 
 impl InsetShadowNode {
     pub fn get_blur_radius(self: &InsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_inset_shadow_node_get_blur_radius(self.to_glib_none().0)
         }
     }
 
     pub fn get_dx(self: &InsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_inset_shadow_node_get_dx(self.to_glib_none().0)
         }
     }
 
     pub fn get_dy(self: &InsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_inset_shadow_node_get_dy(self.to_glib_none().0)
         }
     }
 
     pub fn get_spread(self: &InsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_inset_shadow_node_get_spread(self.to_glib_none().0)
         }
@@ -388,14 +361,12 @@ impl InsetShadowNode {
     }
 
     pub fn peek_color(self: &InsetShadowNode) -> gdk::RGBA {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_color(self.to_glib_none().0))
         }
     }
 
     pub fn peek_outline(self: &InsetShadowNode) -> RoundedRect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_outline(self.to_glib_none().0))
         }
@@ -404,7 +375,6 @@ impl InsetShadowNode {
 
 impl LinearGradientNode {
     pub fn get_n_color_stops(self: &LinearGradientNode) -> usize {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0)
         }
@@ -429,7 +399,6 @@ impl LinearGradientNode {
     }
 
     pub fn peek_color_stops(self: &LinearGradientNode) -> Vec<ColorStop> {
-        assert_initialized_main_thread!();
         let n = self.get_n_color_stops();
         unsafe {
             FromGlibContainerAsVec::from_glib_none_num_as_vec(gsk_sys::gsk_linear_gradient_node_peek_color_stops(self.to_glib_none().0), n)
@@ -437,14 +406,12 @@ impl LinearGradientNode {
     }
 
     pub fn peek_end(self: &LinearGradientNode) -> graphene::Point {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_end(self.to_glib_none().0))
         }
     }
 
     pub fn peek_start(self: &LinearGradientNode) -> graphene::Point {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_start(self.to_glib_none().0))
         }
@@ -453,14 +420,12 @@ impl LinearGradientNode {
 
 impl OpacityNode {
     pub fn get_child(self: &OpacityNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_opacity_node_get_child(self.to_glib_none().0))
         }
     }
 
     pub fn get_opacity(self: &OpacityNode) -> f64 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_opacity_node_get_opacity(self.to_glib_none().0)
         }
@@ -477,28 +442,24 @@ impl OpacityNode {
 
 impl OutsetShadowNode {
     pub fn get_blur_radius(self: &OutsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_outset_shadow_node_get_blur_radius(self.to_glib_none().0)
         }
     }
 
     pub fn get_dx(self: &OutsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_outset_shadow_node_get_dx(self.to_glib_none().0)
         }
     }
 
     pub fn get_dy(self: &OutsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_outset_shadow_node_get_dy(self.to_glib_none().0)
         }
     }
 
     pub fn get_spread(self: &OutsetShadowNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_outset_shadow_node_get_spread(self.to_glib_none().0)
         }
@@ -513,14 +474,12 @@ impl OutsetShadowNode {
     }
 
     pub fn peek_color(self: &OutsetShadowNode) -> gdk::RGBA {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_color(self.to_glib_none().0))
         }
     }
 
     pub fn peek_outline(self: &OutsetShadowNode) -> RoundedRect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(self.to_glib_none().0))
         }
@@ -529,7 +488,6 @@ impl OutsetShadowNode {
 
 impl RepeatNode {
     pub fn get_child(self: &RepeatNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_repeat_node_get_child(self.to_glib_none().0))
         }
@@ -544,7 +502,6 @@ impl RepeatNode {
     }
 
     pub fn peek_child_bounds(self: &RepeatNode) -> graphene::Rect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_repeat_node_peek_child_bounds(self.to_glib_none().0))
         }
@@ -553,7 +510,6 @@ impl RepeatNode {
 
 impl RoundedClipNode {
     pub fn get_child(self: &RoundedClipNode) -> RenderNode {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_rounded_clip_node_get_child(self.to_glib_none().0))
         }
@@ -568,7 +524,6 @@ impl RoundedClipNode {
     }
 
     pub fn peek_clip(self: &RoundedClipNode) -> RoundedRect {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(self.to_glib_none().0))
         }
@@ -577,21 +532,18 @@ impl RoundedClipNode {
 
 impl TextNode {
     pub fn get_num_glyphs(self: &TextNode) -> u32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_text_node_get_num_glyphs(self.to_glib_none().0)
         }
     }
 
     pub fn get_x(self: &TextNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_text_node_get_x(self.to_glib_none().0)
         }
     }
 
     pub fn get_y(self: &TextNode) -> f32 {
-        assert_initialized_main_thread!();
         unsafe {
             gsk_sys::gsk_text_node_get_y(self.to_glib_none().0)
         }
@@ -606,14 +558,12 @@ impl TextNode {
     }
 
     pub fn peek_color(self: &TextNode) -> gdk::RGBA {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_text_node_peek_color(self.to_glib_none().0))
         }
     }
 
     pub fn peek_font(self: &TextNode) -> pango::Font {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_text_node_peek_font(self.to_glib_none().0))
         }
@@ -622,7 +572,6 @@ impl TextNode {
 
 impl TextureNode {
     pub fn get_texture(self: &TextureNode) -> gdk::Texture {
-        assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_texture_node_get_texture(self.to_glib_none().0))
         }
