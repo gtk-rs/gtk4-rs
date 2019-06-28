@@ -94,24 +94,24 @@ subtype!(TextureNode = TextureNode);
 // TODO: text_node_peek_glyphs()
 
 impl BlendNode {
-    pub fn get_blend_mode(node: &RenderNode) -> BlendMode {
+    pub fn get_blend_mode(self: &BlendNode) -> BlendMode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(gsk_sys::gsk_blend_node_get_blend_mode(node.to_glib_none().0))
+            from_glib(gsk_sys::gsk_blend_node_get_blend_mode(self.to_glib_none().0))
         }
     }
 
-    pub fn get_bottom_child(node: &RenderNode) -> RenderNode {
+    pub fn get_bottom_child(self: &BlendNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_blend_node_get_bottom_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_blend_node_get_bottom_child(self.to_glib_none().0))
         }
     }
 
-    pub fn get_top_child(node: &RenderNode) -> RenderNode {
+    pub fn get_top_child(self: &BlendNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_blend_node_get_top_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_blend_node_get_top_child(self.to_glib_none().0))
         }
     }
 
@@ -125,17 +125,17 @@ impl BlendNode {
 }
 
 impl BlurNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &BlurNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_blur_node_get_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_blur_node_get_child(self.to_glib_none().0))
         }
     }
 
-    pub fn get_radius(node: &RenderNode) -> f64 {
+    pub fn get_radius(self: &BlurNode) -> f64 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_blur_node_get_radius(node.to_glib_none().0)
+            gsk_sys::gsk_blur_node_get_radius(self.to_glib_none().0)
         }
     }
 
@@ -157,26 +157,26 @@ impl BorderNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_colors(node: &RenderNode) -> gdk::RGBA {
+    pub fn peek_colors(self: &BorderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_border_node_peek_colors(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_border_node_peek_colors(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
+    pub fn peek_outline(self: &BorderNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_border_node_peek_outline(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_border_node_peek_outline(self.to_glib_none().0))
         }
     }
 }
 
 impl CairoNode {
-    pub fn get_draw_context(node: &RenderNode) -> cairo::Context {
+    pub fn get_draw_context(self: &CairoNode) -> cairo::Context {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_cairo_node_get_draw_context(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_cairo_node_get_draw_context(self.to_glib_none().0))
         }
     }
 
@@ -190,10 +190,10 @@ impl CairoNode {
 }
 
 impl ClipNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &ClipNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_clip_node_get_child(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_clip_node_get_child(self.to_glib_none().0))
         }
     }
 
@@ -205,19 +205,19 @@ impl ClipNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_clip(node: &RenderNode) -> graphene::Rect {
+    pub fn peek_clip(self: &ClipNode) -> graphene::Rect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_clip_node_peek_clip(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_clip_node_peek_clip(self.to_glib_none().0))
         }
     }
 }
 
 impl ColorMatrixNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &ColorMatrixNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_color_matrix_node_get_child(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_color_matrix_node_get_child(self.to_glib_none().0))
         }
     }
 
@@ -229,17 +229,17 @@ impl ColorMatrixNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_color_matrix(node: &RenderNode) -> graphene::Matrix {
+    pub fn peek_color_matrix(self: &ColorMatrixNode) -> graphene::Matrix {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_matrix(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_matrix(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_color_offset(node: &RenderNode) -> graphene::Vec4 {
+    pub fn peek_color_offset(self: &ColorMatrixNode) -> graphene::Vec4 {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_offset(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_offset(self.to_glib_none().0))
         }
     }
 }
@@ -253,10 +253,10 @@ impl ColorNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
+    pub fn peek_color(self: &ColorNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_color_node_peek_color(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_color_node_peek_color(self.to_glib_none().0))
         }
     }
 }
@@ -269,33 +269,33 @@ impl ContainerNode {
         }
     }
 
-    pub fn get_n_children(node: &RenderNode) -> u32 {
+    pub fn get_n_children(self: &ContainerNode) -> u32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_container_node_get_n_children(node.to_glib_none().0)
+            gsk_sys::gsk_container_node_get_n_children(self.to_glib_none().0)
         }
     }
 }
 
 impl CrossFadeNode {
-    pub fn get_end_child(node: &RenderNode) -> RenderNode {
+    pub fn get_end_child(self: &CrossFadeNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_cross_fade_node_get_end_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_cross_fade_node_get_end_child(self.to_glib_none().0))
         }
     }
 
-    pub fn get_progress(node: &RenderNode) -> f64 {
+    pub fn get_progress(self: &CrossFadeNode) -> f64 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_cross_fade_node_get_progress(node.to_glib_none().0)
+            gsk_sys::gsk_cross_fade_node_get_progress(self.to_glib_none().0)
         }
     }
 
-    pub fn get_start_child(node: &RenderNode) -> RenderNode {
+    pub fn get_start_child(self: &CrossFadeNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_cross_fade_node_get_start_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_cross_fade_node_get_start_child(self.to_glib_none().0))
         }
     }
 
@@ -309,17 +309,17 @@ impl CrossFadeNode {
 }
 
 impl DebugNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &DebugNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_debug_node_get_child(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_debug_node_get_child(self.to_glib_none().0))
         }
     }
 
-    pub fn get_message(node: &RenderNode) -> GString {
+    pub fn get_message(self: &DebugNode) -> GString {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_debug_node_get_message(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_debug_node_get_message(self.to_glib_none().0))
         }
     }
 
@@ -333,31 +333,31 @@ impl DebugNode {
 }
 
 impl InsetShadowNode {
-    pub fn get_blur_radius(node: &RenderNode) -> f32 {
+    pub fn get_blur_radius(self: &InsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_inset_shadow_node_get_blur_radius(node.to_glib_none().0)
+            gsk_sys::gsk_inset_shadow_node_get_blur_radius(self.to_glib_none().0)
         }
     }
 
-    pub fn get_dx(node: &RenderNode) -> f32 {
+    pub fn get_dx(self: &InsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_inset_shadow_node_get_dx(node.to_glib_none().0)
+            gsk_sys::gsk_inset_shadow_node_get_dx(self.to_glib_none().0)
         }
     }
 
-    pub fn get_dy(node: &RenderNode) -> f32 {
+    pub fn get_dy(self: &InsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_inset_shadow_node_get_dy(node.to_glib_none().0)
+            gsk_sys::gsk_inset_shadow_node_get_dy(self.to_glib_none().0)
         }
     }
 
-    pub fn get_spread(node: &RenderNode) -> f32 {
+    pub fn get_spread(self: &InsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_inset_shadow_node_get_spread(node.to_glib_none().0)
+            gsk_sys::gsk_inset_shadow_node_get_spread(self.to_glib_none().0)
         }
     }
 
@@ -369,56 +369,56 @@ impl InsetShadowNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
+    pub fn peek_color(self: &InsetShadowNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_color(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_color(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
+    pub fn peek_outline(self: &InsetShadowNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_outline(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_outline(self.to_glib_none().0))
         }
     }
 }
 
 impl LinearGradientNode {
-    pub fn get_n_color_stops(node: &RenderNode) -> usize {
+    pub fn get_n_color_stops(self: &LinearGradientNode) -> usize {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_linear_gradient_node_get_n_color_stops(node.to_glib_none().0)
+            gsk_sys::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0)
         }
     }
 
-    pub fn peek_end(node: &RenderNode) -> graphene::Point {
+    pub fn peek_end(self: &LinearGradientNode) -> graphene::Point {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_end(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_end(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_start(node: &RenderNode) -> graphene::Point {
+    pub fn peek_start(self: &LinearGradientNode) -> graphene::Point {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_start(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_start(self.to_glib_none().0))
         }
     }
 }
 
 impl OpacityNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &OpacityNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_opacity_node_get_child(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_opacity_node_get_child(self.to_glib_none().0))
         }
     }
 
-    pub fn get_opacity(node: &RenderNode) -> f64 {
+    pub fn get_opacity(self: &OpacityNode) -> f64 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_opacity_node_get_opacity(node.to_glib_none().0)
+            gsk_sys::gsk_opacity_node_get_opacity(self.to_glib_none().0)
         }
     }
 
@@ -432,31 +432,31 @@ impl OpacityNode {
 }
 
 impl OutsetShadowNode {
-    pub fn get_blur_radius(node: &RenderNode) -> f32 {
+    pub fn get_blur_radius(self: &OutsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_outset_shadow_node_get_blur_radius(node.to_glib_none().0)
+            gsk_sys::gsk_outset_shadow_node_get_blur_radius(self.to_glib_none().0)
         }
     }
 
-    pub fn get_dx(node: &RenderNode) -> f32 {
+    pub fn get_dx(self: &OutsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_outset_shadow_node_get_dx(node.to_glib_none().0)
+            gsk_sys::gsk_outset_shadow_node_get_dx(self.to_glib_none().0)
         }
     }
 
-    pub fn get_dy(node: &RenderNode) -> f32 {
+    pub fn get_dy(self: &OutsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_outset_shadow_node_get_dy(node.to_glib_none().0)
+            gsk_sys::gsk_outset_shadow_node_get_dy(self.to_glib_none().0)
         }
     }
 
-    pub fn get_spread(node: &RenderNode) -> f32 {
+    pub fn get_spread(self: &OutsetShadowNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_outset_shadow_node_get_spread(node.to_glib_none().0)
+            gsk_sys::gsk_outset_shadow_node_get_spread(self.to_glib_none().0)
         }
     }
 
@@ -468,26 +468,26 @@ impl OutsetShadowNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
+    pub fn peek_color(self: &OutsetShadowNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_color(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_color(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
+    pub fn peek_outline(self: &OutsetShadowNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(self.to_glib_none().0))
         }
     }
 }
 
 impl RepeatNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &RepeatNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_repeat_node_get_child(node.to_glib_none().0))
+            from_glib_full(gsk_sys::gsk_repeat_node_get_child(self.to_glib_none().0))
         }
     }
 
@@ -499,19 +499,19 @@ impl RepeatNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_child_bounds(node: &RenderNode) -> graphene::Rect {
+    pub fn peek_child_bounds(self: &RepeatNode) -> graphene::Rect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_repeat_node_peek_child_bounds(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_repeat_node_peek_child_bounds(self.to_glib_none().0))
         }
     }
 }
 
 impl RoundedClipNode {
-    pub fn get_child(node: &RenderNode) -> RenderNode {
+    pub fn get_child(self: &RoundedClipNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_rounded_clip_node_get_child(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_rounded_clip_node_get_child(self.to_glib_none().0))
         }
     }
 
@@ -523,33 +523,33 @@ impl RoundedClipNode {
         node.try_into().unwrap()
     }
 
-    pub fn peek_clip(node: &RenderNode) -> RoundedRect {
+    pub fn peek_clip(self: &RoundedClipNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(self.to_glib_none().0))
         }
     }
 }
 
 impl TextNode {
-    pub fn get_num_glyphs(node: &RenderNode) -> u32 {
+    pub fn get_num_glyphs(self: &TextNode) -> u32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_text_node_get_num_glyphs(node.to_glib_none().0)
+            gsk_sys::gsk_text_node_get_num_glyphs(self.to_glib_none().0)
         }
     }
 
-    pub fn get_x(node: &RenderNode) -> f32 {
+    pub fn get_x(self: &TextNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_text_node_get_x(node.to_glib_none().0)
+            gsk_sys::gsk_text_node_get_x(self.to_glib_none().0)
         }
     }
 
-    pub fn get_y(node: &RenderNode) -> f32 {
+    pub fn get_y(self: &TextNode) -> f32 {
         assert_initialized_main_thread!();
         unsafe {
-            gsk_sys::gsk_text_node_get_y(node.to_glib_none().0)
+            gsk_sys::gsk_text_node_get_y(self.to_glib_none().0)
         }
     }
 
@@ -560,26 +560,26 @@ impl TextNode {
         }
     }
 
-    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
+    pub fn peek_color(self: &TextNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_text_node_peek_color(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_text_node_peek_color(self.to_glib_none().0))
         }
     }
 
-    pub fn peek_font(node: &RenderNode) -> pango::Font {
+    pub fn peek_font(self: &TextNode) -> pango::Font {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_text_node_peek_font(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_text_node_peek_font(self.to_glib_none().0))
         }
     }
 }
 
 impl TextureNode {
-    pub fn get_texture(node: &RenderNode) -> gdk::Texture {
+    pub fn get_texture(self: &TextureNode) -> gdk::Texture {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_texture_node_get_texture(node.to_glib_none().0))
+            from_glib_none(gsk_sys::gsk_texture_node_get_texture(self.to_glib_none().0))
         }
     }
 
