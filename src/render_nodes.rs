@@ -85,7 +85,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: cairo_node_peek_surface()
 // TODO: container_node_new()
 // TODO: linear_gradient_node_new()
 // TODO: linear_gradient_node_peek_color_stops()
@@ -194,6 +193,14 @@ impl CairoNode {
         };
         node.try_into().unwrap()
     }
+
+    /* TODO `const cairo_surface_t *` isn't supported
+    pub fn peek_surface(self: &CairoNode) -> cairo::Surface {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(gsk_sys::gsk_cairo_node_peek_surface(self.to_glib_none().0))
+        }
+    }*/
 }
 
 impl ClipNode {
