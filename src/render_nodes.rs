@@ -7,6 +7,7 @@ use RenderNode;
 use RenderNodeType;
 use RoundedRect;
 use cairo;
+use color_stop::ColorStop;
 use gdk;
 use glib::GString;
 use glib::object::IsA;
@@ -85,7 +86,6 @@ subtype!(RoundedClipNode = RoundedClipNode);
 subtype!(TextNode = TextNode);
 subtype!(TextureNode = TextureNode);
 
-// TODO: linear_gradient_node_new()
 // TODO: linear_gradient_node_peek_color_stops()
 // TODO: repeating_linear_gradient_node_new()
 // TODO: text_node_peek_glyphs()
@@ -412,6 +412,15 @@ impl LinearGradientNode {
         unsafe {
             gsk_sys::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0)
         }
+    }
+
+    pub fn new(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: &[ColorStop]) -> LinearGradientNode {
+        assert_initialized_main_thread!();
+        let n_color_stops = color_stops.len() as usize;
+        let node: RenderNode = unsafe {
+            from_glib_full(gsk_sys::gsk_linear_gradient_node_new(bounds.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, color_stops.to_glib_none().0, n_color_stops))
+        };
+        node.try_into().unwrap()
     }
 
     pub fn peek_end(self: &LinearGradientNode) -> graphene::Point {
