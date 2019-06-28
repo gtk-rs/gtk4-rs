@@ -14,7 +14,7 @@ use glib::translate::*;
 use graphene;
 use pango;
 
-use std::convert::TryFrom;
+use std::convert::{TryFrom, TryInto};
 use std::fmt;
 use std::ops::Deref;
 
@@ -102,30 +102,31 @@ impl BlendNode {
         }
     }
 
-    pub fn get_bottom_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_bottom_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blend_node_get_bottom_child(node.to_glib_none().0))
         }
     }
 
-    pub fn get_top_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_top_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blend_node_get_top_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(bottom: &RenderNode, top: &RenderNode, blend_mode: BlendMode) -> Option<RenderNode> {
+    pub fn new(bottom: &RenderNode, top: &RenderNode, blend_mode: BlendMode) -> BlendNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_blend_node_new(bottom.to_glib_none().0, top.to_glib_none().0, blend_mode.to_glib()))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
 impl BlurNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_blur_node_get_child(node.to_glib_none().0))
@@ -139,23 +140,24 @@ impl BlurNode {
         }
     }
 
-    pub fn new(child: &RenderNode, radius: f64) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, radius: f64) -> BlurNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_blur_node_new(child.to_glib_none().0, radius))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
 impl BorderNode {
-    pub fn peek_colors(node: &RenderNode) -> Option<gdk::RGBA> {
+    pub fn peek_colors(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_border_node_peek_colors(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_border_node_peek_outline(node.to_glib_none().0))
@@ -164,37 +166,39 @@ impl BorderNode {
 }
 
 impl CairoNode {
-    pub fn get_draw_context(node: &RenderNode) -> Option<cairo::Context> {
+    pub fn get_draw_context(node: &RenderNode) -> cairo::Context {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cairo_node_get_draw_context(node.to_glib_none().0))
         }
     }
 
-    pub fn new(bounds: &graphene::Rect) -> Option<RenderNode> {
+    pub fn new(bounds: &graphene::Rect) -> CairoNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_cairo_node_new(bounds.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
 impl ClipNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_clip_node_get_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(child: &RenderNode, clip: &graphene::Rect) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, clip: &graphene::Rect) -> ClipNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_clip_node_new(child.to_glib_none().0, clip.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_clip(node: &RenderNode) -> Option<graphene::Rect> {
+    pub fn peek_clip(node: &RenderNode) -> graphene::Rect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_clip_node_peek_clip(node.to_glib_none().0))
@@ -203,28 +207,29 @@ impl ClipNode {
 }
 
 impl ColorMatrixNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_get_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(child: &RenderNode, color_matrix: &graphene::Matrix, color_offset: &graphene::Vec4) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, color_matrix: &graphene::Matrix, color_offset: &graphene::Vec4) -> ColorMatrixNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_color_matrix_node_new(child.to_glib_none().0, color_matrix.to_glib_none().0, color_offset.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_color_matrix(node: &RenderNode) -> Option<graphene::Matrix> {
+    pub fn peek_color_matrix(node: &RenderNode) -> graphene::Matrix {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_matrix(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_color_offset(node: &RenderNode) -> Option<graphene::Vec4> {
+    pub fn peek_color_offset(node: &RenderNode) -> graphene::Vec4 {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_matrix_node_peek_color_offset(node.to_glib_none().0))
@@ -233,14 +238,15 @@ impl ColorMatrixNode {
 }
 
 impl ColorNode {
-    pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> Option<RenderNode> {
+    pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> ColorNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_color_node_new(rgba.to_glib_none().0, bounds.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
+    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_color_node_peek_color(node.to_glib_none().0))
@@ -249,7 +255,7 @@ impl ColorNode {
 }
 
 impl ContainerNode {
-    pub fn get_child(node: &RenderNode, idx: u32) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode, idx: u32) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_container_node_get_child(node.to_glib_none().0, idx))
@@ -265,7 +271,7 @@ impl ContainerNode {
 }
 
 impl CrossFadeNode {
-    pub fn get_end_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_end_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cross_fade_node_get_end_child(node.to_glib_none().0))
@@ -279,41 +285,43 @@ impl CrossFadeNode {
         }
     }
 
-    pub fn get_start_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_start_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_cross_fade_node_get_start_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(start: &RenderNode, end: &RenderNode, progress: f64) -> Option<RenderNode> {
+    pub fn new(start: &RenderNode, end: &RenderNode, progress: f64) -> CrossFadeNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_cross_fade_node_new(start.to_glib_none().0, end.to_glib_none().0, progress))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
 impl DebugNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_debug_node_get_child(node.to_glib_none().0))
         }
     }
 
-    pub fn get_message(node: &RenderNode) -> Option<GString> {
+    pub fn get_message(node: &RenderNode) -> GString {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_debug_node_get_message(node.to_glib_none().0))
         }
     }
 
-    pub fn new(child: &RenderNode, message: &str) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, message: &str) -> DebugNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_debug_node_new(child.to_glib_none().0, message.to_glib_full()))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
@@ -346,21 +354,22 @@ impl InsetShadowNode {
         }
     }
 
-    pub fn new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
+    pub fn new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> InsetShadowNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_inset_shadow_node_new(outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
+    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_color(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_inset_shadow_node_peek_outline(node.to_glib_none().0))
@@ -376,14 +385,14 @@ impl LinearGradientNode {
         }
     }
 
-    pub fn peek_end(node: &RenderNode) -> Option<graphene::Point> {
+    pub fn peek_end(node: &RenderNode) -> graphene::Point {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_end(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_start(node: &RenderNode) -> Option<graphene::Point> {
+    pub fn peek_start(node: &RenderNode) -> graphene::Point {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_linear_gradient_node_peek_start(node.to_glib_none().0))
@@ -392,7 +401,7 @@ impl LinearGradientNode {
 }
 
 impl OpacityNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_opacity_node_get_child(node.to_glib_none().0))
@@ -406,11 +415,12 @@ impl OpacityNode {
         }
     }
 
-    pub fn new(child: &RenderNode, opacity: f64) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, opacity: f64) -> OpacityNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_opacity_node_new(child.to_glib_none().0, opacity))
-        }
+        };
+        node.try_into().unwrap()
     }
 }
 
@@ -443,21 +453,22 @@ impl OutsetShadowNode {
         }
     }
 
-    pub fn new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> Option<RenderNode> {
+    pub fn new(outline: &RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) -> OutsetShadowNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_outset_shadow_node_new(outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
+    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_color(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_outline(node: &RenderNode) -> Option<RoundedRect> {
+    pub fn peek_outline(node: &RenderNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(node.to_glib_none().0))
@@ -466,21 +477,22 @@ impl OutsetShadowNode {
 }
 
 impl RepeatNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_repeat_node_get_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(bounds: &graphene::Rect, child: &RenderNode, child_bounds: Option<&graphene::Rect>) -> Option<RenderNode> {
+    pub fn new(bounds: &graphene::Rect, child: &RenderNode, child_bounds: Option<&graphene::Rect>) -> RepeatNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_repeat_node_new(bounds.to_glib_none().0, child.to_glib_none().0, child_bounds.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_child_bounds(node: &RenderNode) -> Option<graphene::Rect> {
+    pub fn peek_child_bounds(node: &RenderNode) -> graphene::Rect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_repeat_node_peek_child_bounds(node.to_glib_none().0))
@@ -489,21 +501,22 @@ impl RepeatNode {
 }
 
 impl RoundedClipNode {
-    pub fn get_child(node: &RenderNode) -> Option<RenderNode> {
+    pub fn get_child(node: &RenderNode) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_rounded_clip_node_get_child(node.to_glib_none().0))
         }
     }
 
-    pub fn new(child: &RenderNode, clip: &RoundedRect) -> Option<RenderNode> {
+    pub fn new(child: &RenderNode, clip: &RoundedRect) -> RoundedClipNode {
         assert_initialized_main_thread!();
-        unsafe {
+        let node: RenderNode = unsafe {
             from_glib_full(gsk_sys::gsk_rounded_clip_node_new(child.to_glib_none().0, clip.to_glib_none().0))
-        }
+        };
+        node.try_into().unwrap()
     }
 
-    pub fn peek_clip(node: &RenderNode) -> Option<RoundedRect> {
+    pub fn peek_clip(node: &RenderNode) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(node.to_glib_none().0))
@@ -540,14 +553,14 @@ impl TextNode {
         }
     }
 
-    pub fn peek_color(node: &RenderNode) -> Option<gdk::RGBA> {
+    pub fn peek_color(node: &RenderNode) -> gdk::RGBA {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_text_node_peek_color(node.to_glib_none().0))
         }
     }
 
-    pub fn peek_font(node: &RenderNode) -> Option<pango::Font> {
+    pub fn peek_font(node: &RenderNode) -> pango::Font {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_text_node_peek_font(node.to_glib_none().0))
@@ -556,14 +569,14 @@ impl TextNode {
 }
 
 impl TextureNode {
-    pub fn get_texture(node: &RenderNode) -> Option<gdk::Texture> {
+    pub fn get_texture(node: &RenderNode) -> gdk::Texture {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gsk_sys::gsk_texture_node_get_texture(node.to_glib_none().0))
         }
     }
 
-    pub fn new<P: IsA<gdk::Texture>>(texture: &P, bounds: &graphene::Rect) -> Option<RenderNode> {
+    pub fn new<P: IsA<gdk::Texture>>(texture: &P, bounds: &graphene::Rect) -> RenderNode {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_texture_node_new(texture.as_ref().to_glib_none().0, bounds.to_glib_none().0))
