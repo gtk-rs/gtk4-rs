@@ -27,6 +27,7 @@ macro_rules! convert {
             type Error = $source;
 
             fn try_from(value: $source) -> Result<Self, $source> {
+                assert_initialized_main_thread!();
                 if $( value.get_node_type() == RenderNodeType::$variant )||+ {
                     $(
                         let value = $intermediate(value);
