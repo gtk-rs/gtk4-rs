@@ -1273,8 +1273,8 @@ status = "generate"
 name = "Gtk.Text"
 status = "generate"
     [[object.signal]]
-    # TODO: error generating emit_*
-    pattern = "*"
+    pattern = ".+"
+    #manual
     ignore = true
     [[object.function]]
     name = "set_tabs"
