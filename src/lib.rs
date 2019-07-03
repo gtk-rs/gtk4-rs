@@ -93,6 +93,7 @@ pub use rt::*;
 pub use prelude::*;
 
 mod accel_key;
+mod accel_map;
 mod actionable;
 mod application;
 mod border;
