@@ -10,6 +10,22 @@ use std::str;
 use Editable;
 use IsA;
 
+impl Editable {
+    pub fn delegate_get_property<P: IsA<Editable> + IsA<glib::Object>>(object: &P, prop_id: u32, value: &mut glib::Value, pspec: &glib::ParamSpec) -> bool {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib(gtk_sys::gtk_editable_delegate_get_property(object.upcast_ref::<glib::Object>().to_glib_none().0, prop_id, value.to_glib_none_mut().0, pspec.to_glib_none().0))
+        }
+    }
+
+    pub fn delegate_set_property<P: IsA<Editable> + IsA<glib::Object>>(object: &P, prop_id: u32, value: &glib::Value, pspec: &glib::ParamSpec) -> bool {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib(gtk_sys::gtk_editable_delegate_set_property(object.upcast_ref::<glib::Object>().to_glib_none().0, prop_id, value.to_glib_none().0, pspec.to_glib_none().0))
+        }
+    }
+}
+
 pub trait EditableExtManual: 'static {
     fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
     where

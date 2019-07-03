@@ -764,6 +764,12 @@ manual_traits = ["DialogExtManual"]
 name = "Gtk.Editable"
 status = "generate"
 manual_traits = ["EditableExtManual"]
+    [[object.function]]
+    name = "delegate_get_property"
+    ignore = true #manual
+    [[object.function]]
+    name = "delegate_set_property"
+    ignore = true #manual
     [[object.signal]]
     pattern = "insert-text"
     ignore = true #out #manual
