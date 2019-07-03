@@ -12,7 +12,6 @@ single_version_file = true
 generate = [
     "Gtk.AccelFlags",
     "Gtk.AccelLabel",
-    "Gtk.AccelMap",
     "Gtk.Accessible",
     "Gtk.ActionBar",
     "Gtk.Adjustment",
@@ -578,6 +577,16 @@ status = "generate"
     # It's not a part of public API
     # See https://mail.gnome.org/archives/commits-list/2012-May/msg07052.html
     ignore = true
+
+[[object]]
+name = "Gtk.AccelMap"
+status = "generate"
+    [[object.function]]
+    name = "foreach"
+    ignore = true #manual
+    [[object.function]]
+    name = "foreach_unfiltered"
+    ignore = true #manual
 
 [[object]]
 name = "Gtk.Actionable"

@@ -48,14 +48,6 @@ impl AccelMap {
         }
     }
 
-    //pub fn foreach(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, &gdk::ModifierType, bool)) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach() }
-    //}
-
-    //pub fn foreach_unfiltered(data: /*Unimplemented*/Option<Fundamental: Pointer>, foreach_func: /*Unimplemented*/FnMut(/*Unimplemented*/Option<Fundamental: Pointer>, &str, u32, &gdk::ModifierType, bool)) {
-    //    unsafe { TODO: call gtk_sys:gtk_accel_map_foreach_unfiltered() }
-    //}
-
     pub fn get() -> Option<AccelMap> {
         assert_initialized_main_thread!();
         unsafe {
