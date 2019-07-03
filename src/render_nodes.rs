@@ -21,30 +21,8 @@ use std::ops::Deref;
 
 // RenderNode subtypes
 
-macro_rules! convert {
-    ($source: ident => $dest: ident = $( $variant: ident )|+ $( ($intermediate: ident) )*) => {
-        impl TryFrom<$source> for $dest {
-            type Error = $source;
-
-            fn try_from(value: $source) -> Result<Self, $source> {
-                assert_initialized_main_thread!();
-                if $( value.get_node_type() == RenderNodeType::$variant )||+ {
-                    $(
-                        let value = $intermediate(value);
-                    )*
-                    Ok($dest(value))
-                }
-                else {
-                    Err(value)
-                }
-            }
-        }
-    };
-}
-
 macro_rules! subtype(
-    ($subtype: ident $( = $variant: ident)*) => (
-
+    ($subtype: ident) => (
         #[derive(Debug, Clone)]
         pub struct $subtype(RenderNode);
 
@@ -62,30 +40,40 @@ macro_rules! subtype(
             }
         }
 
-        $(
-            convert!(RenderNode => $subtype = $variant);
-        )*
+        impl TryFrom<RenderNode> for $subtype {
+            type Error = RenderNode;
+
+            fn try_from(value: RenderNode) -> Result<Self, RenderNode> {
+                assert_initialized_main_thread!();
+                if value.get_node_type() == RenderNodeType::$subtype {
+                    Ok($subtype(value))
+                }
+                else {
+                    Err(value)
+                }
+            }
+        }
     );
 );
 
-subtype!(BlendNode = BlendNode);
-subtype!(BlurNode = BlurNode);
-subtype!(BorderNode = BorderNode);
-subtype!(CairoNode = CairoNode);
-subtype!(ClipNode = ClipNode);
-subtype!(ColorMatrixNode = ColorMatrixNode);
-subtype!(ColorNode = ColorNode);
-subtype!(ContainerNode = ContainerNode);
-subtype!(CrossFadeNode = CrossFadeNode);
-subtype!(DebugNode = DebugNode);
-subtype!(InsetShadowNode = InsetShadowNode);
-subtype!(LinearGradientNode = LinearGradientNode);
-subtype!(OpacityNode = OpacityNode);
-subtype!(OutsetShadowNode = OutsetShadowNode);
-subtype!(RepeatNode = RepeatNode);
-subtype!(RoundedClipNode = RoundedClipNode);
-subtype!(TextNode = TextNode);
-subtype!(TextureNode = TextureNode);
+subtype!(BlendNode);
+subtype!(BlurNode);
+subtype!(BorderNode);
+subtype!(CairoNode);
+subtype!(ClipNode);
+subtype!(ColorMatrixNode);
+subtype!(ColorNode);
+subtype!(ContainerNode);
+subtype!(CrossFadeNode);
+subtype!(DebugNode);
+subtype!(InsetShadowNode);
+subtype!(LinearGradientNode);
+subtype!(OpacityNode);
+subtype!(OutsetShadowNode);
+subtype!(RepeatNode);
+subtype!(RoundedClipNode);
+subtype!(TextNode);
+subtype!(TextureNode);
 
 impl BlendNode {
     pub fn get_blend_mode(self: &BlendNode) -> BlendMode {
