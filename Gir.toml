@@ -79,12 +79,26 @@ generate = [
 ]
 
 manual = [
+    "cairo.Context",
+    "cairo.Surface",
     "Gdk.Atom",
     "Gdk.Geometry",
     "Gdk.KeymapKey",
     "Gdk.RGBA",
     "Gdk.TimeCoord",
+    "GdkPixbuf.Pixbuf",
+    "Gio.Cancellable",
+    "Gio.File",
+    "Gio.Icon",
+    "Gio.OutputStream",
+    "GLib.Bytes",
+    "GLib.Error",
+    "GLib.Priority",
+    "GLib.String",
+    "GObject.Value",
     "Pango.Direction",
+    "Pango.Layout",
+    "Pango.LayoutLine",
 ]
 
 [[object]]
