@@ -42,6 +42,8 @@ mod alias;
 pub mod prelude;
 
 mod geometry;
+mod keymap;
+mod keymap_key;
 mod rgba;
 mod time_coord;
 
@@ -52,6 +54,7 @@ pub use alias::*;
 pub use prelude::*;
 
 pub use geometry::Geometry;
+pub use keymap_key::KeymapKey;
 pub use rgba::{RGBA, RgbaParseError};
 pub use time_coord::TimeCoord;
 
