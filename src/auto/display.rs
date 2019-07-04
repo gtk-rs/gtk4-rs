@@ -11,6 +11,7 @@ use Monitor;
 use Seat;
 use Surface;
 use gdk_sys;
+use glib;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -137,9 +138,11 @@ impl Display {
         }
     }
 
-    //pub fn get_setting(&self, name: &str, value: /*Ignored*/&mut glib::Value) -> bool {
-    //    unsafe { TODO: call gdk_sys:gdk_display_get_setting() }
-    //}
+    pub fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool {
+        unsafe {
+            from_glib(gdk_sys::gdk_display_get_setting(self.to_glib_none().0, name.to_glib_none().0, value.to_glib_none_mut().0))
+        }
+    }
 
     pub fn get_startup_notification_id(&self) -> Option<GString> {
         unsafe {

@@ -4,47 +4,84 @@
 
 use Atom;
 use Display;
+use Error;
 use Event;
+use GLContext;
+use RGBA;
+use Rectangle;
+use Surface;
+use cairo;
+#[cfg(feature = "futures")]
+use futures::future;
+use gdk_pixbuf;
 use gdk_sys;
+use gio;
+use gio_sys;
+use glib;
 use glib::GString;
+use glib::object::IsA;
 use glib::translate::*;
+use glib_sys;
+use gobject_sys;
+#[cfg(feature = "futures")]
+use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
 
 
-//pub fn cairo_draw_from_gl<P: IsA<Surface>>(cr: /*Ignored*/&cairo::Context, surface: &P, source: i32, source_type: i32, buffer_scale: i32, x: i32, y: i32, width: i32, height: i32) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_draw_from_gl() }
-//}
+pub fn cairo_draw_from_gl<P: IsA<Surface>>(cr: &cairo::Context, surface: &P, source: i32, source_type: i32, buffer_scale: i32, x: i32, y: i32, width: i32, height: i32) {
+    skip_assert_initialized!();
+    unsafe {
+        gdk_sys::gdk_cairo_draw_from_gl(mut_override(cr.to_glib_none().0), surface.as_ref().to_glib_none().0, source, source_type, buffer_scale, x, y, width, height);
+    }
+}
 
-//pub fn cairo_get_clip_rectangle(cr: /*Ignored*/&cairo::Context) -> Option<Rectangle> {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_get_clip_rectangle() }
-//}
+pub fn cairo_get_clip_rectangle(cr: &cairo::Context) -> Option<Rectangle> {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut rect = Rectangle::uninitialized();
+        let ret = from_glib(gdk_sys::gdk_cairo_get_clip_rectangle(mut_override(cr.to_glib_none().0), rect.to_glib_none_mut().0));
+        if ret { Some(rect) } else { None }
+    }
+}
 
-//pub fn cairo_rectangle(cr: /*Ignored*/&cairo::Context, rectangle: &Rectangle) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_rectangle() }
-//}
+pub fn cairo_rectangle(cr: &cairo::Context, rectangle: &Rectangle) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gdk_sys::gdk_cairo_rectangle(mut_override(cr.to_glib_none().0), rectangle.to_glib_none().0);
+    }
+}
 
-//pub fn cairo_region(cr: /*Ignored*/&cairo::Context, region: /*Ignored*/&cairo::Region) {
+//pub fn cairo_region(cr: &cairo::Context, region: /*Ignored*/&cairo::Region) {
 //    unsafe { TODO: call gdk_sys:gdk_cairo_region() }
 //}
 
-//pub fn cairo_region_create_from_surface(surface: /*Ignored*/&cairo::Surface) -> /*Ignored*/Option<cairo::Region> {
+//pub fn cairo_region_create_from_surface(surface: &cairo::Surface) -> /*Ignored*/Option<cairo::Region> {
 //    unsafe { TODO: call gdk_sys:gdk_cairo_region_create_from_surface() }
 //}
 
-//pub fn cairo_set_source_pixbuf(cr: /*Ignored*/&cairo::Context, pixbuf: /*Ignored*/&gdk_pixbuf::Pixbuf, pixbuf_x: f64, pixbuf_y: f64) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_set_source_pixbuf() }
-//}
+pub fn cairo_set_source_pixbuf(cr: &cairo::Context, pixbuf: &gdk_pixbuf::Pixbuf, pixbuf_x: f64, pixbuf_y: f64) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gdk_sys::gdk_cairo_set_source_pixbuf(mut_override(cr.to_glib_none().0), pixbuf.to_glib_none().0, pixbuf_x, pixbuf_y);
+    }
+}
 
-//pub fn cairo_set_source_rgba(cr: /*Ignored*/&cairo::Context, rgba: &RGBA) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_set_source_rgba() }
-//}
+pub fn cairo_set_source_rgba(cr: &cairo::Context, rgba: &RGBA) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gdk_sys::gdk_cairo_set_source_rgba(mut_override(cr.to_glib_none().0), rgba.to_glib_none().0);
+    }
+}
 
-//pub fn cairo_surface_upload_to_gl(surface: /*Ignored*/&cairo::Surface, target: i32, width: i32, height: i32, context: Option<&GLContext>) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_surface_upload_to_gl() }
-//}
+pub fn cairo_surface_upload_to_gl(surface: &cairo::Surface, target: i32, width: i32, height: i32, context: Option<&GLContext>) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gdk_sys::gdk_cairo_surface_upload_to_gl(mut_override(surface.to_glib_none().0), target, width, height, context.to_glib_none().0);
+    }
+}
 
-//pub fn content_deserialize_async<P: FnOnce(Result<(), Error>) + Send + 'static>(stream: /*Ignored*/&gio::InputStream, mime_type: &str, type_: glib::types::Type, io_priority: i32, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
+//pub fn content_deserialize_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), Error>) + Send + 'static>(stream: /*Ignored*/&gio::InputStream, mime_type: &str, type_: glib::types::Type, io_priority: i32, cancellable: Option<&P>, callback: Q) {
 //    unsafe { TODO: call gdk_sys:gdk_content_deserialize_async() }
 //}
 
@@ -81,35 +118,47 @@ use std::ptr;
 //    unsafe { TODO: call gdk_sys:gdk_content_register_serializer() }
 //}
 
-//pub fn content_serialize_async<P: FnOnce(Result<(), Error>) + Send + 'static>(stream: /*Ignored*/&gio::OutputStream, mime_type: &str, value: /*Ignored*/&glib::Value, io_priority: i32, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
-//    unsafe { TODO: call gdk_sys:gdk_content_serialize_async() }
-//}
+pub fn content_serialize_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32, cancellable: Option<&Q>, callback: R) {
+    assert_initialized_main_thread!();
+    let user_data: Box<R> = Box::new(callback);
+    unsafe extern "C" fn content_serialize_async_trampoline<R: FnOnce(Result<(), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        let mut error = ptr::null_mut();
+        let _ = gdk_sys::gdk_content_serialize_finish(res, &mut error);
+        let result = if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) };
+        let callback: Box<R> = Box::from_raw(user_data as *mut _);
+        callback(result);
+    }
+    let callback = content_serialize_async_trampoline::<R>;
+    unsafe {
+        gdk_sys::gdk_content_serialize_async(stream.as_ref().to_glib_none().0, mime_type.to_glib_none().0, value.to_glib_none().0, io_priority, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+    }
+}
 
-//#[cfg(feature = "futures")]
-//pub fn content_serialize_async_future(stream: /*Ignored*/&gio::OutputStream, mime_type: &str, value: /*Ignored*/&glib::Value, io_priority: i32) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
-    //use gio::GioFuture;
-    //use fragile::Fragile;
+#[cfg(feature = "futures")]
+pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
+    use gio::GioFuture;
+    use fragile::Fragile;
 
-    //let stream = stream.clone();
-    //let mime_type = String::from(mime_type);
-    //let value = value.clone();
-    //GioFuture::new(&(), move |_obj, send| {
-    //    let cancellable = gio::Cancellable::new();
-    //    let send = Fragile::new(send);
-    //    content_serialize_async(
-    //        &stream,
-    //        &mime_type,
-    //        &value,
-    //        io_priority,
-    //        Some(&cancellable),
-    //        move |res| {
-    //            let _ = send.into_inner().send(res);
-    //        },
-    //    );
+    let stream = stream.clone();
+    let mime_type = String::from(mime_type);
+    let value = value.clone();
+    GioFuture::new(&(), move |_obj, send| {
+        let cancellable = gio::Cancellable::new();
+        let send = Fragile::new(send);
+        content_serialize_async(
+            &stream,
+            &mime_type,
+            &value,
+            io_priority,
+            Some(&cancellable),
+            move |res| {
+                let _ = send.into_inner().send(res);
+            },
+        );
 
-    //    cancellable
-    //})
-//}
+        cancellable
+    })
+}
 
 pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
@@ -212,17 +261,20 @@ pub fn keyval_to_upper(keyval: u32) -> u32 {
     }
 }
 
-//pub fn pango_layout_get_clip_region(layout: /*Ignored*/&pango::Layout, x_origin: i32, y_origin: i32, index_ranges: i32, n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
+//pub fn pango_layout_get_clip_region(layout: &pango::Layout, x_origin: i32, y_origin: i32, index_ranges: i32, n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
 //    unsafe { TODO: call gdk_sys:gdk_pango_layout_get_clip_region() }
 //}
 
-//pub fn pango_layout_line_get_clip_region(line: /*Ignored*/&pango::LayoutLine, x_origin: i32, y_origin: i32, index_ranges: &[i32], n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
+//pub fn pango_layout_line_get_clip_region(line: &pango::LayoutLine, x_origin: i32, y_origin: i32, index_ranges: &[i32], n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
 //    unsafe { TODO: call gdk_sys:gdk_pango_layout_line_get_clip_region() }
 //}
 
-//pub fn pixbuf_get_from_surface(surface: /*Ignored*/&cairo::Surface, src_x: i32, src_y: i32, width: i32, height: i32) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
-//    unsafe { TODO: call gdk_sys:gdk_pixbuf_get_from_surface() }
-//}
+pub fn pixbuf_get_from_surface(surface: &cairo::Surface, src_x: i32, src_y: i32, width: i32, height: i32) -> Option<gdk_pixbuf::Pixbuf> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gdk_sys::gdk_pixbuf_get_from_surface(mut_override(surface.to_glib_none().0), src_x, src_y, width, height))
+    }
+}
 
 pub fn set_allowed_backends(backends: &str) {
     assert_initialized_main_thread!();

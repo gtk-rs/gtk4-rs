@@ -4,8 +4,10 @@
 
 use Display;
 use gdk_sys;
+use gio;
 use glib::StaticType;
 use glib::Value;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use gobject_sys;
@@ -26,9 +28,11 @@ impl AppLaunchContext {
         }
     }
 
-    //pub fn set_icon(&self, icon: /*Ignored*/Option<&gio::Icon>) {
-    //    unsafe { TODO: call gdk_sys:gdk_app_launch_context_set_icon() }
-    //}
+    pub fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>) {
+        unsafe {
+            gdk_sys::gdk_app_launch_context_set_icon(self.to_glib_none().0, icon.map(|p| p.as_ref()).to_glib_none().0);
+        }
+    }
 
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {

@@ -2,7 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use gdk_sys;
+use gio;
 use glib;
 use glib::GString;
 use glib::translate::*;
@@ -17,9 +19,11 @@ glib_wrapper! {
 }
 
 impl ContentDeserializer {
-    //pub fn get_cancellable(&self) -> /*Ignored*/Option<gio::Cancellable> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_cancellable() }
-    //}
+    pub fn get_cancellable(&self) -> Option<gio::Cancellable> {
+        unsafe {
+            from_glib_none(gdk_sys::gdk_content_deserializer_get_cancellable(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_gtype(&self) -> glib::types::Type {
         unsafe {
@@ -51,13 +55,17 @@ impl ContentDeserializer {
     //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_user_data() }
     //}
 
-    //pub fn get_value(&self) -> /*Ignored*/Option<glib::Value> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_value() }
-    //}
+    pub fn get_value(&self) -> Option<glib::Value> {
+        unsafe {
+            from_glib_none(gdk_sys::gdk_content_deserializer_get_value(self.to_glib_none().0))
+        }
+    }
 
-    //pub fn return_error(&self, error: /*Ignored*/&mut Error) {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_return_error() }
-    //}
+    pub fn return_error(&self, error: &mut Error) {
+        unsafe {
+            gdk_sys::gdk_content_deserializer_return_error(self.to_glib_none().0, error.to_glib_none_mut().0);
+        }
+    }
 
     pub fn return_success(&self) {
         unsafe {

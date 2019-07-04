@@ -7,9 +7,11 @@ use CairoContext;
 use Cursor;
 use Device;
 use Display;
+use Error;
 use Event;
 use FrameClock;
 use FullscreenMode;
+use GLContext;
 use Geometry;
 use Gravity;
 use ModifierType;
@@ -21,6 +23,7 @@ use SurfaceState;
 use SurfaceType;
 use SurfaceTypeHint;
 use Texture;
+use VulkanContext;
 use WMDecoration;
 use WMFunction;
 use gdk_sys;
@@ -38,6 +41,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use std::ptr;
 
 glib_wrapper! {
     pub struct Surface(Object<gdk_sys::GdkSurface, gdk_sys::GdkSurfaceClass, SurfaceClass>);
@@ -106,11 +110,11 @@ pub trait SurfaceExt: 'static {
 
     fn create_cairo_context(&self) -> Option<CairoContext>;
 
-    //fn create_gl_context(&self, error: /*Ignored*/Option<Error>) -> Option<GLContext>;
+    fn create_gl_context(&self) -> Result<GLContext, Error>;
 
-    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> /*Ignored*/Option<cairo::Surface>;
+    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> Option<cairo::Surface>;
 
-    //fn create_vulkan_context(&self, error: /*Ignored*/Option<Error>) -> Option<VulkanContext>;
+    fn create_vulkan_context(&self) -> Result<VulkanContext, Error>;
 
     fn deiconify(&self);
 
@@ -352,17 +356,25 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    //fn create_gl_context(&self, error: /*Ignored*/Option<Error>) -> Option<GLContext> {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_create_gl_context() }
-    //}
+    fn create_gl_context(&self) -> Result<GLContext, Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gdk_sys::gdk_surface_create_gl_context(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
-    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> /*Ignored*/Option<cairo::Surface> {
+    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> Option<cairo::Surface> {
     //    unsafe { TODO: call gdk_sys:gdk_surface_create_similar_surface() }
     //}
 
-    //fn create_vulkan_context(&self, error: /*Ignored*/Option<Error>) -> Option<VulkanContext> {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_create_vulkan_context() }
-    //}
+    fn create_vulkan_context(&self) -> Result<VulkanContext, Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gdk_sys::gdk_surface_create_vulkan_context(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     fn deiconify(&self) {
         unsafe {

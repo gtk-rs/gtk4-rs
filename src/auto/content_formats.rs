@@ -74,9 +74,11 @@ impl ContentFormats {
         }
     }
 
-    //pub fn print(&self, string: /*Ignored*/&mut glib::String) {
-    //    unsafe { TODO: call gdk_sys:gdk_content_formats_print() }
-    //}
+    pub fn print(&self, string: &mut glib::String) {
+        unsafe {
+            gdk_sys::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+        }
+    }
 
     fn to_string(&self) -> GString {
         unsafe {

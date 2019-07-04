@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use DrawContext;
+use cairo;
 use gdk_sys;
 use glib::translate::*;
 use std::fmt;
@@ -16,9 +17,11 @@ glib_wrapper! {
 }
 
 impl CairoContext {
-    //pub fn cairo_create(&self) -> /*Ignored*/Option<cairo::Context> {
-    //    unsafe { TODO: call gdk_sys:gdk_cairo_context_cairo_create() }
-    //}
+    pub fn cairo_create(&self) -> Option<cairo::Context> {
+        unsafe {
+            from_glib_full(gdk_sys::gdk_cairo_context_cairo_create(self.to_glib_none().0))
+        }
+    }
 }
 
 impl fmt::Display for CairoContext {

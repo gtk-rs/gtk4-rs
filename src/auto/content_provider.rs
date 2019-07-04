@@ -3,7 +3,13 @@
 // DO NOT EDIT
 
 use ContentFormats;
+use Error;
+#[cfg(feature = "futures")]
+use futures::future;
 use gdk_sys;
+use gio;
+use gio_sys;
+use glib;
 use glib::StaticType;
 use glib::Value;
 use glib::object::Cast;
@@ -16,6 +22,7 @@ use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use std::ptr;
 
 glib_wrapper! {
     pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass, ContentProviderClass>);
@@ -26,13 +33,19 @@ glib_wrapper! {
 }
 
 impl ContentProvider {
-    //pub fn new_for_bytes(mime_type: &str, bytes: /*Ignored*/&glib::Bytes) -> ContentProvider {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_new_for_bytes() }
-    //}
+    pub fn new_for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gdk_sys::gdk_content_provider_new_for_bytes(mime_type.to_glib_none().0, bytes.to_glib_none().0))
+        }
+    }
 
-    //pub fn new_for_value(value: /*Ignored*/&glib::Value) -> ContentProvider {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_new_for_value() }
-    //}
+    pub fn new_for_value(value: &glib::Value) -> ContentProvider {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gdk_sys::gdk_content_provider_new_for_value(value.to_glib_none().0))
+        }
+    }
 }
 
 pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
@@ -40,16 +53,16 @@ pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
 pub trait ContentProviderExt: 'static {
     fn content_changed(&self);
 
-    //fn get_value(&self, value: /*Ignored*/&mut glib::Value, error: /*Ignored*/Option<Error>) -> bool;
+    fn get_value(&self, value: &mut glib::Value) -> Result<(), Error>;
 
     fn ref_formats(&self) -> Option<ContentFormats>;
 
     fn ref_storable_formats(&self) -> Option<ContentFormats>;
 
-    //fn write_mime_type_async<P: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: /*Ignored*/&gio::OutputStream, io_priority: /*Ignored*/glib::Priority, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P);
+    fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority, cancellable: Option<&Q>, callback: R);
 
-    //#[cfg(feature = "futures")]
-    //fn write_mime_type_async_future(&self, mime_type: &str, stream: /*Ignored*/&gio::OutputStream, io_priority: /*Ignored*/glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin>;
+    #[cfg(feature = "futures")]
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin>;
 
     fn get_property_formats(&self) -> Option<ContentFormats>;
 
@@ -69,9 +82,13 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    //fn get_value(&self, value: /*Ignored*/&mut glib::Value, error: /*Ignored*/Option<Error>) -> bool {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_get_value() }
-    //}
+    fn get_value(&self, value: &mut glib::Value) -> Result<(), Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let _ = gdk_sys::gdk_content_provider_get_value(self.as_ref().to_glib_none().0, value.to_glib_none_mut().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     fn ref_formats(&self) -> Option<ContentFormats> {
         unsafe {
@@ -85,33 +102,44 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    //fn write_mime_type_async<P: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: /*Ignored*/&gio::OutputStream, io_priority: /*Ignored*/glib::Priority, cancellable: /*Ignored*/Option<&gio::Cancellable>, callback: P) {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_write_mime_type_async() }
-    //}
+    fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority, cancellable: Option<&Q>, callback: R) {
+        let user_data: Box<R> = Box::new(callback);
+        unsafe extern "C" fn write_mime_type_async_trampoline<R: FnOnce(Result<(), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+            let mut error = ptr::null_mut();
+            let _ = gdk_sys::gdk_content_provider_write_mime_type_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) };
+            let callback: Box<R> = Box::from_raw(user_data as *mut _);
+            callback(result);
+        }
+        let callback = write_mime_type_async_trampoline::<R>;
+        unsafe {
+            gdk_sys::gdk_content_provider_write_mime_type_async(self.as_ref().to_glib_none().0, mime_type.to_glib_none().0, stream.as_ref().to_glib_none().0, io_priority.to_glib(), cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+        }
+    }
 
-    //#[cfg(feature = "futures")]
-    //fn write_mime_type_async_future(&self, mime_type: &str, stream: /*Ignored*/&gio::OutputStream, io_priority: /*Ignored*/glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
-        //use gio::GioFuture;
-        //use fragile::Fragile;
+    #[cfg(feature = "futures")]
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
+        use gio::GioFuture;
+        use fragile::Fragile;
 
-        //let mime_type = String::from(mime_type);
-        //let stream = stream.clone();
-        //GioFuture::new(self, move |obj, send| {
-        //    let cancellable = gio::Cancellable::new();
-        //    let send = Fragile::new(send);
-        //    obj.write_mime_type_async(
-        //        &mime_type,
-        //        &stream,
-        //        io_priority,
-        //        Some(&cancellable),
-        //        move |res| {
-        //            let _ = send.into_inner().send(res);
-        //        },
-        //    );
+        let mime_type = String::from(mime_type);
+        let stream = stream.clone();
+        GioFuture::new(self, move |obj, send| {
+            let cancellable = gio::Cancellable::new();
+            let send = Fragile::new(send);
+            obj.write_mime_type_async(
+                &mime_type,
+                &stream,
+                io_priority,
+                Some(&cancellable),
+                move |res| {
+                    let _ = send.into_inner().send(res);
+                },
+            );
 
-        //    cancellable
-        //})
-    //}
+            cancellable
+        })
+    }
 
     fn get_property_formats(&self) -> Option<ContentFormats> {
         unsafe {

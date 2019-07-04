@@ -2,11 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use Error;
 use Paintable;
+use gdk_pixbuf;
 use gdk_sys;
+use gio;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
+use std::ptr;
 
 glib_wrapper! {
     pub struct Texture(Object<gdk_sys::GdkTexture, gdk_sys::GdkTextureClass, TextureClass>) @implements Paintable;
@@ -17,13 +21,21 @@ glib_wrapper! {
 }
 
 impl Texture {
-    //pub fn new_for_pixbuf(pixbuf: /*Ignored*/&gdk_pixbuf::Pixbuf) -> Texture {
-    //    unsafe { TODO: call gdk_sys:gdk_texture_new_for_pixbuf() }
-    //}
+    pub fn new_for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Texture {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gdk_sys::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0))
+        }
+    }
 
-    //pub fn new_from_file(file: /*Ignored*/&gio::File, error: /*Ignored*/Option<Error>) -> Texture {
-    //    unsafe { TODO: call gdk_sys:gdk_texture_new_from_file() }
-    //}
+    pub fn new_from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, Error> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gdk_sys::gdk_texture_new_from_file(file.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     pub fn new_from_resource(resource_path: &str) -> Texture {
         assert_initialized_main_thread!();
