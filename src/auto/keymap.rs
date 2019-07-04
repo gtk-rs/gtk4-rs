@@ -12,6 +12,7 @@ use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
 use glib::translate::*;
 use glib_sys;
+use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -33,9 +34,11 @@ impl Keymap {
         }
     }
 
-    //pub fn get_direction(&self) -> /*Ignored*/pango::Direction {
-    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_direction() }
-    //}
+    pub fn get_direction(&self) -> pango::Direction {
+        unsafe {
+            from_glib(gdk_sys::gdk_keymap_get_direction(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_display(&self) -> Option<Display> {
         unsafe {
