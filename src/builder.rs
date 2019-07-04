@@ -47,15 +47,18 @@ impl<O: IsA<Builder>> BuilderExtManual for O {
     fn connect_signals_full<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + Send + Sync + 'static>>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + Send + Sync + 'static>>(builder: *mut gtk_sys::GtkBuilder, object: *mut gobject_sys::GObject, signal_name: *const libc::c_char, handler_name: *const libc::c_char, connect_object: *mut gobject_sys::GObject, flags: gobject_sys::GConnectFlags, user_data: glib_sys::gpointer) {
+            assert!(connect_object.is_null(), "Connect object is not supported");
+            assert!(flags & gobject_sys::G_CONNECT_SWAPPED == 0, "Swapped signal handler is not supported");
+
             let builder = from_glib_borrow(builder);
             let object: glib::Object = from_glib_borrow(object);
             let signal_name: GString = from_glib_borrow(signal_name);
             let handler_name: GString = from_glib_borrow(handler_name);
-            let connect_object: Option<glib::Object> = from_glib_borrow(connect_object); // TODO
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             let func = (*callback)(&builder, handler_name.as_str());
-            object.connect(signal_name.as_str(), flags & gobject_sys::G_CONNECT_AFTER != 0, func);
-            // TODO: signal id
+            object
+                .connect(signal_name.as_str(), flags & gobject_sys::G_CONNECT_AFTER != 0, move |args| func(args))
+                .expect("Failed to connect to builder signal");
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
