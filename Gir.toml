@@ -84,6 +84,7 @@ manual = [
     "Gdk.KeymapKey",
     "Gdk.RGBA",
     "Gdk.TimeCoord",
+    "Pango.Direction",
 ]
 
 ignore = [
