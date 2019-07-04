@@ -388,7 +388,6 @@ ignore = [
 ]
 
 manual = [
-    # "GObject.ConnectFlags",
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
@@ -619,6 +618,10 @@ manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
     #path
+    ignore = true
+    [[object.function]]
+    name = "connect_signals_full"
+    #manual
     ignore = true
     [[object.function]]
     name = "get_object"
