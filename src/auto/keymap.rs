@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use Display;
+use KeymapKey;
 use ModifierIntent;
 use ModifierType;
 use gdk_sys;
@@ -15,6 +16,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use std::ptr;
 
 glib_wrapper! {
     pub struct Keymap(Object<gdk_sys::GdkKeymap, KeymapClass>);
@@ -41,13 +43,14 @@ impl Keymap {
         }
     }
 
-    //pub fn get_entries_for_keycode(&self, hardware_keycode: u32, keys: /*Ignored*/Vec<KeymapKey>) -> Option<Vec<u32>> {
-    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_entries_for_keycode() }
-    //}
-
-    //pub fn get_entries_for_keyval(&self, keyval: u32, keys: /*Ignored*/Vec<KeymapKey>) -> Option<i32> {
-    //    unsafe { TODO: call gdk_sys:gdk_keymap_get_entries_for_keyval() }
-    //}
+    pub fn get_entries_for_keyval(&self, keyval: u32) -> Option<Vec<KeymapKey>> {
+        unsafe {
+            let mut keys = ptr::null_mut();
+            let mut n_keys = mem::uninitialized();
+            let ret = from_glib(gdk_sys::gdk_keymap_get_entries_for_keyval(self.to_glib_none().0, keyval, &mut keys, &mut n_keys));
+            if ret { Some(FromGlibContainer::from_glib_full_num(keys, n_keys as usize)) } else { None }
+        }
+    }
 
     pub fn get_modifier_mask(&self, intent: ModifierIntent) -> ModifierType {
         unsafe {
@@ -79,9 +82,11 @@ impl Keymap {
         }
     }
 
-    //pub fn lookup_key(&self, key: /*Ignored*/&KeymapKey) -> u32 {
-    //    unsafe { TODO: call gdk_sys:gdk_keymap_lookup_key() }
-    //}
+    pub fn lookup_key(&self, key: &KeymapKey) -> u32 {
+        unsafe {
+            gdk_sys::gdk_keymap_lookup_key(self.to_glib_none().0, key.to_glib_none().0)
+        }
+    }
 
     pub fn translate_keyboard_state(&self, hardware_keycode: u32, state: ModifierType, group: i32) -> Option<(u32, i32, i32, ModifierType)> {
         unsafe {
