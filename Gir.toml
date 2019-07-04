@@ -87,10 +87,6 @@ manual = [
     "Pango.Direction",
 ]
 
-ignore = [
-    "Gdk.Point",
-]
-
 [[object]]
 name = "Gdk.*"
 status = "generate"
