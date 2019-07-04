@@ -85,7 +85,6 @@ manual = [
 ]
 
 ignore = [
-    "Gdk.DrawingContext",
     "Gdk.Geometry",
     "Gdk.KeymapKey",
     "Gdk.Point",
