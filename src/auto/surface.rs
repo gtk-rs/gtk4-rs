@@ -10,11 +10,13 @@ use Display;
 use Event;
 use FrameClock;
 use FullscreenMode;
+use Geometry;
 use Gravity;
 use ModifierType;
 use Monitor;
 use Rectangle;
 use SurfaceEdge;
+use SurfaceHints;
 use SurfaceState;
 use SurfaceType;
 use SurfaceTypeHint;
@@ -74,9 +76,15 @@ impl Surface {
         }
     }
 
-    //pub fn constrain_size(geometry: /*Ignored*/&mut Geometry, flags: SurfaceHints, width: i32, height: i32) -> (i32, i32) {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_constrain_size() }
-    //}
+    pub fn constrain_size(geometry: &mut Geometry, flags: SurfaceHints, width: i32, height: i32) -> (i32, i32) {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut new_width = mem::uninitialized();
+            let mut new_height = mem::uninitialized();
+            gdk_sys::gdk_surface_constrain_size(geometry.to_glib_none_mut().0, flags.to_glib(), width, height, &mut new_width, &mut new_height);
+            (new_width, new_height)
+        }
+    }
 }
 
 pub const NONE_SURFACE: Option<&Surface> = None;
@@ -226,7 +234,7 @@ pub trait SurfaceExt: 'static {
 
     fn set_functions(&self, functions: WMFunction);
 
-    //fn set_geometry_hints(&self, geometry: /*Ignored*/&Geometry, geom_mask: SurfaceHints);
+    fn set_geometry_hints(&self, geometry: &Geometry, geom_mask: SurfaceHints);
 
     fn set_icon_list(&self, surfaces: &[Texture]);
 
@@ -745,9 +753,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    //fn set_geometry_hints(&self, geometry: /*Ignored*/&Geometry, geom_mask: SurfaceHints) {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_set_geometry_hints() }
-    //}
+    fn set_geometry_hints(&self, geometry: &Geometry, geom_mask: SurfaceHints) {
+        unsafe {
+            gdk_sys::gdk_surface_set_geometry_hints(self.as_ref().to_glib_none().0, geometry.to_glib_none().0, geom_mask.to_glib());
+        }
+    }
 
     fn set_icon_list(&self, surfaces: &[Texture]) {
         unsafe {
