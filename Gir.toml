@@ -80,12 +80,12 @@ generate = [
 
 manual = [
     "Gdk.Atom",
+    "Gdk.Geometry",
     "Gdk.RGBA",
     "Gdk.TimeCoord",
 ]
 
 ignore = [
-    "Gdk.Geometry",
     "Gdk.KeymapKey",
     "Gdk.Point",
 ]

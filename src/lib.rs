@@ -40,6 +40,8 @@ mod auto;
 
 mod alias;
 pub mod prelude;
+
+mod geometry;
 mod rgba;
 mod time_coord;
 
@@ -48,6 +50,8 @@ pub use self::auto::functions::*;
 
 pub use alias::*;
 pub use prelude::*;
+
+pub use geometry::Geometry;
 pub use rgba::{RGBA, RgbaParseError};
 pub use time_coord::TimeCoord;
 
