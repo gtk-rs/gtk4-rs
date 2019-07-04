@@ -47,6 +47,7 @@ impl<'a> ToGlibPtr<'a, *const gtk_sys::GtkPageRange> for PageRange {
     }
 }
 
+#[doc(hidden)]
 impl FromGlibContainerAsVec<gtk_sys::GtkPageRange, *mut gtk_sys::GtkPageRange> for PageRange {
     unsafe fn from_glib_none_num_as_vec(ptr: *mut gtk_sys::GtkPageRange, num: usize) -> Vec<Self> {
         if num == 0 || ptr.is_null() {
