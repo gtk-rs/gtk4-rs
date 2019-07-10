@@ -124,7 +124,7 @@ impl Eq for RGBA {}
 impl Uninitialized for RGBA {
     #[inline]
     unsafe fn uninitialized() -> Self {
-        mem::uninitialized()
+        mem::zeroed()
     }
 }
 
