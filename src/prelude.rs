@@ -5,3 +5,5 @@
 //! Traits intended for blanket imports.
 
 pub use auto::traits::*;
+
+pub use draw_context::DrawContextExtManual;

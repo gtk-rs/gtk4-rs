@@ -55,6 +55,7 @@ mod auto;
 mod alias;
 pub mod prelude;
 
+mod draw_context;
 mod geometry;
 mod keymap;
 mod keymap_key;
