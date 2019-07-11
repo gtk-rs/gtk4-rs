@@ -56,6 +56,7 @@ mod alias;
 pub mod prelude;
 
 mod draw_context;
+mod functions;
 mod geometry;
 mod keymap;
 mod keymap_key;
@@ -66,6 +67,7 @@ pub use auto::*;
 pub use self::auto::functions::*;
 
 pub use alias::*;
+pub use functions::*;
 pub use prelude::*;
 
 pub use geometry::Geometry;
