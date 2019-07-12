@@ -1,12 +1,12 @@
-# gtk [![Build Status](https://travis-ci.org/gtk-rs/gtk.png?branch=master)](https://travis-ci.org/gtk-rs/gtk) [![Build status](https://ci.appveyor.com/api/projects/status/5mot32ipr12iocw0?svg=true)](https://ci.appveyor.com/project/GuillaumeGomez/gtk) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
+# gtk4 [![Build Status](https://travis-ci.org/gtk-rs/gtk4.png?branch=master)](https://travis-ci.org/gtk-rs/gtk4) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
 
 [Project site](http://gtk-rs.org/) | [Online documentation](http://gtk-rs.org/docs/)
 
-__Rust__ bindings and wrappers for __GLib__, __GDK 3__, __GTK+ 3__  and __Cairo__.
+__Rust__ bindings and wrappers for __GTK 4__.
 
 ## Building
 
-__gtk__ expects __GTK+__, __GLib__ and __Cairo__ development files to be installed on your system.
+__gtk4__ expects __GTK+__, __GLib__ and __Cairo__ development files to be installed on your system.
 See the [requirements page](http://gtk-rs.org/docs/requirements.html).
 
 ## Using
@@ -18,7 +18,7 @@ If you want to track the bleeding edge, use the git dependency instead:
 
 ```toml
 [dependencies]
-gtk = { git = "https://github.com/gtk-rs/gtk.git" }
+gtk = { git = "https://github.com/gtk-rs/gtk4.git" }
 ```
 
 Avoid mixing versioned and git crates like this:
@@ -27,7 +27,7 @@ Avoid mixing versioned and git crates like this:
 # This will not compile
 [dependencies]
 gdk = "0.2"
-gtk = { git = "https://github.com/gtk-rs/gtk.git" }
+gtk = { git = "https://github.com/gtk-rs/gtk4.git" }
 ```
 
 ## Documentation
@@ -55,10 +55,8 @@ effects!**
 Generate the docs:
 
 ```shell
-> cargo doc --features v3_16
+> cargo doc
 ```
-
-(if the installed GTK+ version is lower than 3.16, adjust the feature name accordingly).
 
 [gtk-md]: https://github.com/gtk-rs/lgpl-docs/blob/master/README.md
 
@@ -78,4 +76,4 @@ When opening a PR please put the changes to the `src/auto` directory in a separa
 
 ## License
 
-__gtk__ is available under the MIT License, please refer to it.
+__gtk4__ is available under the MIT License, please refer to it.
