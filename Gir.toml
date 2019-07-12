@@ -33,7 +33,6 @@ generate = [
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
-    "Gdk.DrawContext",
     "Gdk.Drop",
     "Gdk.Event",
     "Gdk.EventMask",
@@ -64,7 +63,6 @@ generate = [
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
-    "Gdk.Surface",
     "Gdk.SurfaceEdge",
     "Gdk.SurfaceHints",
     "Gdk.SurfaceState",
@@ -80,6 +78,7 @@ generate = [
 
 manual = [
     "cairo.Context",
+    "cairo.Region",
     "cairo.Surface",
     "Gdk.Atom",
     "Gdk.Geometry",
@@ -112,6 +111,14 @@ status = "generate"
         [[object.function.parameter]]
         name = "surface"
         const = true
+    [[object.function]]
+    name = "pango_layout_get_clip_region"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "pango_layout_line_get_clip_region"
+    #manual
+    ignore = true
 
 [[object]]
 name = "Gdk.ContentFormats"
@@ -134,6 +141,15 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "Gdk.DrawContext"
+status = "generate"
+manual_traits = ["DrawContextExtManual"]
+    [[object.function]]
+    name = "get_frame_region"
+    #manual
+    ignore = true
+
+[[object]]
 name = "Gdk.Keymap"
 status = "generate"
     [[object.function]]
@@ -151,3 +167,12 @@ name = "Gdk.Rectangle"
 status = "generate"
 init_function_expression = "|_ptr| ()"
 clear_function_expression = "|_ptr| ()"
+
+[[object]]
+name = "Gdk.Surface"
+status = "generate"
+    [[object.function]]
+    name = "set_opaque_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
