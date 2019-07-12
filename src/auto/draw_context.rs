@@ -4,6 +4,7 @@
 
 use Display;
 use Surface;
+use cairo;
 use gdk_sys;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -26,13 +27,11 @@ glib_wrapper! {
 pub const NONE_DRAW_CONTEXT: Option<&DrawContext> = None;
 
 pub trait DrawContextExt: 'static {
-    //fn begin_frame(&self, region: /*Ignored*/&cairo::Region);
+    fn begin_frame(&self, region: &cairo::Region);
 
     fn end_frame(&self);
 
     fn get_display(&self) -> Option<Display>;
-
-    //fn get_frame_region(&self) -> /*Ignored*/Option<cairo::Region>;
 
     fn get_surface(&self) -> Option<Surface>;
 
@@ -42,9 +41,11 @@ pub trait DrawContextExt: 'static {
 }
 
 impl<O: IsA<DrawContext>> DrawContextExt for O {
-    //fn begin_frame(&self, region: /*Ignored*/&cairo::Region) {
-    //    unsafe { TODO: call gdk_sys:gdk_draw_context_begin_frame() }
-    //}
+    fn begin_frame(&self, region: &cairo::Region) {
+        unsafe {
+            gdk_sys::gdk_draw_context_begin_frame(self.as_ref().to_glib_none().0, region.to_glib_none().0);
+        }
+    }
 
     fn end_frame(&self) {
         unsafe {
@@ -57,10 +58,6 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
             from_glib_none(gdk_sys::gdk_draw_context_get_display(self.as_ref().to_glib_none().0))
         }
     }
-
-    //fn get_frame_region(&self) -> /*Ignored*/Option<cairo::Region> {
-    //    unsafe { TODO: call gdk_sys:gdk_draw_context_get_frame_region() }
-    //}
 
     fn get_surface(&self) -> Option<Surface> {
         unsafe {

@@ -26,6 +26,8 @@ use Texture;
 use VulkanContext;
 use WMDecoration;
 use WMFunction;
+use cairo;
+use cairo_sys;
 use gdk_sys;
 use glib::StaticType;
 use glib::Value;
@@ -188,7 +190,7 @@ pub trait SurfaceExt: 'static {
 
     fn iconify(&self);
 
-    //fn input_shape_combine_region(&self, shape_region: /*Ignored*/&cairo::Region, offset_x: i32, offset_y: i32);
+    fn input_shape_combine_region(&self, shape_region: &cairo::Region, offset_x: i32, offset_y: i32);
 
     fn is_destroyed(&self) -> bool;
 
@@ -252,7 +254,7 @@ pub trait SurfaceExt: 'static {
 
     fn set_opacity(&self, opacity: f64);
 
-    //fn set_opaque_region(&self, region: /*Ignored*/Option<&mut cairo::Region>);
+    fn set_opaque_region(&self, region: Option<&cairo::Region>);
 
     fn set_pass_through(&self, pass_through: bool);
 
@@ -290,7 +292,7 @@ pub trait SurfaceExt: 'static {
 
     //fn connect_moved_to_rect<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
-    //fn connect_render<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+    fn connect_render<F: Fn(&Self, &cairo::Region) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_size_changed<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -617,9 +619,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    //fn input_shape_combine_region(&self, shape_region: /*Ignored*/&cairo::Region, offset_x: i32, offset_y: i32) {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_input_shape_combine_region() }
-    //}
+    fn input_shape_combine_region(&self, shape_region: &cairo::Region, offset_x: i32, offset_y: i32) {
+        unsafe {
+            gdk_sys::gdk_surface_input_shape_combine_region(self.as_ref().to_glib_none().0, shape_region.to_glib_none().0, offset_x, offset_y);
+        }
+    }
 
     fn is_destroyed(&self) -> bool {
         unsafe {
@@ -807,9 +811,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    //fn set_opaque_region(&self, region: /*Ignored*/Option<&mut cairo::Region>) {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_set_opaque_region() }
-    //}
+    fn set_opaque_region(&self, region: Option<&cairo::Region>) {
+        unsafe {
+            gdk_sys::gdk_surface_set_opaque_region(self.as_ref().to_glib_none().0, mut_override(region.to_glib_none().0));
+        }
+    }
 
     fn set_pass_through(&self, pass_through: bool) {
         unsafe {
@@ -928,9 +934,19 @@ impl<O: IsA<Surface>> SurfaceExt for O {
     //    Unimplemented final_rect: *.Pointer
     //}
 
-    //fn connect_render<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored region: cairo.Region
-    //}
+    fn connect_render<F: Fn(&Self, &cairo::Region) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &cairo::Region) -> bool + 'static>(this: *mut gdk_sys::GdkSurface, region: *mut cairo_sys::cairo_region_t, f: glib_sys::gpointer) -> glib_sys::gboolean
+            where P: IsA<Surface>
+        {
+            let f: &F = &*(f as *const F);
+            f(&Surface::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(region)).to_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"render\0".as_ptr() as *const _,
+                Some(transmute(render_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+        }
+    }
 
     fn connect_size_changed<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn size_changed_trampoline<P, F: Fn(&P, i32, i32) + 'static>(this: *mut gdk_sys::GdkSurface, width: libc::c_int, height: libc::c_int, f: glib_sys::gpointer)

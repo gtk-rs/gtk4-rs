@@ -52,13 +52,19 @@ pub fn cairo_rectangle(cr: &cairo::Context, rectangle: &Rectangle) {
     }
 }
 
-//pub fn cairo_region(cr: &cairo::Context, region: /*Ignored*/&cairo::Region) {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_region() }
-//}
+pub fn cairo_region(cr: &cairo::Context, region: &cairo::Region) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gdk_sys::gdk_cairo_region(mut_override(cr.to_glib_none().0), region.to_glib_none().0);
+    }
+}
 
-//pub fn cairo_region_create_from_surface(surface: &cairo::Surface) -> /*Ignored*/Option<cairo::Region> {
-//    unsafe { TODO: call gdk_sys:gdk_cairo_region_create_from_surface() }
-//}
+pub fn cairo_region_create_from_surface(surface: &cairo::Surface) -> Option<cairo::Region> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(mut_override(surface.to_glib_none().0)))
+    }
+}
 
 pub fn cairo_set_source_pixbuf(cr: &cairo::Context, pixbuf: &gdk_pixbuf::Pixbuf, pixbuf_x: f64, pixbuf_y: f64) {
     assert_initialized_main_thread!();
@@ -260,14 +266,6 @@ pub fn keyval_to_upper(keyval: u32) -> u32 {
         gdk_sys::gdk_keyval_to_upper(keyval)
     }
 }
-
-//pub fn pango_layout_get_clip_region(layout: &pango::Layout, x_origin: i32, y_origin: i32, index_ranges: i32, n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
-//    unsafe { TODO: call gdk_sys:gdk_pango_layout_get_clip_region() }
-//}
-
-//pub fn pango_layout_line_get_clip_region(line: &pango::LayoutLine, x_origin: i32, y_origin: i32, index_ranges: &[i32], n_ranges: i32) -> /*Ignored*/Option<cairo::Region> {
-//    unsafe { TODO: call gdk_sys:gdk_pango_layout_line_get_clip_region() }
-//}
 
 pub fn pixbuf_get_from_surface(surface: &cairo::Surface, src_x: i32, src_y: i32, width: i32, height: i32) -> Option<gdk_pixbuf::Pixbuf> {
     assert_initialized_main_thread!();
