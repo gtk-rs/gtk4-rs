@@ -619,14 +619,17 @@ manual_traits = ["BuilderExtManual"]
     pattern = ".+_from_file"
     #path
     ignore = true
+    doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "connect_signals_full"
     #manual
     ignore = true
+    doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "get_object"
     #downcast
     ignore = true
+    doc_trait_name = "BuilderExtManual"
 
 [[object]]
 name = "Gtk.CellArea"
@@ -732,6 +735,7 @@ manual_traits = ["ColorChooserExtManual"]
     name = "add_palette"
     #array with size
     ignore = true
+    doc_trait_name = "ColorChooserExtManual"
 
 [[object]]
 name = "Gtk.ComboBox"
@@ -745,9 +749,11 @@ manual_traits = ["ComboBoxExtManual"]
     [[object.function]]
     name = "set_active"
     ignore = true
+    doc_trait_name = "ComboBoxExtManual"
     [[object.function]]
     name = "get_active"
     ignore = true
+    doc_trait_name = "ComboBoxExtManual"
     [[object.property]]
     name = "active"
     #manual Option
@@ -768,9 +774,11 @@ manual_traits = ["DialogExtManual"]
     [[object.function]]
     name = "get_response_for_widget"
     ignore = true
+    doc_trait_name = "DialogExtManual"
     [[object.function]]
     name = "run"
     ignore = true
+    doc_trait_name = "DialogExtManual"
 
 [[object]]
 name = "Gtk.Editable"
@@ -779,12 +787,15 @@ manual_traits = ["EditableExtManual"]
     [[object.function]]
     name = "delegate_get_property"
     ignore = true #manual
+    doc_trait_name = "EditableExtManual"
     [[object.function]]
     name = "delegate_set_property"
     ignore = true #manual
+    doc_trait_name = "EditableExtManual"
     [[object.signal]]
     pattern = "insert-text"
     ignore = true #out #manual
+    doc_trait_name = "EditableExtManual"
 
 [[object]]
 name = "Gtk.Entry"
@@ -867,6 +878,7 @@ status = "generate"
     [[object.function]]
     name = "get_entry"
     ignore = true
+    doc_trait_name = "EntryCompletionExtManual"
 
 [[object]]
 name = "Gtk.EventControllerKey"
@@ -938,6 +950,7 @@ manual_traits = ["IMContextSimpleExtManual"]
     [[object.function]]
     name = "add_compose_file"
     ignore = true
+    doc_trait_name = "IMContextSimpleExtManual"
     [[object.function]]
     name = "add_table"
     ignore = true # We don't understand API
@@ -975,6 +988,7 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "set_value"
     ignore = true
+    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "swap"
         [[object.function.parameter]]
@@ -1017,42 +1031,55 @@ manual_traits = ["NotebookExtManual"]
     [[object.function]]
     name = "append_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "append_page_menu"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_current_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_n_pages"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_nth_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "insert_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "insert_page_menu"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "page_num"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "prepend_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "prepend_page_menu"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "remove_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "reorder_child"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "set_current_page"
     ignore = true
+    doc_trait_name = "NotebookExtManual"
 
 [[object]]
 name = "Gtk.Overlay"
@@ -1066,6 +1093,7 @@ manual_traits = ["PadControllerExtManual"]
     [[object.function]]
     name = "set_action_entries"
     ignore = true
+    doc_trait_name = "PadControllerExtManual"
 
 [[object]]
 name = "Gtk.PageSetup"
@@ -1323,6 +1351,7 @@ manual_traits = ["TextBufferExtManual"]
     [[object.signal]]
     name = "insert-text"
     ignore = true
+    doc_trait_name = "TextBufferExtManual"
 
 [[object]]
 name = "Gtk.TextIter"
@@ -1600,14 +1629,17 @@ manual_traits = ["TreeSortableExtManual"]
     [[object.function]]
     pattern = "[gs]et_sort_column_id"
     ignore = true
+    doc_trait_name = "TreeSortableExtManual"
     [[object.function]]
     pattern = "set_sort_func"
     # return type u32 -> Ordering
     ignore = true
+    doc_trait_name = "TreeSortableExtManual"
     [[object.function]]
     pattern = "set_default_sort_func"
     # return type u32 -> Ordering
     ignore = true
+    doc_trait_name = "TreeSortableExtManual"
 
 [[object]]
 name = "Gtk.TreeStore"
@@ -1647,6 +1679,7 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     name = "set_value"
     ignore = true
+    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "swap"
         [[object.function.parameter]]
@@ -1696,9 +1729,11 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "add_tick_callback"
     ignore = true
+    doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "remove_tick_callback"
     ignore = true
+    doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "get_clipboard"
         [object.function.return]
