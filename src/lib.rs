@@ -61,6 +61,7 @@ mod geometry;
 mod keymap;
 mod keymap_key;
 mod rgba;
+mod surface;
 mod time_coord;
 
 pub use auto::*;
@@ -73,4 +74,5 @@ pub use prelude::*;
 pub use geometry::Geometry;
 pub use keymap_key::KeymapKey;
 pub use rgba::{RGBA, RgbaParseError};
+pub use surface::SurfaceExtManual;
 pub use time_coord::TimeCoord;
