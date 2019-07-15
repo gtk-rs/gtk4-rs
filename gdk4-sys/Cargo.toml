@@ -8,19 +8,19 @@ libc = "0.2"
 git = "https://github.com/gtk-rs/cairo"
 
 [dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gdk-pixbuf-sys"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gio-sys"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../glib-sys"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gobject-sys"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../pango-sys"
 
 [dev-dependencies]
 shell-words = "0.1.0"

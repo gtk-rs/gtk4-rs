@@ -5,25 +5,25 @@ pkg-config = "0.3.7"
 libc = "0.2"
 
 [dependencies.atk-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../atk-sys"
 
 [dependencies.cairo-sys-rs]
 git = "https://github.com/gtk-rs/cairo"
 
 [dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gdk-pixbuf-sys"
 
 [dependencies.gdk4-sys]
 path = "../gdk4-sys"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gio-sys"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../glib-sys"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gobject-sys"
 
 [dependencies.graphene-sys]
 path = "../graphene-sys"
@@ -32,7 +32,7 @@ path = "../graphene-sys"
 path = "../gsk4-sys"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../pango-sys"
 
 [dev-dependencies]
 shell-words = "0.1.0"

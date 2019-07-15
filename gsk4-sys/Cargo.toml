@@ -11,16 +11,16 @@ git = "https://github.com/gtk-rs/cairo"
 path = "../gdk4-sys"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../glib-sys"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../gobject-sys"
 
 [dependencies.graphene-sys]
 path = "../graphene-sys"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/sys"
+path = "../pango-sys"
 
 [dev-dependencies]
 shell-words = "0.1.0"
