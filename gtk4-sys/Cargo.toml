@@ -1,0 +1,57 @@
+[build-dependencies]
+pkg-config = "0.3.7"
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.atk-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dependencies.cairo-sys-rs]
+git = "https://github.com/gtk-rs/cairo"
+
+[dependencies.gdk-pixbuf-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dependencies.gdk4-sys]
+path = "../gdk4-sys"
+
+[dependencies.gio-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dependencies.glib-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dependencies.gobject-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dependencies.graphene-sys]
+path = "../graphene-sys"
+
+[dependencies.gsk4-sys]
+path = "../gsk4-sys"
+
+[dependencies.pango-sys]
+git = "https://github.com/gtk-rs/sys"
+
+[dev-dependencies]
+shell-words = "0.1.0"
+tempdir = "0.3"
+
+[features]
+dox = []
+
+[lib]
+name = "gtk4_sys"
+
+[package]
+authors = ["The Gtk-rs Project Developers"]
+build = "build.rs"
+description = "FFI bindings to libgtk-4"
+homepage = "http://gtk-rs.org/"
+keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]
+license = "MIT"
+links = "gtk4"
+name = "gtk4-sys"
+repository = "https://github.com/gtk-rs/sys"
+version = "0.1.0"
