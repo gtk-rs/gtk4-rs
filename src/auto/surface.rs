@@ -114,8 +114,6 @@ pub trait SurfaceExt: 'static {
 
     fn create_gl_context(&self) -> Result<GLContext, Error>;
 
-    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> Option<cairo::Surface>;
-
     fn create_vulkan_context(&self) -> Result<VulkanContext, Error>;
 
     fn deiconify(&self);
@@ -365,10 +363,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
-
-    //fn create_similar_surface(&self, content: /*Ignored*/cairo::Content, width: i32, height: i32) -> Option<cairo::Surface> {
-    //    unsafe { TODO: call gdk_sys:gdk_surface_create_similar_surface() }
-    //}
 
     fn create_vulkan_context(&self) -> Result<VulkanContext, Error> {
         unsafe {
