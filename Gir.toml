@@ -622,7 +622,7 @@ manual_traits = ["BuilderExtManual"]
     doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "connect_signals_full"
-    #manual
+    #manual: connect object and swapped signal not supported
     ignore = true
     doc_trait_name = "BuilderExtManual"
     [[object.function]]
