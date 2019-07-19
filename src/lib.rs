@@ -56,6 +56,7 @@ mod alias;
 pub mod prelude;
 
 mod draw_context;
+mod events;
 mod functions;
 mod geometry;
 mod keymap;
@@ -71,6 +72,7 @@ pub use alias::*;
 pub use functions::*;
 pub use prelude::*;
 
+pub use events::*;
 pub use geometry::Geometry;
 pub use keymap_key::KeymapKey;
 pub use rgba::{RGBA, RgbaParseError};

@@ -34,7 +34,6 @@ generate = [
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
     "Gdk.Drop",
-    "Gdk.Event",
     "Gdk.EventMask",
     "Gdk.EventSequence",
     "Gdk.EventType",
@@ -148,6 +147,14 @@ manual_traits = ["DrawContextExtManual"]
     [[object.function]]
     name = "get_frame_region"
     #manual
+    ignore = true
+
+[[object]]
+name = "Gdk.Event"
+status = "generate"
+    [[object.function]]
+    name = "get_motion_history"
+    # requires GDK_MOTION_NOTIFY
     ignore = true
 
 [[object]]
