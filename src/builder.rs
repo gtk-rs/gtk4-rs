@@ -22,7 +22,7 @@ impl Builder {
 pub trait BuilderExtManual: 'static {
     fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
     fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), Error>;
-    fn connect_signals_full<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>>(&self, func: P);
+    fn connect_signals<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>>(&self, func: P);
 }
 
 impl<O: IsA<Builder>> BuilderExtManual for O {
@@ -44,7 +44,7 @@ impl<O: IsA<Builder>> BuilderExtManual for O {
         }
     }
 
-    fn connect_signals_full<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>>(&self, func: P) {
+    fn connect_signals<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>>(builder: *mut gtk_sys::GtkBuilder, object: *mut gobject_sys::GObject, signal_name: *const libc::c_char, handler_name: *const libc::c_char, connect_object: *mut gobject_sys::GObject, flags: gobject_sys::GConnectFlags, user_data: glib_sys::gpointer) {
             assert!(connect_object.is_null(), "Connect object is not supported");
