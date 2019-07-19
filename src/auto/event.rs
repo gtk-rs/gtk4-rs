@@ -15,7 +15,6 @@ use NotifyType;
 use ScrollDirection;
 use Seat;
 use Surface;
-use TimeCoord;
 use TouchpadGesturePhase;
 use gdk_sys;
 use glib::translate::*;
@@ -184,12 +183,6 @@ impl Event {
             let mut keyval = mem::uninitialized();
             let ret = from_glib(gdk_sys::gdk_event_get_keyval(self.to_glib_none().0, &mut keyval));
             if ret { Some(keyval) } else { None }
-        }
-    }
-
-    pub fn get_motion_history(&self) -> Vec<TimeCoord> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_container(gdk_sys::gdk_event_get_motion_history(self.to_glib_none().0))
         }
     }
 
