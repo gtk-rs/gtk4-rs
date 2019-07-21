@@ -31,13 +31,13 @@ impl ContentSerializer {
         }
     }
 
-    pub fn get_mime_type(&self) -> Option<GString> {
+    pub fn get_mime_type(&self) -> GString {
         unsafe {
             from_glib_none(gdk_sys::gdk_content_serializer_get_mime_type(self.to_glib_none().0))
         }
     }
 
-    pub fn get_output_stream(&self) -> Option<gio::OutputStream> {
+    pub fn get_output_stream(&self) -> gio::OutputStream {
         unsafe {
             from_glib_none(gdk_sys::gdk_content_serializer_get_output_stream(self.to_glib_none().0))
         }
@@ -49,15 +49,7 @@ impl ContentSerializer {
         }
     }
 
-    //pub fn get_task_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_task_data() }
-    //}
-
-    //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_serializer_get_user_data() }
-    //}
-
-    pub fn get_value(&self) -> Option<glib::Value> {
+    pub fn get_value(&self) -> glib::Value {
         unsafe {
             from_glib_none(gdk_sys::gdk_content_serializer_get_value(self.to_glib_none().0))
         }

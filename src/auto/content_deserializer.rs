@@ -31,11 +31,11 @@ impl ContentDeserializer {
         }
     }
 
-    //pub fn get_input_stream(&self) -> /*Ignored*/Option<gio::InputStream> {
+    //pub fn get_input_stream(&self) -> /*Ignored*/gio::InputStream {
     //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_input_stream() }
     //}
 
-    pub fn get_mime_type(&self) -> Option<GString> {
+    pub fn get_mime_type(&self) -> GString {
         unsafe {
             from_glib_none(gdk_sys::gdk_content_deserializer_get_mime_type(self.to_glib_none().0))
         }
@@ -47,15 +47,7 @@ impl ContentDeserializer {
         }
     }
 
-    //pub fn get_task_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_task_data() }
-    //}
-
-    //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_user_data() }
-    //}
-
-    pub fn get_value(&self) -> Option<glib::Value> {
+    pub fn get_value(&self) -> glib::Value {
         unsafe {
             from_glib_none(gdk_sys::gdk_content_deserializer_get_value(self.to_glib_none().0))
         }

@@ -116,14 +116,6 @@ pub fn cairo_surface_upload_to_gl(surface: &cairo::Surface, target: i32, width: 
     //})
 //}
 
-//pub fn content_register_deserializer<P: Fn(&ContentDeserializer) + Send + Sync + 'static>(mime_type: &str, type_: glib::types::Type, deserialize: P, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-//    unsafe { TODO: call gdk_sys:gdk_content_register_deserializer() }
-//}
-
-//pub fn content_register_serializer<P: Fn(&ContentSerializer) + Send + Sync + 'static>(type_: glib::types::Type, mime_type: &str, serialize: P, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-//    unsafe { TODO: call gdk_sys:gdk_content_register_serializer() }
-//}
-
 pub fn content_serialize_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32, cancellable: Option<&Q>, callback: R) {
     assert_initialized_main_thread!();
     let user_data: Box<R> = Box::new(callback);
