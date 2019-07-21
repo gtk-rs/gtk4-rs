@@ -55,8 +55,10 @@ mod auto;
 mod alias;
 pub mod prelude;
 
+mod clipboard;
 mod content_deserializer;
 mod draw_context;
+mod drop;
 mod events;
 mod functions;
 mod geometry;

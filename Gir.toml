@@ -16,7 +16,6 @@ generate = [
     "Gdk.AxisUse",
     "Gdk.ByteOrder",
     "Gdk.CairoContext",
-    "Gdk.Clipboard",
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
     "Gdk.CrossingMode",
@@ -30,7 +29,6 @@ generate = [
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
-    "Gdk.Drop",
     "Gdk.EventMask",
     "Gdk.EventSequence",
     "Gdk.EventType",
@@ -86,6 +84,7 @@ manual = [
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
+    "Gio.InputStream",
     "Gio.OutputStream",
     "GLib.Bytes",
     "GLib.Error",
@@ -126,8 +125,19 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "content_serialize_async"
-    #init assert
+    #manual: init assert
     ignore = true
+    [[object.function]]
+    name = "content_deserialize_async"
+    #manual: out
+    ignore = true
+
+[[object]]
+name = "Gdk.Clipboard"
+status = "generate"
+    [[object.function]]
+    name = "read_async"
+    ignore = true #array
 
 [[object]]
 name = "Gdk.ContentDeserializer"
@@ -237,6 +247,13 @@ manual_traits = ["DrawContextExtManual"]
     name = "get_frame_region"
     #manual
     ignore = true
+
+[[object]]
+name = "Gdk.Drop"
+status = "generate"
+    [[object.function]]
+    name = "read_async"
+    ignore = true # const ptr
 
 [[object]]
 name = "Gdk.Event"

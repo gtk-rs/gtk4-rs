@@ -48,6 +48,50 @@ pub fn pango_layout_get_clip_region(layout: &pango::Layout,
     }
 }
 
+pub fn content_deserialize_async<P: IsA<gio::InputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<glib::Value, Error>) + Send + 'static>(stream: &P, mime_type: &str, type_: glib::types::Type, io_priority: i32, cancellable: Option<&Q>, callback: R) {
+    assert_initialized_main_thread!();
+    let user_data: Box<R> = Box::new(callback);
+    unsafe extern "C" fn content_deserialize_async_trampoline<R: FnOnce(Result<glib::Value, Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        let mut error = ptr::null_mut();
+        let mut value = glib::Value::uninitialized();
+        let _ = gdk_sys::gdk_content_deserialize_finish(res, value.to_glib_none_mut().0, &mut error);
+        let result = if error.is_null() { Ok(value) } else { Err(from_glib_full(error)) };
+        let callback: Box<R> = Box::from_raw(user_data as *mut _);
+        callback(result);
+    }
+    let callback = content_deserialize_async_trampoline::<R>;
+    unsafe {
+        gdk_sys::gdk_content_deserialize_async(stream.as_ref().to_glib_none().0, mime_type.to_glib_none().0, type_.to_glib(), io_priority, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+    }
+}
+
+#[cfg(feature = "futures")]
+pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'static>(stream: &P, mime_type: &str, type_: glib::types::Type, io_priority: i32) -> Box<dyn future::Future<Output = Result<glib::Value, Error>> + std::marker::Unpin> {
+    assert_initialized_main_thread!();
+
+    use gio::GioFuture;
+    use fragile::Fragile;
+
+    let stream = stream.clone();
+    let mime_type = String::from(mime_type);
+    GioFuture::new(&(), move |_obj, send| {
+        let cancellable = gio::Cancellable::new();
+        let send = Fragile::new(send);
+        content_deserialize_async(
+            &stream,
+            &mime_type,
+            type_,
+            io_priority,
+            Some(&cancellable),
+            move |res| {
+                let _ = send.into_inner().send(res);
+            },
+        );
+
+        cancellable
+    })
+}
+
 pub fn content_register_deserializer<T: 'static, P: Fn(&ContentDeserializer, &mut Option<T>) + 'static>(mime_type: &str, type_: glib::types::Type, deserialize: P) {
     assert_initialized_main_thread!();
     let deserialize_data: Box<P> = Box::new(deserialize);
