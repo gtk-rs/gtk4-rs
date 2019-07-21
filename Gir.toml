@@ -124,6 +124,10 @@ status = "generate"
     name = "content_register_serializer"
     #manual: unsafe
     ignore = true
+    [[object.function]]
+    name = "content_serialize_async"
+    #init assert
+    ignore = true
 
 [[object]]
 name = "Gdk.ContentDeserializer"

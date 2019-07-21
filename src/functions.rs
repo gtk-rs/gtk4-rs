@@ -5,10 +5,14 @@
 use cairo;
 use pango;
 
+#[cfg(feature = "futures")]
+use futures::future;
+use glib::object::IsA;
 use glib::translate::*;
-
+use std::ptr;
 use ContentDeserializer;
 use ContentSerializer;
+use Error;
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
@@ -100,4 +104,48 @@ pub fn content_register_serializer<T: 'static, P: Fn(&ContentSerializer, &mut Op
     unsafe {
         gdk_sys::gdk_content_register_serializer(type_.to_glib(), mime_type.to_glib_none().0, serialize, Box::into_raw(super_callback0) as *mut _, destroy_call4);
     }
+}
+
+pub fn content_serialize_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32, cancellable: Option<&Q>, callback: R) {
+    assert_initialized_main_thread!();
+    let user_data: Box<R> = Box::new(callback);
+    unsafe extern "C" fn content_serialize_async_trampoline<R: FnOnce(Result<(), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        let mut error = ptr::null_mut();
+        let _ = gdk_sys::gdk_content_serialize_finish(res, &mut error);
+        let result = if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) };
+        let callback: Box<R> = Box::from_raw(user_data as *mut _);
+        callback(result);
+    }
+    let callback = content_serialize_async_trampoline::<R>;
+    unsafe {
+        gdk_sys::gdk_content_serialize_async(stream.as_ref().to_glib_none().0, mime_type.to_glib_none().0, value.to_glib_none().0, io_priority, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+    }
+}
+
+#[cfg(feature = "futures")]
+pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32) -> Box<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
+    assert_initialized_main_thread!();
+
+    use gio::GioFuture;
+    use fragile::Fragile;
+
+    let stream = stream.clone();
+    let mime_type = String::from(mime_type);
+    let value = value.clone();
+    GioFuture::new(&(), move |_obj, send| {
+        let cancellable = gio::Cancellable::new();
+        let send = Fragile::new(send);
+        content_serialize_async(
+            &stream,
+            &mime_type,
+            &value,
+            io_priority,
+            Some(&cancellable),
+            move |res| {
+                let _ = send.into_inner().send(res);
+            },
+        );
+
+        cancellable
+    })
 }
