@@ -49,9 +49,9 @@ impl Keymap {
     pub fn get_entries_for_keyval(&self, keyval: u32) -> Option<Vec<KeymapKey>> {
         unsafe {
             let mut keys = ptr::null_mut();
-            let mut n_keys = mem::uninitialized();
-            let ret = from_glib(gdk_sys::gdk_keymap_get_entries_for_keyval(self.to_glib_none().0, keyval, &mut keys, &mut n_keys));
-            if ret { Some(FromGlibContainer::from_glib_full_num(keys, n_keys as usize)) } else { None }
+            let mut n_keys = mem::MaybeUninit::uninit();
+            let ret = from_glib(gdk_sys::gdk_keymap_get_entries_for_keyval(self.to_glib_none().0, keyval, &mut keys, n_keys.as_mut_ptr()));
+            if ret { Some(FromGlibContainer::from_glib_full_num(keys, n_keys.assume_init() as usize)) } else { None }
         }
     }
 
@@ -93,11 +93,15 @@ impl Keymap {
 
     pub fn translate_keyboard_state(&self, hardware_keycode: u32, state: ModifierType, group: i32) -> Option<(u32, i32, i32, ModifierType)> {
         unsafe {
-            let mut keyval = mem::uninitialized();
-            let mut effective_group = mem::uninitialized();
-            let mut level = mem::uninitialized();
-            let mut consumed_modifiers = mem::uninitialized();
-            let ret = from_glib(gdk_sys::gdk_keymap_translate_keyboard_state(self.to_glib_none().0, hardware_keycode, state.to_glib(), group, &mut keyval, &mut effective_group, &mut level, &mut consumed_modifiers));
+            let mut keyval = mem::MaybeUninit::uninit();
+            let mut effective_group = mem::MaybeUninit::uninit();
+            let mut level = mem::MaybeUninit::uninit();
+            let mut consumed_modifiers = mem::MaybeUninit::uninit();
+            let ret = from_glib(gdk_sys::gdk_keymap_translate_keyboard_state(self.to_glib_none().0, hardware_keycode, state.to_glib(), group, keyval.as_mut_ptr(), effective_group.as_mut_ptr(), level.as_mut_ptr(), consumed_modifiers.as_mut_ptr()));
+            let keyval = keyval.assume_init();
+            let effective_group = effective_group.assume_init();
+            let level = level.assume_init();
+            let consumed_modifiers = consumed_modifiers.assume_init();
             if ret { Some((keyval, effective_group, level, from_glib(consumed_modifiers))) } else { None }
         }
     }

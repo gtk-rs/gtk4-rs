@@ -85,9 +85,11 @@ impl Surface {
     pub fn constrain_size(geometry: &mut Geometry, flags: SurfaceHints, width: i32, height: i32) -> (i32, i32) {
         assert_initialized_main_thread!();
         unsafe {
-            let mut new_width = mem::uninitialized();
-            let mut new_height = mem::uninitialized();
-            gdk_sys::gdk_surface_constrain_size(geometry.to_glib_none_mut().0, flags.to_glib(), width, height, &mut new_width, &mut new_height);
+            let mut new_width = mem::MaybeUninit::uninit();
+            let mut new_height = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_constrain_size(geometry.to_glib_none_mut().0, flags.to_glib(), width, height, new_width.as_mut_ptr(), new_height.as_mut_ptr());
+            let new_width = new_width.assume_init();
+            let new_height = new_height.assume_init();
             (new_width, new_height)
         }
     }
@@ -334,18 +336,22 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn coords_from_parent(&self, parent_x: f64, parent_y: f64) -> (f64, f64) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            gdk_sys::gdk_surface_coords_from_parent(self.as_ref().to_glib_none().0, parent_x, parent_y, &mut x, &mut y);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_coords_from_parent(self.as_ref().to_glib_none().0, parent_x, parent_y, x.as_mut_ptr(), y.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
             (x, y)
         }
     }
 
     fn coords_to_parent(&self, x: f64, y: f64) -> (f64, f64) {
         unsafe {
-            let mut parent_x = mem::uninitialized();
-            let mut parent_y = mem::uninitialized();
-            gdk_sys::gdk_surface_coords_to_parent(self.as_ref().to_glib_none().0, x, y, &mut parent_x, &mut parent_y);
+            let mut parent_x = mem::MaybeUninit::uninit();
+            let mut parent_y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_coords_to_parent(self.as_ref().to_glib_none().0, x, y, parent_x.as_mut_ptr(), parent_y.as_mut_ptr());
+            let parent_x = parent_x.assume_init();
+            let parent_y = parent_y.assume_init();
             (parent_x, parent_y)
         }
     }
@@ -428,8 +434,9 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn get_decorations(&self) -> Option<WMDecoration> {
         unsafe {
-            let mut decorations = mem::uninitialized();
-            let ret = from_glib(gdk_sys::gdk_surface_get_decorations(self.as_ref().to_glib_none().0, &mut decorations));
+            let mut decorations = mem::MaybeUninit::uninit();
+            let ret = from_glib(gdk_sys::gdk_surface_get_decorations(self.as_ref().to_glib_none().0, decorations.as_mut_ptr()));
+            let decorations = decorations.assume_init();
             if ret { Some(from_glib(decorations)) } else { None }
         }
     }
@@ -442,10 +449,13 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn get_device_position(&self, device: &Device) -> (Option<Surface>, f64, f64, ModifierType) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            let mut mask = mem::uninitialized();
-            let ret = from_glib_none(gdk_sys::gdk_surface_get_device_position(self.as_ref().to_glib_none().0, device.to_glib_none().0, &mut x, &mut y, &mut mask));
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            let mut mask = mem::MaybeUninit::uninit();
+            let ret = from_glib_none(gdk_sys::gdk_surface_get_device_position(self.as_ref().to_glib_none().0, device.to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr(), mask.as_mut_ptr()));
+            let x = x.assume_init();
+            let y = y.assume_init();
+            let mask = mask.assume_init();
             (ret, x, y, from_glib(mask))
         }
     }
@@ -484,11 +494,15 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn get_geometry(&self) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            let mut width = mem::uninitialized();
-            let mut height = mem::uninitialized();
-            gdk_sys::gdk_surface_get_geometry(self.as_ref().to_glib_none().0, &mut x, &mut y, &mut width, &mut height);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            let mut width = mem::MaybeUninit::uninit();
+            let mut height = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_get_geometry(self.as_ref().to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr(), width.as_mut_ptr(), height.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
+            let width = width.assume_init();
+            let height = height.assume_init();
             (x, y, width, height)
         }
     }
@@ -507,9 +521,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn get_origin(&self) -> (i32, i32, i32) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            let ret = gdk_sys::gdk_surface_get_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            let ret = gdk_sys::gdk_surface_get_origin(self.as_ref().to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
             (ret, x, y)
         }
     }
@@ -528,27 +544,33 @@ impl<O: IsA<Surface>> SurfaceExt for O {
 
     fn get_position(&self) -> (i32, i32) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            gdk_sys::gdk_surface_get_position(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_get_position(self.as_ref().to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
             (x, y)
         }
     }
 
     fn get_root_coords(&self, x: i32, y: i32) -> (i32, i32) {
         unsafe {
-            let mut root_x = mem::uninitialized();
-            let mut root_y = mem::uninitialized();
-            gdk_sys::gdk_surface_get_root_coords(self.as_ref().to_glib_none().0, x, y, &mut root_x, &mut root_y);
+            let mut root_x = mem::MaybeUninit::uninit();
+            let mut root_y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_get_root_coords(self.as_ref().to_glib_none().0, x, y, root_x.as_mut_ptr(), root_y.as_mut_ptr());
+            let root_x = root_x.assume_init();
+            let root_y = root_y.assume_init();
             (root_x, root_y)
         }
     }
 
     fn get_root_origin(&self) -> (i32, i32) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            gdk_sys::gdk_surface_get_root_origin(self.as_ref().to_glib_none().0, &mut x, &mut y);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_surface_get_root_origin(self.as_ref().to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
             (x, y)
         }
     }

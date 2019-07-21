@@ -62,9 +62,11 @@ pub trait PaintableExt: 'static {
 impl<O: IsA<Paintable>> PaintableExt for O {
     fn compute_concrete_size(&self, specified_width: f64, specified_height: f64, default_width: f64, default_height: f64) -> (f64, f64) {
         unsafe {
-            let mut concrete_width = mem::uninitialized();
-            let mut concrete_height = mem::uninitialized();
-            gdk_sys::gdk_paintable_compute_concrete_size(self.as_ref().to_glib_none().0, specified_width, specified_height, default_width, default_height, &mut concrete_width, &mut concrete_height);
+            let mut concrete_width = mem::MaybeUninit::uninit();
+            let mut concrete_height = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_paintable_compute_concrete_size(self.as_ref().to_glib_none().0, specified_width, specified_height, default_width, default_height, concrete_width.as_mut_ptr(), concrete_height.as_mut_ptr());
+            let concrete_width = concrete_width.assume_init();
+            let concrete_height = concrete_height.assume_init();
             (concrete_width, concrete_height)
         }
     }

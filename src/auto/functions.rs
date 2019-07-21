@@ -161,8 +161,9 @@ pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'stati
 pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
-        let mut angle = mem::uninitialized();
-        let ret = from_glib(gdk_sys::gdk_events_get_angle(event1.to_glib_none().0, event2.to_glib_none().0, &mut angle));
+        let mut angle = mem::MaybeUninit::uninit();
+        let ret = from_glib(gdk_sys::gdk_events_get_angle(event1.to_glib_none().0, event2.to_glib_none().0, angle.as_mut_ptr()));
+        let angle = angle.assume_init();
         if ret { Some(angle) } else { None }
     }
 }
@@ -170,9 +171,11 @@ pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
 pub fn events_get_center(event1: &Event, event2: &Event) -> Option<(f64, f64)> {
     skip_assert_initialized!();
     unsafe {
-        let mut x = mem::uninitialized();
-        let mut y = mem::uninitialized();
-        let ret = from_glib(gdk_sys::gdk_events_get_center(event1.to_glib_none().0, event2.to_glib_none().0, &mut x, &mut y));
+        let mut x = mem::MaybeUninit::uninit();
+        let mut y = mem::MaybeUninit::uninit();
+        let ret = from_glib(gdk_sys::gdk_events_get_center(event1.to_glib_none().0, event2.to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr()));
+        let x = x.assume_init();
+        let y = y.assume_init();
         if ret { Some((x, y)) } else { None }
     }
 }
@@ -180,8 +183,9 @@ pub fn events_get_center(event1: &Event, event2: &Event) -> Option<(f64, f64)> {
 pub fn events_get_distance(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
-        let mut distance = mem::uninitialized();
-        let ret = from_glib(gdk_sys::gdk_events_get_distance(event1.to_glib_none().0, event2.to_glib_none().0, &mut distance));
+        let mut distance = mem::MaybeUninit::uninit();
+        let ret = from_glib(gdk_sys::gdk_events_get_distance(event1.to_glib_none().0, event2.to_glib_none().0, distance.as_mut_ptr()));
+        let distance = distance.assume_init();
         if ret { Some(distance) } else { None }
     }
 }
@@ -203,9 +207,11 @@ pub fn intern_mime_type(string: &str) -> Option<GString> {
 pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut lower = mem::uninitialized();
-        let mut upper = mem::uninitialized();
-        gdk_sys::gdk_keyval_convert_case(symbol, &mut lower, &mut upper);
+        let mut lower = mem::MaybeUninit::uninit();
+        let mut upper = mem::MaybeUninit::uninit();
+        gdk_sys::gdk_keyval_convert_case(symbol, lower.as_mut_ptr(), upper.as_mut_ptr());
+        let lower = lower.assume_init();
+        let upper = upper.assume_init();
         (lower, upper)
     }
 }

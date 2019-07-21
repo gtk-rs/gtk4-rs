@@ -83,9 +83,11 @@ impl Device {
 
     pub fn get_key(&self, index_: u32) -> Option<(u32, ModifierType)> {
         unsafe {
-            let mut keyval = mem::uninitialized();
-            let mut modifiers = mem::uninitialized();
-            let ret = from_glib(gdk_sys::gdk_device_get_key(self.to_glib_none().0, index_, &mut keyval, &mut modifiers));
+            let mut keyval = mem::MaybeUninit::uninit();
+            let mut modifiers = mem::MaybeUninit::uninit();
+            let ret = from_glib(gdk_sys::gdk_device_get_key(self.to_glib_none().0, index_, keyval.as_mut_ptr(), modifiers.as_mut_ptr()));
+            let keyval = keyval.assume_init();
+            let modifiers = modifiers.assume_init();
             if ret { Some((keyval, from_glib(modifiers))) } else { None }
         }
     }
@@ -122,9 +124,11 @@ impl Device {
 
     pub fn get_position(&self) -> (f64, f64) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
-            gdk_sys::gdk_device_get_position(self.to_glib_none().0, &mut x, &mut y);
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_device_get_position(self.to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr());
+            let x = x.assume_init();
+            let y = y.assume_init();
             (x, y)
         }
     }
@@ -153,9 +157,11 @@ impl Device {
 
     pub fn get_surface_at_position(&self) -> (Option<Surface>, f64, f64) {
         unsafe {
-            let mut win_x = mem::uninitialized();
-            let mut win_y = mem::uninitialized();
-            let ret = from_glib_none(gdk_sys::gdk_device_get_surface_at_position(self.to_glib_none().0, &mut win_x, &mut win_y));
+            let mut win_x = mem::MaybeUninit::uninit();
+            let mut win_y = mem::MaybeUninit::uninit();
+            let ret = from_glib_none(gdk_sys::gdk_device_get_surface_at_position(self.to_glib_none().0, win_x.as_mut_ptr(), win_y.as_mut_ptr()));
+            let win_x = win_x.assume_init();
+            let win_y = win_y.assume_init();
             (ret, win_x, win_y)
         }
     }

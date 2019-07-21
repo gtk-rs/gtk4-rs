@@ -50,8 +50,9 @@ impl ContentFormats {
 
     pub fn get_mime_types(&self) -> (Vec<GString>, usize) {
         unsafe {
-            let mut n_mime_types = mem::uninitialized();
-            let ret = FromGlibPtrContainer::from_glib_none(gdk_sys::gdk_content_formats_get_mime_types(self.to_glib_none().0, &mut n_mime_types));
+            let mut n_mime_types = mem::MaybeUninit::uninit();
+            let ret = FromGlibPtrContainer::from_glib_none(gdk_sys::gdk_content_formats_get_mime_types(self.to_glib_none().0, n_mime_types.as_mut_ptr()));
+            let n_mime_types = n_mime_types.assume_init();
             (ret, n_mime_types)
         }
     }

@@ -62,9 +62,11 @@ impl FrameClock {
 
     pub fn get_refresh_info(&self, base_time: i64) -> (i64, i64) {
         unsafe {
-            let mut refresh_interval_return = mem::uninitialized();
-            let mut presentation_time_return = mem::uninitialized();
-            gdk_sys::gdk_frame_clock_get_refresh_info(self.to_glib_none().0, base_time, &mut refresh_interval_return, &mut presentation_time_return);
+            let mut refresh_interval_return = mem::MaybeUninit::uninit();
+            let mut presentation_time_return = mem::MaybeUninit::uninit();
+            gdk_sys::gdk_frame_clock_get_refresh_info(self.to_glib_none().0, base_time, refresh_interval_return.as_mut_ptr(), presentation_time_return.as_mut_ptr());
+            let refresh_interval_return = refresh_interval_return.assume_init();
+            let presentation_time_return = presentation_time_return.assume_init();
             (refresh_interval_return, presentation_time_return)
         }
     }
