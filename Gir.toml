@@ -126,14 +126,6 @@ status = "generate"
     ignore = true
 
 [[object]]
-name = "Gdk.ContentFormats"
-status = "generate"
-    [[object.function]]
-    # gir error
-    name = "get_gtypes"
-    ignore = true
-
-[[object]]
 name = "Gdk.ContentDeserializer"
 status = "generate"
     [[object.function]]
@@ -154,6 +146,14 @@ status = "generate"
     name = "get_value"
         [object.function.return]
         nullable = false
+
+[[object]]
+name = "Gdk.ContentFormats"
+status = "generate"
+    [[object.function]]
+    # gir error
+    name = "get_gtypes"
+    ignore = true
 
 [[object]]
 name = "Gdk.ContentSerializer"
