@@ -77,35 +77,6 @@ pub fn cairo_surface_upload_to_gl(surface: &cairo::Surface, target: i32, width: 
     }
 }
 
-//pub fn content_deserialize_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), Error>) + Send + 'static>(stream: /*Ignored*/&gio::InputStream, mime_type: &str, type_: glib::types::Type, io_priority: i32, cancellable: Option<&P>, callback: Q) {
-//    unsafe { TODO: call gdk_sys:gdk_content_deserialize_async() }
-//}
-
-//#[cfg(feature = "futures")]
-//pub fn content_deserialize_async_future(stream: /*Ignored*/&gio::InputStream, mime_type: &str, type_: glib::types::Type, io_priority: i32) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
-    //use gio::GioFuture;
-    //use fragile::Fragile;
-
-    //let stream = stream.clone();
-    //let mime_type = String::from(mime_type);
-    //GioFuture::new(&(), move |_obj, send| {
-    //    let cancellable = gio::Cancellable::new();
-    //    let send = Fragile::new(send);
-    //    content_deserialize_async(
-    //        &stream,
-    //        &mime_type,
-    //        type_,
-    //        io_priority,
-    //        Some(&cancellable),
-    //        move |res| {
-    //            let _ = send.into_inner().send(res);
-    //        },
-    //    );
-
-    //    cancellable
-    //})
-//}
-
 pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {

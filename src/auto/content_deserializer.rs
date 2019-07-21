@@ -31,9 +31,11 @@ impl ContentDeserializer {
         }
     }
 
-    //pub fn get_input_stream(&self) -> /*Ignored*/gio::InputStream {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_get_input_stream() }
-    //}
+    pub fn get_input_stream(&self) -> gio::InputStream {
+        unsafe {
+            from_glib_none(gdk_sys::gdk_content_deserializer_get_input_stream(self.to_glib_none().0))
+        }
+    }
 
     pub fn get_mime_type(&self) -> GString {
         unsafe {

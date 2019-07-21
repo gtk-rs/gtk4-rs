@@ -79,32 +79,6 @@ impl Drop {
         }
     }
 
-    //pub fn read_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(/*Ignored*/gio::InputStream, GString), Error>) + Send + 'static>(&self, mime_types: &[&str], io_priority: glib::Priority, cancellable: Option<&P>, callback: Q) {
-    //    unsafe { TODO: call gdk_sys:gdk_drop_read_async() }
-    //}
-
-    //#[cfg(feature = "futures")]
-    //pub fn read_async_future(&self, mime_types: &[&str], io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<(/*Ignored*/gio::InputStream, GString), Error>> + std::marker::Unpin> {
-        //use gio::GioFuture;
-        //use fragile::Fragile;
-
-        //let mime_types = mime_types.clone();
-        //GioFuture::new(self, move |obj, send| {
-        //    let cancellable = gio::Cancellable::new();
-        //    let send = Fragile::new(send);
-        //    obj.read_async(
-        //        &mime_types,
-        //        io_priority,
-        //        Some(&cancellable),
-        //        move |res| {
-        //            let _ = send.into_inner().send(res);
-        //        },
-        //    );
-
-        //    cancellable
-        //})
-    //}
-
     pub fn read_text_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<GString, Error>) + Send + 'static>(&self, cancellable: Option<&P>, callback: Q) {
         let user_data: Box<Q> = Box::new(callback);
         unsafe extern "C" fn read_text_async_trampoline<Q: FnOnce(Result<GString, Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
