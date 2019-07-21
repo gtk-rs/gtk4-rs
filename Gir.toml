@@ -17,10 +17,8 @@ generate = [
     "Gdk.ByteOrder",
     "Gdk.CairoContext",
     "Gdk.Clipboard",
-    "Gdk.ContentDeserializer",
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
-    "Gdk.ContentSerializer",
     "Gdk.CrossingMode",
     "Gdk.Cursor",
     "Gdk.DevicePad",
@@ -118,6 +116,14 @@ status = "generate"
     name = "pango_layout_line_get_clip_region"
     #manual
     ignore = true
+    [[object.function]]
+    name = "content_register_deserializer"
+    #manual: unsafe
+    ignore = true
+    [[object.function]]
+    name = "content_register_serializer"
+    #manual: unsafe
+    ignore = true
 
 [[object]]
 name = "Gdk.ContentFormats"
@@ -126,6 +132,50 @@ status = "generate"
     # gir error
     name = "get_gtypes"
     ignore = true
+
+[[object]]
+name = "Gdk.ContentDeserializer"
+status = "generate"
+    [[object.function]]
+    name = "get_input_stream"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_mime_type"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_value"
+        [object.function.return]
+        nullable = false
+
+[[object]]
+name = "Gdk.ContentSerializer"
+status = "generate"
+    [[object.function]]
+    name = "get_mime_type"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_output_stream"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_value"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Gdk.Device"

@@ -55,6 +55,7 @@ mod auto;
 mod alias;
 pub mod prelude;
 
+mod content_deserializer;
 mod draw_context;
 mod events;
 mod functions;
