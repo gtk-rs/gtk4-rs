@@ -4,27 +4,17 @@
 
 use Atom;
 use Display;
-use Error;
 use Event;
 use GLContext;
 use RGBA;
 use Rectangle;
 use Surface;
 use cairo;
-#[cfg(feature = "futures")]
-use futures::future;
 use gdk_pixbuf;
 use gdk_sys;
-use gio;
-use gio_sys;
-use glib;
 use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-#[cfg(feature = "futures")]
-use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
 
@@ -115,48 +105,6 @@ pub fn cairo_surface_upload_to_gl(surface: &cairo::Surface, target: i32, width: 
     //    cancellable
     //})
 //}
-
-pub fn content_serialize_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32, cancellable: Option<&Q>, callback: R) {
-    assert_initialized_main_thread!();
-    let user_data: Box<R> = Box::new(callback);
-    unsafe extern "C" fn content_serialize_async_trampoline<R: FnOnce(Result<(), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
-        let mut error = ptr::null_mut();
-        let _ = gdk_sys::gdk_content_serialize_finish(res, &mut error);
-        let result = if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) };
-        let callback: Box<R> = Box::from_raw(user_data as *mut _);
-        callback(result);
-    }
-    let callback = content_serialize_async_trampoline::<R>;
-    unsafe {
-        gdk_sys::gdk_content_serialize_async(stream.as_ref().to_glib_none().0, mime_type.to_glib_none().0, value.to_glib_none().0, io_priority, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
-    }
-}
-
-#[cfg(feature = "futures")]
-pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(stream: &P, mime_type: &str, value: &glib::Value, io_priority: i32) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
-    use gio::GioFuture;
-    use fragile::Fragile;
-
-    let stream = stream.clone();
-    let mime_type = String::from(mime_type);
-    let value = value.clone();
-    GioFuture::new(&(), move |_obj, send| {
-        let cancellable = gio::Cancellable::new();
-        let send = Fragile::new(send);
-        content_serialize_async(
-            &stream,
-            &mime_type,
-            &value,
-            io_priority,
-            Some(&cancellable),
-            move |res| {
-                let _ = send.into_inner().send(res);
-            },
-        );
-
-        cancellable
-    })
-}
 
 pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
