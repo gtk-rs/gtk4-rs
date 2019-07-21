@@ -28,7 +28,6 @@ generate = [
     "Gdk.DeviceTool",
     "Gdk.DeviceToolType",
     "Gdk.DeviceType",
-    "Gdk.Display",
     "Gdk.DisplayManager",
     "Gdk.Drag",
     "Gdk.DragAction",
@@ -139,6 +138,42 @@ status = "generate"
     name = "free_history"
     # skip
     ignore = true
+
+[[object]]
+name = "Gdk.Display"
+status = "generate"
+    [[object.function]]
+    name = "get_app_launch_context"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_clipboard"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_default_group"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_default_seat"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_keymap"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_name"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_primary_clipboard"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_primary_monitor"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Gdk.DrawContext"

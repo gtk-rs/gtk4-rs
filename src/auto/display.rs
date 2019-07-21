@@ -60,25 +60,25 @@ impl Display {
         }
     }
 
-    pub fn get_app_launch_context(&self) -> Option<AppLaunchContext> {
+    pub fn get_app_launch_context(&self) -> AppLaunchContext {
         unsafe {
             from_glib_full(gdk_sys::gdk_display_get_app_launch_context(self.to_glib_none().0))
         }
     }
 
-    pub fn get_clipboard(&self) -> Option<Clipboard> {
+    pub fn get_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_clipboard(self.to_glib_none().0))
         }
     }
 
-    pub fn get_default_group(&self) -> Option<Surface> {
+    pub fn get_default_group(&self) -> Surface {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_default_group(self.to_glib_none().0))
         }
     }
 
-    pub fn get_default_seat(&self) -> Option<Seat> {
+    pub fn get_default_seat(&self) -> Seat {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_default_seat(self.to_glib_none().0))
         }
@@ -90,7 +90,7 @@ impl Display {
         }
     }
 
-    pub fn get_keymap(&self) -> Option<Keymap> {
+    pub fn get_keymap(&self) -> Keymap {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_keymap(self.to_glib_none().0))
         }
@@ -120,19 +120,19 @@ impl Display {
         }
     }
 
-    pub fn get_name(&self) -> Option<GString> {
+    pub fn get_name(&self) -> GString {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_name(self.to_glib_none().0))
         }
     }
 
-    pub fn get_primary_clipboard(&self) -> Option<Clipboard> {
+    pub fn get_primary_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_primary_clipboard(self.to_glib_none().0))
         }
     }
 
-    pub fn get_primary_monitor(&self) -> Option<Monitor> {
+    pub fn get_primary_monitor(&self) -> Monitor {
         unsafe {
             from_glib_none(gdk_sys::gdk_display_get_primary_monitor(self.to_glib_none().0))
         }
