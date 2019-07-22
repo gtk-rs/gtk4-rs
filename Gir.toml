@@ -160,6 +160,9 @@ status = "generate"
     name = "get_value"
         [object.function.return]
         nullable = false
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true #unsafe
 
 [[object]]
 name = "Gdk.ContentFormats"
@@ -190,6 +193,9 @@ status = "generate"
     name = "get_value"
         [object.function.return]
         nullable = false
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true #unsafe
 
 [[object]]
 name = "Gdk.Device"
