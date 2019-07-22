@@ -262,6 +262,10 @@ status = "generate"
     name = "get_motion_history"
     # requires GDK_MOTION_NOTIFY
     ignore = true
+    [[object.function]]
+    name = "new"
+    # disabled for now: applications are not supposed to create events
+    ignore = true
 
 [[object]]
 name = "Gdk.Keymap"
