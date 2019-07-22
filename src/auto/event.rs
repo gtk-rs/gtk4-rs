@@ -31,13 +31,6 @@ glib_wrapper! {
 }
 
 impl Event {
-    pub fn new(type_: EventType) -> Event {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gdk_sys::gdk_event_new(type_.to_glib()))
-        }
-    }
-
     pub fn copy(&self) -> Option<Event> {
         unsafe {
             from_glib_full(gdk_sys::gdk_event_copy(self.to_glib_none().0))
