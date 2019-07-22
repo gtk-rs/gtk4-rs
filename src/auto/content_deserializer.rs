@@ -66,10 +66,6 @@ impl ContentDeserializer {
             gdk_sys::gdk_content_deserializer_return_success(self.to_glib_none().0);
         }
     }
-
-    //pub fn set_task_data(&self, data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call gdk_sys:gdk_content_deserializer_set_task_data() }
-    //}
 }
 
 impl fmt::Display for ContentDeserializer {
