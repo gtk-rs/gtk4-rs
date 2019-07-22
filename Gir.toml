@@ -260,7 +260,7 @@ name = "Gdk.Event"
 status = "generate"
     [[object.function]]
     name = "get_motion_history"
-    # requires GDK_MOTION_NOTIFY
+    #manual: requires GDK_MOTION_NOTIFY
     ignore = true
     [[object.function]]
     name = "new"
