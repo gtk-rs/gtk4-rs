@@ -272,6 +272,10 @@ status = "generate"
     name = "new"
     # disabled for now: applications are not supposed to create events
     ignore = true
+    [[object.function]]
+    pattern = "set_.+"
+    # applications should not use setters
+    ignore = true
 
 [[object]]
 name = "Gdk.Keymap"
