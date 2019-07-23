@@ -3,24 +3,16 @@
 // DO NOT EDIT
 
 use AxisUse;
-use CrossingMode;
 use Device;
-use DeviceTool;
 use Display;
-use Drop;
-use EventSequence;
 use EventType;
 use ModifierType;
-use NotifyType;
-use ScrollDirection;
 use Seat;
 use Surface;
-use TouchpadGesturePhase;
 use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use std::ptr;
 
 glib_wrapper! {
     pub struct Event(Object<gdk_sys::GdkEvent, EventClass>);
@@ -37,39 +29,12 @@ impl Event {
         }
     }
 
-    pub fn get_axes(&self) -> Option<Vec<f64>> {
-        unsafe {
-            let mut axes = ptr::null_mut();
-            let mut n_axes = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_axes(self.to_glib_none().0, &mut axes, n_axes.as_mut_ptr()));
-            if ret { Some(FromGlibContainer::from_glib_none_num(axes, n_axes.assume_init() as usize)) } else { None }
-        }
-    }
-
     pub fn get_axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(gdk_sys::gdk_event_get_axis(self.to_glib_none().0, axis_use.to_glib(), value.as_mut_ptr()));
             let value = value.assume_init();
             if ret { Some(value) } else { None }
-        }
-    }
-
-    pub fn get_button(&self) -> Option<u32> {
-        unsafe {
-            let mut button = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_button(self.to_glib_none().0, button.as_mut_ptr()));
-            let button = button.assume_init();
-            if ret { Some(button) } else { None }
-        }
-    }
-
-    pub fn get_click_count(&self) -> Option<u32> {
-        unsafe {
-            let mut click_count = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_click_count(self.to_glib_none().0, click_count.as_mut_ptr()));
-            let click_count = click_count.assume_init();
-            if ret { Some(click_count) } else { None }
         }
     }
 
@@ -84,33 +49,9 @@ impl Event {
         }
     }
 
-    pub fn get_crossing_detail(&self) -> Option<NotifyType> {
-        unsafe {
-            let mut detail = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_crossing_detail(self.to_glib_none().0, detail.as_mut_ptr()));
-            let detail = detail.assume_init();
-            if ret { Some(from_glib(detail)) } else { None }
-        }
-    }
-
-    pub fn get_crossing_mode(&self) -> Option<CrossingMode> {
-        unsafe {
-            let mut mode = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_crossing_mode(self.to_glib_none().0, mode.as_mut_ptr()));
-            let mode = mode.assume_init();
-            if ret { Some(from_glib(mode)) } else { None }
-        }
-    }
-
     pub fn get_device(&self) -> Option<Device> {
         unsafe {
             from_glib_none(gdk_sys::gdk_event_get_device(self.to_glib_none().0))
-        }
-    }
-
-    pub fn get_device_tool(&self) -> Option<DeviceTool> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_device_tool(self.to_glib_none().0))
         }
     }
 
@@ -120,105 +61,9 @@ impl Event {
         }
     }
 
-    pub fn get_drop(&self) -> Option<Drop> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_drop(self.to_glib_none().0))
-        }
-    }
-
-    pub fn get_event_sequence(&self) -> Option<EventSequence> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_event_sequence(self.to_glib_none().0))
-        }
-    }
-
     pub fn get_event_type(&self) -> EventType {
         unsafe {
             from_glib(gdk_sys::gdk_event_get_event_type(self.to_glib_none().0))
-        }
-    }
-
-    pub fn get_focus_in(&self) -> Option<bool> {
-        unsafe {
-            let mut focus_in = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_focus_in(self.to_glib_none().0, focus_in.as_mut_ptr()));
-            let focus_in = focus_in.assume_init();
-            if ret { Some(from_glib(focus_in)) } else { None }
-        }
-    }
-
-    pub fn get_grab_surface(&self) -> Option<Surface> {
-        unsafe {
-            let mut surface = ptr::null_mut();
-            let ret = from_glib(gdk_sys::gdk_event_get_grab_surface(self.to_glib_none().0, &mut surface));
-            if ret { Some(from_glib_none(surface)) } else { None }
-        }
-    }
-
-    pub fn get_key_group(&self) -> Option<u32> {
-        unsafe {
-            let mut group = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_key_group(self.to_glib_none().0, group.as_mut_ptr()));
-            let group = group.assume_init();
-            if ret { Some(group) } else { None }
-        }
-    }
-
-    pub fn get_key_is_modifier(&self) -> Option<bool> {
-        unsafe {
-            let mut is_modifier = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_key_is_modifier(self.to_glib_none().0, is_modifier.as_mut_ptr()));
-            let is_modifier = is_modifier.assume_init();
-            if ret { Some(from_glib(is_modifier)) } else { None }
-        }
-    }
-
-    pub fn get_keycode(&self) -> Option<u16> {
-        unsafe {
-            let mut keycode = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_keycode(self.to_glib_none().0, keycode.as_mut_ptr()));
-            let keycode = keycode.assume_init();
-            if ret { Some(keycode) } else { None }
-        }
-    }
-
-    pub fn get_keyval(&self) -> Option<u32> {
-        unsafe {
-            let mut keyval = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_keyval(self.to_glib_none().0, keyval.as_mut_ptr()));
-            let keyval = keyval.assume_init();
-            if ret { Some(keyval) } else { None }
-        }
-    }
-
-    pub fn get_pad_axis_value(&self) -> Option<(u32, f64)> {
-        unsafe {
-            let mut index = mem::MaybeUninit::uninit();
-            let mut value = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_pad_axis_value(self.to_glib_none().0, index.as_mut_ptr(), value.as_mut_ptr()));
-            let index = index.assume_init();
-            let value = value.assume_init();
-            if ret { Some((index, value)) } else { None }
-        }
-    }
-
-    pub fn get_pad_button(&self) -> Option<u32> {
-        unsafe {
-            let mut button = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_pad_button(self.to_glib_none().0, button.as_mut_ptr()));
-            let button = button.assume_init();
-            if ret { Some(button) } else { None }
-        }
-    }
-
-    pub fn get_pad_group_mode(&self) -> Option<(u32, u32)> {
-        unsafe {
-            let mut group = mem::MaybeUninit::uninit();
-            let mut mode = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_pad_group_mode(self.to_glib_none().0, group.as_mut_ptr(), mode.as_mut_ptr()));
-            let group = group.assume_init();
-            let mode = mode.assume_init();
-            if ret { Some((group, mode)) } else { None }
         }
     }
 
@@ -236,32 +81,6 @@ impl Event {
             let x_root = x_root.assume_init();
             let y_root = y_root.assume_init();
             if ret { Some((x_root, y_root)) } else { None }
-        }
-    }
-
-    pub fn get_scancode(&self) -> i32 {
-        unsafe {
-            gdk_sys::gdk_event_get_scancode(self.to_glib_none().0)
-        }
-    }
-
-    pub fn get_scroll_deltas(&self) -> Option<(f64, f64)> {
-        unsafe {
-            let mut delta_x = mem::MaybeUninit::uninit();
-            let mut delta_y = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_scroll_deltas(self.to_glib_none().0, delta_x.as_mut_ptr(), delta_y.as_mut_ptr()));
-            let delta_x = delta_x.assume_init();
-            let delta_y = delta_y.assume_init();
-            if ret { Some((delta_x, delta_y)) } else { None }
-        }
-    }
-
-    pub fn get_scroll_direction(&self) -> Option<ScrollDirection> {
-        unsafe {
-            let mut direction = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_scroll_direction(self.to_glib_none().0, direction.as_mut_ptr()));
-            let direction = direction.assume_init();
-            if ret { Some(from_glib(direction)) } else { None }
         }
     }
 
@@ -298,62 +117,6 @@ impl Event {
         }
     }
 
-    pub fn get_touch_emulating_pointer(&self) -> Option<bool> {
-        unsafe {
-            let mut emulating = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touch_emulating_pointer(self.to_glib_none().0, emulating.as_mut_ptr()));
-            let emulating = emulating.assume_init();
-            if ret { Some(from_glib(emulating)) } else { None }
-        }
-    }
-
-    pub fn get_touchpad_angle_delta(&self) -> Option<f64> {
-        unsafe {
-            let mut delta = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_angle_delta(self.to_glib_none().0, delta.as_mut_ptr()));
-            let delta = delta.assume_init();
-            if ret { Some(delta) } else { None }
-        }
-    }
-
-    pub fn get_touchpad_deltas(&self) -> Option<(f64, f64)> {
-        unsafe {
-            let mut dx = mem::MaybeUninit::uninit();
-            let mut dy = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_deltas(self.to_glib_none().0, dx.as_mut_ptr(), dy.as_mut_ptr()));
-            let dx = dx.assume_init();
-            let dy = dy.assume_init();
-            if ret { Some((dx, dy)) } else { None }
-        }
-    }
-
-    pub fn get_touchpad_gesture_n_fingers(&self) -> Option<u32> {
-        unsafe {
-            let mut n_fingers = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_gesture_n_fingers(self.to_glib_none().0, n_fingers.as_mut_ptr()));
-            let n_fingers = n_fingers.assume_init();
-            if ret { Some(n_fingers) } else { None }
-        }
-    }
-
-    pub fn get_touchpad_gesture_phase(&self) -> Option<TouchpadGesturePhase> {
-        unsafe {
-            let mut phase = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_gesture_phase(self.to_glib_none().0, phase.as_mut_ptr()));
-            let phase = phase.assume_init();
-            if ret { Some(from_glib(phase)) } else { None }
-        }
-    }
-
-    pub fn get_touchpad_scale(&self) -> Option<f64> {
-        unsafe {
-            let mut scale = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_touchpad_scale(self.to_glib_none().0, scale.as_mut_ptr()));
-            let scale = scale.assume_init();
-            if ret { Some(scale) } else { None }
-        }
-    }
-
     pub fn is_scroll_stop_event(&self) -> bool {
         unsafe {
             from_glib(gdk_sys::gdk_event_is_scroll_stop_event(self.to_glib_none().0))
@@ -363,42 +126,6 @@ impl Event {
     pub fn is_sent(&self) -> bool {
         unsafe {
             from_glib(gdk_sys::gdk_event_is_sent(self.to_glib_none().0))
-        }
-    }
-
-    pub fn set_coords(&self, x: f64, y: f64) {
-        unsafe {
-            gdk_sys::gdk_event_set_coords(self.to_glib_none().0, x, y);
-        }
-    }
-
-    pub fn set_device(&self, device: &Device) {
-        unsafe {
-            gdk_sys::gdk_event_set_device(self.to_glib_none().0, device.to_glib_none().0);
-        }
-    }
-
-    pub fn set_device_tool(&self, tool: Option<&DeviceTool>) {
-        unsafe {
-            gdk_sys::gdk_event_set_device_tool(self.to_glib_none().0, tool.to_glib_none().0);
-        }
-    }
-
-    pub fn set_display(&self, display: &Display) {
-        unsafe {
-            gdk_sys::gdk_event_set_display(self.to_glib_none().0, display.to_glib_none().0);
-        }
-    }
-
-    pub fn set_keyval(&self, keyval: u32) {
-        unsafe {
-            gdk_sys::gdk_event_set_keyval(self.to_glib_none().0, keyval);
-        }
-    }
-
-    pub fn set_source_device(&self, device: &Device) {
-        unsafe {
-            gdk_sys::gdk_event_set_source_device(self.to_glib_none().0, device.to_glib_none().0);
         }
     }
 
