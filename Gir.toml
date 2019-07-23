@@ -265,8 +265,112 @@ status = "generate"
 name = "Gdk.Event"
 status = "generate"
     [[object.function]]
+    name = "get_axes"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_button"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_click_count"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_crossing_detail"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_crossing_mode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_device_tool"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_drop"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_event_sequence"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_focus_in"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_grab_surface"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_key_group"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_key_is_modifier"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_keycode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_keyval"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
     name = "get_motion_history"
     #manual: requires GDK_MOTION_NOTIFY
+    ignore = true
+    [[object.function]]
+    name = "get_pad_axis_value"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_pad_button"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_pad_group_mode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scancode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scroll_deltas"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scroll_direction"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touch_emulating_pointer"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_angle_delta"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_deltas"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_gesture_n_fingers"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_gesture_phase"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_scale"
+    #manual: type-specific
     ignore = true
     [[object.function]]
     name = "new"
