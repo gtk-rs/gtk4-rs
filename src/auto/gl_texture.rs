@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Paintable;
-use Texture;
 use gdk_sys;
 use glib::translate::*;
 use std::fmt;
+use Paintable;
+use Texture;
 
 glib_wrapper! {
     pub struct GLTexture(Object<gdk_sys::GdkGLTexture, gdk_sys::GdkGLTextureClass, GLTextureClass>) @extends Texture, @implements Paintable;

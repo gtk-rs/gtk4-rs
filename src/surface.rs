@@ -3,7 +3,12 @@ use glib::translate::*;
 use Surface;
 
 pub trait SurfaceExtManual: 'static {
-    fn create_similar_surface(&self, content: cairo::Content, width: i32, height: i32) -> Option<cairo::Surface>;
+    fn create_similar_surface(
+        &self,
+        content: cairo::Content,
+        width: i32,
+        height: i32,
+    ) -> Option<cairo::Surface>;
 }
 
 impl<O: IsA<Surface>> SurfaceExtManual for O {

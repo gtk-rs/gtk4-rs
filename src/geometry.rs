@@ -10,7 +10,19 @@ use Gravity;
 pub struct Geometry(gdk_sys::GdkGeometry);
 
 impl Geometry {
-    pub fn new(min_width: i32, min_height: i32, max_width: i32, max_height: i32, base_width: i32, base_height: i32, width_inc: i32, height_inc: i32, min_aspect: f64, max_aspect: f64, win_gravity: Gravity) -> Geometry {
+    pub fn new(
+        min_width: i32,
+        min_height: i32,
+        max_width: i32,
+        max_height: i32,
+        base_width: i32,
+        base_height: i32,
+        width_inc: i32,
+        height_inc: i32,
+        min_aspect: f64,
+        max_aspect: f64,
+        win_gravity: Gravity,
+    ) -> Geometry {
         assert_initialized_main_thread!();
         Geometry(gdk_sys::GdkGeometry {
             min_width,

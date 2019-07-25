@@ -2,8 +2,8 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-use glib::translate::*;
 use gdk_sys;
+use glib::translate::*;
 
 #[repr(C)]
 #[derive(Clone)]
@@ -12,10 +12,7 @@ pub struct TimeCoord(gdk_sys::GdkTimeCoord);
 impl TimeCoord {
     pub fn new(time: u32, axes: [f64; 128]) -> TimeCoord {
         assert_initialized_main_thread!();
-        TimeCoord(gdk_sys::GdkTimeCoord {
-            time,
-            axes
-        })
+        TimeCoord(gdk_sys::GdkTimeCoord { time, axes })
     }
 
     pub fn get_time(&self) -> u32 {
@@ -62,7 +59,10 @@ impl FromGlibContainerAsVec<gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord> f
         res
     }
 
-    unsafe fn from_glib_container_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+    unsafe fn from_glib_container_num_as_vec(
+        ptr: *mut gdk_sys::GdkTimeCoord,
+        num: usize,
+    ) -> Vec<Self> {
         let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
         glib_sys::g_free(ptr as *mut _);
         res

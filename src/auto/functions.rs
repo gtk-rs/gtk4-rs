@@ -2,27 +2,46 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use cairo;
+use gdk_pixbuf;
+use gdk_sys;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::GString;
+use std::mem;
+use std::ptr;
 use Atom;
 use Display;
 use Event;
 use GLContext;
-use RGBA;
 use Rectangle;
 use Surface;
-use cairo;
-use gdk_pixbuf;
-use gdk_sys;
-use glib::GString;
-use glib::object::IsA;
-use glib::translate::*;
-use std::mem;
-use std::ptr;
+use RGBA;
 
-
-pub fn cairo_draw_from_gl<P: IsA<Surface>>(cr: &cairo::Context, surface: &P, source: i32, source_type: i32, buffer_scale: i32, x: i32, y: i32, width: i32, height: i32) {
+pub fn cairo_draw_from_gl<P: IsA<Surface>>(
+    cr: &cairo::Context,
+    surface: &P,
+    source: i32,
+    source_type: i32,
+    buffer_scale: i32,
+    x: i32,
+    y: i32,
+    width: i32,
+    height: i32,
+) {
     skip_assert_initialized!();
     unsafe {
-        gdk_sys::gdk_cairo_draw_from_gl(mut_override(cr.to_glib_none().0), surface.as_ref().to_glib_none().0, source, source_type, buffer_scale, x, y, width, height);
+        gdk_sys::gdk_cairo_draw_from_gl(
+            mut_override(cr.to_glib_none().0),
+            surface.as_ref().to_glib_none().0,
+            source,
+            source_type,
+            buffer_scale,
+            x,
+            y,
+            width,
+            height,
+        );
     }
 }
 
@@ -30,15 +49,25 @@ pub fn cairo_get_clip_rectangle(cr: &cairo::Context) -> Option<Rectangle> {
     assert_initialized_main_thread!();
     unsafe {
         let mut rect = Rectangle::uninitialized();
-        let ret = from_glib(gdk_sys::gdk_cairo_get_clip_rectangle(mut_override(cr.to_glib_none().0), rect.to_glib_none_mut().0));
-        if ret { Some(rect) } else { None }
+        let ret = from_glib(gdk_sys::gdk_cairo_get_clip_rectangle(
+            mut_override(cr.to_glib_none().0),
+            rect.to_glib_none_mut().0,
+        ));
+        if ret {
+            Some(rect)
+        } else {
+            None
+        }
     }
 }
 
 pub fn cairo_rectangle(cr: &cairo::Context, rectangle: &Rectangle) {
     assert_initialized_main_thread!();
     unsafe {
-        gdk_sys::gdk_cairo_rectangle(mut_override(cr.to_glib_none().0), rectangle.to_glib_none().0);
+        gdk_sys::gdk_cairo_rectangle(
+            mut_override(cr.to_glib_none().0),
+            rectangle.to_glib_none().0,
+        );
     }
 }
 
@@ -52,28 +81,55 @@ pub fn cairo_region(cr: &cairo::Context, region: &cairo::Region) {
 pub fn cairo_region_create_from_surface(surface: &cairo::Surface) -> Option<cairo::Region> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(mut_override(surface.to_glib_none().0)))
+        from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(mut_override(
+            surface.to_glib_none().0,
+        )))
     }
 }
 
-pub fn cairo_set_source_pixbuf(cr: &cairo::Context, pixbuf: &gdk_pixbuf::Pixbuf, pixbuf_x: f64, pixbuf_y: f64) {
+pub fn cairo_set_source_pixbuf(
+    cr: &cairo::Context,
+    pixbuf: &gdk_pixbuf::Pixbuf,
+    pixbuf_x: f64,
+    pixbuf_y: f64,
+) {
     assert_initialized_main_thread!();
     unsafe {
-        gdk_sys::gdk_cairo_set_source_pixbuf(mut_override(cr.to_glib_none().0), pixbuf.to_glib_none().0, pixbuf_x, pixbuf_y);
+        gdk_sys::gdk_cairo_set_source_pixbuf(
+            mut_override(cr.to_glib_none().0),
+            pixbuf.to_glib_none().0,
+            pixbuf_x,
+            pixbuf_y,
+        );
     }
 }
 
 pub fn cairo_set_source_rgba(cr: &cairo::Context, rgba: &RGBA) {
     assert_initialized_main_thread!();
     unsafe {
-        gdk_sys::gdk_cairo_set_source_rgba(mut_override(cr.to_glib_none().0), rgba.to_glib_none().0);
+        gdk_sys::gdk_cairo_set_source_rgba(
+            mut_override(cr.to_glib_none().0),
+            rgba.to_glib_none().0,
+        );
     }
 }
 
-pub fn cairo_surface_upload_to_gl(surface: &cairo::Surface, target: i32, width: i32, height: i32, context: Option<&GLContext>) {
+pub fn cairo_surface_upload_to_gl(
+    surface: &cairo::Surface,
+    target: i32,
+    width: i32,
+    height: i32,
+    context: Option<&GLContext>,
+) {
     assert_initialized_main_thread!();
     unsafe {
-        gdk_sys::gdk_cairo_surface_upload_to_gl(mut_override(surface.to_glib_none().0), target, width, height, context.to_glib_none().0);
+        gdk_sys::gdk_cairo_surface_upload_to_gl(
+            mut_override(surface.to_glib_none().0),
+            target,
+            width,
+            height,
+            context.to_glib_none().0,
+        );
     }
 }
 
@@ -81,9 +137,17 @@ pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
         let mut angle = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_angle(event1.to_glib_none().0, event2.to_glib_none().0, angle.as_mut_ptr()));
+        let ret = from_glib(gdk_sys::gdk_events_get_angle(
+            event1.to_glib_none().0,
+            event2.to_glib_none().0,
+            angle.as_mut_ptr(),
+        ));
         let angle = angle.assume_init();
-        if ret { Some(angle) } else { None }
+        if ret {
+            Some(angle)
+        } else {
+            None
+        }
     }
 }
 
@@ -92,10 +156,19 @@ pub fn events_get_center(event1: &Event, event2: &Event) -> Option<(f64, f64)> {
     unsafe {
         let mut x = mem::MaybeUninit::uninit();
         let mut y = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_center(event1.to_glib_none().0, event2.to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr()));
+        let ret = from_glib(gdk_sys::gdk_events_get_center(
+            event1.to_glib_none().0,
+            event2.to_glib_none().0,
+            x.as_mut_ptr(),
+            y.as_mut_ptr(),
+        ));
         let x = x.assume_init();
         let y = y.assume_init();
-        if ret { Some((x, y)) } else { None }
+        if ret {
+            Some((x, y))
+        } else {
+            None
+        }
     }
 }
 
@@ -103,24 +176,28 @@ pub fn events_get_distance(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
         let mut distance = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_distance(event1.to_glib_none().0, event2.to_glib_none().0, distance.as_mut_ptr()));
+        let ret = from_glib(gdk_sys::gdk_events_get_distance(
+            event1.to_glib_none().0,
+            event2.to_glib_none().0,
+            distance.as_mut_ptr(),
+        ));
         let distance = distance.assume_init();
-        if ret { Some(distance) } else { None }
+        if ret {
+            Some(distance)
+        } else {
+            None
+        }
     }
 }
 
 pub fn get_show_events() -> bool {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib(gdk_sys::gdk_get_show_events())
-    }
+    unsafe { from_glib(gdk_sys::gdk_get_show_events()) }
 }
 
 pub fn intern_mime_type(string: &str) -> Option<GString> {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib_none(gdk_sys::gdk_intern_mime_type(string.to_glib_none().0))
-    }
+    unsafe { from_glib_none(gdk_sys::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
 pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
@@ -137,57 +214,55 @@ pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
 
 pub fn keyval_from_name(keyval_name: &str) -> u32 {
     assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_keyval_from_name(keyval_name.to_glib_none().0)
-    }
+    unsafe { gdk_sys::gdk_keyval_from_name(keyval_name.to_glib_none().0) }
 }
 
 pub fn keyval_is_lower(keyval: u32) -> bool {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib(gdk_sys::gdk_keyval_is_lower(keyval))
-    }
+    unsafe { from_glib(gdk_sys::gdk_keyval_is_lower(keyval)) }
 }
 
 pub fn keyval_is_upper(keyval: u32) -> bool {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib(gdk_sys::gdk_keyval_is_upper(keyval))
-    }
+    unsafe { from_glib(gdk_sys::gdk_keyval_is_upper(keyval)) }
 }
 
 pub fn keyval_name(keyval: u32) -> Option<GString> {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib_none(gdk_sys::gdk_keyval_name(keyval))
-    }
+    unsafe { from_glib_none(gdk_sys::gdk_keyval_name(keyval)) }
 }
 
 pub fn keyval_to_lower(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_keyval_to_lower(keyval)
-    }
+    unsafe { gdk_sys::gdk_keyval_to_lower(keyval) }
 }
 
 pub fn keyval_to_unicode(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_keyval_to_unicode(keyval)
-    }
+    unsafe { gdk_sys::gdk_keyval_to_unicode(keyval) }
 }
 
 pub fn keyval_to_upper(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_keyval_to_upper(keyval)
-    }
+    unsafe { gdk_sys::gdk_keyval_to_upper(keyval) }
 }
 
-pub fn pixbuf_get_from_surface(surface: &cairo::Surface, src_x: i32, src_y: i32, width: i32, height: i32) -> Option<gdk_pixbuf::Pixbuf> {
+pub fn pixbuf_get_from_surface(
+    surface: &cairo::Surface,
+    src_x: i32,
+    src_y: i32,
+    width: i32,
+    height: i32,
+) -> Option<gdk_pixbuf::Pixbuf> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(gdk_sys::gdk_pixbuf_get_from_surface(mut_override(surface.to_glib_none().0), src_x, src_y, width, height))
+        from_glib_full(gdk_sys::gdk_pixbuf_get_from_surface(
+            mut_override(surface.to_glib_none().0),
+            src_x,
+            src_y,
+            width,
+            height,
+        ))
     }
 }
 
@@ -205,26 +280,34 @@ pub fn set_show_events(show_events: bool) {
     }
 }
 
-pub fn text_property_to_utf8_list_for_display(display: &Display, encoding: &Atom, format: i32, text: &[u8]) -> (i32, Vec<GString>) {
+pub fn text_property_to_utf8_list_for_display(
+    display: &Display,
+    encoding: &Atom,
+    format: i32,
+    text: &[u8],
+) -> (i32, Vec<GString>) {
     skip_assert_initialized!();
     let length = text.len() as i32;
     unsafe {
         let mut list = ptr::null_mut();
-        let ret = gdk_sys::gdk_text_property_to_utf8_list_for_display(display.to_glib_none().0, encoding.to_glib_none().0, format, text.to_glib_none().0, length, &mut list);
+        let ret = gdk_sys::gdk_text_property_to_utf8_list_for_display(
+            display.to_glib_none().0,
+            encoding.to_glib_none().0,
+            format,
+            text.to_glib_none().0,
+            length,
+            &mut list,
+        );
         (ret, FromGlibPtrContainer::from_glib_full(list))
     }
 }
 
 pub fn unicode_to_keyval(wc: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_unicode_to_keyval(wc)
-    }
+    unsafe { gdk_sys::gdk_unicode_to_keyval(wc) }
 }
 
 pub fn utf8_to_string_target(str: &str) -> Option<GString> {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gdk_sys::gdk_utf8_to_string_target(str.to_glib_none().0))
-    }
+    unsafe { from_glib_full(gdk_sys::gdk_utf8_to_string_target(str.to_glib_none().0)) }
 }

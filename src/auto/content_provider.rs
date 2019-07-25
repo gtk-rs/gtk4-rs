@@ -2,27 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ContentFormats;
-use Error;
 #[cfg(feature = "futures")]
 use futures::future;
 use gdk_sys;
 use gio;
 use gio_sys;
 use glib;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use glib_sys;
 use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
+use ContentFormats;
+use Error;
 
 glib_wrapper! {
     pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass, ContentProviderClass>);
@@ -36,14 +36,19 @@ impl ContentProvider {
     pub fn new_for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_new_for_bytes(mime_type.to_glib_none().0, bytes.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_content_provider_new_for_bytes(
+                mime_type.to_glib_none().0,
+                bytes.to_glib_none().0,
+            ))
         }
     }
 
     pub fn new_for_value(value: &glib::Value) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_new_for_value(value.to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_content_provider_new_for_value(
+                value.to_glib_none().0,
+            ))
         }
     }
 }
@@ -59,10 +64,26 @@ pub trait ContentProviderExt: 'static {
 
     fn ref_storable_formats(&self) -> Option<ContentFormats>;
 
-    fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority, cancellable: Option<&Q>, callback: R);
+    fn write_mime_type_async<
+        P: IsA<gio::OutputStream>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), Error>) + Send + 'static,
+    >(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+        cancellable: Option<&Q>,
+        callback: R,
+    );
 
     #[cfg(feature = "futures")]
-    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin>;
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+    ) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin>;
 
     fn get_property_formats(&self) -> Option<ContentFormats>;
 
@@ -72,7 +93,10 @@ pub trait ContentProviderExt: 'static {
 
     fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<ContentProvider>> ContentProviderExt for O {
@@ -85,42 +109,92 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn get_value(&self, value: &mut glib::Value) -> Result<(), Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gdk_sys::gdk_content_provider_get_value(self.as_ref().to_glib_none().0, value.to_glib_none_mut().0, &mut error);
-            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+            let _ = gdk_sys::gdk_content_provider_get_value(
+                self.as_ref().to_glib_none().0,
+                value.to_glib_none_mut().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
     fn ref_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_ref_formats(self.as_ref().to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_content_provider_ref_formats(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn ref_storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_ref_storable_formats(self.as_ref().to_glib_none().0))
+            from_glib_full(gdk_sys::gdk_content_provider_ref_storable_formats(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
-    fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority, cancellable: Option<&Q>, callback: R) {
+    fn write_mime_type_async<
+        P: IsA<gio::OutputStream>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), Error>) + Send + 'static,
+    >(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+        cancellable: Option<&Q>,
+        callback: R,
+    ) {
         let user_data: Box<R> = Box::new(callback);
-        unsafe extern "C" fn write_mime_type_async_trampoline<R: FnOnce(Result<(), Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        unsafe extern "C" fn write_mime_type_async_trampoline<
+            R: FnOnce(Result<(), Error>) + Send + 'static,
+        >(
+            _source_object: *mut gobject_sys::GObject,
+            res: *mut gio_sys::GAsyncResult,
+            user_data: glib_sys::gpointer,
+        ) {
             let mut error = ptr::null_mut();
-            let _ = gdk_sys::gdk_content_provider_write_mime_type_finish(_source_object as *mut _, res, &mut error);
-            let result = if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) };
+            let _ = gdk_sys::gdk_content_provider_write_mime_type_finish(
+                _source_object as *mut _,
+                res,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            };
             let callback: Box<R> = Box::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = write_mime_type_async_trampoline::<R>;
         unsafe {
-            gdk_sys::gdk_content_provider_write_mime_type_async(self.as_ref().to_glib_none().0, mime_type.to_glib_none().0, stream.as_ref().to_glib_none().0, io_priority.to_glib(), cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+            gdk_sys::gdk_content_provider_write_mime_type_async(
+                self.as_ref().to_glib_none().0,
+                mime_type.to_glib_none().0,
+                stream.as_ref().to_glib_none().0,
+                io_priority.to_glib(),
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box::into_raw(user_data) as *mut _,
+            );
         }
     }
 
     #[cfg(feature = "futures")]
-    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
-        use gio::GioFuture;
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+    ) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
         use fragile::Fragile;
+        use gio::GioFuture;
 
         let mime_type = String::from(mime_type);
         let stream = stream.clone();
@@ -144,7 +218,11 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn get_property_formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"formats\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"formats\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
@@ -152,50 +230,82 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn get_property_storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"storable-formats\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"storable-formats\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn content_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkContentProvider, f: glib_sys::gpointer)
-            where P: IsA<ContentProvider>
+        unsafe extern "C" fn content_changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gdk_sys::GdkContentProvider,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"content-changed\0".as_ptr() as *const _,
-                Some(transmute(content_changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"content-changed\0".as_ptr() as *const _,
+                Some(transmute(content_changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_formats_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkContentProvider, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ContentProvider>
+        unsafe extern "C" fn notify_formats_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gdk_sys::GdkContentProvider,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute(notify_formats_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::formats\0".as_ptr() as *const _,
+                Some(transmute(notify_formats_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_storable_formats_trampoline<P, F: Fn(&P) + 'static>(this: *mut gdk_sys::GdkContentProvider, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ContentProvider>
+    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_storable_formats_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gdk_sys::GdkContentProvider,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::storable-formats\0".as_ptr() as *const _,
-                Some(transmute(notify_storable_formats_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::storable-formats\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_storable_formats_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

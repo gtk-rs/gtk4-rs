@@ -2,6 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "futures")]
+use futures::future;
+use gdk_sys;
+use gio;
+use gio_sys;
+use glib;
+use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::GString;
+use glib_sys;
+use gobject_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
+use std::ptr;
 use ContentFormats;
 use Device;
 use Display;
@@ -9,24 +27,6 @@ use Drag;
 use DragAction;
 use Error;
 use Surface;
-#[cfg(feature = "futures")]
-use futures::future;
-use gdk_sys;
-use gio;
-use gio_sys;
-use glib;
-use glib::GString;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
 
 glib_wrapper! {
     pub struct Drop(Object<gdk_sys::GdkDrop, DropClass>);
@@ -44,106 +44,141 @@ impl Drop {
     }
 
     pub fn get_actions(&self) -> DragAction {
-        unsafe {
-            from_glib(gdk_sys::gdk_drop_get_actions(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gdk_sys::gdk_drop_get_actions(self.to_glib_none().0)) }
     }
 
     pub fn get_device(&self) -> Option<Device> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_drop_get_device(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
     pub fn get_display(&self) -> Option<Display> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_drop_get_display(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
     pub fn get_drag(&self) -> Option<Drag> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_drop_get_drag(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_drop_get_drag(self.to_glib_none().0)) }
     }
 
     pub fn get_formats(&self) -> Option<ContentFormats> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_drop_get_formats(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
     pub fn get_surface(&self) -> Option<Surface> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_drop_get_surface(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
 
-    pub fn read_text_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<GString, Error>) + Send + 'static>(&self, cancellable: Option<&P>, callback: Q) {
+    pub fn read_text_async<
+        P: IsA<gio::Cancellable>,
+        Q: FnOnce(Result<GString, Error>) + Send + 'static,
+    >(
+        &self,
+        cancellable: Option<&P>,
+        callback: Q,
+    ) {
         let user_data: Box<Q> = Box::new(callback);
-        unsafe extern "C" fn read_text_async_trampoline<Q: FnOnce(Result<GString, Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        unsafe extern "C" fn read_text_async_trampoline<
+            Q: FnOnce(Result<GString, Error>) + Send + 'static,
+        >(
+            _source_object: *mut gobject_sys::GObject,
+            res: *mut gio_sys::GAsyncResult,
+            user_data: glib_sys::gpointer,
+        ) {
             let mut error = ptr::null_mut();
             let ret = gdk_sys::gdk_drop_read_text_finish(_source_object as *mut _, res, &mut error);
-            let result = if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) };
+            let result = if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            };
             let callback: Box<Q> = Box::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = read_text_async_trampoline::<Q>;
         unsafe {
-            gdk_sys::gdk_drop_read_text_async(self.to_glib_none().0, cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+            gdk_sys::gdk_drop_read_text_async(
+                self.to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box::into_raw(user_data) as *mut _,
+            );
         }
     }
 
     #[cfg(feature = "futures")]
-    pub fn read_text_async_future(&self) -> Box_<dyn future::Future<Output = Result<GString, Error>> + std::marker::Unpin> {
-        use gio::GioFuture;
+    pub fn read_text_async_future(
+        &self,
+    ) -> Box_<dyn future::Future<Output = Result<GString, Error>> + std::marker::Unpin> {
         use fragile::Fragile;
+        use gio::GioFuture;
 
         GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             let send = Fragile::new(send);
-            obj.read_text_async(
-                Some(&cancellable),
-                move |res| {
-                    let _ = send.into_inner().send(res);
-                },
-            );
+            obj.read_text_async(Some(&cancellable), move |res| {
+                let _ = send.into_inner().send(res);
+            });
 
             cancellable
         })
     }
 
-    pub fn read_value_async<P: IsA<gio::Cancellable>, Q: FnOnce(Result<glib::Value, Error>) + Send + 'static>(&self, type_: glib::types::Type, io_priority: glib::Priority, cancellable: Option<&P>, callback: Q) {
+    pub fn read_value_async<
+        P: IsA<gio::Cancellable>,
+        Q: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+    >(
+        &self,
+        type_: glib::types::Type,
+        io_priority: glib::Priority,
+        cancellable: Option<&P>,
+        callback: Q,
+    ) {
         let user_data: Box<Q> = Box::new(callback);
-        unsafe extern "C" fn read_value_async_trampoline<Q: FnOnce(Result<glib::Value, Error>) + Send + 'static>(_source_object: *mut gobject_sys::GObject, res: *mut gio_sys::GAsyncResult, user_data: glib_sys::gpointer) {
+        unsafe extern "C" fn read_value_async_trampoline<
+            Q: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+        >(
+            _source_object: *mut gobject_sys::GObject,
+            res: *mut gio_sys::GAsyncResult,
+            user_data: glib_sys::gpointer,
+        ) {
             let mut error = ptr::null_mut();
-            let ret = gdk_sys::gdk_drop_read_value_finish(_source_object as *mut _, res, &mut error);
-            let result = if error.is_null() { Ok(from_glib_none(ret)) } else { Err(from_glib_full(error)) };
+            let ret =
+                gdk_sys::gdk_drop_read_value_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() {
+                Ok(from_glib_none(ret))
+            } else {
+                Err(from_glib_full(error))
+            };
             let callback: Box<Q> = Box::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = read_value_async_trampoline::<Q>;
         unsafe {
-            gdk_sys::gdk_drop_read_value_async(self.to_glib_none().0, type_.to_glib(), io_priority.to_glib(), cancellable.map(|p| p.as_ref()).to_glib_none().0, Some(callback), Box::into_raw(user_data) as *mut _);
+            gdk_sys::gdk_drop_read_value_async(
+                self.to_glib_none().0,
+                type_.to_glib(),
+                io_priority.to_glib(),
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box::into_raw(user_data) as *mut _,
+            );
         }
     }
 
     #[cfg(feature = "futures")]
-    pub fn read_value_async_future(&self, type_: glib::types::Type, io_priority: glib::Priority) -> Box_<dyn future::Future<Output = Result<glib::Value, Error>> + std::marker::Unpin> {
-        use gio::GioFuture;
+    pub fn read_value_async_future(
+        &self,
+        type_: glib::types::Type,
+        io_priority: glib::Priority,
+    ) -> Box_<dyn future::Future<Output = Result<glib::Value, Error>> + std::marker::Unpin> {
         use fragile::Fragile;
+        use gio::GioFuture;
 
         GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             let send = Fragile::new(send);
-            obj.read_value_async(
-                type_,
-                io_priority,
-                Some(&cancellable),
-                move |res| {
-                    let _ = send.into_inner().send(res);
-                },
-            );
+            obj.read_value_async(type_, io_priority, Some(&cancellable), move |res| {
+                let _ = send.into_inner().send(res);
+            });
 
             cancellable
         })
@@ -156,14 +191,22 @@ impl Drop {
     }
 
     pub fn connect_property_display_notify<F: Fn(&Drop) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drop) + 'static>(this: *mut gdk_sys::GdkDrop, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+        unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drop) + 'static>(
+            this: *mut gdk_sys::GdkDrop,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::display\0".as_ptr() as *const _,
-                Some(transmute(notify_display_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::display\0".as_ptr() as *const _,
+                Some(transmute(notify_display_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

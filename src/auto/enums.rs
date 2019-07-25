@@ -3,20 +3,19 @@
 // DO NOT EDIT
 
 use gdk_sys;
-use glib::Quark;
-use glib::StaticType;
-use glib::Type;
 use glib::error::ErrorDomain;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
+use glib::Quark;
+use glib::StaticType;
+use glib::Type;
 use gobject_sys;
 use std::fmt;
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum AxisUse {
     Ignore,
     X,
@@ -35,20 +34,24 @@ pub enum AxisUse {
 
 impl fmt::Display for AxisUse {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AxisUse::{}", match *self {
-            AxisUse::Ignore => "Ignore",
-            AxisUse::X => "X",
-            AxisUse::Y => "Y",
-            AxisUse::Pressure => "Pressure",
-            AxisUse::Xtilt => "Xtilt",
-            AxisUse::Ytilt => "Ytilt",
-            AxisUse::Wheel => "Wheel",
-            AxisUse::Distance => "Distance",
-            AxisUse::Rotation => "Rotation",
-            AxisUse::Slider => "Slider",
-            AxisUse::Last => "Last",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "AxisUse::{}",
+            match *self {
+                AxisUse::Ignore => "Ignore",
+                AxisUse::X => "X",
+                AxisUse::Y => "Y",
+                AxisUse::Pressure => "Pressure",
+                AxisUse::Xtilt => "Xtilt",
+                AxisUse::Ytilt => "Ytilt",
+                AxisUse::Wheel => "Wheel",
+                AxisUse::Distance => "Distance",
+                AxisUse::Rotation => "Rotation",
+                AxisUse::Slider => "Slider",
+                AxisUse::Last => "Last",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -69,7 +72,7 @@ impl ToGlib for AxisUse {
             AxisUse::Rotation => gdk_sys::GDK_AXIS_ROTATION,
             AxisUse::Slider => gdk_sys::GDK_AXIS_SLIDER,
             AxisUse::Last => gdk_sys::GDK_AXIS_LAST,
-            AxisUse::__Unknown(value) => value
+            AxisUse::__Unknown(value) => value,
         }
     }
 }
@@ -119,8 +122,7 @@ impl SetValue for AxisUse {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ByteOrder {
     LsbFirst,
     MsbFirst,
@@ -130,11 +132,15 @@ pub enum ByteOrder {
 
 impl fmt::Display for ByteOrder {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ByteOrder::{}", match *self {
-            ByteOrder::LsbFirst => "LsbFirst",
-            ByteOrder::MsbFirst => "MsbFirst",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ByteOrder::{}",
+            match *self {
+                ByteOrder::LsbFirst => "LsbFirst",
+                ByteOrder::MsbFirst => "MsbFirst",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -146,7 +152,7 @@ impl ToGlib for ByteOrder {
         match *self {
             ByteOrder::LsbFirst => gdk_sys::GDK_LSB_FIRST,
             ByteOrder::MsbFirst => gdk_sys::GDK_MSB_FIRST,
-            ByteOrder::__Unknown(value) => value
+            ByteOrder::__Unknown(value) => value,
         }
     }
 }
@@ -187,8 +193,7 @@ impl SetValue for ByteOrder {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum CrossingMode {
     Normal,
     Grab,
@@ -205,18 +210,22 @@ pub enum CrossingMode {
 
 impl fmt::Display for CrossingMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CrossingMode::{}", match *self {
-            CrossingMode::Normal => "Normal",
-            CrossingMode::Grab => "Grab",
-            CrossingMode::Ungrab => "Ungrab",
-            CrossingMode::GtkGrab => "GtkGrab",
-            CrossingMode::GtkUngrab => "GtkUngrab",
-            CrossingMode::StateChanged => "StateChanged",
-            CrossingMode::TouchBegin => "TouchBegin",
-            CrossingMode::TouchEnd => "TouchEnd",
-            CrossingMode::DeviceSwitch => "DeviceSwitch",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "CrossingMode::{}",
+            match *self {
+                CrossingMode::Normal => "Normal",
+                CrossingMode::Grab => "Grab",
+                CrossingMode::Ungrab => "Ungrab",
+                CrossingMode::GtkGrab => "GtkGrab",
+                CrossingMode::GtkUngrab => "GtkUngrab",
+                CrossingMode::StateChanged => "StateChanged",
+                CrossingMode::TouchBegin => "TouchBegin",
+                CrossingMode::TouchEnd => "TouchEnd",
+                CrossingMode::DeviceSwitch => "DeviceSwitch",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -235,7 +244,7 @@ impl ToGlib for CrossingMode {
             CrossingMode::TouchBegin => gdk_sys::GDK_CROSSING_TOUCH_BEGIN,
             CrossingMode::TouchEnd => gdk_sys::GDK_CROSSING_TOUCH_END,
             CrossingMode::DeviceSwitch => gdk_sys::GDK_CROSSING_DEVICE_SWITCH,
-            CrossingMode::__Unknown(value) => value
+            CrossingMode::__Unknown(value) => value,
         }
     }
 }
@@ -283,8 +292,7 @@ impl SetValue for CrossingMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DevicePadFeature {
     Button,
     Ring,
@@ -295,12 +303,16 @@ pub enum DevicePadFeature {
 
 impl fmt::Display for DevicePadFeature {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DevicePadFeature::{}", match *self {
-            DevicePadFeature::Button => "Button",
-            DevicePadFeature::Ring => "Ring",
-            DevicePadFeature::Strip => "Strip",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DevicePadFeature::{}",
+            match *self {
+                DevicePadFeature::Button => "Button",
+                DevicePadFeature::Ring => "Ring",
+                DevicePadFeature::Strip => "Strip",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -313,7 +325,7 @@ impl ToGlib for DevicePadFeature {
             DevicePadFeature::Button => gdk_sys::GDK_DEVICE_PAD_FEATURE_BUTTON,
             DevicePadFeature::Ring => gdk_sys::GDK_DEVICE_PAD_FEATURE_RING,
             DevicePadFeature::Strip => gdk_sys::GDK_DEVICE_PAD_FEATURE_STRIP,
-            DevicePadFeature::__Unknown(value) => value
+            DevicePadFeature::__Unknown(value) => value,
         }
     }
 }
@@ -355,8 +367,7 @@ impl SetValue for DevicePadFeature {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DeviceToolType {
     Unknown,
     Pen,
@@ -372,17 +383,21 @@ pub enum DeviceToolType {
 
 impl fmt::Display for DeviceToolType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DeviceToolType::{}", match *self {
-            DeviceToolType::Unknown => "Unknown",
-            DeviceToolType::Pen => "Pen",
-            DeviceToolType::Eraser => "Eraser",
-            DeviceToolType::Brush => "Brush",
-            DeviceToolType::Pencil => "Pencil",
-            DeviceToolType::Airbrush => "Airbrush",
-            DeviceToolType::Mouse => "Mouse",
-            DeviceToolType::Lens => "Lens",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DeviceToolType::{}",
+            match *self {
+                DeviceToolType::Unknown => "Unknown",
+                DeviceToolType::Pen => "Pen",
+                DeviceToolType::Eraser => "Eraser",
+                DeviceToolType::Brush => "Brush",
+                DeviceToolType::Pencil => "Pencil",
+                DeviceToolType::Airbrush => "Airbrush",
+                DeviceToolType::Mouse => "Mouse",
+                DeviceToolType::Lens => "Lens",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -400,7 +415,7 @@ impl ToGlib for DeviceToolType {
             DeviceToolType::Airbrush => gdk_sys::GDK_DEVICE_TOOL_TYPE_AIRBRUSH,
             DeviceToolType::Mouse => gdk_sys::GDK_DEVICE_TOOL_TYPE_MOUSE,
             DeviceToolType::Lens => gdk_sys::GDK_DEVICE_TOOL_TYPE_LENS,
-            DeviceToolType::__Unknown(value) => value
+            DeviceToolType::__Unknown(value) => value,
         }
     }
 }
@@ -447,8 +462,7 @@ impl SetValue for DeviceToolType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DeviceType {
     Master,
     Slave,
@@ -459,12 +473,16 @@ pub enum DeviceType {
 
 impl fmt::Display for DeviceType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DeviceType::{}", match *self {
-            DeviceType::Master => "Master",
-            DeviceType::Slave => "Slave",
-            DeviceType::Floating => "Floating",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DeviceType::{}",
+            match *self {
+                DeviceType::Master => "Master",
+                DeviceType::Slave => "Slave",
+                DeviceType::Floating => "Floating",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -477,7 +495,7 @@ impl ToGlib for DeviceType {
             DeviceType::Master => gdk_sys::GDK_DEVICE_TYPE_MASTER,
             DeviceType::Slave => gdk_sys::GDK_DEVICE_TYPE_SLAVE,
             DeviceType::Floating => gdk_sys::GDK_DEVICE_TYPE_FLOATING,
-            DeviceType::__Unknown(value) => value
+            DeviceType::__Unknown(value) => value,
         }
     }
 }
@@ -519,8 +537,7 @@ impl SetValue for DeviceType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DragCancelReason {
     NoTarget,
     UserCancelled,
@@ -531,12 +548,16 @@ pub enum DragCancelReason {
 
 impl fmt::Display for DragCancelReason {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DragCancelReason::{}", match *self {
-            DragCancelReason::NoTarget => "NoTarget",
-            DragCancelReason::UserCancelled => "UserCancelled",
-            DragCancelReason::Error => "Error",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DragCancelReason::{}",
+            match *self {
+                DragCancelReason::NoTarget => "NoTarget",
+                DragCancelReason::UserCancelled => "UserCancelled",
+                DragCancelReason::Error => "Error",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -549,7 +570,7 @@ impl ToGlib for DragCancelReason {
             DragCancelReason::NoTarget => gdk_sys::GDK_DRAG_CANCEL_NO_TARGET,
             DragCancelReason::UserCancelled => gdk_sys::GDK_DRAG_CANCEL_USER_CANCELLED,
             DragCancelReason::Error => gdk_sys::GDK_DRAG_CANCEL_ERROR,
-            DragCancelReason::__Unknown(value) => value
+            DragCancelReason::__Unknown(value) => value,
         }
     }
 }
@@ -591,8 +612,7 @@ impl SetValue for DragCancelReason {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum EventType {
     Nothing,
     Delete,
@@ -632,41 +652,45 @@ pub enum EventType {
 
 impl fmt::Display for EventType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EventType::{}", match *self {
-            EventType::Nothing => "Nothing",
-            EventType::Delete => "Delete",
-            EventType::Destroy => "Destroy",
-            EventType::MotionNotify => "MotionNotify",
-            EventType::ButtonPress => "ButtonPress",
-            EventType::ButtonRelease => "ButtonRelease",
-            EventType::KeyPress => "KeyPress",
-            EventType::KeyRelease => "KeyRelease",
-            EventType::EnterNotify => "EnterNotify",
-            EventType::LeaveNotify => "LeaveNotify",
-            EventType::FocusChange => "FocusChange",
-            EventType::Configure => "Configure",
-            EventType::ProximityIn => "ProximityIn",
-            EventType::ProximityOut => "ProximityOut",
-            EventType::DragEnter => "DragEnter",
-            EventType::DragLeave => "DragLeave",
-            EventType::DragMotion => "DragMotion",
-            EventType::DropStart => "DropStart",
-            EventType::Scroll => "Scroll",
-            EventType::GrabBroken => "GrabBroken",
-            EventType::TouchBegin => "TouchBegin",
-            EventType::TouchUpdate => "TouchUpdate",
-            EventType::TouchEnd => "TouchEnd",
-            EventType::TouchCancel => "TouchCancel",
-            EventType::TouchpadSwipe => "TouchpadSwipe",
-            EventType::TouchpadPinch => "TouchpadPinch",
-            EventType::PadButtonPress => "PadButtonPress",
-            EventType::PadButtonRelease => "PadButtonRelease",
-            EventType::PadRing => "PadRing",
-            EventType::PadStrip => "PadStrip",
-            EventType::PadGroupMode => "PadGroupMode",
-            EventType::EventLast => "EventLast",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "EventType::{}",
+            match *self {
+                EventType::Nothing => "Nothing",
+                EventType::Delete => "Delete",
+                EventType::Destroy => "Destroy",
+                EventType::MotionNotify => "MotionNotify",
+                EventType::ButtonPress => "ButtonPress",
+                EventType::ButtonRelease => "ButtonRelease",
+                EventType::KeyPress => "KeyPress",
+                EventType::KeyRelease => "KeyRelease",
+                EventType::EnterNotify => "EnterNotify",
+                EventType::LeaveNotify => "LeaveNotify",
+                EventType::FocusChange => "FocusChange",
+                EventType::Configure => "Configure",
+                EventType::ProximityIn => "ProximityIn",
+                EventType::ProximityOut => "ProximityOut",
+                EventType::DragEnter => "DragEnter",
+                EventType::DragLeave => "DragLeave",
+                EventType::DragMotion => "DragMotion",
+                EventType::DropStart => "DropStart",
+                EventType::Scroll => "Scroll",
+                EventType::GrabBroken => "GrabBroken",
+                EventType::TouchBegin => "TouchBegin",
+                EventType::TouchUpdate => "TouchUpdate",
+                EventType::TouchEnd => "TouchEnd",
+                EventType::TouchCancel => "TouchCancel",
+                EventType::TouchpadSwipe => "TouchpadSwipe",
+                EventType::TouchpadPinch => "TouchpadPinch",
+                EventType::PadButtonPress => "PadButtonPress",
+                EventType::PadButtonRelease => "PadButtonRelease",
+                EventType::PadRing => "PadRing",
+                EventType::PadStrip => "PadStrip",
+                EventType::PadGroupMode => "PadGroupMode",
+                EventType::EventLast => "EventLast",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -708,7 +732,7 @@ impl ToGlib for EventType {
             EventType::PadStrip => gdk_sys::GDK_PAD_STRIP,
             EventType::PadGroupMode => gdk_sys::GDK_PAD_GROUP_MODE,
             EventType::EventLast => gdk_sys::GDK_EVENT_LAST,
-            EventType::__Unknown(value) => value
+            EventType::__Unknown(value) => value,
         }
     }
 }
@@ -779,8 +803,7 @@ impl SetValue for EventType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum FullscreenMode {
     CurrentMonitor,
     AllMonitors,
@@ -790,11 +813,15 @@ pub enum FullscreenMode {
 
 impl fmt::Display for FullscreenMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FullscreenMode::{}", match *self {
-            FullscreenMode::CurrentMonitor => "CurrentMonitor",
-            FullscreenMode::AllMonitors => "AllMonitors",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "FullscreenMode::{}",
+            match *self {
+                FullscreenMode::CurrentMonitor => "CurrentMonitor",
+                FullscreenMode::AllMonitors => "AllMonitors",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -806,7 +833,7 @@ impl ToGlib for FullscreenMode {
         match *self {
             FullscreenMode::CurrentMonitor => gdk_sys::GDK_FULLSCREEN_ON_CURRENT_MONITOR,
             FullscreenMode::AllMonitors => gdk_sys::GDK_FULLSCREEN_ON_ALL_MONITORS,
-            FullscreenMode::__Unknown(value) => value
+            FullscreenMode::__Unknown(value) => value,
         }
     }
 }
@@ -847,8 +874,7 @@ impl SetValue for FullscreenMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum GLError {
     NotAvailable,
     UnsupportedFormat,
@@ -861,14 +887,18 @@ pub enum GLError {
 
 impl fmt::Display for GLError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GLError::{}", match *self {
-            GLError::NotAvailable => "NotAvailable",
-            GLError::UnsupportedFormat => "UnsupportedFormat",
-            GLError::UnsupportedProfile => "UnsupportedProfile",
-            GLError::CompilationFailed => "CompilationFailed",
-            GLError::LinkFailed => "LinkFailed",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "GLError::{}",
+            match *self {
+                GLError::NotAvailable => "NotAvailable",
+                GLError::UnsupportedFormat => "UnsupportedFormat",
+                GLError::UnsupportedProfile => "UnsupportedProfile",
+                GLError::CompilationFailed => "CompilationFailed",
+                GLError::LinkFailed => "LinkFailed",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -883,7 +913,7 @@ impl ToGlib for GLError {
             GLError::UnsupportedProfile => gdk_sys::GDK_GL_ERROR_UNSUPPORTED_PROFILE,
             GLError::CompilationFailed => gdk_sys::GDK_GL_ERROR_COMPILATION_FAILED,
             GLError::LinkFailed => gdk_sys::GDK_GL_ERROR_LINK_FAILED,
-            GLError::__Unknown(value) => value
+            GLError::__Unknown(value) => value,
         }
     }
 }
@@ -950,8 +980,7 @@ impl SetValue for GLError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum GrabOwnership {
     None,
     Surface,
@@ -962,12 +991,16 @@ pub enum GrabOwnership {
 
 impl fmt::Display for GrabOwnership {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GrabOwnership::{}", match *self {
-            GrabOwnership::None => "None",
-            GrabOwnership::Surface => "Surface",
-            GrabOwnership::Application => "Application",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "GrabOwnership::{}",
+            match *self {
+                GrabOwnership::None => "None",
+                GrabOwnership::Surface => "Surface",
+                GrabOwnership::Application => "Application",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -980,7 +1013,7 @@ impl ToGlib for GrabOwnership {
             GrabOwnership::None => gdk_sys::GDK_OWNERSHIP_NONE,
             GrabOwnership::Surface => gdk_sys::GDK_OWNERSHIP_SURFACE,
             GrabOwnership::Application => gdk_sys::GDK_OWNERSHIP_APPLICATION,
-            GrabOwnership::__Unknown(value) => value
+            GrabOwnership::__Unknown(value) => value,
         }
     }
 }
@@ -1022,8 +1055,7 @@ impl SetValue for GrabOwnership {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum GrabStatus {
     Success,
     AlreadyGrabbed,
@@ -1037,15 +1069,19 @@ pub enum GrabStatus {
 
 impl fmt::Display for GrabStatus {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GrabStatus::{}", match *self {
-            GrabStatus::Success => "Success",
-            GrabStatus::AlreadyGrabbed => "AlreadyGrabbed",
-            GrabStatus::InvalidTime => "InvalidTime",
-            GrabStatus::NotViewable => "NotViewable",
-            GrabStatus::Frozen => "Frozen",
-            GrabStatus::Failed => "Failed",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "GrabStatus::{}",
+            match *self {
+                GrabStatus::Success => "Success",
+                GrabStatus::AlreadyGrabbed => "AlreadyGrabbed",
+                GrabStatus::InvalidTime => "InvalidTime",
+                GrabStatus::NotViewable => "NotViewable",
+                GrabStatus::Frozen => "Frozen",
+                GrabStatus::Failed => "Failed",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1061,7 +1097,7 @@ impl ToGlib for GrabStatus {
             GrabStatus::NotViewable => gdk_sys::GDK_GRAB_NOT_VIEWABLE,
             GrabStatus::Frozen => gdk_sys::GDK_GRAB_FROZEN,
             GrabStatus::Failed => gdk_sys::GDK_GRAB_FAILED,
-            GrabStatus::__Unknown(value) => value
+            GrabStatus::__Unknown(value) => value,
         }
     }
 }
@@ -1106,8 +1142,7 @@ impl SetValue for GrabStatus {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Gravity {
     NorthWest,
     North,
@@ -1125,19 +1160,23 @@ pub enum Gravity {
 
 impl fmt::Display for Gravity {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Gravity::{}", match *self {
-            Gravity::NorthWest => "NorthWest",
-            Gravity::North => "North",
-            Gravity::NorthEast => "NorthEast",
-            Gravity::West => "West",
-            Gravity::Center => "Center",
-            Gravity::East => "East",
-            Gravity::SouthWest => "SouthWest",
-            Gravity::South => "South",
-            Gravity::SouthEast => "SouthEast",
-            Gravity::Static => "Static",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Gravity::{}",
+            match *self {
+                Gravity::NorthWest => "NorthWest",
+                Gravity::North => "North",
+                Gravity::NorthEast => "NorthEast",
+                Gravity::West => "West",
+                Gravity::Center => "Center",
+                Gravity::East => "East",
+                Gravity::SouthWest => "SouthWest",
+                Gravity::South => "South",
+                Gravity::SouthEast => "SouthEast",
+                Gravity::Static => "Static",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1157,7 +1196,7 @@ impl ToGlib for Gravity {
             Gravity::South => gdk_sys::GDK_GRAVITY_SOUTH,
             Gravity::SouthEast => gdk_sys::GDK_GRAVITY_SOUTH_EAST,
             Gravity::Static => gdk_sys::GDK_GRAVITY_STATIC,
-            Gravity::__Unknown(value) => value
+            Gravity::__Unknown(value) => value,
         }
     }
 }
@@ -1206,8 +1245,7 @@ impl SetValue for Gravity {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum InputMode {
     Disabled,
     Screen,
@@ -1218,12 +1256,16 @@ pub enum InputMode {
 
 impl fmt::Display for InputMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "InputMode::{}", match *self {
-            InputMode::Disabled => "Disabled",
-            InputMode::Screen => "Screen",
-            InputMode::Surface => "Surface",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "InputMode::{}",
+            match *self {
+                InputMode::Disabled => "Disabled",
+                InputMode::Screen => "Screen",
+                InputMode::Surface => "Surface",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1236,7 +1278,7 @@ impl ToGlib for InputMode {
             InputMode::Disabled => gdk_sys::GDK_MODE_DISABLED,
             InputMode::Screen => gdk_sys::GDK_MODE_SCREEN,
             InputMode::Surface => gdk_sys::GDK_MODE_SURFACE,
-            InputMode::__Unknown(value) => value
+            InputMode::__Unknown(value) => value,
         }
     }
 }
@@ -1278,8 +1320,7 @@ impl SetValue for InputMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum InputSource {
     Mouse,
     Pen,
@@ -1296,18 +1337,22 @@ pub enum InputSource {
 
 impl fmt::Display for InputSource {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "InputSource::{}", match *self {
-            InputSource::Mouse => "Mouse",
-            InputSource::Pen => "Pen",
-            InputSource::Eraser => "Eraser",
-            InputSource::Cursor => "Cursor",
-            InputSource::Keyboard => "Keyboard",
-            InputSource::Touchscreen => "Touchscreen",
-            InputSource::Touchpad => "Touchpad",
-            InputSource::Trackpoint => "Trackpoint",
-            InputSource::TabletPad => "TabletPad",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "InputSource::{}",
+            match *self {
+                InputSource::Mouse => "Mouse",
+                InputSource::Pen => "Pen",
+                InputSource::Eraser => "Eraser",
+                InputSource::Cursor => "Cursor",
+                InputSource::Keyboard => "Keyboard",
+                InputSource::Touchscreen => "Touchscreen",
+                InputSource::Touchpad => "Touchpad",
+                InputSource::Trackpoint => "Trackpoint",
+                InputSource::TabletPad => "TabletPad",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1326,7 +1371,7 @@ impl ToGlib for InputSource {
             InputSource::Touchpad => gdk_sys::GDK_SOURCE_TOUCHPAD,
             InputSource::Trackpoint => gdk_sys::GDK_SOURCE_TRACKPOINT,
             InputSource::TabletPad => gdk_sys::GDK_SOURCE_TABLET_PAD,
-            InputSource::__Unknown(value) => value
+            InputSource::__Unknown(value) => value,
         }
     }
 }
@@ -1374,8 +1419,7 @@ impl SetValue for InputSource {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum MemoryFormat {
     B8g8r8a8Premultiplied,
     A8r8g8b8Premultiplied,
@@ -1392,18 +1436,22 @@ pub enum MemoryFormat {
 
 impl fmt::Display for MemoryFormat {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MemoryFormat::{}", match *self {
-            MemoryFormat::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
-            MemoryFormat::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
-            MemoryFormat::B8g8r8a8 => "B8g8r8a8",
-            MemoryFormat::A8r8g8b8 => "A8r8g8b8",
-            MemoryFormat::R8g8b8a8 => "R8g8b8a8",
-            MemoryFormat::A8b8g8r8 => "A8b8g8r8",
-            MemoryFormat::R8g8b8 => "R8g8b8",
-            MemoryFormat::B8g8r8 => "B8g8r8",
-            MemoryFormat::NFormats => "NFormats",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "MemoryFormat::{}",
+            match *self {
+                MemoryFormat::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
+                MemoryFormat::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
+                MemoryFormat::B8g8r8a8 => "B8g8r8a8",
+                MemoryFormat::A8r8g8b8 => "A8r8g8b8",
+                MemoryFormat::R8g8b8a8 => "R8g8b8a8",
+                MemoryFormat::A8b8g8r8 => "A8b8g8r8",
+                MemoryFormat::R8g8b8 => "R8g8b8",
+                MemoryFormat::B8g8r8 => "B8g8r8",
+                MemoryFormat::NFormats => "NFormats",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1422,7 +1470,7 @@ impl ToGlib for MemoryFormat {
             MemoryFormat::R8g8b8 => gdk_sys::GDK_MEMORY_R8G8B8,
             MemoryFormat::B8g8r8 => gdk_sys::GDK_MEMORY_B8G8R8,
             MemoryFormat::NFormats => gdk_sys::GDK_MEMORY_N_FORMATS,
-            MemoryFormat::__Unknown(value) => value
+            MemoryFormat::__Unknown(value) => value,
         }
     }
 }
@@ -1470,8 +1518,7 @@ impl SetValue for MemoryFormat {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ModifierIntent {
     PrimaryAccelerator,
     ContextMenu,
@@ -1486,16 +1533,20 @@ pub enum ModifierIntent {
 
 impl fmt::Display for ModifierIntent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ModifierIntent::{}", match *self {
-            ModifierIntent::PrimaryAccelerator => "PrimaryAccelerator",
-            ModifierIntent::ContextMenu => "ContextMenu",
-            ModifierIntent::ExtendSelection => "ExtendSelection",
-            ModifierIntent::ModifySelection => "ModifySelection",
-            ModifierIntent::NoTextInput => "NoTextInput",
-            ModifierIntent::ShiftGroup => "ShiftGroup",
-            ModifierIntent::DefaultModMask => "DefaultModMask",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ModifierIntent::{}",
+            match *self {
+                ModifierIntent::PrimaryAccelerator => "PrimaryAccelerator",
+                ModifierIntent::ContextMenu => "ContextMenu",
+                ModifierIntent::ExtendSelection => "ExtendSelection",
+                ModifierIntent::ModifySelection => "ModifySelection",
+                ModifierIntent::NoTextInput => "NoTextInput",
+                ModifierIntent::ShiftGroup => "ShiftGroup",
+                ModifierIntent::DefaultModMask => "DefaultModMask",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1512,7 +1563,7 @@ impl ToGlib for ModifierIntent {
             ModifierIntent::NoTextInput => gdk_sys::GDK_MODIFIER_INTENT_NO_TEXT_INPUT,
             ModifierIntent::ShiftGroup => gdk_sys::GDK_MODIFIER_INTENT_SHIFT_GROUP,
             ModifierIntent::DefaultModMask => gdk_sys::GDK_MODIFIER_INTENT_DEFAULT_MOD_MASK,
-            ModifierIntent::__Unknown(value) => value
+            ModifierIntent::__Unknown(value) => value,
         }
     }
 }
@@ -1558,8 +1609,7 @@ impl SetValue for ModifierIntent {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum NotifyType {
     Ancestor,
     Virtual,
@@ -1573,15 +1623,19 @@ pub enum NotifyType {
 
 impl fmt::Display for NotifyType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NotifyType::{}", match *self {
-            NotifyType::Ancestor => "Ancestor",
-            NotifyType::Virtual => "Virtual",
-            NotifyType::Inferior => "Inferior",
-            NotifyType::Nonlinear => "Nonlinear",
-            NotifyType::NonlinearVirtual => "NonlinearVirtual",
-            NotifyType::Unknown => "Unknown",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "NotifyType::{}",
+            match *self {
+                NotifyType::Ancestor => "Ancestor",
+                NotifyType::Virtual => "Virtual",
+                NotifyType::Inferior => "Inferior",
+                NotifyType::Nonlinear => "Nonlinear",
+                NotifyType::NonlinearVirtual => "NonlinearVirtual",
+                NotifyType::Unknown => "Unknown",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1597,7 +1651,7 @@ impl ToGlib for NotifyType {
             NotifyType::Nonlinear => gdk_sys::GDK_NOTIFY_NONLINEAR,
             NotifyType::NonlinearVirtual => gdk_sys::GDK_NOTIFY_NONLINEAR_VIRTUAL,
             NotifyType::Unknown => gdk_sys::GDK_NOTIFY_UNKNOWN,
-            NotifyType::__Unknown(value) => value
+            NotifyType::__Unknown(value) => value,
         }
     }
 }
@@ -1642,8 +1696,7 @@ impl SetValue for NotifyType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ScrollDirection {
     Up,
     Down,
@@ -1656,14 +1709,18 @@ pub enum ScrollDirection {
 
 impl fmt::Display for ScrollDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScrollDirection::{}", match *self {
-            ScrollDirection::Up => "Up",
-            ScrollDirection::Down => "Down",
-            ScrollDirection::Left => "Left",
-            ScrollDirection::Right => "Right",
-            ScrollDirection::Smooth => "Smooth",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ScrollDirection::{}",
+            match *self {
+                ScrollDirection::Up => "Up",
+                ScrollDirection::Down => "Down",
+                ScrollDirection::Left => "Left",
+                ScrollDirection::Right => "Right",
+                ScrollDirection::Smooth => "Smooth",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1678,7 +1735,7 @@ impl ToGlib for ScrollDirection {
             ScrollDirection::Left => gdk_sys::GDK_SCROLL_LEFT,
             ScrollDirection::Right => gdk_sys::GDK_SCROLL_RIGHT,
             ScrollDirection::Smooth => gdk_sys::GDK_SCROLL_SMOOTH,
-            ScrollDirection::__Unknown(value) => value
+            ScrollDirection::__Unknown(value) => value,
         }
     }
 }
@@ -1722,8 +1779,7 @@ impl SetValue for ScrollDirection {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SubpixelLayout {
     Unknown,
     None,
@@ -1737,15 +1793,19 @@ pub enum SubpixelLayout {
 
 impl fmt::Display for SubpixelLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SubpixelLayout::{}", match *self {
-            SubpixelLayout::Unknown => "Unknown",
-            SubpixelLayout::None => "None",
-            SubpixelLayout::HorizontalRgb => "HorizontalRgb",
-            SubpixelLayout::HorizontalBgr => "HorizontalBgr",
-            SubpixelLayout::VerticalRgb => "VerticalRgb",
-            SubpixelLayout::VerticalBgr => "VerticalBgr",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SubpixelLayout::{}",
+            match *self {
+                SubpixelLayout::Unknown => "Unknown",
+                SubpixelLayout::None => "None",
+                SubpixelLayout::HorizontalRgb => "HorizontalRgb",
+                SubpixelLayout::HorizontalBgr => "HorizontalBgr",
+                SubpixelLayout::VerticalRgb => "VerticalRgb",
+                SubpixelLayout::VerticalBgr => "VerticalBgr",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1761,7 +1821,7 @@ impl ToGlib for SubpixelLayout {
             SubpixelLayout::HorizontalBgr => gdk_sys::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR,
             SubpixelLayout::VerticalRgb => gdk_sys::GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB,
             SubpixelLayout::VerticalBgr => gdk_sys::GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR,
-            SubpixelLayout::__Unknown(value) => value
+            SubpixelLayout::__Unknown(value) => value,
         }
     }
 }
@@ -1806,8 +1866,7 @@ impl SetValue for SubpixelLayout {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SurfaceEdge {
     NorthWest,
     North,
@@ -1823,17 +1882,21 @@ pub enum SurfaceEdge {
 
 impl fmt::Display for SurfaceEdge {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SurfaceEdge::{}", match *self {
-            SurfaceEdge::NorthWest => "NorthWest",
-            SurfaceEdge::North => "North",
-            SurfaceEdge::NorthEast => "NorthEast",
-            SurfaceEdge::West => "West",
-            SurfaceEdge::East => "East",
-            SurfaceEdge::SouthWest => "SouthWest",
-            SurfaceEdge::South => "South",
-            SurfaceEdge::SouthEast => "SouthEast",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SurfaceEdge::{}",
+            match *self {
+                SurfaceEdge::NorthWest => "NorthWest",
+                SurfaceEdge::North => "North",
+                SurfaceEdge::NorthEast => "NorthEast",
+                SurfaceEdge::West => "West",
+                SurfaceEdge::East => "East",
+                SurfaceEdge::SouthWest => "SouthWest",
+                SurfaceEdge::South => "South",
+                SurfaceEdge::SouthEast => "SouthEast",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1851,7 +1914,7 @@ impl ToGlib for SurfaceEdge {
             SurfaceEdge::SouthWest => gdk_sys::GDK_SURFACE_EDGE_SOUTH_WEST,
             SurfaceEdge::South => gdk_sys::GDK_SURFACE_EDGE_SOUTH,
             SurfaceEdge::SouthEast => gdk_sys::GDK_SURFACE_EDGE_SOUTH_EAST,
-            SurfaceEdge::__Unknown(value) => value
+            SurfaceEdge::__Unknown(value) => value,
         }
     }
 }
@@ -1898,8 +1961,7 @@ impl SetValue for SurfaceEdge {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SurfaceType {
     Toplevel,
     Child,
@@ -1910,12 +1972,16 @@ pub enum SurfaceType {
 
 impl fmt::Display for SurfaceType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SurfaceType::{}", match *self {
-            SurfaceType::Toplevel => "Toplevel",
-            SurfaceType::Child => "Child",
-            SurfaceType::Temp => "Temp",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SurfaceType::{}",
+            match *self {
+                SurfaceType::Toplevel => "Toplevel",
+                SurfaceType::Child => "Child",
+                SurfaceType::Temp => "Temp",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1928,7 +1994,7 @@ impl ToGlib for SurfaceType {
             SurfaceType::Toplevel => gdk_sys::GDK_SURFACE_TOPLEVEL,
             SurfaceType::Child => gdk_sys::GDK_SURFACE_CHILD,
             SurfaceType::Temp => gdk_sys::GDK_SURFACE_TEMP,
-            SurfaceType::__Unknown(value) => value
+            SurfaceType::__Unknown(value) => value,
         }
     }
 }
@@ -1970,8 +2036,7 @@ impl SetValue for SurfaceType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SurfaceTypeHint {
     Normal,
     Dialog,
@@ -1993,23 +2058,27 @@ pub enum SurfaceTypeHint {
 
 impl fmt::Display for SurfaceTypeHint {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SurfaceTypeHint::{}", match *self {
-            SurfaceTypeHint::Normal => "Normal",
-            SurfaceTypeHint::Dialog => "Dialog",
-            SurfaceTypeHint::Menu => "Menu",
-            SurfaceTypeHint::Toolbar => "Toolbar",
-            SurfaceTypeHint::Splashscreen => "Splashscreen",
-            SurfaceTypeHint::Utility => "Utility",
-            SurfaceTypeHint::Dock => "Dock",
-            SurfaceTypeHint::Desktop => "Desktop",
-            SurfaceTypeHint::DropdownMenu => "DropdownMenu",
-            SurfaceTypeHint::PopupMenu => "PopupMenu",
-            SurfaceTypeHint::Tooltip => "Tooltip",
-            SurfaceTypeHint::Notification => "Notification",
-            SurfaceTypeHint::Combo => "Combo",
-            SurfaceTypeHint::Dnd => "Dnd",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SurfaceTypeHint::{}",
+            match *self {
+                SurfaceTypeHint::Normal => "Normal",
+                SurfaceTypeHint::Dialog => "Dialog",
+                SurfaceTypeHint::Menu => "Menu",
+                SurfaceTypeHint::Toolbar => "Toolbar",
+                SurfaceTypeHint::Splashscreen => "Splashscreen",
+                SurfaceTypeHint::Utility => "Utility",
+                SurfaceTypeHint::Dock => "Dock",
+                SurfaceTypeHint::Desktop => "Desktop",
+                SurfaceTypeHint::DropdownMenu => "DropdownMenu",
+                SurfaceTypeHint::PopupMenu => "PopupMenu",
+                SurfaceTypeHint::Tooltip => "Tooltip",
+                SurfaceTypeHint::Notification => "Notification",
+                SurfaceTypeHint::Combo => "Combo",
+                SurfaceTypeHint::Dnd => "Dnd",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2033,7 +2102,7 @@ impl ToGlib for SurfaceTypeHint {
             SurfaceTypeHint::Notification => gdk_sys::GDK_SURFACE_TYPE_HINT_NOTIFICATION,
             SurfaceTypeHint::Combo => gdk_sys::GDK_SURFACE_TYPE_HINT_COMBO,
             SurfaceTypeHint::Dnd => gdk_sys::GDK_SURFACE_TYPE_HINT_DND,
-            SurfaceTypeHint::__Unknown(value) => value
+            SurfaceTypeHint::__Unknown(value) => value,
         }
     }
 }
@@ -2086,8 +2155,7 @@ impl SetValue for SurfaceTypeHint {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TouchpadGesturePhase {
     Begin,
     Update,
@@ -2099,13 +2167,17 @@ pub enum TouchpadGesturePhase {
 
 impl fmt::Display for TouchpadGesturePhase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TouchpadGesturePhase::{}", match *self {
-            TouchpadGesturePhase::Begin => "Begin",
-            TouchpadGesturePhase::Update => "Update",
-            TouchpadGesturePhase::End => "End",
-            TouchpadGesturePhase::Cancel => "Cancel",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TouchpadGesturePhase::{}",
+            match *self {
+                TouchpadGesturePhase::Begin => "Begin",
+                TouchpadGesturePhase::Update => "Update",
+                TouchpadGesturePhase::End => "End",
+                TouchpadGesturePhase::Cancel => "Cancel",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2119,7 +2191,7 @@ impl ToGlib for TouchpadGesturePhase {
             TouchpadGesturePhase::Update => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE,
             TouchpadGesturePhase::End => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_END,
             TouchpadGesturePhase::Cancel => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_CANCEL,
-            TouchpadGesturePhase::__Unknown(value) => value
+            TouchpadGesturePhase::__Unknown(value) => value,
         }
     }
 }
@@ -2162,8 +2234,7 @@ impl SetValue for TouchpadGesturePhase {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum VulkanError {
     Unsupported,
     NotAvailable,
@@ -2173,11 +2244,15 @@ pub enum VulkanError {
 
 impl fmt::Display for VulkanError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "VulkanError::{}", match *self {
-            VulkanError::Unsupported => "Unsupported",
-            VulkanError::NotAvailable => "NotAvailable",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "VulkanError::{}",
+            match *self {
+                VulkanError::Unsupported => "Unsupported",
+                VulkanError::NotAvailable => "NotAvailable",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2189,7 +2264,7 @@ impl ToGlib for VulkanError {
         match *self {
             VulkanError::Unsupported => gdk_sys::GDK_VULKAN_ERROR_UNSUPPORTED,
             VulkanError::NotAvailable => gdk_sys::GDK_VULKAN_ERROR_NOT_AVAILABLE,
-            VulkanError::__Unknown(value) => value
+            VulkanError::__Unknown(value) => value,
         }
     }
 }
@@ -2249,4 +2324,3 @@ impl SetValue for VulkanError {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
-

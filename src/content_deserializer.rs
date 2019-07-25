@@ -2,10 +2,10 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-use ContentDeserializer;
 use gdk_sys;
 use glib;
 use glib::translate::*;
+use ContentDeserializer;
 
 impl ContentDeserializer {
     pub fn set_value(&self, value: glib::Value) {

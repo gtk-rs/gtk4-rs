@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Display;
 use gdk_sys;
 use gio;
-use glib::StaticType;
-use glib::Value;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use gobject_sys;
 use std::fmt;
+use Display;
 
 glib_wrapper! {
     pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext, AppLaunchContextClass>);
@@ -30,13 +30,19 @@ impl AppLaunchContext {
 
     pub fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_icon(self.to_glib_none().0, icon.map(|p| p.as_ref()).to_glib_none().0);
+            gdk_sys::gdk_app_launch_context_set_icon(
+                self.to_glib_none().0,
+                icon.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            gdk_sys::gdk_app_launch_context_set_icon_name(
+                self.to_glib_none().0,
+                icon_name.to_glib_none().0,
+            );
         }
     }
 
@@ -49,7 +55,11 @@ impl AppLaunchContext {
     pub fn get_property_display(&self) -> Option<Display> {
         unsafe {
             let mut value = Value::from_type(<Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"display\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"display\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }

@@ -2,13 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use DrawContext;
-use Error;
 use gdk_sys;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
 use std::ptr;
+use DrawContext;
+use Error;
 
 glib_wrapper! {
     pub struct GLContext(Object<gdk_sys::GdkGLContext, GLContextClass>) @extends DrawContext;
@@ -21,13 +21,17 @@ glib_wrapper! {
 impl GLContext {
     pub fn get_debug_enabled(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_gl_context_get_debug_enabled(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_get_debug_enabled(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_forward_compatible(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_gl_context_get_forward_compatible(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_gl_context_get_forward_compatible(
+                self.to_glib_none().0,
+            ))
         }
     }
 
@@ -35,7 +39,11 @@ impl GLContext {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
             let mut minor = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_gl_context_get_required_version(self.to_glib_none().0, major.as_mut_ptr(), minor.as_mut_ptr());
+            gdk_sys::gdk_gl_context_get_required_version(
+                self.to_glib_none().0,
+                major.as_mut_ptr(),
+                minor.as_mut_ptr(),
+            );
             let major = major.assume_init();
             let minor = minor.assume_init();
             (major, minor)
@@ -44,21 +52,25 @@ impl GLContext {
 
     pub fn get_shared_context(&self) -> Option<GLContext> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_gl_context_get_shared_context(self.to_glib_none().0))
+            from_glib_none(gdk_sys::gdk_gl_context_get_shared_context(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_use_es(&self) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_gl_context_get_use_es(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gdk_sys::gdk_gl_context_get_use_es(self.to_glib_none().0)) }
     }
 
     pub fn get_version(&self) -> (i32, i32) {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
             let mut minor = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_gl_context_get_version(self.to_glib_none().0, major.as_mut_ptr(), minor.as_mut_ptr());
+            gdk_sys::gdk_gl_context_get_version(
+                self.to_glib_none().0,
+                major.as_mut_ptr(),
+                minor.as_mut_ptr(),
+            );
             let major = major.assume_init();
             let minor = minor.assume_init();
             (major, minor)
@@ -66,9 +78,7 @@ impl GLContext {
     }
 
     pub fn is_legacy(&self) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_gl_context_is_legacy(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gdk_sys::gdk_gl_context_is_legacy(self.to_glib_none().0)) }
     }
 
     pub fn make_current(&self) {
@@ -81,7 +91,11 @@ impl GLContext {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gdk_sys::gdk_gl_context_realize(self.to_glib_none().0, &mut error);
-            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
@@ -93,7 +107,10 @@ impl GLContext {
 
     pub fn set_forward_compatible(&self, compatible: bool) {
         unsafe {
-            gdk_sys::gdk_gl_context_set_forward_compatible(self.to_glib_none().0, compatible.to_glib());
+            gdk_sys::gdk_gl_context_set_forward_compatible(
+                self.to_glib_none().0,
+                compatible.to_glib(),
+            );
         }
     }
 
@@ -118,9 +135,7 @@ impl GLContext {
 
     pub fn get_current() -> Option<GLContext> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gdk_sys::gdk_gl_context_get_current())
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_gl_context_get_current()) }
     }
 }
 

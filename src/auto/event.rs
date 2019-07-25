@@ -2,6 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk_sys;
+use glib::translate::*;
+use std::fmt;
+use std::mem;
 use AxisUse;
 use Device;
 use Display;
@@ -9,10 +13,6 @@ use EventType;
 use ModifierType;
 use Seat;
 use Surface;
-use gdk_sys;
-use glib::translate::*;
-use std::fmt;
-use std::mem;
 
 glib_wrapper! {
     pub struct Event(Object<gdk_sys::GdkEvent, EventClass>);
@@ -24,17 +24,23 @@ glib_wrapper! {
 
 impl Event {
     pub fn copy(&self) -> Option<Event> {
-        unsafe {
-            from_glib_full(gdk_sys::gdk_event_copy(self.to_glib_none().0))
-        }
+        unsafe { from_glib_full(gdk_sys::gdk_event_copy(self.to_glib_none().0)) }
     }
 
     pub fn get_axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_axis(self.to_glib_none().0, axis_use.to_glib(), value.as_mut_ptr()));
+            let ret = from_glib(gdk_sys::gdk_event_get_axis(
+                self.to_glib_none().0,
+                axis_use.to_glib(),
+                value.as_mut_ptr(),
+            ));
             let value = value.assume_init();
-            if ret { Some(value) } else { None }
+            if ret {
+                Some(value)
+            } else {
+                None
+            }
         }
     }
 
@@ -42,34 +48,38 @@ impl Event {
         unsafe {
             let mut x_win = mem::MaybeUninit::uninit();
             let mut y_win = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_coords(self.to_glib_none().0, x_win.as_mut_ptr(), y_win.as_mut_ptr()));
+            let ret = from_glib(gdk_sys::gdk_event_get_coords(
+                self.to_glib_none().0,
+                x_win.as_mut_ptr(),
+                y_win.as_mut_ptr(),
+            ));
             let x_win = x_win.assume_init();
             let y_win = y_win.assume_init();
-            if ret { Some((x_win, y_win)) } else { None }
+            if ret {
+                Some((x_win, y_win))
+            } else {
+                None
+            }
         }
     }
 
     pub fn get_device(&self) -> Option<Device> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_device(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_event_get_device(self.to_glib_none().0)) }
     }
 
     pub fn get_display(&self) -> Option<Display> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_display(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_event_get_display(self.to_glib_none().0)) }
     }
 
     pub fn get_event_type(&self) -> EventType {
-        unsafe {
-            from_glib(gdk_sys::gdk_event_get_event_type(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gdk_sys::gdk_event_get_event_type(self.to_glib_none().0)) }
     }
 
     pub fn get_pointer_emulated(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_event_get_pointer_emulated(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_get_pointer_emulated(
+                self.to_glib_none().0,
+            ))
         }
     }
 
@@ -77,61 +87,70 @@ impl Event {
         unsafe {
             let mut x_root = mem::MaybeUninit::uninit();
             let mut y_root = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_root_coords(self.to_glib_none().0, x_root.as_mut_ptr(), y_root.as_mut_ptr()));
+            let ret = from_glib(gdk_sys::gdk_event_get_root_coords(
+                self.to_glib_none().0,
+                x_root.as_mut_ptr(),
+                y_root.as_mut_ptr(),
+            ));
             let x_root = x_root.assume_init();
             let y_root = y_root.assume_init();
-            if ret { Some((x_root, y_root)) } else { None }
+            if ret {
+                Some((x_root, y_root))
+            } else {
+                None
+            }
         }
     }
 
     pub fn get_seat(&self) -> Option<Seat> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_seat(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_event_get_seat(self.to_glib_none().0)) }
     }
 
     pub fn get_source_device(&self) -> Option<Device> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_source_device(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_event_get_source_device(self.to_glib_none().0)) }
     }
 
     pub fn get_state(&self) -> Option<ModifierType> {
         unsafe {
             let mut state = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_state(self.to_glib_none().0, state.as_mut_ptr()));
+            let ret = from_glib(gdk_sys::gdk_event_get_state(
+                self.to_glib_none().0,
+                state.as_mut_ptr(),
+            ));
             let state = state.assume_init();
-            if ret { Some(from_glib(state)) } else { None }
+            if ret {
+                Some(from_glib(state))
+            } else {
+                None
+            }
         }
     }
 
     pub fn get_surface(&self) -> Option<Surface> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_surface(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gdk_sys::gdk_event_get_surface(self.to_glib_none().0)) }
     }
 
     pub fn get_time(&self) -> u32 {
-        unsafe {
-            gdk_sys::gdk_event_get_time(self.to_glib_none().0)
-        }
+        unsafe { gdk_sys::gdk_event_get_time(self.to_glib_none().0) }
     }
 
     pub fn is_scroll_stop_event(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_event_is_scroll_stop_event(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_is_scroll_stop_event(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn is_sent(&self) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_event_is_sent(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gdk_sys::gdk_event_is_sent(self.to_glib_none().0)) }
     }
 
     pub fn triggers_context_menu(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_event_triggers_context_menu(self.to_glib_none().0))
+            from_glib(gdk_sys::gdk_event_triggers_context_menu(
+                self.to_glib_none().0,
+            ))
         }
     }
 }

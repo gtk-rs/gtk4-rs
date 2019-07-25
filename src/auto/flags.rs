@@ -3,13 +3,13 @@
 // DO NOT EDIT
 
 use gdk_sys;
-use glib::StaticType;
-use glib::Type;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
+use glib::StaticType;
+use glib::Type;
 use gobject_sys;
 
 bitflags! {
@@ -698,4 +698,3 @@ impl SetValue for WMFunction {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
-

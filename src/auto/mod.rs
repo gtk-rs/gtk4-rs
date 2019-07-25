@@ -15,8 +15,8 @@ mod content_deserializer;
 pub use self::content_deserializer::{ContentDeserializer, ContentDeserializerClass};
 
 mod content_provider;
-pub use self::content_provider::{ContentProvider, ContentProviderClass, NONE_CONTENT_PROVIDER};
 pub use self::content_provider::ContentProviderExt;
+pub use self::content_provider::{ContentProvider, ContentProviderClass, NONE_CONTENT_PROVIDER};
 
 mod content_serializer;
 pub use self::content_serializer::{ContentSerializer, ContentSerializerClass};
@@ -28,8 +28,8 @@ mod device;
 pub use self::device::{Device, DeviceClass};
 
 mod device_pad;
-pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
 pub use self::device_pad::DevicePadExt;
+pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
 
 mod device_tool;
 pub use self::device_tool::{DeviceTool, DeviceToolClass};
@@ -44,8 +44,8 @@ mod drag;
 pub use self::drag::{Drag, DragClass};
 
 mod draw_context;
-pub use self::draw_context::{DrawContext, DrawContextClass, NONE_DRAW_CONTEXT};
 pub use self::draw_context::DrawContextExt;
+pub use self::draw_context::{DrawContext, DrawContextClass, NONE_DRAW_CONTEXT};
 
 mod drop;
 pub use self::drop::{Drop, DropClass};
@@ -72,8 +72,8 @@ mod monitor;
 pub use self::monitor::{Monitor, MonitorClass};
 
 mod paintable;
-pub use self::paintable::{Paintable, NONE_PAINTABLE};
 pub use self::paintable::PaintableExt;
+pub use self::paintable::{Paintable, NONE_PAINTABLE};
 
 mod seat;
 pub use self::seat::{Seat, SeatClass};
@@ -82,12 +82,12 @@ mod snapshot;
 pub use self::snapshot::{Snapshot, SnapshotClass};
 
 mod surface;
-pub use self::surface::{Surface, SurfaceClass, NONE_SURFACE};
 pub use self::surface::SurfaceExt;
+pub use self::surface::{Surface, SurfaceClass, NONE_SURFACE};
 
 mod texture;
-pub use self::texture::{Texture, TextureClass, NONE_TEXTURE};
 pub use self::texture::TextureExt;
+pub use self::texture::{Texture, TextureClass, NONE_TEXTURE};
 
 mod vulkan_context;
 pub use self::vulkan_context::{VulkanContext, VulkanContextClass};

@@ -16,7 +16,7 @@ impl KeymapKey {
         KeymapKey(gdk_sys::GdkKeymapKey {
             keycode,
             group,
-            level
+            level,
         })
     }
 
@@ -47,7 +47,10 @@ impl FromGlibContainerAsVec<gdk_sys::GdkKeymapKey, *mut gdk_sys::GdkKeymapKey> f
         res
     }
 
-    unsafe fn from_glib_container_num_as_vec(ptr: *mut gdk_sys::GdkKeymapKey, num: usize) -> Vec<Self> {
+    unsafe fn from_glib_container_num_as_vec(
+        ptr: *mut gdk_sys::GdkKeymapKey,
+        num: usize,
+    ) -> Vec<Self> {
         let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
         glib_sys::g_free(ptr as *mut _);
         res

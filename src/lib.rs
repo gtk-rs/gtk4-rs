@@ -8,44 +8,33 @@
 #![cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ptr))]
 #![cfg_attr(feature = "cargo-clippy", allow(trivially_copy_pass_by_ref))]
 
-extern crate glib_sys;
-extern crate gio_sys;
-extern crate gdk_pixbuf;
 extern crate gdk4_sys as gdk_sys;
+extern crate gdk_pixbuf;
 extern crate gio;
+extern crate gio_sys;
+extern crate glib_sys;
 #[macro_use]
 extern crate glib;
-extern crate gobject_sys;
 extern crate cairo;
 extern crate cairo_sys;
-extern crate pango;
+extern crate gobject_sys;
 extern crate libc;
+extern crate pango;
 #[macro_use]
 extern crate bitflags;
 
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
-    () => ()
+    () => {};
 }
 
 // No-op
 macro_rules! skip_assert_initialized {
-    () => ()
+    () => {};
 }
 
 #[allow(unused_imports)]
-use glib::{
-    Cast,
-    Continue,
-    Error,
-    IsA,
-    Object,
-    StaticType,
-    ToValue,
-    Type,
-    TypedValue,
-    Value,
-};
+use glib::{Cast, Continue, Error, IsA, Object, StaticType, ToValue, Type, TypedValue, Value};
 
 #[cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ref))]
 #[cfg_attr(feature = "cargo-clippy", allow(type_complexity))]
@@ -68,8 +57,8 @@ mod rgba;
 mod surface;
 mod time_coord;
 
-pub use auto::*;
 pub use self::auto::functions::*;
+pub use auto::*;
 
 pub use alias::*;
 pub use functions::*;
@@ -78,6 +67,6 @@ pub use prelude::*;
 pub use events::*;
 pub use geometry::Geometry;
 pub use keymap_key::KeymapKey;
-pub use rgba::{RGBA, RgbaParseError};
+pub use rgba::{RgbaParseError, RGBA};
 pub use surface::SurfaceExtManual;
 pub use time_coord::TimeCoord;
