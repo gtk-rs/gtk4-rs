@@ -2,8 +2,8 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-use glib::translate::*;
 use gdk::RGBA;
+use glib::translate::*;
 use gsk_sys;
 
 #[derive(Clone, Debug)]
@@ -16,7 +16,7 @@ impl Shadow {
             color: unsafe { *color.to_glib_none().0 },
             dx,
             dy,
-            radius
+            radius,
         })
     }
 

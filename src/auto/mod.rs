@@ -12,8 +12,8 @@ mod gl_renderer;
 pub use self::gl_renderer::{GLRenderer, GLRendererClass};
 
 mod renderer;
-pub use self::renderer::{Renderer, RendererClass, NONE_RENDERER};
 pub use self::renderer::RendererExt;
+pub use self::renderer::{Renderer, RendererClass, NONE_RENDERER};
 
 mod vulkan_renderer;
 pub use self::vulkan_renderer::{VulkanRenderer, VulkanRendererClass};

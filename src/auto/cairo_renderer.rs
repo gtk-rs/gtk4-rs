@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Renderer;
 use glib::object::Cast;
 use glib::translate::*;
 use gsk_sys;
 use std::fmt;
+use Renderer;
 
 glib_wrapper! {
     pub struct CairoRenderer(Object<gsk_sys::GskCairoRenderer, gsk_sys::GskCairoRendererClass, CairoRendererClass>) @extends Renderer;
@@ -19,9 +19,7 @@ glib_wrapper! {
 impl CairoRenderer {
     pub fn new() -> CairoRenderer {
         assert_initialized_main_thread!();
-        unsafe {
-            Renderer::from_glib_full(gsk_sys::gsk_cairo_renderer_new()).unsafe_cast()
-        }
+        unsafe { Renderer::from_glib_full(gsk_sys::gsk_cairo_renderer_new()).unsafe_cast() }
     }
 }
 

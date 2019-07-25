@@ -8,17 +8,17 @@
 #![cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ptr))]
 #![cfg_attr(feature = "cargo-clippy", allow(trivially_copy_pass_by_ref))]
 
-extern crate glib_sys;
 extern crate gdk4_sys as gdk_sys;
+extern crate glib_sys;
 extern crate graphene_sys;
 extern crate gsk4_sys as gsk_sys;
 #[macro_use]
 extern crate glib;
-extern crate gobject_sys;
 extern crate cairo;
 extern crate cairo_sys;
-extern crate pango;
+extern crate gobject_sys;
 extern crate libc;
+extern crate pango;
 #[macro_use]
 extern crate bitflags;
 
@@ -27,12 +27,12 @@ extern crate graphene;
 
 // GSK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
-    () => ()
+    () => {};
 }
 
 // No-op
 macro_rules! skip_assert_initialized {
-    () => ()
+    () => {};
 }
 
 #[cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ref))]
@@ -42,8 +42,8 @@ mod auto;
 
 pub mod prelude;
 
-pub use auto::*;
 pub use self::auto::functions::*;
+pub use auto::*;
 
 pub use prelude::*;
 

@@ -4,4 +4,3 @@
 
 use glib::translate::*;
 use gsk_sys;
-

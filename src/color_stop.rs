@@ -2,8 +2,8 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-use glib::translate::*;
 use gdk::RGBA;
+use glib::translate::*;
 use glib_sys;
 use gsk_sys;
 use std::mem;
@@ -33,7 +33,10 @@ impl ColorStop {
 
 #[doc(hidden)]
 impl FromGlibContainerAsVec<gsk_sys::GskColorStop, *const gsk_sys::GskColorStop> for ColorStop {
-    unsafe fn from_glib_none_num_as_vec(ptr: *const gsk_sys::GskColorStop, num: usize) -> Vec<Self> {
+    unsafe fn from_glib_none_num_as_vec(
+        ptr: *const gsk_sys::GskColorStop,
+        num: usize,
+    ) -> Vec<Self> {
         if num == 0 || ptr.is_null() {
             return Vec::new();
         }
@@ -45,7 +48,10 @@ impl FromGlibContainerAsVec<gsk_sys::GskColorStop, *const gsk_sys::GskColorStop>
         res
     }
 
-    unsafe fn from_glib_container_num_as_vec(_: *const gsk_sys::GskColorStop, _: usize) -> Vec<Self> {
+    unsafe fn from_glib_container_num_as_vec(
+        _: *const gsk_sys::GskColorStop,
+        _: usize,
+    ) -> Vec<Self> {
         // Can't really free a *const
         unimplemented!();
     }
@@ -78,7 +84,8 @@ impl<'a> ToGlibContainerFromSlice<'a, *const gsk_sys::GskColorStop> for ColorSto
         }
 
         unsafe {
-            let res = glib_sys::g_malloc(mem::size_of::<gsk_sys::GskColorStop>() * t.len()) as *mut gsk_sys::GskColorStop;
+            let res = glib_sys::g_malloc(mem::size_of::<gsk_sys::GskColorStop>() * t.len())
+                as *mut gsk_sys::GskColorStop;
             ptr::copy_nonoverlapping(t.as_ptr() as *const _, res, t.len());
             res
         }

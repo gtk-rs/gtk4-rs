@@ -2,21 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::Quark;
-use glib::StaticType;
-use glib::Type;
 use glib::error::ErrorDomain;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
+use glib::Quark;
+use glib::StaticType;
+use glib::Type;
 use gobject_sys;
 use gsk_sys;
 use std::fmt;
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum BlendMode {
     Default,
     Multiply,
@@ -40,25 +39,29 @@ pub enum BlendMode {
 
 impl fmt::Display for BlendMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BlendMode::{}", match *self {
-            BlendMode::Default => "Default",
-            BlendMode::Multiply => "Multiply",
-            BlendMode::Screen => "Screen",
-            BlendMode::Overlay => "Overlay",
-            BlendMode::Darken => "Darken",
-            BlendMode::Lighten => "Lighten",
-            BlendMode::ColorDodge => "ColorDodge",
-            BlendMode::ColorBurn => "ColorBurn",
-            BlendMode::HardLight => "HardLight",
-            BlendMode::SoftLight => "SoftLight",
-            BlendMode::Difference => "Difference",
-            BlendMode::Exclusion => "Exclusion",
-            BlendMode::Color => "Color",
-            BlendMode::Hue => "Hue",
-            BlendMode::Saturation => "Saturation",
-            BlendMode::Luminosity => "Luminosity",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "BlendMode::{}",
+            match *self {
+                BlendMode::Default => "Default",
+                BlendMode::Multiply => "Multiply",
+                BlendMode::Screen => "Screen",
+                BlendMode::Overlay => "Overlay",
+                BlendMode::Darken => "Darken",
+                BlendMode::Lighten => "Lighten",
+                BlendMode::ColorDodge => "ColorDodge",
+                BlendMode::ColorBurn => "ColorBurn",
+                BlendMode::HardLight => "HardLight",
+                BlendMode::SoftLight => "SoftLight",
+                BlendMode::Difference => "Difference",
+                BlendMode::Exclusion => "Exclusion",
+                BlendMode::Color => "Color",
+                BlendMode::Hue => "Hue",
+                BlendMode::Saturation => "Saturation",
+                BlendMode::Luminosity => "Luminosity",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -84,7 +87,7 @@ impl ToGlib for BlendMode {
             BlendMode::Hue => gsk_sys::GSK_BLEND_MODE_HUE,
             BlendMode::Saturation => gsk_sys::GSK_BLEND_MODE_SATURATION,
             BlendMode::Luminosity => gsk_sys::GSK_BLEND_MODE_LUMINOSITY,
-            BlendMode::__Unknown(value) => value
+            BlendMode::__Unknown(value) => value,
         }
     }
 }
@@ -139,8 +142,7 @@ impl SetValue for BlendMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Corner {
     TopLeft,
     TopRight,
@@ -152,13 +154,17 @@ pub enum Corner {
 
 impl fmt::Display for Corner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Corner::{}", match *self {
-            Corner::TopLeft => "TopLeft",
-            Corner::TopRight => "TopRight",
-            Corner::BottomRight => "BottomRight",
-            Corner::BottomLeft => "BottomLeft",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Corner::{}",
+            match *self {
+                Corner::TopLeft => "TopLeft",
+                Corner::TopRight => "TopRight",
+                Corner::BottomRight => "BottomRight",
+                Corner::BottomLeft => "BottomLeft",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -172,7 +178,7 @@ impl ToGlib for Corner {
             Corner::TopRight => gsk_sys::GSK_CORNER_TOP_RIGHT,
             Corner::BottomRight => gsk_sys::GSK_CORNER_BOTTOM_RIGHT,
             Corner::BottomLeft => gsk_sys::GSK_CORNER_BOTTOM_LEFT,
-            Corner::__Unknown(value) => value
+            Corner::__Unknown(value) => value,
         }
     }
 }
@@ -215,8 +221,7 @@ impl SetValue for Corner {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum RenderNodeType {
     NotARenderNode,
     ContainerNode,
@@ -246,31 +251,35 @@ pub enum RenderNodeType {
 
 impl fmt::Display for RenderNodeType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RenderNodeType::{}", match *self {
-            RenderNodeType::NotARenderNode => "NotARenderNode",
-            RenderNodeType::ContainerNode => "ContainerNode",
-            RenderNodeType::CairoNode => "CairoNode",
-            RenderNodeType::ColorNode => "ColorNode",
-            RenderNodeType::LinearGradientNode => "LinearGradientNode",
-            RenderNodeType::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
-            RenderNodeType::BorderNode => "BorderNode",
-            RenderNodeType::TextureNode => "TextureNode",
-            RenderNodeType::InsetShadowNode => "InsetShadowNode",
-            RenderNodeType::OutsetShadowNode => "OutsetShadowNode",
-            RenderNodeType::TransformNode => "TransformNode",
-            RenderNodeType::OpacityNode => "OpacityNode",
-            RenderNodeType::ColorMatrixNode => "ColorMatrixNode",
-            RenderNodeType::RepeatNode => "RepeatNode",
-            RenderNodeType::ClipNode => "ClipNode",
-            RenderNodeType::RoundedClipNode => "RoundedClipNode",
-            RenderNodeType::ShadowNode => "ShadowNode",
-            RenderNodeType::BlendNode => "BlendNode",
-            RenderNodeType::CrossFadeNode => "CrossFadeNode",
-            RenderNodeType::TextNode => "TextNode",
-            RenderNodeType::BlurNode => "BlurNode",
-            RenderNodeType::DebugNode => "DebugNode",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "RenderNodeType::{}",
+            match *self {
+                RenderNodeType::NotARenderNode => "NotARenderNode",
+                RenderNodeType::ContainerNode => "ContainerNode",
+                RenderNodeType::CairoNode => "CairoNode",
+                RenderNodeType::ColorNode => "ColorNode",
+                RenderNodeType::LinearGradientNode => "LinearGradientNode",
+                RenderNodeType::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
+                RenderNodeType::BorderNode => "BorderNode",
+                RenderNodeType::TextureNode => "TextureNode",
+                RenderNodeType::InsetShadowNode => "InsetShadowNode",
+                RenderNodeType::OutsetShadowNode => "OutsetShadowNode",
+                RenderNodeType::TransformNode => "TransformNode",
+                RenderNodeType::OpacityNode => "OpacityNode",
+                RenderNodeType::ColorMatrixNode => "ColorMatrixNode",
+                RenderNodeType::RepeatNode => "RepeatNode",
+                RenderNodeType::ClipNode => "ClipNode",
+                RenderNodeType::RoundedClipNode => "RoundedClipNode",
+                RenderNodeType::ShadowNode => "ShadowNode",
+                RenderNodeType::BlendNode => "BlendNode",
+                RenderNodeType::CrossFadeNode => "CrossFadeNode",
+                RenderNodeType::TextNode => "TextNode",
+                RenderNodeType::BlurNode => "BlurNode",
+                RenderNodeType::DebugNode => "DebugNode",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -285,7 +294,9 @@ impl ToGlib for RenderNodeType {
             RenderNodeType::CairoNode => gsk_sys::GSK_CAIRO_NODE,
             RenderNodeType::ColorNode => gsk_sys::GSK_COLOR_NODE,
             RenderNodeType::LinearGradientNode => gsk_sys::GSK_LINEAR_GRADIENT_NODE,
-            RenderNodeType::RepeatingLinearGradientNode => gsk_sys::GSK_REPEATING_LINEAR_GRADIENT_NODE,
+            RenderNodeType::RepeatingLinearGradientNode => {
+                gsk_sys::GSK_REPEATING_LINEAR_GRADIENT_NODE
+            }
             RenderNodeType::BorderNode => gsk_sys::GSK_BORDER_NODE,
             RenderNodeType::TextureNode => gsk_sys::GSK_TEXTURE_NODE,
             RenderNodeType::InsetShadowNode => gsk_sys::GSK_INSET_SHADOW_NODE,
@@ -302,7 +313,7 @@ impl ToGlib for RenderNodeType {
             RenderNodeType::TextNode => gsk_sys::GSK_TEXT_NODE,
             RenderNodeType::BlurNode => gsk_sys::GSK_BLUR_NODE,
             RenderNodeType::DebugNode => gsk_sys::GSK_DEBUG_NODE,
-            RenderNodeType::__Unknown(value) => value
+            RenderNodeType::__Unknown(value) => value,
         }
     }
 }
@@ -363,8 +374,7 @@ impl SetValue for RenderNodeType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ScalingFilter {
     Linear,
     Nearest,
@@ -375,12 +385,16 @@ pub enum ScalingFilter {
 
 impl fmt::Display for ScalingFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScalingFilter::{}", match *self {
-            ScalingFilter::Linear => "Linear",
-            ScalingFilter::Nearest => "Nearest",
-            ScalingFilter::Trilinear => "Trilinear",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ScalingFilter::{}",
+            match *self {
+                ScalingFilter::Linear => "Linear",
+                ScalingFilter::Nearest => "Nearest",
+                ScalingFilter::Trilinear => "Trilinear",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -393,7 +407,7 @@ impl ToGlib for ScalingFilter {
             ScalingFilter::Linear => gsk_sys::GSK_SCALING_FILTER_LINEAR,
             ScalingFilter::Nearest => gsk_sys::GSK_SCALING_FILTER_NEAREST,
             ScalingFilter::Trilinear => gsk_sys::GSK_SCALING_FILTER_TRILINEAR,
-            ScalingFilter::__Unknown(value) => value
+            ScalingFilter::__Unknown(value) => value,
         }
     }
 }
@@ -435,8 +449,7 @@ impl SetValue for ScalingFilter {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SerializationError {
     UnsupportedFormat,
     UnsupportedVersion,
@@ -447,12 +460,16 @@ pub enum SerializationError {
 
 impl fmt::Display for SerializationError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SerializationError::{}", match *self {
-            SerializationError::UnsupportedFormat => "UnsupportedFormat",
-            SerializationError::UnsupportedVersion => "UnsupportedVersion",
-            SerializationError::InvalidData => "InvalidData",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SerializationError::{}",
+            match *self {
+                SerializationError::UnsupportedFormat => "UnsupportedFormat",
+                SerializationError::UnsupportedVersion => "UnsupportedVersion",
+                SerializationError::InvalidData => "InvalidData",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -463,9 +480,11 @@ impl ToGlib for SerializationError {
     fn to_glib(&self) -> gsk_sys::GskSerializationError {
         match *self {
             SerializationError::UnsupportedFormat => gsk_sys::GSK_SERIALIZATION_UNSUPPORTED_FORMAT,
-            SerializationError::UnsupportedVersion => gsk_sys::GSK_SERIALIZATION_UNSUPPORTED_VERSION,
+            SerializationError::UnsupportedVersion => {
+                gsk_sys::GSK_SERIALIZATION_UNSUPPORTED_VERSION
+            }
             SerializationError::InvalidData => gsk_sys::GSK_SERIALIZATION_INVALID_DATA,
-            SerializationError::__Unknown(value) => value
+            SerializationError::__Unknown(value) => value,
         }
     }
 }
@@ -528,8 +547,7 @@ impl SetValue for SerializationError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TransformCategory {
     Unknown,
     Any,
@@ -544,16 +562,20 @@ pub enum TransformCategory {
 
 impl fmt::Display for TransformCategory {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TransformCategory::{}", match *self {
-            TransformCategory::Unknown => "Unknown",
-            TransformCategory::Any => "Any",
-            TransformCategory::_3d => "_3d",
-            TransformCategory::_2d => "_2d",
-            TransformCategory::_2dAffine => "_2dAffine",
-            TransformCategory::_2dTranslate => "_2dTranslate",
-            TransformCategory::Identity => "Identity",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TransformCategory::{}",
+            match *self {
+                TransformCategory::Unknown => "Unknown",
+                TransformCategory::Any => "Any",
+                TransformCategory::_3d => "_3d",
+                TransformCategory::_2d => "_2d",
+                TransformCategory::_2dAffine => "_2dAffine",
+                TransformCategory::_2dTranslate => "_2dTranslate",
+                TransformCategory::Identity => "Identity",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -570,7 +592,7 @@ impl ToGlib for TransformCategory {
             TransformCategory::_2dAffine => gsk_sys::GSK_TRANSFORM_CATEGORY_2D_AFFINE,
             TransformCategory::_2dTranslate => gsk_sys::GSK_TRANSFORM_CATEGORY_2D_TRANSLATE,
             TransformCategory::Identity => gsk_sys::GSK_TRANSFORM_CATEGORY_IDENTITY,
-            TransformCategory::__Unknown(value) => value
+            TransformCategory::__Unknown(value) => value,
         }
     }
 }
@@ -615,4 +637,3 @@ impl SetValue for TransformCategory {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
-

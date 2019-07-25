@@ -11,11 +11,24 @@ use std::mem;
 pub struct RoundedRect(gsk_sys::GskRoundedRect);
 
 impl RoundedRect {
-    pub fn new(bounds: Rect, top_left: Size, top_right: Size, bottom_right: Size, bottom_left: Size) -> RoundedRect {
+    pub fn new(
+        bounds: Rect,
+        top_left: Size,
+        top_right: Size,
+        bottom_right: Size,
+        bottom_left: Size,
+    ) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             let mut rounded_rect = mem::uninitialized();
-            gsk_sys::gsk_rounded_rect_init(&mut rounded_rect, bounds.to_glib_none().0, top_left.to_glib_none().0, top_right.to_glib_none().0, bottom_right.to_glib_none().0, bottom_left.to_glib_none().0);
+            gsk_sys::gsk_rounded_rect_init(
+                &mut rounded_rect,
+                bounds.to_glib_none().0,
+                top_left.to_glib_none().0,
+                top_right.to_glib_none().0,
+                bottom_right.to_glib_none().0,
+                bottom_left.to_glib_none().0,
+            );
             RoundedRect(rounded_rect)
         }
     }
@@ -24,14 +37,32 @@ impl RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
             let mut rounded_rect = mem::uninitialized();
-            gsk_sys::gsk_rounded_rect_init_from_rect(&mut rounded_rect, bounds.to_glib_none().0, radius);
+            gsk_sys::gsk_rounded_rect_init_from_rect(
+                &mut rounded_rect,
+                bounds.to_glib_none().0,
+                radius,
+            );
             RoundedRect(rounded_rect)
         }
     }
 
-    pub fn init(&mut self, bounds: Rect, top_left: Size, top_right: Size, bottom_right: Size, bottom_left: Size) {
+    pub fn init(
+        &mut self,
+        bounds: Rect,
+        top_left: Size,
+        top_right: Size,
+        bottom_right: Size,
+        bottom_left: Size,
+    ) {
         unsafe {
-            gsk_sys::gsk_rounded_rect_init(&mut self.0, bounds.to_glib_none().0, top_left.to_glib_none().0, top_right.to_glib_none().0, bottom_right.to_glib_none().0, bottom_left.to_glib_none().0);
+            gsk_sys::gsk_rounded_rect_init(
+                &mut self.0,
+                bounds.to_glib_none().0,
+                top_left.to_glib_none().0,
+                top_right.to_glib_none().0,
+                bottom_right.to_glib_none().0,
+                bottom_left.to_glib_none().0,
+            );
         }
     }
 
@@ -60,26 +91,33 @@ impl RoundedRect {
     }
 
     pub fn is_rectilinear(&self) -> bool {
-        unsafe {
-            from_glib(gsk_sys::gsk_rounded_rect_is_rectilinear(&self.0))
-        }
+        unsafe { from_glib(gsk_sys::gsk_rounded_rect_is_rectilinear(&self.0)) }
     }
 
     pub fn contains_point(&self, point: Point) -> bool {
         unsafe {
-            from_glib(gsk_sys::gsk_rounded_rect_contains_point(&self.0, point.to_glib_none().0))
+            from_glib(gsk_sys::gsk_rounded_rect_contains_point(
+                &self.0,
+                point.to_glib_none().0,
+            ))
         }
     }
 
     pub fn contains_rect(&self, rect: Rect) -> bool {
         unsafe {
-            from_glib(gsk_sys::gsk_rounded_rect_contains_rect(&self.0, rect.to_glib_none().0))
+            from_glib(gsk_sys::gsk_rounded_rect_contains_rect(
+                &self.0,
+                rect.to_glib_none().0,
+            ))
         }
     }
 
     pub fn intersects_rect(&self, rect: Rect) -> bool {
         unsafe {
-            from_glib(gsk_sys::gsk_rounded_rect_intersects_rect(&self.0, rect.to_glib_none().0))
+            from_glib(gsk_sys::gsk_rounded_rect_intersects_rect(
+                &self.0,
+                rect.to_glib_none().0,
+            ))
         }
     }
 }

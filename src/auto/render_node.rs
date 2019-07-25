@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Error;
-use RenderNodeType;
 use cairo;
 use glib;
 use glib::translate::*;
 use graphene;
 use gsk_sys;
 use std::ptr;
+use Error;
+use RenderNodeType;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -39,21 +39,29 @@ impl RenderNode {
 
     pub fn get_node_type(&self) -> RenderNodeType {
         unsafe {
-            from_glib(gsk_sys::gsk_render_node_get_node_type(self.to_glib_none().0))
+            from_glib(gsk_sys::gsk_render_node_get_node_type(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn serialize(&self) -> Option<glib::Bytes> {
-        unsafe {
-            from_glib_full(gsk_sys::gsk_render_node_serialize(self.to_glib_none().0))
-        }
+        unsafe { from_glib_full(gsk_sys::gsk_render_node_serialize(self.to_glib_none().0)) }
     }
 
     pub fn write_to_file(&self, filename: &str) -> Result<(), Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gsk_sys::gsk_render_node_write_to_file(self.to_glib_none().0, filename.to_glib_none().0, &mut error);
-            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+            let _ = gsk_sys::gsk_render_node_write_to_file(
+                self.to_glib_none().0,
+                filename.to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
