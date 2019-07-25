@@ -9,15 +9,14 @@ use gtk_sys;
 use {TreeModel, TreeModelFilter, TreePath};
 
 impl TreeModelFilter {
-    pub fn new<T: IsA<TreeModel>>(
-        child_model: &T,
-        root: Option<&TreePath>,
-    ) -> TreeModelFilter {
+    pub fn new<T: IsA<TreeModel>>(child_model: &T, root: Option<&TreePath>) -> TreeModelFilter {
         skip_assert_initialized!();
         unsafe {
-            TreeModel::from_glib_none(gtk_sys::gtk_tree_model_filter_new(child_model.as_ref().to_glib_none().0,
-                                                                     mut_override(root.to_glib_none().0)))
-                                                                    .unsafe_cast()
+            TreeModel::from_glib_none(gtk_sys::gtk_tree_model_filter_new(
+                child_model.as_ref().to_glib_none().0,
+                mut_override(root.to_glib_none().0),
+            ))
+            .unsafe_cast()
         }
     }
 }

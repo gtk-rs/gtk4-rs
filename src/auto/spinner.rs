@@ -2,26 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Align;
-use Buildable;
-use LayoutManager;
-use Overflow;
-use Widget;
 use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Align;
+use Buildable;
+use LayoutManager;
+use Overflow;
+use Widget;
 
 glib_wrapper! {
     pub struct Spinner(Object<gtk_sys::GtkSpinner, gtk_sys::GtkSpinnerClass, SpinnerClass>) @extends Widget, @implements Buildable;
@@ -34,9 +34,7 @@ glib_wrapper! {
 impl Spinner {
     pub fn new() -> Spinner {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_spinner_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_spinner_new()).unsafe_cast() }
     }
 }
 
@@ -217,7 +215,10 @@ impl SpinnerBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Spinner::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Spinner::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn active(mut self, active: bool) -> Self {
@@ -411,28 +412,44 @@ impl<O: IsA<Spinner>> SpinnerExt for O {
     fn get_property_active(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"active\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"active\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_active(&self, active: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"active\0".as_ptr() as *const _, Value::from(&active).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"active\0".as_ptr() as *const _,
+                Value::from(&active).to_glib_none().0,
+            );
         }
     }
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSpinner, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Spinner>
+        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkSpinner,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Spinner>,
         {
             let f: &F = &*(f as *const F);
             f(&Spinner::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::active\0".as_ptr() as *const _,
-                Some(transmute(notify_active_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active\0".as_ptr() as *const _,
+                Some(transmute(notify_active_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

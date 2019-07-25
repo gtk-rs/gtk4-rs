@@ -4,8 +4,8 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
@@ -29,16 +29,25 @@ pub trait StyleProviderExt: 'static {
 
 impl<O: IsA<StyleProvider>> StyleProviderExt for O {
     fn connect__gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn _gtk_private_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStyleProvider, f: glib_sys::gpointer)
-            where P: IsA<StyleProvider>
+        unsafe extern "C" fn _gtk_private_changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkStyleProvider,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<StyleProvider>,
         {
             let f: &F = &*(f as *const F);
             f(&StyleProvider::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"-gtk-private-changed\0".as_ptr() as *const _,
-                Some(transmute(_gtk_private_changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"-gtk-private-changed\0".as_ptr() as *const _,
+                Some(transmute(
+                    _gtk_private_changed_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

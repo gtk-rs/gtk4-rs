@@ -2,16 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use EventController;
-use Gesture;
-use GestureDrag;
-use GestureSingle;
-use Orientation;
-use PanDirection;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
@@ -19,6 +13,12 @@ use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use EventController;
+use Gesture;
+use GestureDrag;
+use GestureSingle;
+use Orientation;
+use PanDirection;
 
 glib_wrapper! {
     pub struct GesturePan(Object<gtk_sys::GtkGesturePan, gtk_sys::GtkGesturePanClass, GesturePanClass>) @extends GestureDrag, GestureSingle, Gesture, EventController;
@@ -32,13 +32,16 @@ impl GesturePan {
     pub fn new(orientation: Orientation) -> GesturePan {
         assert_initialized_main_thread!();
         unsafe {
-            Gesture::from_glib_full(gtk_sys::gtk_gesture_pan_new(orientation.to_glib())).unsafe_cast()
+            Gesture::from_glib_full(gtk_sys::gtk_gesture_pan_new(orientation.to_glib()))
+                .unsafe_cast()
         }
     }
 
     pub fn get_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(gtk_sys::gtk_gesture_pan_get_orientation(self.to_glib_none().0))
+            from_glib(gtk_sys::gtk_gesture_pan_get_orientation(
+                self.to_glib_none().0,
+            ))
         }
     }
 
@@ -48,27 +51,50 @@ impl GesturePan {
         }
     }
 
-    pub fn connect_pan<F: Fn(&GesturePan, PanDirection, f64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn pan_trampoline<F: Fn(&GesturePan, PanDirection, f64) + 'static>(this: *mut gtk_sys::GtkGesturePan, direction: gtk_sys::GtkPanDirection, offset: libc::c_double, f: glib_sys::gpointer) {
+    pub fn connect_pan<F: Fn(&GesturePan, PanDirection, f64) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn pan_trampoline<F: Fn(&GesturePan, PanDirection, f64) + 'static>(
+            this: *mut gtk_sys::GtkGesturePan,
+            direction: gtk_sys::GtkPanDirection,
+            offset: libc::c_double,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(direction), offset)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"pan\0".as_ptr() as *const _,
-                Some(transmute(pan_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"pan\0".as_ptr() as *const _,
+                Some(transmute(pan_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_property_orientation_notify<F: Fn(&GesturePan) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_orientation_trampoline<F: Fn(&GesturePan) + 'static>(this: *mut gtk_sys::GtkGesturePan, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+    pub fn connect_property_orientation_notify<F: Fn(&GesturePan) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_orientation_trampoline<F: Fn(&GesturePan) + 'static>(
+            this: *mut gtk_sys::GtkGesturePan,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::orientation\0".as_ptr() as *const _,
-                Some(transmute(notify_orientation_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::orientation\0".as_ptr() as *const _,
+                Some(transmute(notify_orientation_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

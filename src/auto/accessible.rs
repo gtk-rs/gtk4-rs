@@ -2,18 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Widget;
 use atk;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Widget;
 
 glib_wrapper! {
     pub struct Accessible(Object<gtk_sys::GtkAccessible, gtk_sys::GtkAccessibleClass, AccessibleClass>) @extends atk::Object;
@@ -36,27 +36,40 @@ pub trait AccessibleExt: 'static {
 impl<O: IsA<Accessible>> AccessibleExt for O {
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_accessible_get_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_accessible_get_widget(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_accessible_set_widget(self.as_ref().to_glib_none().0, widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_accessible_set_widget(
+                self.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkAccessible, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Accessible>
+        unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkAccessible,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Accessible>,
         {
             let f: &F = &*(f as *const F);
             f(&Accessible::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::widget\0".as_ptr() as *const _,
-                Some(transmute(notify_widget_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::widget\0".as_ptr() as *const _,
+                Some(transmute(notify_widget_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

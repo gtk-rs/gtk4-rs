@@ -3,8 +3,8 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use std::ptr;
 use gtk_sys;
+use std::ptr;
 
 #[repr(C)]
 pub struct PageRange(gtk_sys::GtkPageRange);
@@ -12,10 +12,7 @@ pub struct PageRange(gtk_sys::GtkPageRange);
 impl PageRange {
     pub fn new(start: i32, end: i32) -> PageRange {
         skip_assert_initialized!();
-        PageRange(gtk_sys::GtkPageRange {
-            start,
-            end,
-        })
+        PageRange(gtk_sys::GtkPageRange { start, end })
     }
 
     pub fn get_start(&self) -> i32 {

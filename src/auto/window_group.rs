@@ -2,13 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Widget;
-use Window;
 use gdk;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use Widget;
+use Window;
 
 glib_wrapper! {
     pub struct WindowGroup(Object<gtk_sys::GtkWindowGroup, gtk_sys::GtkWindowGroupClass, WindowGroupClass>);
@@ -21,9 +21,7 @@ glib_wrapper! {
 impl WindowGroup {
     pub fn new() -> WindowGroup {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_window_group_new())
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_window_group_new()) }
     }
 }
 
@@ -50,31 +48,44 @@ pub trait WindowGroupExt: 'static {
 impl<O: IsA<WindowGroup>> WindowGroupExt for O {
     fn add_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_window_group_add_window(self.as_ref().to_glib_none().0, window.as_ref().to_glib_none().0);
+            gtk_sys::gtk_window_group_add_window(
+                self.as_ref().to_glib_none().0,
+                window.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn get_current_device_grab(&self, device: &gdk::Device) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_window_group_get_current_device_grab(self.as_ref().to_glib_none().0, device.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_window_group_get_current_device_grab(
+                self.as_ref().to_glib_none().0,
+                device.to_glib_none().0,
+            ))
         }
     }
 
     fn get_current_grab(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_window_group_get_current_grab(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_window_group_get_current_grab(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn list_windows(&self) -> Vec<Window> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_window_group_list_windows(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_window_group_list_windows(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn remove_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_window_group_remove_window(self.as_ref().to_glib_none().0, window.as_ref().to_glib_none().0);
+            gtk_sys::gtk_window_group_remove_window(
+                self.as_ref().to_glib_none().0,
+                window.as_ref().to_glib_none().0,
+            );
         }
     }
 }

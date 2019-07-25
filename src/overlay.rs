@@ -4,9 +4,9 @@ use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
 use glib_sys::{gboolean, gpointer};
+use gtk_sys::{GtkOverlay, GtkWidget};
 use std::mem::transmute;
 use std::ptr;
-use gtk_sys::{GtkOverlay, GtkWidget};
 use IsA;
 use Overlay;
 use Widget;
@@ -34,7 +34,10 @@ impl<O: IsA<Overlay>> OverlayExtManual for O {
     }
 }
 
-unsafe extern "C" fn get_child_position_trampoline<T, F: Fn(&T, &Widget) -> Option<Rectangle> + 'static>(
+unsafe extern "C" fn get_child_position_trampoline<
+    T,
+    F: Fn(&T, &Widget) -> Option<Rectangle> + 'static,
+>(
     this: *mut GtkOverlay,
     widget: *mut GtkWidget,
     allocation: *mut GdkRectangle,
@@ -53,5 +56,6 @@ where
             true
         }
         None => false,
-    }.to_glib()
+    }
+    .to_glib()
 }

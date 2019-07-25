@@ -2,6 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::object::ObjectExt;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -11,23 +28,6 @@ use LayoutManager;
 use Overflow;
 use ReliefStyle;
 use Widget;
-use gdk;
-use glib;
-use glib::GString;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct Button(Object<gtk_sys::GtkButton, gtk_sys::GtkButtonClass, ButtonClass>) @extends Bin, Container, Widget, @implements Buildable, Actionable;
@@ -40,29 +40,34 @@ glib_wrapper! {
 impl Button {
     pub fn new() -> Button {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_button_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_button_new()).unsafe_cast() }
     }
 
     pub fn new_from_icon_name(icon_name: Option<&str>) -> Button {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_button_new_from_icon_name(icon_name.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_button_new_from_icon_name(
+                icon_name.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 
     pub fn new_with_label(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_button_new_with_label(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_button_new_with_label(label.to_glib_none().0))
+                .unsafe_cast()
         }
     }
 
     pub fn new_with_mnemonic(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_button_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_button_new_with_mnemonic(
+                label.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -259,7 +264,10 @@ impl ButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Button::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Button::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
@@ -473,7 +481,10 @@ pub trait ButtonExt: 'static {
 
     fn connect_property_relief_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<Button>> ButtonExt for O {
@@ -485,31 +496,42 @@ impl<O: IsA<Button>> ButtonExt for O {
 
     fn get_icon_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_button_get_icon_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_button_get_icon_name(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_label(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_button_get_label(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_button_get_label(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_relief(&self) -> ReliefStyle {
         unsafe {
-            from_glib(gtk_sys::gtk_button_get_relief(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_button_get_relief(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_use_underline(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_button_get_use_underline(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_button_get_use_underline(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            gtk_sys::gtk_button_set_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
+            gtk_sys::gtk_button_set_icon_name(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+            );
         }
     }
 
@@ -527,99 +549,161 @@ impl<O: IsA<Button>> ButtonExt for O {
 
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            gtk_sys::gtk_button_set_use_underline(self.as_ref().to_glib_none().0, use_underline.to_glib());
+            gtk_sys::gtk_button_set_use_underline(
+                self.as_ref().to_glib_none().0,
+                use_underline.to_glib(),
+            );
         }
     }
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, f: glib_sys::gpointer)
-            where P: IsA<Button>
+        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"activate\0".as_ptr() as *const _,
-                Some(transmute(activate_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute(activate_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+                .emit("activate", &[])
+                .unwrap()
+        };
     }
 
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn clicked_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, f: glib_sys::gpointer)
-            where P: IsA<Button>
+        unsafe extern "C" fn clicked_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"clicked\0".as_ptr() as *const _,
-                Some(transmute(clicked_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"clicked\0".as_ptr() as *const _,
+                Some(transmute(clicked_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn emit_clicked(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("clicked", &[]).unwrap() };
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+                .emit("clicked", &[])
+                .unwrap()
+        };
     }
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Button>
+        unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute(notify_icon_name_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::icon-name\0".as_ptr() as *const _,
+                Some(transmute(notify_icon_name_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Button>
+        unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::label\0".as_ptr() as *const _,
-                Some(transmute(notify_label_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::label\0".as_ptr() as *const _,
+                Some(transmute(notify_label_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_relief_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_relief_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Button>
+        unsafe extern "C" fn notify_relief_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::relief\0".as_ptr() as *const _,
-                Some(transmute(notify_relief_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::relief\0".as_ptr() as *const _,
+                Some(transmute(notify_relief_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Button>
+    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
             f(&Button::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute(notify_use_underline_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-underline\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_use_underline_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

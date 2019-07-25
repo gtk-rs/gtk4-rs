@@ -5,8 +5,8 @@
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib_sys;
 use gtk_sys;
@@ -51,7 +51,10 @@ pub trait SelectionModelExt: 'static {
 impl<O: IsA<SelectionModel>> SelectionModelExt for O {
     fn is_selected(&self, position: u32) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_is_selected(self.as_ref().to_glib_none().0, position))
+            from_glib(gtk_sys::gtk_selection_model_is_selected(
+                self.as_ref().to_glib_none().0,
+                position,
+            ))
         }
     }
 
@@ -60,64 +63,107 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             let mut start_range = mem::uninitialized();
             let mut n_items = mem::uninitialized();
             let mut selected = mem::uninitialized();
-            gtk_sys::gtk_selection_model_query_range(self.as_ref().to_glib_none().0, position, &mut start_range, &mut n_items, &mut selected);
+            gtk_sys::gtk_selection_model_query_range(
+                self.as_ref().to_glib_none().0,
+                position,
+                &mut start_range,
+                &mut n_items,
+                &mut selected,
+            );
             (start_range, n_items, from_glib(selected))
         }
     }
 
     fn select_all(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_select_all(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_selection_model_select_all(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn select_item(&self, position: u32, exclusive: bool) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_select_item(self.as_ref().to_glib_none().0, position, exclusive.to_glib()))
+            from_glib(gtk_sys::gtk_selection_model_select_item(
+                self.as_ref().to_glib_none().0,
+                position,
+                exclusive.to_glib(),
+            ))
         }
     }
 
     fn select_range(&self, position: u32, n_items: u32, exclusive: bool) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_select_range(self.as_ref().to_glib_none().0, position, n_items, exclusive.to_glib()))
+            from_glib(gtk_sys::gtk_selection_model_select_range(
+                self.as_ref().to_glib_none().0,
+                position,
+                n_items,
+                exclusive.to_glib(),
+            ))
         }
     }
 
     fn selection_changed(&self, position: u32, n_items: u32) {
         unsafe {
-            gtk_sys::gtk_selection_model_selection_changed(self.as_ref().to_glib_none().0, position, n_items);
+            gtk_sys::gtk_selection_model_selection_changed(
+                self.as_ref().to_glib_none().0,
+                position,
+                n_items,
+            );
         }
     }
 
     fn unselect_all(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_unselect_all(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_selection_model_unselect_all(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn unselect_item(&self, position: u32) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_unselect_item(self.as_ref().to_glib_none().0, position))
+            from_glib(gtk_sys::gtk_selection_model_unselect_item(
+                self.as_ref().to_glib_none().0,
+                position,
+            ))
         }
     }
 
     fn unselect_range(&self, position: u32, n_items: u32) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_selection_model_unselect_range(self.as_ref().to_glib_none().0, position, n_items))
+            from_glib(gtk_sys::gtk_selection_model_unselect_range(
+                self.as_ref().to_glib_none().0,
+                position,
+                n_items,
+            ))
         }
     }
 
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(this: *mut gtk_sys::GtkSelectionModel, position: libc::c_uint, n_items: libc::c_uint, f: glib_sys::gpointer)
-            where P: IsA<SelectionModel>
+        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(
+            this: *mut gtk_sys::GtkSelectionModel,
+            position: libc::c_uint,
+            n_items: libc::c_uint,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<SelectionModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&SelectionModel::from_glib_borrow(this).unsafe_cast(), position, n_items)
+            f(
+                &SelectionModel::from_glib_borrow(this).unsafe_cast(),
+                position,
+                n_items,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute(selection_changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"selection-changed\0".as_ptr() as *const _,
+                Some(transmute(selection_changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

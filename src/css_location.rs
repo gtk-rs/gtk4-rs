@@ -10,7 +10,13 @@ use gtk_sys;
 pub struct CssLocation(gtk_sys::GtkCssLocation);
 
 impl CssLocation {
-    pub fn new(bytes: usize, chars: usize, lines: usize, line_bytes: usize, line_chars: usize) -> CssLocation {
+    pub fn new(
+        bytes: usize,
+        chars: usize,
+        lines: usize,
+        line_bytes: usize,
+        line_chars: usize,
+    ) -> CssLocation {
         assert_initialized_main_thread!();
         CssLocation(gtk_sys::GtkCssLocation {
             bytes,

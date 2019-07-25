@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use LayoutManager;
 use glib::object::Cast;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use LayoutManager;
 
 glib_wrapper! {
     pub struct FixedLayout(Object<gtk_sys::GtkFixedLayout, gtk_sys::GtkFixedLayoutClass, FixedLayoutClass>) @extends LayoutManager;
@@ -19,9 +19,7 @@ glib_wrapper! {
 impl FixedLayout {
     pub fn new() -> FixedLayout {
         assert_initialized_main_thread!();
-        unsafe {
-            LayoutManager::from_glib_full(gtk_sys::gtk_fixed_layout_new()).unsafe_cast()
-        }
+        unsafe { LayoutManager::from_glib_full(gtk_sys::gtk_fixed_layout_new()).unsafe_cast() }
     }
 }
 

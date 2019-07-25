@@ -24,9 +24,7 @@ impl<O: IsA<ComboBox>> ComboBoxExtManual for O {
     }
 
     fn get_active(&self) -> Option<u32> {
-        match unsafe {
-            gtk_sys::gtk_combo_box_get_active(self.as_ref().to_glib_none().0)
-        } {
+        match unsafe { gtk_sys::gtk_combo_box_get_active(self.as_ref().to_glib_none().0) } {
             -1 => None,
             x => Some(x as _),
         }

@@ -2,6 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use gtk_sys;
+use std::fmt;
 use Actionable;
 use Align;
 use Bin;
@@ -12,13 +19,6 @@ use Menu;
 use MenuItem;
 use Overflow;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct SeparatorMenuItem(Object<gtk_sys::GtkSeparatorMenuItem, gtk_sys::GtkSeparatorMenuItemClass, SeparatorMenuItemClass>) @extends MenuItem, Bin, Container, Widget, @implements Buildable, Actionable;
@@ -31,9 +31,7 @@ glib_wrapper! {
 impl SeparatorMenuItem {
     pub fn new() -> SeparatorMenuItem {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_separator_menu_item_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_separator_menu_item_new()).unsafe_cast() }
     }
 }
 
@@ -229,7 +227,10 @@ impl SeparatorMenuItemBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(SeparatorMenuItem::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(SeparatorMenuItem::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn accel_path(mut self, accel_path: &str) -> Self {

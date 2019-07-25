@@ -2,6 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -13,19 +26,6 @@ use Overflow;
 use ToolButton;
 use ToolItem;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct MenuToolButton(Object<gtk_sys::GtkMenuToolButton, gtk_sys::GtkMenuToolButtonClass, MenuToolButtonClass>) @extends ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
@@ -39,7 +39,11 @@ impl MenuToolButton {
     pub fn new<P: IsA<Widget>>(icon_widget: Option<&P>, label: Option<&str>) -> MenuToolButton {
         assert_initialized_main_thread!();
         unsafe {
-            ToolItem::from_glib_none(gtk_sys::gtk_menu_tool_button_new(icon_widget.map(|p| p.as_ref()).to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_menu_tool_button_new(
+                icon_widget.map(|p| p.as_ref()).to_glib_none().0,
+                label.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -265,7 +269,10 @@ impl MenuToolButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(MenuToolButton::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(MenuToolButton::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn menu(mut self, menu: &Menu) -> Self {
@@ -498,53 +505,79 @@ pub trait MenuToolButtonExt: 'static {
 impl<O: IsA<MenuToolButton>> MenuToolButtonExt for O {
     fn get_menu(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_menu_tool_button_get_menu(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_menu_tool_button_get_menu(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_arrow_tooltip_markup(&self, markup: &str) {
         unsafe {
-            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_markup(self.as_ref().to_glib_none().0, markup.to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_markup(
+                self.as_ref().to_glib_none().0,
+                markup.to_glib_none().0,
+            );
         }
     }
 
     fn set_arrow_tooltip_text(&self, text: &str) {
         unsafe {
-            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_arrow_tooltip_text(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn set_menu<P: IsA<Widget>>(&self, menu: &P) {
         unsafe {
-            gtk_sys::gtk_menu_tool_button_set_menu(self.as_ref().to_glib_none().0, menu.as_ref().to_glib_none().0);
+            gtk_sys::gtk_menu_tool_button_set_menu(
+                self.as_ref().to_glib_none().0,
+                menu.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn connect_show_menu<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn show_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuToolButton, f: glib_sys::gpointer)
-            where P: IsA<MenuToolButton>
+        unsafe extern "C" fn show_menu_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkMenuToolButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<MenuToolButton>,
         {
             let f: &F = &*(f as *const F);
             f(&MenuToolButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"show-menu\0".as_ptr() as *const _,
-                Some(transmute(show_menu_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"show-menu\0".as_ptr() as *const _,
+                Some(transmute(show_menu_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMenuToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<MenuToolButton>
+        unsafe extern "C" fn notify_menu_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkMenuToolButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<MenuToolButton>,
         {
             let f: &F = &*(f as *const F);
             f(&MenuToolButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::menu\0".as_ptr() as *const _,
-                Some(transmute(notify_menu_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::menu\0".as_ptr() as *const _,
+                Some(transmute(notify_menu_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -2,15 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::IsA;
+use glib::translate::*;
+use gtk_sys;
+use std::fmt;
 use TreeDragSource;
 use TreeIter;
 use TreeModel;
 use TreePath;
 use TreeSortable;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct TreeModelSort(Object<gtk_sys::GtkTreeModelSort, gtk_sys::GtkTreeModelSortClass, TreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
@@ -50,40 +50,63 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut sort_iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_sort_convert_child_iter_to_iter(self.as_ref().to_glib_none().0, sort_iter.to_glib_none_mut().0, mut_override(child_iter.to_glib_none().0)));
-            if ret { Some(sort_iter) } else { None }
+            let ret = from_glib(gtk_sys::gtk_tree_model_sort_convert_child_iter_to_iter(
+                self.as_ref().to_glib_none().0,
+                sort_iter.to_glib_none_mut().0,
+                mut_override(child_iter.to_glib_none().0),
+            ));
+            if ret {
+                Some(sort_iter)
+            } else {
+                None
+            }
         }
     }
 
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_sort_convert_child_path_to_path(self.as_ref().to_glib_none().0, mut_override(child_path.to_glib_none().0)))
+            from_glib_full(gtk_sys::gtk_tree_model_sort_convert_child_path_to_path(
+                self.as_ref().to_glib_none().0,
+                mut_override(child_path.to_glib_none().0),
+            ))
         }
     }
 
     fn convert_iter_to_child_iter(&self, sorted_iter: &TreeIter) -> TreeIter {
         unsafe {
             let mut child_iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_model_sort_convert_iter_to_child_iter(self.as_ref().to_glib_none().0, child_iter.to_glib_none_mut().0, mut_override(sorted_iter.to_glib_none().0));
+            gtk_sys::gtk_tree_model_sort_convert_iter_to_child_iter(
+                self.as_ref().to_glib_none().0,
+                child_iter.to_glib_none_mut().0,
+                mut_override(sorted_iter.to_glib_none().0),
+            );
             child_iter
         }
     }
 
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_sort_convert_path_to_child_path(self.as_ref().to_glib_none().0, mut_override(sorted_path.to_glib_none().0)))
+            from_glib_full(gtk_sys::gtk_tree_model_sort_convert_path_to_child_path(
+                self.as_ref().to_glib_none().0,
+                mut_override(sorted_path.to_glib_none().0),
+            ))
         }
     }
 
     fn get_model(&self) -> TreeModel {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_model_sort_get_model(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_tree_model_sort_get_model(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_sort_iter_is_valid(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
+            from_glib(gtk_sys::gtk_tree_model_sort_iter_is_valid(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+            ))
         }
     }
 

@@ -2,12 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use LayoutManager;
-use Widget;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use LayoutManager;
+use Widget;
 
 glib_wrapper! {
     pub struct LayoutChild(Object<gtk_sys::GtkLayoutChild, gtk_sys::GtkLayoutChildClass, LayoutChildClass>);
@@ -28,13 +28,17 @@ pub trait LayoutChildExt: 'static {
 impl<O: IsA<LayoutChild>> LayoutChildExt for O {
     fn get_child_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_layout_child_get_child_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_layout_child_get_child_widget(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_layout_manager(&self) -> Option<LayoutManager> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_layout_child_get_layout_manager(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_layout_child_get_layout_manager(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 }

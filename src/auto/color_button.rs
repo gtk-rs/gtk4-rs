@@ -2,28 +2,28 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Align;
-use Buildable;
-use ColorChooser;
-use LayoutManager;
-use Overflow;
-use Widget;
 use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Align;
+use Buildable;
+use ColorChooser;
+use LayoutManager;
+use Overflow;
+use Widget;
 
 glib_wrapper! {
     pub struct ColorButton(Object<gtk_sys::GtkColorButton, gtk_sys::GtkColorButtonClass, ColorButtonClass>) @extends Widget, @implements Buildable, ColorChooser;
@@ -36,15 +36,16 @@ glib_wrapper! {
 impl ColorButton {
     pub fn new() -> ColorButton {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_color_button_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_color_button_new()).unsafe_cast() }
     }
 
     pub fn new_with_rgba(rgba: &gdk::RGBA) -> ColorButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_color_button_new_with_rgba(rgba.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_color_button_new_with_rgba(
+                rgba.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -241,7 +242,10 @@ impl ColorButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(ColorButton::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(ColorButton::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
@@ -445,97 +449,149 @@ pub trait ColorButtonExt: 'static {
 impl<O: IsA<ColorButton>> ColorButtonExt for O {
     fn get_title(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_color_button_get_title(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_color_button_get_title(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_title(&self, title: &str) {
         unsafe {
-            gtk_sys::gtk_color_button_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
+            gtk_sys::gtk_color_button_set_title(
+                self.as_ref().to_glib_none().0,
+                title.to_glib_none().0,
+            );
         }
     }
 
     fn get_property_show_editor(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-editor\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-editor\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_show_editor(&self, show_editor: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-editor\0".as_ptr() as *const _, Value::from(&show_editor).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-editor\0".as_ptr() as *const _,
+                Value::from(&show_editor).to_glib_none().0,
+            );
         }
     }
 
     fn connect_color_set<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn color_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorButton, f: glib_sys::gpointer)
-            where P: IsA<ColorButton>
+        unsafe extern "C" fn color_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkColorButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ColorButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ColorButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"color-set\0".as_ptr() as *const _,
-                Some(transmute(color_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"color-set\0".as_ptr() as *const _,
+                Some(transmute(color_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ColorButton>
+        unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkColorButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ColorButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ColorButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute(notify_rgba_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::rgba\0".as_ptr() as *const _,
+                Some(transmute(notify_rgba_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_show_editor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_editor_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ColorButton>
+        unsafe extern "C" fn notify_show_editor_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkColorButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ColorButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ColorButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::show-editor\0".as_ptr() as *const _,
-                Some(transmute(notify_show_editor_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-editor\0".as_ptr() as *const _,
+                Some(transmute(notify_show_editor_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ColorButton>
+        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkColorButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ColorButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ColorButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::title\0".as_ptr() as *const _,
+                Some(transmute(notify_title_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_use_alpha_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkColorButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ColorButton>
+        unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkColorButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ColorButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ColorButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::use-alpha\0".as_ptr() as *const _,
-                Some(transmute(notify_use_alpha_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-alpha\0".as_ptr() as *const _,
+                Some(transmute(notify_use_alpha_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

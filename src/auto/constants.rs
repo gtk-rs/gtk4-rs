@@ -6,413 +6,949 @@ use gtk_sys;
 use std::ffi::CStr;
 
 lazy_static! {
-    pub static ref IM_MODULE_EXTENSION_POINT_NAME: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_IM_MODULE_EXTENSION_POINT_NAME).to_str().unwrap()};
+    pub static ref IM_MODULE_EXTENSION_POINT_NAME: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_IM_MODULE_EXTENSION_POINT_NAME)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref LEVEL_BAR_OFFSET_FULL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_FULL).to_str().unwrap()};
+    pub static ref LEVEL_BAR_OFFSET_FULL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_FULL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref LEVEL_BAR_OFFSET_HIGH: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_HIGH).to_str().unwrap()};
+    pub static ref LEVEL_BAR_OFFSET_HIGH: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_HIGH)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref LEVEL_BAR_OFFSET_LOW: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_LOW).to_str().unwrap()};
+    pub static ref LEVEL_BAR_OFFSET_LOW: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_LEVEL_BAR_OFFSET_LOW)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref MEDIA_FILE_EXTENSION_POINT_NAME: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_MEDIA_FILE_EXTENSION_POINT_NAME).to_str().unwrap()};
+    pub static ref MEDIA_FILE_EXTENSION_POINT_NAME: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_MEDIA_FILE_EXTENSION_POINT_NAME)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_A3: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A3).to_str().unwrap()};
+    pub static ref PAPER_NAME_A3: &'static str =
+        unsafe { CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A3).to_str().unwrap() };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_A4: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A4).to_str().unwrap()};
+    pub static ref PAPER_NAME_A4: &'static str =
+        unsafe { CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A4).to_str().unwrap() };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_A5: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A5).to_str().unwrap()};
+    pub static ref PAPER_NAME_A5: &'static str =
+        unsafe { CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_A5).to_str().unwrap() };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_B5: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_B5).to_str().unwrap()};
+    pub static ref PAPER_NAME_B5: &'static str =
+        unsafe { CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_B5).to_str().unwrap() };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_EXECUTIVE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_EXECUTIVE).to_str().unwrap()};
+    pub static ref PAPER_NAME_EXECUTIVE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_EXECUTIVE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_LEGAL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_LEGAL).to_str().unwrap()};
+    pub static ref PAPER_NAME_LEGAL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_LEGAL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PAPER_NAME_LETTER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_LETTER).to_str().unwrap()};
+    pub static ref PAPER_NAME_LETTER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PAPER_NAME_LETTER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_COLLATE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_COLLATE).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_COLLATE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_COLLATE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_DEFAULT_SOURCE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DEFAULT_SOURCE).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_DEFAULT_SOURCE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DEFAULT_SOURCE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_DITHER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DITHER).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_DITHER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DITHER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_DUPLEX: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DUPLEX).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_DUPLEX: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_DUPLEX)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_FINISHINGS: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_FINISHINGS).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_FINISHINGS: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_FINISHINGS)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_MEDIA_TYPE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_MEDIA_TYPE).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_MEDIA_TYPE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_MEDIA_TYPE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_NUMBER_UP: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_NUMBER_UP).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_NUMBER_UP: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_NUMBER_UP)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_NUMBER_UP_LAYOUT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_NUMBER_UP_LAYOUT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_N_COPIES: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_N_COPIES).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_N_COPIES: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_N_COPIES)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_ORIENTATION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_ORIENTATION).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_ORIENTATION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_ORIENTATION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_OUTPUT_BASENAME: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_BASENAME).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_OUTPUT_BASENAME: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_BASENAME)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_OUTPUT_BIN: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_BIN).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_OUTPUT_BIN: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_BIN)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_OUTPUT_DIR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_DIR).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_OUTPUT_DIR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_DIR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_OUTPUT_FILE_FORMAT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_OUTPUT_FILE_FORMAT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_OUTPUT_URI: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_URI).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_OUTPUT_URI: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_OUTPUT_URI)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PAGE_RANGES: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAGE_RANGES).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PAGE_RANGES: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAGE_RANGES)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PAGE_SET: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAGE_SET).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PAGE_SET: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAGE_SET)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PAPER_FORMAT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_FORMAT).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PAPER_FORMAT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_FORMAT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PAPER_HEIGHT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_HEIGHT).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PAPER_HEIGHT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_HEIGHT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PAPER_WIDTH: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_WIDTH).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PAPER_WIDTH: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PAPER_WIDTH)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PRINTER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINTER).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PRINTER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINTER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PRINTER_LPI: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINTER_LPI).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PRINTER_LPI: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINTER_LPI)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_PRINT_PAGES: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINT_PAGES).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_PRINT_PAGES: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_PRINT_PAGES)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_QUALITY: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_QUALITY).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_QUALITY: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_QUALITY)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_RESOLUTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_RESOLUTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_RESOLUTION_X: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION_X).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_RESOLUTION_X: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION_X)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_RESOLUTION_Y: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION_Y).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_RESOLUTION_Y: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_RESOLUTION_Y)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_REVERSE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_REVERSE).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_REVERSE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_REVERSE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_SCALE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_SCALE).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_SCALE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_SCALE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_USE_COLOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_USE_COLOR).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_USE_COLOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_USE_COLOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_WIN32_DRIVER_EXTRA: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_WIN32_DRIVER_EXTRA: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref PRINT_SETTINGS_WIN32_DRIVER_VERSION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION).to_str().unwrap()};
+    pub static ref PRINT_SETTINGS_WIN32_DRIVER_VERSION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_ACCELERATOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ACCELERATOR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_ACCELERATOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ACCELERATOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_ARROW: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ARROW).to_str().unwrap()};
+    pub static ref STYLE_CLASS_ARROW: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ARROW)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_BACKGROUND: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BACKGROUND).to_str().unwrap()};
+    pub static ref STYLE_CLASS_BACKGROUND: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BACKGROUND)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_BOTTOM: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BOTTOM).to_str().unwrap()};
+    pub static ref STYLE_CLASS_BOTTOM: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BOTTOM)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_BUTTON: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BUTTON).to_str().unwrap()};
+    pub static ref STYLE_CLASS_BUTTON: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_BUTTON)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CALENDAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CALENDAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CALENDAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CALENDAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CELL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CELL).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CELL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CELL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CHECK: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CHECK).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CHECK: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CHECK)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_COMBOBOX_ENTRY: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_COMBOBOX_ENTRY).to_str().unwrap()};
+    pub static ref STYLE_CLASS_COMBOBOX_ENTRY: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_COMBOBOX_ENTRY)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CONTEXT_MENU: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CONTEXT_MENU).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CONTEXT_MENU: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CONTEXT_MENU)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CSD: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CSD).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CSD: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CSD)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_CURSOR_HANDLE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CURSOR_HANDLE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_CURSOR_HANDLE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_CURSOR_HANDLE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_DEFAULT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DEFAULT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_DEFAULT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DEFAULT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_DESTRUCTIVE_ACTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DESTRUCTIVE_ACTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_DESTRUCTIVE_ACTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DESTRUCTIVE_ACTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_DIM_LABEL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DIM_LABEL).to_str().unwrap()};
+    pub static ref STYLE_CLASS_DIM_LABEL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DIM_LABEL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_DND: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DND).to_str().unwrap()};
+    pub static ref STYLE_CLASS_DND: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DND)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_DOCK: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DOCK).to_str().unwrap()};
+    pub static ref STYLE_CLASS_DOCK: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_DOCK)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_ENTRY: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ENTRY).to_str().unwrap()};
+    pub static ref STYLE_CLASS_ENTRY: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ENTRY)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_ERROR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ERROR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_ERROR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_ERROR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_EXPANDER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_EXPANDER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_EXPANDER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_EXPANDER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_FLAT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_FLAT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_FLAT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_FLAT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_FRAME: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_FRAME).to_str().unwrap()};
+    pub static ref STYLE_CLASS_FRAME: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_FRAME)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_HEADER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HEADER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_HEADER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HEADER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_HIGHLIGHT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HIGHLIGHT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_HIGHLIGHT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HIGHLIGHT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_HORIZONTAL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HORIZONTAL).to_str().unwrap()};
+    pub static ref STYLE_CLASS_HORIZONTAL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_HORIZONTAL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_IMAGE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_IMAGE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_IMAGE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_IMAGE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_INFO: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INFO).to_str().unwrap()};
+    pub static ref STYLE_CLASS_INFO: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INFO)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_INLINE_TOOLBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INLINE_TOOLBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_INLINE_TOOLBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INLINE_TOOLBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_INSERTION_CURSOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INSERTION_CURSOR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_INSERTION_CURSOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INSERTION_CURSOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LABEL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LABEL).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LABEL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LABEL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LEFT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LEFT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LEFT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LEFT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LEVEL_BAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LEVEL_BAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LEVEL_BAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LEVEL_BAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LINKED: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LINKED).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LINKED: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LINKED)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LIST: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LIST).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LIST: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LIST)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_LIST_ROW: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LIST_ROW).to_str().unwrap()};
+    pub static ref STYLE_CLASS_LIST_ROW: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_LIST_ROW)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MARK: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MARK).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MARK: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MARK)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MENU: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENU).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MENU: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENU)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MENUBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENUBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MENUBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENUBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MENUITEM: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENUITEM).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MENUITEM: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MENUITEM)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MESSAGE_DIALOG: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MESSAGE_DIALOG).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MESSAGE_DIALOG: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MESSAGE_DIALOG)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_MONOSPACE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MONOSPACE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_MONOSPACE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_MONOSPACE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_NEEDS_ATTENTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_NEEDS_ATTENTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_NEEDS_ATTENTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_NEEDS_ATTENTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_NOTEBOOK: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_NOTEBOOK).to_str().unwrap()};
+    pub static ref STYLE_CLASS_NOTEBOOK: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_NOTEBOOK)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_OSD: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_OSD).to_str().unwrap()};
+    pub static ref STYLE_CLASS_OSD: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_OSD)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_OVERSHOOT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_OVERSHOOT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_OVERSHOOT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_OVERSHOOT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_PANE_SEPARATOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PANE_SEPARATOR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_PANE_SEPARATOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PANE_SEPARATOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_PAPER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PAPER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_PAPER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PAPER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_POPOVER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_POPOVER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_POPOVER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_POPOVER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_POPUP: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_POPUP).to_str().unwrap()};
+    pub static ref STYLE_CLASS_POPUP: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_POPUP)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_PRIMARY_TOOLBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PRIMARY_TOOLBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_PRIMARY_TOOLBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PRIMARY_TOOLBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_PROGRESSBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PROGRESSBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_PROGRESSBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PROGRESSBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_PULSE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PULSE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_PULSE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PULSE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_QUESTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_QUESTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_QUESTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_QUESTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_RADIO: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RADIO).to_str().unwrap()};
+    pub static ref STYLE_CLASS_RADIO: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RADIO)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_RAISED: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RAISED).to_str().unwrap()};
+    pub static ref STYLE_CLASS_RAISED: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RAISED)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_READ_ONLY: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_READ_ONLY).to_str().unwrap()};
+    pub static ref STYLE_CLASS_READ_ONLY: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_READ_ONLY)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_RIGHT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RIGHT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_RIGHT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RIGHT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_RUBBERBAND: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RUBBERBAND).to_str().unwrap()};
+    pub static ref STYLE_CLASS_RUBBERBAND: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_RUBBERBAND)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SCALE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SCALE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SCALE_HAS_MARKS_ABOVE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE_HAS_MARKS_ABOVE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SCALE_HAS_MARKS_ABOVE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE_HAS_MARKS_ABOVE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SCALE_HAS_MARKS_BELOW: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE_HAS_MARKS_BELOW).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SCALE_HAS_MARKS_BELOW: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCALE_HAS_MARKS_BELOW)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SCROLLBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCROLLBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SCROLLBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCROLLBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SCROLLBARS_JUNCTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCROLLBARS_JUNCTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SCROLLBARS_JUNCTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SCROLLBARS_JUNCTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SEPARATOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SEPARATOR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SEPARATOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SEPARATOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SIDEBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SIDEBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SIDEBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SIDEBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SLIDER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SLIDER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SLIDER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SLIDER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SPINBUTTON: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SPINBUTTON).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SPINBUTTON: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SPINBUTTON)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SPINNER: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SPINNER).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SPINNER: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SPINNER)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_STATUSBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_STATUSBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_STATUSBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_STATUSBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SUBTITLE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SUBTITLE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SUBTITLE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SUBTITLE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_SUGGESTED_ACTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SUGGESTED_ACTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_SUGGESTED_ACTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_SUGGESTED_ACTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TITLE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TITLE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TITLE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TITLE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TITLEBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TITLEBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TITLEBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TITLEBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TOOLBAR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOOLBAR).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TOOLBAR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOOLBAR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TOOLTIP: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOOLTIP).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TOOLTIP: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOOLTIP)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TOP: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOP).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TOP: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOP)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TOUCH_SELECTION: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOUCH_SELECTION).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TOUCH_SELECTION: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TOUCH_SELECTION)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_TROUGH: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TROUGH).to_str().unwrap()};
+    pub static ref STYLE_CLASS_TROUGH: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_TROUGH)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_UNDERSHOOT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_UNDERSHOOT).to_str().unwrap()};
+    pub static ref STYLE_CLASS_UNDERSHOOT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_UNDERSHOOT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_VERTICAL: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_VERTICAL).to_str().unwrap()};
+    pub static ref STYLE_CLASS_VERTICAL: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_VERTICAL)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_VIEW: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_VIEW).to_str().unwrap()};
+    pub static ref STYLE_CLASS_VIEW: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_VIEW)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_WARNING: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_WARNING).to_str().unwrap()};
+    pub static ref STYLE_CLASS_WARNING: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_WARNING)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_CLASS_WIDE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_WIDE).to_str().unwrap()};
+    pub static ref STYLE_CLASS_WIDE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_WIDE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BACKGROUND_COLOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_COLOR).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BACKGROUND_COLOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_COLOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BACKGROUND_IMAGE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_IMAGE).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BACKGROUND_IMAGE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_IMAGE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BORDER_COLOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_COLOR).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BORDER_COLOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_COLOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BORDER_RADIUS: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_RADIUS).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BORDER_RADIUS: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_RADIUS)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BORDER_STYLE: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_STYLE).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BORDER_STYLE: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_STYLE)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_BORDER_WIDTH: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_WIDTH).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_BORDER_WIDTH: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_WIDTH)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_COLOR: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_COLOR).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_COLOR: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_COLOR)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_FONT: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_FONT).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_FONT: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_FONT)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_MARGIN: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_MARGIN).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_MARGIN: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_MARGIN)
+            .to_str()
+            .unwrap()
+    };
 }
 lazy_static! {
-    pub static ref STYLE_PROPERTY_PADDING: &'static str = unsafe{CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_PADDING).to_str().unwrap()};
+    pub static ref STYLE_PROPERTY_PADDING: &'static str = unsafe {
+        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_PADDING)
+            .to_str()
+            .unwrap()
+    };
 }

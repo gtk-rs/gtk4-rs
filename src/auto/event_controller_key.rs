@@ -2,19 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use EventController;
-use IMContext;
-use Widget;
 use gdk;
 use gdk_sys;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -23,6 +20,9 @@ use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use EventController;
+use IMContext;
+use Widget;
 
 glib_wrapper! {
     pub struct EventControllerKey(Object<gtk_sys::GtkEventControllerKey, gtk_sys::GtkEventControllerKeyClass, EventControllerKeyClass>) @extends EventController;
@@ -42,44 +42,58 @@ impl EventControllerKey {
 
     pub fn forward<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_event_controller_key_forward(self.to_glib_none().0, widget.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_event_controller_key_forward(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_focus_origin(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_key_get_focus_origin(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_event_controller_key_get_focus_origin(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_focus_target(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_key_get_focus_target(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_event_controller_key_get_focus_target(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_group(&self) -> u32 {
-        unsafe {
-            gtk_sys::gtk_event_controller_key_get_group(self.to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_event_controller_key_get_group(self.to_glib_none().0) }
     }
 
     pub fn get_im_context(&self) -> Option<IMContext> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_key_get_im_context(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_event_controller_key_get_im_context(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn set_im_context<P: IsA<IMContext>>(&self, im_context: &P) {
         unsafe {
-            gtk_sys::gtk_event_controller_key_set_im_context(self.to_glib_none().0, im_context.as_ref().to_glib_none().0);
+            gtk_sys::gtk_event_controller_key_set_im_context(
+                self.to_glib_none().0,
+                im_context.as_ref().to_glib_none().0,
+            );
         }
     }
 
     pub fn get_property_contains_focus(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"contains-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"contains-focus\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
@@ -87,104 +101,218 @@ impl EventControllerKey {
     pub fn get_property_is_focus(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"is-focus\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"is-focus\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
-    pub fn connect_focus_in<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn focus_in_trampoline<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, mode: gdk_sys::GdkCrossingMode, detail: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+    pub fn connect_focus_in<
+        F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn focus_in_trampoline<
+            F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            mode: gdk_sys::GdkCrossingMode,
+            detail: gdk_sys::GdkNotifyType,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(mode), from_glib(detail))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"focus-in\0".as_ptr() as *const _,
-                Some(transmute(focus_in_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"focus-in\0".as_ptr() as *const _,
+                Some(transmute(focus_in_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_focus_out<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn focus_out_trampoline<F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, mode: gdk_sys::GdkCrossingMode, detail: gdk_sys::GdkNotifyType, f: glib_sys::gpointer) {
+    pub fn connect_focus_out<
+        F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn focus_out_trampoline<
+            F: Fn(&EventControllerKey, gdk::CrossingMode, gdk::NotifyType) + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            mode: gdk_sys::GdkCrossingMode,
+            detail: gdk_sys::GdkNotifyType,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(mode), from_glib(detail))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"focus-out\0".as_ptr() as *const _,
-                Some(transmute(focus_out_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"focus-out\0".as_ptr() as *const _,
+                Some(transmute(focus_out_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     pub fn connect_im_update<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, f: glib_sys::gpointer) {
+        unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"im-update\0".as_ptr() as *const _,
-                Some(transmute(im_update_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"im-update\0".as_ptr() as *const _,
+                Some(transmute(im_update_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_key_pressed<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn key_pressed_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+    pub fn connect_key_pressed<
+        F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn key_pressed_trampoline<
+            F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            keyval: libc::c_uint,
+            keycode: libc::c_uint,
+            state: gdk_sys::GdkModifierType,
+            f: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), keyval, keycode, from_glib(state)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"key-pressed\0".as_ptr() as *const _,
-                Some(transmute(key_pressed_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"key-pressed\0".as_ptr() as *const _,
+                Some(transmute(key_pressed_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_key_released<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn key_released_trampoline<F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: libc::c_uint, keycode: libc::c_uint, state: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
+    pub fn connect_key_released<
+        F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn key_released_trampoline<
+            F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            keyval: libc::c_uint,
+            keycode: libc::c_uint,
+            state: gdk_sys::GdkModifierType,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), keyval, keycode, from_glib(state))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"key-released\0".as_ptr() as *const _,
-                Some(transmute(key_released_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"key-released\0".as_ptr() as *const _,
+                Some(transmute(key_released_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn modifiers_trampoline<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(this: *mut gtk_sys::GtkEventControllerKey, keyval: gdk_sys::GdkModifierType, f: glib_sys::gpointer) -> glib_sys::gboolean {
+    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn modifiers_trampoline<
+            F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            keyval: gdk_sys::GdkModifierType,
+            f: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(keyval)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"modifiers\0".as_ptr() as *const _,
-                Some(transmute(modifiers_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"modifiers\0".as_ptr() as *const _,
+                Some(transmute(modifiers_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_property_contains_focus_notify<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_contains_focus_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+    pub fn connect_property_contains_focus_notify<F: Fn(&EventControllerKey) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_contains_focus_trampoline<
+            F: Fn(&EventControllerKey) + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::contains-focus\0".as_ptr() as *const _,
-                Some(transmute(notify_contains_focus_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::contains-focus\0".as_ptr() as *const _,
+                Some(transmute(notify_contains_focus_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    pub fn connect_property_is_focus_notify<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_focus_trampoline<F: Fn(&EventControllerKey) + 'static>(this: *mut gtk_sys::GtkEventControllerKey, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+    pub fn connect_property_is_focus_notify<F: Fn(&EventControllerKey) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_focus_trampoline<F: Fn(&EventControllerKey) + 'static>(
+            this: *mut gtk_sys::GtkEventControllerKey,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::is-focus\0".as_ptr() as *const _,
-                Some(transmute(notify_is_focus_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::is-focus\0".as_ptr() as *const _,
+                Some(transmute(notify_is_focus_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -2,25 +2,25 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::GString;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Border;
 use CssSection;
 use StateFlags;
 use StyleContextPrintFlags;
 use StyleProvider;
 use WidgetPath;
-use gdk;
-use glib;
-use glib::GString;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct StyleContext(Object<gtk_sys::GtkStyleContext, gtk_sys::GtkStyleContextClass, StyleContextClass>);
@@ -33,22 +33,34 @@ glib_wrapper! {
 impl StyleContext {
     pub fn new() -> StyleContext {
         assert_initialized_main_thread!();
+        unsafe { from_glib_full(gtk_sys::gtk_style_context_new()) }
+    }
+
+    pub fn add_provider_for_display<P: IsA<StyleProvider>>(
+        display: &gdk::Display,
+        provider: &P,
+        priority: u32,
+    ) {
+        skip_assert_initialized!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_style_context_new())
+            gtk_sys::gtk_style_context_add_provider_for_display(
+                display.to_glib_none().0,
+                provider.as_ref().to_glib_none().0,
+                priority,
+            );
         }
     }
 
-    pub fn add_provider_for_display<P: IsA<StyleProvider>>(display: &gdk::Display, provider: &P, priority: u32) {
+    pub fn remove_provider_for_display<P: IsA<StyleProvider>>(
+        display: &gdk::Display,
+        provider: &P,
+    ) {
         skip_assert_initialized!();
         unsafe {
-            gtk_sys::gtk_style_context_add_provider_for_display(display.to_glib_none().0, provider.as_ref().to_glib_none().0, priority);
-        }
-    }
-
-    pub fn remove_provider_for_display<P: IsA<StyleProvider>>(display: &gdk::Display, provider: &P) {
-        skip_assert_initialized!();
-        unsafe {
-            gtk_sys::gtk_style_context_remove_provider_for_display(display.to_glib_none().0, provider.as_ref().to_glib_none().0);
+            gtk_sys::gtk_style_context_remove_provider_for_display(
+                display.to_glib_none().0,
+                provider.as_ref().to_glib_none().0,
+            );
         }
     }
 
@@ -135,13 +147,20 @@ pub trait StyleContextExt: 'static {
 impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn add_class(&self, class_name: &str) {
         unsafe {
-            gtk_sys::gtk_style_context_add_class(self.as_ref().to_glib_none().0, class_name.to_glib_none().0);
+            gtk_sys::gtk_style_context_add_class(
+                self.as_ref().to_glib_none().0,
+                class_name.to_glib_none().0,
+            );
         }
     }
 
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32) {
         unsafe {
-            gtk_sys::gtk_style_context_add_provider(self.as_ref().to_glib_none().0, provider.as_ref().to_glib_none().0, priority);
+            gtk_sys::gtk_style_context_add_provider(
+                self.as_ref().to_glib_none().0,
+                provider.as_ref().to_glib_none().0,
+                priority,
+            );
         }
     }
 
@@ -152,7 +171,10 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_border(&self) -> Border {
         unsafe {
             let mut border = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_border(self.as_ref().to_glib_none().0, border.to_glib_none_mut().0);
+            gtk_sys::gtk_style_context_get_border(
+                self.as_ref().to_glib_none().0,
+                border.to_glib_none_mut().0,
+            );
             border
         }
     }
@@ -160,21 +182,29 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_color(&self) -> gdk::RGBA {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
-            gtk_sys::gtk_style_context_get_color(self.as_ref().to_glib_none().0, color.to_glib_none_mut().0);
+            gtk_sys::gtk_style_context_get_color(
+                self.as_ref().to_glib_none().0,
+                color.to_glib_none_mut().0,
+            );
             color
         }
     }
 
     fn get_display(&self) -> Option<gdk::Display> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_display(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_style_context_get_display(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_margin(&self) -> Border {
         unsafe {
             let mut margin = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_margin(self.as_ref().to_glib_none().0, margin.to_glib_none_mut().0);
+            gtk_sys::gtk_style_context_get_margin(
+                self.as_ref().to_glib_none().0,
+                margin.to_glib_none_mut().0,
+            );
             margin
         }
     }
@@ -182,46 +212,60 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_padding(&self) -> Border {
         unsafe {
             let mut padding = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_padding(self.as_ref().to_glib_none().0, padding.to_glib_none_mut().0);
+            gtk_sys::gtk_style_context_get_padding(
+                self.as_ref().to_glib_none().0,
+                padding.to_glib_none_mut().0,
+            );
             padding
         }
     }
 
     fn get_parent(&self) -> Option<StyleContext> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_parent(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_style_context_get_parent(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_path(&self) -> Option<WidgetPath> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_path(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_style_context_get_path(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_property(&self, property: &str) -> glib::Value {
         unsafe {
             let mut value = glib::Value::uninitialized();
-            gtk_sys::gtk_style_context_get_property(self.as_ref().to_glib_none().0, property.to_glib_none().0, value.to_glib_none_mut().0);
+            gtk_sys::gtk_style_context_get_property(
+                self.as_ref().to_glib_none().0,
+                property.to_glib_none().0,
+                value.to_glib_none_mut().0,
+            );
             value
         }
     }
 
     fn get_scale(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_style_context_get_scale(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_style_context_get_scale(self.as_ref().to_glib_none().0) }
     }
 
     fn get_section(&self, property: &str) -> Option<CssSection> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_section(self.as_ref().to_glib_none().0, property.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_style_context_get_section(
+                self.as_ref().to_glib_none().0,
+                property.to_glib_none().0,
+            ))
         }
     }
 
     fn get_state(&self) -> StateFlags {
         unsafe {
-            from_glib(gtk_sys::gtk_style_context_get_state(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_style_context_get_state(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -231,33 +275,52 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn has_class(&self, class_name: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_style_context_has_class(self.as_ref().to_glib_none().0, class_name.to_glib_none().0))
+            from_glib(gtk_sys::gtk_style_context_has_class(
+                self.as_ref().to_glib_none().0,
+                class_name.to_glib_none().0,
+            ))
         }
     }
 
     fn list_classes(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_style_context_list_classes(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_style_context_list_classes(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA> {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_style_context_lookup_color(self.as_ref().to_glib_none().0, color_name.to_glib_none().0, color.to_glib_none_mut().0));
-            if ret { Some(color) } else { None }
+            let ret = from_glib(gtk_sys::gtk_style_context_lookup_color(
+                self.as_ref().to_glib_none().0,
+                color_name.to_glib_none().0,
+                color.to_glib_none_mut().0,
+            ));
+            if ret {
+                Some(color)
+            } else {
+                None
+            }
         }
     }
 
     fn remove_class(&self, class_name: &str) {
         unsafe {
-            gtk_sys::gtk_style_context_remove_class(self.as_ref().to_glib_none().0, class_name.to_glib_none().0);
+            gtk_sys::gtk_style_context_remove_class(
+                self.as_ref().to_glib_none().0,
+                class_name.to_glib_none().0,
+            );
         }
     }
 
     fn remove_provider<P: IsA<StyleProvider>>(&self, provider: &P) {
         unsafe {
-            gtk_sys::gtk_style_context_remove_provider(self.as_ref().to_glib_none().0, provider.as_ref().to_glib_none().0);
+            gtk_sys::gtk_style_context_remove_provider(
+                self.as_ref().to_glib_none().0,
+                provider.as_ref().to_glib_none().0,
+            );
         }
     }
 
@@ -275,19 +338,28 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn set_display(&self, display: &gdk::Display) {
         unsafe {
-            gtk_sys::gtk_style_context_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+            gtk_sys::gtk_style_context_set_display(
+                self.as_ref().to_glib_none().0,
+                display.to_glib_none().0,
+            );
         }
     }
 
     fn set_parent<P: IsA<StyleContext>>(&self, parent: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_style_context_set_parent(self.as_ref().to_glib_none().0, parent.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_style_context_set_parent(
+                self.as_ref().to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn set_path(&self, path: &WidgetPath) {
         unsafe {
-            gtk_sys::gtk_style_context_set_path(self.as_ref().to_glib_none().0, path.to_glib_none().0);
+            gtk_sys::gtk_style_context_set_path(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+            );
         }
     }
 
@@ -305,49 +377,75 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn to_string(&self, flags: StyleContextPrintFlags) -> GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_style_context_to_string(self.as_ref().to_glib_none().0, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_style_context_to_string(
+                self.as_ref().to_glib_none().0,
+                flags.to_glib(),
+            ))
         }
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStyleContext, f: glib_sys::gpointer)
-            where P: IsA<StyleContext>
+        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkStyleContext,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<StyleContext>,
         {
             let f: &F = &*(f as *const F);
             f(&StyleContext::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"changed\0".as_ptr() as *const _,
+                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStyleContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<StyleContext>
+        unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkStyleContext,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<StyleContext>,
         {
             let f: &F = &*(f as *const F);
             f(&StyleContext::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::display\0".as_ptr() as *const _,
-                Some(transmute(notify_display_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::display\0".as_ptr() as *const _,
+                Some(transmute(notify_display_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkStyleContext, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<StyleContext>
+        unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkStyleContext,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<StyleContext>,
         {
             let f: &F = &*(f as *const F);
             f(&StyleContext::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::parent\0".as_ptr() as *const _,
-                Some(transmute(notify_parent_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::parent\0".as_ptr() as *const _,
+                Some(transmute(notify_parent_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

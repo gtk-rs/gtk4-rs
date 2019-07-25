@@ -2,6 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::object::ObjectExt;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -10,22 +26,6 @@ use Container;
 use LayoutManager;
 use Overflow;
 use Widget;
-use gdk;
-use glib;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct ListBoxRow(Object<gtk_sys::GtkListBoxRow, gtk_sys::GtkListBoxRowClass, ListBoxRowClass>) @extends Bin, Container, Widget, @implements Buildable, Actionable;
@@ -38,9 +38,7 @@ glib_wrapper! {
 impl ListBoxRow {
     pub fn new() -> ListBoxRow {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_list_box_row_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_list_box_row_new()).unsafe_cast() }
     }
 }
 
@@ -226,7 +224,10 @@ impl ListBoxRowBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(ListBoxRow::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(ListBoxRow::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn activatable(mut self, activatable: bool) -> Self {
@@ -434,95 +435,137 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
 
     fn get_activatable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_list_box_row_get_activatable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_list_box_row_get_activatable(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_header(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_list_box_row_get_header(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_list_box_row_get_header(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_index(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_list_box_row_get_index(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_list_box_row_get_index(self.as_ref().to_glib_none().0) }
     }
 
     fn get_selectable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_list_box_row_get_selectable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_list_box_row_get_selectable(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn is_selected(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_list_box_row_is_selected(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_list_box_row_is_selected(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_activatable(&self, activatable: bool) {
         unsafe {
-            gtk_sys::gtk_list_box_row_set_activatable(self.as_ref().to_glib_none().0, activatable.to_glib());
+            gtk_sys::gtk_list_box_row_set_activatable(
+                self.as_ref().to_glib_none().0,
+                activatable.to_glib(),
+            );
         }
     }
 
     fn set_header<P: IsA<Widget>>(&self, header: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_list_box_row_set_header(self.as_ref().to_glib_none().0, header.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_list_box_row_set_header(
+                self.as_ref().to_glib_none().0,
+                header.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn set_selectable(&self, selectable: bool) {
         unsafe {
-            gtk_sys::gtk_list_box_row_set_selectable(self.as_ref().to_glib_none().0, selectable.to_glib());
+            gtk_sys::gtk_list_box_row_set_selectable(
+                self.as_ref().to_glib_none().0,
+                selectable.to_glib(),
+            );
         }
     }
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkListBoxRow, f: glib_sys::gpointer)
-            where P: IsA<ListBoxRow>
+        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkListBoxRow,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ListBoxRow>,
         {
             let f: &F = &*(f as *const F);
             f(&ListBoxRow::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"activate\0".as_ptr() as *const _,
-                Some(transmute(activate_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute(activate_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("activate", &[]).unwrap() };
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+                .emit("activate", &[])
+                .unwrap()
+        };
     }
 
     fn connect_property_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_activatable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkListBoxRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ListBoxRow>
+        unsafe extern "C" fn notify_activatable_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkListBoxRow,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ListBoxRow>,
         {
             let f: &F = &*(f as *const F);
             f(&ListBoxRow::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::activatable\0".as_ptr() as *const _,
-                Some(transmute(notify_activatable_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::activatable\0".as_ptr() as *const _,
+                Some(transmute(notify_activatable_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_selectable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkListBoxRow, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ListBoxRow>
+        unsafe extern "C" fn notify_selectable_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkListBoxRow,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ListBoxRow>,
         {
             let f: &F = &*(f as *const F);
             f(&ListBoxRow::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::selectable\0".as_ptr() as *const _,
-                Some(transmute(notify_selectable_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::selectable\0".as_ptr() as *const _,
+                Some(transmute(notify_selectable_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

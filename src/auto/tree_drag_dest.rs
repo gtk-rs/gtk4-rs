@@ -2,12 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use SelectionData;
-use TreePath;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use SelectionData;
+use TreePath;
 
 glib_wrapper! {
     pub struct TreeDragDest(Interface<gtk_sys::GtkTreeDragDest>);
@@ -22,19 +22,35 @@ pub const NONE_TREE_DRAG_DEST: Option<&TreeDragDest> = None;
 pub trait TreeDragDestExt: 'static {
     fn drag_data_received(&self, dest: &mut TreePath, selection_data: &mut SelectionData) -> bool;
 
-    fn row_drop_possible(&self, dest_path: &mut TreePath, selection_data: &mut SelectionData) -> bool;
+    fn row_drop_possible(
+        &self,
+        dest_path: &mut TreePath,
+        selection_data: &mut SelectionData,
+    ) -> bool;
 }
 
 impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
     fn drag_data_received(&self, dest: &mut TreePath, selection_data: &mut SelectionData) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_drag_dest_drag_data_received(self.as_ref().to_glib_none().0, dest.to_glib_none_mut().0, selection_data.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_drag_dest_drag_data_received(
+                self.as_ref().to_glib_none().0,
+                dest.to_glib_none_mut().0,
+                selection_data.to_glib_none_mut().0,
+            ))
         }
     }
 
-    fn row_drop_possible(&self, dest_path: &mut TreePath, selection_data: &mut SelectionData) -> bool {
+    fn row_drop_possible(
+        &self,
+        dest_path: &mut TreePath,
+        selection_data: &mut SelectionData,
+    ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_drag_dest_row_drop_possible(self.as_ref().to_glib_none().0, dest_path.to_glib_none_mut().0, selection_data.to_glib_none_mut().0))
+            from_glib(gtk_sys::gtk_tree_drag_dest_row_drop_possible(
+                self.as_ref().to_glib_none().0,
+                dest_path.to_glib_none_mut().0,
+                selection_data.to_glib_none_mut().0,
+            ))
         }
     }
 }

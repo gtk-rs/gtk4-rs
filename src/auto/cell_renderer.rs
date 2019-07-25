@@ -2,6 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use libc;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem;
+use std::mem::transmute;
 use CellEditable;
 use CellRendererMode;
 use CellRendererState;
@@ -11,22 +27,6 @@ use Snapshot;
 use StateFlags;
 use TreePath;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct CellRenderer(Object<gtk_sys::GtkCellRenderer, gtk_sys::GtkCellRendererClass, CellRendererClass>);
@@ -39,9 +39,22 @@ glib_wrapper! {
 pub const NONE_CELL_RENDERER: Option<&CellRenderer> = None;
 
 pub trait CellRendererExt: 'static {
-    fn activate<P: IsA<Widget>>(&self, event: &gdk::Event, widget: &P, path: &str, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState) -> bool;
+    fn activate<P: IsA<Widget>>(
+        &self,
+        event: &gdk::Event,
+        widget: &P,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool;
 
-    fn get_aligned_area<P: IsA<Widget>>(&self, widget: &P, flags: CellRendererState, cell_area: &gdk::Rectangle) -> gdk::Rectangle;
+    fn get_aligned_area<P: IsA<Widget>>(
+        &self,
+        widget: &P,
+        flags: CellRendererState,
+        cell_area: &gdk::Rectangle,
+    ) -> gdk::Rectangle;
 
     fn get_alignment(&self) -> (f32, f32);
 
@@ -57,13 +70,18 @@ pub trait CellRendererExt: 'static {
 
     fn get_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
 
-    fn get_preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32) -> (i32, i32);
+    fn get_preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32)
+        -> (i32, i32);
 
     fn get_request_mode(&self) -> SizeRequestMode;
 
     fn get_sensitive(&self) -> bool;
 
-    fn get_state<P: IsA<Widget>>(&self, widget: Option<&P>, cell_state: CellRendererState) -> StateFlags;
+    fn get_state<P: IsA<Widget>>(
+        &self,
+        widget: Option<&P>,
+        cell_state: CellRendererState,
+    ) -> StateFlags;
 
     fn get_visible(&self) -> bool;
 
@@ -79,9 +97,24 @@ pub trait CellRendererExt: 'static {
 
     fn set_visible(&self, visible: bool);
 
-    fn snapshot<P: IsA<Widget>>(&self, snapshot: &Snapshot, widget: &P, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState);
+    fn snapshot<P: IsA<Widget>>(
+        &self,
+        snapshot: &Snapshot,
+        widget: &P,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    );
 
-    fn start_editing<P: IsA<Widget>>(&self, event: Option<&gdk::Event>, widget: &P, path: &str, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState) -> Option<CellEditable>;
+    fn start_editing<P: IsA<Widget>>(
+        &self,
+        event: Option<&gdk::Event>,
+        widget: &P,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> Option<CellEditable>;
 
     fn stop_editing(&self, canceled: bool);
 
@@ -135,13 +168,25 @@ pub trait CellRendererExt: 'static {
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_cell_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_cell_background_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_cell_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_cell_background_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_cell_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_cell_background_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -169,16 +214,43 @@ pub trait CellRendererExt: 'static {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExt for O {
-    fn activate<P: IsA<Widget>>(&self, event: &gdk::Event, widget: &P, path: &str, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState) -> bool {
+    fn activate<P: IsA<Widget>>(
+        &self,
+        event: &gdk::Event,
+        widget: &P,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_activate(self.as_ref().to_glib_none().0, event.to_glib_none().0, widget.as_ref().to_glib_none().0, path.to_glib_none().0, background_area.to_glib_none().0, cell_area.to_glib_none().0, flags.to_glib()))
+            from_glib(gtk_sys::gtk_cell_renderer_activate(
+                self.as_ref().to_glib_none().0,
+                event.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                background_area.to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.to_glib(),
+            ))
         }
     }
 
-    fn get_aligned_area<P: IsA<Widget>>(&self, widget: &P, flags: CellRendererState, cell_area: &gdk::Rectangle) -> gdk::Rectangle {
+    fn get_aligned_area<P: IsA<Widget>>(
+        &self,
+        widget: &P,
+        flags: CellRendererState,
+        cell_area: &gdk::Rectangle,
+    ) -> gdk::Rectangle {
         unsafe {
             let mut aligned_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_aligned_area(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, flags.to_glib(), cell_area.to_glib_none().0, aligned_area.to_glib_none_mut().0);
+            gtk_sys::gtk_cell_renderer_get_aligned_area(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                flags.to_glib(),
+                cell_area.to_glib_none().0,
+                aligned_area.to_glib_none_mut().0,
+            );
             aligned_area
         }
     }
@@ -187,7 +259,11 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut xalign = mem::uninitialized();
             let mut yalign = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_alignment(self.as_ref().to_glib_none().0, &mut xalign, &mut yalign);
+            gtk_sys::gtk_cell_renderer_get_alignment(
+                self.as_ref().to_glib_none().0,
+                &mut xalign,
+                &mut yalign,
+            );
             (xalign, yalign)
         }
     }
@@ -196,7 +272,11 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut width = mem::uninitialized();
             let mut height = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_fixed_size(self.as_ref().to_glib_none().0, &mut width, &mut height);
+            gtk_sys::gtk_cell_renderer_get_fixed_size(
+                self.as_ref().to_glib_none().0,
+                &mut width,
+                &mut height,
+            );
             (width, height)
         }
     }
@@ -205,7 +285,11 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut xpad = mem::uninitialized();
             let mut ypad = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_padding(self.as_ref().to_glib_none().0, &mut xpad, &mut ypad);
+            gtk_sys::gtk_cell_renderer_get_padding(
+                self.as_ref().to_glib_none().0,
+                &mut xpad,
+                &mut ypad,
+            );
             (xpad, ypad)
         }
     }
@@ -214,7 +298,12 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = mem::uninitialized();
             let mut natural_size = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_height(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, &mut minimum_size, &mut natural_size);
+            gtk_sys::gtk_cell_renderer_get_preferred_height(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                &mut minimum_size,
+                &mut natural_size,
+            );
             (minimum_size, natural_size)
         }
     }
@@ -223,7 +312,13 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_height = mem::uninitialized();
             let mut natural_height = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_height_for_width(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, width, &mut minimum_height, &mut natural_height);
+            gtk_sys::gtk_cell_renderer_get_preferred_height_for_width(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                width,
+                &mut minimum_height,
+                &mut natural_height,
+            );
             (minimum_height, natural_height)
         }
     }
@@ -232,7 +327,12 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
             let mut natural_size = Requisition::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_size(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, minimum_size.to_glib_none_mut().0, natural_size.to_glib_none_mut().0);
+            gtk_sys::gtk_cell_renderer_get_preferred_size(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                minimum_size.to_glib_none_mut().0,
+                natural_size.to_glib_none_mut().0,
+            );
             (minimum_size, natural_size)
         }
     }
@@ -241,59 +341,98 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = mem::uninitialized();
             let mut natural_size = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_width(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, &mut minimum_size, &mut natural_size);
+            gtk_sys::gtk_cell_renderer_get_preferred_width(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                &mut minimum_size,
+                &mut natural_size,
+            );
             (minimum_size, natural_size)
         }
     }
 
-    fn get_preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32) -> (i32, i32) {
+    fn get_preferred_width_for_height<P: IsA<Widget>>(
+        &self,
+        widget: &P,
+        height: i32,
+    ) -> (i32, i32) {
         unsafe {
             let mut minimum_width = mem::uninitialized();
             let mut natural_width = mem::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_width_for_height(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, height, &mut minimum_width, &mut natural_width);
+            gtk_sys::gtk_cell_renderer_get_preferred_width_for_height(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                height,
+                &mut minimum_width,
+                &mut natural_width,
+            );
             (minimum_width, natural_width)
         }
     }
 
     fn get_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_request_mode(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_renderer_get_request_mode(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_sensitive(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_sensitive(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_renderer_get_sensitive(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
-    fn get_state<P: IsA<Widget>>(&self, widget: Option<&P>, cell_state: CellRendererState) -> StateFlags {
+    fn get_state<P: IsA<Widget>>(
+        &self,
+        widget: Option<&P>,
+        cell_state: CellRendererState,
+    ) -> StateFlags {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_state(self.as_ref().to_glib_none().0, widget.map(|p| p.as_ref()).to_glib_none().0, cell_state.to_glib()))
+            from_glib(gtk_sys::gtk_cell_renderer_get_state(
+                self.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
+                cell_state.to_glib(),
+            ))
         }
     }
 
     fn get_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_visible(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_renderer_get_visible(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn is_activatable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_is_activatable(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_cell_renderer_is_activatable(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_alignment(&self, xalign: f32, yalign: f32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_alignment(self.as_ref().to_glib_none().0, xalign, yalign);
+            gtk_sys::gtk_cell_renderer_set_alignment(
+                self.as_ref().to_glib_none().0,
+                xalign,
+                yalign,
+            );
         }
     }
 
     fn set_fixed_size(&self, width: i32, height: i32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_fixed_size(self.as_ref().to_glib_none().0, width, height);
+            gtk_sys::gtk_cell_renderer_set_fixed_size(
+                self.as_ref().to_glib_none().0,
+                width,
+                height,
+            );
         }
     }
 
@@ -305,72 +444,135 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_sensitive(self.as_ref().to_glib_none().0, sensitive.to_glib());
+            gtk_sys::gtk_cell_renderer_set_sensitive(
+                self.as_ref().to_glib_none().0,
+                sensitive.to_glib(),
+            );
         }
     }
 
     fn set_visible(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_visible(self.as_ref().to_glib_none().0, visible.to_glib());
+            gtk_sys::gtk_cell_renderer_set_visible(
+                self.as_ref().to_glib_none().0,
+                visible.to_glib(),
+            );
         }
     }
 
-    fn snapshot<P: IsA<Widget>>(&self, snapshot: &Snapshot, widget: &P, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState) {
+    fn snapshot<P: IsA<Widget>>(
+        &self,
+        snapshot: &Snapshot,
+        widget: &P,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_snapshot(self.as_ref().to_glib_none().0, snapshot.to_glib_none().0, widget.as_ref().to_glib_none().0, background_area.to_glib_none().0, cell_area.to_glib_none().0, flags.to_glib());
+            gtk_sys::gtk_cell_renderer_snapshot(
+                self.as_ref().to_glib_none().0,
+                snapshot.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                background_area.to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.to_glib(),
+            );
         }
     }
 
-    fn start_editing<P: IsA<Widget>>(&self, event: Option<&gdk::Event>, widget: &P, path: &str, background_area: &gdk::Rectangle, cell_area: &gdk::Rectangle, flags: CellRendererState) -> Option<CellEditable> {
+    fn start_editing<P: IsA<Widget>>(
+        &self,
+        event: Option<&gdk::Event>,
+        widget: &P,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> Option<CellEditable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_renderer_start_editing(self.as_ref().to_glib_none().0, event.to_glib_none().0, widget.as_ref().to_glib_none().0, path.to_glib_none().0, background_area.to_glib_none().0, cell_area.to_glib_none().0, flags.to_glib()))
+            from_glib_none(gtk_sys::gtk_cell_renderer_start_editing(
+                self.as_ref().to_glib_none().0,
+                event.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                background_area.to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.to_glib(),
+            ))
         }
     }
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_stop_editing(self.as_ref().to_glib_none().0, canceled.to_glib());
+            gtk_sys::gtk_cell_renderer_stop_editing(
+                self.as_ref().to_glib_none().0,
+                canceled.to_glib(),
+            );
         }
     }
 
     fn set_property_cell_background(&self, cell_background: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background\0".as_ptr() as *const _, Value::from(cell_background).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cell-background\0".as_ptr() as *const _,
+                Value::from(cell_background).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_cell_background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cell-background-rgba\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-rgba\0".as_ptr() as *const _, Value::from(cell_background_rgba).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cell-background-rgba\0".as_ptr() as *const _,
+                Value::from(cell_background_rgba).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_cell_background_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cell-background-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_cell_background_set(&self, cell_background_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-set\0".as_ptr() as *const _, Value::from(&cell_background_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cell-background-set\0".as_ptr() as *const _,
+                Value::from(&cell_background_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_editing(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"editing\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"editing\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
@@ -378,365 +580,598 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_height(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"height\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"height\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_height(&self, height: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"height\0".as_ptr() as *const _, Value::from(&height).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"height\0".as_ptr() as *const _,
+                Value::from(&height).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_is_expanded(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-expanded\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"is-expanded\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_is_expanded(&self, is_expanded: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-expanded\0".as_ptr() as *const _, Value::from(&is_expanded).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"is-expanded\0".as_ptr() as *const _,
+                Value::from(&is_expanded).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_is_expander(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-expander\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"is-expander\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_is_expander(&self, is_expander: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"is-expander\0".as_ptr() as *const _, Value::from(&is_expander).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"is-expander\0".as_ptr() as *const _,
+                Value::from(&is_expander).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_mode(&self) -> CellRendererMode {
         unsafe {
             let mut value = Value::from_type(<CellRendererMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"mode\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_mode(&self, mode: CellRendererMode) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"mode\0".as_ptr() as *const _, Value::from(&mode).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"mode\0".as_ptr() as *const _,
+                Value::from(&mode).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"width\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_width(&self, width: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width\0".as_ptr() as *const _, Value::from(&width).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"width\0".as_ptr() as *const _,
+                Value::from(&width).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_xalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"xalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"xalign\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_xalign(&self, xalign: f32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"xalign\0".as_ptr() as *const _, Value::from(&xalign).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"xalign\0".as_ptr() as *const _,
+                Value::from(&xalign).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_xpad(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"xpad\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"xpad\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_xpad(&self, xpad: u32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"xpad\0".as_ptr() as *const _, Value::from(&xpad).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"xpad\0".as_ptr() as *const _,
+                Value::from(&xpad).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_yalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"yalign\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"yalign\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_yalign(&self, yalign: f32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"yalign\0".as_ptr() as *const _, Value::from(&yalign).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"yalign\0".as_ptr() as *const _,
+                Value::from(&yalign).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_ypad(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ypad\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ypad\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_ypad(&self, ypad: u32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ypad\0".as_ptr() as *const _, Value::from(&ypad).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ypad\0".as_ptr() as *const _,
+                Value::from(&ypad).to_glib_none().0,
+            );
         }
     }
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn editing_canceled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn editing_canceled_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"editing-canceled\0".as_ptr() as *const _,
-                Some(transmute(editing_canceled_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"editing-canceled\0".as_ptr() as *const _,
+                Some(transmute(editing_canceled_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn editing_started_trampoline<P, F: Fn(&P, &CellEditable, TreePath) + 'static>(this: *mut gtk_sys::GtkCellRenderer, editable: *mut gtk_sys::GtkCellEditable, path: *mut libc::c_char, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn editing_started_trampoline<
+            P,
+            F: Fn(&P, &CellEditable, TreePath) + 'static,
+        >(
+            this: *mut gtk_sys::GtkCellRenderer,
+            editable: *mut gtk_sys::GtkCellEditable,
+            path: *mut libc::c_char,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(editable), path)
+            f(
+                &CellRenderer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(editable),
+                path,
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"editing-started\0".as_ptr() as *const _,
-                Some(transmute(editing_started_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"editing-started\0".as_ptr() as *const _,
+                Some(transmute(editing_started_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_cell_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cell_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+    fn connect_property_cell_background_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cell_background_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::cell-background\0".as_ptr() as *const _,
-                Some(transmute(notify_cell_background_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::cell-background\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_cell_background_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_cell_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cell_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+    fn connect_property_cell_background_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cell_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::cell-background-rgba\0".as_ptr() as *const _,
-                Some(transmute(notify_cell_background_rgba_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::cell-background-rgba\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_cell_background_rgba_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_cell_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cell_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+    fn connect_property_cell_background_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cell_background_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::cell-background-set\0".as_ptr() as *const _,
-                Some(transmute(notify_cell_background_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::cell-background-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_cell_background_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_editing_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::editing\0".as_ptr() as *const _,
-                Some(transmute(notify_editing_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::editing\0".as_ptr() as *const _,
+                Some(transmute(notify_editing_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_height_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_height_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::height\0".as_ptr() as *const _,
-                Some(transmute(notify_height_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::height\0".as_ptr() as *const _,
+                Some(transmute(notify_height_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_is_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_expanded_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_is_expanded_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::is-expanded\0".as_ptr() as *const _,
-                Some(transmute(notify_is_expanded_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::is-expanded\0".as_ptr() as *const _,
+                Some(transmute(notify_is_expanded_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_is_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_expander_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_is_expander_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::is-expander\0".as_ptr() as *const _,
-                Some(transmute(notify_is_expander_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::is-expander\0".as_ptr() as *const _,
+                Some(transmute(notify_is_expander_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_mode_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::mode\0".as_ptr() as *const _,
-                Some(transmute(notify_mode_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::mode\0".as_ptr() as *const _,
+                Some(transmute(notify_mode_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::sensitive\0".as_ptr() as *const _,
-                Some(transmute(notify_sensitive_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sensitive\0".as_ptr() as *const _,
+                Some(transmute(notify_sensitive_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::visible\0".as_ptr() as *const _,
-                Some(transmute(notify_visible_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible\0".as_ptr() as *const _,
+                Some(transmute(notify_visible_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_width_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::width\0".as_ptr() as *const _,
-                Some(transmute(notify_width_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::width\0".as_ptr() as *const _,
+                Some(transmute(notify_width_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute(notify_xalign_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::xalign\0".as_ptr() as *const _,
+                Some(transmute(notify_xalign_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_xpad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_xpad_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_xpad_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::xpad\0".as_ptr() as *const _,
-                Some(transmute(notify_xpad_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::xpad\0".as_ptr() as *const _,
+                Some(transmute(notify_xpad_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute(notify_yalign_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::yalign\0".as_ptr() as *const _,
+                Some(transmute(notify_yalign_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_ypad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ypad_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRenderer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRenderer>
+        unsafe extern "C" fn notify_ypad_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRenderer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::ypad\0".as_ptr() as *const _,
-                Some(transmute(notify_ypad_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ypad\0".as_ptr() as *const _,
+                Some(transmute(notify_ypad_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

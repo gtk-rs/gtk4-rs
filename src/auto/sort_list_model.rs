@@ -4,13 +4,13 @@
 
 use gio;
 use glib;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -34,7 +34,9 @@ impl SortListModel {
     pub fn new_for_type(item_type: glib::types::Type) -> SortListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_sort_list_model_new_for_type(item_type.to_glib()))
+            from_glib_full(gtk_sys::gtk_sort_list_model_new_for_type(
+                item_type.to_glib(),
+            ))
         }
     }
 }
@@ -62,13 +64,17 @@ pub trait SortListModelExt: 'static {
 impl<O: IsA<SortListModel>> SortListModelExt for O {
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_sort_list_model_get_model(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_sort_list_model_get_model(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn has_sort(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_sort_list_model_has_sort(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_sort_list_model_has_sort(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -80,7 +86,10 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_sort_list_model_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_sort_list_model_set_model(
+                self.as_ref().to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -91,7 +100,11 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
     fn get_property_has_sort(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-sort\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"has-sort\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
@@ -99,22 +112,34 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {
             let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"item-type\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn connect_property_has_sort_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_sort_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSortListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<SortListModel>
+        unsafe extern "C" fn notify_has_sort_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkSortListModel,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<SortListModel>,
         {
             let f: &F = &*(f as *const F);
             f(&SortListModel::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-sort\0".as_ptr() as *const _,
-                Some(transmute(notify_has_sort_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-sort\0".as_ptr() as *const _,
+                Some(transmute(notify_has_sort_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

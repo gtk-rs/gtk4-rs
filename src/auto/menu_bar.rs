@@ -2,6 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use gio;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use gtk_sys;
+use std::fmt;
 use Align;
 use Buildable;
 use Container;
@@ -9,15 +18,6 @@ use LayoutManager;
 use MenuShell;
 use Overflow;
 use Widget;
-use gdk;
-use gio;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct MenuBar(Object<gtk_sys::GtkMenuBar, gtk_sys::GtkMenuBarClass, MenuBarClass>) @extends MenuShell, Container, Widget, @implements Buildable;
@@ -30,15 +30,16 @@ glib_wrapper! {
 impl MenuBar {
     pub fn new() -> MenuBar {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_menu_bar_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_menu_bar_new()).unsafe_cast() }
     }
 
     pub fn new_from_model<P: IsA<gio::MenuModel>>(model: &P) -> MenuBar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_menu_bar_new_from_model(model.as_ref().to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_menu_bar_new_from_model(
+                model.as_ref().to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -220,7 +221,10 @@ impl MenuBarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(MenuBar::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(MenuBar::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn take_focus(mut self, take_focus: bool) -> Self {

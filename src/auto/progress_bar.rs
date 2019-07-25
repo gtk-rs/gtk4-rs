@@ -2,27 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Align;
-use Buildable;
-use LayoutManager;
-use Orientable;
-use Overflow;
-use Widget;
 use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gtk_sys;
 use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Align;
+use Buildable;
+use LayoutManager;
+use Orientable;
+use Overflow;
+use Widget;
 
 glib_wrapper! {
     pub struct ProgressBar(Object<gtk_sys::GtkProgressBar, gtk_sys::GtkProgressBarClass, ProgressBarClass>) @extends Widget, @implements Buildable, Orientable;
@@ -35,9 +35,7 @@ glib_wrapper! {
 impl ProgressBar {
     pub fn new() -> ProgressBar {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_progress_bar_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_progress_bar_new()).unsafe_cast() }
     }
 }
 
@@ -243,7 +241,10 @@ impl ProgressBarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(ProgressBar::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(ProgressBar::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn ellipsize(mut self, ellipsize: pango::EllipsizeMode) -> Self {
@@ -477,37 +478,41 @@ pub trait ProgressBarExt: 'static {
 impl<O: IsA<ProgressBar>> ProgressBarExt for O {
     fn get_ellipsize(&self) -> pango::EllipsizeMode {
         unsafe {
-            from_glib(gtk_sys::gtk_progress_bar_get_ellipsize(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_progress_bar_get_ellipsize(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_fraction(&self) -> f64 {
-        unsafe {
-            gtk_sys::gtk_progress_bar_get_fraction(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_progress_bar_get_fraction(self.as_ref().to_glib_none().0) }
     }
 
     fn get_inverted(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_progress_bar_get_inverted(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_progress_bar_get_inverted(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_pulse_step(&self) -> f64 {
-        unsafe {
-            gtk_sys::gtk_progress_bar_get_pulse_step(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_progress_bar_get_pulse_step(self.as_ref().to_glib_none().0) }
     }
 
     fn get_show_text(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_progress_bar_get_show_text(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_progress_bar_get_show_text(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_progress_bar_get_text(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_progress_bar_get_text(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -531,7 +536,10 @@ impl<O: IsA<ProgressBar>> ProgressBarExt for O {
 
     fn set_inverted(&self, inverted: bool) {
         unsafe {
-            gtk_sys::gtk_progress_bar_set_inverted(self.as_ref().to_glib_none().0, inverted.to_glib());
+            gtk_sys::gtk_progress_bar_set_inverted(
+                self.as_ref().to_glib_none().0,
+                inverted.to_glib(),
+            );
         }
     }
 
@@ -543,97 +551,151 @@ impl<O: IsA<ProgressBar>> ProgressBarExt for O {
 
     fn set_show_text(&self, show_text: bool) {
         unsafe {
-            gtk_sys::gtk_progress_bar_set_show_text(self.as_ref().to_glib_none().0, show_text.to_glib());
+            gtk_sys::gtk_progress_bar_set_show_text(
+                self.as_ref().to_glib_none().0,
+                show_text.to_glib(),
+            );
         }
     }
 
     fn set_text(&self, text: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_progress_bar_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_progress_bar_set_text(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn connect_property_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::ellipsize\0".as_ptr() as *const _,
-                Some(transmute(notify_ellipsize_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ellipsize\0".as_ptr() as *const _,
+                Some(transmute(notify_ellipsize_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_fraction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_fraction_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_fraction_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::fraction\0".as_ptr() as *const _,
-                Some(transmute(notify_fraction_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::fraction\0".as_ptr() as *const _,
+                Some(transmute(notify_fraction_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::inverted\0".as_ptr() as *const _,
-                Some(transmute(notify_inverted_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::inverted\0".as_ptr() as *const _,
+                Some(transmute(notify_inverted_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_pulse_step_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pulse_step_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_pulse_step_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::pulse-step\0".as_ptr() as *const _,
-                Some(transmute(notify_pulse_step_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::pulse-step\0".as_ptr() as *const _,
+                Some(transmute(notify_pulse_step_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_show_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_show_text_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::show-text\0".as_ptr() as *const _,
-                Some(transmute(notify_show_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-text\0".as_ptr() as *const _,
+                Some(transmute(notify_show_text_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkProgressBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ProgressBar>
+        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkProgressBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ProgressBar>,
         {
             let f: &F = &*(f as *const F);
             f(&ProgressBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::text\0".as_ptr() as *const _,
+                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use IMContext;
 use glib::object::Cast;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use IMContext;
 
 glib_wrapper! {
     pub struct IMContextSimple(Object<gtk_sys::GtkIMContextSimple, gtk_sys::GtkIMContextSimpleClass, IMContextSimpleClass>) @extends IMContext;
@@ -19,9 +19,7 @@ glib_wrapper! {
 impl IMContextSimple {
     pub fn new() -> IMContextSimple {
         assert_initialized_main_thread!();
-        unsafe {
-            IMContext::from_glib_full(gtk_sys::gtk_im_context_simple_new()).unsafe_cast()
-        }
+        unsafe { IMContext::from_glib_full(gtk_sys::gtk_im_context_simple_new()).unsafe_cast() }
     }
 }
 

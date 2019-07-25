@@ -2,6 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem;
+use std::mem::transmute;
 use Align;
 use BaselinePosition;
 use Buildable;
@@ -11,20 +25,6 @@ use Orientable;
 use Overflow;
 use PositionType;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct Grid(Object<gtk_sys::GtkGrid, gtk_sys::GtkGridClass, GridClass>) @extends Container, Widget, @implements Buildable, Orientable;
@@ -37,9 +37,7 @@ glib_wrapper! {
 impl Grid {
     pub fn new() -> Grid {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_grid_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_grid_new()).unsafe_cast() }
     }
 }
 
@@ -240,7 +238,10 @@ impl GridBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Grid::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Grid::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn baseline_row(mut self, baseline_row: i32) -> Self {
@@ -429,7 +430,14 @@ pub const NONE_GRID: Option<&Grid> = None;
 pub trait GridExt: 'static {
     fn attach<P: IsA<Widget>>(&self, child: &P, left: i32, top: i32, width: i32, height: i32);
 
-    fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>, side: PositionType, width: i32, height: i32);
+    fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(
+        &self,
+        child: &P,
+        sibling: Option<&Q>,
+        side: PositionType,
+        width: i32,
+        height: i32,
+    );
 
     fn get_baseline_row(&self) -> i32;
 
@@ -469,13 +477,23 @@ pub trait GridExt: 'static {
 
     fn set_row_spacing(&self, spacing: u32);
 
-    fn connect_property_baseline_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_baseline_row_notify<F: Fn(&Self) + 'static>(&self, f: F)
+        -> SignalHandlerId;
 
-    fn connect_property_column_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_column_homogeneous_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_row_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_row_homogeneous_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -483,56 +501,82 @@ pub trait GridExt: 'static {
 impl<O: IsA<Grid>> GridExt for O {
     fn attach<P: IsA<Widget>>(&self, child: &P, left: i32, top: i32, width: i32, height: i32) {
         unsafe {
-            gtk_sys::gtk_grid_attach(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, left, top, width, height);
+            gtk_sys::gtk_grid_attach(
+                self.as_ref().to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                left,
+                top,
+                width,
+                height,
+            );
         }
     }
 
-    fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>, side: PositionType, width: i32, height: i32) {
+    fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(
+        &self,
+        child: &P,
+        sibling: Option<&Q>,
+        side: PositionType,
+        width: i32,
+        height: i32,
+    ) {
         unsafe {
-            gtk_sys::gtk_grid_attach_next_to(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, sibling.map(|p| p.as_ref()).to_glib_none().0, side.to_glib(), width, height);
+            gtk_sys::gtk_grid_attach_next_to(
+                self.as_ref().to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                sibling.map(|p| p.as_ref()).to_glib_none().0,
+                side.to_glib(),
+                width,
+                height,
+            );
         }
     }
 
     fn get_baseline_row(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_grid_get_baseline_row(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_grid_get_baseline_row(self.as_ref().to_glib_none().0) }
     }
 
     fn get_child_at(&self, left: i32, top: i32) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_grid_get_child_at(self.as_ref().to_glib_none().0, left, top))
+            from_glib_none(gtk_sys::gtk_grid_get_child_at(
+                self.as_ref().to_glib_none().0,
+                left,
+                top,
+            ))
         }
     }
 
     fn get_column_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_get_column_homogeneous(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_grid_get_column_homogeneous(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_column_spacing(&self) -> u32 {
-        unsafe {
-            gtk_sys::gtk_grid_get_column_spacing(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_grid_get_column_spacing(self.as_ref().to_glib_none().0) }
     }
 
     fn get_row_baseline_position(&self, row: i32) -> BaselinePosition {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_get_row_baseline_position(self.as_ref().to_glib_none().0, row))
+            from_glib(gtk_sys::gtk_grid_get_row_baseline_position(
+                self.as_ref().to_glib_none().0,
+                row,
+            ))
         }
     }
 
     fn get_row_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_get_row_homogeneous(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_grid_get_row_homogeneous(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_row_spacing(&self) -> u32 {
-        unsafe {
-            gtk_sys::gtk_grid_get_row_spacing(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_grid_get_row_spacing(self.as_ref().to_glib_none().0) }
     }
 
     fn insert_column(&self, position: i32) {
@@ -543,7 +587,11 @@ impl<O: IsA<Grid>> GridExt for O {
 
     fn insert_next_to<P: IsA<Widget>>(&self, sibling: &P, side: PositionType) {
         unsafe {
-            gtk_sys::gtk_grid_insert_next_to(self.as_ref().to_glib_none().0, sibling.as_ref().to_glib_none().0, side.to_glib());
+            gtk_sys::gtk_grid_insert_next_to(
+                self.as_ref().to_glib_none().0,
+                sibling.as_ref().to_glib_none().0,
+                side.to_glib(),
+            );
         }
     }
 
@@ -559,7 +607,14 @@ impl<O: IsA<Grid>> GridExt for O {
             let mut top = mem::uninitialized();
             let mut width = mem::uninitialized();
             let mut height = mem::uninitialized();
-            gtk_sys::gtk_grid_query_child(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, &mut left, &mut top, &mut width, &mut height);
+            gtk_sys::gtk_grid_query_child(
+                self.as_ref().to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                &mut left,
+                &mut top,
+                &mut width,
+                &mut height,
+            );
             (left, top, width, height)
         }
     }
@@ -584,7 +639,10 @@ impl<O: IsA<Grid>> GridExt for O {
 
     fn set_column_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            gtk_sys::gtk_grid_set_column_homogeneous(self.as_ref().to_glib_none().0, homogeneous.to_glib());
+            gtk_sys::gtk_grid_set_column_homogeneous(
+                self.as_ref().to_glib_none().0,
+                homogeneous.to_glib(),
+            );
         }
     }
 
@@ -596,13 +654,20 @@ impl<O: IsA<Grid>> GridExt for O {
 
     fn set_row_baseline_position(&self, row: i32, pos: BaselinePosition) {
         unsafe {
-            gtk_sys::gtk_grid_set_row_baseline_position(self.as_ref().to_glib_none().0, row, pos.to_glib());
+            gtk_sys::gtk_grid_set_row_baseline_position(
+                self.as_ref().to_glib_none().0,
+                row,
+                pos.to_glib(),
+            );
         }
     }
 
     fn set_row_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            gtk_sys::gtk_grid_set_row_homogeneous(self.as_ref().to_glib_none().0, homogeneous.to_glib());
+            gtk_sys::gtk_grid_set_row_homogeneous(
+                self.as_ref().to_glib_none().0,
+                homogeneous.to_glib(),
+            );
         }
     }
 
@@ -612,73 +677,133 @@ impl<O: IsA<Grid>> GridExt for O {
         }
     }
 
-    fn connect_property_baseline_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_baseline_row_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGrid, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Grid>
+    fn connect_property_baseline_row_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_baseline_row_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGrid,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Grid>,
         {
             let f: &F = &*(f as *const F);
             f(&Grid::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::baseline-row\0".as_ptr() as *const _,
-                Some(transmute(notify_baseline_row_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::baseline-row\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_baseline_row_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_column_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_column_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGrid, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Grid>
+    fn connect_property_column_homogeneous_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_column_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGrid,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Grid>,
         {
             let f: &F = &*(f as *const F);
             f(&Grid::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::column-homogeneous\0".as_ptr() as *const _,
-                Some(transmute(notify_column_homogeneous_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::column-homogeneous\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_column_homogeneous_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGrid, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Grid>
+    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGrid,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Grid>,
         {
             let f: &F = &*(f as *const F);
             f(&Grid::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_column_spacing_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::column-spacing\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_column_spacing_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_row_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_row_homogeneous_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGrid, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Grid>
+    fn connect_property_row_homogeneous_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGrid,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Grid>,
         {
             let f: &F = &*(f as *const F);
             f(&Grid::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::row-homogeneous\0".as_ptr() as *const _,
-                Some(transmute(notify_row_homogeneous_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-homogeneous\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_row_homogeneous_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkGrid, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Grid>
+        unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGrid,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Grid>,
         {
             let f: &F = &*(f as *const F);
             f(&Grid::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_row_spacing_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-spacing\0".as_ptr() as *const _,
+                Some(transmute(notify_row_spacing_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

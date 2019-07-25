@@ -2,17 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use CellRenderer;
-use TreePath;
 use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -21,6 +19,8 @@ use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use CellRenderer;
+use TreePath;
 
 glib_wrapper! {
     pub struct CellRendererText(Object<gtk_sys::GtkCellRendererText, gtk_sys::GtkCellRendererTextClass, CellRendererTextClass>) @extends CellRenderer;
@@ -33,9 +33,7 @@ glib_wrapper! {
 impl CellRendererText {
     pub fn new() -> CellRendererText {
         assert_initialized_main_thread!();
-        unsafe {
-            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_text_new()).unsafe_cast()
-        }
+        unsafe { CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_text_new()).unsafe_cast() }
     }
 }
 
@@ -238,17 +236,27 @@ pub trait CellRendererTextExt: 'static {
 
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
+        -> SignalHandlerId;
 
     fn connect_property_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_ellipsize_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_ellipsize_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -260,19 +268,32 @@ pub trait CellRendererTextExt: 'static {
 
     fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
+        -> SignalHandlerId;
 
     fn connect_property_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -282,7 +303,10 @@ pub trait CellRendererTextExt: 'static {
 
     fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -294,9 +318,15 @@ pub trait CellRendererTextExt: 'static {
 
     fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -306,7 +336,10 @@ pub trait CellRendererTextExt: 'static {
 
     fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -326,1286 +359,2091 @@ pub trait CellRendererTextExt: 'static {
 impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn set_fixed_height_from_font(&self, number_of_rows: i32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_text_set_fixed_height_from_font(self.as_ref().to_glib_none().0, number_of_rows);
+            gtk_sys::gtk_cell_renderer_text_set_fixed_height_from_font(
+                self.as_ref().to_glib_none().0,
+                number_of_rows,
+            );
         }
     }
 
     fn get_property_align_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"align-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"align-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_align_set(&self, align_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"align-set\0".as_ptr() as *const _, Value::from(&align_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"align-set\0".as_ptr() as *const _,
+                Value::from(&align_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_alignment(&self) -> pango::Alignment {
         unsafe {
             let mut value = Value::from_type(<pango::Alignment as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"alignment\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"alignment\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_alignment(&self, alignment: pango::Alignment) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"alignment\0".as_ptr() as *const _, Value::from(&alignment).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"alignment\0".as_ptr() as *const _,
+                Value::from(&alignment).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_attributes(&self) -> Option<pango::AttrList> {
         unsafe {
             let mut value = Value::from_type(<pango::AttrList as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"attributes\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_attributes(&self, attributes: Option<&pango::AttrList>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, Value::from(attributes).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"attributes\0".as_ptr() as *const _,
+                Value::from(attributes).to_glib_none().0,
+            );
         }
     }
 
     fn set_property_background(&self, background: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background\0".as_ptr() as *const _, Value::from(background).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"background\0".as_ptr() as *const _,
+                Value::from(background).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"background-rgba\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, Value::from(background_rgba).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"background-rgba\0".as_ptr() as *const _,
+                Value::from(background_rgba).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_background_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"background-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_background_set(&self, background_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-set\0".as_ptr() as *const _, Value::from(&background_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"background-set\0".as_ptr() as *const _,
+                Value::from(&background_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_editable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"editable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"editable\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_editable(&self, editable: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"editable\0".as_ptr() as *const _, Value::from(&editable).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"editable\0".as_ptr() as *const _,
+                Value::from(&editable).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_editable_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"editable-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"editable-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_editable_set(&self, editable_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"editable-set\0".as_ptr() as *const _, Value::from(&editable_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"editable-set\0".as_ptr() as *const _,
+                Value::from(&editable_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_ellipsize(&self) -> pango::EllipsizeMode {
         unsafe {
             let mut value = Value::from_type(<pango::EllipsizeMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ellipsize\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_ellipsize(&self, ellipsize: pango::EllipsizeMode) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize\0".as_ptr() as *const _, Value::from(&ellipsize).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ellipsize\0".as_ptr() as *const _,
+                Value::from(&ellipsize).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_ellipsize_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ellipsize-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_ellipsize_set(&self, ellipsize_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize-set\0".as_ptr() as *const _, Value::from(&ellipsize_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"ellipsize-set\0".as_ptr() as *const _,
+                Value::from(&ellipsize_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_family(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"family\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"family\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_family(&self, family: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"family\0".as_ptr() as *const _, Value::from(family).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"family\0".as_ptr() as *const _,
+                Value::from(family).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_family_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"family-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"family-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_family_set(&self, family_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"family-set\0".as_ptr() as *const _, Value::from(&family_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"family-set\0".as_ptr() as *const _,
+                Value::from(&family_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_font(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"font\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_font(&self, font: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font\0".as_ptr() as *const _, Value::from(font).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"font\0".as_ptr() as *const _,
+                Value::from(font).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             let mut value = Value::from_type(<pango::FontDescription as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"font-desc\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, Value::from(font_desc).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"font-desc\0".as_ptr() as *const _,
+                Value::from(font_desc).to_glib_none().0,
+            );
         }
     }
 
     fn set_property_foreground(&self, foreground: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground\0".as_ptr() as *const _, Value::from(foreground).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"foreground\0".as_ptr() as *const _,
+                Value::from(foreground).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"foreground-rgba\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, Value::from(foreground_rgba).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"foreground-rgba\0".as_ptr() as *const _,
+                Value::from(foreground_rgba).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_foreground_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"foreground-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_foreground_set(&self, foreground_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-set\0".as_ptr() as *const _, Value::from(&foreground_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"foreground-set\0".as_ptr() as *const _,
+                Value::from(&foreground_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_language(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"language\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"language\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_language(&self, language: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"language\0".as_ptr() as *const _, Value::from(language).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"language\0".as_ptr() as *const _,
+                Value::from(language).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_language_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"language-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"language-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_language_set(&self, language_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"language-set\0".as_ptr() as *const _, Value::from(&language_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"language-set\0".as_ptr() as *const _,
+                Value::from(&language_set).to_glib_none().0,
+            );
         }
     }
 
     fn set_property_markup(&self, markup: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"markup\0".as_ptr() as *const _, Value::from(markup).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"markup\0".as_ptr() as *const _,
+                Value::from(markup).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_max_width_chars(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"max-width-chars\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"max-width-chars\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_max_width_chars(&self, max_width_chars: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"max-width-chars\0".as_ptr() as *const _, Value::from(&max_width_chars).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"max-width-chars\0".as_ptr() as *const _,
+                Value::from(&max_width_chars).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_placeholder_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"placeholder-text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"placeholder-text\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"placeholder-text\0".as_ptr() as *const _, Value::from(placeholder_text).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"placeholder-text\0".as_ptr() as *const _,
+                Value::from(placeholder_text).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_rise(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"rise\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"rise\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_rise(&self, rise: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"rise\0".as_ptr() as *const _, Value::from(&rise).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"rise\0".as_ptr() as *const _,
+                Value::from(&rise).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_rise_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"rise-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"rise-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_rise_set(&self, rise_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"rise-set\0".as_ptr() as *const _, Value::from(&rise_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"rise-set\0".as_ptr() as *const _,
+                Value::from(&rise_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_scale(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"scale\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"scale\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_scale(&self, scale: f64) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"scale\0".as_ptr() as *const _, Value::from(&scale).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"scale\0".as_ptr() as *const _,
+                Value::from(&scale).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_scale_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"scale-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"scale-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_scale_set(&self, scale_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"scale-set\0".as_ptr() as *const _, Value::from(&scale_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"scale-set\0".as_ptr() as *const _,
+                Value::from(&scale_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_single_paragraph_mode(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"single-paragraph-mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"single-paragraph-mode\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_single_paragraph_mode(&self, single_paragraph_mode: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"single-paragraph-mode\0".as_ptr() as *const _, Value::from(&single_paragraph_mode).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"single-paragraph-mode\0".as_ptr() as *const _,
+                Value::from(&single_paragraph_mode).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_size(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_size(&self, size: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size\0".as_ptr() as *const _, Value::from(&size).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size\0".as_ptr() as *const _,
+                Value::from(&size).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_size_points(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size-points\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size-points\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_size_points(&self, size_points: f64) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size-points\0".as_ptr() as *const _, Value::from(&size_points).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size-points\0".as_ptr() as *const _,
+                Value::from(&size_points).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_size_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_size_set(&self, size_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"size-set\0".as_ptr() as *const _, Value::from(&size_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"size-set\0".as_ptr() as *const _,
+                Value::from(&size_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_stretch(&self) -> pango::Stretch {
         unsafe {
             let mut value = Value::from_type(<pango::Stretch as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"stretch\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_stretch(&self, stretch: pango::Stretch) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, Value::from(&stretch).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"stretch\0".as_ptr() as *const _,
+                Value::from(&stretch).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_stretch_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"stretch-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_stretch_set(&self, stretch_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch-set\0".as_ptr() as *const _, Value::from(&stretch_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"stretch-set\0".as_ptr() as *const _,
+                Value::from(&stretch_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_strikethrough(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"strikethrough\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_strikethrough(&self, strikethrough: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough\0".as_ptr() as *const _, Value::from(&strikethrough).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"strikethrough\0".as_ptr() as *const _,
+                Value::from(&strikethrough).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_strikethrough_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"strikethrough-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_strikethrough_set(&self, strikethrough_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"strikethrough-set\0".as_ptr() as *const _, Value::from(&strikethrough_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"strikethrough-set\0".as_ptr() as *const _,
+                Value::from(&strikethrough_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_style(&self) -> pango::Style {
         unsafe {
             let mut value = Value::from_type(<pango::Style as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"style\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_style(&self, style: pango::Style) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, Value::from(&style).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"style\0".as_ptr() as *const _,
+                Value::from(&style).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_style_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"style-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_style_set(&self, style_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style-set\0".as_ptr() as *const _, Value::from(&style_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"style-set\0".as_ptr() as *const _,
+                Value::from(&style_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"text\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
     fn set_property_text(&self, text: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"text\0".as_ptr() as *const _, Value::from(text).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"text\0".as_ptr() as *const _,
+                Value::from(text).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_underline(&self) -> pango::Underline {
         unsafe {
             let mut value = Value::from_type(<pango::Underline as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"underline\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_underline(&self, underline: pango::Underline) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, Value::from(&underline).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"underline\0".as_ptr() as *const _,
+                Value::from(&underline).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_underline_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"underline-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_underline_set(&self, underline_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline-set\0".as_ptr() as *const _, Value::from(&underline_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"underline-set\0".as_ptr() as *const _,
+                Value::from(&underline_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_variant(&self) -> pango::Variant {
         unsafe {
             let mut value = Value::from_type(<pango::Variant as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"variant\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_variant(&self, variant: pango::Variant) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, Value::from(&variant).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"variant\0".as_ptr() as *const _,
+                Value::from(&variant).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_variant_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"variant-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_variant_set(&self, variant_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant-set\0".as_ptr() as *const _, Value::from(&variant_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"variant-set\0".as_ptr() as *const _,
+                Value::from(&variant_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_weight(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"weight\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"weight\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_weight(&self, weight: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"weight\0".as_ptr() as *const _, Value::from(&weight).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"weight\0".as_ptr() as *const _,
+                Value::from(&weight).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_weight_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"weight-set\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"weight-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_weight_set(&self, weight_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"weight-set\0".as_ptr() as *const _, Value::from(&weight_set).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"weight-set\0".as_ptr() as *const _,
+                Value::from(&weight_set).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_width_chars(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width-chars\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"width-chars\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_width_chars(&self, width_chars: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"width-chars\0".as_ptr() as *const _, Value::from(&width_chars).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"width-chars\0".as_ptr() as *const _,
+                Value::from(&width_chars).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_wrap_mode(&self) -> pango::WrapMode {
         unsafe {
             let mut value = Value::from_type(<pango::WrapMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"wrap-mode\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, Value::from(&wrap_mode).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"wrap-mode\0".as_ptr() as *const _,
+                Value::from(&wrap_mode).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_wrap_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-width\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"wrap-width\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_wrap_width(&self, wrap_width: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-width\0".as_ptr() as *const _, Value::from(&wrap_width).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"wrap-width\0".as_ptr() as *const _,
+                Value::from(&wrap_width).to_glib_none().0,
+            );
         }
     }
 
     fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, TreePath, &str) + 'static>(this: *mut gtk_sys::GtkCellRendererText, path: *mut libc::c_char, new_text: *mut libc::c_char, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, TreePath, &str) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            path: *mut libc::c_char,
+            new_text: *mut libc::c_char,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast(), path, &GString::from_glib_borrow(new_text))
+            f(
+                &CellRendererText::from_glib_borrow(this).unsafe_cast(),
+                path,
+                &GString::from_glib_borrow(new_text),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"edited\0".as_ptr() as *const _,
-                Some(transmute(edited_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"edited\0".as_ptr() as *const _,
+                Some(transmute(edited_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_align_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_align_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::align-set\0".as_ptr() as *const _,
-                Some(transmute(notify_align_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::align-set\0".as_ptr() as *const _,
+                Some(transmute(notify_align_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::alignment\0".as_ptr() as *const _,
-                Some(transmute(notify_alignment_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::alignment\0".as_ptr() as *const _,
+                Some(transmute(notify_alignment_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute(notify_attributes_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::attributes\0".as_ptr() as *const _,
+                Some(transmute(notify_attributes_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::background\0".as_ptr() as *const _,
-                Some(transmute(notify_background_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::background\0".as_ptr() as *const _,
+                Some(transmute(notify_background_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::background-rgba\0".as_ptr() as *const _,
-                Some(transmute(notify_background_rgba_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::background-rgba\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_background_rgba_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::background-set\0".as_ptr() as *const _,
-                Some(transmute(notify_background_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::background-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_background_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::editable\0".as_ptr() as *const _,
-                Some(transmute(notify_editable_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::editable\0".as_ptr() as *const _,
+                Some(transmute(notify_editable_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::editable-set\0".as_ptr() as *const _,
-                Some(transmute(notify_editable_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::editable-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_editable_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::ellipsize\0".as_ptr() as *const _,
-                Some(transmute(notify_ellipsize_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ellipsize\0".as_ptr() as *const _,
+                Some(transmute(notify_ellipsize_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_ellipsize_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ellipsize_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_ellipsize_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ellipsize_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::ellipsize-set\0".as_ptr() as *const _,
-                Some(transmute(notify_ellipsize_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ellipsize-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_ellipsize_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::family\0".as_ptr() as *const _,
-                Some(transmute(notify_family_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::family\0".as_ptr() as *const _,
+                Some(transmute(notify_family_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::family-set\0".as_ptr() as *const _,
-                Some(transmute(notify_family_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::family-set\0".as_ptr() as *const _,
+                Some(transmute(notify_family_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::font\0".as_ptr() as *const _,
-                Some(transmute(notify_font_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::font\0".as_ptr() as *const _,
+                Some(transmute(notify_font_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::font-desc\0".as_ptr() as *const _,
-                Some(transmute(notify_font_desc_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::font-desc\0".as_ptr() as *const _,
+                Some(transmute(notify_font_desc_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::foreground\0".as_ptr() as *const _,
-                Some(transmute(notify_foreground_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::foreground\0".as_ptr() as *const _,
+                Some(transmute(notify_foreground_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::foreground-rgba\0".as_ptr() as *const _,
-                Some(transmute(notify_foreground_rgba_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::foreground-rgba\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_foreground_rgba_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::foreground-set\0".as_ptr() as *const _,
-                Some(transmute(notify_foreground_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::foreground-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_foreground_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::language\0".as_ptr() as *const _,
-                Some(transmute(notify_language_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::language\0".as_ptr() as *const _,
+                Some(transmute(notify_language_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::language-set\0".as_ptr() as *const _,
-                Some(transmute(notify_language_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::language-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_language_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_markup_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_markup_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::markup\0".as_ptr() as *const _,
-                Some(transmute(notify_markup_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::markup\0".as_ptr() as *const _,
+                Some(transmute(notify_markup_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::max-width-chars\0".as_ptr() as *const _,
-                Some(transmute(notify_max_width_chars_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::max-width-chars\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_max_width_chars_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::placeholder-text\0".as_ptr() as *const _,
-                Some(transmute(notify_placeholder_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::placeholder-text\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_placeholder_text_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::rise\0".as_ptr() as *const _,
-                Some(transmute(notify_rise_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::rise\0".as_ptr() as *const _,
+                Some(transmute(notify_rise_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::rise-set\0".as_ptr() as *const _,
-                Some(transmute(notify_rise_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::rise-set\0".as_ptr() as *const _,
+                Some(transmute(notify_rise_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::scale\0".as_ptr() as *const _,
-                Some(transmute(notify_scale_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scale\0".as_ptr() as *const _,
+                Some(transmute(notify_scale_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::scale-set\0".as_ptr() as *const _,
-                Some(transmute(notify_scale_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scale-set\0".as_ptr() as *const _,
+                Some(transmute(notify_scale_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_single_paragraph_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_single_paragraph_mode_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::single-paragraph-mode\0".as_ptr() as *const _,
-                Some(transmute(notify_single_paragraph_mode_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::single-paragraph-mode\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_single_paragraph_mode_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::size\0".as_ptr() as *const _,
-                Some(transmute(notify_size_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::size\0".as_ptr() as *const _,
+                Some(transmute(notify_size_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::size-points\0".as_ptr() as *const _,
-                Some(transmute(notify_size_points_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::size-points\0".as_ptr() as *const _,
+                Some(transmute(notify_size_points_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::size-set\0".as_ptr() as *const _,
-                Some(transmute(notify_size_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::size-set\0".as_ptr() as *const _,
+                Some(transmute(notify_size_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::stretch\0".as_ptr() as *const _,
-                Some(transmute(notify_stretch_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::stretch\0".as_ptr() as *const _,
+                Some(transmute(notify_stretch_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::stretch-set\0".as_ptr() as *const _,
-                Some(transmute(notify_stretch_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::stretch-set\0".as_ptr() as *const _,
+                Some(transmute(notify_stretch_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough\0".as_ptr() as *const _,
-                Some(transmute(notify_strikethrough_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::strikethrough\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_strikethrough_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::strikethrough-set\0".as_ptr() as *const _,
-                Some(transmute(notify_strikethrough_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::strikethrough-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_strikethrough_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::style\0".as_ptr() as *const _,
-                Some(transmute(notify_style_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::style\0".as_ptr() as *const _,
+                Some(transmute(notify_style_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::style-set\0".as_ptr() as *const _,
-                Some(transmute(notify_style_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::style-set\0".as_ptr() as *const _,
+                Some(transmute(notify_style_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::text\0".as_ptr() as *const _,
+                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::underline\0".as_ptr() as *const _,
-                Some(transmute(notify_underline_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::underline\0".as_ptr() as *const _,
+                Some(transmute(notify_underline_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::underline-set\0".as_ptr() as *const _,
-                Some(transmute(notify_underline_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::underline-set\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_underline_set_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::variant\0".as_ptr() as *const _,
-                Some(transmute(notify_variant_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::variant\0".as_ptr() as *const _,
+                Some(transmute(notify_variant_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::variant-set\0".as_ptr() as *const _,
-                Some(transmute(notify_variant_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::variant-set\0".as_ptr() as *const _,
+                Some(transmute(notify_variant_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::weight\0".as_ptr() as *const _,
-                Some(transmute(notify_weight_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::weight\0".as_ptr() as *const _,
+                Some(transmute(notify_weight_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::weight-set\0".as_ptr() as *const _,
-                Some(transmute(notify_weight_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::weight-set\0".as_ptr() as *const _,
+                Some(transmute(notify_weight_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::width-chars\0".as_ptr() as *const _,
-                Some(transmute(notify_width_chars_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::width-chars\0".as_ptr() as *const _,
+                Some(transmute(notify_width_chars_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::wrap-mode\0".as_ptr() as *const _,
-                Some(transmute(notify_wrap_mode_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::wrap-mode\0".as_ptr() as *const _,
+                Some(transmute(notify_wrap_mode_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_wrap_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wrap_width_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkCellRendererText, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<CellRendererText>
+        unsafe extern "C" fn notify_wrap_width_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCellRendererText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::wrap-width\0".as_ptr() as *const _,
-                Some(transmute(notify_wrap_width_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::wrap-width\0".as_ptr() as *const _,
+                Some(transmute(notify_wrap_width_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

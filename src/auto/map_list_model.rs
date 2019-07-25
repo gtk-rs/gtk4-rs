@@ -4,13 +4,13 @@
 
 use gio;
 use glib;
-use glib::StaticType;
-use glib::Value;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -27,12 +27,21 @@ glib_wrapper! {
 }
 
 impl MapListModel {
-    pub fn new<P: IsA<gio::ListModel>>(item_type: glib::types::Type, model: Option<&P>, map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>) -> MapListModel {
+    pub fn new<P: IsA<gio::ListModel>>(
+        item_type: glib::types::Type,
+        model: Option<&P>,
+        map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
+    ) -> MapListModel {
         assert_initialized_main_thread!();
-        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = Box::new(map_func);
-        unsafe extern "C" fn map_func_func<P: IsA<gio::ListModel>>(item: *mut gobject_sys::GObject, user_data: glib_sys::gpointer) -> *mut gobject_sys::GObject {
+        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            Box::new(map_func);
+        unsafe extern "C" fn map_func_func<P: IsA<gio::ListModel>>(
+            item: *mut gobject_sys::GObject,
+            user_data: glib_sys::gpointer,
+        ) -> *mut gobject_sys::GObject {
             let item = from_glib_full(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> = &*(user_data as *mut _);
+            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
+                &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
             } else {
@@ -40,14 +49,26 @@ impl MapListModel {
             };
             res.to_glib_full()
         }
-        let map_func = if map_func_data.is_some() { Some(map_func_func::<P> as _) } else { None };
+        let map_func = if map_func_data.is_some() {
+            Some(map_func_func::<P> as _)
+        } else {
+            None
+        };
         unsafe extern "C" fn user_destroy_func<P: IsA<gio::ListModel>>(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+                Box_::from_raw(data as *mut _);
         }
         let destroy_call4 = Some(user_destroy_func::<P> as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = map_func_data;
+        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            map_func_data;
         unsafe {
-            from_glib_full(gtk_sys::gtk_map_list_model_new(item_type.to_glib(), model.map(|p| p.as_ref()).to_glib_none().0, map_func, Box::into_raw(super_callback0) as *mut _, destroy_call4))
+            from_glib_full(gtk_sys::gtk_map_list_model_new(
+                item_type.to_glib(),
+                model.map(|p| p.as_ref()).to_glib_none().0,
+                map_func,
+                Box::into_raw(super_callback0) as *mut _,
+                destroy_call4,
+            ))
         }
     }
 }
@@ -73,21 +94,30 @@ pub trait MapListModelExt: 'static {
 impl<O: IsA<MapListModel>> MapListModelExt for O {
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_map_list_model_get_model(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_map_list_model_get_model(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn has_map(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_map_list_model_has_map(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_map_list_model_has_map(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_map_func(&self, map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>) {
-        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = Box::new(map_func);
-        unsafe extern "C" fn map_func_func(item: *mut gobject_sys::GObject, user_data: glib_sys::gpointer) -> *mut gobject_sys::GObject {
+        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            Box::new(map_func);
+        unsafe extern "C" fn map_func_func(
+            item: *mut gobject_sys::GObject,
+            user_data: glib_sys::gpointer,
+        ) -> *mut gobject_sys::GObject {
             let item = from_glib_full(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> = &*(user_data as *mut _);
+            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
+                &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
             } else {
@@ -95,27 +125,45 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
             };
             res.to_glib_full()
         }
-        let map_func = if map_func_data.is_some() { Some(map_func_func as _) } else { None };
+        let map_func = if map_func_data.is_some() {
+            Some(map_func_func as _)
+        } else {
+            None
+        };
         unsafe extern "C" fn user_destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+                Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> = map_func_data;
+        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            map_func_data;
         unsafe {
-            gtk_sys::gtk_map_list_model_set_map_func(self.as_ref().to_glib_none().0, map_func, Box::into_raw(super_callback0) as *mut _, destroy_call3);
+            gtk_sys::gtk_map_list_model_set_map_func(
+                self.as_ref().to_glib_none().0,
+                map_func,
+                Box::into_raw(super_callback0) as *mut _,
+                destroy_call3,
+            );
         }
     }
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_map_list_model_set_model(self.as_ref().to_glib_none().0, model.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_map_list_model_set_model(
+                self.as_ref().to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_has_map(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"has-map\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"has-map\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
@@ -123,22 +171,34 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {
             let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"item-type\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"item-type\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn connect_property_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_map_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkMapListModel, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<MapListModel>
+        unsafe extern "C" fn notify_has_map_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkMapListModel,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<MapListModel>,
         {
             let f: &F = &*(f as *const F);
             f(&MapListModel::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-map\0".as_ptr() as *const _,
-                Some(transmute(notify_has_map_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-map\0".as_ptr() as *const _,
+                Some(transmute(notify_has_map_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

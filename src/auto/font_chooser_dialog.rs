@@ -2,6 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use gtk_sys;
+use std::fmt;
 use Align;
 use Application;
 use Bin;
@@ -16,14 +24,6 @@ use Widget;
 use Window;
 use WindowPosition;
 use WindowType;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, gtk_sys::GtkFontChooserDialogClass, FontChooserDialogClass>) @extends Dialog, Window, Bin, Container, Widget, @implements Buildable, Root, FontChooser;
@@ -37,7 +37,11 @@ impl FontChooserDialog {
     pub fn new<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>) -> FontChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_font_chooser_dialog_new(title.to_glib_none().0, parent.map(|p| p.as_ref()).to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_font_chooser_dialog_new(
+                title.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -328,7 +332,10 @@ impl FontChooserDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(FontChooserDialog::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(FontChooserDialog::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

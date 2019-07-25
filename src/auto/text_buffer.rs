@@ -2,27 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use TextChildAnchor;
-use TextIter;
-use TextMark;
-use TextTag;
-use TextTagTable;
 use gdk;
 use gdk_sys;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use TextChildAnchor;
+use TextIter;
+use TextMark;
+use TextTag;
+use TextTagTable;
 
 glib_wrapper! {
     pub struct TextBuffer(Object<gtk_sys::GtkTextBuffer, gtk_sys::GtkTextBufferClass, TextBufferClass>);
@@ -36,7 +36,9 @@ impl TextBuffer {
     pub fn new<P: IsA<TextTagTable>>(table: Option<&P>) -> TextBuffer {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_text_buffer_new(table.map(|p| p.as_ref()).to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_text_buffer_new(
+                table.map(|p| p.as_ref()).to_glib_none().0,
+            ))
         }
     }
 }
@@ -60,7 +62,12 @@ pub trait TextBufferExt: 'static {
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor>;
 
-    fn create_mark(&self, mark_name: Option<&str>, where_: &TextIter, left_gravity: bool) -> Option<TextMark>;
+    fn create_mark(
+        &self,
+        mark_name: Option<&str>,
+        where_: &TextIter,
+        left_gravity: bool,
+    ) -> Option<TextMark>;
 
     //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<TextTag>;
 
@@ -68,7 +75,12 @@ pub trait TextBufferExt: 'static {
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter);
 
-    fn delete_interactive(&self, start_iter: &mut TextIter, end_iter: &mut TextIter, default_editable: bool) -> bool;
+    fn delete_interactive(
+        &self,
+        start_iter: &mut TextIter,
+        end_iter: &mut TextIter,
+        default_editable: bool,
+    ) -> bool;
 
     fn delete_mark<P: IsA<TextMark>>(&self, mark: &P);
 
@@ -110,13 +122,23 @@ pub trait TextBufferExt: 'static {
 
     fn get_selection_bounds(&self) -> Option<(TextIter, TextIter)>;
 
-    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> Option<GString>;
+    fn get_slice(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> Option<GString>;
 
     fn get_start_iter(&self) -> TextIter;
 
     fn get_tag_table(&self) -> Option<TextTagTable>;
 
-    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> Option<GString>;
+    fn get_text(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> Option<GString>;
 
     fn insert(&self, iter: &mut TextIter, text: &str);
 
@@ -132,7 +154,13 @@ pub trait TextBufferExt: 'static {
 
     fn insert_range(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter);
 
-    fn insert_range_interactive(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter, default_editable: bool) -> bool;
+    fn insert_range_interactive(
+        &self,
+        iter: &mut TextIter,
+        start: &TextIter,
+        end: &TextIter,
+        default_editable: bool,
+    ) -> bool;
 
     fn insert_texture<P: IsA<gdk::Texture>>(&self, iter: &mut TextIter, texture: &P);
 
@@ -144,7 +172,12 @@ pub trait TextBufferExt: 'static {
 
     fn move_mark_by_name(&self, name: &str, where_: &TextIter);
 
-    fn paste_clipboard(&self, clipboard: &gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool);
+    fn paste_clipboard(
+        &self,
+        clipboard: &gdk::Clipboard,
+        override_location: Option<&TextIter>,
+        default_editable: bool,
+    );
 
     fn place_cursor(&self, where_: &TextIter);
 
@@ -168,37 +201,67 @@ pub trait TextBufferExt: 'static {
 
     fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats>;
 
-    fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_begin_user_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_delete_range<F: Fn(&Self, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_delete_range<F: Fn(&Self, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_end_user_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_insert_child_anchor<F: Fn(&Self, &TextIter, &TextChildAnchor) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_insert_child_anchor<F: Fn(&Self, &TextIter, &TextChildAnchor) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_mark_set<F: Fn(&Self, &TextIter, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_mark_set<F: Fn(&Self, &TextIter, &TextMark) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_modified_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_has_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_has_selection_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -206,31 +269,53 @@ pub trait TextBufferExt: 'static {
 impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn add_mark<P: IsA<TextMark>>(&self, mark: &P, where_: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_add_mark(self.as_ref().to_glib_none().0, mark.as_ref().to_glib_none().0, where_.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_add_mark(
+                self.as_ref().to_glib_none().0,
+                mark.as_ref().to_glib_none().0,
+                where_.to_glib_none().0,
+            );
         }
     }
 
     fn add_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
         unsafe {
-            gtk_sys::gtk_text_buffer_add_selection_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_add_selection_clipboard(
+                self.as_ref().to_glib_none().0,
+                clipboard.to_glib_none().0,
+            );
         }
     }
 
     fn apply_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_apply_tag(self.as_ref().to_glib_none().0, tag.as_ref().to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_apply_tag(
+                self.as_ref().to_glib_none().0,
+                tag.as_ref().to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
     fn apply_tag_by_name(&self, name: &str, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_apply_tag_by_name(self.as_ref().to_glib_none().0, name.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_apply_tag_by_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
     fn backspace(&self, iter: &mut TextIter, interactive: bool, default_editable: bool) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_backspace(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, interactive.to_glib(), default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_backspace(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                interactive.to_glib(),
+                default_editable.to_glib(),
+            ))
         }
     }
 
@@ -242,19 +327,35 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn copy_clipboard(&self, clipboard: &gdk::Clipboard) {
         unsafe {
-            gtk_sys::gtk_text_buffer_copy_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_copy_clipboard(
+                self.as_ref().to_glib_none().0,
+                clipboard.to_glib_none().0,
+            );
         }
     }
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_create_child_anchor(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0))
+            from_glib_none(gtk_sys::gtk_text_buffer_create_child_anchor(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            ))
         }
     }
 
-    fn create_mark(&self, mark_name: Option<&str>, where_: &TextIter, left_gravity: bool) -> Option<TextMark> {
+    fn create_mark(
+        &self,
+        mark_name: Option<&str>,
+        where_: &TextIter,
+        left_gravity: bool,
+    ) -> Option<TextMark> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_create_mark(self.as_ref().to_glib_none().0, mark_name.to_glib_none().0, where_.to_glib_none().0, left_gravity.to_glib()))
+            from_glib_none(gtk_sys::gtk_text_buffer_create_mark(
+                self.as_ref().to_glib_none().0,
+                mark_name.to_glib_none().0,
+                where_.to_glib_none().0,
+                left_gravity.to_glib(),
+            ))
         }
     }
 
@@ -264,37 +365,65 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool) {
         unsafe {
-            gtk_sys::gtk_text_buffer_cut_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0, default_editable.to_glib());
+            gtk_sys::gtk_text_buffer_cut_clipboard(
+                self.as_ref().to_glib_none().0,
+                clipboard.to_glib_none().0,
+                default_editable.to_glib(),
+            );
         }
     }
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_delete(self.as_ref().to_glib_none().0, start.to_glib_none_mut().0, end.to_glib_none_mut().0);
+            gtk_sys::gtk_text_buffer_delete(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none_mut().0,
+                end.to_glib_none_mut().0,
+            );
         }
     }
 
-    fn delete_interactive(&self, start_iter: &mut TextIter, end_iter: &mut TextIter, default_editable: bool) -> bool {
+    fn delete_interactive(
+        &self,
+        start_iter: &mut TextIter,
+        end_iter: &mut TextIter,
+        default_editable: bool,
+    ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_delete_interactive(self.as_ref().to_glib_none().0, start_iter.to_glib_none_mut().0, end_iter.to_glib_none_mut().0, default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_delete_interactive(
+                self.as_ref().to_glib_none().0,
+                start_iter.to_glib_none_mut().0,
+                end_iter.to_glib_none_mut().0,
+                default_editable.to_glib(),
+            ))
         }
     }
 
     fn delete_mark<P: IsA<TextMark>>(&self, mark: &P) {
         unsafe {
-            gtk_sys::gtk_text_buffer_delete_mark(self.as_ref().to_glib_none().0, mark.as_ref().to_glib_none().0);
+            gtk_sys::gtk_text_buffer_delete_mark(
+                self.as_ref().to_glib_none().0,
+                mark.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn delete_mark_by_name(&self, name: &str) {
         unsafe {
-            gtk_sys::gtk_text_buffer_delete_mark_by_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_delete_mark_by_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            );
         }
     }
 
     fn delete_selection(&self, interactive: bool, default_editable: bool) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_delete_selection(self.as_ref().to_glib_none().0, interactive.to_glib(), default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_delete_selection(
+                self.as_ref().to_glib_none().0,
+                interactive.to_glib(),
+                default_editable.to_glib(),
+            ))
         }
     }
 
@@ -308,41 +437,54 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         unsafe {
             let mut start = TextIter::uninitialized();
             let mut end = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_bounds(self.as_ref().to_glib_none().0, start.to_glib_none_mut().0, end.to_glib_none_mut().0);
+            gtk_sys::gtk_text_buffer_get_bounds(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none_mut().0,
+                end.to_glib_none_mut().0,
+            );
             (start, end)
         }
     }
 
     fn get_char_count(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_text_buffer_get_char_count(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_text_buffer_get_char_count(self.as_ref().to_glib_none().0) }
     }
 
     fn get_end_iter(&self) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_end_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_text_buffer_get_end_iter(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            );
             iter
         }
     }
 
     fn get_has_selection(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_get_has_selection(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_text_buffer_get_has_selection(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_insert(&self) -> Option<TextMark> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_get_insert(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_buffer_get_insert(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_iter_at_child_anchor<P: IsA<TextChildAnchor>>(&self, anchor: &P) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_child_anchor(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, anchor.as_ref().to_glib_none().0);
+            gtk_sys::gtk_text_buffer_get_iter_at_child_anchor(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                anchor.as_ref().to_glib_none().0,
+            );
             iter
         }
     }
@@ -350,7 +492,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_iter_at_line(&self, line_number: i32) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, line_number);
+            gtk_sys::gtk_text_buffer_get_iter_at_line(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                line_number,
+            );
             iter
         }
     }
@@ -358,7 +504,12 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_iter_at_line_index(&self, line_number: i32, byte_index: i32) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line_index(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, line_number, byte_index);
+            gtk_sys::gtk_text_buffer_get_iter_at_line_index(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                line_number,
+                byte_index,
+            );
             iter
         }
     }
@@ -366,7 +517,12 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_iter_at_line_offset(&self, line_number: i32, char_offset: i32) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line_offset(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, line_number, char_offset);
+            gtk_sys::gtk_text_buffer_get_iter_at_line_offset(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                line_number,
+                char_offset,
+            );
             iter
         }
     }
@@ -374,7 +530,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_iter_at_mark<P: IsA<TextMark>>(&self, mark: &P) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_mark(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, mark.as_ref().to_glib_none().0);
+            gtk_sys::gtk_text_buffer_get_iter_at_mark(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                mark.as_ref().to_glib_none().0,
+            );
             iter
         }
     }
@@ -382,32 +542,41 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_iter_at_offset(&self, char_offset: i32) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_offset(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, char_offset);
+            gtk_sys::gtk_text_buffer_get_iter_at_offset(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                char_offset,
+            );
             iter
         }
     }
 
     fn get_line_count(&self) -> i32 {
-        unsafe {
-            gtk_sys::gtk_text_buffer_get_line_count(self.as_ref().to_glib_none().0)
-        }
+        unsafe { gtk_sys::gtk_text_buffer_get_line_count(self.as_ref().to_glib_none().0) }
     }
 
     fn get_mark(&self, name: &str) -> Option<TextMark> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_get_mark(self.as_ref().to_glib_none().0, name.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_buffer_get_mark(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            ))
         }
     }
 
     fn get_modified(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_get_modified(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_text_buffer_get_modified(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_selection_bound(&self) -> Option<TextMark> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_get_selection_bound(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_buffer_get_selection_bound(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -415,93 +584,176 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         unsafe {
             let mut start = TextIter::uninitialized();
             let mut end = TextIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_text_buffer_get_selection_bounds(self.as_ref().to_glib_none().0, start.to_glib_none_mut().0, end.to_glib_none_mut().0));
-            if ret { Some((start, end)) } else { None }
+            let ret = from_glib(gtk_sys::gtk_text_buffer_get_selection_bounds(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none_mut().0,
+                end.to_glib_none_mut().0,
+            ));
+            if ret {
+                Some((start, end))
+            } else {
+                None
+            }
         }
     }
 
-    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> Option<GString> {
+    fn get_slice(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_text_buffer_get_slice(self.as_ref().to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, include_hidden_chars.to_glib()))
+            from_glib_full(gtk_sys::gtk_text_buffer_get_slice(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+                include_hidden_chars.to_glib(),
+            ))
         }
     }
 
     fn get_start_iter(&self) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_start_iter(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_text_buffer_get_start_iter(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            );
             iter
         }
     }
 
     fn get_tag_table(&self) -> Option<TextTagTable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_buffer_get_tag_table(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_buffer_get_tag_table(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
-    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> Option<GString> {
+    fn get_text(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_text_buffer_get_text(self.as_ref().to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0, include_hidden_chars.to_glib()))
+            from_glib_full(gtk_sys::gtk_text_buffer_get_text(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+                include_hidden_chars.to_glib(),
+            ))
         }
     }
 
     fn insert(&self, iter: &mut TextIter, text: &str) {
         let len = text.len() as i32;
         unsafe {
-            gtk_sys::gtk_text_buffer_insert(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, text.to_glib_none().0, len);
+            gtk_sys::gtk_text_buffer_insert(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                text.to_glib_none().0,
+                len,
+            );
         }
     }
 
     fn insert_at_cursor(&self, text: &str) {
         let len = text.len() as i32;
         unsafe {
-            gtk_sys::gtk_text_buffer_insert_at_cursor(self.as_ref().to_glib_none().0, text.to_glib_none().0, len);
+            gtk_sys::gtk_text_buffer_insert_at_cursor(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+                len,
+            );
         }
     }
 
     fn insert_child_anchor<P: IsA<TextChildAnchor>>(&self, iter: &mut TextIter, anchor: &P) {
         unsafe {
-            gtk_sys::gtk_text_buffer_insert_child_anchor(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, anchor.as_ref().to_glib_none().0);
+            gtk_sys::gtk_text_buffer_insert_child_anchor(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                anchor.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn insert_interactive(&self, iter: &mut TextIter, text: &str, default_editable: bool) -> bool {
         let len = text.len() as i32;
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_insert_interactive(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, text.to_glib_none().0, len, default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_insert_interactive(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                text.to_glib_none().0,
+                len,
+                default_editable.to_glib(),
+            ))
         }
     }
 
     fn insert_interactive_at_cursor(&self, text: &str, default_editable: bool) -> bool {
         let len = text.len() as i32;
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_insert_interactive_at_cursor(self.as_ref().to_glib_none().0, text.to_glib_none().0, len, default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_insert_interactive_at_cursor(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+                len,
+                default_editable.to_glib(),
+            ))
         }
     }
 
     fn insert_markup(&self, iter: &mut TextIter, markup: &str) {
         let len = markup.len() as i32;
         unsafe {
-            gtk_sys::gtk_text_buffer_insert_markup(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, markup.to_glib_none().0, len);
+            gtk_sys::gtk_text_buffer_insert_markup(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                markup.to_glib_none().0,
+                len,
+            );
         }
     }
 
     fn insert_range(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_insert_range(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_insert_range(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
-    fn insert_range_interactive(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter, default_editable: bool) -> bool {
+    fn insert_range_interactive(
+        &self,
+        iter: &mut TextIter,
+        start: &TextIter,
+        end: &TextIter,
+        default_editable: bool,
+    ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_buffer_insert_range_interactive(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, start.to_glib_none().0, end.to_glib_none().0, default_editable.to_glib()))
+            from_glib(gtk_sys::gtk_text_buffer_insert_range_interactive(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+                default_editable.to_glib(),
+            ))
         }
     }
 
     fn insert_texture<P: IsA<gdk::Texture>>(&self, iter: &mut TextIter, texture: &P) {
         unsafe {
-            gtk_sys::gtk_text_buffer_insert_texture(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, texture.as_ref().to_glib_none().0);
+            gtk_sys::gtk_text_buffer_insert_texture(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                texture.as_ref().to_glib_none().0,
+            );
         }
     }
 
@@ -515,75 +767,128 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn move_mark<P: IsA<TextMark>>(&self, mark: &P, where_: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_move_mark(self.as_ref().to_glib_none().0, mark.as_ref().to_glib_none().0, where_.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_move_mark(
+                self.as_ref().to_glib_none().0,
+                mark.as_ref().to_glib_none().0,
+                where_.to_glib_none().0,
+            );
         }
     }
 
     fn move_mark_by_name(&self, name: &str, where_: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_move_mark_by_name(self.as_ref().to_glib_none().0, name.to_glib_none().0, where_.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_move_mark_by_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                where_.to_glib_none().0,
+            );
         }
     }
 
-    fn paste_clipboard(&self, clipboard: &gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool) {
+    fn paste_clipboard(
+        &self,
+        clipboard: &gdk::Clipboard,
+        override_location: Option<&TextIter>,
+        default_editable: bool,
+    ) {
         unsafe {
-            gtk_sys::gtk_text_buffer_paste_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0, mut_override(override_location.to_glib_none().0), default_editable.to_glib());
+            gtk_sys::gtk_text_buffer_paste_clipboard(
+                self.as_ref().to_glib_none().0,
+                clipboard.to_glib_none().0,
+                mut_override(override_location.to_glib_none().0),
+                default_editable.to_glib(),
+            );
         }
     }
 
     fn place_cursor(&self, where_: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_place_cursor(self.as_ref().to_glib_none().0, where_.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_place_cursor(
+                self.as_ref().to_glib_none().0,
+                where_.to_glib_none().0,
+            );
         }
     }
 
     fn remove_all_tags(&self, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_remove_all_tags(self.as_ref().to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_remove_all_tags(
+                self.as_ref().to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
     fn remove_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
         unsafe {
-            gtk_sys::gtk_text_buffer_remove_selection_clipboard(self.as_ref().to_glib_none().0, clipboard.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_remove_selection_clipboard(
+                self.as_ref().to_glib_none().0,
+                clipboard.to_glib_none().0,
+            );
         }
     }
 
     fn remove_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_remove_tag(self.as_ref().to_glib_none().0, tag.as_ref().to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_remove_tag(
+                self.as_ref().to_glib_none().0,
+                tag.as_ref().to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
     fn remove_tag_by_name(&self, name: &str, start: &TextIter, end: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_remove_tag_by_name(self.as_ref().to_glib_none().0, name.to_glib_none().0, start.to_glib_none().0, end.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_remove_tag_by_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+            );
         }
     }
 
     fn select_range(&self, ins: &TextIter, bound: &TextIter) {
         unsafe {
-            gtk_sys::gtk_text_buffer_select_range(self.as_ref().to_glib_none().0, ins.to_glib_none().0, bound.to_glib_none().0);
+            gtk_sys::gtk_text_buffer_select_range(
+                self.as_ref().to_glib_none().0,
+                ins.to_glib_none().0,
+                bound.to_glib_none().0,
+            );
         }
     }
 
     fn set_modified(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_text_buffer_set_modified(self.as_ref().to_glib_none().0, setting.to_glib());
+            gtk_sys::gtk_text_buffer_set_modified(
+                self.as_ref().to_glib_none().0,
+                setting.to_glib(),
+            );
         }
     }
 
     fn set_text(&self, text: &str) {
         let len = text.len() as i32;
         unsafe {
-            gtk_sys::gtk_text_buffer_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0, len);
+            gtk_sys::gtk_text_buffer_set_text(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+                len,
+            );
         }
     }
 
     fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"copy-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"copy-target-list\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
@@ -591,7 +896,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cursor-position\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"cursor-position\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
@@ -599,246 +908,474 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paste-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"paste-target-list\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get()
         }
     }
 
-    fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn apply_tag_trampoline<P, F: Fn(&P, &TextTag, &TextIter, &TextIter) + 'static>(this: *mut gtk_sys::GtkTextBuffer, tag: *mut gtk_sys::GtkTextTag, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn apply_tag_trampoline<
+            P,
+            F: Fn(&P, &TextTag, &TextIter, &TextIter) + 'static,
+        >(
+            this: *mut gtk_sys::GtkTextBuffer,
+            tag: *mut gtk_sys::GtkTextTag,
+            start: *mut gtk_sys::GtkTextIter,
+            end: *mut gtk_sys::GtkTextIter,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag), &from_glib_borrow(start), &from_glib_borrow(end))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(tag),
+                &from_glib_borrow(start),
+                &from_glib_borrow(end),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"apply-tag\0".as_ptr() as *const _,
-                Some(transmute(apply_tag_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"apply-tag\0".as_ptr() as *const _,
+                Some(transmute(apply_tag_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_begin_user_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn begin_user_action_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn begin_user_action_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"begin-user-action\0".as_ptr() as *const _,
-                Some(transmute(begin_user_action_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"begin-user-action\0".as_ptr() as *const _,
+                Some(transmute(begin_user_action_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"changed\0".as_ptr() as *const _,
+                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_delete_range<F: Fn(&Self, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn delete_range_trampoline<P, F: Fn(&P, &TextIter, &TextIter) + 'static>(this: *mut gtk_sys::GtkTextBuffer, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_delete_range<F: Fn(&Self, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn delete_range_trampoline<P, F: Fn(&P, &TextIter, &TextIter) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            start: *mut gtk_sys::GtkTextIter,
+            end: *mut gtk_sys::GtkTextIter,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(start), &from_glib_borrow(end))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(start),
+                &from_glib_borrow(end),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"delete-range\0".as_ptr() as *const _,
-                Some(transmute(delete_range_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"delete-range\0".as_ptr() as *const _,
+                Some(transmute(delete_range_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_end_user_action<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn end_user_action_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn end_user_action_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"end-user-action\0".as_ptr() as *const _,
-                Some(transmute(end_user_action_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"end-user-action\0".as_ptr() as *const _,
+                Some(transmute(end_user_action_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_insert_child_anchor<F: Fn(&Self, &TextIter, &TextChildAnchor) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn insert_child_anchor_trampoline<P, F: Fn(&P, &TextIter, &TextChildAnchor) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, anchor: *mut gtk_sys::GtkTextChildAnchor, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_insert_child_anchor<F: Fn(&Self, &TextIter, &TextChildAnchor) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn insert_child_anchor_trampoline<
+            P,
+            F: Fn(&P, &TextIter, &TextChildAnchor) + 'static,
+        >(
+            this: *mut gtk_sys::GtkTextBuffer,
+            location: *mut gtk_sys::GtkTextIter,
+            anchor: *mut gtk_sys::GtkTextChildAnchor,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &from_glib_borrow(anchor))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(location),
+                &from_glib_borrow(anchor),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"insert-child-anchor\0".as_ptr() as *const _,
-                Some(transmute(insert_child_anchor_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"insert-child-anchor\0".as_ptr() as *const _,
+                Some(transmute(
+                    insert_child_anchor_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn insert_texture_trampoline<P, F: Fn(&P, &TextIter, &gdk::Texture) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, texture: *mut gdk_sys::GdkTexture, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_insert_texture<F: Fn(&Self, &TextIter, &gdk::Texture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn insert_texture_trampoline<
+            P,
+            F: Fn(&P, &TextIter, &gdk::Texture) + 'static,
+        >(
+            this: *mut gtk_sys::GtkTextBuffer,
+            location: *mut gtk_sys::GtkTextIter,
+            texture: *mut gdk_sys::GdkTexture,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &from_glib_borrow(texture))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(location),
+                &from_glib_borrow(texture),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"insert-texture\0".as_ptr() as *const _,
-                Some(transmute(insert_texture_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"insert-texture\0".as_ptr() as *const _,
+                Some(transmute(insert_texture_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn mark_deleted_trampoline<P, F: Fn(&P, &TextMark) + 'static>(this: *mut gtk_sys::GtkTextBuffer, mark: *mut gtk_sys::GtkTextMark, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn mark_deleted_trampoline<P, F: Fn(&P, &TextMark) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            mark: *mut gtk_sys::GtkTextMark,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(mark))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(mark),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"mark-deleted\0".as_ptr() as *const _,
-                Some(transmute(mark_deleted_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"mark-deleted\0".as_ptr() as *const _,
+                Some(transmute(mark_deleted_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_mark_set<F: Fn(&Self, &TextIter, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn mark_set_trampoline<P, F: Fn(&P, &TextIter, &TextMark) + 'static>(this: *mut gtk_sys::GtkTextBuffer, location: *mut gtk_sys::GtkTextIter, mark: *mut gtk_sys::GtkTextMark, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_mark_set<F: Fn(&Self, &TextIter, &TextMark) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn mark_set_trampoline<P, F: Fn(&P, &TextIter, &TextMark) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            location: *mut gtk_sys::GtkTextIter,
+            mark: *mut gtk_sys::GtkTextMark,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(location), &from_glib_borrow(mark))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(location),
+                &from_glib_borrow(mark),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"mark-set\0".as_ptr() as *const _,
-                Some(transmute(mark_set_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"mark-set\0".as_ptr() as *const _,
+                Some(transmute(mark_set_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_modified_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn modified_changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn modified_changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"modified-changed\0".as_ptr() as *const _,
-                Some(transmute(modified_changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"modified-changed\0".as_ptr() as *const _,
+                Some(transmute(modified_changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn paste_done_trampoline<P, F: Fn(&P, &gdk::Clipboard) + 'static>(this: *mut gtk_sys::GtkTextBuffer, clipboard: *mut gdk_sys::GdkClipboard, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn paste_done_trampoline<P, F: Fn(&P, &gdk::Clipboard) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            clipboard: *mut gdk_sys::GdkClipboard,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(clipboard))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(clipboard),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"paste-done\0".as_ptr() as *const _,
-                Some(transmute(paste_done_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"paste-done\0".as_ptr() as *const _,
+                Some(transmute(paste_done_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn remove_tag_trampoline<P, F: Fn(&P, &TextTag, &TextIter, &TextIter) + 'static>(this: *mut gtk_sys::GtkTextBuffer, tag: *mut gtk_sys::GtkTextTag, start: *mut gtk_sys::GtkTextIter, end: *mut gtk_sys::GtkTextIter, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_remove_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn remove_tag_trampoline<
+            P,
+            F: Fn(&P, &TextTag, &TextIter, &TextIter) + 'static,
+        >(
+            this: *mut gtk_sys::GtkTextBuffer,
+            tag: *mut gtk_sys::GtkTextTag,
+            start: *mut gtk_sys::GtkTextIter,
+            end: *mut gtk_sys::GtkTextIter,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(tag), &from_glib_borrow(start), &from_glib_borrow(end))
+            f(
+                &TextBuffer::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(tag),
+                &from_glib_borrow(start),
+                &from_glib_borrow(end),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"remove-tag\0".as_ptr() as *const _,
-                Some(transmute(remove_tag_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"remove-tag\0".as_ptr() as *const _,
+                Some(transmute(remove_tag_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_copy_target_list_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_copy_target_list_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::copy-target-list\0".as_ptr() as *const _,
-                Some(transmute(notify_copy_target_list_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::copy-target-list\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_copy_target_list_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::cursor-position\0".as_ptr() as *const _,
-                Some(transmute(notify_cursor_position_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::cursor-position\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_cursor_position_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_has_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_selection_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_property_has_selection_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_selection_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-selection\0".as_ptr() as *const _,
-                Some(transmute(notify_has_selection_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-selection\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_has_selection_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_paste_target_list_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paste_target_list_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::paste-target-list\0".as_ptr() as *const _,
-                Some(transmute(notify_paste_target_list_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::paste-target-list\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_paste_target_list_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkTextBuffer, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<TextBuffer>
+        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextBuffer,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextBuffer>,
         {
             let f: &F = &*(f as *const F);
             f(&TextBuffer::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::text\0".as_ptr() as *const _,
+                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

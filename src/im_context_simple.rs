@@ -2,11 +2,11 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
+use glib::translate::*;
+use gtk_sys;
+use std::path::Path;
 use IMContextSimple;
 use IsA;
-use gtk_sys;
-use glib::translate::*;
-use std::path::Path;
 
 pub trait IMContextSimpleExtManual: 'static {
     fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P);
@@ -17,7 +17,10 @@ impl<O: IsA<IMContextSimple>> IMContextSimpleExtManual for O {
     fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P) {
         unsafe {
             let compose_file = compose_file.as_ref();
-            gtk_sys::gtk_im_context_simple_add_compose_file(self.as_ref().to_glib_none().0, compose_file.to_glib_none().0);
+            gtk_sys::gtk_im_context_simple_add_compose_file(
+                self.as_ref().to_glib_none().0,
+                compose_file.to_glib_none().0,
+            );
         }
     }
 

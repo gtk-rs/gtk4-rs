@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Buildable;
-use Widget;
 use gio;
-use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::GString;
 use gtk_sys;
 use std::fmt;
+use Buildable;
+use Widget;
 
 glib_wrapper! {
     pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Buildable;
@@ -32,13 +32,17 @@ pub trait AppChooserExt: 'static {
 impl<O: IsA<AppChooser>> AppChooserExt for O {
     fn get_app_info(&self) -> Option<gio::AppInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_app_chooser_get_app_info(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_app_chooser_get_app_info(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_content_type(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_app_chooser_get_content_type(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_app_chooser_get_content_type(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 

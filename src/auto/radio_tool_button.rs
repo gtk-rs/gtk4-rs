@@ -2,6 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib::Value;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -14,21 +29,6 @@ use ToggleToolButton;
 use ToolButton;
 use ToolItem;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct RadioToolButton(Object<gtk_sys::GtkRadioToolButton, gtk_sys::GtkRadioToolButtonClass, RadioToolButtonClass>) @extends ToggleToolButton, ToolButton, ToolItem, Bin, Container, Widget, @implements Buildable, Actionable;
@@ -42,7 +42,10 @@ impl RadioToolButton {
     pub fn new_from_widget<P: IsA<RadioToolButton>>(group: &P) -> RadioToolButton {
         skip_assert_initialized!();
         unsafe {
-            ToolItem::from_glib_none(gtk_sys::gtk_radio_tool_button_new_from_widget(group.as_ref().to_glib_none().0)).unsafe_cast()
+            ToolItem::from_glib_none(gtk_sys::gtk_radio_tool_button_new_from_widget(
+                group.as_ref().to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -273,7 +276,10 @@ impl RadioToolButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(RadioToolButton::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(RadioToolButton::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn group(mut self, group: &RadioToolButton) -> Self {
@@ -505,27 +511,41 @@ pub trait RadioToolButtonExt: 'static {
 impl<O: IsA<RadioToolButton>> RadioToolButtonExt for O {
     fn get_group(&self) -> Vec<RadioButton> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_radio_tool_button_get_group(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_radio_tool_button_get_group(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_property_group(&self, group: Option<&RadioToolButton>) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"group\0".as_ptr() as *const _, Value::from(group).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"group\0".as_ptr() as *const _,
+                Value::from(group).to_glib_none().0,
+            );
         }
     }
 
     fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkRadioToolButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<RadioToolButton>
+        unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkRadioToolButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<RadioToolButton>,
         {
             let f: &F = &*(f as *const F);
             f(&RadioToolButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::group\0".as_ptr() as *const _,
-                Some(transmute(notify_group_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::group\0".as_ptr() as *const _,
+                Some(transmute(notify_group_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

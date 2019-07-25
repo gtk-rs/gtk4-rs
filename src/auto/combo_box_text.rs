@@ -2,6 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
+use gtk_sys;
+use std::fmt;
 use Align;
 use Bin;
 use Buildable;
@@ -14,15 +23,6 @@ use Overflow;
 use SensitivityType;
 use TreeModel;
 use Widget;
-use gdk;
-use glib::GString;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct ComboBoxText(Object<gtk_sys::GtkComboBoxText, gtk_sys::GtkComboBoxTextClass, ComboBoxTextClass>) @extends ComboBox, Bin, Container, Widget, @implements Buildable, CellEditable, CellLayout;
@@ -35,9 +35,7 @@ glib_wrapper! {
 impl ComboBoxText {
     pub fn new() -> ComboBoxText {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_combo_box_text_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_combo_box_text_new()).unsafe_cast() }
     }
 
     pub fn new_with_entry() -> ComboBoxText {
@@ -265,7 +263,10 @@ impl ComboBoxTextBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(ComboBoxText::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(ComboBoxText::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn active(mut self, active: i32) -> Self {
@@ -494,43 +495,68 @@ pub trait ComboBoxTextExt: 'static {
 impl<O: IsA<ComboBoxText>> ComboBoxTextExt for O {
     fn append(&self, id: Option<&str>, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_append(self.as_ref().to_glib_none().0, id.to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_append(
+                self.as_ref().to_glib_none().0,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn append_text(&self, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_append_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_append_text(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn get_active_text(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_combo_box_text_get_active_text(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_combo_box_text_get_active_text(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn insert(&self, position: i32, id: Option<&str>, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_insert(self.as_ref().to_glib_none().0, position, id.to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_insert(
+                self.as_ref().to_glib_none().0,
+                position,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn insert_text(&self, position: i32, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_insert_text(self.as_ref().to_glib_none().0, position, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_insert_text(
+                self.as_ref().to_glib_none().0,
+                position,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn prepend(&self, id: Option<&str>, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_prepend(self.as_ref().to_glib_none().0, id.to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_prepend(
+                self.as_ref().to_glib_none().0,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 
     fn prepend_text(&self, text: &str) {
         unsafe {
-            gtk_sys::gtk_combo_box_text_prepend_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            gtk_sys::gtk_combo_box_text_prepend_text(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+            );
         }
     }
 

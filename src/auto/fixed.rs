@@ -2,22 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use gsk;
+use gtk_sys;
+use std::fmt;
+use std::mem;
 use Align;
 use Buildable;
 use Container;
 use LayoutManager;
 use Overflow;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use gsk;
-use gtk_sys;
-use std::fmt;
-use std::mem;
 
 glib_wrapper! {
     pub struct Fixed(Object<gtk_sys::GtkFixed, gtk_sys::GtkFixedClass, FixedClass>) @extends Container, Widget, @implements Buildable;
@@ -30,9 +30,7 @@ glib_wrapper! {
 impl Fixed {
     pub fn new() -> Fixed {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_fixed_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_fixed_new()).unsafe_cast() }
     }
 }
 
@@ -208,7 +206,10 @@ impl FixedBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Fixed::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Fixed::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {
@@ -386,32 +387,54 @@ impl<O: IsA<Fixed>> FixedExt for O {
         unsafe {
             let mut x = mem::uninitialized();
             let mut y = mem::uninitialized();
-            gtk_sys::gtk_fixed_get_child_position(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, &mut x, &mut y);
+            gtk_sys::gtk_fixed_get_child_position(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                &mut x,
+                &mut y,
+            );
             (x, y)
         }
     }
 
     fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_fixed_get_child_transform(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_fixed_get_child_transform(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: i32, y: i32) {
         unsafe {
-            gtk_sys::gtk_fixed_move(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, x, y);
+            gtk_sys::gtk_fixed_move(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                x,
+                y,
+            );
         }
     }
 
     fn put<P: IsA<Widget>>(&self, widget: &P, x: i32, y: i32) {
         unsafe {
-            gtk_sys::gtk_fixed_put(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, x, y);
+            gtk_sys::gtk_fixed_put(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                x,
+                y,
+            );
         }
     }
 
     fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>) {
         unsafe {
-            gtk_sys::gtk_fixed_set_child_transform(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0, transform.to_glib_none().0);
+            gtk_sys::gtk_fixed_set_child_transform(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                transform.to_glib_none().0,
+            );
         }
     }
 }

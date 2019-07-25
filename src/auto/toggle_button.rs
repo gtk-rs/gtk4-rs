@@ -2,6 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -12,19 +25,6 @@ use LayoutManager;
 use Overflow;
 use ReliefStyle;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct ToggleButton(Object<gtk_sys::GtkToggleButton, gtk_sys::GtkToggleButtonClass, ToggleButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
@@ -37,22 +37,26 @@ glib_wrapper! {
 impl ToggleButton {
     pub fn new() -> ToggleButton {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_toggle_button_new()).unsafe_cast() }
     }
 
     pub fn new_with_label(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_label(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_label(
+                label.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 
     pub fn new_with_mnemonic(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_mnemonic(label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_toggle_button_new_with_mnemonic(
+                label.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -254,7 +258,10 @@ impl ToggleButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(ToggleButton::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(ToggleButton::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn active(mut self, active: bool) -> Self {
@@ -455,13 +462,18 @@ pub trait ToggleButtonExt: 'static {
 impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
     fn get_active(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_toggle_button_get_active(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_toggle_button_get_active(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_active(&self, is_active: bool) {
         unsafe {
-            gtk_sys::gtk_toggle_button_set_active(self.as_ref().to_glib_none().0, is_active.to_glib());
+            gtk_sys::gtk_toggle_button_set_active(
+                self.as_ref().to_glib_none().0,
+                is_active.to_glib(),
+            );
         }
     }
 
@@ -472,30 +484,45 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
     }
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToggleButton, f: glib_sys::gpointer)
-            where P: IsA<ToggleButton>
+        unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkToggleButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ToggleButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ToggleButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"toggled\0".as_ptr() as *const _,
-                Some(transmute(toggled_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"toggled\0".as_ptr() as *const _,
+                Some(transmute(toggled_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkToggleButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<ToggleButton>
+        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkToggleButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ToggleButton>,
         {
             let f: &F = &*(f as *const F);
             f(&ToggleButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::active\0".as_ptr() as *const _,
-                Some(transmute(notify_active_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active\0".as_ptr() as *const _,
+                Some(transmute(notify_active_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

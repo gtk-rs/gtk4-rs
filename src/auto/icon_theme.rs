@@ -2,18 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Error;
-use IconInfo;
-use IconLookupFlags;
 use gdk;
 use gdk_pixbuf;
 use gio;
-use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
 use glib_sys;
 use gtk_sys;
 use std;
@@ -22,6 +19,9 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
+use Error;
+use IconInfo;
+use IconLookupFlags;
 
 glib_wrapper! {
     pub struct IconTheme(Object<gtk_sys::GtkIconTheme, gtk_sys::GtkIconThemeClass, IconThemeClass>);
@@ -34,22 +34,20 @@ glib_wrapper! {
 impl IconTheme {
     pub fn new() -> IconTheme {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_new())
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_icon_theme_new()) }
     }
 
     pub fn get_default() -> Option<IconTheme> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_icon_theme_get_default())
-        }
+        unsafe { from_glib_none(gtk_sys::gtk_icon_theme_get_default()) }
     }
 
     pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gtk_sys::gtk_icon_theme_get_for_display(display.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_icon_theme_get_for_display(
+                display.to_glib_none().0,
+            ))
         }
     }
 }
@@ -67,9 +65,20 @@ pub trait IconThemeExt: 'static {
 
     fn append_search_path<P: AsRef<std::path::Path>>(&self, path: P);
 
-    fn choose_icon(&self, icon_names: &[&str], size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn choose_icon(
+        &self,
+        icon_names: &[&str],
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo>;
 
-    fn choose_icon_for_scale(&self, icon_names: &[&str], size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn choose_icon_for_scale(
+        &self,
+        icon_names: &[&str],
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo>;
 
     fn get_example_icon_name(&self) -> Option<GString>;
 
@@ -81,17 +90,45 @@ pub trait IconThemeExt: 'static {
 
     fn list_icons(&self, context: Option<&str>) -> Vec<GString>;
 
-    fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
+    fn load_icon(
+        &self,
+        icon_name: &str,
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
 
-    fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
+    fn load_icon_for_scale(
+        &self,
+        icon_name: &str,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Result<Option<gdk_pixbuf::Pixbuf>, Error>;
 
-    fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn lookup_by_gicon<P: IsA<gio::Icon>>(
+        &self,
+        icon: &P,
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo>;
 
-    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(
+        &self,
+        icon: &P,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo>;
 
     fn lookup_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Option<IconInfo>;
 
-    fn lookup_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo>;
+    fn lookup_icon_for_scale(
+        &self,
+        icon_name: &str,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo>;
 
     fn prepend_search_path<P: AsRef<std::path::Path>>(&self, path: P);
 
@@ -109,31 +146,61 @@ pub trait IconThemeExt: 'static {
 impl<O: IsA<IconTheme>> IconThemeExt for O {
     fn add_resource_path(&self, path: &str) {
         unsafe {
-            gtk_sys::gtk_icon_theme_add_resource_path(self.as_ref().to_glib_none().0, path.to_glib_none().0);
+            gtk_sys::gtk_icon_theme_add_resource_path(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+            );
         }
     }
 
     fn append_search_path<P: AsRef<std::path::Path>>(&self, path: P) {
         unsafe {
-            gtk_sys::gtk_icon_theme_append_search_path(self.as_ref().to_glib_none().0, path.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_theme_append_search_path(
+                self.as_ref().to_glib_none().0,
+                path.as_ref().to_glib_none().0,
+            );
         }
     }
 
-    fn choose_icon(&self, icon_names: &[&str], size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+    fn choose_icon(
+        &self,
+        icon_names: &[&str],
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_choose_icon(self.as_ref().to_glib_none().0, icon_names.to_glib_none().0, size, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_choose_icon(
+                self.as_ref().to_glib_none().0,
+                icon_names.to_glib_none().0,
+                size,
+                flags.to_glib(),
+            ))
         }
     }
 
-    fn choose_icon_for_scale(&self, icon_names: &[&str], size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+    fn choose_icon_for_scale(
+        &self,
+        icon_names: &[&str],
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_choose_icon_for_scale(self.as_ref().to_glib_none().0, icon_names.to_glib_none().0, size, scale, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_choose_icon_for_scale(
+                self.as_ref().to_glib_none().0,
+                icon_names.to_glib_none().0,
+                size,
+                scale,
+                flags.to_glib(),
+            ))
         }
     }
 
     fn get_example_icon_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_get_example_icon_name(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_icon_theme_get_example_icon_name(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -141,111 +208,216 @@ impl<O: IsA<IconTheme>> IconThemeExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut n_elements = mem::uninitialized();
-            gtk_sys::gtk_icon_theme_get_search_path(self.as_ref().to_glib_none().0, &mut path, &mut n_elements);
+            gtk_sys::gtk_icon_theme_get_search_path(
+                self.as_ref().to_glib_none().0,
+                &mut path,
+                &mut n_elements,
+            );
             FromGlibContainer::from_glib_full_num(path, n_elements as usize)
         }
     }
 
     fn has_icon(&self, icon_name: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_theme_has_icon(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_theme_has_icon(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+            ))
         }
     }
 
     fn list_contexts(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_list_contexts(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_list_contexts(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn list_icons(&self, context: Option<&str>) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_list_icons(self.as_ref().to_glib_none().0, context.to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_list_icons(
+                self.as_ref().to_glib_none().0,
+                context.to_glib_none().0,
+            ))
         }
     }
 
-    fn load_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
+    fn load_icon(
+        &self,
+        icon_name: &str,
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_icon_theme_load_icon(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, flags.to_glib(), &mut error);
-            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+            let ret = gtk_sys::gtk_icon_theme_load_icon(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+                size,
+                flags.to_glib(),
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
-    fn load_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
+    fn load_icon_for_scale(
+        &self,
+        icon_name: &str,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Result<Option<gdk_pixbuf::Pixbuf>, Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_icon_theme_load_icon_for_scale(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, scale, flags.to_glib(), &mut error);
-            if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
+            let ret = gtk_sys::gtk_icon_theme_load_icon_for_scale(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+                size,
+                scale,
+                flags.to_glib(),
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
-    fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+    fn lookup_by_gicon<P: IsA<gio::Icon>>(
+        &self,
+        icon: &P,
+        size: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0, size, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon(
+                self.as_ref().to_glib_none().0,
+                icon.as_ref().to_glib_none().0,
+                size,
+                flags.to_glib(),
+            ))
         }
     }
 
-    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+    fn lookup_by_gicon_for_scale<P: IsA<gio::Icon>>(
+        &self,
+        icon: &P,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon_for_scale(self.as_ref().to_glib_none().0, icon.as_ref().to_glib_none().0, size, scale, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon_for_scale(
+                self.as_ref().to_glib_none().0,
+                icon.as_ref().to_glib_none().0,
+                size,
+                scale,
+                flags.to_glib(),
+            ))
         }
     }
 
     fn lookup_icon(&self, icon_name: &str, size: i32, flags: IconLookupFlags) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+                size,
+                flags.to_glib(),
+            ))
         }
     }
 
-    fn lookup_icon_for_scale(&self, icon_name: &str, size: i32, scale: i32, flags: IconLookupFlags) -> Option<IconInfo> {
+    fn lookup_icon_for_scale(
+        &self,
+        icon_name: &str,
+        size: i32,
+        scale: i32,
+        flags: IconLookupFlags,
+    ) -> Option<IconInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon_for_scale(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0, size, scale, flags.to_glib()))
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon_for_scale(
+                self.as_ref().to_glib_none().0,
+                icon_name.to_glib_none().0,
+                size,
+                scale,
+                flags.to_glib(),
+            ))
         }
     }
 
     fn prepend_search_path<P: AsRef<std::path::Path>>(&self, path: P) {
         unsafe {
-            gtk_sys::gtk_icon_theme_prepend_search_path(self.as_ref().to_glib_none().0, path.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_theme_prepend_search_path(
+                self.as_ref().to_glib_none().0,
+                path.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn rescan_if_needed(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_theme_rescan_if_needed(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_icon_theme_rescan_if_needed(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_custom_theme(&self, theme_name: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_icon_theme_set_custom_theme(self.as_ref().to_glib_none().0, theme_name.to_glib_none().0);
+            gtk_sys::gtk_icon_theme_set_custom_theme(
+                self.as_ref().to_glib_none().0,
+                theme_name.to_glib_none().0,
+            );
         }
     }
 
     fn set_display(&self, display: &gdk::Display) {
         unsafe {
-            gtk_sys::gtk_icon_theme_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+            gtk_sys::gtk_icon_theme_set_display(
+                self.as_ref().to_glib_none().0,
+                display.to_glib_none().0,
+            );
         }
     }
 
     fn set_search_path(&self, path: &[&std::path::Path]) {
         let n_elements = path.len() as i32;
         unsafe {
-            gtk_sys::gtk_icon_theme_set_search_path(self.as_ref().to_glib_none().0, path.to_glib_none().0, n_elements);
+            gtk_sys::gtk_icon_theme_set_search_path(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                n_elements,
+            );
         }
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkIconTheme, f: glib_sys::gpointer)
-            where P: IsA<IconTheme>
+        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkIconTheme,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<IconTheme>,
         {
             let f: &F = &*(f as *const F);
             f(&IconTheme::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"changed\0".as_ptr() as *const _,
+                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use StyleContext;
 use cairo;
 use gdk;
 use glib::object::IsA;
@@ -12,6 +11,7 @@ use gsk;
 use gtk_sys;
 use pango;
 use std::fmt;
+use StyleContext;
 
 glib_wrapper! {
     pub struct Snapshot(Object<gtk_sys::GtkSnapshot, gtk_sys::GtkSnapshotClass, SnapshotClass>);
@@ -24,9 +24,7 @@ glib_wrapper! {
 impl Snapshot {
     pub fn new() -> Snapshot {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_new())
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_snapshot_new()) }
     }
 
     //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 10, id: 94 }; 4) {
@@ -35,25 +33,52 @@ impl Snapshot {
 
     pub fn append_cairo(&self, bounds: &graphene::Rect) -> Option<cairo::Context> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_append_cairo(self.to_glib_none().0, bounds.to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_snapshot_append_cairo(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+            ))
         }
     }
 
     pub fn append_color(&self, color: &gdk::RGBA, bounds: &graphene::Rect) {
         unsafe {
-            gtk_sys::gtk_snapshot_append_color(self.to_glib_none().0, color.to_glib_none().0, bounds.to_glib_none().0);
+            gtk_sys::gtk_snapshot_append_color(
+                self.to_glib_none().0,
+                color.to_glib_none().0,
+                bounds.to_glib_none().0,
+            );
         }
     }
 
-    pub fn append_inset_shadow(&self, outline: &gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
+    pub fn append_inset_shadow(
+        &self,
+        outline: &gsk::RoundedRect,
+        color: &gdk::RGBA,
+        dx: f32,
+        dy: f32,
+        spread: f32,
+        blur_radius: f32,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_append_inset_shadow(self.to_glib_none().0, outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius);
+            gtk_sys::gtk_snapshot_append_inset_shadow(
+                self.to_glib_none().0,
+                outline.to_glib_none().0,
+                color.to_glib_none().0,
+                dx,
+                dy,
+                spread,
+                blur_radius,
+            );
         }
     }
 
     pub fn append_layout(&self, layout: &pango::Layout, color: &gdk::RGBA) {
         unsafe {
-            gtk_sys::gtk_snapshot_append_layout(self.to_glib_none().0, layout.to_glib_none().0, color.to_glib_none().0);
+            gtk_sys::gtk_snapshot_append_layout(
+                self.to_glib_none().0,
+                layout.to_glib_none().0,
+                color.to_glib_none().0,
+            );
         }
     }
 
@@ -63,27 +88,48 @@ impl Snapshot {
         }
     }
 
-    pub fn append_outset_shadow(&self, outline: &gsk::RoundedRect, color: &gdk::RGBA, dx: f32, dy: f32, spread: f32, blur_radius: f32) {
+    pub fn append_outset_shadow(
+        &self,
+        outline: &gsk::RoundedRect,
+        color: &gdk::RGBA,
+        dx: f32,
+        dy: f32,
+        spread: f32,
+        blur_radius: f32,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_append_outset_shadow(self.to_glib_none().0, outline.to_glib_none().0, color.to_glib_none().0, dx, dy, spread, blur_radius);
+            gtk_sys::gtk_snapshot_append_outset_shadow(
+                self.to_glib_none().0,
+                outline.to_glib_none().0,
+                color.to_glib_none().0,
+                dx,
+                dy,
+                spread,
+                blur_radius,
+            );
         }
     }
 
     pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: &graphene::Rect) {
         unsafe {
-            gtk_sys::gtk_snapshot_append_texture(self.to_glib_none().0, texture.as_ref().to_glib_none().0, bounds.to_glib_none().0);
+            gtk_sys::gtk_snapshot_append_texture(
+                self.to_glib_none().0,
+                texture.as_ref().to_glib_none().0,
+                bounds.to_glib_none().0,
+            );
         }
     }
 
     pub fn free_to_node(&self) -> Option<gsk::RenderNode> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_free_to_node(self.to_glib_full()))
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_snapshot_free_to_node(self.to_glib_full())) }
     }
 
     pub fn free_to_paintable(&self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_free_to_paintable(self.to_glib_full(), size.to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_snapshot_free_to_paintable(
+                self.to_glib_full(),
+                size.to_glib_none().0,
+            ))
         }
     }
 
@@ -117,9 +163,17 @@ impl Snapshot {
         }
     }
 
-    pub fn push_color_matrix(&self, color_matrix: &graphene::Matrix, color_offset: &graphene::Vec4) {
+    pub fn push_color_matrix(
+        &self,
+        color_matrix: &graphene::Matrix,
+        color_offset: &graphene::Vec4,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_push_color_matrix(self.to_glib_none().0, color_matrix.to_glib_none().0, color_offset.to_glib_none().0);
+            gtk_sys::gtk_snapshot_push_color_matrix(
+                self.to_glib_none().0,
+                color_matrix.to_glib_none().0,
+                color_offset.to_glib_none().0,
+            );
         }
     }
 
@@ -141,7 +195,11 @@ impl Snapshot {
 
     pub fn push_repeat(&self, bounds: &graphene::Rect, child_bounds: &graphene::Rect) {
         unsafe {
-            gtk_sys::gtk_snapshot_push_repeat(self.to_glib_none().0, bounds.to_glib_none().0, child_bounds.to_glib_none().0);
+            gtk_sys::gtk_snapshot_push_repeat(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+                child_bounds.to_glib_none().0,
+            );
         }
     }
 
@@ -153,37 +211,111 @@ impl Snapshot {
 
     pub fn push_shadow(&self, shadow: &gsk::Shadow, n_shadows: usize) {
         unsafe {
-            gtk_sys::gtk_snapshot_push_shadow(self.to_glib_none().0, shadow.to_glib_none().0, n_shadows);
+            gtk_sys::gtk_snapshot_push_shadow(
+                self.to_glib_none().0,
+                shadow.to_glib_none().0,
+                n_shadows,
+            );
         }
     }
 
-    pub fn render_background<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, width: f64, height: f64) {
+    pub fn render_background<P: IsA<StyleContext>>(
+        &self,
+        context: &P,
+        x: f64,
+        y: f64,
+        width: f64,
+        height: f64,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_render_background(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, width, height);
+            gtk_sys::gtk_snapshot_render_background(
+                self.to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                x,
+                y,
+                width,
+                height,
+            );
         }
     }
 
-    pub fn render_focus<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, width: f64, height: f64) {
+    pub fn render_focus<P: IsA<StyleContext>>(
+        &self,
+        context: &P,
+        x: f64,
+        y: f64,
+        width: f64,
+        height: f64,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_render_focus(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, width, height);
+            gtk_sys::gtk_snapshot_render_focus(
+                self.to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                x,
+                y,
+                width,
+                height,
+            );
         }
     }
 
-    pub fn render_frame<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, width: f64, height: f64) {
+    pub fn render_frame<P: IsA<StyleContext>>(
+        &self,
+        context: &P,
+        x: f64,
+        y: f64,
+        width: f64,
+        height: f64,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_render_frame(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, width, height);
+            gtk_sys::gtk_snapshot_render_frame(
+                self.to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                x,
+                y,
+                width,
+                height,
+            );
         }
     }
 
-    pub fn render_insertion_cursor<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: &pango::Layout, index: i32, direction: pango::Direction) {
+    pub fn render_insertion_cursor<P: IsA<StyleContext>>(
+        &self,
+        context: &P,
+        x: f64,
+        y: f64,
+        layout: &pango::Layout,
+        index: i32,
+        direction: pango::Direction,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_render_insertion_cursor(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, layout.to_glib_none().0, index, direction.to_glib());
+            gtk_sys::gtk_snapshot_render_insertion_cursor(
+                self.to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                x,
+                y,
+                layout.to_glib_none().0,
+                index,
+                direction.to_glib(),
+            );
         }
     }
 
-    pub fn render_layout<P: IsA<StyleContext>>(&self, context: &P, x: f64, y: f64, layout: &pango::Layout) {
+    pub fn render_layout<P: IsA<StyleContext>>(
+        &self,
+        context: &P,
+        x: f64,
+        y: f64,
+        layout: &pango::Layout,
+    ) {
         unsafe {
-            gtk_sys::gtk_snapshot_render_layout(self.to_glib_none().0, context.as_ref().to_glib_none().0, x, y, layout.to_glib_none().0);
+            gtk_sys::gtk_snapshot_render_layout(
+                self.to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                x,
+                y,
+                layout.to_glib_none().0,
+            );
         }
     }
 
@@ -224,14 +356,15 @@ impl Snapshot {
     }
 
     pub fn to_node(&self) -> Option<gsk::RenderNode> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_to_node(self.to_glib_none().0))
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_snapshot_to_node(self.to_glib_none().0)) }
     }
 
     pub fn to_paintable(&self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_snapshot_to_paintable(self.to_glib_none().0, size.to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_snapshot_to_paintable(
+                self.to_glib_none().0,
+                size.to_glib_none().0,
+            ))
         }
     }
 

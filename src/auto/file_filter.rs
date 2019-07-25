@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use Buildable;
-use FileFilterFlags;
-use FileFilterInfo;
 use glib;
 use glib::translate::*;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
+use Buildable;
+use FileFilterFlags;
+use FileFilterInfo;
 
 glib_wrapper! {
     pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @implements Buildable;
@@ -22,40 +22,58 @@ glib_wrapper! {
 impl FileFilter {
     pub fn new() -> FileFilter {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_file_filter_new())
-        }
+        unsafe { from_glib_none(gtk_sys::gtk_file_filter_new()) }
     }
 
     pub fn new_from_gvariant(variant: &glib::Variant) -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(variant.to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(
+                variant.to_glib_none().0,
+            ))
         }
     }
 
-    pub fn add_custom<P: Fn(&FileFilterInfo) -> bool + 'static>(&self, needed: FileFilterFlags, func: P) {
+    pub fn add_custom<P: Fn(&FileFilterInfo) -> bool + 'static>(
+        &self,
+        needed: FileFilterFlags,
+        func: P,
+    ) {
         let func_data: Box_<P> = Box::new(func);
-        unsafe extern "C" fn func_func<P: Fn(&FileFilterInfo) -> bool + 'static>(filter_info: *const gtk_sys::GtkFileFilterInfo, data: glib_sys::gpointer) -> glib_sys::gboolean {
+        unsafe extern "C" fn func_func<P: Fn(&FileFilterInfo) -> bool + 'static>(
+            filter_info: *const gtk_sys::GtkFileFilterInfo,
+            data: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
             let filter_info = from_glib_borrow(filter_info);
             let callback: &P = &*(data as *mut _);
             let res = (*callback)(&filter_info);
             res.to_glib()
         }
         let func = Some(func_func::<P> as _);
-        unsafe extern "C" fn notify_func<P: Fn(&FileFilterInfo) -> bool + 'static>(data: glib_sys::gpointer) {
+        unsafe extern "C" fn notify_func<P: Fn(&FileFilterInfo) -> bool + 'static>(
+            data: glib_sys::gpointer,
+        ) {
             let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
         let destroy_call4 = Some(notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
         unsafe {
-            gtk_sys::gtk_file_filter_add_custom(self.to_glib_none().0, needed.to_glib(), func, Box::into_raw(super_callback0) as *mut _, destroy_call4);
+            gtk_sys::gtk_file_filter_add_custom(
+                self.to_glib_none().0,
+                needed.to_glib(),
+                func,
+                Box::into_raw(super_callback0) as *mut _,
+                destroy_call4,
+            );
         }
     }
 
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {
-            gtk_sys::gtk_file_filter_add_mime_type(self.to_glib_none().0, mime_type.to_glib_none().0);
+            gtk_sys::gtk_file_filter_add_mime_type(
+                self.to_glib_none().0,
+                mime_type.to_glib_none().0,
+            );
         }
     }
 
@@ -73,20 +91,19 @@ impl FileFilter {
 
     pub fn filter(&self, filter_info: &FileFilterInfo) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_file_filter_filter(self.to_glib_none().0, filter_info.to_glib_none().0))
+            from_glib(gtk_sys::gtk_file_filter_filter(
+                self.to_glib_none().0,
+                filter_info.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_needed(&self) -> FileFilterFlags {
-        unsafe {
-            from_glib(gtk_sys::gtk_file_filter_get_needed(self.to_glib_none().0))
-        }
+        unsafe { from_glib(gtk_sys::gtk_file_filter_get_needed(self.to_glib_none().0)) }
     }
 
     pub fn to_gvariant(&self) -> Option<glib::Variant> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0))
-        }
+        unsafe { from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
     }
 }
 

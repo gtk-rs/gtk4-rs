@@ -2,21 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use CssSection;
-use Error;
-use StyleProvider;
 use gio;
-use glib::GString;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use CssSection;
+use Error;
+use StyleProvider;
 
 glib_wrapper! {
     pub struct CssProvider(Object<gtk_sys::GtkCssProvider, gtk_sys::GtkCssProviderClass, CssProviderClass>) @implements StyleProvider;
@@ -29,9 +29,7 @@ glib_wrapper! {
 impl CssProvider {
     pub fn new() -> CssProvider {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_css_provider_new())
-        }
+        unsafe { from_glib_full(gtk_sys::gtk_css_provider_new()) }
     }
 }
 
@@ -56,58 +54,96 @@ pub trait CssProviderExt: 'static {
 
     fn to_string(&self) -> GString;
 
-    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<CssProvider>> CssProviderExt for O {
     fn load_from_data(&self, data: &[u8]) {
         let length = data.len() as isize;
         unsafe {
-            gtk_sys::gtk_css_provider_load_from_data(self.as_ref().to_glib_none().0, data.to_glib_none().0, length);
+            gtk_sys::gtk_css_provider_load_from_data(
+                self.as_ref().to_glib_none().0,
+                data.to_glib_none().0,
+                length,
+            );
         }
     }
 
     fn load_from_file<P: IsA<gio::File>>(&self, file: &P) {
         unsafe {
-            gtk_sys::gtk_css_provider_load_from_file(self.as_ref().to_glib_none().0, file.as_ref().to_glib_none().0);
+            gtk_sys::gtk_css_provider_load_from_file(
+                self.as_ref().to_glib_none().0,
+                file.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn load_from_path(&self, path: &str) {
         unsafe {
-            gtk_sys::gtk_css_provider_load_from_path(self.as_ref().to_glib_none().0, path.to_glib_none().0);
+            gtk_sys::gtk_css_provider_load_from_path(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+            );
         }
     }
 
     fn load_from_resource(&self, resource_path: &str) {
         unsafe {
-            gtk_sys::gtk_css_provider_load_from_resource(self.as_ref().to_glib_none().0, resource_path.to_glib_none().0);
+            gtk_sys::gtk_css_provider_load_from_resource(
+                self.as_ref().to_glib_none().0,
+                resource_path.to_glib_none().0,
+            );
         }
     }
 
     fn load_named(&self, name: &str, variant: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_css_provider_load_named(self.as_ref().to_glib_none().0, name.to_glib_none().0, variant.to_glib_none().0);
+            gtk_sys::gtk_css_provider_load_named(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                variant.to_glib_none().0,
+            );
         }
     }
 
     fn to_string(&self) -> GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_css_provider_to_string(self.as_ref().to_glib_none().0))
+            from_glib_full(gtk_sys::gtk_css_provider_to_string(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
-    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn parsing_error_trampoline<P, F: Fn(&P, &CssSection, &Error) + 'static>(this: *mut gtk_sys::GtkCssProvider, section: *mut gtk_sys::GtkCssSection, error: *mut glib_sys::GError, f: glib_sys::gpointer)
-            where P: IsA<CssProvider>
+    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn parsing_error_trampoline<P, F: Fn(&P, &CssSection, &Error) + 'static>(
+            this: *mut gtk_sys::GtkCssProvider,
+            section: *mut gtk_sys::GtkCssSection,
+            error: *mut glib_sys::GError,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CssProvider>,
         {
             let f: &F = &*(f as *const F);
-            f(&CssProvider::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(section), &from_glib_borrow(error))
+            f(
+                &CssProvider::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(section),
+                &from_glib_borrow(error),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"parsing-error\0".as_ptr() as *const _,
-                Some(transmute(parsing_error_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"parsing-error\0".as_ptr() as *const _,
+                Some(transmute(parsing_error_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

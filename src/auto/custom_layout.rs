@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use LayoutManager;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use LayoutManager;
 
 glib_wrapper! {
     pub struct CustomLayout(Object<gtk_sys::GtkCustomLayout, gtk_sys::GtkCustomLayoutClass, CustomLayoutClass>) @extends LayoutManager;

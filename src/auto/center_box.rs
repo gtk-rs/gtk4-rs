@@ -2,6 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Align;
 use BaselinePosition;
 use Buildable;
@@ -9,20 +23,6 @@ use LayoutManager;
 use Orientable;
 use Overflow;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct CenterBox(Object<gtk_sys::GtkCenterBox, gtk_sys::GtkCenterBoxClass, CenterBoxClass>) @extends Widget, @implements Buildable, Orientable;
@@ -35,68 +35,97 @@ glib_wrapper! {
 impl CenterBox {
     pub fn new() -> CenterBox {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_center_box_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_center_box_new()).unsafe_cast() }
     }
 
     pub fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
-            from_glib(gtk_sys::gtk_center_box_get_baseline_position(self.to_glib_none().0))
+            from_glib(gtk_sys::gtk_center_box_get_baseline_position(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_center_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_box_get_center_widget(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_center_box_get_center_widget(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_end_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_box_get_end_widget(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_center_box_get_end_widget(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn get_start_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_box_get_start_widget(self.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_center_box_get_start_widget(
+                self.to_glib_none().0,
+            ))
         }
     }
 
     pub fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
-            gtk_sys::gtk_center_box_set_baseline_position(self.to_glib_none().0, position.to_glib());
+            gtk_sys::gtk_center_box_set_baseline_position(
+                self.to_glib_none().0,
+                position.to_glib(),
+            );
         }
     }
 
     pub fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_center_box_set_center_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_center_box_set_center_widget(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     pub fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_center_box_set_end_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_center_box_set_end_widget(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     pub fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_center_box_set_start_widget(self.to_glib_none().0, child.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_center_box_set_start_widget(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
-    pub fn connect_property_baseline_position_notify<F: Fn(&CenterBox) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_baseline_position_trampoline<F: Fn(&CenterBox) + 'static>(this: *mut gtk_sys::GtkCenterBox, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer) {
+    pub fn connect_property_baseline_position_notify<F: Fn(&CenterBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_baseline_position_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut gtk_sys::GtkCenterBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute(notify_baseline_position_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::baseline-position\0".as_ptr() as *const _,
+                Some(transmute(notify_baseline_position_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -278,7 +307,10 @@ impl CenterBoxBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(CenterBox::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(CenterBox::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {

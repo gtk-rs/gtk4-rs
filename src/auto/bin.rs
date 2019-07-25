@@ -2,20 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use gtk_sys;
+use std::fmt;
 use Align;
 use Buildable;
 use Container;
 use LayoutManager;
 use Overflow;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct Bin(Object<gtk_sys::GtkBin, gtk_sys::GtkBinClass, BinClass>) @extends Container, Widget, @implements Buildable;
@@ -191,7 +191,10 @@ impl BinBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Bin::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Bin::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {
@@ -358,9 +361,7 @@ pub trait BinExt: 'static {
 
 impl<O: IsA<Bin>> BinExt for O {
     fn get_child(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_bin_get_child(self.as_ref().to_glib_none().0))
-        }
+        unsafe { from_glib_none(gtk_sys::gtk_bin_get_child(self.as_ref().to_glib_none().0)) }
     }
 }
 

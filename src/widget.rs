@@ -1,9 +1,9 @@
-use Widget;
+use gdk;
 use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;
 use glib::ObjectExt;
-use gdk;
 use gtk_sys;
+use Widget;
 
 use Continue;
 

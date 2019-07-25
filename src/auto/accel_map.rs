@@ -2,14 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use AccelKey;
 use gdk;
 use gdk_sys;
-use glib::GString;
 use glib::object::ObjectType as ObjectType_;
-use glib::signal::SignalHandlerId;
 use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
 use glib_sys;
 use gtk_sys;
 use libc;
@@ -17,6 +16,7 @@ use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use AccelKey;
 
 glib_wrapper! {
     pub struct AccelMap(Object<gtk_sys::GtkAccelMap, gtk_sys::GtkAccelMapClass, AccelMapClass>);
@@ -30,7 +30,11 @@ impl AccelMap {
     pub fn add_entry(accel_path: &str, accel_key: u32, accel_mods: gdk::ModifierType) {
         assert_initialized_main_thread!();
         unsafe {
-            gtk_sys::gtk_accel_map_add_entry(accel_path.to_glib_none().0, accel_key, accel_mods.to_glib());
+            gtk_sys::gtk_accel_map_add_entry(
+                accel_path.to_glib_none().0,
+                accel_key,
+                accel_mods.to_glib(),
+            );
         }
     }
 
@@ -41,18 +45,26 @@ impl AccelMap {
         }
     }
 
-    pub fn change_entry(accel_path: &str, accel_key: u32, accel_mods: gdk::ModifierType, replace: bool) -> bool {
+    pub fn change_entry(
+        accel_path: &str,
+        accel_key: u32,
+        accel_mods: gdk::ModifierType,
+        replace: bool,
+    ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(gtk_sys::gtk_accel_map_change_entry(accel_path.to_glib_none().0, accel_key, accel_mods.to_glib(), replace.to_glib()))
+            from_glib(gtk_sys::gtk_accel_map_change_entry(
+                accel_path.to_glib_none().0,
+                accel_key,
+                accel_mods.to_glib(),
+                replace.to_glib(),
+            ))
         }
     }
 
     pub fn get() -> Option<AccelMap> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_accel_map_get())
-        }
+        unsafe { from_glib_none(gtk_sys::gtk_accel_map_get()) }
     }
 
     pub fn load<P: AsRef<std::path::Path>>(file_name: P) {
@@ -84,8 +96,15 @@ impl AccelMap {
         assert_initialized_main_thread!();
         unsafe {
             let mut key = AccelKey::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_accel_map_lookup_entry(accel_path.to_glib_none().0, key.to_glib_none_mut().0));
-            if ret { Some(key) } else { None }
+            let ret = from_glib(gtk_sys::gtk_accel_map_lookup_entry(
+                accel_path.to_glib_none().0,
+                key.to_glib_none_mut().0,
+            ));
+            if ret {
+                Some(key)
+            } else {
+                None
+            }
         }
     }
 
@@ -110,15 +129,35 @@ impl AccelMap {
         }
     }
 
-    pub fn connect_changed<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(this: *mut gtk_sys::GtkAccelMap, accel_path: *mut libc::c_char, accel_key: libc::c_uint, accel_mods: gdk_sys::GdkModifierType, f: glib_sys::gpointer) {
+    pub fn connect_changed<F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn changed_trampoline<
+            F: Fn(&AccelMap, &str, u32, gdk::ModifierType) + 'static,
+        >(
+            this: *mut gtk_sys::GtkAccelMap,
+            accel_path: *mut libc::c_char,
+            accel_key: libc::c_uint,
+            accel_mods: gdk_sys::GdkModifierType,
+            f: glib_sys::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &GString::from_glib_borrow(accel_path), accel_key, from_glib(accel_mods))
+            f(
+                &from_glib_borrow(this),
+                &GString::from_glib_borrow(accel_path),
+                accel_key,
+                from_glib(accel_mods),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"changed\0".as_ptr() as *const _,
+                Some(transmute(changed_trampoline::<F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

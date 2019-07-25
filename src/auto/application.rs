@@ -2,23 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use ApplicationInhibitFlags;
-use Window;
 use gio;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use ApplicationInhibitFlags;
+use Window;
 
 glib_wrapper! {
     pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
@@ -49,7 +49,12 @@ pub trait GtkApplicationExt: 'static {
 
     fn get_windows(&self) -> Vec<Window>;
 
-    fn inhibit<P: IsA<Window>>(&self, window: Option<&P>, flags: ApplicationInhibitFlags, reason: Option<&str>) -> u32;
+    fn inhibit<P: IsA<Window>>(
+        &self,
+        window: Option<&P>,
+        flags: ApplicationInhibitFlags,
+        reason: Option<&str>,
+    ) -> u32;
 
     fn list_action_descriptions(&self) -> Vec<GString>;
 
@@ -77,111 +82,170 @@ pub trait GtkApplicationExt: 'static {
 
     fn connect_window_removed<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_app_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<Application>> GtkApplicationExt for O {
     fn add_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_application_add_window(self.as_ref().to_glib_none().0, window.as_ref().to_glib_none().0);
+            gtk_sys::gtk_application_add_window(
+                self.as_ref().to_glib_none().0,
+                window.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn get_accels_for_action(&self, detailed_action_name: &str) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_get_accels_for_action(self.as_ref().to_glib_none().0, detailed_action_name.to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_get_accels_for_action(
+                self.as_ref().to_glib_none().0,
+                detailed_action_name.to_glib_none().0,
+            ))
         }
     }
 
     fn get_actions_for_accel(&self, accel: &str) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_get_actions_for_accel(self.as_ref().to_glib_none().0, accel.to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_get_actions_for_accel(
+                self.as_ref().to_glib_none().0,
+                accel.to_glib_none().0,
+            ))
         }
     }
 
     fn get_active_window(&self) -> Option<Window> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_get_active_window(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_application_get_active_window(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_app_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_get_app_menu(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_application_get_app_menu(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_get_menu_by_id(self.as_ref().to_glib_none().0, id.to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_application_get_menu_by_id(
+                self.as_ref().to_glib_none().0,
+                id.to_glib_none().0,
+            ))
         }
     }
 
     fn get_menubar(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_get_menubar(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_application_get_menubar(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_window_by_id(&self, id: u32) -> Option<Window> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_get_window_by_id(self.as_ref().to_glib_none().0, id))
+            from_glib_none(gtk_sys::gtk_application_get_window_by_id(
+                self.as_ref().to_glib_none().0,
+                id,
+            ))
         }
     }
 
     fn get_windows(&self) -> Vec<Window> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_application_get_windows(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_application_get_windows(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
-    fn inhibit<P: IsA<Window>>(&self, window: Option<&P>, flags: ApplicationInhibitFlags, reason: Option<&str>) -> u32 {
+    fn inhibit<P: IsA<Window>>(
+        &self,
+        window: Option<&P>,
+        flags: ApplicationInhibitFlags,
+        reason: Option<&str>,
+    ) -> u32 {
         unsafe {
-            gtk_sys::gtk_application_inhibit(self.as_ref().to_glib_none().0, window.map(|p| p.as_ref()).to_glib_none().0, flags.to_glib(), reason.to_glib_none().0)
+            gtk_sys::gtk_application_inhibit(
+                self.as_ref().to_glib_none().0,
+                window.map(|p| p.as_ref()).to_glib_none().0,
+                flags.to_glib(),
+                reason.to_glib_none().0,
+            )
         }
     }
 
     fn list_action_descriptions(&self) -> Vec<GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_list_action_descriptions(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_application_list_action_descriptions(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn prefers_app_menu(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_application_prefers_app_menu(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_application_prefers_app_menu(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn remove_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_application_remove_window(self.as_ref().to_glib_none().0, window.as_ref().to_glib_none().0);
+            gtk_sys::gtk_application_remove_window(
+                self.as_ref().to_glib_none().0,
+                window.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn set_accels_for_action(&self, detailed_action_name: &str, accels: &[&str]) {
         unsafe {
-            gtk_sys::gtk_application_set_accels_for_action(self.as_ref().to_glib_none().0, detailed_action_name.to_glib_none().0, accels.to_glib_none().0);
+            gtk_sys::gtk_application_set_accels_for_action(
+                self.as_ref().to_glib_none().0,
+                detailed_action_name.to_glib_none().0,
+                accels.to_glib_none().0,
+            );
         }
     }
 
     fn set_app_menu<P: IsA<gio::MenuModel>>(&self, app_menu: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_application_set_app_menu(self.as_ref().to_glib_none().0, app_menu.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_application_set_app_menu(
+                self.as_ref().to_glib_none().0,
+                app_menu.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn set_menubar<P: IsA<gio::MenuModel>>(&self, menubar: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_application_set_menubar(self.as_ref().to_glib_none().0, menubar.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_application_set_menubar(
+                self.as_ref().to_glib_none().0,
+                menubar.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -194,134 +258,230 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
     fn get_property_register_session(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"register-session\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"register-session\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_register_session(&self, register_session: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"register-session\0".as_ptr() as *const _, Value::from(&register_session).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"register-session\0".as_ptr() as *const _,
+                Value::from(&register_session).to_glib_none().0,
+            );
         }
     }
 
     fn get_property_screensaver_active(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"screensaver-active\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"screensaver-active\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn connect_query_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn query_end_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, f: glib_sys::gpointer)
-            where P: IsA<Application>
+        unsafe extern "C" fn query_end_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"query-end\0".as_ptr() as *const _,
-                Some(transmute(query_end_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"query-end\0".as_ptr() as *const _,
+                Some(transmute(query_end_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_window_added<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn window_added_trampoline<P, F: Fn(&P, &Window) + 'static>(this: *mut gtk_sys::GtkApplication, window: *mut gtk_sys::GtkWindow, f: glib_sys::gpointer)
-            where P: IsA<Application>
+        unsafe extern "C" fn window_added_trampoline<P, F: Fn(&P, &Window) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            window: *mut gtk_sys::GtkWindow,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
-            f(&Application::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(window))
+            f(
+                &Application::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(window),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"window-added\0".as_ptr() as *const _,
-                Some(transmute(window_added_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"window-added\0".as_ptr() as *const _,
+                Some(transmute(window_added_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_window_removed<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn window_removed_trampoline<P, F: Fn(&P, &Window) + 'static>(this: *mut gtk_sys::GtkApplication, window: *mut gtk_sys::GtkWindow, f: glib_sys::gpointer)
-            where P: IsA<Application>
+        unsafe extern "C" fn window_removed_trampoline<P, F: Fn(&P, &Window) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            window: *mut gtk_sys::GtkWindow,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
-            f(&Application::from_glib_borrow(this).unsafe_cast(), &from_glib_borrow(window))
+            f(
+                &Application::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(window),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"window-removed\0".as_ptr() as *const _,
-                Some(transmute(window_removed_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"window-removed\0".as_ptr() as *const _,
+                Some(transmute(window_removed_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_window_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Application>
+    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_window_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::active-window\0".as_ptr() as *const _,
-                Some(transmute(notify_active_window_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active-window\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_active_window_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_app_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_app_menu_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Application>
+        unsafe extern "C" fn notify_app_menu_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::app-menu\0".as_ptr() as *const _,
-                Some(transmute(notify_app_menu_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::app-menu\0".as_ptr() as *const _,
+                Some(transmute(notify_app_menu_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_menubar_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Application>
+        unsafe extern "C" fn notify_menubar_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::menubar\0".as_ptr() as *const _,
-                Some(transmute(notify_menubar_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::menubar\0".as_ptr() as *const _,
+                Some(transmute(notify_menubar_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_register_session_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Application>
+    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_register_session_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::register-session\0".as_ptr() as *const _,
-                Some(transmute(notify_register_session_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::register-session\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_register_session_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_screensaver_active_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkApplication, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<Application>
+    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_screensaver_active_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkApplication,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Application>,
         {
             let f: &F = &*(f as *const F);
             f(&Application::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::screensaver-active\0".as_ptr() as *const _,
-                Some(transmute(notify_screensaver_active_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::screensaver-active\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_screensaver_active_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -2,6 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::object::ObjectExt;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib::Value;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Align;
 use Application;
 use Bin;
@@ -16,23 +33,6 @@ use Widget;
 use Window;
 use WindowPosition;
 use WindowType;
-use gdk;
-use glib;
-use glib::StaticType;
-use glib::ToValue;
-use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct Dialog(Object<gtk_sys::GtkDialog, gtk_sys::GtkDialogClass, DialogClass>) @extends Window, Bin, Container, Widget, @implements Buildable, Root;
@@ -45,9 +45,7 @@ glib_wrapper! {
 impl Dialog {
     pub fn new() -> Dialog {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_dialog_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_dialog_new()).unsafe_cast() }
     }
 
     //pub fn new_with_buttons<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>, flags: DialogFlags, first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Dialog {
@@ -347,7 +345,10 @@ impl DialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Dialog::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(Dialog::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {
@@ -659,13 +660,21 @@ pub trait DialogExt: 'static {
 impl<O: IsA<Dialog>> DialogExt for O {
     fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
         unsafe {
-            gtk_sys::gtk_dialog_add_action_widget(self.as_ref().to_glib_none().0, child.as_ref().to_glib_none().0, response_id.to_glib());
+            gtk_sys::gtk_dialog_add_action_widget(
+                self.as_ref().to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                response_id.to_glib(),
+            );
         }
     }
 
     fn add_button(&self, button_text: &str, response_id: ResponseType) -> Widget {
         unsafe {
-            from_glib_none(gtk_sys::gtk_dialog_add_button(self.as_ref().to_glib_none().0, button_text.to_glib_none().0, response_id.to_glib()))
+            from_glib_none(gtk_sys::gtk_dialog_add_button(
+                self.as_ref().to_glib_none().0,
+                button_text.to_glib_none().0,
+                response_id.to_glib(),
+            ))
         }
     }
 
@@ -675,19 +684,26 @@ impl<O: IsA<Dialog>> DialogExt for O {
 
     fn get_content_area(&self) -> Box {
         unsafe {
-            from_glib_none(gtk_sys::gtk_dialog_get_content_area(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_dialog_get_content_area(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_header_bar(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_dialog_get_header_bar(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_dialog_get_header_bar(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_widget_for_response(&self, response_id: ResponseType) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_dialog_get_widget_for_response(self.as_ref().to_glib_none().0, response_id.to_glib()))
+            from_glib_none(gtk_sys::gtk_dialog_get_widget_for_response(
+                self.as_ref().to_glib_none().0,
+                response_id.to_glib(),
+            ))
         }
     }
 
@@ -699,53 +715,86 @@ impl<O: IsA<Dialog>> DialogExt for O {
 
     fn set_default_response(&self, response_id: ResponseType) {
         unsafe {
-            gtk_sys::gtk_dialog_set_default_response(self.as_ref().to_glib_none().0, response_id.to_glib());
+            gtk_sys::gtk_dialog_set_default_response(
+                self.as_ref().to_glib_none().0,
+                response_id.to_glib(),
+            );
         }
     }
 
     fn set_response_sensitive(&self, response_id: ResponseType, setting: bool) {
         unsafe {
-            gtk_sys::gtk_dialog_set_response_sensitive(self.as_ref().to_glib_none().0, response_id.to_glib(), setting.to_glib());
+            gtk_sys::gtk_dialog_set_response_sensitive(
+                self.as_ref().to_glib_none().0,
+                response_id.to_glib(),
+                setting.to_glib(),
+            );
         }
     }
 
     fn get_property_use_header_bar(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"use-header-bar\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"use-header-bar\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn close_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkDialog, f: glib_sys::gpointer)
-            where P: IsA<Dialog>
+        unsafe extern "C" fn close_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkDialog,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Dialog>,
         {
             let f: &F = &*(f as *const F);
             f(&Dialog::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"close\0".as_ptr() as *const _,
-                Some(transmute(close_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"close\0".as_ptr() as *const _,
+                Some(transmute(close_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn emit_close(&self) {
-        let _ = unsafe { glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject).emit("close", &[]).unwrap() };
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+                .emit("close", &[])
+                .unwrap()
+        };
     }
 
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn response_trampoline<P, F: Fn(&P, ResponseType) + 'static>(this: *mut gtk_sys::GtkDialog, response_id: gtk_sys::GtkResponseType, f: glib_sys::gpointer)
-            where P: IsA<Dialog>
+        unsafe extern "C" fn response_trampoline<P, F: Fn(&P, ResponseType) + 'static>(
+            this: *mut gtk_sys::GtkDialog,
+            response_id: gtk_sys::GtkResponseType,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Dialog>,
         {
             let f: &F = &*(f as *const F);
-            f(&Dialog::from_glib_borrow(this).unsafe_cast(), from_glib(response_id))
+            f(
+                &Dialog::from_glib_borrow(this).unsafe_cast(),
+                from_glib(response_id),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"response\0".as_ptr() as *const _,
-                Some(transmute(response_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"response\0".as_ptr() as *const _,
+                Some(transmute(response_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

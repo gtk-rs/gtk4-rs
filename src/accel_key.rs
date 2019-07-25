@@ -2,9 +2,9 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
+use gdk::ModifierType;
 use glib::translate::*;
 use gtk_sys;
-use gdk::ModifierType;
 use AccelFlags;
 
 #[repr(C)]

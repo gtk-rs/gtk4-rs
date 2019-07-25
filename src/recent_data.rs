@@ -3,8 +3,8 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use libc::c_char;
 use gtk_sys;
+use libc::c_char;
 
 pub struct RecentData {
     pub display_name: Option<String>,
@@ -17,11 +17,13 @@ pub struct RecentData {
 }
 
 #[doc(hidden)]
-impl <'a> ToGlibPtr<'a, *mut gtk_sys::GtkRecentData> for RecentData {
-    type Storage = (Box<gtk_sys::GtkRecentData>,
-                    [Stash<'a, *mut c_char, Option<String>>; 2],
-                    [Stash<'a, *mut c_char, String>; 3],
-                    Stash<'a, *mut *mut c_char, [String]>);
+impl<'a> ToGlibPtr<'a, *mut gtk_sys::GtkRecentData> for RecentData {
+    type Storage = (
+        Box<gtk_sys::GtkRecentData>,
+        [Stash<'a, *mut c_char, Option<String>>; 2],
+        [Stash<'a, *mut c_char, String>; 3],
+        Stash<'a, *mut *mut c_char, [String]>,
+    );
 
     fn to_glib_none(&'a self) -> Stash<'a, *mut gtk_sys::GtkRecentData, Self> {
         let display_name = self.display_name.to_glib_none();
@@ -41,8 +43,14 @@ impl <'a> ToGlibPtr<'a, *mut gtk_sys::GtkRecentData> for RecentData {
             is_private: self.is_private.to_glib(),
         });
 
-        Stash(&mut *data, (data, [display_name, description],
-                                 [mime_type, app_name, app_exec],
-                                 groups))
+        Stash(
+            &mut *data,
+            (
+                data,
+                [display_name, description],
+                [mime_type, app_name, app_exec],
+                groups,
+            ),
+        )
     }
 }

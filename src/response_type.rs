@@ -1,4 +1,4 @@
-use glib::translate::{FromGlib, ToGlib, ToGlibPtr, ToGlibPtrMut, from_glib};
+use glib::translate::{from_glib, FromGlib, ToGlib, ToGlibPtr, ToGlibPtrMut};
 use glib::value::{FromValue, FromValueOptional, SetValue};
 use glib::{StaticType, Type, Value};
 use std::fmt;
@@ -60,7 +60,9 @@ impl FromGlib<gtk_sys::GtkResponseType> for ResponseType {
             -9 => ResponseType::No,
             -10 => ResponseType::Apply,
             -11 => ResponseType::Help,
-            value if value >= 0 && value <= ::std::u16::MAX as i32 => ResponseType::Other(value as u16),
+            value if value >= 0 && value <= ::std::u16::MAX as i32 => {
+                ResponseType::Other(value as u16)
+            }
             value => ResponseType::__Unknown(value),
         }
     }
@@ -68,21 +70,25 @@ impl FromGlib<gtk_sys::GtkResponseType> for ResponseType {
 
 impl fmt::Display for ResponseType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ResponseType::{}", match *self {
-            ResponseType::None => "None",
-            ResponseType::Reject => "Reject",
-            ResponseType::Accept => "Accept",
-            ResponseType::DeleteEvent => "DeleteEvent",
-            ResponseType::Ok => "Ok",
-            ResponseType::Cancel => "Cancel",
-            ResponseType::Close => "Close",
-            ResponseType::Yes => "Yes",
-            ResponseType::No => "No",
-            ResponseType::Apply => "Apply",
-            ResponseType::Help => "Help",
-            ResponseType::Other(_) => "Other",
-            ResponseType::__Unknown(_) => "Unknown",
-        })
+        write!(
+            f,
+            "ResponseType::{}",
+            match *self {
+                ResponseType::None => "None",
+                ResponseType::Reject => "Reject",
+                ResponseType::Accept => "Accept",
+                ResponseType::DeleteEvent => "DeleteEvent",
+                ResponseType::Ok => "Ok",
+                ResponseType::Cancel => "Cancel",
+                ResponseType::Close => "Close",
+                ResponseType::Yes => "Yes",
+                ResponseType::No => "No",
+                ResponseType::Apply => "Apply",
+                ResponseType::Help => "Help",
+                ResponseType::Other(_) => "Other",
+                ResponseType::__Unknown(_) => "Unknown",
+            }
+        )
     }
 }
 

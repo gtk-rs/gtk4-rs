@@ -15,9 +15,14 @@ pub struct FileFilterInfo {
 }
 
 impl FileFilterInfo {
-    pub fn new(filename: Option<&str>, uri: Option<&str>, display_name: Option<&str>, mime_type: Option<&str>) -> FileFilterInfo {
+    pub fn new(
+        filename: Option<&str>,
+        uri: Option<&str>,
+        display_name: Option<&str>,
+        mime_type: Option<&str>,
+    ) -> FileFilterInfo {
         assert_initialized_main_thread!();
-        FileFilterInfo{
+        FileFilterInfo {
             filename: filename.map(ToOwned::to_owned),
             uri: uri.map(ToOwned::to_owned),
             display_name: display_name.map(ToOwned::to_owned),
@@ -46,7 +51,7 @@ impl FileFilterInfo {
 impl FromGlibPtrBorrow<*const gtk_sys::GtkFileFilterInfo> for FileFilterInfo {
     unsafe fn from_glib_borrow(ptr: *const gtk_sys::GtkFileFilterInfo) -> Self {
         FileFilterInfo {
-            filename: if (*ptr).contains & gtk_sys::GTK_FILE_FILTER_FILENAME != 0{
+            filename: if (*ptr).contains & gtk_sys::GTK_FILE_FILTER_FILENAME != 0 {
                 Some(from_glib_none((*ptr).filename))
             } else {
                 None
@@ -76,19 +81,37 @@ impl<'a> ToGlibPtr<'a, *const gtk_sys::GtkFileFilterInfo> for FileFilterInfo {
 
     fn to_glib_none(&'a self) -> Stash<*const gtk_sys::GtkFileFilterInfo, Self> {
         fn to_c_str(s: &Option<String>) -> *const i8 {
-            s.as_ref().map_or_else(|| ptr::null(),
-                |t| CStr::from_bytes_with_nul(t.as_bytes()).expect("Unexpected nul").as_ptr())
+            s.as_ref().map_or_else(
+                || ptr::null(),
+                |t| {
+                    CStr::from_bytes_with_nul(t.as_bytes())
+                        .expect("Unexpected nul")
+                        .as_ptr()
+                },
+            )
         }
 
         let sys = Box::new(gtk_sys::GtkFileFilterInfo {
-            contains: self.filename.as_ref().map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_FILENAME) |
-                self.uri.as_ref().map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_URI) |
-                self.display_name.as_ref().map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_DISPLAY_NAME) |
-                self.mime_type.as_ref().map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_MIME_TYPE),
+            contains: self
+                .filename
+                .as_ref()
+                .map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_FILENAME)
+                | self
+                    .uri
+                    .as_ref()
+                    .map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_URI)
+                | self
+                    .display_name
+                    .as_ref()
+                    .map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_DISPLAY_NAME)
+                | self
+                    .mime_type
+                    .as_ref()
+                    .map_or_else(|| 0, |_| gtk_sys::GTK_FILE_FILTER_MIME_TYPE),
             filename: to_c_str(&self.filename),
             uri: to_c_str(&self.uri),
             display_name: to_c_str(&self.display_name),
-            mime_type: to_c_str(&self.mime_type)
+            mime_type: to_c_str(&self.mime_type),
         });
 
         Stash(&*sys, (self, sys))

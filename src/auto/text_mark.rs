@@ -2,12 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use TextBuffer;
-use glib::GString;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::GString;
 use gtk_sys;
 use std::fmt;
+use TextBuffer;
 
 glib_wrapper! {
     pub struct TextMark(Object<gtk_sys::GtkTextMark, gtk_sys::GtkTextMarkClass, TextMarkClass>);
@@ -21,7 +21,10 @@ impl TextMark {
     pub fn new(name: Option<&str>, left_gravity: bool) -> TextMark {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_text_mark_new(name.to_glib_none().0, left_gravity.to_glib()))
+            from_glib_full(gtk_sys::gtk_text_mark_new(
+                name.to_glib_none().0,
+                left_gravity.to_glib(),
+            ))
         }
     }
 }
@@ -45,31 +48,41 @@ pub trait TextMarkExt: 'static {
 impl<O: IsA<TextMark>> TextMarkExt for O {
     fn get_buffer(&self) -> Option<TextBuffer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_mark_get_buffer(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_mark_get_buffer(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_deleted(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_deleted(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_text_mark_get_deleted(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_left_gravity(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_left_gravity(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_text_mark_get_left_gravity(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_name(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_mark_get_name(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_text_mark_get_name(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_visible(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_text_mark_get_visible(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 

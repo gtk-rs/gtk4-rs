@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::IsA;
+use glib::translate::*;
+use gtk_sys;
+use std::fmt;
 use Buildable;
 use TreeDragDest;
 use TreeDragSource;
 use TreeIter;
 use TreeModel;
 use TreeSortable;
-use glib::object::IsA;
-use glib::translate::*;
-use gtk_sys;
-use std::fmt;
 
 glib_wrapper! {
     pub struct ListStore(Object<gtk_sys::GtkListStore, gtk_sys::GtkListStoreClass, ListStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
@@ -75,7 +75,10 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
     fn append(&self) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_list_store_append(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_list_store_append(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            );
             iter
         }
     }
@@ -89,7 +92,11 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
     fn insert(&self, position: i32) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_list_store_insert(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, position);
+            gtk_sys::gtk_list_store_insert(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                position,
+            );
             iter
         }
     }
@@ -97,7 +104,11 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
     fn insert_after(&self, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_list_store_insert_after(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, mut_override(sibling.to_glib_none().0));
+            gtk_sys::gtk_list_store_insert_after(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                mut_override(sibling.to_glib_none().0),
+            );
             iter
         }
     }
@@ -105,7 +116,11 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
     fn insert_before(&self, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_list_store_insert_before(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0, mut_override(sibling.to_glib_none().0));
+            gtk_sys::gtk_list_store_insert_before(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+                mut_override(sibling.to_glib_none().0),
+            );
             iter
         }
     }
@@ -120,33 +135,50 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
 
     fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_list_store_iter_is_valid(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
+            from_glib(gtk_sys::gtk_list_store_iter_is_valid(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+            ))
         }
     }
 
     fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
-            gtk_sys::gtk_list_store_move_after(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), mut_override(position.to_glib_none().0));
+            gtk_sys::gtk_list_store_move_after(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+                mut_override(position.to_glib_none().0),
+            );
         }
     }
 
     fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
-            gtk_sys::gtk_list_store_move_before(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0), mut_override(position.to_glib_none().0));
+            gtk_sys::gtk_list_store_move_before(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+                mut_override(position.to_glib_none().0),
+            );
         }
     }
 
     fn prepend(&self) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_list_store_prepend(self.as_ref().to_glib_none().0, iter.to_glib_none_mut().0);
+            gtk_sys::gtk_list_store_prepend(
+                self.as_ref().to_glib_none().0,
+                iter.to_glib_none_mut().0,
+            );
             iter
         }
     }
 
     fn remove(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_list_store_remove(self.as_ref().to_glib_none().0, mut_override(iter.to_glib_none().0)))
+            from_glib(gtk_sys::gtk_list_store_remove(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+            ))
         }
     }
 
@@ -172,7 +204,11 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
 
     fn swap(&self, a: &TreeIter, b: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_list_store_swap(self.as_ref().to_glib_none().0, mut_override(a.to_glib_none().0), mut_override(b.to_glib_none().0));
+            gtk_sys::gtk_list_store_swap(
+                self.as_ref().to_glib_none().0,
+                mut_override(a.to_glib_none().0),
+                mut_override(b.to_glib_none().0),
+            );
         }
     }
 }

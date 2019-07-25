@@ -2,6 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
+use gtk_sys;
+use signal::Inhibit;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Actionable;
 use Align;
 use Bin;
@@ -12,21 +27,6 @@ use LayoutManager;
 use Overflow;
 use ReliefStyle;
 use Widget;
-use gdk;
-use glib::GString;
-use glib::StaticType;
-use glib::ToValue;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use signal::Inhibit;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct LinkButton(Object<gtk_sys::GtkLinkButton, gtk_sys::GtkLinkButtonClass, LinkButtonClass>) @extends Button, Bin, Container, Widget, @implements Buildable, Actionable;
@@ -47,7 +47,11 @@ impl LinkButton {
     pub fn new_with_label(uri: &str, label: Option<&str>) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_link_button_new_with_label(uri.to_glib_none().0, label.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(gtk_sys::gtk_link_button_new_with_label(
+                uri.to_glib_none().0,
+                label.to_glib_none().0,
+            ))
+            .unsafe_cast()
         }
     }
 }
@@ -248,7 +252,10 @@ impl LinkButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(LinkButton::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(LinkButton::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn uri(mut self, uri: &str) -> Self {
@@ -458,13 +465,17 @@ pub trait LinkButtonExt: 'static {
 impl<O: IsA<LinkButton>> LinkButtonExt for O {
     fn get_uri(&self) -> Option<GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_link_button_get_uri(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_link_button_get_uri(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_visited(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_link_button_get_visited(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_link_button_get_visited(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -481,44 +492,68 @@ impl<O: IsA<LinkButton>> LinkButtonExt for O {
     }
 
     fn connect_activate_link<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(this: *mut gtk_sys::GtkLinkButton, f: glib_sys::gpointer) -> glib_sys::gboolean
-            where P: IsA<LinkButton>
+        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(
+            this: *mut gtk_sys::GtkLinkButton,
+            f: glib_sys::gpointer,
+        ) -> glib_sys::gboolean
+        where
+            P: IsA<LinkButton>,
         {
             let f: &F = &*(f as *const F);
             f(&LinkButton::from_glib_borrow(this).unsafe_cast()).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"activate-link\0".as_ptr() as *const _,
-                Some(transmute(activate_link_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate-link\0".as_ptr() as *const _,
+                Some(transmute(activate_link_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_uri_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLinkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<LinkButton>
+        unsafe extern "C" fn notify_uri_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkLinkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<LinkButton>,
         {
             let f: &F = &*(f as *const F);
             f(&LinkButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::uri\0".as_ptr() as *const _,
-                Some(transmute(notify_uri_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::uri\0".as_ptr() as *const _,
+                Some(transmute(notify_uri_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 
     fn connect_property_visited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visited_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkLinkButton, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<LinkButton>
+        unsafe extern "C" fn notify_visited_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkLinkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<LinkButton>,
         {
             let f: &F = &*(f as *const F);
             f(&LinkButton::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::visited\0".as_ptr() as *const _,
-                Some(transmute(notify_visited_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visited\0".as_ptr() as *const _,
+                Some(transmute(notify_visited_trampoline::<Self, F> as usize)),
+                Box_::into_raw(f),
+            )
         }
     }
 }

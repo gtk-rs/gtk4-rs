@@ -2,21 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::Quark;
-use glib::StaticType;
-use glib::Type;
 use glib::error::ErrorDomain;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::value::Value;
+use glib::Quark;
+use glib::StaticType;
+use glib::Type;
 use gobject_sys;
 use gtk_sys;
 use std::fmt;
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Align {
     Fill,
     Start,
@@ -29,14 +28,18 @@ pub enum Align {
 
 impl fmt::Display for Align {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Align::{}", match *self {
-            Align::Fill => "Fill",
-            Align::Start => "Start",
-            Align::End => "End",
-            Align::Center => "Center",
-            Align::Baseline => "Baseline",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Align::{}",
+            match *self {
+                Align::Fill => "Fill",
+                Align::Start => "Start",
+                Align::End => "End",
+                Align::Center => "Center",
+                Align::Baseline => "Baseline",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -51,7 +54,7 @@ impl ToGlib for Align {
             Align::End => gtk_sys::GTK_ALIGN_END,
             Align::Center => gtk_sys::GTK_ALIGN_CENTER,
             Align::Baseline => gtk_sys::GTK_ALIGN_BASELINE,
-            Align::__Unknown(value) => value
+            Align::__Unknown(value) => value,
         }
     }
 }
@@ -95,8 +98,7 @@ impl SetValue for Align {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ArrowPlacement {
     Both,
     Start,
@@ -107,12 +109,16 @@ pub enum ArrowPlacement {
 
 impl fmt::Display for ArrowPlacement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ArrowPlacement::{}", match *self {
-            ArrowPlacement::Both => "Both",
-            ArrowPlacement::Start => "Start",
-            ArrowPlacement::End => "End",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ArrowPlacement::{}",
+            match *self {
+                ArrowPlacement::Both => "Both",
+                ArrowPlacement::Start => "Start",
+                ArrowPlacement::End => "End",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -125,7 +131,7 @@ impl ToGlib for ArrowPlacement {
             ArrowPlacement::Both => gtk_sys::GTK_ARROWS_BOTH,
             ArrowPlacement::Start => gtk_sys::GTK_ARROWS_START,
             ArrowPlacement::End => gtk_sys::GTK_ARROWS_END,
-            ArrowPlacement::__Unknown(value) => value
+            ArrowPlacement::__Unknown(value) => value,
         }
     }
 }
@@ -167,8 +173,7 @@ impl SetValue for ArrowPlacement {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ArrowType {
     Up,
     Down,
@@ -181,14 +186,18 @@ pub enum ArrowType {
 
 impl fmt::Display for ArrowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ArrowType::{}", match *self {
-            ArrowType::Up => "Up",
-            ArrowType::Down => "Down",
-            ArrowType::Left => "Left",
-            ArrowType::Right => "Right",
-            ArrowType::None => "None",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ArrowType::{}",
+            match *self {
+                ArrowType::Up => "Up",
+                ArrowType::Down => "Down",
+                ArrowType::Left => "Left",
+                ArrowType::Right => "Right",
+                ArrowType::None => "None",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -203,7 +212,7 @@ impl ToGlib for ArrowType {
             ArrowType::Left => gtk_sys::GTK_ARROW_LEFT,
             ArrowType::Right => gtk_sys::GTK_ARROW_RIGHT,
             ArrowType::None => gtk_sys::GTK_ARROW_NONE,
-            ArrowType::__Unknown(value) => value
+            ArrowType::__Unknown(value) => value,
         }
     }
 }
@@ -247,8 +256,7 @@ impl SetValue for ArrowType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum AssistantPageType {
     Content,
     Intro,
@@ -262,15 +270,19 @@ pub enum AssistantPageType {
 
 impl fmt::Display for AssistantPageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AssistantPageType::{}", match *self {
-            AssistantPageType::Content => "Content",
-            AssistantPageType::Intro => "Intro",
-            AssistantPageType::Confirm => "Confirm",
-            AssistantPageType::Summary => "Summary",
-            AssistantPageType::Progress => "Progress",
-            AssistantPageType::Custom => "Custom",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "AssistantPageType::{}",
+            match *self {
+                AssistantPageType::Content => "Content",
+                AssistantPageType::Intro => "Intro",
+                AssistantPageType::Confirm => "Confirm",
+                AssistantPageType::Summary => "Summary",
+                AssistantPageType::Progress => "Progress",
+                AssistantPageType::Custom => "Custom",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -286,7 +298,7 @@ impl ToGlib for AssistantPageType {
             AssistantPageType::Summary => gtk_sys::GTK_ASSISTANT_PAGE_SUMMARY,
             AssistantPageType::Progress => gtk_sys::GTK_ASSISTANT_PAGE_PROGRESS,
             AssistantPageType::Custom => gtk_sys::GTK_ASSISTANT_PAGE_CUSTOM,
-            AssistantPageType::__Unknown(value) => value
+            AssistantPageType::__Unknown(value) => value,
         }
     }
 }
@@ -331,8 +343,7 @@ impl SetValue for AssistantPageType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum BaselinePosition {
     Top,
     Center,
@@ -343,12 +354,16 @@ pub enum BaselinePosition {
 
 impl fmt::Display for BaselinePosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BaselinePosition::{}", match *self {
-            BaselinePosition::Top => "Top",
-            BaselinePosition::Center => "Center",
-            BaselinePosition::Bottom => "Bottom",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "BaselinePosition::{}",
+            match *self {
+                BaselinePosition::Top => "Top",
+                BaselinePosition::Center => "Center",
+                BaselinePosition::Bottom => "Bottom",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -361,7 +376,7 @@ impl ToGlib for BaselinePosition {
             BaselinePosition::Top => gtk_sys::GTK_BASELINE_POSITION_TOP,
             BaselinePosition::Center => gtk_sys::GTK_BASELINE_POSITION_CENTER,
             BaselinePosition::Bottom => gtk_sys::GTK_BASELINE_POSITION_BOTTOM,
-            BaselinePosition::__Unknown(value) => value
+            BaselinePosition::__Unknown(value) => value,
         }
     }
 }
@@ -403,8 +418,7 @@ impl SetValue for BaselinePosition {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum BorderStyle {
     None,
     Solid,
@@ -422,19 +436,23 @@ pub enum BorderStyle {
 
 impl fmt::Display for BorderStyle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BorderStyle::{}", match *self {
-            BorderStyle::None => "None",
-            BorderStyle::Solid => "Solid",
-            BorderStyle::Inset => "Inset",
-            BorderStyle::Outset => "Outset",
-            BorderStyle::Hidden => "Hidden",
-            BorderStyle::Dotted => "Dotted",
-            BorderStyle::Dashed => "Dashed",
-            BorderStyle::Double => "Double",
-            BorderStyle::Groove => "Groove",
-            BorderStyle::Ridge => "Ridge",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "BorderStyle::{}",
+            match *self {
+                BorderStyle::None => "None",
+                BorderStyle::Solid => "Solid",
+                BorderStyle::Inset => "Inset",
+                BorderStyle::Outset => "Outset",
+                BorderStyle::Hidden => "Hidden",
+                BorderStyle::Dotted => "Dotted",
+                BorderStyle::Dashed => "Dashed",
+                BorderStyle::Double => "Double",
+                BorderStyle::Groove => "Groove",
+                BorderStyle::Ridge => "Ridge",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -454,7 +472,7 @@ impl ToGlib for BorderStyle {
             BorderStyle::Double => gtk_sys::GTK_BORDER_STYLE_DOUBLE,
             BorderStyle::Groove => gtk_sys::GTK_BORDER_STYLE_GROOVE,
             BorderStyle::Ridge => gtk_sys::GTK_BORDER_STYLE_RIDGE,
-            BorderStyle::__Unknown(value) => value
+            BorderStyle::__Unknown(value) => value,
         }
     }
 }
@@ -503,8 +521,7 @@ impl SetValue for BorderStyle {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum BuilderError {
     InvalidTypeFunction,
     UnhandledTag,
@@ -526,23 +543,27 @@ pub enum BuilderError {
 
 impl fmt::Display for BuilderError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BuilderError::{}", match *self {
-            BuilderError::InvalidTypeFunction => "InvalidTypeFunction",
-            BuilderError::UnhandledTag => "UnhandledTag",
-            BuilderError::MissingAttribute => "MissingAttribute",
-            BuilderError::InvalidAttribute => "InvalidAttribute",
-            BuilderError::InvalidTag => "InvalidTag",
-            BuilderError::MissingPropertyValue => "MissingPropertyValue",
-            BuilderError::InvalidValue => "InvalidValue",
-            BuilderError::VersionMismatch => "VersionMismatch",
-            BuilderError::DuplicateId => "DuplicateId",
-            BuilderError::ObjectTypeRefused => "ObjectTypeRefused",
-            BuilderError::TemplateMismatch => "TemplateMismatch",
-            BuilderError::InvalidProperty => "InvalidProperty",
-            BuilderError::InvalidSignal => "InvalidSignal",
-            BuilderError::InvalidId => "InvalidId",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "BuilderError::{}",
+            match *self {
+                BuilderError::InvalidTypeFunction => "InvalidTypeFunction",
+                BuilderError::UnhandledTag => "UnhandledTag",
+                BuilderError::MissingAttribute => "MissingAttribute",
+                BuilderError::InvalidAttribute => "InvalidAttribute",
+                BuilderError::InvalidTag => "InvalidTag",
+                BuilderError::MissingPropertyValue => "MissingPropertyValue",
+                BuilderError::InvalidValue => "InvalidValue",
+                BuilderError::VersionMismatch => "VersionMismatch",
+                BuilderError::DuplicateId => "DuplicateId",
+                BuilderError::ObjectTypeRefused => "ObjectTypeRefused",
+                BuilderError::TemplateMismatch => "TemplateMismatch",
+                BuilderError::InvalidProperty => "InvalidProperty",
+                BuilderError::InvalidSignal => "InvalidSignal",
+                BuilderError::InvalidId => "InvalidId",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -566,7 +587,7 @@ impl ToGlib for BuilderError {
             BuilderError::InvalidProperty => gtk_sys::GTK_BUILDER_ERROR_INVALID_PROPERTY,
             BuilderError::InvalidSignal => gtk_sys::GTK_BUILDER_ERROR_INVALID_SIGNAL,
             BuilderError::InvalidId => gtk_sys::GTK_BUILDER_ERROR_INVALID_ID,
-            BuilderError::__Unknown(value) => value
+            BuilderError::__Unknown(value) => value,
         }
     }
 }
@@ -651,8 +672,7 @@ impl SetValue for BuilderError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ButtonRole {
     Normal,
     Check,
@@ -663,12 +683,16 @@ pub enum ButtonRole {
 
 impl fmt::Display for ButtonRole {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ButtonRole::{}", match *self {
-            ButtonRole::Normal => "Normal",
-            ButtonRole::Check => "Check",
-            ButtonRole::Radio => "Radio",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ButtonRole::{}",
+            match *self {
+                ButtonRole::Normal => "Normal",
+                ButtonRole::Check => "Check",
+                ButtonRole::Radio => "Radio",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -681,7 +705,7 @@ impl ToGlib for ButtonRole {
             ButtonRole::Normal => gtk_sys::GTK_BUTTON_ROLE_NORMAL,
             ButtonRole::Check => gtk_sys::GTK_BUTTON_ROLE_CHECK,
             ButtonRole::Radio => gtk_sys::GTK_BUTTON_ROLE_RADIO,
-            ButtonRole::__Unknown(value) => value
+            ButtonRole::__Unknown(value) => value,
         }
     }
 }
@@ -723,8 +747,7 @@ impl SetValue for ButtonRole {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ButtonsType {
     None,
     Ok,
@@ -738,15 +761,19 @@ pub enum ButtonsType {
 
 impl fmt::Display for ButtonsType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ButtonsType::{}", match *self {
-            ButtonsType::None => "None",
-            ButtonsType::Ok => "Ok",
-            ButtonsType::Close => "Close",
-            ButtonsType::Cancel => "Cancel",
-            ButtonsType::YesNo => "YesNo",
-            ButtonsType::OkCancel => "OkCancel",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ButtonsType::{}",
+            match *self {
+                ButtonsType::None => "None",
+                ButtonsType::Ok => "Ok",
+                ButtonsType::Close => "Close",
+                ButtonsType::Cancel => "Cancel",
+                ButtonsType::YesNo => "YesNo",
+                ButtonsType::OkCancel => "OkCancel",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -762,7 +789,7 @@ impl ToGlib for ButtonsType {
             ButtonsType::Cancel => gtk_sys::GTK_BUTTONS_CANCEL,
             ButtonsType::YesNo => gtk_sys::GTK_BUTTONS_YES_NO,
             ButtonsType::OkCancel => gtk_sys::GTK_BUTTONS_OK_CANCEL,
-            ButtonsType::__Unknown(value) => value
+            ButtonsType::__Unknown(value) => value,
         }
     }
 }
@@ -807,8 +834,7 @@ impl SetValue for ButtonsType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum CellRendererAccelMode {
     Gtk,
     Other,
@@ -818,11 +844,15 @@ pub enum CellRendererAccelMode {
 
 impl fmt::Display for CellRendererAccelMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellRendererAccelMode::{}", match *self {
-            CellRendererAccelMode::Gtk => "Gtk",
-            CellRendererAccelMode::Other => "Other",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "CellRendererAccelMode::{}",
+            match *self {
+                CellRendererAccelMode::Gtk => "Gtk",
+                CellRendererAccelMode::Other => "Other",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -834,7 +864,7 @@ impl ToGlib for CellRendererAccelMode {
         match *self {
             CellRendererAccelMode::Gtk => gtk_sys::GTK_CELL_RENDERER_ACCEL_MODE_GTK,
             CellRendererAccelMode::Other => gtk_sys::GTK_CELL_RENDERER_ACCEL_MODE_OTHER,
-            CellRendererAccelMode::__Unknown(value) => value
+            CellRendererAccelMode::__Unknown(value) => value,
         }
     }
 }
@@ -875,8 +905,7 @@ impl SetValue for CellRendererAccelMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum CellRendererMode {
     Inert,
     Activatable,
@@ -887,12 +916,16 @@ pub enum CellRendererMode {
 
 impl fmt::Display for CellRendererMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellRendererMode::{}", match *self {
-            CellRendererMode::Inert => "Inert",
-            CellRendererMode::Activatable => "Activatable",
-            CellRendererMode::Editable => "Editable",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "CellRendererMode::{}",
+            match *self {
+                CellRendererMode::Inert => "Inert",
+                CellRendererMode::Activatable => "Activatable",
+                CellRendererMode::Editable => "Editable",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -905,7 +938,7 @@ impl ToGlib for CellRendererMode {
             CellRendererMode::Inert => gtk_sys::GTK_CELL_RENDERER_MODE_INERT,
             CellRendererMode::Activatable => gtk_sys::GTK_CELL_RENDERER_MODE_ACTIVATABLE,
             CellRendererMode::Editable => gtk_sys::GTK_CELL_RENDERER_MODE_EDITABLE,
-            CellRendererMode::__Unknown(value) => value
+            CellRendererMode::__Unknown(value) => value,
         }
     }
 }
@@ -947,8 +980,7 @@ impl SetValue for CellRendererMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum CornerType {
     TopLeft,
     BottomLeft,
@@ -960,13 +992,17 @@ pub enum CornerType {
 
 impl fmt::Display for CornerType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CornerType::{}", match *self {
-            CornerType::TopLeft => "TopLeft",
-            CornerType::BottomLeft => "BottomLeft",
-            CornerType::TopRight => "TopRight",
-            CornerType::BottomRight => "BottomRight",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "CornerType::{}",
+            match *self {
+                CornerType::TopLeft => "TopLeft",
+                CornerType::BottomLeft => "BottomLeft",
+                CornerType::TopRight => "TopRight",
+                CornerType::BottomRight => "BottomRight",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -980,7 +1016,7 @@ impl ToGlib for CornerType {
             CornerType::BottomLeft => gtk_sys::GTK_CORNER_BOTTOM_LEFT,
             CornerType::TopRight => gtk_sys::GTK_CORNER_TOP_RIGHT,
             CornerType::BottomRight => gtk_sys::GTK_CORNER_BOTTOM_RIGHT,
-            CornerType::__Unknown(value) => value
+            CornerType::__Unknown(value) => value,
         }
     }
 }
@@ -1023,8 +1059,7 @@ impl SetValue for CornerType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DeleteType {
     Chars,
     WordEnds,
@@ -1040,17 +1075,21 @@ pub enum DeleteType {
 
 impl fmt::Display for DeleteType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DeleteType::{}", match *self {
-            DeleteType::Chars => "Chars",
-            DeleteType::WordEnds => "WordEnds",
-            DeleteType::Words => "Words",
-            DeleteType::DisplayLines => "DisplayLines",
-            DeleteType::DisplayLineEnds => "DisplayLineEnds",
-            DeleteType::ParagraphEnds => "ParagraphEnds",
-            DeleteType::Paragraphs => "Paragraphs",
-            DeleteType::Whitespace => "Whitespace",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DeleteType::{}",
+            match *self {
+                DeleteType::Chars => "Chars",
+                DeleteType::WordEnds => "WordEnds",
+                DeleteType::Words => "Words",
+                DeleteType::DisplayLines => "DisplayLines",
+                DeleteType::DisplayLineEnds => "DisplayLineEnds",
+                DeleteType::ParagraphEnds => "ParagraphEnds",
+                DeleteType::Paragraphs => "Paragraphs",
+                DeleteType::Whitespace => "Whitespace",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1068,7 +1107,7 @@ impl ToGlib for DeleteType {
             DeleteType::ParagraphEnds => gtk_sys::GTK_DELETE_PARAGRAPH_ENDS,
             DeleteType::Paragraphs => gtk_sys::GTK_DELETE_PARAGRAPHS,
             DeleteType::Whitespace => gtk_sys::GTK_DELETE_WHITESPACE,
-            DeleteType::__Unknown(value) => value
+            DeleteType::__Unknown(value) => value,
         }
     }
 }
@@ -1115,8 +1154,7 @@ impl SetValue for DeleteType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DirectionType {
     TabForward,
     TabBackward,
@@ -1130,15 +1168,19 @@ pub enum DirectionType {
 
 impl fmt::Display for DirectionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DirectionType::{}", match *self {
-            DirectionType::TabForward => "TabForward",
-            DirectionType::TabBackward => "TabBackward",
-            DirectionType::Up => "Up",
-            DirectionType::Down => "Down",
-            DirectionType::Left => "Left",
-            DirectionType::Right => "Right",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DirectionType::{}",
+            match *self {
+                DirectionType::TabForward => "TabForward",
+                DirectionType::TabBackward => "TabBackward",
+                DirectionType::Up => "Up",
+                DirectionType::Down => "Down",
+                DirectionType::Left => "Left",
+                DirectionType::Right => "Right",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1154,7 +1196,7 @@ impl ToGlib for DirectionType {
             DirectionType::Down => gtk_sys::GTK_DIR_DOWN,
             DirectionType::Left => gtk_sys::GTK_DIR_LEFT,
             DirectionType::Right => gtk_sys::GTK_DIR_RIGHT,
-            DirectionType::__Unknown(value) => value
+            DirectionType::__Unknown(value) => value,
         }
     }
 }
@@ -1199,8 +1241,7 @@ impl SetValue for DirectionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum DragResult {
     Success,
     NoTarget,
@@ -1214,15 +1255,19 @@ pub enum DragResult {
 
 impl fmt::Display for DragResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DragResult::{}", match *self {
-            DragResult::Success => "Success",
-            DragResult::NoTarget => "NoTarget",
-            DragResult::UserCancelled => "UserCancelled",
-            DragResult::TimeoutExpired => "TimeoutExpired",
-            DragResult::GrabBroken => "GrabBroken",
-            DragResult::Error => "Error",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "DragResult::{}",
+            match *self {
+                DragResult::Success => "Success",
+                DragResult::NoTarget => "NoTarget",
+                DragResult::UserCancelled => "UserCancelled",
+                DragResult::TimeoutExpired => "TimeoutExpired",
+                DragResult::GrabBroken => "GrabBroken",
+                DragResult::Error => "Error",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1238,7 +1283,7 @@ impl ToGlib for DragResult {
             DragResult::TimeoutExpired => gtk_sys::GTK_DRAG_RESULT_TIMEOUT_EXPIRED,
             DragResult::GrabBroken => gtk_sys::GTK_DRAG_RESULT_GRAB_BROKEN,
             DragResult::Error => gtk_sys::GTK_DRAG_RESULT_ERROR,
-            DragResult::__Unknown(value) => value
+            DragResult::__Unknown(value) => value,
         }
     }
 }
@@ -1283,8 +1328,7 @@ impl SetValue for DragResult {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum EditableProperties {
     PropText,
     PropCursorPosition,
@@ -1300,17 +1344,21 @@ pub enum EditableProperties {
 
 impl fmt::Display for EditableProperties {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EditableProperties::{}", match *self {
-            EditableProperties::PropText => "PropText",
-            EditableProperties::PropCursorPosition => "PropCursorPosition",
-            EditableProperties::PropSelectionBound => "PropSelectionBound",
-            EditableProperties::PropEditable => "PropEditable",
-            EditableProperties::PropWidthChars => "PropWidthChars",
-            EditableProperties::PropMaxWidthChars => "PropMaxWidthChars",
-            EditableProperties::PropXalign => "PropXalign",
-            EditableProperties::NumProperties => "NumProperties",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "EditableProperties::{}",
+            match *self {
+                EditableProperties::PropText => "PropText",
+                EditableProperties::PropCursorPosition => "PropCursorPosition",
+                EditableProperties::PropSelectionBound => "PropSelectionBound",
+                EditableProperties::PropEditable => "PropEditable",
+                EditableProperties::PropWidthChars => "PropWidthChars",
+                EditableProperties::PropMaxWidthChars => "PropMaxWidthChars",
+                EditableProperties::PropXalign => "PropXalign",
+                EditableProperties::NumProperties => "NumProperties",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1328,7 +1376,7 @@ impl ToGlib for EditableProperties {
             EditableProperties::PropMaxWidthChars => gtk_sys::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
             EditableProperties::PropXalign => gtk_sys::GTK_EDITABLE_PROP_XALIGN,
             EditableProperties::NumProperties => gtk_sys::GTK_EDITABLE_NUM_PROPERTIES,
-            EditableProperties::__Unknown(value) => value
+            EditableProperties::__Unknown(value) => value,
         }
     }
 }
@@ -1375,8 +1423,7 @@ impl SetValue for EditableProperties {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum EntryIconPosition {
     Primary,
     Secondary,
@@ -1386,11 +1433,15 @@ pub enum EntryIconPosition {
 
 impl fmt::Display for EntryIconPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EntryIconPosition::{}", match *self {
-            EntryIconPosition::Primary => "Primary",
-            EntryIconPosition::Secondary => "Secondary",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "EntryIconPosition::{}",
+            match *self {
+                EntryIconPosition::Primary => "Primary",
+                EntryIconPosition::Secondary => "Secondary",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1402,7 +1453,7 @@ impl ToGlib for EntryIconPosition {
         match *self {
             EntryIconPosition::Primary => gtk_sys::GTK_ENTRY_ICON_PRIMARY,
             EntryIconPosition::Secondary => gtk_sys::GTK_ENTRY_ICON_SECONDARY,
-            EntryIconPosition::__Unknown(value) => value
+            EntryIconPosition::__Unknown(value) => value,
         }
     }
 }
@@ -1443,8 +1494,7 @@ impl SetValue for EntryIconPosition {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum EventSequenceState {
     None,
     Claimed,
@@ -1455,12 +1505,16 @@ pub enum EventSequenceState {
 
 impl fmt::Display for EventSequenceState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EventSequenceState::{}", match *self {
-            EventSequenceState::None => "None",
-            EventSequenceState::Claimed => "Claimed",
-            EventSequenceState::Denied => "Denied",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "EventSequenceState::{}",
+            match *self {
+                EventSequenceState::None => "None",
+                EventSequenceState::Claimed => "Claimed",
+                EventSequenceState::Denied => "Denied",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1473,7 +1527,7 @@ impl ToGlib for EventSequenceState {
             EventSequenceState::None => gtk_sys::GTK_EVENT_SEQUENCE_NONE,
             EventSequenceState::Claimed => gtk_sys::GTK_EVENT_SEQUENCE_CLAIMED,
             EventSequenceState::Denied => gtk_sys::GTK_EVENT_SEQUENCE_DENIED,
-            EventSequenceState::__Unknown(value) => value
+            EventSequenceState::__Unknown(value) => value,
         }
     }
 }
@@ -1515,8 +1569,7 @@ impl SetValue for EventSequenceState {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum FileChooserAction {
     Open,
     Save,
@@ -1528,13 +1581,17 @@ pub enum FileChooserAction {
 
 impl fmt::Display for FileChooserAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FileChooserAction::{}", match *self {
-            FileChooserAction::Open => "Open",
-            FileChooserAction::Save => "Save",
-            FileChooserAction::SelectFolder => "SelectFolder",
-            FileChooserAction::CreateFolder => "CreateFolder",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "FileChooserAction::{}",
+            match *self {
+                FileChooserAction::Open => "Open",
+                FileChooserAction::Save => "Save",
+                FileChooserAction::SelectFolder => "SelectFolder",
+                FileChooserAction::CreateFolder => "CreateFolder",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1548,7 +1605,7 @@ impl ToGlib for FileChooserAction {
             FileChooserAction::Save => gtk_sys::GTK_FILE_CHOOSER_ACTION_SAVE,
             FileChooserAction::SelectFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
             FileChooserAction::CreateFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER,
-            FileChooserAction::__Unknown(value) => value
+            FileChooserAction::__Unknown(value) => value,
         }
     }
 }
@@ -1591,8 +1648,7 @@ impl SetValue for FileChooserAction {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum FileChooserConfirmation {
     Confirm,
     AcceptFilename,
@@ -1603,12 +1659,16 @@ pub enum FileChooserConfirmation {
 
 impl fmt::Display for FileChooserConfirmation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FileChooserConfirmation::{}", match *self {
-            FileChooserConfirmation::Confirm => "Confirm",
-            FileChooserConfirmation::AcceptFilename => "AcceptFilename",
-            FileChooserConfirmation::SelectAgain => "SelectAgain",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "FileChooserConfirmation::{}",
+            match *self {
+                FileChooserConfirmation::Confirm => "Confirm",
+                FileChooserConfirmation::AcceptFilename => "AcceptFilename",
+                FileChooserConfirmation::SelectAgain => "SelectAgain",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1619,9 +1679,13 @@ impl ToGlib for FileChooserConfirmation {
     fn to_glib(&self) -> gtk_sys::GtkFileChooserConfirmation {
         match *self {
             FileChooserConfirmation::Confirm => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM,
-            FileChooserConfirmation::AcceptFilename => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME,
-            FileChooserConfirmation::SelectAgain => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN,
-            FileChooserConfirmation::__Unknown(value) => value
+            FileChooserConfirmation::AcceptFilename => {
+                gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME
+            }
+            FileChooserConfirmation::SelectAgain => {
+                gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
+            }
+            FileChooserConfirmation::__Unknown(value) => value,
         }
     }
 }
@@ -1663,8 +1727,7 @@ impl SetValue for FileChooserConfirmation {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum FileChooserError {
     Nonexistent,
     BadFilename,
@@ -1676,13 +1739,17 @@ pub enum FileChooserError {
 
 impl fmt::Display for FileChooserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FileChooserError::{}", match *self {
-            FileChooserError::Nonexistent => "Nonexistent",
-            FileChooserError::BadFilename => "BadFilename",
-            FileChooserError::AlreadyExists => "AlreadyExists",
-            FileChooserError::IncompleteHostname => "IncompleteHostname",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "FileChooserError::{}",
+            match *self {
+                FileChooserError::Nonexistent => "Nonexistent",
+                FileChooserError::BadFilename => "BadFilename",
+                FileChooserError::AlreadyExists => "AlreadyExists",
+                FileChooserError::IncompleteHostname => "IncompleteHostname",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1695,8 +1762,10 @@ impl ToGlib for FileChooserError {
             FileChooserError::Nonexistent => gtk_sys::GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
             FileChooserError::BadFilename => gtk_sys::GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
             FileChooserError::AlreadyExists => gtk_sys::GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
-            FileChooserError::IncompleteHostname => gtk_sys::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME,
-            FileChooserError::__Unknown(value) => value
+            FileChooserError::IncompleteHostname => {
+                gtk_sys::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME
+            }
+            FileChooserError::__Unknown(value) => value,
         }
     }
 }
@@ -1761,8 +1830,7 @@ impl SetValue for FileChooserError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum IconSize {
     Inherit,
     Normal,
@@ -1773,12 +1841,16 @@ pub enum IconSize {
 
 impl fmt::Display for IconSize {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IconSize::{}", match *self {
-            IconSize::Inherit => "Inherit",
-            IconSize::Normal => "Normal",
-            IconSize::Large => "Large",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "IconSize::{}",
+            match *self {
+                IconSize::Inherit => "Inherit",
+                IconSize::Normal => "Normal",
+                IconSize::Large => "Large",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1791,7 +1863,7 @@ impl ToGlib for IconSize {
             IconSize::Inherit => gtk_sys::GTK_ICON_SIZE_INHERIT,
             IconSize::Normal => gtk_sys::GTK_ICON_SIZE_NORMAL,
             IconSize::Large => gtk_sys::GTK_ICON_SIZE_LARGE,
-            IconSize::__Unknown(value) => value
+            IconSize::__Unknown(value) => value,
         }
     }
 }
@@ -1833,8 +1905,7 @@ impl SetValue for IconSize {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum IconThemeError {
     NotFound,
     Failed,
@@ -1844,11 +1915,15 @@ pub enum IconThemeError {
 
 impl fmt::Display for IconThemeError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IconThemeError::{}", match *self {
-            IconThemeError::NotFound => "NotFound",
-            IconThemeError::Failed => "Failed",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "IconThemeError::{}",
+            match *self {
+                IconThemeError::NotFound => "NotFound",
+                IconThemeError::Failed => "Failed",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1860,7 +1935,7 @@ impl ToGlib for IconThemeError {
         match *self {
             IconThemeError::NotFound => gtk_sys::GTK_ICON_THEME_NOT_FOUND,
             IconThemeError::Failed => gtk_sys::GTK_ICON_THEME_FAILED,
-            IconThemeError::__Unknown(value) => value
+            IconThemeError::__Unknown(value) => value,
         }
     }
 }
@@ -1921,8 +1996,7 @@ impl SetValue for IconThemeError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum IconViewDropPosition {
     NoDrop,
     DropInto,
@@ -1936,15 +2010,19 @@ pub enum IconViewDropPosition {
 
 impl fmt::Display for IconViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IconViewDropPosition::{}", match *self {
-            IconViewDropPosition::NoDrop => "NoDrop",
-            IconViewDropPosition::DropInto => "DropInto",
-            IconViewDropPosition::DropLeft => "DropLeft",
-            IconViewDropPosition::DropRight => "DropRight",
-            IconViewDropPosition::DropAbove => "DropAbove",
-            IconViewDropPosition::DropBelow => "DropBelow",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "IconViewDropPosition::{}",
+            match *self {
+                IconViewDropPosition::NoDrop => "NoDrop",
+                IconViewDropPosition::DropInto => "DropInto",
+                IconViewDropPosition::DropLeft => "DropLeft",
+                IconViewDropPosition::DropRight => "DropRight",
+                IconViewDropPosition::DropAbove => "DropAbove",
+                IconViewDropPosition::DropBelow => "DropBelow",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -1960,7 +2038,7 @@ impl ToGlib for IconViewDropPosition {
             IconViewDropPosition::DropRight => gtk_sys::GTK_ICON_VIEW_DROP_RIGHT,
             IconViewDropPosition::DropAbove => gtk_sys::GTK_ICON_VIEW_DROP_ABOVE,
             IconViewDropPosition::DropBelow => gtk_sys::GTK_ICON_VIEW_DROP_BELOW,
-            IconViewDropPosition::__Unknown(value) => value
+            IconViewDropPosition::__Unknown(value) => value,
         }
     }
 }
@@ -2005,8 +2083,7 @@ impl SetValue for IconViewDropPosition {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ImageType {
     Empty,
     IconName,
@@ -2018,13 +2095,17 @@ pub enum ImageType {
 
 impl fmt::Display for ImageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ImageType::{}", match *self {
-            ImageType::Empty => "Empty",
-            ImageType::IconName => "IconName",
-            ImageType::Gicon => "Gicon",
-            ImageType::Paintable => "Paintable",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ImageType::{}",
+            match *self {
+                ImageType::Empty => "Empty",
+                ImageType::IconName => "IconName",
+                ImageType::Gicon => "Gicon",
+                ImageType::Paintable => "Paintable",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2038,7 +2119,7 @@ impl ToGlib for ImageType {
             ImageType::IconName => gtk_sys::GTK_IMAGE_ICON_NAME,
             ImageType::Gicon => gtk_sys::GTK_IMAGE_GICON,
             ImageType::Paintable => gtk_sys::GTK_IMAGE_PAINTABLE,
-            ImageType::__Unknown(value) => value
+            ImageType::__Unknown(value) => value,
         }
     }
 }
@@ -2081,8 +2162,7 @@ impl SetValue for ImageType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum InputPurpose {
     FreeForm,
     Alpha,
@@ -2100,19 +2180,23 @@ pub enum InputPurpose {
 
 impl fmt::Display for InputPurpose {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "InputPurpose::{}", match *self {
-            InputPurpose::FreeForm => "FreeForm",
-            InputPurpose::Alpha => "Alpha",
-            InputPurpose::Digits => "Digits",
-            InputPurpose::Number => "Number",
-            InputPurpose::Phone => "Phone",
-            InputPurpose::Url => "Url",
-            InputPurpose::Email => "Email",
-            InputPurpose::Name => "Name",
-            InputPurpose::Password => "Password",
-            InputPurpose::Pin => "Pin",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "InputPurpose::{}",
+            match *self {
+                InputPurpose::FreeForm => "FreeForm",
+                InputPurpose::Alpha => "Alpha",
+                InputPurpose::Digits => "Digits",
+                InputPurpose::Number => "Number",
+                InputPurpose::Phone => "Phone",
+                InputPurpose::Url => "Url",
+                InputPurpose::Email => "Email",
+                InputPurpose::Name => "Name",
+                InputPurpose::Password => "Password",
+                InputPurpose::Pin => "Pin",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2132,7 +2216,7 @@ impl ToGlib for InputPurpose {
             InputPurpose::Name => gtk_sys::GTK_INPUT_PURPOSE_NAME,
             InputPurpose::Password => gtk_sys::GTK_INPUT_PURPOSE_PASSWORD,
             InputPurpose::Pin => gtk_sys::GTK_INPUT_PURPOSE_PIN,
-            InputPurpose::__Unknown(value) => value
+            InputPurpose::__Unknown(value) => value,
         }
     }
 }
@@ -2181,8 +2265,7 @@ impl SetValue for InputPurpose {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Justification {
     Left,
     Right,
@@ -2194,13 +2277,17 @@ pub enum Justification {
 
 impl fmt::Display for Justification {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Justification::{}", match *self {
-            Justification::Left => "Left",
-            Justification::Right => "Right",
-            Justification::Center => "Center",
-            Justification::Fill => "Fill",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Justification::{}",
+            match *self {
+                Justification::Left => "Left",
+                Justification::Right => "Right",
+                Justification::Center => "Center",
+                Justification::Fill => "Fill",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2214,7 +2301,7 @@ impl ToGlib for Justification {
             Justification::Right => gtk_sys::GTK_JUSTIFY_RIGHT,
             Justification::Center => gtk_sys::GTK_JUSTIFY_CENTER,
             Justification::Fill => gtk_sys::GTK_JUSTIFY_FILL,
-            Justification::__Unknown(value) => value
+            Justification::__Unknown(value) => value,
         }
     }
 }
@@ -2257,8 +2344,7 @@ impl SetValue for Justification {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum LevelBarMode {
     Continuous,
     Discrete,
@@ -2268,11 +2354,15 @@ pub enum LevelBarMode {
 
 impl fmt::Display for LevelBarMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "LevelBarMode::{}", match *self {
-            LevelBarMode::Continuous => "Continuous",
-            LevelBarMode::Discrete => "Discrete",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "LevelBarMode::{}",
+            match *self {
+                LevelBarMode::Continuous => "Continuous",
+                LevelBarMode::Discrete => "Discrete",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2284,7 +2374,7 @@ impl ToGlib for LevelBarMode {
         match *self {
             LevelBarMode::Continuous => gtk_sys::GTK_LEVEL_BAR_MODE_CONTINUOUS,
             LevelBarMode::Discrete => gtk_sys::GTK_LEVEL_BAR_MODE_DISCRETE,
-            LevelBarMode::__Unknown(value) => value
+            LevelBarMode::__Unknown(value) => value,
         }
     }
 }
@@ -2325,8 +2415,7 @@ impl SetValue for LevelBarMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum License {
     Unknown,
     Custom,
@@ -2349,24 +2438,28 @@ pub enum License {
 
 impl fmt::Display for License {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "License::{}", match *self {
-            License::Unknown => "Unknown",
-            License::Custom => "Custom",
-            License::Gpl20 => "Gpl20",
-            License::Gpl30 => "Gpl30",
-            License::Lgpl21 => "Lgpl21",
-            License::Lgpl30 => "Lgpl30",
-            License::Bsd => "Bsd",
-            License::MitX11 => "MitX11",
-            License::Artistic => "Artistic",
-            License::Gpl20Only => "Gpl20Only",
-            License::Gpl30Only => "Gpl30Only",
-            License::Lgpl21Only => "Lgpl21Only",
-            License::Lgpl30Only => "Lgpl30Only",
-            License::Agpl30 => "Agpl30",
-            License::Agpl30Only => "Agpl30Only",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "License::{}",
+            match *self {
+                License::Unknown => "Unknown",
+                License::Custom => "Custom",
+                License::Gpl20 => "Gpl20",
+                License::Gpl30 => "Gpl30",
+                License::Lgpl21 => "Lgpl21",
+                License::Lgpl30 => "Lgpl30",
+                License::Bsd => "Bsd",
+                License::MitX11 => "MitX11",
+                License::Artistic => "Artistic",
+                License::Gpl20Only => "Gpl20Only",
+                License::Gpl30Only => "Gpl30Only",
+                License::Lgpl21Only => "Lgpl21Only",
+                License::Lgpl30Only => "Lgpl30Only",
+                License::Agpl30 => "Agpl30",
+                License::Agpl30Only => "Agpl30Only",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2391,7 +2484,7 @@ impl ToGlib for License {
             License::Lgpl30Only => gtk_sys::GTK_LICENSE_LGPL_3_0_ONLY,
             License::Agpl30 => gtk_sys::GTK_LICENSE_AGPL_3_0,
             License::Agpl30Only => gtk_sys::GTK_LICENSE_AGPL_3_0_ONLY,
-            License::__Unknown(value) => value
+            License::__Unknown(value) => value,
         }
     }
 }
@@ -2445,8 +2538,7 @@ impl SetValue for License {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum MenuDirectionType {
     Parent,
     Child,
@@ -2458,13 +2550,17 @@ pub enum MenuDirectionType {
 
 impl fmt::Display for MenuDirectionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MenuDirectionType::{}", match *self {
-            MenuDirectionType::Parent => "Parent",
-            MenuDirectionType::Child => "Child",
-            MenuDirectionType::Next => "Next",
-            MenuDirectionType::Prev => "Prev",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "MenuDirectionType::{}",
+            match *self {
+                MenuDirectionType::Parent => "Parent",
+                MenuDirectionType::Child => "Child",
+                MenuDirectionType::Next => "Next",
+                MenuDirectionType::Prev => "Prev",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2478,7 +2574,7 @@ impl ToGlib for MenuDirectionType {
             MenuDirectionType::Child => gtk_sys::GTK_MENU_DIR_CHILD,
             MenuDirectionType::Next => gtk_sys::GTK_MENU_DIR_NEXT,
             MenuDirectionType::Prev => gtk_sys::GTK_MENU_DIR_PREV,
-            MenuDirectionType::__Unknown(value) => value
+            MenuDirectionType::__Unknown(value) => value,
         }
     }
 }
@@ -2521,8 +2617,7 @@ impl SetValue for MenuDirectionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum MessageType {
     Info,
     Warning,
@@ -2535,14 +2630,18 @@ pub enum MessageType {
 
 impl fmt::Display for MessageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MessageType::{}", match *self {
-            MessageType::Info => "Info",
-            MessageType::Warning => "Warning",
-            MessageType::Question => "Question",
-            MessageType::Error => "Error",
-            MessageType::Other => "Other",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "MessageType::{}",
+            match *self {
+                MessageType::Info => "Info",
+                MessageType::Warning => "Warning",
+                MessageType::Question => "Question",
+                MessageType::Error => "Error",
+                MessageType::Other => "Other",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2557,7 +2656,7 @@ impl ToGlib for MessageType {
             MessageType::Question => gtk_sys::GTK_MESSAGE_QUESTION,
             MessageType::Error => gtk_sys::GTK_MESSAGE_ERROR,
             MessageType::Other => gtk_sys::GTK_MESSAGE_OTHER,
-            MessageType::__Unknown(value) => value
+            MessageType::__Unknown(value) => value,
         }
     }
 }
@@ -2601,8 +2700,7 @@ impl SetValue for MessageType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum MovementStep {
     LogicalPositions,
     VisualPositions,
@@ -2620,19 +2718,23 @@ pub enum MovementStep {
 
 impl fmt::Display for MovementStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MovementStep::{}", match *self {
-            MovementStep::LogicalPositions => "LogicalPositions",
-            MovementStep::VisualPositions => "VisualPositions",
-            MovementStep::Words => "Words",
-            MovementStep::DisplayLines => "DisplayLines",
-            MovementStep::DisplayLineEnds => "DisplayLineEnds",
-            MovementStep::Paragraphs => "Paragraphs",
-            MovementStep::ParagraphEnds => "ParagraphEnds",
-            MovementStep::Pages => "Pages",
-            MovementStep::BufferEnds => "BufferEnds",
-            MovementStep::HorizontalPages => "HorizontalPages",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "MovementStep::{}",
+            match *self {
+                MovementStep::LogicalPositions => "LogicalPositions",
+                MovementStep::VisualPositions => "VisualPositions",
+                MovementStep::Words => "Words",
+                MovementStep::DisplayLines => "DisplayLines",
+                MovementStep::DisplayLineEnds => "DisplayLineEnds",
+                MovementStep::Paragraphs => "Paragraphs",
+                MovementStep::ParagraphEnds => "ParagraphEnds",
+                MovementStep::Pages => "Pages",
+                MovementStep::BufferEnds => "BufferEnds",
+                MovementStep::HorizontalPages => "HorizontalPages",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2652,7 +2754,7 @@ impl ToGlib for MovementStep {
             MovementStep::Pages => gtk_sys::GTK_MOVEMENT_PAGES,
             MovementStep::BufferEnds => gtk_sys::GTK_MOVEMENT_BUFFER_ENDS,
             MovementStep::HorizontalPages => gtk_sys::GTK_MOVEMENT_HORIZONTAL_PAGES,
-            MovementStep::__Unknown(value) => value
+            MovementStep::__Unknown(value) => value,
         }
     }
 }
@@ -2701,8 +2803,7 @@ impl SetValue for MovementStep {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum NotebookTab {
     First,
     Last,
@@ -2712,11 +2813,15 @@ pub enum NotebookTab {
 
 impl fmt::Display for NotebookTab {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NotebookTab::{}", match *self {
-            NotebookTab::First => "First",
-            NotebookTab::Last => "Last",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "NotebookTab::{}",
+            match *self {
+                NotebookTab::First => "First",
+                NotebookTab::Last => "Last",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2728,7 +2833,7 @@ impl ToGlib for NotebookTab {
         match *self {
             NotebookTab::First => gtk_sys::GTK_NOTEBOOK_TAB_FIRST,
             NotebookTab::Last => gtk_sys::GTK_NOTEBOOK_TAB_LAST,
-            NotebookTab::__Unknown(value) => value
+            NotebookTab::__Unknown(value) => value,
         }
     }
 }
@@ -2769,8 +2874,7 @@ impl SetValue for NotebookTab {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum NumberUpLayout {
     Lrtb,
     Lrbt,
@@ -2786,17 +2890,21 @@ pub enum NumberUpLayout {
 
 impl fmt::Display for NumberUpLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NumberUpLayout::{}", match *self {
-            NumberUpLayout::Lrtb => "Lrtb",
-            NumberUpLayout::Lrbt => "Lrbt",
-            NumberUpLayout::Rltb => "Rltb",
-            NumberUpLayout::Rlbt => "Rlbt",
-            NumberUpLayout::Tblr => "Tblr",
-            NumberUpLayout::Tbrl => "Tbrl",
-            NumberUpLayout::Btlr => "Btlr",
-            NumberUpLayout::Btrl => "Btrl",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "NumberUpLayout::{}",
+            match *self {
+                NumberUpLayout::Lrtb => "Lrtb",
+                NumberUpLayout::Lrbt => "Lrbt",
+                NumberUpLayout::Rltb => "Rltb",
+                NumberUpLayout::Rlbt => "Rlbt",
+                NumberUpLayout::Tblr => "Tblr",
+                NumberUpLayout::Tbrl => "Tbrl",
+                NumberUpLayout::Btlr => "Btlr",
+                NumberUpLayout::Btrl => "Btrl",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2814,7 +2922,7 @@ impl ToGlib for NumberUpLayout {
             NumberUpLayout::Tbrl => gtk_sys::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT,
             NumberUpLayout::Btlr => gtk_sys::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT,
             NumberUpLayout::Btrl => gtk_sys::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT,
-            NumberUpLayout::__Unknown(value) => value
+            NumberUpLayout::__Unknown(value) => value,
         }
     }
 }
@@ -2861,8 +2969,7 @@ impl SetValue for NumberUpLayout {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Orientation {
     Horizontal,
     Vertical,
@@ -2872,11 +2979,15 @@ pub enum Orientation {
 
 impl fmt::Display for Orientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Orientation::{}", match *self {
-            Orientation::Horizontal => "Horizontal",
-            Orientation::Vertical => "Vertical",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Orientation::{}",
+            match *self {
+                Orientation::Horizontal => "Horizontal",
+                Orientation::Vertical => "Vertical",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2888,7 +2999,7 @@ impl ToGlib for Orientation {
         match *self {
             Orientation::Horizontal => gtk_sys::GTK_ORIENTATION_HORIZONTAL,
             Orientation::Vertical => gtk_sys::GTK_ORIENTATION_VERTICAL,
-            Orientation::__Unknown(value) => value
+            Orientation::__Unknown(value) => value,
         }
     }
 }
@@ -2929,8 +3040,7 @@ impl SetValue for Orientation {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Overflow {
     Visible,
     Hidden,
@@ -2940,11 +3050,15 @@ pub enum Overflow {
 
 impl fmt::Display for Overflow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Overflow::{}", match *self {
-            Overflow::Visible => "Visible",
-            Overflow::Hidden => "Hidden",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Overflow::{}",
+            match *self {
+                Overflow::Visible => "Visible",
+                Overflow::Hidden => "Hidden",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -2956,7 +3070,7 @@ impl ToGlib for Overflow {
         match *self {
             Overflow::Visible => gtk_sys::GTK_OVERFLOW_VISIBLE,
             Overflow::Hidden => gtk_sys::GTK_OVERFLOW_HIDDEN,
-            Overflow::__Unknown(value) => value
+            Overflow::__Unknown(value) => value,
         }
     }
 }
@@ -2997,8 +3111,7 @@ impl SetValue for Overflow {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PackType {
     Start,
     End,
@@ -3008,11 +3121,15 @@ pub enum PackType {
 
 impl fmt::Display for PackType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PackType::{}", match *self {
-            PackType::Start => "Start",
-            PackType::End => "End",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PackType::{}",
+            match *self {
+                PackType::Start => "Start",
+                PackType::End => "End",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3024,7 +3141,7 @@ impl ToGlib for PackType {
         match *self {
             PackType::Start => gtk_sys::GTK_PACK_START,
             PackType::End => gtk_sys::GTK_PACK_END,
-            PackType::__Unknown(value) => value
+            PackType::__Unknown(value) => value,
         }
     }
 }
@@ -3065,8 +3182,7 @@ impl SetValue for PackType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PadActionType {
     Button,
     Ring,
@@ -3077,12 +3193,16 @@ pub enum PadActionType {
 
 impl fmt::Display for PadActionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PadActionType::{}", match *self {
-            PadActionType::Button => "Button",
-            PadActionType::Ring => "Ring",
-            PadActionType::Strip => "Strip",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PadActionType::{}",
+            match *self {
+                PadActionType::Button => "Button",
+                PadActionType::Ring => "Ring",
+                PadActionType::Strip => "Strip",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3095,7 +3215,7 @@ impl ToGlib for PadActionType {
             PadActionType::Button => gtk_sys::GTK_PAD_ACTION_BUTTON,
             PadActionType::Ring => gtk_sys::GTK_PAD_ACTION_RING,
             PadActionType::Strip => gtk_sys::GTK_PAD_ACTION_STRIP,
-            PadActionType::__Unknown(value) => value
+            PadActionType::__Unknown(value) => value,
         }
     }
 }
@@ -3137,8 +3257,7 @@ impl SetValue for PadActionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PageOrientation {
     Portrait,
     Landscape,
@@ -3150,13 +3269,17 @@ pub enum PageOrientation {
 
 impl fmt::Display for PageOrientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PageOrientation::{}", match *self {
-            PageOrientation::Portrait => "Portrait",
-            PageOrientation::Landscape => "Landscape",
-            PageOrientation::ReversePortrait => "ReversePortrait",
-            PageOrientation::ReverseLandscape => "ReverseLandscape",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PageOrientation::{}",
+            match *self {
+                PageOrientation::Portrait => "Portrait",
+                PageOrientation::Landscape => "Landscape",
+                PageOrientation::ReversePortrait => "ReversePortrait",
+                PageOrientation::ReverseLandscape => "ReverseLandscape",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3170,7 +3293,7 @@ impl ToGlib for PageOrientation {
             PageOrientation::Landscape => gtk_sys::GTK_PAGE_ORIENTATION_LANDSCAPE,
             PageOrientation::ReversePortrait => gtk_sys::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT,
             PageOrientation::ReverseLandscape => gtk_sys::GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE,
-            PageOrientation::__Unknown(value) => value
+            PageOrientation::__Unknown(value) => value,
         }
     }
 }
@@ -3213,8 +3336,7 @@ impl SetValue for PageOrientation {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PageSet {
     All,
     Even,
@@ -3225,12 +3347,16 @@ pub enum PageSet {
 
 impl fmt::Display for PageSet {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PageSet::{}", match *self {
-            PageSet::All => "All",
-            PageSet::Even => "Even",
-            PageSet::Odd => "Odd",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PageSet::{}",
+            match *self {
+                PageSet::All => "All",
+                PageSet::Even => "Even",
+                PageSet::Odd => "Odd",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3243,7 +3369,7 @@ impl ToGlib for PageSet {
             PageSet::All => gtk_sys::GTK_PAGE_SET_ALL,
             PageSet::Even => gtk_sys::GTK_PAGE_SET_EVEN,
             PageSet::Odd => gtk_sys::GTK_PAGE_SET_ODD,
-            PageSet::__Unknown(value) => value
+            PageSet::__Unknown(value) => value,
         }
     }
 }
@@ -3285,8 +3411,7 @@ impl SetValue for PageSet {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PanDirection {
     Left,
     Right,
@@ -3298,13 +3423,17 @@ pub enum PanDirection {
 
 impl fmt::Display for PanDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PanDirection::{}", match *self {
-            PanDirection::Left => "Left",
-            PanDirection::Right => "Right",
-            PanDirection::Up => "Up",
-            PanDirection::Down => "Down",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PanDirection::{}",
+            match *self {
+                PanDirection::Left => "Left",
+                PanDirection::Right => "Right",
+                PanDirection::Up => "Up",
+                PanDirection::Down => "Down",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3318,7 +3447,7 @@ impl ToGlib for PanDirection {
             PanDirection::Right => gtk_sys::GTK_PAN_DIRECTION_RIGHT,
             PanDirection::Up => gtk_sys::GTK_PAN_DIRECTION_UP,
             PanDirection::Down => gtk_sys::GTK_PAN_DIRECTION_DOWN,
-            PanDirection::__Unknown(value) => value
+            PanDirection::__Unknown(value) => value,
         }
     }
 }
@@ -3361,8 +3490,7 @@ impl SetValue for PanDirection {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PolicyType {
     Always,
     Automatic,
@@ -3374,13 +3502,17 @@ pub enum PolicyType {
 
 impl fmt::Display for PolicyType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PolicyType::{}", match *self {
-            PolicyType::Always => "Always",
-            PolicyType::Automatic => "Automatic",
-            PolicyType::Never => "Never",
-            PolicyType::External => "External",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PolicyType::{}",
+            match *self {
+                PolicyType::Always => "Always",
+                PolicyType::Automatic => "Automatic",
+                PolicyType::Never => "Never",
+                PolicyType::External => "External",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3394,7 +3526,7 @@ impl ToGlib for PolicyType {
             PolicyType::Automatic => gtk_sys::GTK_POLICY_AUTOMATIC,
             PolicyType::Never => gtk_sys::GTK_POLICY_NEVER,
             PolicyType::External => gtk_sys::GTK_POLICY_EXTERNAL,
-            PolicyType::__Unknown(value) => value
+            PolicyType::__Unknown(value) => value,
         }
     }
 }
@@ -3437,8 +3569,7 @@ impl SetValue for PolicyType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PopoverConstraint {
     None,
     Window,
@@ -3448,11 +3579,15 @@ pub enum PopoverConstraint {
 
 impl fmt::Display for PopoverConstraint {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PopoverConstraint::{}", match *self {
-            PopoverConstraint::None => "None",
-            PopoverConstraint::Window => "Window",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PopoverConstraint::{}",
+            match *self {
+                PopoverConstraint::None => "None",
+                PopoverConstraint::Window => "Window",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3464,7 +3599,7 @@ impl ToGlib for PopoverConstraint {
         match *self {
             PopoverConstraint::None => gtk_sys::GTK_POPOVER_CONSTRAINT_NONE,
             PopoverConstraint::Window => gtk_sys::GTK_POPOVER_CONSTRAINT_WINDOW,
-            PopoverConstraint::__Unknown(value) => value
+            PopoverConstraint::__Unknown(value) => value,
         }
     }
 }
@@ -3505,8 +3640,7 @@ impl SetValue for PopoverConstraint {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PositionType {
     Left,
     Right,
@@ -3518,13 +3652,17 @@ pub enum PositionType {
 
 impl fmt::Display for PositionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PositionType::{}", match *self {
-            PositionType::Left => "Left",
-            PositionType::Right => "Right",
-            PositionType::Top => "Top",
-            PositionType::Bottom => "Bottom",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PositionType::{}",
+            match *self {
+                PositionType::Left => "Left",
+                PositionType::Right => "Right",
+                PositionType::Top => "Top",
+                PositionType::Bottom => "Bottom",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3538,7 +3676,7 @@ impl ToGlib for PositionType {
             PositionType::Right => gtk_sys::GTK_POS_RIGHT,
             PositionType::Top => gtk_sys::GTK_POS_TOP,
             PositionType::Bottom => gtk_sys::GTK_POS_BOTTOM,
-            PositionType::__Unknown(value) => value
+            PositionType::__Unknown(value) => value,
         }
     }
 }
@@ -3581,8 +3719,7 @@ impl SetValue for PositionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintDuplex {
     Simplex,
     Horizontal,
@@ -3593,12 +3730,16 @@ pub enum PrintDuplex {
 
 impl fmt::Display for PrintDuplex {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintDuplex::{}", match *self {
-            PrintDuplex::Simplex => "Simplex",
-            PrintDuplex::Horizontal => "Horizontal",
-            PrintDuplex::Vertical => "Vertical",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintDuplex::{}",
+            match *self {
+                PrintDuplex::Simplex => "Simplex",
+                PrintDuplex::Horizontal => "Horizontal",
+                PrintDuplex::Vertical => "Vertical",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3611,7 +3752,7 @@ impl ToGlib for PrintDuplex {
             PrintDuplex::Simplex => gtk_sys::GTK_PRINT_DUPLEX_SIMPLEX,
             PrintDuplex::Horizontal => gtk_sys::GTK_PRINT_DUPLEX_HORIZONTAL,
             PrintDuplex::Vertical => gtk_sys::GTK_PRINT_DUPLEX_VERTICAL,
-            PrintDuplex::__Unknown(value) => value
+            PrintDuplex::__Unknown(value) => value,
         }
     }
 }
@@ -3653,8 +3794,7 @@ impl SetValue for PrintDuplex {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintError {
     General,
     InternalError,
@@ -3666,13 +3806,17 @@ pub enum PrintError {
 
 impl fmt::Display for PrintError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintError::{}", match *self {
-            PrintError::General => "General",
-            PrintError::InternalError => "InternalError",
-            PrintError::Nomem => "Nomem",
-            PrintError::InvalidFile => "InvalidFile",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintError::{}",
+            match *self {
+                PrintError::General => "General",
+                PrintError::InternalError => "InternalError",
+                PrintError::Nomem => "Nomem",
+                PrintError::InvalidFile => "InvalidFile",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3686,7 +3830,7 @@ impl ToGlib for PrintError {
             PrintError::InternalError => gtk_sys::GTK_PRINT_ERROR_INTERNAL_ERROR,
             PrintError::Nomem => gtk_sys::GTK_PRINT_ERROR_NOMEM,
             PrintError::InvalidFile => gtk_sys::GTK_PRINT_ERROR_INVALID_FILE,
-            PrintError::__Unknown(value) => value
+            PrintError::__Unknown(value) => value,
         }
     }
 }
@@ -3751,8 +3895,7 @@ impl SetValue for PrintError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintOperationAction {
     PrintDialog,
     Print,
@@ -3764,13 +3907,17 @@ pub enum PrintOperationAction {
 
 impl fmt::Display for PrintOperationAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintOperationAction::{}", match *self {
-            PrintOperationAction::PrintDialog => "PrintDialog",
-            PrintOperationAction::Print => "Print",
-            PrintOperationAction::Preview => "Preview",
-            PrintOperationAction::Export => "Export",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintOperationAction::{}",
+            match *self {
+                PrintOperationAction::PrintDialog => "PrintDialog",
+                PrintOperationAction::Print => "Print",
+                PrintOperationAction::Preview => "Preview",
+                PrintOperationAction::Export => "Export",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3784,7 +3931,7 @@ impl ToGlib for PrintOperationAction {
             PrintOperationAction::Print => gtk_sys::GTK_PRINT_OPERATION_ACTION_PRINT,
             PrintOperationAction::Preview => gtk_sys::GTK_PRINT_OPERATION_ACTION_PREVIEW,
             PrintOperationAction::Export => gtk_sys::GTK_PRINT_OPERATION_ACTION_EXPORT,
-            PrintOperationAction::__Unknown(value) => value
+            PrintOperationAction::__Unknown(value) => value,
         }
     }
 }
@@ -3827,8 +3974,7 @@ impl SetValue for PrintOperationAction {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintOperationResult {
     Error,
     Apply,
@@ -3840,13 +3986,17 @@ pub enum PrintOperationResult {
 
 impl fmt::Display for PrintOperationResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintOperationResult::{}", match *self {
-            PrintOperationResult::Error => "Error",
-            PrintOperationResult::Apply => "Apply",
-            PrintOperationResult::Cancel => "Cancel",
-            PrintOperationResult::InProgress => "InProgress",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintOperationResult::{}",
+            match *self {
+                PrintOperationResult::Error => "Error",
+                PrintOperationResult::Apply => "Apply",
+                PrintOperationResult::Cancel => "Cancel",
+                PrintOperationResult::InProgress => "InProgress",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3860,7 +4010,7 @@ impl ToGlib for PrintOperationResult {
             PrintOperationResult::Apply => gtk_sys::GTK_PRINT_OPERATION_RESULT_APPLY,
             PrintOperationResult::Cancel => gtk_sys::GTK_PRINT_OPERATION_RESULT_CANCEL,
             PrintOperationResult::InProgress => gtk_sys::GTK_PRINT_OPERATION_RESULT_IN_PROGRESS,
-            PrintOperationResult::__Unknown(value) => value
+            PrintOperationResult::__Unknown(value) => value,
         }
     }
 }
@@ -3903,8 +4053,7 @@ impl SetValue for PrintOperationResult {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintPages {
     All,
     Current,
@@ -3916,13 +4065,17 @@ pub enum PrintPages {
 
 impl fmt::Display for PrintPages {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintPages::{}", match *self {
-            PrintPages::All => "All",
-            PrintPages::Current => "Current",
-            PrintPages::Ranges => "Ranges",
-            PrintPages::Selection => "Selection",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintPages::{}",
+            match *self {
+                PrintPages::All => "All",
+                PrintPages::Current => "Current",
+                PrintPages::Ranges => "Ranges",
+                PrintPages::Selection => "Selection",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -3936,7 +4089,7 @@ impl ToGlib for PrintPages {
             PrintPages::Current => gtk_sys::GTK_PRINT_PAGES_CURRENT,
             PrintPages::Ranges => gtk_sys::GTK_PRINT_PAGES_RANGES,
             PrintPages::Selection => gtk_sys::GTK_PRINT_PAGES_SELECTION,
-            PrintPages::__Unknown(value) => value
+            PrintPages::__Unknown(value) => value,
         }
     }
 }
@@ -3979,8 +4132,7 @@ impl SetValue for PrintPages {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintQuality {
     Low,
     Normal,
@@ -3992,13 +4144,17 @@ pub enum PrintQuality {
 
 impl fmt::Display for PrintQuality {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintQuality::{}", match *self {
-            PrintQuality::Low => "Low",
-            PrintQuality::Normal => "Normal",
-            PrintQuality::High => "High",
-            PrintQuality::Draft => "Draft",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintQuality::{}",
+            match *self {
+                PrintQuality::Low => "Low",
+                PrintQuality::Normal => "Normal",
+                PrintQuality::High => "High",
+                PrintQuality::Draft => "Draft",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4012,7 +4168,7 @@ impl ToGlib for PrintQuality {
             PrintQuality::Normal => gtk_sys::GTK_PRINT_QUALITY_NORMAL,
             PrintQuality::High => gtk_sys::GTK_PRINT_QUALITY_HIGH,
             PrintQuality::Draft => gtk_sys::GTK_PRINT_QUALITY_DRAFT,
-            PrintQuality::__Unknown(value) => value
+            PrintQuality::__Unknown(value) => value,
         }
     }
 }
@@ -4055,8 +4211,7 @@ impl SetValue for PrintQuality {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PrintStatus {
     Initial,
     Preparing,
@@ -4073,18 +4228,22 @@ pub enum PrintStatus {
 
 impl fmt::Display for PrintStatus {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintStatus::{}", match *self {
-            PrintStatus::Initial => "Initial",
-            PrintStatus::Preparing => "Preparing",
-            PrintStatus::GeneratingData => "GeneratingData",
-            PrintStatus::SendingData => "SendingData",
-            PrintStatus::Pending => "Pending",
-            PrintStatus::PendingIssue => "PendingIssue",
-            PrintStatus::Printing => "Printing",
-            PrintStatus::Finished => "Finished",
-            PrintStatus::FinishedAborted => "FinishedAborted",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PrintStatus::{}",
+            match *self {
+                PrintStatus::Initial => "Initial",
+                PrintStatus::Preparing => "Preparing",
+                PrintStatus::GeneratingData => "GeneratingData",
+                PrintStatus::SendingData => "SendingData",
+                PrintStatus::Pending => "Pending",
+                PrintStatus::PendingIssue => "PendingIssue",
+                PrintStatus::Printing => "Printing",
+                PrintStatus::Finished => "Finished",
+                PrintStatus::FinishedAborted => "FinishedAborted",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4103,7 +4262,7 @@ impl ToGlib for PrintStatus {
             PrintStatus::Printing => gtk_sys::GTK_PRINT_STATUS_PRINTING,
             PrintStatus::Finished => gtk_sys::GTK_PRINT_STATUS_FINISHED,
             PrintStatus::FinishedAborted => gtk_sys::GTK_PRINT_STATUS_FINISHED_ABORTED,
-            PrintStatus::__Unknown(value) => value
+            PrintStatus::__Unknown(value) => value,
         }
     }
 }
@@ -4151,8 +4310,7 @@ impl SetValue for PrintStatus {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum PropagationPhase {
     None,
     Capture,
@@ -4164,13 +4322,17 @@ pub enum PropagationPhase {
 
 impl fmt::Display for PropagationPhase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PropagationPhase::{}", match *self {
-            PropagationPhase::None => "None",
-            PropagationPhase::Capture => "Capture",
-            PropagationPhase::Bubble => "Bubble",
-            PropagationPhase::Target => "Target",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "PropagationPhase::{}",
+            match *self {
+                PropagationPhase::None => "None",
+                PropagationPhase::Capture => "Capture",
+                PropagationPhase::Bubble => "Bubble",
+                PropagationPhase::Target => "Target",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4184,7 +4346,7 @@ impl ToGlib for PropagationPhase {
             PropagationPhase::Capture => gtk_sys::GTK_PHASE_CAPTURE,
             PropagationPhase::Bubble => gtk_sys::GTK_PHASE_BUBBLE,
             PropagationPhase::Target => gtk_sys::GTK_PHASE_TARGET,
-            PropagationPhase::__Unknown(value) => value
+            PropagationPhase::__Unknown(value) => value,
         }
     }
 }
@@ -4227,8 +4389,7 @@ impl SetValue for PropagationPhase {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum RecentManagerError {
     NotFound,
     InvalidUri,
@@ -4243,16 +4404,20 @@ pub enum RecentManagerError {
 
 impl fmt::Display for RecentManagerError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RecentManagerError::{}", match *self {
-            RecentManagerError::NotFound => "NotFound",
-            RecentManagerError::InvalidUri => "InvalidUri",
-            RecentManagerError::InvalidEncoding => "InvalidEncoding",
-            RecentManagerError::NotRegistered => "NotRegistered",
-            RecentManagerError::Read => "Read",
-            RecentManagerError::Write => "Write",
-            RecentManagerError::Unknown => "Unknown",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "RecentManagerError::{}",
+            match *self {
+                RecentManagerError::NotFound => "NotFound",
+                RecentManagerError::InvalidUri => "InvalidUri",
+                RecentManagerError::InvalidEncoding => "InvalidEncoding",
+                RecentManagerError::NotRegistered => "NotRegistered",
+                RecentManagerError::Read => "Read",
+                RecentManagerError::Write => "Write",
+                RecentManagerError::Unknown => "Unknown",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4264,12 +4429,14 @@ impl ToGlib for RecentManagerError {
         match *self {
             RecentManagerError::NotFound => gtk_sys::GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
             RecentManagerError::InvalidUri => gtk_sys::GTK_RECENT_MANAGER_ERROR_INVALID_URI,
-            RecentManagerError::InvalidEncoding => gtk_sys::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
+            RecentManagerError::InvalidEncoding => {
+                gtk_sys::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING
+            }
             RecentManagerError::NotRegistered => gtk_sys::GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
             RecentManagerError::Read => gtk_sys::GTK_RECENT_MANAGER_ERROR_READ,
             RecentManagerError::Write => gtk_sys::GTK_RECENT_MANAGER_ERROR_WRITE,
             RecentManagerError::Unknown => gtk_sys::GTK_RECENT_MANAGER_ERROR_UNKNOWN,
-            RecentManagerError::__Unknown(value) => value
+            RecentManagerError::__Unknown(value) => value,
         }
     }
 }
@@ -4340,8 +4507,7 @@ impl SetValue for RecentManagerError {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ReliefStyle {
     Normal,
     None,
@@ -4351,11 +4517,15 @@ pub enum ReliefStyle {
 
 impl fmt::Display for ReliefStyle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ReliefStyle::{}", match *self {
-            ReliefStyle::Normal => "Normal",
-            ReliefStyle::None => "None",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ReliefStyle::{}",
+            match *self {
+                ReliefStyle::Normal => "Normal",
+                ReliefStyle::None => "None",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4367,7 +4537,7 @@ impl ToGlib for ReliefStyle {
         match *self {
             ReliefStyle::Normal => gtk_sys::GTK_RELIEF_NORMAL,
             ReliefStyle::None => gtk_sys::GTK_RELIEF_NONE,
-            ReliefStyle::__Unknown(value) => value
+            ReliefStyle::__Unknown(value) => value,
         }
     }
 }
@@ -4408,8 +4578,7 @@ impl SetValue for ReliefStyle {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum RevealerTransitionType {
     None,
     Crossfade,
@@ -4427,19 +4596,23 @@ pub enum RevealerTransitionType {
 
 impl fmt::Display for RevealerTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RevealerTransitionType::{}", match *self {
-            RevealerTransitionType::None => "None",
-            RevealerTransitionType::Crossfade => "Crossfade",
-            RevealerTransitionType::SlideRight => "SlideRight",
-            RevealerTransitionType::SlideLeft => "SlideLeft",
-            RevealerTransitionType::SlideUp => "SlideUp",
-            RevealerTransitionType::SlideDown => "SlideDown",
-            RevealerTransitionType::SwingRight => "SwingRight",
-            RevealerTransitionType::SwingLeft => "SwingLeft",
-            RevealerTransitionType::SwingUp => "SwingUp",
-            RevealerTransitionType::SwingDown => "SwingDown",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "RevealerTransitionType::{}",
+            match *self {
+                RevealerTransitionType::None => "None",
+                RevealerTransitionType::Crossfade => "Crossfade",
+                RevealerTransitionType::SlideRight => "SlideRight",
+                RevealerTransitionType::SlideLeft => "SlideLeft",
+                RevealerTransitionType::SlideUp => "SlideUp",
+                RevealerTransitionType::SlideDown => "SlideDown",
+                RevealerTransitionType::SwingRight => "SwingRight",
+                RevealerTransitionType::SwingLeft => "SwingLeft",
+                RevealerTransitionType::SwingUp => "SwingUp",
+                RevealerTransitionType::SwingDown => "SwingDown",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4459,7 +4632,7 @@ impl ToGlib for RevealerTransitionType {
             RevealerTransitionType::SwingLeft => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
             RevealerTransitionType::SwingUp => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
             RevealerTransitionType::SwingDown => gtk_sys::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
-            RevealerTransitionType::__Unknown(value) => value
+            RevealerTransitionType::__Unknown(value) => value,
         }
     }
 }
@@ -4508,8 +4681,7 @@ impl SetValue for RevealerTransitionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ScrollStep {
     Steps,
     Pages,
@@ -4523,15 +4695,19 @@ pub enum ScrollStep {
 
 impl fmt::Display for ScrollStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScrollStep::{}", match *self {
-            ScrollStep::Steps => "Steps",
-            ScrollStep::Pages => "Pages",
-            ScrollStep::Ends => "Ends",
-            ScrollStep::HorizontalSteps => "HorizontalSteps",
-            ScrollStep::HorizontalPages => "HorizontalPages",
-            ScrollStep::HorizontalEnds => "HorizontalEnds",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ScrollStep::{}",
+            match *self {
+                ScrollStep::Steps => "Steps",
+                ScrollStep::Pages => "Pages",
+                ScrollStep::Ends => "Ends",
+                ScrollStep::HorizontalSteps => "HorizontalSteps",
+                ScrollStep::HorizontalPages => "HorizontalPages",
+                ScrollStep::HorizontalEnds => "HorizontalEnds",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4547,7 +4723,7 @@ impl ToGlib for ScrollStep {
             ScrollStep::HorizontalSteps => gtk_sys::GTK_SCROLL_HORIZONTAL_STEPS,
             ScrollStep::HorizontalPages => gtk_sys::GTK_SCROLL_HORIZONTAL_PAGES,
             ScrollStep::HorizontalEnds => gtk_sys::GTK_SCROLL_HORIZONTAL_ENDS,
-            ScrollStep::__Unknown(value) => value
+            ScrollStep::__Unknown(value) => value,
         }
     }
 }
@@ -4592,8 +4768,7 @@ impl SetValue for ScrollStep {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ScrollType {
     None,
     Jump,
@@ -4617,25 +4792,29 @@ pub enum ScrollType {
 
 impl fmt::Display for ScrollType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScrollType::{}", match *self {
-            ScrollType::None => "None",
-            ScrollType::Jump => "Jump",
-            ScrollType::StepBackward => "StepBackward",
-            ScrollType::StepForward => "StepForward",
-            ScrollType::PageBackward => "PageBackward",
-            ScrollType::PageForward => "PageForward",
-            ScrollType::StepUp => "StepUp",
-            ScrollType::StepDown => "StepDown",
-            ScrollType::PageUp => "PageUp",
-            ScrollType::PageDown => "PageDown",
-            ScrollType::StepLeft => "StepLeft",
-            ScrollType::StepRight => "StepRight",
-            ScrollType::PageLeft => "PageLeft",
-            ScrollType::PageRight => "PageRight",
-            ScrollType::Start => "Start",
-            ScrollType::End => "End",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ScrollType::{}",
+            match *self {
+                ScrollType::None => "None",
+                ScrollType::Jump => "Jump",
+                ScrollType::StepBackward => "StepBackward",
+                ScrollType::StepForward => "StepForward",
+                ScrollType::PageBackward => "PageBackward",
+                ScrollType::PageForward => "PageForward",
+                ScrollType::StepUp => "StepUp",
+                ScrollType::StepDown => "StepDown",
+                ScrollType::PageUp => "PageUp",
+                ScrollType::PageDown => "PageDown",
+                ScrollType::StepLeft => "StepLeft",
+                ScrollType::StepRight => "StepRight",
+                ScrollType::PageLeft => "PageLeft",
+                ScrollType::PageRight => "PageRight",
+                ScrollType::Start => "Start",
+                ScrollType::End => "End",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4661,7 +4840,7 @@ impl ToGlib for ScrollType {
             ScrollType::PageRight => gtk_sys::GTK_SCROLL_PAGE_RIGHT,
             ScrollType::Start => gtk_sys::GTK_SCROLL_START,
             ScrollType::End => gtk_sys::GTK_SCROLL_END,
-            ScrollType::__Unknown(value) => value
+            ScrollType::__Unknown(value) => value,
         }
     }
 }
@@ -4716,8 +4895,7 @@ impl SetValue for ScrollType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ScrollablePolicy {
     Minimum,
     Natural,
@@ -4727,11 +4905,15 @@ pub enum ScrollablePolicy {
 
 impl fmt::Display for ScrollablePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScrollablePolicy::{}", match *self {
-            ScrollablePolicy::Minimum => "Minimum",
-            ScrollablePolicy::Natural => "Natural",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ScrollablePolicy::{}",
+            match *self {
+                ScrollablePolicy::Minimum => "Minimum",
+                ScrollablePolicy::Natural => "Natural",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4743,7 +4925,7 @@ impl ToGlib for ScrollablePolicy {
         match *self {
             ScrollablePolicy::Minimum => gtk_sys::GTK_SCROLL_MINIMUM,
             ScrollablePolicy::Natural => gtk_sys::GTK_SCROLL_NATURAL,
-            ScrollablePolicy::__Unknown(value) => value
+            ScrollablePolicy::__Unknown(value) => value,
         }
     }
 }
@@ -4784,8 +4966,7 @@ impl SetValue for ScrollablePolicy {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SelectionMode {
     None,
     Single,
@@ -4797,13 +4978,17 @@ pub enum SelectionMode {
 
 impl fmt::Display for SelectionMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SelectionMode::{}", match *self {
-            SelectionMode::None => "None",
-            SelectionMode::Single => "Single",
-            SelectionMode::Browse => "Browse",
-            SelectionMode::Multiple => "Multiple",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SelectionMode::{}",
+            match *self {
+                SelectionMode::None => "None",
+                SelectionMode::Single => "Single",
+                SelectionMode::Browse => "Browse",
+                SelectionMode::Multiple => "Multiple",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4817,7 +5002,7 @@ impl ToGlib for SelectionMode {
             SelectionMode::Single => gtk_sys::GTK_SELECTION_SINGLE,
             SelectionMode::Browse => gtk_sys::GTK_SELECTION_BROWSE,
             SelectionMode::Multiple => gtk_sys::GTK_SELECTION_MULTIPLE,
-            SelectionMode::__Unknown(value) => value
+            SelectionMode::__Unknown(value) => value,
         }
     }
 }
@@ -4860,8 +5045,7 @@ impl SetValue for SelectionMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SensitivityType {
     Auto,
     On,
@@ -4872,12 +5056,16 @@ pub enum SensitivityType {
 
 impl fmt::Display for SensitivityType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SensitivityType::{}", match *self {
-            SensitivityType::Auto => "Auto",
-            SensitivityType::On => "On",
-            SensitivityType::Off => "Off",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SensitivityType::{}",
+            match *self {
+                SensitivityType::Auto => "Auto",
+                SensitivityType::On => "On",
+                SensitivityType::Off => "Off",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4890,7 +5078,7 @@ impl ToGlib for SensitivityType {
             SensitivityType::Auto => gtk_sys::GTK_SENSITIVITY_AUTO,
             SensitivityType::On => gtk_sys::GTK_SENSITIVITY_ON,
             SensitivityType::Off => gtk_sys::GTK_SENSITIVITY_OFF,
-            SensitivityType::__Unknown(value) => value
+            SensitivityType::__Unknown(value) => value,
         }
     }
 }
@@ -4932,8 +5120,7 @@ impl SetValue for SensitivityType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ShadowType {
     None,
     In,
@@ -4946,14 +5133,18 @@ pub enum ShadowType {
 
 impl fmt::Display for ShadowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShadowType::{}", match *self {
-            ShadowType::None => "None",
-            ShadowType::In => "In",
-            ShadowType::Out => "Out",
-            ShadowType::EtchedIn => "EtchedIn",
-            ShadowType::EtchedOut => "EtchedOut",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ShadowType::{}",
+            match *self {
+                ShadowType::None => "None",
+                ShadowType::In => "In",
+                ShadowType::Out => "Out",
+                ShadowType::EtchedIn => "EtchedIn",
+                ShadowType::EtchedOut => "EtchedOut",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -4968,7 +5159,7 @@ impl ToGlib for ShadowType {
             ShadowType::Out => gtk_sys::GTK_SHADOW_OUT,
             ShadowType::EtchedIn => gtk_sys::GTK_SHADOW_ETCHED_IN,
             ShadowType::EtchedOut => gtk_sys::GTK_SHADOW_ETCHED_OUT,
-            ShadowType::__Unknown(value) => value
+            ShadowType::__Unknown(value) => value,
         }
     }
 }
@@ -5012,8 +5203,7 @@ impl SetValue for ShadowType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ShortcutType {
     Accelerator,
     GesturePinch,
@@ -5031,19 +5221,23 @@ pub enum ShortcutType {
 
 impl fmt::Display for ShortcutType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutType::{}", match *self {
-            ShortcutType::Accelerator => "Accelerator",
-            ShortcutType::GesturePinch => "GesturePinch",
-            ShortcutType::GestureStretch => "GestureStretch",
-            ShortcutType::GestureRotateClockwise => "GestureRotateClockwise",
-            ShortcutType::GestureRotateCounterclockwise => "GestureRotateCounterclockwise",
-            ShortcutType::GestureTwoFingerSwipeLeft => "GestureTwoFingerSwipeLeft",
-            ShortcutType::GestureTwoFingerSwipeRight => "GestureTwoFingerSwipeRight",
-            ShortcutType::Gesture => "Gesture",
-            ShortcutType::GestureSwipeLeft => "GestureSwipeLeft",
-            ShortcutType::GestureSwipeRight => "GestureSwipeRight",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ShortcutType::{}",
+            match *self {
+                ShortcutType::Accelerator => "Accelerator",
+                ShortcutType::GesturePinch => "GesturePinch",
+                ShortcutType::GestureStretch => "GestureStretch",
+                ShortcutType::GestureRotateClockwise => "GestureRotateClockwise",
+                ShortcutType::GestureRotateCounterclockwise => "GestureRotateCounterclockwise",
+                ShortcutType::GestureTwoFingerSwipeLeft => "GestureTwoFingerSwipeLeft",
+                ShortcutType::GestureTwoFingerSwipeRight => "GestureTwoFingerSwipeRight",
+                ShortcutType::Gesture => "Gesture",
+                ShortcutType::GestureSwipeLeft => "GestureSwipeLeft",
+                ShortcutType::GestureSwipeRight => "GestureSwipeRight",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5057,13 +5251,19 @@ impl ToGlib for ShortcutType {
             ShortcutType::GesturePinch => gtk_sys::GTK_SHORTCUT_GESTURE_PINCH,
             ShortcutType::GestureStretch => gtk_sys::GTK_SHORTCUT_GESTURE_STRETCH,
             ShortcutType::GestureRotateClockwise => gtk_sys::GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE,
-            ShortcutType::GestureRotateCounterclockwise => gtk_sys::GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE,
-            ShortcutType::GestureTwoFingerSwipeLeft => gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT,
-            ShortcutType::GestureTwoFingerSwipeRight => gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT,
+            ShortcutType::GestureRotateCounterclockwise => {
+                gtk_sys::GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE
+            }
+            ShortcutType::GestureTwoFingerSwipeLeft => {
+                gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT
+            }
+            ShortcutType::GestureTwoFingerSwipeRight => {
+                gtk_sys::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT
+            }
             ShortcutType::Gesture => gtk_sys::GTK_SHORTCUT_GESTURE,
             ShortcutType::GestureSwipeLeft => gtk_sys::GTK_SHORTCUT_GESTURE_SWIPE_LEFT,
             ShortcutType::GestureSwipeRight => gtk_sys::GTK_SHORTCUT_GESTURE_SWIPE_RIGHT,
-            ShortcutType::__Unknown(value) => value
+            ShortcutType::__Unknown(value) => value,
         }
     }
 }
@@ -5112,8 +5312,7 @@ impl SetValue for ShortcutType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SizeGroupMode {
     None,
     Horizontal,
@@ -5125,13 +5324,17 @@ pub enum SizeGroupMode {
 
 impl fmt::Display for SizeGroupMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SizeGroupMode::{}", match *self {
-            SizeGroupMode::None => "None",
-            SizeGroupMode::Horizontal => "Horizontal",
-            SizeGroupMode::Vertical => "Vertical",
-            SizeGroupMode::Both => "Both",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SizeGroupMode::{}",
+            match *self {
+                SizeGroupMode::None => "None",
+                SizeGroupMode::Horizontal => "Horizontal",
+                SizeGroupMode::Vertical => "Vertical",
+                SizeGroupMode::Both => "Both",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5145,7 +5348,7 @@ impl ToGlib for SizeGroupMode {
             SizeGroupMode::Horizontal => gtk_sys::GTK_SIZE_GROUP_HORIZONTAL,
             SizeGroupMode::Vertical => gtk_sys::GTK_SIZE_GROUP_VERTICAL,
             SizeGroupMode::Both => gtk_sys::GTK_SIZE_GROUP_BOTH,
-            SizeGroupMode::__Unknown(value) => value
+            SizeGroupMode::__Unknown(value) => value,
         }
     }
 }
@@ -5188,8 +5391,7 @@ impl SetValue for SizeGroupMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SizeRequestMode {
     HeightForWidth,
     WidthForHeight,
@@ -5200,12 +5402,16 @@ pub enum SizeRequestMode {
 
 impl fmt::Display for SizeRequestMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SizeRequestMode::{}", match *self {
-            SizeRequestMode::HeightForWidth => "HeightForWidth",
-            SizeRequestMode::WidthForHeight => "WidthForHeight",
-            SizeRequestMode::ConstantSize => "ConstantSize",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SizeRequestMode::{}",
+            match *self {
+                SizeRequestMode::HeightForWidth => "HeightForWidth",
+                SizeRequestMode::WidthForHeight => "WidthForHeight",
+                SizeRequestMode::ConstantSize => "ConstantSize",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5218,7 +5424,7 @@ impl ToGlib for SizeRequestMode {
             SizeRequestMode::HeightForWidth => gtk_sys::GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH,
             SizeRequestMode::WidthForHeight => gtk_sys::GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
             SizeRequestMode::ConstantSize => gtk_sys::GTK_SIZE_REQUEST_CONSTANT_SIZE,
-            SizeRequestMode::__Unknown(value) => value
+            SizeRequestMode::__Unknown(value) => value,
         }
     }
 }
@@ -5260,8 +5466,7 @@ impl SetValue for SizeRequestMode {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SortType {
     Ascending,
     Descending,
@@ -5271,11 +5476,15 @@ pub enum SortType {
 
 impl fmt::Display for SortType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SortType::{}", match *self {
-            SortType::Ascending => "Ascending",
-            SortType::Descending => "Descending",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SortType::{}",
+            match *self {
+                SortType::Ascending => "Ascending",
+                SortType::Descending => "Descending",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5287,7 +5496,7 @@ impl ToGlib for SortType {
         match *self {
             SortType::Ascending => gtk_sys::GTK_SORT_ASCENDING,
             SortType::Descending => gtk_sys::GTK_SORT_DESCENDING,
-            SortType::__Unknown(value) => value
+            SortType::__Unknown(value) => value,
         }
     }
 }
@@ -5328,8 +5537,7 @@ impl SetValue for SortType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SpinButtonUpdatePolicy {
     Always,
     IfValid,
@@ -5339,11 +5547,15 @@ pub enum SpinButtonUpdatePolicy {
 
 impl fmt::Display for SpinButtonUpdatePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SpinButtonUpdatePolicy::{}", match *self {
-            SpinButtonUpdatePolicy::Always => "Always",
-            SpinButtonUpdatePolicy::IfValid => "IfValid",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SpinButtonUpdatePolicy::{}",
+            match *self {
+                SpinButtonUpdatePolicy::Always => "Always",
+                SpinButtonUpdatePolicy::IfValid => "IfValid",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5355,7 +5567,7 @@ impl ToGlib for SpinButtonUpdatePolicy {
         match *self {
             SpinButtonUpdatePolicy::Always => gtk_sys::GTK_UPDATE_ALWAYS,
             SpinButtonUpdatePolicy::IfValid => gtk_sys::GTK_UPDATE_IF_VALID,
-            SpinButtonUpdatePolicy::__Unknown(value) => value
+            SpinButtonUpdatePolicy::__Unknown(value) => value,
         }
     }
 }
@@ -5396,8 +5608,7 @@ impl SetValue for SpinButtonUpdatePolicy {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum SpinType {
     StepForward,
     StepBackward,
@@ -5412,16 +5623,20 @@ pub enum SpinType {
 
 impl fmt::Display for SpinType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SpinType::{}", match *self {
-            SpinType::StepForward => "StepForward",
-            SpinType::StepBackward => "StepBackward",
-            SpinType::PageForward => "PageForward",
-            SpinType::PageBackward => "PageBackward",
-            SpinType::Home => "Home",
-            SpinType::End => "End",
-            SpinType::UserDefined => "UserDefined",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "SpinType::{}",
+            match *self {
+                SpinType::StepForward => "StepForward",
+                SpinType::StepBackward => "StepBackward",
+                SpinType::PageForward => "PageForward",
+                SpinType::PageBackward => "PageBackward",
+                SpinType::Home => "Home",
+                SpinType::End => "End",
+                SpinType::UserDefined => "UserDefined",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5438,7 +5653,7 @@ impl ToGlib for SpinType {
             SpinType::Home => gtk_sys::GTK_SPIN_HOME,
             SpinType::End => gtk_sys::GTK_SPIN_END,
             SpinType::UserDefined => gtk_sys::GTK_SPIN_USER_DEFINED,
-            SpinType::__Unknown(value) => value
+            SpinType::__Unknown(value) => value,
         }
     }
 }
@@ -5484,8 +5699,7 @@ impl SetValue for SpinType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum StackTransitionType {
     None,
     Crossfade,
@@ -5516,32 +5730,36 @@ pub enum StackTransitionType {
 
 impl fmt::Display for StackTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StackTransitionType::{}", match *self {
-            StackTransitionType::None => "None",
-            StackTransitionType::Crossfade => "Crossfade",
-            StackTransitionType::SlideRight => "SlideRight",
-            StackTransitionType::SlideLeft => "SlideLeft",
-            StackTransitionType::SlideUp => "SlideUp",
-            StackTransitionType::SlideDown => "SlideDown",
-            StackTransitionType::SlideLeftRight => "SlideLeftRight",
-            StackTransitionType::SlideUpDown => "SlideUpDown",
-            StackTransitionType::OverUp => "OverUp",
-            StackTransitionType::OverDown => "OverDown",
-            StackTransitionType::OverLeft => "OverLeft",
-            StackTransitionType::OverRight => "OverRight",
-            StackTransitionType::UnderUp => "UnderUp",
-            StackTransitionType::UnderDown => "UnderDown",
-            StackTransitionType::UnderLeft => "UnderLeft",
-            StackTransitionType::UnderRight => "UnderRight",
-            StackTransitionType::OverUpDown => "OverUpDown",
-            StackTransitionType::OverDownUp => "OverDownUp",
-            StackTransitionType::OverLeftRight => "OverLeftRight",
-            StackTransitionType::OverRightLeft => "OverRightLeft",
-            StackTransitionType::RotateLeft => "RotateLeft",
-            StackTransitionType::RotateRight => "RotateRight",
-            StackTransitionType::RotateLeftRight => "RotateLeftRight",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "StackTransitionType::{}",
+            match *self {
+                StackTransitionType::None => "None",
+                StackTransitionType::Crossfade => "Crossfade",
+                StackTransitionType::SlideRight => "SlideRight",
+                StackTransitionType::SlideLeft => "SlideLeft",
+                StackTransitionType::SlideUp => "SlideUp",
+                StackTransitionType::SlideDown => "SlideDown",
+                StackTransitionType::SlideLeftRight => "SlideLeftRight",
+                StackTransitionType::SlideUpDown => "SlideUpDown",
+                StackTransitionType::OverUp => "OverUp",
+                StackTransitionType::OverDown => "OverDown",
+                StackTransitionType::OverLeft => "OverLeft",
+                StackTransitionType::OverRight => "OverRight",
+                StackTransitionType::UnderUp => "UnderUp",
+                StackTransitionType::UnderDown => "UnderDown",
+                StackTransitionType::UnderLeft => "UnderLeft",
+                StackTransitionType::UnderRight => "UnderRight",
+                StackTransitionType::OverUpDown => "OverUpDown",
+                StackTransitionType::OverDownUp => "OverDownUp",
+                StackTransitionType::OverLeftRight => "OverLeftRight",
+                StackTransitionType::OverRightLeft => "OverRightLeft",
+                StackTransitionType::RotateLeft => "RotateLeft",
+                StackTransitionType::RotateRight => "RotateRight",
+                StackTransitionType::RotateLeftRight => "RotateLeftRight",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5557,7 +5775,9 @@ impl ToGlib for StackTransitionType {
             StackTransitionType::SlideLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT,
             StackTransitionType::SlideUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_UP,
             StackTransitionType::SlideDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN,
-            StackTransitionType::SlideLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT,
+            StackTransitionType::SlideLeftRight => {
+                gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT
+            }
             StackTransitionType::SlideUpDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN,
             StackTransitionType::OverUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_UP,
             StackTransitionType::OverDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_DOWN,
@@ -5569,12 +5789,18 @@ impl ToGlib for StackTransitionType {
             StackTransitionType::UnderRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT,
             StackTransitionType::OverUpDown => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN,
             StackTransitionType::OverDownUp => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP,
-            StackTransitionType::OverLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT,
-            StackTransitionType::OverRightLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT,
+            StackTransitionType::OverLeftRight => {
+                gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT
+            }
+            StackTransitionType::OverRightLeft => {
+                gtk_sys::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT
+            }
             StackTransitionType::RotateLeft => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT,
             StackTransitionType::RotateRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT,
-            StackTransitionType::RotateLeftRight => gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT,
-            StackTransitionType::__Unknown(value) => value
+            StackTransitionType::RotateLeftRight => {
+                gtk_sys::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT
+            }
+            StackTransitionType::__Unknown(value) => value,
         }
     }
 }
@@ -5636,8 +5862,7 @@ impl SetValue for StackTransitionType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TextBufferTargetInfo {
     BufferContents,
     RichText,
@@ -5648,12 +5873,16 @@ pub enum TextBufferTargetInfo {
 
 impl fmt::Display for TextBufferTargetInfo {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextBufferTargetInfo::{}", match *self {
-            TextBufferTargetInfo::BufferContents => "BufferContents",
-            TextBufferTargetInfo::RichText => "RichText",
-            TextBufferTargetInfo::Text => "Text",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TextBufferTargetInfo::{}",
+            match *self {
+                TextBufferTargetInfo::BufferContents => "BufferContents",
+                TextBufferTargetInfo::RichText => "RichText",
+                TextBufferTargetInfo::Text => "Text",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5663,10 +5892,12 @@ impl ToGlib for TextBufferTargetInfo {
 
     fn to_glib(&self) -> gtk_sys::GtkTextBufferTargetInfo {
         match *self {
-            TextBufferTargetInfo::BufferContents => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS,
+            TextBufferTargetInfo::BufferContents => {
+                gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS
+            }
             TextBufferTargetInfo::RichText => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT,
             TextBufferTargetInfo::Text => gtk_sys::GTK_TEXT_BUFFER_TARGET_INFO_TEXT,
-            TextBufferTargetInfo::__Unknown(value) => value
+            TextBufferTargetInfo::__Unknown(value) => value,
         }
     }
 }
@@ -5708,8 +5939,7 @@ impl SetValue for TextBufferTargetInfo {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TextDirection {
     None,
     Ltr,
@@ -5720,12 +5950,16 @@ pub enum TextDirection {
 
 impl fmt::Display for TextDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextDirection::{}", match *self {
-            TextDirection::None => "None",
-            TextDirection::Ltr => "Ltr",
-            TextDirection::Rtl => "Rtl",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TextDirection::{}",
+            match *self {
+                TextDirection::None => "None",
+                TextDirection::Ltr => "Ltr",
+                TextDirection::Rtl => "Rtl",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5738,7 +5972,7 @@ impl ToGlib for TextDirection {
             TextDirection::None => gtk_sys::GTK_TEXT_DIR_NONE,
             TextDirection::Ltr => gtk_sys::GTK_TEXT_DIR_LTR,
             TextDirection::Rtl => gtk_sys::GTK_TEXT_DIR_RTL,
-            TextDirection::__Unknown(value) => value
+            TextDirection::__Unknown(value) => value,
         }
     }
 }
@@ -5780,8 +6014,7 @@ impl SetValue for TextDirection {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TextExtendSelection {
     Word,
     Line,
@@ -5791,11 +6024,15 @@ pub enum TextExtendSelection {
 
 impl fmt::Display for TextExtendSelection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextExtendSelection::{}", match *self {
-            TextExtendSelection::Word => "Word",
-            TextExtendSelection::Line => "Line",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TextExtendSelection::{}",
+            match *self {
+                TextExtendSelection::Word => "Word",
+                TextExtendSelection::Line => "Line",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5807,7 +6044,7 @@ impl ToGlib for TextExtendSelection {
         match *self {
             TextExtendSelection::Word => gtk_sys::GTK_TEXT_EXTEND_SELECTION_WORD,
             TextExtendSelection::Line => gtk_sys::GTK_TEXT_EXTEND_SELECTION_LINE,
-            TextExtendSelection::__Unknown(value) => value
+            TextExtendSelection::__Unknown(value) => value,
         }
     }
 }
@@ -5848,8 +6085,7 @@ impl SetValue for TextExtendSelection {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TextViewLayer {
     BelowText,
     AboveText,
@@ -5859,11 +6095,15 @@ pub enum TextViewLayer {
 
 impl fmt::Display for TextViewLayer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextViewLayer::{}", match *self {
-            TextViewLayer::BelowText => "BelowText",
-            TextViewLayer::AboveText => "AboveText",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TextViewLayer::{}",
+            match *self {
+                TextViewLayer::BelowText => "BelowText",
+                TextViewLayer::AboveText => "AboveText",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5875,7 +6115,7 @@ impl ToGlib for TextViewLayer {
         match *self {
             TextViewLayer::BelowText => gtk_sys::GTK_TEXT_VIEW_LAYER_BELOW_TEXT,
             TextViewLayer::AboveText => gtk_sys::GTK_TEXT_VIEW_LAYER_ABOVE_TEXT,
-            TextViewLayer::__Unknown(value) => value
+            TextViewLayer::__Unknown(value) => value,
         }
     }
 }
@@ -5916,8 +6156,7 @@ impl SetValue for TextViewLayer {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TextWindowType {
     Private,
     Widget,
@@ -5932,16 +6171,20 @@ pub enum TextWindowType {
 
 impl fmt::Display for TextWindowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextWindowType::{}", match *self {
-            TextWindowType::Private => "Private",
-            TextWindowType::Widget => "Widget",
-            TextWindowType::Text => "Text",
-            TextWindowType::Left => "Left",
-            TextWindowType::Right => "Right",
-            TextWindowType::Top => "Top",
-            TextWindowType::Bottom => "Bottom",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TextWindowType::{}",
+            match *self {
+                TextWindowType::Private => "Private",
+                TextWindowType::Widget => "Widget",
+                TextWindowType::Text => "Text",
+                TextWindowType::Left => "Left",
+                TextWindowType::Right => "Right",
+                TextWindowType::Top => "Top",
+                TextWindowType::Bottom => "Bottom",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -5958,7 +6201,7 @@ impl ToGlib for TextWindowType {
             TextWindowType::Right => gtk_sys::GTK_TEXT_WINDOW_RIGHT,
             TextWindowType::Top => gtk_sys::GTK_TEXT_WINDOW_TOP,
             TextWindowType::Bottom => gtk_sys::GTK_TEXT_WINDOW_BOTTOM,
-            TextWindowType::__Unknown(value) => value
+            TextWindowType::__Unknown(value) => value,
         }
     }
 }
@@ -6004,8 +6247,7 @@ impl SetValue for TextWindowType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum ToolbarStyle {
     Icons,
     Text,
@@ -6017,13 +6259,17 @@ pub enum ToolbarStyle {
 
 impl fmt::Display for ToolbarStyle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ToolbarStyle::{}", match *self {
-            ToolbarStyle::Icons => "Icons",
-            ToolbarStyle::Text => "Text",
-            ToolbarStyle::Both => "Both",
-            ToolbarStyle::BothHoriz => "BothHoriz",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "ToolbarStyle::{}",
+            match *self {
+                ToolbarStyle::Icons => "Icons",
+                ToolbarStyle::Text => "Text",
+                ToolbarStyle::Both => "Both",
+                ToolbarStyle::BothHoriz => "BothHoriz",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6037,7 +6283,7 @@ impl ToGlib for ToolbarStyle {
             ToolbarStyle::Text => gtk_sys::GTK_TOOLBAR_TEXT,
             ToolbarStyle::Both => gtk_sys::GTK_TOOLBAR_BOTH,
             ToolbarStyle::BothHoriz => gtk_sys::GTK_TOOLBAR_BOTH_HORIZ,
-            ToolbarStyle::__Unknown(value) => value
+            ToolbarStyle::__Unknown(value) => value,
         }
     }
 }
@@ -6080,8 +6326,7 @@ impl SetValue for ToolbarStyle {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TreeViewColumnSizing {
     GrowOnly,
     Autosize,
@@ -6092,12 +6337,16 @@ pub enum TreeViewColumnSizing {
 
 impl fmt::Display for TreeViewColumnSizing {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeViewColumnSizing::{}", match *self {
-            TreeViewColumnSizing::GrowOnly => "GrowOnly",
-            TreeViewColumnSizing::Autosize => "Autosize",
-            TreeViewColumnSizing::Fixed => "Fixed",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TreeViewColumnSizing::{}",
+            match *self {
+                TreeViewColumnSizing::GrowOnly => "GrowOnly",
+                TreeViewColumnSizing::Autosize => "Autosize",
+                TreeViewColumnSizing::Fixed => "Fixed",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6110,7 +6359,7 @@ impl ToGlib for TreeViewColumnSizing {
             TreeViewColumnSizing::GrowOnly => gtk_sys::GTK_TREE_VIEW_COLUMN_GROW_ONLY,
             TreeViewColumnSizing::Autosize => gtk_sys::GTK_TREE_VIEW_COLUMN_AUTOSIZE,
             TreeViewColumnSizing::Fixed => gtk_sys::GTK_TREE_VIEW_COLUMN_FIXED,
-            TreeViewColumnSizing::__Unknown(value) => value
+            TreeViewColumnSizing::__Unknown(value) => value,
         }
     }
 }
@@ -6152,8 +6401,7 @@ impl SetValue for TreeViewColumnSizing {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TreeViewDropPosition {
     Before,
     After,
@@ -6165,13 +6413,17 @@ pub enum TreeViewDropPosition {
 
 impl fmt::Display for TreeViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeViewDropPosition::{}", match *self {
-            TreeViewDropPosition::Before => "Before",
-            TreeViewDropPosition::After => "After",
-            TreeViewDropPosition::IntoOrBefore => "IntoOrBefore",
-            TreeViewDropPosition::IntoOrAfter => "IntoOrAfter",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TreeViewDropPosition::{}",
+            match *self {
+                TreeViewDropPosition::Before => "Before",
+                TreeViewDropPosition::After => "After",
+                TreeViewDropPosition::IntoOrBefore => "IntoOrBefore",
+                TreeViewDropPosition::IntoOrAfter => "IntoOrAfter",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6185,7 +6437,7 @@ impl ToGlib for TreeViewDropPosition {
             TreeViewDropPosition::After => gtk_sys::GTK_TREE_VIEW_DROP_AFTER,
             TreeViewDropPosition::IntoOrBefore => gtk_sys::GTK_TREE_VIEW_DROP_INTO_OR_BEFORE,
             TreeViewDropPosition::IntoOrAfter => gtk_sys::GTK_TREE_VIEW_DROP_INTO_OR_AFTER,
-            TreeViewDropPosition::__Unknown(value) => value
+            TreeViewDropPosition::__Unknown(value) => value,
         }
     }
 }
@@ -6228,8 +6480,7 @@ impl SetValue for TreeViewDropPosition {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum TreeViewGridLines {
     None,
     Horizontal,
@@ -6241,13 +6492,17 @@ pub enum TreeViewGridLines {
 
 impl fmt::Display for TreeViewGridLines {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeViewGridLines::{}", match *self {
-            TreeViewGridLines::None => "None",
-            TreeViewGridLines::Horizontal => "Horizontal",
-            TreeViewGridLines::Vertical => "Vertical",
-            TreeViewGridLines::Both => "Both",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "TreeViewGridLines::{}",
+            match *self {
+                TreeViewGridLines::None => "None",
+                TreeViewGridLines::Horizontal => "Horizontal",
+                TreeViewGridLines::Vertical => "Vertical",
+                TreeViewGridLines::Both => "Both",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6261,7 +6516,7 @@ impl ToGlib for TreeViewGridLines {
             TreeViewGridLines::Horizontal => gtk_sys::GTK_TREE_VIEW_GRID_LINES_HORIZONTAL,
             TreeViewGridLines::Vertical => gtk_sys::GTK_TREE_VIEW_GRID_LINES_VERTICAL,
             TreeViewGridLines::Both => gtk_sys::GTK_TREE_VIEW_GRID_LINES_BOTH,
-            TreeViewGridLines::__Unknown(value) => value
+            TreeViewGridLines::__Unknown(value) => value,
         }
     }
 }
@@ -6304,8 +6559,7 @@ impl SetValue for TreeViewGridLines {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum Unit {
     None,
     Points,
@@ -6317,13 +6571,17 @@ pub enum Unit {
 
 impl fmt::Display for Unit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Unit::{}", match *self {
-            Unit::None => "None",
-            Unit::Points => "Points",
-            Unit::Inch => "Inch",
-            Unit::Mm => "Mm",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "Unit::{}",
+            match *self {
+                Unit::None => "None",
+                Unit::Points => "Points",
+                Unit::Inch => "Inch",
+                Unit::Mm => "Mm",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6337,7 +6595,7 @@ impl ToGlib for Unit {
             Unit::Points => gtk_sys::GTK_UNIT_POINTS,
             Unit::Inch => gtk_sys::GTK_UNIT_INCH,
             Unit::Mm => gtk_sys::GTK_UNIT_MM,
-            Unit::__Unknown(value) => value
+            Unit::__Unknown(value) => value,
         }
     }
 }
@@ -6380,8 +6638,7 @@ impl SetValue for Unit {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum WindowPosition {
     None,
     Center,
@@ -6394,14 +6651,18 @@ pub enum WindowPosition {
 
 impl fmt::Display for WindowPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WindowPosition::{}", match *self {
-            WindowPosition::None => "None",
-            WindowPosition::Center => "Center",
-            WindowPosition::Mouse => "Mouse",
-            WindowPosition::CenterAlways => "CenterAlways",
-            WindowPosition::CenterOnParent => "CenterOnParent",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "WindowPosition::{}",
+            match *self {
+                WindowPosition::None => "None",
+                WindowPosition::Center => "Center",
+                WindowPosition::Mouse => "Mouse",
+                WindowPosition::CenterAlways => "CenterAlways",
+                WindowPosition::CenterOnParent => "CenterOnParent",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6416,7 +6677,7 @@ impl ToGlib for WindowPosition {
             WindowPosition::Mouse => gtk_sys::GTK_WIN_POS_MOUSE,
             WindowPosition::CenterAlways => gtk_sys::GTK_WIN_POS_CENTER_ALWAYS,
             WindowPosition::CenterOnParent => gtk_sys::GTK_WIN_POS_CENTER_ON_PARENT,
-            WindowPosition::__Unknown(value) => value
+            WindowPosition::__Unknown(value) => value,
         }
     }
 }
@@ -6460,8 +6721,7 @@ impl SetValue for WindowPosition {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum WindowType {
     Toplevel,
     Popup,
@@ -6471,11 +6731,15 @@ pub enum WindowType {
 
 impl fmt::Display for WindowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WindowType::{}", match *self {
-            WindowType::Toplevel => "Toplevel",
-            WindowType::Popup => "Popup",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "WindowType::{}",
+            match *self {
+                WindowType::Toplevel => "Toplevel",
+                WindowType::Popup => "Popup",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6487,7 +6751,7 @@ impl ToGlib for WindowType {
         match *self {
             WindowType::Toplevel => gtk_sys::GTK_WINDOW_TOPLEVEL,
             WindowType::Popup => gtk_sys::GTK_WINDOW_POPUP,
-            WindowType::__Unknown(value) => value
+            WindowType::__Unknown(value) => value,
         }
     }
 }
@@ -6528,8 +6792,7 @@ impl SetValue for WindowType {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 pub enum WrapMode {
     None,
     Char,
@@ -6541,13 +6804,17 @@ pub enum WrapMode {
 
 impl fmt::Display for WrapMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WrapMode::{}", match *self {
-            WrapMode::None => "None",
-            WrapMode::Char => "Char",
-            WrapMode::Word => "Word",
-            WrapMode::WordChar => "WordChar",
-            _ => "Unknown",
-        })
+        write!(
+            f,
+            "WrapMode::{}",
+            match *self {
+                WrapMode::None => "None",
+                WrapMode::Char => "Char",
+                WrapMode::Word => "Word",
+                WrapMode::WordChar => "WordChar",
+                _ => "Unknown",
+            }
+        )
     }
 }
 
@@ -6561,7 +6828,7 @@ impl ToGlib for WrapMode {
             WrapMode::Char => gtk_sys::GTK_WRAP_CHAR,
             WrapMode::Word => gtk_sys::GTK_WRAP_WORD,
             WrapMode::WordChar => gtk_sys::GTK_WRAP_WORD_CHAR,
-            WrapMode::__Unknown(value) => value
+            WrapMode::__Unknown(value) => value,
         }
     }
 }
@@ -6603,4 +6870,3 @@ impl SetValue for WrapMode {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
-

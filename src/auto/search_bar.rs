@@ -2,6 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
+use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
+use glib::Value;
+use glib_sys;
+use gobject_sys;
+use gtk_sys;
+use std::boxed::Box as Box_;
+use std::fmt;
+use std::mem::transmute;
 use Align;
 use Bin;
 use Buildable;
@@ -10,21 +25,6 @@ use Editable;
 use LayoutManager;
 use Overflow;
 use Widget;
-use gdk;
-use glib::StaticType;
-use glib::ToValue;
-use glib::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::SignalHandlerId;
-use glib::signal::connect_raw;
-use glib::translate::*;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib_wrapper! {
     pub struct SearchBar(Object<gtk_sys::GtkSearchBar, gtk_sys::GtkSearchBarClass, SearchBarClass>) @extends Bin, Container, Widget, @implements Buildable;
@@ -37,9 +37,7 @@ glib_wrapper! {
 impl SearchBar {
     pub fn new() -> SearchBar {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_search_bar_new()).unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_search_bar_new()).unsafe_cast() }
     }
 }
 
@@ -225,7 +223,10 @@ impl SearchBarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(SearchBar::static_type(), &properties).expect("object new").downcast().expect("downcast")
+        glib::Object::new(SearchBar::static_type(), &properties)
+            .expect("object new")
+            .downcast()
+            .expect("downcast")
     }
 
     pub fn search_mode_enabled(mut self, search_mode_enabled: bool) -> Self {
@@ -415,93 +416,151 @@ pub trait SearchBarExt: 'static {
 
     fn set_property_search_mode_enabled(&self, search_mode_enabled: bool);
 
-    fn connect_property_search_mode_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_search_mode_enabled_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
-    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<SearchBar>> SearchBarExt for O {
     fn connect_entry<P: IsA<Editable>>(&self, entry: &P) {
         unsafe {
-            gtk_sys::gtk_search_bar_connect_entry(self.as_ref().to_glib_none().0, entry.as_ref().to_glib_none().0);
+            gtk_sys::gtk_search_bar_connect_entry(
+                self.as_ref().to_glib_none().0,
+                entry.as_ref().to_glib_none().0,
+            );
         }
     }
 
     fn get_key_capture_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_search_bar_get_key_capture_widget(self.as_ref().to_glib_none().0))
+            from_glib_none(gtk_sys::gtk_search_bar_get_key_capture_widget(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_search_mode(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_search_bar_get_search_mode(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_search_bar_get_search_mode(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn get_show_close_button(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_search_bar_get_show_close_button(self.as_ref().to_glib_none().0))
+            from_glib(gtk_sys::gtk_search_bar_get_show_close_button(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     fn set_key_capture_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_key_capture_widget(self.as_ref().to_glib_none().0, widget.map(|p| p.as_ref()).to_glib_none().0);
+            gtk_sys::gtk_search_bar_set_key_capture_widget(
+                self.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
     fn set_search_mode(&self, search_mode: bool) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_search_mode(self.as_ref().to_glib_none().0, search_mode.to_glib());
+            gtk_sys::gtk_search_bar_set_search_mode(
+                self.as_ref().to_glib_none().0,
+                search_mode.to_glib(),
+            );
         }
     }
 
     fn set_show_close_button(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_show_close_button(self.as_ref().to_glib_none().0, visible.to_glib());
+            gtk_sys::gtk_search_bar_set_show_close_button(
+                self.as_ref().to_glib_none().0,
+                visible.to_glib(),
+            );
         }
     }
 
     fn get_property_search_mode_enabled(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"search-mode-enabled\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"search-mode-enabled\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
             value.get().unwrap()
         }
     }
 
     fn set_property_search_mode_enabled(&self, search_mode_enabled: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"search-mode-enabled\0".as_ptr() as *const _, Value::from(&search_mode_enabled).to_glib_none().0);
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"search-mode-enabled\0".as_ptr() as *const _,
+                Value::from(&search_mode_enabled).to_glib_none().0,
+            );
         }
     }
 
-    fn connect_property_search_mode_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_search_mode_enabled_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<SearchBar>
+    fn connect_property_search_mode_enabled_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_mode_enabled_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkSearchBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<SearchBar>,
         {
             let f: &F = &*(f as *const F);
             f(&SearchBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::search-mode-enabled\0".as_ptr() as *const _,
-                Some(transmute(notify_search_mode_enabled_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::search-mode-enabled\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_search_mode_enabled_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
-    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_close_button_trampoline<P, F: Fn(&P) + 'static>(this: *mut gtk_sys::GtkSearchBar, _param_spec: glib_sys::gpointer, f: glib_sys::gpointer)
-            where P: IsA<SearchBar>
+    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_close_button_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkSearchBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<SearchBar>,
         {
             let f: &F = &*(f as *const F);
             f(&SearchBar::from_glib_borrow(this).unsafe_cast())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::show-close-button\0".as_ptr() as *const _,
-                Some(transmute(notify_show_close_button_trampoline::<Self, F> as usize)), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-close-button\0".as_ptr() as *const _,
+                Some(transmute(
+                    notify_show_close_button_trampoline::<Self, F> as usize,
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
