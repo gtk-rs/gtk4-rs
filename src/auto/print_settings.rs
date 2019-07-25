@@ -247,10 +247,13 @@ impl PrintSettings {
 
     pub fn get_page_ranges(&self) -> Vec<PageRange> {
         unsafe {
-            let mut num_ranges = mem::uninitialized();
+            let mut num_ranges = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
-                gtk_sys::gtk_print_settings_get_page_ranges(self.to_glib_none().0, &mut num_ranges),
-                num_ranges as usize,
+                gtk_sys::gtk_print_settings_get_page_ranges(
+                    self.to_glib_none().0,
+                    num_ranges.as_mut_ptr(),
+                ),
+                num_ranges.assume_init() as usize,
             );
             ret
         }

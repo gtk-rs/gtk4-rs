@@ -385,14 +385,16 @@ pub trait FixedExt: 'static {
 impl<O: IsA<Fixed>> FixedExt for O {
     fn get_child_position<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
         unsafe {
-            let mut x = mem::uninitialized();
-            let mut y = mem::uninitialized();
+            let mut x = mem::MaybeUninit::uninit();
+            let mut y = mem::MaybeUninit::uninit();
             gtk_sys::gtk_fixed_get_child_position(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                &mut x,
-                &mut y,
+                x.as_mut_ptr(),
+                y.as_mut_ptr(),
             );
+            let x = x.assume_init();
+            let y = y.assume_init();
             (x, y)
         }
     }

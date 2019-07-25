@@ -40,12 +40,13 @@ impl GestureStylus {
 
     pub fn get_axis(&self, axis: gdk::AxisUse) -> Option<f64> {
         unsafe {
-            let mut value = mem::uninitialized();
+            let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_gesture_stylus_get_axis(
                 self.to_glib_none().0,
                 axis.to_glib(),
-                &mut value,
+                value.as_mut_ptr(),
             ));
+            let value = value.assume_init();
             if ret {
                 Some(value)
             } else {
@@ -57,16 +58,16 @@ impl GestureStylus {
     pub fn get_backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
         unsafe {
             let mut backlog = ptr::null_mut();
-            let mut n_elems = mem::uninitialized();
+            let mut n_elems = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_gesture_stylus_get_backlog(
                 self.to_glib_none().0,
                 &mut backlog,
-                &mut n_elems,
+                n_elems.as_mut_ptr(),
             ));
             if ret {
                 Some(FromGlibContainer::from_glib_full_num(
                     backlog,
-                    n_elems as usize,
+                    n_elems.assume_init() as usize,
                 ))
             } else {
                 None

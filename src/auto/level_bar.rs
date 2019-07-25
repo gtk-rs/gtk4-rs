@@ -514,12 +514,13 @@ impl<O: IsA<LevelBar>> LevelBarExt for O {
 
     fn get_offset_value(&self, name: Option<&str>) -> Option<f64> {
         unsafe {
-            let mut value = mem::uninitialized();
+            let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_level_bar_get_offset_value(
                 self.as_ref().to_glib_none().0,
                 name.to_glib_none().0,
-                &mut value,
+                value.as_mut_ptr(),
             ));
+            let value = value.assume_init();
             if ret {
                 Some(value)
             } else {

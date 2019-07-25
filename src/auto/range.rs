@@ -568,13 +568,15 @@ impl<O: IsA<Range>> RangeExt for O {
 
     fn get_slider_range(&self) -> (i32, i32) {
         unsafe {
-            let mut slider_start = mem::uninitialized();
-            let mut slider_end = mem::uninitialized();
+            let mut slider_start = mem::MaybeUninit::uninit();
+            let mut slider_end = mem::MaybeUninit::uninit();
             gtk_sys::gtk_range_get_slider_range(
                 self.as_ref().to_glib_none().0,
-                &mut slider_start,
-                &mut slider_end,
+                slider_start.as_mut_ptr(),
+                slider_end.as_mut_ptr(),
             );
+            let slider_start = slider_start.assume_init();
+            let slider_end = slider_end.assume_init();
             (slider_start, slider_end)
         }
     }

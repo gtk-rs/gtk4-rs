@@ -402,14 +402,16 @@ pub trait TreeViewColumnExt: 'static {
 impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
     fn cell_get_position<P: IsA<CellRenderer>>(&self, cell_renderer: &P) -> Option<(i32, i32)> {
         unsafe {
-            let mut x_offset = mem::uninitialized();
-            let mut width = mem::uninitialized();
+            let mut x_offset = mem::MaybeUninit::uninit();
+            let mut width = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_tree_view_column_cell_get_position(
                 self.as_ref().to_glib_none().0,
                 cell_renderer.as_ref().to_glib_none().0,
-                &mut x_offset,
-                &mut width,
+                x_offset.as_mut_ptr(),
+                width.as_mut_ptr(),
             ));
+            let x_offset = x_offset.assume_init();
+            let width = width.assume_init();
             if ret {
                 Some((x_offset, width))
             } else {
@@ -420,18 +422,22 @@ impl<O: IsA<TreeViewColumn>> TreeViewColumnExt for O {
 
     fn cell_get_size(&self, cell_area: Option<&gdk::Rectangle>) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut x_offset = mem::uninitialized();
-            let mut y_offset = mem::uninitialized();
-            let mut width = mem::uninitialized();
-            let mut height = mem::uninitialized();
+            let mut x_offset = mem::MaybeUninit::uninit();
+            let mut y_offset = mem::MaybeUninit::uninit();
+            let mut width = mem::MaybeUninit::uninit();
+            let mut height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_column_cell_get_size(
                 self.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
-                &mut x_offset,
-                &mut y_offset,
-                &mut width,
-                &mut height,
+                x_offset.as_mut_ptr(),
+                y_offset.as_mut_ptr(),
+                width.as_mut_ptr(),
+                height.as_mut_ptr(),
             );
+            let x_offset = x_offset.assume_init();
+            let y_offset = y_offset.assume_init();
+            let width = width.assume_init();
+            let height = height.assume_init();
             (x_offset, y_offset, width, height)
         }
     }

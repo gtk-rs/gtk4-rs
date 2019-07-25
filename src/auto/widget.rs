@@ -1565,13 +1565,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
 
     fn get_size_request(&self) -> (i32, i32) {
         unsafe {
-            let mut width = mem::uninitialized();
-            let mut height = mem::uninitialized();
+            let mut width = mem::MaybeUninit::uninit();
+            let mut height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_widget_get_size_request(
                 self.as_ref().to_glib_none().0,
-                &mut width,
-                &mut height,
+                width.as_mut_ptr(),
+                height.as_mut_ptr(),
             );
+            let width = width.assume_init();
+            let height = height.assume_init();
             (width, height)
         }
     }
@@ -1885,19 +1887,23 @@ impl<O: IsA<Widget>> WidgetExt for O {
 
     fn measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut minimum = mem::uninitialized();
-            let mut natural = mem::uninitialized();
-            let mut minimum_baseline = mem::uninitialized();
-            let mut natural_baseline = mem::uninitialized();
+            let mut minimum = mem::MaybeUninit::uninit();
+            let mut natural = mem::MaybeUninit::uninit();
+            let mut minimum_baseline = mem::MaybeUninit::uninit();
+            let mut natural_baseline = mem::MaybeUninit::uninit();
             gtk_sys::gtk_widget_measure(
                 self.as_ref().to_glib_none().0,
                 orientation.to_glib(),
                 for_size,
-                &mut minimum,
-                &mut natural,
-                &mut minimum_baseline,
-                &mut natural_baseline,
+                minimum.as_mut_ptr(),
+                natural.as_mut_ptr(),
+                minimum_baseline.as_mut_ptr(),
+                natural_baseline.as_mut_ptr(),
             );
+            let minimum = minimum.assume_init();
+            let natural = natural.assume_init();
+            let minimum_baseline = minimum_baseline.assume_init();
+            let natural_baseline = natural_baseline.assume_init();
             (minimum, natural, minimum_baseline, natural_baseline)
         }
     }
@@ -2341,16 +2347,18 @@ impl<O: IsA<Widget>> WidgetExt for O {
         src_y: i32,
     ) -> Option<(i32, i32)> {
         unsafe {
-            let mut dest_x = mem::uninitialized();
-            let mut dest_y = mem::uninitialized();
+            let mut dest_x = mem::MaybeUninit::uninit();
+            let mut dest_y = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_widget_translate_coordinates(
                 self.as_ref().to_glib_none().0,
                 dest_widget.as_ref().to_glib_none().0,
                 src_x,
                 src_y,
-                &mut dest_x,
-                &mut dest_y,
+                dest_x.as_mut_ptr(),
+                dest_y.as_mut_ptr(),
             ));
+            let dest_x = dest_x.assume_init();
+            let dest_y = dest_y.assume_init();
             if ret {
                 Some((dest_x, dest_y))
             } else {

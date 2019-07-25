@@ -66,16 +66,16 @@ impl SelectionData {
     pub fn get_targets(&self) -> Option<Vec<gdk::Atom>> {
         unsafe {
             let mut targets = ptr::null_mut();
-            let mut n_atoms = mem::uninitialized();
+            let mut n_atoms = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_selection_data_get_targets(
                 self.to_glib_none().0,
                 &mut targets,
-                &mut n_atoms,
+                n_atoms.as_mut_ptr(),
             ));
             if ret {
                 Some(FromGlibContainer::from_glib_container_num(
                     targets,
-                    n_atoms as usize,
+                    n_atoms.assume_init() as usize,
                 ))
             } else {
                 None

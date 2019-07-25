@@ -759,13 +759,15 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
 
     fn get_policy(&self) -> (PolicyType, PolicyType) {
         unsafe {
-            let mut hscrollbar_policy = mem::uninitialized();
-            let mut vscrollbar_policy = mem::uninitialized();
+            let mut hscrollbar_policy = mem::MaybeUninit::uninit();
+            let mut vscrollbar_policy = mem::MaybeUninit::uninit();
             gtk_sys::gtk_scrolled_window_get_policy(
                 self.as_ref().to_glib_none().0,
-                &mut hscrollbar_policy,
-                &mut vscrollbar_policy,
+                hscrollbar_policy.as_mut_ptr(),
+                vscrollbar_policy.as_mut_ptr(),
             );
+            let hscrollbar_policy = hscrollbar_policy.assume_init();
+            let vscrollbar_policy = vscrollbar_policy.assume_init();
             (from_glib(hscrollbar_policy), from_glib(vscrollbar_policy))
         }
     }

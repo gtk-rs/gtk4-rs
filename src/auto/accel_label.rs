@@ -458,13 +458,15 @@ pub trait AccelLabelExt: 'static {
 impl<O: IsA<AccelLabel>> AccelLabelExt for O {
     fn get_accel(&self) -> (u32, gdk::ModifierType) {
         unsafe {
-            let mut accelerator_key = mem::uninitialized();
-            let mut accelerator_mods = mem::uninitialized();
+            let mut accelerator_key = mem::MaybeUninit::uninit();
+            let mut accelerator_mods = mem::MaybeUninit::uninit();
             gtk_sys::gtk_accel_label_get_accel(
                 self.as_ref().to_glib_none().0,
-                &mut accelerator_key,
-                &mut accelerator_mods,
+                accelerator_key.as_mut_ptr(),
+                accelerator_mods.as_mut_ptr(),
             );
+            let accelerator_key = accelerator_key.assume_init();
+            let accelerator_mods = accelerator_mods.assume_init();
             (accelerator_key, from_glib(accelerator_mods))
         }
     }

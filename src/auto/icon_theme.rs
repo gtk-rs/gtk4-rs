@@ -207,13 +207,13 @@ impl<O: IsA<IconTheme>> IconThemeExt for O {
     fn get_search_path(&self) -> Vec<std::path::PathBuf> {
         unsafe {
             let mut path = ptr::null_mut();
-            let mut n_elements = mem::uninitialized();
+            let mut n_elements = mem::MaybeUninit::uninit();
             gtk_sys::gtk_icon_theme_get_search_path(
                 self.as_ref().to_glib_none().0,
                 &mut path,
-                &mut n_elements,
+                n_elements.as_mut_ptr(),
             );
-            FromGlibContainer::from_glib_full_num(path, n_elements as usize)
+            FromGlibContainer::from_glib_full_num(path, n_elements.assume_init() as usize)
         }
     }
 

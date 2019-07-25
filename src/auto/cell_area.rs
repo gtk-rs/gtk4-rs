@@ -630,15 +630,17 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         widget: &Q,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::uninitialized();
-            let mut natural_height = mem::uninitialized();
+            let mut minimum_height = mem::MaybeUninit::uninit();
+            let mut natural_height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_cell_area_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                &mut minimum_height,
-                &mut natural_height,
+                minimum_height.as_mut_ptr(),
+                natural_height.as_mut_ptr(),
             );
+            let minimum_height = minimum_height.assume_init();
+            let natural_height = natural_height.assume_init();
             (minimum_height, natural_height)
         }
     }
@@ -650,16 +652,18 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         width: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::uninitialized();
-            let mut natural_height = mem::uninitialized();
+            let mut minimum_height = mem::MaybeUninit::uninit();
+            let mut natural_height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_cell_area_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 width,
-                &mut minimum_height,
-                &mut natural_height,
+                minimum_height.as_mut_ptr(),
+                natural_height.as_mut_ptr(),
             );
+            let minimum_height = minimum_height.assume_init();
+            let natural_height = natural_height.assume_init();
             (minimum_height, natural_height)
         }
     }
@@ -670,15 +674,17 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         widget: &Q,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::uninitialized();
-            let mut natural_width = mem::uninitialized();
+            let mut minimum_width = mem::MaybeUninit::uninit();
+            let mut natural_width = mem::MaybeUninit::uninit();
             gtk_sys::gtk_cell_area_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                &mut minimum_width,
-                &mut natural_width,
+                minimum_width.as_mut_ptr(),
+                natural_width.as_mut_ptr(),
             );
+            let minimum_width = minimum_width.assume_init();
+            let natural_width = natural_width.assume_init();
             (minimum_width, natural_width)
         }
     }
@@ -690,16 +696,18 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         height: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::uninitialized();
-            let mut natural_width = mem::uninitialized();
+            let mut minimum_width = mem::MaybeUninit::uninit();
+            let mut natural_width = mem::MaybeUninit::uninit();
             gtk_sys::gtk_cell_area_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 height,
-                &mut minimum_width,
-                &mut natural_width,
+                minimum_width.as_mut_ptr(),
+                natural_width.as_mut_ptr(),
             );
+            let minimum_width = minimum_width.assume_init();
+            let natural_width = natural_width.assume_init();
             (minimum_width, natural_width)
         }
     }
@@ -791,17 +799,19 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         for_size: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_size = mem::uninitialized();
-            let mut natural_size = mem::uninitialized();
+            let mut minimum_size = mem::MaybeUninit::uninit();
+            let mut natural_size = mem::MaybeUninit::uninit();
             gtk_sys::gtk_cell_area_request_renderer(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 orientation.to_glib(),
                 widget.as_ref().to_glib_none().0,
                 for_size,
-                &mut minimum_size,
-                &mut natural_size,
+                minimum_size.as_mut_ptr(),
+                natural_size.as_mut_ptr(),
             );
+            let minimum_size = minimum_size.assume_init();
+            let natural_size = natural_size.assume_init();
             (minimum_size, natural_size)
         }
     }

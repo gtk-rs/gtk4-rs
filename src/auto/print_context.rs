@@ -53,17 +53,21 @@ impl PrintContext {
 
     pub fn get_hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
         unsafe {
-            let mut top = mem::uninitialized();
-            let mut bottom = mem::uninitialized();
-            let mut left = mem::uninitialized();
-            let mut right = mem::uninitialized();
+            let mut top = mem::MaybeUninit::uninit();
+            let mut bottom = mem::MaybeUninit::uninit();
+            let mut left = mem::MaybeUninit::uninit();
+            let mut right = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_print_context_get_hard_margins(
                 self.to_glib_none().0,
-                &mut top,
-                &mut bottom,
-                &mut left,
-                &mut right,
+                top.as_mut_ptr(),
+                bottom.as_mut_ptr(),
+                left.as_mut_ptr(),
+                right.as_mut_ptr(),
             ));
+            let top = top.assume_init();
+            let bottom = bottom.assume_init();
+            let left = left.assume_init();
+            let right = right.assume_init();
             if ret {
                 Some((top, bottom, left, right))
             } else {

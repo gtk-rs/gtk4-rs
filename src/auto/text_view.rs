@@ -981,16 +981,18 @@ impl<O: IsA<TextView>> TextViewExt for O {
         buffer_y: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut window_x = mem::uninitialized();
-            let mut window_y = mem::uninitialized();
+            let mut window_x = mem::MaybeUninit::uninit();
+            let mut window_y = mem::MaybeUninit::uninit();
             gtk_sys::gtk_text_view_buffer_to_surface_coords(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
                 buffer_x,
                 buffer_y,
-                &mut window_x,
-                &mut window_y,
+                window_x.as_mut_ptr(),
+                window_y.as_mut_ptr(),
             );
+            let window_x = window_x.assume_init();
+            let window_y = window_y.assume_init();
             (window_x, window_y)
         }
     }
@@ -1112,14 +1114,15 @@ impl<O: IsA<TextView>> TextViewExt for O {
     fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)> {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            let mut trailing = mem::uninitialized();
+            let mut trailing = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_text_view_get_iter_at_position(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
-                &mut trailing,
+                trailing.as_mut_ptr(),
                 x,
                 y,
             ));
+            let trailing = trailing.assume_init();
             if ret {
                 Some((iter, trailing))
             } else {
@@ -1155,27 +1158,30 @@ impl<O: IsA<TextView>> TextViewExt for O {
     fn get_line_at_y(&self, y: i32) -> (TextIter, i32) {
         unsafe {
             let mut target_iter = TextIter::uninitialized();
-            let mut line_top = mem::uninitialized();
+            let mut line_top = mem::MaybeUninit::uninit();
             gtk_sys::gtk_text_view_get_line_at_y(
                 self.as_ref().to_glib_none().0,
                 target_iter.to_glib_none_mut().0,
                 y,
-                &mut line_top,
+                line_top.as_mut_ptr(),
             );
+            let line_top = line_top.assume_init();
             (target_iter, line_top)
         }
     }
 
     fn get_line_yrange(&self, iter: &TextIter) -> (i32, i32) {
         unsafe {
-            let mut y = mem::uninitialized();
-            let mut height = mem::uninitialized();
+            let mut y = mem::MaybeUninit::uninit();
+            let mut height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_text_view_get_line_yrange(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none().0,
-                &mut y,
-                &mut height,
+                y.as_mut_ptr(),
+                height.as_mut_ptr(),
             );
+            let y = y.assume_init();
+            let height = height.assume_init();
             (y, height)
         }
     }
@@ -1522,16 +1528,18 @@ impl<O: IsA<TextView>> TextViewExt for O {
         window_y: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut buffer_x = mem::uninitialized();
-            let mut buffer_y = mem::uninitialized();
+            let mut buffer_x = mem::MaybeUninit::uninit();
+            let mut buffer_y = mem::MaybeUninit::uninit();
             gtk_sys::gtk_text_view_window_to_buffer_coords(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
                 window_x,
                 window_y,
-                &mut buffer_x,
-                &mut buffer_y,
+                buffer_x.as_mut_ptr(),
+                buffer_y.as_mut_ptr(),
             );
+            let buffer_x = buffer_x.assume_init();
+            let buffer_y = buffer_y.assume_init();
             (buffer_x, buffer_y)
         }
     }

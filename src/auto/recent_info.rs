@@ -54,15 +54,17 @@ impl RecentInfo {
     pub fn get_application_info(&self, app_name: &str) -> Option<(GString, u32, libc::c_long)> {
         unsafe {
             let mut app_exec = ptr::null();
-            let mut count = mem::uninitialized();
-            let mut time_ = mem::uninitialized();
+            let mut count = mem::MaybeUninit::uninit();
+            let mut time_ = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_recent_info_get_application_info(
                 self.to_glib_none().0,
                 app_name.to_glib_none().0,
                 &mut app_exec,
-                &mut count,
-                &mut time_,
+                count.as_mut_ptr(),
+                time_.as_mut_ptr(),
             ));
+            let count = count.assume_init();
+            let time_ = time_.assume_init();
             if ret {
                 Some((from_glib_none(app_exec), count, time_))
             } else {
@@ -73,10 +75,13 @@ impl RecentInfo {
 
     pub fn get_applications(&self) -> Vec<GString> {
         unsafe {
-            let mut length = mem::uninitialized();
+            let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
-                gtk_sys::gtk_recent_info_get_applications(self.to_glib_none().0, &mut length),
-                length as usize,
+                gtk_sys::gtk_recent_info_get_applications(
+                    self.to_glib_none().0,
+                    length.as_mut_ptr(),
+                ),
+                length.assume_init() as usize,
             );
             ret
         }
@@ -104,10 +109,10 @@ impl RecentInfo {
 
     pub fn get_groups(&self) -> Vec<GString> {
         unsafe {
-            let mut length = mem::uninitialized();
+            let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
-                gtk_sys::gtk_recent_info_get_groups(self.to_glib_none().0, &mut length),
-                length as usize,
+                gtk_sys::gtk_recent_info_get_groups(self.to_glib_none().0, length.as_mut_ptr()),
+                length.assume_init() as usize,
             );
             ret
         }

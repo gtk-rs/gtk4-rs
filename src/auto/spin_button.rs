@@ -587,13 +587,15 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
 
     fn get_increments(&self) -> (f64, f64) {
         unsafe {
-            let mut step = mem::uninitialized();
-            let mut page = mem::uninitialized();
+            let mut step = mem::MaybeUninit::uninit();
+            let mut page = mem::MaybeUninit::uninit();
             gtk_sys::gtk_spin_button_get_increments(
                 self.as_ref().to_glib_none().0,
-                &mut step,
-                &mut page,
+                step.as_mut_ptr(),
+                page.as_mut_ptr(),
             );
+            let step = step.assume_init();
+            let page = page.assume_init();
             (step, page)
         }
     }
@@ -608,9 +610,15 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
 
     fn get_range(&self) -> (f64, f64) {
         unsafe {
-            let mut min = mem::uninitialized();
-            let mut max = mem::uninitialized();
-            gtk_sys::gtk_spin_button_get_range(self.as_ref().to_glib_none().0, &mut min, &mut max);
+            let mut min = mem::MaybeUninit::uninit();
+            let mut max = mem::MaybeUninit::uninit();
+            gtk_sys::gtk_spin_button_get_range(
+                self.as_ref().to_glib_none().0,
+                min.as_mut_ptr(),
+                max.as_mut_ptr(),
+            );
+            let min = min.assume_init();
+            let max = max.assume_init();
             (min, max)
         }
     }

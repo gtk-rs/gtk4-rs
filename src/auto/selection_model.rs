@@ -60,16 +60,19 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
 
     fn query_range(&self, position: u32) -> (u32, u32, bool) {
         unsafe {
-            let mut start_range = mem::uninitialized();
-            let mut n_items = mem::uninitialized();
-            let mut selected = mem::uninitialized();
+            let mut start_range = mem::MaybeUninit::uninit();
+            let mut n_items = mem::MaybeUninit::uninit();
+            let mut selected = mem::MaybeUninit::uninit();
             gtk_sys::gtk_selection_model_query_range(
                 self.as_ref().to_glib_none().0,
                 position,
-                &mut start_range,
-                &mut n_items,
-                &mut selected,
+                start_range.as_mut_ptr(),
+                n_items.as_mut_ptr(),
+                selected.as_mut_ptr(),
             );
+            let start_range = start_range.assume_init();
+            let n_items = n_items.assume_init();
+            let selected = selected.assume_init();
             (start_range, n_items, from_glib(selected))
         }
     }

@@ -77,13 +77,13 @@ impl TreePath {
 
     pub fn get_indices_with_depth(&mut self) -> Vec<i32> {
         unsafe {
-            let mut depth = mem::uninitialized();
+            let mut depth = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 gtk_sys::gtk_tree_path_get_indices_with_depth(
                     self.to_glib_none_mut().0,
-                    &mut depth,
+                    depth.as_mut_ptr(),
                 ),
-                depth as usize,
+                depth.assume_init() as usize,
             );
             ret
         }

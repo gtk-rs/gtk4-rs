@@ -599,15 +599,18 @@ impl<O: IsA<Calendar>> CalendarExt for O {
 
     fn get_date(&self) -> (u32, u32, u32) {
         unsafe {
-            let mut year = mem::uninitialized();
-            let mut month = mem::uninitialized();
-            let mut day = mem::uninitialized();
+            let mut year = mem::MaybeUninit::uninit();
+            let mut month = mem::MaybeUninit::uninit();
+            let mut day = mem::MaybeUninit::uninit();
             gtk_sys::gtk_calendar_get_date(
                 self.as_ref().to_glib_none().0,
-                &mut year,
-                &mut month,
-                &mut day,
+                year.as_mut_ptr(),
+                month.as_mut_ptr(),
+                day.as_mut_ptr(),
             );
+            let year = year.assume_init();
+            let month = month.assume_init();
+            let day = day.assume_init();
             (year, month, day)
         }
     }

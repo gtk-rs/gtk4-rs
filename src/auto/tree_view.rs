@@ -1029,90 +1029,102 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn convert_bin_window_to_tree_coords(&self, bx: i32, by: i32) -> (i32, i32) {
         unsafe {
-            let mut tx = mem::uninitialized();
-            let mut ty = mem::uninitialized();
+            let mut tx = mem::MaybeUninit::uninit();
+            let mut ty = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_bin_window_to_tree_coords(
                 self.as_ref().to_glib_none().0,
                 bx,
                 by,
-                &mut tx,
-                &mut ty,
+                tx.as_mut_ptr(),
+                ty.as_mut_ptr(),
             );
+            let tx = tx.assume_init();
+            let ty = ty.assume_init();
             (tx, ty)
         }
     }
 
     fn convert_bin_window_to_widget_coords(&self, bx: i32, by: i32) -> (i32, i32) {
         unsafe {
-            let mut wx = mem::uninitialized();
-            let mut wy = mem::uninitialized();
+            let mut wx = mem::MaybeUninit::uninit();
+            let mut wy = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_bin_window_to_widget_coords(
                 self.as_ref().to_glib_none().0,
                 bx,
                 by,
-                &mut wx,
-                &mut wy,
+                wx.as_mut_ptr(),
+                wy.as_mut_ptr(),
             );
+            let wx = wx.assume_init();
+            let wy = wy.assume_init();
             (wx, wy)
         }
     }
 
     fn convert_tree_to_bin_window_coords(&self, tx: i32, ty: i32) -> (i32, i32) {
         unsafe {
-            let mut bx = mem::uninitialized();
-            let mut by = mem::uninitialized();
+            let mut bx = mem::MaybeUninit::uninit();
+            let mut by = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_tree_to_bin_window_coords(
                 self.as_ref().to_glib_none().0,
                 tx,
                 ty,
-                &mut bx,
-                &mut by,
+                bx.as_mut_ptr(),
+                by.as_mut_ptr(),
             );
+            let bx = bx.assume_init();
+            let by = by.assume_init();
             (bx, by)
         }
     }
 
     fn convert_tree_to_widget_coords(&self, tx: i32, ty: i32) -> (i32, i32) {
         unsafe {
-            let mut wx = mem::uninitialized();
-            let mut wy = mem::uninitialized();
+            let mut wx = mem::MaybeUninit::uninit();
+            let mut wy = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_tree_to_widget_coords(
                 self.as_ref().to_glib_none().0,
                 tx,
                 ty,
-                &mut wx,
-                &mut wy,
+                wx.as_mut_ptr(),
+                wy.as_mut_ptr(),
             );
+            let wx = wx.assume_init();
+            let wy = wy.assume_init();
             (wx, wy)
         }
     }
 
     fn convert_widget_to_bin_window_coords(&self, wx: i32, wy: i32) -> (i32, i32) {
         unsafe {
-            let mut bx = mem::uninitialized();
-            let mut by = mem::uninitialized();
+            let mut bx = mem::MaybeUninit::uninit();
+            let mut by = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_widget_to_bin_window_coords(
                 self.as_ref().to_glib_none().0,
                 wx,
                 wy,
-                &mut bx,
-                &mut by,
+                bx.as_mut_ptr(),
+                by.as_mut_ptr(),
             );
+            let bx = bx.assume_init();
+            let by = by.assume_init();
             (bx, by)
         }
     }
 
     fn convert_widget_to_tree_coords(&self, wx: i32, wy: i32) -> (i32, i32) {
         unsafe {
-            let mut tx = mem::uninitialized();
-            let mut ty = mem::uninitialized();
+            let mut tx = mem::MaybeUninit::uninit();
+            let mut ty = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_convert_widget_to_tree_coords(
                 self.as_ref().to_glib_none().0,
                 wx,
                 wy,
-                &mut tx,
-                &mut ty,
+                tx.as_mut_ptr(),
+                ty.as_mut_ptr(),
             );
+            let tx = tx.assume_init();
+            let ty = ty.assume_init();
             (tx, ty)
         }
     }
@@ -1256,14 +1268,15 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     ) -> Option<(Option<TreePath>, TreeViewDropPosition)> {
         unsafe {
             let mut path = ptr::null_mut();
-            let mut pos = mem::uninitialized();
+            let mut pos = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_tree_view_get_dest_row_at_pos(
                 self.as_ref().to_glib_none().0,
                 drag_x,
                 drag_y,
                 &mut path,
-                &mut pos,
+                pos.as_mut_ptr(),
             ));
+            let pos = pos.assume_init();
             if ret {
                 Some((from_glib_full(path), from_glib(pos)))
             } else {
@@ -1275,12 +1288,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn get_drag_dest_row(&self) -> (Option<TreePath>, TreeViewDropPosition) {
         unsafe {
             let mut path = ptr::null_mut();
-            let mut pos = mem::uninitialized();
+            let mut pos = mem::MaybeUninit::uninit();
             gtk_sys::gtk_tree_view_get_drag_dest_row(
                 self.as_ref().to_glib_none().0,
                 &mut path,
-                &mut pos,
+                pos.as_mut_ptr(),
             );
+            let pos = pos.assume_init();
             (from_glib_full(path), from_glib(pos))
         }
     }
@@ -1381,17 +1395,19 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut column = ptr::null_mut();
-            let mut cell_x = mem::uninitialized();
-            let mut cell_y = mem::uninitialized();
+            let mut cell_x = mem::MaybeUninit::uninit();
+            let mut cell_y = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_tree_view_get_path_at_pos(
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
                 &mut path,
                 &mut column,
-                &mut cell_x,
-                &mut cell_y,
+                cell_x.as_mut_ptr(),
+                cell_y.as_mut_ptr(),
             ));
+            let cell_x = cell_x.assume_init();
+            let cell_y = cell_y.assume_init();
             if ret {
                 Some((from_glib_full(path), from_glib_none(column), cell_x, cell_y))
             } else {
@@ -1589,17 +1605,19 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut column = ptr::null_mut();
-            let mut cell_x = mem::uninitialized();
-            let mut cell_y = mem::uninitialized();
+            let mut cell_x = mem::MaybeUninit::uninit();
+            let mut cell_y = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_tree_view_is_blank_at_pos(
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
                 &mut path,
                 &mut column,
-                &mut cell_x,
-                &mut cell_y,
+                cell_x.as_mut_ptr(),
+                cell_y.as_mut_ptr(),
             ));
+            let cell_x = cell_x.assume_init();
+            let cell_y = cell_y.assume_init();
             if ret {
                 Some((from_glib_full(path), from_glib_none(column), cell_x, cell_y))
             } else {

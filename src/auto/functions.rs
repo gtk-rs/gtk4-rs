@@ -118,13 +118,15 @@ pub fn accelerator_name_with_keycode(
 pub fn accelerator_parse(accelerator: &str) -> (u32, gdk::ModifierType) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut accelerator_key = mem::uninitialized();
-        let mut accelerator_mods = mem::uninitialized();
+        let mut accelerator_key = mem::MaybeUninit::uninit();
+        let mut accelerator_mods = mem::MaybeUninit::uninit();
         gtk_sys::gtk_accelerator_parse(
             accelerator.to_glib_none().0,
-            &mut accelerator_key,
-            &mut accelerator_mods,
+            accelerator_key.as_mut_ptr(),
+            accelerator_mods.as_mut_ptr(),
         );
+        let accelerator_key = accelerator_key.assume_init();
+        let accelerator_mods = accelerator_mods.assume_init();
         (accelerator_key, from_glib(accelerator_mods))
     }
 }
@@ -242,8 +244,9 @@ pub fn get_current_event_device() -> Option<gdk::Device> {
 pub fn get_current_event_state() -> Option<gdk::ModifierType> {
     assert_initialized_main_thread!();
     unsafe {
-        let mut state = mem::uninitialized();
-        let ret = from_glib(gtk_sys::gtk_get_current_event_state(&mut state));
+        let mut state = mem::MaybeUninit::uninit();
+        let ret = from_glib(gtk_sys::gtk_get_current_event_state(state.as_mut_ptr()));
+        let state = state.assume_init();
         if ret {
             Some(from_glib(state))
         } else {
@@ -304,10 +307,13 @@ pub fn grab_get_current() -> Option<Widget> {
 pub fn hsv_to_rgb(h: f64, s: f64, v: f64) -> (f64, f64, f64) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut r = mem::uninitialized();
-        let mut g = mem::uninitialized();
-        let mut b = mem::uninitialized();
-        gtk_sys::gtk_hsv_to_rgb(h, s, v, &mut r, &mut g, &mut b);
+        let mut r = mem::MaybeUninit::uninit();
+        let mut g = mem::MaybeUninit::uninit();
+        let mut b = mem::MaybeUninit::uninit();
+        gtk_sys::gtk_hsv_to_rgb(h, s, v, r.as_mut_ptr(), g.as_mut_ptr(), b.as_mut_ptr());
+        let r = r.assume_init();
+        let g = g.assume_init();
+        let b = b.assume_init();
         (r, g, b)
     }
 }
@@ -754,10 +760,13 @@ pub fn render_slider<P: IsA<StyleContext>>(
 pub fn rgb_to_hsv(r: f64, g: f64, b: f64) -> (f64, f64, f64) {
     assert_initialized_main_thread!();
     unsafe {
-        let mut h = mem::uninitialized();
-        let mut s = mem::uninitialized();
-        let mut v = mem::uninitialized();
-        gtk_sys::gtk_rgb_to_hsv(r, g, b, &mut h, &mut s, &mut v);
+        let mut h = mem::MaybeUninit::uninit();
+        let mut s = mem::MaybeUninit::uninit();
+        let mut v = mem::MaybeUninit::uninit();
+        gtk_sys::gtk_rgb_to_hsv(r, g, b, h.as_mut_ptr(), s.as_mut_ptr(), v.as_mut_ptr());
+        let h = h.assume_init();
+        let s = s.assume_init();
+        let v = v.assume_init();
         (h, s, v)
     }
 }

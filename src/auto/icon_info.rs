@@ -138,7 +138,7 @@ impl IconInfo {
         error_color: Option<&gdk::RGBA>,
     ) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
         unsafe {
-            let mut was_symbolic = mem::uninitialized();
+            let mut was_symbolic = mem::MaybeUninit::uninit();
             let mut error = ptr::null_mut();
             let ret = gtk_sys::gtk_icon_info_load_symbolic(
                 self.to_glib_none().0,
@@ -146,9 +146,10 @@ impl IconInfo {
                 success_color.to_glib_none().0,
                 warning_color.to_glib_none().0,
                 error_color.to_glib_none().0,
-                &mut was_symbolic,
+                was_symbolic.as_mut_ptr(),
                 &mut error,
             );
+            let was_symbolic = was_symbolic.assume_init();
             if error.is_null() {
                 Ok((from_glib_full(ret), from_glib(was_symbolic)))
             } else {
@@ -178,13 +179,14 @@ impl IconInfo {
             user_data: glib_sys::gpointer,
         ) {
             let mut error = ptr::null_mut();
-            let mut was_symbolic = mem::uninitialized();
+            let mut was_symbolic = mem::MaybeUninit::uninit();
             let ret = gtk_sys::gtk_icon_info_load_symbolic_finish(
                 _source_object as *mut _,
                 res,
-                &mut was_symbolic,
+                was_symbolic.as_mut_ptr(),
                 &mut error,
             );
+            let was_symbolic = was_symbolic.assume_init();
             let result = if error.is_null() {
                 Ok((from_glib_full(ret), from_glib(was_symbolic)))
             } else {
@@ -248,14 +250,15 @@ impl IconInfo {
         context: &P,
     ) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
         unsafe {
-            let mut was_symbolic = mem::uninitialized();
+            let mut was_symbolic = mem::MaybeUninit::uninit();
             let mut error = ptr::null_mut();
             let ret = gtk_sys::gtk_icon_info_load_symbolic_for_context(
                 self.to_glib_none().0,
                 context.as_ref().to_glib_none().0,
-                &mut was_symbolic,
+                was_symbolic.as_mut_ptr(),
                 &mut error,
             );
+            let was_symbolic = was_symbolic.assume_init();
             if error.is_null() {
                 Ok((from_glib_full(ret), from_glib(was_symbolic)))
             } else {
@@ -283,13 +286,14 @@ impl IconInfo {
             user_data: glib_sys::gpointer,
         ) {
             let mut error = ptr::null_mut();
-            let mut was_symbolic = mem::uninitialized();
+            let mut was_symbolic = mem::MaybeUninit::uninit();
             let ret = gtk_sys::gtk_icon_info_load_symbolic_for_context_finish(
                 _source_object as *mut _,
                 res,
-                &mut was_symbolic,
+                was_symbolic.as_mut_ptr(),
                 &mut error,
             );
+            let was_symbolic = was_symbolic.assume_init();
             let result = if error.is_null() {
                 Ok((from_glib_full(ret), from_glib(was_symbolic)))
             } else {

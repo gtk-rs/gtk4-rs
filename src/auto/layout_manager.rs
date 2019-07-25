@@ -92,20 +92,24 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         for_size: i32,
     ) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut minimum = mem::uninitialized();
-            let mut natural = mem::uninitialized();
-            let mut minimum_baseline = mem::uninitialized();
-            let mut natural_baseline = mem::uninitialized();
+            let mut minimum = mem::MaybeUninit::uninit();
+            let mut natural = mem::MaybeUninit::uninit();
+            let mut minimum_baseline = mem::MaybeUninit::uninit();
+            let mut natural_baseline = mem::MaybeUninit::uninit();
             gtk_sys::gtk_layout_manager_measure(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 orientation.to_glib(),
                 for_size,
-                &mut minimum,
-                &mut natural,
-                &mut minimum_baseline,
-                &mut natural_baseline,
+                minimum.as_mut_ptr(),
+                natural.as_mut_ptr(),
+                minimum_baseline.as_mut_ptr(),
+                natural_baseline.as_mut_ptr(),
             );
+            let minimum = minimum.assume_init();
+            let natural = natural.assume_init();
+            let minimum_baseline = minimum_baseline.assume_init();
+            let natural_baseline = natural_baseline.assume_init();
             (minimum, natural, minimum_baseline, natural_baseline)
         }
     }

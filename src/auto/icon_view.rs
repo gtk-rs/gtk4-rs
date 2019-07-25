@@ -415,14 +415,15 @@ impl<O: IsA<IconView>> IconViewExt for O {
     ) -> Option<(TreePath, IconViewDropPosition)> {
         unsafe {
             let mut path = ptr::null_mut();
-            let mut pos = mem::uninitialized();
+            let mut pos = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_dest_item_at_pos(
                 self.as_ref().to_glib_none().0,
                 drag_x,
                 drag_y,
                 &mut path,
-                &mut pos,
+                pos.as_mut_ptr(),
             ));
+            let pos = pos.assume_init();
             if ret {
                 Some((from_glib_full(path), from_glib(pos)))
             } else {
@@ -434,12 +435,13 @@ impl<O: IsA<IconView>> IconViewExt for O {
     fn get_drag_dest_item(&self) -> (TreePath, IconViewDropPosition) {
         unsafe {
             let mut path = ptr::null_mut();
-            let mut pos = mem::uninitialized();
+            let mut pos = mem::MaybeUninit::uninit();
             gtk_sys::gtk_icon_view_get_drag_dest_item(
                 self.as_ref().to_glib_none().0,
                 &mut path,
-                &mut pos,
+                pos.as_mut_ptr(),
             );
+            let pos = pos.assume_init();
             (from_glib_full(path), from_glib(pos))
         }
     }

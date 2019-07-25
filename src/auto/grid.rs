@@ -603,18 +603,22 @@ impl<O: IsA<Grid>> GridExt for O {
 
     fn query_child<P: IsA<Widget>>(&self, child: &P) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut left = mem::uninitialized();
-            let mut top = mem::uninitialized();
-            let mut width = mem::uninitialized();
-            let mut height = mem::uninitialized();
+            let mut left = mem::MaybeUninit::uninit();
+            let mut top = mem::MaybeUninit::uninit();
+            let mut width = mem::MaybeUninit::uninit();
+            let mut height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_grid_query_child(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                &mut left,
-                &mut top,
-                &mut width,
-                &mut height,
+                left.as_mut_ptr(),
+                top.as_mut_ptr(),
+                width.as_mut_ptr(),
+                height.as_mut_ptr(),
             );
+            let left = left.assume_init();
+            let top = top.assume_init();
+            let width = width.assume_init();
+            let height = height.assume_init();
             (left, top, width, height)
         }
     }

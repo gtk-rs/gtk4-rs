@@ -165,13 +165,15 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn get_selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
-            let mut start_pos = mem::uninitialized();
-            let mut end_pos = mem::uninitialized();
+            let mut start_pos = mem::MaybeUninit::uninit();
+            let mut end_pos = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_editable_get_selection_bounds(
                 self.as_ref().to_glib_none().0,
-                &mut start_pos,
-                &mut end_pos,
+                start_pos.as_mut_ptr(),
+                end_pos.as_mut_ptr(),
             ));
+            let start_pos = start_pos.assume_init();
+            let end_pos = end_pos.assume_init();
             if ret {
                 Some((start_pos, end_pos))
             } else {

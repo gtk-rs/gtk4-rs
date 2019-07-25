@@ -121,13 +121,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         unsafe {
             let mut str = ptr::null_mut();
             let mut attrs = ptr::null_mut();
-            let mut cursor_pos = mem::uninitialized();
+            let mut cursor_pos = mem::MaybeUninit::uninit();
             gtk_sys::gtk_im_context_get_preedit_string(
                 self.as_ref().to_glib_none().0,
                 &mut str,
                 &mut attrs,
-                &mut cursor_pos,
+                cursor_pos.as_mut_ptr(),
             );
+            let cursor_pos = cursor_pos.assume_init();
             (from_glib_full(str), from_glib_full(attrs), cursor_pos)
         }
     }
@@ -135,12 +136,13 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     fn get_surrounding(&self) -> Option<(GString, i32)> {
         unsafe {
             let mut text = ptr::null_mut();
-            let mut cursor_index = mem::uninitialized();
+            let mut cursor_index = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_im_context_get_surrounding(
                 self.as_ref().to_glib_none().0,
                 &mut text,
-                &mut cursor_index,
+                cursor_index.as_mut_ptr(),
             ));
+            let cursor_index = cursor_index.assume_init();
             if ret {
                 Some((from_glib_full(text), cursor_index))
             } else {

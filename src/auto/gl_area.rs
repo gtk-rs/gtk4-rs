@@ -528,13 +528,15 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     fn get_required_version(&self) -> (i32, i32) {
         unsafe {
-            let mut major = mem::uninitialized();
-            let mut minor = mem::uninitialized();
+            let mut major = mem::MaybeUninit::uninit();
+            let mut minor = mem::MaybeUninit::uninit();
             gtk_sys::gtk_gl_area_get_required_version(
                 self.as_ref().to_glib_none().0,
-                &mut major,
-                &mut minor,
+                major.as_mut_ptr(),
+                minor.as_mut_ptr(),
             );
+            let major = major.assume_init();
+            let minor = minor.assume_init();
             (major, minor)
         }
     }

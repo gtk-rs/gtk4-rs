@@ -34,13 +34,15 @@ impl GestureSwipe {
 
     pub fn get_velocity(&self) -> Option<(f64, f64)> {
         unsafe {
-            let mut velocity_x = mem::uninitialized();
-            let mut velocity_y = mem::uninitialized();
+            let mut velocity_x = mem::MaybeUninit::uninit();
+            let mut velocity_y = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_gesture_swipe_get_velocity(
                 self.to_glib_none().0,
-                &mut velocity_x,
-                &mut velocity_y,
+                velocity_x.as_mut_ptr(),
+                velocity_y.as_mut_ptr(),
             ));
+            let velocity_x = velocity_x.assume_init();
+            let velocity_y = velocity_y.assume_init();
             if ret {
                 Some((velocity_x, velocity_y))
             } else {
