@@ -60,7 +60,7 @@ cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
 gio = { git = "https://github.com/gtk-rs/gio", features = ["v2_44"] }
 glib = { git = "https://github.com/gtk-rs/glib" }
 gdk4 = { git = "https://github.com/sfanxiang/gtk-rs-gdk4" }
-graphene = { git = "https://github.com/sfanxiang/gtk-rs-graphene" }
+graphene = { package = "graphene-rs", git = "https://github.com/sfanxiang/gtk-rs-graphene" }
 gsk4 = { git = "https://github.com/sfanxiang/gtk-rs-gsk4" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gdk-pixbuf" }
 pango = { git = "https://github.com/gtk-rs/pango" }
