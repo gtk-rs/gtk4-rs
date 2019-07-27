@@ -52,7 +52,7 @@ gdk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 gio-sys = { git = "https://github.com/gtk-rs/sys" }
 glib-sys = { git = "https://github.com/gtk-rs/sys" }
 gobject-sys = { git = "https://github.com/gtk-rs/sys" }
-graphene-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+graphene-sys = { git = "https://github.com/sfanxiang/gtk-rs-graphene" }
 gsk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 gtk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
 pango-sys = { git = "https://github.com/gtk-rs/sys" }
