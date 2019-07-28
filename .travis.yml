@@ -9,6 +9,9 @@ matrix:
       rust: beta
       env: GTK=3.96 FEATURES=
     - os: linux
+      rust: stable
+      env: GTK=3.96 FEATURES=
+    - os: linux
       rust: 1.36.0
       env: GTK=3.96 FEATURES=
 addons:
@@ -26,7 +29,7 @@ script:
   - cd ..
   - export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig:$HOME/local/share/pkgconfig"
   - rustc --version
-  - if [ "$TRAVIS_RUST_VERSION" == "nightly" ] && [ "$GTK" == "3.96" ]; then
+  - if [ "$TRAVIS_RUST_VERSION" == "stable" ] && [ "$GTK" == "3.96" ]; then
     rustup component add rustfmt;
     make regen_check;
     fi
