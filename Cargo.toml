@@ -2,7 +2,7 @@
 documentation = "http://gtk-rs.org/docs/gtk4/"
 categories = ["api-bindings", "gui"]
 license = "MIT"
-description = "Rust bindings for the GTK+ 4 library"
+description = "Rust bindings for the GTK 4 library"
 name = "gtk4"
 homepage = "http://gtk-rs.org/"
 authors = ["The Gtk-rs Project Developers"]
