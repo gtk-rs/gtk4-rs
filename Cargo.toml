@@ -25,14 +25,13 @@ embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/e
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"
 optional = true
-git = "https://github.com/sfanxiang/gtk-rs-lgpl-docs"
-branch = "gtk4"
+git = "https://github.com/gtk-rs/lgpl-docs"
 
 [dependencies]
 libc = "0.2"
 bitflags = "1.0"
 glib-sys = { git = "https://github.com/gtk-rs/sys" }
-gdk4-sys = { git = "https://github.com/sfanxiang/gtk-rs-sys", branch = "gtk4" }
+gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
 gio-sys = { git = "https://github.com/gtk-rs/sys" }
 gobject-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
