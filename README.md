@@ -1,4 +1,4 @@
-# gtk4 [![Build Status](https://travis-ci.org/gtk-rs/gtk4.png?branch=master)](https://travis-ci.org/gtk-rs/gtk4) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
+# gtk4 [![Build Status](https://travis-ci.org/gtk-rs/gtk4.png?branch=master)](https://travis-ci.org/gtk-rs/gtk4)
 
 [Project site](http://gtk-rs.org/) | [Online documentation](http://gtk-rs.org/docs/)
 
