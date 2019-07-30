@@ -6,7 +6,7 @@ __Rust__ bindings and wrappers for __GTK 4__.
 
 ## Building
 
-__gtk4__ expects __GTK+__, __GLib__ and __Cairo__ development files to be installed on your system.
+__gtk4__ expects __GTK 4__, __GLib__ and __Cairo__ development files to be installed on your system.
 See the [requirements page](http://gtk-rs.org/docs/requirements.html).
 
 ## Using
