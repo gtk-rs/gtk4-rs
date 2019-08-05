@@ -197,12 +197,7 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             let instance = &*(ptr as *mut T::Instance);
             let imp = instance.get_impl();
             let wrap: Widget = from_glib_borrow(ptr);
-
-            let wrap_orientation: Orientation = match orientation {
-                0 => Orientation::Horizontal,
-                1 => Orientation::Vertical,
-                num => Orientation::__Unknown(num),
-            };
+            let wrap_orientation: Orientation = from_glib(orientation);
 
             imp.adjust_size_allocation(&wrap, wrap_orientation, &mut *minptr, &mut *natptr, &mut *posptr, &mut *sizeptr)
         }
@@ -218,12 +213,7 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             let instance = &*(ptr as *mut T::Instance);
             let imp = instance.get_impl();
             let wrap: Widget = from_glib_borrow(ptr);
-
-            let wrap_orientation: Orientation = match orientation {
-                0 => Orientation::Horizontal,
-                1 => Orientation::Vertical,
-                num => Orientation::__Unknown(num),
-            };
+            let wrap_orientation: Orientation = from_glib(orientation);
 
             imp.adjust_size_request(&wrap, wrap_orientation, &mut *minptr, &mut *natptr)
         }
