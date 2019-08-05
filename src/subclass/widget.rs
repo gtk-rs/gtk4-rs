@@ -157,108 +157,6 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
 
 unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
     fn override_vfuncs(&mut self) {
-        unsafe extern "C" fn widget_adjust_baseline_allocation<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            baseptr: *mut i32,
-        ) where
-            T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-
-            imp.adjust_baseline_allocation(&wrap, &mut *baseptr)
-        }
-
-        unsafe extern "C" fn widget_adjust_baseline_request<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            minptr: *mut i32,
-            natptr: *mut i32,
-        ) where
-            T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-
-            imp.adjust_baseline_request(&wrap, &mut *minptr, &mut *natptr)
-        }
-
-        unsafe extern "C" fn widget_adjust_size_allocation<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            orientation: gtk_sys::GtkOrientation,
-            minptr: *mut i32,
-            natptr: *mut i32,
-            posptr: *mut i32,
-            sizeptr: *mut i32,
-        ) where
-            T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-            let wrap_orientation: Orientation = from_glib(orientation);
-
-            imp.adjust_size_allocation(&wrap, wrap_orientation, &mut *minptr, &mut *natptr, &mut *posptr, &mut *sizeptr)
-        }
-
-        unsafe extern "C" fn widget_adjust_size_request<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            orientation: gtk_sys::GtkOrientation,
-            minptr: *mut i32,
-            natptr: *mut i32,
-        ) where
-            T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-            let wrap_orientation: Orientation = from_glib(orientation);
-
-            imp.adjust_size_request(&wrap, wrap_orientation, &mut *minptr, &mut *natptr)
-        }
-
-        unsafe extern "C" fn widget_button_press_event<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            btnptr: *mut gdk_sys::GdkEventButton,
-        ) -> glib_sys::gboolean
-            where T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-            let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
-
-            imp.button_press_event(&wrap, &evwrap).0 as glib_sys::gboolean
-        }
-
-        unsafe extern "C" fn widget_button_release_event<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            btnptr: *mut gdk_sys::GdkEventButton,
-        ) -> glib_sys::gboolean
-            where T: WidgetImpl,
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-            let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
-
-            imp.button_release_event(&wrap, &evwrap).0 as glib_sys::gboolean
-        }
-
-        unsafe extern "C" fn widget_can_activate_accel<T: ObjectSubclass>(
-            ptr: *mut gtk_sys::GtkWidget,
-            signal_id: u32,
-        ) -> glib_sys::gboolean
-            where T: WidgetImpl
-        {
-            let instance = &*(ptr as *mut T::Instance);
-            let imp = instance.get_impl();
-            let wrap: Widget = from_glib_borrow(ptr);
-
-            imp.can_activate_accel(&wrap, signal_id) as glib_sys::gboolean
-        }
-
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWidgetClass);
             klass.adjust_baseline_allocation = Some(widget_adjust_baseline_allocation::<T>);
@@ -270,4 +168,106 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             klass.can_activate_accel = Some(widget_can_activate_accel::<T>);
         }
     }
+}
+
+unsafe extern "C" fn widget_adjust_baseline_allocation<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    baseptr: *mut i32,
+) where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+
+    imp.adjust_baseline_allocation(&wrap, &mut *baseptr)
+}
+
+unsafe extern "C" fn widget_adjust_baseline_request<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    minptr: *mut i32,
+    natptr: *mut i32,
+) where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+
+    imp.adjust_baseline_request(&wrap, &mut *minptr, &mut *natptr)
+}
+
+unsafe extern "C" fn widget_adjust_size_allocation<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    orientation: gtk_sys::GtkOrientation,
+    minptr: *mut i32,
+    natptr: *mut i32,
+    posptr: *mut i32,
+    sizeptr: *mut i32,
+) where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let wrap_orientation: Orientation = from_glib(orientation);
+
+    imp.adjust_size_allocation(&wrap, wrap_orientation, &mut *minptr, &mut *natptr, &mut *posptr, &mut *sizeptr)
+}
+
+unsafe extern "C" fn widget_adjust_size_request<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    orientation: gtk_sys::GtkOrientation,
+    minptr: *mut i32,
+    natptr: *mut i32,
+) where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let wrap_orientation: Orientation = from_glib(orientation);
+
+    imp.adjust_size_request(&wrap, wrap_orientation, &mut *minptr, &mut *natptr)
+}
+
+unsafe extern "C" fn widget_button_press_event<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    btnptr: *mut gdk_sys::GdkEventButton,
+) -> glib_sys::gboolean
+    where T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
+
+    imp.button_press_event(&wrap, &evwrap).0 as glib_sys::gboolean
+}
+
+unsafe extern "C" fn widget_button_release_event<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    btnptr: *mut gdk_sys::GdkEventButton,
+) -> glib_sys::gboolean
+    where T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
+
+    imp.button_release_event(&wrap, &evwrap).0 as glib_sys::gboolean
+}
+
+unsafe extern "C" fn widget_can_activate_accel<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    signal_id: u32,
+) -> glib_sys::gboolean
+    where T: WidgetImpl
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+
+    imp.can_activate_accel(&wrap, signal_id) as glib_sys::gboolean
 }
