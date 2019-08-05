@@ -34,6 +34,10 @@ pub trait WidgetImpl:
     fn button_release_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> bool {
         self.parent_button_release_event(widget, event)
     }
+
+    fn can_activate_accel(&self, widget: &Widget, signal_id: u32) -> bool {
+        self.parent_can_activate_accel(widget, signal_id)
+    }
 }
 
 pub trait WidgetImplExt {
@@ -43,6 +47,7 @@ pub trait WidgetImplExt {
     fn parent_adjust_size_request(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32);
     fn parent_button_press_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> bool;
     fn parent_button_release_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> bool;
+    fn parent_can_activate_accel(&self, widget: &Widget, signal_id: u32) -> bool;
 }
 
 impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
@@ -131,6 +136,18 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
                 .button_release_event
                 .expect("No parent class impl for \"button_release_event\"");
             f(widget.to_glib_none().0, event.to_glib_none_mut().0) != 0
+        }
+    }
+
+    fn parent_can_activate_accel(&self, widget: &Widget, signal_id: u32) -> bool {
+        unsafe {
+            let data = self.get_type_data();
+            let parent_class =
+                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let f = (*parent_class)
+                .can_activate_accel
+                .expect("No parent class impl for \"can_activate_accel\"");
+            f(widget.to_glib_none().0, signal_id) != 0
         }
     }
 }
@@ -236,6 +253,19 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             imp.button_release_event(&wrap, &mut evwrap) as glib_sys::gboolean
         }
 
+        unsafe extern "C" fn widget_can_activate_accel<T: ObjectSubclass>(
+            ptr: *mut gtk_sys::GtkWidget,
+            signal_id: u32,
+        ) -> glib_sys::gboolean
+            where T: WidgetImpl
+        {
+            let instance = &*(ptr as *mut T::Instance);
+            let imp = instance.get_impl();
+            let wrap: Widget = from_glib_borrow(ptr);
+
+            imp.can_activate_accel(&wrap, signal_id) as glib_sys::gboolean
+        }
+
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWidgetClass);
             klass.adjust_baseline_allocation = Some(widget_adjust_baseline_allocation::<T>);
@@ -244,6 +274,7 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             klass.adjust_size_request = Some(widget_adjust_size_request::<T>);
             klass.button_press_event = Some(widget_button_press_event::<T>);
             klass.button_release_event = Some(widget_button_release_event::<T>);
+            klass.can_activate_accel = Some(widget_can_activate_accel::<T>);
         }
     }
 }
