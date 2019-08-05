@@ -28,11 +28,11 @@ pub trait WidgetImpl:
         self.parent_adjust_size_request(widget, orientation, minimum_size, natural_size)
     }
 
-    fn button_press_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit {
+    fn button_press_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         self.parent_button_press_event(widget, event)
     }
 
-    fn button_release_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit {
+    fn button_release_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         self.parent_button_release_event(widget, event)
     }
 
@@ -46,8 +46,8 @@ pub trait WidgetImplExt {
     fn parent_adjust_baseline_request(&self, widget: &Widget, minimum_baseline: &mut i32, natural_baseline: &mut i32);
     fn parent_adjust_size_allocation(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32, allocated_pos: &mut i32, allocated_size: &mut i32);
     fn parent_adjust_size_request(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32);
-    fn parent_button_press_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit;
-    fn parent_button_release_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit;
+    fn parent_button_press_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit;
+    fn parent_button_release_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit;
     fn parent_can_activate_accel(&self, widget: &Widget, signal_id: u32) -> bool;
 }
 
@@ -116,7 +116,7 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_button_press_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit {
+    fn parent_button_press_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class =
@@ -124,11 +124,12 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
             let f = (*parent_class)
                 .button_press_event
                 .expect("No parent class impl for \"button_press_event\"");
-            Inhibit(f(widget.to_glib_none().0, event.to_glib_none_mut().0) != 0)
+            let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
+            Inhibit(f(widget.to_glib_none().0, ev_glib) != 0)
         }
     }
 
-    fn parent_button_release_event(&self, widget: &Widget, event: &mut gdk::EventButton) -> Inhibit {
+    fn parent_button_release_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class =
@@ -136,7 +137,8 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
             let f = (*parent_class)
                 .button_release_event
                 .expect("No parent class impl for \"button_release_event\"");
-            Inhibit(f(widget.to_glib_none().0, event.to_glib_none_mut().0) != 0)
+            let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
+            Inhibit(f(widget.to_glib_none().0, ev_glib) != 0)
         }
     }
 
@@ -235,9 +237,9 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             let instance = &*(ptr as *mut T::Instance);
             let imp = instance.get_impl();
             let wrap: Widget = from_glib_borrow(ptr);
-            let mut evwrap: gdk::EventButton = from_glib_borrow(btnptr);
+            let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
 
-            imp.button_press_event(&wrap, &mut evwrap).0 as glib_sys::gboolean
+            imp.button_press_event(&wrap, &evwrap).0 as glib_sys::gboolean
         }
 
         unsafe extern "C" fn widget_button_release_event<T: ObjectSubclass>(
@@ -249,9 +251,9 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             let instance = &*(ptr as *mut T::Instance);
             let imp = instance.get_impl();
             let wrap: Widget = from_glib_borrow(ptr);
-            let mut evwrap: gdk::EventButton = from_glib_borrow(btnptr);
+            let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
 
-            imp.button_release_event(&wrap, &mut evwrap).0 as glib_sys::gboolean
+            imp.button_release_event(&wrap, &evwrap).0 as glib_sys::gboolean
         }
 
         unsafe extern "C" fn widget_can_activate_accel<T: ObjectSubclass>(
