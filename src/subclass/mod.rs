@@ -3,9 +3,11 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 pub mod application;
+pub mod widget;
 
 pub mod prelude {
     pub use super::application::GtkApplicationImpl;
+    pub use super::widget::WidgetImpl;
     pub use gio::subclass::prelude::*;
     pub use glib::subclass::prelude::*;
 }
