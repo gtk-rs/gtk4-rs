@@ -9,22 +9,46 @@ use crate::Orientation;
 use Widget;
 use WidgetClass;
 
-pub trait WidgetImpl:
-    WidgetImplExt + ObjectImpl + 'static
-{
+pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
     fn adjust_baseline_allocation(&self, widget: &Widget, baseline: &mut i32) {
         self.parent_adjust_baseline_allocation(widget, baseline)
     }
 
-    fn adjust_baseline_request(&self, widget: &Widget, minimum_baseline: &mut i32, natural_baseline: &mut i32) {
+    fn adjust_baseline_request(
+        &self,
+        widget: &Widget,
+        minimum_baseline: &mut i32,
+        natural_baseline: &mut i32,
+    ) {
         self.parent_adjust_baseline_request(widget, minimum_baseline, natural_baseline)
     }
 
-    fn adjust_size_allocation(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32, allocated_pos: &mut i32, allocated_size: &mut i32) {
-        self.parent_adjust_size_allocation(widget, orientation, minimum_size, natural_size, allocated_pos, allocated_size)
+    fn adjust_size_allocation(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+        allocated_pos: &mut i32,
+        allocated_size: &mut i32,
+    ) {
+        self.parent_adjust_size_allocation(
+            widget,
+            orientation,
+            minimum_size,
+            natural_size,
+            allocated_pos,
+            allocated_size,
+        )
     }
 
-    fn adjust_size_request(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32) {
+    fn adjust_size_request(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+    ) {
         self.parent_adjust_size_request(widget, orientation, minimum_size, natural_size)
     }
 
@@ -43,20 +67,38 @@ pub trait WidgetImpl:
 
 pub trait WidgetImplExt {
     fn parent_adjust_baseline_allocation(&self, widget: &Widget, baseline: &mut i32);
-    fn parent_adjust_baseline_request(&self, widget: &Widget, minimum_baseline: &mut i32, natural_baseline: &mut i32);
-    fn parent_adjust_size_allocation(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32, allocated_pos: &mut i32, allocated_size: &mut i32);
-    fn parent_adjust_size_request(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32);
+    fn parent_adjust_baseline_request(
+        &self,
+        widget: &Widget,
+        minimum_baseline: &mut i32,
+        natural_baseline: &mut i32,
+    );
+    fn parent_adjust_size_allocation(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+        allocated_pos: &mut i32,
+        allocated_size: &mut i32,
+    );
+    fn parent_adjust_size_request(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+    );
     fn parent_button_press_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit;
     fn parent_button_release_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit;
     // fn parent_can_activate_accel(&self, widget: &Widget, signal_id: u32) -> bool;
 }
 
-impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
+impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
     fn parent_adjust_baseline_allocation(&self, widget: &Widget, baseline: &mut i32) {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .adjust_baseline_allocation
                 .expect("No parent class impl for \"adjust_baseline_allocation\"");
@@ -64,27 +106,34 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_adjust_baseline_request(&self, widget: &Widget, minimum_baseline: &mut i32, natural_baseline: &mut i32) {
+    fn parent_adjust_baseline_request(
+        &self,
+        widget: &Widget,
+        minimum_baseline: &mut i32,
+        natural_baseline: &mut i32,
+    ) {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .adjust_baseline_request
                 .expect("No parent class impl for \"adjust_baseline_request\"");
-            f(
-                widget.to_glib_none().0,
-                minimum_baseline,
-                natural_baseline,
-            )
+            f(widget.to_glib_none().0, minimum_baseline, natural_baseline)
         }
     }
 
-    fn parent_adjust_size_allocation(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32, allocated_pos: &mut i32, allocated_size: &mut i32) {
+    fn parent_adjust_size_allocation(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+        allocated_pos: &mut i32,
+        allocated_size: &mut i32,
+    ) {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .adjust_size_allocation
                 .expect("No parent class impl for \"adjust_size_allocation\"");
@@ -99,11 +148,16 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_adjust_size_request(&self, widget: &Widget, orientation: Orientation, minimum_size: &mut i32, natural_size: &mut i32) {
+    fn parent_adjust_size_request(
+        &self,
+        widget: &Widget,
+        orientation: Orientation,
+        minimum_size: &mut i32,
+        natural_size: &mut i32,
+    ) {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .adjust_size_request
                 .expect("No parent class impl for \"adjust_size_request\"");
@@ -119,8 +173,7 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
     fn parent_button_press_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .button_press_event
                 .expect("No parent class impl for \"button_press_event\"");
@@ -132,8 +185,7 @@ impl <T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
     fn parent_button_release_event(&self, widget: &Widget, event: &gdk::EventButton) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .button_release_event
                 .expect("No parent class impl for \"button_release_event\"");
@@ -212,7 +264,14 @@ unsafe extern "C" fn widget_adjust_size_allocation<T: ObjectSubclass>(
     let wrap: Widget = from_glib_borrow(ptr);
     let wrap_orientation: Orientation = from_glib(orientation);
 
-    imp.adjust_size_allocation(&wrap, wrap_orientation, &mut *minptr, &mut *natptr, &mut *posptr, &mut *sizeptr)
+    imp.adjust_size_allocation(
+        &wrap,
+        wrap_orientation,
+        &mut *minptr,
+        &mut *natptr,
+        &mut *posptr,
+        &mut *sizeptr,
+    )
 }
 
 unsafe extern "C" fn widget_adjust_size_request<T: ObjectSubclass>(
@@ -235,7 +294,8 @@ unsafe extern "C" fn widget_button_press_event<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     btnptr: *mut gdk_sys::GdkEventButton,
 ) -> glib_sys::gboolean
-    where T: WidgetImpl,
+where
+    T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
@@ -249,7 +309,8 @@ unsafe extern "C" fn widget_button_release_event<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     btnptr: *mut gdk_sys::GdkEventButton,
 ) -> glib_sys::gboolean
-    where T: WidgetImpl,
+where
+    T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
