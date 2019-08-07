@@ -186,7 +186,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
                 .button_press_event
                 .expect("No parent class impl for \"button_press_event\"");
             let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
-            Inhibit(f(widget.to_glib_none().0, ev_glib) != 0)
+            Inhibit(from_glib(f(widget.to_glib_none().0, ev_glib)))
         }
     }
 
@@ -198,7 +198,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
                 .button_release_event
                 .expect("No parent class impl for \"button_release_event\"");
             let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
-            Inhibit(f(widget.to_glib_none().0, ev_glib) != 0)
+            Inhibit(from_glib(f(widget.to_glib_none().0, ev_glib)))
         }
     }
 
@@ -322,7 +322,7 @@ where
     let wrap: Widget = from_glib_borrow(ptr);
     let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
 
-    imp.button_press_event(&wrap, &evwrap).0 as glib_sys::gboolean
+    imp.button_press_event(&wrap, &evwrap).to_glib()
 }
 
 unsafe extern "C" fn widget_button_release_event<T: ObjectSubclass>(
@@ -337,7 +337,7 @@ where
     let wrap: Widget = from_glib_borrow(ptr);
     let evwrap: gdk::EventButton = from_glib_borrow(btnptr);
 
-    imp.button_release_event(&wrap, &evwrap).0 as glib_sys::gboolean
+    imp.button_release_event(&wrap, &evwrap).to_glib()
 }
 
 // unsafe extern "C" fn widget_can_activate_accel<T: ObjectSubclass>(
