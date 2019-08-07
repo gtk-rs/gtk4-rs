@@ -26,7 +26,7 @@ path = "../glib-sys"
 path = "../gobject-sys"
 
 [dependencies.graphene-sys]
-path = "../graphene-sys"
+git = "https://github.com/gtk-rs/graphene"
 
 [dependencies.gsk4-sys]
 path = "../gsk4-sys"
