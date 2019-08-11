@@ -8,6 +8,7 @@ pub mod widget;
 
 pub mod prelude {
     pub use super::application::GtkApplicationImpl;
+    pub use super::container::ContainerImpl;
     pub use super::widget::WidgetImpl;
     pub use gio::subclass::prelude::*;
     pub use glib::subclass::prelude::*;
