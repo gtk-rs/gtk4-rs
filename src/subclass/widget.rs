@@ -101,9 +101,9 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_direction_changed(widget, previous_direction)
     }
 
-    // fn dispatch_child_properties_changed(&self, widget: &Widget, n_pspecs: u32, pspecs: &Vec<&glib::ParamSpec>) {
-    //     self.parent_dispatch_child_properties_changed(widget, n_pspecs, pspecs)
-    // }
+    fn dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>) {
+        self.parent_dispatch_child_properties_changed(widget, pspecs)
+    }
 
     fn drag_begin(&self, widget: &Widget, context: &gdk::DragContext) {
         self.parent_drag_begin(widget, context)
@@ -186,7 +186,7 @@ pub trait WidgetImplExt {
     fn parent_destroy(&self, widget: &Widget);
     fn parent_destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit;
     fn parent_direction_changed(&self, widget: &Widget, previous_direction: TextDirection);
-    // fn parent_dispatch_child_properties_changed(&self, widget: &Widget, n_pspecs: u32, pspecs: &Vec<&glib::ParamSpec>);
+    fn parent_dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>);
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_delete(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_get(&self, widget: &Widget, context: &gdk::DragContext, selection_data: &SelectionData, info: u32, time: u32);
@@ -419,9 +419,17 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    // fn parent_dispatch_child_properties_changed(&self, widget: &Widget, n_pspecs: u32, pspecs: &Vec<&glib::ParamSpec>) {
-    //     TODO: Call GtkWidgetClass.dispatch_child_properties_changed()
-    // }
+    fn parent_dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>) {
+        unsafe {
+            let data = self.get_type_data();
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let f = (*parent_class)
+                .dispatch_child_properties_changed
+                .expect("No parent class impl for \"dispatch_child_properties_changed\"");
+            let pspecs_ptr = pspecs.iter().map(|p| p.to_glib_none().0).collect::<Vec<_>>().as_mut_ptr();
+            f(widget.to_glib_none().0, pspecs.len() as u32, pspecs_ptr)
+        }
+    }
 
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext) {
         unsafe {
@@ -590,7 +598,7 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             klass.destroy = Some(widget_destroy::<T>);
             klass.destroy_event = Some(widget_destroy_event::<T>);
             klass.direction_changed = Some(widget_direction_changed::<T>);
-            // klass.dispatch_child_properties_changed = Some(widget_dispatch_child_properties_changed::<T>);
+            klass.dispatch_child_properties_changed = Some(widget_dispatch_child_properties_changed::<T>);
             klass.drag_begin = Some(widget_drag_begin::<T>);
             klass.drag_data_delete = Some(widget_drag_data_delete::<T>);
             klass.drag_data_get = Some(widget_drag_data_get::<T>);
@@ -849,21 +857,21 @@ where
     imp.direction_changed(&wrap, dirwrap)
 }
 
-// unsafe extern "C" fn widget_dispatch_child_properties_changed<T: ObjectSubclass>(
-//     ptr: *mut gtk_sys::GtkWidget,
-//     n_pspec_ptr: *mut u32,
-//     pspecsptr: *mut *mut gobject_sys::GParamSpec,
-// )
-// where
-//     T: WidgetImpl,
-// {
-//     let instance = &*(ptr as *mut T::Instance);
-//     let imp = instance.get_impl();
-//     let wrap: Widget = from_glib_borrow(ptr);
-    // TODO: Figure out how to translate pspecs
+unsafe extern "C" fn widget_dispatch_child_properties_changed<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    n_pspec_ptr: u32,
+    pspecsptr: *mut *mut gobject_sys::GParamSpec,
+)
+where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let pspecs: Vec<glib::ParamSpec> = FromGlibContainer::from_glib_none_num(pspecsptr, n_pspec_ptr as usize);
 
-//     imp.dispatch_child_properties_changed(/* untranslated params */)
-// }
+    imp.dispatch_child_properties_changed(&wrap, &pspecs)
+}
 
 unsafe extern "C" fn widget_drag_begin<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
