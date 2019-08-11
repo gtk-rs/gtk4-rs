@@ -85,17 +85,17 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_damage_event(widget, event)
     }
 
-    // fn delete_event(&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit {
-    //     self.parent_delete_event(widget, event)
-    // }
+    fn delete_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit {
+         self.parent_delete_event(widget, event)
+    }
 
     fn destroy(&self, widget: &Widget) {
         self.parent_destroy(widget)
     }
 
-    // fn destroy_event&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit {
-    //     self.parent_destroy_event(widget, event)
-    // }
+    fn destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit {
+        self.parent_destroy_event(widget, event)
+    }
 
     fn direction_changed(&self, widget: &Widget, previous_direction: TextDirection) {
         self.parent_direction_changed(widget, previous_direction)
@@ -182,9 +182,9 @@ pub trait WidgetImplExt {
     fn parent_compute_expand(&self, widget: &Widget, hexpand_p: &mut bool, vexpand_p: &mut bool);
     fn parent_configure_event(&self, widget: &Widget, event: &gdk::EventConfigure) -> Inhibit;
     fn parent_damage_event(&self, widget: &Widget, event: &gdk::EventExpose) -> Inhibit;
-    // fn parent_delete_event(&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit;
+    fn parent_delete_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit;
     fn parent_destroy(&self, widget: &Widget);
-    // fn parent_destroy_event(&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit;
+    fn parent_destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit;
     fn parent_direction_changed(&self, widget: &Widget, previous_direction: TextDirection);
     // fn parent_dispatch_child_properties_changed(&self, widget: &Widget, n_pspecs: u32, pspecs: &Vec<&glib::ParamSpec>);
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext);
@@ -373,9 +373,17 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    // fn parent_delete_event(&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit {
-    //     TODO: call GtkWidgetClass.delete_event()
-    // }
+    fn parent_delete_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit {
+        unsafe {
+            let data = self.get_type_data();
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let f = (*parent_class)
+                .delete_event
+                .expect("No parent class impl for \"delete_event\"");
+            let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
+            Inhibit(from_glib(f(widget.to_glib_none().0, ev_glib)))
+        }
+    }
 
     fn parent_destroy(&self, widget: &Widget) {
         unsafe {
@@ -388,9 +396,17 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    // fn parent_destroy_event(&self, widget: &Widget, event:/*missing*/ &gdk::EventAny) -> Inhibit {
-    //     TODO: call GtkWidgetClass.destroy_event()
-    // }
+    fn parent_destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit {
+        unsafe {
+            let data = self.get_type_data();
+            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
+            let f = (*parent_class)
+                .destroy_event
+                .expect("No parent class impl for \"destroy_event\"");
+            let ev_glib = glib::translate::mut_override(event.to_glib_none().0);
+            Inhibit(from_glib(f(widget.to_glib_none().0, ev_glib)))
+        }
+    }
 
     fn parent_direction_changed(&self, widget: &Widget, previous_direction: TextDirection) {
         unsafe {
@@ -570,9 +586,9 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             klass.compute_expand = Some(widget_compute_expand::<T>);
             klass.configure_event = Some(widget_configure_event::<T>);
             klass.damage_event = Some(widget_damage_event::<T>);
-            // klass.delete_event = Some(widget_delete_event::<T>);
+            klass.delete_event = Some(widget_delete_event::<T>);
             klass.destroy = Some(widget_destroy::<T>);
-            // klass.destroy_event = Some(widget_destroy_event::<T>);
+            klass.destroy_event = Some(widget_destroy_event::<T>);
             klass.direction_changed = Some(widget_direction_changed::<T>);
             // klass.dispatch_child_properties_changed = Some(widget_dispatch_child_properties_changed::<T>);
             klass.drag_begin = Some(widget_drag_begin::<T>);
@@ -775,20 +791,20 @@ where
     imp.damage_event(&wrap, &evwrap).to_glib()
 }
 
-// unsafe extern "C" fn widget_delete_event<T: ObjectSubclass>(
-//     ptr: *mut gtk_sys::GtkWidget,
-//     anyptr: *mut gdk_sys::GdkEventAny,
-// ) -> glib_sys::gboolean
-// where
-//     T: WidgetImpl,
-// {
-//     let instance = &*(ptr as *mut T::Instance);
-//     let imp = instance.get_impl();
-//     let wrap: Widget = from_glib_borrow(ptr);
-//     let evwrap: gdk::EventAny = from_glib_borrow(anyptr);
+unsafe extern "C" fn widget_delete_event<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    anyptr: *mut gdk_sys::GdkEventAny,
+) -> glib_sys::gboolean
+where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let evwrap: gdk::Event = from_glib_borrow(anyptr);
 
-//     imp.damage_event(&wrap, &evwrap).to_glib()
-// }
+    imp.delete_event(&wrap, &evwrap).to_glib()
+}
 
 unsafe extern "C" fn widget_destroy<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
@@ -803,20 +819,20 @@ where
     imp.destroy(&wrap)
 }
 
-// unsafe extern "C" fn widget_destroy_event<T: ObjectSubclass>(
-//     ptr: *mut gtk_sys::GtkWidget,
-//     anyptr: *mut gdk_sys::GdkEventAny,
-// ) -> glib_sys::gboolean
-// where
-//     T: WidgetImpl,
-// {
-//     let instance = &*(ptr as *mut T::Instance);
-//     let imp = instance.get_impl();
-//     let wrap: Widget = from_glib_borrow(ptr);
-//     let evwrap: gdk::EventAny = from_glib_borrow(anyptr);
+unsafe extern "C" fn widget_destroy_event<T: ObjectSubclass>(
+    ptr: *mut gtk_sys::GtkWidget,
+    anyptr: *mut gdk_sys::GdkEventAny,
+) -> glib_sys::gboolean
+where
+    T: WidgetImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Widget = from_glib_borrow(ptr);
+    let evwrap: gdk::Event = from_glib_borrow(anyptr);
 
-//     imp.destroy_event(&wrap, &evwrap).to_glib()
-// }
+    imp.destroy_event(&wrap, &evwrap).to_glib()
+}
 
 unsafe extern "C" fn widget_direction_changed<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
