@@ -341,11 +341,15 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
             let f = (*parent_class)
                 .compute_expand
                 .expect("No parent class impl for \"compute_expand\"");
+            let mut h: i32 = hexpand_p.to_glib();
+            let mut v: i32 = vexpand_p.to_glib();
             f(
                 widget.to_glib_none().0,
-                *hexpand_p as i32 as *mut i32,
-                *vexpand_p as i32 as *mut i32,
-            )
+                &mut h,
+                &mut v,
+            );
+            *hexpand_p = from_glib(h);
+            *vexpand_p = from_glib(v);
         }
     }
 
@@ -763,10 +767,12 @@ where
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Widget = from_glib_borrow(ptr);
-    let mut hexpand_p: bool = *hexpand_ptr != 0;
-    let mut vexpand_p: bool = *vexpand_ptr != 0;
+    let mut hexpand_p: bool = from_glib(*hexpand_ptr);
+    let mut vexpand_p: bool = from_glib(*vexpand_ptr);
 
-    imp.compute_expand(&wrap, &mut hexpand_p, &mut vexpand_p)
+    imp.compute_expand(&wrap, &mut hexpand_p, &mut vexpand_p);
+    *hexpand_ptr = hexpand_p.to_glib();
+    *vexpand_ptr = vexpand_p.to_glib();
 }
 
 unsafe extern "C" fn widget_configure_event<T: ObjectSubclass>(
