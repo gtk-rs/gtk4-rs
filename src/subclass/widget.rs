@@ -101,7 +101,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_direction_changed(widget, previous_direction)
     }
 
-    fn dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>) {
+    fn dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &[glib::ParamSpec]) {
         self.parent_dispatch_child_properties_changed(widget, pspecs)
     }
 
@@ -224,7 +224,7 @@ pub trait WidgetImplExt {
     fn parent_dispatch_child_properties_changed(
         &self,
         widget: &Widget,
-        pspecs: &Vec<glib::ParamSpec>,
+        pspecs: &[glib::ParamSpec],
     );
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_delete(&self, widget: &Widget, context: &gdk::DragContext);
@@ -496,7 +496,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
     fn parent_dispatch_child_properties_changed(
         &self,
         widget: &Widget,
-        pspecs: &Vec<glib::ParamSpec>,
+        pspecs: &[glib::ParamSpec],
     ) {
         unsafe {
             let data = self.get_type_data();
