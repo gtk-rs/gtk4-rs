@@ -86,7 +86,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
     }
 
     fn delete_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit {
-         self.parent_delete_event(widget, event)
+        self.parent_delete_event(widget, event)
     }
 
     fn destroy(&self, widget: &Widget) {
@@ -113,15 +113,38 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_data_delete(widget, context)
     }
 
-    fn drag_data_get(&self, widget: &Widget, context: &gdk::DragContext, selection_data: &SelectionData, info: u32, time: u32) {
+    fn drag_data_get(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    ) {
         self.parent_drag_data_get(widget, context, selection_data, info, time)
     }
 
-    fn drag_data_received(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, selection_data: &SelectionData, info: u32, time: u32) {
+    fn drag_data_received(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    ) {
         self.parent_drag_data_received(widget, context, x, y, selection_data, info, time)
     }
 
-    fn drag_drop(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit {
+    fn drag_drop(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit {
         self.parent_drag_drop(widget, context, x, y, time)
     }
 
@@ -129,7 +152,12 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_end(widget, context)
     }
 
-    fn drag_failed(&self, widget: &Widget, context: &gdk::DragContext, result: DragResult) -> Inhibit {
+    fn drag_failed(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        result: DragResult,
+    ) -> Inhibit {
         self.parent_drag_failed(widget, context, result)
     }
 
@@ -137,7 +165,14 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_leave(widget, context, time)
     }
 
-    fn drag_motion(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit {
+    fn drag_motion(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit {
         self.parent_drag_motion(widget, context, x, y, time)
     }
 
@@ -186,16 +221,55 @@ pub trait WidgetImplExt {
     fn parent_destroy(&self, widget: &Widget);
     fn parent_destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit;
     fn parent_direction_changed(&self, widget: &Widget, previous_direction: TextDirection);
-    fn parent_dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>);
+    fn parent_dispatch_child_properties_changed(
+        &self,
+        widget: &Widget,
+        pspecs: &Vec<glib::ParamSpec>,
+    );
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_delete(&self, widget: &Widget, context: &gdk::DragContext);
-    fn parent_drag_data_get(&self, widget: &Widget, context: &gdk::DragContext, selection_data: &SelectionData, info: u32, time: u32);
-    fn parent_drag_data_received(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, selection_data: &SelectionData, info: u32, time: u32);
-    fn parent_drag_drop(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit;
+    fn parent_drag_data_get(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    );
+    fn parent_drag_data_received(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    );
+    fn parent_drag_drop(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit;
     fn parent_drag_end(&self, widget: &Widget, context: &gdk::DragContext);
-    fn parent_drag_failed(&self, widget: &Widget, context: &gdk::DragContext, result: DragResult) -> Inhibit;
+    fn parent_drag_failed(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        result: DragResult,
+    ) -> Inhibit;
     fn parent_drag_leave(&self, widget: &Widget, context: &gdk::DragContext, time: u32);
-    fn parent_drag_motion(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit;
+    fn parent_drag_motion(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit;
     fn parent_draw(&self, widget: &Widget, cr: &cairo::Context) -> Inhibit;
 }
 
@@ -343,11 +417,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
                 .expect("No parent class impl for \"compute_expand\"");
             let mut h: i32 = hexpand_p.to_glib();
             let mut v: i32 = vexpand_p.to_glib();
-            f(
-                widget.to_glib_none().0,
-                &mut h,
-                &mut v,
-            );
+            f(widget.to_glib_none().0, &mut h, &mut v);
             *hexpand_p = from_glib(h);
             *vexpand_p = from_glib(v);
         }
@@ -423,14 +493,22 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &Vec<glib::ParamSpec>) {
+    fn parent_dispatch_child_properties_changed(
+        &self,
+        widget: &Widget,
+        pspecs: &Vec<glib::ParamSpec>,
+    ) {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
             let f = (*parent_class)
                 .dispatch_child_properties_changed
                 .expect("No parent class impl for \"dispatch_child_properties_changed\"");
-            let pspecs_ptr = pspecs.iter().map(|p| p.to_glib_none().0).collect::<Vec<_>>().as_mut_ptr();
+            let pspecs_ptr = pspecs
+                .iter()
+                .map(|p| p.to_glib_none().0)
+                .collect::<Vec<_>>()
+                .as_mut_ptr();
             f(widget.to_glib_none().0, pspecs.len() as u32, pspecs_ptr)
         }
     }
@@ -457,7 +535,14 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_data_get(&self, widget: &Widget, context: &gdk::DragContext, selection_data: &SelectionData, info: u32, time: u32) {
+    fn parent_drag_data_get(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    ) {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -475,7 +560,16 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_data_received(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, selection_data: &SelectionData, info: u32, time: u32) {
+    fn parent_drag_data_received(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        selection_data: &SelectionData,
+        info: u32,
+        time: u32,
+    ) {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -495,7 +589,14 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_drop(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit {
+    fn parent_drag_drop(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -523,7 +624,12 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_failed(&self, widget: &Widget, context: &gdk::DragContext, result: DragResult) -> Inhibit {
+    fn parent_drag_failed(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        result: DragResult,
+    ) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -545,15 +651,18 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
             let f = (*parent_class)
                 .drag_leave
                 .expect("No parent class impl for \"drag_leave\"");
-            f(
-                widget.to_glib_none().0,
-                context.to_glib_none().0,
-                time,
-            )
+            f(widget.to_glib_none().0, context.to_glib_none().0, time)
         }
     }
 
-    fn parent_drag_motion(&self, widget: &Widget, context: &gdk::DragContext, x: i32, y: i32, time: u32) -> Inhibit {
+    fn parent_drag_motion(
+        &self,
+        widget: &Widget,
+        context: &gdk::DragContext,
+        x: i32,
+        y: i32,
+        time: u32,
+    ) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -602,7 +711,8 @@ unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
             klass.destroy = Some(widget_destroy::<T>);
             klass.destroy_event = Some(widget_destroy_event::<T>);
             klass.direction_changed = Some(widget_direction_changed::<T>);
-            klass.dispatch_child_properties_changed = Some(widget_dispatch_child_properties_changed::<T>);
+            klass.dispatch_child_properties_changed =
+                Some(widget_dispatch_child_properties_changed::<T>);
             klass.drag_begin = Some(widget_drag_begin::<T>);
             klass.drag_data_delete = Some(widget_drag_data_delete::<T>);
             klass.drag_data_get = Some(widget_drag_data_get::<T>);
@@ -731,8 +841,7 @@ where
 unsafe extern "C" fn widget_child_notify<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     paramptr: *mut gobject_sys::GParamSpec,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -743,9 +852,7 @@ where
     imp.child_notify(&wrap, &paramwrap)
 }
 
-unsafe extern "C" fn widget_composited_changed<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkWidget,
-)
+unsafe extern "C" fn widget_composited_changed<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkWidget)
 where
     T: WidgetImpl,
 {
@@ -760,8 +867,7 @@ unsafe extern "C" fn widget_compute_expand<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     hexpand_ptr: *mut glib_sys::gboolean,
     vexpand_ptr: *mut glib_sys::gboolean,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -820,9 +926,7 @@ where
     imp.delete_event(&wrap, &evwrap).to_glib()
 }
 
-unsafe extern "C" fn widget_destroy<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkWidget,
-)
+unsafe extern "C" fn widget_destroy<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkWidget)
 where
     T: WidgetImpl,
 {
@@ -851,8 +955,7 @@ where
 unsafe extern "C" fn widget_direction_changed<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     directnptr: gtk_sys::GtkTextDirection,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -867,14 +970,14 @@ unsafe extern "C" fn widget_dispatch_child_properties_changed<T: ObjectSubclass>
     ptr: *mut gtk_sys::GtkWidget,
     n_pspec_ptr: u32,
     pspecsptr: *mut *mut gobject_sys::GParamSpec,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Widget = from_glib_borrow(ptr);
-    let pspecs: Vec<glib::ParamSpec> = FromGlibContainer::from_glib_none_num(pspecsptr, n_pspec_ptr as usize);
+    let pspecs: Vec<glib::ParamSpec> =
+        FromGlibContainer::from_glib_none_num(pspecsptr, n_pspec_ptr as usize);
 
     imp.dispatch_child_properties_changed(&wrap, &pspecs)
 }
@@ -882,8 +985,7 @@ where
 unsafe extern "C" fn widget_drag_begin<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     ctxptr: *mut gdk_sys::GdkDragContext,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -897,8 +999,7 @@ where
 unsafe extern "C" fn widget_drag_data_delete<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     ctxptr: *mut gdk_sys::GdkDragContext,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -915,8 +1016,7 @@ unsafe extern "C" fn widget_drag_data_get<T: ObjectSubclass>(
     selectptr: *mut gtk_sys::GtkSelectionData,
     info: u32,
     time: u32,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -936,8 +1036,7 @@ unsafe extern "C" fn widget_drag_data_received<T: ObjectSubclass>(
     selectptr: *mut gtk_sys::GtkSelectionData,
     info: u32,
     time: u32,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -970,8 +1069,7 @@ where
 unsafe extern "C" fn widget_drag_end<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     ctxptr: *mut gdk_sys::GdkDragContext,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -1003,8 +1101,7 @@ unsafe extern "C" fn widget_drag_leave<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkWidget,
     ctxptr: *mut gdk_sys::GdkDragContext,
     time: u32,
-)
-where
+) where
     T: WidgetImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
