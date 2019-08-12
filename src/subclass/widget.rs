@@ -221,11 +221,7 @@ pub trait WidgetImplExt {
     fn parent_destroy(&self, widget: &Widget);
     fn parent_destroy_event(&self, widget: &Widget, event: &gdk::Event) -> Inhibit;
     fn parent_direction_changed(&self, widget: &Widget, previous_direction: TextDirection);
-    fn parent_dispatch_child_properties_changed(
-        &self,
-        widget: &Widget,
-        pspecs: &[glib::ParamSpec],
-    );
+    fn parent_dispatch_child_properties_changed(&self, widget: &Widget, pspecs: &[glib::ParamSpec]);
     fn parent_drag_begin(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_delete(&self, widget: &Widget, context: &gdk::DragContext);
     fn parent_drag_data_get(
