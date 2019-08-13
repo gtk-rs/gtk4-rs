@@ -123,9 +123,8 @@ unsafe extern "C" fn window_set_focus<T: ObjectSubclass>(
     imp.set_focus(&wrap, &widget)
 }
 
-unsafe extern "C" fn window_activate_focus<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkWindow,
-) where
+unsafe extern "C" fn window_activate_focus<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkWindow)
+where
     T: WindowImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -135,9 +134,8 @@ unsafe extern "C" fn window_activate_focus<T: ObjectSubclass>(
     imp.activate_focus(&wrap)
 }
 
-unsafe extern "C" fn window_activate_default<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkWindow,
-) where
+unsafe extern "C" fn window_activate_default<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkWindow)
+where
     T: WindowImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
@@ -147,9 +145,8 @@ unsafe extern "C" fn window_activate_default<T: ObjectSubclass>(
     imp.activate_default(&wrap)
 }
 
-unsafe extern "C" fn window_keys_changed<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkWindow,
-) where
+unsafe extern "C" fn window_keys_changed<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkWindow)
+where
     T: WindowImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
