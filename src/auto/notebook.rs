@@ -862,7 +862,10 @@ impl<O: IsA<Notebook>> NotebookExt for O {
                 b"enable-popup\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `enable-popup` getter")
+                .unwrap()
         }
     }
 
@@ -920,7 +923,10 @@ impl<O: IsA<Notebook>> NotebookExt for O {
                 .emit("change-current-page", &[&object])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_change_current_page`")
+            .unwrap()
     }
 
     fn connect_create_window<F: Fn(&Self, &Widget, i32, i32) -> Notebook + 'static>(
@@ -997,7 +1003,10 @@ impl<O: IsA<Notebook>> NotebookExt for O {
                 .emit("focus-tab", &[&object])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_focus_tab`")
+            .unwrap()
     }
 
     fn connect_move_focus_out<F: Fn(&Self, DirectionType) + 'static>(
@@ -1161,7 +1170,10 @@ impl<O: IsA<Notebook>> NotebookExt for O {
                 .emit("reorder-tab", &[&object, &p0])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_reorder_tab`")
+            .unwrap()
     }
 
     fn connect_select_page<F: Fn(&Self, bool) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -1197,7 +1209,10 @@ impl<O: IsA<Notebook>> NotebookExt for O {
                 .emit("select-page", &[&object])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_select_page`")
+            .unwrap()
     }
 
     fn connect_switch_page<F: Fn(&Self, &Widget, u32) + 'static>(&self, f: F) -> SignalHandlerId {

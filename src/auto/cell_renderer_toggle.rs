@@ -133,7 +133,10 @@ impl<O: IsA<CellRendererToggle>> CellRendererToggleExt for O {
                 b"inconsistent\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `inconsistent` getter")
+                .unwrap()
         }
     }
 

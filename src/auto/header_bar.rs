@@ -650,7 +650,10 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
                 b"decoration-layout-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `decoration-layout-set` getter")
+                .unwrap()
         }
     }
 
@@ -672,7 +675,10 @@ impl<O: IsA<HeaderBar>> HeaderBarExt for O {
                 b"spacing\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `spacing` getter")
+                .unwrap()
         }
     }
 

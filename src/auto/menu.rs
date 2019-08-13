@@ -802,7 +802,10 @@ impl<O: IsA<Menu>> GtkMenuExt for O {
                 b"anchor-hints\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `anchor-hints` getter")
+                .unwrap()
         }
     }
 
@@ -834,7 +837,10 @@ impl<O: IsA<Menu>> GtkMenuExt for O {
                 b"menu-type-hint\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `menu-type-hint` getter")
+                .unwrap()
         }
     }
 
@@ -856,7 +862,10 @@ impl<O: IsA<Menu>> GtkMenuExt for O {
                 b"rect-anchor-dx\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `rect-anchor-dx` getter")
+                .unwrap()
         }
     }
 
@@ -878,7 +887,10 @@ impl<O: IsA<Menu>> GtkMenuExt for O {
                 b"rect-anchor-dy\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `rect-anchor-dy` getter")
+                .unwrap()
         }
     }
 

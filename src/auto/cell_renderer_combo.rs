@@ -79,7 +79,10 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
                 b"has-entry\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `has-entry` getter")
+                .unwrap()
         }
     }
 
@@ -101,7 +104,9 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
                 b"model\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `model` getter")
         }
     }
 
@@ -123,7 +128,10 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
                 b"text-column\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `text-column` getter")
+                .unwrap()
         }
     }
 

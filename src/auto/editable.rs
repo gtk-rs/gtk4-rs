@@ -265,7 +265,10 @@ impl<O: IsA<Editable>> EditableExt for O {
                 b"cursor-position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `cursor-position` getter")
+                .unwrap()
         }
     }
 
@@ -277,7 +280,10 @@ impl<O: IsA<Editable>> EditableExt for O {
                 b"selection-bound\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `selection-bound` getter")
+                .unwrap()
         }
     }
 
@@ -289,7 +295,10 @@ impl<O: IsA<Editable>> EditableExt for O {
                 b"xalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `xalign` getter")
+                .unwrap()
         }
     }
 

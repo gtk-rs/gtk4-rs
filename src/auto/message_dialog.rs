@@ -766,7 +766,10 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 b"message-type\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `message-type` getter")
+                .unwrap()
         }
     }
 
@@ -788,7 +791,9 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 b"secondary-text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `secondary-text` getter")
         }
     }
 
@@ -810,7 +815,10 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 b"secondary-use-markup\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `secondary-use-markup` getter")
+                .unwrap()
         }
     }
 
@@ -832,7 +840,9 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 b"text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `text` getter")
         }
     }
 
@@ -854,7 +864,10 @@ impl<O: IsA<MessageDialog>> MessageDialogExt for O {
                 b"use-markup\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `use-markup` getter")
+                .unwrap()
         }
     }
 

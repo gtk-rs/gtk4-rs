@@ -204,7 +204,10 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
                 b"minimum-height\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `minimum-height` getter")
+                .unwrap()
         }
     }
 
@@ -216,7 +219,10 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
                 b"minimum-width\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `minimum-width` getter")
+                .unwrap()
         }
     }
 
@@ -228,7 +234,10 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
                 b"natural-height\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `natural-height` getter")
+                .unwrap()
         }
     }
 
@@ -240,7 +249,10 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
                 b"natural-width\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `natural-width` getter")
+                .unwrap()
         }
     }
 

@@ -94,7 +94,10 @@ impl EventControllerKey {
                 b"contains-focus\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `contains-focus` getter")
+                .unwrap()
         }
     }
 
@@ -106,7 +109,10 @@ impl EventControllerKey {
                 b"is-focus\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `is-focus` getter")
+                .unwrap()
         }
     }
 

@@ -55,7 +55,9 @@ impl ShortcutsShortcut {
                 b"accelerator\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `accelerator` getter")
         }
     }
 
@@ -77,7 +79,9 @@ impl ShortcutsShortcut {
                 b"action-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `action-name` getter")
         }
     }
 
@@ -99,7 +103,9 @@ impl ShortcutsShortcut {
                 b"icon\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `icon` getter")
         }
     }
 
@@ -121,7 +127,10 @@ impl ShortcutsShortcut {
                 b"icon-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `icon-set` getter")
+                .unwrap()
         }
     }
 
@@ -143,7 +152,10 @@ impl ShortcutsShortcut {
                 b"shortcut-type\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `shortcut-type` getter")
+                .unwrap()
         }
     }
 
@@ -165,7 +177,9 @@ impl ShortcutsShortcut {
                 b"subtitle\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `subtitle` getter")
         }
     }
 
@@ -187,7 +201,10 @@ impl ShortcutsShortcut {
                 b"subtitle-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `subtitle-set` getter")
+                .unwrap()
         }
     }
 
@@ -209,7 +226,9 @@ impl ShortcutsShortcut {
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `title` getter")
         }
     }
 

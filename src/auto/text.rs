@@ -196,7 +196,10 @@ impl Text {
                 b"enable-emoji-completion\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `enable-emoji-completion` getter")
+                .unwrap()
         }
     }
 
@@ -218,7 +221,9 @@ impl Text {
                 b"im-module\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `im-module` getter")
         }
     }
 
@@ -240,7 +245,10 @@ impl Text {
                 b"invisible-char-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `invisible-char-set` getter")
+                .unwrap()
         }
     }
 
@@ -262,7 +270,10 @@ impl Text {
                 b"populate-all\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `populate-all` getter")
+                .unwrap()
         }
     }
 
@@ -284,7 +295,10 @@ impl Text {
                 b"propagate-text-width\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `propagate-text-width` getter")
+                .unwrap()
         }
     }
 
@@ -306,7 +320,10 @@ impl Text {
                 b"scroll-offset\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `scroll-offset` getter")
+                .unwrap()
         }
     }
 
@@ -318,7 +335,10 @@ impl Text {
                 b"truncate-multiline\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `truncate-multiline` getter")
+                .unwrap()
         }
     }
 

@@ -561,7 +561,9 @@ impl<O: IsA<AccelLabel>> AccelLabelExt for O {
                 b"accel-closure\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `accel-closure` getter")
         }
     }
 

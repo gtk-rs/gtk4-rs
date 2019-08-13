@@ -45,7 +45,10 @@ impl ShortcutsSection {
                 b"max-height\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `max-height` getter")
+                .unwrap()
         }
     }
 
@@ -67,7 +70,9 @@ impl ShortcutsSection {
                 b"section-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `section-name` getter")
         }
     }
 
@@ -89,7 +94,9 @@ impl ShortcutsSection {
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `title` getter")
         }
     }
 
@@ -111,7 +118,9 @@ impl ShortcutsSection {
                 b"view-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `view-name` getter")
         }
     }
 
