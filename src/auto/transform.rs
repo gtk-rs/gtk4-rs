@@ -108,38 +108,48 @@ impl Transform {
 
     pub fn to_2d(&self) -> (f32, f32, f32, f32, f32, f32) {
         unsafe {
-            let mut out_xx = mem::uninitialized();
-            let mut out_yx = mem::uninitialized();
-            let mut out_xy = mem::uninitialized();
-            let mut out_yy = mem::uninitialized();
-            let mut out_dx = mem::uninitialized();
-            let mut out_dy = mem::uninitialized();
+            let mut out_xx = mem::MaybeUninit::uninit();
+            let mut out_yx = mem::MaybeUninit::uninit();
+            let mut out_xy = mem::MaybeUninit::uninit();
+            let mut out_yy = mem::MaybeUninit::uninit();
+            let mut out_dx = mem::MaybeUninit::uninit();
+            let mut out_dy = mem::MaybeUninit::uninit();
             gsk_sys::gsk_transform_to_2d(
                 self.to_glib_none().0,
-                &mut out_xx,
-                &mut out_yx,
-                &mut out_xy,
-                &mut out_yy,
-                &mut out_dx,
-                &mut out_dy,
+                out_xx.as_mut_ptr(),
+                out_yx.as_mut_ptr(),
+                out_xy.as_mut_ptr(),
+                out_yy.as_mut_ptr(),
+                out_dx.as_mut_ptr(),
+                out_dy.as_mut_ptr(),
             );
+            let out_xx = out_xx.assume_init();
+            let out_yx = out_yx.assume_init();
+            let out_xy = out_xy.assume_init();
+            let out_yy = out_yy.assume_init();
+            let out_dx = out_dx.assume_init();
+            let out_dy = out_dy.assume_init();
             (out_xx, out_yx, out_xy, out_yy, out_dx, out_dy)
         }
     }
 
     pub fn to_affine(&self) -> (f32, f32, f32, f32) {
         unsafe {
-            let mut out_scale_x = mem::uninitialized();
-            let mut out_scale_y = mem::uninitialized();
-            let mut out_dx = mem::uninitialized();
-            let mut out_dy = mem::uninitialized();
+            let mut out_scale_x = mem::MaybeUninit::uninit();
+            let mut out_scale_y = mem::MaybeUninit::uninit();
+            let mut out_dx = mem::MaybeUninit::uninit();
+            let mut out_dy = mem::MaybeUninit::uninit();
             gsk_sys::gsk_transform_to_affine(
                 self.to_glib_none().0,
-                &mut out_scale_x,
-                &mut out_scale_y,
-                &mut out_dx,
-                &mut out_dy,
+                out_scale_x.as_mut_ptr(),
+                out_scale_y.as_mut_ptr(),
+                out_dx.as_mut_ptr(),
+                out_dy.as_mut_ptr(),
             );
+            let out_scale_x = out_scale_x.assume_init();
+            let out_scale_y = out_scale_y.assume_init();
+            let out_dx = out_dx.assume_init();
+            let out_dy = out_dy.assume_init();
             (out_scale_x, out_scale_y, out_dx, out_dy)
         }
     }
@@ -161,9 +171,15 @@ impl Transform {
 
     pub fn to_translate(&self) -> (f32, f32) {
         unsafe {
-            let mut out_dx = mem::uninitialized();
-            let mut out_dy = mem::uninitialized();
-            gsk_sys::gsk_transform_to_translate(self.to_glib_none().0, &mut out_dx, &mut out_dy);
+            let mut out_dx = mem::MaybeUninit::uninit();
+            let mut out_dy = mem::MaybeUninit::uninit();
+            gsk_sys::gsk_transform_to_translate(
+                self.to_glib_none().0,
+                out_dx.as_mut_ptr(),
+                out_dy.as_mut_ptr(),
+            );
+            let out_dx = out_dx.assume_init();
+            let out_dy = out_dy.assume_init();
             (out_dx, out_dy)
         }
     }
