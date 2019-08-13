@@ -26,7 +26,10 @@ impl ShortcutsSection {
         let gobject =
             unsafe { glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject) };
         let res = gobject.emit("change-current-page", &[&object]).unwrap();
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_change_current_page`")
+            .unwrap()
     }
 }
 
