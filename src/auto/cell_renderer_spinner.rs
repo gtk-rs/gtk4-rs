@@ -72,7 +72,10 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
                 b"active\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `active` getter")
+                .unwrap()
         }
     }
 
@@ -94,7 +97,10 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
                 b"pulse\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `pulse` getter")
+                .unwrap()
         }
     }
 
@@ -116,7 +122,10 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
                 b"size\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `size` getter")
+                .unwrap()
         }
     }
 

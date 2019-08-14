@@ -39,7 +39,10 @@ impl AssistantPage {
                 b"complete\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `complete` getter")
+                .unwrap()
         }
     }
 
@@ -61,7 +64,10 @@ impl AssistantPage {
                 b"page-type\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `page-type` getter")
+                .unwrap()
         }
     }
 
@@ -83,7 +89,9 @@ impl AssistantPage {
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `title` getter")
         }
     }
 

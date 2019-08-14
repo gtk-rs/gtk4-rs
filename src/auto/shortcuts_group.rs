@@ -56,7 +56,10 @@ impl ShortcutsGroup {
                 b"height\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `height` getter")
+                .unwrap()
         }
     }
 
@@ -68,7 +71,9 @@ impl ShortcutsGroup {
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `title` getter")
         }
     }
 
@@ -100,7 +105,9 @@ impl ShortcutsGroup {
                 b"view\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `view` getter")
         }
     }
 

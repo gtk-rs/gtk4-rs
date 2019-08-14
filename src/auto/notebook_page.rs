@@ -38,7 +38,10 @@ impl NotebookPage {
                 b"detachable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `detachable` getter")
+                .unwrap()
         }
     }
 
@@ -60,7 +63,9 @@ impl NotebookPage {
                 b"menu\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `menu` getter")
         }
     }
 
@@ -72,7 +77,9 @@ impl NotebookPage {
                 b"menu-label\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `menu-label` getter")
         }
     }
 
@@ -94,7 +101,10 @@ impl NotebookPage {
                 b"position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `position` getter")
+                .unwrap()
         }
     }
 
@@ -116,7 +126,10 @@ impl NotebookPage {
                 b"reorderable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `reorderable` getter")
+                .unwrap()
         }
     }
 
@@ -138,7 +151,7 @@ impl NotebookPage {
                 b"tab\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value.get().expect("Return Value for property `tab` getter")
         }
     }
 
@@ -150,7 +163,10 @@ impl NotebookPage {
                 b"tab-expand\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `tab-expand` getter")
+                .unwrap()
         }
     }
 
@@ -172,7 +188,10 @@ impl NotebookPage {
                 b"tab-fill\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `tab-fill` getter")
+                .unwrap()
         }
     }
 
@@ -194,7 +213,9 @@ impl NotebookPage {
                 b"tab-label\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `tab-label` getter")
         }
     }
 

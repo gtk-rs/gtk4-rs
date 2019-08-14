@@ -79,7 +79,10 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
                 b"length\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `length` getter")
+                .unwrap()
         }
     }
 
@@ -91,7 +94,10 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
                 b"max-length\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `max-length` getter")
+                .unwrap()
         }
     }
 
@@ -113,7 +119,9 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
                 b"text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `text` getter")
         }
     }
 

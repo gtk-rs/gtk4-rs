@@ -540,7 +540,10 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
                 b"toolbar-style\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `toolbar-style` getter")
+                .unwrap()
         }
     }
 
@@ -590,7 +593,10 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
                 .emit("focus-home-or-end", &[&focus_home])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_focus_home_or_end`")
+            .unwrap()
     }
 
     fn connect_orientation_changed<F: Fn(&Self, Orientation) + 'static>(

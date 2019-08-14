@@ -953,7 +953,10 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
                 b"hscrollbar-policy\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `hscrollbar-policy` getter")
+                .unwrap()
         }
     }
 
@@ -975,7 +978,10 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
                 b"vscrollbar-policy\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `vscrollbar-policy` getter")
+                .unwrap()
         }
     }
 
@@ -997,7 +1003,10 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
                 b"window-placement\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `window-placement` getter")
+                .unwrap()
         }
     }
 
@@ -1138,7 +1147,10 @@ impl<O: IsA<ScrolledWindow>> ScrolledWindowExt for O {
                 .emit("scroll-child", &[&scroll, &horizontal])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_scroll_child`")
+            .unwrap()
     }
 
     fn connect_property_hadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -493,7 +493,9 @@ impl<O: IsA<PopoverMenu>> PopoverMenuExt for O {
                 b"visible-submenu\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `visible-submenu` getter")
         }
     }
 

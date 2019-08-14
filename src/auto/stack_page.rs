@@ -38,7 +38,9 @@ impl StackPage {
                 b"icon-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `icon-name` getter")
         }
     }
 
@@ -60,7 +62,9 @@ impl StackPage {
                 b"name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `name` getter")
         }
     }
 
@@ -72,7 +76,10 @@ impl StackPage {
                 b"needs-attention\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `needs-attention` getter")
+                .unwrap()
         }
     }
 
@@ -94,7 +101,9 @@ impl StackPage {
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `title` getter")
         }
     }
 
@@ -116,7 +125,10 @@ impl StackPage {
                 b"visible\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `visible` getter")
+                .unwrap()
         }
     }
 

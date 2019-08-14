@@ -551,7 +551,9 @@ impl<O: IsA<LockButton>> LockButtonExt for O {
                 b"text-lock\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `text-lock` getter")
         }
     }
 
@@ -573,7 +575,9 @@ impl<O: IsA<LockButton>> LockButtonExt for O {
                 b"text-unlock\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `text-unlock` getter")
         }
     }
 
@@ -595,7 +599,9 @@ impl<O: IsA<LockButton>> LockButtonExt for O {
                 b"tooltip-lock\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `tooltip-lock` getter")
         }
     }
 
@@ -617,7 +623,9 @@ impl<O: IsA<LockButton>> LockButtonExt for O {
                 b"tooltip-not-authorized\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `tooltip-not-authorized` getter")
         }
     }
 
@@ -639,7 +647,9 @@ impl<O: IsA<LockButton>> LockButtonExt for O {
                 b"tooltip-unlock\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `tooltip-unlock` getter")
         }
     }
 

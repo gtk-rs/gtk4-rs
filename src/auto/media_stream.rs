@@ -358,7 +358,10 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
                 b"has-audio\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `has-audio` getter")
+                .unwrap()
         }
     }
 
@@ -380,7 +383,10 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
                 b"has-video\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `has-video` getter")
+                .unwrap()
         }
     }
 
@@ -402,7 +408,10 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
                 b"prepared\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `prepared` getter")
+                .unwrap()
         }
     }
 
@@ -424,7 +433,10 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
                 b"seekable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `seekable` getter")
+                .unwrap()
         }
     }
 
@@ -436,7 +448,10 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
                 b"seeking\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `seeking` getter")
+                .unwrap()
         }
     }
 

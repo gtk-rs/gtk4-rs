@@ -709,7 +709,9 @@ impl<O: IsA<Image>> ImageExt for O {
                 b"file\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `file` getter")
         }
     }
 
@@ -761,7 +763,9 @@ impl<O: IsA<Image>> ImageExt for O {
                 b"resource\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `resource` getter")
         }
     }
 
@@ -783,7 +787,10 @@ impl<O: IsA<Image>> ImageExt for O {
                 b"use-fallback\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `use-fallback` getter")
+                .unwrap()
         }
     }
 

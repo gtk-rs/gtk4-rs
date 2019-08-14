@@ -889,7 +889,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
                 b"copy-target-list\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `copy-target-list` getter")
         }
     }
 
@@ -901,7 +903,10 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
                 b"cursor-position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `cursor-position` getter")
+                .unwrap()
         }
     }
 
@@ -913,7 +918,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
                 b"paste-target-list\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `paste-target-list` getter")
         }
     }
 

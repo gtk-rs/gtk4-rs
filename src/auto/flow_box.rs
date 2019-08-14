@@ -953,7 +953,10 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
                 b"accept-unpaired-release\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `accept-unpaired-release` getter")
+                .unwrap()
         }
     }
 
@@ -1067,7 +1070,10 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
                 .emit("move-cursor", &[&step, &count])
                 .unwrap()
         };
-        res.unwrap().get().unwrap()
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_move_cursor`")
+            .unwrap()
     }
 
     fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

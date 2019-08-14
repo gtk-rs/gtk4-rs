@@ -461,7 +461,10 @@ impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
                 b"activates-default\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `activates-default` getter")
+                .unwrap()
         }
     }
 
@@ -483,7 +486,9 @@ impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
                 b"placeholder-text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `placeholder-text` getter")
         }
     }
 

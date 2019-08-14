@@ -653,7 +653,9 @@ impl<O: IsA<ShortcutsWindow>> ShortcutsWindowExt for O {
                 b"section-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `section-name` getter")
         }
     }
 
@@ -675,7 +677,9 @@ impl<O: IsA<ShortcutsWindow>> ShortcutsWindowExt for O {
                 b"view-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `view-name` getter")
         }
     }
 

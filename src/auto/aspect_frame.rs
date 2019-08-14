@@ -516,7 +516,10 @@ impl<O: IsA<AspectFrame>> AspectFrameExt for O {
                 b"obey-child\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `obey-child` getter")
+                .unwrap()
         }
     }
 
@@ -538,7 +541,10 @@ impl<O: IsA<AspectFrame>> AspectFrameExt for O {
                 b"ratio\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `ratio` getter")
+                .unwrap()
         }
     }
 
@@ -560,7 +566,10 @@ impl<O: IsA<AspectFrame>> AspectFrameExt for O {
                 b"xalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `xalign` getter")
+                .unwrap()
         }
     }
 
@@ -582,7 +591,10 @@ impl<O: IsA<AspectFrame>> AspectFrameExt for O {
                 b"yalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `yalign` getter")
+                .unwrap()
         }
     }
 
