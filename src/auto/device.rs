@@ -213,7 +213,10 @@ impl Device {
                 b"input-mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `input-mode` getter")
+                .unwrap()
         }
     }
 
@@ -235,7 +238,10 @@ impl Device {
                 b"input-source\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `input-source` getter")
+                .unwrap()
         }
     }
 
@@ -247,7 +253,10 @@ impl Device {
                 b"num-touches\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `num-touches` getter")
+                .unwrap()
         }
     }
 
@@ -269,7 +278,9 @@ impl Device {
                 b"tool\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `tool` getter")
         }
     }
 
@@ -281,7 +292,10 @@ impl Device {
                 b"type\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get().unwrap()
+            value
+                .get()
+                .expect("Return Value for property `type` getter")
+                .unwrap()
         }
     }
 

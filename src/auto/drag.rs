@@ -86,7 +86,9 @@ impl Drag {
                 b"content\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `content` getter")
         }
     }
 
@@ -108,7 +110,9 @@ impl Drag {
                 b"surface\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value.get()
+            value
+                .get()
+                .expect("Return Value for property `surface` getter")
         }
     }
 
