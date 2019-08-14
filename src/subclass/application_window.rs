@@ -1,11 +1,6 @@
-use gtk_sys;
-
-use glib::translate::*;
-
 use glib::subclass::prelude::*;
 
 use super::window::WindowImpl;
-use ApplicationWindow;
 use ApplicationWindowClass;
 
 pub trait ApplicationWindowImpl: WindowImpl + 'static {}
