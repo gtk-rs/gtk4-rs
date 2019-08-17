@@ -48,7 +48,7 @@ impl<T: DialogImpl + ObjectImpl> DialogImplExt for T {
     }
 }
 
-unsafe impl <T: ObjectSubclass + DialogImpl> IsSubclassable<T> for DialogClass {
+unsafe impl<T: ObjectSubclass + DialogImpl> IsSubclassable<T> for DialogClass {
     fn override_vfuncs(&mut self) {
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkDialogClass);
@@ -60,7 +60,7 @@ unsafe impl <T: ObjectSubclass + DialogImpl> IsSubclassable<T> for DialogClass {
 
 unsafe extern "C" fn dialog_response<T: ObjectSubclass>(
     ptr: *mut gtk_sys::GtkDialog,
-    responseptr: i32
+    responseptr: i32,
 ) where
     T: DialogImpl,
 {
@@ -72,9 +72,8 @@ unsafe extern "C" fn dialog_response<T: ObjectSubclass>(
     imp.response(&wrap, res)
 }
 
-unsafe extern "C" fn dialog_close<T: ObjectSubclass>(
-    ptr: *mut gtk_sys::GtkDialog,
-) where
+unsafe extern "C" fn dialog_close<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkDialog)
+where
     T: DialogImpl,
 {
     let instance = &*(ptr as *mut T::Instance);
