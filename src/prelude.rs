@@ -6,4 +6,5 @@
 
 pub use auto::traits::*;
 
+pub use cairo_interaction::{ContextExt, SurfaceExt};
 pub use draw_context::DrawContextExtManual;

@@ -44,6 +44,7 @@ mod auto;
 mod alias;
 pub mod prelude;
 
+mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
 mod draw_context;

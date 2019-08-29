@@ -5,7 +5,6 @@
 use cairo;
 use gdk_pixbuf;
 use gdk_sys;
-use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
 use std::mem;
@@ -13,125 +12,6 @@ use std::ptr;
 use Atom;
 use Display;
 use Event;
-use GLContext;
-use Rectangle;
-use Surface;
-use RGBA;
-
-pub fn cairo_draw_from_gl<P: IsA<Surface>>(
-    cr: &cairo::Context,
-    surface: &P,
-    source: i32,
-    source_type: i32,
-    buffer_scale: i32,
-    x: i32,
-    y: i32,
-    width: i32,
-    height: i32,
-) {
-    skip_assert_initialized!();
-    unsafe {
-        gdk_sys::gdk_cairo_draw_from_gl(
-            mut_override(cr.to_glib_none().0),
-            surface.as_ref().to_glib_none().0,
-            source,
-            source_type,
-            buffer_scale,
-            x,
-            y,
-            width,
-            height,
-        );
-    }
-}
-
-pub fn cairo_get_clip_rectangle(cr: &cairo::Context) -> Option<Rectangle> {
-    assert_initialized_main_thread!();
-    unsafe {
-        let mut rect = Rectangle::uninitialized();
-        let ret = from_glib(gdk_sys::gdk_cairo_get_clip_rectangle(
-            mut_override(cr.to_glib_none().0),
-            rect.to_glib_none_mut().0,
-        ));
-        if ret {
-            Some(rect)
-        } else {
-            None
-        }
-    }
-}
-
-pub fn cairo_rectangle(cr: &cairo::Context, rectangle: &Rectangle) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_cairo_rectangle(
-            mut_override(cr.to_glib_none().0),
-            rectangle.to_glib_none().0,
-        );
-    }
-}
-
-pub fn cairo_region(cr: &cairo::Context, region: &cairo::Region) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_cairo_region(mut_override(cr.to_glib_none().0), region.to_glib_none().0);
-    }
-}
-
-pub fn cairo_region_create_from_surface(surface: &cairo::Surface) -> Option<cairo::Region> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(mut_override(
-            surface.to_glib_none().0,
-        )))
-    }
-}
-
-pub fn cairo_set_source_pixbuf(
-    cr: &cairo::Context,
-    pixbuf: &gdk_pixbuf::Pixbuf,
-    pixbuf_x: f64,
-    pixbuf_y: f64,
-) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_cairo_set_source_pixbuf(
-            mut_override(cr.to_glib_none().0),
-            pixbuf.to_glib_none().0,
-            pixbuf_x,
-            pixbuf_y,
-        );
-    }
-}
-
-pub fn cairo_set_source_rgba(cr: &cairo::Context, rgba: &RGBA) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_cairo_set_source_rgba(
-            mut_override(cr.to_glib_none().0),
-            rgba.to_glib_none().0,
-        );
-    }
-}
-
-pub fn cairo_surface_upload_to_gl(
-    surface: &cairo::Surface,
-    target: i32,
-    width: i32,
-    height: i32,
-    context: Option<&GLContext>,
-) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_cairo_surface_upload_to_gl(
-            mut_override(surface.to_glib_none().0),
-            target,
-            width,
-            height,
-            context.to_glib_none().0,
-        );
-    }
-}
 
 pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     skip_assert_initialized!();

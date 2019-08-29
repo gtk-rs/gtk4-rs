@@ -108,6 +108,10 @@ status = "generate"
         name = "surface"
         const = true
     [[object.function]]
+    pattern = "cairo_.+"
+    #manual trait
+    ignore = true
+    [[object.function]]
     name = "pango_layout_get_clip_region"
     #manual
     ignore = true
