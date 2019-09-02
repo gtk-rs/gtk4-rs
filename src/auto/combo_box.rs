@@ -521,7 +521,7 @@ pub trait ComboBoxExt: 'static {
 
     fn get_popup_fixed_width(&self) -> bool;
 
-    //fn get_row_separator_func(&self) -> Option<Box<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
+    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
 
     fn popdown(&self);
 
@@ -670,7 +670,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    //fn get_row_separator_func(&self) -> Option<Box<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
+    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
     //    unsafe { TODO: call gtk_sys:gtk_combo_box_get_row_separator_func() }
     //}
 
@@ -756,7 +756,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
-        let func_data: Box_<P> = Box::new(func);
+        let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             model: *mut gtk_sys::GtkTreeModel,
             iter: *mut gtk_sys::GtkTreeIter,
@@ -780,7 +780,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             gtk_sys::gtk_combo_box_set_row_separator_func(
                 self.as_ref().to_glib_none().0,
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

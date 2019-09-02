@@ -29,17 +29,17 @@ glib_wrapper! {
 impl FilterListModel {
     pub fn new<P: IsA<gio::ListModel>>(
         model: &P,
-        filter_func: Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>,
+        filter_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>,
     ) -> FilterListModel {
         assert_initialized_main_thread!();
-        let filter_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
-            Box::new(filter_func);
+        let filter_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
+            Box_::new(filter_func);
         unsafe extern "C" fn filter_func_func<P: IsA<gio::ListModel>>(
             item: *mut gobject_sys::GObject,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
             let item = from_glib_borrow(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> bool + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
@@ -54,17 +54,17 @@ impl FilterListModel {
             None
         };
         unsafe extern "C" fn user_destroy_func<P: IsA<gio::ListModel>>(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(user_destroy_func::<P> as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
+        let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             filter_func_data;
         unsafe {
             from_glib_full(gtk_sys::gtk_filter_list_model_new(
                 model.as_ref().to_glib_none().0,
                 filter_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             ))
         }
@@ -89,7 +89,7 @@ pub trait FilterListModelExt: 'static {
 
     fn refilter(&self);
 
-    fn set_filter_func(&self, filter_func: Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>);
+    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>);
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
@@ -123,15 +123,15 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
         }
     }
 
-    fn set_filter_func(&self, filter_func: Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>) {
-        let filter_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
-            Box::new(filter_func);
+    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>) {
+        let filter_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
+            Box_::new(filter_func);
         unsafe extern "C" fn filter_func_func(
             item: *mut gobject_sys::GObject,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
             let item = from_glib_borrow(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> bool + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
@@ -146,17 +146,17 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> bool + 'static>>> =
+        let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             filter_func_data;
         unsafe {
             gtk_sys::gtk_filter_list_model_set_filter_func(
                 self.as_ref().to_glib_none().0,
                 filter_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

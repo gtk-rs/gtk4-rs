@@ -664,7 +664,7 @@ pub trait AssistantExt: 'static {
 
     fn set_current_page(&self, page_num: i32);
 
-    fn set_forward_page_func(&self, page_func: Option<Box<dyn Fn(i32) -> i32 + 'static>>);
+    fn set_forward_page_func(&self, page_func: Option<Box_<dyn Fn(i32) -> i32 + 'static>>);
 
     fn set_page_complete<P: IsA<Widget>>(&self, page: &P, complete: bool);
 
@@ -829,13 +829,13 @@ impl<O: IsA<Assistant>> AssistantExt for O {
         }
     }
 
-    fn set_forward_page_func(&self, page_func: Option<Box<dyn Fn(i32) -> i32 + 'static>>) {
-        let page_func_data: Box_<Option<Box<dyn Fn(i32) -> i32 + 'static>>> = Box::new(page_func);
+    fn set_forward_page_func(&self, page_func: Option<Box_<dyn Fn(i32) -> i32 + 'static>>) {
+        let page_func_data: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> = Box_::new(page_func);
         unsafe extern "C" fn page_func_func(
             current_page: libc::c_int,
             data: glib_sys::gpointer,
         ) -> libc::c_int {
-            let callback: &Option<Box<dyn Fn(i32) -> i32 + 'static>> = &*(data as *mut _);
+            let callback: &Option<Box_<dyn Fn(i32) -> i32 + 'static>> = &*(data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(current_page)
             } else {
@@ -849,16 +849,16 @@ impl<O: IsA<Assistant>> AssistantExt for O {
             None
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(i32) -> i32 + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(i32) -> i32 + 'static>>> = page_func_data;
+        let super_callback0: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> = page_func_data;
         unsafe {
             gtk_sys::gtk_assistant_set_forward_page_func(
                 self.as_ref().to_glib_none().0,
                 page_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

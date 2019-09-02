@@ -39,7 +39,7 @@ impl FileFilter {
         needed: FileFilterFlags,
         func: P,
     ) {
-        let func_data: Box_<P> = Box::new(func);
+        let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&FileFilterInfo) -> bool + 'static>(
             filter_info: *const gtk_sys::GtkFileFilterInfo,
             data: glib_sys::gpointer,
@@ -62,7 +62,7 @@ impl FileFilter {
                 self.to_glib_none().0,
                 needed.to_glib(),
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call4,
             );
         }

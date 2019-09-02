@@ -404,7 +404,7 @@ pub trait DrawingAreaExt: 'static {
 
     fn set_draw_func(
         &self,
-        draw_func: Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+        draw_func: Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
     );
 
     fn connect_property_content_height_notify<F: Fn(&Self) + 'static>(
@@ -441,11 +441,11 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
     fn set_draw_func(
         &self,
-        draw_func: Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+        draw_func: Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
     ) {
         let draw_func_data: Box_<
-            Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
-        > = Box::new(draw_func);
+            Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+        > = Box_::new(draw_func);
         unsafe extern "C" fn draw_func_func(
             drawing_area: *mut gtk_sys::GtkDrawingArea,
             cr: *mut cairo_sys::cairo_t,
@@ -455,7 +455,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         ) {
             let drawing_area = from_glib_borrow(drawing_area);
             let cr = from_glib_borrow(cr);
-            let callback: &Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>> =
                 &*(user_data as *mut _);
             if let Some(ref callback) = *callback {
                 callback(&drawing_area, &cr, width, height)
@@ -470,18 +470,18 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
             let _callback: Box_<
-                Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+                Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
             > = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
         let super_callback0: Box_<
-            Option<Box<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+            Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
         > = draw_func_data;
         unsafe {
             gtk_sys::gtk_drawing_area_set_draw_func(
                 self.as_ref().to_glib_none().0,
                 draw_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

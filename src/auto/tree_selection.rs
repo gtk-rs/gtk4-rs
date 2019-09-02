@@ -34,7 +34,7 @@ pub trait TreeSelectionExt: 'static {
 
     fn get_mode(&self) -> SelectionMode;
 
-    //fn get_select_function(&self) -> Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>;
+    //fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>;
 
     fn get_selected(&self) -> Option<(TreeModel, TreeIter)>;
 
@@ -62,7 +62,7 @@ pub trait TreeSelectionExt: 'static {
 
     fn set_select_function(
         &self,
-        func: Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+        func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
     );
 
     fn unselect_all(&self);
@@ -91,7 +91,7 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         }
     }
 
-    //fn get_select_function(&self) -> Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
+    //fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
     //    unsafe { TODO: call gtk_sys:gtk_tree_selection_get_select_function() }
     //}
 
@@ -222,11 +222,11 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
 
     fn set_select_function(
         &self,
-        func: Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+        func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
     ) {
         let func_data: Box_<
-            Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
-        > = Box::new(func);
+            Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+        > = Box_::new(func);
         unsafe extern "C" fn func_func(
             selection: *mut gtk_sys::GtkTreeSelection,
             model: *mut gtk_sys::GtkTreeModel,
@@ -239,7 +239,7 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
             let path = from_glib_borrow(path);
             let path_currently_selected = from_glib(path_currently_selected);
             let callback: &Option<
-                Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>,
+                Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>,
             > = &*(data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&selection, &model, &path, path_currently_selected)
@@ -255,18 +255,18 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
             let _callback: Box_<
-                Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+                Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
             > = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
         let super_callback0: Box_<
-            Option<Box<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+            Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
         > = func_data;
         unsafe {
             gtk_sys::gtk_tree_selection_set_select_function(
                 self.as_ref().to_glib_none().0,
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

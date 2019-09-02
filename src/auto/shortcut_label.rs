@@ -38,7 +38,7 @@ impl ShortcutLabel {
     pub fn new(accelerator: &str) -> ShortcutLabel {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_full(gtk_sys::gtk_shortcut_label_new(
+            Widget::from_glib_none(gtk_sys::gtk_shortcut_label_new(
                 accelerator.to_glib_none().0,
             ))
             .unsafe_cast()

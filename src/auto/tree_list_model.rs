@@ -32,7 +32,7 @@ impl TreeListModel {
         create_func: Q,
     ) -> TreeListModel {
         assert_initialized_main_thread!();
-        let create_func_data: Box_<Q> = Box::new(create_func);
+        let create_func_data: Box_<Q> = Box_::new(create_func);
         unsafe extern "C" fn create_func_func<
             P: IsA<gio::ListModel>,
             Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
@@ -64,7 +64,7 @@ impl TreeListModel {
                 root.as_ref().to_glib_none().0,
                 autoexpand.to_glib(),
                 create_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call5,
             ))
         }
