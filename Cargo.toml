@@ -25,7 +25,7 @@ name = "gtk4"
 [features]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/purge-lgpl-docs", "gsk4/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/embed-lgpl-docs", "gsk4/embed-lgpl-docs"]
-dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox"]
+dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox", "futures"]
 futures = ["futures-core-preview", "fragile", "gio/futures"]
 subclassing = ["glib/subclassing", "gio/subclassing"]
 
