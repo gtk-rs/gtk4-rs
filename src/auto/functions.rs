@@ -389,7 +389,7 @@ pub fn print_run_page_setup_dialog_async<
     done_cb: Q,
 ) {
     skip_assert_initialized!();
-    let done_cb_data: Box_<Q> = Box::new(done_cb);
+    let done_cb_data: Box_<Q> = Box_::new(done_cb);
     unsafe extern "C" fn done_cb_func<
         P: IsA<Window>,
         Q: FnOnce(&PageSetup) + Send + Sync + 'static,
@@ -409,7 +409,7 @@ pub fn print_run_page_setup_dialog_async<
             page_setup.to_glib_none().0,
             settings.to_glib_none().0,
             done_cb,
-            Box::into_raw(super_callback0) as *mut _,
+            Box_::into_raw(super_callback0) as *mut _,
         );
     }
 }

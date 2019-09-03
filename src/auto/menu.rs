@@ -512,7 +512,7 @@ impl MenuBuilder {
 pub const NONE_MENU: Option<&Menu> = None;
 
 pub trait GtkMenuExt: 'static {
-    //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box<dyn FnOnce(&Widget, &Menu) + 'static>>);
+    //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box_<dyn FnOnce(&Widget, &Menu) + 'static>>);
 
     fn detach(&self);
 
@@ -627,7 +627,7 @@ pub trait GtkMenuExt: 'static {
 }
 
 impl<O: IsA<Menu>> GtkMenuExt for O {
-    //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box<dyn FnOnce(&Widget, &Menu) + 'static>>) {
+    //fn attach_to_widget<P: IsA<Widget>>(&self, attach_widget: &P, detacher: Option<Box_<dyn FnOnce(&Widget, &Menu) + 'static>>) {
     //    unsafe { TODO: call gtk_sys:gtk_menu_attach_to_widget() }
     //}
 

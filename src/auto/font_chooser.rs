@@ -52,7 +52,7 @@ pub trait FontChooserExt: 'static {
 
     fn set_filter_func(
         &self,
-        filter: Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
+        filter: Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
     );
 
     fn set_font(&self, fontname: &str);
@@ -180,11 +180,11 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
 
     fn set_filter_func(
         &self,
-        filter: Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
+        filter: Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
     ) {
         let filter_data: Box_<
-            Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
-        > = Box::new(filter);
+            Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
+        > = Box_::new(filter);
         unsafe extern "C" fn filter_func(
             family: *const pango_sys::PangoFontFamily,
             face: *const pango_sys::PangoFontFace,
@@ -193,7 +193,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             let family = from_glib_borrow(family);
             let face = from_glib_borrow(face);
             let callback: &Option<
-                Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>,
+                Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>,
             > = &*(data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&family, &face)
@@ -209,18 +209,18 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
             let _callback: Box_<
-                Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
+                Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
             > = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
         let super_callback0: Box_<
-            Option<Box<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
+            Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
         > = filter_data;
         unsafe {
             gtk_sys::gtk_font_chooser_set_filter_func(
                 self.as_ref().to_glib_none().0,
                 filter,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

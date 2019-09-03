@@ -507,7 +507,7 @@ pub trait FlowBoxExt: 'static {
 
     fn set_column_spacing(&self, spacing: u32);
 
-    fn set_filter_func(&self, filter_func: Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>>);
+    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>);
 
     fn set_hadjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
 
@@ -523,7 +523,7 @@ pub trait FlowBoxExt: 'static {
 
     fn set_sort_func(
         &self,
-        sort_func: Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
     );
 
     fn set_vadjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
@@ -607,7 +607,7 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
         model: Option<&P>,
         create_widget_func: Q,
     ) {
-        let create_widget_func_data: Box_<Q> = Box::new(create_widget_func);
+        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
         unsafe extern "C" fn create_widget_func_func<
             P: IsA<gio::ListModel>,
             Q: Fn(&glib::Object) -> Widget + 'static,
@@ -636,7 +636,7 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
                 create_widget_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call4,
             );
         }
@@ -784,15 +784,15 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
         }
     }
 
-    fn set_filter_func(&self, filter_func: Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>>) {
-        let filter_func_data: Box_<Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-            Box::new(filter_func);
+    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>) {
+        let filter_func_data: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+            Box_::new(filter_func);
         unsafe extern "C" fn filter_func_func(
             child: *mut gtk_sys::GtkFlowBoxChild,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
             let child = from_glib_borrow(child);
-            let callback: &Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&child)
@@ -807,17 +807,17 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
             None
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+        let super_callback0: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
             filter_func_data;
         unsafe {
             gtk_sys::gtk_flow_box_set_filter_func(
                 self.as_ref().to_glib_none().0,
                 filter_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }
@@ -876,11 +876,11 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
 
     fn set_sort_func(
         &self,
-        sort_func: Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
     ) {
         let sort_func_data: Box_<
-            Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-        > = Box::new(sort_func);
+            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        > = Box_::new(sort_func);
         unsafe extern "C" fn sort_func_func(
             child1: *mut gtk_sys::GtkFlowBoxChild,
             child2: *mut gtk_sys::GtkFlowBoxChild,
@@ -888,7 +888,7 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
         ) -> libc::c_int {
             let child1 = from_glib_borrow(child1);
             let child2 = from_glib_borrow(child2);
-            let callback: &Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&child1, &child2)
@@ -904,18 +904,18 @@ impl<O: IsA<FlowBox>> FlowBoxExt for O {
         };
         unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
             let _callback: Box_<
-                Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+                Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
             > = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func as _);
         let super_callback0: Box_<
-            Option<Box<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
         > = sort_func_data;
         unsafe {
             gtk_sys::gtk_flow_box_set_sort_func(
                 self.as_ref().to_glib_none().0,
                 sort_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

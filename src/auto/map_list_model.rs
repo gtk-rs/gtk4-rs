@@ -30,17 +30,17 @@ impl MapListModel {
     pub fn new<P: IsA<gio::ListModel>>(
         item_type: glib::types::Type,
         model: Option<&P>,
-        map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
+        map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
     ) -> MapListModel {
         assert_initialized_main_thread!();
-        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
-            Box::new(map_func);
+        let map_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            Box_::new(map_func);
         unsafe extern "C" fn map_func_func<P: IsA<gio::ListModel>>(
             item: *mut gobject_sys::GObject,
             user_data: glib_sys::gpointer,
         ) -> *mut gobject_sys::GObject {
             let item = from_glib_full(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
@@ -55,18 +55,18 @@ impl MapListModel {
             None
         };
         unsafe extern "C" fn user_destroy_func<P: IsA<gio::ListModel>>(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call4 = Some(user_destroy_func::<P> as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+        let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
             map_func_data;
         unsafe {
             from_glib_full(gtk_sys::gtk_map_list_model_new(
                 item_type.to_glib(),
                 model.map(|p| p.as_ref()).to_glib_none().0,
                 map_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call4,
             ))
         }
@@ -80,7 +80,7 @@ pub trait MapListModelExt: 'static {
 
     fn has_map(&self) -> bool;
 
-    fn set_map_func(&self, map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>);
+    fn set_map_func(&self, map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>);
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
@@ -108,15 +108,18 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
         }
     }
 
-    fn set_map_func(&self, map_func: Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>) {
-        let map_func_data: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
-            Box::new(map_func);
+    fn set_map_func(
+        &self,
+        map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
+    ) {
+        let map_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            Box_::new(map_func);
         unsafe extern "C" fn map_func_func(
             item: *mut gobject_sys::GObject,
             user_data: glib_sys::gpointer,
         ) -> *mut gobject_sys::GObject {
             let item = from_glib_full(item);
-            let callback: &Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
+            let callback: &Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>> =
                 &*(user_data as *mut _);
             let res = if let Some(ref callback) = *callback {
                 callback(&item)
@@ -131,17 +134,17 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
             None
         };
         unsafe extern "C" fn user_destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+            let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(user_destroy_func as _);
-        let super_callback0: Box_<Option<Box<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
+        let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
             map_func_data;
         unsafe {
             gtk_sys::gtk_map_list_model_set_map_func(
                 self.as_ref().to_glib_none().0,
                 map_func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

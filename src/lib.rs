@@ -43,7 +43,7 @@ extern crate pango;
 #[cfg(feature = "futures")]
 extern crate fragile;
 #[cfg(feature = "futures")]
-extern crate futures_core;
+extern crate futures;
 
 #[allow(unused_imports)]
 use glib::{Cast, Continue, Error, IsA, Object, StaticType, ToValue, Type, TypedValue, Value};

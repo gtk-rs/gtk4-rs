@@ -403,7 +403,7 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
     }
 
     fn set_match_func<P: Fn(&EntryCompletion, &str, &TreeIter) -> bool + 'static>(&self, func: P) {
-        let func_data: Box_<P> = Box::new(func);
+        let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<
             P: Fn(&EntryCompletion, &str, &TreeIter) -> bool + 'static,
         >(
@@ -433,7 +433,7 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
             gtk_sys::gtk_entry_completion_set_match_func(
                 self.as_ref().to_glib_none().0,
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

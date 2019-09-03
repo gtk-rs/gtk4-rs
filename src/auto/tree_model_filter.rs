@@ -130,7 +130,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
     }
 
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
-        let func_data: Box_<P> = Box::new(func);
+        let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             model: *mut gtk_sys::GtkTreeModel,
             iter: *mut gtk_sys::GtkTreeIter,
@@ -154,7 +154,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
             gtk_sys::gtk_tree_model_filter_set_visible_func(
                 self.as_ref().to_glib_none().0,
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

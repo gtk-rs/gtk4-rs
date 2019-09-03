@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "futures")]
+#[cfg(any(feature = "futures", feature = "dox"))]
 use futures::future;
 use gdk;
 use gdk_pixbuf;
@@ -14,7 +14,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use std;
-#[cfg(feature = "futures")]
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -81,7 +80,7 @@ impl IconInfo {
         cancellable: Option<&P>,
         callback: Q,
     ) {
-        let user_data: Box<Q> = Box::new(callback);
+        let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn load_icon_async_trampoline<
             Q: FnOnce(Result<gdk_pixbuf::Pixbuf, Error>) + Send + 'static,
         >(
@@ -97,7 +96,7 @@ impl IconInfo {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<Q> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = load_icon_async_trampoline::<Q>;
@@ -106,12 +105,12 @@ impl IconInfo {
                 self.to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
+    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_icon_async_future(
         &self,
     ) -> Box_<dyn future::Future<Output = Result<gdk_pixbuf::Pixbuf, Error>> + std::marker::Unpin>
@@ -170,7 +169,7 @@ impl IconInfo {
         cancellable: Option<&P>,
         callback: Q,
     ) {
-        let user_data: Box<Q> = Box::new(callback);
+        let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn load_symbolic_async_trampoline<
             Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
         >(
@@ -192,7 +191,7 @@ impl IconInfo {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<Q> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = load_symbolic_async_trampoline::<Q>;
@@ -205,12 +204,12 @@ impl IconInfo {
                 error_color.to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
+    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_symbolic_async_future(
         &self,
         fg: &gdk::RGBA,
@@ -277,7 +276,7 @@ impl IconInfo {
         cancellable: Option<&Q>,
         callback: R,
     ) {
-        let user_data: Box<R> = Box::new(callback);
+        let user_data: Box_<R> = Box_::new(callback);
         unsafe extern "C" fn load_symbolic_for_context_async_trampoline<
             R: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
         >(
@@ -299,7 +298,7 @@ impl IconInfo {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<R> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<R> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = load_symbolic_for_context_async_trampoline::<R>;
@@ -309,12 +308,12 @@ impl IconInfo {
                 context.as_ref().to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
+    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(
         &self,
         context: &P,

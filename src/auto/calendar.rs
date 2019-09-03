@@ -662,7 +662,7 @@ impl<O: IsA<Calendar>> CalendarExt for O {
         &self,
         func: P,
     ) {
-        let func_data: Box_<P> = Box::new(func);
+        let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<
             P: Fn(&Calendar, u32, u32, u32) -> Option<String> + 'static,
         >(
@@ -691,7 +691,7 @@ impl<O: IsA<Calendar>> CalendarExt for O {
             gtk_sys::gtk_calendar_set_detail_func(
                 self.as_ref().to_glib_none().0,
                 func,
-                Box::into_raw(super_callback0) as *mut _,
+                Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
             );
         }

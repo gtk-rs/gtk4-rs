@@ -98,7 +98,7 @@ pub trait BuilderExt: 'static {
 
     fn get_type_from_name(&self, type_name: &str) -> glib::types::Type;
 
-    //fn lookup_callback_symbol(&self, callback_name: &str) -> Option<Box<dyn Fn() + 'static>>;
+    //fn lookup_callback_symbol(&self, callback_name: &str) -> Option<Box_<dyn Fn() + 'static>>;
 
     fn set_application<P: IsA<Application>>(&self, application: &P);
 
@@ -273,7 +273,7 @@ impl<O: IsA<Builder>> BuilderExt for O {
         }
     }
 
-    //fn lookup_callback_symbol(&self, callback_name: &str) -> Option<Box<dyn Fn() + 'static>> {
+    //fn lookup_callback_symbol(&self, callback_name: &str) -> Option<Box_<dyn Fn() + 'static>> {
     //    unsafe { TODO: call gtk_sys:gtk_builder_lookup_callback_symbol() }
     //}
 
