@@ -8,12 +8,18 @@ use gdk_sys;
 use glib::translate::*;
 use {GLContext, Rectangle, Surface, RGBA};
 
-pub trait SurfaceExt {
+pub trait GdkCairoSurfaceExt {
     fn create_region(&self) -> Option<Region>;
-    fn upload_to_gl(&self, target: i32, width: i32, height: i32, context: Option<&GLContext>);
+    unsafe fn upload_to_gl(
+        &self,
+        target: i32,
+        width: i32,
+        height: i32,
+        context: Option<&GLContext>,
+    );
 }
 
-impl SurfaceExt for cairo::Surface {
+impl GdkCairoSurfaceExt for cairo::Surface {
     fn create_region(&self) -> Option<Region> {
         unsafe {
             from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(
@@ -22,22 +28,26 @@ impl SurfaceExt for cairo::Surface {
         }
     }
 
-    fn upload_to_gl(&self, target: i32, width: i32, height: i32, context: Option<&GLContext>) {
+    unsafe fn upload_to_gl(
+        &self,
+        target: i32,
+        width: i32,
+        height: i32,
+        context: Option<&GLContext>,
+    ) {
         assert_initialized_main_thread!();
-        unsafe {
-            gdk_sys::gdk_cairo_surface_upload_to_gl(
-                mut_override(self.to_glib_none().0),
-                target,
-                width,
-                height,
-                context.to_glib_none().0,
-            );
-        }
+        gdk_sys::gdk_cairo_surface_upload_to_gl(
+            mut_override(self.to_glib_none().0),
+            target,
+            width,
+            height,
+            context.to_glib_none().0,
+        );
     }
 }
 
-pub trait ContextExt {
-    fn draw_from_gl(
+pub trait GdkCairoContextExt {
+    unsafe fn draw_from_gl(
         &self,
         surface: &Surface,
         source: i32,
@@ -60,8 +70,8 @@ pub trait ContextExt {
     fn add_region(&self, region: &Region);
 }
 
-impl ContextExt for Context {
-    fn draw_from_gl(
+impl GdkCairoContextExt for Context {
+    unsafe fn draw_from_gl(
         &self,
         surface: &Surface,
         source: i32,
@@ -73,19 +83,17 @@ impl ContextExt for Context {
         height: i32,
     ) {
         skip_assert_initialized!();
-        unsafe {
-            gdk_sys::gdk_cairo_draw_from_gl(
-                mut_override(self.to_glib_none().0),
-                surface.to_glib_none().0,
-                source,
-                source_type,
-                buffer_scale,
-                x,
-                y,
-                width,
-                height,
-            );
-        }
+        gdk_sys::gdk_cairo_draw_from_gl(
+            mut_override(self.to_glib_none().0),
+            surface.to_glib_none().0,
+            source,
+            source_type,
+            buffer_scale,
+            x,
+            y,
+            width,
+            height,
+        );
     }
 
     fn get_clip_rectangle(&self) -> Option<Rectangle> {
