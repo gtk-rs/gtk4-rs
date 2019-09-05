@@ -8,7 +8,7 @@ use gdk_sys;
 use glib::translate::*;
 use {GLContext, Rectangle, Surface, RGBA};
 
-pub trait SurfaceExt {
+pub trait GdkCairoSurfaceExt {
     fn create_region(&self) -> Option<Region>;
     unsafe fn upload_to_gl(
         &self,
@@ -19,7 +19,7 @@ pub trait SurfaceExt {
     );
 }
 
-impl SurfaceExt for cairo::Surface {
+impl GdkCairoSurfaceExt for cairo::Surface {
     fn create_region(&self) -> Option<Region> {
         unsafe {
             from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(
@@ -46,7 +46,7 @@ impl SurfaceExt for cairo::Surface {
     }
 }
 
-pub trait ContextExt {
+pub trait GdkCairoContextExt {
     unsafe fn draw_from_gl(
         &self,
         surface: &Surface,
@@ -70,7 +70,7 @@ pub trait ContextExt {
     fn add_region(&self, region: &Region);
 }
 
-impl ContextExt for Context {
+impl GdkCairoContextExt for Context {
     unsafe fn draw_from_gl(
         &self,
         surface: &Surface,

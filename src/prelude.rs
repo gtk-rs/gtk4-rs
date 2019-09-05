@@ -6,5 +6,5 @@
 
 pub use auto::traits::*;
 
-pub use cairo_interaction::{ContextExt, SurfaceExt};
+pub use cairo_interaction::{GdkCairoContextExt, GdkCairoSurfaceExt};
 pub use draw_context::DrawContextExtManual;
