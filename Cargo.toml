@@ -30,10 +30,7 @@ futures = ["futures-preview", "fragile", "gio/futures"]
 subclassing = ["glib/subclassing", "gio/subclassing"]
 
 ["package.metadata.docs.rs"]
-features = ["dox", "embed-lgpl-docs", "futures", "subclassing"]
-
-[target.'cfg(target_os = "macos")'.build-dependencies]
-cc = "^1.0"
+features = ["dox", "embed-lgpl-docs", "subclassing"]
 
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"
