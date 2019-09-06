@@ -29,6 +29,9 @@ dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox", "futures"]
 futures = ["futures-preview", "fragile", "gio/futures"]
 subclassing = ["glib/subclassing", "gio/subclassing"]
 
+["package.metadata.docs.rs"]
+features = ["dox", "embed-lgpl-docs", "futures", "subclassing"]
+
 [target.'cfg(target_os = "macos")'.build-dependencies]
 cc = "^1.0"
 
