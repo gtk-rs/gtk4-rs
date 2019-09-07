@@ -27,10 +27,9 @@ purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/purge-lgpl-docs", "gsk4/purge-lgpl-
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/embed-lgpl-docs", "gsk4/embed-lgpl-docs"]
 dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox", "futures"]
 futures = ["futures-preview", "fragile", "gio/futures"]
-subclassing = ["glib/subclassing", "gio/subclassing"]
 
 ["package.metadata.docs.rs"]
-features = ["dox", "embed-lgpl-docs", "subclassing"]
+features = ["dox", "embed-lgpl-docs"]
 
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"
