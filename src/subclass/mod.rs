@@ -8,7 +8,6 @@ pub mod bin;
 pub mod box_;
 pub mod container;
 pub mod dialog;
-pub mod event_box;
 pub mod header_bar;
 pub mod widget;
 pub mod window;
@@ -20,7 +19,6 @@ pub mod prelude {
     pub use super::box_::BoxImpl;
     pub use super::container::ContainerImpl;
     pub use super::dialog::DialogImpl;
-    pub use super::event_box::EventBoxImpl;
     pub use super::header_bar::HeaderBarImpl;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
