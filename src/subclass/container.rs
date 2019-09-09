@@ -19,10 +19,6 @@ pub trait ContainerImpl: ContainerImplExt + WidgetImpl + 'static {
         self.parent_remove(container, widget)
     }
 
-    fn check_resize(&self, container: &Container) {
-        self.parent_check_resize(container)
-    }
-
     fn set_focus_child(&self, container: &Container, widget: &Widget) {
         self.parent_set_focus_child(container, widget)
     }
@@ -39,7 +35,6 @@ pub trait ContainerImpl: ContainerImplExt + WidgetImpl + 'static {
 pub trait ContainerImplExt {
     fn parent_add(&self, container: &Container, widget: &Widget);
     fn parent_remove(&self, container: &Container, widget: &Widget);
-    fn parent_check_resize(&self, container: &Container);
     fn parent_set_focus_child(&self, container: &Container, widget: &Widget);
     fn parent_child_type(&self, container: &Container) -> glib::Type;
     fn parent_get_path_for_child(&self, container: &Container, widget: &Widget) -> WidgetPath;
@@ -65,17 +60,6 @@ impl<T: ContainerImpl + ObjectImpl> ContainerImplExt for T {
                 .remove
                 .expect("No parent class impl for \"remove\"");
             f(container.to_glib_none().0, widget.to_glib_none().0)
-        }
-    }
-
-    fn parent_check_resize(&self, container: &Container) {
-        unsafe {
-            let data = self.get_type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkContainerClass;
-            let f = (*parent_class)
-                .check_resize
-                .expect("No parent class impl for \"check_resize\"");
-            f(container.to_glib_none().0)
         }
     }
 
@@ -119,7 +103,6 @@ unsafe impl<T: ObjectSubclass + ContainerImpl> IsSubclassable<T> for ContainerCl
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkContainerClass);
             klass.add = Some(container_add::<T>);
             klass.remove = Some(container_remove::<T>);
-            klass.check_resize = Some(container_check_resize::<T>);
             klass.set_focus_child = Some(container_set_focus_child::<T>);
             klass.child_type = Some(container_child_type::<T>);
             klass.get_path_for_child = Some(container_get_path_for_child::<T>);
@@ -153,17 +136,6 @@ unsafe extern "C" fn container_remove<T: ObjectSubclass>(
     let widget: Widget = from_glib_borrow(wdgtptr);
 
     imp.remove(&wrap, &widget)
-}
-
-unsafe extern "C" fn container_check_resize<T: ObjectSubclass>(ptr: *mut gtk_sys::GtkContainer)
-where
-    T: ContainerImpl,
-{
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
-    let wrap: Container = from_glib_borrow(ptr);
-
-    imp.check_resize(&wrap)
 }
 
 unsafe extern "C" fn container_set_focus_child<T: ObjectSubclass>(
