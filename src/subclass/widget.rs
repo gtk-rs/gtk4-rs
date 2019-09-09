@@ -32,12 +32,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_data_delete(widget, context)
     }
 
-    fn drag_data_get(
-        &self,
-        widget: &Widget,
-        context: &gdk::Drag,
-        selection_data: &SelectionData,
-    ) {
+    fn drag_data_get(&self, widget: &Widget, context: &gdk::Drag, selection_data: &SelectionData) {
         self.parent_drag_data_get(widget, context, selection_data)
     }
 
@@ -50,13 +45,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_data_received(widget, drop, selection_data)
     }
 
-    fn drag_drop(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit {
+    fn drag_drop(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit {
         self.parent_drag_drop(widget, drop, x, y)
     }
 
@@ -64,12 +53,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_end(widget, context)
     }
 
-    fn drag_failed(
-        &self,
-        widget: &Widget,
-        context: &gdk::Drag,
-        result: DragResult,
-    ) -> Inhibit {
+    fn drag_failed(&self, widget: &Widget, context: &gdk::Drag, result: DragResult) -> Inhibit {
         self.parent_drag_failed(widget, context, result)
     }
 
@@ -77,13 +61,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl + 'static {
         self.parent_drag_leave(widget, drop)
     }
 
-    fn drag_motion(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit {
+    fn drag_motion(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit {
         self.parent_drag_motion(widget, drop, x, y)
     }
 
@@ -111,13 +89,7 @@ pub trait WidgetImplExt {
         drop: &gdk::Drop,
         selection_data: &SelectionData,
     );
-    fn parent_drag_drop(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit;
+    fn parent_drag_drop(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit;
     fn parent_drag_end(&self, widget: &Widget, context: &gdk::Drag);
     fn parent_drag_failed(
         &self,
@@ -126,13 +98,7 @@ pub trait WidgetImplExt {
         result: DragResult,
     ) -> Inhibit;
     fn parent_drag_leave(&self, widget: &Widget, drop: &gdk::Drop);
-    fn parent_drag_motion(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit;
+    fn parent_drag_motion(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit;
 }
 
 impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
@@ -249,13 +215,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_drop(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit {
+    fn parent_drag_drop(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
@@ -313,13 +273,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_drag_motion(
-        &self,
-        widget: &Widget,
-        drop: &gdk::Drop,
-        x: i32,
-        y: i32,
-    ) -> Inhibit {
+    fn parent_drag_motion(&self, widget: &Widget, drop: &gdk::Drop, x: i32, y: i32) -> Inhibit {
         unsafe {
             let data = self.get_type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWidgetClass;
