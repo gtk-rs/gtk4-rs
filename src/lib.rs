@@ -47,6 +47,7 @@ pub mod prelude;
 mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
+mod device;
 mod draw_context;
 mod drop;
 mod events;

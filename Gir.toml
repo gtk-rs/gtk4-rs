@@ -206,12 +206,10 @@ name = "Gdk.Device"
 status = "generate"
     [[object.function]]
     name = "get_history"
-    # skip
-    ignore = true
+    ignore = true # need to call "free_history" function by hand
     [[object.function]]
     name = "free_history"
-    # skip
-    ignore = true
+    ignore = true # cannot be used as is
 
 [[object]]
 name = "Gdk.Display"
