@@ -43,6 +43,5 @@ links = "gdk4"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
-
-["package.metadata.docs.rs"]
+[package.metadata.docs.rs]
 features = ["dox"]
