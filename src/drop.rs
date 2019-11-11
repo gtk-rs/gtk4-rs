@@ -15,12 +15,11 @@ use glib_sys;
 use gobject_sys;
 use std::ptr;
 use Drop;
-use Error;
 
 impl Drop {
     pub fn read_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<(gio::InputStream, GString), Error>) + Send + 'static,
+        Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
     >(
         &self,
         mime_types: &[&str],
@@ -30,7 +29,7 @@ impl Drop {
     ) {
         let user_data: Box<Q> = Box::new(callback);
         unsafe extern "C" fn read_async_trampoline<
-            Q: FnOnce(Result<(gio::InputStream, GString), Error>) + Send + 'static,
+            Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -71,7 +70,7 @@ impl Drop {
         mime_types: &[&str],
         io_priority: glib::Priority,
     ) -> Box<
-        dyn future::Future<Output = Result<(gio::InputStream, GString), Error>>
+        dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>>
             + std::marker::Unpin,
     > {
         use fragile::Fragile;

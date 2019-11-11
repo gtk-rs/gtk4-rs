@@ -8,3 +8,5 @@ pub use auto::traits::*;
 
 pub use cairo_interaction::{GdkCairoContextExt, GdkCairoSurfaceExt};
 pub use draw_context::DrawContextExtManual;
+#[doc(hidden)]
+pub use glib::prelude::*;
