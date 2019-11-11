@@ -241,8 +241,8 @@ impl AccelLabelBuilder {
         self
     }
 
-    pub fn accel_widget(mut self, accel_widget: &Widget) -> Self {
-        self.accel_widget = Some(accel_widget.clone());
+    pub fn accel_widget<P: IsA<Widget>>(mut self, accel_widget: &P) -> Self {
+        self.accel_widget = Some(accel_widget.clone().upcast());
         self
     }
 
@@ -321,8 +321,8 @@ impl AccelLabelBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

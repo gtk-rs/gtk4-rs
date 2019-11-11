@@ -289,8 +289,8 @@ impl StackBuilder {
         self
     }
 
-    pub fn visible_child(mut self, visible_child: &Widget) -> Self {
-        self.visible_child = Some(visible_child.clone());
+    pub fn visible_child<P: IsA<Widget>>(mut self, visible_child: &P) -> Self {
+        self.visible_child = Some(visible_child.clone().upcast());
         self
     }
 
@@ -364,8 +364,8 @@ impl StackBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

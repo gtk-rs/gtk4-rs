@@ -14,7 +14,6 @@ use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -126,6 +125,7 @@ pub struct AboutDialogBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    focus_widget: Option<Widget>,
 }
 
 impl AboutDialogBuilder {
@@ -202,6 +202,7 @@ impl AboutDialogBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            focus_widget: None,
         }
     }
 
@@ -420,6 +421,9 @@ impl AboutDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
+        }
         glib::Object::new(AboutDialog::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -461,8 +465,8 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn logo(mut self, logo: &gdk::Paintable) -> Self {
-        self.logo = Some(logo.clone());
+    pub fn logo<P: IsA<gdk::Paintable>>(mut self, logo: &P) -> Self {
+        self.logo = Some(logo.clone().upcast());
         self
     }
 
@@ -516,13 +520,13 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn application(mut self, application: &Application) -> Self {
-        self.application = Some(application.clone());
+    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+        self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to(mut self, attached_to: &Widget) -> Self {
-        self.attached_to = Some(attached_to.clone());
+    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
+        self.attached_to = Some(attached_to.clone().upcast());
         self
     }
 
@@ -536,8 +540,8 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn default_widget(mut self, default_widget: &Widget) -> Self {
-        self.default_widget = Some(default_widget.clone());
+    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+        self.default_widget = Some(default_widget.clone().upcast());
         self
     }
 
@@ -606,8 +610,8 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn transient_for(mut self, transient_for: &Window) -> Self {
-        self.transient_for = Some(transient_for.clone());
+    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+        self.transient_for = Some(transient_for.clone().upcast());
         self
     }
 
@@ -691,8 +695,8 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -780,6 +784,11 @@ impl AboutDialogBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
+        self
+    }
 }
 
 pub const NONE_ABOUT_DIALOG: Option<&AboutDialog> = None;
@@ -851,7 +860,7 @@ pub trait AboutDialogExt: 'static {
 
     fn set_wrap_license(&self, wrap_license: bool);
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -1187,11 +1196,14 @@ impl<O: IsA<AboutDialog>> AboutDialogExt for O {
         }
     }
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(
+        unsafe extern "C" fn activate_link_trampoline<
+            P,
+            F: Fn(&P, &str) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkAboutDialog,
             uri: *mut libc::c_char,
             f: glib_sys::gpointer,

@@ -4,6 +4,7 @@
 
 use gdk;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -25,6 +26,7 @@ use Buildable;
 use Container;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use Widget;
 
@@ -266,6 +268,7 @@ pub struct ShortcutsSectionBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl ShortcutsSectionBuilder {
@@ -309,6 +312,7 @@ impl ShortcutsSectionBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -428,6 +432,9 @@ impl ShortcutsSectionBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(ShortcutsSection::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -534,8 +541,8 @@ impl ShortcutsSectionBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -621,6 +628,11 @@ impl ShortcutsSectionBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }

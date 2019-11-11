@@ -11,6 +11,7 @@ use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -298,8 +299,8 @@ impl MenuBuilder {
             .expect("downcast")
     }
 
-    pub fn accel_group(mut self, accel_group: &AccelGroup) -> Self {
-        self.accel_group = Some(accel_group.clone());
+    pub fn accel_group<P: IsA<AccelGroup>>(mut self, accel_group: &P) -> Self {
+        self.accel_group = Some(accel_group.clone().upcast());
         self
     }
 
@@ -318,8 +319,8 @@ impl MenuBuilder {
         self
     }
 
-    pub fn attach_widget(mut self, attach_widget: &Widget) -> Self {
-        self.attach_widget = Some(attach_widget.clone());
+    pub fn attach_widget<P: IsA<Widget>>(mut self, attach_widget: &P) -> Self {
+        self.attach_widget = Some(attach_widget.clone().upcast());
         self
     }
 
@@ -418,8 +419,8 @@ impl MenuBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -569,7 +570,10 @@ pub trait GtkMenuExt: 'static {
 
     fn set_property_anchor_hints(&self, anchor_hints: gdk::AnchorHints);
 
-    fn set_property_attach_widget(&self, attach_widget: Option<&Widget>);
+    fn set_property_attach_widget<P: IsA<Widget> + SetValueOptional>(
+        &self,
+        attach_widget: Option<&P>,
+    );
 
     fn get_property_menu_type_hint(&self) -> gdk::SurfaceTypeHint;
 
@@ -819,7 +823,10 @@ impl<O: IsA<Menu>> GtkMenuExt for O {
         }
     }
 
-    fn set_property_attach_widget(&self, attach_widget: Option<&Widget>) {
+    fn set_property_attach_widget<P: IsA<Widget> + SetValueOptional>(
+        &self,
+        attach_widget: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

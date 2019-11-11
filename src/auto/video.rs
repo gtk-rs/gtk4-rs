@@ -282,8 +282,8 @@ impl VideoBuilder {
         self
     }
 
-    pub fn file(mut self, file: &gio::File) -> Self {
-        self.file = Some(file.clone());
+    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+        self.file = Some(file.clone().upcast());
         self
     }
 
@@ -292,8 +292,8 @@ impl VideoBuilder {
         self
     }
 
-    pub fn media_stream(mut self, media_stream: &MediaStream) -> Self {
-        self.media_stream = Some(media_stream.clone());
+    pub fn media_stream<P: IsA<MediaStream>>(mut self, media_stream: &P) -> Self {
+        self.media_stream = Some(media_stream.clone().upcast());
         self
     }
 
@@ -362,8 +362,8 @@ impl VideoBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

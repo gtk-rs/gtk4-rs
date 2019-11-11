@@ -18,12 +18,12 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
+use Adjustment;
 use Align;
 use Buildable;
 use CellRenderer;
@@ -33,6 +33,7 @@ use LayoutManager;
 use MovementStep;
 use Overflow;
 use Scrollable;
+use ScrollablePolicy;
 use Tooltip;
 use TreeIter;
 use TreeModel;
@@ -123,6 +124,10 @@ pub struct TreeViewBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    hadjustment: Option<Adjustment>,
+    hscroll_policy: Option<ScrollablePolicy>,
+    vadjustment: Option<Adjustment>,
+    vscroll_policy: Option<ScrollablePolicy>,
 }
 
 impl TreeViewBuilder {
@@ -176,6 +181,10 @@ impl TreeViewBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            hadjustment: None,
+            hscroll_policy: None,
+            vadjustment: None,
+            vscroll_policy: None,
         }
     }
 
@@ -325,6 +334,18 @@ impl TreeViewBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
+        }
         glib::Object::new(TreeView::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -351,8 +372,8 @@ impl TreeViewBuilder {
         self
     }
 
-    pub fn expander_column(mut self, expander_column: &TreeViewColumn) -> Self {
-        self.expander_column = Some(expander_column.clone());
+    pub fn expander_column<P: IsA<TreeViewColumn>>(mut self, expander_column: &P) -> Self {
+        self.expander_column = Some(expander_column.clone().upcast());
         self
     }
 
@@ -386,8 +407,8 @@ impl TreeViewBuilder {
         self
     }
 
-    pub fn model(mut self, model: &TreeModel) -> Self {
-        self.model = Some(model.clone());
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
         self
     }
 
@@ -481,8 +502,8 @@ impl TreeViewBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -568,6 +589,26 @@ impl TreeViewBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
         self
     }
 }
@@ -900,12 +941,16 @@ pub trait TreeViewExt: 'static {
 
     fn emit_start_interactive_search(&self) -> bool;
 
-    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(
+    fn connect_test_collapse_row<
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(
+    fn connect_test_expand_row<
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -1784,12 +1829,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let _callback: Box_<
                 Option<
                     Box_<
-                        dyn Fn(
-                                &TreeView,
-                                &TreeViewColumn,
-                                &TreeViewColumn,
-                                &TreeViewColumn,
-                            ) -> bool
+                        dyn Fn(&TreeView, &TreeViewColumn, &TreeViewColumn, &TreeViewColumn) -> bool
                             + 'static,
                     >,
                 >,
@@ -2591,13 +2631,15 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .unwrap()
     }
 
-    fn connect_test_collapse_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(
+    fn connect_test_collapse_row<
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn test_collapse_row_trampoline<
             P,
-            F: Fn(&P, &TreeIter, &TreePath) -> Inhibit + 'static,
+            F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkTreeView,
             iter: *mut gtk_sys::GtkTreeIter,
@@ -2626,13 +2668,15 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_test_expand_row<F: Fn(&Self, &TreeIter, &TreePath) -> Inhibit + 'static>(
+    fn connect_test_expand_row<
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn test_expand_row_trampoline<
             P,
-            F: Fn(&P, &TreeIter, &TreePath) -> Inhibit + 'static,
+            F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkTreeView,
             iter: *mut gtk_sys::GtkTreeIter,

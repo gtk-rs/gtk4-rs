@@ -16,7 +16,6 @@ use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -27,6 +26,7 @@ use Buildable;
 use Editable;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use ScrollType;
 use SpinButtonUpdatePolicy;
@@ -107,6 +107,12 @@ pub struct SpinButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    editable: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
+    orientation: Option<Orientation>,
 }
 
 impl SpinButtonBuilder {
@@ -151,6 +157,12 @@ impl SpinButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            editable: None,
+            max_width_chars: None,
+            text: None,
+            width_chars: None,
+            xalign: None,
+            orientation: None,
         }
     }
 
@@ -273,14 +285,32 @@ impl SpinButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(SpinButton::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn adjustment(mut self, adjustment: &Adjustment) -> Self {
-        self.adjustment = Some(adjustment.clone());
+    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+        self.adjustment = Some(adjustment.clone().upcast());
         self
     }
 
@@ -384,8 +414,8 @@ impl SpinButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -473,6 +503,36 @@ impl SpinButtonBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
+    }
 }
 
 pub const NONE_SPIN_BUTTON: Option<&SpinButton> = None;
@@ -532,7 +592,10 @@ pub trait SpinButtonExt: 'static {
 
     //fn connect_input<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_output<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_output<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -796,8 +859,11 @@ impl<O: IsA<SpinButton>> SpinButtonExt for O {
     //    Out new_value: *.Double
     //}
 
-    fn connect_output<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(
+    fn connect_output<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn output_trampoline<P, F: Fn(&P) -> glib::signal::Inhibit + 'static>(
             this: *mut gtk_sys::GtkSpinButton,
             f: glib_sys::gpointer,
         ) -> glib_sys::gboolean

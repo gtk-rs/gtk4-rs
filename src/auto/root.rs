@@ -8,6 +8,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::Value;
 use glib_sys;
@@ -47,7 +48,10 @@ pub trait RootExt: 'static {
 
     fn get_property_focus_widget(&self) -> Option<Widget>;
 
-    fn set_property_focus_widget(&self, focus_widget: Option<&Widget>);
+    fn set_property_focus_widget<P: IsA<Widget> + SetValueOptional>(
+        &self,
+        focus_widget: Option<&P>,
+    );
 
     fn connect_property_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
@@ -81,7 +85,10 @@ impl<O: IsA<Root>> RootExt for O {
         }
     }
 
-    fn set_property_focus_widget(&self, focus_widget: Option<&Widget>) {
+    fn set_property_focus_widget<P: IsA<Widget> + SetValueOptional>(
+        &self,
+        focus_widget: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

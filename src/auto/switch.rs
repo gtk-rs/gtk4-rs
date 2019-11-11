@@ -15,7 +15,6 @@ use glib::ToValue;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -81,6 +80,7 @@ pub struct SwitchBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl SwitchBuilder {
@@ -119,6 +119,7 @@ impl SwitchBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -223,6 +224,9 @@ impl SwitchBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(Switch::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -304,8 +308,8 @@ impl SwitchBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -393,6 +397,11 @@ impl SwitchBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
+        self
+    }
 }
 
 pub const NONE_SWITCH: Option<&Switch> = None;
@@ -410,7 +419,10 @@ pub trait SwitchExt: 'static {
 
     fn emit_activate(&self);
 
-    fn connect_state_set<F: Fn(&Self, bool) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_state_set<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -475,8 +487,14 @@ impl<O: IsA<Switch>> SwitchExt for O {
         };
     }
 
-    fn connect_state_set<F: Fn(&Self, bool) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn state_set_trampoline<P, F: Fn(&P, bool) -> Inhibit + 'static>(
+    fn connect_state_set<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn state_set_trampoline<
+            P,
+            F: Fn(&P, bool) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkSwitch,
             state: glib_sys::gboolean,
             f: glib_sys::gpointer,

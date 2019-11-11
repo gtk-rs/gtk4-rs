@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -16,7 +17,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Error;
 
 glib_wrapper! {
     pub struct MediaStream(Object<gtk_sys::GtkMediaStream, gtk_sys::GtkMediaStreamClass, MediaStreamClass>) @implements gdk::Paintable;
@@ -39,7 +39,7 @@ pub trait MediaStreamExt: 'static {
 
     fn get_ended(&self) -> bool;
 
-    fn get_error(&self) -> Option<Error>;
+    fn get_error(&self) -> Option<glib::Error>;
 
     fn get_loop(&self) -> bool;
 
@@ -89,7 +89,7 @@ pub trait MediaStreamExt: 'static {
 
     fn update(&self, timestamp: i64);
 
-    fn set_property_error(&self, error: Option<&Error>);
+    fn set_property_error(&self, error: Option<&glib::Error>);
 
     fn get_property_has_audio(&self) -> bool;
 
@@ -161,7 +161,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_error(&self) -> Option<Error> {
+    fn get_error(&self) -> Option<glib::Error> {
         unsafe {
             from_glib_none(gtk_sys::gtk_media_stream_get_error(
                 self.as_ref().to_glib_none().0,
@@ -340,7 +340,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn set_property_error(&self, error: Option<&Error>) {
+    fn set_property_error(&self, error: Option<&glib::Error>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

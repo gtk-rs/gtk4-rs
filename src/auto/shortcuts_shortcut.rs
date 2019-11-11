@@ -5,10 +5,12 @@
 use gdk;
 use gio;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -37,7 +39,10 @@ glib_wrapper! {
 }
 
 impl ShortcutsShortcut {
-    pub fn set_property_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
+    pub fn set_property_accel_size_group<P: IsA<SizeGroup> + SetValueOptional>(
+        &self,
+        accel_size_group: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -109,7 +114,7 @@ impl ShortcutsShortcut {
         }
     }
 
-    pub fn set_property_icon(&self, icon: Option<&gio::Icon>) {
+    pub fn set_property_icon<P: IsA<gio::Icon> + SetValueOptional>(&self, icon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -242,7 +247,10 @@ impl ShortcutsShortcut {
         }
     }
 
-    pub fn set_property_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
+    pub fn set_property_title_size_group<P: IsA<SizeGroup> + SetValueOptional>(
+        &self,
+        title_size_group: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -739,8 +747,8 @@ impl ShortcutsShortcutBuilder {
             .expect("downcast")
     }
 
-    pub fn accel_size_group(mut self, accel_size_group: &SizeGroup) -> Self {
-        self.accel_size_group = Some(accel_size_group.clone());
+    pub fn accel_size_group<P: IsA<SizeGroup>>(mut self, accel_size_group: &P) -> Self {
+        self.accel_size_group = Some(accel_size_group.clone().upcast());
         self
     }
 
@@ -759,8 +767,8 @@ impl ShortcutsShortcutBuilder {
         self
     }
 
-    pub fn icon(mut self, icon: &gio::Icon) -> Self {
-        self.icon = Some(icon.clone());
+    pub fn icon<P: IsA<gio::Icon>>(mut self, icon: &P) -> Self {
+        self.icon = Some(icon.clone().upcast());
         self
     }
 
@@ -789,8 +797,8 @@ impl ShortcutsShortcutBuilder {
         self
     }
 
-    pub fn title_size_group(mut self, title_size_group: &SizeGroup) -> Self {
-        self.title_size_group = Some(title_size_group.clone());
+    pub fn title_size_group<P: IsA<SizeGroup>>(mut self, title_size_group: &P) -> Self {
+        self.title_size_group = Some(title_size_group.clone().upcast());
         self
     }
 
@@ -859,8 +867,8 @@ impl ShortcutsShortcutBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

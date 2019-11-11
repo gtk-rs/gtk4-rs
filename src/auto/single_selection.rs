@@ -8,6 +8,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::Value;
 use glib_sys;
@@ -56,7 +57,7 @@ pub trait SingleSelectionExt: 'static {
 
     fn get_property_model(&self) -> Option<gio::ListModel>;
 
-    fn set_property_model(&self, model: Option<&gio::ListModel>);
+    fn set_property_model<P: IsA<gio::ListModel> + SetValueOptional>(&self, model: Option<&P>);
 
     fn connect_property_autoselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -136,7 +137,7 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
-    fn set_property_model(&self, model: Option<&gio::ListModel>) {
+    fn set_property_model<P: IsA<gio::ListModel> + SetValueOptional>(&self, model: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

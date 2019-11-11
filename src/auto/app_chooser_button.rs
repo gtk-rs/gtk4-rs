@@ -80,6 +80,7 @@ pub struct AppChooserButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    content_type: Option<String>,
 }
 
 impl AppChooserButtonBuilder {
@@ -119,6 +120,7 @@ impl AppChooserButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            content_type: None,
         }
     }
 
@@ -226,6 +228,9 @@ impl AppChooserButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref content_type) = self.content_type {
+            properties.push(("content-type", content_type));
+        }
         glib::Object::new(AppChooserButton::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -312,8 +317,8 @@ impl AppChooserButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -399,6 +404,11 @@ impl AppChooserButtonBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn content_type(mut self, content_type: &str) -> Self {
+        self.content_type = Some(content_type.to_string());
         self
     }
 }

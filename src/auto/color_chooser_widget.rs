@@ -25,6 +25,7 @@ use ColorChooser;
 use Container;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use Widget;
 
@@ -85,6 +86,9 @@ pub struct ColorChooserWidgetBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
+    rgba: Option<gdk::RGBA>,
+    use_alpha: Option<bool>,
 }
 
 impl ColorChooserWidgetBuilder {
@@ -125,6 +129,9 @@ impl ColorChooserWidgetBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
+            rgba: None,
+            use_alpha: None,
         }
     }
 
@@ -235,6 +242,15 @@ impl ColorChooserWidgetBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
+        if let Some(ref rgba) = self.rgba {
+            properties.push(("rgba", rgba));
+        }
+        if let Some(ref use_alpha) = self.use_alpha {
+            properties.push(("use-alpha", use_alpha));
+        }
         glib::Object::new(ColorChooserWidget::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -326,8 +342,8 @@ impl ColorChooserWidgetBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -413,6 +429,21 @@ impl ColorChooserWidgetBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
+    }
+
+    pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
+        self.rgba = Some(rgba.clone());
+        self
+    }
+
+    pub fn use_alpha(mut self, use_alpha: bool) -> Self {
+        self.use_alpha = Some(use_alpha);
         self
     }
 }

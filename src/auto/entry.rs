@@ -11,6 +11,7 @@ use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -134,6 +135,12 @@ pub struct EntryBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    editing_canceled: Option<bool>,
+    editable: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
 }
 
 impl EntryBuilder {
@@ -205,6 +212,12 @@ impl EntryBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            editing_canceled: None,
+            editable: None,
+            max_width_chars: None,
+            text: None,
+            width_chars: None,
+            xalign: None,
         }
     }
 
@@ -411,6 +424,24 @@ impl EntryBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref editing_canceled) = self.editing_canceled {
+            properties.push(("editing-canceled", editing_canceled));
+        }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
         glib::Object::new(Entry::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -427,13 +458,13 @@ impl EntryBuilder {
         self
     }
 
-    pub fn buffer(mut self, buffer: &EntryBuffer) -> Self {
-        self.buffer = Some(buffer.clone());
+    pub fn buffer<P: IsA<EntryBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
         self
     }
 
-    pub fn completion(mut self, completion: &EntryCompletion) -> Self {
-        self.completion = Some(completion.clone());
+    pub fn completion<P: IsA<EntryCompletion>>(mut self, completion: &P) -> Self {
+        self.completion = Some(completion.clone().upcast());
         self
     }
 
@@ -497,8 +528,8 @@ impl EntryBuilder {
         self
     }
 
-    pub fn primary_icon_gicon(mut self, primary_icon_gicon: &gio::Icon) -> Self {
-        self.primary_icon_gicon = Some(primary_icon_gicon.clone());
+    pub fn primary_icon_gicon<P: IsA<gio::Icon>>(mut self, primary_icon_gicon: &P) -> Self {
+        self.primary_icon_gicon = Some(primary_icon_gicon.clone().upcast());
         self
     }
 
@@ -507,8 +538,11 @@ impl EntryBuilder {
         self
     }
 
-    pub fn primary_icon_paintable(mut self, primary_icon_paintable: &gdk::Paintable) -> Self {
-        self.primary_icon_paintable = Some(primary_icon_paintable.clone());
+    pub fn primary_icon_paintable<P: IsA<gdk::Paintable>>(
+        mut self,
+        primary_icon_paintable: &P,
+    ) -> Self {
+        self.primary_icon_paintable = Some(primary_icon_paintable.clone().upcast());
         self
     }
 
@@ -542,8 +576,8 @@ impl EntryBuilder {
         self
     }
 
-    pub fn secondary_icon_gicon(mut self, secondary_icon_gicon: &gio::Icon) -> Self {
-        self.secondary_icon_gicon = Some(secondary_icon_gicon.clone());
+    pub fn secondary_icon_gicon<P: IsA<gio::Icon>>(mut self, secondary_icon_gicon: &P) -> Self {
+        self.secondary_icon_gicon = Some(secondary_icon_gicon.clone().upcast());
         self
     }
 
@@ -552,8 +586,11 @@ impl EntryBuilder {
         self
     }
 
-    pub fn secondary_icon_paintable(mut self, secondary_icon_paintable: &gdk::Paintable) -> Self {
-        self.secondary_icon_paintable = Some(secondary_icon_paintable.clone());
+    pub fn secondary_icon_paintable<P: IsA<gdk::Paintable>>(
+        mut self,
+        secondary_icon_paintable: &P,
+    ) -> Self {
+        self.secondary_icon_paintable = Some(secondary_icon_paintable.clone().upcast());
         self
     }
 
@@ -657,8 +694,8 @@ impl EntryBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -744,6 +781,36 @@ impl EntryBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn editing_canceled(mut self, editing_canceled: bool) -> Self {
+        self.editing_canceled = Some(editing_canceled);
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
         self
     }
 }
@@ -890,7 +957,10 @@ pub trait EntryExt: 'static {
 
     fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    fn set_property_primary_icon_gicon(&self, primary_icon_gicon: Option<&gio::Icon>);
+    fn set_property_primary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
+        &self,
+        primary_icon_gicon: Option<&P>,
+    );
 
     fn get_property_primary_icon_name(&self) -> Option<GString>;
 
@@ -898,7 +968,10 @@ pub trait EntryExt: 'static {
 
     fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    fn set_property_primary_icon_paintable(&self, primary_icon_paintable: Option<&gdk::Paintable>);
+    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
+        &self,
+        primary_icon_paintable: Option<&P>,
+    );
 
     fn get_property_primary_icon_sensitive(&self) -> bool;
 
@@ -922,7 +995,10 @@ pub trait EntryExt: 'static {
 
     fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: Option<&gio::Icon>);
+    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
+        &self,
+        secondary_icon_gicon: Option<&P>,
+    );
 
     fn get_property_secondary_icon_name(&self) -> Option<GString>;
 
@@ -930,9 +1006,9 @@ pub trait EntryExt: 'static {
 
     fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    fn set_property_secondary_icon_paintable(
+    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
         &self,
-        secondary_icon_paintable: Option<&gdk::Paintable>,
+        secondary_icon_paintable: Option<&P>,
     );
 
     fn get_property_secondary_icon_sensitive(&self) -> bool;
@@ -1706,7 +1782,10 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_gicon(&self, primary_icon_gicon: Option<&gio::Icon>) {
+    fn set_property_primary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
+        &self,
+        primary_icon_gicon: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
@@ -1754,7 +1833,10 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_paintable(&self, primary_icon_paintable: Option<&gdk::Paintable>) {
+    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
+        &self,
+        primary_icon_paintable: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
@@ -1906,7 +1988,10 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_gicon(&self, secondary_icon_gicon: Option<&gio::Icon>) {
+    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
+        &self,
+        secondary_icon_gicon: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
@@ -1954,9 +2039,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_paintable(
+    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
         &self,
-        secondary_icon_paintable: Option<&gdk::Paintable>,
+        secondary_icon_paintable: Option<&P>,
     ) {
         unsafe {
             gobject_sys::g_object_set_property(

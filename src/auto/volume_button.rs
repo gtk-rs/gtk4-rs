@@ -26,6 +26,7 @@ use Button;
 use Container;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use ReliefStyle;
 use ScaleButton;
@@ -92,6 +93,8 @@ pub struct VolumeButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
+    orientation: Option<Orientation>,
 }
 
 impl VolumeButtonBuilder {
@@ -136,6 +139,8 @@ impl VolumeButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
+            orientation: None,
         }
     }
 
@@ -258,6 +263,12 @@ impl VolumeButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(VolumeButton::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -269,8 +280,8 @@ impl VolumeButtonBuilder {
         self
     }
 
-    pub fn adjustment(mut self, adjustment: &Adjustment) -> Self {
-        self.adjustment = Some(adjustment.clone());
+    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+        self.adjustment = Some(adjustment.clone().upcast());
         self
     }
 
@@ -369,8 +380,8 @@ impl VolumeButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -456,6 +467,16 @@ impl VolumeButtonBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }

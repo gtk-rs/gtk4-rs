@@ -2,12 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "futures", feature = "dox"))]
-use futures::future;
 use gdk;
 use gdk_pixbuf;
 use gio;
 use gio_sys;
+use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use glib_sys;
@@ -17,8 +16,8 @@ use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
+use std::pin::Pin;
 use std::ptr;
-use Error;
 use IconTheme;
 use StyleContext;
 
@@ -60,7 +59,7 @@ impl IconInfo {
         unsafe { from_glib(gtk_sys::gtk_icon_info_is_symbolic(self.to_glib_none().0)) }
     }
 
-    pub fn load_icon(&self) -> Result<gdk_pixbuf::Pixbuf, Error> {
+    pub fn load_icon(&self) -> Result<gdk_pixbuf::Pixbuf, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = gtk_sys::gtk_icon_info_load_icon(self.to_glib_none().0, &mut error);
@@ -74,7 +73,7 @@ impl IconInfo {
 
     pub fn load_icon_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<gdk_pixbuf::Pixbuf, Error>) + Send + 'static,
+        Q: FnOnce(Result<gdk_pixbuf::Pixbuf, glib::Error>) + Send + 'static,
     >(
         &self,
         cancellable: Option<&P>,
@@ -82,7 +81,7 @@ impl IconInfo {
     ) {
         let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn load_icon_async_trampoline<
-            Q: FnOnce(Result<gdk_pixbuf::Pixbuf, Error>) + Send + 'static,
+            Q: FnOnce(Result<gdk_pixbuf::Pixbuf, glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -110,11 +109,11 @@ impl IconInfo {
         }
     }
 
-    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_icon_async_future(
         &self,
-    ) -> Box_<dyn future::Future<Output = Result<gdk_pixbuf::Pixbuf, Error>> + std::marker::Unpin>
-    {
+    ) -> Pin<
+        Box_<dyn std::future::Future<Output = Result<gdk_pixbuf::Pixbuf, glib::Error>> + 'static>,
+    > {
         use fragile::Fragile;
         use gio::GioFuture;
 
@@ -135,7 +134,7 @@ impl IconInfo {
         success_color: Option<&gdk::RGBA>,
         warning_color: Option<&gdk::RGBA>,
         error_color: Option<&gdk::RGBA>,
-    ) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
+    ) -> Result<(gdk_pixbuf::Pixbuf, bool), glib::Error> {
         unsafe {
             let mut was_symbolic = mem::MaybeUninit::uninit();
             let mut error = ptr::null_mut();
@@ -159,7 +158,7 @@ impl IconInfo {
 
     pub fn load_symbolic_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
+        Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>) + Send + 'static,
     >(
         &self,
         fg: &gdk::RGBA,
@@ -171,7 +170,7 @@ impl IconInfo {
     ) {
         let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn load_symbolic_async_trampoline<
-            Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
+            Q: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -209,15 +208,17 @@ impl IconInfo {
         }
     }
 
-    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_symbolic_async_future(
         &self,
         fg: &gdk::RGBA,
         success_color: Option<&gdk::RGBA>,
         warning_color: Option<&gdk::RGBA>,
         error_color: Option<&gdk::RGBA>,
-    ) -> Box_<
-        dyn future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin,
+    ) -> Pin<
+        Box_<
+            dyn std::future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>>
+                + 'static,
+        >,
     > {
         use fragile::Fragile;
         use gio::GioFuture;
@@ -247,7 +248,7 @@ impl IconInfo {
     pub fn load_symbolic_for_context<P: IsA<StyleContext>>(
         &self,
         context: &P,
-    ) -> Result<(gdk_pixbuf::Pixbuf, bool), Error> {
+    ) -> Result<(gdk_pixbuf::Pixbuf, bool), glib::Error> {
         unsafe {
             let mut was_symbolic = mem::MaybeUninit::uninit();
             let mut error = ptr::null_mut();
@@ -269,7 +270,7 @@ impl IconInfo {
     pub fn load_symbolic_for_context_async<
         P: IsA<StyleContext>,
         Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
+        R: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>) + Send + 'static,
     >(
         &self,
         context: &P,
@@ -278,7 +279,7 @@ impl IconInfo {
     ) {
         let user_data: Box_<R> = Box_::new(callback);
         unsafe extern "C" fn load_symbolic_for_context_async_trampoline<
-            R: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), Error>) + Send + 'static,
+            R: FnOnce(Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -313,12 +314,14 @@ impl IconInfo {
         }
     }
 
-    #[cfg(any(feature = "futures", feature = "dox"))]
     pub fn load_symbolic_for_context_async_future<P: IsA<StyleContext> + Clone + 'static>(
         &self,
         context: &P,
-    ) -> Box_<
-        dyn future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), Error>> + std::marker::Unpin,
+    ) -> Pin<
+        Box_<
+            dyn std::future::Future<Output = Result<(gdk_pixbuf::Pixbuf, bool), glib::Error>>
+                + 'static,
+        >,
     > {
         use fragile::Fragile;
         use gio::GioFuture;

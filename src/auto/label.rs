@@ -19,7 +19,6 @@ use gobject_sys;
 use gtk_sys;
 use libc;
 use pango;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -350,8 +349,8 @@ impl LabelBuilder {
         self
     }
 
-    pub fn mnemonic_widget(mut self, mnemonic_widget: &Widget) -> Self {
-        self.mnemonic_widget = Some(mnemonic_widget.clone());
+    pub fn mnemonic_widget<P: IsA<Widget>>(mut self, mnemonic_widget: &P) -> Self {
+        self.mnemonic_widget = Some(mnemonic_widget.clone().upcast());
         self
     }
 
@@ -475,8 +474,8 @@ impl LabelBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -677,7 +676,7 @@ pub trait LabelExt: 'static {
 
     fn emit_activate_current_link(&self);
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -1210,11 +1209,14 @@ impl<O: IsA<Label>> LabelExt for O {
         };
     }
 
-    fn connect_activate_link<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn activate_link_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(
+        unsafe extern "C" fn activate_link_trampoline<
+            P,
+            F: Fn(&P, &str) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkLabel,
             uri: *mut libc::c_char,
             f: glib_sys::gpointer,

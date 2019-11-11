@@ -8,6 +8,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
@@ -94,6 +95,7 @@ pub struct RadioToolButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl RadioToolButtonBuilder {
@@ -142,6 +144,7 @@ impl RadioToolButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -276,14 +279,17 @@ impl RadioToolButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(RadioToolButton::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn group(mut self, group: &RadioToolButton) -> Self {
-        self.group = Some(group.clone());
+    pub fn group<P: IsA<RadioToolButton>>(mut self, group: &P) -> Self {
+        self.group = Some(group.clone().upcast());
         self
     }
 
@@ -297,8 +303,8 @@ impl RadioToolButtonBuilder {
         self
     }
 
-    pub fn icon_widget(mut self, icon_widget: &Widget) -> Self {
-        self.icon_widget = Some(icon_widget.clone());
+    pub fn icon_widget<P: IsA<Widget>>(mut self, icon_widget: &P) -> Self {
+        self.icon_widget = Some(icon_widget.clone().upcast());
         self
     }
 
@@ -307,8 +313,8 @@ impl RadioToolButtonBuilder {
         self
     }
 
-    pub fn label_widget(mut self, label_widget: &Widget) -> Self {
-        self.label_widget = Some(label_widget.clone());
+    pub fn label_widget<P: IsA<Widget>>(mut self, label_widget: &P) -> Self {
+        self.label_widget = Some(label_widget.clone().upcast());
         self
     }
 
@@ -407,8 +413,8 @@ impl RadioToolButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -496,6 +502,11 @@ impl RadioToolButtonBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
+        self
+    }
 }
 
 pub const NONE_RADIO_TOOL_BUTTON: Option<&RadioToolButton> = None;
@@ -503,7 +514,7 @@ pub const NONE_RADIO_TOOL_BUTTON: Option<&RadioToolButton> = None;
 pub trait RadioToolButtonExt: 'static {
     fn get_group(&self) -> Vec<RadioButton>;
 
-    fn set_property_group(&self, group: Option<&RadioToolButton>);
+    fn set_property_group<P: IsA<RadioToolButton> + SetValueOptional>(&self, group: Option<&P>);
 
     fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -517,7 +528,7 @@ impl<O: IsA<RadioToolButton>> RadioToolButtonExt for O {
         }
     }
 
-    fn set_property_group(&self, group: Option<&RadioToolButton>) {
+    fn set_property_group<P: IsA<RadioToolButton> + SetValueOptional>(&self, group: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

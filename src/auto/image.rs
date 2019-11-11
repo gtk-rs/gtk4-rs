@@ -10,6 +10,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -325,8 +326,8 @@ impl ImageBuilder {
         self
     }
 
-    pub fn gicon(mut self, gicon: &gio::Icon) -> Self {
-        self.gicon = Some(gicon.clone());
+    pub fn gicon<P: IsA<gio::Icon>>(mut self, gicon: &P) -> Self {
+        self.gicon = Some(gicon.clone().upcast());
         self
     }
 
@@ -340,8 +341,8 @@ impl ImageBuilder {
         self
     }
 
-    pub fn paintable(mut self, paintable: &gdk::Paintable) -> Self {
-        self.paintable = Some(paintable.clone());
+    pub fn paintable<P: IsA<gdk::Paintable>>(mut self, paintable: &P) -> Self {
+        self.paintable = Some(paintable.clone().upcast());
         self
     }
 
@@ -425,8 +426,8 @@ impl ImageBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -553,11 +554,14 @@ pub trait ImageExt: 'static {
 
     fn set_property_file(&self, file: Option<&str>);
 
-    fn set_property_gicon(&self, gicon: Option<&gio::Icon>);
+    fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>);
 
     fn set_property_icon_name(&self, icon_name: Option<&str>);
 
-    fn set_property_paintable(&self, paintable: Option<&gdk::Paintable>);
+    fn set_property_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
+        &self,
+        paintable: Option<&P>,
+    );
 
     fn get_property_resource(&self) -> Option<GString>;
 
@@ -725,7 +729,7 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    fn set_property_gicon(&self, gicon: Option<&gio::Icon>) {
+    fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
@@ -745,7 +749,10 @@ impl<O: IsA<Image>> ImageExt for O {
         }
     }
 
-    fn set_property_paintable(&self, paintable: Option<&gdk::Paintable>) {
+    fn set_property_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
+        &self,
+        paintable: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

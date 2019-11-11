@@ -219,8 +219,8 @@ impl MediaControlsBuilder {
             .expect("downcast")
     }
 
-    pub fn media_stream(mut self, media_stream: &MediaStream) -> Self {
-        self.media_stream = Some(media_stream.clone());
+    pub fn media_stream<P: IsA<MediaStream>>(mut self, media_stream: &P) -> Self {
+        self.media_stream = Some(media_stream.clone().upcast());
         self
     }
 
@@ -289,8 +289,8 @@ impl MediaControlsBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

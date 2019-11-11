@@ -7,7 +7,6 @@ use glib::translate::*;
 use glib::GString;
 use gtk_sys;
 use std::ptr;
-use Error;
 use Unit;
 
 glib_wrapper! {
@@ -69,7 +68,7 @@ impl PaperSize {
     pub fn new_from_key_file(
         key_file: &glib::KeyFile,
         group_name: Option<&str>,
-    ) -> Result<PaperSize, Error> {
+    ) -> Result<PaperSize, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = ptr::null_mut();

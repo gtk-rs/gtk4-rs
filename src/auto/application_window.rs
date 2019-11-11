@@ -106,6 +106,7 @@ pub struct ApplicationWindowBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    focus_widget: Option<Widget>,
 }
 
 impl ApplicationWindowBuilder {
@@ -166,6 +167,7 @@ impl ApplicationWindowBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            focus_widget: None,
         }
     }
 
@@ -336,6 +338,9 @@ impl ApplicationWindowBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
+        }
         glib::Object::new(ApplicationWindow::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -352,13 +357,13 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn application(mut self, application: &Application) -> Self {
-        self.application = Some(application.clone());
+    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+        self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to(mut self, attached_to: &Widget) -> Self {
-        self.attached_to = Some(attached_to.clone());
+    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
+        self.attached_to = Some(attached_to.clone().upcast());
         self
     }
 
@@ -372,8 +377,8 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn default_widget(mut self, default_widget: &Widget) -> Self {
-        self.default_widget = Some(default_widget.clone());
+    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+        self.default_widget = Some(default_widget.clone().upcast());
         self
     }
 
@@ -442,8 +447,8 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn transient_for(mut self, transient_for: &Window) -> Self {
-        self.transient_for = Some(transient_for.clone());
+    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+        self.transient_for = Some(transient_for.clone().upcast());
         self
     }
 
@@ -527,8 +532,8 @@ impl ApplicationWindowBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -614,6 +619,11 @@ impl ApplicationWindowBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
 }

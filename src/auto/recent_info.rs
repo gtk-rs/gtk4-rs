@@ -3,13 +3,13 @@
 // DO NOT EDIT
 
 use gio;
+use glib;
 use glib::translate::*;
 use glib::GString;
 use gtk_sys;
 use libc;
 use std::mem;
 use std::ptr;
-use Error;
 
 glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -23,7 +23,10 @@ glib_wrapper! {
 }
 
 impl RecentInfo {
-    pub fn create_app_info(&self, app_name: Option<&str>) -> Result<Option<gio::AppInfo>, Error> {
+    pub fn create_app_info(
+        &self,
+        app_name: Option<&str>,
+    ) -> Result<Option<gio::AppInfo>, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = gtk_sys::gtk_recent_info_create_app_info(

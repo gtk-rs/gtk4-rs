@@ -95,6 +95,7 @@ pub struct MenuButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl MenuButtonBuilder {
@@ -142,6 +143,7 @@ impl MenuButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -273,14 +275,17 @@ impl MenuButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(MenuButton::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn align_widget(mut self, align_widget: &Container) -> Self {
-        self.align_widget = Some(align_widget.clone());
+    pub fn align_widget<P: IsA<Container>>(mut self, align_widget: &P) -> Self {
+        self.align_widget = Some(align_widget.clone().upcast());
         self
     }
 
@@ -289,18 +294,18 @@ impl MenuButtonBuilder {
         self
     }
 
-    pub fn menu_model(mut self, menu_model: &gio::MenuModel) -> Self {
-        self.menu_model = Some(menu_model.clone());
+    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+        self.menu_model = Some(menu_model.clone().upcast());
         self
     }
 
-    pub fn popover(mut self, popover: &Popover) -> Self {
-        self.popover = Some(popover.clone());
+    pub fn popover<P: IsA<Popover>>(mut self, popover: &P) -> Self {
+        self.popover = Some(popover.clone().upcast());
         self
     }
 
-    pub fn popup(mut self, popup: &Menu) -> Self {
-        self.popup = Some(popup.clone());
+    pub fn popup<P: IsA<Menu>>(mut self, popup: &P) -> Self {
+        self.popup = Some(popup.clone().upcast());
         self
     }
 
@@ -399,8 +404,8 @@ impl MenuButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -486,6 +491,11 @@ impl MenuButtonBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
         self
     }
 }

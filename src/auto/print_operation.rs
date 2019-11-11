@@ -20,7 +20,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
-use Error;
 use PageSetup;
 use PrintContext;
 use PrintOperationAction;
@@ -64,7 +63,7 @@ pub trait PrintOperationExt: 'static {
 
     fn get_embed_page_setup(&self) -> bool;
 
-    fn get_error(&self) -> Result<(), Error>;
+    fn get_error(&self) -> Result<(), glib::Error>;
 
     fn get_has_selection(&self) -> bool;
 
@@ -84,7 +83,7 @@ pub trait PrintOperationExt: 'static {
         &self,
         action: PrintOperationAction,
         parent: Option<&P>,
-    ) -> Result<PrintOperationResult, Error>;
+    ) -> Result<PrintOperationResult, glib::Error>;
 
     fn set_allow_async(&self, allow_async: bool);
 
@@ -284,7 +283,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_error(&self) -> Result<(), Error> {
+    fn get_error(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ =
@@ -353,7 +352,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         &self,
         action: PrintOperationAction,
         parent: Option<&P>,
-    ) -> Result<PrintOperationResult, Error> {
+    ) -> Result<PrintOperationResult, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = gtk_sys::gtk_print_operation_run(

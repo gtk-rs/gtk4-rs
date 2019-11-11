@@ -5,10 +5,12 @@
 use gdk;
 use gio;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -109,7 +111,7 @@ impl ModelButton {
         }
     }
 
-    pub fn set_property_icon(&self, icon: Option<&gio::Icon>) {
+    pub fn set_property_icon<P: IsA<gio::Icon> + SetValueOptional>(&self, icon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -526,6 +528,7 @@ pub struct ModelButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl ModelButtonBuilder {
@@ -575,6 +578,7 @@ impl ModelButtonBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -712,6 +716,9 @@ impl ModelButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(ModelButton::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -728,8 +735,8 @@ impl ModelButtonBuilder {
         self
     }
 
-    pub fn icon(mut self, icon: &gio::Icon) -> Self {
-        self.icon = Some(icon.clone());
+    pub fn icon<P: IsA<gio::Icon>>(mut self, icon: &P) -> Self {
+        self.icon = Some(icon.clone().upcast());
         self
     }
 
@@ -848,8 +855,8 @@ impl ModelButtonBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -935,6 +942,11 @@ impl ModelButtonBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
         self
     }
 }
