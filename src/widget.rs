@@ -5,7 +5,7 @@ use glib::ObjectExt;
 use gtk_sys;
 use Widget;
 
-use Continue;
+use glib::Continue;
 
 pub trait WidgetExtManual: 'static {
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(

@@ -3,11 +3,11 @@ use gdk_sys::GdkRectangle;
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
+use glib::IsA;
 use glib_sys::{gboolean, gpointer};
 use gtk_sys::{GtkOverlay, GtkWidget};
 use std::mem::transmute;
 use std::ptr;
-use IsA;
 use Overlay;
 use Widget;
 
