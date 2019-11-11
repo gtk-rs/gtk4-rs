@@ -8,7 +8,6 @@ use glib;
 use glib::translate::*;
 use glib::GString;
 use std::fmt;
-use Error;
 
 glib_wrapper! {
     pub struct ContentDeserializer(Object<gdk_sys::GdkContentDeserializer, ContentDeserializerClass>);
@@ -63,7 +62,7 @@ impl ContentDeserializer {
         }
     }
 
-    pub fn return_error(&self, error: &mut Error) {
+    pub fn return_error(&self, error: &mut glib::Error) {
         unsafe {
             gdk_sys::gdk_content_deserializer_return_error(
                 self.to_glib_none().0,

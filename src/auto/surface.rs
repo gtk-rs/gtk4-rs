@@ -5,6 +5,7 @@
 use cairo;
 use cairo_sys;
 use gdk_sys;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -25,7 +26,6 @@ use CairoContext;
 use Cursor;
 use Device;
 use Display;
-use Error;
 use Event;
 use FrameClock;
 use FullscreenMode;
@@ -149,9 +149,9 @@ pub trait SurfaceExt: 'static {
 
     fn create_cairo_context(&self) -> Option<CairoContext>;
 
-    fn create_gl_context(&self) -> Result<GLContext, Error>;
+    fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
 
-    fn create_vulkan_context(&self) -> Result<VulkanContext, Error>;
+    fn create_vulkan_context(&self) -> Result<VulkanContext, glib::Error>;
 
     fn deiconify(&self);
 
@@ -470,7 +470,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn create_gl_context(&self) -> Result<GLContext, Error> {
+    fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret =
@@ -483,7 +483,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn create_vulkan_context(&self) -> Result<VulkanContext, Error> {
+    fn create_vulkan_context(&self) -> Result<VulkanContext, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = gdk_sys::gdk_surface_create_vulkan_context(

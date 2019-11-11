@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "futures")]
-use futures::future;
 use gdk_sys;
 use gio;
 use gio_sys;
@@ -19,13 +17,13 @@ use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use std::pin::Pin;
 use std::ptr;
 use ContentFormats;
 use Device;
 use Display;
 use Drag;
 use DragAction;
-use Error;
 use Surface;
 
 glib_wrapper! {
@@ -69,15 +67,15 @@ impl Drop {
 
     pub fn read_text_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<GString, Error>) + Send + 'static,
+        Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
     >(
         &self,
         cancellable: Option<&P>,
         callback: Q,
     ) {
-        let user_data: Box<Q> = Box::new(callback);
+        let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn read_text_async_trampoline<
-            Q: FnOnce(Result<GString, Error>) + Send + 'static,
+            Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -90,7 +88,7 @@ impl Drop {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<Q> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = read_text_async_trampoline::<Q>;
@@ -99,15 +97,14 @@ impl Drop {
                 self.to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
     pub fn read_text_async_future(
         &self,
-    ) -> Box_<dyn future::Future<Output = Result<GString, Error>> + std::marker::Unpin> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<GString, glib::Error>> + 'static>> {
         use fragile::Fragile;
         use gio::GioFuture;
 
@@ -124,7 +121,7 @@ impl Drop {
 
     pub fn read_value_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+        Q: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
     >(
         &self,
         type_: glib::types::Type,
@@ -132,9 +129,9 @@ impl Drop {
         cancellable: Option<&P>,
         callback: Q,
     ) {
-        let user_data: Box<Q> = Box::new(callback);
+        let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn read_value_async_trampoline<
-            Q: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+            Q: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -148,7 +145,7 @@ impl Drop {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<Q> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = read_value_async_trampoline::<Q>;
@@ -159,17 +156,17 @@ impl Drop {
                 io_priority.to_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
     pub fn read_value_async_future(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
-    ) -> Box_<dyn future::Future<Output = Result<glib::Value, Error>> + std::marker::Unpin> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Value, glib::Error>> + 'static>>
+    {
         use fragile::Fragile;
         use gio::GioFuture;
 

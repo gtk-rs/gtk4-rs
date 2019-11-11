@@ -8,7 +8,6 @@ use glib;
 use glib::translate::*;
 use glib::GString;
 use std::fmt;
-use Error;
 
 glib_wrapper! {
     pub struct ContentSerializer(Object<gdk_sys::GdkContentSerializer, ContentSerializerClass>);
@@ -63,7 +62,7 @@ impl ContentSerializer {
         }
     }
 
-    pub fn return_error(&self, error: &mut Error) {
+    pub fn return_error(&self, error: &mut glib::Error) {
         unsafe {
             gdk_sys::gdk_content_serializer_return_error(
                 self.to_glib_none().0,

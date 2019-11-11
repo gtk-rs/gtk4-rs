@@ -3,12 +3,12 @@
 // DO NOT EDIT
 
 use gdk_sys;
+use glib;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
 use std::ptr;
 use DrawContext;
-use Error;
 
 glib_wrapper! {
     pub struct GLContext(Object<gdk_sys::GdkGLContext, GLContextClass>) @extends DrawContext;
@@ -87,7 +87,7 @@ impl GLContext {
         }
     }
 
-    pub fn realize(&self) -> Result<(), Error> {
+    pub fn realize(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gdk_sys::gdk_gl_context_realize(self.to_glib_none().0, &mut error);
