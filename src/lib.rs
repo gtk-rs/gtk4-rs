@@ -61,7 +61,6 @@ pub use auto::*;
 
 pub use alias::*;
 pub use functions::*;
-pub use prelude::*;
 
 pub use events::*;
 pub use geometry::Geometry;
