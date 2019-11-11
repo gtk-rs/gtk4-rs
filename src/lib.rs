@@ -40,10 +40,7 @@ extern crate graphene;
 extern crate gsk4 as gsk;
 extern crate pango;
 
-#[cfg(feature = "futures")]
 extern crate fragile;
-#[cfg(feature = "futures")]
-extern crate futures;
 
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 =
     gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
