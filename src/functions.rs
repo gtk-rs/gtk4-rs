@@ -5,10 +5,10 @@
 use cairo;
 use pango;
 
-#[cfg(feature = "futures")]
-use futures::future;
 use glib::object::IsA;
 use glib::translate::*;
+use std::future;
+use std::pin::Pin;
 use std::ptr;
 use ContentDeserializer;
 use ContentSerializer;
@@ -103,13 +103,12 @@ pub fn content_deserialize_async<
     }
 }
 
-#[cfg(feature = "futures")]
 pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     type_: glib::types::Type,
     io_priority: i32,
-) -> Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + std::marker::Unpin> {
+) -> Pin<Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
     use fragile::Fragile;
@@ -299,13 +298,12 @@ pub fn content_serialize_async<
     }
 }
 
-#[cfg(feature = "futures")]
 pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     value: &glib::Value,
     io_priority: i32,
-) -> Box<dyn future::Future<Output = Result<(), glib::Error>> + std::marker::Unpin> {
+) -> Pin<Box<dyn future::Future<Output = Result<(), glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
     use fragile::Fragile;

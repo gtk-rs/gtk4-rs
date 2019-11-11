@@ -2,11 +2,11 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-#[cfg(feature = "futures")]
-use futures::future;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
+use std::future;
+use std::pin::Pin;
 use std::ptr;
 use Clipboard;
 
@@ -58,14 +58,14 @@ impl Clipboard {
         }
     }
 
-    #[cfg(feature = "futures")]
     pub fn read_async_future(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
-    ) -> Box<
-        dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>>
-            + std::marker::Unpin,
+    ) -> Pin<
+        Box<
+            dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>> + 'static,
+        >,
     > {
         use fragile::Fragile;
         use gio::GioFuture;
