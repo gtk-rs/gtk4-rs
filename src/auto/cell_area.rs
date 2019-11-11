@@ -62,8 +62,8 @@ impl CellAreaBuilder {
             .expect("downcast")
     }
 
-    pub fn focus_cell(mut self, focus_cell: &CellRenderer) -> Self {
-        self.focus_cell = Some(focus_cell.clone());
+    pub fn focus_cell<P: IsA<CellRenderer>>(mut self, focus_cell: &P) -> Self {
+        self.focus_cell = Some(focus_cell.clone().upcast());
         self
     }
 }

@@ -40,13 +40,7 @@ extern crate graphene;
 extern crate gsk4 as gsk;
 extern crate pango;
 
-#[cfg(feature = "futures")]
 extern crate fragile;
-#[cfg(feature = "futures")]
-extern crate futures;
-
-#[allow(unused_imports)]
-use glib::{Cast, Continue, Error, IsA, Object, StaticType, ToValue, Type, TypedValue, Value};
 
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 =
     gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
@@ -79,7 +73,6 @@ pub mod prelude;
 pub use auto::functions::*;
 pub use auto::*;
 pub use functions::*;
-pub use prelude::*;
 pub use rt::*;
 
 mod accel_key;

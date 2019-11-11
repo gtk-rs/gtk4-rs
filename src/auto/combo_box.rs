@@ -123,6 +123,7 @@ pub struct ComboBoxBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    editing_canceled: Option<bool>,
 }
 
 impl ComboBoxBuilder {
@@ -168,6 +169,7 @@ impl ComboBoxBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            editing_canceled: None,
         }
     }
 
@@ -293,6 +295,9 @@ impl ComboBoxBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref editing_canceled) = self.editing_canceled {
+            properties.push(("editing-canceled", editing_canceled));
+        }
         glib::Object::new(ComboBox::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -334,8 +339,8 @@ impl ComboBoxBuilder {
         self
     }
 
-    pub fn model(mut self, model: &TreeModel) -> Self {
-        self.model = Some(model.clone());
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
         self
     }
 
@@ -409,8 +414,8 @@ impl ComboBoxBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -496,6 +501,11 @@ impl ComboBoxBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn editing_canceled(mut self, editing_canceled: bool) -> Self {
+        self.editing_canceled = Some(editing_canceled);
         self
     }
 }

@@ -135,6 +135,8 @@ pub struct AppChooserDialogBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    focus_widget: Option<Widget>,
+    content_type: Option<String>,
 }
 
 impl AppChooserDialogBuilder {
@@ -197,6 +199,8 @@ impl AppChooserDialogBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            focus_widget: None,
+            content_type: None,
         }
     }
 
@@ -373,14 +377,20 @@ impl AppChooserDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
+        }
+        if let Some(ref content_type) = self.content_type {
+            properties.push(("content-type", content_type));
+        }
         glib::Object::new(AppChooserDialog::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn gfile(mut self, gfile: &gio::File) -> Self {
-        self.gfile = Some(gfile.clone());
+    pub fn gfile<P: IsA<gio::File>>(mut self, gfile: &P) -> Self {
+        self.gfile = Some(gfile.clone().upcast());
         self
     }
 
@@ -399,13 +409,13 @@ impl AppChooserDialogBuilder {
         self
     }
 
-    pub fn application(mut self, application: &Application) -> Self {
-        self.application = Some(application.clone());
+    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+        self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to(mut self, attached_to: &Widget) -> Self {
-        self.attached_to = Some(attached_to.clone());
+    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
+        self.attached_to = Some(attached_to.clone().upcast());
         self
     }
 
@@ -419,8 +429,8 @@ impl AppChooserDialogBuilder {
         self
     }
 
-    pub fn default_widget(mut self, default_widget: &Widget) -> Self {
-        self.default_widget = Some(default_widget.clone());
+    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+        self.default_widget = Some(default_widget.clone().upcast());
         self
     }
 
@@ -489,8 +499,8 @@ impl AppChooserDialogBuilder {
         self
     }
 
-    pub fn transient_for(mut self, transient_for: &Window) -> Self {
-        self.transient_for = Some(transient_for.clone());
+    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+        self.transient_for = Some(transient_for.clone().upcast());
         self
     }
 
@@ -574,8 +584,8 @@ impl AppChooserDialogBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -661,6 +671,16 @@ impl AppChooserDialogBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
+        self
+    }
+
+    pub fn content_type(mut self, content_type: &str) -> Self {
+        self.content_type = Some(content_type.to_string());
         self
     }
 }

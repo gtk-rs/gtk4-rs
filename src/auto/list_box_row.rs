@@ -82,6 +82,7 @@ pub struct ListBoxRowBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl ListBoxRowBuilder {
@@ -120,6 +121,7 @@ impl ListBoxRowBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -224,6 +226,9 @@ impl ListBoxRowBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(ListBoxRow::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -305,8 +310,8 @@ impl ListBoxRowBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -392,6 +397,11 @@ impl ListBoxRowBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
         self
     }
 }

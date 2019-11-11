@@ -25,8 +25,7 @@ name = "gtk4"
 [features]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/purge-lgpl-docs", "gsk4/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/embed-lgpl-docs", "gsk4/embed-lgpl-docs"]
-dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox", "futures"]
-futures = ["futures-preview", "fragile", "gio/futures"]
+dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]
@@ -40,8 +39,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 lazy_static = "1.0"
-fragile = { version = "0.3", optional = true }
-futures-preview = { version = "0.3.0-alpha", optional = true }
+fragile = { version = "0.3" }
 atk = { git = "https://github.com/gtk-rs/atk" }
 atk-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }

@@ -7,6 +7,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::Value;
 use glib_sys;
@@ -54,7 +55,7 @@ pub trait CellRendererComboExt: 'static {
 
     fn get_property_model(&self) -> Option<TreeModel>;
 
-    fn set_property_model(&self, model: Option<&TreeModel>);
+    fn set_property_model<P: IsA<TreeModel> + SetValueOptional>(&self, model: Option<&P>);
 
     fn get_property_text_column(&self) -> i32;
 
@@ -110,7 +111,7 @@ impl<O: IsA<CellRendererCombo>> CellRendererComboExt for O {
         }
     }
 
-    fn set_property_model(&self, model: Option<&TreeModel>) {
+    fn set_property_model<P: IsA<TreeModel> + SetValueOptional>(&self, model: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

@@ -9,7 +9,6 @@ use glib::GString;
 use glib::Object;
 use std::path::Path;
 use Builder;
-use Error;
 
 impl Builder {
     pub fn new_from_file<T: AsRef<Path>>(file_path: T) -> Builder {
@@ -24,7 +23,7 @@ impl Builder {
 
 pub trait BuilderExtManual: 'static {
     fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
-    fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), Error>;
+    fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error>;
     fn connect_signals<
         P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>,
     >(
@@ -44,7 +43,7 @@ impl<O: IsA<Builder>> BuilderExtManual for O {
         }
     }
 
-    fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), Error> {
+    fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ::std::ptr::null_mut();
             gtk_sys::gtk_builder_add_from_file(

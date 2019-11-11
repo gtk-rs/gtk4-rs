@@ -170,8 +170,8 @@ impl TreeViewColumnBuilder {
         self
     }
 
-    pub fn cell_area(mut self, cell_area: &CellArea) -> Self {
-        self.cell_area = Some(cell_area.clone());
+    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+        self.cell_area = Some(cell_area.clone().upcast());
         self
     }
 
@@ -245,8 +245,8 @@ impl TreeViewColumnBuilder {
         self
     }
 
-    pub fn widget(mut self, widget: &Widget) -> Self {
-        self.widget = Some(widget.clone());
+    pub fn widget<P: IsA<Widget>>(mut self, widget: &P) -> Self {
+        self.widget = Some(widget.clone().upcast());
         self
     }
 }

@@ -19,11 +19,11 @@ use gobject_sys;
 use gtk_sys;
 use libc;
 use pango;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use Adjustment;
 use Align;
 use Buildable;
 use Container;
@@ -36,6 +36,7 @@ use MovementStep;
 use Overflow;
 use ScrollStep;
 use Scrollable;
+use ScrollablePolicy;
 use TextBuffer;
 use TextChildAnchor;
 use TextExtendSelection;
@@ -129,6 +130,10 @@ pub struct TextViewBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    hadjustment: Option<Adjustment>,
+    hscroll_policy: Option<ScrollablePolicy>,
+    vadjustment: Option<Adjustment>,
+    vscroll_policy: Option<ScrollablePolicy>,
 }
 
 impl TextViewBuilder {
@@ -186,6 +191,10 @@ impl TextViewBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            hadjustment: None,
+            hscroll_policy: None,
+            vadjustment: None,
+            vscroll_policy: None,
         }
     }
 
@@ -347,6 +356,18 @@ impl TextViewBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
+        }
         glib::Object::new(TextView::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -363,8 +384,8 @@ impl TextViewBuilder {
         self
     }
 
-    pub fn buffer(mut self, buffer: &TextBuffer) -> Self {
-        self.buffer = Some(buffer.clone());
+    pub fn buffer<P: IsA<TextBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
         self
     }
 
@@ -523,8 +544,8 @@ impl TextViewBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -610,6 +631,26 @@ impl TextViewBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
         self
     }
 }
@@ -807,7 +848,8 @@ pub trait TextViewExt: 'static {
     fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32);
 
     fn connect_extend_selection<
-        F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static,
+        F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
+            + 'static,
     >(
         &self,
         f: F,
@@ -1722,14 +1764,22 @@ impl<O: IsA<TextView>> TextViewExt for O {
     }
 
     fn connect_extend_selection<
-        F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static,
+        F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
+            + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn extend_selection_trampoline<
             P,
-            F: Fn(&P, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> Inhibit + 'static,
+            F: Fn(
+                    &P,
+                    TextExtendSelection,
+                    &TextIter,
+                    &TextIter,
+                    &TextIter,
+                ) -> glib::signal::Inhibit
+                + 'static,
         >(
             this: *mut gtk_sys::GtkTextView,
             granularity: gtk_sys::GtkTextExtendSelection,

@@ -24,7 +24,6 @@ use gsk;
 use gtk_sys;
 use libc;
 use pango;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -595,21 +594,23 @@ pub trait WidgetExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
     fn connect_drag_end<F: Fn(&Self, &gdk::Drag) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> Inhibit + 'static>(
+    fn connect_drag_failed<
+        F: Fn(&Self, &gdk::Drag, DragResult) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
     fn connect_drag_leave<F: Fn(&Self, &gdk::Drop) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(
+    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -618,14 +619,14 @@ pub trait WidgetExt: 'static {
 
     fn connect_hide<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> Inhibit + 'static>(
+    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
     fn connect_map<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> Inhibit + 'static>(
+    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -2802,13 +2803,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(
+    fn connect_drag_drop<F: Fn(&Self, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn drag_drop_trampoline<
             P,
-            F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static,
+            F: Fn(&P, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkWidget,
             drop: *mut gdk_sys::GdkDrop,
@@ -2864,13 +2865,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_failed<F: Fn(&Self, &gdk::Drag, DragResult) -> Inhibit + 'static>(
+    fn connect_drag_failed<
+        F: Fn(&Self, &gdk::Drag, DragResult) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn drag_failed_trampoline<
             P,
-            F: Fn(&P, &gdk::Drag, DragResult) -> Inhibit + 'static,
+            F: Fn(&P, &gdk::Drag, DragResult) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkWidget,
             context: *mut gdk_sys::GdkDrag,
@@ -2924,13 +2927,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_drag_motion<F: Fn(&Self, &gdk::Drop, i32, i32) -> Inhibit + 'static>(
+    fn connect_drag_motion<
+        F: Fn(&Self, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn drag_motion_trampoline<
             P,
-            F: Fn(&P, &gdk::Drop, i32, i32) -> Inhibit + 'static,
+            F: Fn(&P, &gdk::Drop, i32, i32) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkWidget,
             drop: *mut gdk_sys::GdkDrop,
@@ -3007,13 +3012,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> Inhibit + 'static>(
+    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn keynav_failed_trampoline<
             P,
-            F: Fn(&P, DirectionType) -> Inhibit + 'static,
+            F: Fn(&P, DirectionType) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkWidget,
             direction: gtk_sys::GtkDirectionType,
@@ -3061,11 +3066,14 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> Inhibit + 'static>(
+    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn mnemonic_activate_trampoline<P, F: Fn(&P, bool) -> Inhibit + 'static>(
+        unsafe extern "C" fn mnemonic_activate_trampoline<
+            P,
+            F: Fn(&P, bool) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkWidget,
             group_cycling: glib_sys::gboolean,
             f: glib_sys::gpointer,

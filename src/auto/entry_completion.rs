@@ -15,7 +15,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -117,8 +116,8 @@ impl EntryCompletionBuilder {
             .expect("downcast")
     }
 
-    pub fn cell_area(mut self, cell_area: &CellArea) -> Self {
-        self.cell_area = Some(cell_area.clone());
+    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+        self.cell_area = Some(cell_area.clone().upcast());
         self
     }
 
@@ -137,8 +136,8 @@ impl EntryCompletionBuilder {
         self
     }
 
-    pub fn model(mut self, model: &TreeModel) -> Self {
-        self.model = Some(model.clone());
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
         self
     }
 
@@ -218,17 +217,21 @@ pub trait EntryCompletionExt: 'static {
 
     fn connect_action_activated<F: Fn(&Self, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(
+    fn connect_cursor_on_match<
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_insert_prefix<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_insert_prefix<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(
+    fn connect_match_selected<
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -529,13 +532,15 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_cursor_on_match<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(
+    fn connect_cursor_on_match<
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn cursor_on_match_trampoline<
             P,
-            F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static,
+            F: Fn(&P, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkEntryCompletion,
             model: *mut gtk_sys::GtkTreeModel,
@@ -564,11 +569,14 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_insert_prefix<F: Fn(&Self, &str) -> Inhibit + 'static>(
+    fn connect_insert_prefix<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn insert_prefix_trampoline<P, F: Fn(&P, &str) -> Inhibit + 'static>(
+        unsafe extern "C" fn insert_prefix_trampoline<
+            P,
+            F: Fn(&P, &str) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkEntryCompletion,
             prefix: *mut libc::c_char,
             f: glib_sys::gpointer,
@@ -594,13 +602,15 @@ impl<O: IsA<EntryCompletion>> EntryCompletionExt for O {
         }
     }
 
-    fn connect_match_selected<F: Fn(&Self, &TreeModel, &TreeIter) -> Inhibit + 'static>(
+    fn connect_match_selected<
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn match_selected_trampoline<
             P,
-            F: Fn(&P, &TreeModel, &TreeIter) -> Inhibit + 'static,
+            F: Fn(&P, &TreeModel, &TreeIter) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkEntryCompletion,
             model: *mut gtk_sys::GtkTreeModel,

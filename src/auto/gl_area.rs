@@ -4,6 +4,7 @@
 
 use gdk;
 use gdk_sys;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -14,14 +15,12 @@ use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use Align;
 use Buildable;
-use Error;
 use LayoutManager;
 use Overflow;
 use Widget;
@@ -324,8 +323,8 @@ impl GLAreaBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -424,7 +423,7 @@ pub trait GLAreaExt: 'static {
 
     fn get_context(&self) -> Option<gdk::GLContext>;
 
-    fn get_error(&self) -> Option<Error>;
+    fn get_error(&self) -> Option<glib::Error>;
 
     fn get_has_depth_buffer(&self) -> bool;
 
@@ -440,7 +439,7 @@ pub trait GLAreaExt: 'static {
 
     fn set_auto_render(&self, auto_render: bool);
 
-    fn set_error(&self, error: Option<&Error>);
+    fn set_error(&self, error: Option<&glib::Error>);
 
     fn set_has_depth_buffer(&self, has_depth_buffer: bool);
 
@@ -455,7 +454,7 @@ pub trait GLAreaExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> Inhibit + 'static>(
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -502,7 +501,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn get_error(&self) -> Option<Error> {
+    fn get_error(&self) -> Option<glib::Error> {
         unsafe {
             from_glib_none(gtk_sys::gtk_gl_area_get_error(
                 self.as_ref().to_glib_none().0,
@@ -570,7 +569,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn set_error(&self, error: Option<&Error>) {
+    fn set_error(&self, error: Option<&glib::Error>) {
         unsafe {
             gtk_sys::gtk_gl_area_set_error(self.as_ref().to_glib_none().0, error.to_glib_none().0);
         }
@@ -634,11 +633,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> Inhibit + 'static>(
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn render_trampoline<P, F: Fn(&P, &gdk::GLContext) -> Inhibit + 'static>(
+        unsafe extern "C" fn render_trampoline<
+            P,
+            F: Fn(&P, &gdk::GLContext) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkGLArea,
             context: *mut gdk_sys::GdkGLContext,
             f: glib_sys::gpointer,

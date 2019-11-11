@@ -258,8 +258,8 @@ impl HeaderBarBuilder {
             .expect("downcast")
     }
 
-    pub fn custom_title(mut self, custom_title: &Widget) -> Self {
-        self.custom_title = Some(custom_title.clone());
+    pub fn custom_title<P: IsA<Widget>>(mut self, custom_title: &P) -> Self {
+        self.custom_title = Some(custom_title.clone().upcast());
         self
     }
 
@@ -363,8 +363,8 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

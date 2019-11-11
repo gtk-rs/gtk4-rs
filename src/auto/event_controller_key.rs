@@ -16,7 +16,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -192,13 +191,13 @@ impl EventControllerKey {
     }
 
     pub fn connect_key_pressed<
-        F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static,
+        F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn key_pressed_trampoline<
-            F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> Inhibit + 'static,
+            F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkEventControllerKey,
             keyval: libc::c_uint,
@@ -249,12 +248,14 @@ impl EventControllerKey {
         }
     }
 
-    pub fn connect_modifiers<F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static>(
+    pub fn connect_modifiers<
+        F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn modifiers_trampoline<
-            F: Fn(&EventControllerKey, gdk::ModifierType) -> Inhibit + 'static,
+            F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkEventControllerKey,
             keyval: gdk_sys::GdkModifierType,

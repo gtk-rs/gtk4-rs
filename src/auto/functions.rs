@@ -14,7 +14,6 @@ use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
 use AccelGroup;
-use Error;
 use Orientation;
 use PageSetup;
 use PrintSettings;
@@ -786,7 +785,7 @@ pub fn show_uri_on_window<P: IsA<Window>>(
     parent: Option<&P>,
     uri: &str,
     timestamp: u32,
-) -> Result<(), Error> {
+) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
     unsafe {
         let mut error = ptr::null_mut();

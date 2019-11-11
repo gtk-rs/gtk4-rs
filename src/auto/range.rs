@@ -16,7 +16,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -26,6 +25,7 @@ use Align;
 use Buildable;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use ScrollType;
 use Widget;
@@ -76,6 +76,7 @@ pub struct RangeBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl RangeBuilder {
@@ -118,6 +119,7 @@ impl RangeBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -234,14 +236,17 @@ impl RangeBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(Range::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn adjustment(mut self, adjustment: &Adjustment) -> Self {
-        self.adjustment = Some(adjustment.clone());
+    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+        self.adjustment = Some(adjustment.clone().upcast());
         self
     }
 
@@ -335,8 +340,8 @@ impl RangeBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -424,6 +429,11 @@ impl RangeBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
+    }
 }
 
 pub const NONE_RANGE: Option<&Range> = None;
@@ -475,7 +485,7 @@ pub trait RangeExt: 'static {
 
     fn connect_adjust_bounds<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> Inhibit + 'static>(
+    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -693,13 +703,13 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> Inhibit + 'static>(
+    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn change_value_trampoline<
             P,
-            F: Fn(&P, ScrollType, f64) -> Inhibit + 'static,
+            F: Fn(&P, ScrollType, f64) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkRange,
             scroll: gtk_sys::GtkScrollType,

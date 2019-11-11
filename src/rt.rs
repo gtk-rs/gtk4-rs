@@ -63,6 +63,8 @@ pub unsafe fn set_initialized() {
         return;
     } else if is_initialized() {
         panic!("Attempted to initialize GTK from two different threads.");
+    } else if !crate::auto::functions::is_initialized() {
+        panic!("GTK was not actually initialized");
     }
     INITIALIZED.store(true, Ordering::Release);
     IS_MAIN_THREAD.with(|c| c.set(true));
@@ -90,6 +92,10 @@ pub fn init() -> Result<(), glib::BoolError> {
         if from_glib(gtk_sys::gtk_init_check()) {
             if !glib::MainContext::default().acquire() {
                 return Err(glib_bool_error!("Failed to acquire default main context"));
+            }
+
+            if !crate::auto::functions::is_initialized() {
+                return Err(glib_bool_error!("GTK was not actually initialized"));
             }
 
             set_initialized();

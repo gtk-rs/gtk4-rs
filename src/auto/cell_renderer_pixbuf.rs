@@ -10,6 +10,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -50,7 +51,7 @@ pub const NONE_CELL_RENDERER_PIXBUF: Option<&CellRendererPixbuf> = None;
 pub trait CellRendererPixbufExt: 'static {
     fn get_property_gicon(&self) -> Option<gio::Icon>;
 
-    fn set_property_gicon(&self, gicon: Option<&gio::Icon>);
+    fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>);
 
     fn get_property_icon_name(&self) -> Option<GString>;
 
@@ -75,7 +76,7 @@ pub trait CellRendererPixbufExt: 'static {
 
     fn get_property_texture(&self) -> Option<gdk::Texture>;
 
-    fn set_property_texture(&self, texture: Option<&gdk::Texture>);
+    fn set_property_texture<P: IsA<gdk::Texture> + SetValueOptional>(&self, texture: Option<&P>);
 
     fn connect_property_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -113,7 +114,7 @@ impl<O: IsA<CellRendererPixbuf>> CellRendererPixbufExt for O {
         }
     }
 
-    fn set_property_gicon(&self, gicon: Option<&gio::Icon>) {
+    fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
@@ -247,7 +248,7 @@ impl<O: IsA<CellRendererPixbuf>> CellRendererPixbufExt for O {
         }
     }
 
-    fn set_property_texture(&self, texture: Option<&gdk::Texture>) {
+    fn set_property_texture<P: IsA<gdk::Texture> + SetValueOptional>(&self, texture: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

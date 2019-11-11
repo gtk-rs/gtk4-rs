@@ -222,8 +222,8 @@ impl StackSidebarBuilder {
             .expect("downcast")
     }
 
-    pub fn stack(mut self, stack: &Stack) -> Self {
-        self.stack = Some(stack.clone());
+    pub fn stack<P: IsA<Stack>>(mut self, stack: &P) -> Self {
+        self.stack = Some(stack.clone().upcast());
         self
     }
 
@@ -292,8 +292,8 @@ impl StackSidebarBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

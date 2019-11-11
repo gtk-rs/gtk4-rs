@@ -301,8 +301,8 @@ impl PictureBuilder {
         self
     }
 
-    pub fn file(mut self, file: &gio::File) -> Self {
-        self.file = Some(file.clone());
+    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+        self.file = Some(file.clone().upcast());
         self
     }
 
@@ -311,8 +311,8 @@ impl PictureBuilder {
         self
     }
 
-    pub fn paintable(mut self, paintable: &gdk::Paintable) -> Self {
-        self.paintable = Some(paintable.clone());
+    pub fn paintable<P: IsA<gdk::Paintable>>(mut self, paintable: &P) -> Self {
+        self.paintable = Some(paintable.clone().upcast());
         self
     }
 
@@ -381,8 +381,8 @@ impl PictureBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

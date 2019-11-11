@@ -294,8 +294,8 @@ impl AspectFrameBuilder {
         self
     }
 
-    pub fn label_widget(mut self, label_widget: &Widget) -> Self {
-        self.label_widget = Some(label_widget.clone());
+    pub fn label_widget<P: IsA<Widget>>(mut self, label_widget: &P) -> Self {
+        self.label_widget = Some(label_widget.clone().upcast());
         self
     }
 
@@ -374,8 +374,8 @@ impl AspectFrameBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 

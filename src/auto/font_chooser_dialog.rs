@@ -9,6 +9,7 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use gtk_sys;
+use pango;
 use std::fmt;
 use Align;
 use Application;
@@ -17,6 +18,7 @@ use Buildable;
 use Container;
 use Dialog;
 use FontChooser;
+use FontChooserLevel;
 use LayoutManager;
 use Overflow;
 use Root;
@@ -102,6 +104,13 @@ pub struct FontChooserDialogBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    focus_widget: Option<Widget>,
+    font: Option<String>,
+    font_desc: Option<pango::FontDescription>,
+    language: Option<String>,
+    level: Option<FontChooserLevel>,
+    preview_text: Option<String>,
+    show_preview_entry: Option<bool>,
 }
 
 impl FontChooserDialogBuilder {
@@ -162,6 +171,13 @@ impl FontChooserDialogBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            focus_widget: None,
+            font: None,
+            font_desc: None,
+            language: None,
+            level: None,
+            preview_text: None,
+            show_preview_entry: None,
         }
     }
 
@@ -332,6 +348,27 @@ impl FontChooserDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
+        }
+        if let Some(ref font) = self.font {
+            properties.push(("font", font));
+        }
+        if let Some(ref font_desc) = self.font_desc {
+            properties.push(("font-desc", font_desc));
+        }
+        if let Some(ref language) = self.language {
+            properties.push(("language", language));
+        }
+        if let Some(ref level) = self.level {
+            properties.push(("level", level));
+        }
+        if let Some(ref preview_text) = self.preview_text {
+            properties.push(("preview-text", preview_text));
+        }
+        if let Some(ref show_preview_entry) = self.show_preview_entry {
+            properties.push(("show-preview-entry", show_preview_entry));
+        }
         glib::Object::new(FontChooserDialog::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -348,13 +385,13 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn application(mut self, application: &Application) -> Self {
-        self.application = Some(application.clone());
+    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+        self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to(mut self, attached_to: &Widget) -> Self {
-        self.attached_to = Some(attached_to.clone());
+    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
+        self.attached_to = Some(attached_to.clone().upcast());
         self
     }
 
@@ -368,8 +405,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn default_widget(mut self, default_widget: &Widget) -> Self {
-        self.default_widget = Some(default_widget.clone());
+    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+        self.default_widget = Some(default_widget.clone().upcast());
         self
     }
 
@@ -438,8 +475,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn transient_for(mut self, transient_for: &Window) -> Self {
-        self.transient_for = Some(transient_for.clone());
+    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+        self.transient_for = Some(transient_for.clone().upcast());
         self
     }
 
@@ -523,8 +560,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -610,6 +647,41 @@ impl FontChooserDialogBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
+        self
+    }
+
+    pub fn font(mut self, font: &str) -> Self {
+        self.font = Some(font.to_string());
+        self
+    }
+
+    pub fn font_desc(mut self, font_desc: &pango::FontDescription) -> Self {
+        self.font_desc = Some(font_desc.clone());
+        self
+    }
+
+    pub fn language(mut self, language: &str) -> Self {
+        self.language = Some(language.to_string());
+        self
+    }
+
+    pub fn level(mut self, level: FontChooserLevel) -> Self {
+        self.level = Some(level);
+        self
+    }
+
+    pub fn preview_text(mut self, preview_text: &str) -> Self {
+        self.preview_text = Some(preview_text.to_string());
+        self
+    }
+
+    pub fn show_preview_entry(mut self, show_preview_entry: bool) -> Self {
+        self.show_preview_entry = Some(show_preview_entry);
         self
     }
 }

@@ -7,6 +7,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::Value;
 use glib_sys;
@@ -45,7 +46,10 @@ pub const NONE_CELL_RENDERER_SPIN: Option<&CellRendererSpin> = None;
 pub trait CellRendererSpinExt: 'static {
     fn get_property_adjustment(&self) -> Option<Adjustment>;
 
-    fn set_property_adjustment(&self, adjustment: Option<&Adjustment>);
+    fn set_property_adjustment<P: IsA<Adjustment> + SetValueOptional>(
+        &self,
+        adjustment: Option<&P>,
+    );
 
     fn get_property_climb_rate(&self) -> f64;
 
@@ -77,7 +81,10 @@ impl<O: IsA<CellRendererSpin>> CellRendererSpinExt for O {
         }
     }
 
-    fn set_property_adjustment(&self, adjustment: Option<&Adjustment>) {
+    fn set_property_adjustment<P: IsA<Adjustment> + SetValueOptional>(
+        &self,
+        adjustment: Option<&P>,
+    ) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.to_glib_none().0 as *mut gobject_sys::GObject,

@@ -17,7 +17,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -88,6 +87,7 @@ pub struct ToolbarBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl ToolbarBuilder {
@@ -126,6 +126,7 @@ impl ToolbarBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -230,6 +231,9 @@ impl ToolbarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(Toolbar::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -311,8 +315,8 @@ impl ToolbarBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -400,6 +404,11 @@ impl ToolbarBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
+    }
 }
 
 pub const NONE_TOOLBAR: Option<&Toolbar> = None;
@@ -441,7 +450,7 @@ pub trait ToolbarExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> Inhibit + 'static>(
+    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -629,13 +638,15 @@ impl<O: IsA<Toolbar>> ToolbarExt for O {
         }
     }
 
-    fn connect_popup_context_menu<F: Fn(&Self, i32, i32, i32) -> Inhibit + 'static>(
+    fn connect_popup_context_menu<
+        F: Fn(&Self, i32, i32, i32) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn popup_context_menu_trampoline<
             P,
-            F: Fn(&P, i32, i32, i32) -> Inhibit + 'static,
+            F: Fn(&P, i32, i32, i32) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut gtk_sys::GtkToolbar,
             x: libc::c_int,

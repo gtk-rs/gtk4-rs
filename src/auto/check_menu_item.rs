@@ -106,6 +106,7 @@ pub struct CheckMenuItemBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    action_name: Option<String>,
 }
 
 impl CheckMenuItemBuilder {
@@ -149,6 +150,7 @@ impl CheckMenuItemBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            action_name: None,
         }
     }
 
@@ -268,6 +270,9 @@ impl CheckMenuItemBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
         glib::Object::new(CheckMenuItem::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -299,8 +304,8 @@ impl CheckMenuItemBuilder {
         self
     }
 
-    pub fn submenu(mut self, submenu: &Menu) -> Self {
-        self.submenu = Some(submenu.clone());
+    pub fn submenu<P: IsA<Menu>>(mut self, submenu: &P) -> Self {
+        self.submenu = Some(submenu.clone().upcast());
         self
     }
 
@@ -374,8 +379,8 @@ impl CheckMenuItemBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -461,6 +466,11 @@ impl CheckMenuItemBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
         self
     }
 }

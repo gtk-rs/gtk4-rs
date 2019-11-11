@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -15,7 +16,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use CssSection;
-use Error;
 use StyleProvider;
 
 glib_wrapper! {
@@ -54,7 +54,7 @@ pub trait CssProviderExt: 'static {
 
     fn to_string(&self) -> GString;
 
-    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(
+    fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -117,11 +117,14 @@ impl<O: IsA<CssProvider>> CssProviderExt for O {
         }
     }
 
-    fn connect_parsing_error<F: Fn(&Self, &CssSection, &Error) + 'static>(
+    fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn parsing_error_trampoline<P, F: Fn(&P, &CssSection, &Error) + 'static>(
+        unsafe extern "C" fn parsing_error_trampoline<
+            P,
+            F: Fn(&P, &CssSection, &glib::Error) + 'static,
+        >(
             this: *mut gtk_sys::GtkCssProvider,
             section: *mut gtk_sys::GtkCssSection,
             error: *mut glib_sys::GError,

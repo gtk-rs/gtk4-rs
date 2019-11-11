@@ -18,7 +18,6 @@ use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use signal::Inhibit;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -143,6 +142,7 @@ pub struct WindowBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    focus_widget: Option<Widget>,
 }
 
 impl WindowBuilder {
@@ -202,6 +202,7 @@ impl WindowBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            focus_widget: None,
         }
     }
 
@@ -369,6 +370,9 @@ impl WindowBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
+        }
         glib::Object::new(Window::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -380,13 +384,13 @@ impl WindowBuilder {
         self
     }
 
-    pub fn application(mut self, application: &Application) -> Self {
-        self.application = Some(application.clone());
+    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+        self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to(mut self, attached_to: &Widget) -> Self {
-        self.attached_to = Some(attached_to.clone());
+    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
+        self.attached_to = Some(attached_to.clone().upcast());
         self
     }
 
@@ -400,8 +404,8 @@ impl WindowBuilder {
         self
     }
 
-    pub fn default_widget(mut self, default_widget: &Widget) -> Self {
-        self.default_widget = Some(default_widget.clone());
+    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+        self.default_widget = Some(default_widget.clone().upcast());
         self
     }
 
@@ -470,8 +474,8 @@ impl WindowBuilder {
         self
     }
 
-    pub fn transient_for(mut self, transient_for: &Window) -> Self {
-        self.transient_for = Some(transient_for.clone());
+    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+        self.transient_for = Some(transient_for.clone().upcast());
         self
     }
 
@@ -555,8 +559,8 @@ impl WindowBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -642,6 +646,11 @@ impl WindowBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
 }
@@ -830,7 +839,10 @@ pub trait GtkWindowExt: 'static {
 
     fn emit_activate_focus(&self);
 
-    fn connect_close_request<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_enable_debugging<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
@@ -1688,8 +1700,14 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         };
     }
 
-    fn connect_close_request<F: Fn(&Self) -> Inhibit + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn close_request_trampoline<P, F: Fn(&P) -> Inhibit + 'static>(
+    fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn close_request_trampoline<
+            P,
+            F: Fn(&P) -> glib::signal::Inhibit + 'static,
+        >(
             this: *mut gtk_sys::GtkWindow,
             f: glib_sys::gpointer,
         ) -> glib_sys::gboolean

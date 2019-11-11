@@ -22,6 +22,7 @@ use Buildable;
 use Container;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use Stack;
 use Widget;
@@ -83,6 +84,7 @@ pub struct StackSwitcherBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl StackSwitcherBuilder {
@@ -123,6 +125,7 @@ impl StackSwitcherBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -233,14 +236,17 @@ impl StackSwitcherBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(StackSwitcher::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn stack(mut self, stack: &Stack) -> Self {
-        self.stack = Some(stack.clone());
+    pub fn stack<P: IsA<Stack>>(mut self, stack: &P) -> Self {
+        self.stack = Some(stack.clone().upcast());
         self
     }
 
@@ -324,8 +330,8 @@ impl StackSwitcherBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -411,6 +417,11 @@ impl StackSwitcherBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }

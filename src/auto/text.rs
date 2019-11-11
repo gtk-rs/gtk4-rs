@@ -824,6 +824,11 @@ pub struct TextBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    editable: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
 }
 
 impl TextBuilder {
@@ -877,6 +882,11 @@ impl TextBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            editable: None,
+            max_width_chars: None,
+            text: None,
+            width_chars: None,
+            xalign: None,
         }
     }
 
@@ -1026,6 +1036,21 @@ impl TextBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
         glib::Object::new(Text::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -1042,8 +1067,8 @@ impl TextBuilder {
         self
     }
 
-    pub fn buffer(mut self, buffer: &EntryBuffer) -> Self {
-        self.buffer = Some(buffer.clone());
+    pub fn buffer<P: IsA<EntryBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
         self
     }
 
@@ -1182,8 +1207,8 @@ impl TextBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -1269,6 +1294,31 @@ impl TextBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
         self
     }
 }

@@ -24,6 +24,7 @@ use CellAreaContext;
 use CellLayout;
 use LayoutManager;
 use Orientable;
+use Orientation;
 use Overflow;
 use TreeModel;
 use TreePath;
@@ -129,6 +130,7 @@ pub struct CellViewBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl CellViewBuilder {
@@ -170,6 +172,7 @@ impl CellViewBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -283,19 +286,22 @@ impl CellViewBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(CellView::static_type(), &properties)
             .expect("object new")
             .downcast()
             .expect("downcast")
     }
 
-    pub fn cell_area(mut self, cell_area: &CellArea) -> Self {
-        self.cell_area = Some(cell_area.clone());
+    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+        self.cell_area = Some(cell_area.clone().upcast());
         self
     }
 
-    pub fn cell_area_context(mut self, cell_area_context: &CellAreaContext) -> Self {
-        self.cell_area_context = Some(cell_area_context.clone());
+    pub fn cell_area_context<P: IsA<CellAreaContext>>(mut self, cell_area_context: &P) -> Self {
+        self.cell_area_context = Some(cell_area_context.clone().upcast());
         self
     }
 
@@ -309,8 +315,8 @@ impl CellViewBuilder {
         self
     }
 
-    pub fn model(mut self, model: &TreeModel) -> Self {
-        self.model = Some(model.clone());
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
         self
     }
 
@@ -379,8 +385,8 @@ impl CellViewBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -466,6 +472,11 @@ impl CellViewBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }

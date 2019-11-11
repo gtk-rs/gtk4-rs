@@ -78,6 +78,7 @@ pub struct BoxBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    orientation: Option<Orientation>,
 }
 
 impl BoxBuilder {
@@ -117,6 +118,7 @@ impl BoxBuilder {
             vexpand_set: None,
             visible: None,
             width_request: None,
+            orientation: None,
         }
     }
 
@@ -224,6 +226,9 @@ impl BoxBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
         glib::Object::new(Box::static_type(), &properties)
             .expect("object new")
             .downcast()
@@ -310,8 +315,8 @@ impl BoxBuilder {
         self
     }
 
-    pub fn layout_manager(mut self, layout_manager: &LayoutManager) -> Self {
-        self.layout_manager = Some(layout_manager.clone());
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
 
@@ -397,6 +402,11 @@ impl BoxBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }
