@@ -45,9 +45,6 @@ extern crate fragile;
 #[cfg(feature = "futures")]
 extern crate futures;
 
-#[allow(unused_imports)]
-use glib::{Cast, Continue, Error, IsA, Object, StaticType, ToValue, Type, TypedValue, Value};
-
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 =
     gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
 pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
