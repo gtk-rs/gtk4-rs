@@ -22,6 +22,7 @@ extern crate libc;
 extern crate pango;
 #[macro_use]
 extern crate bitflags;
+extern crate fragile;
 
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
@@ -32,9 +33,6 @@ macro_rules! assert_initialized_main_thread {
 macro_rules! skip_assert_initialized {
     () => {};
 }
-
-#[allow(unused_imports)]
-use glib::{Cast, Continue, Error, IsA, Object, StaticType, ToValue, Type, TypedValue, Value};
 
 #[cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ref))]
 #[cfg_attr(feature = "cargo-clippy", allow(type_complexity))]

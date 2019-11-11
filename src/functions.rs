@@ -5,14 +5,13 @@
 use cairo;
 use pango;
 
-#[cfg(feature = "futures")]
-use futures::future;
 use glib::object::IsA;
 use glib::translate::*;
+use std::future;
+use std::pin::Pin;
 use std::ptr;
 use ContentDeserializer;
 use ContentSerializer;
-use Error;
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
@@ -60,7 +59,7 @@ pub fn pango_layout_get_clip_region(
 pub fn content_deserialize_async<
     P: IsA<gio::InputStream>,
     Q: IsA<gio::Cancellable>,
-    R: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+    R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
 >(
     stream: &P,
     mime_type: &str,
@@ -72,7 +71,7 @@ pub fn content_deserialize_async<
     assert_initialized_main_thread!();
     let user_data: Box<R> = Box::new(callback);
     unsafe extern "C" fn content_deserialize_async_trampoline<
-        R: FnOnce(Result<glib::Value, Error>) + Send + 'static,
+        R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
     >(
         _source_object: *mut gobject_sys::GObject,
         res: *mut gio_sys::GAsyncResult,
@@ -104,13 +103,12 @@ pub fn content_deserialize_async<
     }
 }
 
-#[cfg(feature = "futures")]
 pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     type_: glib::types::Type,
     io_priority: i32,
-) -> Box<dyn future::Future<Output = Result<glib::Value, Error>> + std::marker::Unpin> {
+) -> Pin<Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
     use fragile::Fragile;
@@ -258,7 +256,7 @@ pub fn content_register_serializer<
 pub fn content_serialize_async<
     P: IsA<gio::OutputStream>,
     Q: IsA<gio::Cancellable>,
-    R: FnOnce(Result<(), Error>) + Send + 'static,
+    R: FnOnce(Result<(), glib::Error>) + Send + 'static,
 >(
     stream: &P,
     mime_type: &str,
@@ -270,7 +268,7 @@ pub fn content_serialize_async<
     assert_initialized_main_thread!();
     let user_data: Box<R> = Box::new(callback);
     unsafe extern "C" fn content_serialize_async_trampoline<
-        R: FnOnce(Result<(), Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
     >(
         _source_object: *mut gobject_sys::GObject,
         res: *mut gio_sys::GAsyncResult,
@@ -300,13 +298,12 @@ pub fn content_serialize_async<
     }
 }
 
-#[cfg(feature = "futures")]
 pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     value: &glib::Value,
     io_priority: i32,
-) -> Box<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
+) -> Pin<Box<dyn future::Future<Output = Result<(), glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
     use fragile::Fragile;

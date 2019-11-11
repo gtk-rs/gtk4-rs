@@ -43,6 +43,7 @@ gdk-pixbuf = { git = "https://github.com/gtk-rs/gdk-pixbuf" }
 gio = { git = "https://github.com/gtk-rs/gio" }
 glib = { git = "https://github.com/gtk-rs/glib" }
 pango = { git = "https://github.com/gtk-rs/pango" }
+fragile = "0.3"
 
 [dev-dependencies]
 gir-format-check = "^0.1"

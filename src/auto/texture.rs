@@ -5,11 +5,11 @@
 use gdk_pixbuf;
 use gdk_sys;
 use gio;
+use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 use std::ptr;
-use Error;
 use Paintable;
 
 glib_wrapper! {
@@ -26,7 +26,7 @@ impl Texture {
         unsafe { from_glib_full(gdk_sys::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
 
-    pub fn new_from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, Error> {
+    pub fn new_from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = ptr::null_mut();

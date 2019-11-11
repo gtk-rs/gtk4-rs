@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "futures")]
-use futures::future;
 use gdk_sys;
 use gio;
 use gio_sys;
@@ -20,9 +18,9 @@ use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use std::pin::Pin;
 use std::ptr;
 use ContentFormats;
-use Error;
 
 glib_wrapper! {
     pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass, ContentProviderClass>);
@@ -58,7 +56,7 @@ pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
 pub trait ContentProviderExt: 'static {
     fn content_changed(&self);
 
-    fn get_value(&self, value: &mut glib::Value) -> Result<(), Error>;
+    fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error>;
 
     fn ref_formats(&self) -> Option<ContentFormats>;
 
@@ -67,7 +65,7 @@ pub trait ContentProviderExt: 'static {
     fn write_mime_type_async<
         P: IsA<gio::OutputStream>,
         Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(), Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
     >(
         &self,
         mime_type: &str,
@@ -77,13 +75,12 @@ pub trait ContentProviderExt: 'static {
         callback: R,
     );
 
-    #[cfg(feature = "futures")]
     fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
         &self,
         mime_type: &str,
         stream: &P,
         io_priority: glib::Priority,
-    ) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin>;
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
     fn get_property_formats(&self) -> Option<ContentFormats>;
 
@@ -106,7 +103,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn get_value(&self, value: &mut glib::Value) -> Result<(), Error> {
+    fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gdk_sys::gdk_content_provider_get_value(
@@ -141,7 +138,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn write_mime_type_async<
         P: IsA<gio::OutputStream>,
         Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(), Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
     >(
         &self,
         mime_type: &str,
@@ -150,9 +147,9 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         cancellable: Option<&Q>,
         callback: R,
     ) {
-        let user_data: Box<R> = Box::new(callback);
+        let user_data: Box_<R> = Box_::new(callback);
         unsafe extern "C" fn write_mime_type_async_trampoline<
-            R: FnOnce(Result<(), Error>) + Send + 'static,
+            R: FnOnce(Result<(), glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -169,7 +166,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<R> = Box::from_raw(user_data as *mut _);
+            let callback: Box_<R> = Box_::from_raw(user_data as *mut _);
             callback(result);
         }
         let callback = write_mime_type_async_trampoline::<R>;
@@ -181,18 +178,17 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
                 io_priority.to_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
-                Box::into_raw(user_data) as *mut _,
+                Box_::into_raw(user_data) as *mut _,
             );
         }
     }
 
-    #[cfg(feature = "futures")]
     fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
         &self,
         mime_type: &str,
         stream: &P,
         io_priority: glib::Priority,
-    ) -> Box_<dyn future::Future<Output = Result<(), Error>> + std::marker::Unpin> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
         use fragile::Fragile;
         use gio::GioFuture;
 

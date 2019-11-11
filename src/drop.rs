@@ -2,8 +2,6 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
-#[cfg(feature = "futures")]
-use futures::future;
 use gdk_sys;
 use gio;
 use gio_sys;
@@ -13,14 +11,15 @@ use glib::translate::*;
 use glib::GString;
 use glib_sys;
 use gobject_sys;
+use std::future;
+use std::pin::Pin;
 use std::ptr;
 use Drop;
-use Error;
 
 impl Drop {
     pub fn read_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<(gio::InputStream, GString), Error>) + Send + 'static,
+        Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
     >(
         &self,
         mime_types: &[&str],
@@ -30,7 +29,7 @@ impl Drop {
     ) {
         let user_data: Box<Q> = Box::new(callback);
         unsafe extern "C" fn read_async_trampoline<
-            Q: FnOnce(Result<(gio::InputStream, GString), Error>) + Send + 'static,
+            Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -65,22 +64,27 @@ impl Drop {
         }
     }
 
-    #[cfg(feature = "futures")]
     pub fn read_async_future(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
-    ) -> Box<
-        dyn future::Future<Output = Result<(gio::InputStream, GString), Error>>
-            + std::marker::Unpin,
+    ) -> Pin<
+        Box<
+            dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>> + 'static,
+        >,
     > {
         use fragile::Fragile;
         use gio::GioFuture;
 
-        let mime_types = mime_types.clone();
+        let mime_types = mime_types
+            .iter()
+            .copied()
+            .map(String::from)
+            .collect::<Vec<_>>();
         GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             let send = Fragile::new(send);
+            let mime_types = mime_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
             obj.read_async(&mime_types, io_priority, Some(&cancellable), move |res| {
                 let _ = send.into_inner().send(res);
             });
