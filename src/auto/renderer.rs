@@ -4,6 +4,7 @@
 
 use cairo;
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -19,7 +20,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
-use Error;
 use RenderNode;
 
 glib_wrapper! {
@@ -48,7 +48,7 @@ pub trait RendererExt: 'static {
 
     fn is_realized(&self) -> bool;
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), Error>;
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), glib::Error>;
 
     fn render(&self, root: &RenderNode, region: Option<&cairo::Region>);
 
@@ -84,7 +84,7 @@ impl<O: IsA<Renderer>> RendererExt for O {
         }
     }
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), Error> {
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gsk_sys::gsk_renderer_realize(

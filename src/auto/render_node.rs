@@ -8,7 +8,6 @@ use glib::translate::*;
 use graphene;
 use gsk_sys;
 use std::ptr;
-use Error;
 use RenderNodeType;
 
 glib_wrapper! {
@@ -49,7 +48,7 @@ impl RenderNode {
         unsafe { from_glib_full(gsk_sys::gsk_render_node_serialize(self.to_glib_none().0)) }
     }
 
-    pub fn write_to_file(&self, filename: &str) -> Result<(), Error> {
+    pub fn write_to_file(&self, filename: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gsk_sys::gsk_render_node_write_to_file(
@@ -65,7 +64,7 @@ impl RenderNode {
         }
     }
 
-    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/Fn(/*Unimplemented*/Fundamental: Pointer, &Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
+    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/Fn(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
     //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
     //}
 }

@@ -47,8 +47,6 @@ pub use auto::*;
 
 pub use prelude::*;
 
-pub use glib::Error;
-
 mod color_stop;
 mod render_nodes;
 mod rounded_rect;
