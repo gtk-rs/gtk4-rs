@@ -73,7 +73,6 @@ pub mod prelude;
 pub use auto::functions::*;
 pub use auto::*;
 pub use functions::*;
-pub use prelude::*;
 pub use rt::*;
 
 mod accel_key;
