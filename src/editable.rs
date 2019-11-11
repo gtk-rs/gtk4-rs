@@ -1,6 +1,7 @@
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
+use glib::IsA;
 use gtk_sys::GtkEditable;
 use libc::{c_char, c_int, c_uchar};
 use std::ffi::CStr;
@@ -8,7 +9,6 @@ use std::mem::transmute;
 use std::slice;
 use std::str;
 use Editable;
-use IsA;
 
 impl Editable {
     pub fn delegate_get_property<P: IsA<Editable> + IsA<glib::Object>>(

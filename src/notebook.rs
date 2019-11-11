@@ -3,9 +3,9 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 use glib::translate::*;
+use glib::IsA;
 use gtk_sys;
 use libc::c_int;
-use IsA;
 use Notebook;
 use Widget;
 

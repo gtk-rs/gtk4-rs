@@ -3,10 +3,10 @@
 // Licensed under the MIT license, see the LICENSE file or <http://opensource.org/licenses/MIT>
 
 use glib::translate::*;
+use glib::IsA;
 use gtk_sys;
 use std::path::Path;
 use IMContextSimple;
-use IsA;
 
 pub trait IMContextSimpleExtManual: 'static {
     fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P);
