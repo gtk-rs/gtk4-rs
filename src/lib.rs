@@ -45,8 +45,6 @@ pub mod prelude;
 pub use self::auto::functions::*;
 pub use auto::*;
 
-pub use prelude::*;
-
 mod color_stop;
 mod render_nodes;
 mod rounded_rect;
