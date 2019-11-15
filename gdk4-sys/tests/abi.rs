@@ -4,7 +4,7 @@
 
 extern crate gdk4_sys;
 extern crate shell_words;
-extern crate tempdir;
+extern crate tempfile;
 use gdk4_sys::*;
 use std::env;
 use std::error::Error;
@@ -12,6 +12,7 @@ use std::mem::{align_of, size_of};
 use std::path::Path;
 use std::process::Command;
 use std::str;
+use tempfile::Builder;
 
 static PACKAGES: &[&str] = &["gtk4"];
 
@@ -126,7 +127,10 @@ impl Results {
 
 #[test]
 fn cross_validate_constants_with_c() {
-    let tmpdir = tempdir::TempDir::new("abi").expect("temporary directory");
+    let tmpdir = Builder::new()
+        .prefix("abi")
+        .tempdir()
+        .expect("temporary directory");
     let cc = Compiler::new().expect("configured compiler");
 
     assert_eq!(
@@ -163,7 +167,10 @@ fn cross_validate_constants_with_c() {
 
 #[test]
 fn cross_validate_layout_with_c() {
-    let tmpdir = tempdir::TempDir::new("abi").expect("temporary directory");
+    let tmpdir = Builder::new()
+        .prefix("abi")
+        .tempdir()
+        .expect("temporary directory");
     let cc = Compiler::new().expect("configured compiler");
 
     assert_eq!(
