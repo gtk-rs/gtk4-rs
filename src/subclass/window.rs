@@ -5,6 +5,7 @@ use glib::translate::*;
 use glib::subclass::prelude::*;
 
 use super::bin::BinImpl;
+use BinClass;
 use Window;
 use WindowClass;
 
@@ -97,6 +98,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
 unsafe impl<T: ObjectSubclass + WindowImpl> IsSubclassable<T> for WindowClass {
     fn override_vfuncs(&mut self) {
+        <BinClass as IsSubclassable<T>>::override_vfuncs(self);
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWindowClass);
             klass.activate_focus = Some(window_activate_focus::<T>);

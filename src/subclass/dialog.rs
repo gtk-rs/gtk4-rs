@@ -8,6 +8,7 @@ use super::window::WindowImpl;
 use Dialog;
 use DialogClass;
 use ResponseType;
+use WindowClass;
 
 pub trait DialogImpl: DialogImplExt + WindowImpl + 'static {
     fn response(&self, dialog: &Dialog, response: ResponseType) {
@@ -50,6 +51,7 @@ impl<T: DialogImpl + ObjectImpl> DialogImplExt for T {
 
 unsafe impl<T: ObjectSubclass + DialogImpl> IsSubclassable<T> for DialogClass {
     fn override_vfuncs(&mut self) {
+        <WindowClass as IsSubclassable<T>>::override_vfuncs(self);
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkDialogClass);
             klass.response = Some(dialog_response::<T>);
