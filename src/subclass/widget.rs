@@ -3,6 +3,7 @@ use gtk_sys;
 use glib::translate::*;
 
 use glib::subclass::prelude::*;
+use glib::ObjectClass;
 
 use crate::DragResult;
 use crate::SelectionData;
@@ -292,6 +293,7 @@ impl<T: WidgetImpl + ObjectImpl> WidgetImplExt for T {
 
 unsafe impl<T: ObjectSubclass + WidgetImpl> IsSubclassable<T> for WidgetClass {
     fn override_vfuncs(&mut self) {
+        <ObjectClass as IsSubclassable<T>>::override_vfuncs(self);
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWidgetClass);
             // klass.can_activate_accel = Some(widget_can_activate_accel::<T>);

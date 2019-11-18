@@ -8,6 +8,7 @@ use super::widget::WidgetImpl;
 use Container;
 use ContainerClass;
 use Widget;
+use WidgetClass;
 use WidgetPath;
 
 pub trait ContainerImpl: ContainerImplExt + WidgetImpl + 'static {
@@ -99,6 +100,7 @@ impl<T: ContainerImpl + ObjectImpl> ContainerImplExt for T {
 
 unsafe impl<T: ObjectSubclass + ContainerImpl> IsSubclassable<T> for ContainerClass {
     fn override_vfuncs(&mut self) {
+        <WidgetClass as IsSubclassable<T>>::override_vfuncs(self);
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkContainerClass);
             klass.add = Some(container_add::<T>);
