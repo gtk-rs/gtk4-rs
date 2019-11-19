@@ -23,6 +23,3 @@ pub use text_buffer::TextBufferExtManual;
 pub use tree_sortable::TreeSortableExtManual;
 pub use tree_store::TreeStoreExtManual;
 pub use widget::WidgetExtManual;
-
-#[doc(hidden)]
-pub use glib::prelude::*;
