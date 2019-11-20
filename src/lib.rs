@@ -40,8 +40,6 @@ extern crate graphene;
 extern crate gsk4 as gsk;
 extern crate pango;
 
-extern crate fragile;
-
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 =
     gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
 pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;

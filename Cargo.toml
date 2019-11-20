@@ -39,7 +39,6 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 lazy_static = "1.0"
-fragile = { version = "0.3" }
 atk = { git = "https://github.com/gtk-rs/atk" }
 atk-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
