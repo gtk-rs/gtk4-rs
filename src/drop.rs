@@ -73,23 +73,19 @@ impl Drop {
             dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>> + 'static,
         >,
     > {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
         let mime_types = mime_types
             .iter()
             .copied()
             .map(String::from)
             .collect::<Vec<_>>();
-        GioFuture::new(self, move |obj, send| {
+        Box::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             let mime_types = mime_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
             obj.read_async(&mime_types, io_priority, Some(&cancellable), move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             });
 
             cancellable
-        })
+        }))
     }
 }

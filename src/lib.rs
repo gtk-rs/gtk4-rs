@@ -22,7 +22,6 @@ extern crate libc;
 extern crate pango;
 #[macro_use]
 extern crate bitflags;
-extern crate fragile;
 
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
