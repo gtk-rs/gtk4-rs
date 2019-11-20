@@ -92,18 +92,14 @@ impl Clipboard {
     pub fn read_text_async_future(
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<GString, glib::Error>> + 'static>> {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
-        GioFuture::new(self, move |obj, send| {
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             obj.read_text_async(Some(&cancellable), move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             });
 
             cancellable
-        })
+        }))
     }
 
     pub fn read_texture_async<
@@ -150,18 +146,14 @@ impl Clipboard {
     pub fn read_texture_async_future(
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Texture, glib::Error>> + 'static>> {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
-        GioFuture::new(self, move |obj, send| {
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             obj.read_texture_async(Some(&cancellable), move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             });
 
             cancellable
-        })
+        }))
     }
 
     pub fn read_value_async<
@@ -212,18 +204,14 @@ impl Clipboard {
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Value, glib::Error>> + 'static>>
     {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
-        GioFuture::new(self, move |obj, send| {
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             obj.read_value_async(type_, io_priority, Some(&cancellable), move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             });
 
             cancellable
-        })
+        }))
     }
 
     //pub fn set(&self, type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
@@ -307,18 +295,14 @@ impl Clipboard {
         &self,
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
-        GioFuture::new(self, move |obj, send| {
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             obj.store_async(io_priority, Some(&cancellable), move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             });
 
             cancellable
-        })
+        }))
     }
 
     pub fn get_property_local(&self) -> bool {

@@ -189,26 +189,22 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         stream: &P,
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        use fragile::Fragile;
-        use gio::GioFuture;
-
         let mime_type = String::from(mime_type);
         let stream = stream.clone();
-        GioFuture::new(self, move |obj, send| {
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
-            let send = Fragile::new(send);
             obj.write_mime_type_async(
                 &mime_type,
                 &stream,
                 io_priority,
                 Some(&cancellable),
                 move |res| {
-                    let _ = send.into_inner().send(res);
+                    send.resolve(res);
                 },
             );
 
             cancellable
-        })
+        }))
     }
 
     fn get_property_formats(&self) -> Option<ContentFormats> {
