@@ -111,14 +111,10 @@ pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'stat
 ) -> Pin<Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
-    use fragile::Fragile;
-    use gio::GioFuture;
-
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
-    GioFuture::new(&(), move |_obj, send| {
+    Box::pin(gio::GioFuture::new(&(), move |_obj, send| {
         let cancellable = gio::Cancellable::new();
-        let send = Fragile::new(send);
         content_deserialize_async(
             &stream,
             &mime_type,
@@ -126,12 +122,12 @@ pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'stat
             io_priority,
             Some(&cancellable),
             move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             },
         );
 
         cancellable
-    })
+    }))
 }
 
 pub fn content_register_deserializer<
@@ -306,15 +302,11 @@ pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'stati
 ) -> Pin<Box<dyn future::Future<Output = Result<(), glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
-    use fragile::Fragile;
-    use gio::GioFuture;
-
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
     let value = value.clone();
-    GioFuture::new(&(), move |_obj, send| {
+    Box::pin(gio::GioFuture::new(&(), move |_obj, send| {
         let cancellable = gio::Cancellable::new();
-        let send = Fragile::new(send);
         content_serialize_async(
             &stream,
             &mime_type,
@@ -322,10 +314,10 @@ pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'stati
             io_priority,
             Some(&cancellable),
             move |res| {
-                let _ = send.into_inner().send(res);
+                send.resolve(res);
             },
         );
 
         cancellable
-    })
+    }))
 }
