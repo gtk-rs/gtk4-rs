@@ -57,6 +57,7 @@ impl Default for Assistant {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct AssistantBuilder {
     use_header_bar: Option<i32>,
     accept_focus: Option<bool>,
@@ -118,64 +119,7 @@ pub struct AssistantBuilder {
 
 impl AssistantBuilder {
     pub fn new() -> Self {
-        Self {
-            use_header_bar: None,
-            accept_focus: None,
-            application: None,
-            attached_to: None,
-            decorated: None,
-            default_height: None,
-            default_widget: None,
-            default_width: None,
-            deletable: None,
-            destroy_with_parent: None,
-            display: None,
-            focus_on_map: None,
-            focus_visible: None,
-            hide_on_close: None,
-            icon_name: None,
-            mnemonics_visible: None,
-            modal: None,
-            resizable: None,
-            startup_id: None,
-            title: None,
-            transient_for: None,
-            type_: None,
-            type_hint: None,
-            window_position: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-            focus_widget: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> Assistant {

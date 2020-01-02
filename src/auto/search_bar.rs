@@ -47,6 +47,7 @@ impl Default for SearchBar {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct SearchBarBuilder {
     search_mode_enabled: Option<bool>,
     show_close_button: Option<bool>,
@@ -85,41 +86,7 @@ pub struct SearchBarBuilder {
 
 impl SearchBarBuilder {
     pub fn new() -> Self {
-        Self {
-            search_mode_enabled: None,
-            show_close_button: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> SearchBar {

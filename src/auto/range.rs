@@ -38,6 +38,7 @@ glib_wrapper! {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct RangeBuilder {
     adjustment: Option<Adjustment>,
     fill_level: Option<f64>,
@@ -81,46 +82,7 @@ pub struct RangeBuilder {
 
 impl RangeBuilder {
     pub fn new() -> Self {
-        Self {
-            adjustment: None,
-            fill_level: None,
-            inverted: None,
-            restrict_to_fill_level: None,
-            round_digits: None,
-            show_fill_level: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-            orientation: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> Range {

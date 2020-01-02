@@ -67,6 +67,7 @@ impl SpinButton {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct SpinButtonBuilder {
     adjustment: Option<Adjustment>,
     climb_rate: Option<f64>,
@@ -117,53 +118,7 @@ pub struct SpinButtonBuilder {
 
 impl SpinButtonBuilder {
     pub fn new() -> Self {
-        Self {
-            adjustment: None,
-            climb_rate: None,
-            digits: None,
-            numeric: None,
-            snap_to_ticks: None,
-            update_policy: None,
-            value: None,
-            wrap: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-            editable: None,
-            max_width_chars: None,
-            text: None,
-            width_chars: None,
-            xalign: None,
-            orientation: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> SpinButton {

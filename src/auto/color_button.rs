@@ -56,6 +56,7 @@ impl Default for ColorButton {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct ColorButtonBuilder {
     rgba: Option<gdk::RGBA>,
     show_editor: Option<bool>,
@@ -96,43 +97,7 @@ pub struct ColorButtonBuilder {
 
 impl ColorButtonBuilder {
     pub fn new() -> Self {
-        Self {
-            rgba: None,
-            show_editor: None,
-            title: None,
-            use_alpha: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> ColorButton {

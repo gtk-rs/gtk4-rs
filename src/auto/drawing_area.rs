@@ -43,6 +43,7 @@ impl Default for DrawingArea {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct DrawingAreaBuilder {
     content_height: Option<i32>,
     content_width: Option<i32>,
@@ -81,41 +82,7 @@ pub struct DrawingAreaBuilder {
 
 impl DrawingAreaBuilder {
     pub fn new() -> Self {
-        Self {
-            content_height: None,
-            content_width: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> DrawingArea {

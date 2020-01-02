@@ -33,13 +33,14 @@ impl SizeGroup {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct SizeGroupBuilder {
     mode: Option<SizeGroupMode>,
 }
 
 impl SizeGroupBuilder {
     pub fn new() -> Self {
-        Self { mode: None }
+        Self::default()
     }
 
     pub fn build(self) -> SizeGroup {

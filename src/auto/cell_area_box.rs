@@ -42,6 +42,7 @@ impl Default for CellAreaBox {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct CellAreaBoxBuilder {
     spacing: Option<i32>,
     focus_cell: Option<CellRenderer>,
@@ -50,11 +51,7 @@ pub struct CellAreaBoxBuilder {
 
 impl CellAreaBoxBuilder {
     pub fn new() -> Self {
-        Self {
-            spacing: None,
-            focus_cell: None,
-            orientation: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> CellAreaBox {
