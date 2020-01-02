@@ -38,7 +38,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 [dependencies]
 libc = "0.2"
 bitflags = "1.0"
-lazy_static = "1.0"
+once_cell = "1.0"
 atk = { git = "https://github.com/gtk-rs/atk" }
 atk-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
