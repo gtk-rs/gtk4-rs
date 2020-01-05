@@ -42,13 +42,14 @@ glib_wrapper! {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct CellAreaBuilder {
     focus_cell: Option<CellRenderer>,
 }
 
 impl CellAreaBuilder {
     pub fn new() -> Self {
-        Self { focus_cell: None }
+        Self::default()
     }
 
     pub fn build(self) -> CellArea {

@@ -12,7 +12,7 @@ matrix:
       rust: stable
       env: GTK=3.96 FEATURES=
     - os: linux
-      rust: 1.36.0
+      rust: 1.39.0
       env: GTK=3.96 FEATURES=
 addons:
   apt:

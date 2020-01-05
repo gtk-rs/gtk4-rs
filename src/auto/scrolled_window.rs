@@ -59,6 +59,7 @@ impl ScrolledWindow {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct ScrolledWindowBuilder {
     hadjustment: Option<Adjustment>,
     hscrollbar_policy: Option<PolicyType>,
@@ -109,53 +110,7 @@ pub struct ScrolledWindowBuilder {
 
 impl ScrolledWindowBuilder {
     pub fn new() -> Self {
-        Self {
-            hadjustment: None,
-            hscrollbar_policy: None,
-            kinetic_scrolling: None,
-            max_content_height: None,
-            max_content_width: None,
-            min_content_height: None,
-            min_content_width: None,
-            overlay_scrolling: None,
-            propagate_natural_height: None,
-            propagate_natural_width: None,
-            shadow_type: None,
-            vadjustment: None,
-            vscrollbar_policy: None,
-            window_placement: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> ScrolledWindow {

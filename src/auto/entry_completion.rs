@@ -54,6 +54,7 @@ impl Default for EntryCompletion {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct EntryCompletionBuilder {
     cell_area: Option<CellArea>,
     inline_completion: Option<bool>,
@@ -68,17 +69,7 @@ pub struct EntryCompletionBuilder {
 
 impl EntryCompletionBuilder {
     pub fn new() -> Self {
-        Self {
-            cell_area: None,
-            inline_completion: None,
-            inline_selection: None,
-            minimum_key_length: None,
-            model: None,
-            popup_completion: None,
-            popup_set_width: None,
-            popup_single_match: None,
-            text_column: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> EntryCompletion {

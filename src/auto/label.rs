@@ -57,6 +57,7 @@ impl Label {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct LabelBuilder {
     attributes: Option<pango::AttrList>,
     ellipsize: Option<pango::EllipsizeMode>,
@@ -111,57 +112,7 @@ pub struct LabelBuilder {
 
 impl LabelBuilder {
     pub fn new() -> Self {
-        Self {
-            attributes: None,
-            ellipsize: None,
-            justify: None,
-            label: None,
-            lines: None,
-            max_width_chars: None,
-            mnemonic_widget: None,
-            pattern: None,
-            selectable: None,
-            single_line_mode: None,
-            track_visited_links: None,
-            use_markup: None,
-            use_underline: None,
-            width_chars: None,
-            wrap: None,
-            wrap_mode: None,
-            xalign: None,
-            yalign: None,
-            can_focus: None,
-            can_target: None,
-            css_name: None,
-            cursor: None,
-            expand: None,
-            focus_on_click: None,
-            halign: None,
-            has_focus: None,
-            has_tooltip: None,
-            height_request: None,
-            hexpand: None,
-            hexpand_set: None,
-            is_focus: None,
-            layout_manager: None,
-            margin: None,
-            margin_bottom: None,
-            margin_end: None,
-            margin_start: None,
-            margin_top: None,
-            name: None,
-            opacity: None,
-            overflow: None,
-            receives_default: None,
-            sensitive: None,
-            tooltip_markup: None,
-            tooltip_text: None,
-            valign: None,
-            vexpand: None,
-            vexpand_set: None,
-            visible: None,
-            width_request: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> Label {

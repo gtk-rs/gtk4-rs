@@ -63,6 +63,7 @@ impl Default for TreeViewColumn {
     }
 }
 
+#[derive(Clone, Default)]
 pub struct TreeViewColumnBuilder {
     alignment: Option<f32>,
     cell_area: Option<CellArea>,
@@ -85,25 +86,7 @@ pub struct TreeViewColumnBuilder {
 
 impl TreeViewColumnBuilder {
     pub fn new() -> Self {
-        Self {
-            alignment: None,
-            cell_area: None,
-            clickable: None,
-            expand: None,
-            fixed_width: None,
-            max_width: None,
-            min_width: None,
-            reorderable: None,
-            resizable: None,
-            sizing: None,
-            sort_column_id: None,
-            sort_indicator: None,
-            sort_order: None,
-            spacing: None,
-            title: None,
-            visible: None,
-            widget: None,
-        }
+        Self::default()
     }
 
     pub fn build(self) -> TreeViewColumn {

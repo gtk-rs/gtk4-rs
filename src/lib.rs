@@ -15,8 +15,7 @@
 extern crate libc;
 #[macro_use]
 extern crate bitflags;
-#[macro_use]
-extern crate lazy_static;
+extern crate once_cell;
 
 extern crate atk_sys;
 extern crate cairo_sys;
