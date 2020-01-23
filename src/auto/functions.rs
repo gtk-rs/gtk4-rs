@@ -324,16 +324,6 @@ pub fn im_modules_init() {
     }
 }
 
-pub fn init_check() -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_init_check()) }
-}
-
-pub fn is_initialized() -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_is_initialized()) }
-}
-
 pub fn main() {
     assert_initialized_main_thread!();
     unsafe {

@@ -541,6 +541,14 @@ status = "generate"
     #manual
     ignore = true
     [[object.function]]
+    name = "init_check"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "is_initialized"
+    #manual
+    ignore = true
+    [[object.function]]
     name = "main_quit"
     #manual
     ignore = true
