@@ -26,9 +26,6 @@ use libc::{
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
-// Aliases
-pub type GdkAtom = *const c_char;
-
 // Enums
 pub type GdkAxisUse = c_int;
 pub const GDK_AXIS_IGNORE: GdkAxisUse = 0;
@@ -84,38 +81,36 @@ pub const GDK_DRAG_CANCEL_USER_CANCELLED: GdkDragCancelReason = 1;
 pub const GDK_DRAG_CANCEL_ERROR: GdkDragCancelReason = 2;
 
 pub type GdkEventType = c_int;
-pub const GDK_NOTHING: GdkEventType = 0;
-pub const GDK_DELETE: GdkEventType = 1;
-pub const GDK_DESTROY: GdkEventType = 2;
-pub const GDK_MOTION_NOTIFY: GdkEventType = 3;
-pub const GDK_BUTTON_PRESS: GdkEventType = 4;
-pub const GDK_BUTTON_RELEASE: GdkEventType = 5;
-pub const GDK_KEY_PRESS: GdkEventType = 6;
-pub const GDK_KEY_RELEASE: GdkEventType = 7;
-pub const GDK_ENTER_NOTIFY: GdkEventType = 8;
-pub const GDK_LEAVE_NOTIFY: GdkEventType = 9;
-pub const GDK_FOCUS_CHANGE: GdkEventType = 10;
-pub const GDK_CONFIGURE: GdkEventType = 11;
-pub const GDK_PROXIMITY_IN: GdkEventType = 12;
-pub const GDK_PROXIMITY_OUT: GdkEventType = 13;
-pub const GDK_DRAG_ENTER: GdkEventType = 14;
-pub const GDK_DRAG_LEAVE: GdkEventType = 15;
-pub const GDK_DRAG_MOTION: GdkEventType = 16;
-pub const GDK_DROP_START: GdkEventType = 17;
-pub const GDK_SCROLL: GdkEventType = 18;
-pub const GDK_GRAB_BROKEN: GdkEventType = 19;
-pub const GDK_TOUCH_BEGIN: GdkEventType = 20;
-pub const GDK_TOUCH_UPDATE: GdkEventType = 21;
-pub const GDK_TOUCH_END: GdkEventType = 22;
-pub const GDK_TOUCH_CANCEL: GdkEventType = 23;
-pub const GDK_TOUCHPAD_SWIPE: GdkEventType = 24;
-pub const GDK_TOUCHPAD_PINCH: GdkEventType = 25;
-pub const GDK_PAD_BUTTON_PRESS: GdkEventType = 26;
-pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 27;
-pub const GDK_PAD_RING: GdkEventType = 28;
-pub const GDK_PAD_STRIP: GdkEventType = 29;
-pub const GDK_PAD_GROUP_MODE: GdkEventType = 30;
-pub const GDK_EVENT_LAST: GdkEventType = 31;
+pub const GDK_DELETE: GdkEventType = 0;
+pub const GDK_MOTION_NOTIFY: GdkEventType = 1;
+pub const GDK_BUTTON_PRESS: GdkEventType = 2;
+pub const GDK_BUTTON_RELEASE: GdkEventType = 3;
+pub const GDK_KEY_PRESS: GdkEventType = 4;
+pub const GDK_KEY_RELEASE: GdkEventType = 5;
+pub const GDK_ENTER_NOTIFY: GdkEventType = 6;
+pub const GDK_LEAVE_NOTIFY: GdkEventType = 7;
+pub const GDK_FOCUS_CHANGE: GdkEventType = 8;
+pub const GDK_CONFIGURE: GdkEventType = 9;
+pub const GDK_PROXIMITY_IN: GdkEventType = 10;
+pub const GDK_PROXIMITY_OUT: GdkEventType = 11;
+pub const GDK_DRAG_ENTER: GdkEventType = 12;
+pub const GDK_DRAG_LEAVE: GdkEventType = 13;
+pub const GDK_DRAG_MOTION: GdkEventType = 14;
+pub const GDK_DROP_START: GdkEventType = 15;
+pub const GDK_SCROLL: GdkEventType = 16;
+pub const GDK_GRAB_BROKEN: GdkEventType = 17;
+pub const GDK_TOUCH_BEGIN: GdkEventType = 18;
+pub const GDK_TOUCH_UPDATE: GdkEventType = 19;
+pub const GDK_TOUCH_END: GdkEventType = 20;
+pub const GDK_TOUCH_CANCEL: GdkEventType = 21;
+pub const GDK_TOUCHPAD_SWIPE: GdkEventType = 22;
+pub const GDK_TOUCHPAD_PINCH: GdkEventType = 23;
+pub const GDK_PAD_BUTTON_PRESS: GdkEventType = 24;
+pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 25;
+pub const GDK_PAD_RING: GdkEventType = 26;
+pub const GDK_PAD_STRIP: GdkEventType = 27;
+pub const GDK_PAD_GROUP_MODE: GdkEventType = 28;
+pub const GDK_EVENT_LAST: GdkEventType = 29;
 
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
@@ -152,11 +147,6 @@ pub const GDK_GRAVITY_SOUTH_WEST: GdkGravity = 7;
 pub const GDK_GRAVITY_SOUTH: GdkGravity = 8;
 pub const GDK_GRAVITY_SOUTH_EAST: GdkGravity = 9;
 pub const GDK_GRAVITY_STATIC: GdkGravity = 10;
-
-pub type GdkInputMode = c_int;
-pub const GDK_MODE_DISABLED: GdkInputMode = 0;
-pub const GDK_MODE_SCREEN: GdkInputMode = 1;
-pub const GDK_MODE_SURFACE: GdkInputMode = 2;
 
 pub type GdkInputSource = c_int;
 pub const GDK_SOURCE_MOUSE: GdkInputSource = 0;
@@ -221,11 +211,6 @@ pub const GDK_SURFACE_EDGE_EAST: GdkSurfaceEdge = 4;
 pub const GDK_SURFACE_EDGE_SOUTH_WEST: GdkSurfaceEdge = 5;
 pub const GDK_SURFACE_EDGE_SOUTH: GdkSurfaceEdge = 6;
 pub const GDK_SURFACE_EDGE_SOUTH_EAST: GdkSurfaceEdge = 7;
-
-pub type GdkSurfaceType = c_int;
-pub const GDK_SURFACE_TOPLEVEL: GdkSurfaceType = 0;
-pub const GDK_SURFACE_CHILD: GdkSurfaceType = 1;
-pub const GDK_SURFACE_TEMP: GdkSurfaceType = 2;
 
 pub type GdkSurfaceTypeHint = c_int;
 pub const GDK_SURFACE_TYPE_HINT_NORMAL: GdkSurfaceTypeHint = 0;
@@ -2631,8 +2616,8 @@ pub const GDK_SUPER_MASK: GdkModifierType = 67108864;
 pub const GDK_HYPER_MASK: GdkModifierType = 134217728;
 pub const GDK_META_MASK: GdkModifierType = 268435456;
 pub const GDK_MODIFIER_RESERVED_29_MASK: GdkModifierType = 536870912;
-pub const GDK_RELEASE_MASK: GdkModifierType = 1073741824;
-pub const GDK_MODIFIER_MASK: GdkModifierType = 1543512063;
+pub const GDK_MODIFIER_RESERVED_30_MASK: GdkModifierType = 1073741824;
+pub const GDK_MODIFIER_MASK: GdkModifierType = 469770239;
 
 pub type GdkPaintableFlags = c_uint;
 pub const GDK_PAINTABLE_STATIC_SIZE: GdkPaintableFlags = 1;
@@ -2661,7 +2646,7 @@ pub const GDK_HINT_USER_SIZE: GdkSurfaceHints = 256;
 
 pub type GdkSurfaceState = c_uint;
 pub const GDK_SURFACE_STATE_WITHDRAWN: GdkSurfaceState = 1;
-pub const GDK_SURFACE_STATE_ICONIFIED: GdkSurfaceState = 2;
+pub const GDK_SURFACE_STATE_MINIMIZED: GdkSurfaceState = 2;
 pub const GDK_SURFACE_STATE_MAXIMIZED: GdkSurfaceState = 4;
 pub const GDK_SURFACE_STATE_STICKY: GdkSurfaceState = 8;
 pub const GDK_SURFACE_STATE_FULLSCREEN: GdkSurfaceState = 16;
@@ -2678,28 +2663,20 @@ pub const GDK_SURFACE_STATE_BOTTOM_RESIZABLE: GdkSurfaceState = 16384;
 pub const GDK_SURFACE_STATE_LEFT_TILED: GdkSurfaceState = 32768;
 pub const GDK_SURFACE_STATE_LEFT_RESIZABLE: GdkSurfaceState = 65536;
 
-pub type GdkWMDecoration = c_uint;
-pub const GDK_DECOR_ALL: GdkWMDecoration = 1;
-pub const GDK_DECOR_BORDER: GdkWMDecoration = 2;
-pub const GDK_DECOR_RESIZEH: GdkWMDecoration = 4;
-pub const GDK_DECOR_TITLE: GdkWMDecoration = 8;
-pub const GDK_DECOR_MENU: GdkWMDecoration = 16;
-pub const GDK_DECOR_MINIMIZE: GdkWMDecoration = 32;
-pub const GDK_DECOR_MAXIMIZE: GdkWMDecoration = 64;
+// Unions
+#[repr(C)]
+pub struct GdkEvent(c_void);
 
-pub type GdkWMFunction = c_uint;
-pub const GDK_FUNC_ALL: GdkWMFunction = 1;
-pub const GDK_FUNC_RESIZE: GdkWMFunction = 2;
-pub const GDK_FUNC_MOVE: GdkWMFunction = 4;
-pub const GDK_FUNC_MINIMIZE: GdkWMFunction = 8;
-pub const GDK_FUNC_MAXIMIZE: GdkWMFunction = 16;
-pub const GDK_FUNC_CLOSE: GdkWMFunction = 32;
+impl ::std::fmt::Debug for GdkEvent {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkEvent @ {:?}", self as *const _))
+            .finish()
+    }
+}
 
 // Callbacks
 pub type GdkContentDeserializeFunc = Option<unsafe extern "C" fn(*mut GdkContentDeserializer)>;
 pub type GdkContentSerializeFunc = Option<unsafe extern "C" fn(*mut GdkContentSerializer)>;
-pub type GdkSeatGrabPrepareFunc =
-    Option<unsafe extern "C" fn(*mut GdkSeat, *mut GdkSurface, gpointer)>;
 
 // Records
 #[repr(C)]
@@ -2761,14 +2738,7 @@ pub struct GdkContentProviderClass {
             *mut *mut glib::GError,
         ) -> gboolean,
     >,
-    pub _gdk_reserved1: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved2: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved3: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved4: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved5: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved6: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved7: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved8: Option<unsafe extern "C" fn()>,
+    pub padding: [gpointer; 8],
 }
 
 impl ::std::fmt::Debug for GdkContentProviderClass {
@@ -2783,14 +2753,6 @@ impl ::std::fmt::Debug for GdkContentProviderClass {
             .field("write_mime_type_async", &self.write_mime_type_async)
             .field("write_mime_type_finish", &self.write_mime_type_finish)
             .field("get_value", &self.get_value)
-            .field("_gdk_reserved1", &self._gdk_reserved1)
-            .field("_gdk_reserved2", &self._gdk_reserved2)
-            .field("_gdk_reserved3", &self._gdk_reserved3)
-            .field("_gdk_reserved4", &self._gdk_reserved4)
-            .field("_gdk_reserved5", &self._gdk_reserved5)
-            .field("_gdk_reserved6", &self._gdk_reserved6)
-            .field("_gdk_reserved7", &self._gdk_reserved7)
-            .field("_gdk_reserved8", &self._gdk_reserved8)
             .finish()
     }
 }
@@ -2801,79 +2763,14 @@ pub struct _GdkDevicePadInterface(c_void);
 pub type GdkDevicePadInterface = *mut _GdkDevicePadInterface;
 
 #[repr(C)]
+pub struct _GdkDragSurfaceInterface(c_void);
+
+pub type GdkDragSurfaceInterface = *mut _GdkDragSurfaceInterface;
+
+#[repr(C)]
 pub struct _GdkDrawingContext(c_void);
 
 pub type GdkDrawingContext = *mut _GdkDrawingContext;
-
-#[repr(C)]
-pub struct _GdkEventAny(c_void);
-
-pub type GdkEventAny = *mut _GdkEventAny;
-
-#[repr(C)]
-pub struct _GdkEventButton(c_void);
-
-pub type GdkEventButton = *mut _GdkEventButton;
-
-#[repr(C)]
-pub struct _GdkEventConfigure(c_void);
-
-pub type GdkEventConfigure = *mut _GdkEventConfigure;
-
-#[repr(C)]
-pub struct _GdkEventCrossing(c_void);
-
-pub type GdkEventCrossing = *mut _GdkEventCrossing;
-
-#[repr(C)]
-pub struct _GdkEventDND(c_void);
-
-pub type GdkEventDND = *mut _GdkEventDND;
-
-#[repr(C)]
-pub struct _GdkEventFocus(c_void);
-
-pub type GdkEventFocus = *mut _GdkEventFocus;
-
-#[repr(C)]
-pub struct _GdkEventGrabBroken(c_void);
-
-pub type GdkEventGrabBroken = *mut _GdkEventGrabBroken;
-
-#[repr(C)]
-pub struct _GdkEventKey(c_void);
-
-pub type GdkEventKey = *mut _GdkEventKey;
-
-#[repr(C)]
-pub struct _GdkEventMotion(c_void);
-
-pub type GdkEventMotion = *mut _GdkEventMotion;
-
-#[repr(C)]
-pub struct _GdkEventPadAxis(c_void);
-
-pub type GdkEventPadAxis = *mut _GdkEventPadAxis;
-
-#[repr(C)]
-pub struct _GdkEventPadButton(c_void);
-
-pub type GdkEventPadButton = *mut _GdkEventPadButton;
-
-#[repr(C)]
-pub struct _GdkEventPadGroupMode(c_void);
-
-pub type GdkEventPadGroupMode = *mut _GdkEventPadGroupMode;
-
-#[repr(C)]
-pub struct _GdkEventProximity(c_void);
-
-pub type GdkEventProximity = *mut _GdkEventProximity;
-
-#[repr(C)]
-pub struct _GdkEventScroll(c_void);
-
-pub type GdkEventScroll = *mut _GdkEventScroll;
 
 #[repr(C)]
 pub struct GdkEventSequence(c_void);
@@ -2884,26 +2781,6 @@ impl ::std::fmt::Debug for GdkEventSequence {
             .finish()
     }
 }
-
-#[repr(C)]
-pub struct _GdkEventSetting(c_void);
-
-pub type GdkEventSetting = *mut _GdkEventSetting;
-
-#[repr(C)]
-pub struct _GdkEventTouch(c_void);
-
-pub type GdkEventTouch = *mut _GdkEventTouch;
-
-#[repr(C)]
-pub struct _GdkEventTouchpadPinch(c_void);
-
-pub type GdkEventTouchpadPinch = *mut _GdkEventTouchpadPinch;
-
-#[repr(C)]
-pub struct _GdkEventTouchpadSwipe(c_void);
-
-pub type GdkEventTouchpadSwipe = *mut _GdkEventTouchpadSwipe;
 
 #[repr(C)]
 pub struct _GdkFrameClockClass(c_void);
@@ -3038,12 +2915,27 @@ impl ::std::fmt::Debug for GdkPoint {
 }
 
 #[repr(C)]
+pub struct _GdkPopupInterface(c_void);
+
+pub type GdkPopupInterface = *mut _GdkPopupInterface;
+
+#[repr(C)]
+pub struct GdkPopupLayout(c_void);
+
+impl ::std::fmt::Debug for GdkPopupLayout {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkPopupLayout @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GdkRGBA {
-    pub red: c_double,
-    pub green: c_double,
-    pub blue: c_double,
-    pub alpha: c_double,
+    pub red: c_float,
+    pub green: c_float,
+    pub blue: c_float,
+    pub alpha: c_float,
 }
 
 impl ::std::fmt::Debug for GdkRGBA {
@@ -3083,34 +2975,9 @@ pub struct _GdkSnapshotClass(c_void);
 pub type GdkSnapshotClass = *mut _GdkSnapshotClass;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GdkSurfaceClass {
-    pub parent_class: gobject::GObjectClass,
-    pub _gdk_reserved1: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved2: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved3: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved4: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved5: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved6: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved7: Option<unsafe extern "C" fn()>,
-    pub _gdk_reserved8: Option<unsafe extern "C" fn()>,
-}
+pub struct _GdkSurfaceClass(c_void);
 
-impl ::std::fmt::Debug for GdkSurfaceClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkSurfaceClass @ {:?}", self as *const _))
-            .field("parent_class", &self.parent_class)
-            .field("_gdk_reserved1", &self._gdk_reserved1)
-            .field("_gdk_reserved2", &self._gdk_reserved2)
-            .field("_gdk_reserved3", &self._gdk_reserved3)
-            .field("_gdk_reserved4", &self._gdk_reserved4)
-            .field("_gdk_reserved5", &self._gdk_reserved5)
-            .field("_gdk_reserved6", &self._gdk_reserved6)
-            .field("_gdk_reserved7", &self._gdk_reserved7)
-            .field("_gdk_reserved8", &self._gdk_reserved8)
-            .finish()
-    }
-}
+pub type GdkSurfaceClass = *mut _GdkSurfaceClass;
 
 #[repr(C)]
 pub struct _GdkTextureClass(c_void);
@@ -3128,6 +2995,21 @@ impl ::std::fmt::Debug for GdkTimeCoord {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkTimeCoord @ {:?}", self as *const _))
             .field("time", &self.time)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct _GdkToplevelInterface(c_void);
+
+pub type GdkToplevelInterface = *mut _GdkToplevelInterface;
+
+#[repr(C)]
+pub struct GdkToplevelLayout(c_void);
+
+impl ::std::fmt::Debug for GdkToplevelLayout {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkToplevelLayout @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -3278,16 +3160,6 @@ impl ::std::fmt::Debug for GdkDrop {
 }
 
 #[repr(C)]
-pub struct GdkEvent(c_void);
-
-impl ::std::fmt::Debug for GdkEvent {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkEvent @ {:?}", self as *const _))
-            .finish()
-    }
-}
-
-#[repr(C)]
 pub struct GdkFrameClock(c_void);
 
 impl ::std::fmt::Debug for GdkFrameClock {
@@ -3412,11 +3284,38 @@ impl ::std::fmt::Debug for GdkDevicePad {
 }
 
 #[repr(C)]
+pub struct GdkDragSurface(c_void);
+
+impl ::std::fmt::Debug for GdkDragSurface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GdkDragSurface @ {:?}", self as *const _)
+    }
+}
+
+#[repr(C)]
 pub struct GdkPaintable(c_void);
 
 impl ::std::fmt::Debug for GdkPaintable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         write!(f, "GdkPaintable @ {:?}", self as *const _)
+    }
+}
+
+#[repr(C)]
+pub struct GdkPopup(c_void);
+
+impl ::std::fmt::Debug for GdkPopup {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GdkPopup @ {:?}", self as *const _)
+    }
+}
+
+#[repr(C)]
+pub struct GdkToplevel(c_void);
+
+impl ::std::fmt::Debug for GdkToplevel {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GdkToplevel @ {:?}", self as *const _)
     }
 }
 
@@ -3489,11 +3388,6 @@ extern "C" {
     pub fn gdk_gravity_get_type() -> GType;
 
     //=========================================================================
-    // GdkInputMode
-    //=========================================================================
-    pub fn gdk_input_mode_get_type() -> GType;
-
-    //=========================================================================
     // GdkInputSource
     //=========================================================================
     pub fn gdk_input_source_get_type() -> GType;
@@ -3527,11 +3421,6 @@ extern "C" {
     // GdkSurfaceEdge
     //=========================================================================
     pub fn gdk_surface_edge_get_type() -> GType;
-
-    //=========================================================================
-    // GdkSurfaceType
-    //=========================================================================
-    pub fn gdk_surface_type_get_type() -> GType;
 
     //=========================================================================
     // GdkSurfaceTypeHint
@@ -3601,14 +3490,38 @@ extern "C" {
     pub fn gdk_surface_state_get_type() -> GType;
 
     //=========================================================================
-    // GdkWMDecoration
+    // GdkEvent
     //=========================================================================
-    pub fn gdk_wm_decoration_get_type() -> GType;
-
-    //=========================================================================
-    // GdkWMFunction
-    //=========================================================================
-    pub fn gdk_wm_function_get_type() -> GType;
+    pub fn gdk_event_get_type() -> GType;
+    pub fn gdk_event_get_axes(
+        event: *mut GdkEvent,
+        axes: *mut *mut c_double,
+        n_axes: *mut c_uint,
+    ) -> gboolean;
+    pub fn gdk_event_get_axis(
+        event: *mut GdkEvent,
+        axis_use: GdkAxisUse,
+        value: *mut c_double,
+    ) -> gboolean;
+    pub fn gdk_event_get_device(event: *mut GdkEvent) -> *mut GdkDevice;
+    pub fn gdk_event_get_device_tool(event: *mut GdkEvent) -> *mut GdkDeviceTool;
+    pub fn gdk_event_get_display(event: *mut GdkEvent) -> *mut GdkDisplay;
+    pub fn gdk_event_get_event_sequence(event: *mut GdkEvent) -> *mut GdkEventSequence;
+    pub fn gdk_event_get_event_type(event: *mut GdkEvent) -> GdkEventType;
+    pub fn gdk_event_get_modifier_state(event: *mut GdkEvent) -> GdkModifierType;
+    pub fn gdk_event_get_motion_history(event: *mut GdkEvent) -> *mut glib::GList;
+    pub fn gdk_event_get_pointer_emulated(event: *mut GdkEvent) -> gboolean;
+    pub fn gdk_event_get_position(
+        event: *mut GdkEvent,
+        x: *mut c_double,
+        y: *mut c_double,
+    ) -> gboolean;
+    pub fn gdk_event_get_source_device(event: *mut GdkEvent) -> *mut GdkDevice;
+    pub fn gdk_event_get_surface(event: *mut GdkEvent) -> *mut GdkSurface;
+    pub fn gdk_event_get_time(event: *mut GdkEvent) -> u32;
+    pub fn gdk_event_ref(event: *mut GdkEvent) -> *mut GdkEvent;
+    pub fn gdk_event_triggers_context_menu(event: *mut GdkEvent) -> gboolean;
+    pub fn gdk_event_unref(event: *mut GdkEvent);
 
     //=========================================================================
     // GdkContentFormats
@@ -3628,11 +3541,11 @@ extern "C" {
         mime_type: *const c_char,
     ) -> gboolean;
     pub fn gdk_content_formats_get_gtypes(
-        formats: *mut GdkContentFormats,
+        formats: *const GdkContentFormats,
         n_gtypes: *mut size_t,
     ) -> *const GType;
     pub fn gdk_content_formats_get_mime_types(
-        formats: *mut GdkContentFormats,
+        formats: *const GdkContentFormats,
         n_mime_types: *mut size_t,
     ) -> *const *const c_char;
     pub fn gdk_content_formats_match(
@@ -3715,6 +3628,39 @@ extern "C" {
     pub fn gdk_frame_timings_unref(timings: *mut GdkFrameTimings);
 
     //=========================================================================
+    // GdkPopupLayout
+    //=========================================================================
+    pub fn gdk_popup_layout_get_type() -> GType;
+    pub fn gdk_popup_layout_new(
+        anchor_rect: *const GdkRectangle,
+        rect_anchor: GdkGravity,
+        surface_anchor: GdkGravity,
+    ) -> *mut GdkPopupLayout;
+    pub fn gdk_popup_layout_copy(layout: *mut GdkPopupLayout) -> *mut GdkPopupLayout;
+    pub fn gdk_popup_layout_equal(
+        layout: *mut GdkPopupLayout,
+        other: *mut GdkPopupLayout,
+    ) -> gboolean;
+    pub fn gdk_popup_layout_get_anchor_hints(layout: *mut GdkPopupLayout) -> GdkAnchorHints;
+    pub fn gdk_popup_layout_get_anchor_rect(layout: *mut GdkPopupLayout) -> *const GdkRectangle;
+    pub fn gdk_popup_layout_get_offset(layout: *mut GdkPopupLayout, dx: *mut c_int, dy: *mut c_int);
+    pub fn gdk_popup_layout_get_rect_anchor(layout: *mut GdkPopupLayout) -> GdkGravity;
+    pub fn gdk_popup_layout_get_surface_anchor(layout: *mut GdkPopupLayout) -> GdkGravity;
+    pub fn gdk_popup_layout_ref(layout: *mut GdkPopupLayout) -> *mut GdkPopupLayout;
+    pub fn gdk_popup_layout_set_anchor_hints(
+        layout: *mut GdkPopupLayout,
+        anchor_hints: GdkAnchorHints,
+    );
+    pub fn gdk_popup_layout_set_anchor_rect(
+        layout: *mut GdkPopupLayout,
+        anchor_rect: *const GdkRectangle,
+    );
+    pub fn gdk_popup_layout_set_offset(layout: *mut GdkPopupLayout, dx: c_int, dy: c_int);
+    pub fn gdk_popup_layout_set_rect_anchor(layout: *mut GdkPopupLayout, anchor: GdkGravity);
+    pub fn gdk_popup_layout_set_surface_anchor(layout: *mut GdkPopupLayout, anchor: GdkGravity);
+    pub fn gdk_popup_layout_unref(layout: *mut GdkPopupLayout);
+
+    //=========================================================================
     // GdkRGBA
     //=========================================================================
     pub fn gdk_rgba_get_type() -> GType;
@@ -3745,9 +3691,39 @@ extern "C" {
     );
 
     //=========================================================================
+    // GdkToplevelLayout
+    //=========================================================================
+    pub fn gdk_toplevel_layout_get_type() -> GType;
+    pub fn gdk_toplevel_layout_new(min_width: c_int, min_height: c_int) -> *mut GdkToplevelLayout;
+    pub fn gdk_toplevel_layout_copy(layout: *mut GdkToplevelLayout) -> *mut GdkToplevelLayout;
+    pub fn gdk_toplevel_layout_equal(
+        layout: *mut GdkToplevelLayout,
+        other: *mut GdkToplevelLayout,
+    ) -> gboolean;
+    pub fn gdk_toplevel_layout_get_fullscreen(layout: *mut GdkToplevelLayout) -> gboolean;
+    pub fn gdk_toplevel_layout_get_fullscreen_monitor(
+        layout: *mut GdkToplevelLayout,
+    ) -> *mut GdkMonitor;
+    pub fn gdk_toplevel_layout_get_maximized(layout: *mut GdkToplevelLayout) -> gboolean;
+    pub fn gdk_toplevel_layout_get_min_height(layout: *mut GdkToplevelLayout) -> c_int;
+    pub fn gdk_toplevel_layout_get_min_width(layout: *mut GdkToplevelLayout) -> c_int;
+    pub fn gdk_toplevel_layout_get_resizable(layout: *mut GdkToplevelLayout) -> gboolean;
+    pub fn gdk_toplevel_layout_ref(layout: *mut GdkToplevelLayout) -> *mut GdkToplevelLayout;
+    pub fn gdk_toplevel_layout_set_fullscreen(
+        layout: *mut GdkToplevelLayout,
+        fullscreen: gboolean,
+        monitor: *mut GdkMonitor,
+    );
+    pub fn gdk_toplevel_layout_set_maximized(layout: *mut GdkToplevelLayout, maximized: gboolean);
+    pub fn gdk_toplevel_layout_set_resizable(layout: *mut GdkToplevelLayout, resizable: gboolean);
+    pub fn gdk_toplevel_layout_unref(layout: *mut GdkToplevelLayout);
+
+    //=========================================================================
     // GdkAppLaunchContext
     //=========================================================================
     pub fn gdk_app_launch_context_get_type() -> GType;
+    pub fn gdk_app_launch_context_get_display(context: *mut GdkAppLaunchContext)
+        -> *mut GdkDisplay;
     pub fn gdk_app_launch_context_set_desktop(context: *mut GdkAppLaunchContext, desktop: c_int);
     pub fn gdk_app_launch_context_set_icon(
         context: *mut GdkAppLaunchContext,
@@ -3892,6 +3868,11 @@ extern "C" {
     pub fn gdk_content_provider_new_for_value(
         value: *const gobject::GValue,
     ) -> *mut GdkContentProvider;
+    pub fn gdk_content_provider_new_typed(type_: GType, ...) -> *mut GdkContentProvider;
+    pub fn gdk_content_provider_new_union(
+        providers: *mut *mut GdkContentProvider,
+        n_providers: size_t,
+    ) -> *mut GdkContentProvider;
     pub fn gdk_content_provider_content_changed(provider: *mut GdkContentProvider);
     pub fn gdk_content_provider_get_value(
         provider: *mut GdkContentProvider,
@@ -3983,13 +3964,15 @@ extern "C" {
         use_: GdkAxisUse,
         value: *mut c_double,
     ) -> gboolean;
+    pub fn gdk_device_get_axis_names(device: *mut GdkDevice) -> *mut *mut c_char;
     pub fn gdk_device_get_axis_use(device: *mut GdkDevice, index_: c_uint) -> GdkAxisUse;
     pub fn gdk_device_get_axis_value(
         device: *mut GdkDevice,
         axes: *mut c_double,
-        axis_label: GdkAtom,
+        axis_label: *const c_char,
         value: *mut c_double,
     ) -> gboolean;
+    pub fn gdk_device_get_device_tool(device: *mut GdkDevice) -> *mut GdkDeviceTool;
     pub fn gdk_device_get_device_type(device: *mut GdkDevice) -> GdkDeviceType;
     pub fn gdk_device_get_display(device: *mut GdkDevice) -> *mut GdkDisplay;
     pub fn gdk_device_get_has_cursor(device: *mut GdkDevice) -> gboolean;
@@ -4008,11 +3991,10 @@ extern "C" {
         modifiers: *mut GdkModifierType,
     ) -> gboolean;
     pub fn gdk_device_get_last_event_surface(device: *mut GdkDevice) -> *mut GdkSurface;
-    pub fn gdk_device_get_mode(device: *mut GdkDevice) -> GdkInputMode;
     pub fn gdk_device_get_n_axes(device: *mut GdkDevice) -> c_int;
     pub fn gdk_device_get_n_keys(device: *mut GdkDevice) -> c_int;
     pub fn gdk_device_get_name(device: *mut GdkDevice) -> *const c_char;
-    pub fn gdk_device_get_position(device: *mut GdkDevice, x: *mut c_double, y: *mut c_double);
+    pub fn gdk_device_get_num_touches(device: *mut GdkDevice) -> c_uint;
     pub fn gdk_device_get_product_id(device: *mut GdkDevice) -> *const c_char;
     pub fn gdk_device_get_seat(device: *mut GdkDevice) -> *mut GdkSeat;
     pub fn gdk_device_get_source(device: *mut GdkDevice) -> GdkInputSource;
@@ -4028,7 +4010,6 @@ extern "C" {
         win_y: *mut c_double,
     ) -> *mut GdkSurface;
     pub fn gdk_device_get_vendor_id(device: *mut GdkDevice) -> *const c_char;
-    pub fn gdk_device_list_axes(device: *mut GdkDevice) -> *mut glib::GList;
     pub fn gdk_device_list_slave_devices(device: *mut GdkDevice) -> *mut glib::GList;
     pub fn gdk_device_set_axis_use(device: *mut GdkDevice, index_: c_uint, use_: GdkAxisUse);
     pub fn gdk_device_set_key(
@@ -4037,7 +4018,6 @@ extern "C" {
         keyval: c_uint,
         modifiers: GdkModifierType,
     );
-    pub fn gdk_device_set_mode(device: *mut GdkDevice, mode: GdkInputMode) -> gboolean;
 
     //=========================================================================
     // GdkDeviceTool
@@ -4069,11 +4049,6 @@ extern "C" {
     pub fn gdk_display_get_keymap(display: *mut GdkDisplay) -> *mut GdkKeymap;
     pub fn gdk_display_get_monitor(display: *mut GdkDisplay, monitor_num: c_int)
         -> *mut GdkMonitor;
-    pub fn gdk_display_get_monitor_at_point(
-        display: *mut GdkDisplay,
-        x: c_int,
-        y: c_int,
-    ) -> *mut GdkMonitor;
     pub fn gdk_display_get_monitor_at_surface(
         display: *mut GdkDisplay,
         surface: *mut GdkSurface,
@@ -4081,7 +4056,6 @@ extern "C" {
     pub fn gdk_display_get_n_monitors(display: *mut GdkDisplay) -> c_int;
     pub fn gdk_display_get_name(display: *mut GdkDisplay) -> *const c_char;
     pub fn gdk_display_get_primary_clipboard(display: *mut GdkDisplay) -> *mut GdkClipboard;
-    pub fn gdk_display_get_primary_monitor(display: *mut GdkDisplay) -> *mut GdkMonitor;
     pub fn gdk_display_get_setting(
         display: *mut GdkDisplay,
         name: *const c_char,
@@ -4095,7 +4069,7 @@ extern "C" {
     pub fn gdk_display_list_seats(display: *mut GdkDisplay) -> *mut glib::GList;
     pub fn gdk_display_notify_startup_complete(display: *mut GdkDisplay, startup_id: *const c_char);
     pub fn gdk_display_peek_event(display: *mut GdkDisplay) -> *mut GdkEvent;
-    pub fn gdk_display_put_event(display: *mut GdkDisplay, event: *const GdkEvent);
+    pub fn gdk_display_put_event(display: *mut GdkDisplay, event: *mut GdkEvent);
     pub fn gdk_display_supports_input_shapes(display: *mut GdkDisplay) -> gboolean;
     pub fn gdk_display_supports_shapes(display: *mut GdkDisplay) -> gboolean;
     pub fn gdk_display_sync(display: *mut GdkDisplay);
@@ -4130,13 +4104,16 @@ extern "C" {
         dx: c_int,
         dy: c_int,
     ) -> *mut GdkDrag;
+    pub fn gdk_drag_event_get_drop(event: *mut GdkEvent) -> *mut GdkDrop;
     pub fn gdk_drag_drop_done(drag: *mut GdkDrag, success: gboolean);
     pub fn gdk_drag_get_actions(drag: *mut GdkDrag) -> GdkDragAction;
+    pub fn gdk_drag_get_content(drag: *mut GdkDrag) -> *mut GdkContentProvider;
     pub fn gdk_drag_get_device(drag: *mut GdkDrag) -> *mut GdkDevice;
     pub fn gdk_drag_get_display(drag: *mut GdkDrag) -> *mut GdkDisplay;
     pub fn gdk_drag_get_drag_surface(drag: *mut GdkDrag) -> *mut GdkSurface;
     pub fn gdk_drag_get_formats(drag: *mut GdkDrag) -> *mut GdkContentFormats;
     pub fn gdk_drag_get_selected_action(drag: *mut GdkDrag) -> GdkDragAction;
+    pub fn gdk_drag_get_surface(drag: *mut GdkDrag) -> *mut GdkSurface;
     pub fn gdk_drag_set_hotspot(drag: *mut GdkDrag, hot_x: c_int, hot_y: c_int);
 
     //=========================================================================
@@ -4180,17 +4157,6 @@ extern "C" {
         out_mime_type: *mut *const c_char,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GInputStream;
-    pub fn gdk_drop_read_text_async(
-        self_: *mut GdkDrop,
-        cancellable: *mut gio::GCancellable,
-        callback: gio::GAsyncReadyCallback,
-        user_data: gpointer,
-    );
-    pub fn gdk_drop_read_text_finish(
-        self_: *mut GdkDrop,
-        result: *mut gio::GAsyncResult,
-        error: *mut *mut glib::GError,
-    ) -> *mut c_char;
     pub fn gdk_drop_read_value_async(
         self_: *mut GdkDrop,
         type_: GType,
@@ -4204,121 +4170,7 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *const gobject::GValue;
-    pub fn gdk_drop_status(self_: *mut GdkDrop, actions: GdkDragAction);
-
-    //=========================================================================
-    // GdkEvent
-    //=========================================================================
-    pub fn gdk_event_get_type() -> GType;
-    pub fn gdk_event_new(type_: GdkEventType) -> *mut GdkEvent;
-    pub fn gdk_event_copy(event: *const GdkEvent) -> *mut GdkEvent;
-    pub fn gdk_event_get_axes(
-        event: *mut GdkEvent,
-        axes: *mut *mut c_double,
-        n_axes: *mut c_uint,
-    ) -> gboolean;
-    pub fn gdk_event_get_axis(
-        event: *const GdkEvent,
-        axis_use: GdkAxisUse,
-        value: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_button(event: *const GdkEvent, button: *mut c_uint) -> gboolean;
-    pub fn gdk_event_get_click_count(event: *const GdkEvent, click_count: *mut c_uint) -> gboolean;
-    pub fn gdk_event_get_coords(
-        event: *const GdkEvent,
-        x_win: *mut c_double,
-        y_win: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_crossing_detail(
-        event: *const GdkEvent,
-        detail: *mut GdkNotifyType,
-    ) -> gboolean;
-    pub fn gdk_event_get_crossing_mode(
-        event: *const GdkEvent,
-        mode: *mut GdkCrossingMode,
-    ) -> gboolean;
-    pub fn gdk_event_get_device(event: *const GdkEvent) -> *mut GdkDevice;
-    pub fn gdk_event_get_device_tool(event: *const GdkEvent) -> *mut GdkDeviceTool;
-    pub fn gdk_event_get_display(event: *const GdkEvent) -> *mut GdkDisplay;
-    pub fn gdk_event_get_drop(event: *const GdkEvent) -> *mut GdkDrop;
-    pub fn gdk_event_get_event_sequence(event: *const GdkEvent) -> *mut GdkEventSequence;
-    pub fn gdk_event_get_event_type(event: *const GdkEvent) -> GdkEventType;
-    pub fn gdk_event_get_focus_in(event: *const GdkEvent, focus_in: *mut gboolean) -> gboolean;
-    pub fn gdk_event_get_grab_surface(
-        event: *const GdkEvent,
-        surface: *mut *mut GdkSurface,
-    ) -> gboolean;
-    pub fn gdk_event_get_key_group(event: *const GdkEvent, group: *mut c_uint) -> gboolean;
-    pub fn gdk_event_get_key_is_modifier(
-        event: *const GdkEvent,
-        is_modifier: *mut gboolean,
-    ) -> gboolean;
-    pub fn gdk_event_get_keycode(event: *const GdkEvent, keycode: *mut u16) -> gboolean;
-    pub fn gdk_event_get_keyval(event: *const GdkEvent, keyval: *mut c_uint) -> gboolean;
-    pub fn gdk_event_get_motion_history(event: *const GdkEvent) -> *mut glib::GList;
-    pub fn gdk_event_get_pad_axis_value(
-        event: *const GdkEvent,
-        index: *mut c_uint,
-        value: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_pad_button(event: *const GdkEvent, button: *mut c_uint) -> gboolean;
-    pub fn gdk_event_get_pad_group_mode(
-        event: *const GdkEvent,
-        group: *mut c_uint,
-        mode: *mut c_uint,
-    ) -> gboolean;
-    pub fn gdk_event_get_pointer_emulated(event: *mut GdkEvent) -> gboolean;
-    pub fn gdk_event_get_root_coords(
-        event: *const GdkEvent,
-        x_root: *mut c_double,
-        y_root: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_scancode(event: *mut GdkEvent) -> c_int;
-    pub fn gdk_event_get_scroll_deltas(
-        event: *const GdkEvent,
-        delta_x: *mut c_double,
-        delta_y: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_scroll_direction(
-        event: *const GdkEvent,
-        direction: *mut GdkScrollDirection,
-    ) -> gboolean;
-    pub fn gdk_event_get_seat(event: *const GdkEvent) -> *mut GdkSeat;
-    pub fn gdk_event_get_source_device(event: *const GdkEvent) -> *mut GdkDevice;
-    pub fn gdk_event_get_state(event: *const GdkEvent, state: *mut GdkModifierType) -> gboolean;
-    pub fn gdk_event_get_surface(event: *const GdkEvent) -> *mut GdkSurface;
-    pub fn gdk_event_get_time(event: *const GdkEvent) -> u32;
-    pub fn gdk_event_get_touch_emulating_pointer(
-        event: *const GdkEvent,
-        emulating: *mut gboolean,
-    ) -> gboolean;
-    pub fn gdk_event_get_touchpad_angle_delta(
-        event: *const GdkEvent,
-        delta: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_touchpad_deltas(
-        event: *const GdkEvent,
-        dx: *mut c_double,
-        dy: *mut c_double,
-    ) -> gboolean;
-    pub fn gdk_event_get_touchpad_gesture_n_fingers(
-        event: *const GdkEvent,
-        n_fingers: *mut c_uint,
-    ) -> gboolean;
-    pub fn gdk_event_get_touchpad_gesture_phase(
-        event: *const GdkEvent,
-        phase: *mut GdkTouchpadGesturePhase,
-    ) -> gboolean;
-    pub fn gdk_event_get_touchpad_scale(event: *const GdkEvent, scale: *mut c_double) -> gboolean;
-    pub fn gdk_event_is_scroll_stop_event(event: *const GdkEvent) -> gboolean;
-    pub fn gdk_event_is_sent(event: *const GdkEvent) -> gboolean;
-    pub fn gdk_event_set_coords(event: *mut GdkEvent, x: c_double, y: c_double);
-    pub fn gdk_event_set_device(event: *mut GdkEvent, device: *mut GdkDevice);
-    pub fn gdk_event_set_device_tool(event: *mut GdkEvent, tool: *mut GdkDeviceTool);
-    pub fn gdk_event_set_display(event: *mut GdkEvent, display: *mut GdkDisplay);
-    pub fn gdk_event_set_keyval(event: *mut GdkEvent, keyval: c_uint);
-    pub fn gdk_event_set_source_device(event: *mut GdkEvent, device: *mut GdkDevice);
-    pub fn gdk_event_triggers_context_menu(event: *const GdkEvent) -> gboolean;
+    pub fn gdk_drop_status(self_: *mut GdkDrop, actions: GdkDragAction, preferred: GdkDragAction);
 
     //=========================================================================
     // GdkFrameClock
@@ -4459,6 +4311,7 @@ extern "C" {
     // GdkMonitor
     //=========================================================================
     pub fn gdk_monitor_get_type() -> GType;
+    pub fn gdk_monitor_get_connector(monitor: *mut GdkMonitor) -> *const c_char;
     pub fn gdk_monitor_get_display(monitor: *mut GdkMonitor) -> *mut GdkDisplay;
     pub fn gdk_monitor_get_geometry(monitor: *mut GdkMonitor, geometry: *mut GdkRectangle);
     pub fn gdk_monitor_get_height_mm(monitor: *mut GdkMonitor) -> c_int;
@@ -4469,7 +4322,6 @@ extern "C" {
     pub fn gdk_monitor_get_subpixel_layout(monitor: *mut GdkMonitor) -> GdkSubpixelLayout;
     pub fn gdk_monitor_get_width_mm(monitor: *mut GdkMonitor) -> c_int;
     pub fn gdk_monitor_get_workarea(monitor: *mut GdkMonitor, workarea: *mut GdkRectangle);
-    pub fn gdk_monitor_is_primary(monitor: *mut GdkMonitor) -> gboolean;
     pub fn gdk_monitor_is_valid(monitor: *mut GdkMonitor) -> gboolean;
 
     //=========================================================================
@@ -4488,17 +4340,6 @@ extern "C" {
         seat: *mut GdkSeat,
         capabilities: GdkSeatCapabilities,
     ) -> *mut glib::GList;
-    pub fn gdk_seat_grab(
-        seat: *mut GdkSeat,
-        surface: *mut GdkSurface,
-        capabilities: GdkSeatCapabilities,
-        owner_events: gboolean,
-        cursor: *mut GdkCursor,
-        event: *const GdkEvent,
-        prepare_func: GdkSeatGrabPrepareFunc,
-        prepare_func_data: gpointer,
-    ) -> GdkGrabStatus;
-    pub fn gdk_seat_ungrab(seat: *mut GdkSeat);
 
     //=========================================================================
     // GdkSnapshot
@@ -4509,15 +4350,7 @@ extern "C" {
     // GdkSurface
     //=========================================================================
     pub fn gdk_surface_get_type() -> GType;
-    pub fn gdk_surface_new_child(
-        parent: *mut GdkSurface,
-        position: *const GdkRectangle,
-    ) -> *mut GdkSurface;
-    pub fn gdk_surface_new_popup(
-        display: *mut GdkDisplay,
-        position: *const GdkRectangle,
-    ) -> *mut GdkSurface;
-    pub fn gdk_surface_new_temp(display: *mut GdkDisplay) -> *mut GdkSurface;
+    pub fn gdk_surface_new_popup(parent: *mut GdkSurface, autohide: gboolean) -> *mut GdkSurface;
     pub fn gdk_surface_new_toplevel(
         display: *mut GdkDisplay,
         width: c_int,
@@ -4534,13 +4367,6 @@ extern "C" {
     pub fn gdk_surface_beep(surface: *mut GdkSurface);
     pub fn gdk_surface_begin_move_drag(
         surface: *mut GdkSurface,
-        button: c_int,
-        x: c_int,
-        y: c_int,
-        timestamp: u32,
-    );
-    pub fn gdk_surface_begin_move_drag_for_device(
-        surface: *mut GdkSurface,
         device: *mut GdkDevice,
         button: c_int,
         x: c_int,
@@ -4550,33 +4376,11 @@ extern "C" {
     pub fn gdk_surface_begin_resize_drag(
         surface: *mut GdkSurface,
         edge: GdkSurfaceEdge,
-        button: c_int,
-        x: c_int,
-        y: c_int,
-        timestamp: u32,
-    );
-    pub fn gdk_surface_begin_resize_drag_for_device(
-        surface: *mut GdkSurface,
-        edge: GdkSurfaceEdge,
         device: *mut GdkDevice,
         button: c_int,
         x: c_int,
         y: c_int,
         timestamp: u32,
-    );
-    pub fn gdk_surface_coords_from_parent(
-        surface: *mut GdkSurface,
-        parent_x: c_double,
-        parent_y: c_double,
-        x: *mut c_double,
-        y: *mut c_double,
-    );
-    pub fn gdk_surface_coords_to_parent(
-        surface: *mut GdkSurface,
-        x: c_double,
-        y: c_double,
-        parent_x: *mut c_double,
-        parent_y: *mut c_double,
     );
     pub fn gdk_surface_create_cairo_context(surface: *mut GdkSurface) -> *mut GdkCairoContext;
     pub fn gdk_surface_create_gl_context(
@@ -4593,19 +4397,9 @@ extern "C" {
         surface: *mut GdkSurface,
         error: *mut *mut glib::GError,
     ) -> *mut GdkVulkanContext;
-    pub fn gdk_surface_deiconify(surface: *mut GdkSurface);
     pub fn gdk_surface_destroy(surface: *mut GdkSurface);
-    pub fn gdk_surface_focus(surface: *mut GdkSurface, timestamp: u32);
     pub fn gdk_surface_freeze_updates(surface: *mut GdkSurface);
-    pub fn gdk_surface_fullscreen(surface: *mut GdkSurface);
-    pub fn gdk_surface_fullscreen_on_monitor(surface: *mut GdkSurface, monitor: *mut GdkMonitor);
-    pub fn gdk_surface_get_accept_focus(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_get_children(surface: *mut GdkSurface) -> *mut glib::GList;
     pub fn gdk_surface_get_cursor(surface: *mut GdkSurface) -> *mut GdkCursor;
-    pub fn gdk_surface_get_decorations(
-        surface: *mut GdkSurface,
-        decorations: *mut GdkWMDecoration,
-    ) -> gboolean;
     pub fn gdk_surface_get_device_cursor(
         surface: *mut GdkSurface,
         device: *mut GdkDevice,
@@ -4616,107 +4410,32 @@ extern "C" {
         x: *mut c_double,
         y: *mut c_double,
         mask: *mut GdkModifierType,
-    ) -> *mut GdkSurface;
+    );
     pub fn gdk_surface_get_display(surface: *mut GdkSurface) -> *mut GdkDisplay;
-    pub fn gdk_surface_get_focus_on_map(surface: *mut GdkSurface) -> gboolean;
     pub fn gdk_surface_get_frame_clock(surface: *mut GdkSurface) -> *mut GdkFrameClock;
-    pub fn gdk_surface_get_frame_extents(surface: *mut GdkSurface, rect: *mut GdkRectangle);
-    pub fn gdk_surface_get_fullscreen_mode(surface: *mut GdkSurface) -> GdkFullscreenMode;
-    pub fn gdk_surface_get_geometry(
-        surface: *mut GdkSurface,
-        x: *mut c_int,
-        y: *mut c_int,
-        width: *mut c_int,
-        height: *mut c_int,
-    );
     pub fn gdk_surface_get_height(surface: *mut GdkSurface) -> c_int;
-    pub fn gdk_surface_get_modal_hint(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_get_origin(surface: *mut GdkSurface, x: *mut c_int, y: *mut c_int) -> c_int;
-    pub fn gdk_surface_get_parent(surface: *mut GdkSurface) -> *mut GdkSurface;
-    pub fn gdk_surface_get_pass_through(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_get_position(surface: *mut GdkSurface, x: *mut c_int, y: *mut c_int);
-    pub fn gdk_surface_get_root_coords(
-        surface: *mut GdkSurface,
-        x: c_int,
-        y: c_int,
-        root_x: *mut c_int,
-        root_y: *mut c_int,
-    );
-    pub fn gdk_surface_get_root_origin(surface: *mut GdkSurface, x: *mut c_int, y: *mut c_int);
+    pub fn gdk_surface_get_mapped(surface: *mut GdkSurface) -> gboolean;
     pub fn gdk_surface_get_scale_factor(surface: *mut GdkSurface) -> c_int;
-    pub fn gdk_surface_get_state(surface: *mut GdkSurface) -> GdkSurfaceState;
     pub fn gdk_surface_get_support_multidevice(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_get_surface_type(surface: *mut GdkSurface) -> GdkSurfaceType;
-    pub fn gdk_surface_get_toplevel(surface: *mut GdkSurface) -> *mut GdkSurface;
-    pub fn gdk_surface_get_type_hint(surface: *mut GdkSurface) -> GdkSurfaceTypeHint;
     pub fn gdk_surface_get_width(surface: *mut GdkSurface) -> c_int;
-    pub fn gdk_surface_has_native(surface: *mut GdkSurface) -> gboolean;
     pub fn gdk_surface_hide(surface: *mut GdkSurface);
-    pub fn gdk_surface_iconify(surface: *mut GdkSurface);
-    pub fn gdk_surface_input_shape_combine_region(
-        surface: *mut GdkSurface,
-        shape_region: *const cairo::cairo_region_t,
-        offset_x: c_int,
-        offset_y: c_int,
-    );
     pub fn gdk_surface_is_destroyed(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_is_input_only(surface: *mut GdkSurface) -> gboolean;
     pub fn gdk_surface_is_viewable(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_is_visible(surface: *mut GdkSurface) -> gboolean;
-    pub fn gdk_surface_lower(surface: *mut GdkSurface);
-    pub fn gdk_surface_maximize(surface: *mut GdkSurface);
-    pub fn gdk_surface_merge_child_input_shapes(surface: *mut GdkSurface);
-    pub fn gdk_surface_move(surface: *mut GdkSurface, x: c_int, y: c_int);
-    pub fn gdk_surface_move_resize(
-        surface: *mut GdkSurface,
-        x: c_int,
-        y: c_int,
-        width: c_int,
-        height: c_int,
-    );
-    pub fn gdk_surface_move_to_rect(
-        surface: *mut GdkSurface,
-        rect: *const GdkRectangle,
-        rect_anchor: GdkGravity,
-        surface_anchor: GdkGravity,
-        anchor_hints: GdkAnchorHints,
-        rect_anchor_dx: c_int,
-        rect_anchor_dy: c_int,
-    );
-    pub fn gdk_surface_peek_children(surface: *mut GdkSurface) -> *mut glib::GList;
     pub fn gdk_surface_queue_expose(surface: *mut GdkSurface);
-    pub fn gdk_surface_raise(surface: *mut GdkSurface);
-    pub fn gdk_surface_register_dnd(surface: *mut GdkSurface);
-    pub fn gdk_surface_resize(surface: *mut GdkSurface, width: c_int, height: c_int);
-    pub fn gdk_surface_restack(surface: *mut GdkSurface, sibling: *mut GdkSurface, above: gboolean);
-    pub fn gdk_surface_set_accept_focus(surface: *mut GdkSurface, accept_focus: gboolean);
-    pub fn gdk_surface_set_child_input_shapes(surface: *mut GdkSurface);
     pub fn gdk_surface_set_cursor(surface: *mut GdkSurface, cursor: *mut GdkCursor);
-    pub fn gdk_surface_set_decorations(surface: *mut GdkSurface, decorations: GdkWMDecoration);
     pub fn gdk_surface_set_device_cursor(
         surface: *mut GdkSurface,
         device: *mut GdkDevice,
         cursor: *mut GdkCursor,
     );
-    pub fn gdk_surface_set_focus_on_map(surface: *mut GdkSurface, focus_on_map: gboolean);
-    pub fn gdk_surface_set_fullscreen_mode(surface: *mut GdkSurface, mode: GdkFullscreenMode);
-    pub fn gdk_surface_set_functions(surface: *mut GdkSurface, functions: GdkWMFunction);
-    pub fn gdk_surface_set_geometry_hints(
+    pub fn gdk_surface_set_input_region(
         surface: *mut GdkSurface,
-        geometry: *const GdkGeometry,
-        geom_mask: GdkSurfaceHints,
+        region: *mut cairo::cairo_region_t,
     );
-    pub fn gdk_surface_set_icon_list(surface: *mut GdkSurface, surfaces: *mut glib::GList);
-    pub fn gdk_surface_set_icon_name(surface: *mut GdkSurface, name: *const c_char);
-    pub fn gdk_surface_set_keep_above(surface: *mut GdkSurface, setting: gboolean);
-    pub fn gdk_surface_set_keep_below(surface: *mut GdkSurface, setting: gboolean);
-    pub fn gdk_surface_set_modal_hint(surface: *mut GdkSurface, modal: gboolean);
-    pub fn gdk_surface_set_opacity(surface: *mut GdkSurface, opacity: c_double);
     pub fn gdk_surface_set_opaque_region(
         surface: *mut GdkSurface,
         region: *mut cairo::cairo_region_t,
     );
-    pub fn gdk_surface_set_pass_through(surface: *mut GdkSurface, pass_through: gboolean);
     pub fn gdk_surface_set_shadow_width(
         surface: *mut GdkSurface,
         left: c_int,
@@ -4724,23 +4443,17 @@ extern "C" {
         top: c_int,
         bottom: c_int,
     );
-    pub fn gdk_surface_set_startup_id(surface: *mut GdkSurface, startup_id: *const c_char);
     pub fn gdk_surface_set_support_multidevice(
         surface: *mut GdkSurface,
         support_multidevice: gboolean,
     );
-    pub fn gdk_surface_set_title(surface: *mut GdkSurface, title: *const c_char);
-    pub fn gdk_surface_set_transient_for(surface: *mut GdkSurface, parent: *mut GdkSurface);
-    pub fn gdk_surface_set_type_hint(surface: *mut GdkSurface, hint: GdkSurfaceTypeHint);
-    pub fn gdk_surface_show(surface: *mut GdkSurface);
-    pub fn gdk_surface_show_unraised(surface: *mut GdkSurface);
-    pub fn gdk_surface_show_window_menu(surface: *mut GdkSurface, event: *mut GdkEvent)
-        -> gboolean;
-    pub fn gdk_surface_stick(surface: *mut GdkSurface);
     pub fn gdk_surface_thaw_updates(surface: *mut GdkSurface);
-    pub fn gdk_surface_unfullscreen(surface: *mut GdkSurface);
-    pub fn gdk_surface_unmaximize(surface: *mut GdkSurface);
-    pub fn gdk_surface_unstick(surface: *mut GdkSurface);
+    pub fn gdk_surface_translate_coordinates(
+        from: *mut GdkSurface,
+        to: *mut GdkSurface,
+        x: *mut c_double,
+        y: *mut c_double,
+    ) -> gboolean;
 
     //=========================================================================
     // GdkTexture
@@ -4779,6 +4492,16 @@ extern "C" {
     pub fn gdk_device_pad_get_n_groups(pad: *mut GdkDevicePad) -> c_int;
 
     //=========================================================================
+    // GdkDragSurface
+    //=========================================================================
+    pub fn gdk_drag_surface_get_type() -> GType;
+    pub fn gdk_drag_surface_present(
+        drag_icon: *mut GdkDragSurface,
+        width: c_int,
+        height: c_int,
+    ) -> gboolean;
+
+    //=========================================================================
     // GdkPaintable
     //=========================================================================
     pub fn gdk_paintable_get_type() -> GType;
@@ -4810,8 +4533,55 @@ extern "C" {
     );
 
     //=========================================================================
+    // GdkPopup
+    //=========================================================================
+    pub fn gdk_popup_get_type() -> GType;
+    pub fn gdk_popup_get_autohide(popup: *mut GdkPopup) -> gboolean;
+    pub fn gdk_popup_get_parent(popup: *mut GdkPopup) -> *mut GdkSurface;
+    pub fn gdk_popup_get_position_x(popup: *mut GdkPopup) -> c_int;
+    pub fn gdk_popup_get_position_y(popup: *mut GdkPopup) -> c_int;
+    pub fn gdk_popup_get_rect_anchor(popup: *mut GdkPopup) -> GdkGravity;
+    pub fn gdk_popup_get_surface_anchor(popup: *mut GdkPopup) -> GdkGravity;
+    pub fn gdk_popup_present(
+        popup: *mut GdkPopup,
+        width: c_int,
+        height: c_int,
+        layout: *mut GdkPopupLayout,
+    ) -> gboolean;
+
+    //=========================================================================
+    // GdkToplevel
+    //=========================================================================
+    pub fn gdk_toplevel_get_type() -> GType;
+    pub fn gdk_toplevel_focus(toplevel: *mut GdkToplevel, timestamp: u32);
+    pub fn gdk_toplevel_get_state(toplevel: *mut GdkToplevel) -> GdkSurfaceState;
+    pub fn gdk_toplevel_inhibit_system_shortcuts(toplevel: *mut GdkToplevel, event: *mut GdkEvent);
+    pub fn gdk_toplevel_lower(toplevel: *mut GdkToplevel) -> gboolean;
+    pub fn gdk_toplevel_minimize(toplevel: *mut GdkToplevel) -> gboolean;
+    pub fn gdk_toplevel_present(
+        toplevel: *mut GdkToplevel,
+        width: c_int,
+        height: c_int,
+        layout: *mut GdkToplevelLayout,
+    ) -> gboolean;
+    pub fn gdk_toplevel_restore_system_shortcuts(toplevel: *mut GdkToplevel);
+    pub fn gdk_toplevel_set_decorated(toplevel: *mut GdkToplevel, decorated: gboolean);
+    pub fn gdk_toplevel_set_deletable(toplevel: *mut GdkToplevel, deletable: gboolean);
+    pub fn gdk_toplevel_set_icon_list(toplevel: *mut GdkToplevel, surfaces: *mut glib::GList);
+    pub fn gdk_toplevel_set_modal(toplevel: *mut GdkToplevel, modal: gboolean);
+    pub fn gdk_toplevel_set_startup_id(toplevel: *mut GdkToplevel, startup_id: *const c_char);
+    pub fn gdk_toplevel_set_title(toplevel: *mut GdkToplevel, title: *const c_char);
+    pub fn gdk_toplevel_set_transient_for(toplevel: *mut GdkToplevel, parent: *mut GdkSurface);
+    pub fn gdk_toplevel_show_window_menu(
+        toplevel: *mut GdkToplevel,
+        event: *mut GdkEvent,
+    ) -> gboolean;
+    pub fn gdk_toplevel_supports_edge_constraints(toplevel: *mut GdkToplevel) -> gboolean;
+
+    //=========================================================================
     // Other functions
     //=========================================================================
+    pub fn gdk_button_event_get_button(event: *mut GdkEvent) -> c_uint;
     pub fn gdk_cairo_draw_from_gl(
         cr: *mut cairo::cairo_t,
         surface: *mut GdkSurface,
@@ -4823,10 +4593,6 @@ extern "C" {
         width: c_int,
         height: c_int,
     );
-    pub fn gdk_cairo_get_clip_rectangle(
-        cr: *mut cairo::cairo_t,
-        rect: *mut GdkRectangle,
-    ) -> gboolean;
     pub fn gdk_cairo_rectangle(cr: *mut cairo::cairo_t, rectangle: *const GdkRectangle);
     pub fn gdk_cairo_region(cr: *mut cairo::cairo_t, region: *const cairo::cairo_region_t);
     pub fn gdk_cairo_region_create_from_surface(
@@ -4845,6 +4611,11 @@ extern "C" {
         width: c_int,
         height: c_int,
         context: *mut GdkGLContext,
+    );
+    pub fn gdk_configure_event_get_size(
+        event: *mut GdkEvent,
+        width: *mut c_int,
+        height: *mut c_int,
     );
     pub fn gdk_content_deserialize_async(
         stream: *mut gio::GInputStream,
@@ -4887,6 +4658,8 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    pub fn gdk_crossing_event_get_detail(event: *mut GdkEvent) -> GdkNotifyType;
+    pub fn gdk_crossing_event_get_mode(event: *mut GdkEvent) -> GdkCrossingMode;
     pub fn gdk_events_get_angle(
         event1: *mut GdkEvent,
         event2: *mut GdkEvent,
@@ -4903,16 +4676,33 @@ extern "C" {
         event2: *mut GdkEvent,
         distance: *mut c_double,
     ) -> gboolean;
-    pub fn gdk_get_show_events() -> gboolean;
+    pub fn gdk_focus_event_get_in(event: *mut GdkEvent) -> gboolean;
+    pub fn gdk_grab_broken_event_get_grab_surface(event: *mut GdkEvent) -> *mut GdkSurface;
     pub fn gdk_intern_mime_type(string: *const c_char) -> *const c_char;
+    pub fn gdk_key_event_get_group(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_key_event_get_keycode(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_key_event_get_keyval(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_key_event_get_scancode(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_key_event_is_modifier(event: *mut GdkEvent) -> gboolean;
     pub fn gdk_keyval_convert_case(symbol: c_uint, lower: *mut c_uint, upper: *mut c_uint);
     pub fn gdk_keyval_from_name(keyval_name: *const c_char) -> c_uint;
     pub fn gdk_keyval_is_lower(keyval: c_uint) -> gboolean;
     pub fn gdk_keyval_is_upper(keyval: c_uint) -> gboolean;
-    pub fn gdk_keyval_name(keyval: c_uint) -> *mut c_char;
+    pub fn gdk_keyval_name(keyval: c_uint) -> *const c_char;
     pub fn gdk_keyval_to_lower(keyval: c_uint) -> c_uint;
     pub fn gdk_keyval_to_unicode(keyval: c_uint) -> u32;
     pub fn gdk_keyval_to_upper(keyval: c_uint) -> c_uint;
+    pub fn gdk_pad_axis_event_get_value(
+        event: *mut GdkEvent,
+        index: *mut c_uint,
+        value: *mut c_double,
+    );
+    pub fn gdk_pad_button_event_get_button(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_pad_event_get_group_mode(
+        event: *mut GdkEvent,
+        group: *mut c_uint,
+        mode: *mut c_uint,
+    );
     pub fn gdk_pango_layout_get_clip_region(
         layout: *mut pango::PangoLayout,
         x_origin: c_int,
@@ -4934,17 +4724,25 @@ extern "C" {
         width: c_int,
         height: c_int,
     ) -> *mut gdk_pixbuf::GdkPixbuf;
+    pub fn gdk_pixbuf_get_from_texture(texture: *mut GdkTexture) -> *mut gdk_pixbuf::GdkPixbuf;
+    pub fn gdk_scroll_event_get_deltas(
+        event: *mut GdkEvent,
+        delta_x: *mut c_double,
+        delta_y: *mut c_double,
+    );
+    pub fn gdk_scroll_event_get_direction(event: *mut GdkEvent) -> GdkScrollDirection;
+    pub fn gdk_scroll_event_is_stop(event: *mut GdkEvent) -> gboolean;
     pub fn gdk_set_allowed_backends(backends: *const c_char);
-    pub fn gdk_set_show_events(show_events: gboolean);
-    pub fn gdk_text_property_to_utf8_list_for_display(
-        display: *mut GdkDisplay,
-        encoding: GdkAtom,
-        format: c_int,
-        text: *const u8,
-        length: c_int,
-        list: *mut *mut *mut c_char,
-    ) -> c_int;
+    pub fn gdk_touch_event_get_emulating_pointer(event: *mut GdkEvent) -> gboolean;
+    pub fn gdk_touchpad_event_get_deltas(
+        event: *mut GdkEvent,
+        dx: *mut c_double,
+        dy: *mut c_double,
+    );
+    pub fn gdk_touchpad_event_get_gesture_phase(event: *mut GdkEvent) -> GdkTouchpadGesturePhase;
+    pub fn gdk_touchpad_event_get_n_fingers(event: *mut GdkEvent) -> c_uint;
+    pub fn gdk_touchpad_pinch_event_get_angle_delta(event: *mut GdkEvent) -> c_double;
+    pub fn gdk_touchpad_pinch_event_get_scale(event: *mut GdkEvent) -> c_double;
     pub fn gdk_unicode_to_keyval(wc: u32) -> c_uint;
-    pub fn gdk_utf8_to_string_target(str: *const c_char) -> *mut c_char;
 
 }

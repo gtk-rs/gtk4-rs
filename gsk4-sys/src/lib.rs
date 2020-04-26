@@ -112,7 +112,7 @@ pub type GskCairoRendererClass = *mut _GskCairoRendererClass;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GskColorStop {
-    pub offset: c_double,
+    pub offset: c_float,
     pub color: gdk::GdkRGBA,
 }
 
@@ -430,6 +430,11 @@ extern "C" {
         rect: *const graphene::graphene_rect_t,
         out_rect: *mut graphene::graphene_rect_t,
     );
+    pub fn gsk_transform_transform_point(
+        self_: *mut GskTransform,
+        point: *const graphene::graphene_point_t,
+        out_point: *mut graphene::graphene_point_t,
+    );
     pub fn gsk_transform_translate(
         next: *mut GskTransform,
         point: *const graphene::graphene_point_t,
@@ -510,8 +515,8 @@ extern "C" {
         blend_mode: GskBlendMode,
     ) -> *mut GskRenderNode;
     pub fn gsk_blur_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_blur_node_get_radius(node: *mut GskRenderNode) -> c_double;
-    pub fn gsk_blur_node_new(child: *mut GskRenderNode, radius: c_double) -> *mut GskRenderNode;
+    pub fn gsk_blur_node_get_radius(node: *mut GskRenderNode) -> c_float;
+    pub fn gsk_blur_node_new(child: *mut GskRenderNode, radius: c_float) -> *mut GskRenderNode;
     pub fn gsk_border_node_new(
         outline: *const GskRoundedRect,
         border_width: *const [c_float; 4],
@@ -522,7 +527,7 @@ extern "C" {
     pub fn gsk_border_node_peek_widths(node: *mut GskRenderNode) -> *const c_float;
     pub fn gsk_cairo_node_get_draw_context(node: *mut GskRenderNode) -> *mut cairo::cairo_t;
     pub fn gsk_cairo_node_new(bounds: *const graphene::graphene_rect_t) -> *mut GskRenderNode;
-    pub fn gsk_cairo_node_peek_surface(node: *mut GskRenderNode) -> *const cairo::cairo_surface_t;
+    pub fn gsk_cairo_node_peek_surface(node: *mut GskRenderNode) -> *mut cairo::cairo_surface_t;
     pub fn gsk_clip_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
     pub fn gsk_clip_node_new(
         child: *mut GskRenderNode,
@@ -556,12 +561,12 @@ extern "C" {
         n_children: c_uint,
     ) -> *mut GskRenderNode;
     pub fn gsk_cross_fade_node_get_end_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_cross_fade_node_get_progress(node: *mut GskRenderNode) -> c_double;
+    pub fn gsk_cross_fade_node_get_progress(node: *mut GskRenderNode) -> c_float;
     pub fn gsk_cross_fade_node_get_start_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
     pub fn gsk_cross_fade_node_new(
         start: *mut GskRenderNode,
         end: *mut GskRenderNode,
-        progress: c_double,
+        progress: c_float,
     ) -> *mut GskRenderNode;
     pub fn gsk_debug_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
     pub fn gsk_debug_node_get_message(node: *mut GskRenderNode) -> *const c_char;
@@ -601,9 +606,8 @@ extern "C" {
         node: *mut GskRenderNode,
     ) -> *const graphene::graphene_point_t;
     pub fn gsk_opacity_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_opacity_node_get_opacity(node: *mut GskRenderNode) -> c_double;
-    pub fn gsk_opacity_node_new(child: *mut GskRenderNode, opacity: c_double)
-        -> *mut GskRenderNode;
+    pub fn gsk_opacity_node_get_opacity(node: *mut GskRenderNode) -> c_float;
+    pub fn gsk_opacity_node_new(child: *mut GskRenderNode, opacity: c_float) -> *mut GskRenderNode;
     pub fn gsk_outset_shadow_node_get_blur_radius(node: *mut GskRenderNode) -> c_float;
     pub fn gsk_outset_shadow_node_get_dx(node: *mut GskRenderNode) -> c_float;
     pub fn gsk_outset_shadow_node_get_dy(node: *mut GskRenderNode) -> c_float;
@@ -641,17 +645,16 @@ extern "C" {
     ) -> *mut GskRenderNode;
     pub fn gsk_rounded_clip_node_peek_clip(node: *mut GskRenderNode) -> *const GskRoundedRect;
     pub fn gsk_text_node_get_num_glyphs(node: *mut GskRenderNode) -> c_uint;
-    pub fn gsk_text_node_get_x(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_text_node_get_y(node: *mut GskRenderNode) -> c_float;
+    pub fn gsk_text_node_get_offset(node: *mut GskRenderNode) -> *const graphene::graphene_point_t;
+    pub fn gsk_text_node_has_color_glyphs(node: *mut GskRenderNode) -> gboolean;
     pub fn gsk_text_node_new(
         font: *mut pango::PangoFont,
         glyphs: *mut pango::PangoGlyphString,
         color: *const gdk::GdkRGBA,
-        x: c_float,
-        y: c_float,
+        offset: *const graphene::graphene_point_t,
     ) -> *mut GskRenderNode;
     pub fn gsk_text_node_peek_color(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
-    pub fn gsk_text_node_peek_font(node: *mut GskRenderNode) -> *const pango::PangoFont;
+    pub fn gsk_text_node_peek_font(node: *mut GskRenderNode) -> *mut pango::PangoFont;
     pub fn gsk_text_node_peek_glyphs(node: *mut GskRenderNode) -> *const pango::PangoGlyphInfo;
     pub fn gsk_texture_node_get_texture(node: *mut GskRenderNode) -> *mut gdk::GdkTexture;
     pub fn gsk_texture_node_new(
