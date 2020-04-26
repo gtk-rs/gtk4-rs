@@ -253,69 +253,6 @@ fn get_c_value(dir: &Path, cc: &Compiler, name: &str) -> Result<String, Box<dyn 
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
     (
-        "GtkAboutDialog",
-        Layout {
-            size: size_of::<GtkAboutDialog>(),
-            alignment: align_of::<GtkAboutDialog>(),
-        },
-    ),
-    (
-        "GtkAboutDialogClass",
-        Layout {
-            size: size_of::<GtkAboutDialogClass>(),
-            alignment: align_of::<GtkAboutDialogClass>(),
-        },
-    ),
-    (
-        "GtkAccelFlags",
-        Layout {
-            size: size_of::<GtkAccelFlags>(),
-            alignment: align_of::<GtkAccelFlags>(),
-        },
-    ),
-    (
-        "GtkAccelGroup",
-        Layout {
-            size: size_of::<GtkAccelGroup>(),
-            alignment: align_of::<GtkAccelGroup>(),
-        },
-    ),
-    (
-        "GtkAccelGroupClass",
-        Layout {
-            size: size_of::<GtkAccelGroupClass>(),
-            alignment: align_of::<GtkAccelGroupClass>(),
-        },
-    ),
-    (
-        "GtkAccelGroupEntry",
-        Layout {
-            size: size_of::<GtkAccelGroupEntry>(),
-            alignment: align_of::<GtkAccelGroupEntry>(),
-        },
-    ),
-    (
-        "GtkAccelKey",
-        Layout {
-            size: size_of::<GtkAccelKey>(),
-            alignment: align_of::<GtkAccelKey>(),
-        },
-    ),
-    (
-        "GtkAccelLabel",
-        Layout {
-            size: size_of::<GtkAccelLabel>(),
-            alignment: align_of::<GtkAccelLabel>(),
-        },
-    ),
-    (
-        "GtkAccelLabelClass",
-        Layout {
-            size: size_of::<GtkAccelLabelClass>(),
-            alignment: align_of::<GtkAccelLabelClass>(),
-        },
-    ),
-    (
         "GtkAccessible",
         Layout {
             size: size_of::<GtkAccessible>(),
@@ -327,20 +264,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkAccessibleClass>(),
             alignment: align_of::<GtkAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkActionBar",
-        Layout {
-            size: size_of::<GtkActionBar>(),
-            alignment: align_of::<GtkActionBar>(),
-        },
-    ),
-    (
-        "GtkActionBarClass",
-        Layout {
-            size: size_of::<GtkActionBarClass>(),
-            alignment: align_of::<GtkActionBarClass>(),
         },
     ),
     (
@@ -379,48 +302,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkAppChooserButton",
-        Layout {
-            size: size_of::<GtkAppChooserButton>(),
-            alignment: align_of::<GtkAppChooserButton>(),
-        },
-    ),
-    (
-        "GtkAppChooserButtonClass",
-        Layout {
-            size: size_of::<GtkAppChooserButtonClass>(),
-            alignment: align_of::<GtkAppChooserButtonClass>(),
-        },
-    ),
-    (
-        "GtkAppChooserDialog",
-        Layout {
-            size: size_of::<GtkAppChooserDialog>(),
-            alignment: align_of::<GtkAppChooserDialog>(),
-        },
-    ),
-    (
-        "GtkAppChooserDialogClass",
-        Layout {
-            size: size_of::<GtkAppChooserDialogClass>(),
-            alignment: align_of::<GtkAppChooserDialogClass>(),
-        },
-    ),
-    (
-        "GtkAppChooserWidget",
-        Layout {
-            size: size_of::<GtkAppChooserWidget>(),
-            alignment: align_of::<GtkAppChooserWidget>(),
-        },
-    ),
-    (
-        "GtkAppChooserWidgetClass",
-        Layout {
-            size: size_of::<GtkAppChooserWidgetClass>(),
-            alignment: align_of::<GtkAppChooserWidgetClass>(),
-        },
-    ),
-    (
         "GtkApplication",
         Layout {
             size: size_of::<GtkApplication>(),
@@ -456,45 +337,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkArrowPlacement",
-        Layout {
-            size: size_of::<GtkArrowPlacement>(),
-            alignment: align_of::<GtkArrowPlacement>(),
-        },
-    ),
-    (
         "GtkArrowType",
         Layout {
             size: size_of::<GtkArrowType>(),
             alignment: align_of::<GtkArrowType>(),
-        },
-    ),
-    (
-        "GtkAspectFrame",
-        Layout {
-            size: size_of::<GtkAspectFrame>(),
-            alignment: align_of::<GtkAspectFrame>(),
-        },
-    ),
-    (
-        "GtkAspectFrameClass",
-        Layout {
-            size: size_of::<GtkAspectFrameClass>(),
-            alignment: align_of::<GtkAspectFrameClass>(),
-        },
-    ),
-    (
-        "GtkAssistant",
-        Layout {
-            size: size_of::<GtkAssistant>(),
-            alignment: align_of::<GtkAssistant>(),
-        },
-    ),
-    (
-        "GtkAssistantClass",
-        Layout {
-            size: size_of::<GtkAssistantClass>(),
-            alignment: align_of::<GtkAssistantClass>(),
         },
     ),
     (
@@ -530,27 +376,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkBinLayoutClass>(),
             alignment: align_of::<GtkBinLayoutClass>(),
-        },
-    ),
-    (
-        "GtkBindingArg",
-        Layout {
-            size: size_of::<GtkBindingArg>(),
-            alignment: align_of::<GtkBindingArg>(),
-        },
-    ),
-    (
-        "GtkBindingSet",
-        Layout {
-            size: size_of::<GtkBindingSet>(),
-            alignment: align_of::<GtkBindingSet>(),
-        },
-    ),
-    (
-        "GtkBindingSignal",
-        Layout {
-            size: size_of::<GtkBindingSignal>(),
-            alignment: align_of::<GtkBindingSignal>(),
         },
     ),
     (
@@ -610,17 +435,31 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkBuilder",
+        "GtkBuildableParser",
         Layout {
-            size: size_of::<GtkBuilder>(),
-            alignment: align_of::<GtkBuilder>(),
+            size: size_of::<GtkBuildableParser>(),
+            alignment: align_of::<GtkBuildableParser>(),
         },
     ),
     (
-        "GtkBuilderClass",
+        "GtkBuilderCScope",
         Layout {
-            size: size_of::<GtkBuilderClass>(),
-            alignment: align_of::<GtkBuilderClass>(),
+            size: size_of::<GtkBuilderCScope>(),
+            alignment: align_of::<GtkBuilderCScope>(),
+        },
+    ),
+    (
+        "GtkBuilderCScopeClass",
+        Layout {
+            size: size_of::<GtkBuilderCScopeClass>(),
+            alignment: align_of::<GtkBuilderCScopeClass>(),
+        },
+    ),
+    (
+        "GtkBuilderClosureFlags",
+        Layout {
+            size: size_of::<GtkBuilderClosureFlags>(),
+            alignment: align_of::<GtkBuilderClosureFlags>(),
         },
     ),
     (
@@ -628,6 +467,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkBuilderError>(),
             alignment: align_of::<GtkBuilderError>(),
+        },
+    ),
+    (
+        "GtkBuilderScopeInterface",
+        Layout {
+            size: size_of::<GtkBuilderScopeInterface>(),
+            alignment: align_of::<GtkBuilderScopeInterface>(),
         },
     ),
     (
@@ -659,38 +505,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkButtonRole",
-        Layout {
-            size: size_of::<GtkButtonRole>(),
-            alignment: align_of::<GtkButtonRole>(),
-        },
-    ),
-    (
         "GtkButtonsType",
         Layout {
             size: size_of::<GtkButtonsType>(),
             alignment: align_of::<GtkButtonsType>(),
-        },
-    ),
-    (
-        "GtkCalendar",
-        Layout {
-            size: size_of::<GtkCalendar>(),
-            alignment: align_of::<GtkCalendar>(),
-        },
-    ),
-    (
-        "GtkCalendarClass",
-        Layout {
-            size: size_of::<GtkCalendarClass>(),
-            alignment: align_of::<GtkCalendarClass>(),
-        },
-    ),
-    (
-        "GtkCalendarDisplayOptions",
-        Layout {
-            size: size_of::<GtkCalendarDisplayOptions>(),
-            alignment: align_of::<GtkCalendarDisplayOptions>(),
         },
     ),
     (
@@ -719,20 +537,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkCellArea>(),
             alignment: align_of::<GtkCellArea>(),
-        },
-    ),
-    (
-        "GtkCellAreaBox",
-        Layout {
-            size: size_of::<GtkCellAreaBox>(),
-            alignment: align_of::<GtkCellAreaBox>(),
-        },
-    ),
-    (
-        "GtkCellAreaBoxClass",
-        Layout {
-            size: size_of::<GtkCellAreaBoxClass>(),
-            alignment: align_of::<GtkCellAreaBoxClass>(),
         },
     ),
     (
@@ -778,20 +582,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkCellRendererAccel",
-        Layout {
-            size: size_of::<GtkCellRendererAccel>(),
-            alignment: align_of::<GtkCellRendererAccel>(),
-        },
-    ),
-    (
-        "GtkCellRendererAccelClass",
-        Layout {
-            size: size_of::<GtkCellRendererAccelClass>(),
-            alignment: align_of::<GtkCellRendererAccelClass>(),
-        },
-    ),
-    (
         "GtkCellRendererAccelMode",
         Layout {
             size: size_of::<GtkCellRendererAccelMode>(),
@@ -806,80 +596,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkCellRendererCombo",
-        Layout {
-            size: size_of::<GtkCellRendererCombo>(),
-            alignment: align_of::<GtkCellRendererCombo>(),
-        },
-    ),
-    (
-        "GtkCellRendererComboClass",
-        Layout {
-            size: size_of::<GtkCellRendererComboClass>(),
-            alignment: align_of::<GtkCellRendererComboClass>(),
-        },
-    ),
-    (
         "GtkCellRendererMode",
         Layout {
             size: size_of::<GtkCellRendererMode>(),
             alignment: align_of::<GtkCellRendererMode>(),
-        },
-    ),
-    (
-        "GtkCellRendererPixbuf",
-        Layout {
-            size: size_of::<GtkCellRendererPixbuf>(),
-            alignment: align_of::<GtkCellRendererPixbuf>(),
-        },
-    ),
-    (
-        "GtkCellRendererPixbufClass",
-        Layout {
-            size: size_of::<GtkCellRendererPixbufClass>(),
-            alignment: align_of::<GtkCellRendererPixbufClass>(),
-        },
-    ),
-    (
-        "GtkCellRendererProgress",
-        Layout {
-            size: size_of::<GtkCellRendererProgress>(),
-            alignment: align_of::<GtkCellRendererProgress>(),
-        },
-    ),
-    (
-        "GtkCellRendererProgressClass",
-        Layout {
-            size: size_of::<GtkCellRendererProgressClass>(),
-            alignment: align_of::<GtkCellRendererProgressClass>(),
-        },
-    ),
-    (
-        "GtkCellRendererSpin",
-        Layout {
-            size: size_of::<GtkCellRendererSpin>(),
-            alignment: align_of::<GtkCellRendererSpin>(),
-        },
-    ),
-    (
-        "GtkCellRendererSpinClass",
-        Layout {
-            size: size_of::<GtkCellRendererSpinClass>(),
-            alignment: align_of::<GtkCellRendererSpinClass>(),
-        },
-    ),
-    (
-        "GtkCellRendererSpinner",
-        Layout {
-            size: size_of::<GtkCellRendererSpinner>(),
-            alignment: align_of::<GtkCellRendererSpinner>(),
-        },
-    ),
-    (
-        "GtkCellRendererSpinnerClass",
-        Layout {
-            size: size_of::<GtkCellRendererSpinnerClass>(),
-            alignment: align_of::<GtkCellRendererSpinnerClass>(),
         },
     ),
     (
@@ -904,31 +624,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkCellRendererToggle",
+        "GtkCenterLayoutClass",
         Layout {
-            size: size_of::<GtkCellRendererToggle>(),
-            alignment: align_of::<GtkCellRendererToggle>(),
-        },
-    ),
-    (
-        "GtkCellRendererToggleClass",
-        Layout {
-            size: size_of::<GtkCellRendererToggleClass>(),
-            alignment: align_of::<GtkCellRendererToggleClass>(),
-        },
-    ),
-    (
-        "GtkCellView",
-        Layout {
-            size: size_of::<GtkCellView>(),
-            alignment: align_of::<GtkCellView>(),
-        },
-    ),
-    (
-        "GtkCellViewClass",
-        Layout {
-            size: size_of::<GtkCellViewClass>(),
-            alignment: align_of::<GtkCellViewClass>(),
+            size: size_of::<GtkCenterLayoutClass>(),
+            alignment: align_of::<GtkCenterLayoutClass>(),
         },
     ),
     (
@@ -946,80 +645,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkCheckMenuItem",
-        Layout {
-            size: size_of::<GtkCheckMenuItem>(),
-            alignment: align_of::<GtkCheckMenuItem>(),
-        },
-    ),
-    (
-        "GtkCheckMenuItemAccessible",
-        Layout {
-            size: size_of::<GtkCheckMenuItemAccessible>(),
-            alignment: align_of::<GtkCheckMenuItemAccessible>(),
-        },
-    ),
-    (
-        "GtkCheckMenuItemAccessibleClass",
-        Layout {
-            size: size_of::<GtkCheckMenuItemAccessibleClass>(),
-            alignment: align_of::<GtkCheckMenuItemAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkCheckMenuItemClass",
-        Layout {
-            size: size_of::<GtkCheckMenuItemClass>(),
-            alignment: align_of::<GtkCheckMenuItemClass>(),
-        },
-    ),
-    (
-        "GtkColorButton",
-        Layout {
-            size: size_of::<GtkColorButton>(),
-            alignment: align_of::<GtkColorButton>(),
-        },
-    ),
-    (
-        "GtkColorButtonClass",
-        Layout {
-            size: size_of::<GtkColorButtonClass>(),
-            alignment: align_of::<GtkColorButtonClass>(),
-        },
-    ),
-    (
-        "GtkColorChooserDialog",
-        Layout {
-            size: size_of::<GtkColorChooserDialog>(),
-            alignment: align_of::<GtkColorChooserDialog>(),
-        },
-    ),
-    (
-        "GtkColorChooserDialogClass",
-        Layout {
-            size: size_of::<GtkColorChooserDialogClass>(),
-            alignment: align_of::<GtkColorChooserDialogClass>(),
-        },
-    ),
-    (
         "GtkColorChooserInterface",
         Layout {
             size: size_of::<GtkColorChooserInterface>(),
             alignment: align_of::<GtkColorChooserInterface>(),
-        },
-    ),
-    (
-        "GtkColorChooserWidget",
-        Layout {
-            size: size_of::<GtkColorChooserWidget>(),
-            alignment: align_of::<GtkColorChooserWidget>(),
-        },
-    ),
-    (
-        "GtkColorChooserWidgetClass",
-        Layout {
-            size: size_of::<GtkColorChooserWidgetClass>(),
-            alignment: align_of::<GtkColorChooserWidgetClass>(),
         },
     ),
     (
@@ -1051,17 +680,73 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkComboBoxText",
+        "GtkCompositeAccessible",
         Layout {
-            size: size_of::<GtkComboBoxText>(),
-            alignment: align_of::<GtkComboBoxText>(),
+            size: size_of::<GtkCompositeAccessible>(),
+            alignment: align_of::<GtkCompositeAccessible>(),
         },
     ),
     (
-        "GtkComboBoxTextClass",
+        "GtkCompositeAccessibleClass",
         Layout {
-            size: size_of::<GtkComboBoxTextClass>(),
-            alignment: align_of::<GtkComboBoxTextClass>(),
+            size: size_of::<GtkCompositeAccessibleClass>(),
+            alignment: align_of::<GtkCompositeAccessibleClass>(),
+        },
+    ),
+    (
+        "GtkConstraintAttribute",
+        Layout {
+            size: size_of::<GtkConstraintAttribute>(),
+            alignment: align_of::<GtkConstraintAttribute>(),
+        },
+    ),
+    (
+        "GtkConstraintClass",
+        Layout {
+            size: size_of::<GtkConstraintClass>(),
+            alignment: align_of::<GtkConstraintClass>(),
+        },
+    ),
+    (
+        "GtkConstraintGuideClass",
+        Layout {
+            size: size_of::<GtkConstraintGuideClass>(),
+            alignment: align_of::<GtkConstraintGuideClass>(),
+        },
+    ),
+    (
+        "GtkConstraintLayoutChildClass",
+        Layout {
+            size: size_of::<GtkConstraintLayoutChildClass>(),
+            alignment: align_of::<GtkConstraintLayoutChildClass>(),
+        },
+    ),
+    (
+        "GtkConstraintLayoutClass",
+        Layout {
+            size: size_of::<GtkConstraintLayoutClass>(),
+            alignment: align_of::<GtkConstraintLayoutClass>(),
+        },
+    ),
+    (
+        "GtkConstraintRelation",
+        Layout {
+            size: size_of::<GtkConstraintRelation>(),
+            alignment: align_of::<GtkConstraintRelation>(),
+        },
+    ),
+    (
+        "GtkConstraintStrength",
+        Layout {
+            size: size_of::<GtkConstraintStrength>(),
+            alignment: align_of::<GtkConstraintStrength>(),
+        },
+    ),
+    (
+        "GtkConstraintVflParserError",
+        Layout {
+            size: size_of::<GtkConstraintVflParserError>(),
+            alignment: align_of::<GtkConstraintVflParserError>(),
         },
     ),
     (
@@ -1121,17 +806,24 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkCssParserError",
+        Layout {
+            size: size_of::<GtkCssParserError>(),
+            alignment: align_of::<GtkCssParserError>(),
+        },
+    ),
+    (
+        "GtkCssParserWarning",
+        Layout {
+            size: size_of::<GtkCssParserWarning>(),
+            alignment: align_of::<GtkCssParserWarning>(),
+        },
+    ),
+    (
         "GtkCssProvider",
         Layout {
             size: size_of::<GtkCssProvider>(),
             alignment: align_of::<GtkCssProvider>(),
-        },
-    ),
-    (
-        "GtkCssProviderClass",
-        Layout {
-            size: size_of::<GtkCssProviderClass>(),
-            alignment: align_of::<GtkCssProviderClass>(),
         },
     ),
     (
@@ -1153,13 +845,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkDeleteType>(),
             alignment: align_of::<GtkDeleteType>(),
-        },
-    ),
-    (
-        "GtkDestDefaults",
-        Layout {
-            size: size_of::<GtkDestDefaults>(),
-            alignment: align_of::<GtkDestDefaults>(),
         },
     ),
     (
@@ -1191,10 +876,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkDragResult",
+        "GtkDragIconClass",
         Layout {
-            size: size_of::<GtkDragResult>(),
-            alignment: align_of::<GtkDragResult>(),
+            size: size_of::<GtkDragIconClass>(),
+            alignment: align_of::<GtkDragIconClass>(),
         },
     ),
     (
@@ -1268,20 +953,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkEntryCompletion",
-        Layout {
-            size: size_of::<GtkEntryCompletion>(),
-            alignment: align_of::<GtkEntryCompletion>(),
-        },
-    ),
-    (
-        "GtkEntryCompletionClass",
-        Layout {
-            size: size_of::<GtkEntryCompletionClass>(),
-            alignment: align_of::<GtkEntryCompletionClass>(),
-        },
-    ),
-    (
         "GtkEntryIconPosition",
         Layout {
             size: size_of::<GtkEntryIconPosition>(),
@@ -1303,13 +974,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkExpander",
-        Layout {
-            size: size_of::<GtkExpander>(),
-            alignment: align_of::<GtkExpander>(),
-        },
-    ),
-    (
         "GtkExpanderAccessible",
         Layout {
             size: size_of::<GtkExpanderAccessible>(),
@@ -1324,52 +988,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkExpanderClass",
-        Layout {
-            size: size_of::<GtkExpanderClass>(),
-            alignment: align_of::<GtkExpanderClass>(),
-        },
-    ),
-    (
         "GtkFileChooserAction",
         Layout {
             size: size_of::<GtkFileChooserAction>(),
             alignment: align_of::<GtkFileChooserAction>(),
-        },
-    ),
-    (
-        "GtkFileChooserButton",
-        Layout {
-            size: size_of::<GtkFileChooserButton>(),
-            alignment: align_of::<GtkFileChooserButton>(),
-        },
-    ),
-    (
-        "GtkFileChooserButtonClass",
-        Layout {
-            size: size_of::<GtkFileChooserButtonClass>(),
-            alignment: align_of::<GtkFileChooserButtonClass>(),
-        },
-    ),
-    (
-        "GtkFileChooserConfirmation",
-        Layout {
-            size: size_of::<GtkFileChooserConfirmation>(),
-            alignment: align_of::<GtkFileChooserConfirmation>(),
-        },
-    ),
-    (
-        "GtkFileChooserDialog",
-        Layout {
-            size: size_of::<GtkFileChooserDialog>(),
-            alignment: align_of::<GtkFileChooserDialog>(),
-        },
-    ),
-    (
-        "GtkFileChooserDialogClass",
-        Layout {
-            size: size_of::<GtkFileChooserDialogClass>(),
-            alignment: align_of::<GtkFileChooserDialogClass>(),
         },
     ),
     (
@@ -1384,20 +1006,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkFileChooserNativeClass>(),
             alignment: align_of::<GtkFileChooserNativeClass>(),
-        },
-    ),
-    (
-        "GtkFileChooserWidget",
-        Layout {
-            size: size_of::<GtkFileChooserWidget>(),
-            alignment: align_of::<GtkFileChooserWidget>(),
-        },
-    ),
-    (
-        "GtkFileChooserWidgetClass",
-        Layout {
-            size: size_of::<GtkFileChooserWidgetClass>(),
-            alignment: align_of::<GtkFileChooserWidgetClass>(),
         },
     ),
     (
@@ -1457,13 +1065,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkFlowBox",
-        Layout {
-            size: size_of::<GtkFlowBox>(),
-            alignment: align_of::<GtkFlowBox>(),
-        },
-    ),
-    (
         "GtkFlowBoxAccessible",
         Layout {
             size: size_of::<GtkFlowBoxAccessible>(),
@@ -1506,41 +1107,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkFlowBoxClass",
-        Layout {
-            size: size_of::<GtkFlowBoxClass>(),
-            alignment: align_of::<GtkFlowBoxClass>(),
-        },
-    ),
-    (
-        "GtkFontButton",
-        Layout {
-            size: size_of::<GtkFontButton>(),
-            alignment: align_of::<GtkFontButton>(),
-        },
-    ),
-    (
-        "GtkFontButtonClass",
-        Layout {
-            size: size_of::<GtkFontButtonClass>(),
-            alignment: align_of::<GtkFontButtonClass>(),
-        },
-    ),
-    (
-        "GtkFontChooserDialog",
-        Layout {
-            size: size_of::<GtkFontChooserDialog>(),
-            alignment: align_of::<GtkFontChooserDialog>(),
-        },
-    ),
-    (
-        "GtkFontChooserDialogClass",
-        Layout {
-            size: size_of::<GtkFontChooserDialogClass>(),
-            alignment: align_of::<GtkFontChooserDialogClass>(),
-        },
-    ),
-    (
         "GtkFontChooserIface",
         Layout {
             size: size_of::<GtkFontChooserIface>(),
@@ -1552,20 +1118,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkFontChooserLevel>(),
             alignment: align_of::<GtkFontChooserLevel>(),
-        },
-    ),
-    (
-        "GtkFontChooserWidget",
-        Layout {
-            size: size_of::<GtkFontChooserWidget>(),
-            alignment: align_of::<GtkFontChooserWidget>(),
-        },
-    ),
-    (
-        "GtkFontChooserWidgetClass",
-        Layout {
-            size: size_of::<GtkFontChooserWidgetClass>(),
-            alignment: align_of::<GtkFontChooserWidgetClass>(),
         },
     ),
     (
@@ -1639,20 +1191,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkHeaderBar",
-        Layout {
-            size: size_of::<GtkHeaderBar>(),
-            alignment: align_of::<GtkHeaderBar>(),
-        },
-    ),
-    (
-        "GtkHeaderBarClass",
-        Layout {
-            size: size_of::<GtkHeaderBarClass>(),
-            alignment: align_of::<GtkHeaderBarClass>(),
-        },
-    ),
-    (
         "GtkIMContext",
         Layout {
             size: size_of::<GtkIMContext>(),
@@ -1709,31 +1247,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkIconTheme",
-        Layout {
-            size: size_of::<GtkIconTheme>(),
-            alignment: align_of::<GtkIconTheme>(),
-        },
-    ),
-    (
-        "GtkIconThemeClass",
-        Layout {
-            size: size_of::<GtkIconThemeClass>(),
-            alignment: align_of::<GtkIconThemeClass>(),
-        },
-    ),
-    (
         "GtkIconThemeError",
         Layout {
             size: size_of::<GtkIconThemeError>(),
             alignment: align_of::<GtkIconThemeError>(),
-        },
-    ),
-    (
-        "GtkIconView",
-        Layout {
-            size: size_of::<GtkIconView>(),
-            alignment: align_of::<GtkIconView>(),
         },
     ),
     (
@@ -1751,24 +1268,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkIconViewClass",
-        Layout {
-            size: size_of::<GtkIconViewClass>(),
-            alignment: align_of::<GtkIconViewClass>(),
-        },
-    ),
-    (
         "GtkIconViewDropPosition",
         Layout {
             size: size_of::<GtkIconViewDropPosition>(),
             alignment: align_of::<GtkIconViewDropPosition>(),
-        },
-    ),
-    (
-        "GtkImage",
-        Layout {
-            size: size_of::<GtkImage>(),
-            alignment: align_of::<GtkImage>(),
         },
     ),
     (
@@ -1800,31 +1303,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkImageClass",
-        Layout {
-            size: size_of::<GtkImageClass>(),
-            alignment: align_of::<GtkImageClass>(),
-        },
-    ),
-    (
         "GtkImageType",
         Layout {
             size: size_of::<GtkImageType>(),
             alignment: align_of::<GtkImageType>(),
-        },
-    ),
-    (
-        "GtkInfoBar",
-        Layout {
-            size: size_of::<GtkInfoBar>(),
-            alignment: align_of::<GtkInfoBar>(),
-        },
-    ),
-    (
-        "GtkInfoBarClass",
-        Layout {
-            size: size_of::<GtkInfoBarClass>(),
-            alignment: align_of::<GtkInfoBarClass>(),
         },
     ),
     (
@@ -1849,13 +1331,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkLabel",
-        Layout {
-            size: size_of::<GtkLabel>(),
-            alignment: align_of::<GtkLabel>(),
-        },
-    ),
-    (
         "GtkLabelAccessible",
         Layout {
             size: size_of::<GtkLabelAccessible>(),
@@ -1867,13 +1342,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkLabelAccessibleClass>(),
             alignment: align_of::<GtkLabelAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkLabelClass",
-        Layout {
-            size: size_of::<GtkLabelClass>(),
-            alignment: align_of::<GtkLabelClass>(),
         },
     ),
     (
@@ -1905,13 +1373,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkLevelBar",
-        Layout {
-            size: size_of::<GtkLevelBar>(),
-            alignment: align_of::<GtkLevelBar>(),
-        },
-    ),
-    (
         "GtkLevelBarAccessible",
         Layout {
             size: size_of::<GtkLevelBarAccessible>(),
@@ -1923,13 +1384,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkLevelBarAccessibleClass>(),
             alignment: align_of::<GtkLevelBarAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkLevelBarClass",
-        Layout {
-            size: size_of::<GtkLevelBarClass>(),
-            alignment: align_of::<GtkLevelBarClass>(),
         },
     ),
     (
@@ -1947,13 +1401,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkLinkButton",
-        Layout {
-            size: size_of::<GtkLinkButton>(),
-            alignment: align_of::<GtkLinkButton>(),
-        },
-    ),
-    (
         "GtkLinkButtonAccessible",
         Layout {
             size: size_of::<GtkLinkButtonAccessible>(),
@@ -1968,20 +1415,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkLinkButtonClass",
-        Layout {
-            size: size_of::<GtkLinkButtonClass>(),
-            alignment: align_of::<GtkLinkButtonClass>(),
-        },
-    ),
-    (
-        "GtkListBox",
-        Layout {
-            size: size_of::<GtkListBox>(),
-            alignment: align_of::<GtkListBox>(),
-        },
-    ),
-    (
         "GtkListBoxAccessible",
         Layout {
             size: size_of::<GtkListBoxAccessible>(),
@@ -1993,13 +1426,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkListBoxAccessibleClass>(),
             alignment: align_of::<GtkListBoxAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkListBoxClass",
-        Layout {
-            size: size_of::<GtkListBoxClass>(),
-            alignment: align_of::<GtkListBoxClass>(),
         },
     ),
     (
@@ -2045,13 +1471,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkLockButton",
-        Layout {
-            size: size_of::<GtkLockButton>(),
-            alignment: align_of::<GtkLockButton>(),
-        },
-    ),
-    (
         "GtkLockButtonAccessible",
         Layout {
             size: size_of::<GtkLockButtonAccessible>(),
@@ -2063,13 +1482,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkLockButtonAccessibleClass>(),
             alignment: align_of::<GtkLockButtonAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkLockButtonClass",
-        Layout {
-            size: size_of::<GtkLockButtonClass>(),
-            alignment: align_of::<GtkLockButtonClass>(),
         },
     ),
     (
@@ -2115,48 +1527,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkMenu",
-        Layout {
-            size: size_of::<GtkMenu>(),
-            alignment: align_of::<GtkMenu>(),
-        },
-    ),
-    (
-        "GtkMenuAccessible",
-        Layout {
-            size: size_of::<GtkMenuAccessible>(),
-            alignment: align_of::<GtkMenuAccessible>(),
-        },
-    ),
-    (
-        "GtkMenuAccessibleClass",
-        Layout {
-            size: size_of::<GtkMenuAccessibleClass>(),
-            alignment: align_of::<GtkMenuAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkMenuBar",
-        Layout {
-            size: size_of::<GtkMenuBar>(),
-            alignment: align_of::<GtkMenuBar>(),
-        },
-    ),
-    (
-        "GtkMenuBarClass",
-        Layout {
-            size: size_of::<GtkMenuBarClass>(),
-            alignment: align_of::<GtkMenuBarClass>(),
-        },
-    ),
-    (
-        "GtkMenuButton",
-        Layout {
-            size: size_of::<GtkMenuButton>(),
-            alignment: align_of::<GtkMenuButton>(),
-        },
-    ),
-    (
         "GtkMenuButtonAccessible",
         Layout {
             size: size_of::<GtkMenuButtonAccessible>(),
@@ -2171,20 +1541,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkMenuButtonClass",
-        Layout {
-            size: size_of::<GtkMenuButtonClass>(),
-            alignment: align_of::<GtkMenuButtonClass>(),
-        },
-    ),
-    (
-        "GtkMenuClass",
-        Layout {
-            size: size_of::<GtkMenuClass>(),
-            alignment: align_of::<GtkMenuClass>(),
-        },
-    ),
-    (
         "GtkMenuDirectionType",
         Layout {
             size: size_of::<GtkMenuDirectionType>(),
@@ -2192,87 +1548,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkMenuItem",
-        Layout {
-            size: size_of::<GtkMenuItem>(),
-            alignment: align_of::<GtkMenuItem>(),
-        },
-    ),
-    (
-        "GtkMenuItemAccessible",
-        Layout {
-            size: size_of::<GtkMenuItemAccessible>(),
-            alignment: align_of::<GtkMenuItemAccessible>(),
-        },
-    ),
-    (
-        "GtkMenuItemAccessibleClass",
-        Layout {
-            size: size_of::<GtkMenuItemAccessibleClass>(),
-            alignment: align_of::<GtkMenuItemAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkMenuItemClass",
-        Layout {
-            size: size_of::<GtkMenuItemClass>(),
-            alignment: align_of::<GtkMenuItemClass>(),
-        },
-    ),
-    (
-        "GtkMenuShell",
-        Layout {
-            size: size_of::<GtkMenuShell>(),
-            alignment: align_of::<GtkMenuShell>(),
-        },
-    ),
-    (
-        "GtkMenuShellAccessible",
-        Layout {
-            size: size_of::<GtkMenuShellAccessible>(),
-            alignment: align_of::<GtkMenuShellAccessible>(),
-        },
-    ),
-    (
-        "GtkMenuShellAccessibleClass",
-        Layout {
-            size: size_of::<GtkMenuShellAccessibleClass>(),
-            alignment: align_of::<GtkMenuShellAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkMenuShellClass",
-        Layout {
-            size: size_of::<GtkMenuShellClass>(),
-            alignment: align_of::<GtkMenuShellClass>(),
-        },
-    ),
-    (
-        "GtkMenuToolButton",
-        Layout {
-            size: size_of::<GtkMenuToolButton>(),
-            alignment: align_of::<GtkMenuToolButton>(),
-        },
-    ),
-    (
-        "GtkMenuToolButtonClass",
-        Layout {
-            size: size_of::<GtkMenuToolButtonClass>(),
-            alignment: align_of::<GtkMenuToolButtonClass>(),
-        },
-    ),
-    (
         "GtkMessageDialog",
         Layout {
             size: size_of::<GtkMessageDialog>(),
             alignment: align_of::<GtkMessageDialog>(),
-        },
-    ),
-    (
-        "GtkMessageDialogClass",
-        Layout {
-            size: size_of::<GtkMessageDialogClass>(),
-            alignment: align_of::<GtkMessageDialogClass>(),
         },
     ),
     (
@@ -2318,10 +1597,17 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkNotebook",
+        "GtkNativeInterface",
         Layout {
-            size: size_of::<GtkNotebook>(),
-            alignment: align_of::<GtkNotebook>(),
+            size: size_of::<GtkNativeInterface>(),
+            alignment: align_of::<GtkNativeInterface>(),
+        },
+    ),
+    (
+        "GtkNoSelectionClass",
+        Layout {
+            size: size_of::<GtkNoSelectionClass>(),
+            alignment: align_of::<GtkNoSelectionClass>(),
         },
     ),
     (
@@ -2336,13 +1622,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkNotebookAccessibleClass>(),
             alignment: align_of::<GtkNotebookAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkNotebookClass",
-        Layout {
-            size: size_of::<GtkNotebookClass>(),
-            alignment: align_of::<GtkNotebookClass>(),
         },
     ),
     (
@@ -2395,20 +1674,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkOverlay",
-        Layout {
-            size: size_of::<GtkOverlay>(),
-            alignment: align_of::<GtkOverlay>(),
-        },
-    ),
-    (
-        "GtkOverlayClass",
-        Layout {
-            size: size_of::<GtkOverlayClass>(),
-            alignment: align_of::<GtkOverlayClass>(),
-        },
-    ),
-    (
         "GtkPackType",
         Layout {
             size: size_of::<GtkPackType>(),
@@ -2458,13 +1723,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkPaned",
-        Layout {
-            size: size_of::<GtkPaned>(),
-            alignment: align_of::<GtkPaned>(),
-        },
-    ),
-    (
         "GtkPanedAccessible",
         Layout {
             size: size_of::<GtkPanedAccessible>(),
@@ -2479,24 +1737,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkPanedClass",
-        Layout {
-            size: size_of::<GtkPanedClass>(),
-            alignment: align_of::<GtkPanedClass>(),
-        },
-    ),
-    (
         "GtkPasswordEntry",
         Layout {
             size: size_of::<GtkPasswordEntry>(),
             alignment: align_of::<GtkPasswordEntry>(),
-        },
-    ),
-    (
-        "GtkPasswordEntryClass",
-        Layout {
-            size: size_of::<GtkPasswordEntryClass>(),
-            alignment: align_of::<GtkPasswordEntryClass>(),
         },
     ),
     (
@@ -2563,10 +1807,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkPopoverMenuClass",
+        "GtkPopoverMenuFlags",
         Layout {
-            size: size_of::<GtkPopoverMenuClass>(),
-            alignment: align_of::<GtkPopoverMenuClass>(),
+            size: size_of::<GtkPopoverMenuFlags>(),
+            alignment: align_of::<GtkPopoverMenuFlags>(),
         },
     ),
     (
@@ -2647,13 +1891,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkProgressBar",
-        Layout {
-            size: size_of::<GtkProgressBar>(),
-            alignment: align_of::<GtkProgressBar>(),
-        },
-    ),
-    (
         "GtkProgressBarAccessible",
         Layout {
             size: size_of::<GtkProgressBarAccessible>(),
@@ -2668,10 +1905,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkProgressBarClass",
+        "GtkPropagationLimit",
         Layout {
-            size: size_of::<GtkProgressBarClass>(),
-            alignment: align_of::<GtkProgressBarClass>(),
+            size: size_of::<GtkPropagationLimit>(),
+            alignment: align_of::<GtkPropagationLimit>(),
         },
     ),
     (
@@ -2679,13 +1916,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkPropagationPhase>(),
             alignment: align_of::<GtkPropagationPhase>(),
-        },
-    ),
-    (
-        "GtkRadioButton",
-        Layout {
-            size: size_of::<GtkRadioButton>(),
-            alignment: align_of::<GtkRadioButton>(),
         },
     ),
     (
@@ -2700,55 +1930,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkRadioButtonAccessibleClass>(),
             alignment: align_of::<GtkRadioButtonAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkRadioButtonClass",
-        Layout {
-            size: size_of::<GtkRadioButtonClass>(),
-            alignment: align_of::<GtkRadioButtonClass>(),
-        },
-    ),
-    (
-        "GtkRadioMenuItem",
-        Layout {
-            size: size_of::<GtkRadioMenuItem>(),
-            alignment: align_of::<GtkRadioMenuItem>(),
-        },
-    ),
-    (
-        "GtkRadioMenuItemAccessible",
-        Layout {
-            size: size_of::<GtkRadioMenuItemAccessible>(),
-            alignment: align_of::<GtkRadioMenuItemAccessible>(),
-        },
-    ),
-    (
-        "GtkRadioMenuItemAccessibleClass",
-        Layout {
-            size: size_of::<GtkRadioMenuItemAccessibleClass>(),
-            alignment: align_of::<GtkRadioMenuItemAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkRadioMenuItemClass",
-        Layout {
-            size: size_of::<GtkRadioMenuItemClass>(),
-            alignment: align_of::<GtkRadioMenuItemClass>(),
-        },
-    ),
-    (
-        "GtkRadioToolButton",
-        Layout {
-            size: size_of::<GtkRadioToolButton>(),
-            alignment: align_of::<GtkRadioToolButton>(),
-        },
-    ),
-    (
-        "GtkRadioToolButtonClass",
-        Layout {
-            size: size_of::<GtkRadioToolButtonClass>(),
-            alignment: align_of::<GtkRadioToolButtonClass>(),
         },
     ),
     (
@@ -2850,31 +2031,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkRevealer",
-        Layout {
-            size: size_of::<GtkRevealer>(),
-            alignment: align_of::<GtkRevealer>(),
-        },
-    ),
-    (
-        "GtkRevealerClass",
-        Layout {
-            size: size_of::<GtkRevealerClass>(),
-            alignment: align_of::<GtkRevealerClass>(),
-        },
-    ),
-    (
         "GtkRevealerTransitionType",
         Layout {
             size: size_of::<GtkRevealerTransitionType>(),
             alignment: align_of::<GtkRevealerTransitionType>(),
-        },
-    ),
-    (
-        "GtkRootInterface",
-        Layout {
-            size: size_of::<GtkRootInterface>(),
-            alignment: align_of::<GtkRootInterface>(),
         },
     ),
     (
@@ -2962,27 +2122,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkScrollbar",
-        Layout {
-            size: size_of::<GtkScrollbar>(),
-            alignment: align_of::<GtkScrollbar>(),
-        },
-    ),
-    (
-        "GtkScrollbarClass",
-        Layout {
-            size: size_of::<GtkScrollbarClass>(),
-            alignment: align_of::<GtkScrollbarClass>(),
-        },
-    ),
-    (
-        "GtkScrolledWindow",
-        Layout {
-            size: size_of::<GtkScrolledWindow>(),
-            alignment: align_of::<GtkScrolledWindow>(),
-        },
-    ),
-    (
         "GtkScrolledWindowAccessible",
         Layout {
             size: size_of::<GtkScrolledWindowAccessible>(),
@@ -2994,41 +2133,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkScrolledWindowAccessibleClass>(),
             alignment: align_of::<GtkScrolledWindowAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkScrolledWindowClass",
-        Layout {
-            size: size_of::<GtkScrolledWindowClass>(),
-            alignment: align_of::<GtkScrolledWindowClass>(),
-        },
-    ),
-    (
-        "GtkSearchBar",
-        Layout {
-            size: size_of::<GtkSearchBar>(),
-            alignment: align_of::<GtkSearchBar>(),
-        },
-    ),
-    (
-        "GtkSearchBarClass",
-        Layout {
-            size: size_of::<GtkSearchBarClass>(),
-            alignment: align_of::<GtkSearchBarClass>(),
-        },
-    ),
-    (
-        "GtkSearchEntry",
-        Layout {
-            size: size_of::<GtkSearchEntry>(),
-            alignment: align_of::<GtkSearchEntry>(),
-        },
-    ),
-    (
-        "GtkSearchEntryClass",
-        Layout {
-            size: size_of::<GtkSearchEntryClass>(),
-            alignment: align_of::<GtkSearchEntryClass>(),
         },
     ),
     (
@@ -3053,62 +2157,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkSeparator",
-        Layout {
-            size: size_of::<GtkSeparator>(),
-            alignment: align_of::<GtkSeparator>(),
-        },
-    ),
-    (
-        "GtkSeparatorClass",
-        Layout {
-            size: size_of::<GtkSeparatorClass>(),
-            alignment: align_of::<GtkSeparatorClass>(),
-        },
-    ),
-    (
-        "GtkSeparatorMenuItem",
-        Layout {
-            size: size_of::<GtkSeparatorMenuItem>(),
-            alignment: align_of::<GtkSeparatorMenuItem>(),
-        },
-    ),
-    (
-        "GtkSeparatorMenuItemClass",
-        Layout {
-            size: size_of::<GtkSeparatorMenuItemClass>(),
-            alignment: align_of::<GtkSeparatorMenuItemClass>(),
-        },
-    ),
-    (
-        "GtkSeparatorToolItem",
-        Layout {
-            size: size_of::<GtkSeparatorToolItem>(),
-            alignment: align_of::<GtkSeparatorToolItem>(),
-        },
-    ),
-    (
-        "GtkSeparatorToolItemClass",
-        Layout {
-            size: size_of::<GtkSeparatorToolItemClass>(),
-            alignment: align_of::<GtkSeparatorToolItemClass>(),
-        },
-    ),
-    (
-        "GtkSettings",
-        Layout {
-            size: size_of::<GtkSettings>(),
-            alignment: align_of::<GtkSettings>(),
-        },
-    ),
-    (
-        "GtkSettingsClass",
-        Layout {
-            size: size_of::<GtkSettingsClass>(),
-            alignment: align_of::<GtkSettingsClass>(),
-        },
-    ),
-    (
         "GtkSettingsValue",
         Layout {
             size: size_of::<GtkSettingsValue>(),
@@ -3120,6 +2168,41 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkShadowType>(),
             alignment: align_of::<GtkShadowType>(),
+        },
+    ),
+    (
+        "GtkShortcutActionFlags",
+        Layout {
+            size: size_of::<GtkShortcutActionFlags>(),
+            alignment: align_of::<GtkShortcutActionFlags>(),
+        },
+    ),
+    (
+        "GtkShortcutClass",
+        Layout {
+            size: size_of::<GtkShortcutClass>(),
+            alignment: align_of::<GtkShortcutClass>(),
+        },
+    ),
+    (
+        "GtkShortcutManagerInterface",
+        Layout {
+            size: size_of::<GtkShortcutManagerInterface>(),
+            alignment: align_of::<GtkShortcutManagerInterface>(),
+        },
+    ),
+    (
+        "GtkShortcutScope",
+        Layout {
+            size: size_of::<GtkShortcutScope>(),
+            alignment: align_of::<GtkShortcutScope>(),
+        },
+    ),
+    (
+        "GtkShortcutTriggerMatch",
+        Layout {
+            size: size_of::<GtkShortcutTriggerMatch>(),
+            alignment: align_of::<GtkShortcutTriggerMatch>(),
         },
     ),
     (
@@ -3137,13 +2220,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkShortcutsWindowClass",
-        Layout {
-            size: size_of::<GtkShortcutsWindowClass>(),
-            alignment: align_of::<GtkShortcutsWindowClass>(),
-        },
-    ),
-    (
         "GtkSingleSelectionClass",
         Layout {
             size: size_of::<GtkSingleSelectionClass>(),
@@ -3155,13 +2231,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkSizeGroup>(),
             alignment: align_of::<GtkSizeGroup>(),
-        },
-    ),
-    (
-        "GtkSizeGroupClass",
-        Layout {
-            size: size_of::<GtkSizeGroupClass>(),
-            alignment: align_of::<GtkSizeGroupClass>(),
         },
     ),
     (
@@ -3200,13 +2269,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkSpinButton",
-        Layout {
-            size: size_of::<GtkSpinButton>(),
-            alignment: align_of::<GtkSpinButton>(),
-        },
-    ),
-    (
         "GtkSpinButtonAccessible",
         Layout {
             size: size_of::<GtkSpinButtonAccessible>(),
@@ -3218,13 +2280,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkSpinButtonAccessibleClass>(),
             alignment: align_of::<GtkSpinButtonAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkSpinButtonClass",
-        Layout {
-            size: size_of::<GtkSpinButtonClass>(),
-            alignment: align_of::<GtkSpinButtonClass>(),
         },
     ),
     (
@@ -3242,13 +2297,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkSpinner",
-        Layout {
-            size: size_of::<GtkSpinner>(),
-            alignment: align_of::<GtkSpinner>(),
-        },
-    ),
-    (
         "GtkSpinnerAccessible",
         Layout {
             size: size_of::<GtkSpinnerAccessible>(),
@@ -3260,20 +2308,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkSpinnerAccessibleClass>(),
             alignment: align_of::<GtkSpinnerAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkSpinnerClass",
-        Layout {
-            size: size_of::<GtkSpinnerClass>(),
-            alignment: align_of::<GtkSpinnerClass>(),
-        },
-    ),
-    (
-        "GtkStack",
-        Layout {
-            size: size_of::<GtkStack>(),
-            alignment: align_of::<GtkStack>(),
         },
     ),
     (
@@ -3291,41 +2325,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkStackClass",
-        Layout {
-            size: size_of::<GtkStackClass>(),
-            alignment: align_of::<GtkStackClass>(),
-        },
-    ),
-    (
-        "GtkStackSidebar",
-        Layout {
-            size: size_of::<GtkStackSidebar>(),
-            alignment: align_of::<GtkStackSidebar>(),
-        },
-    ),
-    (
-        "GtkStackSidebarClass",
-        Layout {
-            size: size_of::<GtkStackSidebarClass>(),
-            alignment: align_of::<GtkStackSidebarClass>(),
-        },
-    ),
-    (
-        "GtkStackSwitcher",
-        Layout {
-            size: size_of::<GtkStackSwitcher>(),
-            alignment: align_of::<GtkStackSwitcher>(),
-        },
-    ),
-    (
-        "GtkStackSwitcherClass",
-        Layout {
-            size: size_of::<GtkStackSwitcherClass>(),
-            alignment: align_of::<GtkStackSwitcherClass>(),
-        },
-    ),
-    (
         "GtkStackTransitionType",
         Layout {
             size: size_of::<GtkStackTransitionType>(),
@@ -3340,13 +2339,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkStatusbar",
-        Layout {
-            size: size_of::<GtkStatusbar>(),
-            alignment: align_of::<GtkStatusbar>(),
-        },
-    ),
-    (
         "GtkStatusbarAccessible",
         Layout {
             size: size_of::<GtkStatusbarAccessible>(),
@@ -3358,13 +2350,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkStatusbarAccessibleClass>(),
             alignment: align_of::<GtkStatusbarAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkStatusbarClass",
-        Layout {
-            size: size_of::<GtkStatusbarClass>(),
-            alignment: align_of::<GtkStatusbarClass>(),
         },
     ),
     (
@@ -3389,13 +2374,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkSwitch",
-        Layout {
-            size: size_of::<GtkSwitch>(),
-            alignment: align_of::<GtkSwitch>(),
-        },
-    ),
-    (
         "GtkSwitchAccessible",
         Layout {
             size: size_of::<GtkSwitchAccessible>(),
@@ -3407,13 +2385,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkSwitchAccessibleClass>(),
             alignment: align_of::<GtkSwitchAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkSwitchClass",
-        Layout {
-            size: size_of::<GtkSwitchClass>(),
-            alignment: align_of::<GtkSwitchClass>(),
         },
     ),
     (
@@ -3543,20 +2514,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkTextTagTable",
-        Layout {
-            size: size_of::<GtkTextTagTable>(),
-            alignment: align_of::<GtkTextTagTable>(),
-        },
-    ),
-    (
-        "GtkTextTagTableClass",
-        Layout {
-            size: size_of::<GtkTextTagTableClass>(),
-            alignment: align_of::<GtkTextTagTableClass>(),
-        },
-    ),
-    (
         "GtkTextView",
         Layout {
             size: size_of::<GtkTextView>(),
@@ -3624,76 +2581,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkToggleButtonClass>(),
             alignment: align_of::<GtkToggleButtonClass>(),
-        },
-    ),
-    (
-        "GtkToggleToolButton",
-        Layout {
-            size: size_of::<GtkToggleToolButton>(),
-            alignment: align_of::<GtkToggleToolButton>(),
-        },
-    ),
-    (
-        "GtkToggleToolButtonClass",
-        Layout {
-            size: size_of::<GtkToggleToolButtonClass>(),
-            alignment: align_of::<GtkToggleToolButtonClass>(),
-        },
-    ),
-    (
-        "GtkToolButton",
-        Layout {
-            size: size_of::<GtkToolButton>(),
-            alignment: align_of::<GtkToolButton>(),
-        },
-    ),
-    (
-        "GtkToolButtonClass",
-        Layout {
-            size: size_of::<GtkToolButtonClass>(),
-            alignment: align_of::<GtkToolButtonClass>(),
-        },
-    ),
-    (
-        "GtkToolItem",
-        Layout {
-            size: size_of::<GtkToolItem>(),
-            alignment: align_of::<GtkToolItem>(),
-        },
-    ),
-    (
-        "GtkToolItemClass",
-        Layout {
-            size: size_of::<GtkToolItemClass>(),
-            alignment: align_of::<GtkToolItemClass>(),
-        },
-    ),
-    (
-        "GtkToolShellIface",
-        Layout {
-            size: size_of::<GtkToolShellIface>(),
-            alignment: align_of::<GtkToolShellIface>(),
-        },
-    ),
-    (
-        "GtkToolbar",
-        Layout {
-            size: size_of::<GtkToolbar>(),
-            alignment: align_of::<GtkToolbar>(),
-        },
-    ),
-    (
-        "GtkToolbarClass",
-        Layout {
-            size: size_of::<GtkToolbarClass>(),
-            alignment: align_of::<GtkToolbarClass>(),
-        },
-    ),
-    (
-        "GtkToolbarStyle",
-        Layout {
-            size: size_of::<GtkToolbarStyle>(),
-            alignment: align_of::<GtkToolbarStyle>(),
         },
     ),
     (
@@ -3788,20 +2675,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkTreeSelection",
-        Layout {
-            size: size_of::<GtkTreeSelection>(),
-            alignment: align_of::<GtkTreeSelection>(),
-        },
-    ),
-    (
-        "GtkTreeSelectionClass",
-        Layout {
-            size: size_of::<GtkTreeSelectionClass>(),
-            alignment: align_of::<GtkTreeSelectionClass>(),
-        },
-    ),
-    (
         "GtkTreeSortableIface",
         Layout {
             size: size_of::<GtkTreeSortableIface>(),
@@ -3823,13 +2696,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkTreeView",
-        Layout {
-            size: size_of::<GtkTreeView>(),
-            alignment: align_of::<GtkTreeView>(),
-        },
-    ),
-    (
         "GtkTreeViewAccessible",
         Layout {
             size: size_of::<GtkTreeViewAccessible>(),
@@ -3841,27 +2707,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkTreeViewAccessibleClass>(),
             alignment: align_of::<GtkTreeViewAccessibleClass>(),
-        },
-    ),
-    (
-        "GtkTreeViewClass",
-        Layout {
-            size: size_of::<GtkTreeViewClass>(),
-            alignment: align_of::<GtkTreeViewClass>(),
-        },
-    ),
-    (
-        "GtkTreeViewColumn",
-        Layout {
-            size: size_of::<GtkTreeViewColumn>(),
-            alignment: align_of::<GtkTreeViewColumn>(),
-        },
-    ),
-    (
-        "GtkTreeViewColumnClass",
-        Layout {
-            size: size_of::<GtkTreeViewColumnClass>(),
-            alignment: align_of::<GtkTreeViewColumnClass>(),
         },
     ),
     (
@@ -3900,31 +2745,10 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkViewport",
-        Layout {
-            size: size_of::<GtkViewport>(),
-            alignment: align_of::<GtkViewport>(),
-        },
-    ),
-    (
-        "GtkViewportClass",
-        Layout {
-            size: size_of::<GtkViewportClass>(),
-            alignment: align_of::<GtkViewportClass>(),
-        },
-    ),
-    (
         "GtkVolumeButton",
         Layout {
             size: size_of::<GtkVolumeButton>(),
             alignment: align_of::<GtkVolumeButton>(),
-        },
-    ),
-    (
-        "GtkVolumeButtonClass",
-        Layout {
-            size: size_of::<GtkVolumeButtonClass>(),
-            alignment: align_of::<GtkVolumeButtonClass>(),
         },
     ),
     (
@@ -4005,20 +2829,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkWindowPosition",
-        Layout {
-            size: size_of::<GtkWindowPosition>(),
-            alignment: align_of::<GtkWindowPosition>(),
-        },
-    ),
-    (
-        "GtkWindowType",
-        Layout {
-            size: size_of::<GtkWindowType>(),
-            alignment: align_of::<GtkWindowType>(),
-        },
-    ),
-    (
         "GtkWrapMode",
         Layout {
             size: size_of::<GtkWrapMode>(),
@@ -4028,9 +2838,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
-    ("(guint) GTK_ACCEL_LOCKED", "2"),
-    ("(guint) GTK_ACCEL_MASK", "7"),
-    ("(guint) GTK_ACCEL_VISIBLE", "1"),
     ("(gint) GTK_ALIGN_BASELINE", "4"),
     ("(gint) GTK_ALIGN_CENTER", "3"),
     ("(gint) GTK_ALIGN_END", "2"),
@@ -4040,9 +2847,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_APPLICATION_INHIBIT_LOGOUT", "1"),
     ("(guint) GTK_APPLICATION_INHIBIT_SUSPEND", "4"),
     ("(guint) GTK_APPLICATION_INHIBIT_SWITCH", "2"),
-    ("(gint) GTK_ARROWS_BOTH", "0"),
-    ("(gint) GTK_ARROWS_END", "2"),
-    ("(gint) GTK_ARROWS_START", "1"),
     ("(gint) GTK_ARROW_DOWN", "1"),
     ("(gint) GTK_ARROW_LEFT", "2"),
     ("(gint) GTK_ARROW_NONE", "4"),
@@ -4061,14 +2865,16 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_BORDER_STYLE_DOTTED", "5"),
     ("(gint) GTK_BORDER_STYLE_DOUBLE", "7"),
     ("(gint) GTK_BORDER_STYLE_GROOVE", "8"),
-    ("(gint) GTK_BORDER_STYLE_HIDDEN", "4"),
-    ("(gint) GTK_BORDER_STYLE_INSET", "2"),
+    ("(gint) GTK_BORDER_STYLE_HIDDEN", "1"),
+    ("(gint) GTK_BORDER_STYLE_INSET", "3"),
     ("(gint) GTK_BORDER_STYLE_NONE", "0"),
-    ("(gint) GTK_BORDER_STYLE_OUTSET", "3"),
+    ("(gint) GTK_BORDER_STYLE_OUTSET", "4"),
     ("(gint) GTK_BORDER_STYLE_RIDGE", "9"),
-    ("(gint) GTK_BORDER_STYLE_SOLID", "1"),
+    ("(gint) GTK_BORDER_STYLE_SOLID", "2"),
+    ("(guint) GTK_BUILDER_CLOSURE_SWAPPED", "1"),
     ("(gint) GTK_BUILDER_ERROR_DUPLICATE_ID", "8"),
     ("(gint) GTK_BUILDER_ERROR_INVALID_ATTRIBUTE", "3"),
+    ("(gint) GTK_BUILDER_ERROR_INVALID_FUNCTION", "14"),
     ("(gint) GTK_BUILDER_ERROR_INVALID_ID", "13"),
     ("(gint) GTK_BUILDER_ERROR_INVALID_PROPERTY", "11"),
     ("(gint) GTK_BUILDER_ERROR_INVALID_SIGNAL", "12"),
@@ -4087,14 +2893,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_BUTTONS_OK", "1"),
     ("(gint) GTK_BUTTONS_OK_CANCEL", "5"),
     ("(gint) GTK_BUTTONS_YES_NO", "4"),
-    ("(gint) GTK_BUTTON_ROLE_CHECK", "1"),
-    ("(gint) GTK_BUTTON_ROLE_NORMAL", "0"),
-    ("(gint) GTK_BUTTON_ROLE_RADIO", "2"),
-    ("(guint) GTK_CALENDAR_NO_MONTH_CHANGE", "4"),
-    ("(guint) GTK_CALENDAR_SHOW_DAY_NAMES", "2"),
-    ("(guint) GTK_CALENDAR_SHOW_DETAILS", "32"),
-    ("(guint) GTK_CALENDAR_SHOW_HEADING", "1"),
-    ("(guint) GTK_CALENDAR_SHOW_WEEK_NUMBERS", "8"),
     ("(gint) GTK_CELL_RENDERER_ACCEL_MODE_GTK", "0"),
     ("(gint) GTK_CELL_RENDERER_ACCEL_MODE_OTHER", "1"),
     ("(guint) GTK_CELL_RENDERER_EXPANDABLE", "32"),
@@ -4107,13 +2905,55 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_CELL_RENDERER_PRELIT", "2"),
     ("(guint) GTK_CELL_RENDERER_SELECTED", "1"),
     ("(guint) GTK_CELL_RENDERER_SORTED", "8"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_BASELINE", "11"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_BOTTOM", "4"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_CENTER_X", "9"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y", "10"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_END", "6"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_HEIGHT", "8"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_LEFT", "1"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_NONE", "0"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_RIGHT", "2"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_START", "5"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_TOP", "3"),
+    ("(gint) GTK_CONSTRAINT_ATTRIBUTE_WIDTH", "7"),
+    ("(gint) GTK_CONSTRAINT_RELATION_EQ", "0"),
+    ("(gint) GTK_CONSTRAINT_RELATION_GE", "1"),
+    ("(gint) GTK_CONSTRAINT_RELATION_LE", "-1"),
+    ("(gint) GTK_CONSTRAINT_STRENGTH_MEDIUM", "1000"),
+    ("(gint) GTK_CONSTRAINT_STRENGTH_REQUIRED", "1001001000"),
+    ("(gint) GTK_CONSTRAINT_STRENGTH_STRONG", "1000000000"),
+    ("(gint) GTK_CONSTRAINT_STRENGTH_WEAK", "1"),
+    (
+        "(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE",
+        "1",
+    ),
+    ("(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC", "3"),
+    (
+        "(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY",
+        "4",
+    ),
+    (
+        "(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION",
+        "5",
+    ),
+    ("(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL", "0"),
+    ("(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW", "2"),
     ("(gint) GTK_CORNER_BOTTOM_LEFT", "1"),
     ("(gint) GTK_CORNER_BOTTOM_RIGHT", "3"),
     ("(gint) GTK_CORNER_TOP_LEFT", "0"),
     ("(gint) GTK_CORNER_TOP_RIGHT", "2"),
+    ("(gint) GTK_CSS_PARSER_ERROR_FAILED", "0"),
+    ("(gint) GTK_CSS_PARSER_ERROR_IMPORT", "2"),
+    ("(gint) GTK_CSS_PARSER_ERROR_NAME", "3"),
+    ("(gint) GTK_CSS_PARSER_ERROR_SYNTAX", "1"),
+    ("(gint) GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE", "4"),
+    ("(gint) GTK_CSS_PARSER_WARNING_DEPRECATED", "0"),
+    ("(gint) GTK_CSS_PARSER_WARNING_SYNTAX", "1"),
+    ("(gint) GTK_CSS_PARSER_WARNING_UNIMPLEMENTED", "2"),
     ("(guint) GTK_DEBUG_ACTIONS", "8192"),
-    ("(guint) GTK_DEBUG_BASELINES", "1024"),
     ("(guint) GTK_DEBUG_BUILDER", "128"),
+    ("(guint) GTK_DEBUG_CONSTRAINTS", "131072"),
     ("(guint) GTK_DEBUG_GEOMETRY", "16"),
     ("(guint) GTK_DEBUG_ICONTHEME", "32"),
     ("(guint) GTK_DEBUG_INTERACTIVE", "2048"),
@@ -4136,10 +2976,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DELETE_WHITESPACE", "7"),
     ("(gint) GTK_DELETE_WORDS", "2"),
     ("(gint) GTK_DELETE_WORD_ENDS", "1"),
-    ("(guint) GTK_DEST_DEFAULT_ALL", "7"),
-    ("(guint) GTK_DEST_DEFAULT_DROP", "4"),
-    ("(guint) GTK_DEST_DEFAULT_HIGHLIGHT", "2"),
-    ("(guint) GTK_DEST_DEFAULT_MOTION", "1"),
     ("(guint) GTK_DIALOG_DESTROY_WITH_PARENT", "2"),
     ("(guint) GTK_DIALOG_MODAL", "1"),
     ("(guint) GTK_DIALOG_USE_HEADER_BAR", "4"),
@@ -4149,15 +2985,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DIR_TAB_BACKWARD", "1"),
     ("(gint) GTK_DIR_TAB_FORWARD", "0"),
     ("(gint) GTK_DIR_UP", "2"),
-    ("(gint) GTK_DRAG_RESULT_ERROR", "5"),
-    ("(gint) GTK_DRAG_RESULT_GRAB_BROKEN", "4"),
-    ("(gint) GTK_DRAG_RESULT_NO_TARGET", "1"),
-    ("(gint) GTK_DRAG_RESULT_SUCCESS", "0"),
-    ("(gint) GTK_DRAG_RESULT_TIMEOUT_EXPIRED", "3"),
-    ("(gint) GTK_DRAG_RESULT_USER_CANCELLED", "2"),
-    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "7"),
+    ("(gint) GTK_EDITABLE_NUM_PROPERTIES", "8"),
     ("(gint) GTK_EDITABLE_PROP_CURSOR_POSITION", "1"),
     ("(gint) GTK_EDITABLE_PROP_EDITABLE", "3"),
+    ("(gint) GTK_EDITABLE_PROP_ENABLE_UNDO", "7"),
     ("(gint) GTK_EDITABLE_PROP_MAX_WIDTH_CHARS", "5"),
     ("(gint) GTK_EDITABLE_PROP_SELECTION_BOUND", "2"),
     ("(gint) GTK_EDITABLE_PROP_TEXT", "0"),
@@ -4174,13 +3005,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_EVENT_SEQUENCE_CLAIMED", "1"),
     ("(gint) GTK_EVENT_SEQUENCE_DENIED", "2"),
     ("(gint) GTK_EVENT_SEQUENCE_NONE", "0"),
-    ("(gint) GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER", "3"),
     ("(gint) GTK_FILE_CHOOSER_ACTION_OPEN", "0"),
     ("(gint) GTK_FILE_CHOOSER_ACTION_SAVE", "1"),
     ("(gint) GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER", "2"),
-    ("(gint) GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME", "1"),
-    ("(gint) GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM", "0"),
-    ("(gint) GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN", "2"),
     ("(gint) GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS", "2"),
     ("(gint) GTK_FILE_CHOOSER_ERROR_BAD_FILENAME", "1"),
     ("(gint) GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME", "3"),
@@ -4194,15 +3021,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_FONT_CHOOSER_LEVEL_SIZE", "2"),
     ("(guint) GTK_FONT_CHOOSER_LEVEL_STYLE", "1"),
     ("(guint) GTK_FONT_CHOOSER_LEVEL_VARIATIONS", "4"),
-    ("(guint) GTK_ICON_LOOKUP_DIR_LTR", "128"),
-    ("(guint) GTK_ICON_LOOKUP_DIR_RTL", "256"),
-    ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "32"),
-    ("(guint) GTK_ICON_LOOKUP_FORCE_SIZE", "16"),
-    ("(guint) GTK_ICON_LOOKUP_FORCE_SVG", "2"),
-    ("(guint) GTK_ICON_LOOKUP_FORCE_SYMBOLIC", "64"),
-    ("(guint) GTK_ICON_LOOKUP_GENERIC_FALLBACK", "8"),
-    ("(guint) GTK_ICON_LOOKUP_NO_SVG", "1"),
-    ("(guint) GTK_ICON_LOOKUP_USE_BUILTIN", "4"),
+    ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "1"),
+    ("(guint) GTK_ICON_LOOKUP_FORCE_SYMBOLIC", "2"),
+    ("(guint) GTK_ICON_LOOKUP_PRELOAD", "4"),
     ("(gint) GTK_ICON_SIZE_INHERIT", "0"),
     ("(gint) GTK_ICON_SIZE_LARGE", "2"),
     ("(gint) GTK_ICON_SIZE_NORMAL", "1"),
@@ -4241,6 +3062,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_INPUT_PURPOSE_PASSWORD", "8"),
     ("(gint) GTK_INPUT_PURPOSE_PHONE", "4"),
     ("(gint) GTK_INPUT_PURPOSE_PIN", "9"),
+    ("(gint) GTK_INPUT_PURPOSE_TERMINAL", "10"),
     ("(gint) GTK_INPUT_PURPOSE_URL", "5"),
     ("(gint) GTK_JUSTIFY_CENTER", "2"),
     ("(gint) GTK_JUSTIFY_FILL", "3"),
@@ -4266,6 +3088,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_LICENSE_LGPL_3_0_ONLY", "12"),
     ("(gint) GTK_LICENSE_MIT_X11", "7"),
     ("(gint) GTK_LICENSE_UNKNOWN", "0"),
+    ("(gint) GTK_LIMIT_NONE", "0"),
+    ("(gint) GTK_LIMIT_SAME_NATIVE", "1"),
     ("GTK_MAX_COMPOSE_LEN", "7"),
     ("GTK_MEDIA_FILE_EXTENSION_POINT_NAME", "gtk-media-file"),
     ("(gint) GTK_MENU_DIR_CHILD", "1"),
@@ -4364,6 +3188,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_POLICY_NEVER", "2"),
     ("(gint) GTK_POPOVER_CONSTRAINT_NONE", "0"),
     ("(gint) GTK_POPOVER_CONSTRAINT_WINDOW", "1"),
+    ("(guint) GTK_POPOVER_MENU_NESTED", "1"),
     ("(gint) GTK_POS_BOTTOM", "3"),
     ("(gint) GTK_POS_LEFT", "0"),
     ("(gint) GTK_POS_RIGHT", "1"),
@@ -4509,6 +3334,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_SHADOW_NONE", "0"),
     ("(gint) GTK_SHADOW_OUT", "2"),
     ("(gint) GTK_SHORTCUT_ACCELERATOR", "0"),
+    ("(guint) GTK_SHORTCUT_ACTION_EXCLUSIVE", "1"),
     ("(gint) GTK_SHORTCUT_GESTURE", "7"),
     ("(gint) GTK_SHORTCUT_GESTURE_PINCH", "1"),
     ("(gint) GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE", "3"),
@@ -4518,6 +3344,12 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_SHORTCUT_GESTURE_SWIPE_RIGHT", "9"),
     ("(gint) GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT", "5"),
     ("(gint) GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT", "6"),
+    ("(gint) GTK_SHORTCUT_SCOPE_GLOBAL", "2"),
+    ("(gint) GTK_SHORTCUT_SCOPE_LOCAL", "0"),
+    ("(gint) GTK_SHORTCUT_SCOPE_MANAGED", "1"),
+    ("(gint) GTK_SHORTCUT_TRIGGER_MATCH_EXACT", "2"),
+    ("(gint) GTK_SHORTCUT_TRIGGER_MATCH_NONE", "0"),
+    ("(gint) GTK_SHORTCUT_TRIGGER_MATCH_PARTIAL", "1"),
     ("(gint) GTK_SIZE_GROUP_BOTH", "3"),
     ("(gint) GTK_SIZE_GROUP_HORIZONTAL", "1"),
     ("(gint) GTK_SIZE_GROUP_NONE", "0"),
@@ -4599,7 +3431,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_CLASS_HORIZONTAL", "horizontal"),
     ("GTK_STYLE_CLASS_IMAGE", "image"),
     ("GTK_STYLE_CLASS_INFO", "info"),
-    ("GTK_STYLE_CLASS_INLINE_TOOLBAR", "inline-toolbar"),
     ("GTK_STYLE_CLASS_INSERTION_CURSOR", "insertion-cursor"),
     ("GTK_STYLE_CLASS_LABEL", "label"),
     ("GTK_STYLE_CLASS_LEFT", "left"),
@@ -4621,7 +3452,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_CLASS_PAPER", "paper"),
     ("GTK_STYLE_CLASS_POPOVER", "popover"),
     ("GTK_STYLE_CLASS_POPUP", "popup"),
-    ("GTK_STYLE_CLASS_PRIMARY_TOOLBAR", "primary-toolbar"),
     ("GTK_STYLE_CLASS_PROGRESSBAR", "progressbar"),
     ("GTK_STYLE_CLASS_PULSE", "pulse"),
     ("GTK_STYLE_CLASS_QUESTION", "question"),
@@ -4663,17 +3493,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_CLASS_WIDE", "wide"),
     ("(guint) GTK_STYLE_CONTEXT_PRINT_NONE", "0"),
     ("(guint) GTK_STYLE_CONTEXT_PRINT_RECURSE", "1"),
+    ("(guint) GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE", "4"),
     ("(guint) GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE", "2"),
-    ("GTK_STYLE_PROPERTY_BACKGROUND_COLOR", "background-color"),
-    ("GTK_STYLE_PROPERTY_BACKGROUND_IMAGE", "background-image"),
-    ("GTK_STYLE_PROPERTY_BORDER_COLOR", "border-color"),
-    ("GTK_STYLE_PROPERTY_BORDER_RADIUS", "border-radius"),
-    ("GTK_STYLE_PROPERTY_BORDER_STYLE", "border-style"),
-    ("GTK_STYLE_PROPERTY_BORDER_WIDTH", "border-width"),
-    ("GTK_STYLE_PROPERTY_COLOR", "color"),
-    ("GTK_STYLE_PROPERTY_FONT", "font"),
-    ("GTK_STYLE_PROPERTY_MARGIN", "margin"),
-    ("GTK_STYLE_PROPERTY_PADDING", "padding"),
     ("GTK_STYLE_PROVIDER_PRIORITY_APPLICATION", "600"),
     ("GTK_STYLE_PROVIDER_PRIORITY_FALLBACK", "1"),
     ("GTK_STYLE_PROVIDER_PRIORITY_SETTINGS", "400"),
@@ -4695,15 +3516,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_TEXT_VIEW_PRIORITY_VALIDATE", "125"),
     ("(gint) GTK_TEXT_WINDOW_BOTTOM", "6"),
     ("(gint) GTK_TEXT_WINDOW_LEFT", "3"),
-    ("(gint) GTK_TEXT_WINDOW_PRIVATE", "0"),
     ("(gint) GTK_TEXT_WINDOW_RIGHT", "4"),
     ("(gint) GTK_TEXT_WINDOW_TEXT", "2"),
     ("(gint) GTK_TEXT_WINDOW_TOP", "5"),
     ("(gint) GTK_TEXT_WINDOW_WIDGET", "1"),
-    ("(gint) GTK_TOOLBAR_BOTH", "2"),
-    ("(gint) GTK_TOOLBAR_BOTH_HORIZ", "3"),
-    ("(gint) GTK_TOOLBAR_ICONS", "0"),
-    ("(gint) GTK_TOOLBAR_TEXT", "1"),
     ("(guint) GTK_TREE_MODEL_ITERS_PERSIST", "1"),
     ("(guint) GTK_TREE_MODEL_LIST_ONLY", "2"),
     ("GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID", "-1"),
@@ -4725,13 +3541,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_UNIT_POINTS", "1"),
     ("(gint) GTK_UPDATE_ALWAYS", "0"),
     ("(gint) GTK_UPDATE_IF_VALID", "1"),
-    ("(gint) GTK_WINDOW_POPUP", "1"),
-    ("(gint) GTK_WINDOW_TOPLEVEL", "0"),
-    ("(gint) GTK_WIN_POS_CENTER", "1"),
-    ("(gint) GTK_WIN_POS_CENTER_ALWAYS", "3"),
-    ("(gint) GTK_WIN_POS_CENTER_ON_PARENT", "4"),
-    ("(gint) GTK_WIN_POS_MOUSE", "2"),
-    ("(gint) GTK_WIN_POS_NONE", "0"),
     ("(gint) GTK_WRAP_CHAR", "1"),
     ("(gint) GTK_WRAP_NONE", "0"),
     ("(gint) GTK_WRAP_WORD", "2"),
