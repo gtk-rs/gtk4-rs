@@ -1,5 +1,5 @@
 [build-dependencies]
-pkg-config = "0.3.7"
+system-deps = "1.3"
 
 [dependencies]
 libc = "0.2"
@@ -57,3 +57,8 @@ repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
 [package.metadata.docs.rs]
 features = ["dox"]
+[package.metadata.system-deps.gtk4]
+name = "gtk4"
+version = "3.94"
+
+[package.metadata.system-deps.gtk4.feature-versions]
