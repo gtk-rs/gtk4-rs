@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -19,7 +19,7 @@ use CellRenderer;
 use IconSize;
 
 glib_wrapper! {
-    pub struct CellRendererSpinner(Object<gtk_sys::GtkCellRendererSpinner, gtk_sys::GtkCellRendererSpinnerClass, CellRendererSpinnerClass>) @extends CellRenderer;
+    pub struct CellRendererSpinner(Object<gtk_sys::GtkCellRendererSpinner, CellRendererSpinnerClass>) @extends CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_spinner_get_type(),
@@ -33,42 +33,12 @@ impl CellRendererSpinner {
             CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_spinner_new()).unsafe_cast()
         }
     }
-}
 
-impl Default for CellRendererSpinner {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-pub const NONE_CELL_RENDERER_SPINNER: Option<&CellRendererSpinner> = None;
-
-pub trait CellRendererSpinnerExt: 'static {
-    fn get_property_active(&self) -> bool;
-
-    fn set_property_active(&self, active: bool);
-
-    fn get_property_pulse(&self) -> u32;
-
-    fn set_property_pulse(&self, pulse: u32);
-
-    fn get_property_size(&self) -> IconSize;
-
-    fn set_property_size(&self, size: IconSize);
-
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_pulse_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
-    fn get_property_active(&self) -> bool {
+    pub fn get_property_active(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"active\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -79,21 +49,21 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
         }
     }
 
-    fn set_property_active(&self, active: bool) {
+    pub fn set_property_active(&self, active: bool) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"active\0".as_ptr() as *const _,
                 Value::from(&active).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_pulse(&self) -> u32 {
+    pub fn get_property_pulse(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"pulse\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -104,21 +74,21 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
         }
     }
 
-    fn set_property_pulse(&self, pulse: u32) {
+    pub fn set_property_pulse(&self, pulse: u32) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"pulse\0".as_ptr() as *const _,
                 Value::from(&pulse).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_size(&self) -> IconSize {
+    pub fn get_property_size(&self) -> IconSize {
         unsafe {
             let mut value = Value::from_type(<IconSize as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"size\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -129,80 +99,95 @@ impl<O: IsA<CellRendererSpinner>> CellRendererSpinnerExt for O {
         }
     }
 
-    fn set_property_size(&self, size: IconSize) {
+    pub fn set_property_size(&self, size: IconSize) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"size\0".as_ptr() as *const _,
                 Value::from(&size).to_glib_none().0,
             );
         }
     }
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_active_notify<F: Fn(&CellRendererSpinner) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut gtk_sys::GtkCellRendererSpinner,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<CellRendererSpinner>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererSpinner::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(transmute(notify_active_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_active_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_pulse_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pulse_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_pulse_notify<F: Fn(&CellRendererSpinner) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pulse_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut gtk_sys::GtkCellRendererSpinner,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<CellRendererSpinner>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererSpinner::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pulse\0".as_ptr() as *const _,
-                Some(transmute(notify_pulse_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pulse_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_size_notify<F: Fn(&CellRendererSpinner) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut gtk_sys::GtkCellRendererSpinner,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<CellRendererSpinner>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererSpinner::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute(notify_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl Default for CellRendererSpinner {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

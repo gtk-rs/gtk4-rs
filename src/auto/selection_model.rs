@@ -154,7 +154,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &SelectionModel::from_glib_borrow(this).unsafe_cast(),
+                &SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
                 position,
                 n_items,
             )
@@ -164,7 +164,9 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute(selection_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    selection_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

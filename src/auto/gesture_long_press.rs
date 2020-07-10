@@ -7,10 +7,7 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::Value;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
@@ -34,28 +31,13 @@ impl GestureLongPress {
         unsafe { Gesture::from_glib_full(gtk_sys::gtk_gesture_long_press_new()).unsafe_cast() }
     }
 
-    pub fn get_property_delay_factor(&self) -> f64 {
-        unsafe {
-            let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"delay-factor\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `delay-factor` getter")
-                .unwrap()
-        }
+    pub fn get_delay_factor(&self) -> f64 {
+        unsafe { gtk_sys::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
     }
 
-    pub fn set_property_delay_factor(&self, delay_factor: f64) {
+    pub fn set_delay_factor(&self, delay_factor: f64) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"delay-factor\0".as_ptr() as *const _,
-                Value::from(&delay_factor).to_glib_none().0,
-            );
+            gtk_sys::gtk_gesture_long_press_set_delay_factor(self.to_glib_none().0, delay_factor);
         }
     }
 
@@ -72,7 +54,9 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancelled\0".as_ptr() as *const _,
-                Some(transmute(cancelled_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cancelled_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -96,7 +80,9 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"pressed\0".as_ptr() as *const _,
-                Some(transmute(pressed_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    pressed_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -119,7 +105,9 @@ impl GestureLongPress {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::delay-factor\0".as_ptr() as *const _,
-                Some(transmute(notify_delay_factor_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_delay_factor_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

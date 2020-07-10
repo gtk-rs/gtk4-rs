@@ -67,7 +67,7 @@ pub trait MediaStreamExt: 'static {
 
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P);
+    fn realize(&self, surface: &gdk::Surface);
 
     fn seek(&self, timestamp: i64);
 
@@ -85,7 +85,7 @@ pub trait MediaStreamExt: 'static {
 
     fn unprepared(&self);
 
-    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P);
+    fn unrealize(&self, surface: &gdk::Surface);
 
     fn update(&self, timestamp: i64);
 
@@ -265,11 +265,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) {
+    fn realize(&self, surface: &gdk::Surface) {
         unsafe {
             gtk_sys::gtk_media_stream_realize(
                 self.as_ref().to_glib_none().0,
-                surface.as_ref().to_glib_none().0,
+                surface.to_glib_none().0,
             );
         }
     }
@@ -325,11 +325,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P) {
+    fn unrealize(&self, surface: &gdk::Surface) {
         unsafe {
             gtk_sys::gtk_media_stream_unrealize(
                 self.as_ref().to_glib_none().0,
-                surface.as_ref().to_glib_none().0,
+                surface.to_glib_none().0,
             );
         }
     }
@@ -464,14 +464,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::duration\0".as_ptr() as *const _,
-                Some(transmute(notify_duration_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_duration_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -486,14 +488,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::ended\0".as_ptr() as *const _,
-                Some(transmute(notify_ended_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_ended_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -508,14 +512,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::error\0".as_ptr() as *const _,
-                Some(transmute(notify_error_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_error_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -530,14 +536,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-audio\0".as_ptr() as *const _,
-                Some(transmute(notify_has_audio_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_audio_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -552,14 +560,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-video\0".as_ptr() as *const _,
-                Some(transmute(notify_has_video_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_video_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -574,14 +584,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loop\0".as_ptr() as *const _,
-                Some(transmute(notify_loop_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_loop_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -596,14 +608,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::muted\0".as_ptr() as *const _,
-                Some(transmute(notify_muted_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_muted_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -618,14 +632,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::playing\0".as_ptr() as *const _,
-                Some(transmute(notify_playing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_playing_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -640,14 +656,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::prepared\0".as_ptr() as *const _,
-                Some(transmute(notify_prepared_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_prepared_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -662,14 +680,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::seekable\0".as_ptr() as *const _,
-                Some(transmute(notify_seekable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_seekable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -684,14 +704,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::seeking\0".as_ptr() as *const _,
-                Some(transmute(notify_seeking_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_seeking_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -706,14 +728,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::timestamp\0".as_ptr() as *const _,
-                Some(transmute(notify_timestamp_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_timestamp_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -728,14 +752,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             P: IsA<MediaStream>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaStream::from_glib_borrow(this).unsafe_cast())
+            f(&MediaStream::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::volume\0".as_ptr() as *const _,
-                Some(transmute(notify_volume_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_volume_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

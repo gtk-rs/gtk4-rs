@@ -19,7 +19,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use EventController;
-use Widget;
 
 glib_wrapper! {
     pub struct EventControllerMotion(Object<gtk_sys::GtkEventControllerMotion, gtk_sys::GtkEventControllerMotionClass, EventControllerMotionClass>) @extends EventController;
@@ -38,115 +37,103 @@ impl EventControllerMotion {
         }
     }
 
-    pub fn get_pointer_origin(&self) -> Option<Widget> {
+    pub fn contains_pointer(&self) -> bool {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_motion_get_pointer_origin(
+            from_glib(gtk_sys::gtk_event_controller_motion_contains_pointer(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_pointer_target(&self) -> Option<Widget> {
+    pub fn is_pointer(&self) -> bool {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_motion_get_pointer_target(
+            from_glib(gtk_sys::gtk_event_controller_motion_is_pointer(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_property_contains_pointer_focus(&self) -> bool {
+    pub fn get_property_contains_pointer(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
             gobject_sys::g_object_get_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
-                b"contains-pointer-focus\0".as_ptr() as *const _,
+                b"contains-pointer\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
             value
                 .get()
-                .expect("Return Value for property `contains-pointer-focus` getter")
+                .expect("Return Value for property `contains-pointer` getter")
                 .unwrap()
         }
     }
 
-    pub fn get_property_is_pointer_focus(&self) -> bool {
+    pub fn get_property_is_pointer(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
             gobject_sys::g_object_get_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
-                b"is-pointer-focus\0".as_ptr() as *const _,
+                b"is-pointer\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
             value
                 .get()
-                .expect("Return Value for property `is-pointer-focus` getter")
+                .expect("Return Value for property `is-pointer` getter")
                 .unwrap()
         }
     }
 
-    pub fn connect_enter<
-        F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode, gdk::NotifyType) + 'static,
-    >(
+    pub fn connect_enter<F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn enter_trampoline<
-            F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode, gdk::NotifyType) + 'static,
+            F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode) + 'static,
         >(
             this: *mut gtk_sys::GtkEventControllerMotion,
             x: libc::c_double,
             y: libc::c_double,
-            crossing_mode: gdk_sys::GdkCrossingMode,
-            notify_type: gdk_sys::GdkNotifyType,
+            mode: gdk_sys::GdkCrossingMode,
             f: glib_sys::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                x,
-                y,
-                from_glib(crossing_mode),
-                from_glib(notify_type),
-            )
+            f(&from_glib_borrow(this), x, y, from_glib(mode))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"enter\0".as_ptr() as *const _,
-                Some(transmute(enter_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    enter_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    pub fn connect_leave<
-        F: Fn(&EventControllerMotion, gdk::CrossingMode, gdk::NotifyType) + 'static,
-    >(
+    pub fn connect_leave<F: Fn(&EventControllerMotion, gdk::CrossingMode) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<
-            F: Fn(&EventControllerMotion, gdk::CrossingMode, gdk::NotifyType) + 'static,
+            F: Fn(&EventControllerMotion, gdk::CrossingMode) + 'static,
         >(
             this: *mut gtk_sys::GtkEventControllerMotion,
-            crossing_mode: gdk_sys::GdkCrossingMode,
-            notify_type: gdk_sys::GdkNotifyType,
+            mode: gdk_sys::GdkCrossingMode,
             f: glib_sys::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                from_glib(crossing_mode),
-                from_glib(notify_type),
-            )
+            f(&from_glib_borrow(this), from_glib(mode))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"leave\0".as_ptr() as *const _,
-                Some(transmute(leave_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    leave_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -172,46 +159,19 @@ impl EventControllerMotion {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"motion\0".as_ptr() as *const _,
-                Some(transmute(motion_trampoline::<F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn connect_property_contains_pointer_focus_notify<
-        F: Fn(&EventControllerMotion) + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_contains_pointer_focus_trampoline<
-            F: Fn(&EventControllerMotion) + 'static,
-        >(
-            this: *mut gtk_sys::GtkEventControllerMotion,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::contains-pointer-focus\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_contains_pointer_focus_trampoline::<F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    motion_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    pub fn connect_property_is_pointer_focus_notify<F: Fn(&EventControllerMotion) + 'static>(
+    pub fn connect_property_contains_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_pointer_focus_trampoline<
+        unsafe extern "C" fn notify_contains_pointer_trampoline<
             F: Fn(&EventControllerMotion) + 'static,
         >(
             this: *mut gtk_sys::GtkEventControllerMotion,
@@ -225,8 +185,37 @@ impl EventControllerMotion {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::is-pointer-focus\0".as_ptr() as *const _,
-                Some(transmute(notify_is_pointer_focus_trampoline::<F> as usize)),
+                b"notify::contains-pointer\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_contains_pointer_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_is_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_is_pointer_trampoline<
+            F: Fn(&EventControllerMotion) + 'static,
+        >(
+            this: *mut gtk_sys::GtkEventControllerMotion,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::is-pointer\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_pointer_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

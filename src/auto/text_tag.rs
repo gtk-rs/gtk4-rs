@@ -50,6 +50,14 @@ pub trait TextTagExt: 'static {
 
     fn set_property_accumulative_margin(&self, accumulative_margin: bool);
 
+    fn get_property_allow_breaks(&self) -> bool;
+
+    fn set_property_allow_breaks(&self, allow_breaks: bool);
+
+    fn get_property_allow_breaks_set(&self) -> bool;
+
+    fn set_property_allow_breaks_set(&self, allow_breaks_set: bool);
+
     fn set_property_background(&self, background: Option<&str>);
 
     fn get_property_background_full_height(&self) -> bool;
@@ -129,6 +137,14 @@ pub trait TextTagExt: 'static {
     fn get_property_indent_set(&self) -> bool;
 
     fn set_property_indent_set(&self, indent_set: bool);
+
+    fn get_property_insert_hyphens(&self) -> bool;
+
+    fn set_property_insert_hyphens(&self, insert_hyphens: bool);
+
+    fn get_property_insert_hyphens_set(&self) -> bool;
+
+    fn set_property_insert_hyphens_set(&self, insert_hyphens_set: bool);
 
     fn get_property_invisible(&self) -> bool;
 
@@ -230,6 +246,14 @@ pub trait TextTagExt: 'static {
 
     fn set_property_scale_set(&self, scale_set: bool);
 
+    //fn get_property_show_spaces(&self) -> /*Ignored*/pango::ShowFlags;
+
+    //fn set_property_show_spaces(&self, show_spaces: /*Ignored*/pango::ShowFlags);
+
+    fn get_property_show_spaces_set(&self) -> bool;
+
+    fn set_property_show_spaces_set(&self, show_spaces_set: bool);
+
     fn get_property_size(&self) -> i32;
 
     fn set_property_size(&self, size: i32);
@@ -327,6 +351,14 @@ pub trait TextTagExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    fn connect_property_allow_breaks_notify<F: Fn(&Self) + 'static>(&self, f: F)
+        -> SignalHandlerId;
+
+    fn connect_property_allow_breaks_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
+
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_background_full_height_notify<F: Fn(&Self) + 'static>(
@@ -394,6 +426,16 @@ pub trait TextTagExt: 'static {
     fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_insert_hyphens_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
+
+    fn connect_property_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -494,6 +536,13 @@ pub trait TextTagExt: 'static {
     fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_show_spaces_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -604,6 +653,56 @@ impl<O: IsA<TextTag>> TextTagExt for O {
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
                 b"accumulative-margin\0".as_ptr() as *const _,
                 Value::from(&accumulative_margin).to_glib_none().0,
+            );
+        }
+    }
+
+    fn get_property_allow_breaks(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"allow-breaks\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `allow-breaks` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_allow_breaks(&self, allow_breaks: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"allow-breaks\0".as_ptr() as *const _,
+                Value::from(&allow_breaks).to_glib_none().0,
+            );
+        }
+    }
+
+    fn get_property_allow_breaks_set(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"allow-breaks-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `allow-breaks-set` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_allow_breaks_set(&self, allow_breaks_set: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"allow-breaks-set\0".as_ptr() as *const _,
+                Value::from(&allow_breaks_set).to_glib_none().0,
             );
         }
     }
@@ -1093,6 +1192,56 @@ impl<O: IsA<TextTag>> TextTagExt for O {
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
                 b"indent-set\0".as_ptr() as *const _,
                 Value::from(&indent_set).to_glib_none().0,
+            );
+        }
+    }
+
+    fn get_property_insert_hyphens(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"insert-hyphens\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `insert-hyphens` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_insert_hyphens(&self, insert_hyphens: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"insert-hyphens\0".as_ptr() as *const _,
+                Value::from(&insert_hyphens).to_glib_none().0,
+            );
+        }
+    }
+
+    fn get_property_insert_hyphens_set(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"insert-hyphens-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `insert-hyphens-set` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_insert_hyphens_set(&self, insert_hyphens_set: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"insert-hyphens-set\0".as_ptr() as *const _,
+                Value::from(&insert_hyphens_set).to_glib_none().0,
             );
         }
     }
@@ -1722,6 +1871,45 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    //fn get_property_show_spaces(&self) -> /*Ignored*/pango::ShowFlags {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-spaces\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `show-spaces` getter").unwrap()
+    //    }
+    //}
+
+    //fn set_property_show_spaces(&self, show_spaces: /*Ignored*/pango::ShowFlags) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-spaces\0".as_ptr() as *const _, Value::from(&show_spaces).to_glib_none().0);
+    //    }
+    //}
+
+    fn get_property_show_spaces_set(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-spaces-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `show-spaces-set` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_show_spaces_set(&self, show_spaces_set: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-spaces-set\0".as_ptr() as *const _,
+                Value::from(&show_spaces_set).to_glib_none().0,
+            );
+        }
+    }
+
     fn get_property_size(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
@@ -2306,15 +2494,69 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accumulative-margin\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_accumulative_margin_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accumulative_margin_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_allow_breaks_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_breaks_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-breaks\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_breaks_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_allow_breaks_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_breaks_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-breaks-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_breaks_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2330,14 +2572,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::background\0".as_ptr() as *const _,
-                Some(transmute(notify_background_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_background_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2355,15 +2599,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::background-full-height\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_background_full_height_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_background_full_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2382,15 +2626,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::background-full-height-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_background_full_height_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_background_full_height_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2409,15 +2653,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::background-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_background_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_background_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2436,15 +2680,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::background-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_background_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_background_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2460,14 +2704,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::direction\0".as_ptr() as *const _,
-                Some(transmute(notify_direction_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_direction_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2482,14 +2728,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::editable\0".as_ptr() as *const _,
-                Some(transmute(notify_editable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_editable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2507,15 +2755,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::editable-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_editable_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_editable_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2531,14 +2779,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fallback\0".as_ptr() as *const _,
-                Some(transmute(notify_fallback_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_fallback_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2556,15 +2806,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fallback-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_fallback_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_fallback_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2580,14 +2830,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::family\0".as_ptr() as *const _,
-                Some(transmute(notify_family_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_family_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2602,14 +2854,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::family-set\0".as_ptr() as *const _,
-                Some(transmute(notify_family_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_family_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2624,14 +2878,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font\0".as_ptr() as *const _,
-                Some(transmute(notify_font_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_font_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2646,14 +2902,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-desc\0".as_ptr() as *const _,
-                Some(transmute(notify_font_desc_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_font_desc_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2671,15 +2929,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-features\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_font_features_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_font_features_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2698,15 +2956,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-features-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_font_features_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_font_features_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2722,14 +2980,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::foreground\0".as_ptr() as *const _,
-                Some(transmute(notify_foreground_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_foreground_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2747,15 +3007,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::foreground-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_foreground_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_foreground_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2774,15 +3034,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::foreground-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_foreground_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_foreground_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2798,14 +3058,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indent\0".as_ptr() as *const _,
-                Some(transmute(notify_indent_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_indent_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2820,14 +3082,70 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indent-set\0".as_ptr() as *const _,
-                Some(transmute(notify_indent_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_indent_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_insert_hyphens_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_insert_hyphens_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::insert-hyphens\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_insert_hyphens_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_insert_hyphens_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::insert-hyphens-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_insert_hyphens_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2842,14 +3160,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::invisible\0".as_ptr() as *const _,
-                Some(transmute(notify_invisible_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_invisible_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2867,15 +3187,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::invisible-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_invisible_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_invisible_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2894,15 +3214,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::justification\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_justification_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_justification_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2921,15 +3241,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::justification-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_justification_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_justification_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2945,14 +3265,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::language\0".as_ptr() as *const _,
-                Some(transmute(notify_language_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_language_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2970,15 +3292,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::language-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_language_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_language_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2994,14 +3316,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::left-margin\0".as_ptr() as *const _,
-                Some(transmute(notify_left_margin_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_left_margin_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3019,15 +3343,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::left-margin-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_left_margin_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_left_margin_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3046,15 +3370,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::letter-spacing\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_letter_spacing_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_letter_spacing_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3073,15 +3397,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::letter-spacing-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_letter_spacing_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_letter_spacing_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3100,15 +3424,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paragraph-background\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_paragraph_background_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_paragraph_background_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3127,15 +3451,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paragraph-background-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_paragraph_background_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_paragraph_background_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3154,15 +3478,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paragraph-background-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_paragraph_background_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_paragraph_background_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3181,15 +3505,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-above-lines\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_above_lines_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_above_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3208,15 +3532,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-above-lines-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_above_lines_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_above_lines_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3235,15 +3559,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-below-lines\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_below_lines_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_below_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3262,15 +3586,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-below-lines-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_below_lines_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_below_lines_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3289,15 +3613,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-inside-wrap\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_inside_wrap_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_inside_wrap_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3316,15 +3640,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixels-inside-wrap-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixels_inside_wrap_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixels_inside_wrap_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3343,15 +3667,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::right-margin\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_right_margin_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_right_margin_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3370,15 +3694,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::right-margin-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_right_margin_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_right_margin_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3394,14 +3718,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rise\0".as_ptr() as *const _,
-                Some(transmute(notify_rise_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_rise_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3416,14 +3742,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rise-set\0".as_ptr() as *const _,
-                Some(transmute(notify_rise_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_rise_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3438,14 +3766,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scale\0".as_ptr() as *const _,
-                Some(transmute(notify_scale_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scale_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3460,14 +3790,67 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scale-set\0".as_ptr() as *const _,
-                Some(transmute(notify_scale_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scale_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_spaces_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-spaces\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_spaces_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_show_spaces_set_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_spaces_set_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkTextTag,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<TextTag>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-spaces-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_spaces_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3482,14 +3865,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute(notify_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3504,14 +3889,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size-points\0".as_ptr() as *const _,
-                Some(transmute(notify_size_points_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_points_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3526,14 +3913,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size-set\0".as_ptr() as *const _,
-                Some(transmute(notify_size_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3548,14 +3937,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stretch\0".as_ptr() as *const _,
-                Some(transmute(notify_stretch_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_stretch_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3570,14 +3961,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stretch-set\0".as_ptr() as *const _,
-                Some(transmute(notify_stretch_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_stretch_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3595,15 +3988,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strikethrough\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_strikethrough_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_strikethrough_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3622,15 +4015,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strikethrough-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_strikethrough_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_strikethrough_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3649,15 +4042,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strikethrough-rgba-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_strikethrough_rgba_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_strikethrough_rgba_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3676,15 +4069,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::strikethrough-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_strikethrough_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_strikethrough_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3700,14 +4093,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::style\0".as_ptr() as *const _,
-                Some(transmute(notify_style_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_style_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3722,14 +4117,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::style-set\0".as_ptr() as *const _,
-                Some(transmute(notify_style_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_style_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3744,14 +4141,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tabs\0".as_ptr() as *const _,
-                Some(transmute(notify_tabs_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tabs_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3766,14 +4165,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tabs-set\0".as_ptr() as *const _,
-                Some(transmute(notify_tabs_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tabs_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3788,14 +4189,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::underline\0".as_ptr() as *const _,
-                Some(transmute(notify_underline_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_underline_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3813,15 +4216,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::underline-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_underline_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_underline_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3840,15 +4243,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::underline-rgba-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_underline_rgba_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_underline_rgba_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3867,15 +4270,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::underline-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_underline_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_underline_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -3891,14 +4294,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::variant\0".as_ptr() as *const _,
-                Some(transmute(notify_variant_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_variant_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3913,14 +4318,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::variant-set\0".as_ptr() as *const _,
-                Some(transmute(notify_variant_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_variant_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3935,14 +4342,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::weight\0".as_ptr() as *const _,
-                Some(transmute(notify_weight_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_weight_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3957,14 +4366,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::weight-set\0".as_ptr() as *const _,
-                Some(transmute(notify_weight_set_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_weight_set_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -3979,14 +4390,16 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-mode\0".as_ptr() as *const _,
-                Some(transmute(notify_wrap_mode_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_wrap_mode_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -4004,15 +4417,15 @@ impl<O: IsA<TextTag>> TextTagExt for O {
             P: IsA<TextTag>,
         {
             let f: &F = &*(f as *const F);
-            f(&TextTag::from_glib_borrow(this).unsafe_cast())
+            f(&TextTag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-mode-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_wrap_mode_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_wrap_mode_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

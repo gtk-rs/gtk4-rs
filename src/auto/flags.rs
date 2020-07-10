@@ -13,55 +13,6 @@ use gobject_sys;
 use gtk_sys;
 
 bitflags! {
-    pub struct AccelFlags: u32 {
-        const VISIBLE = 1;
-        const LOCKED = 2;
-        const MASK = 7;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for AccelFlags {
-    type GlibType = gtk_sys::GtkAccelFlags;
-
-    fn to_glib(&self) -> gtk_sys::GtkAccelFlags {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkAccelFlags> for AccelFlags {
-    fn from_glib(value: gtk_sys::GtkAccelFlags) -> AccelFlags {
-        skip_assert_initialized!();
-        AccelFlags::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for AccelFlags {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_accel_flags_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for AccelFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for AccelFlags {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for AccelFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct ApplicationInhibitFlags: u32 {
         const LOGOUT = 1;
         const SWITCH = 2;
@@ -106,57 +57,6 @@ impl<'a> FromValue<'a> for ApplicationInhibitFlags {
 }
 
 impl SetValue for ApplicationInhibitFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
-    pub struct CalendarDisplayOptions: u32 {
-        const SHOW_HEADING = 1;
-        const SHOW_DAY_NAMES = 2;
-        const NO_MONTH_CHANGE = 4;
-        const SHOW_WEEK_NUMBERS = 8;
-        const SHOW_DETAILS = 32;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for CalendarDisplayOptions {
-    type GlibType = gtk_sys::GtkCalendarDisplayOptions;
-
-    fn to_glib(&self) -> gtk_sys::GtkCalendarDisplayOptions {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkCalendarDisplayOptions> for CalendarDisplayOptions {
-    fn from_glib(value: gtk_sys::GtkCalendarDisplayOptions) -> CalendarDisplayOptions {
-        skip_assert_initialized!();
-        CalendarDisplayOptions::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for CalendarDisplayOptions {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_calendar_display_options_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for CalendarDisplayOptions {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for CalendarDisplayOptions {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for CalendarDisplayOptions {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -227,13 +127,13 @@ bitflags! {
         const BUILDER = 128;
         const SIZE_REQUEST = 256;
         const NO_CSS_CACHE = 512;
-        const BASELINES = 1024;
         const INTERACTIVE = 2048;
         const TOUCHSCREEN = 4096;
         const ACTIONS = 8192;
         const RESIZE = 16384;
         const LAYOUT = 32768;
         const SNAPSHOT = 65536;
+        const CONSTRAINTS = 131072;
     }
 }
 
@@ -273,56 +173,6 @@ impl<'a> FromValue<'a> for DebugFlag {
 }
 
 impl SetValue for DebugFlag {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
-    pub struct DestDefaults: u32 {
-        const MOTION = 1;
-        const HIGHLIGHT = 2;
-        const DROP = 4;
-        const ALL = 7;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for DestDefaults {
-    type GlibType = gtk_sys::GtkDestDefaults;
-
-    fn to_glib(&self) -> gtk_sys::GtkDestDefaults {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDestDefaults> for DestDefaults {
-    fn from_glib(value: gtk_sys::GtkDestDefaults) -> DestDefaults {
-        skip_assert_initialized!();
-        DestDefaults::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for DestDefaults {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_dest_defaults_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for DestDefaults {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for DestDefaults {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for DestDefaults {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -532,15 +382,9 @@ impl SetValue for FontChooserLevel {
 
 bitflags! {
     pub struct IconLookupFlags: u32 {
-        const NO_SVG = 1;
-        const FORCE_SVG = 2;
-        const USE_BUILTIN = 4;
-        const GENERIC_FALLBACK = 8;
-        const FORCE_SIZE = 16;
-        const FORCE_REGULAR = 32;
-        const FORCE_SYMBOLIC = 64;
-        const DIR_LTR = 128;
-        const DIR_RTL = 256;
+        const FORCE_REGULAR = 1;
+        const FORCE_SYMBOLIC = 2;
+        const PRELOAD = 4;
     }
 }
 
@@ -807,6 +651,7 @@ bitflags! {
         const NONE = 0;
         const RECURSE = 1;
         const SHOW_STYLE = 2;
+        const SHOW_CHANGE = 4;
     }
 }
 

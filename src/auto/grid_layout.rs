@@ -180,15 +180,15 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
             P: IsA<GridLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayout::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::baseline-row\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_baseline_row_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_baseline_row_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -207,15 +207,15 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
             P: IsA<GridLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayout::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-homogeneous\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_column_homogeneous_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_homogeneous_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -234,15 +234,15 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
             P: IsA<GridLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayout::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_column_spacing_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_spacing_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -261,15 +261,15 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
             P: IsA<GridLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayout::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-homogeneous\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_row_homogeneous_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_homogeneous_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -285,14 +285,16 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
             P: IsA<GridLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayout::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_row_spacing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_spacing_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

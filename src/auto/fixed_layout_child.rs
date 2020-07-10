@@ -26,33 +26,33 @@ glib_wrapper! {
 pub const NONE_FIXED_LAYOUT_CHILD: Option<&FixedLayoutChild> = None;
 
 pub trait FixedLayoutChildExt: 'static {
-    fn get_position(&self) -> Option<gsk::Transform>;
+    fn get_transform(&self) -> Option<gsk::Transform>;
 
-    fn set_position(&self, position: &gsk::Transform);
+    fn set_transform(&self, transform: &gsk::Transform);
 
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
-    fn get_position(&self) -> Option<gsk::Transform> {
+    fn get_transform(&self) -> Option<gsk::Transform> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_fixed_layout_child_get_position(
+            from_glib_none(gtk_sys::gtk_fixed_layout_child_get_transform(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn set_position(&self, position: &gsk::Transform) {
+    fn set_transform(&self, transform: &gsk::Transform) {
         unsafe {
-            gtk_sys::gtk_fixed_layout_child_set_position(
+            gtk_sys::gtk_fixed_layout_child_set_transform(
                 self.as_ref().to_glib_none().0,
-                position.to_glib_none().0,
+                transform.to_glib_none().0,
             );
         }
     }
 
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transform_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkFixedLayoutChild,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
@@ -60,14 +60,16 @@ impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
             P: IsA<FixedLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&FixedLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&FixedLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::position\0".as_ptr() as *const _,
-                Some(transmute(notify_position_trampoline::<Self, F> as usize)),
+                b"notify::transform\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_transform_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

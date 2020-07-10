@@ -3,10 +3,15 @@
 // DO NOT EDIT
 
 use glib;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 use Buildable;
 use FileFilterFlags;
 use FileFilterInfo;
@@ -25,7 +30,7 @@ impl FileFilter {
         unsafe { from_glib_none(gtk_sys::gtk_file_filter_new()) }
     }
 
-    pub fn new_from_gvariant(variant: &glib::Variant) -> FileFilter {
+    pub fn from_gvariant(variant: &glib::Variant) -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(
@@ -104,6 +109,31 @@ impl FileFilter {
 
     pub fn to_gvariant(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
+    }
+
+    pub fn connect_property_name_notify<F: Fn(&FileFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_name_trampoline<F: Fn(&FileFilter) + 'static>(
+            this: *mut gtk_sys::GtkFileFilter,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 

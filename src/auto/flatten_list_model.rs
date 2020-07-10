@@ -46,6 +46,8 @@ pub const NONE_FLATTEN_LIST_MODEL: Option<&FlattenListModel> = None;
 pub trait FlattenListModelExt: 'static {
     fn get_model(&self) -> Option<gio::ListModel>;
 
+    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel>;
+
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
     fn get_property_item_type(&self) -> glib::types::Type;
@@ -58,6 +60,15 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
         unsafe {
             from_glib_none(gtk_sys::gtk_flatten_list_model_get_model(
                 self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_flatten_list_model_get_model_for_item(
+                self.as_ref().to_glib_none().0,
+                position,
             ))
         }
     }
@@ -95,14 +106,16 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
             P: IsA<FlattenListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&FlattenListModel::from_glib_borrow(this).unsafe_cast())
+            f(&FlattenListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

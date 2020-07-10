@@ -13,41 +13,15 @@ use pango;
 use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
-use AccelGroup;
 use Orientation;
 use PageSetup;
 use PrintSettings;
-use SelectionData;
 use StyleContext;
 use TextDirection;
 use TreeModel;
 use TreePath;
 use Widget;
 use Window;
-
-pub fn accel_groups_activate<P: IsA<glib::Object>>(
-    object: &P,
-    accel_key: u32,
-    accel_mods: gdk::ModifierType,
-) -> bool {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib(gtk_sys::gtk_accel_groups_activate(
-            object.as_ref().to_glib_none().0,
-            accel_key,
-            accel_mods.to_glib(),
-        ))
-    }
-}
-
-pub fn accel_groups_from_object<P: IsA<glib::Object>>(object: &P) -> Vec<AccelGroup> {
-    assert_initialized_main_thread!();
-    unsafe {
-        FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_accel_groups_from_object(
-            object.as_ref().to_glib_none().0,
-        ))
-    }
-}
 
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
     assert_initialized_main_thread!();
@@ -114,23 +88,27 @@ pub fn accelerator_name_with_keycode(
     }
 }
 
-pub fn accelerator_parse(accelerator: &str) -> (u32, gdk::ModifierType) {
+pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
         let mut accelerator_key = mem::MaybeUninit::uninit();
         let mut accelerator_mods = mem::MaybeUninit::uninit();
-        gtk_sys::gtk_accelerator_parse(
+        let ret = from_glib(gtk_sys::gtk_accelerator_parse(
             accelerator.to_glib_none().0,
             accelerator_key.as_mut_ptr(),
             accelerator_mods.as_mut_ptr(),
-        );
+        ));
         let accelerator_key = accelerator_key.assume_init();
         let accelerator_mods = accelerator_mods.assume_init();
-        (accelerator_key, from_glib(accelerator_mods))
+        if ret {
+            Some((accelerator_key, from_glib(accelerator_mods)))
+        } else {
+            None
+        }
     }
 }
 
-//pub fn accelerator_parse_with_keycode(accelerator: &str, accelerator_codes: Vec<u32>) -> (u32, gdk::ModifierType) {
+//pub fn accelerator_parse_with_keycode(accelerator: &str, display: Option<&gdk::Display>, accelerator_codes: Vec<u32>) -> Option<(u32, gdk::ModifierType)> {
 //    unsafe { TODO: call gtk_sys:gtk_accelerator_parse_with_keycode() }
 //}
 
@@ -146,72 +124,14 @@ pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
     unsafe { from_glib(gtk_sys::gtk_accelerator_valid(keyval, modifiers.to_glib())) }
 }
 
-pub fn bindings_activate<P: IsA<glib::Object>>(
-    object: &P,
-    keyval: u32,
-    modifiers: gdk::ModifierType,
-) -> bool {
+pub fn css_parser_error_quark() -> glib::Quark {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib(gtk_sys::gtk_bindings_activate(
-            object.as_ref().to_glib_none().0,
-            keyval,
-            modifiers.to_glib(),
-        ))
-    }
+    unsafe { from_glib(gtk_sys::gtk_css_parser_error_quark()) }
 }
 
-//pub fn bindings_activate_event<P: IsA<glib::Object>>(object: &P, event: /*Ignored*/&mut gdk::EventKey) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_bindings_activate_event() }
-//}
-
-pub fn content_formats_add_image_targets(
-    list: &gdk::ContentFormats,
-    writable: bool,
-) -> Option<gdk::ContentFormats> {
+pub fn css_parser_warning_quark() -> glib::Quark {
     assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gtk_sys::gtk_content_formats_add_image_targets(
-            list.to_glib_none().0,
-            writable.to_glib(),
-        ))
-    }
-}
-
-pub fn content_formats_add_text_targets(list: &gdk::ContentFormats) -> Option<gdk::ContentFormats> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gtk_sys::gtk_content_formats_add_text_targets(
-            list.to_glib_none().0,
-        ))
-    }
-}
-
-pub fn content_formats_add_uri_targets(list: &gdk::ContentFormats) -> Option<gdk::ContentFormats> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gtk_sys::gtk_content_formats_add_uri_targets(
-            list.to_glib_none().0,
-        ))
-    }
-}
-
-pub fn device_grab_add<P: IsA<Widget>>(widget: &P, device: &gdk::Device, block_others: bool) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_device_grab_add(
-            widget.as_ref().to_glib_none().0,
-            device.to_glib_none().0,
-            block_others.to_glib(),
-        );
-    }
-}
-
-pub fn device_grab_remove<P: IsA<Widget>>(widget: &P, device: &gdk::Device) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_device_grab_remove(widget.as_ref().to_glib_none().0, device.to_glib_none().0);
-    }
+    unsafe { from_glib(gtk_sys::gtk_css_parser_warning_quark()) }
 }
 
 pub fn disable_setlocale() {
@@ -224,11 +144,6 @@ pub fn disable_setlocale() {
 //pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
 //    unsafe { TODO: call gtk_sys:gtk_distribute_natural_allocation() }
 //}
-
-pub fn events_pending() -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_events_pending()) }
-}
 
 pub fn get_current_event() -> Option<gdk::Event> {
     assert_initialized_main_thread!();
@@ -269,41 +184,12 @@ pub fn get_default_language() -> Option<pango::Language> {
     unsafe { from_glib_none(gtk_sys::gtk_get_default_language()) }
 }
 
-pub fn get_event_target(event: &gdk::Event) -> Option<Widget> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_none(gtk_sys::gtk_get_event_target(event.to_glib_none().0)) }
-}
-
-pub fn get_event_target_with_type(event: &gdk::Event, type_: glib::types::Type) -> Option<Widget> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_none(gtk_sys::gtk_get_event_target_with_type(
-            event.to_glib_none().0,
-            type_.to_glib(),
-        ))
-    }
-}
-
-pub fn get_event_widget(event: &gdk::Event) -> Option<Widget> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_none(gtk_sys::gtk_get_event_widget(event.to_glib_none().0)) }
-}
-
 pub fn get_locale_direction() -> TextDirection {
     assert_initialized_main_thread!();
     unsafe { from_glib(gtk_sys::gtk_get_locale_direction()) }
 }
 
-//pub fn get_main_thread() -> /*Ignored*/Option<glib::Thread> {
-//    unsafe { TODO: call gtk_sys:gtk_get_main_thread() }
-//}
-
-pub fn grab_get_current() -> Option<Widget> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_none(gtk_sys::gtk_grab_get_current()) }
-}
-
-pub fn hsv_to_rgb(h: f64, s: f64, v: f64) -> (f64, f64, f64) {
+pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
         let mut r = mem::MaybeUninit::uninit();
@@ -322,35 +208,6 @@ pub fn im_modules_init() {
     unsafe {
         gtk_sys::gtk_im_modules_init();
     }
-}
-
-pub fn main() {
-    assert_initialized_main_thread!();
-    unsafe {
-        gtk_sys::gtk_main();
-    }
-}
-
-pub fn main_do_event(event: &gdk::Event) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gtk_sys::gtk_main_do_event(event.to_glib_none().0);
-    }
-}
-
-pub fn main_iteration() -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_main_iteration()) }
-}
-
-pub fn main_iteration_do(blocking: bool) -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_main_iteration_do(blocking.to_glib())) }
-}
-
-pub fn main_level() -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { gtk_sys::gtk_main_level() }
 }
 
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
@@ -402,33 +259,6 @@ pub fn print_run_page_setup_dialog_async<
         );
     }
 }
-
-pub fn propagate_event<P: IsA<Widget>>(widget: &P, event: &gdk::Event) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_propagate_event(widget.as_ref().to_glib_none().0, event.to_glib_none().0);
-    }
-}
-
-//pub fn rc_property_parse_border(pspec: /*Ignored*/&glib::ParamSpec, gstring: &glib::String, property_value: &mut glib::Value) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_border() }
-//}
-
-//pub fn rc_property_parse_color(pspec: /*Ignored*/&glib::ParamSpec, gstring: &glib::String, property_value: &mut glib::Value) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_color() }
-//}
-
-//pub fn rc_property_parse_enum(pspec: /*Ignored*/&glib::ParamSpec, gstring: &glib::String, property_value: &mut glib::Value) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_enum() }
-//}
-
-//pub fn rc_property_parse_flags(pspec: /*Ignored*/&glib::ParamSpec, gstring: &glib::String, property_value: &mut glib::Value) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_flags() }
-//}
-
-//pub fn rc_property_parse_requisition(pspec: /*Ignored*/&glib::ParamSpec, gstring: &glib::String, property_value: &mut glib::Value) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_rc_property_parse_requisition() }
-//}
 
 pub fn render_activity<P: IsA<StyleContext>>(
     context: &P,
@@ -490,28 +320,6 @@ pub fn render_background<P: IsA<StyleContext>>(
             width,
             height,
         );
-    }
-}
-
-pub fn render_background_get_clip<P: IsA<StyleContext>>(
-    context: &P,
-    x: f64,
-    y: f64,
-    width: f64,
-    height: f64,
-) -> gdk::Rectangle {
-    skip_assert_initialized!();
-    unsafe {
-        let mut out_clip = gdk::Rectangle::uninitialized();
-        gtk_sys::gtk_render_background_get_clip(
-            context.as_ref().to_glib_none().0,
-            x,
-            y,
-            width,
-            height,
-            out_clip.to_glib_none_mut().0,
-        );
-        out_clip
     }
 }
 
@@ -746,7 +554,7 @@ pub fn render_slider<P: IsA<StyleContext>>(
     }
 }
 
-pub fn rgb_to_hsv(r: f64, g: f64, b: f64) -> (f64, f64, f64) {
+pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
         let mut h = mem::MaybeUninit::uninit();
@@ -815,15 +623,19 @@ pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
     }
 }
 
+//pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(tree_model: &P, path: &mut TreePath) -> /*Ignored*/Option<gdk::ContentProvider> {
+//    unsafe { TODO: call gtk_sys:gtk_tree_create_row_drag_content() }
+//}
+
 pub fn tree_get_row_drag_data(
-    selection_data: &SelectionData,
+    value: &glib::Value,
 ) -> Option<(Option<TreeModel>, Option<TreePath>)> {
     assert_initialized_main_thread!();
     unsafe {
         let mut tree_model = ptr::null_mut();
         let mut path = ptr::null_mut();
         let ret = from_glib(gtk_sys::gtk_tree_get_row_drag_data(
-            mut_override(selection_data.to_glib_none().0),
+            value.to_glib_none().0,
             &mut tree_model,
             &mut path,
         ));
@@ -832,20 +644,5 @@ pub fn tree_get_row_drag_data(
         } else {
             None
         }
-    }
-}
-
-pub fn tree_set_row_drag_data<P: IsA<TreeModel>>(
-    selection_data: &SelectionData,
-    tree_model: &P,
-    path: &mut TreePath,
-) -> bool {
-    skip_assert_initialized!();
-    unsafe {
-        from_glib(gtk_sys::gtk_tree_set_row_drag_data(
-            mut_override(selection_data.to_glib_none().0),
-            tree_model.as_ref().to_glib_none().0,
-            path.to_glib_none_mut().0,
-        ))
     }
 }

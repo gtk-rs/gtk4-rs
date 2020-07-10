@@ -20,6 +20,17 @@ glib_wrapper! {
     }
 }
 
+impl TreeModelSort {
+    pub fn with_model<P: IsA<TreeModel>>(child_model: &P) -> TreeModelSort {
+        skip_assert_initialized!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_tree_model_sort_new_with_model(
+                child_model.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+}
+
 pub const NONE_TREE_MODEL_SORT: Option<&TreeModelSort> = None;
 
 pub trait TreeModelSortExt: 'static {

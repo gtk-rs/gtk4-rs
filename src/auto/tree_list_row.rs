@@ -151,14 +151,16 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
             P: IsA<TreeListRow>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::children\0".as_ptr() as *const _,
-                Some(transmute(notify_children_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_children_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -173,14 +175,16 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
             P: IsA<TreeListRow>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::depth\0".as_ptr() as *const _,
-                Some(transmute(notify_depth_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_depth_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -195,14 +199,16 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
             P: IsA<TreeListRow>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expandable\0".as_ptr() as *const _,
-                Some(transmute(notify_expandable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expandable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -217,14 +223,16 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
             P: IsA<TreeListRow>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expanded\0".as_ptr() as *const _,
-                Some(transmute(notify_expanded_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expanded_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -239,14 +247,16 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
             P: IsA<TreeListRow>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListRow::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListRow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item\0".as_ptr() as *const _,
-                Some(transmute(notify_item_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -20,87 +19,32 @@ use TreePath;
 use TreeView;
 
 glib_wrapper! {
-    pub struct TreeSelection(Object<gtk_sys::GtkTreeSelection, gtk_sys::GtkTreeSelectionClass, TreeSelectionClass>);
+    pub struct TreeSelection(Object<gtk_sys::GtkTreeSelection, TreeSelectionClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_tree_selection_get_type(),
     }
 }
 
-pub const NONE_TREE_SELECTION: Option<&TreeSelection> = None;
-
-pub trait TreeSelectionExt: 'static {
-    fn count_selected_rows(&self) -> i32;
-
-    fn get_mode(&self) -> SelectionMode;
-
-    //fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>;
-
-    fn get_selected(&self) -> Option<(TreeModel, TreeIter)>;
-
-    fn get_selected_rows(&self) -> (Vec<TreePath>, TreeModel);
-
-    fn get_tree_view(&self) -> Option<TreeView>;
-
-    //fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer>;
-
-    fn iter_is_selected(&self, iter: &TreeIter) -> bool;
-
-    fn path_is_selected(&self, path: &TreePath) -> bool;
-
-    fn select_all(&self);
-
-    fn select_iter(&self, iter: &TreeIter);
-
-    fn select_path(&self, path: &TreePath);
-
-    fn select_range(&self, start_path: &TreePath, end_path: &TreePath);
-
-    fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P);
-
-    fn set_mode(&self, type_: SelectionMode);
-
-    fn set_select_function(
-        &self,
-        func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
-    );
-
-    fn unselect_all(&self);
-
-    fn unselect_iter(&self, iter: &TreeIter);
-
-    fn unselect_path(&self, path: &TreePath);
-
-    fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath);
-
-    fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
-    fn count_selected_rows(&self) -> i32 {
-        unsafe { gtk_sys::gtk_tree_selection_count_selected_rows(self.as_ref().to_glib_none().0) }
+impl TreeSelection {
+    pub fn count_selected_rows(&self) -> i32 {
+        unsafe { gtk_sys::gtk_tree_selection_count_selected_rows(self.to_glib_none().0) }
     }
 
-    fn get_mode(&self) -> SelectionMode {
-        unsafe {
-            from_glib(gtk_sys::gtk_tree_selection_get_mode(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    pub fn get_mode(&self) -> SelectionMode {
+        unsafe { from_glib(gtk_sys::gtk_tree_selection_get_mode(self.to_glib_none().0)) }
     }
 
-    //fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
+    //pub fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
     //    unsafe { TODO: call gtk_sys:gtk_tree_selection_get_select_function() }
     //}
 
-    fn get_selected(&self) -> Option<(TreeModel, TreeIter)> {
+    pub fn get_selected(&self) -> Option<(TreeModel, TreeIter)> {
         unsafe {
             let mut model = ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(gtk_sys::gtk_tree_selection_get_selected(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 &mut model,
                 iter.to_glib_none_mut().0,
             ));
@@ -112,84 +56,81 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         }
     }
 
-    fn get_selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
+    pub fn get_selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
         unsafe {
             let mut model = ptr::null_mut();
             let ret = FromGlibPtrContainer::from_glib_full(
-                gtk_sys::gtk_tree_selection_get_selected_rows(
-                    self.as_ref().to_glib_none().0,
-                    &mut model,
-                ),
+                gtk_sys::gtk_tree_selection_get_selected_rows(self.to_glib_none().0, &mut model),
             );
             (ret, from_glib_none(model))
         }
     }
 
-    fn get_tree_view(&self) -> Option<TreeView> {
+    pub fn get_tree_view(&self) -> Option<TreeView> {
         unsafe {
             from_glib_none(gtk_sys::gtk_tree_selection_get_tree_view(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    //fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
+    //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
     //    unsafe { TODO: call gtk_sys:gtk_tree_selection_get_user_data() }
     //}
 
-    fn iter_is_selected(&self, iter: &TreeIter) -> bool {
+    pub fn iter_is_selected(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_tree_selection_iter_is_selected(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
         }
     }
 
-    fn path_is_selected(&self, path: &TreePath) -> bool {
+    pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_tree_selection_path_is_selected(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
         }
     }
 
-    fn select_all(&self) {
+    pub fn select_all(&self) {
         unsafe {
-            gtk_sys::gtk_tree_selection_select_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_tree_selection_select_all(self.to_glib_none().0);
         }
     }
 
-    fn select_iter(&self, iter: &TreeIter) {
+    pub fn select_iter(&self, iter: &TreeIter) {
         unsafe {
             gtk_sys::gtk_tree_selection_select_iter(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             );
         }
     }
 
-    fn select_path(&self, path: &TreePath) {
+    pub fn select_path(&self, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_tree_selection_select_path(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn select_range(&self, start_path: &TreePath, end_path: &TreePath) {
+    pub fn select_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
             gtk_sys::gtk_tree_selection_select_range(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(start_path.to_glib_none().0),
                 mut_override(end_path.to_glib_none().0),
             );
         }
     }
 
-    fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P) {
+    pub fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(
             model: *mut gtk_sys::GtkTreeModel,
@@ -207,20 +148,20 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         let super_callback0: &P = &func_data;
         unsafe {
             gtk_sys::gtk_tree_selection_selected_foreach(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 func,
                 super_callback0 as *const _ as usize as *mut _,
             );
         }
     }
 
-    fn set_mode(&self, type_: SelectionMode) {
+    pub fn set_mode(&self, type_: SelectionMode) {
         unsafe {
-            gtk_sys::gtk_tree_selection_set_mode(self.as_ref().to_glib_none().0, type_.to_glib());
+            gtk_sys::gtk_tree_selection_set_mode(self.to_glib_none().0, type_.to_glib());
         }
     }
 
-    fn set_select_function(
+    pub fn set_select_function(
         &self,
         func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
     ) {
@@ -264,7 +205,7 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         > = func_data;
         unsafe {
             gtk_sys::gtk_tree_selection_set_select_function(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
@@ -272,78 +213,81 @@ impl<O: IsA<TreeSelection>> TreeSelectionExt for O {
         }
     }
 
-    fn unselect_all(&self) {
+    pub fn unselect_all(&self) {
         unsafe {
-            gtk_sys::gtk_tree_selection_unselect_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_tree_selection_unselect_all(self.to_glib_none().0);
         }
     }
 
-    fn unselect_iter(&self, iter: &TreeIter) {
+    pub fn unselect_iter(&self, iter: &TreeIter) {
         unsafe {
             gtk_sys::gtk_tree_selection_unselect_iter(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             );
         }
     }
 
-    fn unselect_path(&self, path: &TreePath) {
+    pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_tree_selection_unselect_path(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath) {
+    pub fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
             gtk_sys::gtk_tree_selection_unselect_range(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(start_path.to_glib_none().0),
                 mut_override(end_path.to_glib_none().0),
             );
         }
     }
 
-    fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_changed<F: Fn(&TreeSelection) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn changed_trampoline<F: Fn(&TreeSelection) + 'static>(
             this: *mut gtk_sys::GtkTreeSelection,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<TreeSelection>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&TreeSelection::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    changed_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_mode_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_mode_notify<F: Fn(&TreeSelection) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mode_trampoline<F: Fn(&TreeSelection) + 'static>(
             this: *mut gtk_sys::GtkTreeSelection,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<TreeSelection>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&TreeSelection::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mode\0".as_ptr() as *const _,
-                Some(transmute(notify_mode_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_mode_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

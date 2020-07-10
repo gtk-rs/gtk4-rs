@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -25,17 +24,6 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_root_get_type(),
-    }
-}
-
-impl Root {
-    pub fn get_for_surface<P: IsA<gdk::Surface>>(surface: &P) -> Option<Widget> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_root_get_for_surface(
-                surface.as_ref().to_glib_none().0,
-            ))
-        }
     }
 }
 
@@ -110,15 +98,15 @@ impl<O: IsA<Root>> RootExt for O {
             P: IsA<Root>,
         {
             let f: &F = &*(f as *const F);
-            f(&Root::from_glib_borrow(this).unsafe_cast())
+            f(&Root::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-widget\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_focus_widget_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_focus_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

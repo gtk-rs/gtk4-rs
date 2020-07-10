@@ -2,12 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
-use Widget;
 use Window;
 
 glib_wrapper! {
@@ -36,10 +34,6 @@ pub const NONE_WINDOW_GROUP: Option<&WindowGroup> = None;
 pub trait WindowGroupExt: 'static {
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
-    fn get_current_device_grab(&self, device: &gdk::Device) -> Option<Widget>;
-
-    fn get_current_grab(&self) -> Option<Widget>;
-
     fn list_windows(&self) -> Vec<Window>;
 
     fn remove_window<P: IsA<Window>>(&self, window: &P);
@@ -52,23 +46,6 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
                 self.as_ref().to_glib_none().0,
                 window.as_ref().to_glib_none().0,
             );
-        }
-    }
-
-    fn get_current_device_grab(&self, device: &gdk::Device) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_window_group_get_current_device_grab(
-                self.as_ref().to_glib_none().0,
-                device.to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_current_grab(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_window_group_get_current_grab(
-                self.as_ref().to_glib_none().0,
-            ))
         }
     }
 

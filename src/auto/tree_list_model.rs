@@ -43,9 +43,7 @@ impl TreeListModel {
             let item = from_glib_borrow(item);
             let callback: &Q = &*(user_data as *mut _);
             let res = (*callback)(&item);
-            res /*Not checked*/
-                .to_glib_none()
-                .0
+            res.to_glib_full()
         }
         let create_func = Some(create_func_func::<P, Q> as _);
         unsafe extern "C" fn user_destroy_func<
@@ -152,14 +150,16 @@ impl<O: IsA<TreeListModel>> TreeListModelExt for O {
             P: IsA<TreeListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoexpand\0".as_ptr() as *const _,
-                Some(transmute(notify_autoexpand_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autoexpand_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -174,14 +174,16 @@ impl<O: IsA<TreeListModel>> TreeListModelExt for O {
             P: IsA<TreeListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

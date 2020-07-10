@@ -13,7 +13,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
-use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -22,19 +21,13 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use AccelGroup;
-use Align;
 use Application;
 use Bin;
 use Buildable;
 use Container;
-use LayoutManager;
-use Overflow;
 use Root;
 use Widget;
 use WindowGroup;
-use WindowPosition;
-use WindowType;
 
 glib_wrapper! {
     pub struct Window(Object<gtk_sys::GtkWindow, gtk_sys::GtkWindowClass, WindowClass>) @extends Bin, Container, Widget, @implements Buildable, Root;
@@ -45,9 +38,9 @@ glib_wrapper! {
 }
 
 impl Window {
-    pub fn new(type_: WindowType) -> Window {
+    pub fn new() -> Window {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_window_new(type_.to_glib())).unsafe_cast() }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_window_new()).unsafe_cast() }
     }
 
     pub fn get_default_icon_name() -> Option<GString> {
@@ -87,552 +80,22 @@ impl Window {
     }
 }
 
-#[derive(Clone, Default)]
-pub struct WindowBuilder {
-    accept_focus: Option<bool>,
-    application: Option<Application>,
-    attached_to: Option<Widget>,
-    decorated: Option<bool>,
-    default_height: Option<i32>,
-    default_widget: Option<Widget>,
-    default_width: Option<i32>,
-    deletable: Option<bool>,
-    destroy_with_parent: Option<bool>,
-    display: Option<gdk::Display>,
-    focus_on_map: Option<bool>,
-    focus_visible: Option<bool>,
-    hide_on_close: Option<bool>,
-    icon_name: Option<String>,
-    mnemonics_visible: Option<bool>,
-    modal: Option<bool>,
-    resizable: Option<bool>,
-    startup_id: Option<String>,
-    title: Option<String>,
-    transient_for: Option<Window>,
-    type_: Option<WindowType>,
-    type_hint: Option<gdk::SurfaceTypeHint>,
-    window_position: Option<WindowPosition>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
-    focus_on_click: Option<bool>,
-    halign: Option<Align>,
-    has_focus: Option<bool>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
-    layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    focus_widget: Option<Widget>,
-}
-
-impl WindowBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    pub fn build(self) -> Window {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref accept_focus) = self.accept_focus {
-            properties.push(("accept-focus", accept_focus));
-        }
-        if let Some(ref application) = self.application {
-            properties.push(("application", application));
-        }
-        if let Some(ref attached_to) = self.attached_to {
-            properties.push(("attached-to", attached_to));
-        }
-        if let Some(ref decorated) = self.decorated {
-            properties.push(("decorated", decorated));
-        }
-        if let Some(ref default_height) = self.default_height {
-            properties.push(("default-height", default_height));
-        }
-        if let Some(ref default_widget) = self.default_widget {
-            properties.push(("default-widget", default_widget));
-        }
-        if let Some(ref default_width) = self.default_width {
-            properties.push(("default-width", default_width));
-        }
-        if let Some(ref deletable) = self.deletable {
-            properties.push(("deletable", deletable));
-        }
-        if let Some(ref destroy_with_parent) = self.destroy_with_parent {
-            properties.push(("destroy-with-parent", destroy_with_parent));
-        }
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        if let Some(ref focus_on_map) = self.focus_on_map {
-            properties.push(("focus-on-map", focus_on_map));
-        }
-        if let Some(ref focus_visible) = self.focus_visible {
-            properties.push(("focus-visible", focus_visible));
-        }
-        if let Some(ref hide_on_close) = self.hide_on_close {
-            properties.push(("hide-on-close", hide_on_close));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref mnemonics_visible) = self.mnemonics_visible {
-            properties.push(("mnemonics-visible", mnemonics_visible));
-        }
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        if let Some(ref resizable) = self.resizable {
-            properties.push(("resizable", resizable));
-        }
-        if let Some(ref startup_id) = self.startup_id {
-            properties.push(("startup-id", startup_id));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref transient_for) = self.transient_for {
-            properties.push(("transient-for", transient_for));
-        }
-        if let Some(ref type_) = self.type_ {
-            properties.push(("type", type_));
-        }
-        if let Some(ref type_hint) = self.type_hint {
-            properties.push(("type-hint", type_hint));
-        }
-        if let Some(ref window_position) = self.window_position {
-            properties.push(("window-position", window_position));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref focus_widget) = self.focus_widget {
-            properties.push(("focus-widget", focus_widget));
-        }
-        glib::Object::new(Window::static_type(), &properties)
-            .expect("object new")
-            .downcast()
-            .expect("downcast")
-    }
-
-    pub fn accept_focus(mut self, accept_focus: bool) -> Self {
-        self.accept_focus = Some(accept_focus);
-        self
-    }
-
-    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
-        self.application = Some(application.clone().upcast());
-        self
-    }
-
-    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
-        self.attached_to = Some(attached_to.clone().upcast());
-        self
-    }
-
-    pub fn decorated(mut self, decorated: bool) -> Self {
-        self.decorated = Some(decorated);
-        self
-    }
-
-    pub fn default_height(mut self, default_height: i32) -> Self {
-        self.default_height = Some(default_height);
-        self
-    }
-
-    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
-        self.default_widget = Some(default_widget.clone().upcast());
-        self
-    }
-
-    pub fn default_width(mut self, default_width: i32) -> Self {
-        self.default_width = Some(default_width);
-        self
-    }
-
-    pub fn deletable(mut self, deletable: bool) -> Self {
-        self.deletable = Some(deletable);
-        self
-    }
-
-    pub fn destroy_with_parent(mut self, destroy_with_parent: bool) -> Self {
-        self.destroy_with_parent = Some(destroy_with_parent);
-        self
-    }
-
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
-        self
-    }
-
-    pub fn focus_on_map(mut self, focus_on_map: bool) -> Self {
-        self.focus_on_map = Some(focus_on_map);
-        self
-    }
-
-    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
-        self.focus_visible = Some(focus_visible);
-        self
-    }
-
-    pub fn hide_on_close(mut self, hide_on_close: bool) -> Self {
-        self.hide_on_close = Some(hide_on_close);
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn mnemonics_visible(mut self, mnemonics_visible: bool) -> Self {
-        self.mnemonics_visible = Some(mnemonics_visible);
-        self
-    }
-
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    pub fn resizable(mut self, resizable: bool) -> Self {
-        self.resizable = Some(resizable);
-        self
-    }
-
-    pub fn startup_id(mut self, startup_id: &str) -> Self {
-        self.startup_id = Some(startup_id.to_string());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
-        self.transient_for = Some(transient_for.clone().upcast());
-        self
-    }
-
-    pub fn type_(mut self, type_: WindowType) -> Self {
-        self.type_ = Some(type_);
-        self
-    }
-
-    pub fn type_hint(mut self, type_hint: gdk::SurfaceTypeHint) -> Self {
-        self.type_hint = Some(type_hint);
-        self
-    }
-
-    pub fn window_position(mut self, window_position: WindowPosition) -> Self {
-        self.window_position = Some(window_position);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
-        self.focus_widget = Some(focus_widget.clone().upcast());
-        self
+impl Default for Window {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
 pub const NONE_WINDOW: Option<&Window> = None;
 
 pub trait GtkWindowExt: 'static {
-    //fn activate_key(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
-
-    fn add_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P);
-
-    fn add_mnemonic<P: IsA<Widget>>(&self, keyval: u32, target: &P);
-
-    fn begin_move_drag(&self, button: i32, x: i32, y: i32, timestamp: u32);
-
-    fn begin_resize_drag(
-        &self,
-        edge: gdk::SurfaceEdge,
-        button: i32,
-        x: i32,
-        y: i32,
-        timestamp: u32,
-    );
-
     fn close(&self);
-
-    fn deiconify(&self);
 
     fn fullscreen(&self);
 
     fn fullscreen_on_monitor(&self, monitor: &gdk::Monitor);
 
-    fn get_accept_focus(&self) -> bool;
-
     fn get_application(&self) -> Option<Application>;
-
-    fn get_attached_to(&self) -> Option<Widget>;
 
     fn get_decorated(&self) -> bool;
 
@@ -644,8 +107,6 @@ pub trait GtkWindowExt: 'static {
 
     fn get_destroy_with_parent(&self) -> bool;
 
-    fn get_focus_on_map(&self) -> bool;
-
     fn get_focus_visible(&self) -> bool;
 
     fn get_group(&self) -> Option<WindowGroup>;
@@ -653,8 +114,6 @@ pub trait GtkWindowExt: 'static {
     fn get_hide_on_close(&self) -> bool;
 
     fn get_icon_name(&self) -> Option<GString>;
-
-    fn get_mnemonic_modifier(&self) -> gdk::ModifierType;
 
     fn get_mnemonics_visible(&self) -> bool;
 
@@ -670,13 +129,7 @@ pub trait GtkWindowExt: 'static {
 
     fn get_transient_for(&self) -> Option<Window>;
 
-    fn get_type_hint(&self) -> gdk::SurfaceTypeHint;
-
-    fn get_window_type(&self) -> WindowType;
-
     fn has_group(&self) -> bool;
-
-    fn iconify(&self);
 
     fn is_active(&self) -> bool;
 
@@ -684,25 +137,15 @@ pub trait GtkWindowExt: 'static {
 
     fn maximize(&self);
 
-    fn mnemonic_activate(&self, keyval: u32, modifier: gdk::ModifierType) -> bool;
+    fn minimize(&self);
 
     fn present(&self);
 
     fn present_with_time(&self, timestamp: u32);
 
-    //fn propagate_key_event(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
-
-    fn remove_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P);
-
-    fn remove_mnemonic<P: IsA<Widget>>(&self, keyval: u32, target: &P);
-
     fn resize(&self, width: i32, height: i32);
 
-    fn set_accept_focus(&self, setting: bool);
-
     fn set_application<P: IsA<Application>>(&self, application: Option<&P>);
-
-    fn set_attached_to<P: IsA<Widget>>(&self, attach_widget: Option<&P>);
 
     fn set_decorated(&self, setting: bool);
 
@@ -716,8 +159,6 @@ pub trait GtkWindowExt: 'static {
 
     fn set_display(&self, display: &gdk::Display);
 
-    fn set_focus_on_map(&self, setting: bool);
-
     fn set_focus_visible(&self, setting: bool);
 
     fn set_has_user_ref_count(&self, setting: bool);
@@ -726,17 +167,9 @@ pub trait GtkWindowExt: 'static {
 
     fn set_icon_name(&self, name: Option<&str>);
 
-    fn set_keep_above(&self, setting: bool);
-
-    fn set_keep_below(&self, setting: bool);
-
-    fn set_mnemonic_modifier(&self, modifier: gdk::ModifierType);
-
     fn set_mnemonics_visible(&self, setting: bool);
 
     fn set_modal(&self, modal: bool);
-
-    fn set_position(&self, position: WindowPosition);
 
     fn set_resizable(&self, resizable: bool);
 
@@ -748,15 +181,11 @@ pub trait GtkWindowExt: 'static {
 
     fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>);
 
-    fn set_type_hint(&self, hint: gdk::SurfaceTypeHint);
-
-    fn stick(&self);
-
     fn unfullscreen(&self);
 
     fn unmaximize(&self);
 
-    fn unstick(&self);
+    fn unminimize(&self);
 
     fn get_property_default_height(&self) -> i32;
 
@@ -769,12 +198,6 @@ pub trait GtkWindowExt: 'static {
     fn get_property_is_active(&self) -> bool;
 
     fn get_property_is_maximized(&self) -> bool;
-
-    fn get_property_type(&self) -> WindowType;
-
-    fn get_property_window_position(&self) -> WindowPosition;
-
-    fn set_property_window_position(&self, window_position: WindowPosition);
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -798,12 +221,7 @@ pub trait GtkWindowExt: 'static {
 
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_accept_focus_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
     fn connect_property_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_attached_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -830,9 +248,6 @@ pub trait GtkWindowExt: 'static {
     ) -> SignalHandlerId;
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_focus_on_map_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
 
     fn connect_property_focus_visible_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -868,80 +283,12 @@ pub trait GtkWindowExt: 'static {
         &self,
         f: F,
     ) -> SignalHandlerId;
-
-    fn connect_property_type_hint_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_window_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<Window>> GtkWindowExt for O {
-    //fn activate_key(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_window_activate_key() }
-    //}
-
-    fn add_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P) {
-        unsafe {
-            gtk_sys::gtk_window_add_accel_group(
-                self.as_ref().to_glib_none().0,
-                accel_group.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn add_mnemonic<P: IsA<Widget>>(&self, keyval: u32, target: &P) {
-        unsafe {
-            gtk_sys::gtk_window_add_mnemonic(
-                self.as_ref().to_glib_none().0,
-                keyval,
-                target.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn begin_move_drag(&self, button: i32, x: i32, y: i32, timestamp: u32) {
-        unsafe {
-            gtk_sys::gtk_window_begin_move_drag(
-                self.as_ref().to_glib_none().0,
-                button,
-                x,
-                y,
-                timestamp,
-            );
-        }
-    }
-
-    fn begin_resize_drag(
-        &self,
-        edge: gdk::SurfaceEdge,
-        button: i32,
-        x: i32,
-        y: i32,
-        timestamp: u32,
-    ) {
-        unsafe {
-            gtk_sys::gtk_window_begin_resize_drag(
-                self.as_ref().to_glib_none().0,
-                edge.to_glib(),
-                button,
-                x,
-                y,
-                timestamp,
-            );
-        }
-    }
-
     fn close(&self) {
         unsafe {
             gtk_sys::gtk_window_close(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn deiconify(&self) {
-        unsafe {
-            gtk_sys::gtk_window_deiconify(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -960,25 +307,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_accept_focus(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_window_get_accept_focus(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn get_application(&self) -> Option<Application> {
         unsafe {
             from_glib_none(gtk_sys::gtk_window_get_application(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_attached_to(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_window_get_attached_to(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1031,14 +362,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_focus_on_map(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_window_get_focus_on_map(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn get_focus_visible(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_window_get_focus_visible(
@@ -1066,14 +389,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     fn get_icon_name(&self) -> Option<GString> {
         unsafe {
             from_glib_none(gtk_sys::gtk_window_get_icon_name(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_mnemonic_modifier(&self) -> gdk::ModifierType {
-        unsafe {
-            from_glib(gtk_sys::gtk_window_get_mnemonic_modifier(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1142,33 +457,11 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_type_hint(&self) -> gdk::SurfaceTypeHint {
-        unsafe {
-            from_glib(gtk_sys::gtk_window_get_type_hint(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_window_type(&self) -> WindowType {
-        unsafe {
-            from_glib(gtk_sys::gtk_window_get_window_type(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn has_group(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_window_has_group(
                 self.as_ref().to_glib_none().0,
             ))
-        }
-    }
-
-    fn iconify(&self) {
-        unsafe {
-            gtk_sys::gtk_window_iconify(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -1194,13 +487,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn mnemonic_activate(&self, keyval: u32, modifier: gdk::ModifierType) -> bool {
+    fn minimize(&self) {
         unsafe {
-            from_glib(gtk_sys::gtk_window_mnemonic_activate(
-                self.as_ref().to_glib_none().0,
-                keyval,
-                modifier.to_glib(),
-            ))
+            gtk_sys::gtk_window_minimize(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -1216,38 +505,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    //fn propagate_key_event(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_window_propagate_key_event() }
-    //}
-
-    fn remove_accel_group<P: IsA<AccelGroup>>(&self, accel_group: &P) {
-        unsafe {
-            gtk_sys::gtk_window_remove_accel_group(
-                self.as_ref().to_glib_none().0,
-                accel_group.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn remove_mnemonic<P: IsA<Widget>>(&self, keyval: u32, target: &P) {
-        unsafe {
-            gtk_sys::gtk_window_remove_mnemonic(
-                self.as_ref().to_glib_none().0,
-                keyval,
-                target.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
     fn resize(&self, width: i32, height: i32) {
         unsafe {
             gtk_sys::gtk_window_resize(self.as_ref().to_glib_none().0, width, height);
-        }
-    }
-
-    fn set_accept_focus(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_window_set_accept_focus(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
@@ -1256,15 +516,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             gtk_sys::gtk_window_set_application(
                 self.as_ref().to_glib_none().0,
                 application.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_attached_to<P: IsA<Widget>>(&self, attach_widget: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_window_set_attached_to(
-                self.as_ref().to_glib_none().0,
-                attach_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -1314,12 +565,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_focus_on_map(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_window_set_focus_on_map(self.as_ref().to_glib_none().0, setting.to_glib());
-        }
-    }
-
     fn set_focus_visible(&self, setting: bool) {
         unsafe {
             gtk_sys::gtk_window_set_focus_visible(
@@ -1356,27 +601,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_keep_above(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_window_set_keep_above(self.as_ref().to_glib_none().0, setting.to_glib());
-        }
-    }
-
-    fn set_keep_below(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_window_set_keep_below(self.as_ref().to_glib_none().0, setting.to_glib());
-        }
-    }
-
-    fn set_mnemonic_modifier(&self, modifier: gdk::ModifierType) {
-        unsafe {
-            gtk_sys::gtk_window_set_mnemonic_modifier(
-                self.as_ref().to_glib_none().0,
-                modifier.to_glib(),
-            );
-        }
-    }
-
     fn set_mnemonics_visible(&self, setting: bool) {
         unsafe {
             gtk_sys::gtk_window_set_mnemonics_visible(
@@ -1389,12 +613,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     fn set_modal(&self, modal: bool) {
         unsafe {
             gtk_sys::gtk_window_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
-        }
-    }
-
-    fn set_position(&self, position: WindowPosition) {
-        unsafe {
-            gtk_sys::gtk_window_set_position(self.as_ref().to_glib_none().0, position.to_glib());
         }
     }
 
@@ -1437,18 +655,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_type_hint(&self, hint: gdk::SurfaceTypeHint) {
-        unsafe {
-            gtk_sys::gtk_window_set_type_hint(self.as_ref().to_glib_none().0, hint.to_glib());
-        }
-    }
-
-    fn stick(&self) {
-        unsafe {
-            gtk_sys::gtk_window_stick(self.as_ref().to_glib_none().0);
-        }
-    }
-
     fn unfullscreen(&self) {
         unsafe {
             gtk_sys::gtk_window_unfullscreen(self.as_ref().to_glib_none().0);
@@ -1461,9 +667,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn unstick(&self) {
+    fn unminimize(&self) {
         unsafe {
-            gtk_sys::gtk_window_unstick(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_window_unminimize(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -1547,46 +753,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_property_type(&self) -> WindowType {
-        unsafe {
-            let mut value = Value::from_type(<WindowType as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"type\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `type` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_window_position(&self) -> WindowPosition {
-        unsafe {
-            let mut value = Value::from_type(<WindowPosition as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"window-position\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `window-position` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_window_position(&self, window_position: WindowPosition) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"window-position\0".as_ptr() as *const _,
-                Value::from(&window_position).to_glib_none().0,
-            );
-        }
-    }
-
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_default_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkWindow,
@@ -1595,14 +761,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-default\0".as_ptr() as *const _,
-                Some(transmute(activate_default_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_default_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1610,7 +778,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn emit_activate_default(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("activate-default", &[])
                 .unwrap()
         };
@@ -1624,14 +792,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-focus\0".as_ptr() as *const _,
-                Some(transmute(activate_focus_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_focus_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1639,7 +809,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn emit_activate_focus(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("activate-focus", &[])
                 .unwrap()
         };
@@ -1660,14 +830,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close-request\0".as_ptr() as *const _,
-                Some(transmute(close_request_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    close_request_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1687,7 +859,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Window::from_glib_borrow(this).unsafe_cast(),
+                &Window::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(toggle),
             )
             .to_glib()
@@ -1697,7 +869,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"enable-debugging\0".as_ptr() as *const _,
-                Some(transmute(enable_debugging_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    enable_debugging_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1705,7 +879,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn emit_enable_debugging(&self, toggle: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("enable-debugging", &[&toggle])
                 .unwrap()
         };
@@ -1723,40 +897,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"keys-changed\0".as_ptr() as *const _,
-                Some(transmute(keys_changed_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_accept_focus_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_accept_focus_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Window>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::accept-focus\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_accept_focus_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    keys_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -1772,36 +921,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::application\0".as_ptr() as *const _,
-                Some(transmute(notify_application_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_attached_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_attached_to_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Window>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::attached-to\0".as_ptr() as *const _,
-                Some(transmute(notify_attached_to_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_application_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1816,14 +945,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::decorated\0".as_ptr() as *const _,
-                Some(transmute(notify_decorated_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_decorated_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1841,15 +972,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-height\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_default_height_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_default_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -1868,15 +999,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-widget\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_default_widget_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_default_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -1895,15 +1026,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-width\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_default_width_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_default_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -1919,14 +1050,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::deletable\0".as_ptr() as *const _,
-                Some(transmute(notify_deletable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_deletable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1944,15 +1077,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::destroy-with-parent\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_destroy_with_parent_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_destroy_with_parent_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -1968,40 +1101,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::display\0".as_ptr() as *const _,
-                Some(transmute(notify_display_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_focus_on_map_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_focus_on_map_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Window>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::focus-on-map\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_focus_on_map_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_display_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2020,15 +1128,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-visible\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_focus_visible_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_focus_visible_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2047,15 +1155,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hide-on-close\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_hide_on_close_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_hide_on_close_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2071,14 +1179,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute(notify_icon_name_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_icon_name_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2093,14 +1203,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-active\0".as_ptr() as *const _,
-                Some(transmute(notify_is_active_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_active_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2118,15 +1230,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-maximized\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_is_maximized_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_maximized_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2145,15 +1257,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mnemonics-visible\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_mnemonics_visible_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_mnemonics_visible_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -2169,14 +1281,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute(notify_modal_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_modal_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2191,14 +1305,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::resizable\0".as_ptr() as *const _,
-                Some(transmute(notify_resizable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_resizable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2213,14 +1329,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::startup-id\0".as_ptr() as *const _,
-                Some(transmute(notify_startup_id_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_startup_id_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2235,14 +1353,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -2260,64 +1380,15 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transient-for\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_transient_for_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_type_hint_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_type_hint_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Window>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::type-hint\0".as_ptr() as *const _,
-                Some(transmute(notify_type_hint_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_window_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_window_position_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Window>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::window-position\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_window_position_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_transient_for_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

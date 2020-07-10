@@ -38,7 +38,7 @@ pub const NONE_IM_CONTEXT: Option<&IMContext> = None;
 pub trait IMContextExt: 'static {
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
-    //fn filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool;
+    fn filter_keypress(&self, event: &gdk::Event) -> bool;
 
     fn focus_in(&self);
 
@@ -101,9 +101,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    //fn filter_keypress(&self, event: /*Ignored*/&gdk::EventKey) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_im_context_filter_keypress() }
-    //}
+    fn filter_keypress(&self, event: &gdk::Event) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_im_context_filter_keypress(
+                self.as_ref().to_glib_none().0,
+                mut_override(event.to_glib_none().0),
+            ))
+        }
+    }
 
     fn focus_in(&self) {
         unsafe {
@@ -256,7 +261,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &IMContext::from_glib_borrow(this).unsafe_cast(),
+                &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
                 &GString::from_glib_borrow(str),
             )
         }
@@ -265,7 +270,9 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"commit\0".as_ptr() as *const _,
-                Some(transmute(commit_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    commit_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -289,7 +296,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &IMContext::from_glib_borrow(this).unsafe_cast(),
+                &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
                 offset,
                 n_chars,
             )
@@ -300,7 +307,9 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"delete-surrounding\0".as_ptr() as *const _,
-                Some(transmute(delete_surrounding_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    delete_surrounding_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -314,14 +323,16 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast())
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-changed\0".as_ptr() as *const _,
-                Some(transmute(preedit_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    preedit_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -335,14 +346,16 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast())
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-end\0".as_ptr() as *const _,
-                Some(transmute(preedit_end_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    preedit_end_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -356,14 +369,16 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast())
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-start\0".as_ptr() as *const _,
-                Some(transmute(preedit_start_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    preedit_start_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -381,15 +396,15 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"retrieve-surrounding\0".as_ptr() as *const _,
-                Some(transmute(
-                    retrieve_surrounding_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    retrieve_surrounding_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -405,14 +420,16 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast())
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-hints\0".as_ptr() as *const _,
-                Some(transmute(notify_input_hints_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_hints_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -430,15 +447,15 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             P: IsA<IMContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast())
+            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-purpose\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_input_purpose_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

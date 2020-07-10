@@ -134,14 +134,16 @@ impl<O: IsA<SliceListModel>> SliceListModelExt for O {
             P: IsA<SliceListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast())
+            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -156,14 +158,16 @@ impl<O: IsA<SliceListModel>> SliceListModelExt for O {
             P: IsA<SliceListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast())
+            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::offset\0".as_ptr() as *const _,
-                Some(transmute(notify_offset_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_offset_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -178,14 +182,16 @@ impl<O: IsA<SliceListModel>> SliceListModelExt for O {
             P: IsA<SliceListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast())
+            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute(notify_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

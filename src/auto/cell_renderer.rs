@@ -41,7 +41,7 @@ pub const NONE_CELL_RENDERER: Option<&CellRenderer> = None;
 pub trait CellRendererExt: 'static {
     fn activate<P: IsA<Widget>>(
         &self,
-        event: &gdk::Event,
+        event: &mut gdk::Event,
         widget: &P,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -59,6 +59,10 @@ pub trait CellRendererExt: 'static {
     fn get_alignment(&self) -> (f32, f32);
 
     fn get_fixed_size(&self) -> (i32, i32);
+
+    fn get_is_expanded(&self) -> bool;
+
+    fn get_is_expander(&self) -> bool;
 
     fn get_padding(&self) -> (i32, i32);
 
@@ -91,6 +95,10 @@ pub trait CellRendererExt: 'static {
 
     fn set_fixed_size(&self, width: i32, height: i32);
 
+    fn set_is_expanded(&self, is_expander: bool);
+
+    fn set_is_expander(&self, is_expander: bool);
+
     fn set_padding(&self, xpad: i32, ypad: i32);
 
     fn set_sensitive(&self, sensitive: bool);
@@ -108,7 +116,7 @@ pub trait CellRendererExt: 'static {
 
     fn start_editing<P: IsA<Widget>>(
         &self,
-        event: Option<&gdk::Event>,
+        event: Option<&mut gdk::Event>,
         widget: &P,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -133,14 +141,6 @@ pub trait CellRendererExt: 'static {
     fn get_property_height(&self) -> i32;
 
     fn set_property_height(&self, height: i32);
-
-    fn get_property_is_expanded(&self) -> bool;
-
-    fn set_property_is_expanded(&self, is_expanded: bool);
-
-    fn get_property_is_expander(&self) -> bool;
-
-    fn set_property_is_expander(&self, is_expander: bool);
 
     fn get_property_mode(&self) -> CellRendererMode;
 
@@ -216,7 +216,7 @@ pub trait CellRendererExt: 'static {
 impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn activate<P: IsA<Widget>>(
         &self,
-        event: &gdk::Event,
+        event: &mut gdk::Event,
         widget: &P,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -226,7 +226,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             from_glib(gtk_sys::gtk_cell_renderer_activate(
                 self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.to_glib_none_mut().0,
                 widget.as_ref().to_glib_none().0,
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,
@@ -282,6 +282,22 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             let width = width.assume_init();
             let height = height.assume_init();
             (width, height)
+        }
+    }
+
+    fn get_is_expanded(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_cell_renderer_get_is_expanded(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_is_expander(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_cell_renderer_get_is_expander(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -450,6 +466,24 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    fn set_is_expanded(&self, is_expander: bool) {
+        unsafe {
+            gtk_sys::gtk_cell_renderer_set_is_expanded(
+                self.as_ref().to_glib_none().0,
+                is_expander.to_glib(),
+            );
+        }
+    }
+
+    fn set_is_expander(&self, is_expander: bool) {
+        unsafe {
+            gtk_sys::gtk_cell_renderer_set_is_expander(
+                self.as_ref().to_glib_none().0,
+                is_expander.to_glib(),
+            );
+        }
+    }
+
     fn set_padding(&self, xpad: i32, ypad: i32) {
         unsafe {
             gtk_sys::gtk_cell_renderer_set_padding(self.as_ref().to_glib_none().0, xpad, ypad);
@@ -496,7 +530,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn start_editing<P: IsA<Widget>>(
         &self,
-        event: Option<&gdk::Event>,
+        event: Option<&mut gdk::Event>,
         widget: &P,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -506,7 +540,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             from_glib_none(gtk_sys::gtk_cell_renderer_start_editing(
                 self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.to_glib_none_mut().0,
                 widget.as_ref().to_glib_none().0,
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,
@@ -620,56 +654,6 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 self.to_glib_none().0 as *mut gobject_sys::GObject,
                 b"height\0".as_ptr() as *const _,
                 Value::from(&height).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_is_expanded(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"is-expanded\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-expanded` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_is_expanded(&self, is_expanded: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"is-expanded\0".as_ptr() as *const _,
-                Value::from(&is_expanded).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_is_expander(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"is-expander\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-expander` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_is_expander(&self, is_expander: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"is-expander\0".as_ptr() as *const _,
-                Value::from(&is_expander).to_glib_none().0,
             );
         }
     }
@@ -832,14 +816,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"editing-canceled\0".as_ptr() as *const _,
-                Some(transmute(editing_canceled_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    editing_canceled_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -863,7 +849,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
             f(
-                &CellRenderer::from_glib_borrow(this).unsafe_cast(),
+                &CellRenderer::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(editable),
                 path,
             )
@@ -873,7 +859,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"editing-started\0".as_ptr() as *const _,
-                Some(transmute(editing_started_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    editing_started_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -891,15 +879,15 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cell-background\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_cell_background_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_cell_background_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -918,15 +906,15 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cell-background-rgba\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_cell_background_rgba_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_cell_background_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -945,15 +933,15 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cell-background-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_cell_background_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_cell_background_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -969,14 +957,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::editing\0".as_ptr() as *const _,
-                Some(transmute(notify_editing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_editing_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -991,14 +981,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::height\0".as_ptr() as *const _,
-                Some(transmute(notify_height_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_height_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1013,14 +1005,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-expanded\0".as_ptr() as *const _,
-                Some(transmute(notify_is_expanded_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_expanded_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1035,14 +1029,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-expander\0".as_ptr() as *const _,
-                Some(transmute(notify_is_expander_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_is_expander_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1057,14 +1053,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mode\0".as_ptr() as *const _,
-                Some(transmute(notify_mode_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_mode_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1079,14 +1077,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sensitive\0".as_ptr() as *const _,
-                Some(transmute(notify_sensitive_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sensitive_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1101,14 +1101,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(transmute(notify_visible_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1123,14 +1125,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width\0".as_ptr() as *const _,
-                Some(transmute(notify_width_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_width_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1145,14 +1149,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute(notify_xalign_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_xalign_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1167,14 +1173,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xpad\0".as_ptr() as *const _,
-                Some(transmute(notify_xpad_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_xpad_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1189,14 +1197,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute(notify_yalign_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_yalign_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1211,14 +1221,16 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellRenderer::from_glib_borrow(this).unsafe_cast())
+            f(&CellRenderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::ypad\0".as_ptr() as *const _,
-                Some(transmute(notify_ypad_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_ypad_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

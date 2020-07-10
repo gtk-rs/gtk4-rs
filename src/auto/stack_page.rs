@@ -18,7 +18,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct StackPage(Object<gtk_sys::GtkStackPage, gtk_sys::GtkStackPageClass, StackPageClass>);
+    pub struct StackPage(Object<gtk_sys::GtkStackPage, StackPageClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_stack_page_get_type(),
@@ -28,6 +28,16 @@ glib_wrapper! {
 impl StackPage {
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_child(self.to_glib_none().0)) }
+    }
+
+    pub fn get_visible(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_stack_page_get_visible(self.to_glib_none().0)) }
+    }
+
+    pub fn set_visible(&self, visible: bool) {
+        unsafe {
+            gtk_sys::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());
+        }
     }
 
     pub fn get_property_icon_name(&self) -> Option<GString> {
@@ -117,31 +127,6 @@ impl StackPage {
         }
     }
 
-    pub fn get_property_visible(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"visible\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `visible` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_visible(&self, visible: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"visible\0".as_ptr() as *const _,
-                Value::from(&visible).to_glib_none().0,
-            );
-        }
-    }
-
     pub fn connect_property_icon_name_notify<F: Fn(&StackPage) + 'static>(
         &self,
         f: F,
@@ -159,7 +144,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute(notify_icon_name_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_icon_name_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -182,7 +169,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::needs-attention\0".as_ptr() as *const _,
-                Some(transmute(notify_needs_attention_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_needs_attention_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -205,7 +194,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -228,7 +219,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(transmute(notify_visible_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

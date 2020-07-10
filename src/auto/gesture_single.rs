@@ -116,14 +116,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button\0".as_ptr() as *const _,
-                Some(transmute(notify_button_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_button_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -138,14 +140,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::exclusive\0".as_ptr() as *const _,
-                Some(transmute(notify_exclusive_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_exclusive_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -160,14 +164,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::touch-only\0".as_ptr() as *const _,
-                Some(transmute(notify_touch_only_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_touch_only_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
