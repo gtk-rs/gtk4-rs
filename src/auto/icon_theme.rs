@@ -2,16 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
-use glib::StaticType;
-use glib::Value;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std;
 use std::boxed::Box as Box_;
@@ -88,7 +84,7 @@ impl IconTheme {
         }
     }
 
-    //pub fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, direction: TextDirection, flags: IconLookupFlags) -> /*Ignored*/Option<IconPaintable> {
+    //pub fn lookup_by_gicon(&self, icon: /*Ignored*/&gio::Icon, size: i32, scale: i32, direction: TextDirection, flags: IconLookupFlags) -> /*Ignored*/Option<IconPaintable> {
     //    unsafe { TODO: call gtk_sys:gtk_icon_theme_lookup_by_gicon() }
     //}
 
@@ -117,38 +113,23 @@ impl IconTheme {
         }
     }
 
-    pub fn get_property_display(&self) -> Option<gdk::Display> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
-        }
-    }
+    //pub fn get_property_display(&self) -> /*Ignored*/Option<gdk::Display> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"display\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `display` getter")
+    //    }
+    //}
 
-    pub fn set_property_display(&self, display: Option<&gdk::Display>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"display\0".as_ptr() as *const _,
-                Value::from(display).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_display(&self, display: /*Ignored*/Option<&gdk::Display>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"display\0".as_ptr() as *const _, Value::from(display).to_glib_none().0);
+    //    }
+    //}
 
-    pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_icon_theme_get_for_display(
-                display.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_for_display(display: /*Ignored*/&gdk::Display) -> Option<IconTheme> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_get_for_display() }
+    //}
 
     pub fn connect_changed<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&IconTheme) + 'static>(

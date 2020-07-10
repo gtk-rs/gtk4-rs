@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
-use glib;
 use glib::translate::*;
 use glib::GString;
 use gtk_sys;
@@ -23,24 +21,9 @@ glib_wrapper! {
 }
 
 impl RecentInfo {
-    pub fn create_app_info(
-        &self,
-        app_name: Option<&str>,
-    ) -> Result<Option<gio::AppInfo>, glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_recent_info_create_app_info(
-                self.to_glib_none().0,
-                app_name.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(from_glib_full(ret))
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn create_app_info(&self, app_name: Option<&str>, error: /*Ignored*/Option<glib::Error>) -> /*Ignored*/Option<gio::AppInfo> {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_info_create_app_info() }
+    //}
 
     pub fn exists(&self) -> bool {
         unsafe { from_glib(gtk_sys::gtk_recent_info_exists(self.to_glib_none().0)) }
@@ -106,9 +89,9 @@ impl RecentInfo {
         }
     }
 
-    pub fn get_gicon(&self) -> Option<gio::Icon> {
-        unsafe { from_glib_full(gtk_sys::gtk_recent_info_get_gicon(self.to_glib_none().0)) }
-    }
+    //pub fn get_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_info_get_gicon() }
+    //}
 
     pub fn get_groups(&self) -> Vec<GString> {
         unsafe {

@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -44,7 +42,7 @@ pub const NONE_TEXT_BUFFER: Option<&TextBuffer> = None;
 pub trait TextBufferExt: 'static {
     fn add_mark<P: IsA<TextMark>>(&self, mark: &P, where_: &TextIter);
 
-    fn add_selection_clipboard(&self, clipboard: &gdk::Clipboard);
+    //fn add_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
 
     fn apply_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter);
 
@@ -56,7 +54,7 @@ pub trait TextBufferExt: 'static {
 
     fn begin_user_action(&self);
 
-    fn copy_clipboard(&self, clipboard: &gdk::Clipboard);
+    //fn copy_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor>;
 
@@ -69,7 +67,7 @@ pub trait TextBufferExt: 'static {
 
     //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<TextTag>;
 
-    fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool);
+    //fn cut_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, default_editable: bool);
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter);
 
@@ -162,7 +160,7 @@ pub trait TextBufferExt: 'static {
 
     fn insert_markup(&self, iter: &mut TextIter, markup: &str);
 
-    fn insert_paintable<P: IsA<gdk::Paintable>>(&self, iter: &mut TextIter, paintable: &P);
+    //fn insert_paintable(&self, iter: &mut TextIter, paintable: /*Ignored*/&gdk::Paintable);
 
     fn insert_range(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter);
 
@@ -182,12 +180,7 @@ pub trait TextBufferExt: 'static {
 
     fn move_mark_by_name(&self, name: &str, where_: &TextIter);
 
-    fn paste_clipboard(
-        &self,
-        clipboard: &gdk::Clipboard,
-        override_location: Option<&TextIter>,
-        default_editable: bool,
-    );
+    //fn paste_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool);
 
     fn place_cursor(&self, where_: &TextIter);
 
@@ -195,7 +188,7 @@ pub trait TextBufferExt: 'static {
 
     fn remove_all_tags(&self, start: &TextIter, end: &TextIter);
 
-    fn remove_selection_clipboard(&self, clipboard: &gdk::Clipboard);
+    //fn remove_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard);
 
     fn remove_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter);
 
@@ -213,11 +206,11 @@ pub trait TextBufferExt: 'static {
 
     fn undo(&self);
 
-    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats>;
+    //fn get_property_copy_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
 
     fn get_property_cursor_position(&self) -> i32;
 
-    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats>;
+    //fn get_property_paste_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats>;
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
         &self,
@@ -240,10 +233,7 @@ pub trait TextBufferExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_insert_paintable<F: Fn(&Self, &TextIter, &gdk::Paintable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    //fn connect_insert_paintable<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -254,7 +244,7 @@ pub trait TextBufferExt: 'static {
 
     fn connect_modified_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId;
+    //fn connect_paste_done<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_redo<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -305,14 +295,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn add_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_add_selection_clipboard(
-                self.as_ref().to_glib_none().0,
-                clipboard.to_glib_none().0,
-            );
-        }
-    }
+    //fn add_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_add_selection_clipboard() }
+    //}
 
     fn apply_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
@@ -359,14 +344,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn copy_clipboard(&self, clipboard: &gdk::Clipboard) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_copy_clipboard(
-                self.as_ref().to_glib_none().0,
-                clipboard.to_glib_none().0,
-            );
-        }
-    }
+    //fn copy_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_copy_clipboard() }
+    //}
 
     fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor> {
         unsafe {
@@ -397,15 +377,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_text_buffer_create_tag() }
     //}
 
-    fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_cut_clipboard(
-                self.as_ref().to_glib_none().0,
-                clipboard.to_glib_none().0,
-                default_editable.to_glib(),
-            );
-        }
-    }
+    //fn cut_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, default_editable: bool) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_cut_clipboard() }
+    //}
 
     fn delete(&self, start: &mut TextIter, end: &mut TextIter) {
         unsafe {
@@ -790,15 +764,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn insert_paintable<P: IsA<gdk::Paintable>>(&self, iter: &mut TextIter, paintable: &P) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_insert_paintable(
-                self.as_ref().to_glib_none().0,
-                iter.to_glib_none_mut().0,
-                paintable.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //fn insert_paintable(&self, iter: &mut TextIter, paintable: /*Ignored*/&gdk::Paintable) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_insert_paintable() }
+    //}
 
     fn insert_range(&self, iter: &mut TextIter, start: &TextIter, end: &TextIter) {
         unsafe {
@@ -857,21 +825,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn paste_clipboard(
-        &self,
-        clipboard: &gdk::Clipboard,
-        override_location: Option<&TextIter>,
-        default_editable: bool,
-    ) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_paste_clipboard(
-                self.as_ref().to_glib_none().0,
-                clipboard.to_glib_none().0,
-                mut_override(override_location.to_glib_none().0),
-                default_editable.to_glib(),
-            );
-        }
-    }
+    //fn paste_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard, override_location: Option<&TextIter>, default_editable: bool) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_paste_clipboard() }
+    //}
 
     fn place_cursor(&self, where_: &TextIter) {
         unsafe {
@@ -898,14 +854,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn remove_selection_clipboard(&self, clipboard: &gdk::Clipboard) {
-        unsafe {
-            gtk_sys::gtk_text_buffer_remove_selection_clipboard(
-                self.as_ref().to_glib_none().0,
-                clipboard.to_glib_none().0,
-            );
-        }
-    }
+    //fn remove_selection_clipboard(&self, clipboard: /*Ignored*/&gdk::Clipboard) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_remove_selection_clipboard() }
+    //}
 
     fn remove_tag<P: IsA<TextTag>>(&self, tag: &P, start: &TextIter, end: &TextIter) {
         unsafe {
@@ -983,19 +934,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"copy-target-list\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `copy-target-list` getter")
-        }
-    }
+    //fn get_property_copy_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"copy-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `copy-target-list` getter")
+    //    }
+    //}
 
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
@@ -1012,19 +957,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"paste-target-list\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `paste-target-list` getter")
-        }
-    }
+    //fn get_property_paste_target_list(&self) -> /*Ignored*/Option<gdk::ContentFormats> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"paste-target-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `paste-target-list` getter")
+    //    }
+    //}
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
         &self,
@@ -1199,40 +1138,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn connect_insert_paintable<F: Fn(&Self, &TextIter, &gdk::Paintable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn insert_paintable_trampoline<
-            P,
-            F: Fn(&P, &TextIter, &gdk::Paintable) + 'static,
-        >(
-            this: *mut gtk_sys::GtkTextBuffer,
-            location: *mut gtk_sys::GtkTextIter,
-            paintable: *mut gdk_sys::GdkPaintable,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<TextBuffer>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(location),
-                &from_glib_borrow(paintable),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"insert-paintable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    insert_paintable_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //fn connect_insert_paintable<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored paintable: Gdk.Paintable
+    //}
 
     fn connect_mark_deleted<F: Fn(&Self, &TextMark) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn mark_deleted_trampoline<P, F: Fn(&P, &TextMark) + 'static>(
@@ -1316,32 +1224,9 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn connect_paste_done<F: Fn(&Self, &gdk::Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn paste_done_trampoline<P, F: Fn(&P, &gdk::Clipboard) + 'static>(
-            this: *mut gtk_sys::GtkTextBuffer,
-            clipboard: *mut gdk_sys::GdkClipboard,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<TextBuffer>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(clipboard),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"paste-done\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    paste_done_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //fn connect_paste_done<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored clipboard: Gdk.Clipboard
+    //}
 
     fn connect_redo<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn redo_trampoline<P, F: Fn(&P) + 'static>(

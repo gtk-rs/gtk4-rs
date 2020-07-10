@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -1244,14 +1243,9 @@ impl Settings {
         unsafe { from_glib_none(gtk_sys::gtk_settings_get_default()) }
     }
 
-    pub fn get_for_display(display: &gdk::Display) -> Option<Settings> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_settings_get_for_display(
-                display.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_for_display(display: /*Ignored*/&gdk::Display) -> Option<Settings> {
+    //    unsafe { TODO: call gtk_sys:gtk_settings_get_for_display() }
+    //}
 
     pub fn connect_property_gtk_alternative_button_order_notify<F: Fn(&Settings) + 'static>(
         &self,

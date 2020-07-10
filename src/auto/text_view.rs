@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -13,25 +11,30 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use Adjustment;
+use Align;
 use Buildable;
 use Container;
 use DeleteType;
 use InputHints;
 use InputPurpose;
 use Justification;
+use LayoutManager;
 use MovementStep;
+use Overflow;
 use ScrollStep;
 use Scrollable;
+use ScrollablePolicy;
 use TextBuffer;
 use TextChildAnchor;
 use TextExtendSelection;
@@ -72,6 +75,496 @@ impl Default for TextView {
     }
 }
 
+#[derive(Clone, Default)]
+pub struct TextViewBuilder {
+    accepts_tab: Option<bool>,
+    bottom_margin: Option<i32>,
+    buffer: Option<TextBuffer>,
+    cursor_visible: Option<bool>,
+    editable: Option<bool>,
+    //extra-menu: /*Unknown type*/,
+    im_module: Option<String>,
+    indent: Option<i32>,
+    input_hints: Option<InputHints>,
+    input_purpose: Option<InputPurpose>,
+    justification: Option<Justification>,
+    left_margin: Option<i32>,
+    monospace: Option<bool>,
+    overwrite: Option<bool>,
+    pixels_above_lines: Option<i32>,
+    pixels_below_lines: Option<i32>,
+    pixels_inside_wrap: Option<i32>,
+    right_margin: Option<i32>,
+    //tabs: /*Unknown type*/,
+    top_margin: Option<i32>,
+    wrap_mode: Option<WrapMode>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    //cursor: /*Unknown type*/,
+    focus_on_click: Option<bool>,
+    halign: Option<Align>,
+    has_focus: Option<bool>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    is_focus: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+    hadjustment: Option<Adjustment>,
+    hscroll_policy: Option<ScrollablePolicy>,
+    vadjustment: Option<Adjustment>,
+    vscroll_policy: Option<ScrollablePolicy>,
+}
+
+impl TextViewBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TextView {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref accepts_tab) = self.accepts_tab {
+            properties.push(("accepts-tab", accepts_tab));
+        }
+        if let Some(ref bottom_margin) = self.bottom_margin {
+            properties.push(("bottom-margin", bottom_margin));
+        }
+        if let Some(ref buffer) = self.buffer {
+            properties.push(("buffer", buffer));
+        }
+        if let Some(ref cursor_visible) = self.cursor_visible {
+            properties.push(("cursor-visible", cursor_visible));
+        }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref im_module) = self.im_module {
+            properties.push(("im-module", im_module));
+        }
+        if let Some(ref indent) = self.indent {
+            properties.push(("indent", indent));
+        }
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
+        if let Some(ref justification) = self.justification {
+            properties.push(("justification", justification));
+        }
+        if let Some(ref left_margin) = self.left_margin {
+            properties.push(("left-margin", left_margin));
+        }
+        if let Some(ref monospace) = self.monospace {
+            properties.push(("monospace", monospace));
+        }
+        if let Some(ref overwrite) = self.overwrite {
+            properties.push(("overwrite", overwrite));
+        }
+        if let Some(ref pixels_above_lines) = self.pixels_above_lines {
+            properties.push(("pixels-above-lines", pixels_above_lines));
+        }
+        if let Some(ref pixels_below_lines) = self.pixels_below_lines {
+            properties.push(("pixels-below-lines", pixels_below_lines));
+        }
+        if let Some(ref pixels_inside_wrap) = self.pixels_inside_wrap {
+            properties.push(("pixels-inside-wrap", pixels_inside_wrap));
+        }
+        if let Some(ref right_margin) = self.right_margin {
+            properties.push(("right-margin", right_margin));
+        }
+        if let Some(ref top_margin) = self.top_margin {
+            properties.push(("top-margin", top_margin));
+        }
+        if let Some(ref wrap_mode) = self.wrap_mode {
+            properties.push(("wrap-mode", wrap_mode));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_focus) = self.has_focus {
+            properties.push(("has-focus", has_focus));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref is_focus) = self.is_focus {
+            properties.push(("is-focus", is_focus));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
+        }
+        let ret = glib::Object::new(TextView::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TextView>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn accepts_tab(mut self, accepts_tab: bool) -> Self {
+        self.accepts_tab = Some(accepts_tab);
+        self
+    }
+
+    pub fn bottom_margin(mut self, bottom_margin: i32) -> Self {
+        self.bottom_margin = Some(bottom_margin);
+        self
+    }
+
+    pub fn buffer<P: IsA<TextBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
+        self
+    }
+
+    pub fn cursor_visible(mut self, cursor_visible: bool) -> Self {
+        self.cursor_visible = Some(cursor_visible);
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn im_module(mut self, im_module: &str) -> Self {
+        self.im_module = Some(im_module.to_string());
+        self
+    }
+
+    pub fn indent(mut self, indent: i32) -> Self {
+        self.indent = Some(indent);
+        self
+    }
+
+    pub fn input_hints(mut self, input_hints: InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    pub fn input_purpose(mut self, input_purpose: InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
+    }
+
+    pub fn justification(mut self, justification: Justification) -> Self {
+        self.justification = Some(justification);
+        self
+    }
+
+    pub fn left_margin(mut self, left_margin: i32) -> Self {
+        self.left_margin = Some(left_margin);
+        self
+    }
+
+    pub fn monospace(mut self, monospace: bool) -> Self {
+        self.monospace = Some(monospace);
+        self
+    }
+
+    pub fn overwrite(mut self, overwrite: bool) -> Self {
+        self.overwrite = Some(overwrite);
+        self
+    }
+
+    pub fn pixels_above_lines(mut self, pixels_above_lines: i32) -> Self {
+        self.pixels_above_lines = Some(pixels_above_lines);
+        self
+    }
+
+    pub fn pixels_below_lines(mut self, pixels_below_lines: i32) -> Self {
+        self.pixels_below_lines = Some(pixels_below_lines);
+        self
+    }
+
+    pub fn pixels_inside_wrap(mut self, pixels_inside_wrap: i32) -> Self {
+        self.pixels_inside_wrap = Some(pixels_inside_wrap);
+        self
+    }
+
+    pub fn right_margin(mut self, right_margin: i32) -> Self {
+        self.right_margin = Some(right_margin);
+        self
+    }
+
+    pub fn top_margin(mut self, top_margin: i32) -> Self {
+        self.top_margin = Some(top_margin);
+        self
+    }
+
+    pub fn wrap_mode(mut self, wrap_mode: WrapMode) -> Self {
+        self.wrap_mode = Some(wrap_mode);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_focus(mut self, has_focus: bool) -> Self {
+        self.has_focus = Some(has_focus);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn is_focus(mut self, is_focus: bool) -> Self {
+        self.is_focus = Some(is_focus);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
+        self
+    }
+}
+
 pub const NONE_TEXT_VIEW: Option<&TextView> = None;
 
 pub trait TextViewExt: 'static {
@@ -100,13 +593,13 @@ pub trait TextViewExt: 'static {
 
     fn get_buffer(&self) -> Option<TextBuffer>;
 
-    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
+    //fn get_cursor_locations(&self, iter: Option<&TextIter>, strong: /*Ignored*/gdk::Rectangle, weak: /*Ignored*/gdk::Rectangle);
 
     fn get_cursor_visible(&self) -> bool;
 
     fn get_editable(&self) -> bool;
 
-    fn get_extra_menu(&self) -> Option<gio::MenuModel>;
+    //fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel>;
 
     fn get_gutter(&self, win: TextWindowType) -> Option<Widget>;
 
@@ -120,7 +613,7 @@ pub trait TextViewExt: 'static {
 
     fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
 
-    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
+    //fn get_iter_location(&self, iter: &TextIter, location: /*Ignored*/gdk::Rectangle);
 
     fn get_justification(&self) -> Justification;
 
@@ -142,15 +635,15 @@ pub trait TextViewExt: 'static {
 
     fn get_right_margin(&self) -> i32;
 
-    fn get_tabs(&self) -> Option<pango::TabArray>;
+    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray>;
 
     fn get_top_margin(&self) -> i32;
 
-    fn get_visible_rect(&self) -> gdk::Rectangle;
+    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle);
 
     fn get_wrap_mode(&self) -> WrapMode;
 
-    fn im_context_filter_keypress(&self, event: &gdk::Event) -> bool;
+    //fn im_context_filter_keypress(&self, event: /*Ignored*/&gdk::Event) -> bool;
 
     fn move_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P) -> bool;
 
@@ -194,7 +687,7 @@ pub trait TextViewExt: 'static {
 
     fn set_editable(&self, setting: bool);
 
-    fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>);
+    //fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>);
 
     fn set_gutter<P: IsA<Widget>>(&self, win: TextWindowType, widget: Option<&P>);
 
@@ -220,7 +713,7 @@ pub trait TextViewExt: 'static {
 
     fn set_right_margin(&self, right_margin: i32);
 
-    fn set_tabs(&self, tabs: &pango::TabArray);
+    //fn set_tabs(&self, tabs: /*Ignored*/&pango::TabArray);
 
     fn set_top_margin(&self, top_margin: i32);
 
@@ -478,19 +971,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
-        unsafe {
-            let mut strong = gdk::Rectangle::uninitialized();
-            let mut weak = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_cursor_locations(
-                self.as_ref().to_glib_none().0,
-                iter.to_glib_none().0,
-                strong.to_glib_none_mut().0,
-                weak.to_glib_none_mut().0,
-            );
-            (strong, weak)
-        }
-    }
+    //fn get_cursor_locations(&self, iter: Option<&TextIter>, strong: /*Ignored*/gdk::Rectangle, weak: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_cursor_locations() }
+    //}
 
     fn get_cursor_visible(&self) -> bool {
         unsafe {
@@ -508,13 +991,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_extra_menu(&self) -> Option<gio::MenuModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_text_view_get_extra_menu(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_extra_menu() }
+    //}
 
     fn get_gutter(&self, win: TextWindowType) -> Option<Widget> {
         unsafe {
@@ -582,17 +1061,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
-        unsafe {
-            let mut location = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_iter_location(
-                self.as_ref().to_glib_none().0,
-                iter.to_glib_none().0,
-                location.to_glib_none_mut().0,
-            );
-            location
-        }
-    }
+    //fn get_iter_location(&self, iter: &TextIter, location: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_iter_location() }
+    //}
 
     fn get_justification(&self) -> Justification {
         unsafe {
@@ -669,28 +1140,17 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe { gtk_sys::gtk_text_view_get_right_margin(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_tabs(&self) -> Option<pango::TabArray> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_text_view_get_tabs(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_tabs() }
+    //}
 
     fn get_top_margin(&self) -> i32 {
         unsafe { gtk_sys::gtk_text_view_get_top_margin(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_visible_rect(&self) -> gdk::Rectangle {
-        unsafe {
-            let mut visible_rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_visible_rect(
-                self.as_ref().to_glib_none().0,
-                visible_rect.to_glib_none_mut().0,
-            );
-            visible_rect
-        }
-    }
+    //fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_get_visible_rect() }
+    //}
 
     fn get_wrap_mode(&self) -> WrapMode {
         unsafe {
@@ -700,14 +1160,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn im_context_filter_keypress(&self, event: &gdk::Event) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_text_view_im_context_filter_keypress(
-                self.as_ref().to_glib_none().0,
-                mut_override(event.to_glib_none().0),
-            ))
-        }
-    }
+    //fn im_context_filter_keypress(&self, event: /*Ignored*/&gdk::Event) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_im_context_filter_keypress() }
+    //}
 
     fn move_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P) -> bool {
         unsafe {
@@ -847,14 +1302,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_text_view_set_extra_menu(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_set_extra_menu() }
+    //}
 
     fn set_gutter<P: IsA<Widget>>(&self, win: TextWindowType, widget: Option<&P>) {
         unsafe {
@@ -953,14 +1403,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn set_tabs(&self, tabs: &pango::TabArray) {
-        unsafe {
-            gtk_sys::gtk_text_view_set_tabs(
-                self.as_ref().to_glib_none().0,
-                mut_override(tabs.to_glib_none().0),
-            );
-        }
-    }
+    //fn set_tabs(&self, tabs: /*Ignored*/&pango::TabArray) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_view_set_tabs() }
+    //}
 
     fn set_top_margin(&self, top_margin: i32) {
         unsafe {

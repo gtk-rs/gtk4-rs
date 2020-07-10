@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -19,7 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass, FlattenListModelClass>) @implements gio::ListModel;
+    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass, FlattenListModelClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_flatten_list_model_get_type(),
@@ -27,28 +26,19 @@ glib_wrapper! {
 }
 
 impl FlattenListModel {
-    pub fn new<P: IsA<gio::ListModel>>(
-        item_type: glib::types::Type,
-        model: Option<&P>,
-    ) -> FlattenListModel {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_flatten_list_model_new(
-                item_type.to_glib(),
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn new(item_type: glib::types::Type, model: /*Ignored*/Option<&gio::ListModel>) -> FlattenListModel {
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_new() }
+    //}
 }
 
 pub const NONE_FLATTEN_LIST_MODEL: Option<&FlattenListModel> = None;
 
 pub trait FlattenListModelExt: 'static {
-    fn get_model(&self) -> Option<gio::ListModel>;
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel>;
 
-    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel>;
+    //fn get_model_for_item(&self, position: u32) -> /*Ignored*/Option<gio::ListModel>;
 
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
+    //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>);
 
     fn get_property_item_type(&self) -> glib::types::Type;
 
@@ -56,31 +46,17 @@ pub trait FlattenListModelExt: 'static {
 }
 
 impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_flatten_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_get_model() }
+    //}
 
-    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_flatten_list_model_get_model_for_item(
-                self.as_ref().to_glib_none().0,
-                position,
-            ))
-        }
-    }
+    //fn get_model_for_item(&self, position: u32) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_get_model_for_item() }
+    //}
 
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_flatten_list_model_set_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_model(&self, model: /*Ignored*/Option<&gio::ListModel>) {
+    //    unsafe { TODO: call gtk_sys:gtk_flatten_list_model_set_model() }
+    //}
 
     fn get_property_item_type(&self) -> glib::types::Type {
         unsafe {

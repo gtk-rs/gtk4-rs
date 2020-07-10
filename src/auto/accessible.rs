@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use atk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -16,7 +15,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct Accessible(Object<gtk_sys::GtkAccessible, gtk_sys::GtkAccessibleClass, AccessibleClass>) @extends atk::Object;
+    pub struct Accessible(Object<gtk_sys::GtkAccessible, gtk_sys::GtkAccessibleClass, AccessibleClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_accessible_get_type(),

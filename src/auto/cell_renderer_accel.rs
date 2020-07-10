@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -89,30 +87,19 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn get_property_accel_mods(&self) -> gdk::ModifierType {
-        unsafe {
-            let mut value = Value::from_type(<gdk::ModifierType as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"accel-mods\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accel-mods` getter")
-                .unwrap()
-        }
-    }
+    //pub fn get_property_accel_mods(&self) -> /*Ignored*/gdk::ModifierType {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `accel-mods` getter").unwrap()
+    //    }
+    //}
 
-    pub fn set_property_accel_mods(&self, accel_mods: gdk::ModifierType) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"accel-mods\0".as_ptr() as *const _,
-                Value::from(&accel_mods).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_accel_mods(&self, accel_mods: /*Ignored*/gdk::ModifierType) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"accel-mods\0".as_ptr() as *const _, Value::from(&accel_mods).to_glib_none().0);
+    //    }
+    //}
 
     pub fn get_property_keycode(&self) -> u32 {
         unsafe {
@@ -167,44 +154,9 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn connect_accel_edited<
-        F: Fn(&CellRendererAccel, TreePath, u32, gdk::ModifierType, u32) + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn accel_edited_trampoline<
-            F: Fn(&CellRendererAccel, TreePath, u32, gdk::ModifierType, u32) + 'static,
-        >(
-            this: *mut gtk_sys::GtkCellRendererAccel,
-            path_string: *mut libc::c_char,
-            accel_key: libc::c_uint,
-            accel_mods: gdk_sys::GdkModifierType,
-            hardware_keycode: libc::c_uint,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path_string));
-            f(
-                &from_glib_borrow(this),
-                path,
-                accel_key,
-                from_glib(accel_mods),
-                hardware_keycode,
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"accel-edited\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    accel_edited_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //pub fn connect_accel_edited<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored accel_mods: Gdk.ModifierType
+    //}
 
     pub fn connect_property_accel_key_notify<F: Fn(&CellRendererAccel) + 'static>(
         &self,

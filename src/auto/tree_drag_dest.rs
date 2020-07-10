@@ -2,12 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
-use TreePath;
 
 glib_wrapper! {
     pub struct TreeDragDest(Interface<gtk_sys::GtkTreeDragDest>);
@@ -20,31 +18,19 @@ glib_wrapper! {
 pub const NONE_TREE_DRAG_DEST: Option<&TreeDragDest> = None;
 
 pub trait TreeDragDestExt: 'static {
-    fn drag_data_received(&self, dest: &mut TreePath, value: &glib::Value) -> bool;
+    //fn drag_data_received(&self, dest: &mut TreePath, value: /*Ignored*/&glib::Value) -> bool;
 
-    fn row_drop_possible(&self, dest_path: &mut TreePath, value: &glib::Value) -> bool;
+    //fn row_drop_possible(&self, dest_path: &mut TreePath, value: /*Ignored*/&glib::Value) -> bool;
 }
 
 impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
-    fn drag_data_received(&self, dest: &mut TreePath, value: &glib::Value) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_tree_drag_dest_drag_data_received(
-                self.as_ref().to_glib_none().0,
-                dest.to_glib_none_mut().0,
-                value.to_glib_none().0,
-            ))
-        }
-    }
+    //fn drag_data_received(&self, dest: &mut TreePath, value: /*Ignored*/&glib::Value) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_drag_dest_drag_data_received() }
+    //}
 
-    fn row_drop_possible(&self, dest_path: &mut TreePath, value: &glib::Value) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_tree_drag_dest_row_drop_possible(
-                self.as_ref().to_glib_none().0,
-                dest_path.to_glib_none_mut().0,
-                value.to_glib_none().0,
-            ))
-        }
-    }
+    //fn row_drop_possible(&self, dest_path: &mut TreePath, value: /*Ignored*/&glib::Value) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_drag_dest_row_drop_possible() }
+    //}
 }
 
 impl fmt::Display for TreeDragDest {

@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use cairo;
 use glib::translate::*;
 use gtk_sys;
-use pango;
 use std::fmt;
 use std::mem;
 use PageSetup;
@@ -19,29 +17,17 @@ glib_wrapper! {
 }
 
 impl PrintContext {
-    pub fn create_pango_context(&self) -> Option<pango::Context> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_print_context_create_pango_context(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_context() }
+    //}
 
-    pub fn create_pango_layout(&self) -> Option<pango::Layout> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_print_context_create_pango_layout(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn create_pango_layout(&self) -> /*Ignored*/Option<pango::Layout> {
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_create_pango_layout() }
+    //}
 
-    pub fn get_cairo_context(&self) -> Option<cairo::Context> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_print_context_get_cairo_context(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_cairo_context(&self) -> /*Ignored*/Option<cairo::Context> {
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_cairo_context() }
+    //}
 
     pub fn get_dpi_x(&self) -> f64 {
         unsafe { gtk_sys::gtk_print_context_get_dpi_x(self.to_glib_none().0) }
@@ -88,28 +74,17 @@ impl PrintContext {
         }
     }
 
-    pub fn get_pango_fontmap(&self) -> Option<pango::FontMap> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_print_context_get_pango_fontmap(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_pango_fontmap(&self) -> /*Ignored*/Option<pango::FontMap> {
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_get_pango_fontmap() }
+    //}
 
     pub fn get_width(&self) -> f64 {
         unsafe { gtk_sys::gtk_print_context_get_width(self.to_glib_none().0) }
     }
 
-    pub fn set_cairo_context(&self, cr: &cairo::Context, dpi_x: f64, dpi_y: f64) {
-        unsafe {
-            gtk_sys::gtk_print_context_set_cairo_context(
-                self.to_glib_none().0,
-                mut_override(cr.to_glib_none().0),
-                dpi_x,
-                dpi_y,
-            );
-        }
-    }
+    //pub fn set_cairo_context(&self, cr: /*Ignored*/&cairo::Context, dpi_x: f64, dpi_y: f64) {
+    //    unsafe { TODO: call gtk_sys:gtk_print_context_set_cairo_context() }
+    //}
 }
 
 impl fmt::Display for PrintContext {

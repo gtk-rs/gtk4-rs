@@ -2,16 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_pixbuf;
-use gio;
 use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::Value;
@@ -40,29 +35,19 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn get_property_gicon(&self) -> Option<gio::Icon> {
-        unsafe {
-            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"gicon\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `gicon` getter")
-        }
-    }
+    //pub fn get_property_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `gicon` getter")
+    //    }
+    //}
 
-    pub fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"gicon\0".as_ptr() as *const _,
-                Value::from(gicon).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_gicon<P: IsA</*Ignored*/gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"gicon\0".as_ptr() as *const _, Value::from(gicon).to_glib_none().0);
+    //    }
+    //}
 
     pub fn get_property_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -113,96 +98,53 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn set_property_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pixbuf\0".as_ptr() as *const _,
-                Value::from(pixbuf).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_pixbuf(&self, pixbuf: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"pixbuf\0".as_ptr() as *const _, Value::from(pixbuf).to_glib_none().0);
+    //    }
+    //}
 
-    pub fn get_property_pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        unsafe {
-            let mut value = Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pixbuf-expander-closed\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixbuf-expander-closed` getter")
-        }
-    }
+    //pub fn get_property_pixbuf_expander_closed(&self) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `pixbuf-expander-closed` getter")
+    //    }
+    //}
 
-    pub fn set_property_pixbuf_expander_closed(
-        &self,
-        pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pixbuf-expander-closed\0".as_ptr() as *const _,
-                Value::from(pixbuf_expander_closed).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_pixbuf_expander_closed(&self, pixbuf_expander_closed: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"pixbuf-expander-closed\0".as_ptr() as *const _, Value::from(pixbuf_expander_closed).to_glib_none().0);
+    //    }
+    //}
 
-    pub fn get_property_pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        unsafe {
-            let mut value = Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pixbuf-expander-open\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixbuf-expander-open` getter")
-        }
-    }
+    //pub fn get_property_pixbuf_expander_open(&self) -> /*Ignored*/Option<gdk_pixbuf::Pixbuf> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `pixbuf-expander-open` getter")
+    //    }
+    //}
 
-    pub fn set_property_pixbuf_expander_open(
-        &self,
-        pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pixbuf-expander-open\0".as_ptr() as *const _,
-                Value::from(pixbuf_expander_open).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_pixbuf_expander_open(&self, pixbuf_expander_open: /*Ignored*/Option<&gdk_pixbuf::Pixbuf>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"pixbuf-expander-open\0".as_ptr() as *const _, Value::from(pixbuf_expander_open).to_glib_none().0);
+    //    }
+    //}
 
-    pub fn get_property_texture(&self) -> Option<gdk::Texture> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Texture as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"texture\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `texture` getter")
-        }
-    }
+    //pub fn get_property_texture(&self) -> /*Ignored*/Option<gdk::Texture> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"texture\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `texture` getter")
+    //    }
+    //}
 
-    pub fn set_property_texture<P: IsA<gdk::Texture> + SetValueOptional>(
-        &self,
-        texture: Option<&P>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"texture\0".as_ptr() as *const _,
-                Value::from(texture).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_property_texture<P: IsA</*Ignored*/gdk::Texture> + SetValueOptional>(&self, texture: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.as_ptr() as *mut gobject_sys::GObject, b"texture\0".as_ptr() as *const _, Value::from(texture).to_glib_none().0);
+    //    }
+    //}
 
     pub fn connect_property_gicon_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,

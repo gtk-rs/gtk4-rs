@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -17,8 +16,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use std::ptr;
-use RecentData;
 use RecentInfo;
 
 glib_wrapper! {
@@ -50,7 +47,7 @@ impl Default for RecentManager {
 pub const NONE_RECENT_MANAGER: Option<&RecentManager> = None;
 
 pub trait RecentManagerExt: 'static {
-    fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool;
+    //fn add_full(&self, uri: &str, recent_data: /*Ignored*/&RecentData) -> bool;
 
     fn add_item(&self, uri: &str) -> bool;
 
@@ -58,13 +55,13 @@ pub trait RecentManagerExt: 'static {
 
     fn has_item(&self, uri: &str) -> bool;
 
-    fn lookup_item(&self, uri: &str) -> Result<Option<RecentInfo>, glib::Error>;
+    //fn lookup_item(&self, uri: &str, error: /*Ignored*/Option<glib::Error>) -> Option<RecentInfo>;
 
-    fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error>;
+    //fn move_item(&self, uri: &str, new_uri: Option<&str>, error: /*Ignored*/Option<glib::Error>) -> bool;
 
-    fn purge_items(&self) -> Result<i32, glib::Error>;
+    //fn purge_items(&self, error: /*Ignored*/Option<glib::Error>) -> i32;
 
-    fn remove_item(&self, uri: &str) -> Result<(), glib::Error>;
+    //fn remove_item(&self, uri: &str, error: /*Ignored*/Option<glib::Error>) -> bool;
 
     fn get_property_filename(&self) -> Option<GString>;
 
@@ -76,15 +73,9 @@ pub trait RecentManagerExt: 'static {
 }
 
 impl<O: IsA<RecentManager>> RecentManagerExt for O {
-    fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_recent_manager_add_full(
-                self.as_ref().to_glib_none().0,
-                uri.to_glib_none().0,
-                recent_data.to_glib_none().0,
-            ))
-        }
-    }
+    //fn add_full(&self, uri: &str, recent_data: /*Ignored*/&RecentData) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_add_full() }
+    //}
 
     fn add_item(&self, uri: &str) -> bool {
         unsafe {
@@ -112,67 +103,21 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn lookup_item(&self, uri: &str) -> Result<Option<RecentInfo>, glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_recent_manager_lookup_item(
-                self.as_ref().to_glib_none().0,
-                uri.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(from_glib_full(ret))
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn lookup_item(&self, uri: &str, error: /*Ignored*/Option<glib::Error>) -> Option<RecentInfo> {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_lookup_item() }
+    //}
 
-    fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_recent_manager_move_item(
-                self.as_ref().to_glib_none().0,
-                uri.to_glib_none().0,
-                new_uri.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn move_item(&self, uri: &str, new_uri: Option<&str>, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_move_item() }
+    //}
 
-    fn purge_items(&self) -> Result<i32, glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let ret =
-                gtk_sys::gtk_recent_manager_purge_items(self.as_ref().to_glib_none().0, &mut error);
-            if error.is_null() {
-                Ok(ret)
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn purge_items(&self, error: /*Ignored*/Option<glib::Error>) -> i32 {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_purge_items() }
+    //}
 
-    fn remove_item(&self, uri: &str) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_recent_manager_remove_item(
-                self.as_ref().to_glib_none().0,
-                uri.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn remove_item(&self, uri: &str, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_recent_manager_remove_item() }
+    //}
 
     fn get_property_filename(&self) -> Option<GString> {
         unsafe {

@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -17,7 +15,7 @@ use std::mem::transmute;
 use TreeListRow;
 
 glib_wrapper! {
-    pub struct TreeListModel(Object<gtk_sys::GtkTreeListModel, gtk_sys::GtkTreeListModelClass, TreeListModelClass>) @implements gio::ListModel;
+    pub struct TreeListModel(Object<gtk_sys::GtkTreeListModel, gtk_sys::GtkTreeListModelClass, TreeListModelClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_tree_list_model_get_type(),
@@ -25,48 +23,9 @@ glib_wrapper! {
 }
 
 impl TreeListModel {
-    pub fn new<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
-        passthrough: bool,
-        root: &P,
-        autoexpand: bool,
-        create_func: Q,
-    ) -> TreeListModel {
-        assert_initialized_main_thread!();
-        let create_func_data: Box_<Q> = Box_::new(create_func);
-        unsafe extern "C" fn create_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
-        >(
-            item: *mut gobject_sys::GObject,
-            user_data: glib_sys::gpointer,
-        ) -> *mut gio_sys::GListModel {
-            let item = from_glib_borrow(item);
-            let callback: &Q = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
-        }
-        let create_func = Some(create_func_func::<P, Q> as _);
-        unsafe extern "C" fn user_destroy_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
-        >(
-            data: glib_sys::gpointer,
-        ) {
-            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call5 = Some(user_destroy_func::<P, Q> as _);
-        let super_callback0: Box_<Q> = create_func_data;
-        unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_model_new(
-                passthrough.to_glib(),
-                root.as_ref().to_glib_none().0,
-                autoexpand.to_glib(),
-                create_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call5,
-            ))
-        }
-    }
+    //pub fn new(passthrough: bool, root: /*Ignored*/&gio::ListModel, autoexpand: bool, create_func: /*Unimplemented*/Fn(/*Ignored*/glib::Object) -> /*Ignored*/Option<gio::ListModel>, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> TreeListModel {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_model_new() }
+    //}
 }
 
 pub const NONE_TREE_LIST_MODEL: Option<&TreeListModel> = None;
@@ -76,7 +35,7 @@ pub trait TreeListModelExt: 'static {
 
     fn get_child_row(&self, position: u32) -> Option<TreeListRow>;
 
-    fn get_model(&self) -> Option<gio::ListModel>;
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel>;
 
     fn get_passthrough(&self) -> bool;
 
@@ -107,13 +66,9 @@ impl<O: IsA<TreeListModel>> TreeListModelExt for O {
         }
     }
 
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_tree_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_model_get_model() }
+    //}
 
     fn get_passthrough(&self) -> bool {
         unsafe {

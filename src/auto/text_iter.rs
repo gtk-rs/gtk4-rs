@@ -2,12 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
 use gtk_sys;
-use pango;
 use std::cmp;
 use TextBuffer;
 use TextChildAnchor;
@@ -519,9 +517,9 @@ impl TextIter {
         }
     }
 
-    pub fn get_language(&self) -> Option<pango::Language> {
-        unsafe { from_glib_full(gtk_sys::gtk_text_iter_get_language(self.to_glib_none().0)) }
-    }
+    //pub fn get_language(&self) -> /*Ignored*/Option<pango::Language> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_iter_get_language() }
+    //}
 
     pub fn get_line(&self) -> i32 {
         unsafe { gtk_sys::gtk_text_iter_get_line(self.to_glib_none().0) }
@@ -547,9 +545,9 @@ impl TextIter {
         unsafe { gtk_sys::gtk_text_iter_get_offset(self.to_glib_none().0) }
     }
 
-    pub fn get_paintable(&self) -> Option<gdk::Paintable> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
-    }
+    //pub fn get_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_iter_get_paintable() }
+    //}
 
     pub fn get_slice(&self, end: &TextIter) -> Option<GString> {
         unsafe {

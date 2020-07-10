@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -16,7 +15,7 @@ use std::mem::transmute;
 use SelectionModel;
 
 glib_wrapper! {
-    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements gio::ListModel, SelectionModel;
+    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements SelectionModel;
 
     match fn {
         get_type => || gtk_sys::gtk_single_selection_get_type(),
@@ -24,14 +23,9 @@ glib_wrapper! {
 }
 
 impl SingleSelection {
-    pub fn new<P: IsA<gio::ListModel>>(model: &P) -> SingleSelection {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_single_selection_new(
-                model.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn new(model: /*Ignored*/&gio::ListModel) -> SingleSelection {
+    //    unsafe { TODO: call gtk_sys:gtk_single_selection_new() }
+    //}
 }
 
 pub const NONE_SINGLE_SELECTION: Option<&SingleSelection> = None;
@@ -41,7 +35,7 @@ pub trait SingleSelectionExt: 'static {
 
     fn get_can_unselect(&self) -> bool;
 
-    fn get_model(&self) -> Option<gio::ListModel>;
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel>;
 
     fn get_selected(&self) -> u32;
 
@@ -83,13 +77,9 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_single_selection_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_model(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_single_selection_get_model() }
+    //}
 
     fn get_selected(&self) -> u32 {
         unsafe { gtk_sys::gtk_single_selection_get_selected(self.as_ref().to_glib_none().0) }

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -35,15 +34,9 @@ impl ColorButton {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_color_button_new()).unsafe_cast() }
     }
 
-    pub fn with_rgba(rgba: &gdk::RGBA) -> ColorButton {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_color_button_new_with_rgba(
-                rgba.to_glib_none().0,
-            ))
-            .unsafe_cast()
-        }
-    }
+    //pub fn with_rgba(rgba: /*Ignored*/&gdk::RGBA) -> ColorButton {
+    //    unsafe { TODO: call gtk_sys:gtk_color_button_new_with_rgba() }
+    //}
 
     pub fn get_title(&self) -> Option<GString> {
         unsafe { from_glib_none(gtk_sys::gtk_color_button_get_title(self.to_glib_none().0)) }

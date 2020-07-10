@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -17,7 +16,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SelectionModel(Interface<gtk_sys::GtkSelectionModel>) @requires gio::ListModel;
+    pub struct SelectionModel(Interface<gtk_sys::GtkSelectionModel>);
 
     match fn {
         get_type => || gtk_sys::gtk_selection_model_get_type(),

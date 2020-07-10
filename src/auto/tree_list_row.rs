@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -31,13 +29,13 @@ pub const NONE_TREE_LIST_ROW: Option<&TreeListRow> = None;
 pub trait TreeListRowExt: 'static {
     fn get_child_row(&self, position: u32) -> Option<TreeListRow>;
 
-    fn get_children(&self) -> Option<gio::ListModel>;
+    //fn get_children(&self) -> /*Ignored*/Option<gio::ListModel>;
 
     fn get_depth(&self) -> u32;
 
     fn get_expanded(&self) -> bool;
 
-    fn get_item(&self) -> Option<glib::Object>;
+    //fn get_item(&self) -> /*Ignored*/Option<glib::Object>;
 
     fn get_parent(&self) -> Option<TreeListRow>;
 
@@ -70,13 +68,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
         }
     }
 
-    fn get_children(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_tree_list_row_get_children(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_children(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_row_get_children() }
+    //}
 
     fn get_depth(&self) -> u32 {
         unsafe { gtk_sys::gtk_tree_list_row_get_depth(self.as_ref().to_glib_none().0) }
@@ -90,13 +84,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
         }
     }
 
-    fn get_item(&self) -> Option<glib::Object> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_row_get_item(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_item(&self) -> /*Ignored*/Option<glib::Object> {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_list_row_get_item() }
+    //}
 
     fn get_parent(&self) -> Option<TreeListRow> {
         unsafe {

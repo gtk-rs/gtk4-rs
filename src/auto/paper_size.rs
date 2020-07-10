@@ -2,11 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::translate::*;
 use glib::GString;
 use gtk_sys;
-use std::ptr;
 use Unit;
 
 glib_wrapper! {
@@ -45,14 +43,9 @@ impl PaperSize {
         }
     }
 
-    pub fn from_gvariant(variant: &glib::Variant) -> PaperSize {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_paper_size_new_from_gvariant(
-                variant.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn from_gvariant(variant: /*Ignored*/&glib::Variant) -> PaperSize {
+    //    unsafe { TODO: call gtk_sys:gtk_paper_size_new_from_gvariant() }
+    //}
 
     pub fn from_ipp(ipp_name: &str, width: f64, height: f64) -> PaperSize {
         assert_initialized_main_thread!();
@@ -65,25 +58,9 @@ impl PaperSize {
         }
     }
 
-    pub fn from_key_file(
-        key_file: &glib::KeyFile,
-        group_name: Option<&str>,
-    ) -> Result<PaperSize, glib::Error> {
-        assert_initialized_main_thread!();
-        unsafe {
-            let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_paper_size_new_from_key_file(
-                key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(from_glib_full(ret))
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn from_key_file(key_file: /*Ignored*/&glib::KeyFile, group_name: Option<&str>, error: /*Ignored*/Option<glib::Error>) -> PaperSize {
+    //    unsafe { TODO: call gtk_sys:gtk_paper_size_new_from_key_file() }
+    //}
 
     pub fn from_ppd(ppd_name: &str, ppd_display_name: &str, width: f64, height: f64) -> PaperSize {
         assert_initialized_main_thread!();
@@ -205,23 +182,13 @@ impl PaperSize {
         }
     }
 
-    pub fn to_gvariant(&mut self) -> Option<glib::Variant> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_paper_size_to_gvariant(
-                self.to_glib_none_mut().0,
-            ))
-        }
-    }
+    //pub fn to_gvariant(&mut self) -> /*Ignored*/Option<glib::Variant> {
+    //    unsafe { TODO: call gtk_sys:gtk_paper_size_to_gvariant() }
+    //}
 
-    pub fn to_key_file(&mut self, key_file: &glib::KeyFile, group_name: &str) {
-        unsafe {
-            gtk_sys::gtk_paper_size_to_key_file(
-                self.to_glib_none_mut().0,
-                key_file.to_glib_none().0,
-                group_name.to_glib_none().0,
-            );
-        }
-    }
+    //pub fn to_key_file(&mut self, key_file: /*Ignored*/&glib::KeyFile, group_name: &str) {
+    //    unsafe { TODO: call gtk_sys:gtk_paper_size_to_key_file() }
+    //}
 
     pub fn get_default() -> Option<GString> {
         assert_initialized_main_thread!();

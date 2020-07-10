@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -31,20 +30,9 @@ impl TreeRowReference {
         }
     }
 
-    pub fn new_proxy<P: IsA<glib::Object>, Q: IsA<TreeModel>>(
-        proxy: &P,
-        model: &Q,
-        path: &TreePath,
-    ) -> Option<TreeRowReference> {
-        skip_assert_initialized!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_tree_row_reference_new_proxy(
-                proxy.as_ref().to_glib_none().0,
-                model.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-            ))
-        }
-    }
+    //pub fn new_proxy<P: IsA<TreeModel>>(proxy: /*Ignored*/&glib::Object, model: &P, path: &TreePath) -> Option<TreeRowReference> {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_row_reference_new_proxy() }
+    //}
 
     pub fn get_model(&self) -> TreeModel {
         unsafe {
@@ -70,27 +58,15 @@ impl TreeRowReference {
         }
     }
 
-    pub fn deleted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
-        assert_initialized_main_thread!();
-        unsafe {
-            gtk_sys::gtk_tree_row_reference_deleted(
-                proxy.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-            );
-        }
-    }
+    //pub fn deleted(proxy: /*Ignored*/&glib::Object, path: &TreePath) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_row_reference_deleted() }
+    //}
 
-    pub fn inserted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
-        assert_initialized_main_thread!();
-        unsafe {
-            gtk_sys::gtk_tree_row_reference_inserted(
-                proxy.as_ref().to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-            );
-        }
-    }
+    //pub fn inserted(proxy: /*Ignored*/&glib::Object, path: &TreePath) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_row_reference_inserted() }
+    //}
 
-    //pub fn reordered<P: IsA<glib::Object>>(proxy: &P, path: &mut TreePath, iter: &mut TreeIter, new_order: &[i32]) {
+    //pub fn reordered(proxy: /*Ignored*/&glib::Object, path: &mut TreePath, iter: &mut TreeIter, new_order: &[i32]) {
     //    unsafe { TODO: call gtk_sys:gtk_tree_row_reference_reordered() }
     //}
 }

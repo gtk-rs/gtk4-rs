@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -19,10 +18,8 @@ use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use std::ptr;
 use PageSetup;
 use PrintContext;
-use PrintOperationAction;
 use PrintOperationPreview;
 use PrintOperationResult;
 use PrintSettings;
@@ -63,7 +60,7 @@ pub trait PrintOperationExt: 'static {
 
     fn get_embed_page_setup(&self) -> bool;
 
-    fn get_error(&self) -> Result<(), glib::Error>;
+    //fn get_error(&self, error: /*Ignored*/Option<glib::Error>);
 
     fn get_has_selection(&self) -> bool;
 
@@ -79,11 +76,7 @@ pub trait PrintOperationExt: 'static {
 
     fn is_finished(&self) -> bool;
 
-    fn run<P: IsA<Window>>(
-        &self,
-        action: PrintOperationAction,
-        parent: Option<&P>,
-    ) -> Result<PrintOperationResult, glib::Error>;
+    //fn run<P: IsA<Window>>(&self, action: PrintOperationAction, parent: Option<&P>, error: /*Ignored*/Option<glib::Error>) -> PrintOperationResult;
 
     fn set_allow_async(&self, allow_async: bool);
 
@@ -139,10 +132,7 @@ pub trait PrintOperationExt: 'static {
 
     fn connect_begin_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_create_custom_widget<F: Fn(&Self) -> glib::Object + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    //fn connect_create_custom_widget<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_custom_widget_apply<F: Fn(&Self, &Widget) + 'static>(&self, f: F)
         -> SignalHandlerId;
@@ -283,18 +273,9 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_error(&self) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ =
-                gtk_sys::gtk_print_operation_get_error(self.as_ref().to_glib_none().0, &mut error);
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn get_error(&self, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call gtk_sys:gtk_print_operation_get_error() }
+    //}
 
     fn get_has_selection(&self) -> bool {
         unsafe {
@@ -348,26 +329,9 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn run<P: IsA<Window>>(
-        &self,
-        action: PrintOperationAction,
-        parent: Option<&P>,
-    ) -> Result<PrintOperationResult, glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_print_operation_run(
-                self.as_ref().to_glib_none().0,
-                action.to_glib(),
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(from_glib(ret))
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //fn run<P: IsA<Window>>(&self, action: PrintOperationAction, parent: Option<&P>, error: /*Ignored*/Option<glib::Error>) -> PrintOperationResult {
+    //    unsafe { TODO: call gtk_sys:gtk_print_operation_run() }
+    //}
 
     fn set_allow_async(&self, allow_async: bool) {
         unsafe {
@@ -678,37 +642,9 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn connect_create_custom_widget<F: Fn(&Self) -> glib::Object + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn create_custom_widget_trampoline<
-            P,
-            F: Fn(&P) -> glib::Object + 'static,
-        >(
-            this: *mut gtk_sys::GtkPrintOperation,
-            f: glib_sys::gpointer,
-        ) -> *mut gobject_sys::GObject
-        where
-            P: IsA<PrintOperation>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref()) /*Not checked*/
-                .to_glib_none()
-                .0
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"create-custom-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    create_custom_widget_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //fn connect_create_custom_widget<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored return value GObject.Object
+    //}
 
     fn connect_custom_widget_apply<F: Fn(&Self, &Widget) + 'static>(
         &self,

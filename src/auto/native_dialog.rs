@@ -15,7 +15,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use ResponseType;
 use Window;
 
 glib_wrapper! {
@@ -53,7 +52,7 @@ pub trait NativeDialogExt: 'static {
 
     fn set_property_visible(&self, visible: bool);
 
-    fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId;
+    //fn connect_response<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -156,32 +155,9 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn response_trampoline<P, F: Fn(&P, ResponseType) + 'static>(
-            this: *mut gtk_sys::GtkNativeDialog,
-            response_id: gtk_sys::GtkResponseType,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<NativeDialog>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &NativeDialog::from_glib_borrow(this).unsafe_cast_ref(),
-                from_glib(response_id),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"response\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    response_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //fn connect_response<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored response_id: Gtk.ResponseType
+    //}
 
     fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(

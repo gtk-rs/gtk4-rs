@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -15,7 +14,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -38,13 +36,13 @@ pub const NONE_IM_CONTEXT: Option<&IMContext> = None;
 pub trait IMContextExt: 'static {
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
-    fn filter_keypress(&self, event: &gdk::Event) -> bool;
+    //fn filter_keypress(&self, event: /*Ignored*/&gdk::Event) -> bool;
 
     fn focus_in(&self);
 
     fn focus_out(&self);
 
-    fn get_preedit_string(&self) -> (GString, pango::AttrList, i32);
+    //fn get_preedit_string(&self, attrs: /*Ignored*/pango::AttrList) -> (GString, i32);
 
     fn get_surrounding(&self) -> Option<(GString, i32)>;
 
@@ -52,7 +50,7 @@ pub trait IMContextExt: 'static {
 
     fn set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
 
-    fn set_cursor_location(&self, area: &gdk::Rectangle);
+    //fn set_cursor_location(&self, area: /*Ignored*/&gdk::Rectangle);
 
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
@@ -101,14 +99,9 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn filter_keypress(&self, event: &gdk::Event) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_im_context_filter_keypress(
-                self.as_ref().to_glib_none().0,
-                mut_override(event.to_glib_none().0),
-            ))
-        }
-    }
+    //fn filter_keypress(&self, event: /*Ignored*/&gdk::Event) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_im_context_filter_keypress() }
+    //}
 
     fn focus_in(&self) {
         unsafe {
@@ -122,21 +115,9 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn get_preedit_string(&self) -> (GString, pango::AttrList, i32) {
-        unsafe {
-            let mut str = ptr::null_mut();
-            let mut attrs = ptr::null_mut();
-            let mut cursor_pos = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_im_context_get_preedit_string(
-                self.as_ref().to_glib_none().0,
-                &mut str,
-                &mut attrs,
-                cursor_pos.as_mut_ptr(),
-            );
-            let cursor_pos = cursor_pos.assume_init();
-            (from_glib_full(str), from_glib_full(attrs), cursor_pos)
-        }
-    }
+    //fn get_preedit_string(&self, attrs: /*Ignored*/pango::AttrList) -> (GString, i32) {
+    //    unsafe { TODO: call gtk_sys:gtk_im_context_get_preedit_string() }
+    //}
 
     fn get_surrounding(&self) -> Option<(GString, i32)> {
         unsafe {
@@ -171,14 +152,9 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn set_cursor_location(&self, area: &gdk::Rectangle) {
-        unsafe {
-            gtk_sys::gtk_im_context_set_cursor_location(
-                self.as_ref().to_glib_none().0,
-                area.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_cursor_location(&self, area: /*Ignored*/&gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_im_context_set_cursor_location() }
+    //}
 
     fn set_surrounding(&self, text: &str, cursor_index: i32) {
         let len = text.len() as i32;

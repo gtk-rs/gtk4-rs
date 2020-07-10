@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -13,19 +12,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use Align;
 use Buildable;
 use Justification;
+use LayoutManager;
 use MovementStep;
+use Overflow;
 use Widget;
 
 glib_wrapper! {
@@ -52,21 +54,21 @@ impl Label {
         }
     }
 
-    pub fn get_attributes(&self) -> Option<pango::AttrList> {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_attributes(self.to_glib_none().0)) }
-    }
+    //pub fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
+    //    unsafe { TODO: call gtk_sys:gtk_label_get_attributes() }
+    //}
 
     pub fn get_current_uri(&self) -> Option<GString> {
         unsafe { from_glib_none(gtk_sys::gtk_label_get_current_uri(self.to_glib_none().0)) }
     }
 
-    pub fn get_ellipsize(&self) -> pango::EllipsizeMode {
-        unsafe { from_glib(gtk_sys::gtk_label_get_ellipsize(self.to_glib_none().0)) }
-    }
+    //pub fn get_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode {
+    //    unsafe { TODO: call gtk_sys:gtk_label_get_ellipsize() }
+    //}
 
-    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_extra_menu(self.to_glib_none().0)) }
-    }
+    //pub fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_label_get_extra_menu() }
+    //}
 
     pub fn get_justify(&self) -> Justification {
         unsafe { from_glib(gtk_sys::gtk_label_get_justify(self.to_glib_none().0)) }
@@ -76,9 +78,9 @@ impl Label {
         unsafe { from_glib_none(gtk_sys::gtk_label_get_label(self.to_glib_none().0)) }
     }
 
-    pub fn get_layout(&self) -> Option<pango::Layout> {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_layout(self.to_glib_none().0)) }
-    }
+    //pub fn get_layout(&self) -> /*Ignored*/Option<pango::Layout> {
+    //    unsafe { TODO: call gtk_sys:gtk_label_get_layout() }
+    //}
 
     pub fn get_layout_offsets(&self) -> (i32, i32) {
         unsafe {
@@ -174,9 +176,9 @@ impl Label {
         unsafe { from_glib(gtk_sys::gtk_label_get_wrap(self.to_glib_none().0)) }
     }
 
-    pub fn get_wrap_mode(&self) -> pango::WrapMode {
-        unsafe { from_glib(gtk_sys::gtk_label_get_wrap_mode(self.to_glib_none().0)) }
-    }
+    //pub fn get_wrap_mode(&self) -> /*Ignored*/pango::WrapMode {
+    //    unsafe { TODO: call gtk_sys:gtk_label_get_wrap_mode() }
+    //}
 
     pub fn get_xalign(&self) -> f32 {
         unsafe { gtk_sys::gtk_label_get_xalign(self.to_glib_none().0) }
@@ -192,26 +194,17 @@ impl Label {
         }
     }
 
-    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
-        unsafe {
-            gtk_sys::gtk_label_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
-        }
-    }
+    //pub fn set_attributes(&self, attrs: /*Ignored*/Option<&pango::AttrList>) {
+    //    unsafe { TODO: call gtk_sys:gtk_label_set_attributes() }
+    //}
 
-    pub fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
-        unsafe {
-            gtk_sys::gtk_label_set_ellipsize(self.to_glib_none().0, mode.to_glib());
-        }
-    }
+    //pub fn set_ellipsize(&self, mode: /*Ignored*/pango::EllipsizeMode) {
+    //    unsafe { TODO: call gtk_sys:gtk_label_set_ellipsize() }
+    //}
 
-    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_label_set_extra_menu(
-                self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>) {
+    //    unsafe { TODO: call gtk_sys:gtk_label_set_extra_menu() }
+    //}
 
     pub fn set_justify(&self, jtype: Justification) {
         unsafe {
@@ -327,11 +320,9 @@ impl Label {
         }
     }
 
-    pub fn set_wrap_mode(&self, wrap_mode: pango::WrapMode) {
-        unsafe {
-            gtk_sys::gtk_label_set_wrap_mode(self.to_glib_none().0, wrap_mode.to_glib());
-        }
-    }
+    //pub fn set_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode) {
+    //    unsafe { TODO: call gtk_sys:gtk_label_set_wrap_mode() }
+    //}
 
     pub fn set_xalign(&self, xalign: f32) {
         unsafe {
@@ -1035,6 +1026,426 @@ impl Label {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct LabelBuilder {
+    //attributes: /*Unknown type*/,
+    //ellipsize: /*Unknown type*/,
+    //extra-menu: /*Unknown type*/,
+    justify: Option<Justification>,
+    label: Option<String>,
+    lines: Option<i32>,
+    max_width_chars: Option<i32>,
+    mnemonic_widget: Option<Widget>,
+    pattern: Option<String>,
+    selectable: Option<bool>,
+    single_line_mode: Option<bool>,
+    track_visited_links: Option<bool>,
+    use_markup: Option<bool>,
+    use_underline: Option<bool>,
+    width_chars: Option<i32>,
+    wrap: Option<bool>,
+    //wrap-mode: /*Unknown type*/,
+    xalign: Option<f32>,
+    yalign: Option<f32>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    //cursor: /*Unknown type*/,
+    focus_on_click: Option<bool>,
+    halign: Option<Align>,
+    has_focus: Option<bool>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    is_focus: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+}
+
+impl LabelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Label {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref justify) = self.justify {
+            properties.push(("justify", justify));
+        }
+        if let Some(ref label) = self.label {
+            properties.push(("label", label));
+        }
+        if let Some(ref lines) = self.lines {
+            properties.push(("lines", lines));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref mnemonic_widget) = self.mnemonic_widget {
+            properties.push(("mnemonic-widget", mnemonic_widget));
+        }
+        if let Some(ref pattern) = self.pattern {
+            properties.push(("pattern", pattern));
+        }
+        if let Some(ref selectable) = self.selectable {
+            properties.push(("selectable", selectable));
+        }
+        if let Some(ref single_line_mode) = self.single_line_mode {
+            properties.push(("single-line-mode", single_line_mode));
+        }
+        if let Some(ref track_visited_links) = self.track_visited_links {
+            properties.push(("track-visited-links", track_visited_links));
+        }
+        if let Some(ref use_markup) = self.use_markup {
+            properties.push(("use-markup", use_markup));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref wrap) = self.wrap {
+            properties.push(("wrap", wrap));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
+        if let Some(ref yalign) = self.yalign {
+            properties.push(("yalign", yalign));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_focus) = self.has_focus {
+            properties.push(("has-focus", has_focus));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref is_focus) = self.is_focus {
+            properties.push(("is-focus", is_focus));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        let ret = glib::Object::new(Label::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Label>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn justify(mut self, justify: Justification) -> Self {
+        self.justify = Some(justify);
+        self
+    }
+
+    pub fn label(mut self, label: &str) -> Self {
+        self.label = Some(label.to_string());
+        self
+    }
+
+    pub fn lines(mut self, lines: i32) -> Self {
+        self.lines = Some(lines);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn mnemonic_widget<P: IsA<Widget>>(mut self, mnemonic_widget: &P) -> Self {
+        self.mnemonic_widget = Some(mnemonic_widget.clone().upcast());
+        self
+    }
+
+    pub fn pattern(mut self, pattern: &str) -> Self {
+        self.pattern = Some(pattern.to_string());
+        self
+    }
+
+    pub fn selectable(mut self, selectable: bool) -> Self {
+        self.selectable = Some(selectable);
+        self
+    }
+
+    pub fn single_line_mode(mut self, single_line_mode: bool) -> Self {
+        self.single_line_mode = Some(single_line_mode);
+        self
+    }
+
+    pub fn track_visited_links(mut self, track_visited_links: bool) -> Self {
+        self.track_visited_links = Some(track_visited_links);
+        self
+    }
+
+    pub fn use_markup(mut self, use_markup: bool) -> Self {
+        self.use_markup = Some(use_markup);
+        self
+    }
+
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn wrap(mut self, wrap: bool) -> Self {
+        self.wrap = Some(wrap);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
+        self
+    }
+
+    pub fn yalign(mut self, yalign: f32) -> Self {
+        self.yalign = Some(yalign);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_focus(mut self, has_focus: bool) -> Self {
+        self.has_focus = Some(has_focus);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn is_focus(mut self, is_focus: bool) -> Self {
+        self.is_focus = Some(is_focus);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
     }
 }
 

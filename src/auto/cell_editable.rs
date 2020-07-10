@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -34,7 +33,7 @@ pub trait CellEditableExt: 'static {
 
     fn remove_widget(&self);
 
-    fn start_editing(&self, event: Option<&mut gdk::Event>);
+    //fn start_editing(&self, event: /*Ignored*/Option<&mut gdk::Event>);
 
     fn get_property_editing_canceled(&self) -> bool;
 
@@ -63,14 +62,9 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    fn start_editing(&self, event: Option<&mut gdk::Event>) {
-        unsafe {
-            gtk_sys::gtk_cell_editable_start_editing(
-                self.as_ref().to_glib_none().0,
-                event.to_glib_none_mut().0,
-            );
-        }
-    }
+    //fn start_editing(&self, event: /*Ignored*/Option<&mut gdk::Event>) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_editable_start_editing() }
+    //}
 
     fn get_property_editing_canceled(&self) -> bool {
         unsafe {

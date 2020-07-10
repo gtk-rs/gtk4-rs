@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -21,9 +20,7 @@ use std::mem::transmute;
 use CellEditable;
 use CellRendererMode;
 use CellRendererState;
-use Requisition;
 use SizeRequestMode;
-use Snapshot;
 use StateFlags;
 use TreePath;
 use Widget;
@@ -39,22 +36,9 @@ glib_wrapper! {
 pub const NONE_CELL_RENDERER: Option<&CellRenderer> = None;
 
 pub trait CellRendererExt: 'static {
-    fn activate<P: IsA<Widget>>(
-        &self,
-        event: &mut gdk::Event,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
+    //fn activate<P: IsA<Widget>>(&self, event: /*Ignored*/&mut gdk::Event, widget: &P, path: &str, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> bool;
 
-    fn get_aligned_area<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        flags: CellRendererState,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
+    //fn get_aligned_area<P: IsA<Widget>>(&self, widget: &P, flags: CellRendererState, cell_area: /*Ignored*/&gdk::Rectangle, aligned_area: /*Ignored*/gdk::Rectangle);
 
     fn get_alignment(&self) -> (f32, f32);
 
@@ -70,7 +54,7 @@ pub trait CellRendererExt: 'static {
 
     fn get_preferred_height_for_width<P: IsA<Widget>>(&self, widget: &P, width: i32) -> (i32, i32);
 
-    fn get_preferred_size<P: IsA<Widget>>(&self, widget: &P) -> (Requisition, Requisition);
+    //fn get_preferred_size<P: IsA<Widget>>(&self, widget: &P, minimum_size: /*Ignored*/Requisition, natural_size: /*Ignored*/Requisition);
 
     fn get_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
 
@@ -105,32 +89,17 @@ pub trait CellRendererExt: 'static {
 
     fn set_visible(&self, visible: bool);
 
-    fn snapshot<P: IsA<Widget>>(
-        &self,
-        snapshot: &Snapshot,
-        widget: &P,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    );
+    //fn snapshot<P: IsA<Widget>>(&self, snapshot: &Snapshot, widget: &P, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState);
 
-    fn start_editing<P: IsA<Widget>>(
-        &self,
-        event: Option<&mut gdk::Event>,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> Option<CellEditable>;
+    //fn start_editing<P: IsA<Widget>>(&self, event: /*Ignored*/Option<&mut gdk::Event>, widget: &P, path: &str, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> Option<CellEditable>;
 
     fn stop_editing(&self, canceled: bool);
 
     fn set_property_cell_background(&self, cell_background: Option<&str>);
 
-    fn get_property_cell_background_rgba(&self) -> Option<gdk::RGBA>;
+    //fn get_property_cell_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
 
-    fn set_property_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>);
+    //fn set_property_cell_background_rgba(&self, cell_background_rgba: /*Ignored*/Option<&gdk::RGBA>);
 
     fn get_property_cell_background_set(&self) -> bool;
 
@@ -214,46 +183,13 @@ pub trait CellRendererExt: 'static {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExt for O {
-    fn activate<P: IsA<Widget>>(
-        &self,
-        event: &mut gdk::Event,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_activate(
-                self.as_ref().to_glib_none().0,
-                event.to_glib_none_mut().0,
-                widget.as_ref().to_glib_none().0,
-                path.to_glib_none().0,
-                background_area.to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-            ))
-        }
-    }
+    //fn activate<P: IsA<Widget>>(&self, event: /*Ignored*/&mut gdk::Event, widget: &P, path: &str, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_renderer_activate() }
+    //}
 
-    fn get_aligned_area<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        flags: CellRendererState,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle {
-        unsafe {
-            let mut aligned_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_aligned_area(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                flags.to_glib(),
-                cell_area.to_glib_none().0,
-                aligned_area.to_glib_none_mut().0,
-            );
-            aligned_area
-        }
-    }
+    //fn get_aligned_area<P: IsA<Widget>>(&self, widget: &P, flags: CellRendererState, cell_area: /*Ignored*/&gdk::Rectangle, aligned_area: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_renderer_get_aligned_area() }
+    //}
 
     fn get_alignment(&self) -> (f32, f32) {
         unsafe {
@@ -349,19 +285,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn get_preferred_size<P: IsA<Widget>>(&self, widget: &P) -> (Requisition, Requisition) {
-        unsafe {
-            let mut minimum_size = Requisition::uninitialized();
-            let mut natural_size = Requisition::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_size(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                minimum_size.to_glib_none_mut().0,
-                natural_size.to_glib_none_mut().0,
-            );
-            (minimum_size, natural_size)
-        }
-    }
+    //fn get_preferred_size<P: IsA<Widget>>(&self, widget: &P, minimum_size: /*Ignored*/Requisition, natural_size: /*Ignored*/Requisition) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_renderer_get_preferred_size() }
+    //}
 
     fn get_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
         unsafe {
@@ -508,47 +434,13 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn snapshot<P: IsA<Widget>>(
-        &self,
-        snapshot: &Snapshot,
-        widget: &P,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) {
-        unsafe {
-            gtk_sys::gtk_cell_renderer_snapshot(
-                self.as_ref().to_glib_none().0,
-                snapshot.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                background_area.to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-            );
-        }
-    }
+    //fn snapshot<P: IsA<Widget>>(&self, snapshot: &Snapshot, widget: &P, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_renderer_snapshot() }
+    //}
 
-    fn start_editing<P: IsA<Widget>>(
-        &self,
-        event: Option<&mut gdk::Event>,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> Option<CellEditable> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_cell_renderer_start_editing(
-                self.as_ref().to_glib_none().0,
-                event.to_glib_none_mut().0,
-                widget.as_ref().to_glib_none().0,
-                path.to_glib_none().0,
-                background_area.to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-            ))
-        }
-    }
+    //fn start_editing<P: IsA<Widget>>(&self, event: /*Ignored*/Option<&mut gdk::Event>, widget: &P, path: &str, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> Option<CellEditable> {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_renderer_start_editing() }
+    //}
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
@@ -569,29 +461,19 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn get_property_cell_background_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"cell-background-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cell-background-rgba` getter")
-        }
-    }
+    //fn get_property_cell_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `cell-background-rgba` getter")
+    //    }
+    //}
 
-    fn set_property_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"cell-background-rgba\0".as_ptr() as *const _,
-                Value::from(cell_background_rgba).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_cell_background_rgba(&self, cell_background_rgba: /*Ignored*/Option<&gdk::RGBA>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"cell-background-rgba\0".as_ptr() as *const _, Value::from(cell_background_rgba).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_cell_background_set(&self) -> bool {
         unsafe {

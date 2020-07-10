@@ -2,14 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
-use glib::StaticType;
-use glib::Value;
-use gobject_sys;
 use gtk_sys;
 use std::fmt;
 use EventController;
@@ -24,15 +18,9 @@ glib_wrapper! {
 }
 
 impl PadController {
-    pub fn new<P: IsA<gio::ActionGroup>>(group: &P, pad: Option<&gdk::Device>) -> PadController {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_pad_controller_new(
-                group.as_ref().to_glib_none().0,
-                pad.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn new(group: /*Ignored*/&gio::ActionGroup, pad: /*Ignored*/Option<&gdk::Device>) -> PadController {
+    //    unsafe { TODO: call gtk_sys:gtk_pad_controller_new() }
+    //}
 
     pub fn set_action(
         &self,
@@ -54,31 +42,21 @@ impl PadController {
         }
     }
 
-    pub fn get_property_action_group(&self) -> Option<gio::ActionGroup> {
-        unsafe {
-            let mut value = Value::from_type(<gio::ActionGroup as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"action-group\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `action-group` getter")
-        }
-    }
+    //pub fn get_property_action_group(&self) -> /*Ignored*/Option<gio::ActionGroup> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"action-group\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `action-group` getter")
+    //    }
+    //}
 
-    pub fn get_property_pad(&self) -> Option<gdk::Device> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Device as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"pad\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value.get().expect("Return Value for property `pad` getter")
-        }
-    }
+    //pub fn get_property_pad(&self) -> /*Ignored*/Option<gdk::Device> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.as_ptr() as *mut gobject_sys::GObject, b"pad\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `pad` getter")
+    //    }
+    //}
 }
 
 impl fmt::Display for PadController {

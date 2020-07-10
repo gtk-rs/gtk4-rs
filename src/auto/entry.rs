@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -11,17 +9,17 @@ use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Align;
 use Buildable;
 use CellEditable;
 use Editable;
@@ -31,6 +29,8 @@ use EntryIconPosition;
 use ImageType;
 use InputHints;
 use InputPurpose;
+use LayoutManager;
+use Overflow;
 use Widget;
 
 glib_wrapper! {
@@ -64,12 +64,618 @@ impl Default for Entry {
     }
 }
 
+#[derive(Clone, Default)]
+pub struct EntryBuilder {
+    activates_default: Option<bool>,
+    //attributes: /*Unknown type*/,
+    buffer: Option<EntryBuffer>,
+    completion: Option<EntryCompletion>,
+    enable_emoji_completion: Option<bool>,
+    //extra-menu: /*Unknown type*/,
+    has_frame: Option<bool>,
+    im_module: Option<String>,
+    input_hints: Option<InputHints>,
+    input_purpose: Option<InputPurpose>,
+    invisible_char: Option<u32>,
+    invisible_char_set: Option<bool>,
+    max_length: Option<i32>,
+    overwrite_mode: Option<bool>,
+    placeholder_text: Option<String>,
+    primary_icon_activatable: Option<bool>,
+    //primary-icon-gicon: /*Unknown type*/,
+    primary_icon_name: Option<String>,
+    //primary-icon-paintable: /*Unknown type*/,
+    primary_icon_sensitive: Option<bool>,
+    primary_icon_tooltip_markup: Option<String>,
+    primary_icon_tooltip_text: Option<String>,
+    progress_fraction: Option<f64>,
+    progress_pulse_step: Option<f64>,
+    secondary_icon_activatable: Option<bool>,
+    //secondary-icon-gicon: /*Unknown type*/,
+    secondary_icon_name: Option<String>,
+    //secondary-icon-paintable: /*Unknown type*/,
+    secondary_icon_sensitive: Option<bool>,
+    secondary_icon_tooltip_markup: Option<String>,
+    secondary_icon_tooltip_text: Option<String>,
+    show_emoji_icon: Option<bool>,
+    //tabs: /*Unknown type*/,
+    truncate_multiline: Option<bool>,
+    visibility: Option<bool>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    //cursor: /*Unknown type*/,
+    focus_on_click: Option<bool>,
+    halign: Option<Align>,
+    has_focus: Option<bool>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    is_focus: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+    editing_canceled: Option<bool>,
+    editable: Option<bool>,
+    enable_undo: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
+}
+
+impl EntryBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Entry {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref activates_default) = self.activates_default {
+            properties.push(("activates-default", activates_default));
+        }
+        if let Some(ref buffer) = self.buffer {
+            properties.push(("buffer", buffer));
+        }
+        if let Some(ref completion) = self.completion {
+            properties.push(("completion", completion));
+        }
+        if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
+            properties.push(("enable-emoji-completion", enable_emoji_completion));
+        }
+        if let Some(ref has_frame) = self.has_frame {
+            properties.push(("has-frame", has_frame));
+        }
+        if let Some(ref im_module) = self.im_module {
+            properties.push(("im-module", im_module));
+        }
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
+        if let Some(ref invisible_char) = self.invisible_char {
+            properties.push(("invisible-char", invisible_char));
+        }
+        if let Some(ref invisible_char_set) = self.invisible_char_set {
+            properties.push(("invisible-char-set", invisible_char_set));
+        }
+        if let Some(ref max_length) = self.max_length {
+            properties.push(("max-length", max_length));
+        }
+        if let Some(ref overwrite_mode) = self.overwrite_mode {
+            properties.push(("overwrite-mode", overwrite_mode));
+        }
+        if let Some(ref placeholder_text) = self.placeholder_text {
+            properties.push(("placeholder-text", placeholder_text));
+        }
+        if let Some(ref primary_icon_activatable) = self.primary_icon_activatable {
+            properties.push(("primary-icon-activatable", primary_icon_activatable));
+        }
+        if let Some(ref primary_icon_name) = self.primary_icon_name {
+            properties.push(("primary-icon-name", primary_icon_name));
+        }
+        if let Some(ref primary_icon_sensitive) = self.primary_icon_sensitive {
+            properties.push(("primary-icon-sensitive", primary_icon_sensitive));
+        }
+        if let Some(ref primary_icon_tooltip_markup) = self.primary_icon_tooltip_markup {
+            properties.push(("primary-icon-tooltip-markup", primary_icon_tooltip_markup));
+        }
+        if let Some(ref primary_icon_tooltip_text) = self.primary_icon_tooltip_text {
+            properties.push(("primary-icon-tooltip-text", primary_icon_tooltip_text));
+        }
+        if let Some(ref progress_fraction) = self.progress_fraction {
+            properties.push(("progress-fraction", progress_fraction));
+        }
+        if let Some(ref progress_pulse_step) = self.progress_pulse_step {
+            properties.push(("progress-pulse-step", progress_pulse_step));
+        }
+        if let Some(ref secondary_icon_activatable) = self.secondary_icon_activatable {
+            properties.push(("secondary-icon-activatable", secondary_icon_activatable));
+        }
+        if let Some(ref secondary_icon_name) = self.secondary_icon_name {
+            properties.push(("secondary-icon-name", secondary_icon_name));
+        }
+        if let Some(ref secondary_icon_sensitive) = self.secondary_icon_sensitive {
+            properties.push(("secondary-icon-sensitive", secondary_icon_sensitive));
+        }
+        if let Some(ref secondary_icon_tooltip_markup) = self.secondary_icon_tooltip_markup {
+            properties.push((
+                "secondary-icon-tooltip-markup",
+                secondary_icon_tooltip_markup,
+            ));
+        }
+        if let Some(ref secondary_icon_tooltip_text) = self.secondary_icon_tooltip_text {
+            properties.push(("secondary-icon-tooltip-text", secondary_icon_tooltip_text));
+        }
+        if let Some(ref show_emoji_icon) = self.show_emoji_icon {
+            properties.push(("show-emoji-icon", show_emoji_icon));
+        }
+        if let Some(ref truncate_multiline) = self.truncate_multiline {
+            properties.push(("truncate-multiline", truncate_multiline));
+        }
+        if let Some(ref visibility) = self.visibility {
+            properties.push(("visibility", visibility));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_focus) = self.has_focus {
+            properties.push(("has-focus", has_focus));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref is_focus) = self.is_focus {
+            properties.push(("is-focus", is_focus));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        if let Some(ref editing_canceled) = self.editing_canceled {
+            properties.push(("editing-canceled", editing_canceled));
+        }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref enable_undo) = self.enable_undo {
+            properties.push(("enable-undo", enable_undo));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
+        let ret = glib::Object::new(Entry::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Entry>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn activates_default(mut self, activates_default: bool) -> Self {
+        self.activates_default = Some(activates_default);
+        self
+    }
+
+    pub fn buffer<P: IsA<EntryBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
+        self
+    }
+
+    pub fn completion(mut self, completion: &EntryCompletion) -> Self {
+        self.completion = Some(completion.clone());
+        self
+    }
+
+    pub fn enable_emoji_completion(mut self, enable_emoji_completion: bool) -> Self {
+        self.enable_emoji_completion = Some(enable_emoji_completion);
+        self
+    }
+
+    pub fn has_frame(mut self, has_frame: bool) -> Self {
+        self.has_frame = Some(has_frame);
+        self
+    }
+
+    pub fn im_module(mut self, im_module: &str) -> Self {
+        self.im_module = Some(im_module.to_string());
+        self
+    }
+
+    pub fn input_hints(mut self, input_hints: InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    pub fn input_purpose(mut self, input_purpose: InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
+    }
+
+    pub fn invisible_char(mut self, invisible_char: u32) -> Self {
+        self.invisible_char = Some(invisible_char);
+        self
+    }
+
+    pub fn invisible_char_set(mut self, invisible_char_set: bool) -> Self {
+        self.invisible_char_set = Some(invisible_char_set);
+        self
+    }
+
+    pub fn max_length(mut self, max_length: i32) -> Self {
+        self.max_length = Some(max_length);
+        self
+    }
+
+    pub fn overwrite_mode(mut self, overwrite_mode: bool) -> Self {
+        self.overwrite_mode = Some(overwrite_mode);
+        self
+    }
+
+    pub fn placeholder_text(mut self, placeholder_text: &str) -> Self {
+        self.placeholder_text = Some(placeholder_text.to_string());
+        self
+    }
+
+    pub fn primary_icon_activatable(mut self, primary_icon_activatable: bool) -> Self {
+        self.primary_icon_activatable = Some(primary_icon_activatable);
+        self
+    }
+
+    pub fn primary_icon_name(mut self, primary_icon_name: &str) -> Self {
+        self.primary_icon_name = Some(primary_icon_name.to_string());
+        self
+    }
+
+    pub fn primary_icon_sensitive(mut self, primary_icon_sensitive: bool) -> Self {
+        self.primary_icon_sensitive = Some(primary_icon_sensitive);
+        self
+    }
+
+    pub fn primary_icon_tooltip_markup(mut self, primary_icon_tooltip_markup: &str) -> Self {
+        self.primary_icon_tooltip_markup = Some(primary_icon_tooltip_markup.to_string());
+        self
+    }
+
+    pub fn primary_icon_tooltip_text(mut self, primary_icon_tooltip_text: &str) -> Self {
+        self.primary_icon_tooltip_text = Some(primary_icon_tooltip_text.to_string());
+        self
+    }
+
+    pub fn progress_fraction(mut self, progress_fraction: f64) -> Self {
+        self.progress_fraction = Some(progress_fraction);
+        self
+    }
+
+    pub fn progress_pulse_step(mut self, progress_pulse_step: f64) -> Self {
+        self.progress_pulse_step = Some(progress_pulse_step);
+        self
+    }
+
+    pub fn secondary_icon_activatable(mut self, secondary_icon_activatable: bool) -> Self {
+        self.secondary_icon_activatable = Some(secondary_icon_activatable);
+        self
+    }
+
+    pub fn secondary_icon_name(mut self, secondary_icon_name: &str) -> Self {
+        self.secondary_icon_name = Some(secondary_icon_name.to_string());
+        self
+    }
+
+    pub fn secondary_icon_sensitive(mut self, secondary_icon_sensitive: bool) -> Self {
+        self.secondary_icon_sensitive = Some(secondary_icon_sensitive);
+        self
+    }
+
+    pub fn secondary_icon_tooltip_markup(mut self, secondary_icon_tooltip_markup: &str) -> Self {
+        self.secondary_icon_tooltip_markup = Some(secondary_icon_tooltip_markup.to_string());
+        self
+    }
+
+    pub fn secondary_icon_tooltip_text(mut self, secondary_icon_tooltip_text: &str) -> Self {
+        self.secondary_icon_tooltip_text = Some(secondary_icon_tooltip_text.to_string());
+        self
+    }
+
+    pub fn show_emoji_icon(mut self, show_emoji_icon: bool) -> Self {
+        self.show_emoji_icon = Some(show_emoji_icon);
+        self
+    }
+
+    pub fn truncate_multiline(mut self, truncate_multiline: bool) -> Self {
+        self.truncate_multiline = Some(truncate_multiline);
+        self
+    }
+
+    pub fn visibility(mut self, visibility: bool) -> Self {
+        self.visibility = Some(visibility);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_focus(mut self, has_focus: bool) -> Self {
+        self.has_focus = Some(has_focus);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn is_focus(mut self, is_focus: bool) -> Self {
+        self.is_focus = Some(is_focus);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn editing_canceled(mut self, editing_canceled: bool) -> Self {
+        self.editing_canceled = Some(editing_canceled);
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
+        self.enable_undo = Some(enable_undo);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
+        self
+    }
+}
+
 pub const NONE_ENTRY: Option<&Entry> = None;
 
 pub trait EntryExt: 'static {
     fn get_activates_default(&self) -> bool;
 
-    fn get_attributes(&self) -> Option<pango::AttrList>;
+    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList>;
 
     fn get_buffer(&self) -> EntryBuffer;
 
@@ -77,21 +683,21 @@ pub trait EntryExt: 'static {
 
     fn get_current_icon_drag_source(&self) -> i32;
 
-    fn get_extra_menu(&self) -> Option<gio::MenuModel>;
+    //fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel>;
 
     fn get_has_frame(&self) -> bool;
 
     fn get_icon_activatable(&self, icon_pos: EntryIconPosition) -> bool;
 
-    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle;
+    //fn get_icon_area(&self, icon_pos: EntryIconPosition, icon_area: /*Ignored*/gdk::Rectangle);
 
     fn get_icon_at_pos(&self, x: i32, y: i32) -> i32;
 
-    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon>;
+    //fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gio::Icon>;
 
     fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<GString>;
 
-    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable>;
+    //fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gdk::Paintable>;
 
     fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool;
 
@@ -117,7 +723,7 @@ pub trait EntryExt: 'static {
 
     fn get_progress_pulse_step(&self) -> f64;
 
-    fn get_tabs(&self) -> Option<pango::TabArray>;
+    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray>;
 
     fn get_text_length(&self) -> u16;
 
@@ -131,29 +737,25 @@ pub trait EntryExt: 'static {
 
     fn set_activates_default(&self, setting: bool);
 
-    fn set_attributes(&self, attrs: &pango::AttrList);
+    //fn set_attributes(&self, attrs: /*Ignored*/&pango::AttrList);
 
     fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P);
 
     fn set_completion(&self, completion: Option<&EntryCompletion>);
 
-    fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>);
+    //fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>);
 
     fn set_has_frame(&self, setting: bool);
 
     fn set_icon_activatable(&self, icon_pos: EntryIconPosition, activatable: bool);
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: gdk::DragAction);
+    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: /*Ignored*/gdk::DragAction);
 
-    fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, icon_pos: EntryIconPosition, icon: Option<&P>);
+    //fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: /*Ignored*/Option<&gio::Icon>);
 
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>);
 
-    fn set_icon_from_paintable<P: IsA<gdk::Paintable>>(
-        &self,
-        icon_pos: EntryIconPosition,
-        paintable: Option<&P>,
-    );
+    //fn set_icon_from_paintable(&self, icon_pos: EntryIconPosition, paintable: /*Ignored*/Option<&gdk::Paintable>);
 
     fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool);
 
@@ -177,7 +779,7 @@ pub trait EntryExt: 'static {
 
     fn set_progress_pulse_step(&self, fraction: f64);
 
-    fn set_tabs(&self, tabs: Option<&pango::TabArray>);
+    //fn set_tabs(&self, tabs: /*Ignored*/Option<&pango::TabArray>);
 
     fn set_visibility(&self, visible: bool);
 
@@ -199,23 +801,17 @@ pub trait EntryExt: 'static {
 
     fn set_property_primary_icon_activatable(&self, primary_icon_activatable: bool);
 
-    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon>;
+    //fn get_property_primary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
 
-    fn set_property_primary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
-        &self,
-        primary_icon_gicon: Option<&P>,
-    );
+    //fn set_property_primary_icon_gicon<P: IsA</*Ignored*/gio::Icon> + SetValueOptional>(&self, primary_icon_gicon: Option<&P>);
 
     fn get_property_primary_icon_name(&self) -> Option<GString>;
 
     fn set_property_primary_icon_name(&self, primary_icon_name: Option<&str>);
 
-    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable>;
+    //fn get_property_primary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
 
-    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        primary_icon_paintable: Option<&P>,
-    );
+    //fn set_property_primary_icon_paintable<P: IsA</*Ignored*/gdk::Paintable> + SetValueOptional>(&self, primary_icon_paintable: Option<&P>);
 
     fn get_property_primary_icon_sensitive(&self) -> bool;
 
@@ -237,23 +833,17 @@ pub trait EntryExt: 'static {
 
     fn set_property_secondary_icon_activatable(&self, secondary_icon_activatable: bool);
 
-    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon>;
+    //fn get_property_secondary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon>;
 
-    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
-        &self,
-        secondary_icon_gicon: Option<&P>,
-    );
+    //fn set_property_secondary_icon_gicon<P: IsA</*Ignored*/gio::Icon> + SetValueOptional>(&self, secondary_icon_gicon: Option<&P>);
 
     fn get_property_secondary_icon_name(&self) -> Option<GString>;
 
     fn set_property_secondary_icon_name(&self, secondary_icon_name: Option<&str>);
 
-    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
+    //fn get_property_secondary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable>;
 
-    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        secondary_icon_paintable: Option<&P>,
-    );
+    //fn set_property_secondary_icon_paintable<P: IsA</*Ignored*/gdk::Paintable> + SetValueOptional>(&self, secondary_icon_paintable: Option<&P>);
 
     fn get_property_secondary_icon_sensitive(&self) -> bool;
 
@@ -466,13 +1056,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_attributes(&self) -> Option<pango::AttrList> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_entry_get_attributes(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_attributes() }
+    //}
 
     fn get_buffer(&self) -> EntryBuffer {
         unsafe {
@@ -494,13 +1080,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         unsafe { gtk_sys::gtk_entry_get_current_icon_drag_source(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_extra_menu(&self) -> Option<gio::MenuModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_entry_get_extra_menu(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_extra_menu() }
+    //}
 
     fn get_has_frame(&self) -> bool {
         unsafe {
@@ -519,30 +1101,17 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle {
-        unsafe {
-            let mut icon_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_entry_get_icon_area(
-                self.as_ref().to_glib_none().0,
-                icon_pos.to_glib(),
-                icon_area.to_glib_none_mut().0,
-            );
-            icon_area
-        }
-    }
+    //fn get_icon_area(&self, icon_pos: EntryIconPosition, icon_area: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_area() }
+    //}
 
     fn get_icon_at_pos(&self, x: i32, y: i32) -> i32 {
         unsafe { gtk_sys::gtk_entry_get_icon_at_pos(self.as_ref().to_glib_none().0, x, y) }
     }
 
-    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_entry_get_icon_gicon(
-                self.as_ref().to_glib_none().0,
-                icon_pos.to_glib(),
-            ))
-        }
-    }
+    //fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gio::Icon> {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_gicon() }
+    //}
 
     fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<GString> {
         unsafe {
@@ -553,14 +1122,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_entry_get_icon_paintable(
-                self.as_ref().to_glib_none().0,
-                icon_pos.to_glib(),
-            ))
-        }
-    }
+    //fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_icon_paintable() }
+    //}
 
     fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
@@ -650,9 +1214,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         unsafe { gtk_sys::gtk_entry_get_progress_pulse_step(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_tabs(&self) -> Option<pango::TabArray> {
-        unsafe { from_glib_none(gtk_sys::gtk_entry_get_tabs(self.as_ref().to_glib_none().0)) }
-    }
+    //fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_get_tabs() }
+    //}
 
     fn get_text_length(&self) -> u16 {
         unsafe { gtk_sys::gtk_entry_get_text_length(self.as_ref().to_glib_none().0) }
@@ -695,14 +1259,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_attributes(&self, attrs: &pango::AttrList) {
-        unsafe {
-            gtk_sys::gtk_entry_set_attributes(
-                self.as_ref().to_glib_none().0,
-                attrs.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_attributes(&self, attrs: /*Ignored*/&pango::AttrList) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_set_attributes() }
+    //}
 
     fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
@@ -722,14 +1281,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_entry_set_extra_menu(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_set_extra_menu() }
+    //}
 
     fn set_has_frame(&self, setting: bool) {
         unsafe {
@@ -747,23 +1301,13 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: gdk::DragAction) {
+    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: /*Ignored*/gdk::DragAction) {
     //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_drag_source() }
     //}
 
-    fn set_icon_from_gicon<P: IsA<gio::Icon>>(
-        &self,
-        icon_pos: EntryIconPosition,
-        icon: Option<&P>,
-    ) {
-        unsafe {
-            gtk_sys::gtk_entry_set_icon_from_gicon(
-                self.as_ref().to_glib_none().0,
-                icon_pos.to_glib(),
-                icon.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: /*Ignored*/Option<&gio::Icon>) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_from_gicon() }
+    //}
 
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>) {
         unsafe {
@@ -775,19 +1319,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_icon_from_paintable<P: IsA<gdk::Paintable>>(
-        &self,
-        icon_pos: EntryIconPosition,
-        paintable: Option<&P>,
-    ) {
-        unsafe {
-            gtk_sys::gtk_entry_set_icon_from_paintable(
-                self.as_ref().to_glib_none().0,
-                icon_pos.to_glib(),
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_icon_from_paintable(&self, icon_pos: EntryIconPosition, paintable: /*Ignored*/Option<&gdk::Paintable>) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_from_paintable() }
+    //}
 
     fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool) {
         unsafe {
@@ -873,14 +1407,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
-        unsafe {
-            gtk_sys::gtk_entry_set_tabs(
-                self.as_ref().to_glib_none().0,
-                mut_override(tabs.to_glib_none().0),
-            );
-        }
-    }
+    //fn set_tabs(&self, tabs: /*Ignored*/Option<&pango::TabArray>) {
+    //    unsafe { TODO: call gtk_sys:gtk_entry_set_tabs() }
+    //}
 
     fn set_visibility(&self, visible: bool) {
         unsafe {
@@ -993,32 +1522,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon> {
-        unsafe {
-            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"primary-icon-gicon\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `primary-icon-gicon` getter")
-        }
-    }
+    //fn get_property_primary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `primary-icon-gicon` getter")
+    //    }
+    //}
 
-    fn set_property_primary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
-        &self,
-        primary_icon_gicon: Option<&P>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"primary-icon-gicon\0".as_ptr() as *const _,
-                Value::from(primary_icon_gicon).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_primary_icon_gicon<P: IsA</*Ignored*/gio::Icon> + SetValueOptional>(&self, primary_icon_gicon: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-gicon\0".as_ptr() as *const _, Value::from(primary_icon_gicon).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_primary_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -1044,32 +1560,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Paintable as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"primary-icon-paintable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `primary-icon-paintable` getter")
-        }
-    }
+    //fn get_property_primary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `primary-icon-paintable` getter")
+    //    }
+    //}
 
-    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        primary_icon_paintable: Option<&P>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"primary-icon-paintable\0".as_ptr() as *const _,
-                Value::from(primary_icon_paintable).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_primary_icon_paintable<P: IsA</*Ignored*/gdk::Paintable> + SetValueOptional>(&self, primary_icon_paintable: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"primary-icon-paintable\0".as_ptr() as *const _, Value::from(primary_icon_paintable).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_primary_icon_sensitive(&self) -> bool {
         unsafe {
@@ -1199,32 +1702,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon> {
-        unsafe {
-            let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"secondary-icon-gicon\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `secondary-icon-gicon` getter")
-        }
-    }
+    //fn get_property_secondary_icon_gicon(&self) -> /*Ignored*/Option<gio::Icon> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `secondary-icon-gicon` getter")
+    //    }
+    //}
 
-    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon> + SetValueOptional>(
-        &self,
-        secondary_icon_gicon: Option<&P>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"secondary-icon-gicon\0".as_ptr() as *const _,
-                Value::from(secondary_icon_gicon).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_secondary_icon_gicon<P: IsA</*Ignored*/gio::Icon> + SetValueOptional>(&self, secondary_icon_gicon: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-gicon\0".as_ptr() as *const _, Value::from(secondary_icon_gicon).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_secondary_icon_name(&self) -> Option<GString> {
         unsafe {
@@ -1250,32 +1740,19 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Paintable as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"secondary-icon-paintable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `secondary-icon-paintable` getter")
-        }
-    }
+    //fn get_property_secondary_icon_paintable(&self) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `secondary-icon-paintable` getter")
+    //    }
+    //}
 
-    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        secondary_icon_paintable: Option<&P>,
-    ) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"secondary-icon-paintable\0".as_ptr() as *const _,
-                Value::from(secondary_icon_paintable).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_secondary_icon_paintable<P: IsA</*Ignored*/gdk::Paintable> + SetValueOptional>(&self, secondary_icon_paintable: Option<&P>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"secondary-icon-paintable\0".as_ptr() as *const _, Value::from(secondary_icon_paintable).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_secondary_icon_sensitive(&self) -> bool {
         unsafe {

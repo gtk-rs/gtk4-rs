@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -30,13 +29,13 @@ pub const NONE_ACTIONABLE: Option<&Actionable> = None;
 pub trait ActionableExt: 'static {
     fn get_action_name(&self) -> Option<GString>;
 
-    fn get_action_target_value(&self) -> Option<glib::Variant>;
+    //fn get_action_target_value(&self) -> /*Ignored*/Option<glib::Variant>;
 
     fn set_action_name(&self, action_name: Option<&str>);
 
     //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn set_action_target_value(&self, target_value: Option<&glib::Variant>);
+    //fn set_action_target_value(&self, target_value: /*Ignored*/Option<&glib::Variant>);
 
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
@@ -52,13 +51,9 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    fn get_action_target_value(&self) -> Option<glib::Variant> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_actionable_get_action_target_value(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_action_target_value(&self) -> /*Ignored*/Option<glib::Variant> {
+    //    unsafe { TODO: call gtk_sys:gtk_actionable_get_action_target_value() }
+    //}
 
     fn set_action_name(&self, action_name: Option<&str>) {
         unsafe {
@@ -73,14 +68,9 @@ impl<O: IsA<Actionable>> ActionableExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target() }
     //}
 
-    fn set_action_target_value(&self, target_value: Option<&glib::Variant>) {
-        unsafe {
-            gtk_sys::gtk_actionable_set_action_target_value(
-                self.as_ref().to_glib_none().0,
-                target_value.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_action_target_value(&self, target_value: /*Ignored*/Option<&glib::Variant>) {
+    //    unsafe { TODO: call gtk_sys:gtk_actionable_set_action_target_value() }
+    //}
 
     fn set_detailed_action_name(&self, detailed_action_name: &str) {
         unsafe {

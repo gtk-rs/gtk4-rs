@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -14,7 +13,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Border;
 use StateFlags;
 use StyleContextPrintFlags;
 use StyleProvider;
@@ -28,40 +26,17 @@ glib_wrapper! {
 }
 
 impl StyleContext {
-    pub fn add_provider_for_display<P: IsA<StyleProvider>>(
-        display: &gdk::Display,
-        provider: &P,
-        priority: u32,
-    ) {
-        skip_assert_initialized!();
-        unsafe {
-            gtk_sys::gtk_style_context_add_provider_for_display(
-                display.to_glib_none().0,
-                provider.as_ref().to_glib_none().0,
-                priority,
-            );
-        }
-    }
+    //pub fn add_provider_for_display<P: IsA<StyleProvider>>(display: /*Ignored*/&gdk::Display, provider: &P, priority: u32) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_add_provider_for_display() }
+    //}
 
-    pub fn remove_provider_for_display<P: IsA<StyleProvider>>(
-        display: &gdk::Display,
-        provider: &P,
-    ) {
-        skip_assert_initialized!();
-        unsafe {
-            gtk_sys::gtk_style_context_remove_provider_for_display(
-                display.to_glib_none().0,
-                provider.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //pub fn remove_provider_for_display<P: IsA<StyleProvider>>(display: /*Ignored*/&gdk::Display, provider: &P) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_remove_provider_for_display() }
+    //}
 
-    pub fn reset_widgets(display: &gdk::Display) {
-        assert_initialized_main_thread!();
-        unsafe {
-            gtk_sys::gtk_style_context_reset_widgets(display.to_glib_none().0);
-        }
-    }
+    //pub fn reset_widgets(display: /*Ignored*/&gdk::Display) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_reset_widgets() }
+    //}
 }
 
 pub const NONE_STYLE_CONTEXT: Option<&StyleContext> = None;
@@ -71,15 +46,15 @@ pub trait StyleContextExt: 'static {
 
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32);
 
-    fn get_border(&self) -> Border;
+    //fn get_border(&self, border: /*Ignored*/Border);
 
-    fn get_color(&self) -> gdk::RGBA;
+    //fn get_color(&self, color: /*Ignored*/gdk::RGBA);
 
-    fn get_display(&self) -> Option<gdk::Display>;
+    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display>;
 
-    fn get_margin(&self) -> Border;
+    //fn get_margin(&self, margin: /*Ignored*/Border);
 
-    fn get_padding(&self) -> Border;
+    //fn get_padding(&self, padding: /*Ignored*/Border);
 
     fn get_scale(&self) -> i32;
 
@@ -89,7 +64,7 @@ pub trait StyleContextExt: 'static {
 
     fn list_classes(&self) -> Vec<GString>;
 
-    fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA>;
+    //fn lookup_color(&self, color_name: &str, color: /*Ignored*/gdk::RGBA) -> bool;
 
     fn remove_class(&self, class_name: &str);
 
@@ -99,7 +74,7 @@ pub trait StyleContextExt: 'static {
 
     fn save(&self);
 
-    fn set_display(&self, display: &gdk::Display);
+    //fn set_display(&self, display: /*Ignored*/&gdk::Display);
 
     fn set_scale(&self, scale: i32);
 
@@ -130,57 +105,25 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_border(&self) -> Border {
-        unsafe {
-            let mut border = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_border(
-                self.as_ref().to_glib_none().0,
-                border.to_glib_none_mut().0,
-            );
-            border
-        }
-    }
+    //fn get_border(&self, border: /*Ignored*/Border) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_border() }
+    //}
 
-    fn get_color(&self) -> gdk::RGBA {
-        unsafe {
-            let mut color = gdk::RGBA::uninitialized();
-            gtk_sys::gtk_style_context_get_color(
-                self.as_ref().to_glib_none().0,
-                color.to_glib_none_mut().0,
-            );
-            color
-        }
-    }
+    //fn get_color(&self, color: /*Ignored*/gdk::RGBA) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_color() }
+    //}
 
-    fn get_display(&self) -> Option<gdk::Display> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_display(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_display() }
+    //}
 
-    fn get_margin(&self) -> Border {
-        unsafe {
-            let mut margin = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_margin(
-                self.as_ref().to_glib_none().0,
-                margin.to_glib_none_mut().0,
-            );
-            margin
-        }
-    }
+    //fn get_margin(&self, margin: /*Ignored*/Border) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_margin() }
+    //}
 
-    fn get_padding(&self) -> Border {
-        unsafe {
-            let mut padding = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_padding(
-                self.as_ref().to_glib_none().0,
-                padding.to_glib_none_mut().0,
-            );
-            padding
-        }
-    }
+    //fn get_padding(&self, padding: /*Ignored*/Border) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_get_padding() }
+    //}
 
     fn get_scale(&self) -> i32 {
         unsafe { gtk_sys::gtk_style_context_get_scale(self.as_ref().to_glib_none().0) }
@@ -211,21 +154,9 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut color = gdk::RGBA::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_style_context_lookup_color(
-                self.as_ref().to_glib_none().0,
-                color_name.to_glib_none().0,
-                color.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(color)
-            } else {
-                None
-            }
-        }
-    }
+    //fn lookup_color(&self, color_name: &str, color: /*Ignored*/gdk::RGBA) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_lookup_color() }
+    //}
 
     fn remove_class(&self, class_name: &str) {
         unsafe {
@@ -257,14 +188,9 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn set_display(&self, display: &gdk::Display) {
-        unsafe {
-            gtk_sys::gtk_style_context_set_display(
-                self.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_display(&self, display: /*Ignored*/&gdk::Display) {
+    //    unsafe { TODO: call gtk_sys:gtk_style_context_set_display() }
+    //}
 
     fn set_scale(&self, scale: i32) {
         unsafe {

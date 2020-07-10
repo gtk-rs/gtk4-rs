@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -72,40 +71,17 @@ impl IconView {
         }
     }
 
-    pub fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_icon_view_create_drag_icon(
-                self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-            ))
-        }
-    }
+    //pub fn create_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_create_drag_icon() }
+    //}
 
-    pub fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
-        unsafe {
-            gtk_sys::gtk_icon_view_enable_model_drag_dest(
-                self.to_glib_none().0,
-                formats.to_glib_none().0,
-                actions.to_glib(),
-            );
-        }
-    }
+    //pub fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_dest() }
+    //}
 
-    pub fn enable_model_drag_source(
-        &self,
-        start_button_mask: gdk::ModifierType,
-        formats: &gdk::ContentFormats,
-        actions: gdk::DragAction,
-    ) {
-        unsafe {
-            gtk_sys::gtk_icon_view_enable_model_drag_source(
-                self.to_glib_none().0,
-                start_button_mask.to_glib(),
-                formats.to_glib_none().0,
-                actions.to_glib(),
-            );
-        }
-    }
+    //pub fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_enable_model_drag_source() }
+    //}
 
     pub fn get_activate_on_single_click(&self) -> bool {
         unsafe {
@@ -115,26 +91,9 @@ impl IconView {
         }
     }
 
-    pub fn get_cell_rect<P: IsA<CellRenderer>>(
-        &self,
-        path: &TreePath,
-        cell: Option<&P>,
-    ) -> Option<gdk::Rectangle> {
-        unsafe {
-            let mut rect = gdk::Rectangle::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_cell_rect(
-                self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                cell.map(|p| p.as_ref()).to_glib_none().0,
-                rect.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(rect)
-            } else {
-                None
-            }
-        }
-    }
+    //pub fn get_cell_rect<P: IsA<CellRenderer>>(&self, path: &TreePath, cell: Option<&P>, rect: /*Ignored*/gdk::Rectangle) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_icon_view_get_cell_rect() }
+    //}
 
     pub fn get_column_spacing(&self) -> i32 {
         unsafe { gtk_sys::gtk_icon_view_get_column_spacing(self.to_glib_none().0) }

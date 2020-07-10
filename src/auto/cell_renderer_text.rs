@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -15,7 +14,6 @@ use glib_sys;
 use gobject_sys;
 use gtk_sys;
 use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -52,19 +50,19 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_align_set(&self, align_set: bool);
 
-    fn get_property_alignment(&self) -> pango::Alignment;
+    //fn get_property_alignment(&self) -> /*Ignored*/pango::Alignment;
 
-    fn set_property_alignment(&self, alignment: pango::Alignment);
+    //fn set_property_alignment(&self, alignment: /*Ignored*/pango::Alignment);
 
-    fn get_property_attributes(&self) -> Option<pango::AttrList>;
+    //fn get_property_attributes(&self) -> /*Ignored*/Option<pango::AttrList>;
 
-    fn set_property_attributes(&self, attributes: Option<&pango::AttrList>);
+    //fn set_property_attributes(&self, attributes: /*Ignored*/Option<&pango::AttrList>);
 
     fn set_property_background(&self, background: Option<&str>);
 
-    fn get_property_background_rgba(&self) -> Option<gdk::RGBA>;
+    //fn get_property_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
 
-    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
+    //fn set_property_background_rgba(&self, background_rgba: /*Ignored*/Option<&gdk::RGBA>);
 
     fn get_property_background_set(&self) -> bool;
 
@@ -78,9 +76,9 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_editable_set(&self, editable_set: bool);
 
-    fn get_property_ellipsize(&self) -> pango::EllipsizeMode;
+    //fn get_property_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode;
 
-    fn set_property_ellipsize(&self, ellipsize: pango::EllipsizeMode);
+    //fn set_property_ellipsize(&self, ellipsize: /*Ignored*/pango::EllipsizeMode);
 
     fn get_property_ellipsize_set(&self) -> bool;
 
@@ -98,15 +96,15 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_font(&self, font: Option<&str>);
 
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription>;
+    //fn get_property_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription>;
 
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>);
+    //fn set_property_font_desc(&self, font_desc: /*Ignored*/Option<&pango::FontDescription>);
 
     fn set_property_foreground(&self, foreground: Option<&str>);
 
-    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA>;
+    //fn get_property_foreground_rgba(&self) -> /*Ignored*/Option<gdk::RGBA>;
 
-    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
+    //fn set_property_foreground_rgba(&self, foreground_rgba: /*Ignored*/Option<&gdk::RGBA>);
 
     fn get_property_foreground_set(&self) -> bool;
 
@@ -162,9 +160,9 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_size_set(&self, size_set: bool);
 
-    fn get_property_stretch(&self) -> pango::Stretch;
+    //fn get_property_stretch(&self) -> /*Ignored*/pango::Stretch;
 
-    fn set_property_stretch(&self, stretch: pango::Stretch);
+    //fn set_property_stretch(&self, stretch: /*Ignored*/pango::Stretch);
 
     fn get_property_stretch_set(&self) -> bool;
 
@@ -178,9 +176,9 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_strikethrough_set(&self, strikethrough_set: bool);
 
-    fn get_property_style(&self) -> pango::Style;
+    //fn get_property_style(&self) -> /*Ignored*/pango::Style;
 
-    fn set_property_style(&self, style: pango::Style);
+    //fn set_property_style(&self, style: /*Ignored*/pango::Style);
 
     fn get_property_style_set(&self) -> bool;
 
@@ -190,17 +188,17 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_text(&self, text: Option<&str>);
 
-    fn get_property_underline(&self) -> pango::Underline;
+    //fn get_property_underline(&self) -> /*Ignored*/pango::Underline;
 
-    fn set_property_underline(&self, underline: pango::Underline);
+    //fn set_property_underline(&self, underline: /*Ignored*/pango::Underline);
 
     fn get_property_underline_set(&self) -> bool;
 
     fn set_property_underline_set(&self, underline_set: bool);
 
-    fn get_property_variant(&self) -> pango::Variant;
+    //fn get_property_variant(&self) -> /*Ignored*/pango::Variant;
 
-    fn set_property_variant(&self, variant: pango::Variant);
+    //fn set_property_variant(&self, variant: /*Ignored*/pango::Variant);
 
     fn get_property_variant_set(&self) -> bool;
 
@@ -218,9 +216,9 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_width_chars(&self, width_chars: i32);
 
-    fn get_property_wrap_mode(&self) -> pango::WrapMode;
+    //fn get_property_wrap_mode(&self) -> /*Ignored*/pango::WrapMode;
 
-    fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode);
+    //fn set_property_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode);
 
     fn get_property_wrap_width(&self) -> i32;
 
@@ -391,54 +389,33 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_alignment(&self) -> pango::Alignment {
-        unsafe {
-            let mut value = Value::from_type(<pango::Alignment as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"alignment\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `alignment` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_alignment(&self) -> /*Ignored*/pango::Alignment {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"alignment\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `alignment` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_alignment(&self, alignment: pango::Alignment) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"alignment\0".as_ptr() as *const _,
-                Value::from(&alignment).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_alignment(&self, alignment: /*Ignored*/pango::Alignment) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"alignment\0".as_ptr() as *const _, Value::from(&alignment).to_glib_none().0);
+    //    }
+    //}
 
-    fn get_property_attributes(&self) -> Option<pango::AttrList> {
-        unsafe {
-            let mut value = Value::from_type(<pango::AttrList as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"attributes\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `attributes` getter")
-        }
-    }
+    //fn get_property_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `attributes` getter")
+    //    }
+    //}
 
-    fn set_property_attributes(&self, attributes: Option<&pango::AttrList>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"attributes\0".as_ptr() as *const _,
-                Value::from(attributes).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_attributes(&self, attributes: /*Ignored*/Option<&pango::AttrList>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"attributes\0".as_ptr() as *const _, Value::from(attributes).to_glib_none().0);
+    //    }
+    //}
 
     fn set_property_background(&self, background: Option<&str>) {
         unsafe {
@@ -450,29 +427,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_background_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"background-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `background-rgba` getter")
-        }
-    }
+    //fn get_property_background_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `background-rgba` getter")
+    //    }
+    //}
 
-    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"background-rgba\0".as_ptr() as *const _,
-                Value::from(background_rgba).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_background_rgba(&self, background_rgba: /*Ignored*/Option<&gdk::RGBA>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"background-rgba\0".as_ptr() as *const _, Value::from(background_rgba).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_background_set(&self) -> bool {
         unsafe {
@@ -549,30 +516,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_ellipsize(&self) -> pango::EllipsizeMode {
-        unsafe {
-            let mut value = Value::from_type(<pango::EllipsizeMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"ellipsize\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `ellipsize` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_ellipsize(&self) -> /*Ignored*/pango::EllipsizeMode {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `ellipsize` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_ellipsize(&self, ellipsize: pango::EllipsizeMode) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"ellipsize\0".as_ptr() as *const _,
-                Value::from(&ellipsize).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_ellipsize(&self, ellipsize: /*Ignored*/pango::EllipsizeMode) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"ellipsize\0".as_ptr() as *const _, Value::from(&ellipsize).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_ellipsize_set(&self) -> bool {
         unsafe {
@@ -672,29 +628,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
-        unsafe {
-            let mut value = Value::from_type(<pango::FontDescription as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"font-desc\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `font-desc` getter")
-        }
-    }
+    //fn get_property_font_desc(&self) -> /*Ignored*/Option<pango::FontDescription> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `font-desc` getter")
+    //    }
+    //}
 
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"font-desc\0".as_ptr() as *const _,
-                Value::from(font_desc).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_font_desc(&self, font_desc: /*Ignored*/Option<&pango::FontDescription>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"font-desc\0".as_ptr() as *const _, Value::from(font_desc).to_glib_none().0);
+    //    }
+    //}
 
     fn set_property_foreground(&self, foreground: Option<&str>) {
         unsafe {
@@ -706,29 +652,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"foreground-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `foreground-rgba` getter")
-        }
-    }
+    //fn get_property_foreground_rgba(&self) -> /*Ignored*/Option<gdk::RGBA> {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `foreground-rgba` getter")
+    //    }
+    //}
 
-    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"foreground-rgba\0".as_ptr() as *const _,
-                Value::from(foreground_rgba).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_foreground_rgba(&self, foreground_rgba: /*Ignored*/Option<&gdk::RGBA>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"foreground-rgba\0".as_ptr() as *const _, Value::from(foreground_rgba).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_foreground_set(&self) -> bool {
         unsafe {
@@ -1063,30 +999,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_stretch(&self) -> pango::Stretch {
-        unsafe {
-            let mut value = Value::from_type(<pango::Stretch as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"stretch\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `stretch` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_stretch(&self) -> /*Ignored*/pango::Stretch {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `stretch` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_stretch(&self, stretch: pango::Stretch) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"stretch\0".as_ptr() as *const _,
-                Value::from(&stretch).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_stretch(&self, stretch: /*Ignored*/pango::Stretch) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"stretch\0".as_ptr() as *const _, Value::from(&stretch).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_stretch_set(&self) -> bool {
         unsafe {
@@ -1163,30 +1088,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_style(&self) -> pango::Style {
-        unsafe {
-            let mut value = Value::from_type(<pango::Style as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"style\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `style` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_style(&self) -> /*Ignored*/pango::Style {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `style` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_style(&self, style: pango::Style) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"style\0".as_ptr() as *const _,
-                Value::from(&style).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_style(&self, style: /*Ignored*/pango::Style) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"style\0".as_ptr() as *const _, Value::from(&style).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_style_set(&self) -> bool {
         unsafe {
@@ -1237,30 +1151,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_underline(&self) -> pango::Underline {
-        unsafe {
-            let mut value = Value::from_type(<pango::Underline as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"underline\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `underline` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_underline(&self) -> /*Ignored*/pango::Underline {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `underline` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_underline(&self, underline: pango::Underline) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"underline\0".as_ptr() as *const _,
-                Value::from(&underline).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_underline(&self, underline: /*Ignored*/pango::Underline) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"underline\0".as_ptr() as *const _, Value::from(&underline).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_underline_set(&self) -> bool {
         unsafe {
@@ -1287,30 +1190,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_variant(&self) -> pango::Variant {
-        unsafe {
-            let mut value = Value::from_type(<pango::Variant as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"variant\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `variant` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_variant(&self) -> /*Ignored*/pango::Variant {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `variant` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_variant(&self, variant: pango::Variant) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"variant\0".as_ptr() as *const _,
-                Value::from(&variant).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_variant(&self, variant: /*Ignored*/pango::Variant) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"variant\0".as_ptr() as *const _, Value::from(&variant).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_variant_set(&self) -> bool {
         unsafe {
@@ -1412,30 +1304,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn get_property_wrap_mode(&self) -> pango::WrapMode {
-        unsafe {
-            let mut value = Value::from_type(<pango::WrapMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"wrap-mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `wrap-mode` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_wrap_mode(&self) -> /*Ignored*/pango::WrapMode {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `wrap-mode` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"wrap-mode\0".as_ptr() as *const _,
-                Value::from(&wrap_mode).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_wrap_mode(&self, wrap_mode: /*Ignored*/pango::WrapMode) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"wrap-mode\0".as_ptr() as *const _, Value::from(&wrap_mode).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_wrap_width(&self) -> i32 {
         unsafe {

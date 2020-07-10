@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -19,7 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MediaStream(Object<gtk_sys::GtkMediaStream, gtk_sys::GtkMediaStreamClass, MediaStreamClass>) @implements gdk::Paintable;
+    pub struct MediaStream(Object<gtk_sys::GtkMediaStream, gtk_sys::GtkMediaStreamClass, MediaStreamClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_media_stream_get_type(),
@@ -31,15 +29,15 @@ pub const NONE_MEDIA_STREAM: Option<&MediaStream> = None;
 pub trait MediaStreamExt: 'static {
     fn ended(&self);
 
-    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn error(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    //fn error_valist(&self, domain: glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported);
+    //fn error_valist(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
     fn get_duration(&self) -> i64;
 
     fn get_ended(&self) -> bool;
 
-    fn get_error(&self) -> Option<glib::Error>;
+    //fn get_error(&self) -> /*Ignored*/Option<glib::Error>;
 
     fn get_loop(&self) -> bool;
 
@@ -67,7 +65,7 @@ pub trait MediaStreamExt: 'static {
 
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
-    fn realize(&self, surface: &gdk::Surface);
+    //fn realize(&self, surface: /*Ignored*/&gdk::Surface);
 
     fn seek(&self, timestamp: i64);
 
@@ -85,11 +83,11 @@ pub trait MediaStreamExt: 'static {
 
     fn unprepared(&self);
 
-    fn unrealize(&self, surface: &gdk::Surface);
+    //fn unrealize(&self, surface: /*Ignored*/&gdk::Surface);
 
     fn update(&self, timestamp: i64);
 
-    fn set_property_error(&self, error: Option<&glib::Error>);
+    //fn set_property_error(&self, error: /*Ignored*/Option<&glib::Error>);
 
     fn get_property_has_audio(&self) -> bool;
 
@@ -141,11 +139,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn error(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_media_stream_error() }
     //}
 
-    //fn error_valist(&self, domain: glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
+    //fn error_valist(&self, domain: /*Ignored*/glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call gtk_sys:gtk_media_stream_error_valist() }
     //}
 
@@ -161,13 +159,9 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_error(&self) -> Option<glib::Error> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_media_stream_get_error(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_error(&self) -> /*Ignored*/Option<glib::Error> {
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_get_error() }
+    //}
 
     fn get_loop(&self) -> bool {
         unsafe {
@@ -265,14 +259,9 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn realize(&self, surface: &gdk::Surface) {
-        unsafe {
-            gtk_sys::gtk_media_stream_realize(
-                self.as_ref().to_glib_none().0,
-                surface.to_glib_none().0,
-            );
-        }
-    }
+    //fn realize(&self, surface: /*Ignored*/&gdk::Surface) {
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_realize() }
+    //}
 
     fn seek(&self, timestamp: i64) {
         unsafe {
@@ -325,14 +314,9 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn unrealize(&self, surface: &gdk::Surface) {
-        unsafe {
-            gtk_sys::gtk_media_stream_unrealize(
-                self.as_ref().to_glib_none().0,
-                surface.to_glib_none().0,
-            );
-        }
-    }
+    //fn unrealize(&self, surface: /*Ignored*/&gdk::Surface) {
+    //    unsafe { TODO: call gtk_sys:gtk_media_stream_unrealize() }
+    //}
 
     fn update(&self, timestamp: i64) {
         unsafe {
@@ -340,15 +324,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn set_property_error(&self, error: Option<&glib::Error>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"error\0".as_ptr() as *const _,
-                Value::from(error).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_error(&self, error: /*Ignored*/Option<&glib::Error>) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"error\0".as_ptr() as *const _, Value::from(error).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_has_audio(&self) -> bool {
         unsafe {

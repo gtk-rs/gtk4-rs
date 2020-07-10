@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
@@ -22,7 +21,7 @@ glib_wrapper! {
 pub const NONE_APP_CHOOSER: Option<&AppChooser> = None;
 
 pub trait AppChooserExt: 'static {
-    fn get_app_info(&self) -> Option<gio::AppInfo>;
+    //fn get_app_info(&self) -> /*Ignored*/Option<gio::AppInfo>;
 
     fn get_content_type(&self) -> Option<GString>;
 
@@ -30,13 +29,9 @@ pub trait AppChooserExt: 'static {
 }
 
 impl<O: IsA<AppChooser>> AppChooserExt for O {
-    fn get_app_info(&self) -> Option<gio::AppInfo> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_app_chooser_get_app_info(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_app_info(&self) -> /*Ignored*/Option<gio::AppInfo> {
+    //    unsafe { TODO: call gtk_sys:gtk_app_chooser_get_app_info() }
+    //}
 
     fn get_content_type(&self) -> Option<GString> {
         unsafe {

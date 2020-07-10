@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -22,11 +20,9 @@ use CellAreaContext;
 use CellEditable;
 use CellLayout;
 use CellRenderer;
-use CellRendererState;
 use DirectionType;
 use Orientation;
 use SizeRequestMode;
-use Snapshot;
 use TreeIter;
 use TreeModel;
 use TreePath;
@@ -43,23 +39,9 @@ glib_wrapper! {
 pub const NONE_CELL_AREA: Option<&CellArea> = None;
 
 pub trait CellAreaExt: 'static {
-    fn activate<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        edit_only: bool,
-    ) -> bool;
+    //fn activate<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState, edit_only: bool) -> bool;
 
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(
-        &self,
-        widget: &P,
-        renderer: &Q,
-        event: &mut gdk::Event,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
+    //fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(&self, widget: &P, renderer: &Q, event: /*Ignored*/&mut gdk::Event, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> bool;
 
     fn add<P: IsA<CellRenderer>>(&self, renderer: &P);
 
@@ -97,48 +79,17 @@ pub trait CellAreaExt: 'static {
 
     fn create_context(&self) -> Option<CellAreaContext>;
 
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        event: &mut gdk::Event,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> i32;
+    //fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, event: /*Ignored*/&mut gdk::Event, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> i32;
 
     fn focus(&self, direction: DirectionType) -> bool;
 
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P);
 
-    fn foreach_alloc<
-        P: IsA<CellAreaContext>,
-        Q: IsA<Widget>,
-        R: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool,
-    >(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        background_area: &gdk::Rectangle,
-        callback: R,
-    );
+    //fn foreach_alloc<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, background_area: /*Ignored*/&gdk::Rectangle, callback: /*Unimplemented*/FnMut(&CellRenderer, /*Ignored*/gdk::Rectangle, /*Ignored*/gdk::Rectangle) -> bool, callback_data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
-    fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        renderer: &R,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
+    //fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(&self, context: &P, widget: &Q, renderer: &R, cell_area: /*Ignored*/&gdk::Rectangle, allocation: /*Ignored*/gdk::Rectangle);
 
-    fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        x: i32,
-        y: i32,
-    ) -> (CellRenderer, gdk::Rectangle);
+    //fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, x: i32, y: i32, alloc_area: /*Ignored*/gdk::Rectangle) -> Option<CellRenderer>;
 
     fn get_current_path_string(&self) -> Option<GString>;
 
@@ -182,11 +133,7 @@ pub trait CellAreaExt: 'static {
 
     fn has_renderer<P: IsA<CellRenderer>>(&self, renderer: &P) -> bool;
 
-    fn inner_cell_area<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
+    //fn inner_cell_area<P: IsA<Widget>>(&self, widget: &P, cell_area: /*Ignored*/&gdk::Rectangle, inner_area: /*Ignored*/gdk::Rectangle);
 
     fn is_activatable(&self) -> bool;
 
@@ -214,25 +161,11 @@ pub trait CellAreaExt: 'static {
 
     fn set_focus_cell<P: IsA<CellRenderer>>(&self, renderer: &P);
 
-    fn snapshot<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        snapshot: &Snapshot,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        paint_focus: bool,
-    );
+    //fn snapshot<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, snapshot: &Snapshot, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState, paint_focus: bool);
 
     fn stop_editing(&self, canceled: bool);
 
-    fn connect_add_editable<
-        F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    //fn connect_add_editable<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(
         &self,
@@ -257,45 +190,13 @@ pub trait CellAreaExt: 'static {
 }
 
 impl<O: IsA<CellArea>> CellAreaExt for O {
-    fn activate<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        edit_only: bool,
-    ) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_cell_area_activate(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-                edit_only.to_glib(),
-            ))
-        }
-    }
+    //fn activate<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState, edit_only: bool) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_activate() }
+    //}
 
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(
-        &self,
-        widget: &P,
-        renderer: &Q,
-        event: &mut gdk::Event,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_cell_area_activate_cell(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                renderer.as_ref().to_glib_none().0,
-                event.to_glib_none_mut().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-            ))
-        }
-    }
+    //fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(&self, widget: &P, renderer: &Q, event: /*Ignored*/&mut gdk::Event, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_activate_cell() }
+    //}
 
     fn add<P: IsA<CellRenderer>>(&self, renderer: &P) {
         unsafe {
@@ -406,25 +307,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        event: &mut gdk::Event,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> i32 {
-        unsafe {
-            gtk_sys::gtk_cell_area_event(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                event.to_glib_none_mut().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-            )
-        }
-    }
+    //fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, event: /*Ignored*/&mut gdk::Event, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState) -> i32 {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_event() }
+    //}
 
     fn focus(&self, direction: DirectionType) -> bool {
         unsafe {
@@ -457,94 +342,17 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn foreach_alloc<
-        P: IsA<CellAreaContext>,
-        Q: IsA<Widget>,
-        R: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool,
-    >(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        background_area: &gdk::Rectangle,
-        callback: R,
-    ) {
-        let callback_data: R = callback;
-        unsafe extern "C" fn callback_func<
-            P: IsA<CellAreaContext>,
-            Q: IsA<Widget>,
-            R: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool,
-        >(
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            cell_area: *const gdk_sys::GdkRectangle,
-            cell_background: *const gdk_sys::GdkRectangle,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let renderer = from_glib_borrow(renderer);
-            let cell_area = from_glib_borrow(cell_area);
-            let cell_background = from_glib_borrow(cell_background);
-            let callback: *mut R = data as *const _ as usize as *mut R;
-            let res = (*callback)(&renderer, &cell_area, &cell_background);
-            res.to_glib()
-        }
-        let callback = Some(callback_func::<P, Q, R> as _);
-        let super_callback0: &R = &callback_data;
-        unsafe {
-            gtk_sys::gtk_cell_area_foreach_alloc(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                background_area.to_glib_none().0,
-                callback,
-                super_callback0 as *const _ as usize as *mut _,
-            );
-        }
-    }
+    //fn foreach_alloc<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, background_area: /*Ignored*/&gdk::Rectangle, callback: /*Unimplemented*/FnMut(&CellRenderer, /*Ignored*/gdk::Rectangle, /*Ignored*/gdk::Rectangle) -> bool, callback_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_foreach_alloc() }
+    //}
 
-    fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        renderer: &R,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle {
-        unsafe {
-            let mut allocation = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_area_get_cell_allocation(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                renderer.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                allocation.to_glib_none_mut().0,
-            );
-            allocation
-        }
-    }
+    //fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(&self, context: &P, widget: &Q, renderer: &R, cell_area: /*Ignored*/&gdk::Rectangle, allocation: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_get_cell_allocation() }
+    //}
 
-    fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        cell_area: &gdk::Rectangle,
-        x: i32,
-        y: i32,
-    ) -> (CellRenderer, gdk::Rectangle) {
-        unsafe {
-            let mut alloc_area = gdk::Rectangle::uninitialized();
-            let ret = from_glib_none(gtk_sys::gtk_cell_area_get_cell_at_position(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                x,
-                y,
-                alloc_area.to_glib_none_mut().0,
-            ));
-            (ret, alloc_area)
-        }
-    }
+    //fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, cell_area: /*Ignored*/&gdk::Rectangle, x: i32, y: i32, alloc_area: /*Ignored*/gdk::Rectangle) -> Option<CellRenderer> {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_get_cell_at_position() }
+    //}
 
     fn get_current_path_string(&self) -> Option<GString> {
         unsafe {
@@ -701,22 +509,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn inner_cell_area<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle {
-        unsafe {
-            let mut inner_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_area_inner_cell_area(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                inner_area.to_glib_none_mut().0,
-            );
-            inner_area
-        }
-    }
+    //fn inner_cell_area<P: IsA<Widget>>(&self, widget: &P, cell_area: /*Ignored*/&gdk::Rectangle, inner_area: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_inner_cell_area() }
+    //}
 
     fn is_activatable(&self) -> bool {
         unsafe {
@@ -797,29 +592,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn snapshot<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
-        &self,
-        context: &P,
-        widget: &Q,
-        snapshot: &Snapshot,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        paint_focus: bool,
-    ) {
-        unsafe {
-            gtk_sys::gtk_cell_area_snapshot(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                snapshot.to_glib_none().0,
-                background_area.to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.to_glib(),
-                paint_focus.to_glib(),
-            );
-        }
-    }
+    //fn snapshot<P: IsA<CellAreaContext>, Q: IsA<Widget>>(&self, context: &P, widget: &Q, snapshot: &Snapshot, background_area: /*Ignored*/&gdk::Rectangle, cell_area: /*Ignored*/&gdk::Rectangle, flags: CellRendererState, paint_focus: bool) {
+    //    unsafe { TODO: call gtk_sys:gtk_cell_area_snapshot() }
+    //}
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
@@ -827,47 +602,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn connect_add_editable<
-        F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn add_editable_trampoline<
-            P,
-            F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
-        >(
-            this: *mut gtk_sys::GtkCellArea,
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            editable: *mut gtk_sys::GtkCellEditable,
-            cell_area: *mut gdk_sys::GdkRectangle,
-            path: *mut libc::c_char,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
-            let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
-            f(
-                &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
-                &from_glib_borrow(renderer),
-                &from_glib_borrow(editable),
-                &from_glib_borrow(cell_area),
-                path,
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"add-editable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    add_editable_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //fn connect_add_editable<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored cell_area: Gdk.Rectangle
+    //}
 
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(
         &self,

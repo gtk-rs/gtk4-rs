@@ -51,7 +51,7 @@ pub trait TreeModelExt: 'static {
 
     //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
-    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
+    //fn get_value(&self, iter: &TreeIter, column: i32, value: /*Ignored*/glib::Value);
 
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
 
@@ -216,18 +216,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_tree_model_get_valist() }
     //}
 
-    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
-        unsafe {
-            let mut value = glib::Value::uninitialized();
-            gtk_sys::gtk_tree_model_get_value(
-                self.as_ref().to_glib_none().0,
-                mut_override(iter.to_glib_none().0),
-                column,
-                value.to_glib_none_mut().0,
-            );
-            value
-        }
-    }
+    //fn get_value(&self, iter: &TreeIter, column: i32, value: /*Ignored*/glib::Value) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_model_get_value() }
+    //}
 
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter> {
         unsafe {

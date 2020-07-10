@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -14,8 +13,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use std::ptr;
-use Widget;
 
 glib_wrapper! {
     pub struct Builder(Object<gtk_sys::GtkBuilder, gtk_sys::GtkBuilderClass, BuilderClass>);
@@ -51,138 +48,41 @@ impl Builder {
         }
     }
 
-    pub fn add_from_resource(&self, resource_path: &str) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_add_from_resource(
-                self.to_glib_none().0,
-                resource_path.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn add_from_resource(&self, resource_path: &str, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_add_from_resource() }
+    //}
 
-    pub fn add_from_string(&self, buffer: &str) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_add_from_string(
-                self.to_glib_none().0,
-                buffer.to_glib_none().0,
-                length,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn add_from_string(&self, buffer: &str, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_add_from_string() }
+    //}
 
-    pub fn add_objects_from_resource(
-        &self,
-        resource_path: &str,
-        object_ids: &[&str],
-    ) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_add_objects_from_resource(
-                self.to_glib_none().0,
-                resource_path.to_glib_none().0,
-                object_ids.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn add_objects_from_resource(&self, resource_path: &str, object_ids: &[&str], error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_add_objects_from_resource() }
+    //}
 
-    pub fn add_objects_from_string(
-        &self,
-        buffer: &str,
-        object_ids: &[&str],
-    ) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_add_objects_from_string(
-                self.to_glib_none().0,
-                buffer.to_glib_none().0,
-                length,
-                object_ids.to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn add_objects_from_string(&self, buffer: &str, object_ids: &[&str], error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_add_objects_from_string() }
+    //}
 
-    //pub fn create_closure<P: IsA<glib::Object>>(&self, function_name: &str, flags: /*Ignored*/BuilderClosureFlags, object: Option<&P>) -> Result<Option<glib::Closure>, glib::Error> {
+    //pub fn create_closure(&self, function_name: &str, flags: /*Ignored*/BuilderClosureFlags, object: /*Ignored*/Option<&glib::Object>, error: /*Ignored*/Option<glib::Error>) -> /*Ignored*/Option<glib::Closure> {
     //    unsafe { TODO: call gtk_sys:gtk_builder_create_closure() }
     //}
 
-    pub fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P) {
-        unsafe {
-            gtk_sys::gtk_builder_expose_object(
-                self.to_glib_none().0,
-                name.to_glib_none().0,
-                object.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //pub fn expose_object(&self, name: &str, object: /*Ignored*/&glib::Object) {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_expose_object() }
+    //}
 
-    pub fn extend_with_template<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        template_type: glib::types::Type,
-        buffer: &str,
-    ) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_extend_with_template(
-                self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                template_type.to_glib(),
-                buffer.to_glib_none().0,
-                length,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn extend_with_template<P: IsA<Widget>>(&self, widget: &P, template_type: glib::types::Type, buffer: &str, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_extend_with_template() }
+    //}
 
-    pub fn get_current_object(&self) -> Option<glib::Object> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_builder_get_current_object(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_current_object(&self) -> /*Ignored*/Option<glib::Object> {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_get_current_object() }
+    //}
 
-    pub fn get_objects(&self) -> Vec<glib::Object> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_builder_get_objects(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_objects(&self) -> /*Ignored*/Vec<glib::Object> {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_get_objects() }
+    //}
 
     //pub fn get_scope(&self) -> /*Ignored*/Option<BuilderScope> {
     //    unsafe { TODO: call gtk_sys:gtk_builder_get_scope() }
@@ -205,14 +105,9 @@ impl Builder {
         }
     }
 
-    pub fn set_current_object<P: IsA<glib::Object>>(&self, current_object: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_builder_set_current_object(
-                self.to_glib_none().0,
-                current_object.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_current_object(&self, current_object: /*Ignored*/Option<&glib::Object>) {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_set_current_object() }
+    //}
 
     //pub fn set_scope(&self, scope: /*Ignored*/Option<&BuilderScope>) {
     //    unsafe { TODO: call gtk_sys:gtk_builder_set_scope() }
@@ -227,32 +122,13 @@ impl Builder {
         }
     }
 
-    //pub fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, glib::Error> {
+    //pub fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str, value: /*Ignored*/glib::Value, error: /*Ignored*/Option<glib::Error>) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_builder_value_from_string() }
     //}
 
-    pub fn value_from_string_type(
-        &self,
-        type_: glib::types::Type,
-        string: &str,
-    ) -> Result<glib::Value, glib::Error> {
-        unsafe {
-            let mut value = glib::Value::uninitialized();
-            let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_builder_value_from_string_type(
-                self.to_glib_none().0,
-                type_.to_glib(),
-                string.to_glib_none().0,
-                value.to_glib_none_mut().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(value)
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
+    //pub fn value_from_string_type(&self, type_: glib::types::Type, string: &str, value: /*Ignored*/glib::Value, error: /*Ignored*/Option<glib::Error>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_builder_value_from_string_type() }
+    //}
 
     pub fn connect_property_current_object_notify<F: Fn(&Builder) + 'static>(
         &self,

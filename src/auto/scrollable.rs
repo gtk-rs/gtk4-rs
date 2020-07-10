@@ -13,7 +13,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use Adjustment;
-use Border;
 use ScrollablePolicy;
 
 glib_wrapper! {
@@ -27,7 +26,7 @@ glib_wrapper! {
 pub const NONE_SCROLLABLE: Option<&Scrollable> = None;
 
 pub trait ScrollableExt: 'static {
-    fn get_border(&self) -> Option<Border>;
+    //fn get_border(&self, border: /*Ignored*/Border) -> bool;
 
     fn get_hadjustment(&self) -> Option<Adjustment>;
 
@@ -61,20 +60,9 @@ pub trait ScrollableExt: 'static {
 }
 
 impl<O: IsA<Scrollable>> ScrollableExt for O {
-    fn get_border(&self) -> Option<Border> {
-        unsafe {
-            let mut border = Border::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_scrollable_get_border(
-                self.as_ref().to_glib_none().0,
-                border.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(border)
-            } else {
-                None
-            }
-        }
-    }
+    //fn get_border(&self, border: /*Ignored*/Border) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_scrollable_get_border() }
+    //}
 
     fn get_hadjustment(&self) -> Option<Adjustment> {
         unsafe {

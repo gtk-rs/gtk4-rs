@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,19 +10,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Align;
 use Buildable;
 use Editable;
 use EntryBuffer;
 use InputHints;
 use InputPurpose;
+use LayoutManager;
+use Overflow;
 use Widget;
 
 glib_wrapper! {
@@ -58,17 +60,17 @@ impl Text {
         }
     }
 
-    pub fn get_attributes(&self) -> Option<pango::AttrList> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_attributes(self.to_glib_none().0)) }
-    }
+    //pub fn get_attributes(&self) -> /*Ignored*/Option<pango::AttrList> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_get_attributes() }
+    //}
 
     pub fn get_buffer(&self) -> Option<EntryBuffer> {
         unsafe { from_glib_none(gtk_sys::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
-    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_extra_menu(self.to_glib_none().0)) }
-    }
+    //pub fn get_extra_menu(&self) -> /*Ignored*/Option<gio::MenuModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_get_extra_menu() }
+    //}
 
     pub fn get_input_hints(&self) -> InputHints {
         unsafe { from_glib(gtk_sys::gtk_text_get_input_hints(self.to_glib_none().0)) }
@@ -98,9 +100,9 @@ impl Text {
         }
     }
 
-    pub fn get_tabs(&self) -> Option<pango::TabArray> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_tabs(self.to_glib_none().0)) }
-    }
+    //pub fn get_tabs(&self) -> /*Ignored*/Option<pango::TabArray> {
+    //    unsafe { TODO: call gtk_sys:gtk_text_get_tabs() }
+    //}
 
     pub fn get_text_length(&self) -> u16 {
         unsafe { gtk_sys::gtk_text_get_text_length(self.to_glib_none().0) }
@@ -124,11 +126,9 @@ impl Text {
         }
     }
 
-    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
-        unsafe {
-            gtk_sys::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
-        }
-    }
+    //pub fn set_attributes(&self, attrs: /*Ignored*/Option<&pango::AttrList>) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_set_attributes() }
+    //}
 
     pub fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
@@ -136,14 +136,9 @@ impl Text {
         }
     }
 
-    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_text_set_extra_menu(
-                self.to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //pub fn set_extra_menu(&self, model: /*Ignored*/Option<&gio::MenuModel>) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_set_extra_menu() }
+    //}
 
     pub fn set_input_hints(&self, hints: InputHints) {
         unsafe {
@@ -181,11 +176,9 @@ impl Text {
         }
     }
 
-    pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
-        unsafe {
-            gtk_sys::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
-        }
-    }
+    //pub fn set_tabs(&self, tabs: /*Ignored*/Option<&pango::TabArray>) {
+    //    unsafe { TODO: call gtk_sys:gtk_text_set_tabs() }
+    //}
 
     pub fn set_visibility(&self, visible: bool) {
         unsafe {
@@ -786,6 +779,470 @@ impl Text {
 impl Default for Text {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TextBuilder {
+    activates_default: Option<bool>,
+    //attributes: /*Unknown type*/,
+    buffer: Option<EntryBuffer>,
+    enable_emoji_completion: Option<bool>,
+    //extra-menu: /*Unknown type*/,
+    im_module: Option<String>,
+    input_hints: Option<InputHints>,
+    input_purpose: Option<InputPurpose>,
+    invisible_char: Option<u32>,
+    invisible_char_set: Option<bool>,
+    max_length: Option<i32>,
+    overwrite_mode: Option<bool>,
+    placeholder_text: Option<String>,
+    propagate_text_width: Option<bool>,
+    //tabs: /*Unknown type*/,
+    truncate_multiline: Option<bool>,
+    visibility: Option<bool>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    //cursor: /*Unknown type*/,
+    focus_on_click: Option<bool>,
+    halign: Option<Align>,
+    has_focus: Option<bool>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    is_focus: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+    editable: Option<bool>,
+    enable_undo: Option<bool>,
+    max_width_chars: Option<i32>,
+    text: Option<String>,
+    width_chars: Option<i32>,
+    xalign: Option<f32>,
+}
+
+impl TextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Text {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref activates_default) = self.activates_default {
+            properties.push(("activates-default", activates_default));
+        }
+        if let Some(ref buffer) = self.buffer {
+            properties.push(("buffer", buffer));
+        }
+        if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
+            properties.push(("enable-emoji-completion", enable_emoji_completion));
+        }
+        if let Some(ref im_module) = self.im_module {
+            properties.push(("im-module", im_module));
+        }
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
+        if let Some(ref invisible_char) = self.invisible_char {
+            properties.push(("invisible-char", invisible_char));
+        }
+        if let Some(ref invisible_char_set) = self.invisible_char_set {
+            properties.push(("invisible-char-set", invisible_char_set));
+        }
+        if let Some(ref max_length) = self.max_length {
+            properties.push(("max-length", max_length));
+        }
+        if let Some(ref overwrite_mode) = self.overwrite_mode {
+            properties.push(("overwrite-mode", overwrite_mode));
+        }
+        if let Some(ref placeholder_text) = self.placeholder_text {
+            properties.push(("placeholder-text", placeholder_text));
+        }
+        if let Some(ref propagate_text_width) = self.propagate_text_width {
+            properties.push(("propagate-text-width", propagate_text_width));
+        }
+        if let Some(ref truncate_multiline) = self.truncate_multiline {
+            properties.push(("truncate-multiline", truncate_multiline));
+        }
+        if let Some(ref visibility) = self.visibility {
+            properties.push(("visibility", visibility));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_focus) = self.has_focus {
+            properties.push(("has-focus", has_focus));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref is_focus) = self.is_focus {
+            properties.push(("is-focus", is_focus));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        if let Some(ref editable) = self.editable {
+            properties.push(("editable", editable));
+        }
+        if let Some(ref enable_undo) = self.enable_undo {
+            properties.push(("enable-undo", enable_undo));
+        }
+        if let Some(ref max_width_chars) = self.max_width_chars {
+            properties.push(("max-width-chars", max_width_chars));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        if let Some(ref width_chars) = self.width_chars {
+            properties.push(("width-chars", width_chars));
+        }
+        if let Some(ref xalign) = self.xalign {
+            properties.push(("xalign", xalign));
+        }
+        let ret = glib::Object::new(Text::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Text>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn activates_default(mut self, activates_default: bool) -> Self {
+        self.activates_default = Some(activates_default);
+        self
+    }
+
+    pub fn buffer<P: IsA<EntryBuffer>>(mut self, buffer: &P) -> Self {
+        self.buffer = Some(buffer.clone().upcast());
+        self
+    }
+
+    pub fn enable_emoji_completion(mut self, enable_emoji_completion: bool) -> Self {
+        self.enable_emoji_completion = Some(enable_emoji_completion);
+        self
+    }
+
+    pub fn im_module(mut self, im_module: &str) -> Self {
+        self.im_module = Some(im_module.to_string());
+        self
+    }
+
+    pub fn input_hints(mut self, input_hints: InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    pub fn input_purpose(mut self, input_purpose: InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
+    }
+
+    pub fn invisible_char(mut self, invisible_char: u32) -> Self {
+        self.invisible_char = Some(invisible_char);
+        self
+    }
+
+    pub fn invisible_char_set(mut self, invisible_char_set: bool) -> Self {
+        self.invisible_char_set = Some(invisible_char_set);
+        self
+    }
+
+    pub fn max_length(mut self, max_length: i32) -> Self {
+        self.max_length = Some(max_length);
+        self
+    }
+
+    pub fn overwrite_mode(mut self, overwrite_mode: bool) -> Self {
+        self.overwrite_mode = Some(overwrite_mode);
+        self
+    }
+
+    pub fn placeholder_text(mut self, placeholder_text: &str) -> Self {
+        self.placeholder_text = Some(placeholder_text.to_string());
+        self
+    }
+
+    pub fn propagate_text_width(mut self, propagate_text_width: bool) -> Self {
+        self.propagate_text_width = Some(propagate_text_width);
+        self
+    }
+
+    pub fn truncate_multiline(mut self, truncate_multiline: bool) -> Self {
+        self.truncate_multiline = Some(truncate_multiline);
+        self
+    }
+
+    pub fn visibility(mut self, visibility: bool) -> Self {
+        self.visibility = Some(visibility);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_focus(mut self, has_focus: bool) -> Self {
+        self.has_focus = Some(has_focus);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn is_focus(mut self, is_focus: bool) -> Self {
+        self.is_focus = Some(is_focus);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn editable(mut self, editable: bool) -> Self {
+        self.editable = Some(editable);
+        self
+    }
+
+    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
+        self.enable_undo = Some(enable_undo);
+        self
+    }
+
+    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
+        self.max_width_chars = Some(max_width_chars);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
+    }
+
+    pub fn width_chars(mut self, width_chars: i32) -> Self {
+        self.width_chars = Some(width_chars);
+        self
+    }
+
+    pub fn xalign(mut self, xalign: f32) -> Self {
+        self.xalign = Some(xalign);
+        self
     }
 }
 

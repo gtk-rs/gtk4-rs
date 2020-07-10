@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -13,9 +12,7 @@ use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem;
 use std::mem::transmute;
-use std::ptr;
 use EventController;
 use Gesture;
 use GestureSingle;
@@ -38,50 +35,17 @@ impl GestureStylus {
     //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_axes() }
     //}
 
-    pub fn get_axis(&self, axis: gdk::AxisUse) -> Option<f64> {
-        unsafe {
-            let mut value = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_gesture_stylus_get_axis(
-                self.to_glib_none().0,
-                axis.to_glib(),
-                value.as_mut_ptr(),
-            ));
-            let value = value.assume_init();
-            if ret {
-                Some(value)
-            } else {
-                None
-            }
-        }
-    }
+    //pub fn get_axis(&self, axis: /*Ignored*/gdk::AxisUse) -> Option<f64> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_axis() }
+    //}
 
-    pub fn get_backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
-        unsafe {
-            let mut backlog = ptr::null_mut();
-            let mut n_elems = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_gesture_stylus_get_backlog(
-                self.to_glib_none().0,
-                &mut backlog,
-                n_elems.as_mut_ptr(),
-            ));
-            if ret {
-                Some(FromGlibContainer::from_glib_full_num(
-                    backlog,
-                    n_elems.assume_init() as usize,
-                ))
-            } else {
-                None
-            }
-        }
-    }
+    //pub fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_backlog() }
+    //}
 
-    pub fn get_device_tool(&self) -> Option<gdk::DeviceTool> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_gesture_stylus_get_device_tool(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_device_tool(&self) -> /*Ignored*/Option<gdk::DeviceTool> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_device_tool() }
+    //}
 
     pub fn connect_down<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn down_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(

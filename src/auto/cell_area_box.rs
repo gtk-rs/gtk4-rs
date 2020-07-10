@@ -8,6 +8,8 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -18,6 +20,7 @@ use CellArea;
 use CellLayout;
 use CellRenderer;
 use Orientable;
+use Orientation;
 
 glib_wrapper! {
     pub struct CellAreaBox(Object<gtk_sys::GtkCellAreaBox, CellAreaBoxClass>) @extends CellArea, @implements Buildable, CellLayout, Orientable;
@@ -108,6 +111,52 @@ impl CellAreaBox {
 impl Default for CellAreaBox {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct CellAreaBoxBuilder {
+    spacing: Option<i32>,
+    focus_cell: Option<CellRenderer>,
+    orientation: Option<Orientation>,
+}
+
+impl CellAreaBoxBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> CellAreaBox {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref spacing) = self.spacing {
+            properties.push(("spacing", spacing));
+        }
+        if let Some(ref focus_cell) = self.focus_cell {
+            properties.push(("focus-cell", focus_cell));
+        }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
+        let ret = glib::Object::new(CellAreaBox::static_type(), &properties)
+            .expect("object new")
+            .downcast::<CellAreaBox>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn spacing(mut self, spacing: i32) -> Self {
+        self.spacing = Some(spacing);
+        self
+    }
+
+    pub fn focus_cell<P: IsA<CellRenderer>>(mut self, focus_cell: &P) -> Self {
+        self.focus_cell = Some(focus_cell.clone().upcast());
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
     }
 }
 

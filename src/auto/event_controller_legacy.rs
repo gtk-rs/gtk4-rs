@@ -2,18 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
 use glib::object::Cast;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 use EventController;
 
 glib_wrapper! {
@@ -33,32 +25,9 @@ impl EventControllerLegacy {
         }
     }
 
-    pub fn connect_event<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn event_trampoline<
-            F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static,
-        >(
-            this: *mut gtk_sys::GtkEventControllerLegacy,
-            event: *mut gdk_sys::GdkEvent,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_none(event)).to_glib()
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"event\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    event_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //pub fn connect_event<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored event: Gdk.Event
+    //}
 }
 
 impl Default for EventControllerLegacy {

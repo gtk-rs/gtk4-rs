@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -31,7 +30,7 @@ pub trait GestureSingleExt: 'static {
 
     fn get_current_button(&self) -> u32;
 
-    fn get_current_sequence(&self) -> Option<gdk::EventSequence>;
+    //fn get_current_sequence(&self) -> /*Ignored*/Option<gdk::EventSequence>;
 
     fn get_exclusive(&self) -> bool;
 
@@ -59,13 +58,9 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         unsafe { gtk_sys::gtk_gesture_single_get_current_button(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_current_sequence(&self) -> Option<gdk::EventSequence> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_gesture_single_get_current_sequence(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_current_sequence(&self) -> /*Ignored*/Option<gdk::EventSequence> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_single_get_current_sequence() }
+    //}
 
     fn get_exclusive(&self) -> bool {
         unsafe {

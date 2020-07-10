@@ -8,7 +8,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib_sys;
-use gsk;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -26,30 +25,21 @@ glib_wrapper! {
 pub const NONE_FIXED_LAYOUT_CHILD: Option<&FixedLayoutChild> = None;
 
 pub trait FixedLayoutChildExt: 'static {
-    fn get_transform(&self) -> Option<gsk::Transform>;
+    //fn get_transform(&self) -> /*Ignored*/Option<gsk::Transform>;
 
-    fn set_transform(&self, transform: &gsk::Transform);
+    //fn set_transform(&self, transform: /*Ignored*/&gsk::Transform);
 
     fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
-    fn get_transform(&self) -> Option<gsk::Transform> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_fixed_layout_child_get_transform(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_transform(&self) -> /*Ignored*/Option<gsk::Transform> {
+    //    unsafe { TODO: call gtk_sys:gtk_fixed_layout_child_get_transform() }
+    //}
 
-    fn set_transform(&self, transform: &gsk::Transform) {
-        unsafe {
-            gtk_sys::gtk_fixed_layout_child_set_transform(
-                self.as_ref().to_glib_none().0,
-                transform.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_transform(&self, transform: /*Ignored*/&gsk::Transform) {
+    //    unsafe { TODO: call gtk_sys:gtk_fixed_layout_child_set_transform() }
+    //}
 
     fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transform_trampoline<P, F: Fn(&P) + 'static>(

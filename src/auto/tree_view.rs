@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -13,6 +12,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -23,12 +23,17 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
+use Adjustment;
+use Align;
 use Buildable;
 use CellRenderer;
 use Container;
 use Editable;
+use LayoutManager;
 use MovementStep;
+use Overflow;
 use Scrollable;
+use ScrollablePolicy;
 use Tooltip;
 use TreeIter;
 use TreeModel;
@@ -192,40 +197,17 @@ impl TreeView {
         }
     }
 
-    pub fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_tree_view_create_row_drag_icon(
-                self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-            ))
-        }
-    }
+    //pub fn create_row_drag_icon(&self, path: &TreePath) -> /*Ignored*/Option<gdk::Paintable> {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_create_row_drag_icon() }
+    //}
 
-    pub fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
-        unsafe {
-            gtk_sys::gtk_tree_view_enable_model_drag_dest(
-                self.to_glib_none().0,
-                formats.to_glib_none().0,
-                actions.to_glib(),
-            );
-        }
-    }
+    //pub fn enable_model_drag_dest(&self, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_enable_model_drag_dest() }
+    //}
 
-    pub fn enable_model_drag_source(
-        &self,
-        start_button_mask: gdk::ModifierType,
-        formats: &gdk::ContentFormats,
-        actions: gdk::DragAction,
-    ) {
-        unsafe {
-            gtk_sys::gtk_tree_view_enable_model_drag_source(
-                self.to_glib_none().0,
-                start_button_mask.to_glib(),
-                formats.to_glib_none().0,
-                actions.to_glib(),
-            );
-        }
-    }
+    //pub fn enable_model_drag_source(&self, start_button_mask: /*Ignored*/gdk::ModifierType, formats: /*Ignored*/&gdk::ContentFormats, actions: /*Ignored*/gdk::DragAction) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_enable_model_drag_source() }
+    //}
 
     pub fn expand_all(&self) {
         unsafe {
@@ -260,39 +242,13 @@ impl TreeView {
         }
     }
 
-    pub fn get_background_area(
-        &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-    ) -> gdk::Rectangle {
-        unsafe {
-            let mut rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_background_area(
-                self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
-                rect.to_glib_none_mut().0,
-            );
-            rect
-        }
-    }
+    //pub fn get_background_area(&self, path: Option<&TreePath>, column: Option<&TreeViewColumn>, rect: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_background_area() }
+    //}
 
-    pub fn get_cell_area(
-        &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-    ) -> gdk::Rectangle {
-        unsafe {
-            let mut rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_cell_area(
-                self.to_glib_none().0,
-                mut_override(path.to_glib_none().0),
-                column.to_glib_none().0,
-                rect.to_glib_none_mut().0,
-            );
-            rect
-        }
-    }
+    //pub fn get_cell_area(&self, path: Option<&TreePath>, column: Option<&TreeViewColumn>, rect: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_cell_area() }
+    //}
 
     pub fn get_column(&self, n: i32) -> Option<TreeViewColumn> {
         unsafe { from_glib_none(gtk_sys::gtk_tree_view_get_column(self.to_glib_none().0, n)) }
@@ -558,16 +514,9 @@ impl TreeView {
         }
     }
 
-    pub fn get_visible_rect(&self) -> gdk::Rectangle {
-        unsafe {
-            let mut visible_rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_visible_rect(
-                self.to_glib_none().0,
-                visible_rect.to_glib_none_mut().0,
-            );
-            visible_rect
-        }
-    }
+    //pub fn get_visible_rect(&self, visible_rect: /*Ignored*/gdk::Rectangle) {
+    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_visible_rect() }
+    //}
 
     pub fn insert_column(&self, column: &TreeViewColumn, position: i32) -> i32 {
         unsafe {
@@ -2105,6 +2054,476 @@ impl TreeView {
 impl Default for TreeView {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeViewBuilder {
+    activate_on_single_click: Option<bool>,
+    enable_grid_lines: Option<TreeViewGridLines>,
+    enable_search: Option<bool>,
+    enable_tree_lines: Option<bool>,
+    expander_column: Option<TreeViewColumn>,
+    fixed_height_mode: Option<bool>,
+    headers_clickable: Option<bool>,
+    headers_visible: Option<bool>,
+    hover_expand: Option<bool>,
+    hover_selection: Option<bool>,
+    level_indentation: Option<i32>,
+    model: Option<TreeModel>,
+    reorderable: Option<bool>,
+    rubber_banding: Option<bool>,
+    search_column: Option<i32>,
+    show_expanders: Option<bool>,
+    tooltip_column: Option<i32>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    //cursor: /*Unknown type*/,
+    focus_on_click: Option<bool>,
+    halign: Option<Align>,
+    has_focus: Option<bool>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    is_focus: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+    hadjustment: Option<Adjustment>,
+    hscroll_policy: Option<ScrollablePolicy>,
+    vadjustment: Option<Adjustment>,
+    vscroll_policy: Option<ScrollablePolicy>,
+}
+
+impl TreeViewBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeView {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref activate_on_single_click) = self.activate_on_single_click {
+            properties.push(("activate-on-single-click", activate_on_single_click));
+        }
+        if let Some(ref enable_grid_lines) = self.enable_grid_lines {
+            properties.push(("enable-grid-lines", enable_grid_lines));
+        }
+        if let Some(ref enable_search) = self.enable_search {
+            properties.push(("enable-search", enable_search));
+        }
+        if let Some(ref enable_tree_lines) = self.enable_tree_lines {
+            properties.push(("enable-tree-lines", enable_tree_lines));
+        }
+        if let Some(ref expander_column) = self.expander_column {
+            properties.push(("expander-column", expander_column));
+        }
+        if let Some(ref fixed_height_mode) = self.fixed_height_mode {
+            properties.push(("fixed-height-mode", fixed_height_mode));
+        }
+        if let Some(ref headers_clickable) = self.headers_clickable {
+            properties.push(("headers-clickable", headers_clickable));
+        }
+        if let Some(ref headers_visible) = self.headers_visible {
+            properties.push(("headers-visible", headers_visible));
+        }
+        if let Some(ref hover_expand) = self.hover_expand {
+            properties.push(("hover-expand", hover_expand));
+        }
+        if let Some(ref hover_selection) = self.hover_selection {
+            properties.push(("hover-selection", hover_selection));
+        }
+        if let Some(ref level_indentation) = self.level_indentation {
+            properties.push(("level-indentation", level_indentation));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref reorderable) = self.reorderable {
+            properties.push(("reorderable", reorderable));
+        }
+        if let Some(ref rubber_banding) = self.rubber_banding {
+            properties.push(("rubber-banding", rubber_banding));
+        }
+        if let Some(ref search_column) = self.search_column {
+            properties.push(("search-column", search_column));
+        }
+        if let Some(ref show_expanders) = self.show_expanders {
+            properties.push(("show-expanders", show_expanders));
+        }
+        if let Some(ref tooltip_column) = self.tooltip_column {
+            properties.push(("tooltip-column", tooltip_column));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_focus) = self.has_focus {
+            properties.push(("has-focus", has_focus));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref is_focus) = self.is_focus {
+            properties.push(("is-focus", is_focus));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
+        }
+        let ret = glib::Object::new(TreeView::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeView>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn activate_on_single_click(mut self, activate_on_single_click: bool) -> Self {
+        self.activate_on_single_click = Some(activate_on_single_click);
+        self
+    }
+
+    pub fn enable_grid_lines(mut self, enable_grid_lines: TreeViewGridLines) -> Self {
+        self.enable_grid_lines = Some(enable_grid_lines);
+        self
+    }
+
+    pub fn enable_search(mut self, enable_search: bool) -> Self {
+        self.enable_search = Some(enable_search);
+        self
+    }
+
+    pub fn enable_tree_lines(mut self, enable_tree_lines: bool) -> Self {
+        self.enable_tree_lines = Some(enable_tree_lines);
+        self
+    }
+
+    pub fn expander_column(mut self, expander_column: &TreeViewColumn) -> Self {
+        self.expander_column = Some(expander_column.clone());
+        self
+    }
+
+    pub fn fixed_height_mode(mut self, fixed_height_mode: bool) -> Self {
+        self.fixed_height_mode = Some(fixed_height_mode);
+        self
+    }
+
+    pub fn headers_clickable(mut self, headers_clickable: bool) -> Self {
+        self.headers_clickable = Some(headers_clickable);
+        self
+    }
+
+    pub fn headers_visible(mut self, headers_visible: bool) -> Self {
+        self.headers_visible = Some(headers_visible);
+        self
+    }
+
+    pub fn hover_expand(mut self, hover_expand: bool) -> Self {
+        self.hover_expand = Some(hover_expand);
+        self
+    }
+
+    pub fn hover_selection(mut self, hover_selection: bool) -> Self {
+        self.hover_selection = Some(hover_selection);
+        self
+    }
+
+    pub fn level_indentation(mut self, level_indentation: i32) -> Self {
+        self.level_indentation = Some(level_indentation);
+        self
+    }
+
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn reorderable(mut self, reorderable: bool) -> Self {
+        self.reorderable = Some(reorderable);
+        self
+    }
+
+    pub fn rubber_banding(mut self, rubber_banding: bool) -> Self {
+        self.rubber_banding = Some(rubber_banding);
+        self
+    }
+
+    pub fn search_column(mut self, search_column: i32) -> Self {
+        self.search_column = Some(search_column);
+        self
+    }
+
+    pub fn show_expanders(mut self, show_expanders: bool) -> Self {
+        self.show_expanders = Some(show_expanders);
+        self
+    }
+
+    pub fn tooltip_column(mut self, tooltip_column: i32) -> Self {
+        self.tooltip_column = Some(tooltip_column);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_focus(mut self, has_focus: bool) -> Self {
+        self.has_focus = Some(has_focus);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn is_focus(mut self, is_focus: bool) -> Self {
+        self.is_focus = Some(is_focus);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
+        self
     }
 }
 

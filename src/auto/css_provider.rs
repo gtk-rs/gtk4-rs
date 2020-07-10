@@ -2,20 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
-use glib;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
-use glib_sys;
 use gtk_sys;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
-use CssSection;
 use StyleProvider;
 
 glib_wrapper! {
@@ -43,14 +33,9 @@ impl CssProvider {
         }
     }
 
-    pub fn load_from_file<P: IsA<gio::File>>(&self, file: &P) {
-        unsafe {
-            gtk_sys::gtk_css_provider_load_from_file(
-                self.to_glib_none().0,
-                file.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //pub fn load_from_file(&self, file: /*Ignored*/&gio::File) {
+    //    unsafe { TODO: call gtk_sys:gtk_css_provider_load_from_file() }
+    //}
 
     pub fn load_from_path(&self, path: &str) {
         unsafe {
@@ -81,37 +66,9 @@ impl CssProvider {
         unsafe { from_glib_full(gtk_sys::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }
 
-    pub fn connect_parsing_error<F: Fn(&CssProvider, &CssSection, &glib::Error) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn parsing_error_trampoline<
-            F: Fn(&CssProvider, &CssSection, &glib::Error) + 'static,
-        >(
-            this: *mut gtk_sys::GtkCssProvider,
-            section: *mut gtk_sys::GtkCssSection,
-            error: *mut glib_sys::GError,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(
-                &from_glib_borrow(this),
-                &from_glib_borrow(section),
-                &from_glib_borrow(error),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"parsing-error\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    parsing_error_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //pub fn connect_parsing_error<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored error: GLib.Error
+    //}
 }
 
 impl Default for CssProvider {

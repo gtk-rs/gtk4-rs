@@ -2,10 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use atk;
-use cairo;
-use gdk;
-use gio;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -18,17 +14,13 @@ use glib::StaticType;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
-use graphene;
-use gsk;
 use gtk_sys;
 use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use Align;
-use Allocation;
 use Buildable;
 use DirectionType;
 use EventController;
@@ -36,7 +28,6 @@ use LayoutManager;
 use Orientation;
 use Overflow;
 use PickFlags;
-use Requisition;
 use Root;
 use Settings;
 use SizeRequestMode;
@@ -81,7 +72,7 @@ pub trait WidgetExt: 'static {
 
     //fn activate_action(&self, name: &str, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> bool;
 
-    fn activate_action_variant(&self, name: &str, args: Option<&glib::Variant>) -> bool;
+    //fn activate_action_variant(&self, name: &str, args: /*Ignored*/Option<&glib::Variant>) -> bool;
 
     fn activate_default(&self);
 
@@ -91,35 +82,31 @@ pub trait WidgetExt: 'static {
 
     fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
 
-    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>);
+    //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>);
 
     fn can_activate_accel(&self, signal_id: u32) -> bool;
 
     fn child_focus(&self, direction: DirectionType) -> bool;
 
-    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect>;
+    //fn compute_bounds<P: IsA<Widget>>(&self, target: &P, out_bounds: /*Ignored*/graphene::Rect) -> bool;
 
     fn compute_expand(&self, orientation: Orientation) -> bool;
 
-    fn compute_point<P: IsA<Widget>>(
-        &self,
-        target: &P,
-        point: &graphene::Point,
-    ) -> Option<graphene::Point>;
+    //fn compute_point<P: IsA<Widget>>(&self, target: &P, point: /*Ignored*/&graphene::Point, out_point: /*Ignored*/graphene::Point) -> bool;
 
-    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix>;
+    //fn compute_transform<P: IsA<Widget>>(&self, target: &P, out_transform: /*Ignored*/graphene::Matrix) -> bool;
 
     fn contains(&self, x: f64, y: f64) -> bool;
 
-    fn create_pango_context(&self) -> Option<pango::Context>;
+    //fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context>;
 
-    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout>;
+    //fn create_pango_layout(&self, text: Option<&str>) -> /*Ignored*/Option<pango::Layout>;
 
     fn destroy(&self);
 
     //fn destroyed<P: IsA<Widget>>(&self, widget_pointer: &P);
 
-    fn device_is_shadowed(&self, device: &gdk::Device) -> bool;
+    //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool;
 
     fn drag_check_threshold(
         &self,
@@ -131,7 +118,7 @@ pub trait WidgetExt: 'static {
 
     fn error_bell(&self);
 
-    fn get_accessible(&self) -> Option<atk::Object>;
+    //fn get_accessible(&self) -> /*Ignored*/Option<atk::Object>;
 
     fn get_allocated_baseline(&self) -> i32;
 
@@ -139,7 +126,7 @@ pub trait WidgetExt: 'static {
 
     fn get_allocated_width(&self) -> i32;
 
-    fn get_allocation(&self) -> Allocation;
+    //fn get_allocation(&self, allocation: /*Ignored*/&mut Allocation);
 
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
 
@@ -149,17 +136,17 @@ pub trait WidgetExt: 'static {
 
     fn get_child_visible(&self) -> bool;
 
-    fn get_clipboard(&self) -> gdk::Clipboard;
+    //fn get_clipboard(&self) -> /*Ignored*/gdk::Clipboard;
 
     fn get_css_classes(&self) -> Vec<GString>;
 
     fn get_css_name(&self) -> Option<GString>;
 
-    fn get_cursor(&self) -> Option<gdk::Cursor>;
+    //fn get_cursor(&self) -> /*Ignored*/Option<gdk::Cursor>;
 
     fn get_direction(&self) -> TextDirection;
 
-    fn get_display(&self) -> Option<gdk::Display>;
+    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display>;
 
     fn get_first_child(&self) -> Option<Widget>;
 
@@ -167,11 +154,11 @@ pub trait WidgetExt: 'static {
 
     fn get_focus_on_click(&self) -> bool;
 
-    fn get_font_map(&self) -> Option<pango::FontMap>;
+    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap>;
 
-    fn get_font_options(&self) -> Option<cairo::FontOptions>;
+    //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions>;
 
-    fn get_frame_clock(&self) -> Option<gdk::FrameClock>;
+    //fn get_frame_clock(&self) -> /*Ignored*/Option<gdk::FrameClock>;
 
     fn get_halign(&self) -> Align;
 
@@ -197,7 +184,7 @@ pub trait WidgetExt: 'static {
 
     fn get_margin_top(&self) -> i32;
 
-    fn get_modifier_mask(&self, intent: gdk::ModifierIntent) -> gdk::ModifierType;
+    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> /*Ignored*/gdk::ModifierType;
 
     //fn get_native(&self) -> /*Ignored*/Option<Native>;
 
@@ -207,15 +194,15 @@ pub trait WidgetExt: 'static {
 
     fn get_overflow(&self) -> Overflow;
 
-    fn get_pango_context(&self) -> Option<pango::Context>;
+    //fn get_pango_context(&self) -> /*Ignored*/Option<pango::Context>;
 
     fn get_parent(&self) -> Option<Widget>;
 
-    fn get_preferred_size(&self) -> (Requisition, Requisition);
+    //fn get_preferred_size(&self, minimum_size: /*Ignored*/Requisition, natural_size: /*Ignored*/Requisition);
 
     fn get_prev_sibling(&self) -> Option<Widget>;
 
-    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard>;
+    //fn get_primary_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard>;
 
     fn get_realized(&self) -> bool;
 
@@ -239,11 +226,7 @@ pub trait WidgetExt: 'static {
 
     fn get_support_multidevice(&self) -> bool;
 
-    fn get_template_child(
-        &self,
-        widget_type: glib::types::Type,
-        name: &str,
-    ) -> Option<glib::Object>;
+    //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object>;
 
     fn get_tooltip_markup(&self) -> Option<GString>;
 
@@ -277,7 +260,7 @@ pub trait WidgetExt: 'static {
 
     fn init_template(&self);
 
-    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>);
+    //fn insert_action_group(&self, name: &str, group: /*Ignored*/Option<&gio::ActionGroup>);
 
     fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(
         &self,
@@ -307,9 +290,9 @@ pub trait WidgetExt: 'static {
 
     fn mnemonic_activate(&self, group_cycling: bool) -> bool;
 
-    fn observe_children(&self) -> Option<gio::ListModel>;
+    //fn observe_children(&self) -> /*Ignored*/Option<gio::ListModel>;
 
-    fn observe_controllers(&self) -> Option<gio::ListModel>;
+    //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel>;
 
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget>;
 
@@ -337,7 +320,7 @@ pub trait WidgetExt: 'static {
 
     fn set_css_classes(&self, classes: &str);
 
-    fn set_cursor(&self, cursor: Option<&gdk::Cursor>);
+    //fn set_cursor(&self, cursor: /*Ignored*/Option<&gdk::Cursor>);
 
     fn set_cursor_from_name(&self, name: Option<&str>);
 
@@ -347,9 +330,9 @@ pub trait WidgetExt: 'static {
 
     fn set_focus_on_click(&self, focus_on_click: bool);
 
-    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>);
+    //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>);
 
-    fn set_font_options(&self, options: Option<&cairo::FontOptions>);
+    //fn set_font_options(&self, options: /*Ignored*/Option<&cairo::FontOptions>);
 
     fn set_halign(&self, align: Align);
 
@@ -401,7 +384,7 @@ pub trait WidgetExt: 'static {
 
     fn show(&self);
 
-    fn size_allocate(&self, allocation: &Allocation, baseline: i32);
+    //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32);
 
     fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot);
 
@@ -598,15 +581,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_activate_action() }
     //}
 
-    fn activate_action_variant(&self, name: &str, args: Option<&glib::Variant>) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_widget_activate_action_variant(
-                self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-                args.to_glib_none().0,
-            ))
-        }
-    }
+    //fn activate_action_variant(&self, name: &str, args: /*Ignored*/Option<&glib::Variant>) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_activate_action_variant() }
+    //}
 
     fn activate_default(&self) {
         unsafe {
@@ -641,17 +618,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>) {
-        unsafe {
-            gtk_sys::gtk_widget_allocate(
-                self.as_ref().to_glib_none().0,
-                width,
-                height,
-                baseline,
-                transform.to_glib_full(),
-            );
-        }
-    }
+    //fn allocate(&self, width: i32, height: i32, baseline: i32, transform: /*Ignored*/Option<&gsk::Transform>) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_allocate() }
+    //}
 
     fn can_activate_accel(&self, signal_id: u32) -> bool {
         unsafe {
@@ -671,21 +640,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect> {
-        unsafe {
-            let mut out_bounds = graphene::Rect::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_widget_compute_bounds(
-                self.as_ref().to_glib_none().0,
-                target.as_ref().to_glib_none().0,
-                out_bounds.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(out_bounds)
-            } else {
-                None
-            }
-        }
-    }
+    //fn compute_bounds<P: IsA<Widget>>(&self, target: &P, out_bounds: /*Ignored*/graphene::Rect) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_bounds() }
+    //}
 
     fn compute_expand(&self, orientation: Orientation) -> bool {
         unsafe {
@@ -696,42 +653,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn compute_point<P: IsA<Widget>>(
-        &self,
-        target: &P,
-        point: &graphene::Point,
-    ) -> Option<graphene::Point> {
-        unsafe {
-            let mut out_point = graphene::Point::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_widget_compute_point(
-                self.as_ref().to_glib_none().0,
-                target.as_ref().to_glib_none().0,
-                point.to_glib_none().0,
-                out_point.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(out_point)
-            } else {
-                None
-            }
-        }
-    }
+    //fn compute_point<P: IsA<Widget>>(&self, target: &P, point: /*Ignored*/&graphene::Point, out_point: /*Ignored*/graphene::Point) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_point() }
+    //}
 
-    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix> {
-        unsafe {
-            let mut out_transform = graphene::Matrix::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_widget_compute_transform(
-                self.as_ref().to_glib_none().0,
-                target.as_ref().to_glib_none().0,
-                out_transform.to_glib_none_mut().0,
-            ));
-            if ret {
-                Some(out_transform)
-            } else {
-                None
-            }
-        }
-    }
+    //fn compute_transform<P: IsA<Widget>>(&self, target: &P, out_transform: /*Ignored*/graphene::Matrix) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_compute_transform() }
+    //}
 
     fn contains(&self, x: f64, y: f64) -> bool {
         unsafe {
@@ -743,22 +671,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn create_pango_context(&self) -> Option<pango::Context> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_widget_create_pango_context(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn create_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_context() }
+    //}
 
-    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_widget_create_pango_layout(
-                self.as_ref().to_glib_none().0,
-                text.to_glib_none().0,
-            ))
-        }
-    }
+    //fn create_pango_layout(&self, text: Option<&str>) -> /*Ignored*/Option<pango::Layout> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_create_pango_layout() }
+    //}
 
     fn destroy(&self) {
         unsafe {
@@ -770,14 +689,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_widget_destroyed() }
     //}
 
-    fn device_is_shadowed(&self, device: &gdk::Device) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_widget_device_is_shadowed(
-                self.as_ref().to_glib_none().0,
-                device.to_glib_none().0,
-            ))
-        }
-    }
+    //fn device_is_shadowed(&self, device: /*Ignored*/&gdk::Device) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_device_is_shadowed() }
+    //}
 
     fn drag_check_threshold(
         &self,
@@ -803,13 +717,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_accessible(&self) -> Option<atk::Object> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_accessible(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_accessible(&self) -> /*Ignored*/Option<atk::Object> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_accessible() }
+    //}
 
     fn get_allocated_baseline(&self) -> i32 {
         unsafe { gtk_sys::gtk_widget_get_allocated_baseline(self.as_ref().to_glib_none().0) }
@@ -823,16 +733,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { gtk_sys::gtk_widget_get_allocated_width(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_allocation(&self) -> Allocation {
-        unsafe {
-            let mut allocation = Allocation::uninitialized();
-            gtk_sys::gtk_widget_get_allocation(
-                self.as_ref().to_glib_none().0,
-                allocation.to_glib_none_mut().0,
-            );
-            allocation
-        }
-    }
+    //fn get_allocation(&self, allocation: /*Ignored*/&mut Allocation) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_allocation() }
+    //}
 
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
         unsafe {
@@ -867,13 +770,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_clipboard(&self) -> gdk::Clipboard {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_clipboard(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_clipboard(&self) -> /*Ignored*/gdk::Clipboard {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_clipboard() }
+    //}
 
     fn get_css_classes(&self) -> Vec<GString> {
         unsafe {
@@ -891,13 +790,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_cursor(&self) -> Option<gdk::Cursor> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_cursor(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_cursor(&self) -> /*Ignored*/Option<gdk::Cursor> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_cursor() }
+    //}
 
     fn get_direction(&self) -> TextDirection {
         unsafe {
@@ -907,13 +802,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_display(&self) -> Option<gdk::Display> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_display(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_display(&self) -> /*Ignored*/Option<gdk::Display> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_display() }
+    //}
 
     fn get_first_child(&self) -> Option<Widget> {
         unsafe {
@@ -939,29 +830,17 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_font_map(&self) -> Option<pango::FontMap> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_font_map(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_font_map(&self) -> /*Ignored*/Option<pango::FontMap> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_map() }
+    //}
 
-    fn get_font_options(&self) -> Option<cairo::FontOptions> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_font_options(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_font_options(&self) -> /*Ignored*/Option<cairo::FontOptions> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_font_options() }
+    //}
 
-    fn get_frame_clock(&self) -> Option<gdk::FrameClock> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_frame_clock(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_frame_clock(&self) -> /*Ignored*/Option<gdk::FrameClock> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_frame_clock() }
+    //}
 
     fn get_halign(&self) -> Align {
         unsafe {
@@ -1039,14 +918,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { gtk_sys::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_modifier_mask(&self, intent: gdk::ModifierIntent) -> gdk::ModifierType {
-        unsafe {
-            from_glib(gtk_sys::gtk_widget_get_modifier_mask(
-                self.as_ref().to_glib_none().0,
-                intent.to_glib(),
-            ))
-        }
-    }
+    //fn get_modifier_mask(&self, intent: /*Ignored*/gdk::ModifierIntent) -> /*Ignored*/gdk::ModifierType {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_modifier_mask() }
+    //}
 
     //fn get_native(&self) -> /*Ignored*/Option<Native> {
     //    unsafe { TODO: call gtk_sys:gtk_widget_get_native() }
@@ -1072,13 +946,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_pango_context(&self) -> Option<pango::Context> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_pango_context(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_pango_context(&self) -> /*Ignored*/Option<pango::Context> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_pango_context() }
+    //}
 
     fn get_parent(&self) -> Option<Widget> {
         unsafe {
@@ -1088,18 +958,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_preferred_size(&self) -> (Requisition, Requisition) {
-        unsafe {
-            let mut minimum_size = Requisition::uninitialized();
-            let mut natural_size = Requisition::uninitialized();
-            gtk_sys::gtk_widget_get_preferred_size(
-                self.as_ref().to_glib_none().0,
-                minimum_size.to_glib_none_mut().0,
-                natural_size.to_glib_none_mut().0,
-            );
-            (minimum_size, natural_size)
-        }
-    }
+    //fn get_preferred_size(&self, minimum_size: /*Ignored*/Requisition, natural_size: /*Ignored*/Requisition) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_preferred_size() }
+    //}
 
     fn get_prev_sibling(&self) -> Option<Widget> {
         unsafe {
@@ -1109,13 +970,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_primary_clipboard(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_primary_clipboard(&self) -> /*Ignored*/Option<gdk::Clipboard> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_primary_clipboard() }
+    //}
 
     fn get_realized(&self) -> bool {
         unsafe {
@@ -1204,19 +1061,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_template_child(
-        &self,
-        widget_type: glib::types::Type,
-        name: &str,
-    ) -> Option<glib::Object> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_widget_get_template_child(
-                self.as_ref().to_glib_none().0,
-                widget_type.to_glib(),
-                name.to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_template_child(&self, widget_type: glib::types::Type, name: &str) -> /*Ignored*/Option<glib::Object> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_get_template_child() }
+    //}
 
     fn get_tooltip_markup(&self) -> Option<GString> {
         unsafe {
@@ -1335,15 +1182,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_widget_insert_action_group(
-                self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-                group.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn insert_action_group(&self, name: &str, group: /*Ignored*/Option<&gio::ActionGroup>) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_insert_action_group() }
+    //}
 
     fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(
         &self,
@@ -1461,21 +1302,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn observe_children(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_widget_observe_children(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn observe_children(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_children() }
+    //}
 
-    fn observe_controllers(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_widget_observe_controllers(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn observe_controllers(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_observe_controllers() }
+    //}
 
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget> {
         unsafe {
@@ -1578,11 +1411,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_cursor(&self, cursor: Option<&gdk::Cursor>) {
-        unsafe {
-            gtk_sys::gtk_widget_set_cursor(self.as_ref().to_glib_none().0, cursor.to_glib_none().0);
-        }
-    }
+    //fn set_cursor(&self, cursor: /*Ignored*/Option<&gdk::Cursor>) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_cursor() }
+    //}
 
     fn set_cursor_from_name(&self, name: Option<&str>) {
         unsafe {
@@ -1617,23 +1448,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_widget_set_font_map(
-                self.as_ref().to_glib_none().0,
-                font_map.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_font_map(&self, font_map: /*Ignored*/Option<&pango::FontMap>) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_map() }
+    //}
 
-    fn set_font_options(&self, options: Option<&cairo::FontOptions>) {
-        unsafe {
-            gtk_sys::gtk_widget_set_font_options(
-                self.as_ref().to_glib_none().0,
-                options.to_glib_none().0,
-            );
-        }
-    }
+    //fn set_font_options(&self, options: /*Ignored*/Option<&cairo::FontOptions>) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_set_font_options() }
+    //}
 
     fn set_halign(&self, align: Align) {
         unsafe {
@@ -1812,15 +1633,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn size_allocate(&self, allocation: &Allocation, baseline: i32) {
-        unsafe {
-            gtk_sys::gtk_widget_size_allocate(
-                self.as_ref().to_glib_none().0,
-                allocation.to_glib_none().0,
-                baseline,
-            );
-        }
-    }
+    //fn size_allocate(&self, allocation: /*Ignored*/&Allocation, baseline: i32) {
+    //    unsafe { TODO: call gtk_sys:gtk_widget_size_allocate() }
+    //}
 
     fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot) {
         unsafe {

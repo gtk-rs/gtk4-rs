@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -83,61 +81,13 @@ impl EventControllerMotion {
         }
     }
 
-    pub fn connect_enter<F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn enter_trampoline<
-            F: Fn(&EventControllerMotion, f64, f64, gdk::CrossingMode) + 'static,
-        >(
-            this: *mut gtk_sys::GtkEventControllerMotion,
-            x: libc::c_double,
-            y: libc::c_double,
-            mode: gdk_sys::GdkCrossingMode,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), x, y, from_glib(mode))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"enter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    enter_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //pub fn connect_enter<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored mode: Gdk.CrossingMode
+    //}
 
-    pub fn connect_leave<F: Fn(&EventControllerMotion, gdk::CrossingMode) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn leave_trampoline<
-            F: Fn(&EventControllerMotion, gdk::CrossingMode) + 'static,
-        >(
-            this: *mut gtk_sys::GtkEventControllerMotion,
-            mode: gdk_sys::GdkCrossingMode,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(mode))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"leave\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    leave_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
+    //pub fn connect_leave<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored mode: Gdk.CrossingMode
+    //}
 
     pub fn connect_motion<F: Fn(&EventControllerMotion, f64, f64) + 'static>(
         &self,
