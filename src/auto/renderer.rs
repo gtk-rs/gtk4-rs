@@ -31,11 +31,11 @@ glib_wrapper! {
 }
 
 impl Renderer {
-    pub fn new_for_surface<P: IsA<gdk::Surface>>(surface: &P) -> Option<Renderer> {
+    pub fn new_for_surface(surface: &gdk::Surface) -> Option<Renderer> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gsk_sys::gsk_renderer_new_for_surface(
-                surface.as_ref().to_glib_none().0,
+                surface.to_glib_none().0,
             ))
         }
     }
@@ -48,7 +48,7 @@ pub trait RendererExt: 'static {
 
     fn is_realized(&self) -> bool;
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), glib::Error>;
+    fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error>;
 
     fn render(&self, root: &RenderNode, region: Option<&cairo::Region>);
 
@@ -84,12 +84,12 @@ impl<O: IsA<Renderer>> RendererExt for O {
         }
     }
 
-    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) -> Result<(), glib::Error> {
+    fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gsk_sys::gsk_renderer_realize(
                 self.as_ref().to_glib_none().0,
-                surface.as_ref().to_glib_none().0,
+                surface.to_glib_none().0,
                 &mut error,
             );
             if error.is_null() {
@@ -154,14 +154,16 @@ impl<O: IsA<Renderer>> RendererExt for O {
             P: IsA<Renderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&Renderer::from_glib_borrow(this).unsafe_cast())
+            f(&Renderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::realized\0".as_ptr() as *const _,
-                Some(transmute(notify_realized_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_realized_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -176,14 +178,16 @@ impl<O: IsA<Renderer>> RendererExt for O {
             P: IsA<Renderer>,
         {
             let f: &F = &*(f as *const F);
-            f(&Renderer::from_glib_borrow(this).unsafe_cast())
+            f(&Renderer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::surface\0".as_ptr() as *const _,
-                Some(transmute(notify_surface_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_surface_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

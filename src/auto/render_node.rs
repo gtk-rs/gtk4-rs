@@ -64,7 +64,7 @@ impl RenderNode {
         }
     }
 
-    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/Fn(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
+    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
     //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
     //}
 }

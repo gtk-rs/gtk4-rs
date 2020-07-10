@@ -50,7 +50,7 @@ impl Transform {
     pub fn matrix(&self, matrix: &graphene::Matrix) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_matrix(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 matrix.to_glib_none().0,
             ))
         }
@@ -59,7 +59,7 @@ impl Transform {
     pub fn perspective(&self, depth: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_perspective(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 depth,
             ))
         }
@@ -72,13 +72,13 @@ impl Transform {
     }
 
     pub fn rotate(&self, angle: f32) -> Option<Transform> {
-        unsafe { from_glib_full(gsk_sys::gsk_transform_rotate(self.to_glib_none().0, angle)) }
+        unsafe { from_glib_full(gsk_sys::gsk_transform_rotate(self.to_glib_full(), angle)) }
     }
 
     pub fn rotate_3d(&self, angle: f32, axis: &graphene::Vec3) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_rotate_3d(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 angle,
                 axis.to_glib_none().0,
             ))
@@ -88,7 +88,7 @@ impl Transform {
     pub fn scale(&self, factor_x: f32, factor_y: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_scale(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 factor_x,
                 factor_y,
             ))
@@ -98,7 +98,7 @@ impl Transform {
     pub fn scale_3d(&self, factor_x: f32, factor_y: f32, factor_z: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_scale_3d(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 factor_x,
                 factor_y,
                 factor_z,
@@ -205,10 +205,22 @@ impl Transform {
         }
     }
 
+    pub fn transform_point(&self, point: &graphene::Point) -> graphene::Point {
+        unsafe {
+            let mut out_point = graphene::Point::uninitialized();
+            gsk_sys::gsk_transform_transform_point(
+                self.to_glib_none().0,
+                point.to_glib_none().0,
+                out_point.to_glib_none_mut().0,
+            );
+            out_point
+        }
+    }
+
     pub fn translate(&self, point: &graphene::Point) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_translate(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 point.to_glib_none().0,
             ))
         }
@@ -217,7 +229,7 @@ impl Transform {
     pub fn translate_3d(&self, point: &graphene::Point3D) -> Option<Transform> {
         unsafe {
             from_glib_full(gsk_sys::gsk_transform_translate_3d(
-                self.to_glib_none().0,
+                self.to_glib_full(),
                 point.to_glib_none().0,
             ))
         }
