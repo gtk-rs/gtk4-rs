@@ -16,6 +16,7 @@ use gsk_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum BlendMode {
     Default,
     Multiply,
@@ -143,6 +144,7 @@ impl SetValue for BlendMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Corner {
     TopLeft,
     TopRight,
@@ -222,6 +224,7 @@ impl SetValue for Corner {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum RenderNodeType {
     NotARenderNode,
     ContainerNode,
@@ -375,6 +378,7 @@ impl SetValue for RenderNodeType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ScalingFilter {
     Linear,
     Nearest,
@@ -450,6 +454,7 @@ impl SetValue for ScalingFilter {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SerializationError {
     UnsupportedFormat,
     UnsupportedVersion,
@@ -548,6 +553,7 @@ impl SetValue for SerializationError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TransformCategory {
     Unknown,
     Any,
