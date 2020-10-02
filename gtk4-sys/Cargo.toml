@@ -35,7 +35,7 @@ path = "../gsk4-sys"
 path = "../pango-sys"
 
 [dev-dependencies]
-shell-words = "0.1.0"
+shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
