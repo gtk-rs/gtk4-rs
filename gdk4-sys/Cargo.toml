@@ -23,7 +23,7 @@ path = "../gobject-sys"
 path = "../pango-sys"
 
 [dev-dependencies]
-shell-words = "0.1.0"
+shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
@@ -39,7 +39,7 @@ description = "FFI bindings to libgdk-4"
 homepage = "http://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
-links = "gdk4"
+links = "gtk-4"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"

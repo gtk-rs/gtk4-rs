@@ -35,7 +35,7 @@ path = "../gsk4-sys"
 path = "../pango-sys"
 
 [dev-dependencies]
-shell-words = "0.1.0"
+shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
@@ -51,7 +51,7 @@ description = "FFI bindings to libgtk-4"
 homepage = "http://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
-links = "gtk4"
+links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"

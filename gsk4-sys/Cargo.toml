@@ -23,7 +23,7 @@ git = "https://github.com/gtk-rs/graphene"
 path = "../pango-sys"
 
 [dev-dependencies]
-shell-words = "0.1.0"
+shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
@@ -39,7 +39,7 @@ description = "FFI bindings to libgsk-4"
 homepage = "http://gtk-rs.org/"
 keywords = ["gsk", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
-links = "gsk4"
+links = "gtk-4"
 name = "gsk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"

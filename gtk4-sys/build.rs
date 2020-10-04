@@ -6,10 +6,6 @@
 extern crate system_deps;
 
 #[cfg(not(feature = "dox"))]
-use std::io;
-#[cfg(not(feature = "dox"))]
-use std::io::prelude::*;
-#[cfg(not(feature = "dox"))]
 use std::process;
 
 #[cfg(feature = "dox")]

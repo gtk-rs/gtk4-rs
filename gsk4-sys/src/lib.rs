@@ -247,6 +247,7 @@ impl ::std::fmt::Debug for GskVulkanRenderer {
     }
 }
 
+#[link(name = "gtk-4")]
 extern "C" {
 
     //=========================================================================
