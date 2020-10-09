@@ -175,6 +175,12 @@ mod color_chooser_widget;
 pub use self::color_chooser_widget::ColorChooserWidgetBuilder;
 pub use self::color_chooser_widget::{ColorChooserWidget, ColorChooserWidgetClass};
 
+mod column_view;
+pub use self::column_view::{ColumnView, ColumnViewClass};
+
+mod column_view_column;
+pub use self::column_view_column::{ColumnViewColumn, ColumnViewColumnClass};
+
 mod combo_box;
 pub use self::combo_box::ComboBoxBuilder;
 pub use self::combo_box::ComboBoxExt;

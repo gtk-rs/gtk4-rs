@@ -45,6 +45,8 @@ generate = [
     "Gtk.CellRendererSpin",
     "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
+    "Gtk.ColumnView",
+    "Gtk.ColumnViewColumn",
     "Gtk.Constraint",
     "Gtk.ConstraintAttribute",
     "Gtk.ConstraintRelation",
