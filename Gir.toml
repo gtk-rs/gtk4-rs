@@ -90,6 +90,7 @@ generate = [
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.GridLayout",
+    "Gtk.GridView",
     "Gtk.GridLayoutChild",
     "Gtk.IconLookupFlags",
     "Gtk.IconSize",

@@ -394,6 +394,9 @@ mod grid_layout_child;
 pub use self::grid_layout_child::GridLayoutChildExt;
 pub use self::grid_layout_child::{GridLayoutChild, GridLayoutChildClass, NONE_GRID_LAYOUT_CHILD};
 
+mod grid_view;
+pub use self::grid_view::{GridView, GridViewClass};
+
 mod header_bar;
 pub use self::header_bar::HeaderBarBuilder;
 pub use self::header_bar::{HeaderBar, HeaderBarClass};
