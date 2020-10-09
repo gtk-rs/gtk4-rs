@@ -3,6 +3,8 @@
 // DO NOT EDIT
 
 use gdk;
+use gio;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -17,6 +19,9 @@ use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use IconLookupFlags;
+use IconPaintable;
+use TextDirection;
 
 glib_wrapper! {
     pub struct IconTheme(Object<gtk_sys::GtkIconTheme, IconThemeClass>);
@@ -88,13 +93,47 @@ impl IconTheme {
         }
     }
 
-    //pub fn lookup_by_gicon<P: IsA<gio::Icon>>(&self, icon: &P, size: i32, scale: i32, direction: TextDirection, flags: IconLookupFlags) -> /*Ignored*/Option<IconPaintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_lookup_by_gicon() }
-    //}
+    pub fn lookup_by_gicon<P: IsA<gio::Icon>>(
+        &self,
+        icon: &P,
+        size: i32,
+        scale: i32,
+        direction: TextDirection,
+        flags: IconLookupFlags,
+    ) -> Option<IconPaintable> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon(
+                self.to_glib_none().0,
+                icon.as_ref().to_glib_none().0,
+                size,
+                scale,
+                direction.to_glib(),
+                flags.to_glib(),
+            ))
+        }
+    }
 
-    //pub fn lookup_icon(&self, icon_name: &str, fallbacks: &[&str], size: i32, scale: i32, direction: TextDirection, flags: IconLookupFlags) -> /*Ignored*/Option<IconPaintable> {
-    //    unsafe { TODO: call gtk_sys:gtk_icon_theme_lookup_icon() }
-    //}
+    pub fn lookup_icon(
+        &self,
+        icon_name: &str,
+        fallbacks: &[&str],
+        size: i32,
+        scale: i32,
+        direction: TextDirection,
+        flags: IconLookupFlags,
+    ) -> Option<IconPaintable> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon(
+                self.to_glib_none().0,
+                icon_name.to_glib_none().0,
+                fallbacks.to_glib_none().0,
+                size,
+                scale,
+                direction.to_glib(),
+                flags.to_glib(),
+            ))
+        }
+    }
 
     pub fn set_resource_path(&self, path: &str) {
         unsafe {

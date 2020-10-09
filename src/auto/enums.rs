@@ -7680,6 +7680,90 @@ impl SetValue for StringFilterMatchMode {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum SystemSetting {
+    Dpi,
+    FontName,
+    FontConfig,
+    Display,
+    IconTheme,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SystemSetting {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SystemSetting::{}",
+            match *self {
+                SystemSetting::Dpi => "Dpi",
+                SystemSetting::FontName => "FontName",
+                SystemSetting::FontConfig => "FontConfig",
+                SystemSetting::Display => "Display",
+                SystemSetting::IconTheme => "IconTheme",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SystemSetting {
+    type GlibType = gtk_sys::GtkSystemSetting;
+
+    fn to_glib(&self) -> gtk_sys::GtkSystemSetting {
+        match *self {
+            SystemSetting::Dpi => gtk_sys::GTK_SYSTEM_SETTING_DPI,
+            SystemSetting::FontName => gtk_sys::GTK_SYSTEM_SETTING_FONT_NAME,
+            SystemSetting::FontConfig => gtk_sys::GTK_SYSTEM_SETTING_FONT_CONFIG,
+            SystemSetting::Display => gtk_sys::GTK_SYSTEM_SETTING_DISPLAY,
+            SystemSetting::IconTheme => gtk_sys::GTK_SYSTEM_SETTING_ICON_THEME,
+            SystemSetting::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSystemSetting> for SystemSetting {
+    fn from_glib(value: gtk_sys::GtkSystemSetting) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SystemSetting::Dpi,
+            1 => SystemSetting::FontName,
+            2 => SystemSetting::FontConfig,
+            3 => SystemSetting::Display,
+            4 => SystemSetting::IconTheme,
+            value => SystemSetting::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SystemSetting {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_system_setting_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SystemSetting {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SystemSetting {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SystemSetting {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextBufferTargetInfo {
     BufferContents,
     RichText,

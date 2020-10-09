@@ -305,6 +305,10 @@ mod editable;
 pub use self::editable::EditableExt;
 pub use self::editable::{Editable, NONE_EDITABLE};
 
+mod editable_label;
+pub use self::editable_label::EditableLabelExt;
+pub use self::editable_label::{EditableLabel, EditableLabelClass, NONE_EDITABLE_LABEL};
+
 mod emoji_chooser;
 pub use self::emoji_chooser::{EmojiChooser, EmojiChooserClass};
 
@@ -324,6 +328,9 @@ pub use self::entry_completion::{EntryCompletion, EntryCompletionClass};
 mod event_controller;
 pub use self::event_controller::EventControllerExt;
 pub use self::event_controller::{EventController, EventControllerClass, NONE_EVENT_CONTROLLER};
+
+mod event_controller_focus;
+pub use self::event_controller_focus::{EventControllerFocus, EventControllerFocusClass};
 
 mod event_controller_key;
 pub use self::event_controller_key::{EventControllerKey, EventControllerKeyClass};
@@ -441,6 +448,9 @@ mod gesture;
 pub use self::gesture::GestureExt;
 pub use self::gesture::{Gesture, GestureClass, NONE_GESTURE};
 
+mod gesture_click;
+pub use self::gesture_click::{GestureClick, GestureClickClass};
+
 mod gesture_drag;
 pub use self::gesture_drag::GestureDragExt;
 pub use self::gesture_drag::{GestureDrag, GestureDragClass, NONE_GESTURE_DRAG};
@@ -497,6 +507,9 @@ pub use self::im_context_simple::{IMContextSimple, IMContextSimpleClass, NONE_IM
 mod im_multicontext;
 pub use self::im_multicontext::IMMulticontextExt;
 pub use self::im_multicontext::{IMMulticontext, IMMulticontextClass, NONE_IM_MULTICONTEXT};
+
+mod icon_paintable;
+pub use self::icon_paintable::{IconPaintable, IconPaintableClass};
 
 mod icon_theme;
 pub use self::icon_theme::{IconTheme, IconThemeClass};
@@ -890,6 +903,10 @@ mod string_list;
 pub use self::string_list::StringListExt;
 pub use self::string_list::{StringList, StringListClass, NONE_STRING_LIST};
 
+mod string_object;
+pub use self::string_object::StringObjectExt;
+pub use self::string_object::{StringObject, StringObjectClass, NONE_STRING_OBJECT};
+
 mod string_sorter;
 pub use self::string_sorter::StringSorterExt;
 pub use self::string_sorter::{StringSorter, StringSorterClass, NONE_STRING_SORTER};
@@ -1146,6 +1163,7 @@ pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
 pub use self::enums::StringFilterMatchMode;
+pub use self::enums::SystemSetting;
 pub use self::enums::TextBufferTargetInfo;
 pub use self::enums::TextDirection;
 pub use self::enums::TextExtendSelection;
@@ -1343,6 +1361,7 @@ pub mod traits {
     pub use super::DrawingAreaExt;
     pub use super::DropDownExt;
     pub use super::EditableExt;
+    pub use super::EditableLabelExt;
     pub use super::EntryBufferExt;
     pub use super::EntryExt;
     pub use super::EventControllerExt;
@@ -1409,6 +1428,7 @@ pub mod traits {
     pub use super::SorterExt;
     pub use super::StringFilterExt;
     pub use super::StringListExt;
+    pub use super::StringObjectExt;
     pub use super::StringSorterExt;
     pub use super::StyleContextExt;
     pub use super::StyleProviderExt;
