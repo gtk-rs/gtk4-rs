@@ -530,6 +530,9 @@ mod popover_menu;
 pub use self::popover_menu::PopoverMenuBuilder;
 pub use self::popover_menu::{PopoverMenu, PopoverMenuClass};
 
+mod popover_menu_bar;
+pub use self::popover_menu_bar::{PopoverMenuBar, PopoverMenuBarClass};
+
 mod print_context;
 pub use self::print_context::{PrintContext, PrintContextClass};
 
@@ -948,6 +951,7 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PlacesOpenFlags;
+pub use self::flags::PopoverMenuFlags;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;

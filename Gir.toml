@@ -124,6 +124,8 @@ generate = [
     "Gtk.PlacesOpenFlags",
     "Gtk.PolicyType",
     "Gtk.PopoverConstraint",
+    "Gtk.PopoverMenuFlags",
+    "Gtk.PopoverMenuBar",
     "Gtk.PositionType",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",

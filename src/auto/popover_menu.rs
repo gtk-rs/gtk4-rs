@@ -28,6 +28,7 @@ use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Popover;
+use PopoverMenuFlags;
 use PositionType;
 use ShortcutManager;
 use Widget;
@@ -51,9 +52,19 @@ impl PopoverMenu {
         }
     }
 
-    //pub fn from_model_full<P: IsA<gio::MenuModel>>(model: &P, flags: /*Ignored*/PopoverMenuFlags) -> PopoverMenu {
-    //    unsafe { TODO: call gtk_sys:gtk_popover_menu_new_from_model_full() }
-    //}
+    pub fn from_model_full<P: IsA<gio::MenuModel>>(
+        model: &P,
+        flags: PopoverMenuFlags,
+    ) -> PopoverMenu {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_full(gtk_sys::gtk_popover_menu_new_from_model_full(
+                model.as_ref().to_glib_none().0,
+                flags.to_glib(),
+            ))
+            .unsafe_cast()
+        }
+    }
 
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
