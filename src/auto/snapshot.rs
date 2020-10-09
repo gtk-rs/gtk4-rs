@@ -14,7 +14,7 @@ use std::fmt;
 use StyleContext;
 
 glib_wrapper! {
-    pub struct Snapshot(Object<gtk_sys::GtkSnapshot, gtk_sys::GtkSnapshotClass, SnapshotClass>);
+    pub struct Snapshot(Object<gtk_sys::GtkSnapshot, gtk_sys::GtkSnapshotClass, SnapshotClass>) @extends gdk::Snapshot;
 
     match fn {
         get_type => || gtk_sys::gtk_snapshot_get_type(),
