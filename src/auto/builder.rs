@@ -232,9 +232,28 @@ impl Builder {
         }
     }
 
-    //pub fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, glib::Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_value_from_string() }
-    //}
+    pub fn value_from_string<P: IsA<glib::ParamSpec>>(
+        &self,
+        pspec: &P,
+        string: &str,
+    ) -> Result<glib::Value, glib::Error> {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            let mut error = ptr::null_mut();
+            let _ = gtk_sys::gtk_builder_value_from_string(
+                self.to_glib_none().0,
+                pspec.as_ref().to_glib_none().0,
+                string.to_glib_none().0,
+                value.to_glib_none_mut().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(value)
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
     pub fn value_from_string_type(
         &self,

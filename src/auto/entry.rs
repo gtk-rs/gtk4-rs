@@ -826,7 +826,12 @@ pub trait EntryExt: 'static {
 
     fn set_icon_activatable(&self, icon_pos: EntryIconPosition, activatable: bool);
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: gdk::DragAction);
+    fn set_icon_drag_source<P: IsA<gdk::ContentProvider>>(
+        &self,
+        icon_pos: EntryIconPosition,
+        provider: &P,
+        actions: gdk::DragAction,
+    );
 
     fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, icon_pos: EntryIconPosition, icon: Option<&P>);
 
@@ -1430,9 +1435,21 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    //fn set_icon_drag_source(&self, icon_pos: EntryIconPosition, provider: /*Ignored*/&gdk::ContentProvider, actions: gdk::DragAction) {
-    //    unsafe { TODO: call gtk_sys:gtk_entry_set_icon_drag_source() }
-    //}
+    fn set_icon_drag_source<P: IsA<gdk::ContentProvider>>(
+        &self,
+        icon_pos: EntryIconPosition,
+        provider: &P,
+        actions: gdk::DragAction,
+    ) {
+        unsafe {
+            gtk_sys::gtk_entry_set_icon_drag_source(
+                self.as_ref().to_glib_none().0,
+                icon_pos.to_glib(),
+                provider.as_ref().to_glib_none().0,
+                actions.to_glib(),
+            );
+        }
+    }
 
     fn set_icon_from_gicon<P: IsA<gio::Icon>>(
         &self,

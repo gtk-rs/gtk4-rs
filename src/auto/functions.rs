@@ -185,9 +185,22 @@ pub fn im_modules_init() {
     }
 }
 
-//pub fn param_spec_expression(name: &str, nick: &str, blurb: &str, flags: /*Ignored*/glib::ParamFlags) -> /*Ignored*/Option<glib::ParamSpec> {
-//    unsafe { TODO: call gtk_sys:gtk_param_spec_expression() }
-//}
+pub fn param_spec_expression(
+    name: &str,
+    nick: &str,
+    blurb: &str,
+    flags: glib::ParamFlags,
+) -> Option<glib::ParamSpec> {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_param_spec_expression(
+            name.to_glib_none().0,
+            nick.to_glib_none().0,
+            blurb.to_glib_none().0,
+            flags.to_glib(),
+        ))
+    }
+}
 
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     parent: Option<&P>,
@@ -744,9 +757,18 @@ pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
     }
 }
 
-//pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(tree_model: &P, path: &mut TreePath) -> /*Ignored*/Option<gdk::ContentProvider> {
-//    unsafe { TODO: call gtk_sys:gtk_tree_create_row_drag_content() }
-//}
+pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(
+    tree_model: &P,
+    path: &mut TreePath,
+) -> Option<gdk::ContentProvider> {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib_full(gtk_sys::gtk_tree_create_row_drag_content(
+            tree_model.as_ref().to_glib_none().0,
+            path.to_glib_none_mut().0,
+        ))
+    }
+}
 
 pub fn tree_get_row_drag_data(
     value: &glib::Value,

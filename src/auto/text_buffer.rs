@@ -130,7 +130,7 @@ pub trait TextBufferExt: 'static {
 
     fn get_selection_bounds(&self) -> Option<(TextIter, TextIter)>;
 
-    //fn get_selection_content(&self) -> /*Ignored*/Option<gdk::ContentProvider>;
+    fn get_selection_content(&self) -> Option<gdk::ContentProvider>;
 
     fn get_slice(
         &self,
@@ -665,9 +665,13 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn get_selection_content(&self) -> /*Ignored*/Option<gdk::ContentProvider> {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_get_selection_content() }
-    //}
+    fn get_selection_content(&self) -> Option<gdk::ContentProvider> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_text_buffer_get_selection_content(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_slice(
         &self,

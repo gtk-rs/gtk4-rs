@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -47,9 +48,9 @@ impl Calendar {
         }
     }
 
-    //pub fn get_date(&self) -> /*Ignored*/Option<glib::DateTime> {
-    //    unsafe { TODO: call gtk_sys:gtk_calendar_get_date() }
-    //}
+    pub fn get_date(&self) -> Option<glib::DateTime> {
+        unsafe { from_glib_full(gtk_sys::gtk_calendar_get_date(self.to_glib_none().0)) }
+    }
 
     pub fn get_day_is_marked(&self, day: u32) -> bool {
         unsafe {
@@ -90,9 +91,11 @@ impl Calendar {
         }
     }
 
-    //pub fn select_day(&self, date: /*Ignored*/&glib::DateTime) {
-    //    unsafe { TODO: call gtk_sys:gtk_calendar_select_day() }
-    //}
+    pub fn select_day(&self, date: &glib::DateTime) {
+        unsafe {
+            gtk_sys::gtk_calendar_select_day(self.to_glib_none().0, date.to_glib_none().0);
+        }
+    }
 
     pub fn set_show_day_names(&self, value: bool) {
         unsafe {

@@ -188,9 +188,9 @@ pub trait TextTagExt: 'static {
 
     fn get_property_name(&self) -> Option<GString>;
 
-    //fn get_property_overline(&self) -> /*Ignored*/pango::Overline;
+    fn get_property_overline(&self) -> pango::Overline;
 
-    //fn set_property_overline(&self, overline: /*Ignored*/pango::Overline);
+    fn set_property_overline(&self, overline: pango::Overline);
 
     fn get_property_overline_rgba(&self) -> Option<gdk::RGBA>;
 
@@ -262,9 +262,9 @@ pub trait TextTagExt: 'static {
 
     fn set_property_scale_set(&self, scale_set: bool);
 
-    //fn get_property_show_spaces(&self) -> /*Ignored*/pango::ShowFlags;
+    fn get_property_show_spaces(&self) -> pango::ShowFlags;
 
-    //fn set_property_show_spaces(&self, show_spaces: /*Ignored*/pango::ShowFlags);
+    fn set_property_show_spaces(&self, show_spaces: pango::ShowFlags);
 
     fn get_property_show_spaces_set(&self) -> bool;
 
@@ -1540,19 +1540,30 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_overline(&self) -> /*Ignored*/pango::Overline {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"overline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().expect("Return Value for property `overline` getter").unwrap()
-    //    }
-    //}
+    fn get_property_overline(&self) -> pango::Overline {
+        unsafe {
+            let mut value = Value::from_type(<pango::Overline as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"overline\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `overline` getter")
+                .unwrap()
+        }
+    }
 
-    //fn set_property_overline(&self, overline: /*Ignored*/pango::Overline) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"overline\0".as_ptr() as *const _, Value::from(&overline).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_overline(&self, overline: pango::Overline) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"overline\0".as_ptr() as *const _,
+                Value::from(&overline).to_glib_none().0,
+            );
+        }
+    }
 
     fn get_property_overline_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
@@ -1990,19 +2001,30 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    //fn get_property_show_spaces(&self) -> /*Ignored*/pango::ShowFlags {
-    //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-spaces\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().expect("Return Value for property `show-spaces` getter").unwrap()
-    //    }
-    //}
+    fn get_property_show_spaces(&self) -> pango::ShowFlags {
+        unsafe {
+            let mut value = Value::from_type(<pango::ShowFlags as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-spaces\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `show-spaces` getter")
+                .unwrap()
+        }
+    }
 
-    //fn set_property_show_spaces(&self, show_spaces: /*Ignored*/pango::ShowFlags) {
-    //    unsafe {
-    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"show-spaces\0".as_ptr() as *const _, Value::from(&show_spaces).to_glib_none().0);
-    //    }
-    //}
+    fn set_property_show_spaces(&self, show_spaces: pango::ShowFlags) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"show-spaces\0".as_ptr() as *const _,
+                Value::from(&show_spaces).to_glib_none().0,
+            );
+        }
+    }
 
     fn get_property_show_spaces_set(&self) -> bool {
         unsafe {
