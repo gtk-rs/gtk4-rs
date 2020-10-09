@@ -27,6 +27,7 @@ use ConstraintTarget;
 use Dialog;
 use LayoutManager;
 use License;
+use Native;
 use Overflow;
 use Root;
 use ShortcutManager;
@@ -34,7 +35,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager;
+    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_about_dialog_get_type(),

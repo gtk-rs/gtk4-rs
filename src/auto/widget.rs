@@ -34,6 +34,7 @@ use ConstraintTarget;
 use DirectionType;
 use EventController;
 use LayoutManager;
+use Native;
 use Orientation;
 use Overflow;
 use PickFlags;
@@ -190,7 +191,7 @@ pub trait WidgetExt: 'static {
 
     fn get_margin_top(&self) -> i32;
 
-    //fn get_native(&self) -> /*Ignored*/Option<Native>;
+    fn get_native(&self) -> Option<Native>;
 
     fn get_next_sibling(&self) -> Option<Widget>;
 
@@ -987,9 +988,13 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { gtk_sys::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
-    //fn get_native(&self) -> /*Ignored*/Option<Native> {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_get_native() }
-    //}
+    fn get_native(&self) -> Option<Native> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_widget_get_native(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_next_sibling(&self) -> Option<Widget> {
         unsafe {

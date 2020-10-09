@@ -26,6 +26,7 @@ use Align;
 use Buildable;
 use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use Popover;
 use PopoverMenuFlags;
@@ -34,7 +35,7 @@ use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, PopoverMenuClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, ShortcutManager;
+    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, PopoverMenuClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_menu_get_type(),

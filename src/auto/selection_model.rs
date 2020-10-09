@@ -14,6 +14,7 @@ use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Bitset;
 
 glib_wrapper! {
     pub struct SelectionModel(Interface<gtk_sys::GtkSelectionModel>) @requires gio::ListModel;
@@ -26,9 +27,9 @@ glib_wrapper! {
 pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
 
 pub trait SelectionModelExt: 'static {
-    //fn get_selection(&self) -> /*Ignored*/Option<Bitset>;
+    fn get_selection(&self) -> Option<Bitset>;
 
-    //fn get_selection_in_range(&self, position: u32, n_items: u32) -> /*Ignored*/Option<Bitset>;
+    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Option<Bitset>;
 
     fn is_selected(&self, position: u32) -> bool;
 
@@ -40,7 +41,7 @@ pub trait SelectionModelExt: 'static {
 
     fn selection_changed(&self, position: u32, n_items: u32);
 
-    //fn set_selection(&self, selected: /*Ignored*/&Bitset, mask: /*Ignored*/&Bitset) -> bool;
+    fn set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool;
 
     fn unselect_all(&self) -> bool;
 
@@ -52,13 +53,23 @@ pub trait SelectionModelExt: 'static {
 }
 
 impl<O: IsA<SelectionModel>> SelectionModelExt for O {
-    //fn get_selection(&self) -> /*Ignored*/Option<Bitset> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_model_get_selection() }
-    //}
+    fn get_selection(&self) -> Option<Bitset> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_selection_model_get_selection(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
-    //fn get_selection_in_range(&self, position: u32, n_items: u32) -> /*Ignored*/Option<Bitset> {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_model_get_selection_in_range() }
-    //}
+    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Option<Bitset> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_selection_model_get_selection_in_range(
+                self.as_ref().to_glib_none().0,
+                position,
+                n_items,
+            ))
+        }
+    }
 
     fn is_selected(&self, position: u32) -> bool {
         unsafe {
@@ -108,9 +119,15 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
-    //fn set_selection(&self, selected: /*Ignored*/&Bitset, mask: /*Ignored*/&Bitset) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_selection_model_set_selection() }
-    //}
+    fn set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_selection_model_set_selection(
+                self.as_ref().to_glib_none().0,
+                selected.to_glib_none().0,
+                mask.to_glib_none().0,
+            ))
+        }
+    }
 
     fn unselect_all(&self) -> bool {
         unsafe {

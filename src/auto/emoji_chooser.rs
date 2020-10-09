@@ -17,12 +17,13 @@ use std::mem::transmute;
 use Accessible;
 use Buildable;
 use ConstraintTarget;
+use Native;
 use Popover;
 use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct EmojiChooser(Object<gtk_sys::GtkEmojiChooser, gtk_sys::GtkEmojiChooserClass, EmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, ShortcutManager;
+    pub struct EmojiChooser(Object<gtk_sys::GtkEmojiChooser, gtk_sys::GtkEmojiChooserClass, EmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_emoji_chooser_get_type(),

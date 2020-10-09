@@ -28,6 +28,7 @@ use Application;
 use Buildable;
 use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
 use ShortcutManager;
@@ -35,7 +36,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow, gtk_sys::GtkShortcutsWindowClass, ShortcutsWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager;
+    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow, gtk_sys::GtkShortcutsWindowClass, ShortcutsWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcuts_window_get_type(),

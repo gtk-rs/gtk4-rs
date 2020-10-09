@@ -25,13 +25,14 @@ use Align;
 use Buildable;
 use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use PositionType;
 use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ShortcutManager;
+    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_get_type(),

@@ -606,6 +606,10 @@ pub use self::multi_sorter::{MultiSorter, MultiSorterClass, NONE_MULTI_SORTER};
 mod named_action;
 pub use self::named_action::{NamedAction, NamedActionClass};
 
+mod native;
+pub use self::native::NativeExt;
+pub use self::native::{Native, NONE_NATIVE};
+
 mod native_dialog;
 pub use self::native_dialog::NativeDialogExt;
 pub use self::native_dialog::{NativeDialog, NativeDialogClass, NONE_NATIVE_DIALOG};
@@ -1018,6 +1022,9 @@ mod window_handle;
 pub use self::window_handle::WindowHandleExt;
 pub use self::window_handle::{WindowHandle, WindowHandleClass, NONE_WINDOW_HANDLE};
 
+mod bitset;
+pub use self::bitset::Bitset;
+
 mod css_section;
 pub use self::css_section::CssSection;
 
@@ -1361,6 +1368,7 @@ pub mod traits {
     pub use super::MultiSelectionExt;
     pub use super::MultiSorterExt;
     pub use super::NativeDialogExt;
+    pub use super::NativeExt;
     pub use super::NoSelectionExt;
     pub use super::NumericSorterExt;
     pub use super::OrientableExt;

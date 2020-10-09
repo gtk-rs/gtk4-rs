@@ -9,10 +9,11 @@ use std::fmt;
 use Accessible;
 use Buildable;
 use ConstraintTarget;
+use Native;
 use Widget;
 
 glib_wrapper! {
-    pub struct Root(Interface<gtk_sys::GtkRoot>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+    pub struct Root(Interface<gtk_sys::GtkRoot>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_root_get_type(),

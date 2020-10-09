@@ -30,6 +30,7 @@ use ConstraintTarget;
 use Dialog;
 use DialogFlags;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
 use ShortcutManager;
@@ -37,7 +38,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AppChooserDialog(Object<gtk_sys::GtkAppChooserDialog, AppChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager, AppChooser;
+    pub struct AppChooserDialog(Object<gtk_sys::GtkAppChooserDialog, AppChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, AppChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_dialog_get_type(),

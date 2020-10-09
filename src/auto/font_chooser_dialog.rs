@@ -21,6 +21,7 @@ use Dialog;
 use FontChooser;
 use FontChooserLevel;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
 use ShortcutManager;
@@ -28,7 +29,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, FontChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager, FontChooser;
+    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, FontChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_chooser_dialog_get_type(),

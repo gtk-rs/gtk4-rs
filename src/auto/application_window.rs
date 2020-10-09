@@ -23,6 +23,7 @@ use Application;
 use Buildable;
 use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
 use ShortcutManager;
@@ -31,7 +32,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct ApplicationWindow(Object<gtk_sys::GtkApplicationWindow, gtk_sys::GtkApplicationWindowClass, ApplicationWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
+    pub struct ApplicationWindow(Object<gtk_sys::GtkApplicationWindow, gtk_sys::GtkApplicationWindowClass, ApplicationWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
 
     match fn {
         get_type => || gtk_sys::gtk_application_window_get_type(),

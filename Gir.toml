@@ -85,6 +85,10 @@ generate = [
     "Gtk.DropTarget",
     "Gtk.DropTargetAsync",
 
+    "Gtk.Native",
+    "Gtk.Bitset",
+    "Gtk.BitsetIter",
+
     "Gtk.BookmarkList",
     "Gtk.BuilderListItemFactory",
     "Gtk.DirectoryList",
@@ -342,6 +346,7 @@ manual = [
     "Graphene.Vec4",
     "Gsk.BlendMode",
     "Gsk.ColorStop",
+    "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
