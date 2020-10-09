@@ -2386,6 +2386,141 @@ impl SetValue for CornerType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum CssParserError {
+    Failed,
+    Syntax,
+    Import,
+    Name,
+    UnknownValue,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for CssParserError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "CssParserError::{}",
+            match *self {
+                CssParserError::Failed => "Failed",
+                CssParserError::Syntax => "Syntax",
+                CssParserError::Import => "Import",
+                CssParserError::Name => "Name",
+                CssParserError::UnknownValue => "UnknownValue",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for CssParserError {
+    type GlibType = gtk_sys::GtkCssParserError;
+
+    fn to_glib(&self) -> gtk_sys::GtkCssParserError {
+        match *self {
+            CssParserError::Failed => gtk_sys::GTK_CSS_PARSER_ERROR_FAILED,
+            CssParserError::Syntax => gtk_sys::GTK_CSS_PARSER_ERROR_SYNTAX,
+            CssParserError::Import => gtk_sys::GTK_CSS_PARSER_ERROR_IMPORT,
+            CssParserError::Name => gtk_sys::GTK_CSS_PARSER_ERROR_NAME,
+            CssParserError::UnknownValue => gtk_sys::GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE,
+            CssParserError::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkCssParserError> for CssParserError {
+    fn from_glib(value: gtk_sys::GtkCssParserError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => CssParserError::Failed,
+            1 => CssParserError::Syntax,
+            2 => CssParserError::Import,
+            3 => CssParserError::Name,
+            4 => CssParserError::UnknownValue,
+            value => CssParserError::__Unknown(value),
+        }
+    }
+}
+
+impl ErrorDomain for CssParserError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+        unsafe { from_glib(gtk_sys::gtk_css_parser_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.to_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            0 => Some(CssParserError::Failed),
+            1 => Some(CssParserError::Syntax),
+            2 => Some(CssParserError::Import),
+            3 => Some(CssParserError::Name),
+            4 => Some(CssParserError::UnknownValue),
+            _ => Some(CssParserError::Failed),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum CssParserWarning {
+    Deprecated,
+    Syntax,
+    Unimplemented,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for CssParserWarning {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "CssParserWarning::{}",
+            match *self {
+                CssParserWarning::Deprecated => "Deprecated",
+                CssParserWarning::Syntax => "Syntax",
+                CssParserWarning::Unimplemented => "Unimplemented",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for CssParserWarning {
+    type GlibType = gtk_sys::GtkCssParserWarning;
+
+    fn to_glib(&self) -> gtk_sys::GtkCssParserWarning {
+        match *self {
+            CssParserWarning::Deprecated => gtk_sys::GTK_CSS_PARSER_WARNING_DEPRECATED,
+            CssParserWarning::Syntax => gtk_sys::GTK_CSS_PARSER_WARNING_SYNTAX,
+            CssParserWarning::Unimplemented => gtk_sys::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED,
+            CssParserWarning::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkCssParserWarning> for CssParserWarning {
+    fn from_glib(value: gtk_sys::GtkCssParserWarning) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => CssParserWarning::Deprecated,
+            1 => CssParserWarning::Syntax,
+            2 => CssParserWarning::Unimplemented,
+            value => CssParserWarning::__Unknown(value),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DeleteType {
     Chars,
     WordEnds,

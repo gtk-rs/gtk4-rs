@@ -66,6 +66,8 @@ generate = [
     "Gtk.CornerType",
     "Gtk.CssProvider",
     "Gtk.CssSection",
+    "Gtk.CssParserError",
+    "Gtk.CssParserWarning",
     "Gtk.CenterLayout",
     "Gtk.OverlayLayout",
     "Gtk.OverlayLayoutChild",

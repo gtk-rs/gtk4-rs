@@ -1057,6 +1057,8 @@ pub use self::enums::ConstraintRelation;
 pub use self::enums::ConstraintStrength;
 pub use self::enums::ConstraintVflParserError;
 pub use self::enums::CornerType;
+pub use self::enums::CssParserError;
+pub use self::enums::CssParserWarning;
 pub use self::enums::DeleteType;
 pub use self::enums::DirectionType;
 pub use self::enums::EditableProperties;
