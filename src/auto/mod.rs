@@ -58,7 +58,7 @@ pub use self::app_chooser_widget::{AppChooserWidget, AppChooserWidgetClass};
 
 mod application;
 pub use self::application::ApplicationBuilder;
-pub use self::application::ApplicationExt;
+pub use self::application::GtkApplicationExt;
 pub use self::application::{Application, ApplicationClass, NONE_APPLICATION};
 
 mod application_window;
@@ -898,10 +898,6 @@ mod shortcuts_section;
 pub use self::shortcuts_section::ShortcutsSectionBuilder;
 pub use self::shortcuts_section::{ShortcutsSection, ShortcutsSectionClass};
 
-mod shortcuts_shortcut;
-pub use self::shortcuts_shortcut::ShortcutsShortcutBuilder;
-pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
-
 mod shortcuts_window;
 pub use self::shortcuts_window::ShortcutsWindowBuilder;
 pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass};
@@ -1424,7 +1420,6 @@ pub mod traits {
     pub use super::ActionableExt;
     pub use super::AdjustmentExt;
     pub use super::AppChooserExt;
-    pub use super::ApplicationExt;
     pub use super::ApplicationWindowExt;
     pub use super::BookmarkListExt;
     pub use super::BoolFilterExt;
@@ -1478,6 +1473,7 @@ pub mod traits {
     pub use super::GridExt;
     pub use super::GridLayoutChildExt;
     pub use super::GridLayoutExt;
+    pub use super::GtkApplicationExt;
     pub use super::GtkListStoreExt;
     pub use super::GtkWindowExt;
     pub use super::IMContextExt;

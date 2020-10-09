@@ -62,15 +62,6 @@ impl IconTheme {
         }
     }
 
-    pub fn get_icon_sizes(&self, icon_name: &str) -> Vec<i32> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_icon_sizes(
-                self.to_glib_none().0,
-                icon_name.to_glib_none().0,
-            ))
-        }
-    }
-
     pub fn get_resource_path(&self) -> Vec<GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_resource_path(

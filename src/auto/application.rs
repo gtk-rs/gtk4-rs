@@ -29,18 +29,6 @@ glib_wrapper! {
     }
 }
 
-impl Application {
-    pub fn new(application_id: Option<&str>, flags: gio::ApplicationFlags) -> Application {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_application_new(
-                application_id.to_glib_none().0,
-                flags.to_glib(),
-            ))
-        }
-    }
-}
-
 #[derive(Clone, Default)]
 pub struct ApplicationBuilder {
     menubar: Option<gio::MenuModel>,
@@ -80,7 +68,7 @@ impl ApplicationBuilder {
 
 pub const NONE_APPLICATION: Option<&Application> = None;
 
-pub trait ApplicationExt: 'static {
+pub trait GtkApplicationExt: 'static {
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
     fn get_accels_for_action(&self, detailed_action_name: &str) -> Vec<GString>;
@@ -144,7 +132,7 @@ pub trait ApplicationExt: 'static {
     ) -> SignalHandlerId;
 }
 
-impl<O: IsA<Application>> ApplicationExt for O {
+impl<O: IsA<Application>> GtkApplicationExt for O {
     fn add_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
             gtk_sys::gtk_application_add_window(

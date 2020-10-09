@@ -3,10 +3,8 @@
 // DO NOT EDIT
 
 use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::object::ObjectExt;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -18,7 +16,6 @@ use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -139,45 +136,6 @@ impl ShortcutsSection {
                 Value::from(view_name).to_glib_none().0,
             );
         }
-    }
-
-    pub fn connect_change_current_page<F: Fn(&ShortcutsSection, i32) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn change_current_page_trampoline<
-            F: Fn(&ShortcutsSection, i32) -> bool + 'static,
-        >(
-            this: *mut gtk_sys::GtkShortcutsSection,
-            object: libc::c_int,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object).to_glib()
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"change-current-page\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    change_current_page_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn emit_change_current_page(&self, object: i32) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
-                .emit("change-current-page", &[&object])
-                .unwrap()
-        };
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_change_current_page`")
-            .unwrap()
     }
 
     pub fn connect_property_max_height_notify<F: Fn(&ShortcutsSection) + 'static>(
