@@ -11,6 +11,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -36,6 +37,61 @@ impl DirectoryList {
                 file.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct DirectoryListBuilder {
+    attributes: Option<String>,
+    file: Option<gio::File>,
+    io_priority: Option<i32>,
+    monitored: Option<bool>,
+}
+
+impl DirectoryListBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> DirectoryList {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref attributes) = self.attributes {
+            properties.push(("attributes", attributes));
+        }
+        if let Some(ref file) = self.file {
+            properties.push(("file", file));
+        }
+        if let Some(ref io_priority) = self.io_priority {
+            properties.push(("io-priority", io_priority));
+        }
+        if let Some(ref monitored) = self.monitored {
+            properties.push(("monitored", monitored));
+        }
+        let ret = glib::Object::new(DirectoryList::static_type(), &properties)
+            .expect("object new")
+            .downcast::<DirectoryList>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn attributes(mut self, attributes: &str) -> Self {
+        self.attributes = Some(attributes.to_string());
+        self
+    }
+
+    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+        self.file = Some(file.clone().upcast());
+        self
+    }
+
+    pub fn io_priority(mut self, io_priority: i32) -> Self {
+        self.io_priority = Some(io_priority);
+        self
+    }
+
+    pub fn monitored(mut self, monitored: bool) -> Self {
+        self.monitored = Some(monitored);
+        self
     }
 }
 

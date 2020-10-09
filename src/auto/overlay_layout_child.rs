@@ -7,18 +7,77 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use LayoutChild;
+use LayoutManager;
+use Widget;
 
 glib_wrapper! {
     pub struct OverlayLayoutChild(Object<gtk_sys::GtkOverlayLayoutChild, gtk_sys::GtkOverlayLayoutChildClass, OverlayLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_overlay_layout_child_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct OverlayLayoutChildBuilder {
+    clip_overlay: Option<bool>,
+    measure: Option<bool>,
+    child_widget: Option<Widget>,
+    layout_manager: Option<LayoutManager>,
+}
+
+impl OverlayLayoutChildBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> OverlayLayoutChild {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref clip_overlay) = self.clip_overlay {
+            properties.push(("clip-overlay", clip_overlay));
+        }
+        if let Some(ref measure) = self.measure {
+            properties.push(("measure", measure));
+        }
+        if let Some(ref child_widget) = self.child_widget {
+            properties.push(("child-widget", child_widget));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        let ret = glib::Object::new(OverlayLayoutChild::static_type(), &properties)
+            .expect("object new")
+            .downcast::<OverlayLayoutChild>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn clip_overlay(mut self, clip_overlay: bool) -> Self {
+        self.clip_overlay = Some(clip_overlay);
+        self
+    }
+
+    pub fn measure(mut self, measure: bool) -> Self {
+        self.measure = Some(measure);
+        self
+    }
+
+    pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
+        self.child_widget = Some(child_widget.clone().upcast());
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
     }
 }
 

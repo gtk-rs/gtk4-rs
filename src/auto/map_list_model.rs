@@ -10,6 +10,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -68,6 +69,34 @@ impl MapListModel {
                 destroy_call3,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct MapListModelBuilder {
+    model: Option<gio::ListModel>,
+}
+
+impl MapListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> MapListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(MapListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<MapListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 

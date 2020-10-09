@@ -2,10 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -291,6 +294,34 @@ impl TreeSelection {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeSelectionBuilder {
+    mode: Option<SelectionMode>,
+}
+
+impl TreeSelectionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeSelection {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref mode) = self.mode {
+            properties.push(("mode", mode));
+        }
+        let ret = glib::Object::new(TreeSelection::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeSelection>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn mode(mut self, mode: SelectionMode) -> Self {
+        self.mode = Some(mode);
+        self
     }
 }
 

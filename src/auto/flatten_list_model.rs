@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -30,6 +32,34 @@ impl FlattenListModel {
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct FlattenListModelBuilder {
+    model: Option<gio::ListModel>,
+}
+
+impl FlattenListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> FlattenListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(FlattenListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<FlattenListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 

@@ -10,6 +10,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -23,6 +24,34 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_tree_list_row_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeListRowBuilder {
+    expanded: Option<bool>,
+}
+
+impl TreeListRowBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeListRow {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expanded) = self.expanded {
+            properties.push(("expanded", expanded));
+        }
+        let ret = glib::Object::new(TreeListRow::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeListRow>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn expanded(mut self, expanded: bool) -> Self {
+        self.expanded = Some(expanded);
+        self
     }
 }
 

@@ -2,11 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -218,6 +222,88 @@ impl StackPage {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct StackPageBuilder {
+    child: Option<Widget>,
+    icon_name: Option<String>,
+    name: Option<String>,
+    needs_attention: Option<bool>,
+    title: Option<String>,
+    use_underline: Option<bool>,
+    visible: Option<bool>,
+}
+
+impl StackPageBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> StackPage {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref icon_name) = self.icon_name {
+            properties.push(("icon-name", icon_name));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref needs_attention) = self.needs_attention {
+            properties.push(("needs-attention", needs_attention));
+        }
+        if let Some(ref title) = self.title {
+            properties.push(("title", title));
+        }
+        if let Some(ref use_underline) = self.use_underline {
+            properties.push(("use-underline", use_underline));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        let ret = glib::Object::new(StackPage::static_type(), &properties)
+            .expect("object new")
+            .downcast::<StackPage>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn icon_name(mut self, icon_name: &str) -> Self {
+        self.icon_name = Some(icon_name.to_string());
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn needs_attention(mut self, needs_attention: bool) -> Self {
+        self.needs_attention = Some(needs_attention);
+        self
+    }
+
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
+        self
+    }
+
+    pub fn use_underline(mut self, use_underline: bool) -> Self {
+        self.use_underline = Some(use_underline);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
     }
 }
 

@@ -5,6 +5,8 @@
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use ShortcutTrigger;
@@ -46,6 +48,43 @@ impl AlternativeTrigger {
                 self.to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct AlternativeTriggerBuilder {
+    first: Option<ShortcutTrigger>,
+    second: Option<ShortcutTrigger>,
+}
+
+impl AlternativeTriggerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> AlternativeTrigger {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref first) = self.first {
+            properties.push(("first", first));
+        }
+        if let Some(ref second) = self.second {
+            properties.push(("second", second));
+        }
+        let ret = glib::Object::new(AlternativeTrigger::static_type(), &properties)
+            .expect("object new")
+            .downcast::<AlternativeTrigger>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn first<P: IsA<ShortcutTrigger>>(mut self, first: &P) -> Self {
+        self.first = Some(first.clone().upcast());
+        self
+    }
+
+    pub fn second<P: IsA<ShortcutTrigger>>(mut self, second: &P) -> Self {
+        self.second = Some(second.clone().upcast());
+        self
     }
 }
 

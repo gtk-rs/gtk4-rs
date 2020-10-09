@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -32,6 +34,43 @@ impl StringSorter {
             ))
             .unsafe_cast()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct StringSorterBuilder {
+    expression: Option<Expression>,
+    ignore_case: Option<bool>,
+}
+
+impl StringSorterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> StringSorter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
+        if let Some(ref ignore_case) = self.ignore_case {
+            properties.push(("ignore-case", ignore_case));
+        }
+        let ret = glib::Object::new(StringSorter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<StringSorter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
+        self.expression = Some(expression.clone().upcast());
+        self
+    }
+
+    pub fn ignore_case(mut self, ignore_case: bool) -> Self {
+        self.ignore_case = Some(ignore_case);
+        self
     }
 }
 

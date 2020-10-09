@@ -10,6 +10,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -21,16 +22,65 @@ use ApplicationInhibitFlags;
 use Window;
 
 glib_wrapper! {
-    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
+    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @implements gio::ActionGroup, gio::ActionMap;
 
     match fn {
         get_type => || gtk_sys::gtk_application_get_type(),
     }
 }
 
+impl Application {
+    pub fn new(application_id: Option<&str>, flags: gio::ApplicationFlags) -> Application {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_application_new(
+                application_id.to_glib_none().0,
+                flags.to_glib(),
+            ))
+        }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ApplicationBuilder {
+    menubar: Option<gio::MenuModel>,
+    register_session: Option<bool>,
+}
+
+impl ApplicationBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Application {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref menubar) = self.menubar {
+            properties.push(("menubar", menubar));
+        }
+        if let Some(ref register_session) = self.register_session {
+            properties.push(("register-session", register_session));
+        }
+        let ret = glib::Object::new(Application::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Application>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn menubar<P: IsA<gio::MenuModel>>(mut self, menubar: &P) -> Self {
+        self.menubar = Some(menubar.clone().upcast());
+        self
+    }
+
+    pub fn register_session(mut self, register_session: bool) -> Self {
+        self.register_session = Some(register_session);
+        self
+    }
+}
+
 pub const NONE_APPLICATION: Option<&Application> = None;
 
-pub trait GtkApplicationExt: 'static {
+pub trait ApplicationExt: 'static {
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
     fn get_accels_for_action(&self, detailed_action_name: &str) -> Vec<GString>;
@@ -94,7 +144,7 @@ pub trait GtkApplicationExt: 'static {
     ) -> SignalHandlerId;
 }
 
-impl<O: IsA<Application>> GtkApplicationExt for O {
+impl<O: IsA<Application>> ApplicationExt for O {
     fn add_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
             gtk_sys::gtk_application_add_window(

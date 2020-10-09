@@ -3,12 +3,15 @@
 // DO NOT EDIT
 
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -399,6 +402,97 @@ impl ColumnViewColumn {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ColumnViewColumnBuilder {
+    expand: Option<bool>,
+    factory: Option<ListItemFactory>,
+    fixed_width: Option<i32>,
+    header_menu: Option<gio::MenuModel>,
+    resizable: Option<bool>,
+    sorter: Option<Sorter>,
+    title: Option<String>,
+    visible: Option<bool>,
+}
+
+impl ColumnViewColumnBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> ColumnViewColumn {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expand) = self.expand {
+            properties.push(("expand", expand));
+        }
+        if let Some(ref factory) = self.factory {
+            properties.push(("factory", factory));
+        }
+        if let Some(ref fixed_width) = self.fixed_width {
+            properties.push(("fixed-width", fixed_width));
+        }
+        if let Some(ref header_menu) = self.header_menu {
+            properties.push(("header-menu", header_menu));
+        }
+        if let Some(ref resizable) = self.resizable {
+            properties.push(("resizable", resizable));
+        }
+        if let Some(ref sorter) = self.sorter {
+            properties.push(("sorter", sorter));
+        }
+        if let Some(ref title) = self.title {
+            properties.push(("title", title));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        let ret = glib::Object::new(ColumnViewColumn::static_type(), &properties)
+            .expect("object new")
+            .downcast::<ColumnViewColumn>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn expand(mut self, expand: bool) -> Self {
+        self.expand = Some(expand);
+        self
+    }
+
+    pub fn factory<P: IsA<ListItemFactory>>(mut self, factory: &P) -> Self {
+        self.factory = Some(factory.clone().upcast());
+        self
+    }
+
+    pub fn fixed_width(mut self, fixed_width: i32) -> Self {
+        self.fixed_width = Some(fixed_width);
+        self
+    }
+
+    pub fn header_menu<P: IsA<gio::MenuModel>>(mut self, header_menu: &P) -> Self {
+        self.header_menu = Some(header_menu.clone().upcast());
+        self
+    }
+
+    pub fn resizable(mut self, resizable: bool) -> Self {
+        self.resizable = Some(resizable);
+        self
+    }
+
+    pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {
+        self.sorter = Some(sorter.clone().upcast());
+        self
+    }
+
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
     }
 }
 

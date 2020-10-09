@@ -2,9 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use gobject_sys;
 use gtk_sys;
@@ -20,6 +22,34 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_tree_model_filter_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeModelFilterBuilder {
+    child_model: Option<TreeModel>,
+}
+
+impl TreeModelFilterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeModelFilter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child_model) = self.child_model {
+            properties.push(("child-model", child_model));
+        }
+        let ret = glib::Object::new(TreeModelFilter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeModelFilter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child_model<P: IsA<TreeModel>>(mut self, child_model: &P) -> Self {
+        self.child_model = Some(child_model.clone().upcast());
+        self
     }
 }
 

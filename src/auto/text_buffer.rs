@@ -11,6 +11,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -36,6 +37,52 @@ impl TextBuffer {
     pub fn new(table: Option<&TextTagTable>) -> TextBuffer {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(gtk_sys::gtk_text_buffer_new(table.to_glib_none().0)) }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TextBufferBuilder {
+    enable_undo: Option<bool>,
+    tag_table: Option<TextTagTable>,
+    text: Option<String>,
+}
+
+impl TextBufferBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TextBuffer {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref enable_undo) = self.enable_undo {
+            properties.push(("enable-undo", enable_undo));
+        }
+        if let Some(ref tag_table) = self.tag_table {
+            properties.push(("tag-table", tag_table));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        let ret = glib::Object::new(TextBuffer::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TextBuffer>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
+        self.enable_undo = Some(enable_undo);
+        self
+    }
+
+    pub fn tag_table(mut self, tag_table: &TextTagTable) -> Self {
+        self.tag_table = Some(tag_table.clone());
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
     }
 }
 

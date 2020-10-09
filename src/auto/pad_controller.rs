@@ -4,16 +4,20 @@
 
 use gdk;
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use gobject_sys;
 use gtk_sys;
 use std::fmt;
 use EventController;
 use PadActionType;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct PadController(Object<gtk_sys::GtkPadController, gtk_sys::GtkPadControllerClass, PadControllerClass>) @extends EventController;
@@ -78,6 +82,70 @@ impl PadController {
             );
             value.get().expect("Return Value for property `pad` getter")
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct PadControllerBuilder {
+    action_group: Option<gio::ActionGroup>,
+    pad: Option<gdk::Device>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl PadControllerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> PadController {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref action_group) = self.action_group {
+            properties.push(("action-group", action_group));
+        }
+        if let Some(ref pad) = self.pad {
+            properties.push(("pad", pad));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(PadController::static_type(), &properties)
+            .expect("object new")
+            .downcast::<PadController>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn action_group<P: IsA<gio::ActionGroup>>(mut self, action_group: &P) -> Self {
+        self.action_group = Some(action_group.clone().upcast());
+        self
+    }
+
+    pub fn pad(mut self, pad: &gdk::Device) -> Self {
+        self.pad = Some(pad.clone());
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

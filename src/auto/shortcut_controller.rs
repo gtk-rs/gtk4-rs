@@ -11,6 +11,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -20,6 +21,8 @@ use std::fmt;
 use std::mem::transmute;
 use Buildable;
 use EventController;
+use PropagationLimit;
+use PropagationPhase;
 use Shortcut;
 use ShortcutScope;
 
@@ -179,6 +182,79 @@ impl ShortcutController {
 impl Default for ShortcutController {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ShortcutControllerBuilder {
+    mnemonic_modifiers: Option<gdk::ModifierType>,
+    model: Option<gio::ListModel>,
+    scope: Option<ShortcutScope>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl ShortcutControllerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> ShortcutController {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref mnemonic_modifiers) = self.mnemonic_modifiers {
+            properties.push(("mnemonic-modifiers", mnemonic_modifiers));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref scope) = self.scope {
+            properties.push(("scope", scope));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(ShortcutController::static_type(), &properties)
+            .expect("object new")
+            .downcast::<ShortcutController>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn mnemonic_modifiers(mut self, mnemonic_modifiers: gdk::ModifierType) -> Self {
+        self.mnemonic_modifiers = Some(mnemonic_modifiers);
+        self
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn scope(mut self, scope: ShortcutScope) -> Self {
+        self.scope = Some(scope);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

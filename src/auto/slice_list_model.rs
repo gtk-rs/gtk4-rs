@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -36,6 +38,52 @@ impl SliceListModel {
                 size,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SliceListModelBuilder {
+    model: Option<gio::ListModel>,
+    offset: Option<u32>,
+    size: Option<u32>,
+}
+
+impl SliceListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SliceListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref offset) = self.offset {
+            properties.push(("offset", offset));
+        }
+        if let Some(ref size) = self.size {
+            properties.push(("size", size));
+        }
+        let ret = glib::Object::new(SliceListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SliceListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn offset(mut self, offset: u32) -> Self {
+        self.offset = Some(offset);
+        self
+    }
+
+    pub fn size(mut self, size: u32) -> Self {
+        self.size = Some(size);
+        self
     }
 }
 

@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use ConstraintAttribute;
@@ -61,6 +64,97 @@ impl Constraint {
                 strength,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ConstraintBuilder {
+    constant: Option<f64>,
+    multiplier: Option<f64>,
+    relation: Option<ConstraintRelation>,
+    source: Option<ConstraintTarget>,
+    source_attribute: Option<ConstraintAttribute>,
+    strength: Option<i32>,
+    target: Option<ConstraintTarget>,
+    target_attribute: Option<ConstraintAttribute>,
+}
+
+impl ConstraintBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Constraint {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref constant) = self.constant {
+            properties.push(("constant", constant));
+        }
+        if let Some(ref multiplier) = self.multiplier {
+            properties.push(("multiplier", multiplier));
+        }
+        if let Some(ref relation) = self.relation {
+            properties.push(("relation", relation));
+        }
+        if let Some(ref source) = self.source {
+            properties.push(("source", source));
+        }
+        if let Some(ref source_attribute) = self.source_attribute {
+            properties.push(("source-attribute", source_attribute));
+        }
+        if let Some(ref strength) = self.strength {
+            properties.push(("strength", strength));
+        }
+        if let Some(ref target) = self.target {
+            properties.push(("target", target));
+        }
+        if let Some(ref target_attribute) = self.target_attribute {
+            properties.push(("target-attribute", target_attribute));
+        }
+        let ret = glib::Object::new(Constraint::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Constraint>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn constant(mut self, constant: f64) -> Self {
+        self.constant = Some(constant);
+        self
+    }
+
+    pub fn multiplier(mut self, multiplier: f64) -> Self {
+        self.multiplier = Some(multiplier);
+        self
+    }
+
+    pub fn relation(mut self, relation: ConstraintRelation) -> Self {
+        self.relation = Some(relation);
+        self
+    }
+
+    pub fn source<P: IsA<ConstraintTarget>>(mut self, source: &P) -> Self {
+        self.source = Some(source.clone().upcast());
+        self
+    }
+
+    pub fn source_attribute(mut self, source_attribute: ConstraintAttribute) -> Self {
+        self.source_attribute = Some(source_attribute);
+        self
+    }
+
+    pub fn strength(mut self, strength: i32) -> Self {
+        self.strength = Some(strength);
+        self
+    }
+
+    pub fn target<P: IsA<ConstraintTarget>>(mut self, target: &P) -> Self {
+        self.target = Some(target.clone().upcast());
+        self
+    }
+
+    pub fn target_attribute(mut self, target_attribute: ConstraintAttribute) -> Self {
+        self.target_attribute = Some(target_attribute);
+        self
     }
 }
 

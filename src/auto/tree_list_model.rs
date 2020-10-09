@@ -9,6 +9,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -66,6 +68,43 @@ impl TreeListModel {
                 destroy_call5,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeListModelBuilder {
+    autoexpand: Option<bool>,
+    passthrough: Option<bool>,
+}
+
+impl TreeListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref autoexpand) = self.autoexpand {
+            properties.push(("autoexpand", autoexpand));
+        }
+        if let Some(ref passthrough) = self.passthrough {
+            properties.push(("passthrough", passthrough));
+        }
+        let ret = glib::Object::new(TreeListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn autoexpand(mut self, autoexpand: bool) -> Self {
+        self.autoexpand = Some(autoexpand);
+        self
+    }
+
+    pub fn passthrough(mut self, passthrough: bool) -> Self {
+        self.passthrough = Some(passthrough);
+        self
     }
 }
 

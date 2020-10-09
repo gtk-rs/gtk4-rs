@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -35,6 +37,52 @@ impl SortListModel {
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SortListModelBuilder {
+    incremental: Option<bool>,
+    model: Option<gio::ListModel>,
+    sorter: Option<Sorter>,
+}
+
+impl SortListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SortListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref incremental) = self.incremental {
+            properties.push(("incremental", incremental));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref sorter) = self.sorter {
+            properties.push(("sorter", sorter));
+        }
+        let ret = glib::Object::new(SortListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SortListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn incremental(mut self, incremental: bool) -> Self {
+        self.incremental = Some(incremental);
+        self
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {
+        self.sorter = Some(sorter.clone().upcast());
+        self
     }
 }
 

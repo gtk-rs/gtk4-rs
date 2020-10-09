@@ -10,6 +10,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -35,6 +36,52 @@ impl BookmarkList {
                 attributes.to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct BookmarkListBuilder {
+    attributes: Option<String>,
+    filename: Option<String>,
+    io_priority: Option<i32>,
+}
+
+impl BookmarkListBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> BookmarkList {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref attributes) = self.attributes {
+            properties.push(("attributes", attributes));
+        }
+        if let Some(ref filename) = self.filename {
+            properties.push(("filename", filename));
+        }
+        if let Some(ref io_priority) = self.io_priority {
+            properties.push(("io-priority", io_priority));
+        }
+        let ret = glib::Object::new(BookmarkList::static_type(), &properties)
+            .expect("object new")
+            .downcast::<BookmarkList>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn attributes(mut self, attributes: &str) -> Self {
+        self.attributes = Some(attributes.to_string());
+        self
+    }
+
+    pub fn filename(mut self, filename: &str) -> Self {
+        self.filename = Some(filename.to_string());
+        self
+    }
+
+    pub fn io_priority(mut self, io_priority: i32) -> Self {
+        self.io_priority = Some(io_priority);
+        self
     }
 }
 

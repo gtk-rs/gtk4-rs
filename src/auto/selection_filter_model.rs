@@ -9,6 +9,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -41,6 +43,34 @@ impl SelectionFilterModel {
                 item_type.to_glib(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SelectionFilterModelBuilder {
+    model: Option<SelectionModel>,
+}
+
+impl SelectionFilterModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SelectionFilterModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(SelectionFilterModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SelectionFilterModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 

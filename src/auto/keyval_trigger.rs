@@ -5,6 +5,8 @@
 use gdk;
 use glib::object::Cast;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use ShortcutTrigger;
@@ -39,6 +41,43 @@ impl KeyvalTrigger {
                 self.to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct KeyvalTriggerBuilder {
+    keyval: Option<u32>,
+    modifiers: Option<gdk::ModifierType>,
+}
+
+impl KeyvalTriggerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> KeyvalTrigger {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref keyval) = self.keyval {
+            properties.push(("keyval", keyval));
+        }
+        if let Some(ref modifiers) = self.modifiers {
+            properties.push(("modifiers", modifiers));
+        }
+        let ret = glib::Object::new(KeyvalTrigger::static_type(), &properties)
+            .expect("object new")
+            .downcast::<KeyvalTrigger>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn keyval(mut self, keyval: u32) -> Self {
+        self.keyval = Some(keyval);
+        self
+    }
+
+    pub fn modifiers(mut self, modifiers: gdk::ModifierType) -> Self {
+        self.modifiers = Some(modifiers);
+        self
     }
 }
 

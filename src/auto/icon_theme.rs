@@ -4,6 +4,7 @@
 
 use gdk;
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -11,6 +12,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -56,6 +58,15 @@ impl IconTheme {
         unsafe {
             FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_icon_names(
                 self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_icon_sizes(&self, icon_name: &str) -> Vec<i32> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_icon_sizes(
+                self.to_glib_none().0,
+                icon_name.to_glib_none().0,
             ))
         }
     }
@@ -339,6 +350,61 @@ impl IconTheme {
 impl Default for IconTheme {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct IconThemeBuilder {
+    display: Option<gdk::Display>,
+    resource_path: Option<Vec<String>>,
+    search_path: Option<Vec<String>>,
+    theme_name: Option<String>,
+}
+
+impl IconThemeBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> IconTheme {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
+        }
+        if let Some(ref resource_path) = self.resource_path {
+            properties.push(("resource-path", resource_path));
+        }
+        if let Some(ref search_path) = self.search_path {
+            properties.push(("search-path", search_path));
+        }
+        if let Some(ref theme_name) = self.theme_name {
+            properties.push(("theme-name", theme_name));
+        }
+        let ret = glib::Object::new(IconTheme::static_type(), &properties)
+            .expect("object new")
+            .downcast::<IconTheme>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &gdk::Display) -> Self {
+        self.display = Some(display.clone());
+        self
+    }
+
+    pub fn resource_path(mut self, resource_path: Vec<String>) -> Self {
+        self.resource_path = Some(resource_path);
+        self
+    }
+
+    pub fn search_path(mut self, search_path: Vec<String>) -> Self {
+        self.search_path = Some(search_path);
+        self
+    }
+
+    pub fn theme_name(mut self, theme_name: &str) -> Self {
+        self.theme_name = Some(theme_name.to_string());
+        self
     }
 }
 

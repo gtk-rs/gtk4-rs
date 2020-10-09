@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -31,6 +33,34 @@ impl TreeListRowSorter {
             ))
             .unsafe_cast()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeListRowSorterBuilder {
+    sorter: Option<Sorter>,
+}
+
+impl TreeListRowSorterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeListRowSorter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref sorter) = self.sorter {
+            properties.push(("sorter", sorter));
+        }
+        let ret = glib::Object::new(TreeListRowSorter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeListRowSorter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {
+        self.sorter = Some(sorter.clone().upcast());
+        self
     }
 }
 

@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -33,6 +35,43 @@ impl NumericSorter {
             ))
             .unsafe_cast()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct NumericSorterBuilder {
+    expression: Option<Expression>,
+    sort_order: Option<SortType>,
+}
+
+impl NumericSorterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> NumericSorter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
+        if let Some(ref sort_order) = self.sort_order {
+            properties.push(("sort-order", sort_order));
+        }
+        let ret = glib::Object::new(NumericSorter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<NumericSorter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
+        self.expression = Some(expression.clone().upcast());
+        self
+    }
+
+    pub fn sort_order(mut self, sort_order: SortType) -> Self {
+        self.sort_order = Some(sort_order);
+        self
     }
 }
 

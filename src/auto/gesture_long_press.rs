@@ -7,6 +7,8 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
@@ -16,6 +18,8 @@ use std::mem::transmute;
 use EventController;
 use Gesture;
 use GestureSingle;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct GestureLongPress(Object<gtk_sys::GtkGestureLongPress, gtk_sys::GtkGestureLongPressClass, GestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
@@ -117,6 +121,97 @@ impl GestureLongPress {
 impl Default for GestureLongPress {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct GestureLongPressBuilder {
+    delay_factor: Option<f64>,
+    button: Option<u32>,
+    exclusive: Option<bool>,
+    touch_only: Option<bool>,
+    n_points: Option<u32>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl GestureLongPressBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> GestureLongPress {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref delay_factor) = self.delay_factor {
+            properties.push(("delay-factor", delay_factor));
+        }
+        if let Some(ref button) = self.button {
+            properties.push(("button", button));
+        }
+        if let Some(ref exclusive) = self.exclusive {
+            properties.push(("exclusive", exclusive));
+        }
+        if let Some(ref touch_only) = self.touch_only {
+            properties.push(("touch-only", touch_only));
+        }
+        if let Some(ref n_points) = self.n_points {
+            properties.push(("n-points", n_points));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(GestureLongPress::static_type(), &properties)
+            .expect("object new")
+            .downcast::<GestureLongPress>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn delay_factor(mut self, delay_factor: f64) -> Self {
+        self.delay_factor = Some(delay_factor);
+        self
+    }
+
+    pub fn button(mut self, button: u32) -> Self {
+        self.button = Some(button);
+        self
+    }
+
+    pub fn exclusive(mut self, exclusive: bool) -> Self {
+        self.exclusive = Some(exclusive);
+        self
+    }
+
+    pub fn touch_only(mut self, touch_only: bool) -> Self {
+        self.touch_only = Some(touch_only);
+        self
+    }
+
+    pub fn n_points(mut self, n_points: u32) -> Self {
+        self.n_points = Some(n_points);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

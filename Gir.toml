@@ -23,41 +23,27 @@ generate = [
     "Gtk.ActivateAction",
     "Gtk.CallbackAction",
     "Gtk.MnemonicAction",
-    "Gtk.NamedAction",
     "Gtk.NothingAction",
-    "Gtk.SignalAction",
-    "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AppChooser",
     "Gtk.ApplicationInhibitFlags",
     "Gtk.ArrowType",
-    "Gtk.AssistantPage",
     "Gtk.AssistantPageType",
     "Gtk.BaselinePosition",
     "Gtk.BinLayout",
     "Gtk.BorderStyle",
-    "Gtk.BoxLayout",
     "Gtk.Buildable",
     "Gtk.BuilderScope",
     "Gtk.BuilderError",
     "Gtk.ButtonsType",
-    "Gtk.CellAreaContext",
     "Gtk.CellEditable",
     "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
-    "Gtk.CellRendererPixbuf",
-    "Gtk.CellRendererProgress",
-    "Gtk.CellRendererSpin",
-    "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
-    "Gtk.ColumnView",
-    "Gtk.ColumnViewColumn",
-    "Gtk.Constraint",
     "Gtk.ConstraintAttribute",
     "Gtk.ConstraintRelation",
-    "Gtk.ConstraintGuide",
     "Gtk.ConstraintStrength",
     "Gtk.ConstraintLayout",
     "Gtk.ConstraintLayoutChild",
@@ -70,24 +56,15 @@ generate = [
     "Gtk.CssParserWarning",
     "Gtk.CenterLayout",
     "Gtk.OverlayLayout",
-    "Gtk.OverlayLayoutChild",
-    "Gtk.MultiSelection",
-    "Gtk.NoSelection",
     "Gtk.CustomLayout",
     "Gtk.DebugFlag",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
-    "Gtk.DragIcon",
-    "Gtk.DragSource",
     "Gtk.DropControllerMotion",
-    "Gtk.DropDown",
-    "Gtk.DropTarget",
-    "Gtk.DropTargetAsync",
     "Gtk.BuildableParser",
     "Gtk.BuilderClosureFlags",
     "Gtk.BuilderCScope",
-
     "Gtk.Native",
     "Gtk.Bitset",
     "Gtk.BitsetIter",
@@ -95,20 +72,14 @@ generate = [
     "Gtk.Clipboard",
     "Gtk.PropagationLimit",
     "Gtk.RequestedSize",
-
-    "Gtk.BookmarkList",
-    "Gtk.BuilderListItemFactory",
-    "Gtk.DirectoryList",
     "Gtk.SignalListItemFactory",
     "Gtk.StringList",
-    "Gtk.TreeListRowSorter",
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
     "Gtk.EventController",
     "Gtk.EventControllerLegacy",
     "Gtk.EventControllerMotion",
-    "Gtk.EventControllerScroll",
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
     "Gtk.Expression",
@@ -120,43 +91,26 @@ generate = [
     "Gtk.ObjectExpression",
     "Gtk.ParamSpecExpression",
     "Gtk.PropertyExpression",
-    "Gtk.AlternativeTrigger",
-    "Gtk.KeyvalTrigger",
-    "Gtk.MnemonicTrigger",
     "Gtk.NeverTrigger",
-    "Gtk.IconPaintable",
     "Gtk.EditableLabel",
     "Gtk.FileChooserAction",
     "Gtk.FileChooserError",
-    "Gtk.FileChooserNative",
     "Gtk.Filter",
     "Gtk.MultiFilter",
     "Gtk.AnyFilter",
-    "Gtk.BoolFilter",
     "Gtk.CustomFilter",
     "Gtk.EveryFilter",
     "Gtk.FilterChange",
     "Gtk.FilterMatch",
-    "Gtk.SelectionFilterModel",
-    "Gtk.StringFilter",
     "Gtk.StringFilterMatchMode",
-    "Gtk.FilterListModel",    
     "Gtk.FixedLayout",
-    "Gtk.FixedLayoutChild",
-    "Gtk.FlattenListModel",
     "Gtk.FontChooser",
     "Gtk.FontChooserLevel",
     "Gtk.GestureDrag",
-    "Gtk.GestureLongPress",
-    "Gtk.GesturePan",
     "Gtk.GestureRotate",
-    "Gtk.GestureSingle",
     "Gtk.GestureStylus",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
-    "Gtk.GridLayout",
-    "Gtk.GridView",
-    "Gtk.GridLayoutChild",
     "Gtk.IconLookupFlags",
     "Gtk.IconSize",
     "Gtk.IconThemeError",
@@ -171,17 +125,12 @@ generate = [
     "Gtk.LevelBarMode",
     "Gtk.License",
     "Gtk.ListBase",
-    "Gtk.ListItem",
     "Gtk.ListItemFactory",
-    "Gtk.ListView",
-    "Gtk.MapListModel",
     "Gtk.MediaFile",
     "Gtk.MenuDirectionType",
     "Gtk.MessageType",
-    "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.NativeDialog",
-    "Gtk.NotebookPage",
     "Gtk.NotebookTab",
     "Gtk.NumberUpLayout",
     "Gtk.Orientable",
@@ -197,11 +146,9 @@ generate = [
     "Gtk.PolicyType",
     "Gtk.PopoverConstraint",
     "Gtk.PopoverMenuFlags",
-    "Gtk.PopoverMenuBar",
     "Gtk.PositionType",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",
-    "Gtk.PrintOperation",
     "Gtk.PrintOperationAction",
     "Gtk.PrintOperationPreview",
     "Gtk.PrintOperationResult",
@@ -210,7 +157,6 @@ generate = [
     "Gtk.PrintStatus",
     "Gtk.PropagationPhase",
     "Gtk.RecentInfo",
-    "Gtk.RecentManager",
     "Gtk.RecentManagerError",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
@@ -221,34 +167,24 @@ generate = [
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
-    "Gtk.Settings",
     "Gtk.ShortcutType",
     "Gtk.ShortcutManager",
     "Gtk.ShortcutAction",
     "Gtk.ShortcutActionFlags",
-    "Gtk.Shortcut",
-    "Gtk.ShortcutController",
     "Gtk.ShortcutScope",
     "Gtk.ShortcutTrigger",
-    "Gtk.SingleSelection",
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
-    "Gtk.SliceListModel",
-    "Gtk.SortListModel",
     "Gtk.SortType",
     "Gtk.Sorter",
     "Gtk.CustomSorter",
     "Gtk.MultiSorter",
-    "Gtk.NumericSorter",
     "Gtk.SorterChange",
     "Gtk.SorterOrder",
-    "Gtk.StringSorter",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.SpinType",
-    "Gtk.StackPage",
     "Gtk.StackTransitionType",
     "Gtk.StateFlags",
-    "Gtk.StyleContext",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SystemSetting",
@@ -259,26 +195,19 @@ generate = [
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",
-    "Gtk.TextMark",
     "Gtk.TextSearchFlags",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
     "Gtk.Tooltip",
     "Gtk.TreeDragDest",
     "Gtk.TreeDragSource",
-    "Gtk.TreeListModel",
-    "Gtk.TreeListRow",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
     "Gtk.TreeViewGridLines",
-    "Gtk.TreeExpander",
     "Gtk.Unit",
-    "Gtk.WidgetPaintable",
-    "Gtk.WindowControls",
     "Gtk.WindowGeometryInfo",
     "Gtk.WindowGroup",
-    "Gtk.WindowHandle",
     "Gtk.WrapMode",
 ]
 
@@ -330,7 +259,6 @@ manual = [
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.AppInfo",
-    "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.Cancellable",
     "Gio.File",
@@ -506,6 +434,7 @@ trait_name = "GtkApplicationExt"
 [[object]]
 name = "Gtk.Builder"
 status = "generate"
+generate_builder = true
 manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
@@ -558,6 +487,7 @@ status = "generate"
 [[object]]
 name = "Gtk.CellRendererAccel"
 status = "generate"
+generate_builder = true
     [[object.signal]]
     name = "accel-cleared"
         [[object.signal.parameter]]
@@ -574,6 +504,7 @@ status = "generate"
 [[object]]
 name = "Gtk.CellRendererCombo"
 status = "generate"
+generate_builder = true
     [[object.signal]]
     name = "changed"
         [[object.signal.parameter]]
@@ -584,6 +515,7 @@ status = "generate"
 [[object]]
 name = "Gtk.CellRendererText"
 status = "generate"
+generate_builder = true
     [[object.signal]]
     name = "edited"
         [[object.signal.parameter]]
@@ -605,6 +537,7 @@ status = "generate"
 [[object]]
 name = "Gtk.CellRendererToggle"
 status = "generate"
+generate_builder = true
     [[object.signal]]
     name = "toggled"
         [[object.signal.parameter]]
@@ -724,6 +657,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.EntryBuffer"
 status = "generate"
+generate_builder = true
     #manual
     [[object.function]]
     name = "new"
@@ -819,6 +753,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.IconTheme"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "get_icon_sizes"
     ignore = true
@@ -827,6 +762,7 @@ status = "generate"
 [[object]]
 name = "Gtk.IconView"
 status = "generate"
+generate_builder = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -976,6 +912,7 @@ manual_traits = ["OverlayExtManual"]
 [[object]]
 name = "Gtk.PadController"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "set_action_entries"
     ignore = true
@@ -1140,6 +1077,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.TextBuffer"
 status = "generate"
+generate_builder = true
 manual_traits = ["TextBufferExtManual"]
     [[object.function]]
     name = "register_deserialize_tagset"
@@ -1171,6 +1109,7 @@ clear_function_expression = "|_ptr| ()"
 [[object]]
 name = "Gtk.TextTag"
 status = "generate"
+generate_builder = true
     # TODO
     # [[object.property]]
     # name = "font-desc"
@@ -1262,6 +1201,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TreeModelFilter"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "convert_child_path_to_path"
         [[object.function.parameter]]
@@ -1290,6 +1230,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TreeModelSort"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "convert_child_path_to_path"
         [[object.function.parameter]]
@@ -1401,6 +1342,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TreeSelection"
 status = "generate"
+generate_builder = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -1944,3 +1886,360 @@ generate_builder = true
 name = "Gtk.VolumeButton"
 status = "generate"
 generate_builder = true
+
+
+[[object]]
+name = "Gtk.Adjustment"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.AlternativeTrigger"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.Application"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.AssistantPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.BookmarkList"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.BoolFilter"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.BoxLayout"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.BuilderListItemFactory"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.CellAreaContext"
+status = "generate"
+generate_builder = true
+[[object]]
+
+name = "Gtk.CellRendererPixbuf"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.CellRendererProgress"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.CellRendererSpin"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.CellRendererSpinner"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ColumnView"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ColumnViewColumn"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.Constraint"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ConstraintGuide"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DirectoryList"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DragIcon"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DragSource"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GestureSingle"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DropDown"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DropTarget"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.DropTargetAsync"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.EventControllerScroll"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.FileChooserNative"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.FilterListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.FixedLayoutChild"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.FlattenListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GestureLongPress"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GesturePan"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GridLayout"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GridLayoutChild"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.GridView"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.IconPaintable"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.IconTheme"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.KeyvalTrigger"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ListItem"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ListView"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.MapListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.MnemonicTrigger"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.MountOperation"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.MultiSelection"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.NamedAction"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.NoSelection"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.NotebookPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.NumericSorter"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.OverlayLayoutChild"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.PopoverMenuBar"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.PrintOperation"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.RecentManager"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.SelectionFilterModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.Settings"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.Shortcut"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ShortcutController"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.SignalAction"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.SingleSelection"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.SliceListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.StyleContext"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.SortListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.StackPage"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.StringFilter"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.StringSorter"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.TextMark"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.TreeExpander"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.TreeListRow"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.TreeListModel"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.TreeListRowSorter"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.WidgetPaintable"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.WindowControls"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.WindowHandle"
+status = "generate"
+generate_builder = true
+

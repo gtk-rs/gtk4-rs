@@ -7,6 +7,8 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
@@ -19,6 +21,8 @@ use GestureDrag;
 use GestureSingle;
 use Orientation;
 use PanDirection;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct GesturePan(Object<gtk_sys::GtkGesturePan, gtk_sys::GtkGesturePanClass, GesturePanClass>) @extends GestureDrag, GestureSingle, Gesture, EventController;
@@ -100,6 +104,97 @@ impl GesturePan {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct GesturePanBuilder {
+    orientation: Option<Orientation>,
+    button: Option<u32>,
+    exclusive: Option<bool>,
+    touch_only: Option<bool>,
+    n_points: Option<u32>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl GesturePanBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> GesturePan {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
+        if let Some(ref button) = self.button {
+            properties.push(("button", button));
+        }
+        if let Some(ref exclusive) = self.exclusive {
+            properties.push(("exclusive", exclusive));
+        }
+        if let Some(ref touch_only) = self.touch_only {
+            properties.push(("touch-only", touch_only));
+        }
+        if let Some(ref n_points) = self.n_points {
+            properties.push(("n-points", n_points));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(GesturePan::static_type(), &properties)
+            .expect("object new")
+            .downcast::<GesturePan>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
+    }
+
+    pub fn button(mut self, button: u32) -> Self {
+        self.button = Some(button);
+        self
+    }
+
+    pub fn exclusive(mut self, exclusive: bool) -> Self {
+        self.exclusive = Some(exclusive);
+        self
+    }
+
+    pub fn touch_only(mut self, touch_only: bool) -> Self {
+        self.touch_only = Some(touch_only);
+        self
+    }
+
+    pub fn n_points(mut self, n_points: u32) -> Self {
+        self.n_points = Some(n_points);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

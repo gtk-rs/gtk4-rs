@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -31,6 +33,61 @@ impl SingleSelection {
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SingleSelectionBuilder {
+    autoselect: Option<bool>,
+    can_unselect: Option<bool>,
+    model: Option<gio::ListModel>,
+    selected: Option<u32>,
+}
+
+impl SingleSelectionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SingleSelection {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref autoselect) = self.autoselect {
+            properties.push(("autoselect", autoselect));
+        }
+        if let Some(ref can_unselect) = self.can_unselect {
+            properties.push(("can-unselect", can_unselect));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref selected) = self.selected {
+            properties.push(("selected", selected));
+        }
+        let ret = glib::Object::new(SingleSelection::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SingleSelection>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn autoselect(mut self, autoselect: bool) -> Self {
+        self.autoselect = Some(autoselect);
+        self
+    }
+
+    pub fn can_unselect(mut self, can_unselect: bool) -> Self {
+        self.can_unselect = Some(can_unselect);
+        self
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn selected(mut self, selected: u32) -> Self {
+        self.selected = Some(selected);
+        self
     }
 }
 

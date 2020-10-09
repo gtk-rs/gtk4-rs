@@ -8,6 +8,8 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -34,6 +36,61 @@ impl StringFilter {
             ))
             .unsafe_cast()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct StringFilterBuilder {
+    expression: Option<Expression>,
+    ignore_case: Option<bool>,
+    match_mode: Option<StringFilterMatchMode>,
+    search: Option<String>,
+}
+
+impl StringFilterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> StringFilter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
+        if let Some(ref ignore_case) = self.ignore_case {
+            properties.push(("ignore-case", ignore_case));
+        }
+        if let Some(ref match_mode) = self.match_mode {
+            properties.push(("match-mode", match_mode));
+        }
+        if let Some(ref search) = self.search {
+            properties.push(("search", search));
+        }
+        let ret = glib::Object::new(StringFilter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<StringFilter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
+        self.expression = Some(expression.clone().upcast());
+        self
+    }
+
+    pub fn ignore_case(mut self, ignore_case: bool) -> Self {
+        self.ignore_case = Some(ignore_case);
+        self
+    }
+
+    pub fn match_mode(mut self, match_mode: StringFilterMatchMode) -> Self {
+        self.match_mode = Some(match_mode);
+        self
+    }
+
+    pub fn search(mut self, search: &str) -> Self {
+        self.search = Some(search.to_string());
+        self
     }
 }
 

@@ -8,6 +8,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -23,6 +24,34 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_cell_area_context_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct CellAreaContextBuilder {
+    area: Option<CellArea>,
+}
+
+impl CellAreaContextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> CellAreaContext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref area) = self.area {
+            properties.push(("area", area));
+        }
+        let ret = glib::Object::new(CellAreaContext::static_type(), &properties)
+            .expect("object new")
+            .downcast::<CellAreaContext>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn area<P: IsA<CellArea>>(mut self, area: &P) -> Self {
+        self.area = Some(area.clone().upcast());
+        self
     }
 }
 

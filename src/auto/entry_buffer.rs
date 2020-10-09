@@ -9,6 +9,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -22,6 +23,43 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_entry_buffer_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct EntryBufferBuilder {
+    max_length: Option<i32>,
+    text: Option<String>,
+}
+
+impl EntryBufferBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> EntryBuffer {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref max_length) = self.max_length {
+            properties.push(("max-length", max_length));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        let ret = glib::Object::new(EntryBuffer::static_type(), &properties)
+            .expect("object new")
+            .downcast::<EntryBuffer>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn max_length(mut self, max_length: i32) -> Self {
+        self.max_length = Some(max_length);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
     }
 }
 

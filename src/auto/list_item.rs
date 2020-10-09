@@ -3,11 +3,14 @@
 // DO NOT EDIT
 
 use glib;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -221,6 +224,52 @@ impl ListItem {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ListItemBuilder {
+    activatable: Option<bool>,
+    child: Option<Widget>,
+    selectable: Option<bool>,
+}
+
+impl ListItemBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> ListItem {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref activatable) = self.activatable {
+            properties.push(("activatable", activatable));
+        }
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref selectable) = self.selectable {
+            properties.push(("selectable", selectable));
+        }
+        let ret = glib::Object::new(ListItem::static_type(), &properties)
+            .expect("object new")
+            .downcast::<ListItem>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn activatable(mut self, activatable: bool) -> Self {
+        self.activatable = Some(activatable);
+        self
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn selectable(mut self, selectable: bool) -> Self {
+        self.selectable = Some(selectable);
+        self
     }
 }
 

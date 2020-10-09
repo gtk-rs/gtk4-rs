@@ -9,6 +9,8 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -54,6 +56,34 @@ impl StyleContext {
                 provider.as_ref().to_glib_none().0,
             );
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct StyleContextBuilder {
+    display: Option<gdk::Display>,
+}
+
+impl StyleContextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> StyleContext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
+        }
+        let ret = glib::Object::new(StyleContext::static_type(), &properties)
+            .expect("object new")
+            .downcast::<StyleContext>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &gdk::Display) -> Self {
+        self.display = Some(display.clone());
+        self
     }
 }
 

@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gsk;
 use gtk_sys;
@@ -14,12 +16,60 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use LayoutChild;
+use LayoutManager;
+use Widget;
 
 glib_wrapper! {
     pub struct FixedLayoutChild(Object<gtk_sys::GtkFixedLayoutChild, gtk_sys::GtkFixedLayoutChildClass, FixedLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_fixed_layout_child_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct FixedLayoutChildBuilder {
+    transform: Option<gsk::Transform>,
+    child_widget: Option<Widget>,
+    layout_manager: Option<LayoutManager>,
+}
+
+impl FixedLayoutChildBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> FixedLayoutChild {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref transform) = self.transform {
+            properties.push(("transform", transform));
+        }
+        if let Some(ref child_widget) = self.child_widget {
+            properties.push(("child-widget", child_widget));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        let ret = glib::Object::new(FixedLayoutChild::static_type(), &properties)
+            .expect("object new")
+            .downcast::<FixedLayoutChild>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn transform(mut self, transform: &gsk::Transform) -> Self {
+        self.transform = Some(transform.clone());
+        self
+    }
+
+    pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
+        self.child_widget = Some(child_widget.clone().upcast());
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
     }
 }
 

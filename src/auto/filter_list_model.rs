@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -35,6 +37,52 @@ impl FilterListModel {
                 filter.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct FilterListModelBuilder {
+    filter: Option<Filter>,
+    incremental: Option<bool>,
+    model: Option<gio::ListModel>,
+}
+
+impl FilterListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> FilterListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref filter) = self.filter {
+            properties.push(("filter", filter));
+        }
+        if let Some(ref incremental) = self.incremental {
+            properties.push(("incremental", incremental));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(FilterListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<FilterListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn filter<P: IsA<Filter>>(mut self, filter: &P) -> Self {
+        self.filter = Some(filter.clone().upcast());
+        self
+    }
+
+    pub fn incremental(mut self, incremental: bool) -> Self {
+        self.incremental = Some(incremental);
+        self
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 

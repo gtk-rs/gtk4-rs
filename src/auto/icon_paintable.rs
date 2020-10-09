@@ -4,10 +4,12 @@
 
 use gdk;
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use gobject_sys;
 use gtk_sys;
@@ -67,6 +69,52 @@ impl IconPaintable {
                 .expect("Return Value for property `is-symbolic` getter")
                 .unwrap()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct IconPaintableBuilder {
+    file: Option<gio::File>,
+    icon_name: Option<String>,
+    is_symbolic: Option<bool>,
+}
+
+impl IconPaintableBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> IconPaintable {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref file) = self.file {
+            properties.push(("file", file));
+        }
+        if let Some(ref icon_name) = self.icon_name {
+            properties.push(("icon-name", icon_name));
+        }
+        if let Some(ref is_symbolic) = self.is_symbolic {
+            properties.push(("is-symbolic", is_symbolic));
+        }
+        let ret = glib::Object::new(IconPaintable::static_type(), &properties)
+            .expect("object new")
+            .downcast::<IconPaintable>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+        self.file = Some(file.clone().upcast());
+        self
+    }
+
+    pub fn icon_name(mut self, icon_name: &str) -> Self {
+        self.icon_name = Some(icon_name.to_string());
+        self
+    }
+
+    pub fn is_symbolic(mut self, is_symbolic: bool) -> Self {
+        self.is_symbolic = Some(is_symbolic);
+        self
     }
 }
 

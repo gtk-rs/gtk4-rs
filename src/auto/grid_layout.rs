@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -33,6 +35,70 @@ impl GridLayout {
 impl Default for GridLayout {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct GridLayoutBuilder {
+    baseline_row: Option<i32>,
+    column_homogeneous: Option<bool>,
+    column_spacing: Option<i32>,
+    row_homogeneous: Option<bool>,
+    row_spacing: Option<i32>,
+}
+
+impl GridLayoutBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> GridLayout {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref baseline_row) = self.baseline_row {
+            properties.push(("baseline-row", baseline_row));
+        }
+        if let Some(ref column_homogeneous) = self.column_homogeneous {
+            properties.push(("column-homogeneous", column_homogeneous));
+        }
+        if let Some(ref column_spacing) = self.column_spacing {
+            properties.push(("column-spacing", column_spacing));
+        }
+        if let Some(ref row_homogeneous) = self.row_homogeneous {
+            properties.push(("row-homogeneous", row_homogeneous));
+        }
+        if let Some(ref row_spacing) = self.row_spacing {
+            properties.push(("row-spacing", row_spacing));
+        }
+        let ret = glib::Object::new(GridLayout::static_type(), &properties)
+            .expect("object new")
+            .downcast::<GridLayout>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn baseline_row(mut self, baseline_row: i32) -> Self {
+        self.baseline_row = Some(baseline_row);
+        self
+    }
+
+    pub fn column_homogeneous(mut self, column_homogeneous: bool) -> Self {
+        self.column_homogeneous = Some(column_homogeneous);
+        self
+    }
+
+    pub fn column_spacing(mut self, column_spacing: i32) -> Self {
+        self.column_spacing = Some(column_spacing);
+        self
+    }
+
+    pub fn row_homogeneous(mut self, row_homogeneous: bool) -> Self {
+        self.row_homogeneous = Some(row_homogeneous);
+        self
+    }
+
+    pub fn row_spacing(mut self, row_spacing: i32) -> Self {
+        self.row_spacing = Some(row_spacing);
+        self
     }
 }
 

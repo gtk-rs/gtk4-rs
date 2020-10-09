@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use ShortcutAction;
@@ -28,6 +31,34 @@ impl NamedAction {
                 self.to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct NamedActionBuilder {
+    action_name: Option<String>,
+}
+
+impl NamedActionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> NamedAction {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref action_name) = self.action_name {
+            properties.push(("action-name", action_name));
+        }
+        let ret = glib::Object::new(NamedAction::static_type(), &properties)
+            .expect("object new")
+            .downcast::<NamedAction>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn action_name(mut self, action_name: &str) -> Self {
+        self.action_name = Some(action_name.to_string());
+        self
     }
 }
 

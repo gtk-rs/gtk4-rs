@@ -3,12 +3,15 @@
 // DO NOT EDIT
 
 use glib;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -377,6 +380,52 @@ impl Builder {
 impl Default for Builder {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct BuilderBuilder {
+    current_object: Option<glib::Object>,
+    scope: Option<BuilderScope>,
+    translation_domain: Option<String>,
+}
+
+impl BuilderBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Builder {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref current_object) = self.current_object {
+            properties.push(("current-object", current_object));
+        }
+        if let Some(ref scope) = self.scope {
+            properties.push(("scope", scope));
+        }
+        if let Some(ref translation_domain) = self.translation_domain {
+            properties.push(("translation-domain", translation_domain));
+        }
+        let ret = glib::Object::new(Builder::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Builder>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn current_object<P: IsA<glib::Object>>(mut self, current_object: &P) -> Self {
+        self.current_object = Some(current_object.clone().upcast());
+        self
+    }
+
+    pub fn scope<P: IsA<BuilderScope>>(mut self, scope: &P) -> Self {
+        self.scope = Some(scope.clone().upcast());
+        self
+    }
+
+    pub fn translation_domain(mut self, translation_domain: &str) -> Self {
+        self.translation_domain = Some(translation_domain.to_string());
+        self
     }
 }
 

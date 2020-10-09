@@ -5,10 +5,13 @@
 use gdk;
 use gdk_sys;
 use glib;
+use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -17,6 +20,8 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use EventController;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct DropTarget(Object<gtk_sys::GtkDropTarget, gtk_sys::GtkDropTargetClass, DropTargetClass>) @extends EventController;
@@ -337,6 +342,70 @@ impl DropTarget {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct DropTargetBuilder {
+    actions: Option<gdk::DragAction>,
+    preload: Option<bool>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl DropTargetBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> DropTarget {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref actions) = self.actions {
+            properties.push(("actions", actions));
+        }
+        if let Some(ref preload) = self.preload {
+            properties.push(("preload", preload));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(DropTarget::static_type(), &properties)
+            .expect("object new")
+            .downcast::<DropTarget>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn actions(mut self, actions: gdk::DragAction) -> Self {
+        self.actions = Some(actions);
+        self
+    }
+
+    pub fn preload(mut self, preload: bool) -> Self {
+        self.preload = Some(preload);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

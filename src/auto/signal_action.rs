@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use ShortcutAction;
@@ -28,6 +31,34 @@ impl SignalAction {
                 self.to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SignalActionBuilder {
+    signal_name: Option<String>,
+}
+
+impl SignalActionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SignalAction {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref signal_name) = self.signal_name {
+            properties.push(("signal-name", signal_name));
+        }
+        let ret = glib::Object::new(SignalAction::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SignalAction>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn signal_name(mut self, signal_name: &str) -> Self {
+        self.signal_name = Some(signal_name.to_string());
+        self
     }
 }
 

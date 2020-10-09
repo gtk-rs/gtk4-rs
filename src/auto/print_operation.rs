@@ -10,6 +10,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -49,6 +50,160 @@ impl PrintOperation {
 impl Default for PrintOperation {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct PrintOperationBuilder {
+    allow_async: Option<bool>,
+    current_page: Option<i32>,
+    custom_tab_label: Option<String>,
+    default_page_setup: Option<PageSetup>,
+    embed_page_setup: Option<bool>,
+    export_filename: Option<String>,
+    has_selection: Option<bool>,
+    job_name: Option<String>,
+    n_pages: Option<i32>,
+    print_settings: Option<PrintSettings>,
+    show_progress: Option<bool>,
+    support_selection: Option<bool>,
+    track_print_status: Option<bool>,
+    unit: Option<Unit>,
+    use_full_page: Option<bool>,
+}
+
+impl PrintOperationBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> PrintOperation {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref allow_async) = self.allow_async {
+            properties.push(("allow-async", allow_async));
+        }
+        if let Some(ref current_page) = self.current_page {
+            properties.push(("current-page", current_page));
+        }
+        if let Some(ref custom_tab_label) = self.custom_tab_label {
+            properties.push(("custom-tab-label", custom_tab_label));
+        }
+        if let Some(ref default_page_setup) = self.default_page_setup {
+            properties.push(("default-page-setup", default_page_setup));
+        }
+        if let Some(ref embed_page_setup) = self.embed_page_setup {
+            properties.push(("embed-page-setup", embed_page_setup));
+        }
+        if let Some(ref export_filename) = self.export_filename {
+            properties.push(("export-filename", export_filename));
+        }
+        if let Some(ref has_selection) = self.has_selection {
+            properties.push(("has-selection", has_selection));
+        }
+        if let Some(ref job_name) = self.job_name {
+            properties.push(("job-name", job_name));
+        }
+        if let Some(ref n_pages) = self.n_pages {
+            properties.push(("n-pages", n_pages));
+        }
+        if let Some(ref print_settings) = self.print_settings {
+            properties.push(("print-settings", print_settings));
+        }
+        if let Some(ref show_progress) = self.show_progress {
+            properties.push(("show-progress", show_progress));
+        }
+        if let Some(ref support_selection) = self.support_selection {
+            properties.push(("support-selection", support_selection));
+        }
+        if let Some(ref track_print_status) = self.track_print_status {
+            properties.push(("track-print-status", track_print_status));
+        }
+        if let Some(ref unit) = self.unit {
+            properties.push(("unit", unit));
+        }
+        if let Some(ref use_full_page) = self.use_full_page {
+            properties.push(("use-full-page", use_full_page));
+        }
+        let ret = glib::Object::new(PrintOperation::static_type(), &properties)
+            .expect("object new")
+            .downcast::<PrintOperation>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn allow_async(mut self, allow_async: bool) -> Self {
+        self.allow_async = Some(allow_async);
+        self
+    }
+
+    pub fn current_page(mut self, current_page: i32) -> Self {
+        self.current_page = Some(current_page);
+        self
+    }
+
+    pub fn custom_tab_label(mut self, custom_tab_label: &str) -> Self {
+        self.custom_tab_label = Some(custom_tab_label.to_string());
+        self
+    }
+
+    pub fn default_page_setup(mut self, default_page_setup: &PageSetup) -> Self {
+        self.default_page_setup = Some(default_page_setup.clone());
+        self
+    }
+
+    pub fn embed_page_setup(mut self, embed_page_setup: bool) -> Self {
+        self.embed_page_setup = Some(embed_page_setup);
+        self
+    }
+
+    pub fn export_filename(mut self, export_filename: &str) -> Self {
+        self.export_filename = Some(export_filename.to_string());
+        self
+    }
+
+    pub fn has_selection(mut self, has_selection: bool) -> Self {
+        self.has_selection = Some(has_selection);
+        self
+    }
+
+    pub fn job_name(mut self, job_name: &str) -> Self {
+        self.job_name = Some(job_name.to_string());
+        self
+    }
+
+    pub fn n_pages(mut self, n_pages: i32) -> Self {
+        self.n_pages = Some(n_pages);
+        self
+    }
+
+    pub fn print_settings(mut self, print_settings: &PrintSettings) -> Self {
+        self.print_settings = Some(print_settings.clone());
+        self
+    }
+
+    pub fn show_progress(mut self, show_progress: bool) -> Self {
+        self.show_progress = Some(show_progress);
+        self
+    }
+
+    pub fn support_selection(mut self, support_selection: bool) -> Self {
+        self.support_selection = Some(support_selection);
+        self
+    }
+
+    pub fn track_print_status(mut self, track_print_status: bool) -> Self {
+        self.track_print_status = Some(track_print_status);
+        self
+    }
+
+    pub fn unit(mut self, unit: Unit) -> Self {
+        self.unit = Some(unit);
+        self
+    }
+
+    pub fn use_full_page(mut self, use_full_page: bool) -> Self {
+        self.use_full_page = Some(use_full_page);
+        self
     }
 }
 

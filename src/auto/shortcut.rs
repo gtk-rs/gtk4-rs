@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -41,6 +43,52 @@ impl Shortcut {
     //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call gtk_sys:gtk_shortcut_new_with_arguments() }
     //}
+}
+
+#[derive(Clone, Default)]
+pub struct ShortcutBuilder {
+    action: Option<ShortcutAction>,
+    arguments: Option<glib::Variant>,
+    trigger: Option<ShortcutTrigger>,
+}
+
+impl ShortcutBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Shortcut {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref action) = self.action {
+            properties.push(("action", action));
+        }
+        if let Some(ref arguments) = self.arguments {
+            properties.push(("arguments", arguments));
+        }
+        if let Some(ref trigger) = self.trigger {
+            properties.push(("trigger", trigger));
+        }
+        let ret = glib::Object::new(Shortcut::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Shortcut>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn action<P: IsA<ShortcutAction>>(mut self, action: &P) -> Self {
+        self.action = Some(action.clone().upcast());
+        self
+    }
+
+    pub fn arguments(mut self, arguments: &glib::Variant) -> Self {
+        self.arguments = Some(arguments.clone());
+        self
+    }
+
+    pub fn trigger<P: IsA<ShortcutTrigger>>(mut self, trigger: &P) -> Self {
+        self.trigger = Some(trigger.clone().upcast());
+        self
+    }
 }
 
 pub const NONE_SHORTCUT: Option<&Shortcut> = None;
