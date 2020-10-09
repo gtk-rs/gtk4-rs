@@ -437,6 +437,10 @@ mod link_button;
 pub use self::link_button::LinkButtonBuilder;
 pub use self::link_button::{LinkButton, LinkButtonClass};
 
+mod list_base;
+pub use self::list_base::ListBaseExt;
+pub use self::list_base::{ListBase, ListBaseClass, NONE_LIST_BASE};
+
 mod list_box;
 pub use self::list_box::ListBoxBuilder;
 pub use self::list_box::{ListBox, ListBoxClass};
@@ -446,9 +450,18 @@ pub use self::list_box_row::ListBoxRowBuilder;
 pub use self::list_box_row::ListBoxRowExt;
 pub use self::list_box_row::{ListBoxRow, ListBoxRowClass, NONE_LIST_BOX_ROW};
 
+mod list_item;
+pub use self::list_item::{ListItem, ListItemClass};
+
+mod list_item_factory;
+pub use self::list_item_factory::{ListItemFactory, ListItemFactoryClass, NONE_LIST_ITEM_FACTORY};
+
 mod list_store;
 pub use self::list_store::GtkListStoreExt;
 pub use self::list_store::{ListStore, ListStoreClass, NONE_LIST_STORE};
+
+mod list_view;
+pub use self::list_view::{ListView, ListViewClass};
 
 mod lock_button;
 pub use self::lock_button::LockButtonBuilder;
@@ -1143,6 +1156,7 @@ pub mod traits {
     pub use super::IMMulticontextExt;
     pub use super::LayoutChildExt;
     pub use super::LayoutManagerExt;
+    pub use super::ListBaseExt;
     pub use super::ListBoxRowExt;
     pub use super::MapListModelExt;
     pub use super::MediaControlsExt;
