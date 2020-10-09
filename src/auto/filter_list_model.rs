@@ -13,6 +13,7 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Filter;
 
 glib_wrapper! {
     pub struct FilterListModel(Object<gtk_sys::GtkFilterListModel, gtk_sys::GtkFilterListModelClass, FilterListModelClass>) @implements gio::ListModel;
@@ -23,15 +24,24 @@ glib_wrapper! {
 }
 
 impl FilterListModel {
-    //pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>, filter: /*Ignored*/Option<&Filter>) -> FilterListModel {
-    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_new() }
-    //}
+    pub fn new<P: IsA<gio::ListModel>, Q: IsA<Filter>>(
+        model: Option<&P>,
+        filter: Option<&Q>,
+    ) -> FilterListModel {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_filter_list_model_new(
+                model.map(|p| p.as_ref()).to_glib_full(),
+                filter.map(|p| p.as_ref()).to_glib_full(),
+            ))
+        }
+    }
 }
 
 pub const NONE_FILTER_LIST_MODEL: Option<&FilterListModel> = None;
 
 pub trait FilterListModelExt: 'static {
-    //fn get_filter(&self) -> /*Ignored*/Option<Filter>;
+    fn get_filter(&self) -> Option<Filter>;
 
     fn get_incremental(&self) -> bool;
 
@@ -39,7 +49,7 @@ pub trait FilterListModelExt: 'static {
 
     fn get_pending(&self) -> u32;
 
-    //fn set_filter(&self, filter: /*Ignored*/Option<&Filter>);
+    fn set_filter<P: IsA<Filter>>(&self, filter: Option<&P>);
 
     fn set_incremental(&self, incremental: bool);
 
@@ -55,9 +65,13 @@ pub trait FilterListModelExt: 'static {
 }
 
 impl<O: IsA<FilterListModel>> FilterListModelExt for O {
-    //fn get_filter(&self) -> /*Ignored*/Option<Filter> {
-    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_get_filter() }
-    //}
+    fn get_filter(&self) -> Option<Filter> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_filter_list_model_get_filter(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_incremental(&self) -> bool {
         unsafe {
@@ -79,9 +93,14 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
         unsafe { gtk_sys::gtk_filter_list_model_get_pending(self.as_ref().to_glib_none().0) }
     }
 
-    //fn set_filter(&self, filter: /*Ignored*/Option<&Filter>) {
-    //    unsafe { TODO: call gtk_sys:gtk_filter_list_model_set_filter() }
-    //}
+    fn set_filter<P: IsA<Filter>>(&self, filter: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_filter_list_model_set_filter(
+                self.as_ref().to_glib_none().0,
+                filter.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
 
     fn set_incremental(&self, incremental: bool) {
         unsafe {

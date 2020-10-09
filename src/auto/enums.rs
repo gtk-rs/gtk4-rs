@@ -2998,6 +2998,158 @@ impl SetValue for FileChooserError {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum FilterChange {
+    Different,
+    LessStrict,
+    MoreStrict,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FilterChange {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FilterChange::{}",
+            match *self {
+                FilterChange::Different => "Different",
+                FilterChange::LessStrict => "LessStrict",
+                FilterChange::MoreStrict => "MoreStrict",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for FilterChange {
+    type GlibType = gtk_sys::GtkFilterChange;
+
+    fn to_glib(&self) -> gtk_sys::GtkFilterChange {
+        match *self {
+            FilterChange::Different => gtk_sys::GTK_FILTER_CHANGE_DIFFERENT,
+            FilterChange::LessStrict => gtk_sys::GTK_FILTER_CHANGE_LESS_STRICT,
+            FilterChange::MoreStrict => gtk_sys::GTK_FILTER_CHANGE_MORE_STRICT,
+            FilterChange::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkFilterChange> for FilterChange {
+    fn from_glib(value: gtk_sys::GtkFilterChange) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => FilterChange::Different,
+            1 => FilterChange::LessStrict,
+            2 => FilterChange::MoreStrict,
+            value => FilterChange::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FilterChange {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_filter_change_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for FilterChange {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for FilterChange {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for FilterChange {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum FilterMatch {
+    Some,
+    None,
+    All,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FilterMatch {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FilterMatch::{}",
+            match *self {
+                FilterMatch::Some => "Some",
+                FilterMatch::None => "None",
+                FilterMatch::All => "All",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for FilterMatch {
+    type GlibType = gtk_sys::GtkFilterMatch;
+
+    fn to_glib(&self) -> gtk_sys::GtkFilterMatch {
+        match *self {
+            FilterMatch::Some => gtk_sys::GTK_FILTER_MATCH_SOME,
+            FilterMatch::None => gtk_sys::GTK_FILTER_MATCH_NONE,
+            FilterMatch::All => gtk_sys::GTK_FILTER_MATCH_ALL,
+            FilterMatch::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkFilterMatch> for FilterMatch {
+    fn from_glib(value: gtk_sys::GtkFilterMatch) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => FilterMatch::Some,
+            1 => FilterMatch::None,
+            2 => FilterMatch::All,
+            value => FilterMatch::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FilterMatch {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_filter_match_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for FilterMatch {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for FilterMatch {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for FilterMatch {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum IconSize {
     Inherit,
     Normal,
@@ -7006,6 +7158,82 @@ impl<'a> FromValue<'a> for StackTransitionType {
 }
 
 impl SetValue for StackTransitionType {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum StringFilterMatchMode {
+    Exact,
+    Substring,
+    Prefix,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for StringFilterMatchMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "StringFilterMatchMode::{}",
+            match *self {
+                StringFilterMatchMode::Exact => "Exact",
+                StringFilterMatchMode::Substring => "Substring",
+                StringFilterMatchMode::Prefix => "Prefix",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for StringFilterMatchMode {
+    type GlibType = gtk_sys::GtkStringFilterMatchMode;
+
+    fn to_glib(&self) -> gtk_sys::GtkStringFilterMatchMode {
+        match *self {
+            StringFilterMatchMode::Exact => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_EXACT,
+            StringFilterMatchMode::Substring => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_SUBSTRING,
+            StringFilterMatchMode::Prefix => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_PREFIX,
+            StringFilterMatchMode::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkStringFilterMatchMode> for StringFilterMatchMode {
+    fn from_glib(value: gtk_sys::GtkStringFilterMatchMode) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => StringFilterMatchMode::Exact,
+            1 => StringFilterMatchMode::Substring,
+            2 => StringFilterMatchMode::Prefix,
+            value => StringFilterMatchMode::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for StringFilterMatchMode {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_string_filter_match_mode_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for StringFilterMatchMode {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for StringFilterMatchMode {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for StringFilterMatchMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }

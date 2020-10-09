@@ -17,9 +17,10 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use Buildable;
+use Filter;
 
 glib_wrapper! {
-    pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @implements Buildable;
+    pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @extends Filter, @implements Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_file_filter_get_type(),

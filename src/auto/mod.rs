@@ -32,6 +32,9 @@ mod adjustment;
 pub use self::adjustment::AdjustmentExt;
 pub use self::adjustment::{Adjustment, AdjustmentClass, NONE_ADJUSTMENT};
 
+mod any_filter;
+pub use self::any_filter::{AnyFilter, AnyFilterClass};
+
 mod app_chooser;
 pub use self::app_chooser::AppChooserExt;
 pub use self::app_chooser::{AppChooser, NONE_APP_CHOOSER};
@@ -72,6 +75,10 @@ pub use self::assistant_page::{AssistantPage, AssistantPageClass};
 
 mod bin_layout;
 pub use self::bin_layout::{BinLayout, BinLayoutClass, NONE_BIN_LAYOUT};
+
+mod bool_filter;
+pub use self::bool_filter::BoolFilterExt;
+pub use self::bool_filter::{BoolFilter, BoolFilterClass, NONE_BOOL_FILTER};
 
 mod box_;
 pub use self::box_::BoxBuilder;
@@ -222,6 +229,10 @@ pub use self::constraint_target::{ConstraintTarget, NONE_CONSTRAINT_TARGET};
 mod css_provider;
 pub use self::css_provider::{CssProvider, CssProviderClass};
 
+mod custom_filter;
+pub use self::custom_filter::CustomFilterExt;
+pub use self::custom_filter::{CustomFilter, CustomFilterClass, NONE_CUSTOM_FILTER};
+
 mod custom_layout;
 pub use self::custom_layout::{CustomLayout, CustomLayoutClass, NONE_CUSTOM_LAYOUT};
 
@@ -268,9 +279,16 @@ pub use self::event_controller_motion::{EventControllerMotion, EventControllerMo
 mod event_controller_scroll;
 pub use self::event_controller_scroll::{EventControllerScroll, EventControllerScrollClass};
 
+mod every_filter;
+pub use self::every_filter::{EveryFilter, EveryFilterClass};
+
 mod expander;
 pub use self::expander::ExpanderBuilder;
 pub use self::expander::{Expander, ExpanderClass};
+
+mod expression;
+pub use self::expression::ExpressionExt;
+pub use self::expression::{Expression, ExpressionClass, NONE_EXPRESSION};
 
 mod file_chooser;
 pub use self::file_chooser::FileChooserExt;
@@ -297,6 +315,10 @@ pub use self::file_chooser_widget::{FileChooserWidget, FileChooserWidgetClass};
 mod file_filter;
 pub use self::file_filter::FileFilterBuilder;
 pub use self::file_filter::{FileFilter, FileFilterClass};
+
+mod filter;
+pub use self::filter::FilterExt;
+pub use self::filter::{Filter, FilterClass, NONE_FILTER};
 
 mod filter_list_model;
 pub use self::filter_list_model::FilterListModelExt;
@@ -514,6 +536,10 @@ mod mount_operation;
 pub use self::mount_operation::MountOperationExt;
 pub use self::mount_operation::{MountOperation, MountOperationClass, NONE_MOUNT_OPERATION};
 
+mod multi_filter;
+pub use self::multi_filter::MultiFilterExt;
+pub use self::multi_filter::{MultiFilter, MultiFilterClass, NONE_MULTI_FILTER};
+
 mod named_action;
 pub use self::named_action::{NamedAction, NamedActionClass};
 
@@ -639,6 +665,12 @@ mod search_entry;
 pub use self::search_entry::SearchEntryBuilder;
 pub use self::search_entry::{SearchEntry, SearchEntryClass};
 
+mod selection_filter_model;
+pub use self::selection_filter_model::SelectionFilterModelExt;
+pub use self::selection_filter_model::{
+    SelectionFilterModel, SelectionFilterModelClass, NONE_SELECTION_FILTER_MODEL,
+};
+
 mod selection_model;
 pub use self::selection_model::SelectionModelExt;
 pub use self::selection_model::{SelectionModel, NONE_SELECTION_MODEL};
@@ -737,6 +769,10 @@ pub use self::stack_switcher::{StackSwitcher, StackSwitcherClass};
 mod statusbar;
 pub use self::statusbar::StatusbarBuilder;
 pub use self::statusbar::{Statusbar, StatusbarClass};
+
+mod string_filter;
+pub use self::string_filter::StringFilterExt;
+pub use self::string_filter::{StringFilter, StringFilterClass, NONE_STRING_FILTER};
 
 mod style_context;
 pub use self::style_context::StyleContextExt;
@@ -875,6 +911,9 @@ pub use self::window_handle::{WindowHandle, WindowHandleClass, NONE_WINDOW_HANDL
 mod css_section;
 pub use self::css_section::CssSection;
 
+mod expression_watch;
+pub use self::expression_watch::ExpressionWatch;
+
 mod paper_size;
 pub use self::paper_size::PaperSize;
 
@@ -923,6 +962,8 @@ pub use self::enums::EntryIconPosition;
 pub use self::enums::EventSequenceState;
 pub use self::enums::FileChooserAction;
 pub use self::enums::FileChooserError;
+pub use self::enums::FilterChange;
+pub use self::enums::FilterMatch;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;
 pub use self::enums::IconViewDropPosition;
@@ -969,6 +1010,7 @@ pub use self::enums::SortType;
 pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
+pub use self::enums::StringFilterMatchMode;
 pub use self::enums::TextBufferTargetInfo;
 pub use self::enums::TextDirection;
 pub use self::enums::TextExtendSelection;
@@ -1137,6 +1179,7 @@ pub mod traits {
     pub use super::AdjustmentExt;
     pub use super::AppChooserExt;
     pub use super::ApplicationWindowExt;
+    pub use super::BoolFilterExt;
     pub use super::BoxExt;
     pub use super::BoxLayoutExt;
     pub use super::BuildableExt;
@@ -1154,14 +1197,17 @@ pub mod traits {
     pub use super::ConstraintGuideExt;
     pub use super::ConstraintLayoutExt;
     pub use super::ConstraintTargetExt;
+    pub use super::CustomFilterExt;
     pub use super::DialogExt;
     pub use super::DrawingAreaExt;
     pub use super::EditableExt;
     pub use super::EntryBufferExt;
     pub use super::EntryExt;
     pub use super::EventControllerExt;
+    pub use super::ExpressionExt;
     pub use super::FileChooserExt;
     pub use super::FileChooserNativeExt;
+    pub use super::FilterExt;
     pub use super::FilterListModelExt;
     pub use super::FixedExt;
     pub use super::FixedLayoutChildExt;
@@ -1190,6 +1236,7 @@ pub mod traits {
     pub use super::MediaFileExt;
     pub use super::MediaStreamExt;
     pub use super::MountOperationExt;
+    pub use super::MultiFilterExt;
     pub use super::NativeDialogExt;
     pub use super::OrientableExt;
     pub use super::PictureExt;
@@ -1202,6 +1249,7 @@ pub mod traits {
     pub use super::ScaleButtonExt;
     pub use super::ScaleExt;
     pub use super::ScrollableExt;
+    pub use super::SelectionFilterModelExt;
     pub use super::SelectionModelExt;
     pub use super::ShortcutActionExt;
     pub use super::ShortcutExt;
@@ -1210,6 +1258,7 @@ pub mod traits {
     pub use super::SingleSelectionExt;
     pub use super::SliceListModelExt;
     pub use super::SortListModelExt;
+    pub use super::StringFilterExt;
     pub use super::StyleContextExt;
     pub use super::StyleProviderExt;
     pub use super::TextBufferExt;
