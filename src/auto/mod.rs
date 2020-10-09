@@ -282,6 +282,9 @@ mod editable;
 pub use self::editable::EditableExt;
 pub use self::editable::{Editable, NONE_EDITABLE};
 
+mod emoji_chooser;
+pub use self::emoji_chooser::{EmojiChooser, EmojiChooserClass};
+
 mod entry;
 pub use self::entry::EntryBuilder;
 pub use self::entry::EntryExt;

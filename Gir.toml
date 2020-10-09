@@ -82,6 +82,7 @@ generate = [
     "Gtk.StringList",
     "Gtk.TreeListRowSorter",
     "Gtk.EditableProperties",
+    "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
     "Gtk.EventController",
     "Gtk.EventControllerLegacy",
