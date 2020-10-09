@@ -772,9 +772,17 @@ pub use self::window::GtkWindowExt;
 pub use self::window::WindowBuilder;
 pub use self::window::{Window, WindowClass, NONE_WINDOW};
 
+mod window_controls;
+pub use self::window_controls::WindowControlsExt;
+pub use self::window_controls::{WindowControls, WindowControlsClass, NONE_WINDOW_CONTROLS};
+
 mod window_group;
 pub use self::window_group::WindowGroupExt;
 pub use self::window_group::{WindowGroup, WindowGroupClass, NONE_WINDOW_GROUP};
+
+mod window_handle;
+pub use self::window_handle::WindowHandleExt;
+pub use self::window_handle::{WindowHandle, WindowHandleClass, NONE_WINDOW_HANDLE};
 
 mod css_section;
 pub use self::css_section::CssSection;
@@ -1111,5 +1119,7 @@ pub mod traits {
     pub use super::VideoExt;
     pub use super::WidgetExt;
     pub use super::WidgetPaintableExt;
+    pub use super::WindowControlsExt;
     pub use super::WindowGroupExt;
+    pub use super::WindowHandleExt;
 }
