@@ -144,14 +144,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::length\0".as_ptr() as *const _,
-                Some(transmute(notify_length_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_length_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -166,14 +168,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-length\0".as_ptr() as *const _,
-                Some(transmute(notify_max_length_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_length_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -188,14 +192,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

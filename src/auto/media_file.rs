@@ -27,46 +27,42 @@ glib_wrapper! {
 impl MediaFile {
     pub fn new() -> MediaFile {
         assert_initialized_main_thread!();
-        unsafe { MediaStream::from_glib_full(gtk_sys::gtk_media_file_new()).unsafe_cast() }
+        unsafe { from_glib_full(gtk_sys::gtk_media_file_new()) }
     }
 
-    pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> MediaFile {
+    pub fn new_for_file<P: IsA<gio::File>>(file: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_file(
-                file.map(|p| p.as_ref()).to_glib_none().0,
+            from_glib_full(gtk_sys::gtk_media_file_new_for_file(
+                file.as_ref().to_glib_none().0,
             ))
-            .unsafe_cast()
         }
     }
 
     pub fn new_for_filename(filename: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_filename(
+            from_glib_full(gtk_sys::gtk_media_file_new_for_filename(
                 filename.to_glib_none().0,
             ))
-            .unsafe_cast()
         }
     }
 
-    pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: Option<&P>) -> MediaFile {
+    pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_input_stream(
-                stream.map(|p| p.as_ref()).to_glib_none().0,
+            from_glib_full(gtk_sys::gtk_media_file_new_for_input_stream(
+                stream.as_ref().to_glib_none().0,
             ))
-            .unsafe_cast()
         }
     }
 
     pub fn new_for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            MediaStream::from_glib_full(gtk_sys::gtk_media_file_new_for_resource(
+            from_glib_full(gtk_sys::gtk_media_file_new_for_resource(
                 resource_path.to_glib_none().0,
             ))
-            .unsafe_cast()
         }
     }
 }
@@ -168,14 +164,16 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
             P: IsA<MediaFile>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaFile::from_glib_borrow(this).unsafe_cast())
+            f(&MediaFile::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute(notify_file_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_file_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -193,15 +191,15 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
             P: IsA<MediaFile>,
         {
             let f: &F = &*(f as *const F);
-            f(&MediaFile::from_glib_borrow(this).unsafe_cast())
+            f(&MediaFile::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-stream\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_input_stream_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_stream_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

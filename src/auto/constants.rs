@@ -423,12 +423,6 @@ pub static STYLE_CLASS_INFO: once_cell::sync::Lazy<&'static str> =
             .to_str()
             .unwrap()
     });
-pub static STYLE_CLASS_INLINE_TOOLBAR: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INLINE_TOOLBAR)
-            .to_str()
-            .unwrap()
-    });
 pub static STYLE_CLASS_INSERTION_CURSOR: once_cell::sync::Lazy<&'static str> =
     once_cell::sync::Lazy::new(|| unsafe {
         CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_INSERTION_CURSOR)
@@ -552,12 +546,6 @@ pub static STYLE_CLASS_POPOVER: once_cell::sync::Lazy<&'static str> =
 pub static STYLE_CLASS_POPUP: once_cell::sync::Lazy<&'static str> =
     once_cell::sync::Lazy::new(|| unsafe {
         CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_POPUP)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_CLASS_PRIMARY_TOOLBAR: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_PRIMARY_TOOLBAR)
             .to_str()
             .unwrap()
     });
@@ -756,66 +744,6 @@ pub static STYLE_CLASS_WARNING: once_cell::sync::Lazy<&'static str> =
 pub static STYLE_CLASS_WIDE: once_cell::sync::Lazy<&'static str> =
     once_cell::sync::Lazy::new(|| unsafe {
         CStr::from_ptr(gtk_sys::GTK_STYLE_CLASS_WIDE)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BACKGROUND_COLOR: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_COLOR)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BACKGROUND_IMAGE: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BACKGROUND_IMAGE)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BORDER_COLOR: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_COLOR)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BORDER_RADIUS: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_RADIUS)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BORDER_STYLE: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_STYLE)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_BORDER_WIDTH: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_BORDER_WIDTH)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_COLOR: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_COLOR)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_FONT: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_FONT)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_MARGIN: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_MARGIN)
-            .to_str()
-            .unwrap()
-    });
-pub static STYLE_PROPERTY_PADDING: once_cell::sync::Lazy<&'static str> =
-    once_cell::sync::Lazy::new(|| unsafe {
-        CStr::from_ptr(gtk_sys::GTK_STYLE_PROPERTY_PADDING)
             .to_str()
             .unwrap()
     });

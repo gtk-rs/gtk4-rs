@@ -13,7 +13,6 @@ use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem;
 use std::mem::transmute;
 
 glib_wrapper! {
@@ -27,17 +26,21 @@ glib_wrapper! {
 pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
 
 pub trait SelectionModelExt: 'static {
-    fn is_selected(&self, position: u32) -> bool;
+    //fn get_selection(&self) -> /*Ignored*/Option<Bitset>;
 
-    fn query_range(&self, position: u32) -> (u32, u32, bool);
+    //fn get_selection_in_range(&self, position: u32, n_items: u32) -> /*Ignored*/Option<Bitset>;
+
+    fn is_selected(&self, position: u32) -> bool;
 
     fn select_all(&self) -> bool;
 
-    fn select_item(&self, position: u32, exclusive: bool) -> bool;
+    fn select_item(&self, position: u32, unselect_rest: bool) -> bool;
 
-    fn select_range(&self, position: u32, n_items: u32, exclusive: bool) -> bool;
+    fn select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool;
 
     fn selection_changed(&self, position: u32, n_items: u32);
+
+    //fn set_selection(&self, selected: /*Ignored*/&Bitset, mask: /*Ignored*/&Bitset) -> bool;
 
     fn unselect_all(&self) -> bool;
 
@@ -49,31 +52,20 @@ pub trait SelectionModelExt: 'static {
 }
 
 impl<O: IsA<SelectionModel>> SelectionModelExt for O {
+    //fn get_selection(&self) -> /*Ignored*/Option<Bitset> {
+    //    unsafe { TODO: call gtk_sys:gtk_selection_model_get_selection() }
+    //}
+
+    //fn get_selection_in_range(&self, position: u32, n_items: u32) -> /*Ignored*/Option<Bitset> {
+    //    unsafe { TODO: call gtk_sys:gtk_selection_model_get_selection_in_range() }
+    //}
+
     fn is_selected(&self, position: u32) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_selection_model_is_selected(
                 self.as_ref().to_glib_none().0,
                 position,
             ))
-        }
-    }
-
-    fn query_range(&self, position: u32) -> (u32, u32, bool) {
-        unsafe {
-            let mut start_range = mem::MaybeUninit::uninit();
-            let mut n_items = mem::MaybeUninit::uninit();
-            let mut selected = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_selection_model_query_range(
-                self.as_ref().to_glib_none().0,
-                position,
-                start_range.as_mut_ptr(),
-                n_items.as_mut_ptr(),
-                selected.as_mut_ptr(),
-            );
-            let start_range = start_range.assume_init();
-            let n_items = n_items.assume_init();
-            let selected = selected.assume_init();
-            (start_range, n_items, from_glib(selected))
         }
     }
 
@@ -85,23 +77,23 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
-    fn select_item(&self, position: u32, exclusive: bool) -> bool {
+    fn select_item(&self, position: u32, unselect_rest: bool) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_selection_model_select_item(
                 self.as_ref().to_glib_none().0,
                 position,
-                exclusive.to_glib(),
+                unselect_rest.to_glib(),
             ))
         }
     }
 
-    fn select_range(&self, position: u32, n_items: u32, exclusive: bool) -> bool {
+    fn select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_selection_model_select_range(
                 self.as_ref().to_glib_none().0,
                 position,
                 n_items,
-                exclusive.to_glib(),
+                unselect_rest.to_glib(),
             ))
         }
     }
@@ -115,6 +107,10 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             );
         }
     }
+
+    //fn set_selection(&self, selected: /*Ignored*/&Bitset, mask: /*Ignored*/&Bitset) -> bool {
+    //    unsafe { TODO: call gtk_sys:gtk_selection_model_set_selection() }
+    //}
 
     fn unselect_all(&self) -> bool {
         unsafe {
@@ -154,7 +150,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &SelectionModel::from_glib_borrow(this).unsafe_cast(),
+                &SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
                 position,
                 n_items,
             )
@@ -164,7 +160,9 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute(selection_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    selection_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

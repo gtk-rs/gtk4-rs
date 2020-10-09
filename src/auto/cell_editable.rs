@@ -16,11 +16,12 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
 use Buildable;
 use Widget;
 
 glib_wrapper! {
-    pub struct CellEditable(Interface<gtk_sys::GtkCellEditable>) @requires Widget, Buildable;
+    pub struct CellEditable(Interface<gtk_sys::GtkCellEditable>) @requires Widget, Accessible, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_editable_get_type(),
@@ -34,7 +35,7 @@ pub trait CellEditableExt: 'static {
 
     fn remove_widget(&self);
 
-    fn start_editing(&self, event: Option<&gdk::Event>);
+    fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>);
 
     fn get_property_editing_canceled(&self) -> bool;
 
@@ -63,11 +64,11 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    fn start_editing(&self, event: Option<&gdk::Event>) {
+    fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>) {
         unsafe {
             gtk_sys::gtk_cell_editable_start_editing(
                 self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -105,14 +106,16 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             P: IsA<CellEditable>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast())
+            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"editing-done\0".as_ptr() as *const _,
-                Some(transmute(editing_done_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    editing_done_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -126,14 +129,16 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             P: IsA<CellEditable>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast())
+            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"remove-widget\0".as_ptr() as *const _,
-                Some(transmute(remove_widget_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    remove_widget_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -151,15 +156,15 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             P: IsA<CellEditable>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast())
+            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::editing-canceled\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_editing_canceled_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_editing_canceled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

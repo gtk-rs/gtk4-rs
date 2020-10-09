@@ -41,8 +41,6 @@ pub trait NativeDialogExt: 'static {
 
     fn hide(&self);
 
-    fn run(&self) -> i32;
-
     fn set_modal(&self, modal: bool);
 
     fn set_title(&self, title: &str);
@@ -112,10 +110,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    fn run(&self) -> i32 {
-        unsafe { gtk_sys::gtk_native_dialog_run(self.as_ref().to_glib_none().0) }
-    }
-
     fn set_modal(&self, modal: bool) {
         unsafe {
             gtk_sys::gtk_native_dialog_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
@@ -166,7 +160,7 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &NativeDialog::from_glib_borrow(this).unsafe_cast(),
+                &NativeDialog::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(response_id),
             )
         }
@@ -175,7 +169,9 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"response\0".as_ptr() as *const _,
-                Some(transmute(response_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    response_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -190,14 +186,16 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
             P: IsA<NativeDialog>,
         {
             let f: &F = &*(f as *const F);
-            f(&NativeDialog::from_glib_borrow(this).unsafe_cast())
+            f(&NativeDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute(notify_modal_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_modal_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -212,14 +210,16 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
             P: IsA<NativeDialog>,
         {
             let f: &F = &*(f as *const F);
-            f(&NativeDialog::from_glib_borrow(this).unsafe_cast())
+            f(&NativeDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -237,15 +237,15 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
             P: IsA<NativeDialog>,
         {
             let f: &F = &*(f as *const F);
-            f(&NativeDialog::from_glib_borrow(this).unsafe_cast())
+            f(&NativeDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transient-for\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_transient_for_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_transient_for_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -261,14 +261,16 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
             P: IsA<NativeDialog>,
         {
             let f: &F = &*(f as *const F);
-            f(&NativeDialog::from_glib_borrow(this).unsafe_cast())
+            f(&NativeDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(transmute(notify_visible_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

@@ -7,10 +7,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
-use glib::StaticType;
-use glib::Value;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -18,7 +15,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct StackPage(Object<gtk_sys::GtkStackPage, gtk_sys::GtkStackPageClass, StackPageClass>);
+    pub struct StackPage(Object<gtk_sys::GtkStackPage, StackPageClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_stack_page_get_type(),
@@ -30,115 +27,71 @@ impl StackPage {
         unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn get_property_icon_name(&self) -> Option<GString> {
+    pub fn get_icon_name(&self) -> Option<GString> {
+        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
+    }
+
+    pub fn get_name(&self) -> Option<GString> {
+        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_name(self.to_glib_none().0)) }
+    }
+
+    pub fn get_needs_attention(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"icon-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `icon-name` getter")
+            from_glib(gtk_sys::gtk_stack_page_get_needs_attention(
+                self.to_glib_none().0,
+            ))
         }
     }
 
-    pub fn set_property_icon_name(&self, icon_name: Option<&str>) {
+    pub fn get_title(&self) -> Option<GString> {
+        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_title(self.to_glib_none().0)) }
+    }
+
+    pub fn get_use_underline(&self) -> bool {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"icon-name\0".as_ptr() as *const _,
-                Value::from(icon_name).to_glib_none().0,
-            );
+            from_glib(gtk_sys::gtk_stack_page_get_use_underline(
+                self.to_glib_none().0,
+            ))
         }
     }
 
-    pub fn get_property_name(&self) -> Option<GString> {
+    pub fn get_visible(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_stack_page_get_visible(self.to_glib_none().0)) }
+    }
+
+    pub fn set_icon_name(&self, setting: &str) {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `name` getter")
+            gtk_sys::gtk_stack_page_set_icon_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
-    pub fn get_property_needs_attention(&self) -> bool {
+    pub fn set_name(&self, setting: &str) {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"needs-attention\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `needs-attention` getter")
-                .unwrap()
+            gtk_sys::gtk_stack_page_set_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
-    pub fn set_property_needs_attention(&self, needs_attention: bool) {
+    pub fn set_needs_attention(&self, setting: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"needs-attention\0".as_ptr() as *const _,
-                Value::from(&needs_attention).to_glib_none().0,
-            );
+            gtk_sys::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.to_glib());
         }
     }
 
-    pub fn get_property_title(&self) -> Option<GString> {
+    pub fn set_title(&self, setting: &str) {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"title\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `title` getter")
+            gtk_sys::gtk_stack_page_set_title(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
-    pub fn set_property_title(&self, title: Option<&str>) {
+    pub fn set_use_underline(&self, setting: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"title\0".as_ptr() as *const _,
-                Value::from(title).to_glib_none().0,
-            );
+            gtk_sys::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.to_glib());
         }
     }
 
-    pub fn get_property_visible(&self) -> bool {
+    pub fn set_visible(&self, visible: bool) {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"visible\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `visible` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_visible(&self, visible: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"visible\0".as_ptr() as *const _,
-                Value::from(&visible).to_glib_none().0,
-            );
+            gtk_sys::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());
         }
     }
 
@@ -159,7 +112,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute(notify_icon_name_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_icon_name_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -182,7 +137,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::needs-attention\0".as_ptr() as *const _,
-                Some(transmute(notify_needs_attention_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_needs_attention_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -205,7 +162,34 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_use_underline_notify<F: Fn(&StackPage) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&StackPage) + 'static>(
+            this: *mut gtk_sys::GtkStackPage,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-underline\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_underline_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -228,7 +212,9 @@ impl StackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(transmute(notify_visible_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

@@ -26,9 +26,7 @@ impl PageSetup {
         unsafe { from_glib_full(gtk_sys::gtk_page_setup_new()) }
     }
 
-    pub fn new_from_file<P: AsRef<std::path::Path>>(
-        file_name: P,
-    ) -> Result<PageSetup, glib::Error> {
+    pub fn from_file<P: AsRef<std::path::Path>>(file_name: P) -> Result<PageSetup, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = ptr::null_mut();
@@ -44,7 +42,7 @@ impl PageSetup {
         }
     }
 
-    pub fn new_from_gvariant(variant: &glib::Variant) -> PageSetup {
+    pub fn from_gvariant(variant: &glib::Variant) -> PageSetup {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_page_setup_new_from_gvariant(
@@ -53,7 +51,7 @@ impl PageSetup {
         }
     }
 
-    pub fn new_from_key_file(
+    pub fn from_key_file(
         key_file: &glib::KeyFile,
         group_name: Option<&str>,
     ) -> Result<PageSetup, glib::Error> {

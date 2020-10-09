@@ -18,11 +18,12 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use Accessible;
 use Buildable;
 use Widget;
 
 glib_wrapper! {
-    pub struct Editable(Interface<gtk_sys::GtkEditable>) @requires Widget, Buildable;
+    pub struct Editable(Interface<gtk_sys::GtkEditable>) @requires Widget, Accessible, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_editable_get_type(),
@@ -50,6 +51,8 @@ pub trait EditableExt: 'static {
 
     fn get_editable(&self) -> bool;
 
+    fn get_enable_undo(&self) -> bool;
+
     fn get_max_width_chars(&self) -> i32;
 
     fn get_position(&self) -> i32;
@@ -69,6 +72,8 @@ pub trait EditableExt: 'static {
     fn set_alignment(&self, xalign: f32);
 
     fn set_editable(&self, is_editable: bool);
+
+    fn set_enable_undo(&self, enable_undo: bool);
 
     fn set_max_width_chars(&self, n_chars: i32);
 
@@ -96,6 +101,8 @@ pub trait EditableExt: 'static {
     ) -> SignalHandlerId;
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -150,6 +157,14 @@ impl<O: IsA<Editable>> EditableExt for O {
     fn get_editable(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_editable_get_editable(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_enable_undo(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_editable_get_enable_undo(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -229,6 +244,15 @@ impl<O: IsA<Editable>> EditableExt for O {
             gtk_sys::gtk_editable_set_editable(
                 self.as_ref().to_glib_none().0,
                 is_editable.to_glib(),
+            );
+        }
+    }
+
+    fn set_enable_undo(&self, enable_undo: bool) {
+        unsafe {
+            gtk_sys::gtk_editable_set_enable_undo(
+                self.as_ref().to_glib_none().0,
+                enable_undo.to_glib(),
             );
         }
     }
@@ -320,14 +344,16 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -344,7 +370,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Editable::from_glib_borrow(this).unsafe_cast(),
+                &Editable::from_glib_borrow(this).unsafe_cast_ref(),
                 start_pos,
                 end_pos,
             )
@@ -354,7 +380,9 @@ impl<O: IsA<Editable>> EditableExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"delete-text\0".as_ptr() as *const _,
-                Some(transmute(delete_text_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    delete_text_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -372,15 +400,15 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cursor-position\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_cursor_position_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_cursor_position_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -396,14 +424,40 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::editable\0".as_ptr() as *const _,
-                Some(transmute(notify_editable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_editable_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_enable_undo_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkEditable,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Editable>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::enable-undo\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_enable_undo_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -421,15 +475,15 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-width-chars\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_max_width_chars_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_width_chars_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -448,15 +502,15 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-bound\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_selection_bound_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selection_bound_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -472,14 +526,16 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -494,14 +550,16 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width-chars\0".as_ptr() as *const _,
-                Some(transmute(notify_width_chars_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_width_chars_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -516,14 +574,16 @@ impl<O: IsA<Editable>> EditableExt for O {
             P: IsA<Editable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast())
+            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute(notify_xalign_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_xalign_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

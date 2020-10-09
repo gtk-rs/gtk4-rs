@@ -19,7 +19,7 @@ use AssistantPageType;
 use Widget;
 
 glib_wrapper! {
-    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, gtk_sys::GtkAssistantPageClass, AssistantPageClass>);
+    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, AssistantPageClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_assistant_page_get_type(),
@@ -122,7 +122,9 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::complete\0".as_ptr() as *const _,
-                Some(transmute(notify_complete_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_complete_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -145,7 +147,9 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::page-type\0".as_ptr() as *const _,
-                Some(transmute(notify_page_type_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_page_type_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -168,7 +172,9 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

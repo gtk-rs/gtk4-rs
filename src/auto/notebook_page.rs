@@ -18,7 +18,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct NotebookPage(Object<gtk_sys::GtkNotebookPage, gtk_sys::GtkNotebookPageClass, NotebookPageClass>);
+    pub struct NotebookPage(Object<gtk_sys::GtkNotebookPage, NotebookPageClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_notebook_page_get_type(),
@@ -246,7 +246,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::detachable\0".as_ptr() as *const _,
-                Some(transmute(notify_detachable_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_detachable_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -269,7 +271,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menu-label\0".as_ptr() as *const _,
-                Some(transmute(notify_menu_label_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_menu_label_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -292,7 +296,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(transmute(notify_position_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_position_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -315,7 +321,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reorderable\0".as_ptr() as *const _,
-                Some(transmute(notify_reorderable_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_reorderable_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -338,7 +346,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tab-expand\0".as_ptr() as *const _,
-                Some(transmute(notify_tab_expand_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_expand_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -361,7 +371,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tab-fill\0".as_ptr() as *const _,
-                Some(transmute(notify_tab_fill_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_fill_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -384,7 +396,9 @@ impl NotebookPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tab-label\0".as_ptr() as *const _,
-                Some(transmute(notify_tab_label_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_label_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

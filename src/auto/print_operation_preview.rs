@@ -82,7 +82,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast(),
+                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(context),
                 &from_glib_borrow(page_setup),
             )
@@ -92,7 +92,9 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"got-page-size\0".as_ptr() as *const _,
-                Some(transmute(got_page_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    got_page_size_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -108,7 +110,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast(),
+                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(context),
             )
         }
@@ -117,7 +119,9 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"ready\0".as_ptr() as *const _,
-                Some(transmute(ready_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    ready_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

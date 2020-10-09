@@ -16,7 +16,7 @@ glib_wrapper! {
 }
 
 impl CustomLayout {
-    //pub fn new<P: Fn(&Widget) -> SizeRequestMode + 'static, Q: Fn(&Widget, &Orientation, i32, i32, i32, i32, i32) + 'static, R: Fn(&Widget, i32, i32, i32) + 'static>(request_mode: P, measure: Q, allocate: R) -> CustomLayout {
+    //pub fn new<P: FnMut(&Widget, &Orientation, i32, i32, i32, i32, i32), Q: FnMut(&Widget, i32, i32, i32)>(request_mode: Option<&mut dyn (FnMut(&Widget) -> SizeRequestMode)>, measure: P, allocate: Q) -> CustomLayout {
     //    unsafe { TODO: call gtk_sys:gtk_custom_layout_new() }
     //}
 }

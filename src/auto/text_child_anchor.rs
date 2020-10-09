@@ -6,6 +6,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use std::mem;
 use Widget;
 
 glib_wrapper! {
@@ -48,9 +49,15 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
 
     fn get_widgets(&self) -> Vec<Widget> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_text_child_anchor_get_widgets(
-                self.as_ref().to_glib_none().0,
-            ))
+            let mut out_len = mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_container_num(
+                gtk_sys::gtk_text_child_anchor_get_widgets(
+                    self.as_ref().to_glib_none().0,
+                    out_len.as_mut_ptr(),
+                ),
+                out_len.assume_init() as usize,
+            );
+            ret
         }
     }
 }

@@ -100,14 +100,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-span\0".as_ptr() as *const _,
-                Some(transmute(notify_column_span_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_span_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -122,14 +124,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::left-attach\0".as_ptr() as *const _,
-                Some(transmute(notify_left_attach_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_left_attach_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -144,14 +148,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-span\0".as_ptr() as *const _,
-                Some(transmute(notify_row_span_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_span_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -166,14 +172,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-attach\0".as_ptr() as *const _,
-                Some(transmute(notify_top_attach_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_top_attach_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

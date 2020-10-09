@@ -215,14 +215,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -236,14 +238,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"value-changed\0".as_ptr() as *const _,
-                Some(transmute(value_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    value_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -258,14 +262,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::lower\0".as_ptr() as *const _,
-                Some(transmute(notify_lower_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_lower_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -283,15 +289,15 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::page-increment\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_page_increment_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_page_increment_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -307,14 +313,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::page-size\0".as_ptr() as *const _,
-                Some(transmute(notify_page_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_page_size_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -332,15 +340,15 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::step-increment\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_step_increment_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_step_increment_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -356,14 +364,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::upper\0".as_ptr() as *const _,
-                Some(transmute(notify_upper_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_upper_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -378,14 +388,16 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
             P: IsA<Adjustment>,
         {
             let f: &F = &*(f as *const F);
-            f(&Adjustment::from_glib_borrow(this).unsafe_cast())
+            f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(transmute(notify_value_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_value_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

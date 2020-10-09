@@ -2,15 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
-use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -18,15 +18,13 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Align;
+use Accessible;
 use Buildable;
 use Editable;
-use LayoutManager;
-use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass, PasswordEntryClass>) @extends Widget, @implements Buildable, Editable;
+    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass, PasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_password_entry_get_type(),
@@ -38,437 +36,46 @@ impl PasswordEntry {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(gtk_sys::gtk_password_entry_new()).unsafe_cast() }
     }
-}
 
-impl Default for PasswordEntry {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[derive(Clone, Default)]
-pub struct PasswordEntryBuilder {
-    activates_default: Option<bool>,
-    placeholder_text: Option<String>,
-    show_peek_icon: Option<bool>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
-    focus_on_click: Option<bool>,
-    halign: Option<Align>,
-    has_focus: Option<bool>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
-    layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    editable: Option<bool>,
-    max_width_chars: Option<i32>,
-    text: Option<String>,
-    width_chars: Option<i32>,
-    xalign: Option<f32>,
-}
-
-impl PasswordEntryBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    pub fn build(self) -> PasswordEntry {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref activates_default) = self.activates_default {
-            properties.push(("activates-default", activates_default));
-        }
-        if let Some(ref placeholder_text) = self.placeholder_text {
-            properties.push(("placeholder-text", placeholder_text));
-        }
-        if let Some(ref show_peek_icon) = self.show_peek_icon {
-            properties.push(("show-peek-icon", show_peek_icon));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref editable) = self.editable {
-            properties.push(("editable", editable));
-        }
-        if let Some(ref max_width_chars) = self.max_width_chars {
-            properties.push(("max-width-chars", max_width_chars));
-        }
-        if let Some(ref text) = self.text {
-            properties.push(("text", text));
-        }
-        if let Some(ref width_chars) = self.width_chars {
-            properties.push(("width-chars", width_chars));
-        }
-        if let Some(ref xalign) = self.xalign {
-            properties.push(("xalign", xalign));
-        }
-        glib::Object::new(PasswordEntry::static_type(), &properties)
-            .expect("object new")
-            .downcast()
-            .expect("downcast")
-    }
-
-    pub fn activates_default(mut self, activates_default: bool) -> Self {
-        self.activates_default = Some(activates_default);
-        self
-    }
-
-    pub fn placeholder_text(mut self, placeholder_text: &str) -> Self {
-        self.placeholder_text = Some(placeholder_text.to_string());
-        self
-    }
-
-    pub fn show_peek_icon(mut self, show_peek_icon: bool) -> Self {
-        self.show_peek_icon = Some(show_peek_icon);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn editable(mut self, editable: bool) -> Self {
-        self.editable = Some(editable);
-        self
-    }
-
-    pub fn max_width_chars(mut self, max_width_chars: i32) -> Self {
-        self.max_width_chars = Some(max_width_chars);
-        self
-    }
-
-    pub fn text(mut self, text: &str) -> Self {
-        self.text = Some(text.to_string());
-        self
-    }
-
-    pub fn width_chars(mut self, width_chars: i32) -> Self {
-        self.width_chars = Some(width_chars);
-        self
-    }
-
-    pub fn xalign(mut self, xalign: f32) -> Self {
-        self.xalign = Some(xalign);
-        self
-    }
-}
-
-pub const NONE_PASSWORD_ENTRY: Option<&PasswordEntry> = None;
-
-pub trait PasswordEntryExt: 'static {
-    fn get_show_peek_icon(&self) -> bool;
-
-    fn set_show_peek_icon(&self, show_peek_icon: bool);
-
-    fn get_property_activates_default(&self) -> bool;
-
-    fn set_property_activates_default(&self, activates_default: bool);
-
-    fn get_property_placeholder_text(&self) -> Option<GString>;
-
-    fn set_property_placeholder_text(&self, placeholder_text: Option<&str>);
-
-    fn connect_property_activates_default_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_show_peek_icon_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
-    fn get_show_peek_icon(&self) -> bool {
+    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib(gtk_sys::gtk_password_entry_get_show_peek_icon(
-                self.as_ref().to_glib_none().0,
+            from_glib_none(gtk_sys::gtk_password_entry_get_extra_menu(
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn set_show_peek_icon(&self, show_peek_icon: bool) {
+    pub fn get_show_peek_icon(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_password_entry_get_show_peek_icon(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_password_entry_set_extra_menu(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_show_peek_icon(&self, show_peek_icon: bool) {
         unsafe {
             gtk_sys::gtk_password_entry_set_show_peek_icon(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 show_peek_icon.to_glib(),
             );
         }
     }
 
-    fn get_property_activates_default(&self) -> bool {
+    pub fn get_property_activates_default(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"activates-default\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -479,21 +86,21 @@ impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
         }
     }
 
-    fn set_property_activates_default(&self, activates_default: bool) {
+    pub fn set_property_activates_default(&self, activates_default: bool) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"activates-default\0".as_ptr() as *const _,
                 Value::from(&activates_default).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_placeholder_text(&self) -> Option<GString> {
+    pub fn get_property_placeholder_text(&self) -> Option<GString> {
         unsafe {
             let mut value = Value::from_type(<GString as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -503,95 +110,122 @@ impl<O: IsA<PasswordEntry>> PasswordEntryExt for O {
         }
     }
 
-    fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
+    pub fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 Value::from(placeholder_text).to_glib_none().0,
             );
         }
     }
 
-    fn connect_property_activates_default_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_activates_default_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_activates_default_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_activates_default_trampoline<
+            F: Fn(&PasswordEntry) + 'static,
+        >(
             this: *mut gtk_sys::GtkPasswordEntry,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<PasswordEntry>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activates-default\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_activates_default_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_activates_default_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_placeholder_text_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_extra_menu_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut gtk_sys::GtkPasswordEntry,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<PasswordEntry>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::extra-menu\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_extra_menu_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_placeholder_text_notify<F: Fn(&PasswordEntry) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&PasswordEntry) + 'static>(
+            this: *mut gtk_sys::GtkPasswordEntry,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::placeholder-text\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_placeholder_text_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_placeholder_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_show_peek_icon_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_show_peek_icon_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_peek_icon_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_show_peek_icon_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut gtk_sys::GtkPasswordEntry,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<PasswordEntry>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&PasswordEntry::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-peek-icon\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_show_peek_icon_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_peek_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl Default for PasswordEntry {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

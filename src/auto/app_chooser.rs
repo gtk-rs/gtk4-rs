@@ -8,11 +8,12 @@ use glib::translate::*;
 use glib::GString;
 use gtk_sys;
 use std::fmt;
+use Accessible;
 use Buildable;
 use Widget;
 
 glib_wrapper! {
-    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Buildable;
+    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Accessible, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_get_type(),

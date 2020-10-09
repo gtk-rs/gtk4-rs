@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -19,18 +18,15 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Align;
+use Accessible;
 use Buildable;
-use Container;
-use LayoutManager;
 use Orientable;
 use Orientation;
-use Overflow;
 use ScrollType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Paned(Object<gtk_sys::GtkPaned, gtk_sys::GtkPanedClass, PanedClass>) @extends Container, Widget, @implements Buildable, Orientable;
+    pub struct Paned(Object<gtk_sys::GtkPaned, PanedClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_paned_get_type(),
@@ -44,577 +40,114 @@ impl Paned {
             Widget::from_glib_none(gtk_sys::gtk_paned_new(orientation.to_glib())).unsafe_cast()
         }
     }
-}
 
-#[derive(Clone, Default)]
-pub struct PanedBuilder {
-    position: Option<i32>,
-    position_set: Option<bool>,
-    resize_child1: Option<bool>,
-    resize_child2: Option<bool>,
-    shrink_child1: Option<bool>,
-    shrink_child2: Option<bool>,
-    wide_handle: Option<bool>,
-    can_focus: Option<bool>,
-    can_target: Option<bool>,
-    css_name: Option<String>,
-    cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
-    focus_on_click: Option<bool>,
-    halign: Option<Align>,
-    has_focus: Option<bool>,
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    hexpand: Option<bool>,
-    hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
-    layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
-    margin_bottom: Option<i32>,
-    margin_end: Option<i32>,
-    margin_start: Option<i32>,
-    margin_top: Option<i32>,
-    name: Option<String>,
-    opacity: Option<f64>,
-    overflow: Option<Overflow>,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    tooltip_markup: Option<String>,
-    tooltip_text: Option<String>,
-    valign: Option<Align>,
-    vexpand: Option<bool>,
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
-    orientation: Option<Orientation>,
-}
-
-impl PanedBuilder {
-    pub fn new() -> Self {
-        Self::default()
+    pub fn get_end_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(gtk_sys::gtk_paned_get_end_child(self.to_glib_none().0)) }
     }
 
-    pub fn build(self) -> Paned {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref position) = self.position {
-            properties.push(("position", position));
-        }
-        if let Some(ref position_set) = self.position_set {
-            properties.push(("position-set", position_set));
-        }
-        if let Some(ref resize_child1) = self.resize_child1 {
-            properties.push(("resize-child1", resize_child1));
-        }
-        if let Some(ref resize_child2) = self.resize_child2 {
-            properties.push(("resize-child2", resize_child2));
-        }
-        if let Some(ref shrink_child1) = self.shrink_child1 {
-            properties.push(("shrink-child1", shrink_child1));
-        }
-        if let Some(ref shrink_child2) = self.shrink_child2 {
-            properties.push(("shrink-child2", shrink_child2));
-        }
-        if let Some(ref wide_handle) = self.wide_handle {
-            properties.push(("wide-handle", wide_handle));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        if let Some(ref can_target) = self.can_target {
-            properties.push(("can-target", can_target));
-        }
-        if let Some(ref css_name) = self.css_name {
-            properties.push(("css-name", css_name));
-        }
-        if let Some(ref cursor) = self.cursor {
-            properties.push(("cursor", cursor));
-        }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref halign) = self.halign {
-            properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
-        }
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
-        }
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref overflow) = self.overflow {
-            properties.push(("overflow", overflow));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        if let Some(ref valign) = self.valign {
-            properties.push(("valign", valign));
-        }
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new(Paned::static_type(), &properties)
-            .expect("object new")
-            .downcast()
-            .expect("downcast")
+    pub fn get_position(&self) -> i32 {
+        unsafe { gtk_sys::gtk_paned_get_position(self.to_glib_none().0) }
     }
 
-    pub fn position(mut self, position: i32) -> Self {
-        self.position = Some(position);
-        self
-    }
-
-    pub fn position_set(mut self, position_set: bool) -> Self {
-        self.position_set = Some(position_set);
-        self
-    }
-
-    pub fn resize_child1(mut self, resize_child1: bool) -> Self {
-        self.resize_child1 = Some(resize_child1);
-        self
-    }
-
-    pub fn resize_child2(mut self, resize_child2: bool) -> Self {
-        self.resize_child2 = Some(resize_child2);
-        self
-    }
-
-    pub fn shrink_child1(mut self, shrink_child1: bool) -> Self {
-        self.shrink_child1 = Some(shrink_child1);
-        self
-    }
-
-    pub fn shrink_child2(mut self, shrink_child2: bool) -> Self {
-        self.shrink_child2 = Some(shrink_child2);
-        self
-    }
-
-    pub fn wide_handle(mut self, wide_handle: bool) -> Self {
-        self.wide_handle = Some(wide_handle);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    pub fn can_target(mut self, can_target: bool) -> Self {
-        self.can_target = Some(can_target);
-        self
-    }
-
-    pub fn css_name(mut self, css_name: &str) -> Self {
-        self.css_name = Some(css_name.to_string());
-        self
-    }
-
-    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
-        self.cursor = Some(cursor.clone());
-        self
-    }
-
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
-        self
-    }
-
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
-        self
-    }
-
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
-        self
-    }
-
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn overflow(mut self, overflow: Overflow) -> Self {
-        self.overflow = Some(overflow);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    pub fn valign(mut self, valign: Align) -> Self {
-        self.valign = Some(valign);
-        self
-    }
-
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
-    }
-
-    pub fn orientation(mut self, orientation: Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
-    }
-}
-
-pub const NONE_PANED: Option<&Paned> = None;
-
-pub trait PanedExt: 'static {
-    fn add1<P: IsA<Widget>>(&self, child: &P);
-
-    fn add2<P: IsA<Widget>>(&self, child: &P);
-
-    fn get_child1(&self) -> Option<Widget>;
-
-    fn get_child2(&self) -> Option<Widget>;
-
-    fn get_position(&self) -> i32;
-
-    fn get_wide_handle(&self) -> bool;
-
-    fn pack1<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool);
-
-    fn pack2<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool);
-
-    fn set_position(&self, position: i32);
-
-    fn set_wide_handle(&self, wide: bool);
-
-    fn get_property_max_position(&self) -> i32;
-
-    fn get_property_min_position(&self) -> i32;
-
-    fn get_property_position_set(&self) -> bool;
-
-    fn set_property_position_set(&self, position_set: bool);
-
-    fn get_property_resize_child1(&self) -> bool;
-
-    fn set_property_resize_child1(&self, resize_child1: bool);
-
-    fn get_property_resize_child2(&self) -> bool;
-
-    fn set_property_resize_child2(&self, resize_child2: bool);
-
-    fn get_property_shrink_child1(&self) -> bool;
-
-    fn set_property_shrink_child1(&self, shrink_child1: bool);
-
-    fn get_property_shrink_child2(&self) -> bool;
-
-    fn set_property_shrink_child2(&self, shrink_child2: bool);
-
-    fn connect_accept_position<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_accept_position(&self) -> bool;
-
-    fn connect_cancel_position<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_cancel_position(&self) -> bool;
-
-    fn connect_cycle_child_focus<F: Fn(&Self, bool) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_cycle_child_focus(&self, reversed: bool) -> bool;
-
-    fn connect_cycle_handle_focus<F: Fn(&Self, bool) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_cycle_handle_focus(&self, reversed: bool) -> bool;
-
-    fn connect_move_handle<F: Fn(&Self, ScrollType) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_handle(&self, scroll_type: ScrollType) -> bool;
-
-    fn connect_toggle_handle_focus<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_handle_focus(&self) -> bool;
-
-    fn connect_property_max_position_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_min_position_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_position_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_resize_child1_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_resize_child2_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_shrink_child1_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_shrink_child2_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_wide_handle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Paned>> PanedExt for O {
-    fn add1<P: IsA<Widget>>(&self, child: &P) {
+    pub fn get_resize_end_child(&self) -> bool {
         unsafe {
-            gtk_sys::gtk_paned_add1(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn add2<P: IsA<Widget>>(&self, child: &P) {
-        unsafe {
-            gtk_sys::gtk_paned_add2(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_child1(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_paned_get_child1(
-                self.as_ref().to_glib_none().0,
+            from_glib(gtk_sys::gtk_paned_get_resize_end_child(
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_child2(&self) -> Option<Widget> {
+    pub fn get_resize_start_child(&self) -> bool {
         unsafe {
-            from_glib_none(gtk_sys::gtk_paned_get_child2(
-                self.as_ref().to_glib_none().0,
+            from_glib(gtk_sys::gtk_paned_get_resize_start_child(
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_position(&self) -> i32 {
-        unsafe { gtk_sys::gtk_paned_get_position(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_wide_handle(&self) -> bool {
+    pub fn get_shrink_end_child(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_paned_get_wide_handle(
-                self.as_ref().to_glib_none().0,
+            from_glib(gtk_sys::gtk_paned_get_shrink_end_child(
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn pack1<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool) {
+    pub fn get_shrink_start_child(&self) -> bool {
         unsafe {
-            gtk_sys::gtk_paned_pack1(
-                self.as_ref().to_glib_none().0,
+            from_glib(gtk_sys::gtk_paned_get_shrink_start_child(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_start_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(gtk_sys::gtk_paned_get_start_child(self.to_glib_none().0)) }
+    }
+
+    pub fn get_wide_handle(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_paned_get_wide_handle(self.to_glib_none().0)) }
+    }
+
+    pub fn set_end_child<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_paned_set_end_child(
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                resize.to_glib(),
-                shrink.to_glib(),
             );
         }
     }
 
-    fn pack2<P: IsA<Widget>>(&self, child: &P, resize: bool, shrink: bool) {
+    pub fn set_position(&self, position: i32) {
         unsafe {
-            gtk_sys::gtk_paned_pack2(
-                self.as_ref().to_glib_none().0,
+            gtk_sys::gtk_paned_set_position(self.to_glib_none().0, position);
+        }
+    }
+
+    pub fn set_resize_end_child(&self, resize: bool) {
+        unsafe {
+            gtk_sys::gtk_paned_set_resize_end_child(self.to_glib_none().0, resize.to_glib());
+        }
+    }
+
+    pub fn set_resize_start_child(&self, resize: bool) {
+        unsafe {
+            gtk_sys::gtk_paned_set_resize_start_child(self.to_glib_none().0, resize.to_glib());
+        }
+    }
+
+    pub fn set_shrink_end_child(&self, resize: bool) {
+        unsafe {
+            gtk_sys::gtk_paned_set_shrink_end_child(self.to_glib_none().0, resize.to_glib());
+        }
+    }
+
+    pub fn set_shrink_start_child(&self, resize: bool) {
+        unsafe {
+            gtk_sys::gtk_paned_set_shrink_start_child(self.to_glib_none().0, resize.to_glib());
+        }
+    }
+
+    pub fn set_start_child<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_paned_set_start_child(
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                resize.to_glib(),
-                shrink.to_glib(),
             );
         }
     }
 
-    fn set_position(&self, position: i32) {
+    pub fn set_wide_handle(&self, wide: bool) {
         unsafe {
-            gtk_sys::gtk_paned_set_position(self.as_ref().to_glib_none().0, position);
+            gtk_sys::gtk_paned_set_wide_handle(self.to_glib_none().0, wide.to_glib());
         }
     }
 
-    fn set_wide_handle(&self, wide: bool) {
-        unsafe {
-            gtk_sys::gtk_paned_set_wide_handle(self.as_ref().to_glib_none().0, wide.to_glib());
-        }
-    }
-
-    fn get_property_max_position(&self) -> i32 {
+    pub fn get_property_max_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"max-position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -625,11 +158,11 @@ impl<O: IsA<Paned>> PanedExt for O {
         }
     }
 
-    fn get_property_min_position(&self) -> i32 {
+    pub fn get_property_min_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"min-position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -640,11 +173,11 @@ impl<O: IsA<Paned>> PanedExt for O {
         }
     }
 
-    fn get_property_position_set(&self) -> bool {
+    pub fn get_property_position_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"position-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -655,141 +188,43 @@ impl<O: IsA<Paned>> PanedExt for O {
         }
     }
 
-    fn set_property_position_set(&self, position_set: bool) {
+    pub fn set_property_position_set(&self, position_set: bool) {
         unsafe {
             gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"position-set\0".as_ptr() as *const _,
                 Value::from(&position_set).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_resize_child1(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"resize-child1\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `resize-child1` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_resize_child1(&self, resize_child1: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"resize-child1\0".as_ptr() as *const _,
-                Value::from(&resize_child1).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_resize_child2(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"resize-child2\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `resize-child2` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_resize_child2(&self, resize_child2: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"resize-child2\0".as_ptr() as *const _,
-                Value::from(&resize_child2).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_shrink_child1(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"shrink-child1\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `shrink-child1` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_shrink_child1(&self, shrink_child1: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"shrink-child1\0".as_ptr() as *const _,
-                Value::from(&shrink_child1).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_shrink_child2(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"shrink-child2\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `shrink-child2` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_shrink_child2(&self, shrink_child2: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"shrink-child2\0".as_ptr() as *const _,
-                Value::from(&shrink_child2).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_accept_position<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn accept_position_trampoline<P, F: Fn(&P) -> bool + 'static>(
+    pub fn connect_accept_position<F: Fn(&Paned) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn accept_position_trampoline<F: Fn(&Paned) -> bool + 'static>(
             this: *mut gtk_sys::GtkPaned,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&from_glib_borrow(this)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"accept-position\0".as_ptr() as *const _,
-                Some(transmute(accept_position_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    accept_position_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_accept_position(&self) -> bool {
+    pub fn emit_accept_position(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("accept-position", &[])
                 .unwrap()
         };
@@ -799,31 +234,33 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_cancel_position<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn cancel_position_trampoline<P, F: Fn(&P) -> bool + 'static>(
+    pub fn connect_cancel_position<F: Fn(&Paned) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn cancel_position_trampoline<F: Fn(&Paned) -> bool + 'static>(
             this: *mut gtk_sys::GtkPaned,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&from_glib_borrow(this)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancel-position\0".as_ptr() as *const _,
-                Some(transmute(cancel_position_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cancel_position_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_cancel_position(&self) -> bool {
+    pub fn emit_cancel_position(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("cancel-position", &[])
                 .unwrap()
         };
@@ -833,39 +270,34 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_cycle_child_focus<F: Fn(&Self, bool) -> bool + 'static>(
+    pub fn connect_cycle_child_focus<F: Fn(&Paned, bool) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn cycle_child_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(
+        unsafe extern "C" fn cycle_child_focus_trampoline<F: Fn(&Paned, bool) -> bool + 'static>(
             this: *mut gtk_sys::GtkPaned,
             reversed: glib_sys::gboolean,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(
-                &Paned::from_glib_borrow(this).unsafe_cast(),
-                from_glib(reversed),
-            )
-            .to_glib()
+            f(&from_glib_borrow(this), from_glib(reversed)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cycle-child-focus\0".as_ptr() as *const _,
-                Some(transmute(cycle_child_focus_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cycle_child_focus_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_cycle_child_focus(&self, reversed: bool) -> bool {
+    pub fn emit_cycle_child_focus(&self, reversed: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("cycle-child-focus", &[&reversed])
                 .unwrap()
         };
@@ -875,39 +307,36 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_cycle_handle_focus<F: Fn(&Self, bool) -> bool + 'static>(
+    pub fn connect_cycle_handle_focus<F: Fn(&Paned, bool) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn cycle_handle_focus_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(
+        unsafe extern "C" fn cycle_handle_focus_trampoline<
+            F: Fn(&Paned, bool) -> bool + 'static,
+        >(
             this: *mut gtk_sys::GtkPaned,
             reversed: glib_sys::gboolean,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(
-                &Paned::from_glib_borrow(this).unsafe_cast(),
-                from_glib(reversed),
-            )
-            .to_glib()
+            f(&from_glib_borrow(this), from_glib(reversed)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cycle-handle-focus\0".as_ptr() as *const _,
-                Some(transmute(cycle_handle_focus_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cycle_handle_focus_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_cycle_handle_focus(&self, reversed: bool) -> bool {
+    pub fn emit_cycle_handle_focus(&self, reversed: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("cycle-handle-focus", &[&reversed])
                 .unwrap()
         };
@@ -917,39 +346,34 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_move_handle<F: Fn(&Self, ScrollType) -> bool + 'static>(
+    pub fn connect_move_handle<F: Fn(&Paned, ScrollType) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn move_handle_trampoline<P, F: Fn(&P, ScrollType) -> bool + 'static>(
+        unsafe extern "C" fn move_handle_trampoline<F: Fn(&Paned, ScrollType) -> bool + 'static>(
             this: *mut gtk_sys::GtkPaned,
             scroll_type: gtk_sys::GtkScrollType,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(
-                &Paned::from_glib_borrow(this).unsafe_cast(),
-                from_glib(scroll_type),
-            )
-            .to_glib()
+            f(&from_glib_borrow(this), from_glib(scroll_type)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-handle\0".as_ptr() as *const _,
-                Some(transmute(move_handle_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    move_handle_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_move_handle(&self, scroll_type: ScrollType) -> bool {
+    pub fn emit_move_handle(&self, scroll_type: ScrollType) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("move-handle", &[&scroll_type])
                 .unwrap()
         };
@@ -959,33 +383,33 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_toggle_handle_focus<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggle_handle_focus_trampoline<P, F: Fn(&P) -> bool + 'static>(
+    pub fn connect_toggle_handle_focus<F: Fn(&Paned) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn toggle_handle_focus_trampoline<F: Fn(&Paned) -> bool + 'static>(
             this: *mut gtk_sys::GtkPaned,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Paned>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&from_glib_borrow(this)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-handle-focus\0".as_ptr() as *const _,
-                Some(transmute(
-                    toggle_handle_focus_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    toggle_handle_focus_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_toggle_handle_focus(&self) -> bool {
+    pub fn emit_toggle_handle_focus(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("toggle-handle-focus", &[])
                 .unwrap()
         };
@@ -995,234 +419,276 @@ impl<O: IsA<Paned>> PanedExt for O {
             .unwrap()
     }
 
-    fn connect_property_max_position_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_end_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_position_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_end_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::end-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_end_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_max_position_notify<F: Fn(&Paned) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_position_trampoline<F: Fn(&Paned) + 'static>(
+            this: *mut gtk_sys::GtkPaned,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-position\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_max_position_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_min_position_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_min_position_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_min_position_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_min_position_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-position\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_min_position_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_min_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_position_notify<F: Fn(&Paned) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_position_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(transmute(notify_position_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_position_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_position_set_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_position_set_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_position_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_position_set_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_position_set_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_position_set_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_resize_child1_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_resize_end_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_resize_child1_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_resize_end_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::resize-child1\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_resize_child1_trampoline::<Self, F> as usize,
+                b"notify::resize-end-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_resize_end_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_resize_child2_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_resize_start_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_resize_child2_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_resize_start_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::resize-child2\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_resize_child2_trampoline::<Self, F> as usize,
+                b"notify::resize-start-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_resize_start_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_shrink_child1_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_shrink_end_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shrink_child1_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_shrink_end_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shrink-child1\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_shrink_child1_trampoline::<Self, F> as usize,
+                b"notify::shrink-end-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_end_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_shrink_child2_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_shrink_start_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shrink_child2_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_shrink_start_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::shrink-child2\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_shrink_child2_trampoline::<Self, F> as usize,
+                b"notify::shrink-start-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_start_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_wide_handle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wide_handle_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_start_child_notify<F: Fn(&Paned) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_start_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut gtk_sys::GtkPaned,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<Paned>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&Paned::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::start-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_start_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_wide_handle_notify<F: Fn(&Paned) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_wide_handle_trampoline<F: Fn(&Paned) + 'static>(
+            this: *mut gtk_sys::GtkPaned,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wide-handle\0".as_ptr() as *const _,
-                Some(transmute(notify_wide_handle_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_wide_handle_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
