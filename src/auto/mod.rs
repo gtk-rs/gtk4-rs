@@ -181,6 +181,10 @@ mod center_box;
 pub use self::center_box::CenterBoxBuilder;
 pub use self::center_box::{CenterBox, CenterBoxClass};
 
+mod center_layout;
+pub use self::center_layout::CenterLayoutExt;
+pub use self::center_layout::{CenterLayout, CenterLayoutClass, NONE_CENTER_LAYOUT};
+
 mod check_button;
 pub use self::check_button::CheckButtonBuilder;
 pub use self::check_button::CheckButtonExt;
@@ -603,6 +607,15 @@ pub use self::orientable::{Orientable, NONE_ORIENTABLE};
 mod overlay;
 pub use self::overlay::OverlayBuilder;
 pub use self::overlay::{Overlay, OverlayClass};
+
+mod overlay_layout;
+pub use self::overlay_layout::{OverlayLayout, OverlayLayoutClass, NONE_OVERLAY_LAYOUT};
+
+mod overlay_layout_child;
+pub use self::overlay_layout_child::OverlayLayoutChildExt;
+pub use self::overlay_layout_child::{
+    OverlayLayoutChild, OverlayLayoutChildClass, NONE_OVERLAY_LAYOUT_CHILD,
+};
 
 mod pad_controller;
 pub use self::pad_controller::{PadController, PadControllerClass};
@@ -1260,6 +1273,7 @@ pub mod traits {
     pub use super::CellLayoutExt;
     pub use super::CellRendererExt;
     pub use super::CellRendererTextExt;
+    pub use super::CenterLayoutExt;
     pub use super::CheckButtonExt;
     pub use super::ColorChooserExt;
     pub use super::ComboBoxExt;
@@ -1313,6 +1327,7 @@ pub mod traits {
     pub use super::NativeDialogExt;
     pub use super::NumericSorterExt;
     pub use super::OrientableExt;
+    pub use super::OverlayLayoutChildExt;
     pub use super::PictureExt;
     pub use super::PopoverExt;
     pub use super::PrintOperationExt;
