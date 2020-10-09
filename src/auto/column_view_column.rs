@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 use ColumnView;
 use ListItemFactory;
+use Sorter;
 
 glib_wrapper! {
     pub struct ColumnViewColumn(Object<gtk_sys::GtkColumnViewColumn, gtk_sys::GtkColumnViewColumnClass, ColumnViewColumnClass>);
@@ -88,9 +89,13 @@ impl ColumnViewColumn {
         }
     }
 
-    //pub fn get_sorter(&self) -> /*Ignored*/Option<Sorter> {
-    //    unsafe { TODO: call gtk_sys:gtk_column_view_column_get_sorter() }
-    //}
+    pub fn get_sorter(&self) -> Option<Sorter> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_column_view_column_get_sorter(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     pub fn get_title(&self) -> Option<GString> {
         unsafe {
@@ -147,9 +152,14 @@ impl ColumnViewColumn {
         }
     }
 
-    //pub fn set_sorter(&self, sorter: /*Ignored*/Option<&Sorter>) {
-    //    unsafe { TODO: call gtk_sys:gtk_column_view_column_set_sorter() }
-    //}
+    pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_column_view_column_set_sorter(
+                self.to_glib_none().0,
+                sorter.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
 
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {

@@ -21,6 +21,7 @@ use ColumnViewColumn;
 use ConstraintTarget;
 use Scrollable;
 use SortType;
+use Sorter;
 use Widget;
 
 glib_wrapper! {
@@ -96,9 +97,9 @@ impl ColumnView {
         }
     }
 
-    //pub fn get_sorter(&self) -> /*Ignored*/Option<Sorter> {
-    //    unsafe { TODO: call gtk_sys:gtk_column_view_get_sorter() }
-    //}
+    pub fn get_sorter(&self) -> Option<Sorter> {
+        unsafe { from_glib_none(gtk_sys::gtk_column_view_get_sorter(self.to_glib_none().0)) }
+    }
 
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
         unsafe {

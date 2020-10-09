@@ -247,6 +247,10 @@ pub use self::custom_filter::{CustomFilter, CustomFilterClass, NONE_CUSTOM_FILTE
 mod custom_layout;
 pub use self::custom_layout::{CustomLayout, CustomLayoutClass, NONE_CUSTOM_LAYOUT};
 
+mod custom_sorter;
+pub use self::custom_sorter::CustomSorterExt;
+pub use self::custom_sorter::{CustomSorter, CustomSorterClass, NONE_CUSTOM_SORTER};
+
 mod dialog;
 pub use self::dialog::DialogBuilder;
 pub use self::dialog::DialogExt;
@@ -555,6 +559,10 @@ mod multi_filter;
 pub use self::multi_filter::MultiFilterExt;
 pub use self::multi_filter::{MultiFilter, MultiFilterClass, NONE_MULTI_FILTER};
 
+mod multi_sorter;
+pub use self::multi_sorter::MultiSorterExt;
+pub use self::multi_sorter::{MultiSorter, MultiSorterClass, NONE_MULTI_SORTER};
+
 mod named_action;
 pub use self::named_action::{NamedAction, NamedActionClass};
 
@@ -571,6 +579,10 @@ pub use self::notebook_page::{NotebookPage, NotebookPageClass};
 
 mod nothing_action;
 pub use self::nothing_action::{NothingAction, NothingActionClass};
+
+mod numeric_sorter;
+pub use self::numeric_sorter::NumericSorterExt;
+pub use self::numeric_sorter::{NumericSorter, NumericSorterClass, NONE_NUMERIC_SORTER};
 
 mod orientable;
 pub use self::orientable::OrientableExt;
@@ -761,6 +773,10 @@ mod sort_list_model;
 pub use self::sort_list_model::SortListModelExt;
 pub use self::sort_list_model::{SortListModel, SortListModelClass, NONE_SORT_LIST_MODEL};
 
+mod sorter;
+pub use self::sorter::SorterExt;
+pub use self::sorter::{Sorter, SorterClass, NONE_SORTER};
+
 mod spin_button;
 pub use self::spin_button::SpinButtonBuilder;
 pub use self::spin_button::{SpinButton, SpinButtonClass};
@@ -795,6 +811,10 @@ pub use self::string_filter::{StringFilter, StringFilterClass, NONE_STRING_FILTE
 mod string_list;
 pub use self::string_list::StringListExt;
 pub use self::string_list::{StringList, StringListClass, NONE_STRING_LIST};
+
+mod string_sorter;
+pub use self::string_sorter::StringSorterExt;
+pub use self::string_sorter::{StringSorter, StringSorterClass, NONE_STRING_SORTER};
 
 mod style_context;
 pub use self::style_context::StyleContextExt;
@@ -1035,6 +1055,8 @@ pub use self::enums::ShortcutType;
 pub use self::enums::SizeGroupMode;
 pub use self::enums::SizeRequestMode;
 pub use self::enums::SortType;
+pub use self::enums::SorterChange;
+pub use self::enums::SorterOrder;
 pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
@@ -1228,6 +1250,7 @@ pub mod traits {
     pub use super::ConstraintLayoutExt;
     pub use super::ConstraintTargetExt;
     pub use super::CustomFilterExt;
+    pub use super::CustomSorterExt;
     pub use super::DialogExt;
     pub use super::DirectoryListExt;
     pub use super::DrawingAreaExt;
@@ -1268,7 +1291,9 @@ pub mod traits {
     pub use super::MediaStreamExt;
     pub use super::MountOperationExt;
     pub use super::MultiFilterExt;
+    pub use super::MultiSorterExt;
     pub use super::NativeDialogExt;
+    pub use super::NumericSorterExt;
     pub use super::OrientableExt;
     pub use super::PictureExt;
     pub use super::PopoverExt;
@@ -1289,8 +1314,10 @@ pub mod traits {
     pub use super::SingleSelectionExt;
     pub use super::SliceListModelExt;
     pub use super::SortListModelExt;
+    pub use super::SorterExt;
     pub use super::StringFilterExt;
     pub use super::StringListExt;
+    pub use super::StringSorterExt;
     pub use super::StyleContextExt;
     pub use super::StyleProviderExt;
     pub use super::TextBufferExt;

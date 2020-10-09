@@ -6837,6 +6837,162 @@ impl SetValue for SortType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum SorterChange {
+    Different,
+    Inverted,
+    LessStrict,
+    MoreStrict,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SorterChange {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SorterChange::{}",
+            match *self {
+                SorterChange::Different => "Different",
+                SorterChange::Inverted => "Inverted",
+                SorterChange::LessStrict => "LessStrict",
+                SorterChange::MoreStrict => "MoreStrict",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SorterChange {
+    type GlibType = gtk_sys::GtkSorterChange;
+
+    fn to_glib(&self) -> gtk_sys::GtkSorterChange {
+        match *self {
+            SorterChange::Different => gtk_sys::GTK_SORTER_CHANGE_DIFFERENT,
+            SorterChange::Inverted => gtk_sys::GTK_SORTER_CHANGE_INVERTED,
+            SorterChange::LessStrict => gtk_sys::GTK_SORTER_CHANGE_LESS_STRICT,
+            SorterChange::MoreStrict => gtk_sys::GTK_SORTER_CHANGE_MORE_STRICT,
+            SorterChange::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSorterChange> for SorterChange {
+    fn from_glib(value: gtk_sys::GtkSorterChange) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SorterChange::Different,
+            1 => SorterChange::Inverted,
+            2 => SorterChange::LessStrict,
+            3 => SorterChange::MoreStrict,
+            value => SorterChange::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SorterChange {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_sorter_change_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SorterChange {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SorterChange {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SorterChange {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum SorterOrder {
+    Partial,
+    None,
+    Total,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SorterOrder {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SorterOrder::{}",
+            match *self {
+                SorterOrder::Partial => "Partial",
+                SorterOrder::None => "None",
+                SorterOrder::Total => "Total",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SorterOrder {
+    type GlibType = gtk_sys::GtkSorterOrder;
+
+    fn to_glib(&self) -> gtk_sys::GtkSorterOrder {
+        match *self {
+            SorterOrder::Partial => gtk_sys::GTK_SORTER_ORDER_PARTIAL,
+            SorterOrder::None => gtk_sys::GTK_SORTER_ORDER_NONE,
+            SorterOrder::Total => gtk_sys::GTK_SORTER_ORDER_TOTAL,
+            SorterOrder::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSorterOrder> for SorterOrder {
+    fn from_glib(value: gtk_sys::GtkSorterOrder) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SorterOrder::Partial,
+            1 => SorterOrder::None,
+            2 => SorterOrder::Total,
+            value => SorterOrder::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SorterOrder {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_sorter_order_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SorterOrder {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SorterOrder {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SorterOrder {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SpinButtonUpdatePolicy {
     Always,
     IfValid,
