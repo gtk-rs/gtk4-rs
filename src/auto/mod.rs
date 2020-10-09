@@ -273,10 +273,30 @@ mod directory_list;
 pub use self::directory_list::DirectoryListExt;
 pub use self::directory_list::{DirectoryList, DirectoryListClass, NONE_DIRECTORY_LIST};
 
+mod drag_icon;
+pub use self::drag_icon::DragIconExt;
+pub use self::drag_icon::{DragIcon, DragIconClass, NONE_DRAG_ICON};
+
+mod drag_source;
+pub use self::drag_source::{DragSource, DragSourceClass};
+
 mod drawing_area;
 pub use self::drawing_area::DrawingAreaBuilder;
 pub use self::drawing_area::DrawingAreaExt;
 pub use self::drawing_area::{DrawingArea, DrawingAreaClass, NONE_DRAWING_AREA};
+
+mod drop_controller_motion;
+pub use self::drop_controller_motion::{DropControllerMotion, DropControllerMotionClass};
+
+mod drop_down;
+pub use self::drop_down::DropDownExt;
+pub use self::drop_down::{DropDown, DropDownClass, NONE_DROP_DOWN};
+
+mod drop_target;
+pub use self::drop_target::{DropTarget, DropTargetClass};
+
+mod drop_target_async;
+pub use self::drop_target_async::{DropTargetAsync, DropTargetAsyncClass};
 
 mod editable;
 pub use self::editable::EditableExt;
@@ -1288,7 +1308,9 @@ pub mod traits {
     pub use super::CustomSorterExt;
     pub use super::DialogExt;
     pub use super::DirectoryListExt;
+    pub use super::DragIconExt;
     pub use super::DrawingAreaExt;
+    pub use super::DropDownExt;
     pub use super::EditableExt;
     pub use super::EntryBufferExt;
     pub use super::EntryExt;

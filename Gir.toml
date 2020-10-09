@@ -75,6 +75,13 @@ generate = [
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
+    "Gtk.DragIcon",
+    "Gtk.DragSource",
+    "Gtk.DropControllerMotion",
+    "Gtk.DropDown",
+    "Gtk.DropTarget",
+    "Gtk.DropTargetAsync",
+
     "Gtk.BookmarkList",
     "Gtk.BuilderListItemFactory",
     "Gtk.DirectoryList",
