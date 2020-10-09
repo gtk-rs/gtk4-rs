@@ -117,6 +117,10 @@ generate = [
     "Gtk.ObjectExpression",
     "Gtk.ParamSpecExpression",
     "Gtk.PropertyExpression",
+    "Gtk.AlternativeTrigger",
+    "Gtk.KeyvalTrigger",
+    "Gtk.MnemonicTrigger",
+    "Gtk.NeverTrigger",
 
     "Gtk.FileChooserAction",
     "Gtk.FileChooserError",

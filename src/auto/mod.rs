@@ -32,6 +32,9 @@ mod adjustment;
 pub use self::adjustment::AdjustmentExt;
 pub use self::adjustment::{Adjustment, AdjustmentClass, NONE_ADJUSTMENT};
 
+mod alternative_trigger;
+pub use self::alternative_trigger::{AlternativeTrigger, AlternativeTriggerClass};
+
 mod any_filter;
 pub use self::any_filter::{AnyFilter, AnyFilterClass};
 
@@ -509,6 +512,9 @@ mod info_bar;
 pub use self::info_bar::InfoBarBuilder;
 pub use self::info_bar::{InfoBar, InfoBarClass};
 
+mod keyval_trigger;
+pub use self::keyval_trigger::{KeyvalTrigger, KeyvalTriggerClass};
+
 mod label;
 pub use self::label::LabelBuilder;
 pub use self::label::{Label, LabelClass};
@@ -587,6 +593,9 @@ pub use self::message_dialog::{MessageDialog, MessageDialogClass};
 mod mnemonic_action;
 pub use self::mnemonic_action::{MnemonicAction, MnemonicActionClass};
 
+mod mnemonic_trigger;
+pub use self::mnemonic_trigger::{MnemonicTrigger, MnemonicTriggerClass};
+
 mod mount_operation;
 pub use self::mount_operation::MountOperationExt;
 pub use self::mount_operation::{MountOperation, MountOperationClass, NONE_MOUNT_OPERATION};
@@ -613,6 +622,9 @@ pub use self::native::{Native, NONE_NATIVE};
 mod native_dialog;
 pub use self::native_dialog::NativeDialogExt;
 pub use self::native_dialog::{NativeDialog, NativeDialogClass, NONE_NATIVE_DIALOG};
+
+mod never_trigger;
+pub use self::never_trigger::{NeverTrigger, NeverTriggerClass};
 
 mod no_selection;
 pub use self::no_selection::NoSelectionExt;
