@@ -24,12 +24,13 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Expander(Object<gtk_sys::GtkExpander, ExpanderClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct Expander(Object<gtk_sys::GtkExpander, ExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_expander_get_type(),

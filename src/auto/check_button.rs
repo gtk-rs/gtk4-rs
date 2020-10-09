@@ -21,13 +21,14 @@ use Actionable;
 use Align;
 use Buildable;
 use Button;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use ToggleButton;
 use Widget;
 
 glib_wrapper! {
-    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass, CheckButtonClass>) @extends ToggleButton, Button, Widget, @implements Accessible, Buildable, Actionable;
+    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass, CheckButtonClass>) @extends ToggleButton, Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_check_button_get_type(),

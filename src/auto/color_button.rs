@@ -24,12 +24,13 @@ use AccessibleRole;
 use Align;
 use Buildable;
 use ColorChooser;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ColorButton(Object<gtk_sys::GtkColorButton, ColorButtonClass>) @extends Widget, @implements Accessible, Buildable, ColorChooser;
+    pub struct ColorButton(Object<gtk_sys::GtkColorButton, ColorButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_color_button_get_type(),

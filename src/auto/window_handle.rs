@@ -14,10 +14,11 @@ use std::fmt;
 use std::mem::transmute;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct WindowHandle(Object<gtk_sys::GtkWindowHandle, gtk_sys::GtkWindowHandleClass, WindowHandleClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct WindowHandle(Object<gtk_sys::GtkWindowHandle, gtk_sys::GtkWindowHandleClass, WindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_window_handle_get_type(),

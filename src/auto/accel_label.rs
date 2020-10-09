@@ -22,12 +22,13 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct AccelLabel(Object<gtk_sys::GtkAccelLabel, AccelLabelClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct AccelLabel(Object<gtk_sys::GtkAccelLabel, AccelLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_accel_label_get_type(),

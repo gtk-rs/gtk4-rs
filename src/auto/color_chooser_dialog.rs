@@ -24,6 +24,7 @@ use Align;
 use Application;
 use Buildable;
 use ColorChooser;
+use ConstraintTarget;
 use Dialog;
 use LayoutManager;
 use Overflow;
@@ -32,7 +33,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct ColorChooserDialog(Object<gtk_sys::GtkColorChooserDialog, ColorChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root, ColorChooser;
+    pub struct ColorChooserDialog(Object<gtk_sys::GtkColorChooserDialog, ColorChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ColorChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_color_chooser_dialog_get_type(),

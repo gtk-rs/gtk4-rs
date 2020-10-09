@@ -27,6 +27,7 @@ use Adjustment;
 use Align;
 use Buildable;
 use Button;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -34,7 +35,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ScaleButton(Object<gtk_sys::GtkScaleButton, gtk_sys::GtkScaleButtonClass, ScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct ScaleButton(Object<gtk_sys::GtkScaleButton, gtk_sys::GtkScaleButtonClass, ScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_scale_button_get_type(),

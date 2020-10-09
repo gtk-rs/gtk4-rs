@@ -29,6 +29,7 @@ use Application;
 use AssistantPage;
 use AssistantPageType;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Root;
@@ -36,7 +37,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct Assistant(Object<gtk_sys::GtkAssistant, AssistantClass>) @extends Window, Widget, @implements Accessible, Buildable, Root;
+    pub struct Assistant(Object<gtk_sys::GtkAssistant, AssistantClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
 
     match fn {
         get_type => || gtk_sys::gtk_assistant_get_type(),

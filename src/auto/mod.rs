@@ -184,6 +184,29 @@ mod combo_box_text;
 pub use self::combo_box_text::ComboBoxTextBuilder;
 pub use self::combo_box_text::{ComboBoxText, ComboBoxTextClass};
 
+mod constraint;
+pub use self::constraint::ConstraintExt;
+pub use self::constraint::{Constraint, ConstraintClass, NONE_CONSTRAINT};
+
+mod constraint_guide;
+pub use self::constraint_guide::ConstraintGuideExt;
+pub use self::constraint_guide::{ConstraintGuide, ConstraintGuideClass, NONE_CONSTRAINT_GUIDE};
+
+mod constraint_layout;
+pub use self::constraint_layout::ConstraintLayoutExt;
+pub use self::constraint_layout::{
+    ConstraintLayout, ConstraintLayoutClass, NONE_CONSTRAINT_LAYOUT,
+};
+
+mod constraint_layout_child;
+pub use self::constraint_layout_child::{
+    ConstraintLayoutChild, ConstraintLayoutChildClass, NONE_CONSTRAINT_LAYOUT_CHILD,
+};
+
+mod constraint_target;
+pub use self::constraint_target::ConstraintTargetExt;
+pub use self::constraint_target::{ConstraintTarget, NONE_CONSTRAINT_TARGET};
+
 mod css_provider;
 pub use self::css_provider::{CssProvider, CssProviderClass};
 
@@ -826,6 +849,10 @@ pub use self::enums::BuilderError;
 pub use self::enums::ButtonsType;
 pub use self::enums::CellRendererAccelMode;
 pub use self::enums::CellRendererMode;
+pub use self::enums::ConstraintAttribute;
+pub use self::enums::ConstraintRelation;
+pub use self::enums::ConstraintStrength;
+pub use self::enums::ConstraintVflParserError;
 pub use self::enums::CornerType;
 pub use self::enums::DeleteType;
 pub use self::enums::DirectionType;
@@ -1058,6 +1085,10 @@ pub mod traits {
     pub use super::CheckButtonExt;
     pub use super::ColorChooserExt;
     pub use super::ComboBoxExt;
+    pub use super::ConstraintExt;
+    pub use super::ConstraintGuideExt;
+    pub use super::ConstraintLayoutExt;
+    pub use super::ConstraintTargetExt;
     pub use super::DialogExt;
     pub use super::DrawingAreaExt;
     pub use super::EditableExt;

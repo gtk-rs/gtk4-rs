@@ -1916,6 +1916,396 @@ impl SetValue for CellRendererMode {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum ConstraintAttribute {
+    None,
+    Left,
+    Right,
+    Top,
+    Bottom,
+    Start,
+    End,
+    Width,
+    Height,
+    CenterX,
+    CenterY,
+    Baseline,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintAttribute {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintAttribute::{}",
+            match *self {
+                ConstraintAttribute::None => "None",
+                ConstraintAttribute::Left => "Left",
+                ConstraintAttribute::Right => "Right",
+                ConstraintAttribute::Top => "Top",
+                ConstraintAttribute::Bottom => "Bottom",
+                ConstraintAttribute::Start => "Start",
+                ConstraintAttribute::End => "End",
+                ConstraintAttribute::Width => "Width",
+                ConstraintAttribute::Height => "Height",
+                ConstraintAttribute::CenterX => "CenterX",
+                ConstraintAttribute::CenterY => "CenterY",
+                ConstraintAttribute::Baseline => "Baseline",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintAttribute {
+    type GlibType = gtk_sys::GtkConstraintAttribute;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintAttribute {
+        match *self {
+            ConstraintAttribute::None => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_NONE,
+            ConstraintAttribute::Left => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_LEFT,
+            ConstraintAttribute::Right => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_RIGHT,
+            ConstraintAttribute::Top => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_TOP,
+            ConstraintAttribute::Bottom => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_BOTTOM,
+            ConstraintAttribute::Start => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_START,
+            ConstraintAttribute::End => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_END,
+            ConstraintAttribute::Width => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            ConstraintAttribute::Height => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_HEIGHT,
+            ConstraintAttribute::CenterX => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            ConstraintAttribute::CenterY => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            ConstraintAttribute::Baseline => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_BASELINE,
+            ConstraintAttribute::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintAttribute> for ConstraintAttribute {
+    fn from_glib(value: gtk_sys::GtkConstraintAttribute) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => ConstraintAttribute::None,
+            1 => ConstraintAttribute::Left,
+            2 => ConstraintAttribute::Right,
+            3 => ConstraintAttribute::Top,
+            4 => ConstraintAttribute::Bottom,
+            5 => ConstraintAttribute::Start,
+            6 => ConstraintAttribute::End,
+            7 => ConstraintAttribute::Width,
+            8 => ConstraintAttribute::Height,
+            9 => ConstraintAttribute::CenterX,
+            10 => ConstraintAttribute::CenterY,
+            11 => ConstraintAttribute::Baseline,
+            value => ConstraintAttribute::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintAttribute {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_attribute_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintAttribute {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintAttribute {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintAttribute {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintRelation {
+    Le,
+    Eq,
+    Ge,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintRelation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintRelation::{}",
+            match *self {
+                ConstraintRelation::Le => "Le",
+                ConstraintRelation::Eq => "Eq",
+                ConstraintRelation::Ge => "Ge",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintRelation {
+    type GlibType = gtk_sys::GtkConstraintRelation;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintRelation {
+        match *self {
+            ConstraintRelation::Le => gtk_sys::GTK_CONSTRAINT_RELATION_LE,
+            ConstraintRelation::Eq => gtk_sys::GTK_CONSTRAINT_RELATION_EQ,
+            ConstraintRelation::Ge => gtk_sys::GTK_CONSTRAINT_RELATION_GE,
+            ConstraintRelation::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintRelation> for ConstraintRelation {
+    fn from_glib(value: gtk_sys::GtkConstraintRelation) -> Self {
+        skip_assert_initialized!();
+        match value {
+            -1 => ConstraintRelation::Le,
+            0 => ConstraintRelation::Eq,
+            1 => ConstraintRelation::Ge,
+            value => ConstraintRelation::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintRelation {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_relation_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintRelation {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintRelation {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintRelation {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintStrength {
+    Required,
+    Strong,
+    Medium,
+    Weak,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintStrength {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintStrength::{}",
+            match *self {
+                ConstraintStrength::Required => "Required",
+                ConstraintStrength::Strong => "Strong",
+                ConstraintStrength::Medium => "Medium",
+                ConstraintStrength::Weak => "Weak",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintStrength {
+    type GlibType = gtk_sys::GtkConstraintStrength;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintStrength {
+        match *self {
+            ConstraintStrength::Required => gtk_sys::GTK_CONSTRAINT_STRENGTH_REQUIRED,
+            ConstraintStrength::Strong => gtk_sys::GTK_CONSTRAINT_STRENGTH_STRONG,
+            ConstraintStrength::Medium => gtk_sys::GTK_CONSTRAINT_STRENGTH_MEDIUM,
+            ConstraintStrength::Weak => gtk_sys::GTK_CONSTRAINT_STRENGTH_WEAK,
+            ConstraintStrength::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintStrength> for ConstraintStrength {
+    fn from_glib(value: gtk_sys::GtkConstraintStrength) -> Self {
+        skip_assert_initialized!();
+        match value {
+            1001001000 => ConstraintStrength::Required,
+            1000000000 => ConstraintStrength::Strong,
+            1000 => ConstraintStrength::Medium,
+            1 => ConstraintStrength::Weak,
+            value => ConstraintStrength::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintStrength {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_strength_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintStrength {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintStrength {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintStrength {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintVflParserError {
+    Symbol,
+    Attribute,
+    View,
+    Metric,
+    Priority,
+    Relation,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintVflParserError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintVflParserError::{}",
+            match *self {
+                ConstraintVflParserError::Symbol => "Symbol",
+                ConstraintVflParserError::Attribute => "Attribute",
+                ConstraintVflParserError::View => "View",
+                ConstraintVflParserError::Metric => "Metric",
+                ConstraintVflParserError::Priority => "Priority",
+                ConstraintVflParserError::Relation => "Relation",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintVflParserError {
+    type GlibType = gtk_sys::GtkConstraintVflParserError;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintVflParserError {
+        match *self {
+            ConstraintVflParserError::Symbol => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL
+            }
+            ConstraintVflParserError::Attribute => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE
+            }
+            ConstraintVflParserError::View => gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
+            ConstraintVflParserError::Metric => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC
+            }
+            ConstraintVflParserError::Priority => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY
+            }
+            ConstraintVflParserError::Relation => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION
+            }
+            ConstraintVflParserError::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintVflParserError> for ConstraintVflParserError {
+    fn from_glib(value: gtk_sys::GtkConstraintVflParserError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => ConstraintVflParserError::Symbol,
+            1 => ConstraintVflParserError::Attribute,
+            2 => ConstraintVflParserError::View,
+            3 => ConstraintVflParserError::Metric,
+            4 => ConstraintVflParserError::Priority,
+            5 => ConstraintVflParserError::Relation,
+            value => ConstraintVflParserError::__Unknown(value),
+        }
+    }
+}
+
+impl ErrorDomain for ConstraintVflParserError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+        unsafe { from_glib(gtk_sys::gtk_constraint_vfl_parser_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.to_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            0 => Some(ConstraintVflParserError::Symbol),
+            1 => Some(ConstraintVflParserError::Attribute),
+            2 => Some(ConstraintVflParserError::View),
+            3 => Some(ConstraintVflParserError::Metric),
+            4 => Some(ConstraintVflParserError::Priority),
+            5 => Some(ConstraintVflParserError::Relation),
+            value => Some(ConstraintVflParserError::__Unknown(value)),
+        }
+    }
+}
+
+impl StaticType for ConstraintVflParserError {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_vfl_parser_error_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintVflParserError {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintVflParserError {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintVflParserError {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum CornerType {
     TopLeft,
     BottomLeft,

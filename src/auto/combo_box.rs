@@ -27,6 +27,7 @@ use Align;
 use Buildable;
 use CellEditable;
 use CellLayout;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use ScrollType;
@@ -36,7 +37,7 @@ use TreeModel;
 use Widget;
 
 glib_wrapper! {
-    pub struct ComboBox(Object<gtk_sys::GtkComboBox, gtk_sys::GtkComboBoxClass, ComboBoxClass>) @extends Widget, @implements Accessible, Buildable, CellEditable, CellLayout;
+    pub struct ComboBox(Object<gtk_sys::GtkComboBox, gtk_sys::GtkComboBoxClass, ComboBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
         get_type => || gtk_sys::gtk_combo_box_get_type(),

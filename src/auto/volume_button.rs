@@ -23,6 +23,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -31,7 +32,7 @@ use ScaleButton;
 use Widget;
 
 glib_wrapper! {
-    pub struct VolumeButton(Object<gtk_sys::GtkVolumeButton, VolumeButtonClass>) @extends ScaleButton, Widget, @implements Accessible, Buildable, Orientable;
+    pub struct VolumeButton(Object<gtk_sys::GtkVolumeButton, VolumeButtonClass>) @extends ScaleButton, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_volume_button_get_type(),

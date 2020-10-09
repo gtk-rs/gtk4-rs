@@ -21,12 +21,13 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct DrawingArea(Object<gtk_sys::GtkDrawingArea, gtk_sys::GtkDrawingAreaClass, DrawingAreaClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct DrawingArea(Object<gtk_sys::GtkDrawingArea, gtk_sys::GtkDrawingAreaClass, DrawingAreaClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_drawing_area_get_type(),

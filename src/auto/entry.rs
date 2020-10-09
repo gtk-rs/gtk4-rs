@@ -28,6 +28,7 @@ use AccessibleRole;
 use Align;
 use Buildable;
 use CellEditable;
+use ConstraintTarget;
 use Editable;
 use EntryBuffer;
 use EntryCompletion;
@@ -40,7 +41,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Entry(Object<gtk_sys::GtkEntry, gtk_sys::GtkEntryClass, EntryClass>) @extends Widget, @implements Accessible, Buildable, CellEditable, Editable;
+    pub struct Entry(Object<gtk_sys::GtkEntry, gtk_sys::GtkEntryClass, EntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_entry_get_type(),

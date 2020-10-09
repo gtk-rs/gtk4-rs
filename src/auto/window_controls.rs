@@ -15,11 +15,12 @@ use std::fmt;
 use std::mem::transmute;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use PackType;
 use Widget;
 
 glib_wrapper! {
-    pub struct WindowControls(Object<gtk_sys::GtkWindowControls, gtk_sys::GtkWindowControlsClass, WindowControlsClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct WindowControls(Object<gtk_sys::GtkWindowControls, gtk_sys::GtkWindowControlsClass, WindowControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_window_controls_get_type(),

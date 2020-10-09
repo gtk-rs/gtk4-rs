@@ -16,6 +16,7 @@ use AccessibleRole;
 use Align;
 use Application;
 use Buildable;
+use ConstraintTarget;
 use Dialog;
 use FontChooser;
 use FontChooserLevel;
@@ -26,7 +27,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, FontChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root, FontChooser;
+    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, FontChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_chooser_dialog_get_type(),

@@ -25,6 +25,7 @@ use Align;
 use Application;
 use Box;
 use Buildable;
+use ConstraintTarget;
 use HeaderBar;
 use LayoutManager;
 use Overflow;
@@ -34,7 +35,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct Dialog(Object<gtk_sys::GtkDialog, gtk_sys::GtkDialogClass, DialogClass>) @extends Window, Widget, @implements Accessible, Buildable, Root;
+    pub struct Dialog(Object<gtk_sys::GtkDialog, gtk_sys::GtkDialogClass, DialogClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
 
     match fn {
         get_type => || gtk_sys::gtk_dialog_get_type(),

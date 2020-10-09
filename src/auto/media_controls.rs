@@ -19,13 +19,14 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use MediaStream;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct MediaControls(Object<gtk_sys::GtkMediaControls, gtk_sys::GtkMediaControlsClass, MediaControlsClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct MediaControls(Object<gtk_sys::GtkMediaControls, gtk_sys::GtkMediaControlsClass, MediaControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_media_controls_get_type(),

@@ -23,13 +23,14 @@ use AccessibleRole;
 use Align;
 use ArrowType;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Popover;
 use Widget;
 
 glib_wrapper! {
-    pub struct MenuButton(Object<gtk_sys::GtkMenuButton, MenuButtonClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct MenuButton(Object<gtk_sys::GtkMenuButton, MenuButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_menu_button_get_type(),

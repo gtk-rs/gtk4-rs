@@ -25,13 +25,14 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use Editable;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct SearchEntry(Object<gtk_sys::GtkSearchEntry, SearchEntryClass>) @extends Widget, @implements Accessible, Buildable, Editable;
+    pub struct SearchEntry(Object<gtk_sys::GtkSearchEntry, SearchEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_search_entry_get_type(),

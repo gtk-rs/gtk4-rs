@@ -20,6 +20,7 @@ use AccessibleRole;
 use Align;
 use BaselinePosition;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -27,7 +28,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Box(Object<gtk_sys::GtkBox, gtk_sys::GtkBoxClass, BoxClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct Box(Object<gtk_sys::GtkBox, gtk_sys::GtkBoxClass, BoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_box_get_type(),

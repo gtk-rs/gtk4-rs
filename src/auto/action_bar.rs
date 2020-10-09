@@ -20,12 +20,13 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ActionBar(Object<gtk_sys::GtkActionBar, ActionBarClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct ActionBar(Object<gtk_sys::GtkActionBar, ActionBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_action_bar_get_type(),

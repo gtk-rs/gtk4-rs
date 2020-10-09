@@ -24,12 +24,13 @@ use AccessibleRole;
 use Actionable;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Button(Object<gtk_sys::GtkButton, gtk_sys::GtkButtonClass, ButtonClass>) @extends Widget, @implements Accessible, Buildable, Actionable;
+    pub struct Button(Object<gtk_sys::GtkButton, gtk_sys::GtkButtonClass, ButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_button_get_type(),

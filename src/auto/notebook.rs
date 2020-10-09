@@ -27,6 +27,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use DirectionType;
 use LayoutManager;
 use NotebookPage;
@@ -37,7 +38,7 @@ use PositionType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Notebook(Object<gtk_sys::GtkNotebook, NotebookClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct Notebook(Object<gtk_sys::GtkNotebook, NotebookClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_notebook_get_type(),

@@ -21,6 +21,7 @@ use AccessibleRole;
 use Align;
 use BaselinePosition;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -28,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct CenterBox(Object<gtk_sys::GtkCenterBox, gtk_sys::GtkCenterBoxClass, CenterBoxClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct CenterBox(Object<gtk_sys::GtkCenterBox, gtk_sys::GtkCenterBoxClass, CenterBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_center_box_get_type(),

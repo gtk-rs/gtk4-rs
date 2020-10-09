@@ -24,6 +24,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -32,7 +33,7 @@ use ScrollType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Paned(Object<gtk_sys::GtkPaned, PanedClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct Paned(Object<gtk_sys::GtkPaned, PanedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_paned_get_type(),

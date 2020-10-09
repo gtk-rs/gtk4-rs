@@ -27,6 +27,7 @@ use Adjustment;
 use Align;
 use Buildable;
 use CellEditable;
+use ConstraintTarget;
 use Editable;
 use LayoutManager;
 use Orientable;
@@ -38,7 +39,7 @@ use SpinType;
 use Widget;
 
 glib_wrapper! {
-    pub struct SpinButton(Object<gtk_sys::GtkSpinButton, SpinButtonClass>) @extends Widget, @implements Accessible, Buildable, CellEditable, Editable, Orientable;
+    pub struct SpinButton(Object<gtk_sys::GtkSpinButton, SpinButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_spin_button_get_type(),

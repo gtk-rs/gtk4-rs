@@ -24,12 +24,13 @@ use AccessibleRole;
 use Align;
 use AppChooser;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct AppChooserWidget(Object<gtk_sys::GtkAppChooserWidget, AppChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, AppChooser;
+    pub struct AppChooserWidget(Object<gtk_sys::GtkAppChooserWidget, AppChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_widget_get_type(),

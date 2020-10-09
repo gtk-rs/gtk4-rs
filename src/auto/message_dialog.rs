@@ -25,6 +25,7 @@ use Align;
 use Application;
 use Buildable;
 use ButtonsType;
+use ConstraintTarget;
 use Dialog;
 use LayoutManager;
 use MessageType;
@@ -34,7 +35,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct MessageDialog(Object<gtk_sys::GtkMessageDialog, gtk_sys::GtkMessageDialogClass, MessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root;
+    pub struct MessageDialog(Object<gtk_sys::GtkMessageDialog, gtk_sys::GtkMessageDialogClass, MessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
 
     match fn {
         get_type => || gtk_sys::gtk_message_dialog_get_type(),

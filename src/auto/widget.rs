@@ -30,6 +30,7 @@ use Accessible;
 use Align;
 use Allocation;
 use Buildable;
+use ConstraintTarget;
 use DirectionType;
 use EventController;
 use LayoutManager;
@@ -47,7 +48,7 @@ use TextDirection;
 use Tooltip;
 
 glib_wrapper! {
-    pub struct Widget(Object<gtk_sys::GtkWidget, gtk_sys::GtkWidgetClass, WidgetClass>) @implements Accessible, Buildable;
+    pub struct Widget(Object<gtk_sys::GtkWidget, gtk_sys::GtkWidgetClass, WidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_widget_get_type(),

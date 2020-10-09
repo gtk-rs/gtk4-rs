@@ -23,6 +23,7 @@ use AccessibleRole;
 use Align;
 use Application;
 use Buildable;
+use ConstraintTarget;
 use Dialog;
 use LayoutManager;
 use License;
@@ -32,7 +33,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root;
+    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
 
     match fn {
         get_type => || gtk_sys::gtk_about_dialog_get_type(),

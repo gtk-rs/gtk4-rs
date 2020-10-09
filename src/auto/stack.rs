@@ -21,6 +21,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use SelectionModel;
@@ -29,7 +30,7 @@ use StackTransitionType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Stack(Object<gtk_sys::GtkStack, StackClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct Stack(Object<gtk_sys::GtkStack, StackClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_stack_get_type(),

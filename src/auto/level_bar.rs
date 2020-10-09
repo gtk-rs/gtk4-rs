@@ -23,6 +23,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use LevelBarMode;
 use Orientable;
@@ -31,7 +32,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct LevelBar(Object<gtk_sys::GtkLevelBar, LevelBarClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct LevelBar(Object<gtk_sys::GtkLevelBar, LevelBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_level_bar_get_type(),

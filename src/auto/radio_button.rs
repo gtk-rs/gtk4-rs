@@ -25,13 +25,14 @@ use Align;
 use Buildable;
 use Button;
 use CheckButton;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use ToggleButton;
 use Widget;
 
 glib_wrapper! {
-    pub struct RadioButton(Object<gtk_sys::GtkRadioButton, RadioButtonClass>) @extends CheckButton, ToggleButton, Button, Widget, @implements Accessible, Buildable, Actionable;
+    pub struct RadioButton(Object<gtk_sys::GtkRadioButton, RadioButtonClass>) @extends CheckButton, ToggleButton, Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_radio_button_get_type(),

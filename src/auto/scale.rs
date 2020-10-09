@@ -22,6 +22,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -31,7 +32,7 @@ use Range;
 use Widget;
 
 glib_wrapper! {
-    pub struct Scale(Object<gtk_sys::GtkScale, gtk_sys::GtkScaleClass, ScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, Orientable;
+    pub struct Scale(Object<gtk_sys::GtkScale, gtk_sys::GtkScaleClass, ScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_scale_get_type(),

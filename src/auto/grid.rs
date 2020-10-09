@@ -21,6 +21,7 @@ use AccessibleRole;
 use Align;
 use BaselinePosition;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -29,7 +30,7 @@ use PositionType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Grid(Object<gtk_sys::GtkGrid, gtk_sys::GtkGridClass, GridClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct Grid(Object<gtk_sys::GtkGrid, gtk_sys::GtkGridClass, GridClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_grid_get_type(),

@@ -27,6 +27,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use ListBoxRow;
 use MovementStep;
@@ -35,7 +36,7 @@ use SelectionMode;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListBox(Object<gtk_sys::GtkListBox, ListBoxClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct ListBox(Object<gtk_sys::GtkListBox, ListBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_list_box_get_type(),

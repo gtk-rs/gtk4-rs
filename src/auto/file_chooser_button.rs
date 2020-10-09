@@ -21,6 +21,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use Dialog;
 use FileChooser;
 use FileChooserAction;
@@ -30,7 +31,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct FileChooserButton(Object<gtk_sys::GtkFileChooserButton, FileChooserButtonClass>) @extends Widget, @implements Accessible, Buildable, FileChooser;
+    pub struct FileChooserButton(Object<gtk_sys::GtkFileChooserButton, FileChooserButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_file_chooser_button_get_type(),

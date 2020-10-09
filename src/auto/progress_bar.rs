@@ -22,6 +22,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Orientable;
 use Orientation;
@@ -29,7 +30,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ProgressBar(Object<gtk_sys::GtkProgressBar, ProgressBarClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct ProgressBar(Object<gtk_sys::GtkProgressBar, ProgressBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_progress_bar_get_type(),

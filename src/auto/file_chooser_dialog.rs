@@ -15,6 +15,7 @@ use AccessibleRole;
 use Align;
 use Application;
 use Buildable;
+use ConstraintTarget;
 use Dialog;
 use FileChooser;
 use FileChooserAction;
@@ -26,7 +27,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct FileChooserDialog(Object<gtk_sys::GtkFileChooserDialog, FileChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root, FileChooser;
+    pub struct FileChooserDialog(Object<gtk_sys::GtkFileChooserDialog, FileChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, FileChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_file_chooser_dialog_get_type(),

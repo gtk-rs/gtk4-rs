@@ -22,6 +22,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use FontChooser;
 use FontChooserLevel;
 use LayoutManager;
@@ -29,7 +30,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct FontButton(Object<gtk_sys::GtkFontButton, FontButtonClass>) @extends Widget, @implements Accessible, Buildable, FontChooser;
+    pub struct FontButton(Object<gtk_sys::GtkFontButton, FontButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_button_get_type(),

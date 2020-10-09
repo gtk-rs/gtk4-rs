@@ -20,10 +20,11 @@ use std::mem;
 use std::mem::transmute;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct Editable(Interface<gtk_sys::GtkEditable>) @requires Widget, Accessible, Buildable;
+    pub struct Editable(Interface<gtk_sys::GtkEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_editable_get_type(),

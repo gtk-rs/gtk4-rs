@@ -29,6 +29,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use DeleteType;
 use InputHints;
 use InputPurpose;
@@ -49,7 +50,7 @@ use Widget;
 use WrapMode;
 
 glib_wrapper! {
-    pub struct TextView(Object<gtk_sys::GtkTextView, gtk_sys::GtkTextViewClass, TextViewClass>) @extends Widget, @implements Accessible, Buildable, Scrollable;
+    pub struct TextView(Object<gtk_sys::GtkTextView, gtk_sys::GtkTextViewClass, TextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_text_view_get_type(),

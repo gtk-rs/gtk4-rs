@@ -24,6 +24,7 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use FontChooser;
 use FontChooserLevel;
 use LayoutManager;
@@ -31,7 +32,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct FontChooserWidget(Object<gtk_sys::GtkFontChooserWidget, FontChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, FontChooser;
+    pub struct FontChooserWidget(Object<gtk_sys::GtkFontChooserWidget, FontChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_chooser_widget_get_type(),

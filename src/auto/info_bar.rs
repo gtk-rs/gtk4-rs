@@ -24,6 +24,7 @@ use AccessibleRole;
 use Align;
 use Buildable;
 use Button;
+use ConstraintTarget;
 use LayoutManager;
 use MessageType;
 use Overflow;
@@ -31,7 +32,7 @@ use ResponseType;
 use Widget;
 
 glib_wrapper! {
-    pub struct InfoBar(Object<gtk_sys::GtkInfoBar, InfoBarClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct InfoBar(Object<gtk_sys::GtkInfoBar, InfoBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_info_bar_get_type(),

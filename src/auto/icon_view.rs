@@ -27,6 +27,7 @@ use Buildable;
 use CellArea;
 use CellLayout;
 use CellRenderer;
+use ConstraintTarget;
 use IconViewDropPosition;
 use MovementStep;
 use Orientation;
@@ -39,7 +40,7 @@ use TreePath;
 use Widget;
 
 glib_wrapper! {
-    pub struct IconView(Object<gtk_sys::GtkIconView, IconViewClass>) @extends Widget, @implements Accessible, Buildable, CellLayout, Scrollable;
+    pub struct IconView(Object<gtk_sys::GtkIconView, IconViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_icon_view_get_type(),

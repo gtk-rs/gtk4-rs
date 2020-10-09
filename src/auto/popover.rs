@@ -23,13 +23,14 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use PositionType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_get_type(),

@@ -21,13 +21,14 @@ use Accessible;
 use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use MediaStream;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Video(Object<gtk_sys::GtkVideo, gtk_sys::GtkVideoClass, VideoClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct Video(Object<gtk_sys::GtkVideo, gtk_sys::GtkVideoClass, VideoClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_video_get_type(),

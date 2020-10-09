@@ -26,6 +26,7 @@ use Align;
 use AppChooser;
 use Application;
 use Buildable;
+use ConstraintTarget;
 use Dialog;
 use DialogFlags;
 use LayoutManager;
@@ -35,7 +36,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AppChooserDialog(Object<gtk_sys::GtkAppChooserDialog, AppChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, Root, AppChooser;
+    pub struct AppChooserDialog(Object<gtk_sys::GtkAppChooserDialog, AppChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, AppChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_dialog_get_type(),

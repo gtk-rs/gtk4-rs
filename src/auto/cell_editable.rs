@@ -18,10 +18,11 @@ use std::fmt;
 use std::mem::transmute;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct CellEditable(Interface<gtk_sys::GtkCellEditable>) @requires Widget, Accessible, Buildable;
+    pub struct CellEditable(Interface<gtk_sys::GtkCellEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_editable_get_type(),

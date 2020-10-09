@@ -16,10 +16,11 @@ use std::fmt;
 use std::mem::transmute;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct Actionable(Interface<gtk_sys::GtkActionable>) @requires Widget, Accessible, Buildable;
+    pub struct Actionable(Interface<gtk_sys::GtkActionable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_actionable_get_type(),

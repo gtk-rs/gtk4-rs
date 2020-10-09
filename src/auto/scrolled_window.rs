@@ -26,6 +26,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use CornerType;
 use DirectionType;
 use LayoutManager;
@@ -36,7 +37,7 @@ use ScrollType;
 use Widget;
 
 glib_wrapper! {
-    pub struct ScrolledWindow(Object<gtk_sys::GtkScrolledWindow, ScrolledWindowClass>) @extends Widget, @implements Accessible, Buildable;
+    pub struct ScrolledWindow(Object<gtk_sys::GtkScrolledWindow, ScrolledWindowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_scrolled_window_get_type(),

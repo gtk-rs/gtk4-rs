@@ -27,6 +27,7 @@ use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use FlowBoxChild;
 use LayoutManager;
 use MovementStep;
@@ -37,7 +38,7 @@ use SelectionMode;
 use Widget;
 
 glib_wrapper! {
-    pub struct FlowBox(Object<gtk_sys::GtkFlowBox, FlowBoxClass>) @extends Widget, @implements Accessible, Buildable, Orientable;
+    pub struct FlowBox(Object<gtk_sys::GtkFlowBox, FlowBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_flow_box_get_type(),

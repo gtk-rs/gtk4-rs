@@ -10,10 +10,11 @@ use gtk_sys;
 use std::fmt;
 use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Accessible, Buildable;
+    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_get_type(),
