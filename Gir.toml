@@ -10,14 +10,12 @@ deprecate_by_min_version = true
 single_version_file = true
 
 generate = [
-    "Gtk.AccelFlags",
     "Gtk.Accessible",
     "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AppChooser",
     "Gtk.ApplicationInhibitFlags",
-    "Gtk.ArrowPlacement",
     "Gtk.ArrowType",
     "Gtk.AssistantPage",
     "Gtk.AssistantPageType",
@@ -27,9 +25,7 @@ generate = [
     "Gtk.BoxLayout",
     "Gtk.Buildable",
     "Gtk.BuilderError",
-    "Gtk.ButtonRole",
     "Gtk.ButtonsType",
-    "Gtk.CalendarDisplayOptions",
     "Gtk.CellAreaContext",
     "Gtk.CellEditable",
     "Gtk.CellLayout",
@@ -46,10 +42,8 @@ generate = [
     "Gtk.CustomLayout",
     "Gtk.DebugFlag",
     "Gtk.DeleteType",
-    "Gtk.DestDefaults",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
-    "Gtk.DragResult",
     "Gtk.EditableProperties",
     "Gtk.EntryIconPosition",
     "Gtk.EventController",
@@ -59,10 +53,8 @@ generate = [
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
     "Gtk.FileChooserAction",
-    "Gtk.FileChooserConfirmation",
     "Gtk.FileChooserError",
     "Gtk.FileChooserNative",
-    "Gtk.FileFilterFlags",
     "Gtk.FilterListModel",
     "Gtk.FixedLayout",
     "Gtk.FixedLayoutChild",
@@ -71,7 +63,6 @@ generate = [
     "Gtk.FontChooserLevel",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
-    "Gtk.GestureMultiPress",
     "Gtk.GesturePan",
     "Gtk.GestureRotate",
     "Gtk.GestureSingle",
@@ -80,7 +71,6 @@ generate = [
     "Gtk.GestureZoom",
     "Gtk.GridLayout",
     "Gtk.GridLayoutChild",
-    "Gtk.IconInfo",
     "Gtk.IconLookupFlags",
     "Gtk.IconSize",
     "Gtk.IconThemeError",
@@ -130,7 +120,6 @@ generate = [
     "Gtk.RecentInfo",
     "Gtk.RecentManager",
     "Gtk.RecentManagerError",
-    "Gtk.ReliefStyle",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
     "Gtk.Scrollable",
@@ -141,7 +130,6 @@ generate = [
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
     "Gtk.Settings",
-    "Gtk.ShadowType",
     "Gtk.ShortcutType",
     "Gtk.SingleSelection",
     "Gtk.SizeGroupMode",
@@ -165,8 +153,6 @@ generate = [
     "Gtk.TextSearchFlags",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
-    "Gtk.ToolbarStyle",
-    "Gtk.ToolShell",
     "Gtk.Tooltip",
     "Gtk.TreeDragDest",
     "Gtk.TreeDragSource",
@@ -178,35 +164,24 @@ generate = [
     "Gtk.TreeViewGridLines",
     "Gtk.Unit",
     "Gtk.WidgetPaintable",
-    "Gtk.WidgetPath",
     "Gtk.WindowGroup",
-    "Gtk.WindowPosition",
-    "Gtk.WindowType",
     "Gtk.WrapMode",
 ]
 
 # TODO
 ignore = [
-    "Gtk.BindingArg",
-    "Gtk.BindingEntry",
-    "Gtk.BindingSet",
-    "Gtk.BindingSignal",
 ]
 
 manual = [
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
-    "Atk.CoordType",
-    "Atk.Object",
-    "Atk.RelationSet",
     "cairo.Context",
     "cairo.FontOptions",
     "cairo.RectangleInt",
     "cairo.Region",
     "cairo.Surface",
     "Gdk.AnchorHints",
-    "Gdk.Atom",
     "Gdk.AxisUse",
     "Gdk.Clipboard",
     "Gdk.ContentFormats",
@@ -223,7 +198,6 @@ manual = [
     "Gdk.FrameClock",
     "Gdk.GLContext",
     "Gdk.Gravity",
-    "Gdk.ModifierIntent",
     "Gdk.ModifierType",
     "Gdk.Monitor",
     "Gdk.NotifyType",
@@ -232,7 +206,6 @@ manual = [
     "Gdk.RGBA",
     "Gdk.Surface",
     "Gdk.SurfaceEdge",
-    "Gdk.SurfaceTypeHint",
     "Gdk.Texture",
     "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
@@ -274,10 +247,8 @@ manual = [
     "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Gsk.Transform",
-    "Gtk.AccelKey",
     "Gtk.Border",
     "Gtk.CssLocation",
-    "Gtk.FileFilterInfo",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
     "Gtk.RecentData",
@@ -384,25 +355,6 @@ generate_builder = true
     inhibit = true
 
 [[object]]
-name = "Gtk.AccelGroup"
-status = "generate"
-    [[object.function]]
-    name = "query"
-    # It's not a part of public API
-    # See https://mail.gnome.org/archives/commits-list/2012-May/msg07052.html
-    ignore = true
-
-[[object]]
-name = "Gtk.AccelMap"
-status = "generate"
-    [[object.function]]
-    name = "foreach"
-    ignore = true #manual
-    [[object.function]]
-    name = "foreach_unfiltered"
-    ignore = true #manual
-
-[[object]]
 name = "Gtk.Actionable"
 status = "generate"
     [[object.property]]
@@ -450,7 +402,7 @@ manual_traits = ["BuilderExtManual"]
 [[object]]
 name = "Gtk.CellArea"
 status = "generate"
-generate_builder = true
+generate_builder = false
     [[object.function]]
     pattern = "cell_[gs]et_property"
     ignore = true
@@ -833,26 +785,6 @@ status = "generate"
     ignore = true
 
 [[object]]
-name = "Gtk.Menu"
-status = "generate"
-generate_builder = true
-trait_name = "GtkMenuExt"
-
-[[object]]
-name = "Gtk.MenuItem"
-status = "generate"
-generate_builder = true
-trait_name = "GtkMenuItemExt"
-
-[[object]]
-name = "Gtk.MenuShell"
-status = "generate"
-generate_builder = true
-    [[object.signal]]
-    name = "move-selected"
-    inhibit = true
-
-[[object]]
 name = "Gtk.Notebook"
 status = "generate"
 generate_builder = true
@@ -1006,52 +938,6 @@ generate_builder = true
     ignore = true
 
 [[object]]
-name = "Gtk.RadioMenuItem"
-status = "generate"
-generate_builder = true
-    [[object.function]]
-    pattern = ".+_from_widget"
-        [[object.function.parameter]]
-        name = "group"
-        nullable = false
-    [[object.function]]
-    name = "new"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "new_with_label"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "new_with_mnemonic"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "set_group"
-    ignore = true
-
-[[object]]
-name = "Gtk.RadioToolButton"
-status = "generate"
-generate_builder = true
-    [[object.function]]
-    pattern = ".+_from_widget"
-        [[object.function.parameter]]
-        name = "group"
-        nullable = false
-    [[object.function]]
-    name = "new"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "new_from_stock"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "set_group"
-    ignore = true
-
-[[object]]
 name = "Gtk.Range"
 status = "generate"
 generate_builder = true
@@ -1071,44 +957,6 @@ generate_builder = true
     name = "get_adjustment"
         [object.function.return]
         nullable = false
-
-[[object]]
-name = "Gtk.SelectionData"
-status = "generate"
-    [[object.function]]
-    name = "get_data"
-    ignore = true
-    [[object.function]]
-    name = "get_data_type"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_data_with_length"
-    ignore = true
-    [[object.function]]
-    name = "get_target"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "set"
-        [[object.function.parameter]]
-        name = "selection_data"
-        const = true
-    [[object.function]]
-    name = "set_pixbuf"
-        [[object.function.parameter]]
-        name = "selection_data"
-        const = true
-    [[object.function]]
-    name = "set_text"
-        [[object.function.parameter]]
-        name = "selection_data"
-        const = true
-    [[object.function]]
-    name = "set_uris"
-        [[object.function.parameter]]
-        name = "selection_data"
-        const = true
 
 [[object]]
 name = "Gtk.ShortcutsSection"
@@ -1228,22 +1076,6 @@ generate_builder = true
         [[object.function.parameter]]
         name = "tabs"
         const = true
-
-[[object]]
-name = "Gtk.Toolbar"
-status = "generate"
-generate_builder = true
-    [[object.signal]]
-    name = "popup-context-menu"
-    inhibit = true
-
-[[object]]
-name = "Gtk.ToolItem"
-status = "generate"
-generate_builder = true
-    [[object.signal]]
-    name = "create-menu-proxy"
-    inhibit = true
 
 [[object]]
 name = "Gtk.TreeIter"
@@ -1673,11 +1505,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.Bin"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.Box"
 status = "generate"
 generate_builder = true
@@ -1709,11 +1536,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.CheckMenuItem"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.ColorButton"
 status = "generate"
 generate_builder = true
@@ -1730,11 +1552,6 @@ generate_builder = true
 
 [[object]]
 name = "Gtk.ComboBoxText"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.Container"
 status = "generate"
 generate_builder = true
 
@@ -1850,27 +1667,12 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.MenuBar"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.MenuButton"
 status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.MenuToolButton"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.MessageDialog"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.ModelButton"
 status = "generate"
 generate_builder = true
 
@@ -1940,16 +1742,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.SeparatorMenuItem"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.SeparatorToolItem"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.ShortcutLabel"
 status = "generate"
 generate_builder = true
@@ -2011,16 +1803,6 @@ generate_builder = true
 
 [[object]]
 name = "Gtk.ToggleButton"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.ToggleToolButton"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.ToolButton"
 status = "generate"
 generate_builder = true
 
