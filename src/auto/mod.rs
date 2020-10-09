@@ -103,6 +103,10 @@ pub use self::buildable::{Buildable, NONE_BUILDABLE};
 mod builder;
 pub use self::builder::{Builder, BuilderClass};
 
+mod builder_cscope;
+pub use self::builder_cscope::BuilderCScopeExt;
+pub use self::builder_cscope::{BuilderCScope, BuilderCScopeClass, NONE_BUILDER_CSCOPE};
+
 mod builder_list_item_factory;
 pub use self::builder_list_item_factory::{BuilderListItemFactory, BuilderListItemFactoryClass};
 
@@ -1181,6 +1185,7 @@ pub use self::enums::WrapMode;
 
 mod flags;
 pub use self::flags::ApplicationInhibitFlags;
+pub use self::flags::BuilderClosureFlags;
 pub use self::flags::CellRendererState;
 pub use self::flags::DebugFlag;
 pub use self::flags::DialogFlags;
@@ -1341,6 +1346,7 @@ pub mod traits {
     pub use super::BoxExt;
     pub use super::BoxLayoutExt;
     pub use super::BuildableExt;
+    pub use super::BuilderCScopeExt;
     pub use super::BuilderScopeExt;
     pub use super::ButtonExt;
     pub use super::CellAreaContextExt;

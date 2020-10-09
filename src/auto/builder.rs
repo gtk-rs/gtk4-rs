@@ -15,6 +15,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
+use BuilderClosureFlags;
 use BuilderScope;
 
 glib_wrapper! {
@@ -129,9 +130,28 @@ impl Builder {
         }
     }
 
-    //pub fn create_closure<P: IsA<glib::Object>>(&self, function_name: &str, flags: /*Ignored*/BuilderClosureFlags, object: Option<&P>) -> Result<Option<glib::Closure>, glib::Error> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_create_closure() }
-    //}
+    pub fn create_closure<P: IsA<glib::Object>>(
+        &self,
+        function_name: &str,
+        flags: BuilderClosureFlags,
+        object: Option<&P>,
+    ) -> Result<Option<glib::Closure>, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = gtk_sys::gtk_builder_create_closure(
+                self.to_glib_none().0,
+                function_name.to_glib_none().0,
+                flags.to_glib(),
+                object.map(|p| p.as_ref()).to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
     pub fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P) {
         unsafe {

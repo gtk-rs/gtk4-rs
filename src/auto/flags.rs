@@ -63,6 +63,53 @@ impl SetValue for ApplicationInhibitFlags {
 }
 
 bitflags! {
+    pub struct BuilderClosureFlags: u32 {
+        const SWAPPED = 1;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for BuilderClosureFlags {
+    type GlibType = gtk_sys::GtkBuilderClosureFlags;
+
+    fn to_glib(&self) -> gtk_sys::GtkBuilderClosureFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkBuilderClosureFlags> for BuilderClosureFlags {
+    fn from_glib(value: gtk_sys::GtkBuilderClosureFlags) -> BuilderClosureFlags {
+        skip_assert_initialized!();
+        BuilderClosureFlags::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for BuilderClosureFlags {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_builder_closure_flags_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for BuilderClosureFlags {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for BuilderClosureFlags {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for BuilderClosureFlags {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+bitflags! {
     pub struct CellRendererState: u32 {
         const SELECTED = 1;
         const PRELIT = 2;

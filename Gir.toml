@@ -84,6 +84,9 @@ generate = [
     "Gtk.DropDown",
     "Gtk.DropTarget",
     "Gtk.DropTargetAsync",
+    "Gtk.BuildableParser",
+    "Gtk.BuilderClosureFlags",
+    "Gtk.BuilderCScope",
 
     "Gtk.Native",
     "Gtk.Bitset",

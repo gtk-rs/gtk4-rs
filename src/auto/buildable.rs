@@ -29,7 +29,7 @@ pub trait BuildableExt: 'static {
 
     //fn custom_tag_end<P: IsA<glib::Object>>(&self, builder: &Builder, child: Option<&P>, tagname: &str, data: /*Unimplemented*/Option<Fundamental: Pointer>);
 
-    //fn custom_tag_start<P: IsA<glib::Object>>(&self, builder: &Builder, child: Option<&P>, tagname: &str, parser: /*Ignored*/BuildableParser, data: /*Unimplemented*/&mut Option<Fundamental: Pointer>) -> bool;
+    //fn custom_tag_start<P: IsA<glib::Object>>(&self, builder: &Builder, child: Option<&P>, tagname: &str, data: /*Unimplemented*/&mut Option<Fundamental: Pointer>) -> Option<BuildableParser>;
 
     fn get_internal_child(&self, builder: &Builder, childname: &str) -> Option<glib::Object>;
 
@@ -72,7 +72,7 @@ impl<O: IsA<Buildable>> BuildableExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_buildable_custom_tag_end() }
     //}
 
-    //fn custom_tag_start<P: IsA<glib::Object>>(&self, builder: &Builder, child: Option<&P>, tagname: &str, parser: /*Ignored*/BuildableParser, data: /*Unimplemented*/&mut Option<Fundamental: Pointer>) -> bool {
+    //fn custom_tag_start<P: IsA<glib::Object>>(&self, builder: &Builder, child: Option<&P>, tagname: &str, data: /*Unimplemented*/&mut Option<Fundamental: Pointer>) -> Option<BuildableParser> {
     //    unsafe { TODO: call gtk_sys:gtk_buildable_custom_tag_start() }
     //}
 
