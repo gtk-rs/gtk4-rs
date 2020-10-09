@@ -25,6 +25,9 @@ mod actionable;
 pub use self::actionable::ActionableExt;
 pub use self::actionable::{Actionable, NONE_ACTIONABLE};
 
+mod activate_action;
+pub use self::activate_action::{ActivateAction, ActivateActionClass};
+
 mod adjustment;
 pub use self::adjustment::AdjustmentExt;
 pub use self::adjustment::{Adjustment, AdjustmentClass, NONE_ADJUSTMENT};
@@ -94,6 +97,9 @@ pub use self::button::{Button, ButtonClass, NONE_BUTTON};
 mod calendar;
 pub use self::calendar::CalendarBuilder;
 pub use self::calendar::{Calendar, CalendarClass};
+
+mod callback_action;
+pub use self::callback_action::{CallbackAction, CallbackActionClass};
 
 mod cell_area;
 pub use self::cell_area::CellAreaExt;
@@ -501,9 +507,15 @@ mod message_dialog;
 pub use self::message_dialog::MessageDialogBuilder;
 pub use self::message_dialog::{MessageDialog, MessageDialogClass};
 
+mod mnemonic_action;
+pub use self::mnemonic_action::{MnemonicAction, MnemonicActionClass};
+
 mod mount_operation;
 pub use self::mount_operation::MountOperationExt;
 pub use self::mount_operation::{MountOperation, MountOperationClass, NONE_MOUNT_OPERATION};
+
+mod named_action;
+pub use self::named_action::{NamedAction, NamedActionClass};
 
 mod native_dialog;
 pub use self::native_dialog::NativeDialogExt;
@@ -515,6 +527,9 @@ pub use self::notebook::{Notebook, NotebookClass};
 
 mod notebook_page;
 pub use self::notebook_page::{NotebookPage, NotebookPageClass};
+
+mod nothing_action;
+pub use self::nothing_action::{NothingAction, NothingActionClass};
 
 mod orientable;
 pub use self::orientable::OrientableExt;
@@ -673,6 +688,9 @@ pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
 mod shortcuts_window;
 pub use self::shortcuts_window::ShortcutsWindowBuilder;
 pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass};
+
+mod signal_action;
+pub use self::signal_action::{SignalAction, SignalActionClass};
 
 mod single_selection;
 pub use self::single_selection::SingleSelectionExt;
