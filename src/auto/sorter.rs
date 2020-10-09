@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -12,6 +13,7 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Ordering;
 use SorterChange;
 use SorterOrder;
 
@@ -28,7 +30,8 @@ pub const NONE_SORTER: Option<&Sorter> = None;
 pub trait SorterExt: 'static {
     fn changed(&self, change: SorterChange);
 
-    //fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(&self, item1: &P, item2: &Q) -> /*Ignored*/Ordering;
+    fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(&self, item1: &P, item2: &Q)
+        -> Ordering;
 
     fn get_order(&self) -> SorterOrder;
 
@@ -42,9 +45,19 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 
-    //fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(&self, item1: &P, item2: &Q) -> /*Ignored*/Ordering {
-    //    unsafe { TODO: call gtk_sys:gtk_sorter_compare() }
-    //}
+    fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(
+        &self,
+        item1: &P,
+        item2: &Q,
+    ) -> Ordering {
+        unsafe {
+            from_glib(gtk_sys::gtk_sorter_compare(
+                self.as_ref().to_glib_none().0,
+                item1.as_ref().to_glib_none().0,
+                item2.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_order(&self) -> SorterOrder {
         unsafe {

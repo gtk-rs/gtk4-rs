@@ -14,6 +14,7 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use PropagationLimit;
 use PropagationPhase;
 use Widget;
 
@@ -38,7 +39,7 @@ pub trait EventControllerExt: 'static {
 
     fn get_name(&self) -> Option<GString>;
 
-    //fn get_propagation_limit(&self) -> /*Ignored*/PropagationLimit;
+    fn get_propagation_limit(&self) -> PropagationLimit;
 
     fn get_propagation_phase(&self) -> PropagationPhase;
 
@@ -48,7 +49,7 @@ pub trait EventControllerExt: 'static {
 
     fn set_name(&self, name: &str);
 
-    //fn set_propagation_limit(&self, limit: /*Ignored*/PropagationLimit);
+    fn set_propagation_limit(&self, limit: PropagationLimit);
 
     fn set_propagation_phase(&self, phase: PropagationPhase);
 
@@ -106,9 +107,13 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    //fn get_propagation_limit(&self) -> /*Ignored*/PropagationLimit {
-    //    unsafe { TODO: call gtk_sys:gtk_event_controller_get_propagation_limit() }
-    //}
+    fn get_propagation_limit(&self) -> PropagationLimit {
+        unsafe {
+            from_glib(gtk_sys::gtk_event_controller_get_propagation_limit(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_propagation_phase(&self) -> PropagationPhase {
         unsafe {
@@ -141,9 +146,14 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    //fn set_propagation_limit(&self, limit: /*Ignored*/PropagationLimit) {
-    //    unsafe { TODO: call gtk_sys:gtk_event_controller_set_propagation_limit() }
-    //}
+    fn set_propagation_limit(&self, limit: PropagationLimit) {
+        unsafe {
+            gtk_sys::gtk_event_controller_set_propagation_limit(
+                self.as_ref().to_glib_none().0,
+                limit.to_glib(),
+            );
+        }
+    }
 
     fn set_propagation_phase(&self, phase: PropagationPhase) {
         unsafe {

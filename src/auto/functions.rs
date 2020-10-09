@@ -27,6 +27,7 @@ use Expression;
 use Orientation;
 use PageSetup;
 use PrintSettings;
+use RequestedSize;
 use StyleContext;
 use TextDirection;
 use TreeModel;
@@ -145,9 +146,20 @@ pub fn disable_setlocale() {
     }
 }
 
-//pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
-//    unsafe { TODO: call gtk_sys:gtk_distribute_natural_allocation() }
-//}
+pub fn distribute_natural_allocation(
+    extra_space: i32,
+    n_requested_sizes: u32,
+    sizes: &mut RequestedSize,
+) -> i32 {
+    assert_initialized_main_thread!();
+    unsafe {
+        gtk_sys::gtk_distribute_natural_allocation(
+            extra_space,
+            n_requested_sizes,
+            sizes.to_glib_none_mut().0,
+        )
+    }
+}
 
 pub fn get_debug_flags() -> u32 {
     assert_initialized_main_thread!();

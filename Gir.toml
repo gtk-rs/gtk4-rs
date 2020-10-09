@@ -88,6 +88,10 @@ generate = [
     "Gtk.Native",
     "Gtk.Bitset",
     "Gtk.BitsetIter",
+    "Gtk.Ordering",
+    "Gtk.Clipboard",
+    "Gtk.PropagationLimit",
+    "Gtk.RequestedSize",
 
     "Gtk.BookmarkList",
     "Gtk.BuilderListItemFactory",

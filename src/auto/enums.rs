@@ -4453,6 +4453,82 @@ impl SetValue for NumberUpLayout {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum Ordering {
+    Smaller,
+    Equal,
+    Larger,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for Ordering {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "Ordering::{}",
+            match *self {
+                Ordering::Smaller => "Smaller",
+                Ordering::Equal => "Equal",
+                Ordering::Larger => "Larger",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for Ordering {
+    type GlibType = gtk_sys::GtkOrdering;
+
+    fn to_glib(&self) -> gtk_sys::GtkOrdering {
+        match *self {
+            Ordering::Smaller => gtk_sys::GTK_ORDERING_SMALLER,
+            Ordering::Equal => gtk_sys::GTK_ORDERING_EQUAL,
+            Ordering::Larger => gtk_sys::GTK_ORDERING_LARGER,
+            Ordering::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkOrdering> for Ordering {
+    fn from_glib(value: gtk_sys::GtkOrdering) -> Self {
+        skip_assert_initialized!();
+        match value {
+            -1 => Ordering::Smaller,
+            0 => Ordering::Equal,
+            1 => Ordering::Larger,
+            value => Ordering::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for Ordering {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_ordering_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for Ordering {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for Ordering {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for Ordering {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Orientation {
     Horizontal,
     Vertical,
@@ -5804,6 +5880,78 @@ impl<'a> FromValue<'a> for PrintStatus {
 }
 
 impl SetValue for PrintStatus {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum PropagationLimit {
+    None,
+    SameNative,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for PropagationLimit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "PropagationLimit::{}",
+            match *self {
+                PropagationLimit::None => "None",
+                PropagationLimit::SameNative => "SameNative",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for PropagationLimit {
+    type GlibType = gtk_sys::GtkPropagationLimit;
+
+    fn to_glib(&self) -> gtk_sys::GtkPropagationLimit {
+        match *self {
+            PropagationLimit::None => gtk_sys::GTK_LIMIT_NONE,
+            PropagationLimit::SameNative => gtk_sys::GTK_LIMIT_SAME_NATIVE,
+            PropagationLimit::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkPropagationLimit> for PropagationLimit {
+    fn from_glib(value: gtk_sys::GtkPropagationLimit) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => PropagationLimit::None,
+            1 => PropagationLimit::SameNative,
+            value => PropagationLimit::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for PropagationLimit {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_propagation_limit_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for PropagationLimit {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for PropagationLimit {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for PropagationLimit {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
