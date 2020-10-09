@@ -71,13 +71,15 @@ bitflags! {
     pub struct AxisFlags: u32 {
         const X = 2;
         const Y = 4;
-        const PRESSURE = 8;
-        const XTILT = 16;
-        const YTILT = 32;
-        const WHEEL = 64;
-        const DISTANCE = 128;
-        const ROTATION = 256;
-        const SLIDER = 512;
+        const DELTA_X = 8;
+        const DELTA_Y = 16;
+        const PRESSURE = 32;
+        const XTILT = 64;
+        const YTILT = 128;
+        const WHEEL = 256;
+        const DISTANCE = 512;
+        const ROTATION = 1024;
+        const SLIDER = 2048;
     }
 }
 
@@ -173,76 +175,6 @@ impl SetValue for DragAction {
 }
 
 bitflags! {
-    pub struct EventMask: u32 {
-        const EXPOSURE_MASK = 2;
-        const POINTER_MOTION_MASK = 4;
-        const BUTTON_MOTION_MASK = 16;
-        const BUTTON1_MOTION_MASK = 32;
-        const BUTTON2_MOTION_MASK = 64;
-        const BUTTON3_MOTION_MASK = 128;
-        const BUTTON_PRESS_MASK = 256;
-        const BUTTON_RELEASE_MASK = 512;
-        const KEY_PRESS_MASK = 1024;
-        const KEY_RELEASE_MASK = 2048;
-        const ENTER_NOTIFY_MASK = 4096;
-        const LEAVE_NOTIFY_MASK = 8192;
-        const FOCUS_CHANGE_MASK = 16384;
-        const STRUCTURE_MASK = 32768;
-        const PROPERTY_CHANGE_MASK = 65536;
-        const PROXIMITY_IN_MASK = 262144;
-        const PROXIMITY_OUT_MASK = 524288;
-        const SUBSTRUCTURE_MASK = 1048576;
-        const SCROLL_MASK = 2097152;
-        const TOUCH_MASK = 4194304;
-        const SMOOTH_SCROLL_MASK = 8388608;
-        const TOUCHPAD_GESTURE_MASK = 16777216;
-        const TABLET_PAD_MASK = 33554432;
-        const ALL_EVENTS_MASK = 67108862;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for EventMask {
-    type GlibType = gdk_sys::GdkEventMask;
-
-    fn to_glib(&self) -> gdk_sys::GdkEventMask {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkEventMask> for EventMask {
-    fn from_glib(value: gdk_sys::GdkEventMask) -> EventMask {
-        skip_assert_initialized!();
-        EventMask::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for EventMask {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_event_mask_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for EventMask {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for EventMask {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for EventMask {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct FrameClockPhase: u32 {
         const NONE = 0;
         const FLUSH_EVENTS = 1;
@@ -301,35 +233,15 @@ bitflags! {
         const SHIFT_MASK = 1;
         const LOCK_MASK = 2;
         const CONTROL_MASK = 4;
-        const MOD1_MASK = 8;
-        const MOD2_MASK = 16;
-        const MOD3_MASK = 32;
-        const MOD4_MASK = 64;
-        const MOD5_MASK = 128;
+        const ALT_MASK = 8;
         const BUTTON1_MASK = 256;
         const BUTTON2_MASK = 512;
         const BUTTON3_MASK = 1024;
         const BUTTON4_MASK = 2048;
         const BUTTON5_MASK = 4096;
-        const MODIFIER_RESERVED_13_MASK = 8192;
-        const MODIFIER_RESERVED_14_MASK = 16384;
-        const MODIFIER_RESERVED_15_MASK = 32768;
-        const MODIFIER_RESERVED_16_MASK = 65536;
-        const MODIFIER_RESERVED_17_MASK = 131072;
-        const MODIFIER_RESERVED_18_MASK = 262144;
-        const MODIFIER_RESERVED_19_MASK = 524288;
-        const MODIFIER_RESERVED_20_MASK = 1048576;
-        const MODIFIER_RESERVED_21_MASK = 2097152;
-        const MODIFIER_RESERVED_22_MASK = 4194304;
-        const MODIFIER_RESERVED_23_MASK = 8388608;
-        const MODIFIER_RESERVED_24_MASK = 16777216;
-        const MODIFIER_RESERVED_25_MASK = 33554432;
         const SUPER_MASK = 67108864;
         const HYPER_MASK = 134217728;
         const META_MASK = 268435456;
-        const MODIFIER_RESERVED_29_MASK = 536870912;
-        const RELEASE_MASK = 1073741824;
-        const MODIFIER_MASK = 1543512063;
     }
 }
 
@@ -477,64 +389,9 @@ impl SetValue for SeatCapabilities {
 }
 
 bitflags! {
-    pub struct SurfaceHints: u32 {
-        const POS = 1;
-        const MIN_SIZE = 2;
-        const MAX_SIZE = 4;
-        const BASE_SIZE = 8;
-        const ASPECT = 16;
-        const RESIZE_INC = 32;
-        const WIN_GRAVITY = 64;
-        const USER_POS = 128;
-        const USER_SIZE = 256;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for SurfaceHints {
-    type GlibType = gdk_sys::GdkSurfaceHints;
-
-    fn to_glib(&self) -> gdk_sys::GdkSurfaceHints {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSurfaceHints> for SurfaceHints {
-    fn from_glib(value: gdk_sys::GdkSurfaceHints) -> SurfaceHints {
-        skip_assert_initialized!();
-        SurfaceHints::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for SurfaceHints {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_surface_hints_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for SurfaceHints {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for SurfaceHints {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for SurfaceHints {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct SurfaceState: u32 {
         const WITHDRAWN = 1;
-        const ICONIFIED = 2;
+        const MINIMIZED = 2;
         const MAXIMIZED = 4;
         const STICKY = 8;
         const FULLSCREEN = 16;
@@ -589,111 +446,6 @@ impl<'a> FromValue<'a> for SurfaceState {
 }
 
 impl SetValue for SurfaceState {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
-    pub struct WMDecoration: u32 {
-        const ALL = 1;
-        const BORDER = 2;
-        const RESIZEH = 4;
-        const TITLE = 8;
-        const MENU = 16;
-        const MINIMIZE = 32;
-        const MAXIMIZE = 64;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for WMDecoration {
-    type GlibType = gdk_sys::GdkWMDecoration;
-
-    fn to_glib(&self) -> gdk_sys::GdkWMDecoration {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkWMDecoration> for WMDecoration {
-    fn from_glib(value: gdk_sys::GdkWMDecoration) -> WMDecoration {
-        skip_assert_initialized!();
-        WMDecoration::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for WMDecoration {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_wm_decoration_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for WMDecoration {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for WMDecoration {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for WMDecoration {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
-    pub struct WMFunction: u32 {
-        const ALL = 1;
-        const RESIZE = 2;
-        const MOVE = 4;
-        const MINIMIZE = 8;
-        const MAXIMIZE = 16;
-        const CLOSE = 32;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for WMFunction {
-    type GlibType = gdk_sys::GdkWMFunction;
-
-    fn to_glib(&self) -> gdk_sys::GdkWMFunction {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkWMFunction> for WMFunction {
-    fn from_glib(value: gdk_sys::GdkWMFunction) -> WMFunction {
-        skip_assert_initialized!();
-        WMFunction::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for WMFunction {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_wm_function_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for WMFunction {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for WMFunction {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for WMFunction {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }

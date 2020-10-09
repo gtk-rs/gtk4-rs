@@ -51,7 +51,8 @@ mod drop;
 pub use self::drop::{Drop, DropClass};
 
 mod event;
-pub use self::event::{Event, EventClass};
+pub use self::event::EventExt;
+pub use self::event::{Event, EventClass, NONE_EVENT};
 
 mod frame_clock;
 pub use self::frame_clock::{FrameClock, FrameClockClass};
@@ -61,9 +62,6 @@ pub use self::gl_context::{GLContext, GLContextClass};
 
 mod gl_texture;
 pub use self::gl_texture::{GLTexture, GLTextureClass};
-
-mod keymap;
-pub use self::keymap::{Keymap, KeymapClass};
 
 mod memory_texture;
 pub use self::memory_texture::{MemoryTexture, MemoryTextureClass};
@@ -82,8 +80,7 @@ mod snapshot;
 pub use self::snapshot::{Snapshot, SnapshotClass};
 
 mod surface;
-pub use self::surface::SurfaceExt;
-pub use self::surface::{Surface, SurfaceClass, NONE_SURFACE};
+pub use self::surface::{Surface, SurfaceClass};
 
 mod texture;
 pub use self::texture::TextureExt;
@@ -109,28 +106,20 @@ pub use self::rectangle::Rectangle;
 
 mod enums;
 pub use self::enums::AxisUse;
-pub use self::enums::ByteOrder;
 pub use self::enums::CrossingMode;
 pub use self::enums::DevicePadFeature;
 pub use self::enums::DeviceToolType;
-pub use self::enums::DeviceType;
 pub use self::enums::DragCancelReason;
 pub use self::enums::EventType;
 pub use self::enums::FullscreenMode;
 pub use self::enums::GLError;
-pub use self::enums::GrabOwnership;
-pub use self::enums::GrabStatus;
 pub use self::enums::Gravity;
-pub use self::enums::InputMode;
 pub use self::enums::InputSource;
 pub use self::enums::MemoryFormat;
-pub use self::enums::ModifierIntent;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
-pub use self::enums::SurfaceType;
-pub use self::enums::SurfaceTypeHint;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
 
@@ -138,15 +127,11 @@ mod flags;
 pub use self::flags::AnchorHints;
 pub use self::flags::AxisFlags;
 pub use self::flags::DragAction;
-pub use self::flags::EventMask;
 pub use self::flags::FrameClockPhase;
 pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
-pub use self::flags::SurfaceHints;
 pub use self::flags::SurfaceState;
-pub use self::flags::WMDecoration;
-pub use self::flags::WMFunction;
 
 pub mod functions;
 
@@ -155,7 +140,7 @@ pub mod traits {
     pub use super::ContentProviderExt;
     pub use super::DevicePadExt;
     pub use super::DrawContextExt;
+    pub use super::EventExt;
     pub use super::PaintableExt;
-    pub use super::SurfaceExt;
     pub use super::TextureExt;
 }

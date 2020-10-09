@@ -28,6 +28,10 @@ glib_wrapper! {
 }
 
 impl Monitor {
+    pub fn get_connector(&self) -> Option<GString> {
+        unsafe { from_glib_none(gdk_sys::gdk_monitor_get_connector(self.to_glib_none().0)) }
+    }
+
     pub fn get_display(&self) -> Option<Display> {
         unsafe { from_glib_none(gdk_sys::gdk_monitor_get_display(self.to_glib_none().0)) }
     }
@@ -72,18 +76,6 @@ impl Monitor {
         unsafe { gdk_sys::gdk_monitor_get_width_mm(self.to_glib_none().0) }
     }
 
-    pub fn get_workarea(&self) -> Rectangle {
-        unsafe {
-            let mut workarea = Rectangle::uninitialized();
-            gdk_sys::gdk_monitor_get_workarea(self.to_glib_none().0, workarea.to_glib_none_mut().0);
-            workarea
-        }
-    }
-
-    pub fn is_primary(&self) -> bool {
-        unsafe { from_glib(gdk_sys::gdk_monitor_is_primary(self.to_glib_none().0)) }
-    }
-
     pub fn is_valid(&self) -> bool {
         unsafe { from_glib(gdk_sys::gdk_monitor_is_valid(self.to_glib_none().0)) }
     }
@@ -116,7 +108,34 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"invalidate\0".as_ptr() as *const _,
-                Some(transmute(invalidate_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    invalidate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_connector_notify<F: Fn(&Monitor) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_connector_trampoline<F: Fn(&Monitor) + 'static>(
+            this: *mut gdk_sys::GdkMonitor,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::connector\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_connector_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -139,7 +158,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::geometry\0".as_ptr() as *const _,
-                Some(transmute(notify_geometry_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_geometry_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -162,7 +183,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::height-mm\0".as_ptr() as *const _,
-                Some(transmute(notify_height_mm_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_height_mm_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -185,7 +208,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::manufacturer\0".as_ptr() as *const _,
-                Some(transmute(notify_manufacturer_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_manufacturer_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -208,7 +233,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -231,7 +258,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::refresh-rate\0".as_ptr() as *const _,
-                Some(transmute(notify_refresh_rate_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_refresh_rate_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -254,7 +283,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scale-factor\0".as_ptr() as *const _,
-                Some(transmute(notify_scale_factor_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scale_factor_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -277,7 +308,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subpixel-layout\0".as_ptr() as *const _,
-                Some(transmute(notify_subpixel_layout_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_subpixel_layout_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -300,7 +333,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::valid\0".as_ptr() as *const _,
-                Some(transmute(notify_valid_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_valid_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -323,30 +358,9 @@ impl Monitor {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::width-mm\0".as_ptr() as *const _,
-                Some(transmute(notify_width_mm_trampoline::<F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn connect_property_workarea_notify<F: Fn(&Monitor) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_workarea_trampoline<F: Fn(&Monitor) + 'static>(
-            this: *mut gdk_sys::GdkMonitor,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::workarea\0".as_ptr() as *const _,
-                Some(transmute(notify_workarea_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_width_mm_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

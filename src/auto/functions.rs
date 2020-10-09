@@ -5,21 +5,20 @@
 use cairo;
 use gdk_pixbuf;
 use gdk_sys;
+use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
 use std::mem;
-use std::ptr;
-use Atom;
-use Display;
 use Event;
+use Texture;
 
-pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
+pub fn events_get_angle<P: IsA<Event>, Q: IsA<Event>>(event1: &P, event2: &Q) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
         let mut angle = mem::MaybeUninit::uninit();
         let ret = from_glib(gdk_sys::gdk_events_get_angle(
-            event1.to_glib_none().0,
-            event2.to_glib_none().0,
+            event1.as_ref().to_glib_none().0,
+            event2.as_ref().to_glib_none().0,
             angle.as_mut_ptr(),
         ));
         let angle = angle.assume_init();
@@ -31,14 +30,17 @@ pub fn events_get_angle(event1: &Event, event2: &Event) -> Option<f64> {
     }
 }
 
-pub fn events_get_center(event1: &Event, event2: &Event) -> Option<(f64, f64)> {
+pub fn events_get_center<P: IsA<Event>, Q: IsA<Event>>(
+    event1: &P,
+    event2: &Q,
+) -> Option<(f64, f64)> {
     skip_assert_initialized!();
     unsafe {
         let mut x = mem::MaybeUninit::uninit();
         let mut y = mem::MaybeUninit::uninit();
         let ret = from_glib(gdk_sys::gdk_events_get_center(
-            event1.to_glib_none().0,
-            event2.to_glib_none().0,
+            event1.as_ref().to_glib_none().0,
+            event2.as_ref().to_glib_none().0,
             x.as_mut_ptr(),
             y.as_mut_ptr(),
         ));
@@ -52,13 +54,13 @@ pub fn events_get_center(event1: &Event, event2: &Event) -> Option<(f64, f64)> {
     }
 }
 
-pub fn events_get_distance(event1: &Event, event2: &Event) -> Option<f64> {
+pub fn events_get_distance<P: IsA<Event>, Q: IsA<Event>>(event1: &P, event2: &Q) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
         let mut distance = mem::MaybeUninit::uninit();
         let ret = from_glib(gdk_sys::gdk_events_get_distance(
-            event1.to_glib_none().0,
-            event2.to_glib_none().0,
+            event1.as_ref().to_glib_none().0,
+            event2.as_ref().to_glib_none().0,
             distance.as_mut_ptr(),
         ));
         let distance = distance.assume_init();
@@ -68,11 +70,6 @@ pub fn events_get_distance(event1: &Event, event2: &Event) -> Option<f64> {
             None
         }
     }
-}
-
-pub fn get_show_events() -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gdk_sys::gdk_get_show_events()) }
 }
 
 pub fn intern_mime_type(string: &str) -> Option<GString> {
@@ -146,6 +143,15 @@ pub fn pixbuf_get_from_surface(
     }
 }
 
+pub fn pixbuf_get_from_texture<P: IsA<Texture>>(texture: &P) -> Option<gdk_pixbuf::Pixbuf> {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib_full(gdk_sys::gdk_pixbuf_get_from_texture(
+            texture.as_ref().to_glib_none().0,
+        ))
+    }
+}
+
 pub fn set_allowed_backends(backends: &str) {
     assert_initialized_main_thread!();
     unsafe {
@@ -153,41 +159,7 @@ pub fn set_allowed_backends(backends: &str) {
     }
 }
 
-pub fn set_show_events(show_events: bool) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gdk_sys::gdk_set_show_events(show_events.to_glib());
-    }
-}
-
-pub fn text_property_to_utf8_list_for_display(
-    display: &Display,
-    encoding: &Atom,
-    format: i32,
-    text: &[u8],
-) -> (i32, Vec<GString>) {
-    skip_assert_initialized!();
-    let length = text.len() as i32;
-    unsafe {
-        let mut list = ptr::null_mut();
-        let ret = gdk_sys::gdk_text_property_to_utf8_list_for_display(
-            display.to_glib_none().0,
-            encoding.to_glib_none().0,
-            format,
-            text.to_glib_none().0,
-            length,
-            &mut list,
-        );
-        (ret, FromGlibPtrContainer::from_glib_full(list))
-    }
-}
-
 pub fn unicode_to_keyval(wc: u32) -> u32 {
     assert_initialized_main_thread!();
     unsafe { gdk_sys::gdk_unicode_to_keyval(wc) }
-}
-
-pub fn utf8_to_string_target(str: &str) -> Option<GString> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(gdk_sys::gdk_utf8_to_string_target(str.to_glib_none().0)) }
 }

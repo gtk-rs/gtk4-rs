@@ -18,7 +18,7 @@ glib_wrapper! {
 }
 
 impl Cursor {
-    pub fn new_from_name(name: &str, fallback: Option<&Cursor>) -> Option<Cursor> {
+    pub fn from_name(name: &str, fallback: Option<&Cursor>) -> Option<Cursor> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gdk_sys::gdk_cursor_new_from_name(
@@ -28,7 +28,7 @@ impl Cursor {
         }
     }
 
-    pub fn new_from_texture<P: IsA<Texture>>(
+    pub fn from_texture<P: IsA<Texture>>(
         texture: &P,
         hotspot_x: i32,
         hotspot_y: i32,

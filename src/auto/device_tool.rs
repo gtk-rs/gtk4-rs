@@ -3,11 +3,7 @@
 // DO NOT EDIT
 
 use gdk_sys;
-use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
-use glib::StaticType;
-use glib::Value;
-use gobject_sys;
 use std::fmt;
 use AxisFlags;
 use DeviceToolType;
@@ -21,6 +17,10 @@ glib_wrapper! {
 }
 
 impl DeviceTool {
+    pub fn get_axes(&self) -> AxisFlags {
+        unsafe { from_glib(gdk_sys::gdk_device_tool_get_axes(self.to_glib_none().0)) }
+    }
+
     pub fn get_hardware_id(&self) -> u64 {
         unsafe { gdk_sys::gdk_device_tool_get_hardware_id(self.to_glib_none().0) }
     }
@@ -34,21 +34,6 @@ impl DeviceTool {
             from_glib(gdk_sys::gdk_device_tool_get_tool_type(
                 self.to_glib_none().0,
             ))
-        }
-    }
-
-    pub fn get_property_axes(&self) -> AxisFlags {
-        unsafe {
-            let mut value = Value::from_type(<AxisFlags as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"axes\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `axes` getter")
-                .unwrap()
         }
     }
 }

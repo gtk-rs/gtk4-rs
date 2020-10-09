@@ -5,11 +5,7 @@
 use gdk_sys;
 use gio;
 use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
-use glib::StaticType;
-use glib::Value;
-use gobject_sys;
 use std::fmt;
 use Display;
 
@@ -22,6 +18,14 @@ glib_wrapper! {
 }
 
 impl AppLaunchContext {
+    pub fn get_display(&self) -> Option<Display> {
+        unsafe {
+            from_glib_none(gdk_sys::gdk_app_launch_context_get_display(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn set_desktop(&self, desktop: i32) {
         unsafe {
             gdk_sys::gdk_app_launch_context_set_desktop(self.to_glib_none().0, desktop);
@@ -49,20 +53,6 @@ impl AppLaunchContext {
     pub fn set_timestamp(&self, timestamp: u32) {
         unsafe {
             gdk_sys::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
-        }
-    }
-
-    pub fn get_property_display(&self) -> Option<Display> {
-        unsafe {
-            let mut value = Value::from_type(<Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
         }
     }
 }

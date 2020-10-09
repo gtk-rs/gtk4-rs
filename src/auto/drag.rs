@@ -8,7 +8,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -42,6 +41,10 @@ impl Drag {
         unsafe { from_glib(gdk_sys::gdk_drag_get_actions(self.to_glib_none().0)) }
     }
 
+    pub fn get_content(&self) -> Option<ContentProvider> {
+        unsafe { from_glib_none(gdk_sys::gdk_drag_get_content(self.to_glib_none().0)) }
+    }
+
     pub fn get_device(&self) -> Option<Device> {
         unsafe { from_glib_none(gdk_sys::gdk_drag_get_device(self.to_glib_none().0)) }
     }
@@ -62,6 +65,10 @@ impl Drag {
         unsafe { from_glib(gdk_sys::gdk_drag_get_selected_action(self.to_glib_none().0)) }
     }
 
+    pub fn get_surface(&self) -> Option<Surface> {
+        unsafe { from_glib_none(gdk_sys::gdk_drag_get_surface(self.to_glib_none().0)) }
+    }
+
     pub fn set_hotspot(&self, hot_x: i32, hot_y: i32) {
         unsafe {
             gdk_sys::gdk_drag_set_hotspot(self.to_glib_none().0, hot_x, hot_y);
@@ -78,20 +85,6 @@ impl Drag {
         }
     }
 
-    pub fn get_property_content(&self) -> Option<ContentProvider> {
-        unsafe {
-            let mut value = Value::from_type(<ContentProvider as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"content\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `content` getter")
-        }
-    }
-
     pub fn set_property_selected_action(&self, selected_action: DragAction) {
         unsafe {
             gobject_sys::g_object_set_property(
@@ -102,32 +95,18 @@ impl Drag {
         }
     }
 
-    pub fn get_property_surface(&self) -> Option<Surface> {
-        unsafe {
-            let mut value = Value::from_type(<Surface as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"surface\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `surface` getter")
-        }
-    }
-
-    pub fn begin<P: IsA<Surface>, Q: IsA<ContentProvider>>(
-        surface: &P,
+    pub fn begin<P: IsA<ContentProvider>>(
+        surface: &Surface,
         device: &Device,
-        content: &Q,
+        content: &P,
         actions: DragAction,
-        dx: i32,
-        dy: i32,
+        dx: f64,
+        dy: f64,
     ) -> Option<Drag> {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(gdk_sys::gdk_drag_begin(
-                surface.as_ref().to_glib_none().0,
+                surface.to_glib_none().0,
                 device.to_glib_none().0,
                 content.as_ref().to_glib_none().0,
                 actions.to_glib(),
@@ -154,7 +133,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancel\0".as_ptr() as *const _,
-                Some(transmute(cancel_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cancel_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -173,7 +154,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"dnd-finished\0".as_ptr() as *const _,
-                Some(transmute(dnd_finished_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    dnd_finished_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -192,7 +175,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"drop-performed\0".as_ptr() as *const _,
-                Some(transmute(drop_performed_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    drop_performed_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -212,7 +197,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::actions\0".as_ptr() as *const _,
-                Some(transmute(notify_actions_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_actions_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -232,7 +219,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::display\0".as_ptr() as *const _,
-                Some(transmute(notify_display_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_display_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -255,7 +244,9 @@ impl Drag {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-action\0".as_ptr() as *const _,
-                Some(transmute(notify_selected_action_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selected_action_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
