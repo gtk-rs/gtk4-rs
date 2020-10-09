@@ -269,6 +269,7 @@ generate = [
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
     "Gtk.TreeViewGridLines",
+    "Gtk.TreeExpander",
     "Gtk.Unit",
     "Gtk.WidgetPaintable",
     "Gtk.WindowControls",

@@ -967,6 +967,10 @@ mod tree_drag_source;
 pub use self::tree_drag_source::TreeDragSourceExt;
 pub use self::tree_drag_source::{TreeDragSource, NONE_TREE_DRAG_SOURCE};
 
+mod tree_expander;
+pub use self::tree_expander::TreeExpanderExt;
+pub use self::tree_expander::{TreeExpander, TreeExpanderClass, NONE_TREE_EXPANDER};
+
 mod tree_list_model;
 pub use self::tree_list_model::TreeListModelExt;
 pub use self::tree_list_model::{TreeListModel, TreeListModelClass, NONE_TREE_LIST_MODEL};
@@ -1440,6 +1444,7 @@ pub mod traits {
     pub use super::ToggleButtonExt;
     pub use super::TreeDragDestExt;
     pub use super::TreeDragSourceExt;
+    pub use super::TreeExpanderExt;
     pub use super::TreeListModelExt;
     pub use super::TreeListRowExt;
     pub use super::TreeListRowSorterExt;
