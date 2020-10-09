@@ -29,10 +29,11 @@ use LayoutManager;
 use Overflow;
 use Popover;
 use PositionType;
+use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, PopoverMenuClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, PopoverMenuClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_menu_get_type(),

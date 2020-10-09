@@ -32,11 +32,12 @@ use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use WindowGroup;
 
 glib_wrapper! {
-    pub struct Window(Object<gtk_sys::GtkWindow, gtk_sys::GtkWindowClass, WindowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
+    pub struct Window(Object<gtk_sys::GtkWindow, gtk_sys::GtkWindowClass, WindowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_window_get_type(),

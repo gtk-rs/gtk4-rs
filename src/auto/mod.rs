@@ -610,9 +610,28 @@ pub use self::separator::{Separator, SeparatorClass};
 mod settings;
 pub use self::settings::{Settings, SettingsClass};
 
+mod shortcut;
+pub use self::shortcut::ShortcutExt;
+pub use self::shortcut::{Shortcut, ShortcutClass, NONE_SHORTCUT};
+
+mod shortcut_action;
+pub use self::shortcut_action::ShortcutActionExt;
+pub use self::shortcut_action::{ShortcutAction, ShortcutActionClass, NONE_SHORTCUT_ACTION};
+
+mod shortcut_controller;
+pub use self::shortcut_controller::{ShortcutController, ShortcutControllerClass};
+
 mod shortcut_label;
 pub use self::shortcut_label::ShortcutLabelBuilder;
 pub use self::shortcut_label::{ShortcutLabel, ShortcutLabelClass};
+
+mod shortcut_manager;
+pub use self::shortcut_manager::ShortcutManagerExt;
+pub use self::shortcut_manager::{ShortcutManager, NONE_SHORTCUT_MANAGER};
+
+mod shortcut_trigger;
+pub use self::shortcut_trigger::ShortcutTriggerExt;
+pub use self::shortcut_trigger::{ShortcutTrigger, ShortcutTriggerClass, NONE_SHORTCUT_TRIGGER};
 
 mod shortcuts_group;
 pub use self::shortcuts_group::ShortcutsGroupBuilder;
@@ -899,6 +918,7 @@ pub use self::enums::ScrollType;
 pub use self::enums::ScrollablePolicy;
 pub use self::enums::SelectionMode;
 pub use self::enums::SensitivityType;
+pub use self::enums::ShortcutScope;
 pub use self::enums::ShortcutType;
 pub use self::enums::SizeGroupMode;
 pub use self::enums::SizeRequestMode;
@@ -928,6 +948,7 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PlacesOpenFlags;
+pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
 pub use self::flags::TextSearchFlags;
@@ -1137,6 +1158,10 @@ pub mod traits {
     pub use super::ScaleExt;
     pub use super::ScrollableExt;
     pub use super::SelectionModelExt;
+    pub use super::ShortcutActionExt;
+    pub use super::ShortcutExt;
+    pub use super::ShortcutManagerExt;
+    pub use super::ShortcutTriggerExt;
     pub use super::SingleSelectionExt;
     pub use super::SliceListModelExt;
     pub use super::SortListModelExt;

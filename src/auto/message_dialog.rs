@@ -31,11 +31,12 @@ use LayoutManager;
 use MessageType;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct MessageDialog(Object<gtk_sys::GtkMessageDialog, gtk_sys::GtkMessageDialogClass, MessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
+    pub struct MessageDialog(Object<gtk_sys::GtkMessageDialog, gtk_sys::GtkMessageDialogClass, MessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_message_dialog_get_type(),

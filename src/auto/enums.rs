@@ -6271,6 +6271,82 @@ impl SetValue for SensitivityType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum ShortcutScope {
+    Local,
+    Managed,
+    Global,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ShortcutScope {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ShortcutScope::{}",
+            match *self {
+                ShortcutScope::Local => "Local",
+                ShortcutScope::Managed => "Managed",
+                ShortcutScope::Global => "Global",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ShortcutScope {
+    type GlibType = gtk_sys::GtkShortcutScope;
+
+    fn to_glib(&self) -> gtk_sys::GtkShortcutScope {
+        match *self {
+            ShortcutScope::Local => gtk_sys::GTK_SHORTCUT_SCOPE_LOCAL,
+            ShortcutScope::Managed => gtk_sys::GTK_SHORTCUT_SCOPE_MANAGED,
+            ShortcutScope::Global => gtk_sys::GTK_SHORTCUT_SCOPE_GLOBAL,
+            ShortcutScope::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkShortcutScope> for ShortcutScope {
+    fn from_glib(value: gtk_sys::GtkShortcutScope) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => ShortcutScope::Local,
+            1 => ShortcutScope::Managed,
+            2 => ShortcutScope::Global,
+            value => ShortcutScope::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ShortcutScope {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_shortcut_scope_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ShortcutScope {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ShortcutScope {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ShortcutScope {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ShortcutType {
     Accelerator,
     GesturePinch,

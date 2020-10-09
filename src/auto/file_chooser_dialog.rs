@@ -23,11 +23,12 @@ use FileFilter;
 use LayoutManager;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct FileChooserDialog(Object<gtk_sys::GtkFileChooserDialog, FileChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, FileChooser;
+    pub struct FileChooserDialog(Object<gtk_sys::GtkFileChooserDialog, FileChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager, FileChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_file_chooser_dialog_get_type(),

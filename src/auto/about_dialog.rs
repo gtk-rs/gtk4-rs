@@ -29,11 +29,12 @@ use LayoutManager;
 use License;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root;
+    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_about_dialog_get_type(),
