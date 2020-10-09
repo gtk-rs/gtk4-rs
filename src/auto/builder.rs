@@ -15,6 +15,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
+use BuilderScope;
 
 glib_wrapper! {
     pub struct Builder(Object<gtk_sys::GtkBuilder, gtk_sys::GtkBuilderClass, BuilderClass>);
@@ -183,9 +184,9 @@ impl Builder {
         }
     }
 
-    //pub fn get_scope(&self) -> /*Ignored*/Option<BuilderScope> {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_get_scope() }
-    //}
+    pub fn get_scope(&self) -> Option<BuilderScope> {
+        unsafe { from_glib_none(gtk_sys::gtk_builder_get_scope(self.to_glib_none().0)) }
+    }
 
     pub fn get_translation_domain(&self) -> Option<GString> {
         unsafe {
@@ -213,9 +214,14 @@ impl Builder {
         }
     }
 
-    //pub fn set_scope(&self, scope: /*Ignored*/Option<&BuilderScope>) {
-    //    unsafe { TODO: call gtk_sys:gtk_builder_set_scope() }
-    //}
+    pub fn set_scope<P: IsA<BuilderScope>>(&self, scope: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_builder_set_scope(
+                self.to_glib_none().0,
+                scope.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
 
     pub fn set_translation_domain(&self, domain: Option<&str>) {
         unsafe {

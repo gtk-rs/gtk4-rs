@@ -76,6 +76,10 @@ pub use self::assistant_page::{AssistantPage, AssistantPageClass};
 mod bin_layout;
 pub use self::bin_layout::{BinLayout, BinLayoutClass, NONE_BIN_LAYOUT};
 
+mod bookmark_list;
+pub use self::bookmark_list::BookmarkListExt;
+pub use self::bookmark_list::{BookmarkList, BookmarkListClass, NONE_BOOKMARK_LIST};
+
 mod bool_filter;
 pub use self::bool_filter::BoolFilterExt;
 pub use self::bool_filter::{BoolFilter, BoolFilterClass, NONE_BOOL_FILTER};
@@ -95,6 +99,13 @@ pub use self::buildable::{Buildable, NONE_BUILDABLE};
 
 mod builder;
 pub use self::builder::{Builder, BuilderClass};
+
+mod builder_list_item_factory;
+pub use self::builder_list_item_factory::{BuilderListItemFactory, BuilderListItemFactoryClass};
+
+mod builder_scope;
+pub use self::builder_scope::BuilderScopeExt;
+pub use self::builder_scope::{BuilderScope, NONE_BUILDER_SCOPE};
 
 mod button;
 pub use self::button::ButtonBuilder;
@@ -240,6 +251,10 @@ mod dialog;
 pub use self::dialog::DialogBuilder;
 pub use self::dialog::DialogExt;
 pub use self::dialog::{Dialog, DialogClass, NONE_DIALOG};
+
+mod directory_list;
+pub use self::directory_list::DirectoryListExt;
+pub use self::directory_list::{DirectoryList, DirectoryListClass, NONE_DIRECTORY_LIST};
 
 mod drawing_area;
 pub use self::drawing_area::DrawingAreaBuilder;
@@ -724,6 +739,9 @@ pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass};
 mod signal_action;
 pub use self::signal_action::{SignalAction, SignalActionClass};
 
+mod signal_list_item_factory;
+pub use self::signal_list_item_factory::{SignalListItemFactory, SignalListItemFactoryClass};
+
 mod single_selection;
 pub use self::single_selection::SingleSelectionExt;
 pub use self::single_selection::{SingleSelection, SingleSelectionClass, NONE_SINGLE_SELECTION};
@@ -773,6 +791,10 @@ pub use self::statusbar::{Statusbar, StatusbarClass};
 mod string_filter;
 pub use self::string_filter::StringFilterExt;
 pub use self::string_filter::{StringFilter, StringFilterClass, NONE_STRING_FILTER};
+
+mod string_list;
+pub use self::string_list::StringListExt;
+pub use self::string_list::{StringList, StringListClass, NONE_STRING_LIST};
 
 mod style_context;
 pub use self::style_context::StyleContextExt;
@@ -837,6 +859,12 @@ pub use self::tree_list_model::{TreeListModel, TreeListModelClass, NONE_TREE_LIS
 mod tree_list_row;
 pub use self::tree_list_row::TreeListRowExt;
 pub use self::tree_list_row::{TreeListRow, TreeListRowClass, NONE_TREE_LIST_ROW};
+
+mod tree_list_row_sorter;
+pub use self::tree_list_row_sorter::TreeListRowSorterExt;
+pub use self::tree_list_row_sorter::{
+    TreeListRowSorter, TreeListRowSorterClass, NONE_TREE_LIST_ROW_SORTER,
+};
 
 mod tree_model;
 pub use self::tree_model::TreeModelExt;
@@ -1179,10 +1207,12 @@ pub mod traits {
     pub use super::AdjustmentExt;
     pub use super::AppChooserExt;
     pub use super::ApplicationWindowExt;
+    pub use super::BookmarkListExt;
     pub use super::BoolFilterExt;
     pub use super::BoxExt;
     pub use super::BoxLayoutExt;
     pub use super::BuildableExt;
+    pub use super::BuilderScopeExt;
     pub use super::ButtonExt;
     pub use super::CellAreaContextExt;
     pub use super::CellAreaExt;
@@ -1199,6 +1229,7 @@ pub mod traits {
     pub use super::ConstraintTargetExt;
     pub use super::CustomFilterExt;
     pub use super::DialogExt;
+    pub use super::DirectoryListExt;
     pub use super::DrawingAreaExt;
     pub use super::EditableExt;
     pub use super::EntryBufferExt;
@@ -1259,6 +1290,7 @@ pub mod traits {
     pub use super::SliceListModelExt;
     pub use super::SortListModelExt;
     pub use super::StringFilterExt;
+    pub use super::StringListExt;
     pub use super::StyleContextExt;
     pub use super::StyleProviderExt;
     pub use super::TextBufferExt;
@@ -1271,6 +1303,7 @@ pub mod traits {
     pub use super::TreeDragSourceExt;
     pub use super::TreeListModelExt;
     pub use super::TreeListRowExt;
+    pub use super::TreeListRowSorterExt;
     pub use super::TreeModelExt;
     pub use super::TreeModelFilterExt;
     pub use super::TreeModelSortExt;
