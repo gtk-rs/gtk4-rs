@@ -3,11 +3,14 @@
 // DO NOT EDIT
 
 use glib;
+use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -100,6 +103,34 @@ impl FileFilter {
 impl Default for FileFilter {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct FileFilterBuilder {
+    name: Option<String>,
+}
+
+impl FileFilterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> FileFilter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        let ret = glib::Object::new(FileFilter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<FileFilter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
     }
 }
 

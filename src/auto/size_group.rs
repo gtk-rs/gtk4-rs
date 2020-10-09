@@ -2,11 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -89,6 +92,34 @@ impl SizeGroup {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SizeGroupBuilder {
+    mode: Option<SizeGroupMode>,
+}
+
+impl SizeGroupBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SizeGroup {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref mode) = self.mode {
+            properties.push(("mode", mode));
+        }
+        let ret = glib::Object::new(SizeGroup::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SizeGroup>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn mode(mut self, mode: SizeGroupMode) -> Self {
+        self.mode = Some(mode);
+        self
     }
 }
 

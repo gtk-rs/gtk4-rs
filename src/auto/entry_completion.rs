@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -9,6 +10,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -587,6 +589,106 @@ impl EntryCompletion {
 impl Default for EntryCompletion {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct EntryCompletionBuilder {
+    cell_area: Option<CellArea>,
+    inline_completion: Option<bool>,
+    inline_selection: Option<bool>,
+    minimum_key_length: Option<i32>,
+    model: Option<TreeModel>,
+    popup_completion: Option<bool>,
+    popup_set_width: Option<bool>,
+    popup_single_match: Option<bool>,
+    text_column: Option<i32>,
+}
+
+impl EntryCompletionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> EntryCompletion {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref cell_area) = self.cell_area {
+            properties.push(("cell-area", cell_area));
+        }
+        if let Some(ref inline_completion) = self.inline_completion {
+            properties.push(("inline-completion", inline_completion));
+        }
+        if let Some(ref inline_selection) = self.inline_selection {
+            properties.push(("inline-selection", inline_selection));
+        }
+        if let Some(ref minimum_key_length) = self.minimum_key_length {
+            properties.push(("minimum-key-length", minimum_key_length));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref popup_completion) = self.popup_completion {
+            properties.push(("popup-completion", popup_completion));
+        }
+        if let Some(ref popup_set_width) = self.popup_set_width {
+            properties.push(("popup-set-width", popup_set_width));
+        }
+        if let Some(ref popup_single_match) = self.popup_single_match {
+            properties.push(("popup-single-match", popup_single_match));
+        }
+        if let Some(ref text_column) = self.text_column {
+            properties.push(("text-column", text_column));
+        }
+        let ret = glib::Object::new(EntryCompletion::static_type(), &properties)
+            .expect("object new")
+            .downcast::<EntryCompletion>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+        self.cell_area = Some(cell_area.clone().upcast());
+        self
+    }
+
+    pub fn inline_completion(mut self, inline_completion: bool) -> Self {
+        self.inline_completion = Some(inline_completion);
+        self
+    }
+
+    pub fn inline_selection(mut self, inline_selection: bool) -> Self {
+        self.inline_selection = Some(inline_selection);
+        self
+    }
+
+    pub fn minimum_key_length(mut self, minimum_key_length: i32) -> Self {
+        self.minimum_key_length = Some(minimum_key_length);
+        self
+    }
+
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn popup_completion(mut self, popup_completion: bool) -> Self {
+        self.popup_completion = Some(popup_completion);
+        self
+    }
+
+    pub fn popup_set_width(mut self, popup_set_width: bool) -> Self {
+        self.popup_set_width = Some(popup_set_width);
+        self
+    }
+
+    pub fn popup_single_match(mut self, popup_single_match: bool) -> Self {
+        self.popup_single_match = Some(popup_single_match);
+        self
+    }
+
+    pub fn text_column(mut self, text_column: i32) -> Self {
+        self.text_column = Some(text_column);
+        self
     }
 }
 

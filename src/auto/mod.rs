@@ -3,9 +3,11 @@
 // DO NOT EDIT
 
 mod about_dialog;
+pub use self::about_dialog::AboutDialogBuilder;
 pub use self::about_dialog::{AboutDialog, AboutDialogClass};
 
 mod accel_label;
+pub use self::accel_label::AccelLabelBuilder;
 pub use self::accel_label::{AccelLabel, AccelLabelClass};
 
 mod accessible;
@@ -13,6 +15,7 @@ pub use self::accessible::AccessibleExt;
 pub use self::accessible::{Accessible, NONE_ACCESSIBLE};
 
 mod action_bar;
+pub use self::action_bar::ActionBarBuilder;
 pub use self::action_bar::{ActionBar, ActionBarClass};
 
 mod actionable;
@@ -28,12 +31,15 @@ pub use self::app_chooser::AppChooserExt;
 pub use self::app_chooser::{AppChooser, NONE_APP_CHOOSER};
 
 mod app_chooser_button;
+pub use self::app_chooser_button::AppChooserButtonBuilder;
 pub use self::app_chooser_button::{AppChooserButton, AppChooserButtonClass};
 
 mod app_chooser_dialog;
+pub use self::app_chooser_dialog::AppChooserDialogBuilder;
 pub use self::app_chooser_dialog::{AppChooserDialog, AppChooserDialogClass};
 
 mod app_chooser_widget;
+pub use self::app_chooser_widget::AppChooserWidgetBuilder;
 pub use self::app_chooser_widget::{AppChooserWidget, AppChooserWidgetClass};
 
 mod application;
@@ -41,15 +47,18 @@ pub use self::application::GtkApplicationExt;
 pub use self::application::{Application, ApplicationClass, NONE_APPLICATION};
 
 mod application_window;
+pub use self::application_window::ApplicationWindowBuilder;
 pub use self::application_window::ApplicationWindowExt;
 pub use self::application_window::{
     ApplicationWindow, ApplicationWindowClass, NONE_APPLICATION_WINDOW,
 };
 
 mod aspect_frame;
+pub use self::aspect_frame::AspectFrameBuilder;
 pub use self::aspect_frame::{AspectFrame, AspectFrameClass};
 
 mod assistant;
+pub use self::assistant::AssistantBuilder;
 pub use self::assistant::{Assistant, AssistantClass};
 
 mod assistant_page;
@@ -59,6 +68,7 @@ mod bin_layout;
 pub use self::bin_layout::{BinLayout, BinLayoutClass, NONE_BIN_LAYOUT};
 
 mod box_;
+pub use self::box_::BoxBuilder;
 pub use self::box_::BoxExt;
 pub use self::box_::{Box, BoxClass, NONE_BOX};
 
@@ -74,10 +84,12 @@ mod builder;
 pub use self::builder::{Builder, BuilderClass};
 
 mod button;
+pub use self::button::ButtonBuilder;
 pub use self::button::ButtonExt;
 pub use self::button::{Button, ButtonClass, NONE_BUTTON};
 
 mod calendar;
+pub use self::calendar::CalendarBuilder;
 pub use self::calendar::{Calendar, CalendarClass};
 
 mod cell_area;
@@ -85,6 +97,7 @@ pub use self::cell_area::CellAreaExt;
 pub use self::cell_area::{CellArea, CellAreaClass, NONE_CELL_AREA};
 
 mod cell_area_box;
+pub use self::cell_area_box::CellAreaBoxBuilder;
 pub use self::cell_area_box::{CellAreaBox, CellAreaBoxClass};
 
 mod cell_area_context;
@@ -131,16 +144,20 @@ mod cell_renderer_toggle;
 pub use self::cell_renderer_toggle::{CellRendererToggle, CellRendererToggleClass};
 
 mod cell_view;
+pub use self::cell_view::CellViewBuilder;
 pub use self::cell_view::{CellView, CellViewClass};
 
 mod center_box;
+pub use self::center_box::CenterBoxBuilder;
 pub use self::center_box::{CenterBox, CenterBoxClass};
 
 mod check_button;
+pub use self::check_button::CheckButtonBuilder;
 pub use self::check_button::CheckButtonExt;
 pub use self::check_button::{CheckButton, CheckButtonClass, NONE_CHECK_BUTTON};
 
 mod color_button;
+pub use self::color_button::ColorButtonBuilder;
 pub use self::color_button::{ColorButton, ColorButtonClass};
 
 mod color_chooser;
@@ -148,16 +165,20 @@ pub use self::color_chooser::ColorChooserExt;
 pub use self::color_chooser::{ColorChooser, NONE_COLOR_CHOOSER};
 
 mod color_chooser_dialog;
+pub use self::color_chooser_dialog::ColorChooserDialogBuilder;
 pub use self::color_chooser_dialog::{ColorChooserDialog, ColorChooserDialogClass};
 
 mod color_chooser_widget;
+pub use self::color_chooser_widget::ColorChooserWidgetBuilder;
 pub use self::color_chooser_widget::{ColorChooserWidget, ColorChooserWidgetClass};
 
 mod combo_box;
+pub use self::combo_box::ComboBoxBuilder;
 pub use self::combo_box::ComboBoxExt;
 pub use self::combo_box::{ComboBox, ComboBoxClass, NONE_COMBO_BOX};
 
 mod combo_box_text;
+pub use self::combo_box_text::ComboBoxTextBuilder;
 pub use self::combo_box_text::{ComboBoxText, ComboBoxTextClass};
 
 mod css_provider;
@@ -167,10 +188,12 @@ mod custom_layout;
 pub use self::custom_layout::{CustomLayout, CustomLayoutClass, NONE_CUSTOM_LAYOUT};
 
 mod dialog;
+pub use self::dialog::DialogBuilder;
 pub use self::dialog::DialogExt;
 pub use self::dialog::{Dialog, DialogClass, NONE_DIALOG};
 
 mod drawing_area;
+pub use self::drawing_area::DrawingAreaBuilder;
 pub use self::drawing_area::DrawingAreaExt;
 pub use self::drawing_area::{DrawingArea, DrawingAreaClass, NONE_DRAWING_AREA};
 
@@ -179,6 +202,7 @@ pub use self::editable::EditableExt;
 pub use self::editable::{Editable, NONE_EDITABLE};
 
 mod entry;
+pub use self::entry::EntryBuilder;
 pub use self::entry::EntryExt;
 pub use self::entry::{Entry, EntryClass, NONE_ENTRY};
 
@@ -187,6 +211,7 @@ pub use self::entry_buffer::EntryBufferExt;
 pub use self::entry_buffer::{EntryBuffer, EntryBufferClass, NONE_ENTRY_BUFFER};
 
 mod entry_completion;
+pub use self::entry_completion::EntryCompletionBuilder;
 pub use self::entry_completion::{EntryCompletion, EntryCompletionClass};
 
 mod event_controller;
@@ -206,6 +231,7 @@ mod event_controller_scroll;
 pub use self::event_controller_scroll::{EventControllerScroll, EventControllerScrollClass};
 
 mod expander;
+pub use self::expander::ExpanderBuilder;
 pub use self::expander::{Expander, ExpanderClass};
 
 mod file_chooser;
@@ -213,9 +239,11 @@ pub use self::file_chooser::FileChooserExt;
 pub use self::file_chooser::{FileChooser, NONE_FILE_CHOOSER};
 
 mod file_chooser_button;
+pub use self::file_chooser_button::FileChooserButtonBuilder;
 pub use self::file_chooser_button::{FileChooserButton, FileChooserButtonClass};
 
 mod file_chooser_dialog;
+pub use self::file_chooser_dialog::FileChooserDialogBuilder;
 pub use self::file_chooser_dialog::{FileChooserDialog, FileChooserDialogClass};
 
 mod file_chooser_native;
@@ -225,9 +253,11 @@ pub use self::file_chooser_native::{
 };
 
 mod file_chooser_widget;
+pub use self::file_chooser_widget::FileChooserWidgetBuilder;
 pub use self::file_chooser_widget::{FileChooserWidget, FileChooserWidgetClass};
 
 mod file_filter;
+pub use self::file_filter::FileFilterBuilder;
 pub use self::file_filter::{FileFilter, FileFilterClass};
 
 mod filter_list_model;
@@ -235,6 +265,7 @@ pub use self::filter_list_model::FilterListModelExt;
 pub use self::filter_list_model::{FilterListModel, FilterListModelClass, NONE_FILTER_LIST_MODEL};
 
 mod fixed;
+pub use self::fixed::FixedBuilder;
 pub use self::fixed::FixedExt;
 pub use self::fixed::{Fixed, FixedClass, NONE_FIXED};
 
@@ -254,13 +285,16 @@ pub use self::flatten_list_model::{
 };
 
 mod flow_box;
+pub use self::flow_box::FlowBoxBuilder;
 pub use self::flow_box::{FlowBox, FlowBoxClass};
 
 mod flow_box_child;
+pub use self::flow_box_child::FlowBoxChildBuilder;
 pub use self::flow_box_child::FlowBoxChildExt;
 pub use self::flow_box_child::{FlowBoxChild, FlowBoxChildClass, NONE_FLOW_BOX_CHILD};
 
 mod font_button;
+pub use self::font_button::FontButtonBuilder;
 pub use self::font_button::{FontButton, FontButtonClass};
 
 mod font_chooser;
@@ -268,16 +302,20 @@ pub use self::font_chooser::FontChooserExt;
 pub use self::font_chooser::{FontChooser, NONE_FONT_CHOOSER};
 
 mod font_chooser_dialog;
+pub use self::font_chooser_dialog::FontChooserDialogBuilder;
 pub use self::font_chooser_dialog::{FontChooserDialog, FontChooserDialogClass};
 
 mod font_chooser_widget;
+pub use self::font_chooser_widget::FontChooserWidgetBuilder;
 pub use self::font_chooser_widget::{FontChooserWidget, FontChooserWidgetClass};
 
 mod frame;
+pub use self::frame::FrameBuilder;
 pub use self::frame::FrameExt;
 pub use self::frame::{Frame, FrameClass, NONE_FRAME};
 
 mod gl_area;
+pub use self::gl_area::GLAreaBuilder;
 pub use self::gl_area::GLAreaExt;
 pub use self::gl_area::{GLArea, GLAreaClass, NONE_GL_AREA};
 
@@ -312,6 +350,7 @@ mod gesture_zoom;
 pub use self::gesture_zoom::{GestureZoom, GestureZoomClass};
 
 mod grid;
+pub use self::grid::GridBuilder;
 pub use self::grid::GridExt;
 pub use self::grid::{Grid, GridClass, NONE_GRID};
 
@@ -324,6 +363,7 @@ pub use self::grid_layout_child::GridLayoutChildExt;
 pub use self::grid_layout_child::{GridLayoutChild, GridLayoutChildClass, NONE_GRID_LAYOUT_CHILD};
 
 mod header_bar;
+pub use self::header_bar::HeaderBarBuilder;
 pub use self::header_bar::{HeaderBar, HeaderBarClass};
 
 mod im_context;
@@ -344,12 +384,15 @@ mod icon_view;
 pub use self::icon_view::{IconView, IconViewClass};
 
 mod image;
+pub use self::image::ImageBuilder;
 pub use self::image::{Image, ImageClass};
 
 mod info_bar;
+pub use self::info_bar::InfoBarBuilder;
 pub use self::info_bar::{InfoBar, InfoBarClass};
 
 mod label;
+pub use self::label::LabelBuilder;
 pub use self::label::{Label, LabelClass};
 
 mod layout_child;
@@ -361,15 +404,19 @@ pub use self::layout_manager::LayoutManagerExt;
 pub use self::layout_manager::{LayoutManager, LayoutManagerClass, NONE_LAYOUT_MANAGER};
 
 mod level_bar;
+pub use self::level_bar::LevelBarBuilder;
 pub use self::level_bar::{LevelBar, LevelBarClass};
 
 mod link_button;
+pub use self::link_button::LinkButtonBuilder;
 pub use self::link_button::{LinkButton, LinkButtonClass};
 
 mod list_box;
+pub use self::list_box::ListBoxBuilder;
 pub use self::list_box::{ListBox, ListBoxClass};
 
 mod list_box_row;
+pub use self::list_box_row::ListBoxRowBuilder;
 pub use self::list_box_row::ListBoxRowExt;
 pub use self::list_box_row::{ListBoxRow, ListBoxRowClass, NONE_LIST_BOX_ROW};
 
@@ -378,6 +425,7 @@ pub use self::list_store::GtkListStoreExt;
 pub use self::list_store::{ListStore, ListStoreClass, NONE_LIST_STORE};
 
 mod lock_button;
+pub use self::lock_button::LockButtonBuilder;
 pub use self::lock_button::{LockButton, LockButtonClass};
 
 mod map_list_model;
@@ -385,6 +433,7 @@ pub use self::map_list_model::MapListModelExt;
 pub use self::map_list_model::{MapListModel, MapListModelClass, NONE_MAP_LIST_MODEL};
 
 mod media_controls;
+pub use self::media_controls::MediaControlsBuilder;
 pub use self::media_controls::MediaControlsExt;
 pub use self::media_controls::{MediaControls, MediaControlsClass, NONE_MEDIA_CONTROLS};
 
@@ -397,9 +446,11 @@ pub use self::media_stream::MediaStreamExt;
 pub use self::media_stream::{MediaStream, MediaStreamClass, NONE_MEDIA_STREAM};
 
 mod menu_button;
+pub use self::menu_button::MenuButtonBuilder;
 pub use self::menu_button::{MenuButton, MenuButtonClass};
 
 mod message_dialog;
+pub use self::message_dialog::MessageDialogBuilder;
 pub use self::message_dialog::{MessageDialog, MessageDialogClass};
 
 mod mount_operation;
@@ -411,6 +462,7 @@ pub use self::native_dialog::NativeDialogExt;
 pub use self::native_dialog::{NativeDialog, NativeDialogClass, NONE_NATIVE_DIALOG};
 
 mod notebook;
+pub use self::notebook::NotebookBuilder;
 pub use self::notebook::{Notebook, NotebookClass};
 
 mod notebook_page;
@@ -421,6 +473,7 @@ pub use self::orientable::OrientableExt;
 pub use self::orientable::{Orientable, NONE_ORIENTABLE};
 
 mod overlay;
+pub use self::overlay::OverlayBuilder;
 pub use self::overlay::{Overlay, OverlayClass};
 
 mod pad_controller;
@@ -430,20 +483,25 @@ mod page_setup;
 pub use self::page_setup::{PageSetup, PageSetupClass};
 
 mod paned;
+pub use self::paned::PanedBuilder;
 pub use self::paned::{Paned, PanedClass};
 
 mod password_entry;
+pub use self::password_entry::PasswordEntryBuilder;
 pub use self::password_entry::{PasswordEntry, PasswordEntryClass};
 
 mod picture;
+pub use self::picture::PictureBuilder;
 pub use self::picture::PictureExt;
 pub use self::picture::{Picture, PictureClass, NONE_PICTURE};
 
 mod popover;
+pub use self::popover::PopoverBuilder;
 pub use self::popover::PopoverExt;
 pub use self::popover::{Popover, PopoverClass, NONE_POPOVER};
 
 mod popover_menu;
+pub use self::popover_menu::PopoverMenuBuilder;
 pub use self::popover_menu::{PopoverMenu, PopoverMenuClass};
 
 mod print_context;
@@ -461,12 +519,15 @@ mod print_settings;
 pub use self::print_settings::{PrintSettings, PrintSettingsClass};
 
 mod progress_bar;
+pub use self::progress_bar::ProgressBarBuilder;
 pub use self::progress_bar::{ProgressBar, ProgressBarClass};
 
 mod radio_button;
+pub use self::radio_button::RadioButtonBuilder;
 pub use self::radio_button::{RadioButton, RadioButtonClass};
 
 mod range;
+pub use self::range::RangeBuilder;
 pub use self::range::RangeExt;
 pub use self::range::{Range, RangeClass, NONE_RANGE};
 
@@ -475,6 +536,7 @@ pub use self::recent_manager::RecentManagerExt;
 pub use self::recent_manager::{RecentManager, RecentManagerClass, NONE_RECENT_MANAGER};
 
 mod revealer;
+pub use self::revealer::RevealerBuilder;
 pub use self::revealer::{Revealer, RevealerClass};
 
 mod root;
@@ -482,10 +544,12 @@ pub use self::root::RootExt;
 pub use self::root::{Root, NONE_ROOT};
 
 mod scale;
+pub use self::scale::ScaleBuilder;
 pub use self::scale::ScaleExt;
 pub use self::scale::{Scale, ScaleClass, NONE_SCALE};
 
 mod scale_button;
+pub use self::scale_button::ScaleButtonBuilder;
 pub use self::scale_button::ScaleButtonExt;
 pub use self::scale_button::{ScaleButton, ScaleButtonClass, NONE_SCALE_BUTTON};
 
@@ -494,15 +558,19 @@ pub use self::scrollable::ScrollableExt;
 pub use self::scrollable::{Scrollable, NONE_SCROLLABLE};
 
 mod scrollbar;
+pub use self::scrollbar::ScrollbarBuilder;
 pub use self::scrollbar::{Scrollbar, ScrollbarClass};
 
 mod scrolled_window;
+pub use self::scrolled_window::ScrolledWindowBuilder;
 pub use self::scrolled_window::{ScrolledWindow, ScrolledWindowClass};
 
 mod search_bar;
+pub use self::search_bar::SearchBarBuilder;
 pub use self::search_bar::{SearchBar, SearchBarClass};
 
 mod search_entry;
+pub use self::search_entry::SearchEntryBuilder;
 pub use self::search_entry::{SearchEntry, SearchEntryClass};
 
 mod selection_model;
@@ -510,24 +578,30 @@ pub use self::selection_model::SelectionModelExt;
 pub use self::selection_model::{SelectionModel, NONE_SELECTION_MODEL};
 
 mod separator;
+pub use self::separator::SeparatorBuilder;
 pub use self::separator::{Separator, SeparatorClass};
 
 mod settings;
 pub use self::settings::{Settings, SettingsClass};
 
 mod shortcut_label;
+pub use self::shortcut_label::ShortcutLabelBuilder;
 pub use self::shortcut_label::{ShortcutLabel, ShortcutLabelClass};
 
 mod shortcuts_group;
+pub use self::shortcuts_group::ShortcutsGroupBuilder;
 pub use self::shortcuts_group::{ShortcutsGroup, ShortcutsGroupClass};
 
 mod shortcuts_section;
+pub use self::shortcuts_section::ShortcutsSectionBuilder;
 pub use self::shortcuts_section::{ShortcutsSection, ShortcutsSectionClass};
 
 mod shortcuts_shortcut;
+pub use self::shortcuts_shortcut::ShortcutsShortcutBuilder;
 pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
 
 mod shortcuts_window;
+pub use self::shortcuts_window::ShortcutsWindowBuilder;
 pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass};
 
 mod single_selection;
@@ -535,6 +609,7 @@ pub use self::single_selection::SingleSelectionExt;
 pub use self::single_selection::{SingleSelection, SingleSelectionClass, NONE_SINGLE_SELECTION};
 
 mod size_group;
+pub use self::size_group::SizeGroupBuilder;
 pub use self::size_group::{SizeGroup, SizeGroupClass};
 
 mod slice_list_model;
@@ -549,24 +624,30 @@ pub use self::sort_list_model::SortListModelExt;
 pub use self::sort_list_model::{SortListModel, SortListModelClass, NONE_SORT_LIST_MODEL};
 
 mod spin_button;
+pub use self::spin_button::SpinButtonBuilder;
 pub use self::spin_button::{SpinButton, SpinButtonClass};
 
 mod spinner;
+pub use self::spinner::SpinnerBuilder;
 pub use self::spinner::{Spinner, SpinnerClass};
 
 mod stack;
+pub use self::stack::StackBuilder;
 pub use self::stack::{Stack, StackClass};
 
 mod stack_page;
 pub use self::stack_page::{StackPage, StackPageClass};
 
 mod stack_sidebar;
+pub use self::stack_sidebar::StackSidebarBuilder;
 pub use self::stack_sidebar::{StackSidebar, StackSidebarClass};
 
 mod stack_switcher;
+pub use self::stack_switcher::StackSwitcherBuilder;
 pub use self::stack_switcher::{StackSwitcher, StackSwitcherClass};
 
 mod statusbar;
+pub use self::statusbar::StatusbarBuilder;
 pub use self::statusbar::{Statusbar, StatusbarClass};
 
 mod style_context;
@@ -578,9 +659,11 @@ pub use self::style_provider::StyleProviderExt;
 pub use self::style_provider::{StyleProvider, NONE_STYLE_PROVIDER};
 
 mod switch;
+pub use self::switch::SwitchBuilder;
 pub use self::switch::{Switch, SwitchClass};
 
 mod text;
+pub use self::text::TextBuilder;
 pub use self::text::{Text, TextClass};
 
 mod text_buffer;
@@ -603,10 +686,12 @@ mod text_tag_table;
 pub use self::text_tag_table::{TextTagTable, TextTagTableClass};
 
 mod text_view;
+pub use self::text_view::TextViewBuilder;
 pub use self::text_view::TextViewExt;
 pub use self::text_view::{TextView, TextViewClass, NONE_TEXT_VIEW};
 
 mod toggle_button;
+pub use self::toggle_button::ToggleButtonBuilder;
 pub use self::toggle_button::ToggleButtonExt;
 pub use self::toggle_button::{ToggleButton, ToggleButtonClass, NONE_TOGGLE_BUTTON};
 
@@ -653,20 +738,25 @@ pub use self::tree_store::TreeStoreExt;
 pub use self::tree_store::{TreeStore, TreeStoreClass, NONE_TREE_STORE};
 
 mod tree_view;
+pub use self::tree_view::TreeViewBuilder;
 pub use self::tree_view::TreeViewExt;
 pub use self::tree_view::{TreeView, TreeViewClass, NONE_TREE_VIEW};
 
 mod tree_view_column;
+pub use self::tree_view_column::TreeViewColumnBuilder;
 pub use self::tree_view_column::{TreeViewColumn, TreeViewColumnClass};
 
 mod video;
+pub use self::video::VideoBuilder;
 pub use self::video::VideoExt;
 pub use self::video::{Video, VideoClass, NONE_VIDEO};
 
 mod viewport;
+pub use self::viewport::ViewportBuilder;
 pub use self::viewport::{Viewport, ViewportClass};
 
 mod volume_button;
+pub use self::volume_button::VolumeButtonBuilder;
 pub use self::volume_button::{VolumeButton, VolumeButtonClass};
 
 mod widget;
@@ -679,6 +769,7 @@ pub use self::widget_paintable::{WidgetPaintable, WidgetPaintableClass, NONE_WID
 
 mod window;
 pub use self::window::GtkWindowExt;
+pub use self::window::WindowBuilder;
 pub use self::window::{Window, WindowClass, NONE_WINDOW};
 
 mod window_group;
