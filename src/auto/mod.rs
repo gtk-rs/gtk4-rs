@@ -595,6 +595,10 @@ mod multi_filter;
 pub use self::multi_filter::MultiFilterExt;
 pub use self::multi_filter::{MultiFilter, MultiFilterClass, NONE_MULTI_FILTER};
 
+mod multi_selection;
+pub use self::multi_selection::MultiSelectionExt;
+pub use self::multi_selection::{MultiSelection, MultiSelectionClass, NONE_MULTI_SELECTION};
+
 mod multi_sorter;
 pub use self::multi_sorter::MultiSorterExt;
 pub use self::multi_sorter::{MultiSorter, MultiSorterClass, NONE_MULTI_SORTER};
@@ -605,6 +609,10 @@ pub use self::named_action::{NamedAction, NamedActionClass};
 mod native_dialog;
 pub use self::native_dialog::NativeDialogExt;
 pub use self::native_dialog::{NativeDialog, NativeDialogClass, NONE_NATIVE_DIALOG};
+
+mod no_selection;
+pub use self::no_selection::NoSelectionExt;
+pub use self::no_selection::{NoSelection, NoSelectionClass, NONE_NO_SELECTION};
 
 mod notebook;
 pub use self::notebook::NotebookBuilder;
@@ -1350,8 +1358,10 @@ pub mod traits {
     pub use super::MediaStreamExt;
     pub use super::MountOperationExt;
     pub use super::MultiFilterExt;
+    pub use super::MultiSelectionExt;
     pub use super::MultiSorterExt;
     pub use super::NativeDialogExt;
+    pub use super::NoSelectionExt;
     pub use super::NumericSorterExt;
     pub use super::OrientableExt;
     pub use super::OverlayLayoutChildExt;

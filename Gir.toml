@@ -71,7 +71,8 @@ generate = [
     "Gtk.CenterLayout",
     "Gtk.OverlayLayout",
     "Gtk.OverlayLayoutChild",
-
+    "Gtk.MultiSelection",
+    "Gtk.NoSelection",
     "Gtk.CustomLayout",
     "Gtk.DebugFlag",
     "Gtk.DeleteType",
