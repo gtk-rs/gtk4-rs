@@ -17,6 +17,1076 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum AccessibleAutocomplete {
+    None,
+    Inline,
+    List,
+    Both,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleAutocomplete {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleAutocomplete::{}",
+            match *self {
+                AccessibleAutocomplete::None => "None",
+                AccessibleAutocomplete::Inline => "Inline",
+                AccessibleAutocomplete::List => "List",
+                AccessibleAutocomplete::Both => "Both",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleAutocomplete {
+    type GlibType = gtk_sys::GtkAccessibleAutocomplete;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleAutocomplete {
+        match *self {
+            AccessibleAutocomplete::None => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_NONE,
+            AccessibleAutocomplete::Inline => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE,
+            AccessibleAutocomplete::List => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_LIST,
+            AccessibleAutocomplete::Both => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH,
+            AccessibleAutocomplete::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleAutocomplete> for AccessibleAutocomplete {
+    fn from_glib(value: gtk_sys::GtkAccessibleAutocomplete) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleAutocomplete::None,
+            1 => AccessibleAutocomplete::Inline,
+            2 => AccessibleAutocomplete::List,
+            3 => AccessibleAutocomplete::Both,
+            value => AccessibleAutocomplete::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleAutocomplete {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_autocomplete_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleAutocomplete {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleAutocomplete {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleAutocomplete {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleInvalidState {
+    False,
+    True,
+    Grammar,
+    Spelling,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleInvalidState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleInvalidState::{}",
+            match *self {
+                AccessibleInvalidState::False => "False",
+                AccessibleInvalidState::True => "True",
+                AccessibleInvalidState::Grammar => "Grammar",
+                AccessibleInvalidState::Spelling => "Spelling",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleInvalidState {
+    type GlibType = gtk_sys::GtkAccessibleInvalidState;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleInvalidState {
+        match *self {
+            AccessibleInvalidState::False => gtk_sys::GTK_ACCESSIBLE_INVALID_FALSE,
+            AccessibleInvalidState::True => gtk_sys::GTK_ACCESSIBLE_INVALID_TRUE,
+            AccessibleInvalidState::Grammar => gtk_sys::GTK_ACCESSIBLE_INVALID_GRAMMAR,
+            AccessibleInvalidState::Spelling => gtk_sys::GTK_ACCESSIBLE_INVALID_SPELLING,
+            AccessibleInvalidState::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleInvalidState> for AccessibleInvalidState {
+    fn from_glib(value: gtk_sys::GtkAccessibleInvalidState) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleInvalidState::False,
+            1 => AccessibleInvalidState::True,
+            2 => AccessibleInvalidState::Grammar,
+            3 => AccessibleInvalidState::Spelling,
+            value => AccessibleInvalidState::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleInvalidState {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_invalid_state_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleInvalidState {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleInvalidState {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleInvalidState {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleProperty {
+    Autocomplete,
+    Description,
+    HasPopup,
+    KeyShortcuts,
+    Label,
+    Level,
+    Modal,
+    MultiLine,
+    MultiSelectable,
+    Orientation,
+    Placeholder,
+    ReadOnly,
+    Required,
+    RoleDescription,
+    Sort,
+    ValueMax,
+    ValueMin,
+    ValueNow,
+    ValueText,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleProperty {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleProperty::{}",
+            match *self {
+                AccessibleProperty::Autocomplete => "Autocomplete",
+                AccessibleProperty::Description => "Description",
+                AccessibleProperty::HasPopup => "HasPopup",
+                AccessibleProperty::KeyShortcuts => "KeyShortcuts",
+                AccessibleProperty::Label => "Label",
+                AccessibleProperty::Level => "Level",
+                AccessibleProperty::Modal => "Modal",
+                AccessibleProperty::MultiLine => "MultiLine",
+                AccessibleProperty::MultiSelectable => "MultiSelectable",
+                AccessibleProperty::Orientation => "Orientation",
+                AccessibleProperty::Placeholder => "Placeholder",
+                AccessibleProperty::ReadOnly => "ReadOnly",
+                AccessibleProperty::Required => "Required",
+                AccessibleProperty::RoleDescription => "RoleDescription",
+                AccessibleProperty::Sort => "Sort",
+                AccessibleProperty::ValueMax => "ValueMax",
+                AccessibleProperty::ValueMin => "ValueMin",
+                AccessibleProperty::ValueNow => "ValueNow",
+                AccessibleProperty::ValueText => "ValueText",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleProperty {
+    type GlibType = gtk_sys::GtkAccessibleProperty;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleProperty {
+        match *self {
+            AccessibleProperty::Autocomplete => gtk_sys::GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE,
+            AccessibleProperty::Description => gtk_sys::GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+            AccessibleProperty::HasPopup => gtk_sys::GTK_ACCESSIBLE_PROPERTY_HAS_POPUP,
+            AccessibleProperty::KeyShortcuts => gtk_sys::GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS,
+            AccessibleProperty::Label => gtk_sys::GTK_ACCESSIBLE_PROPERTY_LABEL,
+            AccessibleProperty::Level => gtk_sys::GTK_ACCESSIBLE_PROPERTY_LEVEL,
+            AccessibleProperty::Modal => gtk_sys::GTK_ACCESSIBLE_PROPERTY_MODAL,
+            AccessibleProperty::MultiLine => gtk_sys::GTK_ACCESSIBLE_PROPERTY_MULTI_LINE,
+            AccessibleProperty::MultiSelectable => {
+                gtk_sys::GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE
+            }
+            AccessibleProperty::Orientation => gtk_sys::GTK_ACCESSIBLE_PROPERTY_ORIENTATION,
+            AccessibleProperty::Placeholder => gtk_sys::GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER,
+            AccessibleProperty::ReadOnly => gtk_sys::GTK_ACCESSIBLE_PROPERTY_READ_ONLY,
+            AccessibleProperty::Required => gtk_sys::GTK_ACCESSIBLE_PROPERTY_REQUIRED,
+            AccessibleProperty::RoleDescription => {
+                gtk_sys::GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION
+            }
+            AccessibleProperty::Sort => gtk_sys::GTK_ACCESSIBLE_PROPERTY_SORT,
+            AccessibleProperty::ValueMax => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_MAX,
+            AccessibleProperty::ValueMin => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN,
+            AccessibleProperty::ValueNow => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW,
+            AccessibleProperty::ValueText => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT,
+            AccessibleProperty::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleProperty> for AccessibleProperty {
+    fn from_glib(value: gtk_sys::GtkAccessibleProperty) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleProperty::Autocomplete,
+            1 => AccessibleProperty::Description,
+            2 => AccessibleProperty::HasPopup,
+            3 => AccessibleProperty::KeyShortcuts,
+            4 => AccessibleProperty::Label,
+            5 => AccessibleProperty::Level,
+            6 => AccessibleProperty::Modal,
+            7 => AccessibleProperty::MultiLine,
+            8 => AccessibleProperty::MultiSelectable,
+            9 => AccessibleProperty::Orientation,
+            10 => AccessibleProperty::Placeholder,
+            11 => AccessibleProperty::ReadOnly,
+            12 => AccessibleProperty::Required,
+            13 => AccessibleProperty::RoleDescription,
+            14 => AccessibleProperty::Sort,
+            15 => AccessibleProperty::ValueMax,
+            16 => AccessibleProperty::ValueMin,
+            17 => AccessibleProperty::ValueNow,
+            18 => AccessibleProperty::ValueText,
+            value => AccessibleProperty::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleProperty {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_property_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleProperty {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleProperty {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleProperty {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleRelation {
+    ActiveDescendant,
+    ColCount,
+    ColIndex,
+    ColIndexText,
+    ColSpan,
+    Controls,
+    DescribedBy,
+    Details,
+    ErrorMessage,
+    FlowTo,
+    LabelledBy,
+    Owns,
+    PosInSet,
+    RowCount,
+    RowIndex,
+    RowIndexText,
+    RowSpan,
+    SetSize,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleRelation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleRelation::{}",
+            match *self {
+                AccessibleRelation::ActiveDescendant => "ActiveDescendant",
+                AccessibleRelation::ColCount => "ColCount",
+                AccessibleRelation::ColIndex => "ColIndex",
+                AccessibleRelation::ColIndexText => "ColIndexText",
+                AccessibleRelation::ColSpan => "ColSpan",
+                AccessibleRelation::Controls => "Controls",
+                AccessibleRelation::DescribedBy => "DescribedBy",
+                AccessibleRelation::Details => "Details",
+                AccessibleRelation::ErrorMessage => "ErrorMessage",
+                AccessibleRelation::FlowTo => "FlowTo",
+                AccessibleRelation::LabelledBy => "LabelledBy",
+                AccessibleRelation::Owns => "Owns",
+                AccessibleRelation::PosInSet => "PosInSet",
+                AccessibleRelation::RowCount => "RowCount",
+                AccessibleRelation::RowIndex => "RowIndex",
+                AccessibleRelation::RowIndexText => "RowIndexText",
+                AccessibleRelation::RowSpan => "RowSpan",
+                AccessibleRelation::SetSize => "SetSize",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleRelation {
+    type GlibType = gtk_sys::GtkAccessibleRelation;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleRelation {
+        match *self {
+            AccessibleRelation::ActiveDescendant => {
+                gtk_sys::GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT
+            }
+            AccessibleRelation::ColCount => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_COUNT,
+            AccessibleRelation::ColIndex => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_INDEX,
+            AccessibleRelation::ColIndexText => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT,
+            AccessibleRelation::ColSpan => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_SPAN,
+            AccessibleRelation::Controls => gtk_sys::GTK_ACCESSIBLE_RELATION_CONTROLS,
+            AccessibleRelation::DescribedBy => gtk_sys::GTK_ACCESSIBLE_RELATION_DESCRIBED_BY,
+            AccessibleRelation::Details => gtk_sys::GTK_ACCESSIBLE_RELATION_DETAILS,
+            AccessibleRelation::ErrorMessage => gtk_sys::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE,
+            AccessibleRelation::FlowTo => gtk_sys::GTK_ACCESSIBLE_RELATION_FLOW_TO,
+            AccessibleRelation::LabelledBy => gtk_sys::GTK_ACCESSIBLE_RELATION_LABELLED_BY,
+            AccessibleRelation::Owns => gtk_sys::GTK_ACCESSIBLE_RELATION_OWNS,
+            AccessibleRelation::PosInSet => gtk_sys::GTK_ACCESSIBLE_RELATION_POS_IN_SET,
+            AccessibleRelation::RowCount => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_COUNT,
+            AccessibleRelation::RowIndex => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_INDEX,
+            AccessibleRelation::RowIndexText => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT,
+            AccessibleRelation::RowSpan => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_SPAN,
+            AccessibleRelation::SetSize => gtk_sys::GTK_ACCESSIBLE_RELATION_SET_SIZE,
+            AccessibleRelation::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleRelation> for AccessibleRelation {
+    fn from_glib(value: gtk_sys::GtkAccessibleRelation) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleRelation::ActiveDescendant,
+            1 => AccessibleRelation::ColCount,
+            2 => AccessibleRelation::ColIndex,
+            3 => AccessibleRelation::ColIndexText,
+            4 => AccessibleRelation::ColSpan,
+            5 => AccessibleRelation::Controls,
+            6 => AccessibleRelation::DescribedBy,
+            7 => AccessibleRelation::Details,
+            8 => AccessibleRelation::ErrorMessage,
+            9 => AccessibleRelation::FlowTo,
+            10 => AccessibleRelation::LabelledBy,
+            11 => AccessibleRelation::Owns,
+            12 => AccessibleRelation::PosInSet,
+            13 => AccessibleRelation::RowCount,
+            14 => AccessibleRelation::RowIndex,
+            15 => AccessibleRelation::RowIndexText,
+            16 => AccessibleRelation::RowSpan,
+            17 => AccessibleRelation::SetSize,
+            value => AccessibleRelation::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleRelation {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_relation_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleRelation {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleRelation {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleRelation {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleRole {
+    Alert,
+    AlertDialog,
+    Banner,
+    Button,
+    Caption,
+    Cell,
+    Checkbox,
+    ColumnHeader,
+    ComboBox,
+    Command,
+    Composite,
+    Dialog,
+    Document,
+    Feed,
+    Form,
+    Generic,
+    Grid,
+    GridCell,
+    Group,
+    Heading,
+    Img,
+    Input,
+    Label,
+    Landmark,
+    Legend,
+    Link,
+    List,
+    ListBox,
+    ListItem,
+    Log,
+    Main,
+    Marquee,
+    Math,
+    Meter,
+    Menu,
+    MenuBar,
+    MenuItem,
+    MenuItemCheckbox,
+    MenuItemRadio,
+    Navigation,
+    None,
+    Note,
+    Option,
+    Presentation,
+    ProgressBar,
+    Radio,
+    RadioGroup,
+    Range,
+    Region,
+    Row,
+    RowGroup,
+    RowHeader,
+    Scrollbar,
+    Search,
+    SearchBox,
+    Section,
+    SectionHead,
+    Select,
+    Separator,
+    Slider,
+    SpinButton,
+    Status,
+    Structure,
+    Switch,
+    Tab,
+    Table,
+    TabList,
+    TabPanel,
+    TextBox,
+    Time,
+    Timer,
+    Toolbar,
+    Tooltip,
+    Tree,
+    TreeGrid,
+    TreeItem,
+    Widget,
+    Window,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleRole {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleRole::{}",
+            match *self {
+                AccessibleRole::Alert => "Alert",
+                AccessibleRole::AlertDialog => "AlertDialog",
+                AccessibleRole::Banner => "Banner",
+                AccessibleRole::Button => "Button",
+                AccessibleRole::Caption => "Caption",
+                AccessibleRole::Cell => "Cell",
+                AccessibleRole::Checkbox => "Checkbox",
+                AccessibleRole::ColumnHeader => "ColumnHeader",
+                AccessibleRole::ComboBox => "ComboBox",
+                AccessibleRole::Command => "Command",
+                AccessibleRole::Composite => "Composite",
+                AccessibleRole::Dialog => "Dialog",
+                AccessibleRole::Document => "Document",
+                AccessibleRole::Feed => "Feed",
+                AccessibleRole::Form => "Form",
+                AccessibleRole::Generic => "Generic",
+                AccessibleRole::Grid => "Grid",
+                AccessibleRole::GridCell => "GridCell",
+                AccessibleRole::Group => "Group",
+                AccessibleRole::Heading => "Heading",
+                AccessibleRole::Img => "Img",
+                AccessibleRole::Input => "Input",
+                AccessibleRole::Label => "Label",
+                AccessibleRole::Landmark => "Landmark",
+                AccessibleRole::Legend => "Legend",
+                AccessibleRole::Link => "Link",
+                AccessibleRole::List => "List",
+                AccessibleRole::ListBox => "ListBox",
+                AccessibleRole::ListItem => "ListItem",
+                AccessibleRole::Log => "Log",
+                AccessibleRole::Main => "Main",
+                AccessibleRole::Marquee => "Marquee",
+                AccessibleRole::Math => "Math",
+                AccessibleRole::Meter => "Meter",
+                AccessibleRole::Menu => "Menu",
+                AccessibleRole::MenuBar => "MenuBar",
+                AccessibleRole::MenuItem => "MenuItem",
+                AccessibleRole::MenuItemCheckbox => "MenuItemCheckbox",
+                AccessibleRole::MenuItemRadio => "MenuItemRadio",
+                AccessibleRole::Navigation => "Navigation",
+                AccessibleRole::None => "None",
+                AccessibleRole::Note => "Note",
+                AccessibleRole::Option => "Option",
+                AccessibleRole::Presentation => "Presentation",
+                AccessibleRole::ProgressBar => "ProgressBar",
+                AccessibleRole::Radio => "Radio",
+                AccessibleRole::RadioGroup => "RadioGroup",
+                AccessibleRole::Range => "Range",
+                AccessibleRole::Region => "Region",
+                AccessibleRole::Row => "Row",
+                AccessibleRole::RowGroup => "RowGroup",
+                AccessibleRole::RowHeader => "RowHeader",
+                AccessibleRole::Scrollbar => "Scrollbar",
+                AccessibleRole::Search => "Search",
+                AccessibleRole::SearchBox => "SearchBox",
+                AccessibleRole::Section => "Section",
+                AccessibleRole::SectionHead => "SectionHead",
+                AccessibleRole::Select => "Select",
+                AccessibleRole::Separator => "Separator",
+                AccessibleRole::Slider => "Slider",
+                AccessibleRole::SpinButton => "SpinButton",
+                AccessibleRole::Status => "Status",
+                AccessibleRole::Structure => "Structure",
+                AccessibleRole::Switch => "Switch",
+                AccessibleRole::Tab => "Tab",
+                AccessibleRole::Table => "Table",
+                AccessibleRole::TabList => "TabList",
+                AccessibleRole::TabPanel => "TabPanel",
+                AccessibleRole::TextBox => "TextBox",
+                AccessibleRole::Time => "Time",
+                AccessibleRole::Timer => "Timer",
+                AccessibleRole::Toolbar => "Toolbar",
+                AccessibleRole::Tooltip => "Tooltip",
+                AccessibleRole::Tree => "Tree",
+                AccessibleRole::TreeGrid => "TreeGrid",
+                AccessibleRole::TreeItem => "TreeItem",
+                AccessibleRole::Widget => "Widget",
+                AccessibleRole::Window => "Window",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleRole {
+    type GlibType = gtk_sys::GtkAccessibleRole;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleRole {
+        match *self {
+            AccessibleRole::Alert => gtk_sys::GTK_ACCESSIBLE_ROLE_ALERT,
+            AccessibleRole::AlertDialog => gtk_sys::GTK_ACCESSIBLE_ROLE_ALERT_DIALOG,
+            AccessibleRole::Banner => gtk_sys::GTK_ACCESSIBLE_ROLE_BANNER,
+            AccessibleRole::Button => gtk_sys::GTK_ACCESSIBLE_ROLE_BUTTON,
+            AccessibleRole::Caption => gtk_sys::GTK_ACCESSIBLE_ROLE_CAPTION,
+            AccessibleRole::Cell => gtk_sys::GTK_ACCESSIBLE_ROLE_CELL,
+            AccessibleRole::Checkbox => gtk_sys::GTK_ACCESSIBLE_ROLE_CHECKBOX,
+            AccessibleRole::ColumnHeader => gtk_sys::GTK_ACCESSIBLE_ROLE_COLUMN_HEADER,
+            AccessibleRole::ComboBox => gtk_sys::GTK_ACCESSIBLE_ROLE_COMBO_BOX,
+            AccessibleRole::Command => gtk_sys::GTK_ACCESSIBLE_ROLE_COMMAND,
+            AccessibleRole::Composite => gtk_sys::GTK_ACCESSIBLE_ROLE_COMPOSITE,
+            AccessibleRole::Dialog => gtk_sys::GTK_ACCESSIBLE_ROLE_DIALOG,
+            AccessibleRole::Document => gtk_sys::GTK_ACCESSIBLE_ROLE_DOCUMENT,
+            AccessibleRole::Feed => gtk_sys::GTK_ACCESSIBLE_ROLE_FEED,
+            AccessibleRole::Form => gtk_sys::GTK_ACCESSIBLE_ROLE_FORM,
+            AccessibleRole::Generic => gtk_sys::GTK_ACCESSIBLE_ROLE_GENERIC,
+            AccessibleRole::Grid => gtk_sys::GTK_ACCESSIBLE_ROLE_GRID,
+            AccessibleRole::GridCell => gtk_sys::GTK_ACCESSIBLE_ROLE_GRID_CELL,
+            AccessibleRole::Group => gtk_sys::GTK_ACCESSIBLE_ROLE_GROUP,
+            AccessibleRole::Heading => gtk_sys::GTK_ACCESSIBLE_ROLE_HEADING,
+            AccessibleRole::Img => gtk_sys::GTK_ACCESSIBLE_ROLE_IMG,
+            AccessibleRole::Input => gtk_sys::GTK_ACCESSIBLE_ROLE_INPUT,
+            AccessibleRole::Label => gtk_sys::GTK_ACCESSIBLE_ROLE_LABEL,
+            AccessibleRole::Landmark => gtk_sys::GTK_ACCESSIBLE_ROLE_LANDMARK,
+            AccessibleRole::Legend => gtk_sys::GTK_ACCESSIBLE_ROLE_LEGEND,
+            AccessibleRole::Link => gtk_sys::GTK_ACCESSIBLE_ROLE_LINK,
+            AccessibleRole::List => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST,
+            AccessibleRole::ListBox => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST_BOX,
+            AccessibleRole::ListItem => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST_ITEM,
+            AccessibleRole::Log => gtk_sys::GTK_ACCESSIBLE_ROLE_LOG,
+            AccessibleRole::Main => gtk_sys::GTK_ACCESSIBLE_ROLE_MAIN,
+            AccessibleRole::Marquee => gtk_sys::GTK_ACCESSIBLE_ROLE_MARQUEE,
+            AccessibleRole::Math => gtk_sys::GTK_ACCESSIBLE_ROLE_MATH,
+            AccessibleRole::Meter => gtk_sys::GTK_ACCESSIBLE_ROLE_METER,
+            AccessibleRole::Menu => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU,
+            AccessibleRole::MenuBar => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_BAR,
+            AccessibleRole::MenuItem => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM,
+            AccessibleRole::MenuItemCheckbox => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX,
+            AccessibleRole::MenuItemRadio => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO,
+            AccessibleRole::Navigation => gtk_sys::GTK_ACCESSIBLE_ROLE_NAVIGATION,
+            AccessibleRole::None => gtk_sys::GTK_ACCESSIBLE_ROLE_NONE,
+            AccessibleRole::Note => gtk_sys::GTK_ACCESSIBLE_ROLE_NOTE,
+            AccessibleRole::Option => gtk_sys::GTK_ACCESSIBLE_ROLE_OPTION,
+            AccessibleRole::Presentation => gtk_sys::GTK_ACCESSIBLE_ROLE_PRESENTATION,
+            AccessibleRole::ProgressBar => gtk_sys::GTK_ACCESSIBLE_ROLE_PROGRESS_BAR,
+            AccessibleRole::Radio => gtk_sys::GTK_ACCESSIBLE_ROLE_RADIO,
+            AccessibleRole::RadioGroup => gtk_sys::GTK_ACCESSIBLE_ROLE_RADIO_GROUP,
+            AccessibleRole::Range => gtk_sys::GTK_ACCESSIBLE_ROLE_RANGE,
+            AccessibleRole::Region => gtk_sys::GTK_ACCESSIBLE_ROLE_REGION,
+            AccessibleRole::Row => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW,
+            AccessibleRole::RowGroup => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW_GROUP,
+            AccessibleRole::RowHeader => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW_HEADER,
+            AccessibleRole::Scrollbar => gtk_sys::GTK_ACCESSIBLE_ROLE_SCROLLBAR,
+            AccessibleRole::Search => gtk_sys::GTK_ACCESSIBLE_ROLE_SEARCH,
+            AccessibleRole::SearchBox => gtk_sys::GTK_ACCESSIBLE_ROLE_SEARCH_BOX,
+            AccessibleRole::Section => gtk_sys::GTK_ACCESSIBLE_ROLE_SECTION,
+            AccessibleRole::SectionHead => gtk_sys::GTK_ACCESSIBLE_ROLE_SECTION_HEAD,
+            AccessibleRole::Select => gtk_sys::GTK_ACCESSIBLE_ROLE_SELECT,
+            AccessibleRole::Separator => gtk_sys::GTK_ACCESSIBLE_ROLE_SEPARATOR,
+            AccessibleRole::Slider => gtk_sys::GTK_ACCESSIBLE_ROLE_SLIDER,
+            AccessibleRole::SpinButton => gtk_sys::GTK_ACCESSIBLE_ROLE_SPIN_BUTTON,
+            AccessibleRole::Status => gtk_sys::GTK_ACCESSIBLE_ROLE_STATUS,
+            AccessibleRole::Structure => gtk_sys::GTK_ACCESSIBLE_ROLE_STRUCTURE,
+            AccessibleRole::Switch => gtk_sys::GTK_ACCESSIBLE_ROLE_SWITCH,
+            AccessibleRole::Tab => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB,
+            AccessibleRole::Table => gtk_sys::GTK_ACCESSIBLE_ROLE_TABLE,
+            AccessibleRole::TabList => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB_LIST,
+            AccessibleRole::TabPanel => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB_PANEL,
+            AccessibleRole::TextBox => gtk_sys::GTK_ACCESSIBLE_ROLE_TEXT_BOX,
+            AccessibleRole::Time => gtk_sys::GTK_ACCESSIBLE_ROLE_TIME,
+            AccessibleRole::Timer => gtk_sys::GTK_ACCESSIBLE_ROLE_TIMER,
+            AccessibleRole::Toolbar => gtk_sys::GTK_ACCESSIBLE_ROLE_TOOLBAR,
+            AccessibleRole::Tooltip => gtk_sys::GTK_ACCESSIBLE_ROLE_TOOLTIP,
+            AccessibleRole::Tree => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE,
+            AccessibleRole::TreeGrid => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE_GRID,
+            AccessibleRole::TreeItem => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
+            AccessibleRole::Widget => gtk_sys::GTK_ACCESSIBLE_ROLE_WIDGET,
+            AccessibleRole::Window => gtk_sys::GTK_ACCESSIBLE_ROLE_WINDOW,
+            AccessibleRole::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleRole> for AccessibleRole {
+    fn from_glib(value: gtk_sys::GtkAccessibleRole) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleRole::Alert,
+            1 => AccessibleRole::AlertDialog,
+            2 => AccessibleRole::Banner,
+            3 => AccessibleRole::Button,
+            4 => AccessibleRole::Caption,
+            5 => AccessibleRole::Cell,
+            6 => AccessibleRole::Checkbox,
+            7 => AccessibleRole::ColumnHeader,
+            8 => AccessibleRole::ComboBox,
+            9 => AccessibleRole::Command,
+            10 => AccessibleRole::Composite,
+            11 => AccessibleRole::Dialog,
+            12 => AccessibleRole::Document,
+            13 => AccessibleRole::Feed,
+            14 => AccessibleRole::Form,
+            15 => AccessibleRole::Generic,
+            16 => AccessibleRole::Grid,
+            17 => AccessibleRole::GridCell,
+            18 => AccessibleRole::Group,
+            19 => AccessibleRole::Heading,
+            20 => AccessibleRole::Img,
+            21 => AccessibleRole::Input,
+            22 => AccessibleRole::Label,
+            23 => AccessibleRole::Landmark,
+            24 => AccessibleRole::Legend,
+            25 => AccessibleRole::Link,
+            26 => AccessibleRole::List,
+            27 => AccessibleRole::ListBox,
+            28 => AccessibleRole::ListItem,
+            29 => AccessibleRole::Log,
+            30 => AccessibleRole::Main,
+            31 => AccessibleRole::Marquee,
+            32 => AccessibleRole::Math,
+            33 => AccessibleRole::Meter,
+            34 => AccessibleRole::Menu,
+            35 => AccessibleRole::MenuBar,
+            36 => AccessibleRole::MenuItem,
+            37 => AccessibleRole::MenuItemCheckbox,
+            38 => AccessibleRole::MenuItemRadio,
+            39 => AccessibleRole::Navigation,
+            40 => AccessibleRole::None,
+            41 => AccessibleRole::Note,
+            42 => AccessibleRole::Option,
+            43 => AccessibleRole::Presentation,
+            44 => AccessibleRole::ProgressBar,
+            45 => AccessibleRole::Radio,
+            46 => AccessibleRole::RadioGroup,
+            47 => AccessibleRole::Range,
+            48 => AccessibleRole::Region,
+            49 => AccessibleRole::Row,
+            50 => AccessibleRole::RowGroup,
+            51 => AccessibleRole::RowHeader,
+            52 => AccessibleRole::Scrollbar,
+            53 => AccessibleRole::Search,
+            54 => AccessibleRole::SearchBox,
+            55 => AccessibleRole::Section,
+            56 => AccessibleRole::SectionHead,
+            57 => AccessibleRole::Select,
+            58 => AccessibleRole::Separator,
+            59 => AccessibleRole::Slider,
+            60 => AccessibleRole::SpinButton,
+            61 => AccessibleRole::Status,
+            62 => AccessibleRole::Structure,
+            63 => AccessibleRole::Switch,
+            64 => AccessibleRole::Tab,
+            65 => AccessibleRole::Table,
+            66 => AccessibleRole::TabList,
+            67 => AccessibleRole::TabPanel,
+            68 => AccessibleRole::TextBox,
+            69 => AccessibleRole::Time,
+            70 => AccessibleRole::Timer,
+            71 => AccessibleRole::Toolbar,
+            72 => AccessibleRole::Tooltip,
+            73 => AccessibleRole::Tree,
+            74 => AccessibleRole::TreeGrid,
+            75 => AccessibleRole::TreeItem,
+            76 => AccessibleRole::Widget,
+            77 => AccessibleRole::Window,
+            value => AccessibleRole::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleRole {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_role_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleRole {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleRole {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleRole {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleSort {
+    None,
+    Ascending,
+    Descending,
+    Other,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleSort {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleSort::{}",
+            match *self {
+                AccessibleSort::None => "None",
+                AccessibleSort::Ascending => "Ascending",
+                AccessibleSort::Descending => "Descending",
+                AccessibleSort::Other => "Other",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleSort {
+    type GlibType = gtk_sys::GtkAccessibleSort;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleSort {
+        match *self {
+            AccessibleSort::None => gtk_sys::GTK_ACCESSIBLE_SORT_NONE,
+            AccessibleSort::Ascending => gtk_sys::GTK_ACCESSIBLE_SORT_ASCENDING,
+            AccessibleSort::Descending => gtk_sys::GTK_ACCESSIBLE_SORT_DESCENDING,
+            AccessibleSort::Other => gtk_sys::GTK_ACCESSIBLE_SORT_OTHER,
+            AccessibleSort::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleSort> for AccessibleSort {
+    fn from_glib(value: gtk_sys::GtkAccessibleSort) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleSort::None,
+            1 => AccessibleSort::Ascending,
+            2 => AccessibleSort::Descending,
+            3 => AccessibleSort::Other,
+            value => AccessibleSort::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleSort {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_sort_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleSort {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleSort {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleSort {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleState {
+    Busy,
+    Checked,
+    Disabled,
+    Expanded,
+    Hidden,
+    Invalid,
+    Pressed,
+    Selected,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleState::{}",
+            match *self {
+                AccessibleState::Busy => "Busy",
+                AccessibleState::Checked => "Checked",
+                AccessibleState::Disabled => "Disabled",
+                AccessibleState::Expanded => "Expanded",
+                AccessibleState::Hidden => "Hidden",
+                AccessibleState::Invalid => "Invalid",
+                AccessibleState::Pressed => "Pressed",
+                AccessibleState::Selected => "Selected",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleState {
+    type GlibType = gtk_sys::GtkAccessibleState;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleState {
+        match *self {
+            AccessibleState::Busy => gtk_sys::GTK_ACCESSIBLE_STATE_BUSY,
+            AccessibleState::Checked => gtk_sys::GTK_ACCESSIBLE_STATE_CHECKED,
+            AccessibleState::Disabled => gtk_sys::GTK_ACCESSIBLE_STATE_DISABLED,
+            AccessibleState::Expanded => gtk_sys::GTK_ACCESSIBLE_STATE_EXPANDED,
+            AccessibleState::Hidden => gtk_sys::GTK_ACCESSIBLE_STATE_HIDDEN,
+            AccessibleState::Invalid => gtk_sys::GTK_ACCESSIBLE_STATE_INVALID,
+            AccessibleState::Pressed => gtk_sys::GTK_ACCESSIBLE_STATE_PRESSED,
+            AccessibleState::Selected => gtk_sys::GTK_ACCESSIBLE_STATE_SELECTED,
+            AccessibleState::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleState> for AccessibleState {
+    fn from_glib(value: gtk_sys::GtkAccessibleState) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleState::Busy,
+            1 => AccessibleState::Checked,
+            2 => AccessibleState::Disabled,
+            3 => AccessibleState::Expanded,
+            4 => AccessibleState::Hidden,
+            5 => AccessibleState::Invalid,
+            6 => AccessibleState::Pressed,
+            7 => AccessibleState::Selected,
+            value => AccessibleState::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleState {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_state_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleState {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleState {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleState {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleTristate {
+    False,
+    True,
+    Mixed,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleTristate {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleTristate::{}",
+            match *self {
+                AccessibleTristate::False => "False",
+                AccessibleTristate::True => "True",
+                AccessibleTristate::Mixed => "Mixed",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleTristate {
+    type GlibType = gtk_sys::GtkAccessibleTristate;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleTristate {
+        match *self {
+            AccessibleTristate::False => gtk_sys::GTK_ACCESSIBLE_TRISTATE_FALSE,
+            AccessibleTristate::True => gtk_sys::GTK_ACCESSIBLE_TRISTATE_TRUE,
+            AccessibleTristate::Mixed => gtk_sys::GTK_ACCESSIBLE_TRISTATE_MIXED,
+            AccessibleTristate::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleTristate> for AccessibleTristate {
+    fn from_glib(value: gtk_sys::GtkAccessibleTristate) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleTristate::False,
+            1 => AccessibleTristate::True,
+            2 => AccessibleTristate::Mixed,
+            value => AccessibleTristate::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleTristate {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_tristate_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleTristate {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleTristate {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleTristate {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Align {
     Fill,
     Start,

@@ -18,6 +18,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use Accessible;
+use AccessibleRole;
 use Align;
 use Buildable;
 use LayoutManager;
@@ -78,7 +79,7 @@ pub struct DrawingAreaBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    //accessible-role: /*Unknown type*/,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl DrawingAreaBuilder {
@@ -180,6 +181,9 @@ impl DrawingAreaBuilder {
         }
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
+        }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         let ret = glib::Object::new(DrawingArea::static_type(), &properties)
             .expect("object new")
@@ -340,6 +344,11 @@ impl DrawingAreaBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 }

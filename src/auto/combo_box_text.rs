@@ -12,6 +12,7 @@ use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use Accessible;
+use AccessibleRole;
 use Align;
 use Buildable;
 use CellEditable;
@@ -165,7 +166,7 @@ pub struct ComboBoxTextBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    //accessible-role: /*Unknown type*/,
+    accessible_role: Option<AccessibleRole>,
     editing_canceled: Option<bool>,
 }
 
@@ -292,6 +293,9 @@ impl ComboBoxTextBuilder {
         }
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
+        }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         if let Some(ref editing_canceled) = self.editing_canceled {
             properties.push(("editing-canceled", editing_canceled));
@@ -495,6 +499,11 @@ impl ComboBoxTextBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 

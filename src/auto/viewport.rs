@@ -17,6 +17,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use Accessible;
+use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
@@ -163,7 +164,7 @@ pub struct ViewportBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    //accessible-role: /*Unknown type*/,
+    accessible_role: Option<AccessibleRole>,
     hadjustment: Option<Adjustment>,
     hscroll_policy: Option<ScrollablePolicy>,
     vadjustment: Option<Adjustment>,
@@ -269,6 +270,9 @@ impl ViewportBuilder {
         }
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
+        }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         if let Some(ref hadjustment) = self.hadjustment {
             properties.push(("hadjustment", hadjustment));
@@ -441,6 +445,11 @@ impl ViewportBuilder {
 
     pub fn width_request(mut self, width_request: i32) -> Self {
         self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 

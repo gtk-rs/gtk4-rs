@@ -10,7 +10,16 @@ deprecate_by_min_version = true
 single_version_file = true
 
 generate = [
+    "Gtk.ATContext",
     "Gtk.Accessible",
+    "Gtk.AccessibleRole",
+    "Gtk.AccessibleProperty",
+    "Gtk.AccessibleRelation",
+    "Gtk.AccessibleState",
+    "Gtk.AccessibleAutocomplete",
+    "Gtk.AccessibleInvalidState",
+    "Gtk.AccessibleSort",
+    "Gtk.AccessibleTristate",
     "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.Allocation",

@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+mod at_context;
+pub use self::at_context::{ATContext, ATContextClass};
+
 mod about_dialog;
 pub use self::about_dialog::AboutDialogBuilder;
 pub use self::about_dialog::{AboutDialog, AboutDialogClass};
@@ -806,6 +809,14 @@ mod tree_row_reference;
 pub use self::tree_row_reference::TreeRowReference;
 
 mod enums;
+pub use self::enums::AccessibleAutocomplete;
+pub use self::enums::AccessibleInvalidState;
+pub use self::enums::AccessibleProperty;
+pub use self::enums::AccessibleRelation;
+pub use self::enums::AccessibleRole;
+pub use self::enums::AccessibleSort;
+pub use self::enums::AccessibleState;
+pub use self::enums::AccessibleTristate;
 pub use self::enums::Align;
 pub use self::enums::ArrowType;
 pub use self::enums::AssistantPageType;

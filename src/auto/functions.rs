@@ -18,6 +18,11 @@ use std::boxed::Box as Box_;
 use std::mem;
 use std::pin::Pin;
 use std::ptr;
+use Accessible;
+use AccessibleProperty;
+use AccessibleRelation;
+use AccessibleRole;
+use AccessibleState;
 use Orientation;
 use PageSetup;
 use PrintSettings;
@@ -630,37 +635,91 @@ pub fn show_uri_full_future<P: IsA<Window> + Clone + 'static>(
     }))
 }
 
-//pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(domain: &str, file: &str, line: i32, func: &str, expr: &str, accessible: &P, expected_role: /*Ignored*/AccessibleRole, actual_role: /*Ignored*/AccessibleRole) {
-//    unsafe { TODO: call gtk_sys:gtk_test_accessible_assertion_message_role() }
-//}
+pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
+    domain: &str,
+    file: &str,
+    line: i32,
+    func: &str,
+    expr: &str,
+    accessible: &P,
+    expected_role: AccessibleRole,
+    actual_role: AccessibleRole,
+) {
+    skip_assert_initialized!();
+    unsafe {
+        gtk_sys::gtk_test_accessible_assertion_message_role(
+            domain.to_glib_none().0,
+            file.to_glib_none().0,
+            line,
+            func.to_glib_none().0,
+            expr.to_glib_none().0,
+            accessible.as_ref().to_glib_none().0,
+            expected_role.to_glib(),
+            actual_role.to_glib(),
+        );
+    }
+}
 
-//pub fn test_accessible_check_property<P: IsA<Accessible>>(accessible: &P, property: /*Ignored*/AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
+//pub fn test_accessible_check_property<P: IsA<Accessible>>(accessible: &P, property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
 //    unsafe { TODO: call gtk_sys:gtk_test_accessible_check_property() }
 //}
 
-//pub fn test_accessible_check_relation<P: IsA<Accessible>>(accessible: &P, relation: /*Ignored*/AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
+//pub fn test_accessible_check_relation<P: IsA<Accessible>>(accessible: &P, relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
 //    unsafe { TODO: call gtk_sys:gtk_test_accessible_check_relation() }
 //}
 
-//pub fn test_accessible_check_state<P: IsA<Accessible>>(accessible: &P, state: /*Ignored*/AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
+//pub fn test_accessible_check_state<P: IsA<Accessible>>(accessible: &P, state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<GString> {
 //    unsafe { TODO: call gtk_sys:gtk_test_accessible_check_state() }
 //}
 
-//pub fn test_accessible_has_property<P: IsA<Accessible>>(accessible: &P, property: /*Ignored*/AccessibleProperty) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_test_accessible_has_property() }
-//}
+pub fn test_accessible_has_property<P: IsA<Accessible>>(
+    accessible: &P,
+    property: AccessibleProperty,
+) -> bool {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib(gtk_sys::gtk_test_accessible_has_property(
+            accessible.as_ref().to_glib_none().0,
+            property.to_glib(),
+        ))
+    }
+}
 
-//pub fn test_accessible_has_relation<P: IsA<Accessible>>(accessible: &P, relation: /*Ignored*/AccessibleRelation) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_test_accessible_has_relation() }
-//}
+pub fn test_accessible_has_relation<P: IsA<Accessible>>(
+    accessible: &P,
+    relation: AccessibleRelation,
+) -> bool {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib(gtk_sys::gtk_test_accessible_has_relation(
+            accessible.as_ref().to_glib_none().0,
+            relation.to_glib(),
+        ))
+    }
+}
 
-//pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: /*Ignored*/AccessibleRole) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_test_accessible_has_role() }
-//}
+pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: AccessibleRole) -> bool {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib(gtk_sys::gtk_test_accessible_has_role(
+            accessible.as_ref().to_glib_none().0,
+            role.to_glib(),
+        ))
+    }
+}
 
-//pub fn test_accessible_has_state<P: IsA<Accessible>>(accessible: &P, state: /*Ignored*/AccessibleState) -> bool {
-//    unsafe { TODO: call gtk_sys:gtk_test_accessible_has_state() }
-//}
+pub fn test_accessible_has_state<P: IsA<Accessible>>(
+    accessible: &P,
+    state: AccessibleState,
+) -> bool {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib(gtk_sys::gtk_test_accessible_has_state(
+            accessible.as_ref().to_glib_none().0,
+            state.to_glib(),
+        ))
+    }
+}
 
 //pub fn test_init(argvp: /*Unimplemented*/Vec<GString>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call gtk_sys:gtk_test_init() }
