@@ -4,55 +4,84 @@
 
 use cairo;
 use glib;
+use glib::object::IsA;
 use glib::translate::*;
 use graphene;
 use gsk_sys;
+use std::fmt;
 use std::ptr;
 use RenderNodeType;
 
 glib_wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct RenderNode(Shared<gsk_sys::GskRenderNode>);
+    pub struct RenderNode(Object<gsk_sys::GskRenderNode, RenderNodeClass>);
 
     match fn {
-        ref => |ptr| gsk_sys::gsk_render_node_ref(ptr),
-        unref => |ptr| gsk_sys::gsk_render_node_unref(ptr),
         get_type => || gsk_sys::gsk_render_node_get_type(),
     }
 }
 
 impl RenderNode {
-    pub fn draw(&self, cr: &cairo::Context) {
+    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
+    //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
+    //}
+}
+
+pub const NONE_RENDER_NODE: Option<&RenderNode> = None;
+
+pub trait RenderNodeExt: 'static {
+    fn draw(&self, cr: &cairo::Context);
+
+    fn get_bounds(&self) -> graphene::Rect;
+
+    fn get_node_type(&self) -> RenderNodeType;
+
+    fn serialize(&self) -> Option<glib::Bytes>;
+
+    fn write_to_file(&self, filename: &str) -> Result<(), glib::Error>;
+}
+
+impl<O: IsA<RenderNode>> RenderNodeExt for O {
+    fn draw(&self, cr: &cairo::Context) {
         unsafe {
-            gsk_sys::gsk_render_node_draw(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
+            gsk_sys::gsk_render_node_draw(
+                self.as_ref().to_glib_none().0,
+                mut_override(cr.to_glib_none().0),
+            );
         }
     }
 
-    pub fn get_bounds(&self) -> graphene::Rect {
+    fn get_bounds(&self) -> graphene::Rect {
         unsafe {
             let mut bounds = graphene::Rect::uninitialized();
-            gsk_sys::gsk_render_node_get_bounds(self.to_glib_none().0, bounds.to_glib_none_mut().0);
+            gsk_sys::gsk_render_node_get_bounds(
+                self.as_ref().to_glib_none().0,
+                bounds.to_glib_none_mut().0,
+            );
             bounds
         }
     }
 
-    pub fn get_node_type(&self) -> RenderNodeType {
+    fn get_node_type(&self) -> RenderNodeType {
         unsafe {
             from_glib(gsk_sys::gsk_render_node_get_node_type(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    pub fn serialize(&self) -> Option<glib::Bytes> {
-        unsafe { from_glib_full(gsk_sys::gsk_render_node_serialize(self.to_glib_none().0)) }
+    fn serialize(&self) -> Option<glib::Bytes> {
+        unsafe {
+            from_glib_full(gsk_sys::gsk_render_node_serialize(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
-    pub fn write_to_file(&self, filename: &str) -> Result<(), glib::Error> {
+    fn write_to_file(&self, filename: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = gsk_sys::gsk_render_node_write_to_file(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
                 filename.to_glib_none().0,
                 &mut error,
             );
@@ -63,8 +92,10 @@ impl RenderNode {
             }
         }
     }
+}
 
-    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
-    //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
-    //}
+impl fmt::Display for RenderNode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "RenderNode")
+    }
 }

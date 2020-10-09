@@ -11,15 +11,16 @@ pub use self::cairo_renderer::{CairoRenderer, CairoRendererClass};
 mod gl_renderer;
 pub use self::gl_renderer::{GLRenderer, GLRendererClass};
 
+mod render_node;
+pub use self::render_node::RenderNodeExt;
+pub use self::render_node::{RenderNode, RenderNodeClass, NONE_RENDER_NODE};
+
 mod renderer;
 pub use self::renderer::RendererExt;
 pub use self::renderer::{Renderer, RendererClass, NONE_RENDERER};
 
 mod vulkan_renderer;
 pub use self::vulkan_renderer::{VulkanRenderer, VulkanRendererClass};
-
-mod render_node;
-pub use self::render_node::RenderNode;
 
 mod transform;
 pub use self::transform::Transform;
@@ -32,9 +33,8 @@ pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;
 pub use self::enums::TransformCategory;
 
-pub mod functions;
-
 #[doc(hidden)]
 pub mod traits {
+    pub use super::RenderNodeExt;
     pub use super::RendererExt;
 }

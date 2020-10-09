@@ -10,7 +10,6 @@ use gsk_sys;
 use std::fmt;
 use std::mem;
 use std::ptr;
-use RenderNode;
 use TransformCategory;
 
 glib_wrapper! {
@@ -231,30 +230,6 @@ impl Transform {
             from_glib_full(gsk_sys::gsk_transform_translate_3d(
                 self.to_glib_full(),
                 point.to_glib_none().0,
-            ))
-        }
-    }
-
-    pub fn node_get_child(node: &RenderNode) -> Option<RenderNode> {
-        assert_initialized_main_thread!();
-        unsafe { from_glib_none(gsk_sys::gsk_transform_node_get_child(node.to_glib_none().0)) }
-    }
-
-    pub fn node_get_transform(node: &RenderNode) -> Option<Transform> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gsk_sys::gsk_transform_node_get_transform(
-                node.to_glib_none().0,
-            ))
-        }
-    }
-
-    pub fn node_new(child: &RenderNode, transform: &Transform) -> Option<RenderNode> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gsk_sys::gsk_transform_node_new(
-                child.to_glib_none().0,
-                transform.to_glib_none().0,
             ))
         }
     }
