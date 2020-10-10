@@ -58,6 +58,10 @@ pub use self::display_manager::{DisplayManager, DisplayManagerClass};
 mod drag;
 pub use self::drag::{Drag, DragClass};
 
+mod drag_surface;
+pub use self::drag_surface::DragSurfaceExt;
+pub use self::drag_surface::{DragSurface, NONE_DRAG_SURFACE};
+
 mod draw_context;
 pub use self::draw_context::DrawContextExt;
 pub use self::draw_context::{DrawContext, DrawContextClass, NONE_DRAW_CONTEXT};
@@ -103,6 +107,10 @@ mod paintable;
 pub use self::paintable::PaintableExt;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};
 
+mod popup;
+pub use self::popup::PopupExt;
+pub use self::popup::{Popup, NONE_POPUP};
+
 mod proximity_event;
 pub use self::proximity_event::{ProximityEvent, ProximityEventClass};
 
@@ -121,6 +129,10 @@ pub use self::surface::{Surface, SurfaceClass};
 mod texture;
 pub use self::texture::TextureExt;
 pub use self::texture::{Texture, TextureClass, NONE_TEXTURE};
+
+mod toplevel;
+pub use self::toplevel::ToplevelExt;
+pub use self::toplevel::{Toplevel, NONE_TOPLEVEL};
 
 mod touch_event;
 pub use self::touch_event::{TouchEvent, TouchEventClass};
@@ -143,8 +155,14 @@ pub use self::event_sequence::EventSequence;
 mod frame_timings;
 pub use self::frame_timings::FrameTimings;
 
+mod popup_layout;
+pub use self::popup_layout::PopupLayout;
+
 mod rectangle;
 pub use self::rectangle::Rectangle;
+
+mod toplevel_layout;
+pub use self::toplevel_layout::ToplevelLayout;
 
 mod enums;
 pub use self::enums::AxisUse;
@@ -182,8 +200,11 @@ pub mod functions;
 pub mod traits {
     pub use super::ContentProviderExt;
     pub use super::DevicePadExt;
+    pub use super::DragSurfaceExt;
     pub use super::DrawContextExt;
     pub use super::EventExt;
     pub use super::PaintableExt;
+    pub use super::PopupExt;
     pub use super::TextureExt;
+    pub use super::ToplevelExt;
 }
