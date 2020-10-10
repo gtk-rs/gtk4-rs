@@ -131,16 +131,6 @@ pub struct _GskGLRendererClass(c_void);
 pub type GskGLRendererClass = *mut _GskGLRendererClass;
 
 #[repr(C)]
-pub struct GskRenderNode(c_void);
-
-impl ::std::fmt::Debug for GskRenderNode {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRenderNode @ {:?}", self as *const _))
-            .finish()
-    }
-}
-
-#[repr(C)]
 pub struct _GskRendererClass(c_void);
 
 pub type GskRendererClass = *mut _GskRendererClass;
@@ -198,11 +188,51 @@ pub type GskVulkanRendererClass = *mut _GskVulkanRendererClass;
 
 // Classes
 #[repr(C)]
+pub struct GskBlendNode(c_void);
+
+impl ::std::fmt::Debug for GskBlendNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskBlendNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskBlurNode(c_void);
+
+impl ::std::fmt::Debug for GskBlurNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskBlurNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskBorderNode(c_void);
+
+impl ::std::fmt::Debug for GskBorderNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskBorderNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskBroadwayRenderer(c_void);
 
 impl ::std::fmt::Debug for GskBroadwayRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskBroadwayRenderer @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskCairoNode(c_void);
+
+impl ::std::fmt::Debug for GskCairoNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskCairoNode @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -218,6 +248,66 @@ impl ::std::fmt::Debug for GskCairoRenderer {
 }
 
 #[repr(C)]
+pub struct GskClipNode(c_void);
+
+impl ::std::fmt::Debug for GskClipNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskClipNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskColorMatrixNode(c_void);
+
+impl ::std::fmt::Debug for GskColorMatrixNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskColorMatrixNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskColorNode(c_void);
+
+impl ::std::fmt::Debug for GskColorNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskColorNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskContainerNode(c_void);
+
+impl ::std::fmt::Debug for GskContainerNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskContainerNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskCrossFadeNode(c_void);
+
+impl ::std::fmt::Debug for GskCrossFadeNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskCrossFadeNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskDebugNode(c_void);
+
+impl ::std::fmt::Debug for GskDebugNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskDebugNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskGLRenderer(c_void);
 
 impl ::std::fmt::Debug for GskGLRenderer {
@@ -228,11 +318,134 @@ impl ::std::fmt::Debug for GskGLRenderer {
 }
 
 #[repr(C)]
+pub struct GskInsetShadowNode(c_void);
+
+impl ::std::fmt::Debug for GskInsetShadowNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskInsetShadowNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskLinearGradientNode(c_void);
+
+impl ::std::fmt::Debug for GskLinearGradientNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskLinearGradientNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskOpacityNode(c_void);
+
+impl ::std::fmt::Debug for GskOpacityNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskOpacityNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskOutsetShadowNode(c_void);
+
+impl ::std::fmt::Debug for GskOutsetShadowNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskOutsetShadowNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRenderNode(c_void);
+
+impl ::std::fmt::Debug for GskRenderNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskRenderNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskRenderer(c_void);
 
 impl ::std::fmt::Debug for GskRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskRenderer @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRepeatNode(c_void);
+
+impl ::std::fmt::Debug for GskRepeatNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskRepeatNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRepeatingLinearGradientNode(c_void);
+
+impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!(
+            "GskRepeatingLinearGradientNode @ {:?}",
+            self as *const _
+        ))
+        .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRoundedClipNode(c_void);
+
+impl ::std::fmt::Debug for GskRoundedClipNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskRoundedClipNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskShadowNode(c_void);
+
+impl ::std::fmt::Debug for GskShadowNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskShadowNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskTextNode(c_void);
+
+impl ::std::fmt::Debug for GskTextNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskTextNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskTextureNode(c_void);
+
+impl ::std::fmt::Debug for GskTextureNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskTextureNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskTransformNode(c_void);
+
+impl ::std::fmt::Debug for GskTransformNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskTransformNode @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -282,30 +495,6 @@ extern "C" {
     pub fn gsk_transform_category_get_type() -> GType;
 
     //=========================================================================
-    // GskRenderNode
-    //=========================================================================
-    pub fn gsk_render_node_get_type() -> GType;
-    pub fn gsk_render_node_draw(node: *mut GskRenderNode, cr: *mut cairo::cairo_t);
-    pub fn gsk_render_node_get_bounds(
-        node: *mut GskRenderNode,
-        bounds: *mut graphene::graphene_rect_t,
-    );
-    pub fn gsk_render_node_get_node_type(node: *mut GskRenderNode) -> GskRenderNodeType;
-    pub fn gsk_render_node_ref(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_render_node_serialize(node: *mut GskRenderNode) -> *mut glib::GBytes;
-    pub fn gsk_render_node_unref(node: *mut GskRenderNode);
-    pub fn gsk_render_node_write_to_file(
-        node: *mut GskRenderNode,
-        filename: *const c_char,
-        error: *mut *mut glib::GError,
-    ) -> gboolean;
-    pub fn gsk_render_node_deserialize(
-        bytes: *mut glib::GBytes,
-        error_func: GskParseErrorFunc,
-        user_data: gpointer,
-    ) -> *mut GskRenderNode;
-
-    //=========================================================================
     // GskRoundedRect
     //=========================================================================
     pub fn gsk_rounded_rect_contains_point(
@@ -351,18 +540,6 @@ extern "C" {
         bottom: c_float,
         left: c_float,
     ) -> *mut GskRoundedRect;
-
-    //=========================================================================
-    // GskShadow
-    //=========================================================================
-    pub fn gsk_shadow_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_shadow_node_get_n_shadows(node: *mut GskRenderNode) -> size_t;
-    pub fn gsk_shadow_node_new(
-        child: *mut GskRenderNode,
-        shadows: *const GskShadow,
-        n_shadows: size_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_shadow_node_peek_shadow(node: *mut GskRenderNode, i: size_t) -> *const GskShadow;
 
     //=========================================================================
     // GskTransform
@@ -445,16 +622,44 @@ extern "C" {
         point: *const graphene::graphene_point3d_t,
     ) -> *mut GskTransform;
     pub fn gsk_transform_unref(self_: *mut GskTransform);
-    pub fn gsk_transform_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_transform_node_get_transform(node: *mut GskRenderNode) -> *mut GskTransform;
-    pub fn gsk_transform_node_new(
-        child: *mut GskRenderNode,
-        transform: *mut GskTransform,
-    ) -> *mut GskRenderNode;
     pub fn gsk_transform_parse(
         string: *const c_char,
         out_transform: *mut *mut GskTransform,
     ) -> gboolean;
+
+    //=========================================================================
+    // GskBlendNode
+    //=========================================================================
+    pub fn gsk_blend_node_get_type() -> GType;
+    pub fn gsk_blend_node_new(
+        bottom: *mut GskRenderNode,
+        top: *mut GskRenderNode,
+        blend_mode: GskBlendMode,
+    ) -> *mut GskBlendNode;
+    pub fn gsk_blend_node_get_blend_mode(node: *mut GskBlendNode) -> GskBlendMode;
+    pub fn gsk_blend_node_get_bottom_child(node: *mut GskBlendNode) -> *mut GskRenderNode;
+    pub fn gsk_blend_node_get_top_child(node: *mut GskBlendNode) -> *mut GskRenderNode;
+
+    //=========================================================================
+    // GskBlurNode
+    //=========================================================================
+    pub fn gsk_blur_node_get_type() -> GType;
+    pub fn gsk_blur_node_new(child: *mut GskRenderNode, radius: c_float) -> *mut GskBlurNode;
+    pub fn gsk_blur_node_get_child(node: *mut GskBlurNode) -> *mut GskRenderNode;
+    pub fn gsk_blur_node_get_radius(node: *mut GskBlurNode) -> c_float;
+
+    //=========================================================================
+    // GskBorderNode
+    //=========================================================================
+    pub fn gsk_border_node_get_type() -> GType;
+    pub fn gsk_border_node_new(
+        outline: *const GskRoundedRect,
+        border_width: *const [c_float; 4],
+        border_color: *const [gdk::GdkRGBA; 4],
+    ) -> *mut GskBorderNode;
+    pub fn gsk_border_node_peek_colors(node: *mut GskBorderNode) -> *const gdk::GdkRGBA;
+    pub fn gsk_border_node_peek_outline(node: *mut GskBorderNode) -> *const GskRoundedRect;
+    pub fn gsk_border_node_peek_widths(node: *mut GskBorderNode) -> *const c_float;
 
     //=========================================================================
     // GskBroadwayRenderer
@@ -463,16 +668,197 @@ extern "C" {
     pub fn gsk_broadway_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
+    // GskCairoNode
+    //=========================================================================
+    pub fn gsk_cairo_node_get_type() -> GType;
+    pub fn gsk_cairo_node_new(bounds: *const graphene::graphene_rect_t) -> *mut GskCairoNode;
+    pub fn gsk_cairo_node_get_draw_context(node: *mut GskCairoNode) -> *mut cairo::cairo_t;
+    pub fn gsk_cairo_node_peek_surface(node: *mut GskCairoNode) -> *mut cairo::cairo_surface_t;
+
+    //=========================================================================
     // GskCairoRenderer
     //=========================================================================
     pub fn gsk_cairo_renderer_get_type() -> GType;
     pub fn gsk_cairo_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
+    // GskClipNode
+    //=========================================================================
+    pub fn gsk_clip_node_get_type() -> GType;
+    pub fn gsk_clip_node_new(
+        child: *mut GskRenderNode,
+        clip: *const graphene::graphene_rect_t,
+    ) -> *mut GskClipNode;
+    pub fn gsk_clip_node_get_child(node: *mut GskClipNode) -> *mut GskRenderNode;
+    pub fn gsk_clip_node_peek_clip(node: *mut GskClipNode) -> *const graphene::graphene_rect_t;
+
+    //=========================================================================
+    // GskColorMatrixNode
+    //=========================================================================
+    pub fn gsk_color_matrix_node_get_type() -> GType;
+    pub fn gsk_color_matrix_node_new(
+        child: *mut GskRenderNode,
+        color_matrix: *const graphene::graphene_matrix_t,
+        color_offset: *const graphene::graphene_vec4_t,
+    ) -> *mut GskColorMatrixNode;
+    pub fn gsk_color_matrix_node_get_child(node: *mut GskColorMatrixNode) -> *mut GskRenderNode;
+    pub fn gsk_color_matrix_node_peek_color_matrix(
+        node: *mut GskColorMatrixNode,
+    ) -> *const graphene::graphene_matrix_t;
+    pub fn gsk_color_matrix_node_peek_color_offset(
+        node: *mut GskColorMatrixNode,
+    ) -> *const graphene::graphene_vec4_t;
+
+    //=========================================================================
+    // GskColorNode
+    //=========================================================================
+    pub fn gsk_color_node_get_type() -> GType;
+    pub fn gsk_color_node_new(
+        rgba: *const gdk::GdkRGBA,
+        bounds: *const graphene::graphene_rect_t,
+    ) -> *mut GskColorNode;
+    pub fn gsk_color_node_peek_color(node: *mut GskColorNode) -> *const gdk::GdkRGBA;
+
+    //=========================================================================
+    // GskContainerNode
+    //=========================================================================
+    pub fn gsk_container_node_get_type() -> GType;
+    pub fn gsk_container_node_new(
+        children: *mut *mut GskRenderNode,
+        n_children: c_uint,
+    ) -> *mut GskContainerNode;
+    pub fn gsk_container_node_get_child(
+        node: *mut GskContainerNode,
+        idx: c_uint,
+    ) -> *mut GskRenderNode;
+    pub fn gsk_container_node_get_n_children(node: *mut GskContainerNode) -> c_uint;
+
+    //=========================================================================
+    // GskCrossFadeNode
+    //=========================================================================
+    pub fn gsk_cross_fade_node_get_type() -> GType;
+    pub fn gsk_cross_fade_node_new(
+        start: *mut GskRenderNode,
+        end: *mut GskRenderNode,
+        progress: c_float,
+    ) -> *mut GskCrossFadeNode;
+    pub fn gsk_cross_fade_node_get_end_child(node: *mut GskCrossFadeNode) -> *mut GskRenderNode;
+    pub fn gsk_cross_fade_node_get_progress(node: *mut GskCrossFadeNode) -> c_float;
+    pub fn gsk_cross_fade_node_get_start_child(node: *mut GskCrossFadeNode) -> *mut GskRenderNode;
+
+    //=========================================================================
+    // GskDebugNode
+    //=========================================================================
+    pub fn gsk_debug_node_get_type() -> GType;
+    pub fn gsk_debug_node_new(child: *mut GskRenderNode, message: *mut c_char)
+        -> *mut GskDebugNode;
+    pub fn gsk_debug_node_get_child(node: *mut GskDebugNode) -> *mut GskRenderNode;
+    pub fn gsk_debug_node_get_message(node: *mut GskDebugNode) -> *const c_char;
+
+    //=========================================================================
     // GskGLRenderer
     //=========================================================================
     pub fn gsk_gl_renderer_get_type() -> GType;
     pub fn gsk_gl_renderer_new() -> *mut GskRenderer;
+
+    //=========================================================================
+    // GskInsetShadowNode
+    //=========================================================================
+    pub fn gsk_inset_shadow_node_get_type() -> GType;
+    pub fn gsk_inset_shadow_node_new(
+        outline: *const GskRoundedRect,
+        color: *const gdk::GdkRGBA,
+        dx: c_float,
+        dy: c_float,
+        spread: c_float,
+        blur_radius: c_float,
+    ) -> *mut GskInsetShadowNode;
+    pub fn gsk_inset_shadow_node_get_blur_radius(node: *mut GskInsetShadowNode) -> c_float;
+    pub fn gsk_inset_shadow_node_get_dx(node: *mut GskInsetShadowNode) -> c_float;
+    pub fn gsk_inset_shadow_node_get_dy(node: *mut GskInsetShadowNode) -> c_float;
+    pub fn gsk_inset_shadow_node_get_spread(node: *mut GskInsetShadowNode) -> c_float;
+    pub fn gsk_inset_shadow_node_peek_color(node: *mut GskInsetShadowNode) -> *const gdk::GdkRGBA;
+    pub fn gsk_inset_shadow_node_peek_outline(
+        node: *mut GskInsetShadowNode,
+    ) -> *const GskRoundedRect;
+
+    //=========================================================================
+    // GskLinearGradientNode
+    //=========================================================================
+    pub fn gsk_linear_gradient_node_get_type() -> GType;
+    pub fn gsk_linear_gradient_node_new(
+        bounds: *const graphene::graphene_rect_t,
+        start: *const graphene::graphene_point_t,
+        end: *const graphene::graphene_point_t,
+        color_stops: *const GskColorStop,
+        n_color_stops: size_t,
+    ) -> *mut GskLinearGradientNode;
+    pub fn gsk_linear_gradient_node_get_n_color_stops(node: *mut GskLinearGradientNode) -> size_t;
+    pub fn gsk_linear_gradient_node_peek_color_stops(
+        node: *mut GskLinearGradientNode,
+        n_stops: *mut size_t,
+    ) -> *const GskColorStop;
+    pub fn gsk_linear_gradient_node_peek_end(
+        node: *mut GskLinearGradientNode,
+    ) -> *const graphene::graphene_point_t;
+    pub fn gsk_linear_gradient_node_peek_start(
+        node: *mut GskLinearGradientNode,
+    ) -> *const graphene::graphene_point_t;
+
+    //=========================================================================
+    // GskOpacityNode
+    //=========================================================================
+    pub fn gsk_opacity_node_get_type() -> GType;
+    pub fn gsk_opacity_node_new(child: *mut GskRenderNode, opacity: c_float)
+        -> *mut GskOpacityNode;
+    pub fn gsk_opacity_node_get_child(node: *mut GskOpacityNode) -> *mut GskRenderNode;
+    pub fn gsk_opacity_node_get_opacity(node: *mut GskOpacityNode) -> c_float;
+
+    //=========================================================================
+    // GskOutsetShadowNode
+    //=========================================================================
+    pub fn gsk_outset_shadow_node_get_type() -> GType;
+    pub fn gsk_outset_shadow_node_new(
+        outline: *const GskRoundedRect,
+        color: *const gdk::GdkRGBA,
+        dx: c_float,
+        dy: c_float,
+        spread: c_float,
+        blur_radius: c_float,
+    ) -> *mut GskOutsetShadowNode;
+    pub fn gsk_outset_shadow_node_get_blur_radius(node: *mut GskOutsetShadowNode) -> c_float;
+    pub fn gsk_outset_shadow_node_get_dx(node: *mut GskOutsetShadowNode) -> c_float;
+    pub fn gsk_outset_shadow_node_get_dy(node: *mut GskOutsetShadowNode) -> c_float;
+    pub fn gsk_outset_shadow_node_get_spread(node: *mut GskOutsetShadowNode) -> c_float;
+    pub fn gsk_outset_shadow_node_peek_color(node: *mut GskOutsetShadowNode)
+        -> *const gdk::GdkRGBA;
+    pub fn gsk_outset_shadow_node_peek_outline(
+        node: *mut GskOutsetShadowNode,
+    ) -> *const GskRoundedRect;
+
+    //=========================================================================
+    // GskRenderNode
+    //=========================================================================
+    pub fn gsk_render_node_get_type() -> GType;
+    pub fn gsk_render_node_deserialize(
+        bytes: *mut glib::GBytes,
+        error_func: GskParseErrorFunc,
+        user_data: gpointer,
+    ) -> *mut GskRenderNode;
+    pub fn gsk_render_node_draw(node: *mut GskRenderNode, cr: *mut cairo::cairo_t);
+    pub fn gsk_render_node_get_bounds(
+        node: *mut GskRenderNode,
+        bounds: *mut graphene::graphene_rect_t,
+    );
+    pub fn gsk_render_node_get_node_type(node: *mut GskRenderNode) -> GskRenderNodeType;
+    pub fn gsk_render_node_ref(node: *mut GskRenderNode) -> *mut GskRenderNode;
+    pub fn gsk_render_node_serialize(node: *mut GskRenderNode) -> *mut glib::GBytes;
+    pub fn gsk_render_node_unref(node: *mut GskRenderNode);
+    pub fn gsk_render_node_write_to_file(
+        node: *mut GskRenderNode,
+        filename: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
 
     //=========================================================================
     // GskRenderer
@@ -499,168 +885,100 @@ extern "C" {
     pub fn gsk_renderer_unrealize(renderer: *mut GskRenderer);
 
     //=========================================================================
-    // GskVulkanRenderer
+    // GskRepeatNode
     //=========================================================================
-    pub fn gsk_vulkan_renderer_get_type() -> GType;
-    pub fn gsk_vulkan_renderer_new() -> *mut GskRenderer;
-
-    //=========================================================================
-    // Other functions
-    //=========================================================================
-    pub fn gsk_blend_node_get_blend_mode(node: *mut GskRenderNode) -> GskBlendMode;
-    pub fn gsk_blend_node_get_bottom_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_blend_node_get_top_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_blend_node_new(
-        bottom: *mut GskRenderNode,
-        top: *mut GskRenderNode,
-        blend_mode: GskBlendMode,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_blur_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_blur_node_get_radius(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_blur_node_new(child: *mut GskRenderNode, radius: c_float) -> *mut GskRenderNode;
-    pub fn gsk_border_node_new(
-        outline: *const GskRoundedRect,
-        border_width: *const [c_float; 4],
-        border_color: *const [gdk::GdkRGBA; 4],
-    ) -> *mut GskRenderNode;
-    pub fn gsk_border_node_peek_colors(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
-    pub fn gsk_border_node_peek_outline(node: *mut GskRenderNode) -> *const GskRoundedRect;
-    pub fn gsk_border_node_peek_widths(node: *mut GskRenderNode) -> *const c_float;
-    pub fn gsk_cairo_node_get_draw_context(node: *mut GskRenderNode) -> *mut cairo::cairo_t;
-    pub fn gsk_cairo_node_new(bounds: *const graphene::graphene_rect_t) -> *mut GskRenderNode;
-    pub fn gsk_cairo_node_peek_surface(node: *mut GskRenderNode) -> *mut cairo::cairo_surface_t;
-    pub fn gsk_clip_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_clip_node_new(
-        child: *mut GskRenderNode,
-        clip: *const graphene::graphene_rect_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_clip_node_peek_clip(node: *mut GskRenderNode) -> *const graphene::graphene_rect_t;
-    pub fn gsk_color_matrix_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_color_matrix_node_new(
-        child: *mut GskRenderNode,
-        color_matrix: *const graphene::graphene_matrix_t,
-        color_offset: *const graphene::graphene_vec4_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_color_matrix_node_peek_color_matrix(
-        node: *mut GskRenderNode,
-    ) -> *const graphene::graphene_matrix_t;
-    pub fn gsk_color_matrix_node_peek_color_offset(
-        node: *mut GskRenderNode,
-    ) -> *const graphene::graphene_vec4_t;
-    pub fn gsk_color_node_new(
-        rgba: *const gdk::GdkRGBA,
-        bounds: *const graphene::graphene_rect_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_color_node_peek_color(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
-    pub fn gsk_container_node_get_child(
-        node: *mut GskRenderNode,
-        idx: c_uint,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_container_node_get_n_children(node: *mut GskRenderNode) -> c_uint;
-    pub fn gsk_container_node_new(
-        children: *mut *mut GskRenderNode,
-        n_children: c_uint,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_cross_fade_node_get_end_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_cross_fade_node_get_progress(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_cross_fade_node_get_start_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_cross_fade_node_new(
-        start: *mut GskRenderNode,
-        end: *mut GskRenderNode,
-        progress: c_float,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_debug_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_debug_node_get_message(node: *mut GskRenderNode) -> *const c_char;
-    pub fn gsk_debug_node_new(
-        child: *mut GskRenderNode,
-        message: *mut c_char,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_inset_shadow_node_get_blur_radius(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_inset_shadow_node_get_dx(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_inset_shadow_node_get_dy(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_inset_shadow_node_get_spread(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_inset_shadow_node_new(
-        outline: *const GskRoundedRect,
-        color: *const gdk::GdkRGBA,
-        dx: c_float,
-        dy: c_float,
-        spread: c_float,
-        blur_radius: c_float,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_inset_shadow_node_peek_color(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
-    pub fn gsk_inset_shadow_node_peek_outline(node: *mut GskRenderNode) -> *const GskRoundedRect;
-    pub fn gsk_linear_gradient_node_get_n_color_stops(node: *mut GskRenderNode) -> size_t;
-    pub fn gsk_linear_gradient_node_new(
-        bounds: *const graphene::graphene_rect_t,
-        start: *const graphene::graphene_point_t,
-        end: *const graphene::graphene_point_t,
-        color_stops: *const GskColorStop,
-        n_color_stops: size_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_linear_gradient_node_peek_color_stops(
-        node: *mut GskRenderNode,
-    ) -> *const GskColorStop;
-    pub fn gsk_linear_gradient_node_peek_end(
-        node: *mut GskRenderNode,
-    ) -> *const graphene::graphene_point_t;
-    pub fn gsk_linear_gradient_node_peek_start(
-        node: *mut GskRenderNode,
-    ) -> *const graphene::graphene_point_t;
-    pub fn gsk_opacity_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
-    pub fn gsk_opacity_node_get_opacity(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_opacity_node_new(child: *mut GskRenderNode, opacity: c_float) -> *mut GskRenderNode;
-    pub fn gsk_outset_shadow_node_get_blur_radius(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_outset_shadow_node_get_dx(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_outset_shadow_node_get_dy(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_outset_shadow_node_get_spread(node: *mut GskRenderNode) -> c_float;
-    pub fn gsk_outset_shadow_node_new(
-        outline: *const GskRoundedRect,
-        color: *const gdk::GdkRGBA,
-        dx: c_float,
-        dy: c_float,
-        spread: c_float,
-        blur_radius: c_float,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_outset_shadow_node_peek_color(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
-    pub fn gsk_outset_shadow_node_peek_outline(node: *mut GskRenderNode) -> *const GskRoundedRect;
-    pub fn gsk_repeat_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
+    pub fn gsk_repeat_node_get_type() -> GType;
     pub fn gsk_repeat_node_new(
         bounds: *const graphene::graphene_rect_t,
         child: *mut GskRenderNode,
         child_bounds: *const graphene::graphene_rect_t,
-    ) -> *mut GskRenderNode;
+    ) -> *mut GskRepeatNode;
+    pub fn gsk_repeat_node_get_child(node: *mut GskRepeatNode) -> *mut GskRenderNode;
     pub fn gsk_repeat_node_peek_child_bounds(
-        node: *mut GskRenderNode,
+        node: *mut GskRepeatNode,
     ) -> *const graphene::graphene_rect_t;
+
+    //=========================================================================
+    // GskRepeatingLinearGradientNode
+    //=========================================================================
+    pub fn gsk_repeating_linear_gradient_node_get_type() -> GType;
     pub fn gsk_repeating_linear_gradient_node_new(
         bounds: *const graphene::graphene_rect_t,
         start: *const graphene::graphene_point_t,
         end: *const graphene::graphene_point_t,
         color_stops: *const GskColorStop,
         n_color_stops: size_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_rounded_clip_node_get_child(node: *mut GskRenderNode) -> *mut GskRenderNode;
+    ) -> *mut GskRepeatingLinearGradientNode;
+
+    //=========================================================================
+    // GskRoundedClipNode
+    //=========================================================================
+    pub fn gsk_rounded_clip_node_get_type() -> GType;
     pub fn gsk_rounded_clip_node_new(
         child: *mut GskRenderNode,
         clip: *const GskRoundedRect,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_rounded_clip_node_peek_clip(node: *mut GskRenderNode) -> *const GskRoundedRect;
-    pub fn gsk_text_node_get_num_glyphs(node: *mut GskRenderNode) -> c_uint;
-    pub fn gsk_text_node_get_offset(node: *mut GskRenderNode) -> *const graphene::graphene_point_t;
-    pub fn gsk_text_node_has_color_glyphs(node: *mut GskRenderNode) -> gboolean;
+    ) -> *mut GskRoundedClipNode;
+    pub fn gsk_rounded_clip_node_get_child(node: *mut GskRoundedClipNode) -> *mut GskRenderNode;
+    pub fn gsk_rounded_clip_node_peek_clip(node: *mut GskRoundedClipNode) -> *const GskRoundedRect;
+
+    //=========================================================================
+    // GskShadowNode
+    //=========================================================================
+    pub fn gsk_shadow_node_get_type() -> GType;
+    pub fn gsk_shadow_node_new(
+        child: *mut GskRenderNode,
+        shadows: *const GskShadow,
+        n_shadows: size_t,
+    ) -> *mut GskShadowNode;
+    pub fn gsk_shadow_node_get_child(node: *mut GskShadowNode) -> *mut GskRenderNode;
+    pub fn gsk_shadow_node_get_n_shadows(node: *mut GskShadowNode) -> size_t;
+    pub fn gsk_shadow_node_peek_shadow(node: *mut GskShadowNode, i: size_t) -> *const GskShadow;
+
+    //=========================================================================
+    // GskTextNode
+    //=========================================================================
+    pub fn gsk_text_node_get_type() -> GType;
     pub fn gsk_text_node_new(
         font: *mut pango::PangoFont,
         glyphs: *mut pango::PangoGlyphString,
         color: *const gdk::GdkRGBA,
         offset: *const graphene::graphene_point_t,
-    ) -> *mut GskRenderNode;
-    pub fn gsk_text_node_peek_color(node: *mut GskRenderNode) -> *const gdk::GdkRGBA;
+    ) -> *mut GskTextNode;
     pub fn gsk_text_node_peek_font(node: *mut GskRenderNode) -> *mut pango::PangoFont;
-    pub fn gsk_text_node_peek_glyphs(node: *mut GskRenderNode) -> *const pango::PangoGlyphInfo;
-    pub fn gsk_texture_node_get_texture(node: *mut GskRenderNode) -> *mut gdk::GdkTexture;
+    pub fn gsk_text_node_get_num_glyphs(node: *mut GskTextNode) -> c_uint;
+    pub fn gsk_text_node_get_offset(node: *mut GskTextNode) -> *const graphene::graphene_point_t;
+    pub fn gsk_text_node_has_color_glyphs(node: *mut GskTextNode) -> gboolean;
+    pub fn gsk_text_node_peek_color(node: *mut GskTextNode) -> *const gdk::GdkRGBA;
+    pub fn gsk_text_node_peek_glyphs(
+        node: *mut GskTextNode,
+        n_glyphs: *mut c_uint,
+    ) -> *const pango::PangoGlyphInfo;
+
+    //=========================================================================
+    // GskTextureNode
+    //=========================================================================
+    pub fn gsk_texture_node_get_type() -> GType;
     pub fn gsk_texture_node_new(
         texture: *mut gdk::GdkTexture,
         bounds: *const graphene::graphene_rect_t,
-    ) -> *mut GskRenderNode;
+    ) -> *mut GskTextureNode;
+    pub fn gsk_texture_node_get_texture(node: *mut GskTextureNode) -> *mut gdk::GdkTexture;
+
+    //=========================================================================
+    // GskTransformNode
+    //=========================================================================
+    pub fn gsk_transform_node_get_type() -> GType;
+    pub fn gsk_transform_node_new(
+        child: *mut GskRenderNode,
+        transform: *mut GskTransform,
+    ) -> *mut GskTransformNode;
+    pub fn gsk_transform_node_get_child(node: *mut GskTransformNode) -> *mut GskRenderNode;
+    pub fn gsk_transform_node_get_transform(node: *mut GskTransformNode) -> *mut GskTransform;
+
+    //=========================================================================
+    // GskVulkanRenderer
+    //=========================================================================
+    pub fn gsk_vulkan_renderer_get_type() -> GType;
+    pub fn gsk_vulkan_renderer_new() -> *mut GskRenderer;
 
 }
