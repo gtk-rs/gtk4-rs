@@ -2,14 +2,56 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+mod blend_node;
+pub use self::blend_node::{BlendNode, BlendNodeClass};
+
+mod blur_node;
+pub use self::blur_node::{BlurNode, BlurNodeClass};
+
+mod border_node;
+pub use self::border_node::{BorderNode, BorderNodeClass};
+
 mod broadway_renderer;
 pub use self::broadway_renderer::{BroadwayRenderer, BroadwayRendererClass};
+
+mod cairo_node;
+pub use self::cairo_node::{CairoNode, CairoNodeClass};
 
 mod cairo_renderer;
 pub use self::cairo_renderer::{CairoRenderer, CairoRendererClass};
 
+mod clip_node;
+pub use self::clip_node::{ClipNode, ClipNodeClass};
+
+mod color_matrix_node;
+pub use self::color_matrix_node::{ColorMatrixNode, ColorMatrixNodeClass};
+
+mod color_node;
+pub use self::color_node::{ColorNode, ColorNodeClass};
+
+mod container_node;
+pub use self::container_node::{ContainerNode, ContainerNodeClass};
+
+mod cross_fade_node;
+pub use self::cross_fade_node::{CrossFadeNode, CrossFadeNodeClass};
+
+mod debug_node;
+pub use self::debug_node::{DebugNode, DebugNodeClass};
+
 mod gl_renderer;
 pub use self::gl_renderer::{GLRenderer, GLRendererClass};
+
+mod inset_shadow_node;
+pub use self::inset_shadow_node::{InsetShadowNode, InsetShadowNodeClass};
+
+mod linear_gradient_node;
+pub use self::linear_gradient_node::{LinearGradientNode, LinearGradientNodeClass};
+
+mod opacity_node;
+pub use self::opacity_node::{OpacityNode, OpacityNodeClass};
+
+mod outset_shadow_node;
+pub use self::outset_shadow_node::{OutsetShadowNode, OutsetShadowNodeClass};
 
 mod render_node;
 pub use self::render_node::RenderNodeExt;
@@ -18,6 +60,29 @@ pub use self::render_node::{RenderNode, RenderNodeClass, NONE_RENDER_NODE};
 mod renderer;
 pub use self::renderer::RendererExt;
 pub use self::renderer::{Renderer, RendererClass, NONE_RENDERER};
+
+mod repeat_node;
+pub use self::repeat_node::{RepeatNode, RepeatNodeClass};
+
+mod repeating_linear_gradient_node;
+pub use self::repeating_linear_gradient_node::{
+    RepeatingLinearGradientNode, RepeatingLinearGradientNodeClass,
+};
+
+mod rounded_clip_node;
+pub use self::rounded_clip_node::{RoundedClipNode, RoundedClipNodeClass};
+
+mod shadow_node;
+pub use self::shadow_node::{ShadowNode, ShadowNodeClass};
+
+mod text_node;
+pub use self::text_node::{TextNode, TextNodeClass};
+
+mod texture_node;
+pub use self::texture_node::{TextureNode, TextureNodeClass};
+
+mod transform_node;
+pub use self::transform_node::{TransformNode, TransformNodeClass};
 
 mod vulkan_renderer;
 pub use self::vulkan_renderer::{VulkanRenderer, VulkanRendererClass};
