@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gdk_sys;
+use gio;
 use glib;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -91,9 +92,9 @@ impl Display {
         }
     }
 
-    //pub fn get_monitors(&self) -> /*Ignored*/Option<gio::ListModel> {
-    //    unsafe { TODO: call gdk_sys:gdk_display_get_monitors() }
-    //}
+    pub fn get_monitors(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(gdk_sys::gdk_display_get_monitors(self.to_glib_none().0)) }
+    }
 
     pub fn get_name(&self) -> GString {
         unsafe { from_glib_none(gdk_sys::gdk_display_get_name(self.to_glib_none().0)) }
