@@ -3,10 +3,13 @@
 // DO NOT EDIT
 
 use gdk_sys;
+use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -111,6 +114,34 @@ impl DisplayManager {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct DisplayManagerBuilder {
+    default_display: Option<Display>,
+}
+
+impl DisplayManagerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> DisplayManager {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref default_display) = self.default_display {
+            properties.push(("default-display", default_display));
+        }
+        let ret = glib::Object::new(DisplayManager::static_type(), &properties)
+            .expect("object new")
+            .downcast::<DisplayManager>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn default_display(mut self, default_display: &Display) -> Self {
+        self.default_display = Some(default_display.clone());
+        self
     }
 }
 

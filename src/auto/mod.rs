@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 mod app_launch_context;
+pub use self::app_launch_context::AppLaunchContextBuilder;
 pub use self::app_launch_context::{AppLaunchContext, AppLaunchContextClass};
 
 mod button_event;
@@ -12,6 +13,7 @@ mod cairo_context;
 pub use self::cairo_context::{CairoContext, CairoContextClass};
 
 mod clipboard;
+pub use self::clipboard::ClipboardBuilder;
 pub use self::clipboard::{Clipboard, ClipboardClass};
 
 mod configure_event;
@@ -31,6 +33,7 @@ mod crossing_event;
 pub use self::crossing_event::{CrossingEvent, CrossingEventClass};
 
 mod cursor;
+pub use self::cursor::CursorBuilder;
 pub use self::cursor::{Cursor, CursorClass};
 
 mod dnd_event;
@@ -47,12 +50,14 @@ pub use self::device_pad::DevicePadExt;
 pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
 
 mod device_tool;
+pub use self::device_tool::DeviceToolBuilder;
 pub use self::device_tool::{DeviceTool, DeviceToolClass};
 
 mod display;
 pub use self::display::{Display, DisplayClass};
 
 mod display_manager;
+pub use self::display_manager::DisplayManagerBuilder;
 pub use self::display_manager::{DisplayManager, DisplayManagerClass};
 
 mod drag;
@@ -95,6 +100,7 @@ mod memory_texture;
 pub use self::memory_texture::{MemoryTexture, MemoryTextureClass};
 
 mod monitor;
+pub use self::monitor::MonitorBuilder;
 pub use self::monitor::{Monitor, MonitorClass};
 
 mod motion_event;

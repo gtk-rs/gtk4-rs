@@ -11,7 +11,6 @@ deprecate_by_min_version = true
 
 generate = [
     "Gdk.AnchorHints",
-    "Gdk.AppLaunchContext",
     "Gdk.AxisFlags",
     "Gdk.AxisUse",
     "Gdk.ButtonEvent",
@@ -21,13 +20,10 @@ generate = [
     "Gdk.ContentProvider",
     "Gdk.CrossingEvent",
     "Gdk.CrossingMode",
-    "Gdk.Cursor",
     "Gdk.DeleteEvent",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
-    "Gdk.DeviceTool",
     "Gdk.DeviceToolType",
-    "Gdk.DisplayManager",
     "Gdk.DNDEvent",
     "Gdk.Drag",
     "Gdk.DragAction",
@@ -51,7 +47,6 @@ generate = [
     "Gdk.MemoryFormat",
     "Gdk.MemoryTexture",
     "Gdk.ModifierType",
-    "Gdk.Monitor",
     "Gdk.MotionEvent",
     "Gdk.NotifyType",
     "Gdk.PadEvent",
@@ -141,9 +136,16 @@ status = "generate"
     #manual: out
     ignore = true
 
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "generate"
+generate_builder = true
+
 [[object]]
 name = "Gdk.Clipboard"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "read_async"
     ignore = true #array
@@ -207,6 +209,11 @@ status = "generate"
     ignore = true #unsafe
 
 [[object]]
+name = "Gdk.Cursor"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gdk.Device"
 status = "generate"
     [[object.function]]
@@ -215,6 +222,11 @@ status = "generate"
     [[object.function]]
     name = "free_history"
     ignore = true # cannot be used as is
+
+[[object]]
+name = "Gdk.DeviceTool"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gdk.Display"
@@ -251,6 +263,11 @@ status = "generate"
     name = "get_primary_monitor"
         [object.function.return]
         nullable = false
+
+[[object]]
+name = "Gdk.DisplayManager"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gdk.DrawContext"
@@ -387,6 +404,11 @@ status = "generate"
     pattern = "set_.+"
     # applications should not use setters
     ignore = true
+
+[[object]]
+name = "Gdk.Monitor"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gdk.Rectangle"

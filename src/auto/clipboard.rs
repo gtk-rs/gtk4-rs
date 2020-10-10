@@ -6,6 +6,7 @@ use gdk_sys;
 use gio;
 use gio_sys;
 use glib;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -13,6 +14,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -348,6 +350,34 @@ impl Clipboard {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ClipboardBuilder {
+    display: Option<Display>,
+}
+
+impl ClipboardBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Clipboard {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
+        }
+        let ret = glib::Object::new(Clipboard::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Clipboard>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &Display) -> Self {
+        self.display = Some(display.clone());
+        self
     }
 }
 

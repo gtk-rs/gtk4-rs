@@ -4,8 +4,11 @@
 
 use gdk_sys;
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use std::fmt;
 use Display;
 
@@ -54,6 +57,34 @@ impl AppLaunchContext {
         unsafe {
             gdk_sys::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct AppLaunchContextBuilder {
+    display: Option<Display>,
+}
+
+impl AppLaunchContextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> AppLaunchContext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
+        }
+        let ret = glib::Object::new(AppLaunchContext::static_type(), &properties)
+            .expect("object new")
+            .downcast::<AppLaunchContext>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &Display) -> Self {
+        self.display = Some(display.clone());
+        self
     }
 }
 
