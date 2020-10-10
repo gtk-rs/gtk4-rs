@@ -5,11 +5,17 @@
 mod app_launch_context;
 pub use self::app_launch_context::{AppLaunchContext, AppLaunchContextClass};
 
+mod button_event;
+pub use self::button_event::{ButtonEvent, ButtonEventClass};
+
 mod cairo_context;
 pub use self::cairo_context::{CairoContext, CairoContextClass};
 
 mod clipboard;
 pub use self::clipboard::{Clipboard, ClipboardClass};
+
+mod configure_event;
+pub use self::configure_event::{ConfigureEvent, ConfigureEventClass};
 
 mod content_deserializer;
 pub use self::content_deserializer::{ContentDeserializer, ContentDeserializerClass};
@@ -21,8 +27,17 @@ pub use self::content_provider::{ContentProvider, ContentProviderClass, NONE_CON
 mod content_serializer;
 pub use self::content_serializer::{ContentSerializer, ContentSerializerClass};
 
+mod crossing_event;
+pub use self::crossing_event::{CrossingEvent, CrossingEventClass};
+
 mod cursor;
 pub use self::cursor::{Cursor, CursorClass};
+
+mod dnd_event;
+pub use self::dnd_event::{DNDEvent, DNDEventClass};
+
+mod delete_event;
+pub use self::delete_event::{DeleteEvent, DeleteEventClass};
 
 mod device;
 pub use self::device::{Device, DeviceClass};
@@ -54,6 +69,9 @@ mod event;
 pub use self::event::EventExt;
 pub use self::event::{Event, EventClass, NONE_EVENT};
 
+mod focus_event;
+pub use self::focus_event::{FocusEvent, FocusEventClass};
+
 mod frame_clock;
 pub use self::frame_clock::{FrameClock, FrameClockClass};
 
@@ -63,15 +81,33 @@ pub use self::gl_context::{GLContext, GLContextClass};
 mod gl_texture;
 pub use self::gl_texture::{GLTexture, GLTextureClass};
 
+mod grab_broken_event;
+pub use self::grab_broken_event::{GrabBrokenEvent, GrabBrokenEventClass};
+
+mod key_event;
+pub use self::key_event::{KeyEvent, KeyEventClass};
+
 mod memory_texture;
 pub use self::memory_texture::{MemoryTexture, MemoryTextureClass};
 
 mod monitor;
 pub use self::monitor::{Monitor, MonitorClass};
 
+mod motion_event;
+pub use self::motion_event::{MotionEvent, MotionEventClass};
+
+mod pad_event;
+pub use self::pad_event::{PadEvent, PadEventClass};
+
 mod paintable;
 pub use self::paintable::PaintableExt;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};
+
+mod proximity_event;
+pub use self::proximity_event::{ProximityEvent, ProximityEventClass};
+
+mod scroll_event;
+pub use self::scroll_event::{ScrollEvent, ScrollEventClass};
 
 mod seat;
 pub use self::seat::{Seat, SeatClass};
@@ -85,6 +121,12 @@ pub use self::surface::{Surface, SurfaceClass};
 mod texture;
 pub use self::texture::TextureExt;
 pub use self::texture::{Texture, TextureClass, NONE_TEXTURE};
+
+mod touch_event;
+pub use self::touch_event::{TouchEvent, TouchEventClass};
+
+mod touchpad_event;
+pub use self::touchpad_event::{TouchpadEvent, TouchpadEventClass};
 
 mod vulkan_context;
 pub use self::vulkan_context::{VulkanContext, VulkanContextClass};
@@ -115,6 +157,7 @@ pub use self::enums::FullscreenMode;
 pub use self::enums::GLError;
 pub use self::enums::Gravity;
 pub use self::enums::InputSource;
+pub use self::enums::KeyMatch;
 pub use self::enums::MemoryFormat;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;

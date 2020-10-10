@@ -1040,6 +1040,82 @@ impl SetValue for InputSource {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum KeyMatch {
+    None,
+    Partial,
+    Exact,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for KeyMatch {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "KeyMatch::{}",
+            match *self {
+                KeyMatch::None => "None",
+                KeyMatch::Partial => "Partial",
+                KeyMatch::Exact => "Exact",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for KeyMatch {
+    type GlibType = gdk_sys::GdkKeyMatch;
+
+    fn to_glib(&self) -> gdk_sys::GdkKeyMatch {
+        match *self {
+            KeyMatch::None => gdk_sys::GDK_KEY_MATCH_NONE,
+            KeyMatch::Partial => gdk_sys::GDK_KEY_MATCH_PARTIAL,
+            KeyMatch::Exact => gdk_sys::GDK_KEY_MATCH_EXACT,
+            KeyMatch::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gdk_sys::GdkKeyMatch> for KeyMatch {
+    fn from_glib(value: gdk_sys::GdkKeyMatch) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => KeyMatch::None,
+            1 => KeyMatch::Partial,
+            2 => KeyMatch::Exact,
+            value => KeyMatch::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for KeyMatch {
+    fn static_type() -> Type {
+        unsafe { from_glib(gdk_sys::gdk_key_match_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for KeyMatch {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for KeyMatch {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for KeyMatch {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum MemoryFormat {
     B8g8r8a8Premultiplied,
     A8r8g8b8Premultiplied,
