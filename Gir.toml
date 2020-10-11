@@ -259,6 +259,7 @@ manual = [
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.AppInfo",
+    "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.Cancellable",
     "Gio.File",
