@@ -38,7 +38,6 @@ impl Dialog {
 
 pub trait DialogExtManual: 'static {
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);
-    fn run(&self) -> ResponseType;
     fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType;
 }
 
@@ -48,10 +47,6 @@ impl<O: IsA<Dialog>> DialogExtManual for O {
             //FIXME: self.add_button don't work on 1.8
             O::add_button(self, text, id);
         }
-    }
-
-    fn run(&self) -> ResponseType {
-        unsafe { from_glib(gtk_sys::gtk_dialog_run(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType {

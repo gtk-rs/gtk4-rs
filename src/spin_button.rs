@@ -40,7 +40,7 @@ unsafe extern "C" fn input_trampoline<T, F: Fn(&T) -> Option<Result<f64, ()>> + 
 where
     T: IsA<SpinButton>,
 {
-    match f(&SpinButton::from_glib_borrow(this).unsafe_cast()) {
+    match f(&SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
         Some(Ok(v)) => {
             *new_value = v;
             GTRUE

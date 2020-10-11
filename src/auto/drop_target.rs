@@ -13,7 +13,6 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
@@ -107,35 +106,6 @@ impl DropTarget {
                 b"accept\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     accept_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn connect_drop<F: Fn(&DropTarget, &glib::Value, f64, f64) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn drop_trampoline<
-            F: Fn(&DropTarget, &glib::Value, f64, f64) -> bool + 'static,
-        >(
-            this: *mut gtk_sys::GtkDropTarget,
-            value: *mut gobject_sys::GValue,
-            x: libc::c_double,
-            y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(value), x, y).to_glib()
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"drop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

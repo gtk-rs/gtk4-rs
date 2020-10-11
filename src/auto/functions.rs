@@ -4,19 +4,14 @@
 
 use cairo;
 use gdk;
-use gio;
-use gio_sys;
 use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
-use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use pango;
 use std::boxed::Box as Box_;
 use std::mem;
-use std::pin::Pin;
 use std::ptr;
 use Accessible;
 use AccessibleProperty;
@@ -27,7 +22,6 @@ use Expression;
 use Orientation;
 use PageSetup;
 use PrintSettings;
-use RequestedSize;
 use StyleContext;
 use TextDirection;
 use TreeModel;
@@ -146,20 +140,9 @@ pub fn disable_setlocale() {
     }
 }
 
-pub fn distribute_natural_allocation(
-    extra_space: i32,
-    n_requested_sizes: u32,
-    sizes: &mut RequestedSize,
-) -> i32 {
-    assert_initialized_main_thread!();
-    unsafe {
-        gtk_sys::gtk_distribute_natural_allocation(
-            extra_space,
-            n_requested_sizes,
-            sizes.to_glib_none_mut().0,
-        )
-    }
-}
+//pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
+//    unsafe { TODO: call gtk_sys:gtk_distribute_natural_allocation() }
+//}
 
 pub fn get_debug_flags() -> u32 {
     assert_initialized_main_thread!();
@@ -197,22 +180,9 @@ pub fn im_modules_init() {
     }
 }
 
-pub fn param_spec_expression(
-    name: &str,
-    nick: &str,
-    blurb: &str,
-    flags: glib::ParamFlags,
-) -> Option<glib::ParamSpec> {
-    assert_initialized_main_thread!();
-    unsafe {
-        from_glib_full(gtk_sys::gtk_param_spec_expression(
-            name.to_glib_none().0,
-            nick.to_glib_none().0,
-            blurb.to_glib_none().0,
-            flags.to_glib(),
-        ))
-    }
-}
+//pub fn param_spec_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> /*Ignored*/Option<glib::ParamSpec> {
+//    unsafe { TODO: call gtk_sys:gtk_param_spec_expression() }
+//}
 
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     parent: Option<&P>,
@@ -592,73 +562,6 @@ pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
             timestamp,
         );
     }
-}
-
-pub fn show_uri_full<
-    P: IsA<Window>,
-    Q: IsA<gio::Cancellable>,
-    R: FnOnce(Result<(), glib::Error>) + Send + 'static,
->(
-    parent: Option<&P>,
-    uri: &str,
-    timestamp: u32,
-    cancellable: Option<&Q>,
-    callback: R,
-) {
-    assert_initialized_main_thread!();
-    let user_data: Box_<R> = Box_::new(callback);
-    unsafe extern "C" fn show_uri_full_trampoline<
-        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
-    >(
-        _source_object: *mut gobject_sys::GObject,
-        res: *mut gio_sys::GAsyncResult,
-        user_data: glib_sys::gpointer,
-    ) {
-        let mut error = ptr::null_mut();
-        let _ = gtk_sys::gtk_show_uri_full_finish(res, &mut error);
-        let result = if error.is_null() {
-            Ok(())
-        } else {
-            Err(from_glib_full(error))
-        };
-        let callback: Box_<R> = Box_::from_raw(user_data as *mut _);
-        callback(result);
-    }
-    let callback = show_uri_full_trampoline::<R>;
-    unsafe {
-        gtk_sys::gtk_show_uri_full(
-            parent.map(|p| p.as_ref()).to_glib_none().0,
-            uri.to_glib_none().0,
-            timestamp,
-            cancellable.map(|p| p.as_ref()).to_glib_none().0,
-            Some(callback),
-            Box_::into_raw(user_data) as *mut _,
-        );
-    }
-}
-
-pub fn show_uri_full_future<P: IsA<Window> + Clone + 'static>(
-    parent: Option<&P>,
-    uri: &str,
-    timestamp: u32,
-) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-    skip_assert_initialized!();
-    let parent = parent.map(ToOwned::to_owned);
-    let uri = String::from(uri);
-    Box_::pin(gio::GioFuture::new(&(), move |_obj, send| {
-        let cancellable = gio::Cancellable::new();
-        show_uri_full(
-            parent.as_ref().map(::std::borrow::Borrow::borrow),
-            &uri,
-            timestamp,
-            Some(&cancellable),
-            move |res| {
-                send.resolve(res);
-            },
-        );
-
-        cancellable
-    }))
 }
 
 pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(

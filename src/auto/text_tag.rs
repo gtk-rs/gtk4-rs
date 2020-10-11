@@ -77,7 +77,7 @@ pub struct TextTagBuilder {
     letter_spacing: Option<i32>,
     letter_spacing_set: Option<bool>,
     name: Option<String>,
-    overline: Option<pango::Overline>,
+    //overline: /*Unknown type*/,
     overline_rgba: Option<gdk::RGBA>,
     overline_rgba_set: Option<bool>,
     overline_set: Option<bool>,
@@ -240,9 +240,6 @@ impl TextTagBuilder {
         }
         if let Some(ref name) = self.name {
             properties.push(("name", name));
-        }
-        if let Some(ref overline) = self.overline {
-            properties.push(("overline", overline));
         }
         if let Some(ref overline_rgba) = self.overline_rgba {
             properties.push(("overline-rgba", overline_rgba));
@@ -562,11 +559,6 @@ impl TextTagBuilder {
 
     pub fn name(mut self, name: &str) -> Self {
         self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn overline(mut self, overline: pango::Overline) -> Self {
-        self.overline = Some(overline);
         self
     }
 
@@ -937,9 +929,9 @@ pub trait TextTagExt: 'static {
 
     fn get_property_name(&self) -> Option<GString>;
 
-    fn get_property_overline(&self) -> pango::Overline;
+    //fn get_property_overline(&self) -> /*Ignored*/pango::Overline;
 
-    fn set_property_overline(&self, overline: pango::Overline);
+    //fn set_property_overline(&self, overline: /*Ignored*/pango::Overline);
 
     fn get_property_overline_rgba(&self) -> Option<gdk::RGBA>;
 
@@ -2289,30 +2281,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_overline(&self) -> pango::Overline {
-        unsafe {
-            let mut value = Value::from_type(<pango::Overline as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"overline\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `overline` getter")
-                .unwrap()
-        }
-    }
+    //fn get_property_overline(&self) -> /*Ignored*/pango::Overline {
+    //    unsafe {
+    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"overline\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        value.get().expect("Return Value for property `overline` getter").unwrap()
+    //    }
+    //}
 
-    fn set_property_overline(&self, overline: pango::Overline) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"overline\0".as_ptr() as *const _,
-                Value::from(&overline).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_property_overline(&self, overline: /*Ignored*/pango::Overline) {
+    //    unsafe {
+    //        gobject_sys::g_object_set_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"overline\0".as_ptr() as *const _, Value::from(&overline).to_glib_none().0);
+    //    }
+    //}
 
     fn get_property_overline_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {

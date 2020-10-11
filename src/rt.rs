@@ -106,17 +106,6 @@ pub fn init() -> Result<(), glib::BoolError> {
     }
 }
 
-pub fn main_quit() {
-    assert_initialized_main_thread!();
-    unsafe {
-        if gtk_sys::gtk_main_level() > 0 {
-            gtk_sys::gtk_main_quit();
-        } else if cfg!(debug_assertions) {
-            panic!("Attempted to quit a GTK main loop when none is running.");
-        }
-    }
-}
-
 pub fn get_major_version() -> u32 {
     skip_assert_initialized!();
     unsafe { gtk_sys::gtk_get_major_version() as u32 }

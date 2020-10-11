@@ -35,19 +35,9 @@ impl PropertyExpression {
         }
     }
 
-    pub fn new_for_pspec<P: IsA<Expression>, Q: IsA<glib::ParamSpec>>(
-        expression: Option<&P>,
-        pspec: &Q,
-    ) -> PropertyExpression {
-        assert_initialized_main_thread!();
-        unsafe {
-            Expression::from_glib_full(gtk_sys::gtk_property_expression_new_for_pspec(
-                expression.map(|p| p.as_ref()).to_glib_full(),
-                pspec.as_ref().to_glib_none().0,
-            ))
-            .unsafe_cast()
-        }
-    }
+    //pub fn new_for_pspec<P: IsA<Expression>>(expression: Option<&P>, pspec: /*Ignored*/&glib::ParamSpec) -> PropertyExpression {
+    //    unsafe { TODO: call gtk_sys:gtk_property_expression_new_for_pspec() }
+    //}
 
     pub fn get_expression(&self) -> Option<Expression> {
         unsafe {
@@ -57,13 +47,9 @@ impl PropertyExpression {
         }
     }
 
-    pub fn get_pspec(&self) -> Option<glib::ParamSpec> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_property_expression_get_pspec(
-                self.to_glib_none().0,
-            ))
-        }
-    }
+    //pub fn get_pspec(&self) -> /*Ignored*/Option<glib::ParamSpec> {
+    //    unsafe { TODO: call gtk_sys:gtk_property_expression_get_pspec() }
+    //}
 }
 
 impl fmt::Display for PropertyExpression {

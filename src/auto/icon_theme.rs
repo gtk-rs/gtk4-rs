@@ -137,12 +137,6 @@ impl IconTheme {
         }
     }
 
-    pub fn set_resource_path(&self, path: &str) {
-        unsafe {
-            gtk_sys::gtk_icon_theme_set_resource_path(self.to_glib_none().0, path.to_glib_none().0);
-        }
-    }
-
     pub fn set_search_path(&self, path: &[&std::path::Path]) {
         unsafe {
             gtk_sys::gtk_icon_theme_set_search_path(self.to_glib_none().0, path.to_glib_none().0);
@@ -178,6 +172,16 @@ impl IconTheme {
                 self.as_ptr() as *mut gobject_sys::GObject,
                 b"display\0".as_ptr() as *const _,
                 Value::from(display).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_property_resource_path(&self, resource_path: &[&str]) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"resource-path\0".as_ptr() as *const _,
+                Value::from(resource_path).to_glib_none().0,
             );
         }
     }

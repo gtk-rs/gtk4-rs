@@ -135,13 +135,7 @@ impl ConstraintGuideBuilder {
 pub const NONE_CONSTRAINT_GUIDE: Option<&ConstraintGuide> = None;
 
 pub trait ConstraintGuideExt: 'static {
-    fn get_max_size(&self, width: i32, height: i32);
-
-    fn get_min_size(&self, width: i32, height: i32);
-
     fn get_name(&self) -> Option<GString>;
-
-    fn get_nat_size(&self, width: i32, height: i32);
 
     fn get_strength(&self) -> ConstraintStrength;
 
@@ -197,41 +191,11 @@ pub trait ConstraintGuideExt: 'static {
 }
 
 impl<O: IsA<ConstraintGuide>> ConstraintGuideExt for O {
-    fn get_max_size(&self, width: i32, height: i32) {
-        unsafe {
-            gtk_sys::gtk_constraint_guide_get_max_size(
-                self.as_ref().to_glib_none().0,
-                width,
-                height,
-            );
-        }
-    }
-
-    fn get_min_size(&self, width: i32, height: i32) {
-        unsafe {
-            gtk_sys::gtk_constraint_guide_get_min_size(
-                self.as_ref().to_glib_none().0,
-                width,
-                height,
-            );
-        }
-    }
-
     fn get_name(&self) -> Option<GString> {
         unsafe {
             from_glib_none(gtk_sys::gtk_constraint_guide_get_name(
                 self.as_ref().to_glib_none().0,
             ))
-        }
-    }
-
-    fn get_nat_size(&self, width: i32, height: i32) {
-        unsafe {
-            gtk_sys::gtk_constraint_guide_get_nat_size(
-                self.as_ref().to_glib_none().0,
-                width,
-                height,
-            );
         }
     }
 

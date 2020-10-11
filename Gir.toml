@@ -10,6 +10,9 @@ deprecate_by_min_version = true
 single_version_file = true
 
 generate = [
+    # "Gtk.BuilderCScope",
+    #"Gtk.ShortcutTrigger", causes a bunch of issues
+    #"Gtk.RequestedSize", a record
     "Gtk.ATContext",
     "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
@@ -35,7 +38,6 @@ generate = [
     "Gtk.BorderStyle",
     "Gtk.Buildable",
     "Gtk.BuildableParser",
-    "Gtk.BuilderCScope",
     "Gtk.BuilderClosureFlags",
     "Gtk.BuilderError",
     "Gtk.BuilderScope",
@@ -158,7 +160,6 @@ generate = [
     "Gtk.PropertyExpression",
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
-    "Gtk.RequestedSize",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
     "Gtk.ScrollStep",
@@ -172,7 +173,6 @@ generate = [
     "Gtk.ShortcutActionFlags",
     "Gtk.ShortcutManager",
     "Gtk.ShortcutScope",
-    "Gtk.ShortcutTrigger",
     "Gtk.ShortcutType",
     "Gtk.SignalListItemFactory",
     "Gtk.SizeGroupMode",
@@ -219,6 +219,7 @@ manual = [
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
+    # "Gdk.TimeCoord",
     "cairo.Context",
     "cairo.FontOptions",
     "cairo.RectangleInt",
@@ -253,7 +254,6 @@ manual = [
     "Gdk.Surface",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",
-    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
     "Gio.Action",
     "Gio.ActionGroup",
@@ -281,7 +281,6 @@ manual = [
     "GObject.Closure",
     "GObject.Object",
     "GObject.ParamFlags",
-    "GObject.ParamSpec",
     "GObject.Value",
     "Graphene.Matrix",
     "Graphene.Point",
@@ -291,7 +290,7 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.BlendMode",
-    "Gsk.ColorStop",
+    #"Gsk.ColorStop",
     "Gsk.RenderNode",
     "Gsk.Renderer",
     "Gsk.RoundedRect",
@@ -315,7 +314,7 @@ manual = [
     "Pango.FontMap",
     "Pango.Language",
     "Pango.Layout",
-    "Pango.Overline",
+    #"Pango.Overline",
     "Pango.ShowFlags",
     "Pango.Stretch",
     "Pango.Style",
@@ -396,6 +395,10 @@ status = "generate"
     [[object.function]]
     pattern = "drag_.+"
     #manual trait
+    ignore = true
+    [[object.function]]
+    name = "show_uri_full"
+    # TODO: manual
     ignore = true
 
 [[object]]
@@ -752,6 +755,16 @@ generate_builder = true
 name = "Gtk.ConstraintGuide"
 status = "generate"
 generate_builder = true
+manual_traits = ["ConstraintGuideExtManual"]
+    [[object.function]]
+    name = "get_max_size"
+    ignore = true
+    [[object.function]]
+    name = "get_min_size"
+    ignore = true
+    [[object.function]]
+    name = "get_nat_size"
+    ignore = true
 
 [[object]]
 name = "Gtk.Dialog"
@@ -799,6 +812,9 @@ generate_builder = true
 name = "Gtk.DropTarget"
 status = "generate"
 generate_builder = true
+    [[object.signal]]
+    name = "drop"
+    ignore = true # manual, to be done
 
 [[object]]
 name = "Gtk.DropTargetAsync"
@@ -1089,6 +1105,9 @@ generate_builder = true
     name = "get_icon_sizes"
     ignore = true
     # TODO gtk3 ignored some more array functions
+    [[object.function]]
+    name = "set_resource_path"
+    ignore = true # manual
 
 [[object]]
 name = "Gtk.IconView"

@@ -1,13 +1,13 @@
 use glib::subclass::prelude::*;
 
-use super::container::ContainerImpl;
+use super::widget::WidgetImpl;
 use BoxClass;
-use ContainerClass;
+use WidgetClass;
 
-pub trait BoxImpl: ContainerImpl + 'static {}
+pub trait BoxImpl: WidgetImpl {}
 
 unsafe impl<T: ObjectSubclass + BoxImpl> IsSubclassable<T> for BoxClass {
     fn override_vfuncs(&mut self) {
-        <ContainerClass as IsSubclassable<T>>::override_vfuncs(self);
+        <WidgetClass as IsSubclassable<T>>::override_vfuncs(self);
     }
 }

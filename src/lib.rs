@@ -59,7 +59,6 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
-mod functions;
 mod signal;
 
 #[macro_use]
@@ -69,24 +68,22 @@ pub mod prelude;
 
 pub use auto::functions::*;
 pub use auto::*;
-pub use functions::*;
 pub use rt::*;
 
-mod accel_key;
-mod accel_map;
 mod actionable;
 mod application;
 mod border;
 mod builder;
 mod color_chooser;
 mod combo_box;
+mod constraint_guide;
 mod css_location;
 mod dialog;
 mod editable;
 mod entry_buffer;
 mod entry_completion;
 mod file_chooser_dialog;
-mod file_filter_info;
+mod icon_theme;
 mod im_context_simple;
 mod list_store;
 mod message_dialog;
@@ -110,10 +107,8 @@ mod tree_sortable;
 mod tree_store;
 mod widget;
 
-pub use accel_key::AccelKey;
 pub use border::Border;
 pub use css_location::CssLocation;
-pub use file_filter_info::FileFilterInfo;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
 pub use recent_data::RecentData;

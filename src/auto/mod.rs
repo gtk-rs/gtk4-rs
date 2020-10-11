@@ -111,10 +111,6 @@ mod builder;
 pub use self::builder::BuilderBuilder;
 pub use self::builder::{Builder, BuilderClass};
 
-mod builder_cscope;
-pub use self::builder_cscope::BuilderCScopeExt;
-pub use self::builder_cscope::{BuilderCScope, BuilderCScopeClass, NONE_BUILDER_CSCOPE};
-
 mod builder_list_item_factory;
 pub use self::builder_list_item_factory::BuilderListItemFactoryBuilder;
 pub use self::builder_list_item_factory::{BuilderListItemFactory, BuilderListItemFactoryClass};
@@ -886,10 +882,6 @@ mod shortcut_manager;
 pub use self::shortcut_manager::ShortcutManagerExt;
 pub use self::shortcut_manager::{ShortcutManager, NONE_SHORTCUT_MANAGER};
 
-mod shortcut_trigger;
-pub use self::shortcut_trigger::ShortcutTriggerExt;
-pub use self::shortcut_trigger::{ShortcutTrigger, ShortcutTriggerClass, NONE_SHORTCUT_TRIGGER};
-
 mod shortcuts_group;
 pub use self::shortcuts_group::ShortcutsGroupBuilder;
 pub use self::shortcuts_group::{ShortcutsGroup, ShortcutsGroupClass};
@@ -1426,7 +1418,6 @@ pub mod traits {
     pub use super::BoxExt;
     pub use super::BoxLayoutExt;
     pub use super::BuildableExt;
-    pub use super::BuilderCScopeExt;
     pub use super::BuilderScopeExt;
     pub use super::ButtonExt;
     pub use super::CellAreaContextExt;
@@ -1511,7 +1502,6 @@ pub mod traits {
     pub use super::ShortcutActionExt;
     pub use super::ShortcutExt;
     pub use super::ShortcutManagerExt;
-    pub use super::ShortcutTriggerExt;
     pub use super::SingleSelectionExt;
     pub use super::SliceListModelExt;
     pub use super::SortListModelExt;

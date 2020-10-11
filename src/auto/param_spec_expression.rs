@@ -3,12 +3,11 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use gobject;
 use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ParamSpecExpression(Object<gtk_sys::GtkParamSpecExpression, ParamSpecExpressionClass>) @extends gobject::ParamSpec;
+    pub struct ParamSpecExpression(Object<gtk_sys::GtkParamSpecExpression, ParamSpecExpressionClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_param_expression_get_type(),
