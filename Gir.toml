@@ -11,9 +11,8 @@ single_version_file = true
 
 generate = [
     # "Gtk.BuilderCScope",
-    #"Gtk.ShortcutTrigger", causes a bunch of issues
     #"Gtk.RequestedSize", a record
-    "Gtk.ATContext",
+    #"Gtk.ShortcutTrigger", causes a bunch of issues
     "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
@@ -31,6 +30,7 @@ generate = [
     "Gtk.ApplicationInhibitFlags",
     "Gtk.ArrowType",
     "Gtk.AssistantPageType",
+    "Gtk.ATContext",
     "Gtk.BaselinePosition",
     "Gtk.BinLayout",
     "Gtk.Bitset",
@@ -42,8 +42,8 @@ generate = [
     "Gtk.BuilderError",
     "Gtk.BuilderScope",
     "Gtk.ButtonsType",
-    "Gtk.CClosureExpression",
     "Gtk.CallbackAction",
+    "Gtk.CClosureExpression",
     "Gtk.CellEditable",
     "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
@@ -101,12 +101,12 @@ generate = [
     "Gtk.GestureStylus",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
-    "Gtk.IMMulticontext",
     "Gtk.IconLookupFlags",
     "Gtk.IconSize",
     "Gtk.IconThemeError",
     "Gtk.IconViewDropPosition",
     "Gtk.ImageType",
+    "Gtk.IMMulticontext",
     "Gtk.InputHints",
     "Gtk.InputPurpose",
     "Gtk.Justification",
@@ -162,10 +162,10 @@ generate = [
     "Gtk.RecentManagerError",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
-    "Gtk.ScrollStep",
-    "Gtk.ScrollType",
     "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
+    "Gtk.ScrollStep",
+    "Gtk.ScrollType",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -177,10 +177,10 @@ generate = [
     "Gtk.SignalListItemFactory",
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
-    "Gtk.SortType",
     "Gtk.Sorter",
     "Gtk.SorterChange",
     "Gtk.SorterOrder",
+    "Gtk.SortType",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.SpinType",
     "Gtk.StackTransitionType",
@@ -216,10 +216,14 @@ ignore = [
 ]
 
 manual = [
+    # "Gdk.TimeCoord",
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
-    # "Gdk.TimeCoord",
+    #"Gsk.ColorStop",
+    #"Gsk.ColorStop",
+    #"Pango.Overline",
+    #"Pango.Overline",
     "cairo.Context",
     "cairo.FontOptions",
     "cairo.RectangleInt",
@@ -248,8 +252,8 @@ manual = [
     "Gdk.Monitor",
     "Gdk.NotifyType",
     "Gdk.Paintable",
-    "Gdk.RGBA",
     "Gdk.Rectangle",
+    "Gdk.RGBA",
     "Gdk.Snapshot",
     "Gdk.Surface",
     "Gdk.SurfaceEdge",
@@ -291,9 +295,8 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.BlendMode",
-    #"Gsk.ColorStop",
-    "Gsk.RenderNode",
     "Gsk.Renderer",
+    "Gsk.RenderNode",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Gsk.Transform",
@@ -315,7 +318,6 @@ manual = [
     "Pango.FontMap",
     "Pango.Language",
     "Pango.Layout",
-    #"Pango.Overline",
     "Pango.ShowFlags",
     "Pango.Stretch",
     "Pango.Style",
@@ -416,17 +418,17 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.ActionBar"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.Actionable"
 status = "generate"
     [[object.property]]
     #value glib.Variant
     name = "action-target"
     ignore = true
+
+[[object]]
+name = "Gtk.ActionBar"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gtk.Adjustment"
@@ -507,11 +509,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.Button"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.Builder"
 status = "generate"
 generate_builder = true
@@ -534,6 +531,11 @@ manual_traits = ["BuilderExtManual"]
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.Button"
 status = "generate"
 generate_builder = true
 
@@ -805,6 +807,11 @@ status = "generate"
 generate_builder = true
 
 [[object]]
+name = "Gtk.DrawingArea"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gtk.DropDown"
 status = "generate"
 generate_builder = true
@@ -819,11 +826,6 @@ generate_builder = true
 
 [[object]]
 name = "Gtk.DropTargetAsync"
-status = "generate"
-generate_builder = true
-
-[[object]]
-name = "Gtk.DrawingArea"
 status = "generate"
 generate_builder = true
 
@@ -1147,12 +1149,12 @@ manual_traits = ["IMContextSimpleExtManual"]
     ignore = true # We don't understand API
 
 [[object]]
-name = "Gtk.KeyvalTrigger"
+name = "Gtk.InfoBar"
 status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.InfoBar"
+name = "Gtk.KeyvalTrigger"
 status = "generate"
 generate_builder = true
 
@@ -1387,6 +1389,11 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gtk.Paned"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gtk.PaperSize"
 status = "generate"
     [[object.function]]
@@ -1402,11 +1409,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "size2"
         const = true
-
-[[object]]
-name = "Gtk.Paned"
-status = "generate"
-generate_builder = true
 
 [[object]]
 name = "Gtk.PasswordEntry"
@@ -1638,11 +1640,6 @@ status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.Spinner"
-status = "generate"
-generate_builder = true
-
-[[object]]
 name = "Gtk.SpinButton"
 status = "generate"
 generate_builder = true
@@ -1654,6 +1651,11 @@ manual_traits = ["SpinButtonExtManual"]
     [[object.signal]]
     name = "output"
     inhibit = true
+
+[[object]]
+name = "Gtk.Spinner"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gtk.Stack"
@@ -1810,12 +1812,12 @@ init_function_expression = "|_ptr| ()"
 clear_function_expression = "|_ptr| ()"
 
 [[object]]
-name = "Gtk.TreeListRow"
+name = "Gtk.TreeListModel"
 status = "generate"
 generate_builder = true
 
 [[object]]
-name = "Gtk.TreeListModel"
+name = "Gtk.TreeListRow"
 status = "generate"
 generate_builder = true
 
