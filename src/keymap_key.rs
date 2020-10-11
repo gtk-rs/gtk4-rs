@@ -4,60 +4,35 @@
 
 use gdk_sys;
 use glib::translate::*;
-use std::ptr;
 
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy)]
-pub struct KeymapKey(gdk_sys::GdkKeymapKey);
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[repr(C)]
+pub struct KeymapKey {
+    group: i32,
+    keycode: u32,
+    level: i32,
+}
 
 impl KeymapKey {
     pub fn new(keycode: u32, group: i32, level: i32) -> KeymapKey {
         assert_initialized_main_thread!();
-        KeymapKey(gdk_sys::GdkKeymapKey {
+        KeymapKey {
             keycode,
             group,
             level,
-        })
+        }
     }
 
     pub fn get_keycode(&self) -> u32 {
-        self.0.keycode
+        self.keycode
     }
 
     pub fn get_group(&self) -> i32 {
-        self.0.group
+        self.group
     }
 
     pub fn get_level(&self) -> i32 {
-        self.0.level
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibContainerAsVec<gdk_sys::GdkKeymapKey, *mut gdk_sys::GdkKeymapKey> for KeymapKey {
-    unsafe fn from_glib_none_num_as_vec(ptr: *mut gdk_sys::GdkKeymapKey, num: usize) -> Vec<Self> {
-        if num == 0 || ptr.is_null() {
-            return Vec::new();
-        }
-
-        let mut res = Vec::with_capacity(num);
-        for i in 0..num {
-            res.push(KeymapKey(ptr::read(ptr.offset(i as isize))));
-        }
-        res
-    }
-
-    unsafe fn from_glib_container_num_as_vec(
-        ptr: *mut gdk_sys::GdkKeymapKey,
-        num: usize,
-    ) -> Vec<Self> {
-        let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
-        glib_sys::g_free(ptr as *mut _);
-        res
-    }
-
-    unsafe fn from_glib_full_num_as_vec(ptr: *mut gdk_sys::GdkKeymapKey, num: usize) -> Vec<Self> {
-        FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
+        self.level
     }
 }
 
@@ -65,7 +40,44 @@ impl FromGlibContainerAsVec<gdk_sys::GdkKeymapKey, *mut gdk_sys::GdkKeymapKey> f
 impl<'a> ToGlibPtr<'a, *const gdk_sys::GdkKeymapKey> for KeymapKey {
     type Storage = &'a Self;
 
-    fn to_glib_none(&'a self) -> Stash<*const gdk_sys::GdkKeymapKey, Self> {
-        Stash(&self.0, self)
+    #[inline]
+    fn to_glib_none(&'a self) -> Stash<'a, *const gdk_sys::GdkKeymapKey, Self> {
+        let ptr: *const KeymapKey = &*self;
+        Stash(ptr as *const gdk_sys::GdkKeymapKey, self)
+    }
+}
+
+#[doc(hidden)]
+impl<'a> ToGlibPtrMut<'a, *mut gdk_sys::GdkKeymapKey> for KeymapKey {
+    type Storage = &'a mut Self;
+
+    #[inline]
+    fn to_glib_none_mut(&'a mut self) -> StashMut<'a, *mut gdk_sys::GdkKeymapKey, Self> {
+        let ptr: *mut KeymapKey = &mut *self;
+        StashMut(ptr as *mut gdk_sys::GdkKeymapKey, self)
+    }
+}
+
+#[doc(hidden)]
+impl FromGlibPtrNone<*const gdk_sys::GdkKeymapKey> for KeymapKey {
+    unsafe fn from_glib_none(ptr: *const gdk_sys::GdkKeymapKey) -> Self {
+        *(ptr as *const KeymapKey)
+    }
+}
+
+#[doc(hidden)]
+impl FromGlibPtrNone<*mut gdk_sys::GdkKeymapKey> for KeymapKey {
+    unsafe fn from_glib_none(ptr: *mut gdk_sys::GdkKeymapKey) -> Self {
+        *(ptr as *mut KeymapKey)
+    }
+}
+
+#[doc(hidden)]
+impl FromGlibPtrFull<*mut gdk_sys::GdkKeymapKey> for KeymapKey {
+    #[inline]
+    unsafe fn from_glib_full(ptr: *mut gdk_sys::GdkKeymapKey) -> Self {
+        let geom = *(ptr as *mut KeymapKey);
+        glib_sys::g_free(ptr as *mut _);
+        geom
     }
 }

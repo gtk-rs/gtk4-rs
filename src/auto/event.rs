@@ -14,7 +14,6 @@ use EventType;
 use ModifierType;
 use Seat;
 use Surface;
-use TimeCoord;
 
 glib_wrapper! {
     pub struct Event(Object<gdk_sys::GdkEvent, EventClass>);
@@ -35,7 +34,7 @@ pub trait EventExt: 'static {
 
     fn get_event_type(&self) -> EventType;
 
-    fn get_history(&self) -> Vec<TimeCoord>;
+    //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord>;
 
     fn get_modifier_state(&self) -> ModifierType;
 
@@ -94,19 +93,9 @@ impl<O: IsA<Event>> EventExt for O {
         }
     }
 
-    fn get_history(&self) -> Vec<TimeCoord> {
-        unsafe {
-            let mut out_n_coords = mem::MaybeUninit::uninit();
-            let ret = FromGlibContainer::from_glib_container_num(
-                gdk_sys::gdk_event_get_history(
-                    self.as_ref().to_glib_none().0,
-                    out_n_coords.as_mut_ptr(),
-                ),
-                out_n_coords.assume_init() as usize,
-            );
-            ret
-        }
-    }
+    //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord> {
+    //    unsafe { TODO: call gdk_sys:gdk_event_get_history() }
+    //}
 
     fn get_modifier_state(&self) -> ModifierType {
         unsafe {

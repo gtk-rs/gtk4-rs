@@ -64,12 +64,6 @@ impl PopupLayout {
         }
     }
 
-    pub fn get_offset(&self, dx: i32, dy: i32) {
-        unsafe {
-            gdk_sys::gdk_popup_layout_get_offset(self.to_glib_none().0, dx, dy);
-        }
-    }
-
     pub fn get_rect_anchor(&self) -> Gravity {
         unsafe {
             from_glib(gdk_sys::gdk_popup_layout_get_rect_anchor(

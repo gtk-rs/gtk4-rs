@@ -53,7 +53,6 @@ generate = [
     "Gdk.Paintable",
     "Gdk.PaintableFlags",
     "Gdk.Popup",
-    "Gdk.PopupLayout",
     "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
     "Gdk.ScrollEvent",
@@ -74,20 +73,19 @@ generate = [
 ]
 
 manual = [
+    # "Gdk.TimeCoord",
     "cairo.Content",
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
     "Gdk.KeymapKey",
     "Gdk.RGBA",
-    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
     "Gio.AppLaunchContext",
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
     "Gio.InputStream",
-    "Gio.ListModel",
     "Gio.OutputStream",
     "GLib.Bytes",
     "GLib.Error",
@@ -266,6 +264,12 @@ status = "generate"
     name = "get_primary_monitor"
         [object.function.return]
         nullable = false
+    [[object.function]]
+    name = "map_keycode"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    [[object.function]]
+    name = "map_keyval"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
 
 [[object]]
 name = "Gdk.DisplayManager"
@@ -414,6 +418,15 @@ status = "generate"
 generate_builder = true
 
 [[object]]
+name = "Gdk.PopupLayout"
+status = "generate"
+manual_traits = ["PopupLayoutExtManual"]
+    [[object.function]]
+    name = "get_offset"
+    # invalid mutability, manual
+    ignore = true
+
+[[object]]
 name = "Gdk.Rectangle"
 status = "generate"
 init_function_expression = "|_ptr| ()"
@@ -432,3 +445,7 @@ manual_traits = ["SurfaceExtManual"]
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    name = "translate_coordinates"
+    # mutability issue, manual
+    ignore = true

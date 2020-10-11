@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gdk_sys;
-use gio;
 use glib;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -20,12 +19,10 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use std::ptr;
 use AppLaunchContext;
 use Clipboard;
 use Device;
 use Event;
-use KeymapKey;
 use ModifierType;
 use Monitor;
 use Seat;
@@ -92,9 +89,9 @@ impl Display {
         }
     }
 
-    pub fn get_monitors(&self) -> Option<gio::ListModel> {
-        unsafe { from_glib_none(gdk_sys::gdk_display_get_monitors(self.to_glib_none().0)) }
-    }
+    //pub fn get_monitors(&self) -> /*Ignored*/Option<gio::ListModel> {
+    //    unsafe { TODO: call gdk_sys:gdk_display_get_monitors() }
+    //}
 
     pub fn get_name(&self) -> GString {
         unsafe { from_glib_none(gdk_sys::gdk_display_get_name(self.to_glib_none().0)) }
@@ -143,53 +140,6 @@ impl Display {
             FromGlibPtrContainer::from_glib_container(gdk_sys::gdk_display_list_seats(
                 self.to_glib_none().0,
             ))
-        }
-    }
-
-    pub fn map_keycode(&self, keycode: u32) -> Option<(Vec<KeymapKey>, Vec<u32>)> {
-        unsafe {
-            let mut keys = ptr::null_mut();
-            let mut keyvals = ptr::null_mut();
-            let mut n_entries = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_display_map_keycode(
-                self.to_glib_none().0,
-                keycode,
-                &mut keys,
-                &mut keyvals,
-                n_entries.as_mut_ptr(),
-            ));
-            if ret {
-                Some((
-                    FromGlibPtrContainer::from_glib_full(keys),
-                    FromGlibContainer::from_glib_full_num(
-                        keyvals,
-                        n_entries.assume_init() as usize,
-                    ),
-                ))
-            } else {
-                None
-            }
-        }
-    }
-
-    pub fn map_keyval(&self, keyval: u32) -> Option<Vec<KeymapKey>> {
-        unsafe {
-            let mut keys = ptr::null_mut();
-            let mut n_keys = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_display_map_keyval(
-                self.to_glib_none().0,
-                keyval,
-                &mut keys,
-                n_keys.as_mut_ptr(),
-            ));
-            if ret {
-                Some(FromGlibContainer::from_glib_full_num(
-                    keys,
-                    n_keys.assume_init() as usize,
-                ))
-            } else {
-                None
-            }
         }
     }
 

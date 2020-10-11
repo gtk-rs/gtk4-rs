@@ -214,17 +214,6 @@ impl Surface {
         }
     }
 
-    pub fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_surface_translate_coordinates(
-                self.to_glib_none().0,
-                to.to_glib_none().0,
-                x,
-                y,
-            ))
-        }
-    }
-
     pub fn connect_enter_monitor<F: Fn(&Surface, &Monitor) + 'static>(
         &self,
         f: F,

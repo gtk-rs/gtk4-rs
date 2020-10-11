@@ -146,7 +146,7 @@ pub fn content_register_deserializer<
     >(
         deserializer: *mut gdk_sys::GdkContentDeserializer,
     ) {
-        let deserializer: ContentDeserializer = from_glib_borrow(deserializer);
+        let deserializer: ContentDeserializer = from_glib_full(deserializer);
         let callback: &P =
             &*(gdk_sys::gdk_content_deserializer_get_user_data(deserializer.to_glib_none().0)
                 as *mut _);
@@ -206,7 +206,7 @@ pub fn content_register_serializer<
     >(
         serializer: *mut gdk_sys::GdkContentSerializer,
     ) {
-        let serializer: ContentSerializer = from_glib_borrow(serializer);
+        let serializer: ContentSerializer = from_glib_full(serializer);
         let callback: &P =
             &*(gdk_sys::gdk_content_serializer_get_user_data(serializer.to_glib_none().0)
                 as *mut _);
