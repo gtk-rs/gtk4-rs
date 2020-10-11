@@ -3,10 +3,8 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use graphene;
 use gsk_sys;
 use std::fmt;
-use ColorStop;
 use RenderNode;
 
 glib_wrapper! {
@@ -18,24 +16,9 @@ glib_wrapper! {
 }
 
 impl RepeatingLinearGradientNode {
-    pub fn new(
-        bounds: &graphene::Rect,
-        start: &graphene::Point,
-        end: &graphene::Point,
-        color_stops: &[&ColorStop],
-    ) -> RepeatingLinearGradientNode {
-        assert_initialized_main_thread!();
-        let n_color_stops = color_stops.len() as usize;
-        unsafe {
-            from_glib_full(gsk_sys::gsk_repeating_linear_gradient_node_new(
-                bounds.to_glib_none().0,
-                start.to_glib_none().0,
-                end.to_glib_none().0,
-                color_stops.to_glib_none().0,
-                n_color_stops,
-            ))
-        }
-    }
+    //pub fn new(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: /*Ignored*/&[&ColorStop]) -> RepeatingLinearGradientNode {
+    //    unsafe { TODO: call gsk_sys:gsk_repeating_linear_gradient_node_new() }
+    //}
 }
 
 impl fmt::Display for RepeatingLinearGradientNode {

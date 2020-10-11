@@ -29,10 +29,6 @@ impl BorderNode {
     pub fn peek_outline(&self) -> Option<RoundedRect> {
         unsafe { from_glib_none(gsk_sys::gsk_border_node_peek_outline(self.to_glib_none().0)) }
     }
-
-    pub fn peek_widths(&self) -> f32 {
-        unsafe { gsk_sys::gsk_border_node_peek_widths(self.to_glib_none().0) }
-    }
 }
 
 impl fmt::Display for BorderNode {

@@ -13,7 +13,6 @@ generate = [
     "Gsk.BlendMode",
     "Gsk.BlendNode",
     "Gsk.BlurNode",
-    "Gsk.BorderNode",
     "Gsk.BroadwayRenderer",
     "Gsk.CairoNode",
     "Gsk.CairoRenderer",
@@ -64,9 +63,9 @@ manual = [
     "Graphene.Size",
     "Graphene.Vec3",
     "Graphene.Vec4",
-    "Gsk.ColorStop",
+    #"Gsk.ColorStop",
     "Gsk.RoundedRect",
-    "Gsk.Shadow",
+    # "Gsk.Shadow",
     "Pango.Font",
     "Pango.GlyphString",
 ]
@@ -74,9 +73,14 @@ manual = [
 [[object]]
 name = "Gsk.*"
 status = "generate"
+
+[[object]]
+name = "Gsk.BorderNode"
+status = "generate"
+manual_traits = ["BorderNodeManualExt"]
     [[object.function]]
-    pattern = ".+_node_.+"
-    # RenderNode subtypes: manual
+    name = "peek_widths"
+    # manual
     ignore = true
 
 [[object]]
