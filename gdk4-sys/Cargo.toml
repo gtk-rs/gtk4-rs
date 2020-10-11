@@ -39,7 +39,6 @@ description = "FFI bindings to libgdk-4"
 homepage = "http://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
-links = "gtk-4"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
