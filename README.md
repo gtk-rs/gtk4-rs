@@ -1,6 +1,6 @@
 # gtk4 [![Build Status](https://travis-ci.org/gtk-rs/gtk4.png?branch=master)](https://travis-ci.org/gtk-rs/gtk4)
 
-[Project site](https://gtk-rs.org/) | [Online documentation](https://gtk-rs.org/docs/)
+[Project site](https://gtk-rs.org/) | [Online documentation](https://gtk-rs.org/docs-src/)
 
 __Rust__ bindings and wrappers for __GTK 4__.
 
