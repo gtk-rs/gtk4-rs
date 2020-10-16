@@ -60,7 +60,7 @@ Zach Oakes <zsoakes@gmail.com>
 Zach Ploskey <zach@ploskey.com>
 
 The Gtk-rs Project is licensed under the MIT license, see the LICENSE file
-or <http://opensource.org/licenses/MIT>.
+or <https://opensource.org/licenses/MIT>.
 
 This project provides interoperability with various GNOME libraries but doesn't
 distribute any parts of them. Distributing compiled libraries and executables
