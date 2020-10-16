@@ -28,10 +28,10 @@ generate = [
     "Gsk.LinearGradientNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
-    "Gsk.RenderNodeType",
     "Gsk.Renderer",
-    "Gsk.RepeatNode",
+    "Gsk.RenderNodeType",
     "Gsk.RepeatingLinearGradientNode",
+    "Gsk.RepeatNode",
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
@@ -45,6 +45,8 @@ generate = [
 ]
 
 manual = [
+    # "Gsk.ColorStop",
+    # "Gsk.Shadow",
     # "Pango.GlyphInfo", # missing from pango
     "cairo.Context",
     "cairo.Region",
@@ -63,9 +65,7 @@ manual = [
     "Graphene.Size",
     "Graphene.Vec3",
     "Graphene.Vec4",
-    #"Gsk.ColorStop",
     "Gsk.RoundedRect",
-    # "Gsk.Shadow",
     "Pango.Font",
     "Pango.GlyphString",
 ]
