@@ -1,4 +1,4 @@
-# gtk4 [![Build Status](https://travis-ci.org/gtk-rs/gtk4.png?branch=master)](https://travis-ci.org/gtk-rs/gtk4)
+# gtk4 ![CI](https://github.com/gtk-rs/gtk4/workflows/CI/badge.svg)
 
 [Project site](https://gtk-rs.org/) | [Online documentation](https://gtk-rs.org/docs-src/)
 
