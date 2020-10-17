@@ -1,4 +1,4 @@
-# gsk4 [![Build Status](https://travis-ci.org/gtk-rs/gsk4.png?branch=master)](https://travis-ci.org/gtk-rs/gsk4)
+# gsk4 ![CI](https://github.com/gtk-rs/gsk4/workflows/CI/badge.svg)
 
 Gsk 4 bindings for Rust.
 
