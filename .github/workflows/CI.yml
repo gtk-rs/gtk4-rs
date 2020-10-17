@@ -1,0 +1,68 @@
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+name: CI
+
+jobs:
+  check:
+    name: Rust project
+    runs-on: ubuntu-20.04
+    container:
+      image: fedora:latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - nightly
+          - "1.40.0"
+    steps:
+      - run: sudo dnf install -y gtk4-devel gcc graphene-devel git
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          override: true
+      - uses: actions-rs/cargo@v1
+        name: "Docs"
+        with:
+          command: doc
+          args: --features "dox,embed-lgpl-docs"
+      - uses: actions-rs/cargo@v1
+        name: "Test"
+        with:
+          command: test
+          args: --features "embed-lgpl-docs"
+      - uses: actions-rs/cargo@v1
+        name: "Build"
+        with:
+          command: build
+          args: --features "purge-lgpl-docs"
+      - run: git diff -R --exit-code
+      # - uses: actions/checkout@v2
+      #   with:
+      #     repository: gtk-rs/examples4
+      #     ref: master
+      #     path: examples4
+      # - name: Examples
+      #   working-directory: examples4
+      #   run: cargo check
+
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+      - run: make regen_check
