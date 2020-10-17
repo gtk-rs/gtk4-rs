@@ -66,3 +66,18 @@ jobs:
           command: fmt
           args: --all -- --check
       - run: make regen_check
+
+  checker:
+    name: gtk-rs checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: gtk-rs/checker
+          ref: master
+          path: checker
+      - working-directory: checker
+        run: cargo build --release
+      - run: "./checker/target/release/checker ."
+      - run: "./checker/check_init_asserts"
