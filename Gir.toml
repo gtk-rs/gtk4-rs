@@ -80,7 +80,7 @@ status = "generate"
 manual_traits = ["BorderNodeManualExt"]
     [[object.function]]
     name = "peek_widths"
-    # manual
+    # manual, needs fixed-size=4 in gir file
     ignore = true
 
 [[object]]
