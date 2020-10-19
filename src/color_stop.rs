@@ -14,7 +14,7 @@ use std::ptr;
 pub struct ColorStop(gsk_sys::GskColorStop);
 
 impl ColorStop {
-    pub fn new(offset: f64, color: RGBA) -> ColorStop {
+    pub fn new(offset: f32, color: RGBA) -> ColorStop {
         assert_initialized_main_thread!();
         ColorStop(gsk_sys::GskColorStop {
             offset,
@@ -22,12 +22,34 @@ impl ColorStop {
         })
     }
 
-    pub fn get_offset(&self) -> f64 {
+    pub fn get_offset(&self) -> f32 {
         self.0.offset
     }
 
     pub fn get_color(&self) -> RGBA {
         unsafe { from_glib_none(&self.0.color as *const _) }
+    }
+}
+
+#[doc(hidden)]
+impl<'a> ToGlibPtr<'a, *const gsk_sys::GskColorStop> for ColorStop {
+    type Storage = &'a Self;
+
+    #[inline]
+    fn to_glib_none(&'a self) -> Stash<'a, *const gsk_sys::GskColorStop, Self> {
+        let ptr: *const ColorStop = &*self;
+        Stash(ptr as *const gsk_sys::GskColorStop, self)
+    }
+}
+
+#[doc(hidden)]
+impl<'a> ToGlibPtrMut<'a, *mut gsk_sys::GskColorStop> for ColorStop {
+    type Storage = &'a mut Self;
+
+    #[inline]
+    fn to_glib_none_mut(&'a mut self) -> StashMut<'a, *mut gsk_sys::GskColorStop, Self> {
+        let ptr: *mut ColorStop = &mut *self;
+        StashMut(ptr as *mut gsk_sys::GskColorStop, self)
     }
 }
 

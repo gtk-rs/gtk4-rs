@@ -11,17 +11,32 @@ deprecate_by_min_version = true
 
 generate = [
     "Gsk.BlendMode",
-    "Gsk.BroadwayRenderer",
+    "Gsk.BlendNode",
+    "Gsk.BlurNode",
+    "Gsk.CairoNode",
     "Gsk.CairoRenderer",
+    "Gsk.ClipNode",
+    "Gsk.ColorMatrixNode",
+    "Gsk.ColorNode",
+    "Gsk.ContainerNode",
     "Gsk.Corner",
+    "Gsk.CrossFadeNode",
+    "Gsk.DebugNode",
     "Gsk.GLRenderer",
+    "Gsk.InsetShadowNode",
+    "Gsk.OpacityNode",
+    "Gsk.OutsetShadowNode",
     "Gsk.Renderer",
     "Gsk.RenderNodeType",
+    "Gsk.RepeatNode",
+    "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
+    "Gsk.TextNode",
+    "Gsk.TextureNode",
     "Gsk.Transform",
     "Gsk.TransformCategory",
-    "Gsk.VulkanRenderer",
+    "Gsk.TransformNode",
 ]
 
 manual = [
@@ -34,11 +49,13 @@ manual = [
     "Gdk.Texture",
     "GLib.Bytes",
     "GLib.Error",
+    "GLib.Quark",
     "GLib.String",
     "Graphene.Matrix",
     "Graphene.Point",
     "Graphene.Point3D",
     "Graphene.Rect",
+    "Graphene.Size",
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.ColorStop",
@@ -51,9 +68,27 @@ manual = [
 [[object]]
 name = "Gsk.*"
 status = "generate"
+
+[[object]]
+name = "Gsk.BorderNode"
+status = "generate"
+manual_traits = ["BorderNodeManualExt"]
     [[object.function]]
-    pattern = ".+_node_.+"
-    # RenderNode subtypes: manual
+    name = "peek_widths"
+    # manual, needs fixed-size=4 in gir file
+    ignore = true
+
+[[object]]
+name = "Gsk.BroadwayRenderer"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
     ignore = true
 
 [[object]]
@@ -64,3 +99,28 @@ status = "generate"
         [[object.function.parameter]]
             name = "cr"
             const = true
+
+[[object]]
+name = "Gsk.RepeatingLinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
+[[object]]
+name = "Gsk.ShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "new" 
+    # manual, uses &[&Shadow] instead of a &[Shadow]
+    ignore = true
+    [[object.function]]
+    name = "peek_shadow"
+    # manual, needs an assertion that the i < n_shadows
+    ignore = true
+
+[[object]]
+name = "Gsk.VulkanRenderer"
+status = "generate"
+cfg_condition = "feature = \"vulkan\""

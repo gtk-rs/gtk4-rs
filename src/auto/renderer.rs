@@ -50,11 +50,11 @@ pub trait RendererExt: 'static {
 
     fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error>;
 
-    fn render(&self, root: &RenderNode, region: Option<&cairo::Region>);
+    fn render<P: IsA<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);
 
-    fn render_texture(
+    fn render_texture<P: IsA<RenderNode>>(
         &self,
-        root: &RenderNode,
+        root: &P,
         viewport: Option<&graphene::Rect>,
     ) -> Option<gdk::Texture>;
 
@@ -100,25 +100,25 @@ impl<O: IsA<Renderer>> RendererExt for O {
         }
     }
 
-    fn render(&self, root: &RenderNode, region: Option<&cairo::Region>) {
+    fn render<P: IsA<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>) {
         unsafe {
             gsk_sys::gsk_renderer_render(
                 self.as_ref().to_glib_none().0,
-                root.to_glib_none().0,
+                root.as_ref().to_glib_none().0,
                 region.to_glib_none().0,
             );
         }
     }
 
-    fn render_texture(
+    fn render_texture<P: IsA<RenderNode>>(
         &self,
-        root: &RenderNode,
+        root: &P,
         viewport: Option<&graphene::Rect>,
     ) -> Option<gdk::Texture> {
         unsafe {
             from_glib_full(gsk_sys::gsk_renderer_render_texture(
                 self.as_ref().to_glib_none().0,
-                root.to_glib_none().0,
+                root.as_ref().to_glib_none().0,
                 viewport.to_glib_none().0,
             ))
         }

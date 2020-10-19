@@ -14,13 +14,12 @@ extern crate graphene_sys;
 extern crate gsk4_sys as gsk_sys;
 #[macro_use]
 extern crate glib;
+extern crate bitflags;
 extern crate cairo;
 extern crate cairo_sys;
 extern crate gobject_sys;
 extern crate libc;
 extern crate pango;
-#[macro_use]
-extern crate bitflags;
 
 extern crate gdk4 as gdk;
 extern crate graphene;
@@ -42,15 +41,14 @@ mod auto;
 
 pub mod prelude;
 
-pub use self::auto::functions::*;
 pub use auto::*;
 
+mod border_node;
 mod color_stop;
-mod render_nodes;
 mod rounded_rect;
 mod shadow;
 
+pub use border_node::BorderNodeManualExt;
 pub use color_stop::ColorStop;
-pub use render_nodes::*;
 pub use rounded_rect::RoundedRect;
 pub use shadow::Shadow;
