@@ -89,6 +89,7 @@ manual = [
     "Gio.OutputStream",
     "GLib.Bytes",
     "GLib.Error",
+    "GLib.Priority",
     "GLib.Quark",
     "GLib.String",
     "GObject.Value",

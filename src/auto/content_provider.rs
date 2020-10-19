@@ -3,6 +3,8 @@
 // DO NOT EDIT
 
 use gdk_sys;
+use gio;
+use gio_sys;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -16,6 +18,7 @@ use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use std::pin::Pin;
 use std::ptr;
 use ContentFormats;
 
@@ -74,10 +77,25 @@ pub trait ContentProviderExt: 'static {
 
     fn ref_storable_formats(&self) -> Option<ContentFormats>;
 
-    //fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), glib::Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: /*Ignored*/glib::Priority, cancellable: Option<&Q>, callback: R);
+    fn write_mime_type_async<
+        P: IsA<gio::OutputStream>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+    >(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+        cancellable: Option<&Q>,
+        callback: R,
+    );
 
-    //
-    //fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: /*Ignored*/glib::Priority) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
     fn get_property_formats(&self) -> Option<ContentFormats>;
 
@@ -132,30 +150,77 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    //fn write_mime_type_async<P: IsA<gio::OutputStream>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<(), glib::Error>) + Send + 'static>(&self, mime_type: &str, stream: &P, io_priority: /*Ignored*/glib::Priority, cancellable: Option<&Q>, callback: R) {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_write_mime_type_async() }
-    //}
+    fn write_mime_type_async<
+        P: IsA<gio::OutputStream>,
+        Q: IsA<gio::Cancellable>,
+        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+    >(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+        cancellable: Option<&Q>,
+        callback: R,
+    ) {
+        let user_data: Box_<R> = Box_::new(callback);
+        unsafe extern "C" fn write_mime_type_async_trampoline<
+            R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+        >(
+            _source_object: *mut gobject_sys::GObject,
+            res: *mut gio_sys::GAsyncResult,
+            user_data: glib_sys::gpointer,
+        ) {
+            let mut error = ptr::null_mut();
+            let _ = gdk_sys::gdk_content_provider_write_mime_type_finish(
+                _source_object as *mut _,
+                res,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<R> = Box_::from_raw(user_data as *mut _);
+            callback(result);
+        }
+        let callback = write_mime_type_async_trampoline::<R>;
+        unsafe {
+            gdk_sys::gdk_content_provider_write_mime_type_async(
+                self.as_ref().to_glib_none().0,
+                mime_type.to_glib_none().0,
+                stream.as_ref().to_glib_none().0,
+                io_priority.to_glib(),
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
 
-    //
-    //fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(&self, mime_type: &str, stream: &P, io_priority: /*Ignored*/glib::Priority) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
+    fn write_mime_type_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
+        &self,
+        mime_type: &str,
+        stream: &P,
+        io_priority: glib::Priority,
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
+        let mime_type = String::from(mime_type);
+        let stream = stream.clone();
+        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
+            let cancellable = gio::Cancellable::new();
+            obj.write_mime_type_async(
+                &mime_type,
+                &stream,
+                io_priority,
+                Some(&cancellable),
+                move |res| {
+                    send.resolve(res);
+                },
+            );
 
-    //let mime_type = String::from(mime_type);
-    //let stream = stream.clone();
-    //Box_::pin(gio::GioFuture::new(self, move |obj, send| {
-    //    let cancellable = gio::Cancellable::new();
-    //    obj.write_mime_type_async(
-    //        &mime_type,
-    //        &stream,
-    //        io_priority,
-    //        Some(&cancellable),
-    //        move |res| {
-    //            send.resolve(res);
-    //        },
-    //    );
-
-    //    cancellable
-    //}))
-    //}
+            cancellable
+        }))
+    }
 
     fn get_property_formats(&self) -> Option<ContentFormats> {
         unsafe {
