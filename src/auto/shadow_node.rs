@@ -6,6 +6,7 @@ use glib::translate::*;
 use gsk_sys;
 use std::fmt;
 use RenderNode;
+use Shadow;
 
 glib_wrapper! {
     pub struct ShadowNode(Object<gsk_sys::GskShadowNode, ShadowNodeClass>) @extends RenderNode;
@@ -16,10 +17,6 @@ glib_wrapper! {
 }
 
 impl ShadowNode {
-    //pub fn new<P: IsA<RenderNode>>(child: &P, shadows: /*Ignored*/&[&Shadow]) -> ShadowNode {
-    //    unsafe { TODO: call gsk_sys:gsk_shadow_node_new() }
-    //}
-
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(gsk_sys::gsk_shadow_node_get_child(self.to_glib_none().0)) }
     }
@@ -28,9 +25,14 @@ impl ShadowNode {
         unsafe { gsk_sys::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
     }
 
-    //pub fn peek_shadow(&self, i: usize) -> /*Ignored*/Option<Shadow> {
-    //    unsafe { TODO: call gsk_sys:gsk_shadow_node_peek_shadow() }
-    //}
+    pub fn peek_shadow(&self, i: usize) -> Option<Shadow> {
+        unsafe {
+            from_glib_none(gsk_sys::gsk_shadow_node_peek_shadow(
+                self.to_glib_none().0,
+                i,
+            ))
+        }
+    }
 }
 
 impl fmt::Display for ShadowNode {

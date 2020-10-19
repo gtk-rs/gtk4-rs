@@ -15,11 +15,7 @@ glib_wrapper! {
     }
 }
 
-impl RepeatingLinearGradientNode {
-    //pub fn new(bounds: &graphene::Rect, start: &graphene::Point, end: &graphene::Point, color_stops: /*Ignored*/&[&ColorStop]) -> RepeatingLinearGradientNode {
-    //    unsafe { TODO: call gsk_sys:gsk_repeating_linear_gradient_node_new() }
-    //}
-}
+impl RepeatingLinearGradientNode {}
 
 impl fmt::Display for RepeatingLinearGradientNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -44,11 +44,11 @@ pub mod prelude;
 pub use auto::*;
 
 mod border_node;
-// mod color_stop;
+mod color_stop;
 mod rounded_rect;
 mod shadow;
 
 pub use border_node::BorderNodeManualExt;
-// pub use color_stop::ColorStop;
+pub use color_stop::ColorStop;
 pub use rounded_rect::RoundedRect;
 pub use shadow::Shadow;

@@ -54,36 +54,6 @@ impl<'a> ToGlibPtrMut<'a, *mut gsk_sys::GskColorStop> for ColorStop {
 }
 
 #[doc(hidden)]
-impl FromGlibPtrNone<*const gsk_sys::GskColorStop> for ColorStop {
-    unsafe fn from_glib_none(ptr: *const gsk_sys::GskColorStop) -> Self {
-        *(ptr as *const ColorStop)
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibPtrNone<*mut gsk_sys::GskColorStop> for ColorStop {
-    unsafe fn from_glib_none(ptr: *mut gsk_sys::GskColorStop) -> Self {
-        *(ptr as *mut ColorStop)
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibPtrBorrow<*const gsk_sys::GskColorStop> for ColorStop {
-    unsafe fn from_glib_borrow(
-        ptr: *const gsk_sys::GskColorStop,
-    ) -> glib::translate::Borrowed<Self> {
-        glib::translate::Borrowed::new(*(ptr as *const ColorStop))
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibPtrBorrow<*mut gsk_sys::GskColorStop> for ColorStop {
-    unsafe fn from_glib_borrow(ptr: *mut gsk_sys::GskColorStop) -> glib::translate::Borrowed<Self> {
-        glib::translate::Borrowed::new(*(ptr as *mut ColorStop))
-    }
-}
-
-#[doc(hidden)]
 impl FromGlibContainerAsVec<gsk_sys::GskColorStop, *const gsk_sys::GskColorStop> for ColorStop {
     unsafe fn from_glib_none_num_as_vec(
         ptr: *const gsk_sys::GskColorStop,

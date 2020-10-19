@@ -25,17 +25,14 @@ generate = [
     "Gsk.DebugNode",
     "Gsk.GLRenderer",
     "Gsk.InsetShadowNode",
-    "Gsk.LinearGradientNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
     "Gsk.Renderer",
     "Gsk.RenderNodeType",
-    "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatNode",
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
-    "Gsk.ShadowNode",
     "Gsk.TextNode",
     "Gsk.TextureNode",
     "Gsk.Transform",
@@ -45,8 +42,6 @@ generate = [
 ]
 
 manual = [
-    # "Gsk.ColorStop",
-    # "Gsk.Shadow",
     # "Pango.GlyphInfo", # missing from pango
     "cairo.Context",
     "cairo.Region",
@@ -65,7 +60,9 @@ manual = [
     "Graphene.Size",
     "Graphene.Vec3",
     "Graphene.Vec4",
+    "Gsk.ColorStop",
     "Gsk.RoundedRect",
+    "Gsk.Shadow",
     "Pango.Font",
     "Pango.GlyphString",
 ]
@@ -84,6 +81,14 @@ manual_traits = ["BorderNodeManualExt"]
     ignore = true
 
 [[object]]
+name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
+[[object]]
 name = "Gsk.RenderNode"
 status = "generate"
     [[object.function]]
@@ -91,3 +96,19 @@ status = "generate"
         [[object.function.parameter]]
             name = "cr"
             const = true
+
+[[object]]
+name = "Gsk.RepeatingLinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
+[[object]]
+name = "Gsk.ShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "new" 
+    # manual, uses &[&Shadow] instead of a &[Shadow]
+    ignore = true
