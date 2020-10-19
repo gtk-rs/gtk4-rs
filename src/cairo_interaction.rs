@@ -59,8 +59,6 @@ pub trait GdkCairoContextExt {
         height: i32,
     );
 
-    fn get_clip_rectangle(&self) -> Option<Rectangle>;
-
     fn set_source_rgba(&self, rgba: &RGBA);
 
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64);
@@ -94,20 +92,6 @@ impl GdkCairoContextExt for Context {
             width,
             height,
         );
-    }
-
-    fn get_clip_rectangle(&self) -> Option<Rectangle> {
-        unsafe {
-            let mut rectangle = Rectangle::uninitialized();
-            if from_glib(gdk_sys::gdk_cairo_get_clip_rectangle(
-                self.to_glib_none().0,
-                rectangle.to_glib_none_mut().0,
-            )) {
-                Some(rectangle)
-            } else {
-                None
-            }
-        }
     }
 
     fn set_source_rgba(&self, rgba: &RGBA) {

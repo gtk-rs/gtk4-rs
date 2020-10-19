@@ -26,7 +26,7 @@ impl Texture {
         unsafe { from_glib_full(gdk_sys::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
 
-    pub fn new_from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, glib::Error> {
+    pub fn from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = ptr::null_mut();
@@ -40,7 +40,7 @@ impl Texture {
         }
     }
 
-    pub fn new_from_resource(resource_path: &str) -> Texture {
+    pub fn from_resource(resource_path: &str) -> Texture {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gdk_sys::gdk_texture_new_from_resource(

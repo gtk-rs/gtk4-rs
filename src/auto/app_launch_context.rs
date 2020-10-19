@@ -4,17 +4,16 @@
 
 use gdk_sys;
 use gio;
+use glib::object::Cast;
 use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
-use gobject_sys;
+use glib::ToValue;
 use std::fmt;
 use Display;
 
 glib_wrapper! {
-    pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext, AppLaunchContextClass>);
+    pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext, AppLaunchContextClass>) @extends gio::AppLaunchContext;
 
     match fn {
         get_type => || gdk_sys::gdk_app_launch_context_get_type(),
@@ -22,6 +21,14 @@ glib_wrapper! {
 }
 
 impl AppLaunchContext {
+    pub fn get_display(&self) -> Option<Display> {
+        unsafe {
+            from_glib_none(gdk_sys::gdk_app_launch_context_get_display(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn set_desktop(&self, desktop: i32) {
         unsafe {
             gdk_sys::gdk_app_launch_context_set_desktop(self.to_glib_none().0, desktop);
@@ -51,19 +58,33 @@ impl AppLaunchContext {
             gdk_sys::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
         }
     }
+}
 
-    pub fn get_property_display(&self) -> Option<Display> {
-        unsafe {
-            let mut value = Value::from_type(<Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
+#[derive(Clone, Default)]
+pub struct AppLaunchContextBuilder {
+    display: Option<Display>,
+}
+
+impl AppLaunchContextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> AppLaunchContext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
         }
+        let ret = glib::Object::new(AppLaunchContext::static_type(), &properties)
+            .expect("object new")
+            .downcast::<AppLaunchContext>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &Display) -> Self {
+        self.display = Some(display.clone());
+        self
     }
 }
 

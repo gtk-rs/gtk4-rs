@@ -6,6 +6,7 @@ use gdk_sys;
 use gio;
 use gio_sys;
 use glib;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -13,6 +14,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -53,7 +55,7 @@ impl Clipboard {
 
     pub fn read_text_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
+        Q: FnOnce(Result<Option<GString>, glib::Error>) + Send + 'static,
     >(
         &self,
         cancellable: Option<&P>,
@@ -61,7 +63,7 @@ impl Clipboard {
     ) {
         let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn read_text_async_trampoline<
-            Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
+            Q: FnOnce(Result<Option<GString>, glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -91,7 +93,8 @@ impl Clipboard {
 
     pub fn read_text_async_future(
         &self,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<GString, glib::Error>> + 'static>> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<GString>, glib::Error>> + 'static>>
+    {
         Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             obj.read_text_async(Some(&cancellable), move |res| {
@@ -104,7 +107,7 @@ impl Clipboard {
 
     pub fn read_texture_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<Texture, glib::Error>) + Send + 'static,
+        Q: FnOnce(Result<Option<Texture>, glib::Error>) + Send + 'static,
     >(
         &self,
         cancellable: Option<&P>,
@@ -112,7 +115,7 @@ impl Clipboard {
     ) {
         let user_data: Box_<Q> = Box_::new(callback);
         unsafe extern "C" fn read_texture_async_trampoline<
-            Q: FnOnce(Result<Texture, glib::Error>) + Send + 'static,
+            Q: FnOnce(Result<Option<Texture>, glib::Error>) + Send + 'static,
         >(
             _source_object: *mut gobject_sys::GObject,
             res: *mut gio_sys::GAsyncResult,
@@ -145,7 +148,8 @@ impl Clipboard {
 
     pub fn read_texture_async_future(
         &self,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Texture, glib::Error>> + 'static>> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<Texture>, glib::Error>> + 'static>>
+    {
         Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             obj.read_texture_async(Some(&cancellable), move |res| {
@@ -333,7 +337,9 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    changed_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -356,7 +362,9 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(transmute(notify_content_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_content_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -379,7 +387,9 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute(notify_formats_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_formats_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -402,10 +412,40 @@ impl Clipboard {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::local\0".as_ptr() as *const _,
-                Some(transmute(notify_local_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_local_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct ClipboardBuilder {
+    display: Option<Display>,
+}
+
+impl ClipboardBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> Clipboard {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref display) = self.display {
+            properties.push(("display", display));
+        }
+        let ret = glib::Object::new(Clipboard::static_type(), &properties)
+            .expect("object new")
+            .downcast::<Clipboard>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn display(mut self, display: &Display) -> Self {
+        self.display = Some(display.clone());
+        self
     }
 }
 

@@ -11,27 +11,27 @@ deprecate_by_min_version = true
 
 generate = [
     "Gdk.AnchorHints",
-    "Gdk.AppLaunchContext",
     "Gdk.AxisFlags",
     "Gdk.AxisUse",
-    "Gdk.ByteOrder",
+    "Gdk.ButtonEvent",
     "Gdk.CairoContext",
+    "Gdk.ConfigureEvent",
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
+    "Gdk.CrossingEvent",
     "Gdk.CrossingMode",
-    "Gdk.Cursor",
+    "Gdk.DeleteEvent",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
-    "Gdk.DeviceTool",
     "Gdk.DeviceToolType",
-    "Gdk.DeviceType",
-    "Gdk.DisplayManager",
+    "Gdk.DNDEvent",
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
-    "Gdk.EventMask",
+    "Gdk.DragSurface",
     "Gdk.EventSequence",
     "Gdk.EventType",
+    "Gdk.FocusEvent",
     "Gdk.FrameClock",
     "Gdk.FrameClockPhase",
     "Gdk.FrameTimings",
@@ -39,48 +39,49 @@ generate = [
     "Gdk.GLContext",
     "Gdk.GLError",
     "Gdk.GLTexture",
-    "Gdk.GrabOwnership",
-    "Gdk.GrabStatus",
+    "Gdk.GrabBrokenEvent",
     "Gdk.Gravity",
-    "Gdk.InputMode",
     "Gdk.InputSource",
+    "Gdk.KeyEvent",
+    "Gdk.KeyMatch",
     "Gdk.MemoryFormat",
     "Gdk.MemoryTexture",
-    "Gdk.ModifierIntent",
     "Gdk.ModifierType",
-    "Gdk.Monitor",
+    "Gdk.MotionEvent",
     "Gdk.NotifyType",
+    "Gdk.PadEvent",
     "Gdk.Paintable",
     "Gdk.PaintableFlags",
+    "Gdk.Popup",
+    "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
+    "Gdk.ScrollEvent",
     "Gdk.Seat",
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
-    "Gdk.SurfaceHints",
     "Gdk.SurfaceState",
-    "Gdk.SurfaceType",
-    "Gdk.SurfaceTypeHint",
     "Gdk.Texture",
+    "Gdk.Toplevel",
+    "Gdk.ToplevelLayout",
+    "Gdk.TouchEvent",
+    "Gdk.TouchpadEvent",
     "Gdk.TouchpadGesturePhase",
     "Gdk.VulkanContext",
     "Gdk.VulkanError",
-    "Gdk.WMDecoration",
-    "Gdk.WMFunction",
 ]
 
 manual = [
+    # "Gdk.TimeCoord",
     "cairo.Content",
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
-    "Gdk.Atom",
-    "Gdk.Geometry",
     "Gdk.KeymapKey",
     "Gdk.RGBA",
-    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
+    "Gio.AppLaunchContext",
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
@@ -89,6 +90,7 @@ manual = [
     "GLib.Bytes",
     "GLib.Error",
     "GLib.Priority",
+    "GLib.Quark",
     "GLib.String",
     "GObject.Value",
     "Pango.Direction",
@@ -136,9 +138,16 @@ status = "generate"
     #manual: out
     ignore = true
 
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "generate"
+generate_builder = true
+
 [[object]]
 name = "Gdk.Clipboard"
 status = "generate"
+generate_builder = true
     [[object.function]]
     name = "read_async"
     ignore = true #array
@@ -202,6 +211,11 @@ status = "generate"
     ignore = true #unsafe
 
 [[object]]
+name = "Gdk.Cursor"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gdk.Device"
 status = "generate"
     [[object.function]]
@@ -210,6 +224,11 @@ status = "generate"
     [[object.function]]
     name = "free_history"
     ignore = true # cannot be used as is
+
+[[object]]
+name = "Gdk.DeviceTool"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gdk.Display"
@@ -246,6 +265,17 @@ status = "generate"
     name = "get_primary_monitor"
         [object.function.return]
         nullable = false
+    [[object.function]]
+    name = "map_keycode"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    [[object.function]]
+    name = "map_keyval"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+
+[[object]]
+name = "Gdk.DisplayManager"
+status = "generate"
+generate_builder = true
 
 [[object]]
 name = "Gdk.DrawContext"
@@ -384,16 +414,17 @@ status = "generate"
     ignore = true
 
 [[object]]
-name = "Gdk.Keymap"
+name = "Gdk.Monitor"
 status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.PopupLayout"
+status = "generate"
+manual_traits = ["PopupLayoutExtManual"]
     [[object.function]]
-    name = "add_virtual_modifiers"
-    ignore = true
-    [[object.function]]
-    name = "get_entries_for_keycode"
-    ignore = true #manual
-    [[object.function]]
-    name = "map_virtual_modifiers"
+    name = "get_offset"
+    # invalid mutability, manual
     ignore = true
 
 [[object]]
@@ -415,3 +446,7 @@ manual_traits = ["SurfaceExtManual"]
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    name = "translate_coordinates"
+    # mutability issue, manual
+    ignore = true

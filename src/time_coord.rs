@@ -1,12 +1,11 @@
 // Copyright 2013-2019, The Gtk-rs Project Developers.
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
+/*
 
 use gdk_sys;
 use glib::translate::*;
-
 #[repr(C)]
-#[derive(Clone)]
 pub struct TimeCoord(gdk_sys::GdkTimeCoord);
 
 impl TimeCoord {
@@ -18,7 +17,6 @@ impl TimeCoord {
     pub fn get_time(&self) -> u32 {
         self.0.time
     }
-
     pub fn get_axes(&self) -> &[f64; 128] {
         &self.0.axes
     }
@@ -28,11 +26,10 @@ impl TimeCoord {
 impl GlibPtrDefault for TimeCoord {
     type GlibType = *mut gdk_sys::GdkTimeCoord;
 }
-
 #[doc(hidden)]
 impl FromGlibPtrNone<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
     unsafe fn from_glib_none(ptr: *mut gdk_sys::GdkTimeCoord) -> Self {
-        TimeCoord((*ptr).clone())
+        TimeCoord(*ptr)
     }
 }
 
@@ -72,3 +69,4 @@ impl FromGlibContainerAsVec<gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord> f
         FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
     }
 }
+*/

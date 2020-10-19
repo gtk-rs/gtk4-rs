@@ -11,7 +11,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib_sys;
 use gobject_sys;
 use std::boxed::Box as Box_;
@@ -63,56 +62,6 @@ impl Drop {
 
     pub fn get_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(gdk_sys::gdk_drop_get_surface(self.to_glib_none().0)) }
-    }
-
-    pub fn read_text_async<
-        P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
-    >(
-        &self,
-        cancellable: Option<&P>,
-        callback: Q,
-    ) {
-        let user_data: Box_<Q> = Box_::new(callback);
-        unsafe extern "C" fn read_text_async_trampoline<
-            Q: FnOnce(Result<GString, glib::Error>) + Send + 'static,
-        >(
-            _source_object: *mut gobject_sys::GObject,
-            res: *mut gio_sys::GAsyncResult,
-            user_data: glib_sys::gpointer,
-        ) {
-            let mut error = ptr::null_mut();
-            let ret = gdk_sys::gdk_drop_read_text_finish(_source_object as *mut _, res, &mut error);
-            let result = if error.is_null() {
-                Ok(from_glib_full(ret))
-            } else {
-                Err(from_glib_full(error))
-            };
-            let callback: Box_<Q> = Box_::from_raw(user_data as *mut _);
-            callback(result);
-        }
-        let callback = read_text_async_trampoline::<Q>;
-        unsafe {
-            gdk_sys::gdk_drop_read_text_async(
-                self.to_glib_none().0,
-                cancellable.map(|p| p.as_ref()).to_glib_none().0,
-                Some(callback),
-                Box_::into_raw(user_data) as *mut _,
-            );
-        }
-    }
-
-    pub fn read_text_async_future(
-        &self,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<GString, glib::Error>> + 'static>> {
-        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            obj.read_text_async(Some(&cancellable), move |res| {
-                send.resolve(res);
-            });
-
-            cancellable
-        }))
     }
 
     pub fn read_value_async<
@@ -173,9 +122,13 @@ impl Drop {
         }))
     }
 
-    pub fn status(&self, actions: DragAction) {
+    pub fn status(&self, actions: DragAction, preferred: DragAction) {
         unsafe {
-            gdk_sys::gdk_drop_status(self.to_glib_none().0, actions.to_glib());
+            gdk_sys::gdk_drop_status(
+                self.to_glib_none().0,
+                actions.to_glib(),
+                preferred.to_glib(),
+            );
         }
     }
 
@@ -193,7 +146,9 @@ impl Drop {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::display\0".as_ptr() as *const _,
-                Some(transmute(notify_display_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_display_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

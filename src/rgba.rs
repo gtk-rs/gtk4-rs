@@ -170,15 +170,15 @@ impl FromGlibPtrNone<*mut gdk_sys::GdkRGBA> for RGBA {
 
 #[doc(hidden)]
 impl FromGlibPtrBorrow<*const gdk_sys::GdkRGBA> for RGBA {
-    unsafe fn from_glib_borrow(ptr: *const gdk_sys::GdkRGBA) -> Self {
-        *(ptr as *const RGBA)
+    unsafe fn from_glib_borrow(ptr: *const gdk_sys::GdkRGBA) -> glib::translate::Borrowed<Self> {
+        glib::translate::Borrowed::new(*(ptr as *const RGBA))
     }
 }
 
 #[doc(hidden)]
 impl FromGlibPtrBorrow<*mut gdk_sys::GdkRGBA> for RGBA {
-    unsafe fn from_glib_borrow(ptr: *mut gdk_sys::GdkRGBA) -> Self {
-        *(ptr as *mut RGBA)
+    unsafe fn from_glib_borrow(ptr: *mut gdk_sys::GdkRGBA) -> glib::translate::Borrowed<Self> {
+        glib::translate::Borrowed::new(*(ptr as *mut RGBA))
     }
 }
 

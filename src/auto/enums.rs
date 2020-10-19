@@ -16,10 +16,13 @@ use gobject_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum AxisUse {
     Ignore,
     X,
     Y,
+    DeltaX,
+    DeltaY,
     Pressure,
     Xtilt,
     Ytilt,
@@ -41,6 +44,8 @@ impl fmt::Display for AxisUse {
                 AxisUse::Ignore => "Ignore",
                 AxisUse::X => "X",
                 AxisUse::Y => "Y",
+                AxisUse::DeltaX => "DeltaX",
+                AxisUse::DeltaY => "DeltaY",
                 AxisUse::Pressure => "Pressure",
                 AxisUse::Xtilt => "Xtilt",
                 AxisUse::Ytilt => "Ytilt",
@@ -64,6 +69,8 @@ impl ToGlib for AxisUse {
             AxisUse::Ignore => gdk_sys::GDK_AXIS_IGNORE,
             AxisUse::X => gdk_sys::GDK_AXIS_X,
             AxisUse::Y => gdk_sys::GDK_AXIS_Y,
+            AxisUse::DeltaX => gdk_sys::GDK_AXIS_DELTA_X,
+            AxisUse::DeltaY => gdk_sys::GDK_AXIS_DELTA_Y,
             AxisUse::Pressure => gdk_sys::GDK_AXIS_PRESSURE,
             AxisUse::Xtilt => gdk_sys::GDK_AXIS_XTILT,
             AxisUse::Ytilt => gdk_sys::GDK_AXIS_YTILT,
@@ -85,14 +92,16 @@ impl FromGlib<gdk_sys::GdkAxisUse> for AxisUse {
             0 => AxisUse::Ignore,
             1 => AxisUse::X,
             2 => AxisUse::Y,
-            3 => AxisUse::Pressure,
-            4 => AxisUse::Xtilt,
-            5 => AxisUse::Ytilt,
-            6 => AxisUse::Wheel,
-            7 => AxisUse::Distance,
-            8 => AxisUse::Rotation,
-            9 => AxisUse::Slider,
-            10 => AxisUse::Last,
+            3 => AxisUse::DeltaX,
+            4 => AxisUse::DeltaY,
+            5 => AxisUse::Pressure,
+            6 => AxisUse::Xtilt,
+            7 => AxisUse::Ytilt,
+            8 => AxisUse::Wheel,
+            9 => AxisUse::Distance,
+            10 => AxisUse::Rotation,
+            11 => AxisUse::Slider,
+            12 => AxisUse::Last,
             value => AxisUse::__Unknown(value),
         }
     }
@@ -123,77 +132,7 @@ impl SetValue for AxisUse {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ByteOrder {
-    LsbFirst,
-    MsbFirst,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ByteOrder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ByteOrder::{}",
-            match *self {
-                ByteOrder::LsbFirst => "LsbFirst",
-                ByteOrder::MsbFirst => "MsbFirst",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ByteOrder {
-    type GlibType = gdk_sys::GdkByteOrder;
-
-    fn to_glib(&self) -> gdk_sys::GdkByteOrder {
-        match *self {
-            ByteOrder::LsbFirst => gdk_sys::GDK_LSB_FIRST,
-            ByteOrder::MsbFirst => gdk_sys::GDK_MSB_FIRST,
-            ByteOrder::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkByteOrder> for ByteOrder {
-    fn from_glib(value: gdk_sys::GdkByteOrder) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ByteOrder::LsbFirst,
-            1 => ByteOrder::MsbFirst,
-            value => ByteOrder::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ByteOrder {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_byte_order_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ByteOrder {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ByteOrder {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ByteOrder {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum CrossingMode {
     Normal,
     Grab,
@@ -293,6 +232,7 @@ impl SetValue for CrossingMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DevicePadFeature {
     Button,
     Ring,
@@ -368,6 +308,7 @@ impl SetValue for DevicePadFeature {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DeviceToolType {
     Unknown,
     Pen,
@@ -463,81 +404,7 @@ impl SetValue for DeviceToolType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum DeviceType {
-    Master,
-    Slave,
-    Floating,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for DeviceType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DeviceType::{}",
-            match *self {
-                DeviceType::Master => "Master",
-                DeviceType::Slave => "Slave",
-                DeviceType::Floating => "Floating",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for DeviceType {
-    type GlibType = gdk_sys::GdkDeviceType;
-
-    fn to_glib(&self) -> gdk_sys::GdkDeviceType {
-        match *self {
-            DeviceType::Master => gdk_sys::GDK_DEVICE_TYPE_MASTER,
-            DeviceType::Slave => gdk_sys::GDK_DEVICE_TYPE_SLAVE,
-            DeviceType::Floating => gdk_sys::GDK_DEVICE_TYPE_FLOATING,
-            DeviceType::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkDeviceType> for DeviceType {
-    fn from_glib(value: gdk_sys::GdkDeviceType) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => DeviceType::Master,
-            1 => DeviceType::Slave,
-            2 => DeviceType::Floating,
-            value => DeviceType::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for DeviceType {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_device_type_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for DeviceType {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for DeviceType {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for DeviceType {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DragCancelReason {
     NoTarget,
     UserCancelled,
@@ -613,10 +480,9 @@ impl SetValue for DragCancelReason {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum EventType {
-    Nothing,
     Delete,
-    Destroy,
     MotionNotify,
     ButtonPress,
     ButtonRelease,
@@ -656,9 +522,7 @@ impl fmt::Display for EventType {
             f,
             "EventType::{}",
             match *self {
-                EventType::Nothing => "Nothing",
                 EventType::Delete => "Delete",
-                EventType::Destroy => "Destroy",
                 EventType::MotionNotify => "MotionNotify",
                 EventType::ButtonPress => "ButtonPress",
                 EventType::ButtonRelease => "ButtonRelease",
@@ -700,9 +564,7 @@ impl ToGlib for EventType {
 
     fn to_glib(&self) -> gdk_sys::GdkEventType {
         match *self {
-            EventType::Nothing => gdk_sys::GDK_NOTHING,
             EventType::Delete => gdk_sys::GDK_DELETE,
-            EventType::Destroy => gdk_sys::GDK_DESTROY,
             EventType::MotionNotify => gdk_sys::GDK_MOTION_NOTIFY,
             EventType::ButtonPress => gdk_sys::GDK_BUTTON_PRESS,
             EventType::ButtonRelease => gdk_sys::GDK_BUTTON_RELEASE,
@@ -742,38 +604,36 @@ impl FromGlib<gdk_sys::GdkEventType> for EventType {
     fn from_glib(value: gdk_sys::GdkEventType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => EventType::Nothing,
-            1 => EventType::Delete,
-            2 => EventType::Destroy,
-            3 => EventType::MotionNotify,
-            4 => EventType::ButtonPress,
-            5 => EventType::ButtonRelease,
-            6 => EventType::KeyPress,
-            7 => EventType::KeyRelease,
-            8 => EventType::EnterNotify,
-            9 => EventType::LeaveNotify,
-            10 => EventType::FocusChange,
-            11 => EventType::Configure,
-            12 => EventType::ProximityIn,
-            13 => EventType::ProximityOut,
-            14 => EventType::DragEnter,
-            15 => EventType::DragLeave,
-            16 => EventType::DragMotion,
-            17 => EventType::DropStart,
-            18 => EventType::Scroll,
-            19 => EventType::GrabBroken,
-            20 => EventType::TouchBegin,
-            21 => EventType::TouchUpdate,
-            22 => EventType::TouchEnd,
-            23 => EventType::TouchCancel,
-            24 => EventType::TouchpadSwipe,
-            25 => EventType::TouchpadPinch,
-            26 => EventType::PadButtonPress,
-            27 => EventType::PadButtonRelease,
-            28 => EventType::PadRing,
-            29 => EventType::PadStrip,
-            30 => EventType::PadGroupMode,
-            31 => EventType::EventLast,
+            0 => EventType::Delete,
+            1 => EventType::MotionNotify,
+            2 => EventType::ButtonPress,
+            3 => EventType::ButtonRelease,
+            4 => EventType::KeyPress,
+            5 => EventType::KeyRelease,
+            6 => EventType::EnterNotify,
+            7 => EventType::LeaveNotify,
+            8 => EventType::FocusChange,
+            9 => EventType::Configure,
+            10 => EventType::ProximityIn,
+            11 => EventType::ProximityOut,
+            12 => EventType::DragEnter,
+            13 => EventType::DragLeave,
+            14 => EventType::DragMotion,
+            15 => EventType::DropStart,
+            16 => EventType::Scroll,
+            17 => EventType::GrabBroken,
+            18 => EventType::TouchBegin,
+            19 => EventType::TouchUpdate,
+            20 => EventType::TouchEnd,
+            21 => EventType::TouchCancel,
+            22 => EventType::TouchpadSwipe,
+            23 => EventType::TouchpadPinch,
+            24 => EventType::PadButtonPress,
+            25 => EventType::PadButtonRelease,
+            26 => EventType::PadRing,
+            27 => EventType::PadStrip,
+            28 => EventType::PadGroupMode,
+            29 => EventType::EventLast,
             value => EventType::__Unknown(value),
         }
     }
@@ -804,6 +664,7 @@ impl SetValue for EventType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum FullscreenMode {
     CurrentMonitor,
     AllMonitors,
@@ -875,6 +736,7 @@ impl SetValue for FullscreenMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum GLError {
     NotAvailable,
     UnsupportedFormat,
@@ -981,168 +843,7 @@ impl SetValue for GLError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum GrabOwnership {
-    None,
-    Surface,
-    Application,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for GrabOwnership {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GrabOwnership::{}",
-            match *self {
-                GrabOwnership::None => "None",
-                GrabOwnership::Surface => "Surface",
-                GrabOwnership::Application => "Application",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for GrabOwnership {
-    type GlibType = gdk_sys::GdkGrabOwnership;
-
-    fn to_glib(&self) -> gdk_sys::GdkGrabOwnership {
-        match *self {
-            GrabOwnership::None => gdk_sys::GDK_OWNERSHIP_NONE,
-            GrabOwnership::Surface => gdk_sys::GDK_OWNERSHIP_SURFACE,
-            GrabOwnership::Application => gdk_sys::GDK_OWNERSHIP_APPLICATION,
-            GrabOwnership::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkGrabOwnership> for GrabOwnership {
-    fn from_glib(value: gdk_sys::GdkGrabOwnership) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => GrabOwnership::None,
-            1 => GrabOwnership::Surface,
-            2 => GrabOwnership::Application,
-            value => GrabOwnership::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for GrabOwnership {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_grab_ownership_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for GrabOwnership {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for GrabOwnership {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for GrabOwnership {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum GrabStatus {
-    Success,
-    AlreadyGrabbed,
-    InvalidTime,
-    NotViewable,
-    Frozen,
-    Failed,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for GrabStatus {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GrabStatus::{}",
-            match *self {
-                GrabStatus::Success => "Success",
-                GrabStatus::AlreadyGrabbed => "AlreadyGrabbed",
-                GrabStatus::InvalidTime => "InvalidTime",
-                GrabStatus::NotViewable => "NotViewable",
-                GrabStatus::Frozen => "Frozen",
-                GrabStatus::Failed => "Failed",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for GrabStatus {
-    type GlibType = gdk_sys::GdkGrabStatus;
-
-    fn to_glib(&self) -> gdk_sys::GdkGrabStatus {
-        match *self {
-            GrabStatus::Success => gdk_sys::GDK_GRAB_SUCCESS,
-            GrabStatus::AlreadyGrabbed => gdk_sys::GDK_GRAB_ALREADY_GRABBED,
-            GrabStatus::InvalidTime => gdk_sys::GDK_GRAB_INVALID_TIME,
-            GrabStatus::NotViewable => gdk_sys::GDK_GRAB_NOT_VIEWABLE,
-            GrabStatus::Frozen => gdk_sys::GDK_GRAB_FROZEN,
-            GrabStatus::Failed => gdk_sys::GDK_GRAB_FAILED,
-            GrabStatus::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkGrabStatus> for GrabStatus {
-    fn from_glib(value: gdk_sys::GdkGrabStatus) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => GrabStatus::Success,
-            1 => GrabStatus::AlreadyGrabbed,
-            2 => GrabStatus::InvalidTime,
-            3 => GrabStatus::NotViewable,
-            4 => GrabStatus::Frozen,
-            5 => GrabStatus::Failed,
-            value => GrabStatus::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for GrabStatus {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_grab_status_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for GrabStatus {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for GrabStatus {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for GrabStatus {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Gravity {
     NorthWest,
     North,
@@ -1246,86 +947,10 @@ impl SetValue for Gravity {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum InputMode {
-    Disabled,
-    Screen,
-    Surface,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for InputMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "InputMode::{}",
-            match *self {
-                InputMode::Disabled => "Disabled",
-                InputMode::Screen => "Screen",
-                InputMode::Surface => "Surface",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for InputMode {
-    type GlibType = gdk_sys::GdkInputMode;
-
-    fn to_glib(&self) -> gdk_sys::GdkInputMode {
-        match *self {
-            InputMode::Disabled => gdk_sys::GDK_MODE_DISABLED,
-            InputMode::Screen => gdk_sys::GDK_MODE_SCREEN,
-            InputMode::Surface => gdk_sys::GDK_MODE_SURFACE,
-            InputMode::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkInputMode> for InputMode {
-    fn from_glib(value: gdk_sys::GdkInputMode) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => InputMode::Disabled,
-            1 => InputMode::Screen,
-            2 => InputMode::Surface,
-            value => InputMode::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for InputMode {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_input_mode_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for InputMode {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for InputMode {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for InputMode {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum InputSource {
     Mouse,
     Pen,
-    Eraser,
-    Cursor,
     Keyboard,
     Touchscreen,
     Touchpad,
@@ -1343,8 +968,6 @@ impl fmt::Display for InputSource {
             match *self {
                 InputSource::Mouse => "Mouse",
                 InputSource::Pen => "Pen",
-                InputSource::Eraser => "Eraser",
-                InputSource::Cursor => "Cursor",
                 InputSource::Keyboard => "Keyboard",
                 InputSource::Touchscreen => "Touchscreen",
                 InputSource::Touchpad => "Touchpad",
@@ -1364,8 +987,6 @@ impl ToGlib for InputSource {
         match *self {
             InputSource::Mouse => gdk_sys::GDK_SOURCE_MOUSE,
             InputSource::Pen => gdk_sys::GDK_SOURCE_PEN,
-            InputSource::Eraser => gdk_sys::GDK_SOURCE_ERASER,
-            InputSource::Cursor => gdk_sys::GDK_SOURCE_CURSOR,
             InputSource::Keyboard => gdk_sys::GDK_SOURCE_KEYBOARD,
             InputSource::Touchscreen => gdk_sys::GDK_SOURCE_TOUCHSCREEN,
             InputSource::Touchpad => gdk_sys::GDK_SOURCE_TOUCHPAD,
@@ -1383,13 +1004,11 @@ impl FromGlib<gdk_sys::GdkInputSource> for InputSource {
         match value {
             0 => InputSource::Mouse,
             1 => InputSource::Pen,
-            2 => InputSource::Eraser,
-            3 => InputSource::Cursor,
-            4 => InputSource::Keyboard,
-            5 => InputSource::Touchscreen,
-            6 => InputSource::Touchpad,
-            7 => InputSource::Trackpoint,
-            8 => InputSource::TabletPad,
+            2 => InputSource::Keyboard,
+            3 => InputSource::Touchscreen,
+            4 => InputSource::Touchpad,
+            5 => InputSource::Trackpoint,
+            6 => InputSource::TabletPad,
             value => InputSource::__Unknown(value),
         }
     }
@@ -1420,6 +1039,83 @@ impl SetValue for InputSource {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum KeyMatch {
+    None,
+    Partial,
+    Exact,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for KeyMatch {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "KeyMatch::{}",
+            match *self {
+                KeyMatch::None => "None",
+                KeyMatch::Partial => "Partial",
+                KeyMatch::Exact => "Exact",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for KeyMatch {
+    type GlibType = gdk_sys::GdkKeyMatch;
+
+    fn to_glib(&self) -> gdk_sys::GdkKeyMatch {
+        match *self {
+            KeyMatch::None => gdk_sys::GDK_KEY_MATCH_NONE,
+            KeyMatch::Partial => gdk_sys::GDK_KEY_MATCH_PARTIAL,
+            KeyMatch::Exact => gdk_sys::GDK_KEY_MATCH_EXACT,
+            KeyMatch::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gdk_sys::GdkKeyMatch> for KeyMatch {
+    fn from_glib(value: gdk_sys::GdkKeyMatch) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => KeyMatch::None,
+            1 => KeyMatch::Partial,
+            2 => KeyMatch::Exact,
+            value => KeyMatch::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for KeyMatch {
+    fn static_type() -> Type {
+        unsafe { from_glib(gdk_sys::gdk_key_match_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for KeyMatch {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for KeyMatch {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for KeyMatch {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum MemoryFormat {
     B8g8r8a8Premultiplied,
     A8r8g8b8Premultiplied,
@@ -1519,97 +1215,7 @@ impl SetValue for MemoryFormat {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ModifierIntent {
-    PrimaryAccelerator,
-    ContextMenu,
-    ExtendSelection,
-    ModifySelection,
-    NoTextInput,
-    ShiftGroup,
-    DefaultModMask,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ModifierIntent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ModifierIntent::{}",
-            match *self {
-                ModifierIntent::PrimaryAccelerator => "PrimaryAccelerator",
-                ModifierIntent::ContextMenu => "ContextMenu",
-                ModifierIntent::ExtendSelection => "ExtendSelection",
-                ModifierIntent::ModifySelection => "ModifySelection",
-                ModifierIntent::NoTextInput => "NoTextInput",
-                ModifierIntent::ShiftGroup => "ShiftGroup",
-                ModifierIntent::DefaultModMask => "DefaultModMask",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ModifierIntent {
-    type GlibType = gdk_sys::GdkModifierIntent;
-
-    fn to_glib(&self) -> gdk_sys::GdkModifierIntent {
-        match *self {
-            ModifierIntent::PrimaryAccelerator => gdk_sys::GDK_MODIFIER_INTENT_PRIMARY_ACCELERATOR,
-            ModifierIntent::ContextMenu => gdk_sys::GDK_MODIFIER_INTENT_CONTEXT_MENU,
-            ModifierIntent::ExtendSelection => gdk_sys::GDK_MODIFIER_INTENT_EXTEND_SELECTION,
-            ModifierIntent::ModifySelection => gdk_sys::GDK_MODIFIER_INTENT_MODIFY_SELECTION,
-            ModifierIntent::NoTextInput => gdk_sys::GDK_MODIFIER_INTENT_NO_TEXT_INPUT,
-            ModifierIntent::ShiftGroup => gdk_sys::GDK_MODIFIER_INTENT_SHIFT_GROUP,
-            ModifierIntent::DefaultModMask => gdk_sys::GDK_MODIFIER_INTENT_DEFAULT_MOD_MASK,
-            ModifierIntent::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkModifierIntent> for ModifierIntent {
-    fn from_glib(value: gdk_sys::GdkModifierIntent) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ModifierIntent::PrimaryAccelerator,
-            1 => ModifierIntent::ContextMenu,
-            2 => ModifierIntent::ExtendSelection,
-            3 => ModifierIntent::ModifySelection,
-            4 => ModifierIntent::NoTextInput,
-            5 => ModifierIntent::ShiftGroup,
-            6 => ModifierIntent::DefaultModMask,
-            value => ModifierIntent::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ModifierIntent {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_modifier_intent_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ModifierIntent {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ModifierIntent {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ModifierIntent {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum NotifyType {
     Ancestor,
     Virtual,
@@ -1697,6 +1303,7 @@ impl SetValue for NotifyType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ScrollDirection {
     Up,
     Down,
@@ -1780,6 +1387,7 @@ impl SetValue for ScrollDirection {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SubpixelLayout {
     Unknown,
     None,
@@ -1867,6 +1475,7 @@ impl SetValue for SubpixelLayout {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SurfaceEdge {
     NorthWest,
     North,
@@ -1962,200 +1571,7 @@ impl SetValue for SurfaceEdge {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum SurfaceType {
-    Toplevel,
-    Child,
-    Temp,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for SurfaceType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SurfaceType::{}",
-            match *self {
-                SurfaceType::Toplevel => "Toplevel",
-                SurfaceType::Child => "Child",
-                SurfaceType::Temp => "Temp",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for SurfaceType {
-    type GlibType = gdk_sys::GdkSurfaceType;
-
-    fn to_glib(&self) -> gdk_sys::GdkSurfaceType {
-        match *self {
-            SurfaceType::Toplevel => gdk_sys::GDK_SURFACE_TOPLEVEL,
-            SurfaceType::Child => gdk_sys::GDK_SURFACE_CHILD,
-            SurfaceType::Temp => gdk_sys::GDK_SURFACE_TEMP,
-            SurfaceType::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSurfaceType> for SurfaceType {
-    fn from_glib(value: gdk_sys::GdkSurfaceType) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => SurfaceType::Toplevel,
-            1 => SurfaceType::Child,
-            2 => SurfaceType::Temp,
-            value => SurfaceType::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for SurfaceType {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_surface_type_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for SurfaceType {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for SurfaceType {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for SurfaceType {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum SurfaceTypeHint {
-    Normal,
-    Dialog,
-    Menu,
-    Toolbar,
-    Splashscreen,
-    Utility,
-    Dock,
-    Desktop,
-    DropdownMenu,
-    PopupMenu,
-    Tooltip,
-    Notification,
-    Combo,
-    Dnd,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for SurfaceTypeHint {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SurfaceTypeHint::{}",
-            match *self {
-                SurfaceTypeHint::Normal => "Normal",
-                SurfaceTypeHint::Dialog => "Dialog",
-                SurfaceTypeHint::Menu => "Menu",
-                SurfaceTypeHint::Toolbar => "Toolbar",
-                SurfaceTypeHint::Splashscreen => "Splashscreen",
-                SurfaceTypeHint::Utility => "Utility",
-                SurfaceTypeHint::Dock => "Dock",
-                SurfaceTypeHint::Desktop => "Desktop",
-                SurfaceTypeHint::DropdownMenu => "DropdownMenu",
-                SurfaceTypeHint::PopupMenu => "PopupMenu",
-                SurfaceTypeHint::Tooltip => "Tooltip",
-                SurfaceTypeHint::Notification => "Notification",
-                SurfaceTypeHint::Combo => "Combo",
-                SurfaceTypeHint::Dnd => "Dnd",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for SurfaceTypeHint {
-    type GlibType = gdk_sys::GdkSurfaceTypeHint;
-
-    fn to_glib(&self) -> gdk_sys::GdkSurfaceTypeHint {
-        match *self {
-            SurfaceTypeHint::Normal => gdk_sys::GDK_SURFACE_TYPE_HINT_NORMAL,
-            SurfaceTypeHint::Dialog => gdk_sys::GDK_SURFACE_TYPE_HINT_DIALOG,
-            SurfaceTypeHint::Menu => gdk_sys::GDK_SURFACE_TYPE_HINT_MENU,
-            SurfaceTypeHint::Toolbar => gdk_sys::GDK_SURFACE_TYPE_HINT_TOOLBAR,
-            SurfaceTypeHint::Splashscreen => gdk_sys::GDK_SURFACE_TYPE_HINT_SPLASHSCREEN,
-            SurfaceTypeHint::Utility => gdk_sys::GDK_SURFACE_TYPE_HINT_UTILITY,
-            SurfaceTypeHint::Dock => gdk_sys::GDK_SURFACE_TYPE_HINT_DOCK,
-            SurfaceTypeHint::Desktop => gdk_sys::GDK_SURFACE_TYPE_HINT_DESKTOP,
-            SurfaceTypeHint::DropdownMenu => gdk_sys::GDK_SURFACE_TYPE_HINT_DROPDOWN_MENU,
-            SurfaceTypeHint::PopupMenu => gdk_sys::GDK_SURFACE_TYPE_HINT_POPUP_MENU,
-            SurfaceTypeHint::Tooltip => gdk_sys::GDK_SURFACE_TYPE_HINT_TOOLTIP,
-            SurfaceTypeHint::Notification => gdk_sys::GDK_SURFACE_TYPE_HINT_NOTIFICATION,
-            SurfaceTypeHint::Combo => gdk_sys::GDK_SURFACE_TYPE_HINT_COMBO,
-            SurfaceTypeHint::Dnd => gdk_sys::GDK_SURFACE_TYPE_HINT_DND,
-            SurfaceTypeHint::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSurfaceTypeHint> for SurfaceTypeHint {
-    fn from_glib(value: gdk_sys::GdkSurfaceTypeHint) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => SurfaceTypeHint::Normal,
-            1 => SurfaceTypeHint::Dialog,
-            2 => SurfaceTypeHint::Menu,
-            3 => SurfaceTypeHint::Toolbar,
-            4 => SurfaceTypeHint::Splashscreen,
-            5 => SurfaceTypeHint::Utility,
-            6 => SurfaceTypeHint::Dock,
-            7 => SurfaceTypeHint::Desktop,
-            8 => SurfaceTypeHint::DropdownMenu,
-            9 => SurfaceTypeHint::PopupMenu,
-            10 => SurfaceTypeHint::Tooltip,
-            11 => SurfaceTypeHint::Notification,
-            12 => SurfaceTypeHint::Combo,
-            13 => SurfaceTypeHint::Dnd,
-            value => SurfaceTypeHint::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for SurfaceTypeHint {
-    fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_surface_type_hint_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for SurfaceTypeHint {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for SurfaceTypeHint {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for SurfaceTypeHint {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TouchpadGesturePhase {
     Begin,
     Update,
@@ -2235,6 +1651,7 @@ impl SetValue for TouchpadGesturePhase {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum VulkanError {
     Unsupported,
     NotAvailable,

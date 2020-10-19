@@ -49,6 +49,21 @@ impl ContentProvider {
             ))
         }
     }
+
+    //pub fn new_typed(type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ContentProvider {
+    //    unsafe { TODO: call gdk_sys:gdk_content_provider_new_typed() }
+    //}
+
+    pub fn new_union(providers: &[ContentProvider]) -> ContentProvider {
+        assert_initialized_main_thread!();
+        let n_providers = providers.len() as usize;
+        unsafe {
+            from_glib_full(gdk_sys::gdk_content_provider_new_union(
+                providers.to_glib_full(),
+                n_providers,
+            ))
+        }
+    }
 }
 
 pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
@@ -243,14 +258,16 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
             P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
-            f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
+            f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"content-changed\0".as_ptr() as *const _,
-                Some(transmute(content_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    content_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -265,14 +282,16 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
             P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
-            f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
+            f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute(notify_formats_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_formats_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -290,15 +309,15 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
             P: IsA<ContentProvider>,
         {
             let f: &F = &*(f as *const F);
-            f(&ContentProvider::from_glib_borrow(this).unsafe_cast())
+            f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::storable-formats\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_storable_formats_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_storable_formats_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
