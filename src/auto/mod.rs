@@ -84,7 +84,9 @@ pub use self::texture_node::{TextureNode, TextureNodeClass};
 mod transform_node;
 pub use self::transform_node::{TransformNode, TransformNodeClass};
 
+#[cfg(any(feature = "vulkan", feature = "dox"))]
 mod vulkan_renderer;
+#[cfg(any(feature = "vulkan", feature = "dox"))]
 pub use self::vulkan_renderer::{VulkanRenderer, VulkanRendererClass};
 
 mod transform;

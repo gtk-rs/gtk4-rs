@@ -38,7 +38,6 @@ generate = [
     "Gsk.Transform",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
-    "Gsk.VulkanRenderer",
 ]
 
 manual = [
@@ -112,3 +111,8 @@ status = "generate"
     name = "new" 
     # manual, uses &[&Shadow] instead of a &[Shadow]
     ignore = true
+
+[[object]]
+name = "Gsk.VulkanRenderer"
+status = "generate"
+cfg_condition = "feature = \"vulkan\""
