@@ -1,4 +1,4 @@
-# gdk4 [![Build Status](https://travis-ci.org/gtk-rs/gdk4.png?branch=master)](https://travis-ci.org/gtk-rs/gdk4)
+# gdk4 ![CI](https://github.com/gtk-rs/gdk4/workflows/CI/badge.svg)
 
 Gdk 4 bindings for Rust.
 
