@@ -6,7 +6,6 @@ use glib::translate::*;
 use gsk_sys;
 use std::fmt;
 use RenderNode;
-use Shadow;
 
 glib_wrapper! {
     pub struct ShadowNode(Object<gsk_sys::GskShadowNode, ShadowNodeClass>) @extends RenderNode;
@@ -23,15 +22,6 @@ impl ShadowNode {
 
     pub fn get_n_shadows(&self) -> usize {
         unsafe { gsk_sys::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
-    }
-
-    pub fn peek_shadow(&self, i: usize) -> Option<Shadow> {
-        unsafe {
-            from_glib_none(gsk_sys::gsk_shadow_node_peek_shadow(
-                self.to_glib_none().0,
-                i,
-            ))
-        }
     }
 }
 

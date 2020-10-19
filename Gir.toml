@@ -111,6 +111,10 @@ status = "generate"
     name = "new" 
     # manual, uses &[&Shadow] instead of a &[Shadow]
     ignore = true
+    [[object.function]]
+    name = "peek_shadow"
+    # manual, needs an assertion that the i < n_shadows
+    ignore = true
 
 [[object]]
 name = "Gsk.VulkanRenderer"

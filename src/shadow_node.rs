@@ -18,4 +18,14 @@ impl ShadowNode {
             ))
         }
     }
+
+    pub fn peek_shadow(&self, i: usize) -> Option<Shadow> {
+        assert!(i < self.get_n_shadows());
+        unsafe {
+            from_glib_none(gsk_sys::gsk_shadow_node_peek_shadow(
+                self.to_glib_none().0,
+                i,
+            ))
+        }
+    }
 }
