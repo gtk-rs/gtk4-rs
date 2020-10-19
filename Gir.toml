@@ -419,6 +419,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.Actionable"
 status = "generate"
+manual_traits = ["ActionableExtManual"]
     [[object.property]]
     #value glib.Variant
     name = "action-target"
@@ -877,6 +878,7 @@ generate_builder = true
 name = "Gtk.EntryBuffer"
 status = "generate"
 generate_builder = true
+manual_traits = ["EntryBufferExtManual"]
     #manual
     [[object.function]]
     name = "new"
