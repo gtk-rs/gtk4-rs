@@ -894,6 +894,10 @@ mod shortcuts_section;
 pub use self::shortcuts_section::ShortcutsSectionBuilder;
 pub use self::shortcuts_section::{ShortcutsSection, ShortcutsSectionClass};
 
+mod shortcuts_shortcut;
+pub use self::shortcuts_shortcut::ShortcutsShortcutBuilder;
+pub use self::shortcuts_shortcut::{ShortcutsShortcut, ShortcutsShortcutClass};
+
 mod shortcuts_window;
 pub use self::shortcuts_window::ShortcutsWindowBuilder;
 pub use self::shortcuts_window::{ShortcutsWindow, ShortcutsWindowClass};

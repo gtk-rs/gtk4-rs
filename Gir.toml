@@ -1597,6 +1597,16 @@ generate_builder = true
     ignore = true
 
 [[object]]
+name = "Gtk.ShortcutsShortcut"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gtk.ShortcutsWindow"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
 manual_traits = ["ShortcutTriggerExtManual"]
@@ -1610,11 +1620,6 @@ manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "compare"
     ignore = true
-
-[[object]]
-name = "Gtk.ShortcutsWindow"
-status = "generate"
-generate_builder = true
 
 [[object]]
 name = "Gtk.SignalAction"
