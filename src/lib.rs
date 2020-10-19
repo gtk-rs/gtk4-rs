@@ -95,6 +95,7 @@ mod page_range;
 mod recent_data;
 mod requisition;
 mod response_type;
+mod shortcut_trigger;
 mod shortcuts_section;
 mod snapshot;
 mod spin_button;

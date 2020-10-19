@@ -16,6 +16,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use ShortcutAction;
+use ShortcutTrigger;
 
 glib_wrapper! {
     pub struct Shortcut(Object<gtk_sys::GtkShortcut, gtk_sys::GtkShortcutClass, ShortcutClass>);
@@ -26,11 +27,20 @@ glib_wrapper! {
 }
 
 impl Shortcut {
-    //pub fn new<P: IsA<ShortcutAction>>(trigger: /*Ignored*/Option<&ShortcutTrigger>, action: Option<&P>) -> Shortcut {
-    //    unsafe { TODO: call gtk_sys:gtk_shortcut_new() }
-    //}
+    pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(
+        trigger: Option<&P>,
+        action: Option<&Q>,
+    ) -> Shortcut {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_shortcut_new(
+                trigger.map(|p| p.as_ref()).to_glib_full(),
+                action.map(|p| p.as_ref()).to_glib_full(),
+            ))
+        }
+    }
 
-    //pub fn with_arguments<P: IsA<ShortcutAction>>(trigger: /*Ignored*/Option<&ShortcutTrigger>, action: Option<&P>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
+    //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call gtk_sys:gtk_shortcut_new_with_arguments() }
     //}
 }
@@ -39,7 +49,7 @@ impl Shortcut {
 pub struct ShortcutBuilder {
     action: Option<ShortcutAction>,
     arguments: Option<glib::Variant>,
-    //trigger: /*Unknown type*/,
+    trigger: Option<ShortcutTrigger>,
 }
 
 impl ShortcutBuilder {
@@ -54,6 +64,9 @@ impl ShortcutBuilder {
         }
         if let Some(ref arguments) = self.arguments {
             properties.push(("arguments", arguments));
+        }
+        if let Some(ref trigger) = self.trigger {
+            properties.push(("trigger", trigger));
         }
         let ret = glib::Object::new(Shortcut::static_type(), &properties)
             .expect("object new")
@@ -71,6 +84,11 @@ impl ShortcutBuilder {
         self.arguments = Some(arguments.clone());
         self
     }
+
+    pub fn trigger<P: IsA<ShortcutTrigger>>(mut self, trigger: &P) -> Self {
+        self.trigger = Some(trigger.clone().upcast());
+        self
+    }
 }
 
 pub const NONE_SHORTCUT: Option<&Shortcut> = None;
@@ -80,13 +98,13 @@ pub trait ShortcutExt: 'static {
 
     fn get_arguments(&self) -> Option<glib::Variant>;
 
-    //fn get_trigger(&self) -> /*Ignored*/Option<ShortcutTrigger>;
+    fn get_trigger(&self) -> Option<ShortcutTrigger>;
 
     fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>);
 
     fn set_arguments(&self, args: Option<&glib::Variant>);
 
-    //fn set_trigger(&self, trigger: /*Ignored*/Option<&ShortcutTrigger>);
+    fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>);
 
     fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -112,9 +130,13 @@ impl<O: IsA<Shortcut>> ShortcutExt for O {
         }
     }
 
-    //fn get_trigger(&self) -> /*Ignored*/Option<ShortcutTrigger> {
-    //    unsafe { TODO: call gtk_sys:gtk_shortcut_get_trigger() }
-    //}
+    fn get_trigger(&self) -> Option<ShortcutTrigger> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_shortcut_get_trigger(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>) {
         unsafe {
@@ -134,9 +156,14 @@ impl<O: IsA<Shortcut>> ShortcutExt for O {
         }
     }
 
-    //fn set_trigger(&self, trigger: /*Ignored*/Option<&ShortcutTrigger>) {
-    //    unsafe { TODO: call gtk_sys:gtk_shortcut_set_trigger() }
-    //}
+    fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_shortcut_set_trigger(
+                self.as_ref().to_glib_none().0,
+                trigger.map(|p| p.as_ref()).to_glib_full(),
+            );
+        }
+    }
 
     fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_trampoline<P, F: Fn(&P) + 'static>(

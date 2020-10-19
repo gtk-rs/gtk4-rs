@@ -9,9 +9,10 @@ use glib::StaticType;
 use glib::ToValue;
 use gtk_sys;
 use std::fmt;
+use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct AlternativeTrigger(Object<gtk_sys::GtkAlternativeTrigger, gtk_sys::GtkAlternativeTriggerClass, AlternativeTriggerClass>);
+    pub struct AlternativeTrigger(Object<gtk_sys::GtkAlternativeTrigger, gtk_sys::GtkAlternativeTriggerClass, AlternativeTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_alternative_trigger_get_type(),
@@ -19,23 +20,41 @@ glib_wrapper! {
 }
 
 impl AlternativeTrigger {
-    //pub fn new(first: /*Ignored*/&ShortcutTrigger, second: /*Ignored*/&ShortcutTrigger) -> AlternativeTrigger {
-    //    unsafe { TODO: call gtk_sys:gtk_alternative_trigger_new() }
-    //}
+    pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutTrigger>>(
+        first: &P,
+        second: &Q,
+    ) -> AlternativeTrigger {
+        skip_assert_initialized!();
+        unsafe {
+            ShortcutTrigger::from_glib_full(gtk_sys::gtk_alternative_trigger_new(
+                first.as_ref().to_glib_full(),
+                second.as_ref().to_glib_full(),
+            ))
+            .unsafe_cast()
+        }
+    }
 
-    //pub fn get_first(&self) -> /*Ignored*/Option<ShortcutTrigger> {
-    //    unsafe { TODO: call gtk_sys:gtk_alternative_trigger_get_first() }
-    //}
+    pub fn get_first(&self) -> Option<ShortcutTrigger> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_alternative_trigger_get_first(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
-    //pub fn get_second(&self) -> /*Ignored*/Option<ShortcutTrigger> {
-    //    unsafe { TODO: call gtk_sys:gtk_alternative_trigger_get_second() }
-    //}
+    pub fn get_second(&self) -> Option<ShortcutTrigger> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_alternative_trigger_get_second(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 }
 
 #[derive(Clone, Default)]
 pub struct AlternativeTriggerBuilder {
-    //first: /*Unknown type*/,
-//second: /*Unknown type*/,
+    first: Option<ShortcutTrigger>,
+    second: Option<ShortcutTrigger>,
 }
 
 impl AlternativeTriggerBuilder {
@@ -45,11 +64,27 @@ impl AlternativeTriggerBuilder {
 
     pub fn build(self) -> AlternativeTrigger {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref first) = self.first {
+            properties.push(("first", first));
+        }
+        if let Some(ref second) = self.second {
+            properties.push(("second", second));
+        }
         let ret = glib::Object::new(AlternativeTrigger::static_type(), &properties)
             .expect("object new")
             .downcast::<AlternativeTrigger>()
             .expect("downcast");
         ret
+    }
+
+    pub fn first<P: IsA<ShortcutTrigger>>(mut self, first: &P) -> Self {
+        self.first = Some(first.clone().upcast());
+        self
+    }
+
+    pub fn second<P: IsA<ShortcutTrigger>>(mut self, second: &P) -> Self {
+        self.second = Some(second.clone().upcast());
+        self
     }
 }
 

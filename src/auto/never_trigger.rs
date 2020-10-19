@@ -5,9 +5,10 @@
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
+use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct NeverTrigger(Object<gtk_sys::GtkNeverTrigger, gtk_sys::GtkNeverTriggerClass, NeverTriggerClass>);
+    pub struct NeverTrigger(Object<gtk_sys::GtkNeverTrigger, gtk_sys::GtkNeverTriggerClass, NeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_never_trigger_get_type(),

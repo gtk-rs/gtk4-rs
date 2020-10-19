@@ -12,7 +12,6 @@ single_version_file = true
 generate = [
     # "Gtk.BuilderCScope",
     #"Gtk.RequestedSize", a record
-    #"Gtk.ShortcutTrigger", causes a bunch of issues
     "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
@@ -1595,6 +1594,21 @@ generate_builder = true
     [[object.signal]]
     name = "change-current-page"
     #manual
+    ignore = true
+
+[[object]]
+name = "Gtk.ShortcutTrigger"
+status = "generate"
+manual_traits = ["ShortcutTriggerExtManual"]
+    [[object.function]]
+    name = "equal"
+    # manual, complains about the trait IsA<T> being so generic
+    ignore = true
+    [[object.function]]
+    name = "hash"
+    ignore = true
+    [[object.function]]
+    name = "compare"
     ignore = true
 
 [[object]]

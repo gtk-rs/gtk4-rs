@@ -8,9 +8,10 @@ use glib::StaticType;
 use glib::ToValue;
 use gtk_sys;
 use std::fmt;
+use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct MnemonicTrigger(Object<gtk_sys::GtkMnemonicTrigger, gtk_sys::GtkMnemonicTriggerClass, MnemonicTriggerClass>);
+    pub struct MnemonicTrigger(Object<gtk_sys::GtkMnemonicTrigger, gtk_sys::GtkMnemonicTriggerClass, MnemonicTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_mnemonic_trigger_get_type(),

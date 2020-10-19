@@ -9,9 +9,10 @@ use glib::StaticType;
 use glib::ToValue;
 use gtk_sys;
 use std::fmt;
+use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct KeyvalTrigger(Object<gtk_sys::GtkKeyvalTrigger, gtk_sys::GtkKeyvalTriggerClass, KeyvalTriggerClass>);
+    pub struct KeyvalTrigger(Object<gtk_sys::GtkKeyvalTrigger, gtk_sys::GtkKeyvalTriggerClass, KeyvalTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_keyval_trigger_get_type(),
@@ -19,9 +20,16 @@ glib_wrapper! {
 }
 
 impl KeyvalTrigger {
-    //pub fn new(keyval: u32, modifiers: gdk::ModifierType) -> KeyvalTrigger {
-    //    unsafe { TODO: call gtk_sys:gtk_keyval_trigger_new() }
-    //}
+    pub fn new(keyval: u32, modifiers: gdk::ModifierType) -> KeyvalTrigger {
+        assert_initialized_main_thread!();
+        unsafe {
+            ShortcutTrigger::from_glib_full(gtk_sys::gtk_keyval_trigger_new(
+                keyval,
+                modifiers.to_glib(),
+            ))
+            .unsafe_cast()
+        }
+    }
 
     pub fn get_keyval(&self) -> u32 {
         unsafe { gtk_sys::gtk_keyval_trigger_get_keyval(self.to_glib_none().0) }
