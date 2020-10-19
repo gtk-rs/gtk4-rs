@@ -13,7 +13,6 @@ generate = [
     "Gsk.BlendMode",
     "Gsk.BlendNode",
     "Gsk.BlurNode",
-    "Gsk.BroadwayRenderer",
     "Gsk.CairoNode",
     "Gsk.CairoRenderer",
     "Gsk.ClipNode",
@@ -78,6 +77,11 @@ manual_traits = ["BorderNodeManualExt"]
     name = "peek_widths"
     # manual, needs fixed-size=4 in gir file
     ignore = true
+
+[[object]]
+name = "Gsk.BroadwayRenderer"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
 
 [[object]]
 name = "Gsk.LinearGradientNode"

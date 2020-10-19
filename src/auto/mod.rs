@@ -11,7 +11,9 @@ pub use self::blur_node::{BlurNode, BlurNodeClass};
 mod border_node;
 pub use self::border_node::{BorderNode, BorderNodeClass};
 
+#[cfg(any(feature = "broadway", feature = "dox"))]
 mod broadway_renderer;
+#[cfg(any(feature = "broadway", feature = "dox"))]
 pub use self::broadway_renderer::{BroadwayRenderer, BroadwayRendererClass};
 
 mod cairo_node;
