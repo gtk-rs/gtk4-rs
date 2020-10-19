@@ -54,7 +54,7 @@ pango-sys = { git = "https://github.com/gtk-rs/sys" }
 cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
 gio = { git = "https://github.com/gtk-rs/gio", features = ["v2_46"] }
 glib = { git = "https://github.com/gtk-rs/glib" }
-gdk4 = { git = "https://github.com/bilelmoussaoui/gdk4", branch = "bilelmoussaoui/update" }
+gdk4 = { git = "https://github.com/gtk-rs/gdk4" }
 graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/graphene" }
 gsk4 = { git = "https://github.com/bilelmoussaoui/gsk4", branch = "bilelmoussaoui/update" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gdk-pixbuf" }
