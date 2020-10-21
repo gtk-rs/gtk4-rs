@@ -32,13 +32,13 @@ impl StringObject {
 pub const NONE_STRING_OBJECT: Option<&StringObject> = None;
 
 pub trait StringObjectExt: 'static {
-    fn get_string(&self) -> Option<GString>;
+    fn get_string(&self) -> GString;
 
     fn connect_property_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<StringObject>> StringObjectExt for O {
-    fn get_string(&self) -> Option<GString> {
+    fn get_string(&self) -> GString {
         unsafe {
             from_glib_none(gtk_sys::gtk_string_object_get_string(
                 self.as_ref().to_glib_none().0,

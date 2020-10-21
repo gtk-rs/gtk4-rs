@@ -186,7 +186,6 @@ generate = [
     "Gtk.StateFlags",
     "Gtk.StringFilterMatchMode",
     "Gtk.StringList",
-    "Gtk.StringObject",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SystemSetting",
@@ -1705,6 +1704,14 @@ generate_builder = true
 name = "Gtk.StringFilter"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "Gtk.StringObject"
+status = "generate"
+    [[object.function]]
+    name = "get_string"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Gtk.StringSorter"
