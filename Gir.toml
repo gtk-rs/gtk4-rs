@@ -10,8 +10,17 @@ deprecate_by_min_version = true
 single_version_file = true
 
 generate = [
-    # "Gtk.BuilderCScope",
-    #"Gtk.RequestedSize", a record
+    # "Gtk.BuilderCScope", not useful 
+    # "Gtk.CClosureExpression", not useful
+    # "Gtk.ClosureExpression",
+    # "Gtk.ConstantExpression",
+    # "Gtk.Expression",
+    # "Gtk.ExpressionNotify",
+    # "Gtk.ExpressionWatch",
+    # "Gtk.ObjectExpression",
+    # "Gtk.ParamSpecExpression",
+    # "Gtk.PropertyExpression",
+    # "Gtk.RequestedSize", a record
     "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
@@ -42,7 +51,6 @@ generate = [
     "Gtk.BuilderScope",
     "Gtk.ButtonsType",
     "Gtk.CallbackAction",
-    "Gtk.CClosureExpression",
     "Gtk.CellEditable",
     "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
@@ -50,8 +58,6 @@ generate = [
     "Gtk.CellRendererState",
     "Gtk.CenterLayout",
     "Gtk.Clipboard",
-    "Gtk.ClosureExpression",
-    "Gtk.ConstantExpression",
     "Gtk.ConstraintAttribute",
     "Gtk.ConstraintLayout",
     "Gtk.ConstraintLayoutChild",
@@ -83,9 +89,6 @@ generate = [
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
     "Gtk.EveryFilter",
-    "Gtk.Expression",
-    "Gtk.ExpressionNotify",
-    "Gtk.ExpressionWatch",
     "Gtk.FileChooserAction",
     "Gtk.FileChooserError",
     "Gtk.Filter",
@@ -128,7 +131,6 @@ generate = [
     "Gtk.NotebookTab",
     "Gtk.NothingAction",
     "Gtk.NumberUpLayout",
-    "Gtk.ObjectExpression",
     "Gtk.Ordering",
     "Gtk.Orientable",
     "Gtk.Orientation",
@@ -139,7 +141,6 @@ generate = [
     "Gtk.PageOrientation",
     "Gtk.PageSet",
     "Gtk.PanDirection",
-    "Gtk.ParamSpecExpression",
     "Gtk.PickFlags",
     "Gtk.PlacesOpenFlags",
     "Gtk.PolicyType",
@@ -156,7 +157,6 @@ generate = [
     "Gtk.PrintStatus",
     "Gtk.PropagationLimit",
     "Gtk.PropagationPhase",
-    "Gtk.PropertyExpression",
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
     "Gtk.RevealerTransitionType",

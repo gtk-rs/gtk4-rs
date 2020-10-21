@@ -22,7 +22,6 @@ use AccessibleRole;
 use Align;
 use Buildable;
 use ConstraintTarget;
-use Expression;
 use LayoutManager;
 use ListItemFactory;
 use Overflow;
@@ -37,19 +36,9 @@ glib_wrapper! {
 }
 
 impl DropDown {
-    pub fn new<P: IsA<gio::ListModel>, Q: IsA<Expression>>(
-        model: Option<&P>,
-        expression: Option<&Q>,
-    ) -> DropDown {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_drop_down_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-                expression.map(|p| p.as_ref()).to_glib_full(),
-            ))
-            .unsafe_cast()
-        }
-    }
+    //pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>, expression: /*Ignored*/Option<&Expression>) -> DropDown {
+    //    unsafe { TODO: call gtk_sys:gtk_drop_down_new() }
+    //}
 
     pub fn from_strings(strings: &[&str]) -> DropDown {
         assert_initialized_main_thread!();
@@ -65,7 +54,7 @@ impl DropDown {
 #[derive(Clone, Default)]
 pub struct DropDownBuilder {
     enable_search: Option<bool>,
-    expression: Option<Expression>,
+    //expression: /*Unknown type*/,
     factory: Option<ListItemFactory>,
     list_factory: Option<ListItemFactory>,
     model: Option<gio::ListModel>,
@@ -111,9 +100,6 @@ impl DropDownBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_search) = self.enable_search {
             properties.push(("enable-search", enable_search));
-        }
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
         }
         if let Some(ref factory) = self.factory {
             properties.push(("factory", factory));
@@ -226,11 +212,6 @@ impl DropDownBuilder {
 
     pub fn enable_search(mut self, enable_search: bool) -> Self {
         self.enable_search = Some(enable_search);
-        self
-    }
-
-    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
-        self.expression = Some(expression.clone().upcast());
         self
     }
 
@@ -410,7 +391,7 @@ pub const NONE_DROP_DOWN: Option<&DropDown> = None;
 pub trait DropDownExt: 'static {
     fn get_enable_search(&self) -> bool;
 
-    fn get_expression(&self) -> Option<Expression>;
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
 
     fn get_factory(&self) -> Option<ListItemFactory>;
 
@@ -424,7 +405,7 @@ pub trait DropDownExt: 'static {
 
     fn set_enable_search(&self, enable_search: bool);
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: Option<&P>);
+    //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>);
 
     fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>);
 
@@ -465,13 +446,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
         }
     }
 
-    fn get_expression(&self) -> Option<Expression> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_drop_down_get_expression(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //    unsafe { TODO: call gtk_sys:gtk_drop_down_get_expression() }
+    //}
 
     fn get_factory(&self) -> Option<ListItemFactory> {
         unsafe {
@@ -518,14 +495,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
         }
     }
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_drop_down_set_expression(
-                self.as_ref().to_glib_none().0,
-                expression.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
+    //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
+    //    unsafe { TODO: call gtk_sys:gtk_drop_down_set_expression() }
+    //}
 
     fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {

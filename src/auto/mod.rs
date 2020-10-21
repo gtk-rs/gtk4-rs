@@ -124,9 +124,6 @@ pub use self::button::ButtonBuilder;
 pub use self::button::ButtonExt;
 pub use self::button::{Button, ButtonClass, NONE_BUTTON};
 
-mod cclosure_expression;
-pub use self::cclosure_expression::{CClosureExpression, CClosureExpressionClass};
-
 mod calendar;
 pub use self::calendar::CalendarBuilder;
 pub use self::calendar::{Calendar, CalendarClass};
@@ -211,9 +208,6 @@ pub use self::check_button::CheckButtonBuilder;
 pub use self::check_button::CheckButtonExt;
 pub use self::check_button::{CheckButton, CheckButtonClass, NONE_CHECK_BUTTON};
 
-mod closure_expression;
-pub use self::closure_expression::{ClosureExpression, ClosureExpressionClass};
-
 mod color_button;
 pub use self::color_button::ColorButtonBuilder;
 pub use self::color_button::{ColorButton, ColorButtonClass};
@@ -246,9 +240,6 @@ pub use self::combo_box::{ComboBox, ComboBoxClass, NONE_COMBO_BOX};
 mod combo_box_text;
 pub use self::combo_box_text::ComboBoxTextBuilder;
 pub use self::combo_box_text::{ComboBoxText, ComboBoxTextClass};
-
-mod constant_expression;
-pub use self::constant_expression::{ConstantExpression, ConstantExpressionClass};
 
 mod constraint;
 pub use self::constraint::ConstraintBuilder;
@@ -380,10 +371,6 @@ pub use self::every_filter::{EveryFilter, EveryFilterClass};
 mod expander;
 pub use self::expander::ExpanderBuilder;
 pub use self::expander::{Expander, ExpanderClass};
-
-mod expression;
-pub use self::expression::ExpressionExt;
-pub use self::expression::{Expression, ExpressionClass, NONE_EXPRESSION};
 
 mod file_chooser;
 pub use self::file_chooser::FileChooserExt;
@@ -711,9 +698,6 @@ pub use self::numeric_sorter::NumericSorterBuilder;
 pub use self::numeric_sorter::NumericSorterExt;
 pub use self::numeric_sorter::{NumericSorter, NumericSorterClass, NONE_NUMERIC_SORTER};
 
-mod object_expression;
-pub use self::object_expression::{ObjectExpression, ObjectExpressionClass};
-
 mod orientable;
 pub use self::orientable::OrientableExt;
 pub use self::orientable::{Orientable, NONE_ORIENTABLE};
@@ -742,9 +726,6 @@ pub use self::page_setup::{PageSetup, PageSetupClass};
 mod paned;
 pub use self::paned::PanedBuilder;
 pub use self::paned::{Paned, PanedClass};
-
-mod param_spec_expression;
-pub use self::param_spec_expression::{ParamSpecExpression, ParamSpecExpressionClass};
 
 mod password_entry;
 pub use self::password_entry::PasswordEntryBuilder;
@@ -786,9 +767,6 @@ pub use self::print_settings::{PrintSettings, PrintSettingsClass};
 mod progress_bar;
 pub use self::progress_bar::ProgressBarBuilder;
 pub use self::progress_bar::{ProgressBar, ProgressBarClass};
-
-mod property_expression;
-pub use self::property_expression::{PropertyExpression, PropertyExpressionClass};
 
 mod radio_button;
 pub use self::radio_button::RadioButtonBuilder;
@@ -1145,9 +1123,6 @@ pub use self::bitset::Bitset;
 mod css_section;
 pub use self::css_section::CssSection;
 
-mod expression_watch;
-pub use self::expression_watch::ExpressionWatch;
-
 mod paper_size;
 pub use self::paper_size::PaperSize;
 
@@ -1454,7 +1429,6 @@ pub mod traits {
     pub use super::EntryBufferExt;
     pub use super::EntryExt;
     pub use super::EventControllerExt;
-    pub use super::ExpressionExt;
     pub use super::FileChooserExt;
     pub use super::FileChooserNativeExt;
     pub use super::FilterExt;

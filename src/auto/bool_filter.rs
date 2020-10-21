@@ -14,7 +14,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Expression;
 use Filter;
 
 glib_wrapper! {
@@ -26,20 +25,14 @@ glib_wrapper! {
 }
 
 impl BoolFilter {
-    pub fn new<P: IsA<Expression>>(expression: Option<&P>) -> BoolFilter {
-        assert_initialized_main_thread!();
-        unsafe {
-            Filter::from_glib_full(gtk_sys::gtk_bool_filter_new(
-                expression.map(|p| p.as_ref()).to_glib_full(),
-            ))
-            .unsafe_cast()
-        }
-    }
+    //pub fn new(expression: /*Ignored*/Option<&Expression>) -> BoolFilter {
+    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_new() }
+    //}
 }
 
 #[derive(Clone, Default)]
 pub struct BoolFilterBuilder {
-    expression: Option<Expression>,
+    //expression: /*Unknown type*/,
     invert: Option<bool>,
 }
 
@@ -50,9 +43,6 @@ impl BoolFilterBuilder {
 
     pub fn build(self) -> BoolFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
-        }
         if let Some(ref invert) = self.invert {
             properties.push(("invert", invert));
         }
@@ -61,11 +51,6 @@ impl BoolFilterBuilder {
             .downcast::<BoolFilter>()
             .expect("downcast");
         ret
-    }
-
-    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
-        self.expression = Some(expression.clone().upcast());
-        self
     }
 
     pub fn invert(mut self, invert: bool) -> Self {
@@ -77,11 +62,11 @@ impl BoolFilterBuilder {
 pub const NONE_BOOL_FILTER: Option<&BoolFilter> = None;
 
 pub trait BoolFilterExt: 'static {
-    fn get_expression(&self) -> Option<Expression>;
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
 
     fn get_invert(&self) -> bool;
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: &P);
+    //fn set_expression(&self, expression: /*Ignored*/&Expression);
 
     fn set_invert(&self, invert: bool);
 
@@ -91,13 +76,9 @@ pub trait BoolFilterExt: 'static {
 }
 
 impl<O: IsA<BoolFilter>> BoolFilterExt for O {
-    fn get_expression(&self) -> Option<Expression> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_bool_filter_get_expression(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_get_expression() }
+    //}
 
     fn get_invert(&self) -> bool {
         unsafe {
@@ -107,14 +88,9 @@ impl<O: IsA<BoolFilter>> BoolFilterExt for O {
         }
     }
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: &P) {
-        unsafe {
-            gtk_sys::gtk_bool_filter_set_expression(
-                self.as_ref().to_glib_none().0,
-                expression.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //fn set_expression(&self, expression: /*Ignored*/&Expression) {
+    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_set_expression() }
+    //}
 
     fn set_invert(&self, invert: bool) {
         unsafe {

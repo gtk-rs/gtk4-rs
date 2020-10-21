@@ -15,7 +15,6 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Expression;
 use Filter;
 use StringFilterMatchMode;
 
@@ -28,20 +27,14 @@ glib_wrapper! {
 }
 
 impl StringFilter {
-    pub fn new<P: IsA<Expression>>(expression: Option<&P>) -> StringFilter {
-        assert_initialized_main_thread!();
-        unsafe {
-            Filter::from_glib_full(gtk_sys::gtk_string_filter_new(
-                expression.map(|p| p.as_ref()).to_glib_full(),
-            ))
-            .unsafe_cast()
-        }
-    }
+    //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringFilter {
+    //    unsafe { TODO: call gtk_sys:gtk_string_filter_new() }
+    //}
 }
 
 #[derive(Clone, Default)]
 pub struct StringFilterBuilder {
-    expression: Option<Expression>,
+    //expression: /*Unknown type*/,
     ignore_case: Option<bool>,
     match_mode: Option<StringFilterMatchMode>,
     search: Option<String>,
@@ -54,9 +47,6 @@ impl StringFilterBuilder {
 
     pub fn build(self) -> StringFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
-        }
         if let Some(ref ignore_case) = self.ignore_case {
             properties.push(("ignore-case", ignore_case));
         }
@@ -71,11 +61,6 @@ impl StringFilterBuilder {
             .downcast::<StringFilter>()
             .expect("downcast");
         ret
-    }
-
-    pub fn expression<P: IsA<Expression>>(mut self, expression: &P) -> Self {
-        self.expression = Some(expression.clone().upcast());
-        self
     }
 
     pub fn ignore_case(mut self, ignore_case: bool) -> Self {
@@ -97,7 +82,7 @@ impl StringFilterBuilder {
 pub const NONE_STRING_FILTER: Option<&StringFilter> = None;
 
 pub trait StringFilterExt: 'static {
-    fn get_expression(&self) -> Option<Expression>;
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
 
     fn get_ignore_case(&self) -> bool;
 
@@ -105,7 +90,7 @@ pub trait StringFilterExt: 'static {
 
     fn get_search(&self) -> Option<GString>;
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: &P);
+    //fn set_expression(&self, expression: /*Ignored*/&Expression);
 
     fn set_ignore_case(&self, ignore_case: bool);
 
@@ -123,13 +108,9 @@ pub trait StringFilterExt: 'static {
 }
 
 impl<O: IsA<StringFilter>> StringFilterExt for O {
-    fn get_expression(&self) -> Option<Expression> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_string_filter_get_expression(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
+    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //    unsafe { TODO: call gtk_sys:gtk_string_filter_get_expression() }
+    //}
 
     fn get_ignore_case(&self) -> bool {
         unsafe {
@@ -155,14 +136,9 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
         }
     }
 
-    fn set_expression<P: IsA<Expression>>(&self, expression: &P) {
-        unsafe {
-            gtk_sys::gtk_string_filter_set_expression(
-                self.as_ref().to_glib_none().0,
-                expression.as_ref().to_glib_none().0,
-            );
-        }
-    }
+    //fn set_expression(&self, expression: /*Ignored*/&Expression) {
+    //    unsafe { TODO: call gtk_sys:gtk_string_filter_set_expression() }
+    //}
 
     fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {

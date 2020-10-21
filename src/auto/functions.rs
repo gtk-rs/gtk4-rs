@@ -18,7 +18,6 @@ use AccessibleProperty;
 use AccessibleRelation;
 use AccessibleRole;
 use AccessibleState;
-use Expression;
 use Orientation;
 use PageSetup;
 use PrintSettings;
@@ -705,32 +704,18 @@ pub fn tree_get_row_drag_data(
     }
 }
 
-pub fn value_dup_expression(value: &glib::Value) -> Option<Expression> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_full(gtk_sys::gtk_value_dup_expression(value.to_glib_none().0)) }
-}
+//pub fn value_dup_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
+//    unsafe { TODO: call gtk_sys:gtk_value_dup_expression() }
+//}
 
-pub fn value_get_expression(value: &glib::Value) -> Option<Expression> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_none(gtk_sys::gtk_value_get_expression(value.to_glib_none().0)) }
-}
+//pub fn value_get_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
+//    unsafe { TODO: call gtk_sys:gtk_value_get_expression() }
+//}
 
-pub fn value_set_expression<P: IsA<Expression>>(value: &mut glib::Value, expression: &P) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_value_set_expression(
-            value.to_glib_none_mut().0,
-            expression.as_ref().to_glib_none().0,
-        );
-    }
-}
+//pub fn value_set_expression(value: &mut glib::Value, expression: /*Ignored*/&Expression) {
+//    unsafe { TODO: call gtk_sys:gtk_value_set_expression() }
+//}
 
-pub fn value_take_expression<P: IsA<Expression>>(value: &mut glib::Value, expression: Option<&P>) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gtk_sys::gtk_value_take_expression(
-            value.to_glib_none_mut().0,
-            expression.map(|p| p.as_ref()).to_glib_full(),
-        );
-    }
-}
+//pub fn value_take_expression(value: &mut glib::Value, expression: /*Ignored*/Option<&Expression>) {
+//    unsafe { TODO: call gtk_sys:gtk_value_take_expression() }
+//}
