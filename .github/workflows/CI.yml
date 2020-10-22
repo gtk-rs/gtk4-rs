@@ -8,9 +8,9 @@ name: CI
 jobs:
   check:
     name: Rust project
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
-      image: fedora:latest
+      image: docker.io/bilelmoussaoui/gtk4
     strategy:
       matrix:
         rust:
@@ -19,7 +19,6 @@ jobs:
           - nightly
           - "1.40.0"
     steps:
-      - run: sudo dnf install -y gtk4-devel gcc graphene-devel git
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
@@ -52,7 +51,7 @@ jobs:
 
   fmt:
     name: Rustfmt
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
