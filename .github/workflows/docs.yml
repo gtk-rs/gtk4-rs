@@ -1,0 +1,36 @@
+name: github pages
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/bilelmoussaoui/gtk4
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - working-directory: gir
+        run: cargo build --release
+      - run: "./gir/target/release/gir  -c ./Gir.toml -d ./gir-files --doc-target-path docs.md -m doc"
+      - run: cargo install rustdoc-stripper
+      - run: rustdoc-stripper -g -o ./docs.md
+      - uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --package gdk4 --package gdk4-sys --no-deps
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./target/doc/
