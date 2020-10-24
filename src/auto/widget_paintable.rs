@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -31,6 +33,34 @@ impl WidgetPaintable {
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct WidgetPaintableBuilder {
+    widget: Option<Widget>,
+}
+
+impl WidgetPaintableBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> WidgetPaintable {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref widget) = self.widget {
+            properties.push(("widget", widget));
+        }
+        let ret = glib::Object::new(WidgetPaintable::static_type(), &properties)
+            .expect("object new")
+            .downcast::<WidgetPaintable>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn widget<P: IsA<Widget>>(mut self, widget: &P) -> Self {
+        self.widget = Some(widget.clone().upcast());
+        self
     }
 }
 
@@ -71,14 +101,16 @@ impl<O: IsA<WidgetPaintable>> WidgetPaintableExt for O {
             P: IsA<WidgetPaintable>,
         {
             let f: &F = &*(f as *const F);
-            f(&WidgetPaintable::from_glib_borrow(this).unsafe_cast())
+            f(&WidgetPaintable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::widget\0".as_ptr() as *const _,
-                Some(transmute(notify_widget_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_widget_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

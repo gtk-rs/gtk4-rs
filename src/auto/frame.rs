@@ -18,17 +18,17 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
-use ShadowType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Frame(Object<gtk_sys::GtkFrame, gtk_sys::GtkFrameClass, FrameClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct Frame(Object<gtk_sys::GtkFrame, gtk_sys::GtkFrameClass, FrameClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_frame_get_type(),
@@ -46,25 +46,23 @@ impl Frame {
 
 #[derive(Clone, Default)]
 pub struct FrameBuilder {
+    child: Option<Widget>,
     label: Option<String>,
     label_widget: Option<Widget>,
     label_xalign: Option<f32>,
-    shadow_type: Option<ShadowType>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -81,6 +79,7 @@ pub struct FrameBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl FrameBuilder {
@@ -90,6 +89,9 @@ impl FrameBuilder {
 
     pub fn build(self) -> Frame {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
         if let Some(ref label) = self.label {
             properties.push(("label", label));
         }
@@ -99,14 +101,14 @@ impl FrameBuilder {
         if let Some(ref label_xalign) = self.label_xalign {
             properties.push(("label-xalign", label_xalign));
         }
-        if let Some(ref shadow_type) = self.shadow_type {
-            properties.push(("shadow-type", shadow_type));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -114,17 +116,14 @@ impl FrameBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -138,14 +137,8 @@ impl FrameBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -195,10 +188,19 @@ impl FrameBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Frame::static_type(), &properties)
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        let ret = glib::Object::new(Frame::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Frame>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
     }
 
     pub fn label(mut self, label: &str) -> Self {
@@ -216,11 +218,6 @@ impl FrameBuilder {
         self
     }
 
-    pub fn shadow_type(mut self, shadow_type: ShadowType) -> Self {
-        self.shadow_type = Some(shadow_type);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -228,6 +225,11 @@ impl FrameBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -241,23 +243,18 @@ impl FrameBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -281,18 +278,8 @@ impl FrameBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -375,18 +362,25 @@ impl FrameBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
 }
 
 pub const NONE_FRAME: Option<&Frame> = None;
 
 pub trait FrameExt: 'static {
+    fn get_child(&self) -> Option<Widget>;
+
     fn get_label(&self) -> Option<GString>;
 
     fn get_label_align(&self) -> f32;
 
     fn get_label_widget(&self) -> Option<Widget>;
 
-    fn get_shadow_type(&self) -> ShadowType;
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
     fn set_label(&self, label: Option<&str>);
 
@@ -394,11 +388,11 @@ pub trait FrameExt: 'static {
 
     fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>);
 
-    fn set_shadow_type(&self, type_: ShadowType);
-
     fn get_property_label_xalign(&self) -> f32;
 
     fn set_property_label_xalign(&self, label_xalign: f32);
+
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -407,11 +401,13 @@ pub trait FrameExt: 'static {
 
     fn connect_property_label_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
-
-    fn connect_property_shadow_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Frame>> FrameExt for O {
+    fn get_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(gtk_sys::gtk_frame_get_child(self.as_ref().to_glib_none().0)) }
+    }
+
     fn get_label(&self) -> Option<GString> {
         unsafe { from_glib_none(gtk_sys::gtk_frame_get_label(self.as_ref().to_glib_none().0)) }
     }
@@ -428,11 +424,12 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
-    fn get_shadow_type(&self) -> ShadowType {
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            from_glib(gtk_sys::gtk_frame_get_shadow_type(
+            gtk_sys::gtk_frame_set_child(
                 self.as_ref().to_glib_none().0,
-            ))
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -454,12 +451,6 @@ impl<O: IsA<Frame>> FrameExt for O {
                 self.as_ref().to_glib_none().0,
                 label_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
-        }
-    }
-
-    fn set_shadow_type(&self, type_: ShadowType) {
-        unsafe {
-            gtk_sys::gtk_frame_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
         }
     }
 
@@ -488,6 +479,30 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Frame>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Frame::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkFrame,
@@ -497,14 +512,16 @@ impl<O: IsA<Frame>> FrameExt for O {
             P: IsA<Frame>,
         {
             let f: &F = &*(f as *const F);
-            f(&Frame::from_glib_borrow(this).unsafe_cast())
+            f(&Frame::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute(notify_label_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_label_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -522,15 +539,15 @@ impl<O: IsA<Frame>> FrameExt for O {
             P: IsA<Frame>,
         {
             let f: &F = &*(f as *const F);
-            f(&Frame::from_glib_borrow(this).unsafe_cast())
+            f(&Frame::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label-widget\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_label_widget_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_label_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -549,38 +566,16 @@ impl<O: IsA<Frame>> FrameExt for O {
             P: IsA<Frame>,
         {
             let f: &F = &*(f as *const F);
-            f(&Frame::from_glib_borrow(this).unsafe_cast())
+            f(&Frame::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label-xalign\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_label_xalign_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_label_xalign_trampoline::<Self, F> as *const (),
                 )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_shadow_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Frame>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Frame::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::shadow-type\0".as_ptr() as *const _,
-                Some(transmute(notify_shadow_type_trampoline::<Self, F> as usize)),
                 Box_::into_raw(f),
             )
         }

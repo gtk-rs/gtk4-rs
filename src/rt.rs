@@ -63,7 +63,7 @@ pub unsafe fn set_initialized() {
         return;
     } else if is_initialized() {
         panic!("Attempted to initialize GTK from two different threads.");
-    } else if !unsafe { from_glib(gtk_sys::gtk_is_initialized()) } {
+    } else if !{ from_glib(gtk_sys::gtk_is_initialized()) } {
         panic!("GTK was not actually initialized");
     }
     INITIALIZED.store(true, Ordering::Release);
@@ -94,7 +94,7 @@ pub fn init() -> Result<(), glib::BoolError> {
                 return Err(glib_bool_error!("Failed to acquire default main context"));
             }
 
-            if !unsafe { from_glib(gtk_sys::gtk_is_initialized()) } {
+            if !{ from_glib(gtk_sys::gtk_is_initialized()) } {
                 return Err(glib_bool_error!("GTK was not actually initialized"));
             }
 
@@ -102,17 +102,6 @@ pub fn init() -> Result<(), glib::BoolError> {
             Ok(())
         } else {
             Err(glib_bool_error!("Failed to initialize GTK"))
-        }
-    }
-}
-
-pub fn main_quit() {
-    assert_initialized_main_thread!();
-    unsafe {
-        if gtk_sys::gtk_main_level() > 0 {
-            gtk_sys::gtk_main_quit();
-        } else if cfg!(debug_assertions) {
-            panic!("Attempted to quit a GTK main loop when none is running.");
         }
     }
 }

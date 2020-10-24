@@ -7,6 +7,7 @@ use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -18,22 +19,20 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
-use BaselinePosition;
-use Box;
 use Buildable;
 use Button;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use MessageType;
-use Orientable;
-use Orientation;
 use Overflow;
 use ResponseType;
 use Widget;
 
 glib_wrapper! {
-    pub struct InfoBar(Object<gtk_sys::GtkInfoBar, gtk_sys::GtkInfoBarClass, InfoBarClass>) @extends Box, Container, Widget, @implements Buildable, Orientable;
+    pub struct InfoBar(Object<gtk_sys::GtkInfoBar, InfoBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_info_bar_get_type(),
@@ -46,9 +45,252 @@ impl InfoBar {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_info_bar_new()).unsafe_cast() }
     }
 
-    //pub fn new_with_buttons(first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> InfoBar {
+    //pub fn with_buttons(first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> InfoBar {
     //    unsafe { TODO: call gtk_sys:gtk_info_bar_new_with_buttons() }
     //}
+
+    pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
+        unsafe {
+            gtk_sys::gtk_info_bar_add_action_widget(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                response_id.to_glib(),
+            );
+        }
+    }
+
+    pub fn add_button(&self, button_text: &str, response_id: ResponseType) -> Option<Button> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_info_bar_add_button(
+                self.to_glib_none().0,
+                button_text.to_glib_none().0,
+                response_id.to_glib(),
+            ))
+        }
+    }
+
+    //pub fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //    unsafe { TODO: call gtk_sys:gtk_info_bar_add_buttons() }
+    //}
+
+    pub fn add_child<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            gtk_sys::gtk_info_bar_add_child(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_message_type(&self) -> MessageType {
+        unsafe {
+            from_glib(gtk_sys::gtk_info_bar_get_message_type(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_revealed(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
+    }
+
+    pub fn get_show_close_button(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_info_bar_get_show_close_button(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn remove_action_widget<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            gtk_sys::gtk_info_bar_remove_action_widget(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn remove_child<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            gtk_sys::gtk_info_bar_remove_child(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn response(&self, response_id: ResponseType) {
+        unsafe {
+            gtk_sys::gtk_info_bar_response(self.to_glib_none().0, response_id.to_glib());
+        }
+    }
+
+    pub fn set_default_response(&self, response_id: ResponseType) {
+        unsafe {
+            gtk_sys::gtk_info_bar_set_default_response(
+                self.to_glib_none().0,
+                response_id.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_message_type(&self, message_type: MessageType) {
+        unsafe {
+            gtk_sys::gtk_info_bar_set_message_type(self.to_glib_none().0, message_type.to_glib());
+        }
+    }
+
+    pub fn set_response_sensitive(&self, response_id: ResponseType, setting: bool) {
+        unsafe {
+            gtk_sys::gtk_info_bar_set_response_sensitive(
+                self.to_glib_none().0,
+                response_id.to_glib(),
+                setting.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_revealed(&self, revealed: bool) {
+        unsafe {
+            gtk_sys::gtk_info_bar_set_revealed(self.to_glib_none().0, revealed.to_glib());
+        }
+    }
+
+    pub fn set_show_close_button(&self, setting: bool) {
+        unsafe {
+            gtk_sys::gtk_info_bar_set_show_close_button(self.to_glib_none().0, setting.to_glib());
+        }
+    }
+
+    pub fn connect_close<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn close_trampoline<F: Fn(&InfoBar) + 'static>(
+            this: *mut gtk_sys::GtkInfoBar,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"close\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    close_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_close(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("close", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_response<F: Fn(&InfoBar, ResponseType) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn response_trampoline<F: Fn(&InfoBar, ResponseType) + 'static>(
+            this: *mut gtk_sys::GtkInfoBar,
+            response_id: gtk_sys::GtkResponseType,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(response_id))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"response\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    response_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_message_type_notify<F: Fn(&InfoBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_message_type_trampoline<F: Fn(&InfoBar) + 'static>(
+            this: *mut gtk_sys::GtkInfoBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::message-type\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_message_type_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_revealed_notify<F: Fn(&InfoBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&InfoBar) + 'static>(
+            this: *mut gtk_sys::GtkInfoBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::revealed\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_revealed_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_show_close_button_notify<F: Fn(&InfoBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_close_button_trampoline<F: Fn(&InfoBar) + 'static>(
+            this: *mut gtk_sys::GtkInfoBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-close-button\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_close_button_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for InfoBar {
@@ -62,24 +304,19 @@ pub struct InfoBarBuilder {
     message_type: Option<MessageType>,
     revealed: Option<bool>,
     show_close_button: Option<bool>,
-    baseline_position: Option<BaselinePosition>,
-    homogeneous: Option<bool>,
-    spacing: Option<i32>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -96,7 +333,7 @@ pub struct InfoBarBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    orientation: Option<Orientation>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl InfoBarBuilder {
@@ -115,20 +352,14 @@ impl InfoBarBuilder {
         if let Some(ref show_close_button) = self.show_close_button {
             properties.push(("show-close-button", show_close_button));
         }
-        if let Some(ref baseline_position) = self.baseline_position {
-            properties.push(("baseline-position", baseline_position));
-        }
-        if let Some(ref homogeneous) = self.homogeneous {
-            properties.push(("homogeneous", homogeneous));
-        }
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -136,17 +367,14 @@ impl InfoBarBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -160,14 +388,8 @@ impl InfoBarBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -217,13 +439,14 @@ impl InfoBarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new(InfoBar::static_type(), &properties)
+        let ret = glib::Object::new(InfoBar::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<InfoBar>()
+            .expect("downcast");
+        ret
     }
 
     pub fn message_type(mut self, message_type: MessageType) -> Self {
@@ -241,21 +464,6 @@ impl InfoBarBuilder {
         self
     }
 
-    pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {
-        self.baseline_position = Some(baseline_position);
-        self
-    }
-
-    pub fn homogeneous(mut self, homogeneous: bool) -> Self {
-        self.homogeneous = Some(homogeneous);
-        self
-    }
-
-    pub fn spacing(mut self, spacing: i32) -> Self {
-        self.spacing = Some(spacing);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -263,6 +471,11 @@ impl InfoBarBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -276,23 +489,18 @@ impl InfoBarBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -316,18 +524,8 @@ impl InfoBarBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -411,302 +609,9 @@ impl InfoBarBuilder {
         self
     }
 
-    pub fn orientation(mut self, orientation: Orientation) -> Self {
-        self.orientation = Some(orientation);
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
-    }
-}
-
-pub const NONE_INFO_BAR: Option<&InfoBar> = None;
-
-pub trait InfoBarExt: 'static {
-    fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType);
-
-    fn add_button(&self, button_text: &str, response_id: ResponseType) -> Option<Button>;
-
-    //fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    fn get_action_area(&self) -> Option<Widget>;
-
-    fn get_content_area(&self) -> Option<Widget>;
-
-    fn get_message_type(&self) -> MessageType;
-
-    fn get_revealed(&self) -> bool;
-
-    fn get_show_close_button(&self) -> bool;
-
-    fn response(&self, response_id: ResponseType);
-
-    fn set_default_response(&self, response_id: ResponseType);
-
-    fn set_message_type(&self, message_type: MessageType);
-
-    fn set_response_sensitive(&self, response_id: ResponseType, setting: bool);
-
-    fn set_revealed(&self, revealed: bool);
-
-    fn set_show_close_button(&self, setting: bool);
-
-    fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_close(&self);
-
-    fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_message_type_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<InfoBar>> InfoBarExt for O {
-    fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
-        unsafe {
-            gtk_sys::gtk_info_bar_add_action_widget(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-                response_id.to_glib(),
-            );
-        }
-    }
-
-    fn add_button(&self, button_text: &str, response_id: ResponseType) -> Option<Button> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_info_bar_add_button(
-                self.as_ref().to_glib_none().0,
-                button_text.to_glib_none().0,
-                response_id.to_glib(),
-            ))
-        }
-    }
-
-    //fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_info_bar_add_buttons() }
-    //}
-
-    fn get_action_area(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_info_bar_get_action_area(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_content_area(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_info_bar_get_content_area(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_message_type(&self) -> MessageType {
-        unsafe {
-            from_glib(gtk_sys::gtk_info_bar_get_message_type(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_revealed(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_info_bar_get_revealed(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_show_close_button(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_info_bar_get_show_close_button(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn response(&self, response_id: ResponseType) {
-        unsafe {
-            gtk_sys::gtk_info_bar_response(self.as_ref().to_glib_none().0, response_id.to_glib());
-        }
-    }
-
-    fn set_default_response(&self, response_id: ResponseType) {
-        unsafe {
-            gtk_sys::gtk_info_bar_set_default_response(
-                self.as_ref().to_glib_none().0,
-                response_id.to_glib(),
-            );
-        }
-    }
-
-    fn set_message_type(&self, message_type: MessageType) {
-        unsafe {
-            gtk_sys::gtk_info_bar_set_message_type(
-                self.as_ref().to_glib_none().0,
-                message_type.to_glib(),
-            );
-        }
-    }
-
-    fn set_response_sensitive(&self, response_id: ResponseType, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_info_bar_set_response_sensitive(
-                self.as_ref().to_glib_none().0,
-                response_id.to_glib(),
-                setting.to_glib(),
-            );
-        }
-    }
-
-    fn set_revealed(&self, revealed: bool) {
-        unsafe {
-            gtk_sys::gtk_info_bar_set_revealed(self.as_ref().to_glib_none().0, revealed.to_glib());
-        }
-    }
-
-    fn set_show_close_button(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_info_bar_set_show_close_button(
-                self.as_ref().to_glib_none().0,
-                setting.to_glib(),
-            );
-        }
-    }
-
-    fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn close_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkInfoBar,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<InfoBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&InfoBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"close\0".as_ptr() as *const _,
-                Some(transmute(close_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_close(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("close", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn response_trampoline<P, F: Fn(&P, ResponseType) + 'static>(
-            this: *mut gtk_sys::GtkInfoBar,
-            response_id: gtk_sys::GtkResponseType,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<InfoBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &InfoBar::from_glib_borrow(this).unsafe_cast(),
-                from_glib(response_id),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"response\0".as_ptr() as *const _,
-                Some(transmute(response_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_message_type_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_message_type_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkInfoBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<InfoBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&InfoBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::message-type\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_message_type_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_revealed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkInfoBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<InfoBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&InfoBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::revealed\0".as_ptr() as *const _,
-                Some(transmute(notify_revealed_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_show_close_button_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_close_button_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkInfoBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<InfoBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&InfoBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::show-close-button\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_show_close_button_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use gdk;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -20,8 +21,11 @@ use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use Editable;
 use EntryBuffer;
 use InputHints;
@@ -31,7 +35,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Text(Object<gtk_sys::GtkText, TextClass>) @extends Widget, @implements Buildable, Editable;
+    pub struct Text(Object<gtk_sys::GtkText, TextClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_text_get_type(),
@@ -44,7 +48,7 @@ impl Text {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_text_new()).unsafe_cast() }
     }
 
-    pub fn new_with_buffer<P: IsA<EntryBuffer>>(buffer: &P) -> Text {
+    pub fn with_buffer<P: IsA<EntryBuffer>>(buffer: &P) -> Text {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_text_new_with_buffer(
@@ -68,6 +72,10 @@ impl Text {
 
     pub fn get_buffer(&self) -> Option<EntryBuffer> {
         unsafe { from_glib_none(gtk_sys::gtk_text_get_buffer(self.to_glib_none().0)) }
+    }
+
+    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
+        unsafe { from_glib_none(gtk_sys::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
 
     pub fn get_input_hints(&self) -> InputHints {
@@ -110,9 +118,11 @@ impl Text {
         unsafe { from_glib(gtk_sys::gtk_text_get_visibility(self.to_glib_none().0)) }
     }
 
-    pub fn grab_focus_without_selecting(&self) {
+    pub fn grab_focus_without_selecting(&self) -> bool {
         unsafe {
-            gtk_sys::gtk_text_grab_focus_without_selecting(self.to_glib_none().0);
+            from_glib(gtk_sys::gtk_text_grab_focus_without_selecting(
+                self.to_glib_none().0,
+            ))
         }
     }
 
@@ -122,7 +132,7 @@ impl Text {
         }
     }
 
-    pub fn set_attributes(&self, attrs: &pango::AttrList) {
+    pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
         unsafe {
             gtk_sys::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
         }
@@ -131,6 +141,15 @@ impl Text {
     pub fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
             gtk_sys::gtk_text_set_buffer(self.to_glib_none().0, buffer.as_ref().to_glib_none().0);
+        }
+    }
+
+    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_text_set_extra_menu(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -262,31 +281,6 @@ impl Text {
         }
     }
 
-    pub fn get_property_populate_all(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"populate-all\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `populate-all` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_populate_all(&self, populate_all: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"populate-all\0".as_ptr() as *const _,
-                Value::from(&populate_all).to_glib_none().0,
-            );
-        }
-    }
-
     pub fn get_property_propagate_text_width(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
@@ -369,7 +363,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activates-default\0".as_ptr() as *const _,
-                Some(transmute(notify_activates_default_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_activates_default_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -392,7 +388,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute(notify_attributes_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_attributes_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -412,7 +410,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::buffer\0".as_ptr() as *const _,
-                Some(transmute(notify_buffer_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_buffer_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -435,8 +435,33 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-emoji-completion\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_enable_emoji_completion_trampoline::<F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_enable_emoji_completion_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_extra_menu_notify<F: Fn(&Text) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&Text) + 'static>(
+            this: *mut gtk_sys::GtkText,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::extra-menu\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_extra_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -460,7 +485,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::im-module\0".as_ptr() as *const _,
-                Some(transmute(notify_im_module_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_im_module_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -483,7 +510,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-hints\0".as_ptr() as *const _,
-                Some(transmute(notify_input_hints_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_hints_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -506,7 +535,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-purpose\0".as_ptr() as *const _,
-                Some(transmute(notify_input_purpose_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_input_purpose_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -529,7 +560,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::invisible-char\0".as_ptr() as *const _,
-                Some(transmute(notify_invisible_char_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_invisible_char_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -552,8 +585,8 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::invisible-char-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_invisible_char_set_trampoline::<F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_invisible_char_set_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -577,7 +610,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-length\0".as_ptr() as *const _,
-                Some(transmute(notify_max_length_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_length_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -600,7 +635,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::overwrite-mode\0".as_ptr() as *const _,
-                Some(transmute(notify_overwrite_mode_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_overwrite_mode_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -623,30 +660,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::placeholder-text\0".as_ptr() as *const _,
-                Some(transmute(notify_placeholder_text_trampoline::<F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn connect_property_populate_all_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_populate_all_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::populate-all\0".as_ptr() as *const _,
-                Some(transmute(notify_populate_all_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_placeholder_text_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -669,8 +685,8 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::propagate-text-width\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_propagate_text_width_trampoline::<F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_propagate_text_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -694,7 +710,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scroll-offset\0".as_ptr() as *const _,
-                Some(transmute(notify_scroll_offset_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scroll_offset_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -714,7 +732,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tabs\0".as_ptr() as *const _,
-                Some(transmute(notify_tabs_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tabs_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -737,8 +757,8 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::truncate-multiline\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_truncate_multiline_trampoline::<F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_truncate_multiline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -762,7 +782,9 @@ impl Text {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visibility\0".as_ptr() as *const _,
-                Some(transmute(notify_visibility_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visibility_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -781,6 +803,7 @@ pub struct TextBuilder {
     attributes: Option<pango::AttrList>,
     buffer: Option<EntryBuffer>,
     enable_emoji_completion: Option<bool>,
+    extra_menu: Option<gio::MenuModel>,
     im_module: Option<String>,
     input_hints: Option<InputHints>,
     input_purpose: Option<InputPurpose>,
@@ -789,26 +812,23 @@ pub struct TextBuilder {
     max_length: Option<i32>,
     overwrite_mode: Option<bool>,
     placeholder_text: Option<String>,
-    populate_all: Option<bool>,
     propagate_text_width: Option<bool>,
     tabs: Option<pango::TabArray>,
     truncate_multiline: Option<bool>,
     visibility: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -825,7 +845,9 @@ pub struct TextBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     editable: Option<bool>,
+    enable_undo: Option<bool>,
     max_width_chars: Option<i32>,
     text: Option<String>,
     width_chars: Option<i32>,
@@ -851,6 +873,9 @@ impl TextBuilder {
         if let Some(ref enable_emoji_completion) = self.enable_emoji_completion {
             properties.push(("enable-emoji-completion", enable_emoji_completion));
         }
+        if let Some(ref extra_menu) = self.extra_menu {
+            properties.push(("extra-menu", extra_menu));
+        }
         if let Some(ref im_module) = self.im_module {
             properties.push(("im-module", im_module));
         }
@@ -875,9 +900,6 @@ impl TextBuilder {
         if let Some(ref placeholder_text) = self.placeholder_text {
             properties.push(("placeholder-text", placeholder_text));
         }
-        if let Some(ref populate_all) = self.populate_all {
-            properties.push(("populate-all", populate_all));
-        }
         if let Some(ref propagate_text_width) = self.propagate_text_width {
             properties.push(("propagate-text-width", propagate_text_width));
         }
@@ -896,23 +918,23 @@ impl TextBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -926,14 +948,8 @@ impl TextBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -983,8 +999,14 @@ impl TextBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref editable) = self.editable {
             properties.push(("editable", editable));
+        }
+        if let Some(ref enable_undo) = self.enable_undo {
+            properties.push(("enable-undo", enable_undo));
         }
         if let Some(ref max_width_chars) = self.max_width_chars {
             properties.push(("max-width-chars", max_width_chars));
@@ -998,10 +1020,11 @@ impl TextBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        glib::Object::new(Text::static_type(), &properties)
+        let ret = glib::Object::new(Text::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Text>()
+            .expect("downcast");
+        ret
     }
 
     pub fn activates_default(mut self, activates_default: bool) -> Self {
@@ -1021,6 +1044,11 @@ impl TextBuilder {
 
     pub fn enable_emoji_completion(mut self, enable_emoji_completion: bool) -> Self {
         self.enable_emoji_completion = Some(enable_emoji_completion);
+        self
+    }
+
+    pub fn extra_menu<P: IsA<gio::MenuModel>>(mut self, extra_menu: &P) -> Self {
+        self.extra_menu = Some(extra_menu.clone().upcast());
         self
     }
 
@@ -1064,11 +1092,6 @@ impl TextBuilder {
         self
     }
 
-    pub fn populate_all(mut self, populate_all: bool) -> Self {
-        self.populate_all = Some(populate_all);
-        self
-    }
-
     pub fn propagate_text_width(mut self, propagate_text_width: bool) -> Self {
         self.propagate_text_width = Some(propagate_text_width);
         self
@@ -1099,6 +1122,11 @@ impl TextBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -1109,23 +1137,18 @@ impl TextBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -1149,18 +1172,8 @@ impl TextBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -1244,8 +1257,18 @@ impl TextBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn editable(mut self, editable: bool) -> Self {
         self.editable = Some(editable);
+        self
+    }
+
+    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
+        self.enable_undo = Some(enable_undo);
         self
     }
 

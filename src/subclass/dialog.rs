@@ -10,7 +10,7 @@ use DialogClass;
 use ResponseType;
 use WindowClass;
 
-pub trait DialogImpl: DialogImplExt + WindowImpl + 'static {
+pub trait DialogImpl: DialogImplExt + WindowImpl {
     fn response(&self, dialog: &Dialog, response: ResponseType) {
         self.parent_response(dialog, response)
     }
@@ -28,7 +28,7 @@ pub trait DialogImplExt {
 impl<T: DialogImpl + ObjectImpl> DialogImplExt for T {
     fn parent_response(&self, dialog: &Dialog, response: ResponseType) {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkDialogClass;
             let f = (*parent_class)
                 .response
@@ -39,7 +39,7 @@ impl<T: DialogImpl + ObjectImpl> DialogImplExt for T {
 
     fn parent_close(&self, dialog: &Dialog) {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkDialogClass;
             let f = (*parent_class)
                 .close
@@ -68,7 +68,7 @@ unsafe extern "C" fn dialog_response<T: ObjectSubclass>(
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Dialog = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
     let res: ResponseType = from_glib(responseptr);
 
     imp.response(&wrap, res)
@@ -80,7 +80,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Dialog = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
 
     imp.close(&wrap)
 }

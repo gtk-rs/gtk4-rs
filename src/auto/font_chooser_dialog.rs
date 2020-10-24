@@ -11,24 +11,25 @@ use glib::ToValue;
 use gtk_sys;
 use pango;
 use std::fmt;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Application;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use Dialog;
 use FontChooser;
 use FontChooserLevel;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
-use WindowPosition;
-use WindowType;
 
 glib_wrapper! {
-    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, gtk_sys::GtkFontChooserDialogClass, FontChooserDialogClass>) @extends Dialog, Window, Bin, Container, Widget, @implements Buildable, Root, FontChooser;
+    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog, FontChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_chooser_dialog_get_type(),
@@ -51,9 +52,8 @@ impl FontChooserDialog {
 #[derive(Clone, Default)]
 pub struct FontChooserDialogBuilder {
     use_header_bar: Option<i32>,
-    accept_focus: Option<bool>,
     application: Option<Application>,
-    attached_to: Option<Widget>,
+    child: Option<Widget>,
     decorated: Option<bool>,
     default_height: Option<i32>,
     default_widget: Option<Widget>,
@@ -61,8 +61,8 @@ pub struct FontChooserDialogBuilder {
     deletable: Option<bool>,
     destroy_with_parent: Option<bool>,
     display: Option<gdk::Display>,
-    focus_on_map: Option<bool>,
     focus_visible: Option<bool>,
+    focus_widget: Option<Widget>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     mnemonics_visible: Option<bool>,
@@ -71,24 +71,19 @@ pub struct FontChooserDialogBuilder {
     startup_id: Option<String>,
     title: Option<String>,
     transient_for: Option<Window>,
-    type_: Option<WindowType>,
-    type_hint: Option<gdk::SurfaceTypeHint>,
-    window_position: Option<WindowPosition>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -105,7 +100,7 @@ pub struct FontChooserDialogBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    focus_widget: Option<Widget>,
+    accessible_role: Option<AccessibleRole>,
     font: Option<String>,
     font_desc: Option<pango::FontDescription>,
     language: Option<String>,
@@ -124,14 +119,11 @@ impl FontChooserDialogBuilder {
         if let Some(ref use_header_bar) = self.use_header_bar {
             properties.push(("use-header-bar", use_header_bar));
         }
-        if let Some(ref accept_focus) = self.accept_focus {
-            properties.push(("accept-focus", accept_focus));
-        }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
         }
-        if let Some(ref attached_to) = self.attached_to {
-            properties.push(("attached-to", attached_to));
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref decorated) = self.decorated {
             properties.push(("decorated", decorated));
@@ -154,11 +146,11 @@ impl FontChooserDialogBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        if let Some(ref focus_on_map) = self.focus_on_map {
-            properties.push(("focus-on-map", focus_on_map));
-        }
         if let Some(ref focus_visible) = self.focus_visible {
             properties.push(("focus-visible", focus_visible));
+        }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -184,20 +176,14 @@ impl FontChooserDialogBuilder {
         if let Some(ref transient_for) = self.transient_for {
             properties.push(("transient-for", transient_for));
         }
-        if let Some(ref type_) = self.type_ {
-            properties.push(("type", type_));
-        }
-        if let Some(ref type_hint) = self.type_hint {
-            properties.push(("type-hint", type_hint));
-        }
-        if let Some(ref window_position) = self.window_position {
-            properties.push(("window-position", window_position));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -205,17 +191,14 @@ impl FontChooserDialogBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -229,14 +212,8 @@ impl FontChooserDialogBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -286,8 +263,8 @@ impl FontChooserDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        if let Some(ref focus_widget) = self.focus_widget {
-            properties.push(("focus-widget", focus_widget));
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         if let Some(ref font) = self.font {
             properties.push(("font", font));
@@ -307,19 +284,15 @@ impl FontChooserDialogBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        glib::Object::new(FontChooserDialog::static_type(), &properties)
+        let ret = glib::Object::new(FontChooserDialog::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<FontChooserDialog>()
+            .expect("downcast");
+        ret
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {
         self.use_header_bar = Some(use_header_bar);
-        self
-    }
-
-    pub fn accept_focus(mut self, accept_focus: bool) -> Self {
-        self.accept_focus = Some(accept_focus);
         self
     }
 
@@ -328,8 +301,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
-        self.attached_to = Some(attached_to.clone().upcast());
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -368,13 +341,13 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn focus_on_map(mut self, focus_on_map: bool) -> Self {
-        self.focus_on_map = Some(focus_on_map);
+    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
+        self.focus_visible = Some(focus_visible);
         self
     }
 
-    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
-        self.focus_visible = Some(focus_visible);
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
 
@@ -418,21 +391,6 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn type_(mut self, type_: WindowType) -> Self {
-        self.type_ = Some(type_);
-        self
-    }
-
-    pub fn type_hint(mut self, type_hint: gdk::SurfaceTypeHint) -> Self {
-        self.type_hint = Some(type_hint);
-        self
-    }
-
-    pub fn window_position(mut self, window_position: WindowPosition) -> Self {
-        self.window_position = Some(window_position);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -440,6 +398,11 @@ impl FontChooserDialogBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -453,23 +416,18 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -493,18 +451,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -588,8 +536,8 @@ impl FontChooserDialogBuilder {
         self
     }
 
-    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
-        self.focus_widget = Some(focus_widget.clone().upcast());
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 
@@ -623,8 +571,6 @@ impl FontChooserDialogBuilder {
         self
     }
 }
-
-pub const NONE_FONT_CHOOSER_DIALOG: Option<&FontChooserDialog> = None;
 
 impl fmt::Display for FontChooserDialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

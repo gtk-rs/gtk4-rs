@@ -367,7 +367,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &TreeModel::from_glib_borrow(this).unsafe_cast(),
+                &TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
                 &from_glib_borrow(iter),
             )
@@ -377,7 +377,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-changed\0".as_ptr() as *const _,
-                Some(transmute(row_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    row_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -393,7 +395,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &TreeModel::from_glib_borrow(this).unsafe_cast(),
+                &TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
             )
         }
@@ -402,7 +404,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-deleted\0".as_ptr() as *const _,
-                Some(transmute(row_deleted_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    row_deleted_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -425,7 +429,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &TreeModel::from_glib_borrow(this).unsafe_cast(),
+                &TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
                 &from_glib_borrow(iter),
             )
@@ -435,8 +439,8 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-has-child-toggled\0".as_ptr() as *const _,
-                Some(transmute(
-                    row_has_child_toggled_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    row_has_child_toggled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -457,7 +461,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &TreeModel::from_glib_borrow(this).unsafe_cast(),
+                &TreeModel::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
                 &from_glib_borrow(iter),
             )
@@ -467,7 +471,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-inserted\0".as_ptr() as *const _,
-                Some(transmute(row_inserted_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    row_inserted_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

@@ -9,6 +9,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -22,6 +23,43 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_entry_buffer_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct EntryBufferBuilder {
+    max_length: Option<i32>,
+    text: Option<String>,
+}
+
+impl EntryBufferBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> EntryBuffer {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref max_length) = self.max_length {
+            properties.push(("max-length", max_length));
+        }
+        if let Some(ref text) = self.text {
+            properties.push(("text", text));
+        }
+        let ret = glib::Object::new(EntryBuffer::static_type(), &properties)
+            .expect("object new")
+            .downcast::<EntryBuffer>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn max_length(mut self, max_length: i32) -> Self {
+        self.max_length = Some(max_length);
+        self
+    }
+
+    pub fn text(mut self, text: &str) -> Self {
+        self.text = Some(text.to_string());
+        self
     }
 }
 
@@ -144,14 +182,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::length\0".as_ptr() as *const _,
-                Some(transmute(notify_length_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_length_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -166,14 +206,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-length\0".as_ptr() as *const _,
-                Some(transmute(notify_max_length_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_length_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -188,14 +230,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             P: IsA<EntryBuffer>,
         {
             let f: &F = &*(f as *const F);
-            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast())
+            f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute(notify_text_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

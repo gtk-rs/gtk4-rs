@@ -7,6 +7,7 @@ use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -20,24 +21,183 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Application;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
-use WindowPosition;
-use WindowType;
 
 glib_wrapper! {
-    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow, gtk_sys::GtkShortcutsWindowClass, ShortcutsWindowClass>) @extends Window, Bin, Container, Widget, @implements Buildable, Root;
+    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow, gtk_sys::GtkShortcutsWindowClass, ShortcutsWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcuts_window_get_type(),
+    }
+}
+
+impl ShortcutsWindow {
+    pub fn get_property_section_name(&self) -> Option<GString> {
+        unsafe {
+            let mut value = Value::from_type(<GString as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"section-name\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `section-name` getter")
+        }
+    }
+
+    pub fn set_property_section_name(&self, section_name: Option<&str>) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"section-name\0".as_ptr() as *const _,
+                Value::from(section_name).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_view_name(&self) -> Option<GString> {
+        unsafe {
+            let mut value = Value::from_type(<GString as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"view-name\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `view-name` getter")
+        }
+    }
+
+    pub fn set_property_view_name(&self, view_name: Option<&str>) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"view-name\0".as_ptr() as *const _,
+                Value::from(view_name).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_close<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn close_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
+            this: *mut gtk_sys::GtkShortcutsWindow,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"close\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    close_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_close(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("close", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_search<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn search_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
+            this: *mut gtk_sys::GtkShortcutsWindow,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"search\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    search_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_search(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("search", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_property_section_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_section_name_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
+            this: *mut gtk_sys::GtkShortcutsWindow,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::section-name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_section_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_view_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_view_name_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
+            this: *mut gtk_sys::GtkShortcutsWindow,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::view-name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_view_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -45,9 +205,8 @@ glib_wrapper! {
 pub struct ShortcutsWindowBuilder {
     section_name: Option<String>,
     view_name: Option<String>,
-    accept_focus: Option<bool>,
     application: Option<Application>,
-    attached_to: Option<Widget>,
+    child: Option<Widget>,
     decorated: Option<bool>,
     default_height: Option<i32>,
     default_widget: Option<Widget>,
@@ -55,8 +214,8 @@ pub struct ShortcutsWindowBuilder {
     deletable: Option<bool>,
     destroy_with_parent: Option<bool>,
     display: Option<gdk::Display>,
-    focus_on_map: Option<bool>,
     focus_visible: Option<bool>,
+    focus_widget: Option<Widget>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     mnemonics_visible: Option<bool>,
@@ -65,24 +224,19 @@ pub struct ShortcutsWindowBuilder {
     startup_id: Option<String>,
     title: Option<String>,
     transient_for: Option<Window>,
-    type_: Option<WindowType>,
-    type_hint: Option<gdk::SurfaceTypeHint>,
-    window_position: Option<WindowPosition>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -99,7 +253,7 @@ pub struct ShortcutsWindowBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    focus_widget: Option<Widget>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl ShortcutsWindowBuilder {
@@ -115,14 +269,11 @@ impl ShortcutsWindowBuilder {
         if let Some(ref view_name) = self.view_name {
             properties.push(("view-name", view_name));
         }
-        if let Some(ref accept_focus) = self.accept_focus {
-            properties.push(("accept-focus", accept_focus));
-        }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
         }
-        if let Some(ref attached_to) = self.attached_to {
-            properties.push(("attached-to", attached_to));
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref decorated) = self.decorated {
             properties.push(("decorated", decorated));
@@ -145,11 +296,11 @@ impl ShortcutsWindowBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        if let Some(ref focus_on_map) = self.focus_on_map {
-            properties.push(("focus-on-map", focus_on_map));
-        }
         if let Some(ref focus_visible) = self.focus_visible {
             properties.push(("focus-visible", focus_visible));
+        }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -175,20 +326,14 @@ impl ShortcutsWindowBuilder {
         if let Some(ref transient_for) = self.transient_for {
             properties.push(("transient-for", transient_for));
         }
-        if let Some(ref type_) = self.type_ {
-            properties.push(("type", type_));
-        }
-        if let Some(ref type_hint) = self.type_hint {
-            properties.push(("type-hint", type_hint));
-        }
-        if let Some(ref window_position) = self.window_position {
-            properties.push(("window-position", window_position));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -196,17 +341,14 @@ impl ShortcutsWindowBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -220,14 +362,8 @@ impl ShortcutsWindowBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -277,13 +413,14 @@ impl ShortcutsWindowBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        if let Some(ref focus_widget) = self.focus_widget {
-            properties.push(("focus-widget", focus_widget));
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new(ShortcutsWindow::static_type(), &properties)
+        let ret = glib::Object::new(ShortcutsWindow::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<ShortcutsWindow>()
+            .expect("downcast");
+        ret
     }
 
     pub fn section_name(mut self, section_name: &str) -> Self {
@@ -296,18 +433,13 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn accept_focus(mut self, accept_focus: bool) -> Self {
-        self.accept_focus = Some(accept_focus);
-        self
-    }
-
     pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
         self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
-        self.attached_to = Some(attached_to.clone().upcast());
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -346,13 +478,13 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn focus_on_map(mut self, focus_on_map: bool) -> Self {
-        self.focus_on_map = Some(focus_on_map);
+    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
+        self.focus_visible = Some(focus_visible);
         self
     }
 
-    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
-        self.focus_visible = Some(focus_visible);
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
 
@@ -396,21 +528,6 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn type_(mut self, type_: WindowType) -> Self {
-        self.type_ = Some(type_);
-        self
-    }
-
-    pub fn type_hint(mut self, type_hint: gdk::SurfaceTypeHint) -> Self {
-        self.type_hint = Some(type_hint);
-        self
-    }
-
-    pub fn window_position(mut self, window_position: WindowPosition) -> Self {
-        self.window_position = Some(window_position);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -418,6 +535,11 @@ impl ShortcutsWindowBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -431,23 +553,18 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -471,18 +588,8 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -566,191 +673,9 @@ impl ShortcutsWindowBuilder {
         self
     }
 
-    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
-        self.focus_widget = Some(focus_widget.clone().upcast());
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
-    }
-}
-
-pub const NONE_SHORTCUTS_WINDOW: Option<&ShortcutsWindow> = None;
-
-pub trait ShortcutsWindowExt: 'static {
-    fn get_property_section_name(&self) -> Option<GString>;
-
-    fn set_property_section_name(&self, section_name: Option<&str>);
-
-    fn get_property_view_name(&self) -> Option<GString>;
-
-    fn set_property_view_name(&self, view_name: Option<&str>);
-
-    fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_close(&self);
-
-    fn connect_search<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_search(&self);
-
-    fn connect_property_section_name_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_view_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ShortcutsWindow>> ShortcutsWindowExt for O {
-    fn get_property_section_name(&self) -> Option<GString> {
-        unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `section-name` getter")
-        }
-    }
-
-    fn set_property_section_name(&self, section_name: Option<&str>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                Value::from(section_name).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_view_name(&self) -> Option<GString> {
-        unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `view-name` getter")
-        }
-    }
-
-    fn set_property_view_name(&self, view_name: Option<&str>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                Value::from(view_name).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn close_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkShortcutsWindow,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<ShortcutsWindow>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ShortcutsWindow::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"close\0".as_ptr() as *const _,
-                Some(transmute(close_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_close(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("close", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_search<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn search_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkShortcutsWindow,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<ShortcutsWindow>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ShortcutsWindow::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"search\0".as_ptr() as *const _,
-                Some(transmute(search_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_search(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("search", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_property_section_name_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_section_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkShortcutsWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<ShortcutsWindow>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ShortcutsWindow::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::section-name\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_section_name_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_view_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_view_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkShortcutsWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<ShortcutsWindow>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ShortcutsWindow::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::view-name\0".as_ptr() as *const _,
-                Some(transmute(notify_view_name_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

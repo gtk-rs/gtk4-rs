@@ -5,30 +5,28 @@
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
-use Bin;
 use Buildable;
-use Container;
-use Frame;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
-use ShadowType;
 use Widget;
 
 glib_wrapper! {
-    pub struct AspectFrame(Object<gtk_sys::GtkAspectFrame, gtk_sys::GtkAspectFrameClass, AspectFrameClass>) @extends Frame, Bin, Container, Widget, @implements Buildable;
+    pub struct AspectFrame(Object<gtk_sys::GtkAspectFrame, AspectFrameClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_aspect_frame_get_type(),
@@ -36,17 +34,10 @@ glib_wrapper! {
 }
 
 impl AspectFrame {
-    pub fn new(
-        label: Option<&str>,
-        xalign: f32,
-        yalign: f32,
-        ratio: f32,
-        obey_child: bool,
-    ) -> AspectFrame {
+    pub fn new(xalign: f32, yalign: f32, ratio: f32, obey_child: bool) -> AspectFrame {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_aspect_frame_new(
-                label.to_glib_none().0,
                 xalign,
                 yalign,
                 ratio,
@@ -55,33 +46,210 @@ impl AspectFrame {
             .unsafe_cast()
         }
     }
+
+    pub fn get_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(gtk_sys::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
+    }
+
+    pub fn get_obey_child(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_aspect_frame_get_obey_child(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_ratio(&self) -> f32 {
+        unsafe { gtk_sys::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
+    }
+
+    pub fn get_xalign(&self) -> f32 {
+        unsafe { gtk_sys::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
+    }
+
+    pub fn get_yalign(&self) -> f32 {
+        unsafe { gtk_sys::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
+    }
+
+    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_aspect_frame_set_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_obey_child(&self, obey_child: bool) {
+        unsafe {
+            gtk_sys::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.to_glib());
+        }
+    }
+
+    pub fn set_ratio(&self, ratio: f32) {
+        unsafe {
+            gtk_sys::gtk_aspect_frame_set_ratio(self.to_glib_none().0, ratio);
+        }
+    }
+
+    pub fn set_xalign(&self, xalign: f32) {
+        unsafe {
+            gtk_sys::gtk_aspect_frame_set_xalign(self.to_glib_none().0, xalign);
+        }
+    }
+
+    pub fn set_yalign(&self, yalign: f32) {
+        unsafe {
+            gtk_sys::gtk_aspect_frame_set_yalign(self.to_glib_none().0, yalign);
+        }
+    }
+
+    pub fn connect_property_child_notify<F: Fn(&AspectFrame) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<F: Fn(&AspectFrame) + 'static>(
+            this: *mut gtk_sys::GtkAspectFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_obey_child_notify<F: Fn(&AspectFrame) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_obey_child_trampoline<F: Fn(&AspectFrame) + 'static>(
+            this: *mut gtk_sys::GtkAspectFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::obey-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_obey_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_ratio_notify<F: Fn(&AspectFrame) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ratio_trampoline<F: Fn(&AspectFrame) + 'static>(
+            this: *mut gtk_sys::GtkAspectFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ratio\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_ratio_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_xalign_notify<F: Fn(&AspectFrame) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&AspectFrame) + 'static>(
+            this: *mut gtk_sys::GtkAspectFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::xalign\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_xalign_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_yalign_notify<F: Fn(&AspectFrame) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&AspectFrame) + 'static>(
+            this: *mut gtk_sys::GtkAspectFrame,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::yalign\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_yalign_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
 pub struct AspectFrameBuilder {
+    child: Option<Widget>,
     obey_child: Option<bool>,
     ratio: Option<f32>,
     xalign: Option<f32>,
     yalign: Option<f32>,
-    label: Option<String>,
-    label_widget: Option<Widget>,
-    label_xalign: Option<f32>,
-    shadow_type: Option<ShadowType>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -98,6 +266,7 @@ pub struct AspectFrameBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl AspectFrameBuilder {
@@ -107,6 +276,9 @@ impl AspectFrameBuilder {
 
     pub fn build(self) -> AspectFrame {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
         if let Some(ref obey_child) = self.obey_child {
             properties.push(("obey-child", obey_child));
         }
@@ -119,23 +291,14 @@ impl AspectFrameBuilder {
         if let Some(ref yalign) = self.yalign {
             properties.push(("yalign", yalign));
         }
-        if let Some(ref label) = self.label {
-            properties.push(("label", label));
-        }
-        if let Some(ref label_widget) = self.label_widget {
-            properties.push(("label-widget", label_widget));
-        }
-        if let Some(ref label_xalign) = self.label_xalign {
-            properties.push(("label-xalign", label_xalign));
-        }
-        if let Some(ref shadow_type) = self.shadow_type {
-            properties.push(("shadow-type", shadow_type));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -143,17 +306,14 @@ impl AspectFrameBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -167,14 +327,8 @@ impl AspectFrameBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -224,10 +378,19 @@ impl AspectFrameBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(AspectFrame::static_type(), &properties)
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        let ret = glib::Object::new(AspectFrame::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<AspectFrame>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
     }
 
     pub fn obey_child(mut self, obey_child: bool) -> Self {
@@ -250,26 +413,6 @@ impl AspectFrameBuilder {
         self
     }
 
-    pub fn label(mut self, label: &str) -> Self {
-        self.label = Some(label.to_string());
-        self
-    }
-
-    pub fn label_widget<P: IsA<Widget>>(mut self, label_widget: &P) -> Self {
-        self.label_widget = Some(label_widget.clone().upcast());
-        self
-    }
-
-    pub fn label_xalign(mut self, label_xalign: f32) -> Self {
-        self.label_xalign = Some(label_xalign);
-        self
-    }
-
-    pub fn shadow_type(mut self, shadow_type: ShadowType) -> Self {
-        self.shadow_type = Some(shadow_type);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -277,6 +420,11 @@ impl AspectFrameBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -290,23 +438,18 @@ impl AspectFrameBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -330,18 +473,8 @@ impl AspectFrameBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -424,237 +557,10 @@ impl AspectFrameBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
 
-pub const NONE_ASPECT_FRAME: Option<&AspectFrame> = None;
-
-pub trait AspectFrameExt: 'static {
-    fn set(&self, xalign: f32, yalign: f32, ratio: f32, obey_child: bool);
-
-    fn get_property_obey_child(&self) -> bool;
-
-    fn set_property_obey_child(&self, obey_child: bool);
-
-    fn get_property_ratio(&self) -> f32;
-
-    fn set_property_ratio(&self, ratio: f32);
-
-    fn get_property_xalign(&self) -> f32;
-
-    fn set_property_xalign(&self, xalign: f32);
-
-    fn get_property_yalign(&self) -> f32;
-
-    fn set_property_yalign(&self, yalign: f32);
-
-    fn connect_property_obey_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_ratio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<AspectFrame>> AspectFrameExt for O {
-    fn set(&self, xalign: f32, yalign: f32, ratio: f32, obey_child: bool) {
-        unsafe {
-            gtk_sys::gtk_aspect_frame_set(
-                self.as_ref().to_glib_none().0,
-                xalign,
-                yalign,
-                ratio,
-                obey_child.to_glib(),
-            );
-        }
-    }
-
-    fn get_property_obey_child(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"obey-child\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `obey-child` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_obey_child(&self, obey_child: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"obey-child\0".as_ptr() as *const _,
-                Value::from(&obey_child).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_ratio(&self) -> f32 {
-        unsafe {
-            let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"ratio\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `ratio` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_ratio(&self, ratio: f32) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"ratio\0".as_ptr() as *const _,
-                Value::from(&ratio).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_xalign(&self) -> f32 {
-        unsafe {
-            let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `xalign` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_xalign(&self, xalign: f32) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                Value::from(&xalign).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_yalign(&self) -> f32 {
-        unsafe {
-            let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"yalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `yalign` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_yalign(&self, yalign: f32) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"yalign\0".as_ptr() as *const _,
-                Value::from(&yalign).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_obey_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_obey_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<AspectFrame>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&AspectFrame::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::obey-child\0".as_ptr() as *const _,
-                Some(transmute(notify_obey_child_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_ratio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ratio_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<AspectFrame>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&AspectFrame::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::ratio\0".as_ptr() as *const _,
-                Some(transmute(notify_ratio_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<AspectFrame>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&AspectFrame::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::xalign\0".as_ptr() as *const _,
-                Some(transmute(notify_xalign_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<AspectFrame>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&AspectFrame::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::yalign\0".as_ptr() as *const _,
-                Some(transmute(notify_yalign_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
     }
 }
 

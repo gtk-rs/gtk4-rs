@@ -3,9 +3,7 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
 use glib::object::{Cast, IsA};
-use glib::prelude::*;
 use glib::translate::*;
-use glib::GString;
 use glib::Object;
 use std::path::Path;
 use Builder;
@@ -24,12 +22,6 @@ impl Builder {
 pub trait BuilderExtManual: 'static {
     fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
     fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error>;
-    fn connect_signals<
-        P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>,
-    >(
-        &self,
-        func: P,
-    );
 }
 
 impl<O: IsA<Builder>> BuilderExtManual for O {
@@ -56,55 +48,6 @@ impl<O: IsA<Builder>> BuilderExtManual for O {
             } else {
                 Err(from_glib_full(error))
             }
-        }
-    }
-
-    fn connect_signals<
-        P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>,
-    >(
-        &self,
-        func: P,
-    ) {
-        let func_data: P = func;
-        unsafe extern "C" fn func_func<
-            P: FnMut(&Builder, &str) -> Box<dyn Fn(&[glib::Value]) -> Option<glib::Value> + 'static>,
-        >(
-            builder: *mut gtk_sys::GtkBuilder,
-            object: *mut gobject_sys::GObject,
-            signal_name: *const libc::c_char,
-            handler_name: *const libc::c_char,
-            connect_object: *mut gobject_sys::GObject,
-            flags: gobject_sys::GConnectFlags,
-            user_data: glib_sys::gpointer,
-        ) {
-            assert!(connect_object.is_null(), "Connect object is not supported");
-            assert!(
-                flags & gobject_sys::G_CONNECT_SWAPPED == 0,
-                "Swapped signal handler is not supported"
-            );
-
-            let builder = from_glib_borrow(builder);
-            let object: glib::Object = from_glib_borrow(object);
-            let signal_name: GString = from_glib_borrow(signal_name);
-            let handler_name: GString = from_glib_borrow(handler_name);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
-            let func = (*callback)(&builder, handler_name.as_str());
-            object
-                .connect_unsafe(
-                    signal_name.as_str(),
-                    flags & gobject_sys::G_CONNECT_AFTER != 0,
-                    move |args| func(args),
-                )
-                .expect("Failed to connect to builder signal");
-        }
-        let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
-        unsafe {
-            gtk_sys::gtk_builder_connect_signals_full(
-                self.as_ref().to_glib_none().0,
-                func,
-                super_callback0 as *const _ as usize as *mut _,
-            );
         }
     }
 }

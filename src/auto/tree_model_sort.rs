@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use gtk_sys;
 use std::fmt;
 use TreeDragSource;
@@ -17,6 +20,45 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_tree_model_sort_get_type(),
+    }
+}
+
+impl TreeModelSort {
+    pub fn with_model<P: IsA<TreeModel>>(child_model: &P) -> TreeModelSort {
+        skip_assert_initialized!();
+        unsafe {
+            from_glib_full(gtk_sys::gtk_tree_model_sort_new_with_model(
+                child_model.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeModelSortBuilder {
+    model: Option<TreeModel>,
+}
+
+impl TreeModelSortBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeModelSort {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(TreeModelSort::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeModelSort>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 

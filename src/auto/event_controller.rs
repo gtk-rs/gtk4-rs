@@ -8,11 +8,13 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use PropagationLimit;
 use PropagationPhase;
 use Widget;
 
@@ -27,15 +29,36 @@ glib_wrapper! {
 pub const NONE_EVENT_CONTROLLER: Option<&EventController> = None;
 
 pub trait EventControllerExt: 'static {
+    fn get_current_event(&self) -> Option<gdk::Event>;
+
+    fn get_current_event_device(&self) -> Option<gdk::Device>;
+
+    fn get_current_event_state(&self) -> gdk::ModifierType;
+
+    fn get_current_event_time(&self) -> u32;
+
+    fn get_name(&self) -> Option<GString>;
+
+    fn get_propagation_limit(&self) -> PropagationLimit;
+
     fn get_propagation_phase(&self) -> PropagationPhase;
 
     fn get_widget(&self) -> Option<Widget>;
 
-    fn handle_event(&self, event: &gdk::Event) -> bool;
-
     fn reset(&self);
 
+    fn set_name(&self, name: &str);
+
+    fn set_propagation_limit(&self, limit: PropagationLimit);
+
     fn set_propagation_phase(&self, phase: PropagationPhase);
+
+    fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_propagation_limit_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_propagation_phase_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -46,6 +69,52 @@ pub trait EventControllerExt: 'static {
 }
 
 impl<O: IsA<EventController>> EventControllerExt for O {
+    fn get_current_event(&self) -> Option<gdk::Event> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_event_controller_get_current_event(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_current_event_device(&self) -> Option<gdk::Device> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_event_controller_get_current_event_device(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_current_event_state(&self) -> gdk::ModifierType {
+        unsafe {
+            from_glib(gtk_sys::gtk_event_controller_get_current_event_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_current_event_time(&self) -> u32 {
+        unsafe {
+            gtk_sys::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0)
+        }
+    }
+
+    fn get_name(&self) -> Option<GString> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_event_controller_get_name(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_propagation_limit(&self) -> PropagationLimit {
+        unsafe {
+            from_glib(gtk_sys::gtk_event_controller_get_propagation_limit(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn get_propagation_phase(&self) -> PropagationPhase {
         unsafe {
             from_glib(gtk_sys::gtk_event_controller_get_propagation_phase(
@@ -62,18 +131,27 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn handle_event(&self, event: &gdk::Event) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_event_controller_handle_event(
-                self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
-            ))
-        }
-    }
-
     fn reset(&self) {
         unsafe {
             gtk_sys::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn set_name(&self, name: &str) {
+        unsafe {
+            gtk_sys::gtk_event_controller_set_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_propagation_limit(&self, limit: PropagationLimit) {
+        unsafe {
+            gtk_sys::gtk_event_controller_set_propagation_limit(
+                self.as_ref().to_glib_none().0,
+                limit.to_glib(),
+            );
         }
     }
 
@@ -83,6 +161,57 @@ impl<O: IsA<EventController>> EventControllerExt for O {
                 self.as_ref().to_glib_none().0,
                 phase.to_glib(),
             );
+        }
+    }
+
+    fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkEventController,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<EventController>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&EventController::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_name_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_propagation_limit_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_propagation_limit_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkEventController,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<EventController>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&EventController::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::propagation-limit\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_propagation_limit_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -98,15 +227,15 @@ impl<O: IsA<EventController>> EventControllerExt for O {
             P: IsA<EventController>,
         {
             let f: &F = &*(f as *const F);
-            f(&EventController::from_glib_borrow(this).unsafe_cast())
+            f(&EventController::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::propagation-phase\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_propagation_phase_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_propagation_phase_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -122,14 +251,16 @@ impl<O: IsA<EventController>> EventControllerExt for O {
             P: IsA<EventController>,
         {
             let f: &F = &*(f as *const F);
-            f(&EventController::from_glib_borrow(this).unsafe_cast())
+            f(&EventController::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::widget\0".as_ptr() as *const _,
-                Some(transmute(notify_widget_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_widget_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

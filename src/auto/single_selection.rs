@@ -8,11 +8,9 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
-use glib::Value;
+use glib::ToValue;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -28,13 +26,68 @@ glib_wrapper! {
 }
 
 impl SingleSelection {
-    pub fn new<P: IsA<gio::ListModel>>(model: &P) -> SingleSelection {
+    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> SingleSelection {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_single_selection_new(
-                model.as_ref().to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct SingleSelectionBuilder {
+    autoselect: Option<bool>,
+    can_unselect: Option<bool>,
+    model: Option<gio::ListModel>,
+    selected: Option<u32>,
+}
+
+impl SingleSelectionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> SingleSelection {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref autoselect) = self.autoselect {
+            properties.push(("autoselect", autoselect));
+        }
+        if let Some(ref can_unselect) = self.can_unselect {
+            properties.push(("can-unselect", can_unselect));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref selected) = self.selected {
+            properties.push(("selected", selected));
+        }
+        let ret = glib::Object::new(SingleSelection::static_type(), &properties)
+            .expect("object new")
+            .downcast::<SingleSelection>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn autoselect(mut self, autoselect: bool) -> Self {
+        self.autoselect = Some(autoselect);
+        self
+    }
+
+    pub fn can_unselect(mut self, can_unselect: bool) -> Self {
+        self.can_unselect = Some(can_unselect);
+        self
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn selected(mut self, selected: u32) -> Self {
+        self.selected = Some(selected);
+        self
     }
 }
 
@@ -45,6 +98,8 @@ pub trait SingleSelectionExt: 'static {
 
     fn get_can_unselect(&self) -> bool;
 
+    fn get_model(&self) -> Option<gio::ListModel>;
+
     fn get_selected(&self) -> u32;
 
     //fn get_selected_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer>;
@@ -53,11 +108,9 @@ pub trait SingleSelectionExt: 'static {
 
     fn set_can_unselect(&self, can_unselect: bool);
 
+    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
+
     fn set_selected(&self, position: u32);
-
-    fn get_property_model(&self) -> Option<gio::ListModel>;
-
-    fn set_property_model<P: IsA<gio::ListModel> + SetValueOptional>(&self, model: Option<&P>);
 
     fn connect_property_autoselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -91,6 +144,14 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
+    fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_single_selection_get_model(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn get_selected(&self) -> u32 {
         unsafe { gtk_sys::gtk_single_selection_get_selected(self.as_ref().to_glib_none().0) }
     }
@@ -117,33 +178,18 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
+    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_single_selection_set_model(
+                self.as_ref().to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     fn set_selected(&self, position: u32) {
         unsafe {
             gtk_sys::gtk_single_selection_set_selected(self.as_ref().to_glib_none().0, position);
-        }
-    }
-
-    fn get_property_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            let mut value = Value::from_type(<gio::ListModel as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"model\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `model` getter")
-        }
-    }
-
-    fn set_property_model<P: IsA<gio::ListModel> + SetValueOptional>(&self, model: Option<&P>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"model\0".as_ptr() as *const _,
-                Value::from(model).to_glib_none().0,
-            );
         }
     }
 
@@ -156,14 +202,16 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
             P: IsA<SingleSelection>,
         {
             let f: &F = &*(f as *const F);
-            f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
+            f(&SingleSelection::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoselect\0".as_ptr() as *const _,
-                Some(transmute(notify_autoselect_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autoselect_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -181,15 +229,15 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
             P: IsA<SingleSelection>,
         {
             let f: &F = &*(f as *const F);
-            f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
+            f(&SingleSelection::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-unselect\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_can_unselect_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_unselect_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -205,14 +253,16 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
             P: IsA<SingleSelection>,
         {
             let f: &F = &*(f as *const F);
-            f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
+            f(&SingleSelection::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -227,14 +277,16 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
             P: IsA<SingleSelection>,
         {
             let f: &F = &*(f as *const F);
-            f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
+            f(&SingleSelection::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected\0".as_ptr() as *const _,
-                Some(transmute(notify_selected_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selected_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -252,15 +304,15 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
             P: IsA<SingleSelection>,
         {
             let f: &F = &*(f as *const F);
-            f(&SingleSelection::from_glib_borrow(this).unsafe_cast())
+            f(&SingleSelection::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-item\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_selected_item_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selected_item_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

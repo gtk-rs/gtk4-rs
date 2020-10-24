@@ -547,6 +547,10 @@ impl TextIter {
         unsafe { gtk_sys::gtk_text_iter_get_offset(self.to_glib_none().0) }
     }
 
+    pub fn get_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe { from_glib_none(gtk_sys::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
+    }
+
     pub fn get_slice(&self, end: &TextIter) -> Option<GString> {
         unsafe {
             from_glib_full(gtk_sys::gtk_text_iter_get_slice(
@@ -571,10 +575,6 @@ impl TextIter {
                 end.to_glib_none().0,
             ))
         }
-    }
-
-    pub fn get_texture(&self) -> Option<gdk::Texture> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_iter_get_texture(self.to_glib_none().0)) }
     }
 
     pub fn get_toggled_tags(&self, toggled_on: bool) -> Vec<TextTag> {

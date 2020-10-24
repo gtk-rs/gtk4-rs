@@ -5,6 +5,7 @@
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -15,20 +16,20 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Adjustment;
 use Align;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Scrollable;
 use ScrollablePolicy;
-use ShadowType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Viewport(Object<gtk_sys::GtkViewport, gtk_sys::GtkViewportClass, ViewportClass>) @extends Bin, Container, Widget, @implements Buildable, Scrollable;
+    pub struct Viewport(Object<gtk_sys::GtkViewport, ViewportClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_viewport_get_type(),
@@ -49,26 +50,105 @@ impl Viewport {
             .unsafe_cast()
         }
     }
+
+    pub fn get_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(gtk_sys::gtk_viewport_get_child(self.to_glib_none().0)) }
+    }
+
+    pub fn get_scroll_to_focus(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_viewport_get_scroll_to_focus(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_viewport_set_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_scroll_to_focus(&self, scroll_to_focus: bool) {
+        unsafe {
+            gtk_sys::gtk_viewport_set_scroll_to_focus(
+                self.to_glib_none().0,
+                scroll_to_focus.to_glib(),
+            );
+        }
+    }
+
+    pub fn connect_property_child_notify<F: Fn(&Viewport) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<F: Fn(&Viewport) + 'static>(
+            this: *mut gtk_sys::GtkViewport,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_scroll_to_focus_notify<F: Fn(&Viewport) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scroll_to_focus_trampoline<F: Fn(&Viewport) + 'static>(
+            this: *mut gtk_sys::GtkViewport,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scroll-to-focus\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scroll_to_focus_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
 pub struct ViewportBuilder {
-    shadow_type: Option<ShadowType>,
+    child: Option<Widget>,
+    scroll_to_focus: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -85,6 +165,7 @@ pub struct ViewportBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     hadjustment: Option<Adjustment>,
     hscroll_policy: Option<ScrollablePolicy>,
     vadjustment: Option<Adjustment>,
@@ -98,8 +179,11 @@ impl ViewportBuilder {
 
     pub fn build(self) -> Viewport {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref shadow_type) = self.shadow_type {
-            properties.push(("shadow-type", shadow_type));
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref scroll_to_focus) = self.scroll_to_focus {
+            properties.push(("scroll-to-focus", scroll_to_focus));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -107,23 +191,23 @@ impl ViewportBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -137,14 +221,8 @@ impl ViewportBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -194,6 +272,9 @@ impl ViewportBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref hadjustment) = self.hadjustment {
             properties.push(("hadjustment", hadjustment));
         }
@@ -206,14 +287,20 @@ impl ViewportBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        glib::Object::new(Viewport::static_type(), &properties)
+        let ret = glib::Object::new(Viewport::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Viewport>()
+            .expect("downcast");
+        ret
     }
 
-    pub fn shadow_type(mut self, shadow_type: ShadowType) -> Self {
-        self.shadow_type = Some(shadow_type);
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn scroll_to_focus(mut self, scroll_to_focus: bool) -> Self {
+        self.scroll_to_focus = Some(scroll_to_focus);
         self
     }
 
@@ -227,6 +314,11 @@ impl ViewportBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -237,23 +329,18 @@ impl ViewportBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -277,18 +364,8 @@ impl ViewportBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -372,6 +449,11 @@ impl ViewportBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
         self.hadjustment = Some(hadjustment.clone().upcast());
         self
@@ -390,54 +472,6 @@ impl ViewportBuilder {
     pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
         self.vscroll_policy = Some(vscroll_policy);
         self
-    }
-}
-
-pub const NONE_VIEWPORT: Option<&Viewport> = None;
-
-pub trait ViewportExt: 'static {
-    fn get_shadow_type(&self) -> ShadowType;
-
-    fn set_shadow_type(&self, type_: ShadowType);
-
-    fn connect_property_shadow_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Viewport>> ViewportExt for O {
-    fn get_shadow_type(&self) -> ShadowType {
-        unsafe {
-            from_glib(gtk_sys::gtk_viewport_get_shadow_type(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_shadow_type(&self, type_: ShadowType) {
-        unsafe {
-            gtk_sys::gtk_viewport_set_shadow_type(self.as_ref().to_glib_none().0, type_.to_glib());
-        }
-    }
-
-    fn connect_property_shadow_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shadow_type_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkViewport,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Viewport>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Viewport::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::shadow-type\0".as_ptr() as *const _,
-                Some(transmute(notify_shadow_type_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

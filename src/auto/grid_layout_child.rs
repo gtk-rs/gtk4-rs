@@ -7,18 +7,95 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use LayoutChild;
+use LayoutManager;
+use Widget;
 
 glib_wrapper! {
     pub struct GridLayoutChild(Object<gtk_sys::GtkGridLayoutChild, gtk_sys::GtkGridLayoutChildClass, GridLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_grid_layout_child_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct GridLayoutChildBuilder {
+    column_span: Option<i32>,
+    left_attach: Option<i32>,
+    row_span: Option<i32>,
+    top_attach: Option<i32>,
+    child_widget: Option<Widget>,
+    layout_manager: Option<LayoutManager>,
+}
+
+impl GridLayoutChildBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> GridLayoutChild {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref column_span) = self.column_span {
+            properties.push(("column-span", column_span));
+        }
+        if let Some(ref left_attach) = self.left_attach {
+            properties.push(("left-attach", left_attach));
+        }
+        if let Some(ref row_span) = self.row_span {
+            properties.push(("row-span", row_span));
+        }
+        if let Some(ref top_attach) = self.top_attach {
+            properties.push(("top-attach", top_attach));
+        }
+        if let Some(ref child_widget) = self.child_widget {
+            properties.push(("child-widget", child_widget));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        let ret = glib::Object::new(GridLayoutChild::static_type(), &properties)
+            .expect("object new")
+            .downcast::<GridLayoutChild>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn column_span(mut self, column_span: i32) -> Self {
+        self.column_span = Some(column_span);
+        self
+    }
+
+    pub fn left_attach(mut self, left_attach: i32) -> Self {
+        self.left_attach = Some(left_attach);
+        self
+    }
+
+    pub fn row_span(mut self, row_span: i32) -> Self {
+        self.row_span = Some(row_span);
+        self
+    }
+
+    pub fn top_attach(mut self, top_attach: i32) -> Self {
+        self.top_attach = Some(top_attach);
+        self
+    }
+
+    pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
+        self.child_widget = Some(child_widget.clone().upcast());
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
     }
 }
 
@@ -100,14 +177,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-span\0".as_ptr() as *const _,
-                Some(transmute(notify_column_span_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_span_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -122,14 +201,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::left-attach\0".as_ptr() as *const _,
-                Some(transmute(notify_left_attach_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_left_attach_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -144,14 +225,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-span\0".as_ptr() as *const _,
-                Some(transmute(notify_row_span_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_span_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -166,14 +249,16 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             P: IsA<GridLayoutChild>,
         {
             let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast())
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-attach\0".as_ptr() as *const _,
-                Some(transmute(notify_top_attach_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_top_attach_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

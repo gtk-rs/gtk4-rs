@@ -47,10 +47,11 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &mut TextIter, &str) + 
 ) where
     T: IsA<TextBuffer>,
 {
+    let mut location_copy = from_glib_none(location);
     let f: &F = &*(f as *const F);
     f(
-        &TextBuffer::from_glib_borrow(this).unsafe_cast(),
-        &mut from_glib_borrow(location),
+        &TextBuffer::from_glib_borrow(this).unsafe_cast_ref(),
+        &mut location_copy,
         str::from_utf8(slice::from_raw_parts(text as *const u8, len as usize)).unwrap(),
     )
 }

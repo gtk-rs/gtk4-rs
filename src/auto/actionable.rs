@@ -14,11 +14,13 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
 use Buildable;
+use ConstraintTarget;
 use Widget;
 
 glib_wrapper! {
-    pub struct Actionable(Interface<gtk_sys::GtkActionable>) @requires Widget, Buildable;
+    pub struct Actionable(Interface<gtk_sys::GtkActionable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_actionable_get_type(),
@@ -100,14 +102,16 @@ impl<O: IsA<Actionable>> ActionableExt for O {
             P: IsA<Actionable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Actionable::from_glib_borrow(this).unsafe_cast())
+            f(&Actionable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action-name\0".as_ptr() as *const _,
-                Some(transmute(notify_action_name_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_action_name_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

@@ -7,6 +7,7 @@ use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -18,15 +19,18 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Actionable;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Switch(Object<gtk_sys::GtkSwitch, gtk_sys::GtkSwitchClass, SwitchClass>) @extends Widget, @implements Buildable, Actionable;
+    pub struct Switch(Object<gtk_sys::GtkSwitch, SwitchClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_switch_get_type(),
@@ -37,6 +41,129 @@ impl Switch {
     pub fn new() -> Switch {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(gtk_sys::gtk_switch_new()).unsafe_cast() }
+    }
+
+    pub fn get_active(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_switch_get_active(self.to_glib_none().0)) }
+    }
+
+    pub fn get_state(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_switch_get_state(self.to_glib_none().0)) }
+    }
+
+    pub fn set_active(&self, is_active: bool) {
+        unsafe {
+            gtk_sys::gtk_switch_set_active(self.to_glib_none().0, is_active.to_glib());
+        }
+    }
+
+    pub fn set_state(&self, state: bool) {
+        unsafe {
+            gtk_sys::gtk_switch_set_state(self.to_glib_none().0, state.to_glib());
+        }
+    }
+
+    pub fn connect_activate<F: Fn(&Switch) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&Switch) + 'static>(
+            this: *mut gtk_sys::GtkSwitch,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_activate(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("activate", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_state_set<F: Fn(&Switch, bool) -> glib::signal::Inhibit + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn state_set_trampoline<
+            F: Fn(&Switch, bool) -> glib::signal::Inhibit + 'static,
+        >(
+            this: *mut gtk_sys::GtkSwitch,
+            state: glib_sys::gboolean,
+            f: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), from_glib(state)).to_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"state-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    state_set_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_active_notify<F: Fn(&Switch) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<F: Fn(&Switch) + 'static>(
+            this: *mut gtk_sys::GtkSwitch,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_active_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_state_notify<F: Fn(&Switch) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_state_trampoline<F: Fn(&Switch) + 'static>(
+            this: *mut gtk_sys::GtkSwitch,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::state\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_state_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -52,19 +179,17 @@ pub struct SwitchBuilder {
     state: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -81,6 +206,7 @@ pub struct SwitchBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     action_name: Option<String>,
 }
 
@@ -103,23 +229,23 @@ impl SwitchBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -133,14 +259,8 @@ impl SwitchBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -190,13 +310,17 @@ impl SwitchBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        glib::Object::new(Switch::static_type(), &properties)
+        let ret = glib::Object::new(Switch::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Switch>()
+            .expect("downcast");
+        ret
     }
 
     pub fn active(mut self, active: bool) -> Self {
@@ -219,6 +343,11 @@ impl SwitchBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -229,23 +358,18 @@ impl SwitchBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -269,18 +393,8 @@ impl SwitchBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -364,170 +478,14 @@ impl SwitchBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn action_name(mut self, action_name: &str) -> Self {
         self.action_name = Some(action_name.to_string());
         self
-    }
-}
-
-pub const NONE_SWITCH: Option<&Switch> = None;
-
-pub trait SwitchExt: 'static {
-    fn get_active(&self) -> bool;
-
-    fn get_state(&self) -> bool;
-
-    fn set_active(&self, is_active: bool);
-
-    fn set_state(&self, state: bool);
-
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate(&self);
-
-    fn connect_state_set<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Switch>> SwitchExt for O {
-    fn get_active(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_switch_get_active(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_state(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_switch_get_state(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_active(&self, is_active: bool) {
-        unsafe {
-            gtk_sys::gtk_switch_set_active(self.as_ref().to_glib_none().0, is_active.to_glib());
-        }
-    }
-
-    fn set_state(&self, state: bool) {
-        unsafe {
-            gtk_sys::gtk_switch_set_state(self.as_ref().to_glib_none().0, state.to_glib());
-        }
-    }
-
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Switch>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Switch::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"activate\0".as_ptr() as *const _,
-                Some(transmute(activate_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("activate", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_state_set<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn state_set_trampoline<
-            P,
-            F: Fn(&P, bool) -> glib::signal::Inhibit + 'static,
-        >(
-            this: *mut gtk_sys::GtkSwitch,
-            state: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<Switch>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &Switch::from_glib_borrow(this).unsafe_cast(),
-                from_glib(state),
-            )
-            .to_glib()
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"state-set\0".as_ptr() as *const _,
-                Some(transmute(state_set_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Switch>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Switch::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::active\0".as_ptr() as *const _,
-                Some(transmute(notify_active_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_state_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Switch>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Switch::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::state\0".as_ptr() as *const _,
-                Some(transmute(notify_state_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

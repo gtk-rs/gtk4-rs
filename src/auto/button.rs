@@ -19,18 +19,18 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Actionable;
 use Align;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
-use ReliefStyle;
 use Widget;
 
 glib_wrapper! {
-    pub struct Button(Object<gtk_sys::GtkButton, gtk_sys::GtkButtonClass, ButtonClass>) @extends Bin, Container, Widget, @implements Buildable, Actionable;
+    pub struct Button(Object<gtk_sys::GtkButton, gtk_sys::GtkButtonClass, ButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_button_get_type(),
@@ -43,7 +43,7 @@ impl Button {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_button_new()).unsafe_cast() }
     }
 
-    pub fn new_from_icon_name(icon_name: Option<&str>) -> Button {
+    pub fn from_icon_name(icon_name: Option<&str>) -> Button {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_button_new_from_icon_name(
@@ -53,7 +53,7 @@ impl Button {
         }
     }
 
-    pub fn new_with_label(label: &str) -> Button {
+    pub fn with_label(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_button_new_with_label(label.to_glib_none().0))
@@ -61,7 +61,7 @@ impl Button {
         }
     }
 
-    pub fn new_with_mnemonic(label: &str) -> Button {
+    pub fn with_mnemonic(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_button_new_with_mnemonic(
@@ -80,25 +80,24 @@ impl Default for Button {
 
 #[derive(Clone, Default)]
 pub struct ButtonBuilder {
+    child: Option<Widget>,
+    has_frame: Option<bool>,
     icon_name: Option<String>,
     label: Option<String>,
-    relief: Option<ReliefStyle>,
     use_underline: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -115,6 +114,7 @@ pub struct ButtonBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     action_name: Option<String>,
 }
 
@@ -125,14 +125,17 @@ impl ButtonBuilder {
 
     pub fn build(self) -> Button {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref has_frame) = self.has_frame {
+            properties.push(("has-frame", has_frame));
+        }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
         }
         if let Some(ref label) = self.label {
             properties.push(("label", label));
-        }
-        if let Some(ref relief) = self.relief {
-            properties.push(("relief", relief));
         }
         if let Some(ref use_underline) = self.use_underline {
             properties.push(("use-underline", use_underline));
@@ -143,23 +146,23 @@ impl ButtonBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -173,14 +176,8 @@ impl ButtonBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -230,13 +227,27 @@ impl ButtonBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        glib::Object::new(Button::static_type(), &properties)
+        let ret = glib::Object::new(Button::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Button>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn has_frame(mut self, has_frame: bool) -> Self {
+        self.has_frame = Some(has_frame);
+        self
     }
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
@@ -246,11 +257,6 @@ impl ButtonBuilder {
 
     pub fn label(mut self, label: &str) -> Self {
         self.label = Some(label.to_string());
-        self
-    }
-
-    pub fn relief(mut self, relief: ReliefStyle) -> Self {
-        self.relief = Some(relief);
         self
     }
 
@@ -269,6 +275,11 @@ impl ButtonBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -279,23 +290,18 @@ impl ButtonBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -319,18 +325,8 @@ impl ButtonBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -414,6 +410,11 @@ impl ButtonBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn action_name(mut self, action_name: &str) -> Self {
         self.action_name = Some(action_name.to_string());
         self
@@ -423,21 +424,23 @@ impl ButtonBuilder {
 pub const NONE_BUTTON: Option<&Button> = None;
 
 pub trait ButtonExt: 'static {
-    fn clicked(&self);
+    fn get_child(&self) -> Option<Widget>;
+
+    fn get_has_frame(&self) -> bool;
 
     fn get_icon_name(&self) -> Option<GString>;
 
     fn get_label(&self) -> Option<GString>;
 
-    fn get_relief(&self) -> ReliefStyle;
-
     fn get_use_underline(&self) -> bool;
+
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+
+    fn set_has_frame(&self, has_frame: bool);
 
     fn set_icon_name(&self, icon_name: &str);
 
     fn set_label(&self, label: &str);
-
-    fn set_relief(&self, relief: ReliefStyle);
 
     fn set_use_underline(&self, use_underline: bool);
 
@@ -449,11 +452,13 @@ pub trait ButtonExt: 'static {
 
     fn emit_clicked(&self);
 
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_relief_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -462,9 +467,19 @@ pub trait ButtonExt: 'static {
 }
 
 impl<O: IsA<Button>> ButtonExt for O {
-    fn clicked(&self) {
+    fn get_child(&self) -> Option<Widget> {
         unsafe {
-            gtk_sys::gtk_button_clicked(self.as_ref().to_glib_none().0);
+            from_glib_none(gtk_sys::gtk_button_get_child(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_has_frame(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_button_get_has_frame(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -484,19 +499,26 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn get_relief(&self) -> ReliefStyle {
-        unsafe {
-            from_glib(gtk_sys::gtk_button_get_relief(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn get_use_underline(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_button_get_use_underline(
                 self.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_button_set_child(
+                self.as_ref().to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_has_frame(&self, has_frame: bool) {
+        unsafe {
+            gtk_sys::gtk_button_set_has_frame(self.as_ref().to_glib_none().0, has_frame.to_glib());
         }
     }
 
@@ -512,12 +534,6 @@ impl<O: IsA<Button>> ButtonExt for O {
     fn set_label(&self, label: &str) {
         unsafe {
             gtk_sys::gtk_button_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
-        }
-    }
-
-    fn set_relief(&self, relief: ReliefStyle) {
-        unsafe {
-            gtk_sys::gtk_button_set_relief(self.as_ref().to_glib_none().0, relief.to_glib());
         }
     }
 
@@ -538,14 +554,16 @@ impl<O: IsA<Button>> ButtonExt for O {
             P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(transmute(activate_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -553,7 +571,7 @@ impl<O: IsA<Button>> ButtonExt for O {
 
     fn emit_activate(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("activate", &[])
                 .unwrap()
         };
@@ -567,14 +585,16 @@ impl<O: IsA<Button>> ButtonExt for O {
             P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"clicked\0".as_ptr() as *const _,
-                Some(transmute(clicked_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    clicked_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -582,10 +602,58 @@ impl<O: IsA<Button>> ButtonExt for O {
 
     fn emit_clicked(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("clicked", &[])
                 .unwrap()
         };
+    }
+
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_frame_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Button>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-frame\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_frame_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -597,14 +665,16 @@ impl<O: IsA<Button>> ButtonExt for O {
             P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute(notify_icon_name_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_icon_name_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -619,36 +689,16 @@ impl<O: IsA<Button>> ButtonExt for O {
             P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(transmute(notify_label_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_relief_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_relief_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Button>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::relief\0".as_ptr() as *const _,
-                Some(transmute(notify_relief_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_label_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -666,15 +716,15 @@ impl<O: IsA<Button>> ButtonExt for O {
             P: IsA<Button>,
         {
             let f: &F = &*(f as *const F);
-            f(&Button::from_glib_borrow(this).unsafe_cast())
+            f(&Button::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_use_underline_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

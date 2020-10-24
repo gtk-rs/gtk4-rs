@@ -8,6 +8,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -15,12 +17,96 @@ use std::fmt;
 use std::mem::transmute;
 use EventController;
 use Gesture;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct GestureSingle(Object<gtk_sys::GtkGestureSingle, gtk_sys::GtkGestureSingleClass, GestureSingleClass>) @extends Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_single_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct GestureSingleBuilder {
+    button: Option<u32>,
+    exclusive: Option<bool>,
+    touch_only: Option<bool>,
+    n_points: Option<u32>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl GestureSingleBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> GestureSingle {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref button) = self.button {
+            properties.push(("button", button));
+        }
+        if let Some(ref exclusive) = self.exclusive {
+            properties.push(("exclusive", exclusive));
+        }
+        if let Some(ref touch_only) = self.touch_only {
+            properties.push(("touch-only", touch_only));
+        }
+        if let Some(ref n_points) = self.n_points {
+            properties.push(("n-points", n_points));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(GestureSingle::static_type(), &properties)
+            .expect("object new")
+            .downcast::<GestureSingle>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn button(mut self, button: u32) -> Self {
+        self.button = Some(button);
+        self
+    }
+
+    pub fn exclusive(mut self, exclusive: bool) -> Self {
+        self.exclusive = Some(exclusive);
+        self
+    }
+
+    pub fn touch_only(mut self, touch_only: bool) -> Self {
+        self.touch_only = Some(touch_only);
+        self
+    }
+
+    pub fn n_points(mut self, n_points: u32) -> Self {
+        self.n_points = Some(n_points);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 
@@ -116,14 +202,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button\0".as_ptr() as *const _,
-                Some(transmute(notify_button_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_button_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -138,14 +226,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::exclusive\0".as_ptr() as *const _,
-                Some(transmute(notify_exclusive_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_exclusive_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -160,14 +250,16 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
             P: IsA<GestureSingle>,
         {
             let f: &F = &*(f as *const F);
-            f(&GestureSingle::from_glib_borrow(this).unsafe_cast())
+            f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::touch-only\0".as_ptr() as *const _,
-                Some(transmute(notify_touch_only_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_touch_only_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

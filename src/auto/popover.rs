@@ -3,31 +3,36 @@
 // DO NOT EDIT
 
 use gdk;
-use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
+use glib::Value;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
-use PopoverConstraint;
 use PositionType;
+use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Bin, Container, Widget, @implements Buildable;
+    pub struct Popover(Object<gtk_sys::GtkPopover, gtk_sys::GtkPopoverClass, PopoverClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_get_type(),
@@ -35,54 +40,40 @@ glib_wrapper! {
 }
 
 impl Popover {
-    pub fn new<P: IsA<Widget>>(relative_to: Option<&P>) -> Popover {
+    pub fn new() -> Popover {
         assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_popover_new(
-                relative_to.map(|p| p.as_ref()).to_glib_none().0,
-            ))
-            .unsafe_cast()
-        }
+        unsafe { Widget::from_glib_none(gtk_sys::gtk_popover_new()).unsafe_cast() }
     }
+}
 
-    pub fn new_from_model<P: IsA<Widget>, Q: IsA<gio::MenuModel>>(
-        relative_to: Option<&P>,
-        model: &Q,
-    ) -> Popover {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_popover_new_from_model(
-                relative_to.map(|p| p.as_ref()).to_glib_none().0,
-                model.as_ref().to_glib_none().0,
-            ))
-            .unsafe_cast()
-        }
+impl Default for Popover {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
 #[derive(Clone, Default)]
 pub struct PopoverBuilder {
-    constrain_to: Option<PopoverConstraint>,
+    autohide: Option<bool>,
+    child: Option<Widget>,
     default_widget: Option<Widget>,
-    modal: Option<bool>,
+    has_arrow: Option<bool>,
+    mnemonics_visible: Option<bool>,
     pointing_to: Option<gdk::Rectangle>,
     position: Option<PositionType>,
-    relative_to: Option<Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -99,6 +90,7 @@ pub struct PopoverBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl PopoverBuilder {
@@ -108,14 +100,20 @@ impl PopoverBuilder {
 
     pub fn build(self) -> Popover {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref constrain_to) = self.constrain_to {
-            properties.push(("constrain-to", constrain_to));
+        if let Some(ref autohide) = self.autohide {
+            properties.push(("autohide", autohide));
+        }
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref default_widget) = self.default_widget {
             properties.push(("default-widget", default_widget));
         }
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
+        if let Some(ref has_arrow) = self.has_arrow {
+            properties.push(("has-arrow", has_arrow));
+        }
+        if let Some(ref mnemonics_visible) = self.mnemonics_visible {
+            properties.push(("mnemonics-visible", mnemonics_visible));
         }
         if let Some(ref pointing_to) = self.pointing_to {
             properties.push(("pointing-to", pointing_to));
@@ -123,14 +121,14 @@ impl PopoverBuilder {
         if let Some(ref position) = self.position {
             properties.push(("position", position));
         }
-        if let Some(ref relative_to) = self.relative_to {
-            properties.push(("relative-to", relative_to));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -138,17 +136,14 @@ impl PopoverBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -162,14 +157,8 @@ impl PopoverBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -219,14 +208,23 @@ impl PopoverBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(Popover::static_type(), &properties)
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        let ret = glib::Object::new(Popover::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<Popover>()
+            .expect("downcast");
+        ret
     }
 
-    pub fn constrain_to(mut self, constrain_to: PopoverConstraint) -> Self {
-        self.constrain_to = Some(constrain_to);
+    pub fn autohide(mut self, autohide: bool) -> Self {
+        self.autohide = Some(autohide);
+        self
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -235,8 +233,13 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
+    pub fn has_arrow(mut self, has_arrow: bool) -> Self {
+        self.has_arrow = Some(has_arrow);
+        self
+    }
+
+    pub fn mnemonics_visible(mut self, mnemonics_visible: bool) -> Self {
+        self.mnemonics_visible = Some(mnemonics_visible);
         self
     }
 
@@ -250,11 +253,6 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn relative_to<P: IsA<Widget>>(mut self, relative_to: &P) -> Self {
-        self.relative_to = Some(relative_to.clone().upcast());
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -262,6 +260,11 @@ impl PopoverBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -275,23 +278,18 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -315,18 +313,8 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -409,94 +397,103 @@ impl PopoverBuilder {
         self.width_request = Some(width_request);
         self
     }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
 }
 
 pub const NONE_POPOVER: Option<&Popover> = None;
 
 pub trait PopoverExt: 'static {
-    fn bind_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>, action_namespace: Option<&str>);
+    fn get_autohide(&self) -> bool;
 
-    fn get_constrain_to(&self) -> PopoverConstraint;
+    fn get_child(&self) -> Option<Widget>;
 
-    fn get_default_widget(&self) -> Option<Widget>;
+    fn get_has_arrow(&self) -> bool;
 
-    fn get_modal(&self) -> bool;
+    fn get_mnemonics_visible(&self) -> bool;
 
     fn get_pointing_to(&self) -> Option<gdk::Rectangle>;
 
     fn get_position(&self) -> PositionType;
 
-    fn get_relative_to(&self) -> Option<Widget>;
-
     fn popdown(&self);
 
     fn popup(&self);
 
-    fn set_constrain_to(&self, constraint: PopoverConstraint);
+    fn set_autohide(&self, autohide: bool);
+
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
     fn set_default_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
 
-    fn set_modal(&self, modal: bool);
+    fn set_has_arrow(&self, has_arrow: bool);
+
+    fn set_mnemonics_visible(&self, mnemonics_visible: bool);
 
     fn set_pointing_to(&self, rect: &gdk::Rectangle);
 
     fn set_position(&self, position: PositionType);
 
-    fn set_relative_to<P: IsA<Widget>>(&self, relative_to: Option<&P>);
+    fn get_property_default_widget(&self) -> Option<Widget>;
+
+    fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn emit_activate_default(&self);
 
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_constrain_to_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    fn connect_property_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_relative_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Popover>> PopoverExt for O {
-    fn bind_model<P: IsA<gio::MenuModel>>(
-        &self,
-        model: Option<&P>,
-        action_namespace: Option<&str>,
-    ) {
+    fn get_autohide(&self) -> bool {
         unsafe {
-            gtk_sys::gtk_popover_bind_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-                action_namespace.to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_constrain_to(&self) -> PopoverConstraint {
-        unsafe {
-            from_glib(gtk_sys::gtk_popover_get_constrain_to(
+            from_glib(gtk_sys::gtk_popover_get_autohide(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_default_widget(&self) -> Option<Widget> {
+    fn get_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_popover_get_default_widget(
+            from_glib_none(gtk_sys::gtk_popover_get_child(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_modal(&self) -> bool {
+    fn get_has_arrow(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_popover_get_modal(
+            from_glib(gtk_sys::gtk_popover_get_has_arrow(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_mnemonics_visible(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_get_mnemonics_visible(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -525,14 +522,6 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_relative_to(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_popover_get_relative_to(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn popdown(&self) {
         unsafe {
             gtk_sys::gtk_popover_popdown(self.as_ref().to_glib_none().0);
@@ -545,11 +534,17 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_constrain_to(&self, constraint: PopoverConstraint) {
+    fn set_autohide(&self, autohide: bool) {
         unsafe {
-            gtk_sys::gtk_popover_set_constrain_to(
+            gtk_sys::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.to_glib());
+        }
+    }
+
+    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_popover_set_child(
                 self.as_ref().to_glib_none().0,
-                constraint.to_glib(),
+                child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -563,9 +558,18 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_modal(&self, modal: bool) {
+    fn set_has_arrow(&self, has_arrow: bool) {
         unsafe {
-            gtk_sys::gtk_popover_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
+            gtk_sys::gtk_popover_set_has_arrow(self.as_ref().to_glib_none().0, has_arrow.to_glib());
+        }
+    }
+
+    fn set_mnemonics_visible(&self, mnemonics_visible: bool) {
+        unsafe {
+            gtk_sys::gtk_popover_set_mnemonics_visible(
+                self.as_ref().to_glib_none().0,
+                mnemonics_visible.to_glib(),
+            );
         }
     }
 
@@ -584,13 +588,49 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_relative_to<P: IsA<Widget>>(&self, relative_to: Option<&P>) {
+    fn get_property_default_widget(&self) -> Option<Widget> {
         unsafe {
-            gtk_sys::gtk_popover_set_relative_to(
-                self.as_ref().to_glib_none().0,
-                relative_to.map(|p| p.as_ref()).to_glib_none().0,
+            let mut value = Value::from_type(<Widget as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                b"default-widget\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
             );
+            value
+                .get()
+                .expect("Return Value for property `default-widget` getter")
         }
+    }
+
+    fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_default_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkPopover,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Popover>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate-default\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_default_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn emit_activate_default(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("activate-default", &[])
+                .unwrap()
+        };
     }
 
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -601,24 +641,23 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(transmute(closed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    closed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_constrain_to_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_constrain_to_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_autohide_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkPopover,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
@@ -626,15 +665,39 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::constrain-to\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_constrain_to_trampoline::<Self, F> as usize,
+                b"notify::autohide\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autohide_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkPopover,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Popover>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -653,23 +716,23 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-widget\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_default_widget_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_default_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_arrow_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkPopover,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
@@ -677,14 +740,43 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute(notify_modal_trampoline::<Self, F> as usize)),
+                b"notify::has-arrow\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_arrow_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_mnemonics_visible_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkPopover,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Popover>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::mnemonics-visible\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_mnemonics_visible_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -699,14 +791,16 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pointing-to\0".as_ptr() as *const _,
-                Some(transmute(notify_pointing_to_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pointing_to_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -721,36 +815,16 @@ impl<O: IsA<Popover>> PopoverExt for O {
             P: IsA<Popover>,
         {
             let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(transmute(notify_position_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_relative_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_relative_to_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPopover,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<Popover>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Popover::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::relative-to\0".as_ptr() as *const _,
-                Some(transmute(notify_relative_to_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_position_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

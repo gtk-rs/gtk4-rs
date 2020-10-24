@@ -34,7 +34,7 @@ impl PrintSettings {
         unsafe { from_glib_full(gtk_sys::gtk_print_settings_new()) }
     }
 
-    pub fn new_from_file<P: AsRef<std::path::Path>>(
+    pub fn from_file<P: AsRef<std::path::Path>>(
         file_name: P,
     ) -> Result<PrintSettings, glib::Error> {
         assert_initialized_main_thread!();
@@ -52,7 +52,7 @@ impl PrintSettings {
         }
     }
 
-    pub fn new_from_gvariant(variant: &glib::Variant) -> PrintSettings {
+    pub fn from_gvariant(variant: &glib::Variant) -> PrintSettings {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_print_settings_new_from_gvariant(
@@ -61,7 +61,7 @@ impl PrintSettings {
         }
     }
 
-    pub fn new_from_key_file(
+    pub fn from_key_file(
         key_file: &glib::KeyFile,
         group_name: Option<&str>,
     ) -> Result<PrintSettings, glib::Error> {
@@ -92,8 +92,8 @@ impl PrintSettings {
             value: *const libc::c_char,
             user_data: glib_sys::gpointer,
         ) {
-            let key: GString = from_glib_borrow(key);
-            let value: GString = from_glib_borrow(value);
+            let key: Borrowed<GString> = from_glib_borrow(key);
+            let value: Borrowed<GString> = from_glib_borrow(value);
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             (*callback)(key.as_str(), value.as_str());
         }

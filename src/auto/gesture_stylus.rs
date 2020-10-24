@@ -15,7 +15,6 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use std::ptr;
 use EventController;
 use Gesture;
 use GestureSingle;
@@ -34,7 +33,7 @@ impl GestureStylus {
         unsafe { Gesture::from_glib_full(gtk_sys::gtk_gesture_stylus_new()).unsafe_cast() }
     }
 
-    //pub fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 10, id: 5 }, values: Vec<f64>) -> bool {
+    //pub fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 11, id: 4 }, values: Vec<f64>) -> bool {
     //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_axes() }
     //}
 
@@ -55,25 +54,9 @@ impl GestureStylus {
         }
     }
 
-    pub fn get_backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
-        unsafe {
-            let mut backlog = ptr::null_mut();
-            let mut n_elems = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_gesture_stylus_get_backlog(
-                self.to_glib_none().0,
-                &mut backlog,
-                n_elems.as_mut_ptr(),
-            ));
-            if ret {
-                Some(FromGlibContainer::from_glib_full_num(
-                    backlog,
-                    n_elems.assume_init() as usize,
-                ))
-            } else {
-                None
-            }
-        }
-    }
+    //pub fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
+    //    unsafe { TODO: call gtk_sys:gtk_gesture_stylus_get_backlog() }
+    //}
 
     pub fn get_device_tool(&self) -> Option<gdk::DeviceTool> {
         unsafe {
@@ -98,7 +81,9 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"down\0".as_ptr() as *const _,
-                Some(transmute(down_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    down_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -122,7 +107,9 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"motion\0".as_ptr() as *const _,
-                Some(transmute(motion_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    motion_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -146,7 +133,9 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"proximity\0".as_ptr() as *const _,
-                Some(transmute(proximity_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    proximity_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -167,7 +156,9 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"up\0".as_ptr() as *const _,
-                Some(transmute(up_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    up_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

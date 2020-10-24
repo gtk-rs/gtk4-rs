@@ -13,55 +13,6 @@ use gobject_sys;
 use gtk_sys;
 
 bitflags! {
-    pub struct AccelFlags: u32 {
-        const VISIBLE = 1;
-        const LOCKED = 2;
-        const MASK = 7;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for AccelFlags {
-    type GlibType = gtk_sys::GtkAccelFlags;
-
-    fn to_glib(&self) -> gtk_sys::GtkAccelFlags {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkAccelFlags> for AccelFlags {
-    fn from_glib(value: gtk_sys::GtkAccelFlags) -> AccelFlags {
-        skip_assert_initialized!();
-        AccelFlags::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for AccelFlags {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_accel_flags_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for AccelFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for AccelFlags {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for AccelFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct ApplicationInhibitFlags: u32 {
         const LOGOUT = 1;
         const SWITCH = 2;
@@ -112,51 +63,47 @@ impl SetValue for ApplicationInhibitFlags {
 }
 
 bitflags! {
-    pub struct CalendarDisplayOptions: u32 {
-        const SHOW_HEADING = 1;
-        const SHOW_DAY_NAMES = 2;
-        const NO_MONTH_CHANGE = 4;
-        const SHOW_WEEK_NUMBERS = 8;
-        const SHOW_DETAILS = 32;
+    pub struct BuilderClosureFlags: u32 {
+        const SWAPPED = 1;
     }
 }
 
 #[doc(hidden)]
-impl ToGlib for CalendarDisplayOptions {
-    type GlibType = gtk_sys::GtkCalendarDisplayOptions;
+impl ToGlib for BuilderClosureFlags {
+    type GlibType = gtk_sys::GtkBuilderClosureFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkCalendarDisplayOptions {
+    fn to_glib(&self) -> gtk_sys::GtkBuilderClosureFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkCalendarDisplayOptions> for CalendarDisplayOptions {
-    fn from_glib(value: gtk_sys::GtkCalendarDisplayOptions) -> CalendarDisplayOptions {
+impl FromGlib<gtk_sys::GtkBuilderClosureFlags> for BuilderClosureFlags {
+    fn from_glib(value: gtk_sys::GtkBuilderClosureFlags) -> BuilderClosureFlags {
         skip_assert_initialized!();
-        CalendarDisplayOptions::from_bits_truncate(value)
+        BuilderClosureFlags::from_bits_truncate(value)
     }
 }
 
-impl StaticType for CalendarDisplayOptions {
+impl StaticType for BuilderClosureFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_calendar_display_options_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_builder_closure_flags_get_type()) }
     }
 }
 
-impl<'a> FromValueOptional<'a> for CalendarDisplayOptions {
+impl<'a> FromValueOptional<'a> for BuilderClosureFlags {
     unsafe fn from_value_optional(value: &Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
-impl<'a> FromValue<'a> for CalendarDisplayOptions {
+impl<'a> FromValue<'a> for BuilderClosureFlags {
     unsafe fn from_value(value: &Value) -> Self {
         from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for CalendarDisplayOptions {
+impl SetValue for BuilderClosureFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -227,13 +174,14 @@ bitflags! {
         const BUILDER = 128;
         const SIZE_REQUEST = 256;
         const NO_CSS_CACHE = 512;
-        const BASELINES = 1024;
-        const INTERACTIVE = 2048;
-        const TOUCHSCREEN = 4096;
-        const ACTIONS = 8192;
-        const RESIZE = 16384;
-        const LAYOUT = 32768;
-        const SNAPSHOT = 65536;
+        const INTERACTIVE = 1024;
+        const TOUCHSCREEN = 2048;
+        const ACTIONS = 4096;
+        const LAYOUT = 8192;
+        const SNAPSHOT = 16384;
+        const CONSTRAINTS = 32768;
+        const BUILDER_OBJECTS = 65536;
+        const A11Y = 131072;
     }
 }
 
@@ -273,56 +221,6 @@ impl<'a> FromValue<'a> for DebugFlag {
 }
 
 impl SetValue for DebugFlag {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
-    pub struct DestDefaults: u32 {
-        const MOTION = 1;
-        const HIGHLIGHT = 2;
-        const DROP = 4;
-        const ALL = 7;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for DestDefaults {
-    type GlibType = gtk_sys::GtkDestDefaults;
-
-    fn to_glib(&self) -> gtk_sys::GtkDestDefaults {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDestDefaults> for DestDefaults {
-    fn from_glib(value: gtk_sys::GtkDestDefaults) -> DestDefaults {
-        skip_assert_initialized!();
-        DestDefaults::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for DestDefaults {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_dest_defaults_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for DestDefaults {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for DestDefaults {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for DestDefaults {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -430,56 +328,6 @@ impl SetValue for EventControllerScrollFlags {
 }
 
 bitflags! {
-    pub struct FileFilterFlags: u32 {
-        const FILENAME = 1;
-        const URI = 2;
-        const DISPLAY_NAME = 4;
-        const MIME_TYPE = 8;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for FileFilterFlags {
-    type GlibType = gtk_sys::GtkFileFilterFlags;
-
-    fn to_glib(&self) -> gtk_sys::GtkFileFilterFlags {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkFileFilterFlags> for FileFilterFlags {
-    fn from_glib(value: gtk_sys::GtkFileFilterFlags) -> FileFilterFlags {
-        skip_assert_initialized!();
-        FileFilterFlags::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for FileFilterFlags {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_file_filter_flags_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for FileFilterFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for FileFilterFlags {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for FileFilterFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct FontChooserLevel: u32 {
         const FAMILY = 0;
         const STYLE = 1;
@@ -532,15 +380,9 @@ impl SetValue for FontChooserLevel {
 
 bitflags! {
     pub struct IconLookupFlags: u32 {
-        const NO_SVG = 1;
-        const FORCE_SVG = 2;
-        const USE_BUILTIN = 4;
-        const GENERIC_FALLBACK = 8;
-        const FORCE_SIZE = 16;
-        const FORCE_REGULAR = 32;
-        const FORCE_SYMBOLIC = 64;
-        const DIR_LTR = 128;
-        const DIR_RTL = 256;
+        const FORCE_REGULAR = 1;
+        const FORCE_SYMBOLIC = 2;
+        const PRELOAD = 4;
     }
 }
 
@@ -742,6 +584,100 @@ impl SetValue for PlacesOpenFlags {
 }
 
 bitflags! {
+    pub struct PopoverMenuFlags: u32 {
+        const NESTED = 1;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for PopoverMenuFlags {
+    type GlibType = gtk_sys::GtkPopoverMenuFlags;
+
+    fn to_glib(&self) -> gtk_sys::GtkPopoverMenuFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkPopoverMenuFlags> for PopoverMenuFlags {
+    fn from_glib(value: gtk_sys::GtkPopoverMenuFlags) -> PopoverMenuFlags {
+        skip_assert_initialized!();
+        PopoverMenuFlags::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for PopoverMenuFlags {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_popover_menu_flags_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for PopoverMenuFlags {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for PopoverMenuFlags {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for PopoverMenuFlags {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+bitflags! {
+    pub struct ShortcutActionFlags: u32 {
+        const EXCLUSIVE = 1;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ShortcutActionFlags {
+    type GlibType = gtk_sys::GtkShortcutActionFlags;
+
+    fn to_glib(&self) -> gtk_sys::GtkShortcutActionFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkShortcutActionFlags> for ShortcutActionFlags {
+    fn from_glib(value: gtk_sys::GtkShortcutActionFlags) -> ShortcutActionFlags {
+        skip_assert_initialized!();
+        ShortcutActionFlags::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for ShortcutActionFlags {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_shortcut_action_flags_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ShortcutActionFlags {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ShortcutActionFlags {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ShortcutActionFlags {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+bitflags! {
     pub struct StateFlags: u32 {
         const NORMAL = 0;
         const ACTIVE = 1;
@@ -758,6 +694,7 @@ bitflags! {
         const CHECKED = 2048;
         const DROP_ACTIVE = 4096;
         const FOCUS_VISIBLE = 8192;
+        const FOCUS_WITHIN = 16384;
     }
 }
 
@@ -807,6 +744,7 @@ bitflags! {
         const NONE = 0;
         const RECURSE = 1;
         const SHOW_STYLE = 2;
+        const SHOW_CHANGE = 4;
     }
 }
 

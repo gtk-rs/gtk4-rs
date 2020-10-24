@@ -3,16 +3,24 @@
 // DO NOT EDIT
 
 use glib;
+use glib::object::Cast;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
+use glib::StaticType;
+use glib::ToValue;
+use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 use Buildable;
-use FileFilterFlags;
-use FileFilterInfo;
+use Filter;
 
 glib_wrapper! {
-    pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @implements Buildable;
+    pub struct FileFilter(Object<gtk_sys::GtkFileFilter, FileFilterClass>) @extends Filter, @implements Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_file_filter_get_type(),
@@ -22,49 +30,15 @@ glib_wrapper! {
 impl FileFilter {
     pub fn new() -> FileFilter {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(gtk_sys::gtk_file_filter_new()) }
+        unsafe { from_glib_full(gtk_sys::gtk_file_filter_new()) }
     }
 
-    pub fn new_from_gvariant(variant: &glib::Variant) -> FileFilter {
+    pub fn from_gvariant(variant: &glib::Variant) -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(
                 variant.to_glib_none().0,
             ))
-        }
-    }
-
-    pub fn add_custom<P: Fn(&FileFilterInfo) -> bool + 'static>(
-        &self,
-        needed: FileFilterFlags,
-        func: P,
-    ) {
-        let func_data: Box_<P> = Box_::new(func);
-        unsafe extern "C" fn func_func<P: Fn(&FileFilterInfo) -> bool + 'static>(
-            filter_info: *const gtk_sys::GtkFileFilterInfo,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let filter_info = from_glib_borrow(filter_info);
-            let callback: &P = &*(data as *mut _);
-            let res = (*callback)(&filter_info);
-            res.to_glib()
-        }
-        let func = Some(func_func::<P> as _);
-        unsafe extern "C" fn notify_func<P: Fn(&FileFilterInfo) -> bool + 'static>(
-            data: glib_sys::gpointer,
-        ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call4 = Some(notify_func::<P> as _);
-        let super_callback0: Box_<P> = func_data;
-        unsafe {
-            gtk_sys::gtk_file_filter_add_custom(
-                self.to_glib_none().0,
-                needed.to_glib(),
-                func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call4,
-            );
         }
     }
 
@@ -89,27 +63,75 @@ impl FileFilter {
         }
     }
 
-    pub fn filter(&self, filter_info: &FileFilterInfo) -> bool {
+    pub fn get_attributes(&self) -> Vec<GString> {
         unsafe {
-            from_glib(gtk_sys::gtk_file_filter_filter(
+            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_file_filter_get_attributes(
                 self.to_glib_none().0,
-                filter_info.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_needed(&self) -> FileFilterFlags {
-        unsafe { from_glib(gtk_sys::gtk_file_filter_get_needed(self.to_glib_none().0)) }
-    }
-
     pub fn to_gvariant(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
+    }
+
+    pub fn connect_property_name_notify<F: Fn(&FileFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_name_trampoline<F: Fn(&FileFilter) + 'static>(
+            this: *mut gtk_sys::GtkFileFilter,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
 impl Default for FileFilter {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct FileFilterBuilder {
+    name: Option<String>,
+}
+
+impl FileFilterBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> FileFilter {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        let ret = glib::Object::new(FileFilter::static_type(), &properties)
+            .expect("object new")
+            .downcast::<FileFilter>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
     }
 }
 

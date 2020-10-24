@@ -9,6 +9,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -26,8 +28,8 @@ glib_wrapper! {
 
 impl TreeListModel {
     pub fn new<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
-        passthrough: bool,
         root: &P,
+        passthrough: bool,
         autoexpand: bool,
         create_func: Q,
     ) -> TreeListModel {
@@ -43,9 +45,7 @@ impl TreeListModel {
             let item = from_glib_borrow(item);
             let callback: &Q = &*(user_data as *mut _);
             let res = (*callback)(&item);
-            res /*Not checked*/
-                .to_glib_none()
-                .0
+            res.to_glib_full()
         }
         let create_func = Some(create_func_func::<P, Q> as _);
         unsafe extern "C" fn user_destroy_func<
@@ -60,14 +60,51 @@ impl TreeListModel {
         let super_callback0: Box_<Q> = create_func_data;
         unsafe {
             from_glib_full(gtk_sys::gtk_tree_list_model_new(
+                root.as_ref().to_glib_full(),
                 passthrough.to_glib(),
-                root.as_ref().to_glib_none().0,
                 autoexpand.to_glib(),
                 create_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call5,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct TreeListModelBuilder {
+    autoexpand: Option<bool>,
+    passthrough: Option<bool>,
+}
+
+impl TreeListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> TreeListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref autoexpand) = self.autoexpand {
+            properties.push(("autoexpand", autoexpand));
+        }
+        if let Some(ref passthrough) = self.passthrough {
+            properties.push(("passthrough", passthrough));
+        }
+        let ret = glib::Object::new(TreeListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<TreeListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn autoexpand(mut self, autoexpand: bool) -> Self {
+        self.autoexpand = Some(autoexpand);
+        self
+    }
+
+    pub fn passthrough(mut self, passthrough: bool) -> Self {
+        self.passthrough = Some(passthrough);
+        self
     }
 }
 
@@ -152,14 +189,16 @@ impl<O: IsA<TreeListModel>> TreeListModelExt for O {
             P: IsA<TreeListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoexpand\0".as_ptr() as *const _,
-                Some(transmute(notify_autoexpand_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autoexpand_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -174,14 +213,16 @@ impl<O: IsA<TreeListModel>> TreeListModelExt for O {
             P: IsA<TreeListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast())
+            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

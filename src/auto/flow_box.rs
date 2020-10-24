@@ -8,6 +8,7 @@ use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -21,10 +22,12 @@ use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Adjustment;
 use Align;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use FlowBoxChild;
 use LayoutManager;
 use MovementStep;
@@ -35,7 +38,7 @@ use SelectionMode;
 use Widget;
 
 glib_wrapper! {
-    pub struct FlowBox(Object<gtk_sys::GtkFlowBox, gtk_sys::GtkFlowBoxClass, FlowBoxClass>) @extends Container, Widget, @implements Buildable, Orientable;
+    pub struct FlowBox(Object<gtk_sys::GtkFlowBox, FlowBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_flow_box_get_type(),
@@ -46,6 +49,796 @@ impl FlowBox {
     pub fn new() -> FlowBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(gtk_sys::gtk_flow_box_new()).unsafe_cast() }
+    }
+
+    pub fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
+        &self,
+        model: Option<&P>,
+        create_widget_func: Q,
+    ) {
+        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<
+            P: IsA<gio::ListModel>,
+            Q: Fn(&glib::Object) -> Widget + 'static,
+        >(
+            item: *mut gobject_sys::GObject,
+            user_data: glib_sys::gpointer,
+        ) -> *mut gtk_sys::GtkWidget {
+            let item = from_glib_borrow(item);
+            let callback: &Q = &*(user_data as *mut _);
+            let res = (*callback)(&item);
+            res.to_glib_full()
+        }
+        let create_widget_func = Some(create_widget_func_func::<P, Q> as _);
+        unsafe extern "C" fn user_data_free_func_func<
+            P: IsA<gio::ListModel>,
+            Q: Fn(&glib::Object) -> Widget + 'static,
+        >(
+            data: glib_sys::gpointer,
+        ) {
+            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call4 = Some(user_data_free_func_func::<P, Q> as _);
+        let super_callback0: Box_<Q> = create_widget_func_data;
+        unsafe {
+            gtk_sys::gtk_flow_box_bind_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+                create_widget_func,
+                Box_::into_raw(super_callback0) as *mut _,
+                destroy_call4,
+            );
+        }
+    }
+
+    pub fn get_activate_on_single_click(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_flow_box_get_activate_on_single_click(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_flow_box_get_child_at_index(
+                self.to_glib_none().0,
+                idx,
+            ))
+        }
+    }
+
+    pub fn get_child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_flow_box_get_child_at_pos(
+                self.to_glib_none().0,
+                x,
+                y,
+            ))
+        }
+    }
+
+    pub fn get_column_spacing(&self) -> u32 {
+        unsafe { gtk_sys::gtk_flow_box_get_column_spacing(self.to_glib_none().0) }
+    }
+
+    pub fn get_homogeneous(&self) -> bool {
+        unsafe { from_glib(gtk_sys::gtk_flow_box_get_homogeneous(self.to_glib_none().0)) }
+    }
+
+    pub fn get_max_children_per_line(&self) -> u32 {
+        unsafe { gtk_sys::gtk_flow_box_get_max_children_per_line(self.to_glib_none().0) }
+    }
+
+    pub fn get_min_children_per_line(&self) -> u32 {
+        unsafe { gtk_sys::gtk_flow_box_get_min_children_per_line(self.to_glib_none().0) }
+    }
+
+    pub fn get_row_spacing(&self) -> u32 {
+        unsafe { gtk_sys::gtk_flow_box_get_row_spacing(self.to_glib_none().0) }
+    }
+
+    pub fn get_selected_children(&self) -> Vec<FlowBoxChild> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_flow_box_get_selected_children(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_selection_mode(&self) -> SelectionMode {
+        unsafe {
+            from_glib(gtk_sys::gtk_flow_box_get_selection_mode(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn insert<P: IsA<Widget>>(&self, widget: &P, position: i32) {
+        unsafe {
+            gtk_sys::gtk_flow_box_insert(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                position,
+            );
+        }
+    }
+
+    pub fn invalidate_filter(&self) {
+        unsafe {
+            gtk_sys::gtk_flow_box_invalidate_filter(self.to_glib_none().0);
+        }
+    }
+
+    pub fn invalidate_sort(&self) {
+        unsafe {
+            gtk_sys::gtk_flow_box_invalidate_sort(self.to_glib_none().0);
+        }
+    }
+
+    pub fn remove<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            gtk_sys::gtk_flow_box_remove(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
+        }
+    }
+
+    pub fn select_all(&self) {
+        unsafe {
+            gtk_sys::gtk_flow_box_select_all(self.to_glib_none().0);
+        }
+    }
+
+    pub fn select_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_flow_box_select_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn selected_foreach<P: FnMut(&FlowBox, &FlowBoxChild)>(&self, func: P) {
+        let func_data: P = func;
+        unsafe extern "C" fn func_func<P: FnMut(&FlowBox, &FlowBoxChild)>(
+            box_: *mut gtk_sys::GtkFlowBox,
+            child: *mut gtk_sys::GtkFlowBoxChild,
+            user_data: glib_sys::gpointer,
+        ) {
+            let box_ = from_glib_borrow(box_);
+            let child = from_glib_borrow(child);
+            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            (*callback)(&box_, &child);
+        }
+        let func = Some(func_func::<P> as _);
+        let super_callback0: &P = &func_data;
+        unsafe {
+            gtk_sys::gtk_flow_box_selected_foreach(
+                self.to_glib_none().0,
+                func,
+                super_callback0 as *const _ as usize as *mut _,
+            );
+        }
+    }
+
+    pub fn set_activate_on_single_click(&self, single: bool) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_activate_on_single_click(
+                self.to_glib_none().0,
+                single.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_column_spacing(&self, spacing: u32) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_column_spacing(self.to_glib_none().0, spacing);
+        }
+    }
+
+    pub fn set_filter_func(
+        &self,
+        filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>,
+    ) {
+        let filter_func_data: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+            Box_::new(filter_func);
+        unsafe extern "C" fn filter_func_func(
+            child: *mut gtk_sys::GtkFlowBoxChild,
+            user_data: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
+            let child = from_glib_borrow(child);
+            let callback: &Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>> =
+                &*(user_data as *mut _);
+            let res = if let Some(ref callback) = *callback {
+                callback(&child)
+            } else {
+                panic!("cannot get closure...")
+            };
+            res.to_glib()
+        }
+        let filter_func = if filter_func_data.is_some() {
+            Some(filter_func_func as _)
+        } else {
+            None
+        };
+        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+            let _callback: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+                Box_::from_raw(data as *mut _);
+        }
+        let destroy_call3 = Some(destroy_func as _);
+        let super_callback0: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
+            filter_func_data;
+        unsafe {
+            gtk_sys::gtk_flow_box_set_filter_func(
+                self.to_glib_none().0,
+                filter_func,
+                Box_::into_raw(super_callback0) as *mut _,
+                destroy_call3,
+            );
+        }
+    }
+
+    pub fn set_hadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_hadjustment(
+                self.to_glib_none().0,
+                adjustment.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_homogeneous(&self, homogeneous: bool) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+        }
+    }
+
+    pub fn set_max_children_per_line(&self, n_children: u32) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_max_children_per_line(self.to_glib_none().0, n_children);
+        }
+    }
+
+    pub fn set_min_children_per_line(&self, n_children: u32) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_min_children_per_line(self.to_glib_none().0, n_children);
+        }
+    }
+
+    pub fn set_row_spacing(&self, spacing: u32) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_row_spacing(self.to_glib_none().0, spacing);
+        }
+    }
+
+    pub fn set_selection_mode(&self, mode: SelectionMode) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_selection_mode(self.to_glib_none().0, mode.to_glib());
+        }
+    }
+
+    pub fn set_sort_func(
+        &self,
+        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+    ) {
+        let sort_func_data: Box_<
+            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        > = Box_::new(sort_func);
+        unsafe extern "C" fn sort_func_func(
+            child1: *mut gtk_sys::GtkFlowBoxChild,
+            child2: *mut gtk_sys::GtkFlowBoxChild,
+            user_data: glib_sys::gpointer,
+        ) -> libc::c_int {
+            let child1 = from_glib_borrow(child1);
+            let child2 = from_glib_borrow(child2);
+            let callback: &Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>> =
+                &*(user_data as *mut _);
+            let res = if let Some(ref callback) = *callback {
+                callback(&child1, &child2)
+            } else {
+                panic!("cannot get closure...")
+            };
+            res
+        }
+        let sort_func = if sort_func_data.is_some() {
+            Some(sort_func_func as _)
+        } else {
+            None
+        };
+        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+            let _callback: Box_<
+                Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+            > = Box_::from_raw(data as *mut _);
+        }
+        let destroy_call3 = Some(destroy_func as _);
+        let super_callback0: Box_<
+            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        > = sort_func_data;
+        unsafe {
+            gtk_sys::gtk_flow_box_set_sort_func(
+                self.to_glib_none().0,
+                sort_func,
+                Box_::into_raw(super_callback0) as *mut _,
+                destroy_call3,
+            );
+        }
+    }
+
+    pub fn set_vadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
+        unsafe {
+            gtk_sys::gtk_flow_box_set_vadjustment(
+                self.to_glib_none().0,
+                adjustment.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn unselect_all(&self) {
+        unsafe {
+            gtk_sys::gtk_flow_box_unselect_all(self.to_glib_none().0);
+        }
+    }
+
+    pub fn unselect_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_flow_box_unselect_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_accept_unpaired_release(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"accept-unpaired-release\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `accept-unpaired-release` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_accept_unpaired_release(&self, accept_unpaired_release: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"accept-unpaired-release\0".as_ptr() as *const _,
+                Value::from(&accept_unpaired_release).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_activate_cursor_child<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn activate_cursor_child_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate-cursor-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_cursor_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_activate_cursor_child(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("activate-cursor-child", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_child_activated<F: Fn(&FlowBox, &FlowBoxChild) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn child_activated_trampoline<
+            F: Fn(&FlowBox, &FlowBoxChild) + 'static,
+        >(
+            this: *mut gtk_sys::GtkFlowBox,
+            child: *mut gtk_sys::GtkFlowBoxChild,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), &from_glib_borrow(child))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"child-activated\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    child_activated_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_move_cursor<F: Fn(&FlowBox, MovementStep, i32, bool, bool) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn move_cursor_trampoline<
+            F: Fn(&FlowBox, MovementStep, i32, bool, bool) -> bool + 'static,
+        >(
+            this: *mut gtk_sys::GtkFlowBox,
+            step: gtk_sys::GtkMovementStep,
+            count: libc::c_int,
+            extend: glib_sys::gboolean,
+            modify: glib_sys::gboolean,
+            f: glib_sys::gpointer,
+        ) -> glib_sys::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                from_glib(step),
+                count,
+                from_glib(extend),
+                from_glib(modify),
+            )
+            .to_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"move-cursor\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    move_cursor_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_move_cursor(
+        &self,
+        step: MovementStep,
+        count: i32,
+        extend: bool,
+        modify: bool,
+    ) -> bool {
+        let res = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("move-cursor", &[&step, &count, &extend, &modify])
+                .unwrap()
+        };
+        res.unwrap()
+            .get()
+            .expect("Return Value for `emit_move_cursor`")
+            .unwrap()
+    }
+
+    pub fn connect_select_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn select_all_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"select-all\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    select_all_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_select_all(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("select-all", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_selected_children_changed<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn selected_children_changed_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"selected-children-changed\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    selected_children_changed_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_toggle_cursor_child<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn toggle_cursor_child_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"toggle-cursor-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    toggle_cursor_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_toggle_cursor_child(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("toggle-cursor-child", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_unselect_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn unselect_all_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"unselect-all\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    unselect_all_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_unselect_all(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("unselect-all", &[])
+                .unwrap()
+        };
+    }
+
+    pub fn connect_property_accept_unpaired_release_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accept_unpaired_release_trampoline<
+            F: Fn(&FlowBox) + 'static,
+        >(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accept-unpaired-release\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accept_unpaired_release_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_activate_on_single_click_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activate_on_single_click_trampoline<
+            F: Fn(&FlowBox) + 'static,
+        >(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::activate-on-single-click\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_activate_on_single_click_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_column_spacing_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::column-spacing\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_spacing_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_homogeneous_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::homogeneous\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_homogeneous_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_max_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_children_per_line_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::max-children-per-line\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_children_per_line_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_min_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_min_children_per_line_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::min-children-per-line\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_min_children_per_line_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_row_spacing_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-spacing\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_spacing_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_selection_mode_notify<F: Fn(&FlowBox) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_selection_mode_trampoline<F: Fn(&FlowBox) + 'static>(
+            this: *mut gtk_sys::GtkFlowBox,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::selection-mode\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selection_mode_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -67,19 +860,17 @@ pub struct FlowBoxBuilder {
     selection_mode: Option<SelectionMode>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -96,6 +887,7 @@ pub struct FlowBoxBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     orientation: Option<Orientation>,
 }
 
@@ -136,23 +928,23 @@ impl FlowBoxBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -166,14 +958,8 @@ impl FlowBoxBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -223,13 +1009,17 @@ impl FlowBoxBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new(FlowBox::static_type(), &properties)
+        let ret = glib::Object::new(FlowBox::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<FlowBox>()
+            .expect("downcast");
+        ret
     }
 
     pub fn accept_unpaired_release(mut self, accept_unpaired_release: bool) -> Self {
@@ -282,6 +1072,11 @@ impl FlowBoxBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -292,23 +1087,18 @@ impl FlowBoxBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -332,18 +1122,8 @@ impl FlowBoxBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -427,942 +1207,14 @@ impl FlowBoxBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn orientation(mut self, orientation: Orientation) -> Self {
         self.orientation = Some(orientation);
         self
-    }
-}
-
-pub const NONE_FLOW_BOX: Option<&FlowBox> = None;
-
-pub trait FlowBoxExt: 'static {
-    fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
-        &self,
-        model: Option<&P>,
-        create_widget_func: Q,
-    );
-
-    fn get_activate_on_single_click(&self) -> bool;
-
-    fn get_child_at_index(&self, idx: i32) -> Option<FlowBoxChild>;
-
-    fn get_child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild>;
-
-    fn get_column_spacing(&self) -> u32;
-
-    fn get_homogeneous(&self) -> bool;
-
-    fn get_max_children_per_line(&self) -> u32;
-
-    fn get_min_children_per_line(&self) -> u32;
-
-    fn get_row_spacing(&self) -> u32;
-
-    fn get_selected_children(&self) -> Vec<FlowBoxChild>;
-
-    fn get_selection_mode(&self) -> SelectionMode;
-
-    fn insert<P: IsA<Widget>>(&self, widget: &P, position: i32);
-
-    fn invalidate_filter(&self);
-
-    fn invalidate_sort(&self);
-
-    fn select_all(&self);
-
-    fn select_child<P: IsA<FlowBoxChild>>(&self, child: &P);
-
-    fn selected_foreach<P: FnMut(&FlowBox, &FlowBoxChild)>(&self, func: P);
-
-    fn set_activate_on_single_click(&self, single: bool);
-
-    fn set_column_spacing(&self, spacing: u32);
-
-    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>);
-
-    fn set_hadjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
-
-    fn set_homogeneous(&self, homogeneous: bool);
-
-    fn set_max_children_per_line(&self, n_children: u32);
-
-    fn set_min_children_per_line(&self, n_children: u32);
-
-    fn set_row_spacing(&self, spacing: u32);
-
-    fn set_selection_mode(&self, mode: SelectionMode);
-
-    fn set_sort_func(
-        &self,
-        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-    );
-
-    fn set_vadjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
-
-    fn unselect_all(&self);
-
-    fn unselect_child<P: IsA<FlowBoxChild>>(&self, child: &P);
-
-    fn get_property_accept_unpaired_release(&self) -> bool;
-
-    fn set_property_accept_unpaired_release(&self, accept_unpaired_release: bool);
-
-    fn connect_activate_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate_cursor_child(&self);
-
-    fn connect_child_activated<F: Fn(&Self, &FlowBoxChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_cursor(&self, step: MovementStep, count: i32) -> bool;
-
-    fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_select_all(&self);
-
-    fn connect_selected_children_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_toggle_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_cursor_child(&self);
-
-    fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_unselect_all(&self);
-
-    fn connect_property_accept_unpaired_release_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_max_children_per_line_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_min_children_per_line_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_selection_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<FlowBox>> FlowBoxExt for O {
-    fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
-        &self,
-        model: Option<&P>,
-        create_widget_func: Q,
-    ) {
-        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
-        unsafe extern "C" fn create_widget_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Widget + 'static,
-        >(
-            item: *mut gobject_sys::GObject,
-            user_data: glib_sys::gpointer,
-        ) -> *mut gtk_sys::GtkWidget {
-            let item = from_glib_borrow(item);
-            let callback: &Q = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
-        }
-        let create_widget_func = Some(create_widget_func_func::<P, Q> as _);
-        unsafe extern "C" fn user_data_free_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Widget + 'static,
-        >(
-            data: glib_sys::gpointer,
-        ) {
-            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call4 = Some(user_data_free_func_func::<P, Q> as _);
-        let super_callback0: Box_<Q> = create_widget_func_data;
-        unsafe {
-            gtk_sys::gtk_flow_box_bind_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-                create_widget_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call4,
-            );
-        }
-    }
-
-    fn get_activate_on_single_click(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_flow_box_get_activate_on_single_click(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_flow_box_get_child_at_index(
-                self.as_ref().to_glib_none().0,
-                idx,
-            ))
-        }
-    }
-
-    fn get_child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_flow_box_get_child_at_pos(
-                self.as_ref().to_glib_none().0,
-                x,
-                y,
-            ))
-        }
-    }
-
-    fn get_column_spacing(&self) -> u32 {
-        unsafe { gtk_sys::gtk_flow_box_get_column_spacing(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_homogeneous(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_flow_box_get_homogeneous(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_max_children_per_line(&self) -> u32 {
-        unsafe { gtk_sys::gtk_flow_box_get_max_children_per_line(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_min_children_per_line(&self) -> u32 {
-        unsafe { gtk_sys::gtk_flow_box_get_min_children_per_line(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_row_spacing(&self) -> u32 {
-        unsafe { gtk_sys::gtk_flow_box_get_row_spacing(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_selected_children(&self) -> Vec<FlowBoxChild> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_flow_box_get_selected_children(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_selection_mode(&self) -> SelectionMode {
-        unsafe {
-            from_glib(gtk_sys::gtk_flow_box_get_selection_mode(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn insert<P: IsA<Widget>>(&self, widget: &P, position: i32) {
-        unsafe {
-            gtk_sys::gtk_flow_box_insert(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                position,
-            );
-        }
-    }
-
-    fn invalidate_filter(&self) {
-        unsafe {
-            gtk_sys::gtk_flow_box_invalidate_filter(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn invalidate_sort(&self) {
-        unsafe {
-            gtk_sys::gtk_flow_box_invalidate_sort(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn select_all(&self) {
-        unsafe {
-            gtk_sys::gtk_flow_box_select_all(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn select_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
-        unsafe {
-            gtk_sys::gtk_flow_box_select_child(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn selected_foreach<P: FnMut(&FlowBox, &FlowBoxChild)>(&self, func: P) {
-        let func_data: P = func;
-        unsafe extern "C" fn func_func<P: FnMut(&FlowBox, &FlowBoxChild)>(
-            box_: *mut gtk_sys::GtkFlowBox,
-            child: *mut gtk_sys::GtkFlowBoxChild,
-            user_data: glib_sys::gpointer,
-        ) {
-            let box_ = from_glib_borrow(box_);
-            let child = from_glib_borrow(child);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(&box_, &child);
-        }
-        let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
-        unsafe {
-            gtk_sys::gtk_flow_box_selected_foreach(
-                self.as_ref().to_glib_none().0,
-                func,
-                super_callback0 as *const _ as usize as *mut _,
-            );
-        }
-    }
-
-    fn set_activate_on_single_click(&self, single: bool) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_activate_on_single_click(
-                self.as_ref().to_glib_none().0,
-                single.to_glib(),
-            );
-        }
-    }
-
-    fn set_column_spacing(&self, spacing: u32) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_column_spacing(self.as_ref().to_glib_none().0, spacing);
-        }
-    }
-
-    fn set_filter_func(&self, filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>) {
-        let filter_func_data: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-            Box_::new(filter_func);
-        unsafe extern "C" fn filter_func_func(
-            child: *mut gtk_sys::GtkFlowBoxChild,
-            user_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
-            let child = from_glib_borrow(child);
-            let callback: &Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&child)
-            } else {
-                panic!("cannot get closure...")
-            };
-            res.to_glib()
-        }
-        let filter_func = if filter_func_data.is_some() {
-            Some(filter_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-                Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-            filter_func_data;
-        unsafe {
-            gtk_sys::gtk_flow_box_set_filter_func(
-                self.as_ref().to_glib_none().0,
-                filter_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
-        }
-    }
-
-    fn set_hadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_hadjustment(
-                self.as_ref().to_glib_none().0,
-                adjustment.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_homogeneous(&self, homogeneous: bool) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_homogeneous(
-                self.as_ref().to_glib_none().0,
-                homogeneous.to_glib(),
-            );
-        }
-    }
-
-    fn set_max_children_per_line(&self, n_children: u32) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_max_children_per_line(
-                self.as_ref().to_glib_none().0,
-                n_children,
-            );
-        }
-    }
-
-    fn set_min_children_per_line(&self, n_children: u32) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_min_children_per_line(
-                self.as_ref().to_glib_none().0,
-                n_children,
-            );
-        }
-    }
-
-    fn set_row_spacing(&self, spacing: u32) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_row_spacing(self.as_ref().to_glib_none().0, spacing);
-        }
-    }
-
-    fn set_selection_mode(&self, mode: SelectionMode) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_selection_mode(
-                self.as_ref().to_glib_none().0,
-                mode.to_glib(),
-            );
-        }
-    }
-
-    fn set_sort_func(
-        &self,
-        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-    ) {
-        let sort_func_data: Box_<
-            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-        > = Box_::new(sort_func);
-        unsafe extern "C" fn sort_func_func(
-            child1: *mut gtk_sys::GtkFlowBoxChild,
-            child2: *mut gtk_sys::GtkFlowBoxChild,
-            user_data: glib_sys::gpointer,
-        ) -> libc::c_int {
-            let child1 = from_glib_borrow(child1);
-            let child2 = from_glib_borrow(child2);
-            let callback: &Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&child1, &child2)
-            } else {
-                panic!("cannot get closure...")
-            };
-            res
-        }
-        let sort_func = if sort_func_data.is_some() {
-            Some(sort_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
-            let _callback: Box_<
-                Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-            > = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-        > = sort_func_data;
-        unsafe {
-            gtk_sys::gtk_flow_box_set_sort_func(
-                self.as_ref().to_glib_none().0,
-                sort_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
-        }
-    }
-
-    fn set_vadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
-        unsafe {
-            gtk_sys::gtk_flow_box_set_vadjustment(
-                self.as_ref().to_glib_none().0,
-                adjustment.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn unselect_all(&self) {
-        unsafe {
-            gtk_sys::gtk_flow_box_unselect_all(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn unselect_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
-        unsafe {
-            gtk_sys::gtk_flow_box_unselect_child(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_accept_unpaired_release(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"accept-unpaired-release\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accept-unpaired-release` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_accept_unpaired_release(&self, accept_unpaired_release: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"accept-unpaired-release\0".as_ptr() as *const _,
-                Value::from(&accept_unpaired_release).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_activate_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_cursor_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"activate-cursor-child\0".as_ptr() as *const _,
-                Some(transmute(
-                    activate_cursor_child_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_activate_cursor_child(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("activate-cursor-child", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_child_activated<F: Fn(&Self, &FlowBoxChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn child_activated_trampoline<P, F: Fn(&P, &FlowBoxChild) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            child: *mut gtk_sys::GtkFlowBoxChild,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &FlowBox::from_glib_borrow(this).unsafe_cast(),
-                &from_glib_borrow(child),
-            )
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"child-activated\0".as_ptr() as *const _,
-                Some(transmute(child_activated_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn move_cursor_trampoline<
-            P,
-            F: Fn(&P, MovementStep, i32) -> bool + 'static,
-        >(
-            this: *mut gtk_sys::GtkFlowBox,
-            step: gtk_sys::GtkMovementStep,
-            count: libc::c_int,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(
-                &FlowBox::from_glib_borrow(this).unsafe_cast(),
-                from_glib(step),
-                count,
-            )
-            .to_glib()
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute(move_cursor_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_move_cursor(&self, step: MovementStep, count: i32) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("move-cursor", &[&step, &count])
-                .unwrap()
-        };
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_move_cursor`")
-            .unwrap()
-    }
-
-    fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"select-all\0".as_ptr() as *const _,
-                Some(transmute(select_all_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_select_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("select-all", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_selected_children_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn selected_children_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"selected-children-changed\0".as_ptr() as *const _,
-                Some(transmute(
-                    selected_children_changed_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_toggle_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggle_cursor_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"toggle-cursor-child\0".as_ptr() as *const _,
-                Some(transmute(
-                    toggle_cursor_child_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_toggle_cursor_child(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("toggle-cursor-child", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute(unselect_all_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn emit_unselect_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("unselect-all", &[])
-                .unwrap()
-        };
-    }
-
-    fn connect_property_accept_unpaired_release_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_accept_unpaired_release_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::accept-unpaired-release\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_accept_unpaired_release_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_activate_on_single_click_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_activate_on_single_click_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_column_spacing_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(transmute(notify_homogeneous_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_max_children_per_line_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_children_per_line_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::max-children-per-line\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_max_children_per_line_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_min_children_per_line_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_min_children_per_line_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::min-children-per-line\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_min_children_per_line_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_row_spacing_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_selection_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_selection_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlowBox,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FlowBox>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlowBox::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_selection_mode_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

@@ -6,6 +6,7 @@ use gdk;
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -19,8 +20,11 @@ use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Buildable;
+use ConstraintTarget;
 use FontChooser;
 use FontChooserLevel;
 use LayoutManager;
@@ -28,7 +32,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct FontChooserWidget(Object<gtk_sys::GtkFontChooserWidget, gtk_sys::GtkFontChooserWidgetClass, FontChooserWidgetClass>) @extends Widget, @implements Buildable, FontChooser;
+    pub struct FontChooserWidget(Object<gtk_sys::GtkFontChooserWidget, FontChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_font_chooser_widget_get_type(),
@@ -39,6 +43,45 @@ impl FontChooserWidget {
     pub fn new() -> FontChooserWidget {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(gtk_sys::gtk_font_chooser_widget_new()).unsafe_cast() }
+    }
+
+    pub fn get_property_tweak_action(&self) -> Option<gio::Action> {
+        unsafe {
+            let mut value = Value::from_type(<gio::Action as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"tweak-action\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `tweak-action` getter")
+        }
+    }
+
+    pub fn connect_property_tweak_action_notify<F: Fn(&FontChooserWidget) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tweak_action_trampoline<F: Fn(&FontChooserWidget) + 'static>(
+            this: *mut gtk_sys::GtkFontChooserWidget,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tweak-action\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tweak_action_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -52,19 +95,17 @@ impl Default for FontChooserWidget {
 pub struct FontChooserWidgetBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -81,6 +122,7 @@ pub struct FontChooserWidgetBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     font: Option<String>,
     font_desc: Option<pango::FontDescription>,
     language: Option<String>,
@@ -102,23 +144,23 @@ impl FontChooserWidgetBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -132,14 +174,8 @@ impl FontChooserWidgetBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -189,6 +225,9 @@ impl FontChooserWidgetBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref font) = self.font {
             properties.push(("font", font));
         }
@@ -207,10 +246,11 @@ impl FontChooserWidgetBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        glib::Object::new(FontChooserWidget::static_type(), &properties)
+        let ret = glib::Object::new(FontChooserWidget::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<FontChooserWidget>()
+            .expect("downcast");
+        ret
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {
@@ -220,6 +260,11 @@ impl FontChooserWidgetBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -233,23 +278,18 @@ impl FontChooserWidgetBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -273,18 +313,8 @@ impl FontChooserWidgetBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -368,6 +398,11 @@ impl FontChooserWidgetBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn font(mut self, font: &str) -> Self {
         self.font = Some(font.to_string());
         self
@@ -396,58 +431,6 @@ impl FontChooserWidgetBuilder {
     pub fn show_preview_entry(mut self, show_preview_entry: bool) -> Self {
         self.show_preview_entry = Some(show_preview_entry);
         self
-    }
-}
-
-pub const NONE_FONT_CHOOSER_WIDGET: Option<&FontChooserWidget> = None;
-
-pub trait FontChooserWidgetExt: 'static {
-    fn get_property_tweak_action(&self) -> Option<gio::Action>;
-
-    fn connect_property_tweak_action_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-}
-
-impl<O: IsA<FontChooserWidget>> FontChooserWidgetExt for O {
-    fn get_property_tweak_action(&self) -> Option<gio::Action> {
-        unsafe {
-            let mut value = Value::from_type(<gio::Action as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"tweak-action\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tweak-action` getter")
-        }
-    }
-
-    fn connect_property_tweak_action_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_tweak_action_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFontChooserWidget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<FontChooserWidget>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FontChooserWidget::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::tweak-action\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_tweak_action_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

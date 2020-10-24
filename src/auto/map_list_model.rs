@@ -10,6 +10,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -28,7 +29,6 @@ glib_wrapper! {
 
 impl MapListModel {
     pub fn new<P: IsA<gio::ListModel>>(
-        item_type: glib::types::Type,
         model: Option<&P>,
         map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
     ) -> MapListModel {
@@ -58,18 +58,45 @@ impl MapListModel {
             let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
-        let destroy_call4 = Some(user_destroy_func::<P> as _);
+        let destroy_call3 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>> =
             map_func_data;
         unsafe {
             from_glib_full(gtk_sys::gtk_map_list_model_new(
-                item_type.to_glib(),
-                model.map(|p| p.as_ref()).to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_full(),
                 map_func,
                 Box_::into_raw(super_callback0) as *mut _,
-                destroy_call4,
+                destroy_call3,
             ))
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct MapListModelBuilder {
+    model: Option<gio::ListModel>,
+}
+
+impl MapListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> MapListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(MapListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<MapListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
     }
 }
 
@@ -85,8 +112,6 @@ pub trait MapListModelExt: 'static {
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
 
     fn get_property_has_map(&self) -> bool;
-
-    fn get_property_item_type(&self) -> glib::types::Type;
 
     fn connect_property_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -174,21 +199,6 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
         }
     }
 
-    fn get_property_item_type(&self) -> glib::types::Type {
-        unsafe {
-            let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"item-type\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `item-type` getter")
-                .unwrap()
-        }
-    }
-
     fn connect_property_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_map_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkMapListModel,
@@ -198,14 +208,16 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
             P: IsA<MapListModel>,
         {
             let f: &F = &*(f as *const F);
-            f(&MapListModel::from_glib_borrow(this).unsafe_cast())
+            f(&MapListModel::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-map\0".as_ptr() as *const _,
-                Some(transmute(notify_has_map_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_map_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

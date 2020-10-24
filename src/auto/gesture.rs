@@ -282,7 +282,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast(),
+                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(sequence),
             )
         }
@@ -291,7 +291,9 @@ impl<O: IsA<Gesture>> GestureExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"begin\0".as_ptr() as *const _,
-                Some(transmute(begin_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    begin_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -307,7 +309,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast(),
+                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(sequence),
             )
         }
@@ -316,7 +318,9 @@ impl<O: IsA<Gesture>> GestureExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"cancel\0".as_ptr() as *const _,
-                Some(transmute(cancel_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    cancel_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -332,7 +336,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast(),
+                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(sequence),
             )
         }
@@ -341,7 +345,9 @@ impl<O: IsA<Gesture>> GestureExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"end\0".as_ptr() as *const _,
-                Some(transmute(end_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    end_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -366,7 +372,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast(),
+                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(sequence),
                 from_glib(state),
             )
@@ -376,8 +382,8 @@ impl<O: IsA<Gesture>> GestureExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"sequence-state-changed\0".as_ptr() as *const _,
-                Some(transmute(
-                    sequence_state_changed_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    sequence_state_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -394,7 +400,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast(),
+                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(sequence),
             )
         }
@@ -403,7 +409,9 @@ impl<O: IsA<Gesture>> GestureExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"update\0".as_ptr() as *const _,
-                Some(transmute(update_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    update_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

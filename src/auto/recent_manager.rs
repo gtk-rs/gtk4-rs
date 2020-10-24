@@ -10,6 +10,7 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -44,6 +45,34 @@ impl RecentManager {
 impl Default for RecentManager {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct RecentManagerBuilder {
+    filename: Option<String>,
+}
+
+impl RecentManagerBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> RecentManager {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref filename) = self.filename {
+            properties.push(("filename", filename));
+        }
+        let ret = glib::Object::new(RecentManager::static_type(), &properties)
+            .expect("object new")
+            .downcast::<RecentManager>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn filename(mut self, filename: &str) -> Self {
+        self.filename = Some(filename.to_string());
+        self
     }
 }
 
@@ -211,14 +240,16 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
             P: IsA<RecentManager>,
         {
             let f: &F = &*(f as *const F);
-            f(&RecentManager::from_glib_borrow(this).unsafe_cast())
+            f(&RecentManager::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute(changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -233,14 +264,16 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
             P: IsA<RecentManager>,
         {
             let f: &F = &*(f as *const F);
-            f(&RecentManager::from_glib_borrow(this).unsafe_cast())
+            f(&RecentManager::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute(notify_size_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

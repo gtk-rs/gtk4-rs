@@ -16,6 +16,1077 @@ use gtk_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleAutocomplete {
+    None,
+    Inline,
+    List,
+    Both,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleAutocomplete {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleAutocomplete::{}",
+            match *self {
+                AccessibleAutocomplete::None => "None",
+                AccessibleAutocomplete::Inline => "Inline",
+                AccessibleAutocomplete::List => "List",
+                AccessibleAutocomplete::Both => "Both",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleAutocomplete {
+    type GlibType = gtk_sys::GtkAccessibleAutocomplete;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleAutocomplete {
+        match *self {
+            AccessibleAutocomplete::None => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_NONE,
+            AccessibleAutocomplete::Inline => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE,
+            AccessibleAutocomplete::List => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_LIST,
+            AccessibleAutocomplete::Both => gtk_sys::GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH,
+            AccessibleAutocomplete::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleAutocomplete> for AccessibleAutocomplete {
+    fn from_glib(value: gtk_sys::GtkAccessibleAutocomplete) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleAutocomplete::None,
+            1 => AccessibleAutocomplete::Inline,
+            2 => AccessibleAutocomplete::List,
+            3 => AccessibleAutocomplete::Both,
+            value => AccessibleAutocomplete::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleAutocomplete {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_autocomplete_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleAutocomplete {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleAutocomplete {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleAutocomplete {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleInvalidState {
+    False,
+    True,
+    Grammar,
+    Spelling,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleInvalidState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleInvalidState::{}",
+            match *self {
+                AccessibleInvalidState::False => "False",
+                AccessibleInvalidState::True => "True",
+                AccessibleInvalidState::Grammar => "Grammar",
+                AccessibleInvalidState::Spelling => "Spelling",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleInvalidState {
+    type GlibType = gtk_sys::GtkAccessibleInvalidState;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleInvalidState {
+        match *self {
+            AccessibleInvalidState::False => gtk_sys::GTK_ACCESSIBLE_INVALID_FALSE,
+            AccessibleInvalidState::True => gtk_sys::GTK_ACCESSIBLE_INVALID_TRUE,
+            AccessibleInvalidState::Grammar => gtk_sys::GTK_ACCESSIBLE_INVALID_GRAMMAR,
+            AccessibleInvalidState::Spelling => gtk_sys::GTK_ACCESSIBLE_INVALID_SPELLING,
+            AccessibleInvalidState::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleInvalidState> for AccessibleInvalidState {
+    fn from_glib(value: gtk_sys::GtkAccessibleInvalidState) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleInvalidState::False,
+            1 => AccessibleInvalidState::True,
+            2 => AccessibleInvalidState::Grammar,
+            3 => AccessibleInvalidState::Spelling,
+            value => AccessibleInvalidState::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleInvalidState {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_invalid_state_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleInvalidState {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleInvalidState {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleInvalidState {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleProperty {
+    Autocomplete,
+    Description,
+    HasPopup,
+    KeyShortcuts,
+    Label,
+    Level,
+    Modal,
+    MultiLine,
+    MultiSelectable,
+    Orientation,
+    Placeholder,
+    ReadOnly,
+    Required,
+    RoleDescription,
+    Sort,
+    ValueMax,
+    ValueMin,
+    ValueNow,
+    ValueText,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleProperty {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleProperty::{}",
+            match *self {
+                AccessibleProperty::Autocomplete => "Autocomplete",
+                AccessibleProperty::Description => "Description",
+                AccessibleProperty::HasPopup => "HasPopup",
+                AccessibleProperty::KeyShortcuts => "KeyShortcuts",
+                AccessibleProperty::Label => "Label",
+                AccessibleProperty::Level => "Level",
+                AccessibleProperty::Modal => "Modal",
+                AccessibleProperty::MultiLine => "MultiLine",
+                AccessibleProperty::MultiSelectable => "MultiSelectable",
+                AccessibleProperty::Orientation => "Orientation",
+                AccessibleProperty::Placeholder => "Placeholder",
+                AccessibleProperty::ReadOnly => "ReadOnly",
+                AccessibleProperty::Required => "Required",
+                AccessibleProperty::RoleDescription => "RoleDescription",
+                AccessibleProperty::Sort => "Sort",
+                AccessibleProperty::ValueMax => "ValueMax",
+                AccessibleProperty::ValueMin => "ValueMin",
+                AccessibleProperty::ValueNow => "ValueNow",
+                AccessibleProperty::ValueText => "ValueText",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleProperty {
+    type GlibType = gtk_sys::GtkAccessibleProperty;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleProperty {
+        match *self {
+            AccessibleProperty::Autocomplete => gtk_sys::GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE,
+            AccessibleProperty::Description => gtk_sys::GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+            AccessibleProperty::HasPopup => gtk_sys::GTK_ACCESSIBLE_PROPERTY_HAS_POPUP,
+            AccessibleProperty::KeyShortcuts => gtk_sys::GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS,
+            AccessibleProperty::Label => gtk_sys::GTK_ACCESSIBLE_PROPERTY_LABEL,
+            AccessibleProperty::Level => gtk_sys::GTK_ACCESSIBLE_PROPERTY_LEVEL,
+            AccessibleProperty::Modal => gtk_sys::GTK_ACCESSIBLE_PROPERTY_MODAL,
+            AccessibleProperty::MultiLine => gtk_sys::GTK_ACCESSIBLE_PROPERTY_MULTI_LINE,
+            AccessibleProperty::MultiSelectable => {
+                gtk_sys::GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE
+            }
+            AccessibleProperty::Orientation => gtk_sys::GTK_ACCESSIBLE_PROPERTY_ORIENTATION,
+            AccessibleProperty::Placeholder => gtk_sys::GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER,
+            AccessibleProperty::ReadOnly => gtk_sys::GTK_ACCESSIBLE_PROPERTY_READ_ONLY,
+            AccessibleProperty::Required => gtk_sys::GTK_ACCESSIBLE_PROPERTY_REQUIRED,
+            AccessibleProperty::RoleDescription => {
+                gtk_sys::GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION
+            }
+            AccessibleProperty::Sort => gtk_sys::GTK_ACCESSIBLE_PROPERTY_SORT,
+            AccessibleProperty::ValueMax => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_MAX,
+            AccessibleProperty::ValueMin => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN,
+            AccessibleProperty::ValueNow => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW,
+            AccessibleProperty::ValueText => gtk_sys::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT,
+            AccessibleProperty::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleProperty> for AccessibleProperty {
+    fn from_glib(value: gtk_sys::GtkAccessibleProperty) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleProperty::Autocomplete,
+            1 => AccessibleProperty::Description,
+            2 => AccessibleProperty::HasPopup,
+            3 => AccessibleProperty::KeyShortcuts,
+            4 => AccessibleProperty::Label,
+            5 => AccessibleProperty::Level,
+            6 => AccessibleProperty::Modal,
+            7 => AccessibleProperty::MultiLine,
+            8 => AccessibleProperty::MultiSelectable,
+            9 => AccessibleProperty::Orientation,
+            10 => AccessibleProperty::Placeholder,
+            11 => AccessibleProperty::ReadOnly,
+            12 => AccessibleProperty::Required,
+            13 => AccessibleProperty::RoleDescription,
+            14 => AccessibleProperty::Sort,
+            15 => AccessibleProperty::ValueMax,
+            16 => AccessibleProperty::ValueMin,
+            17 => AccessibleProperty::ValueNow,
+            18 => AccessibleProperty::ValueText,
+            value => AccessibleProperty::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleProperty {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_property_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleProperty {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleProperty {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleProperty {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleRelation {
+    ActiveDescendant,
+    ColCount,
+    ColIndex,
+    ColIndexText,
+    ColSpan,
+    Controls,
+    DescribedBy,
+    Details,
+    ErrorMessage,
+    FlowTo,
+    LabelledBy,
+    Owns,
+    PosInSet,
+    RowCount,
+    RowIndex,
+    RowIndexText,
+    RowSpan,
+    SetSize,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleRelation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleRelation::{}",
+            match *self {
+                AccessibleRelation::ActiveDescendant => "ActiveDescendant",
+                AccessibleRelation::ColCount => "ColCount",
+                AccessibleRelation::ColIndex => "ColIndex",
+                AccessibleRelation::ColIndexText => "ColIndexText",
+                AccessibleRelation::ColSpan => "ColSpan",
+                AccessibleRelation::Controls => "Controls",
+                AccessibleRelation::DescribedBy => "DescribedBy",
+                AccessibleRelation::Details => "Details",
+                AccessibleRelation::ErrorMessage => "ErrorMessage",
+                AccessibleRelation::FlowTo => "FlowTo",
+                AccessibleRelation::LabelledBy => "LabelledBy",
+                AccessibleRelation::Owns => "Owns",
+                AccessibleRelation::PosInSet => "PosInSet",
+                AccessibleRelation::RowCount => "RowCount",
+                AccessibleRelation::RowIndex => "RowIndex",
+                AccessibleRelation::RowIndexText => "RowIndexText",
+                AccessibleRelation::RowSpan => "RowSpan",
+                AccessibleRelation::SetSize => "SetSize",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleRelation {
+    type GlibType = gtk_sys::GtkAccessibleRelation;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleRelation {
+        match *self {
+            AccessibleRelation::ActiveDescendant => {
+                gtk_sys::GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT
+            }
+            AccessibleRelation::ColCount => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_COUNT,
+            AccessibleRelation::ColIndex => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_INDEX,
+            AccessibleRelation::ColIndexText => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT,
+            AccessibleRelation::ColSpan => gtk_sys::GTK_ACCESSIBLE_RELATION_COL_SPAN,
+            AccessibleRelation::Controls => gtk_sys::GTK_ACCESSIBLE_RELATION_CONTROLS,
+            AccessibleRelation::DescribedBy => gtk_sys::GTK_ACCESSIBLE_RELATION_DESCRIBED_BY,
+            AccessibleRelation::Details => gtk_sys::GTK_ACCESSIBLE_RELATION_DETAILS,
+            AccessibleRelation::ErrorMessage => gtk_sys::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE,
+            AccessibleRelation::FlowTo => gtk_sys::GTK_ACCESSIBLE_RELATION_FLOW_TO,
+            AccessibleRelation::LabelledBy => gtk_sys::GTK_ACCESSIBLE_RELATION_LABELLED_BY,
+            AccessibleRelation::Owns => gtk_sys::GTK_ACCESSIBLE_RELATION_OWNS,
+            AccessibleRelation::PosInSet => gtk_sys::GTK_ACCESSIBLE_RELATION_POS_IN_SET,
+            AccessibleRelation::RowCount => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_COUNT,
+            AccessibleRelation::RowIndex => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_INDEX,
+            AccessibleRelation::RowIndexText => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT,
+            AccessibleRelation::RowSpan => gtk_sys::GTK_ACCESSIBLE_RELATION_ROW_SPAN,
+            AccessibleRelation::SetSize => gtk_sys::GTK_ACCESSIBLE_RELATION_SET_SIZE,
+            AccessibleRelation::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleRelation> for AccessibleRelation {
+    fn from_glib(value: gtk_sys::GtkAccessibleRelation) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleRelation::ActiveDescendant,
+            1 => AccessibleRelation::ColCount,
+            2 => AccessibleRelation::ColIndex,
+            3 => AccessibleRelation::ColIndexText,
+            4 => AccessibleRelation::ColSpan,
+            5 => AccessibleRelation::Controls,
+            6 => AccessibleRelation::DescribedBy,
+            7 => AccessibleRelation::Details,
+            8 => AccessibleRelation::ErrorMessage,
+            9 => AccessibleRelation::FlowTo,
+            10 => AccessibleRelation::LabelledBy,
+            11 => AccessibleRelation::Owns,
+            12 => AccessibleRelation::PosInSet,
+            13 => AccessibleRelation::RowCount,
+            14 => AccessibleRelation::RowIndex,
+            15 => AccessibleRelation::RowIndexText,
+            16 => AccessibleRelation::RowSpan,
+            17 => AccessibleRelation::SetSize,
+            value => AccessibleRelation::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleRelation {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_relation_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleRelation {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleRelation {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleRelation {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleRole {
+    Alert,
+    AlertDialog,
+    Banner,
+    Button,
+    Caption,
+    Cell,
+    Checkbox,
+    ColumnHeader,
+    ComboBox,
+    Command,
+    Composite,
+    Dialog,
+    Document,
+    Feed,
+    Form,
+    Generic,
+    Grid,
+    GridCell,
+    Group,
+    Heading,
+    Img,
+    Input,
+    Label,
+    Landmark,
+    Legend,
+    Link,
+    List,
+    ListBox,
+    ListItem,
+    Log,
+    Main,
+    Marquee,
+    Math,
+    Meter,
+    Menu,
+    MenuBar,
+    MenuItem,
+    MenuItemCheckbox,
+    MenuItemRadio,
+    Navigation,
+    None,
+    Note,
+    Option,
+    Presentation,
+    ProgressBar,
+    Radio,
+    RadioGroup,
+    Range,
+    Region,
+    Row,
+    RowGroup,
+    RowHeader,
+    Scrollbar,
+    Search,
+    SearchBox,
+    Section,
+    SectionHead,
+    Select,
+    Separator,
+    Slider,
+    SpinButton,
+    Status,
+    Structure,
+    Switch,
+    Tab,
+    Table,
+    TabList,
+    TabPanel,
+    TextBox,
+    Time,
+    Timer,
+    Toolbar,
+    Tooltip,
+    Tree,
+    TreeGrid,
+    TreeItem,
+    Widget,
+    Window,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleRole {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleRole::{}",
+            match *self {
+                AccessibleRole::Alert => "Alert",
+                AccessibleRole::AlertDialog => "AlertDialog",
+                AccessibleRole::Banner => "Banner",
+                AccessibleRole::Button => "Button",
+                AccessibleRole::Caption => "Caption",
+                AccessibleRole::Cell => "Cell",
+                AccessibleRole::Checkbox => "Checkbox",
+                AccessibleRole::ColumnHeader => "ColumnHeader",
+                AccessibleRole::ComboBox => "ComboBox",
+                AccessibleRole::Command => "Command",
+                AccessibleRole::Composite => "Composite",
+                AccessibleRole::Dialog => "Dialog",
+                AccessibleRole::Document => "Document",
+                AccessibleRole::Feed => "Feed",
+                AccessibleRole::Form => "Form",
+                AccessibleRole::Generic => "Generic",
+                AccessibleRole::Grid => "Grid",
+                AccessibleRole::GridCell => "GridCell",
+                AccessibleRole::Group => "Group",
+                AccessibleRole::Heading => "Heading",
+                AccessibleRole::Img => "Img",
+                AccessibleRole::Input => "Input",
+                AccessibleRole::Label => "Label",
+                AccessibleRole::Landmark => "Landmark",
+                AccessibleRole::Legend => "Legend",
+                AccessibleRole::Link => "Link",
+                AccessibleRole::List => "List",
+                AccessibleRole::ListBox => "ListBox",
+                AccessibleRole::ListItem => "ListItem",
+                AccessibleRole::Log => "Log",
+                AccessibleRole::Main => "Main",
+                AccessibleRole::Marquee => "Marquee",
+                AccessibleRole::Math => "Math",
+                AccessibleRole::Meter => "Meter",
+                AccessibleRole::Menu => "Menu",
+                AccessibleRole::MenuBar => "MenuBar",
+                AccessibleRole::MenuItem => "MenuItem",
+                AccessibleRole::MenuItemCheckbox => "MenuItemCheckbox",
+                AccessibleRole::MenuItemRadio => "MenuItemRadio",
+                AccessibleRole::Navigation => "Navigation",
+                AccessibleRole::None => "None",
+                AccessibleRole::Note => "Note",
+                AccessibleRole::Option => "Option",
+                AccessibleRole::Presentation => "Presentation",
+                AccessibleRole::ProgressBar => "ProgressBar",
+                AccessibleRole::Radio => "Radio",
+                AccessibleRole::RadioGroup => "RadioGroup",
+                AccessibleRole::Range => "Range",
+                AccessibleRole::Region => "Region",
+                AccessibleRole::Row => "Row",
+                AccessibleRole::RowGroup => "RowGroup",
+                AccessibleRole::RowHeader => "RowHeader",
+                AccessibleRole::Scrollbar => "Scrollbar",
+                AccessibleRole::Search => "Search",
+                AccessibleRole::SearchBox => "SearchBox",
+                AccessibleRole::Section => "Section",
+                AccessibleRole::SectionHead => "SectionHead",
+                AccessibleRole::Select => "Select",
+                AccessibleRole::Separator => "Separator",
+                AccessibleRole::Slider => "Slider",
+                AccessibleRole::SpinButton => "SpinButton",
+                AccessibleRole::Status => "Status",
+                AccessibleRole::Structure => "Structure",
+                AccessibleRole::Switch => "Switch",
+                AccessibleRole::Tab => "Tab",
+                AccessibleRole::Table => "Table",
+                AccessibleRole::TabList => "TabList",
+                AccessibleRole::TabPanel => "TabPanel",
+                AccessibleRole::TextBox => "TextBox",
+                AccessibleRole::Time => "Time",
+                AccessibleRole::Timer => "Timer",
+                AccessibleRole::Toolbar => "Toolbar",
+                AccessibleRole::Tooltip => "Tooltip",
+                AccessibleRole::Tree => "Tree",
+                AccessibleRole::TreeGrid => "TreeGrid",
+                AccessibleRole::TreeItem => "TreeItem",
+                AccessibleRole::Widget => "Widget",
+                AccessibleRole::Window => "Window",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleRole {
+    type GlibType = gtk_sys::GtkAccessibleRole;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleRole {
+        match *self {
+            AccessibleRole::Alert => gtk_sys::GTK_ACCESSIBLE_ROLE_ALERT,
+            AccessibleRole::AlertDialog => gtk_sys::GTK_ACCESSIBLE_ROLE_ALERT_DIALOG,
+            AccessibleRole::Banner => gtk_sys::GTK_ACCESSIBLE_ROLE_BANNER,
+            AccessibleRole::Button => gtk_sys::GTK_ACCESSIBLE_ROLE_BUTTON,
+            AccessibleRole::Caption => gtk_sys::GTK_ACCESSIBLE_ROLE_CAPTION,
+            AccessibleRole::Cell => gtk_sys::GTK_ACCESSIBLE_ROLE_CELL,
+            AccessibleRole::Checkbox => gtk_sys::GTK_ACCESSIBLE_ROLE_CHECKBOX,
+            AccessibleRole::ColumnHeader => gtk_sys::GTK_ACCESSIBLE_ROLE_COLUMN_HEADER,
+            AccessibleRole::ComboBox => gtk_sys::GTK_ACCESSIBLE_ROLE_COMBO_BOX,
+            AccessibleRole::Command => gtk_sys::GTK_ACCESSIBLE_ROLE_COMMAND,
+            AccessibleRole::Composite => gtk_sys::GTK_ACCESSIBLE_ROLE_COMPOSITE,
+            AccessibleRole::Dialog => gtk_sys::GTK_ACCESSIBLE_ROLE_DIALOG,
+            AccessibleRole::Document => gtk_sys::GTK_ACCESSIBLE_ROLE_DOCUMENT,
+            AccessibleRole::Feed => gtk_sys::GTK_ACCESSIBLE_ROLE_FEED,
+            AccessibleRole::Form => gtk_sys::GTK_ACCESSIBLE_ROLE_FORM,
+            AccessibleRole::Generic => gtk_sys::GTK_ACCESSIBLE_ROLE_GENERIC,
+            AccessibleRole::Grid => gtk_sys::GTK_ACCESSIBLE_ROLE_GRID,
+            AccessibleRole::GridCell => gtk_sys::GTK_ACCESSIBLE_ROLE_GRID_CELL,
+            AccessibleRole::Group => gtk_sys::GTK_ACCESSIBLE_ROLE_GROUP,
+            AccessibleRole::Heading => gtk_sys::GTK_ACCESSIBLE_ROLE_HEADING,
+            AccessibleRole::Img => gtk_sys::GTK_ACCESSIBLE_ROLE_IMG,
+            AccessibleRole::Input => gtk_sys::GTK_ACCESSIBLE_ROLE_INPUT,
+            AccessibleRole::Label => gtk_sys::GTK_ACCESSIBLE_ROLE_LABEL,
+            AccessibleRole::Landmark => gtk_sys::GTK_ACCESSIBLE_ROLE_LANDMARK,
+            AccessibleRole::Legend => gtk_sys::GTK_ACCESSIBLE_ROLE_LEGEND,
+            AccessibleRole::Link => gtk_sys::GTK_ACCESSIBLE_ROLE_LINK,
+            AccessibleRole::List => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST,
+            AccessibleRole::ListBox => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST_BOX,
+            AccessibleRole::ListItem => gtk_sys::GTK_ACCESSIBLE_ROLE_LIST_ITEM,
+            AccessibleRole::Log => gtk_sys::GTK_ACCESSIBLE_ROLE_LOG,
+            AccessibleRole::Main => gtk_sys::GTK_ACCESSIBLE_ROLE_MAIN,
+            AccessibleRole::Marquee => gtk_sys::GTK_ACCESSIBLE_ROLE_MARQUEE,
+            AccessibleRole::Math => gtk_sys::GTK_ACCESSIBLE_ROLE_MATH,
+            AccessibleRole::Meter => gtk_sys::GTK_ACCESSIBLE_ROLE_METER,
+            AccessibleRole::Menu => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU,
+            AccessibleRole::MenuBar => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_BAR,
+            AccessibleRole::MenuItem => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM,
+            AccessibleRole::MenuItemCheckbox => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX,
+            AccessibleRole::MenuItemRadio => gtk_sys::GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO,
+            AccessibleRole::Navigation => gtk_sys::GTK_ACCESSIBLE_ROLE_NAVIGATION,
+            AccessibleRole::None => gtk_sys::GTK_ACCESSIBLE_ROLE_NONE,
+            AccessibleRole::Note => gtk_sys::GTK_ACCESSIBLE_ROLE_NOTE,
+            AccessibleRole::Option => gtk_sys::GTK_ACCESSIBLE_ROLE_OPTION,
+            AccessibleRole::Presentation => gtk_sys::GTK_ACCESSIBLE_ROLE_PRESENTATION,
+            AccessibleRole::ProgressBar => gtk_sys::GTK_ACCESSIBLE_ROLE_PROGRESS_BAR,
+            AccessibleRole::Radio => gtk_sys::GTK_ACCESSIBLE_ROLE_RADIO,
+            AccessibleRole::RadioGroup => gtk_sys::GTK_ACCESSIBLE_ROLE_RADIO_GROUP,
+            AccessibleRole::Range => gtk_sys::GTK_ACCESSIBLE_ROLE_RANGE,
+            AccessibleRole::Region => gtk_sys::GTK_ACCESSIBLE_ROLE_REGION,
+            AccessibleRole::Row => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW,
+            AccessibleRole::RowGroup => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW_GROUP,
+            AccessibleRole::RowHeader => gtk_sys::GTK_ACCESSIBLE_ROLE_ROW_HEADER,
+            AccessibleRole::Scrollbar => gtk_sys::GTK_ACCESSIBLE_ROLE_SCROLLBAR,
+            AccessibleRole::Search => gtk_sys::GTK_ACCESSIBLE_ROLE_SEARCH,
+            AccessibleRole::SearchBox => gtk_sys::GTK_ACCESSIBLE_ROLE_SEARCH_BOX,
+            AccessibleRole::Section => gtk_sys::GTK_ACCESSIBLE_ROLE_SECTION,
+            AccessibleRole::SectionHead => gtk_sys::GTK_ACCESSIBLE_ROLE_SECTION_HEAD,
+            AccessibleRole::Select => gtk_sys::GTK_ACCESSIBLE_ROLE_SELECT,
+            AccessibleRole::Separator => gtk_sys::GTK_ACCESSIBLE_ROLE_SEPARATOR,
+            AccessibleRole::Slider => gtk_sys::GTK_ACCESSIBLE_ROLE_SLIDER,
+            AccessibleRole::SpinButton => gtk_sys::GTK_ACCESSIBLE_ROLE_SPIN_BUTTON,
+            AccessibleRole::Status => gtk_sys::GTK_ACCESSIBLE_ROLE_STATUS,
+            AccessibleRole::Structure => gtk_sys::GTK_ACCESSIBLE_ROLE_STRUCTURE,
+            AccessibleRole::Switch => gtk_sys::GTK_ACCESSIBLE_ROLE_SWITCH,
+            AccessibleRole::Tab => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB,
+            AccessibleRole::Table => gtk_sys::GTK_ACCESSIBLE_ROLE_TABLE,
+            AccessibleRole::TabList => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB_LIST,
+            AccessibleRole::TabPanel => gtk_sys::GTK_ACCESSIBLE_ROLE_TAB_PANEL,
+            AccessibleRole::TextBox => gtk_sys::GTK_ACCESSIBLE_ROLE_TEXT_BOX,
+            AccessibleRole::Time => gtk_sys::GTK_ACCESSIBLE_ROLE_TIME,
+            AccessibleRole::Timer => gtk_sys::GTK_ACCESSIBLE_ROLE_TIMER,
+            AccessibleRole::Toolbar => gtk_sys::GTK_ACCESSIBLE_ROLE_TOOLBAR,
+            AccessibleRole::Tooltip => gtk_sys::GTK_ACCESSIBLE_ROLE_TOOLTIP,
+            AccessibleRole::Tree => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE,
+            AccessibleRole::TreeGrid => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE_GRID,
+            AccessibleRole::TreeItem => gtk_sys::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
+            AccessibleRole::Widget => gtk_sys::GTK_ACCESSIBLE_ROLE_WIDGET,
+            AccessibleRole::Window => gtk_sys::GTK_ACCESSIBLE_ROLE_WINDOW,
+            AccessibleRole::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleRole> for AccessibleRole {
+    fn from_glib(value: gtk_sys::GtkAccessibleRole) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleRole::Alert,
+            1 => AccessibleRole::AlertDialog,
+            2 => AccessibleRole::Banner,
+            3 => AccessibleRole::Button,
+            4 => AccessibleRole::Caption,
+            5 => AccessibleRole::Cell,
+            6 => AccessibleRole::Checkbox,
+            7 => AccessibleRole::ColumnHeader,
+            8 => AccessibleRole::ComboBox,
+            9 => AccessibleRole::Command,
+            10 => AccessibleRole::Composite,
+            11 => AccessibleRole::Dialog,
+            12 => AccessibleRole::Document,
+            13 => AccessibleRole::Feed,
+            14 => AccessibleRole::Form,
+            15 => AccessibleRole::Generic,
+            16 => AccessibleRole::Grid,
+            17 => AccessibleRole::GridCell,
+            18 => AccessibleRole::Group,
+            19 => AccessibleRole::Heading,
+            20 => AccessibleRole::Img,
+            21 => AccessibleRole::Input,
+            22 => AccessibleRole::Label,
+            23 => AccessibleRole::Landmark,
+            24 => AccessibleRole::Legend,
+            25 => AccessibleRole::Link,
+            26 => AccessibleRole::List,
+            27 => AccessibleRole::ListBox,
+            28 => AccessibleRole::ListItem,
+            29 => AccessibleRole::Log,
+            30 => AccessibleRole::Main,
+            31 => AccessibleRole::Marquee,
+            32 => AccessibleRole::Math,
+            33 => AccessibleRole::Meter,
+            34 => AccessibleRole::Menu,
+            35 => AccessibleRole::MenuBar,
+            36 => AccessibleRole::MenuItem,
+            37 => AccessibleRole::MenuItemCheckbox,
+            38 => AccessibleRole::MenuItemRadio,
+            39 => AccessibleRole::Navigation,
+            40 => AccessibleRole::None,
+            41 => AccessibleRole::Note,
+            42 => AccessibleRole::Option,
+            43 => AccessibleRole::Presentation,
+            44 => AccessibleRole::ProgressBar,
+            45 => AccessibleRole::Radio,
+            46 => AccessibleRole::RadioGroup,
+            47 => AccessibleRole::Range,
+            48 => AccessibleRole::Region,
+            49 => AccessibleRole::Row,
+            50 => AccessibleRole::RowGroup,
+            51 => AccessibleRole::RowHeader,
+            52 => AccessibleRole::Scrollbar,
+            53 => AccessibleRole::Search,
+            54 => AccessibleRole::SearchBox,
+            55 => AccessibleRole::Section,
+            56 => AccessibleRole::SectionHead,
+            57 => AccessibleRole::Select,
+            58 => AccessibleRole::Separator,
+            59 => AccessibleRole::Slider,
+            60 => AccessibleRole::SpinButton,
+            61 => AccessibleRole::Status,
+            62 => AccessibleRole::Structure,
+            63 => AccessibleRole::Switch,
+            64 => AccessibleRole::Tab,
+            65 => AccessibleRole::Table,
+            66 => AccessibleRole::TabList,
+            67 => AccessibleRole::TabPanel,
+            68 => AccessibleRole::TextBox,
+            69 => AccessibleRole::Time,
+            70 => AccessibleRole::Timer,
+            71 => AccessibleRole::Toolbar,
+            72 => AccessibleRole::Tooltip,
+            73 => AccessibleRole::Tree,
+            74 => AccessibleRole::TreeGrid,
+            75 => AccessibleRole::TreeItem,
+            76 => AccessibleRole::Widget,
+            77 => AccessibleRole::Window,
+            value => AccessibleRole::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleRole {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_role_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleRole {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleRole {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleRole {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleSort {
+    None,
+    Ascending,
+    Descending,
+    Other,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleSort {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleSort::{}",
+            match *self {
+                AccessibleSort::None => "None",
+                AccessibleSort::Ascending => "Ascending",
+                AccessibleSort::Descending => "Descending",
+                AccessibleSort::Other => "Other",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleSort {
+    type GlibType = gtk_sys::GtkAccessibleSort;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleSort {
+        match *self {
+            AccessibleSort::None => gtk_sys::GTK_ACCESSIBLE_SORT_NONE,
+            AccessibleSort::Ascending => gtk_sys::GTK_ACCESSIBLE_SORT_ASCENDING,
+            AccessibleSort::Descending => gtk_sys::GTK_ACCESSIBLE_SORT_DESCENDING,
+            AccessibleSort::Other => gtk_sys::GTK_ACCESSIBLE_SORT_OTHER,
+            AccessibleSort::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleSort> for AccessibleSort {
+    fn from_glib(value: gtk_sys::GtkAccessibleSort) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleSort::None,
+            1 => AccessibleSort::Ascending,
+            2 => AccessibleSort::Descending,
+            3 => AccessibleSort::Other,
+            value => AccessibleSort::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleSort {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_sort_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleSort {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleSort {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleSort {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleState {
+    Busy,
+    Checked,
+    Disabled,
+    Expanded,
+    Hidden,
+    Invalid,
+    Pressed,
+    Selected,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleState::{}",
+            match *self {
+                AccessibleState::Busy => "Busy",
+                AccessibleState::Checked => "Checked",
+                AccessibleState::Disabled => "Disabled",
+                AccessibleState::Expanded => "Expanded",
+                AccessibleState::Hidden => "Hidden",
+                AccessibleState::Invalid => "Invalid",
+                AccessibleState::Pressed => "Pressed",
+                AccessibleState::Selected => "Selected",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleState {
+    type GlibType = gtk_sys::GtkAccessibleState;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleState {
+        match *self {
+            AccessibleState::Busy => gtk_sys::GTK_ACCESSIBLE_STATE_BUSY,
+            AccessibleState::Checked => gtk_sys::GTK_ACCESSIBLE_STATE_CHECKED,
+            AccessibleState::Disabled => gtk_sys::GTK_ACCESSIBLE_STATE_DISABLED,
+            AccessibleState::Expanded => gtk_sys::GTK_ACCESSIBLE_STATE_EXPANDED,
+            AccessibleState::Hidden => gtk_sys::GTK_ACCESSIBLE_STATE_HIDDEN,
+            AccessibleState::Invalid => gtk_sys::GTK_ACCESSIBLE_STATE_INVALID,
+            AccessibleState::Pressed => gtk_sys::GTK_ACCESSIBLE_STATE_PRESSED,
+            AccessibleState::Selected => gtk_sys::GTK_ACCESSIBLE_STATE_SELECTED,
+            AccessibleState::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleState> for AccessibleState {
+    fn from_glib(value: gtk_sys::GtkAccessibleState) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleState::Busy,
+            1 => AccessibleState::Checked,
+            2 => AccessibleState::Disabled,
+            3 => AccessibleState::Expanded,
+            4 => AccessibleState::Hidden,
+            5 => AccessibleState::Invalid,
+            6 => AccessibleState::Pressed,
+            7 => AccessibleState::Selected,
+            value => AccessibleState::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleState {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_state_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleState {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleState {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleState {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum AccessibleTristate {
+    False,
+    True,
+    Mixed,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for AccessibleTristate {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessibleTristate::{}",
+            match *self {
+                AccessibleTristate::False => "False",
+                AccessibleTristate::True => "True",
+                AccessibleTristate::Mixed => "Mixed",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for AccessibleTristate {
+    type GlibType = gtk_sys::GtkAccessibleTristate;
+
+    fn to_glib(&self) -> gtk_sys::GtkAccessibleTristate {
+        match *self {
+            AccessibleTristate::False => gtk_sys::GTK_ACCESSIBLE_TRISTATE_FALSE,
+            AccessibleTristate::True => gtk_sys::GTK_ACCESSIBLE_TRISTATE_TRUE,
+            AccessibleTristate::Mixed => gtk_sys::GTK_ACCESSIBLE_TRISTATE_MIXED,
+            AccessibleTristate::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkAccessibleTristate> for AccessibleTristate {
+    fn from_glib(value: gtk_sys::GtkAccessibleTristate) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => AccessibleTristate::False,
+            1 => AccessibleTristate::True,
+            2 => AccessibleTristate::Mixed,
+            value => AccessibleTristate::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for AccessibleTristate {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_accessible_tristate_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for AccessibleTristate {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for AccessibleTristate {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for AccessibleTristate {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Align {
     Fill,
     Start,
@@ -99,81 +1170,7 @@ impl SetValue for Align {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ArrowPlacement {
-    Both,
-    Start,
-    End,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ArrowPlacement {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ArrowPlacement::{}",
-            match *self {
-                ArrowPlacement::Both => "Both",
-                ArrowPlacement::Start => "Start",
-                ArrowPlacement::End => "End",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ArrowPlacement {
-    type GlibType = gtk_sys::GtkArrowPlacement;
-
-    fn to_glib(&self) -> gtk_sys::GtkArrowPlacement {
-        match *self {
-            ArrowPlacement::Both => gtk_sys::GTK_ARROWS_BOTH,
-            ArrowPlacement::Start => gtk_sys::GTK_ARROWS_START,
-            ArrowPlacement::End => gtk_sys::GTK_ARROWS_END,
-            ArrowPlacement::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkArrowPlacement> for ArrowPlacement {
-    fn from_glib(value: gtk_sys::GtkArrowPlacement) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ArrowPlacement::Both,
-            1 => ArrowPlacement::Start,
-            2 => ArrowPlacement::End,
-            value => ArrowPlacement::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ArrowPlacement {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_arrow_placement_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ArrowPlacement {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ArrowPlacement {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ArrowPlacement {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ArrowType {
     Up,
     Down,
@@ -257,6 +1254,7 @@ impl SetValue for ArrowType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum AssistantPageType {
     Content,
     Intro,
@@ -344,6 +1342,7 @@ impl SetValue for AssistantPageType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum BaselinePosition {
     Top,
     Center,
@@ -419,12 +1418,13 @@ impl SetValue for BaselinePosition {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum BorderStyle {
     None,
+    Hidden,
     Solid,
     Inset,
     Outset,
-    Hidden,
     Dotted,
     Dashed,
     Double,
@@ -441,10 +1441,10 @@ impl fmt::Display for BorderStyle {
             "BorderStyle::{}",
             match *self {
                 BorderStyle::None => "None",
+                BorderStyle::Hidden => "Hidden",
                 BorderStyle::Solid => "Solid",
                 BorderStyle::Inset => "Inset",
                 BorderStyle::Outset => "Outset",
-                BorderStyle::Hidden => "Hidden",
                 BorderStyle::Dotted => "Dotted",
                 BorderStyle::Dashed => "Dashed",
                 BorderStyle::Double => "Double",
@@ -463,10 +1463,10 @@ impl ToGlib for BorderStyle {
     fn to_glib(&self) -> gtk_sys::GtkBorderStyle {
         match *self {
             BorderStyle::None => gtk_sys::GTK_BORDER_STYLE_NONE,
+            BorderStyle::Hidden => gtk_sys::GTK_BORDER_STYLE_HIDDEN,
             BorderStyle::Solid => gtk_sys::GTK_BORDER_STYLE_SOLID,
             BorderStyle::Inset => gtk_sys::GTK_BORDER_STYLE_INSET,
             BorderStyle::Outset => gtk_sys::GTK_BORDER_STYLE_OUTSET,
-            BorderStyle::Hidden => gtk_sys::GTK_BORDER_STYLE_HIDDEN,
             BorderStyle::Dotted => gtk_sys::GTK_BORDER_STYLE_DOTTED,
             BorderStyle::Dashed => gtk_sys::GTK_BORDER_STYLE_DASHED,
             BorderStyle::Double => gtk_sys::GTK_BORDER_STYLE_DOUBLE,
@@ -483,10 +1483,10 @@ impl FromGlib<gtk_sys::GtkBorderStyle> for BorderStyle {
         skip_assert_initialized!();
         match value {
             0 => BorderStyle::None,
-            1 => BorderStyle::Solid,
-            2 => BorderStyle::Inset,
-            3 => BorderStyle::Outset,
-            4 => BorderStyle::Hidden,
+            1 => BorderStyle::Hidden,
+            2 => BorderStyle::Solid,
+            3 => BorderStyle::Inset,
+            4 => BorderStyle::Outset,
             5 => BorderStyle::Dotted,
             6 => BorderStyle::Dashed,
             7 => BorderStyle::Double,
@@ -522,6 +1522,7 @@ impl SetValue for BorderStyle {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum BuilderError {
     InvalidTypeFunction,
     UnhandledTag,
@@ -537,6 +1538,7 @@ pub enum BuilderError {
     InvalidProperty,
     InvalidSignal,
     InvalidId,
+    InvalidFunction,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -561,6 +1563,7 @@ impl fmt::Display for BuilderError {
                 BuilderError::InvalidProperty => "InvalidProperty",
                 BuilderError::InvalidSignal => "InvalidSignal",
                 BuilderError::InvalidId => "InvalidId",
+                BuilderError::InvalidFunction => "InvalidFunction",
                 _ => "Unknown",
             }
         )
@@ -587,6 +1590,7 @@ impl ToGlib for BuilderError {
             BuilderError::InvalidProperty => gtk_sys::GTK_BUILDER_ERROR_INVALID_PROPERTY,
             BuilderError::InvalidSignal => gtk_sys::GTK_BUILDER_ERROR_INVALID_SIGNAL,
             BuilderError::InvalidId => gtk_sys::GTK_BUILDER_ERROR_INVALID_ID,
+            BuilderError::InvalidFunction => gtk_sys::GTK_BUILDER_ERROR_INVALID_FUNCTION,
             BuilderError::__Unknown(value) => value,
         }
     }
@@ -611,6 +1615,7 @@ impl FromGlib<gtk_sys::GtkBuilderError> for BuilderError {
             11 => BuilderError::InvalidProperty,
             12 => BuilderError::InvalidSignal,
             13 => BuilderError::InvalidId,
+            14 => BuilderError::InvalidFunction,
             value => BuilderError::__Unknown(value),
         }
     }
@@ -643,6 +1648,7 @@ impl ErrorDomain for BuilderError {
             11 => Some(BuilderError::InvalidProperty),
             12 => Some(BuilderError::InvalidSignal),
             13 => Some(BuilderError::InvalidId),
+            14 => Some(BuilderError::InvalidFunction),
             value => Some(BuilderError::__Unknown(value)),
         }
     }
@@ -673,81 +1679,7 @@ impl SetValue for BuilderError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ButtonRole {
-    Normal,
-    Check,
-    Radio,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ButtonRole {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ButtonRole::{}",
-            match *self {
-                ButtonRole::Normal => "Normal",
-                ButtonRole::Check => "Check",
-                ButtonRole::Radio => "Radio",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ButtonRole {
-    type GlibType = gtk_sys::GtkButtonRole;
-
-    fn to_glib(&self) -> gtk_sys::GtkButtonRole {
-        match *self {
-            ButtonRole::Normal => gtk_sys::GTK_BUTTON_ROLE_NORMAL,
-            ButtonRole::Check => gtk_sys::GTK_BUTTON_ROLE_CHECK,
-            ButtonRole::Radio => gtk_sys::GTK_BUTTON_ROLE_RADIO,
-            ButtonRole::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkButtonRole> for ButtonRole {
-    fn from_glib(value: gtk_sys::GtkButtonRole) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ButtonRole::Normal,
-            1 => ButtonRole::Check,
-            2 => ButtonRole::Radio,
-            value => ButtonRole::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ButtonRole {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_button_role_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ButtonRole {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ButtonRole {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ButtonRole {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ButtonsType {
     None,
     Ok,
@@ -835,6 +1767,7 @@ impl SetValue for ButtonsType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum CellRendererAccelMode {
     Gtk,
     Other,
@@ -906,6 +1839,7 @@ impl SetValue for CellRendererAccelMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum CellRendererMode {
     Inert,
     Activatable,
@@ -981,6 +1915,397 @@ impl SetValue for CellRendererMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintAttribute {
+    None,
+    Left,
+    Right,
+    Top,
+    Bottom,
+    Start,
+    End,
+    Width,
+    Height,
+    CenterX,
+    CenterY,
+    Baseline,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintAttribute {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintAttribute::{}",
+            match *self {
+                ConstraintAttribute::None => "None",
+                ConstraintAttribute::Left => "Left",
+                ConstraintAttribute::Right => "Right",
+                ConstraintAttribute::Top => "Top",
+                ConstraintAttribute::Bottom => "Bottom",
+                ConstraintAttribute::Start => "Start",
+                ConstraintAttribute::End => "End",
+                ConstraintAttribute::Width => "Width",
+                ConstraintAttribute::Height => "Height",
+                ConstraintAttribute::CenterX => "CenterX",
+                ConstraintAttribute::CenterY => "CenterY",
+                ConstraintAttribute::Baseline => "Baseline",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintAttribute {
+    type GlibType = gtk_sys::GtkConstraintAttribute;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintAttribute {
+        match *self {
+            ConstraintAttribute::None => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_NONE,
+            ConstraintAttribute::Left => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_LEFT,
+            ConstraintAttribute::Right => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_RIGHT,
+            ConstraintAttribute::Top => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_TOP,
+            ConstraintAttribute::Bottom => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_BOTTOM,
+            ConstraintAttribute::Start => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_START,
+            ConstraintAttribute::End => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_END,
+            ConstraintAttribute::Width => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            ConstraintAttribute::Height => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_HEIGHT,
+            ConstraintAttribute::CenterX => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            ConstraintAttribute::CenterY => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            ConstraintAttribute::Baseline => gtk_sys::GTK_CONSTRAINT_ATTRIBUTE_BASELINE,
+            ConstraintAttribute::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintAttribute> for ConstraintAttribute {
+    fn from_glib(value: gtk_sys::GtkConstraintAttribute) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => ConstraintAttribute::None,
+            1 => ConstraintAttribute::Left,
+            2 => ConstraintAttribute::Right,
+            3 => ConstraintAttribute::Top,
+            4 => ConstraintAttribute::Bottom,
+            5 => ConstraintAttribute::Start,
+            6 => ConstraintAttribute::End,
+            7 => ConstraintAttribute::Width,
+            8 => ConstraintAttribute::Height,
+            9 => ConstraintAttribute::CenterX,
+            10 => ConstraintAttribute::CenterY,
+            11 => ConstraintAttribute::Baseline,
+            value => ConstraintAttribute::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintAttribute {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_attribute_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintAttribute {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintAttribute {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintAttribute {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintRelation {
+    Le,
+    Eq,
+    Ge,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintRelation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintRelation::{}",
+            match *self {
+                ConstraintRelation::Le => "Le",
+                ConstraintRelation::Eq => "Eq",
+                ConstraintRelation::Ge => "Ge",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintRelation {
+    type GlibType = gtk_sys::GtkConstraintRelation;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintRelation {
+        match *self {
+            ConstraintRelation::Le => gtk_sys::GTK_CONSTRAINT_RELATION_LE,
+            ConstraintRelation::Eq => gtk_sys::GTK_CONSTRAINT_RELATION_EQ,
+            ConstraintRelation::Ge => gtk_sys::GTK_CONSTRAINT_RELATION_GE,
+            ConstraintRelation::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintRelation> for ConstraintRelation {
+    fn from_glib(value: gtk_sys::GtkConstraintRelation) -> Self {
+        skip_assert_initialized!();
+        match value {
+            -1 => ConstraintRelation::Le,
+            0 => ConstraintRelation::Eq,
+            1 => ConstraintRelation::Ge,
+            value => ConstraintRelation::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintRelation {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_relation_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintRelation {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintRelation {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintRelation {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintStrength {
+    Required,
+    Strong,
+    Medium,
+    Weak,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintStrength {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintStrength::{}",
+            match *self {
+                ConstraintStrength::Required => "Required",
+                ConstraintStrength::Strong => "Strong",
+                ConstraintStrength::Medium => "Medium",
+                ConstraintStrength::Weak => "Weak",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintStrength {
+    type GlibType = gtk_sys::GtkConstraintStrength;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintStrength {
+        match *self {
+            ConstraintStrength::Required => gtk_sys::GTK_CONSTRAINT_STRENGTH_REQUIRED,
+            ConstraintStrength::Strong => gtk_sys::GTK_CONSTRAINT_STRENGTH_STRONG,
+            ConstraintStrength::Medium => gtk_sys::GTK_CONSTRAINT_STRENGTH_MEDIUM,
+            ConstraintStrength::Weak => gtk_sys::GTK_CONSTRAINT_STRENGTH_WEAK,
+            ConstraintStrength::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintStrength> for ConstraintStrength {
+    fn from_glib(value: gtk_sys::GtkConstraintStrength) -> Self {
+        skip_assert_initialized!();
+        match value {
+            1001001000 => ConstraintStrength::Required,
+            1000000000 => ConstraintStrength::Strong,
+            1000 => ConstraintStrength::Medium,
+            1 => ConstraintStrength::Weak,
+            value => ConstraintStrength::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for ConstraintStrength {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_strength_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintStrength {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintStrength {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintStrength {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum ConstraintVflParserError {
+    Symbol,
+    Attribute,
+    View,
+    Metric,
+    Priority,
+    Relation,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for ConstraintVflParserError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConstraintVflParserError::{}",
+            match *self {
+                ConstraintVflParserError::Symbol => "Symbol",
+                ConstraintVflParserError::Attribute => "Attribute",
+                ConstraintVflParserError::View => "View",
+                ConstraintVflParserError::Metric => "Metric",
+                ConstraintVflParserError::Priority => "Priority",
+                ConstraintVflParserError::Relation => "Relation",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ConstraintVflParserError {
+    type GlibType = gtk_sys::GtkConstraintVflParserError;
+
+    fn to_glib(&self) -> gtk_sys::GtkConstraintVflParserError {
+        match *self {
+            ConstraintVflParserError::Symbol => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL
+            }
+            ConstraintVflParserError::Attribute => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE
+            }
+            ConstraintVflParserError::View => gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
+            ConstraintVflParserError::Metric => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC
+            }
+            ConstraintVflParserError::Priority => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY
+            }
+            ConstraintVflParserError::Relation => {
+                gtk_sys::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION
+            }
+            ConstraintVflParserError::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkConstraintVflParserError> for ConstraintVflParserError {
+    fn from_glib(value: gtk_sys::GtkConstraintVflParserError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => ConstraintVflParserError::Symbol,
+            1 => ConstraintVflParserError::Attribute,
+            2 => ConstraintVflParserError::View,
+            3 => ConstraintVflParserError::Metric,
+            4 => ConstraintVflParserError::Priority,
+            5 => ConstraintVflParserError::Relation,
+            value => ConstraintVflParserError::__Unknown(value),
+        }
+    }
+}
+
+impl ErrorDomain for ConstraintVflParserError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+        unsafe { from_glib(gtk_sys::gtk_constraint_vfl_parser_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.to_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            0 => Some(ConstraintVflParserError::Symbol),
+            1 => Some(ConstraintVflParserError::Attribute),
+            2 => Some(ConstraintVflParserError::View),
+            3 => Some(ConstraintVflParserError::Metric),
+            4 => Some(ConstraintVflParserError::Priority),
+            5 => Some(ConstraintVflParserError::Relation),
+            value => Some(ConstraintVflParserError::__Unknown(value)),
+        }
+    }
+}
+
+impl StaticType for ConstraintVflParserError {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_constraint_vfl_parser_error_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ConstraintVflParserError {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ConstraintVflParserError {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ConstraintVflParserError {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum CornerType {
     TopLeft,
     BottomLeft,
@@ -1060,6 +2385,142 @@ impl SetValue for CornerType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum CssParserError {
+    Failed,
+    Syntax,
+    Import,
+    Name,
+    UnknownValue,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for CssParserError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "CssParserError::{}",
+            match *self {
+                CssParserError::Failed => "Failed",
+                CssParserError::Syntax => "Syntax",
+                CssParserError::Import => "Import",
+                CssParserError::Name => "Name",
+                CssParserError::UnknownValue => "UnknownValue",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for CssParserError {
+    type GlibType = gtk_sys::GtkCssParserError;
+
+    fn to_glib(&self) -> gtk_sys::GtkCssParserError {
+        match *self {
+            CssParserError::Failed => gtk_sys::GTK_CSS_PARSER_ERROR_FAILED,
+            CssParserError::Syntax => gtk_sys::GTK_CSS_PARSER_ERROR_SYNTAX,
+            CssParserError::Import => gtk_sys::GTK_CSS_PARSER_ERROR_IMPORT,
+            CssParserError::Name => gtk_sys::GTK_CSS_PARSER_ERROR_NAME,
+            CssParserError::UnknownValue => gtk_sys::GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE,
+            CssParserError::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkCssParserError> for CssParserError {
+    fn from_glib(value: gtk_sys::GtkCssParserError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => CssParserError::Failed,
+            1 => CssParserError::Syntax,
+            2 => CssParserError::Import,
+            3 => CssParserError::Name,
+            4 => CssParserError::UnknownValue,
+            value => CssParserError::__Unknown(value),
+        }
+    }
+}
+
+impl ErrorDomain for CssParserError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+        unsafe { from_glib(gtk_sys::gtk_css_parser_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.to_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            0 => Some(CssParserError::Failed),
+            1 => Some(CssParserError::Syntax),
+            2 => Some(CssParserError::Import),
+            3 => Some(CssParserError::Name),
+            4 => Some(CssParserError::UnknownValue),
+            _ => Some(CssParserError::Failed),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum CssParserWarning {
+    Deprecated,
+    Syntax,
+    Unimplemented,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for CssParserWarning {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "CssParserWarning::{}",
+            match *self {
+                CssParserWarning::Deprecated => "Deprecated",
+                CssParserWarning::Syntax => "Syntax",
+                CssParserWarning::Unimplemented => "Unimplemented",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for CssParserWarning {
+    type GlibType = gtk_sys::GtkCssParserWarning;
+
+    fn to_glib(&self) -> gtk_sys::GtkCssParserWarning {
+        match *self {
+            CssParserWarning::Deprecated => gtk_sys::GTK_CSS_PARSER_WARNING_DEPRECATED,
+            CssParserWarning::Syntax => gtk_sys::GTK_CSS_PARSER_WARNING_SYNTAX,
+            CssParserWarning::Unimplemented => gtk_sys::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED,
+            CssParserWarning::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkCssParserWarning> for CssParserWarning {
+    fn from_glib(value: gtk_sys::GtkCssParserWarning) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => CssParserWarning::Deprecated,
+            1 => CssParserWarning::Syntax,
+            2 => CssParserWarning::Unimplemented,
+            value => CssParserWarning::__Unknown(value),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DeleteType {
     Chars,
     WordEnds,
@@ -1155,6 +2616,7 @@ impl SetValue for DeleteType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum DirectionType {
     TabForward,
     TabBackward,
@@ -1242,93 +2704,7 @@ impl SetValue for DirectionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum DragResult {
-    Success,
-    NoTarget,
-    UserCancelled,
-    TimeoutExpired,
-    GrabBroken,
-    Error,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for DragResult {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DragResult::{}",
-            match *self {
-                DragResult::Success => "Success",
-                DragResult::NoTarget => "NoTarget",
-                DragResult::UserCancelled => "UserCancelled",
-                DragResult::TimeoutExpired => "TimeoutExpired",
-                DragResult::GrabBroken => "GrabBroken",
-                DragResult::Error => "Error",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for DragResult {
-    type GlibType = gtk_sys::GtkDragResult;
-
-    fn to_glib(&self) -> gtk_sys::GtkDragResult {
-        match *self {
-            DragResult::Success => gtk_sys::GTK_DRAG_RESULT_SUCCESS,
-            DragResult::NoTarget => gtk_sys::GTK_DRAG_RESULT_NO_TARGET,
-            DragResult::UserCancelled => gtk_sys::GTK_DRAG_RESULT_USER_CANCELLED,
-            DragResult::TimeoutExpired => gtk_sys::GTK_DRAG_RESULT_TIMEOUT_EXPIRED,
-            DragResult::GrabBroken => gtk_sys::GTK_DRAG_RESULT_GRAB_BROKEN,
-            DragResult::Error => gtk_sys::GTK_DRAG_RESULT_ERROR,
-            DragResult::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDragResult> for DragResult {
-    fn from_glib(value: gtk_sys::GtkDragResult) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => DragResult::Success,
-            1 => DragResult::NoTarget,
-            2 => DragResult::UserCancelled,
-            3 => DragResult::TimeoutExpired,
-            4 => DragResult::GrabBroken,
-            5 => DragResult::Error,
-            value => DragResult::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for DragResult {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_drag_result_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for DragResult {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for DragResult {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for DragResult {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum EditableProperties {
     PropText,
     PropCursorPosition,
@@ -1337,6 +2713,7 @@ pub enum EditableProperties {
     PropWidthChars,
     PropMaxWidthChars,
     PropXalign,
+    PropEnableUndo,
     NumProperties,
     #[doc(hidden)]
     __Unknown(i32),
@@ -1355,6 +2732,7 @@ impl fmt::Display for EditableProperties {
                 EditableProperties::PropWidthChars => "PropWidthChars",
                 EditableProperties::PropMaxWidthChars => "PropMaxWidthChars",
                 EditableProperties::PropXalign => "PropXalign",
+                EditableProperties::PropEnableUndo => "PropEnableUndo",
                 EditableProperties::NumProperties => "NumProperties",
                 _ => "Unknown",
             }
@@ -1375,6 +2753,7 @@ impl ToGlib for EditableProperties {
             EditableProperties::PropWidthChars => gtk_sys::GTK_EDITABLE_PROP_WIDTH_CHARS,
             EditableProperties::PropMaxWidthChars => gtk_sys::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
             EditableProperties::PropXalign => gtk_sys::GTK_EDITABLE_PROP_XALIGN,
+            EditableProperties::PropEnableUndo => gtk_sys::GTK_EDITABLE_PROP_ENABLE_UNDO,
             EditableProperties::NumProperties => gtk_sys::GTK_EDITABLE_NUM_PROPERTIES,
             EditableProperties::__Unknown(value) => value,
         }
@@ -1393,7 +2772,8 @@ impl FromGlib<gtk_sys::GtkEditableProperties> for EditableProperties {
             4 => EditableProperties::PropWidthChars,
             5 => EditableProperties::PropMaxWidthChars,
             6 => EditableProperties::PropXalign,
-            7 => EditableProperties::NumProperties,
+            7 => EditableProperties::PropEnableUndo,
+            8 => EditableProperties::NumProperties,
             value => EditableProperties::__Unknown(value),
         }
     }
@@ -1424,6 +2804,7 @@ impl SetValue for EditableProperties {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum EntryIconPosition {
     Primary,
     Secondary,
@@ -1495,6 +2876,7 @@ impl SetValue for EntryIconPosition {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum EventSequenceState {
     None,
     Claimed,
@@ -1570,11 +2952,11 @@ impl SetValue for EventSequenceState {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum FileChooserAction {
     Open,
     Save,
     SelectFolder,
-    CreateFolder,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1588,7 +2970,6 @@ impl fmt::Display for FileChooserAction {
                 FileChooserAction::Open => "Open",
                 FileChooserAction::Save => "Save",
                 FileChooserAction::SelectFolder => "SelectFolder",
-                FileChooserAction::CreateFolder => "CreateFolder",
                 _ => "Unknown",
             }
         )
@@ -1604,7 +2985,6 @@ impl ToGlib for FileChooserAction {
             FileChooserAction::Open => gtk_sys::GTK_FILE_CHOOSER_ACTION_OPEN,
             FileChooserAction::Save => gtk_sys::GTK_FILE_CHOOSER_ACTION_SAVE,
             FileChooserAction::SelectFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            FileChooserAction::CreateFolder => gtk_sys::GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER,
             FileChooserAction::__Unknown(value) => value,
         }
     }
@@ -1618,7 +2998,6 @@ impl FromGlib<gtk_sys::GtkFileChooserAction> for FileChooserAction {
             0 => FileChooserAction::Open,
             1 => FileChooserAction::Save,
             2 => FileChooserAction::SelectFolder,
-            3 => FileChooserAction::CreateFolder,
             value => FileChooserAction::__Unknown(value),
         }
     }
@@ -1649,85 +3028,7 @@ impl SetValue for FileChooserAction {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum FileChooserConfirmation {
-    Confirm,
-    AcceptFilename,
-    SelectAgain,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for FileChooserConfirmation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FileChooserConfirmation::{}",
-            match *self {
-                FileChooserConfirmation::Confirm => "Confirm",
-                FileChooserConfirmation::AcceptFilename => "AcceptFilename",
-                FileChooserConfirmation::SelectAgain => "SelectAgain",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for FileChooserConfirmation {
-    type GlibType = gtk_sys::GtkFileChooserConfirmation;
-
-    fn to_glib(&self) -> gtk_sys::GtkFileChooserConfirmation {
-        match *self {
-            FileChooserConfirmation::Confirm => gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM,
-            FileChooserConfirmation::AcceptFilename => {
-                gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME
-            }
-            FileChooserConfirmation::SelectAgain => {
-                gtk_sys::GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
-            }
-            FileChooserConfirmation::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkFileChooserConfirmation> for FileChooserConfirmation {
-    fn from_glib(value: gtk_sys::GtkFileChooserConfirmation) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => FileChooserConfirmation::Confirm,
-            1 => FileChooserConfirmation::AcceptFilename,
-            2 => FileChooserConfirmation::SelectAgain,
-            value => FileChooserConfirmation::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for FileChooserConfirmation {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_file_chooser_confirmation_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for FileChooserConfirmation {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for FileChooserConfirmation {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for FileChooserConfirmation {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum FileChooserError {
     Nonexistent,
     BadFilename,
@@ -1831,6 +3132,159 @@ impl SetValue for FileChooserError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum FilterChange {
+    Different,
+    LessStrict,
+    MoreStrict,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FilterChange {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FilterChange::{}",
+            match *self {
+                FilterChange::Different => "Different",
+                FilterChange::LessStrict => "LessStrict",
+                FilterChange::MoreStrict => "MoreStrict",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for FilterChange {
+    type GlibType = gtk_sys::GtkFilterChange;
+
+    fn to_glib(&self) -> gtk_sys::GtkFilterChange {
+        match *self {
+            FilterChange::Different => gtk_sys::GTK_FILTER_CHANGE_DIFFERENT,
+            FilterChange::LessStrict => gtk_sys::GTK_FILTER_CHANGE_LESS_STRICT,
+            FilterChange::MoreStrict => gtk_sys::GTK_FILTER_CHANGE_MORE_STRICT,
+            FilterChange::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkFilterChange> for FilterChange {
+    fn from_glib(value: gtk_sys::GtkFilterChange) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => FilterChange::Different,
+            1 => FilterChange::LessStrict,
+            2 => FilterChange::MoreStrict,
+            value => FilterChange::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FilterChange {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_filter_change_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for FilterChange {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for FilterChange {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for FilterChange {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum FilterMatch {
+    Some,
+    None,
+    All,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FilterMatch {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FilterMatch::{}",
+            match *self {
+                FilterMatch::Some => "Some",
+                FilterMatch::None => "None",
+                FilterMatch::All => "All",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for FilterMatch {
+    type GlibType = gtk_sys::GtkFilterMatch;
+
+    fn to_glib(&self) -> gtk_sys::GtkFilterMatch {
+        match *self {
+            FilterMatch::Some => gtk_sys::GTK_FILTER_MATCH_SOME,
+            FilterMatch::None => gtk_sys::GTK_FILTER_MATCH_NONE,
+            FilterMatch::All => gtk_sys::GTK_FILTER_MATCH_ALL,
+            FilterMatch::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkFilterMatch> for FilterMatch {
+    fn from_glib(value: gtk_sys::GtkFilterMatch) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => FilterMatch::Some,
+            1 => FilterMatch::None,
+            2 => FilterMatch::All,
+            value => FilterMatch::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FilterMatch {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_filter_match_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for FilterMatch {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for FilterMatch {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for FilterMatch {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum IconSize {
     Inherit,
     Normal,
@@ -1906,6 +3360,7 @@ impl SetValue for IconSize {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum IconThemeError {
     NotFound,
     Failed,
@@ -1997,6 +3452,7 @@ impl SetValue for IconThemeError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum IconViewDropPosition {
     NoDrop,
     DropInto,
@@ -2084,6 +3540,7 @@ impl SetValue for IconViewDropPosition {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ImageType {
     Empty,
     IconName,
@@ -2163,6 +3620,7 @@ impl SetValue for ImageType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum InputPurpose {
     FreeForm,
     Alpha,
@@ -2174,6 +3632,7 @@ pub enum InputPurpose {
     Name,
     Password,
     Pin,
+    Terminal,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -2194,6 +3653,7 @@ impl fmt::Display for InputPurpose {
                 InputPurpose::Name => "Name",
                 InputPurpose::Password => "Password",
                 InputPurpose::Pin => "Pin",
+                InputPurpose::Terminal => "Terminal",
                 _ => "Unknown",
             }
         )
@@ -2216,6 +3676,7 @@ impl ToGlib for InputPurpose {
             InputPurpose::Name => gtk_sys::GTK_INPUT_PURPOSE_NAME,
             InputPurpose::Password => gtk_sys::GTK_INPUT_PURPOSE_PASSWORD,
             InputPurpose::Pin => gtk_sys::GTK_INPUT_PURPOSE_PIN,
+            InputPurpose::Terminal => gtk_sys::GTK_INPUT_PURPOSE_TERMINAL,
             InputPurpose::__Unknown(value) => value,
         }
     }
@@ -2236,6 +3697,7 @@ impl FromGlib<gtk_sys::GtkInputPurpose> for InputPurpose {
             7 => InputPurpose::Name,
             8 => InputPurpose::Password,
             9 => InputPurpose::Pin,
+            10 => InputPurpose::Terminal,
             value => InputPurpose::__Unknown(value),
         }
     }
@@ -2266,6 +3728,7 @@ impl SetValue for InputPurpose {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Justification {
     Left,
     Right,
@@ -2345,6 +3808,7 @@ impl SetValue for Justification {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum LevelBarMode {
     Continuous,
     Discrete,
@@ -2416,6 +3880,7 @@ impl SetValue for LevelBarMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum License {
     Unknown,
     Custom,
@@ -2432,6 +3897,9 @@ pub enum License {
     Lgpl30Only,
     Agpl30,
     Agpl30Only,
+    Bsd3,
+    Apache20,
+    Mpl20,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -2457,6 +3925,9 @@ impl fmt::Display for License {
                 License::Lgpl30Only => "Lgpl30Only",
                 License::Agpl30 => "Agpl30",
                 License::Agpl30Only => "Agpl30Only",
+                License::Bsd3 => "Bsd3",
+                License::Apache20 => "Apache20",
+                License::Mpl20 => "Mpl20",
                 _ => "Unknown",
             }
         )
@@ -2484,6 +3955,9 @@ impl ToGlib for License {
             License::Lgpl30Only => gtk_sys::GTK_LICENSE_LGPL_3_0_ONLY,
             License::Agpl30 => gtk_sys::GTK_LICENSE_AGPL_3_0,
             License::Agpl30Only => gtk_sys::GTK_LICENSE_AGPL_3_0_ONLY,
+            License::Bsd3 => gtk_sys::GTK_LICENSE_BSD_3,
+            License::Apache20 => gtk_sys::GTK_LICENSE_APACHE_2_0,
+            License::Mpl20 => gtk_sys::GTK_LICENSE_MPL_2_0,
             License::__Unknown(value) => value,
         }
     }
@@ -2509,6 +3983,9 @@ impl FromGlib<gtk_sys::GtkLicense> for License {
             12 => License::Lgpl30Only,
             13 => License::Agpl30,
             14 => License::Agpl30Only,
+            15 => License::Bsd3,
+            16 => License::Apache20,
+            17 => License::Mpl20,
             value => License::__Unknown(value),
         }
     }
@@ -2539,6 +4016,7 @@ impl SetValue for License {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum MenuDirectionType {
     Parent,
     Child,
@@ -2618,6 +4096,7 @@ impl SetValue for MenuDirectionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum MessageType {
     Info,
     Warning,
@@ -2701,6 +4180,7 @@ impl SetValue for MessageType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum MovementStep {
     LogicalPositions,
     VisualPositions,
@@ -2804,6 +4284,7 @@ impl SetValue for MovementStep {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum NotebookTab {
     First,
     Last,
@@ -2875,6 +4356,7 @@ impl SetValue for NotebookTab {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum NumberUpLayout {
     Lrtb,
     Lrbt,
@@ -2970,6 +4452,83 @@ impl SetValue for NumberUpLayout {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum Ordering {
+    Smaller,
+    Equal,
+    Larger,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for Ordering {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "Ordering::{}",
+            match *self {
+                Ordering::Smaller => "Smaller",
+                Ordering::Equal => "Equal",
+                Ordering::Larger => "Larger",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for Ordering {
+    type GlibType = gtk_sys::GtkOrdering;
+
+    fn to_glib(&self) -> gtk_sys::GtkOrdering {
+        match *self {
+            Ordering::Smaller => gtk_sys::GTK_ORDERING_SMALLER,
+            Ordering::Equal => gtk_sys::GTK_ORDERING_EQUAL,
+            Ordering::Larger => gtk_sys::GTK_ORDERING_LARGER,
+            Ordering::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkOrdering> for Ordering {
+    fn from_glib(value: gtk_sys::GtkOrdering) -> Self {
+        skip_assert_initialized!();
+        match value {
+            -1 => Ordering::Smaller,
+            0 => Ordering::Equal,
+            1 => Ordering::Larger,
+            value => Ordering::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for Ordering {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_ordering_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for Ordering {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for Ordering {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for Ordering {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Orientation {
     Horizontal,
     Vertical,
@@ -3041,6 +4600,7 @@ impl SetValue for Orientation {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Overflow {
     Visible,
     Hidden,
@@ -3112,6 +4672,7 @@ impl SetValue for Overflow {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PackType {
     Start,
     End,
@@ -3183,6 +4744,7 @@ impl SetValue for PackType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PadActionType {
     Button,
     Ring,
@@ -3258,6 +4820,7 @@ impl SetValue for PadActionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PageOrientation {
     Portrait,
     Landscape,
@@ -3337,6 +4900,7 @@ impl SetValue for PageOrientation {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PageSet {
     All,
     Even,
@@ -3412,6 +4976,7 @@ impl SetValue for PageSet {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PanDirection {
     Left,
     Right,
@@ -3491,6 +5056,7 @@ impl SetValue for PanDirection {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PolicyType {
     Always,
     Automatic,
@@ -3570,6 +5136,7 @@ impl SetValue for PolicyType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PopoverConstraint {
     None,
     Window,
@@ -3641,6 +5208,7 @@ impl SetValue for PopoverConstraint {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PositionType {
     Left,
     Right,
@@ -3720,6 +5288,7 @@ impl SetValue for PositionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintDuplex {
     Simplex,
     Horizontal,
@@ -3795,6 +5364,7 @@ impl SetValue for PrintDuplex {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintError {
     General,
     InternalError,
@@ -3896,6 +5466,7 @@ impl SetValue for PrintError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintOperationAction {
     PrintDialog,
     Print,
@@ -3975,6 +5546,7 @@ impl SetValue for PrintOperationAction {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintOperationResult {
     Error,
     Apply,
@@ -4054,6 +5626,7 @@ impl SetValue for PrintOperationResult {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintPages {
     All,
     Current,
@@ -4133,6 +5706,7 @@ impl SetValue for PrintPages {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintQuality {
     Low,
     Normal,
@@ -4212,6 +5786,7 @@ impl SetValue for PrintQuality {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PrintStatus {
     Initial,
     Preparing,
@@ -4311,6 +5886,79 @@ impl SetValue for PrintStatus {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum PropagationLimit {
+    None,
+    SameNative,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for PropagationLimit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "PropagationLimit::{}",
+            match *self {
+                PropagationLimit::None => "None",
+                PropagationLimit::SameNative => "SameNative",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for PropagationLimit {
+    type GlibType = gtk_sys::GtkPropagationLimit;
+
+    fn to_glib(&self) -> gtk_sys::GtkPropagationLimit {
+        match *self {
+            PropagationLimit::None => gtk_sys::GTK_LIMIT_NONE,
+            PropagationLimit::SameNative => gtk_sys::GTK_LIMIT_SAME_NATIVE,
+            PropagationLimit::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkPropagationLimit> for PropagationLimit {
+    fn from_glib(value: gtk_sys::GtkPropagationLimit) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => PropagationLimit::None,
+            1 => PropagationLimit::SameNative,
+            value => PropagationLimit::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for PropagationLimit {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_propagation_limit_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for PropagationLimit {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for PropagationLimit {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for PropagationLimit {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum PropagationPhase {
     None,
     Capture,
@@ -4390,6 +6038,7 @@ impl SetValue for PropagationPhase {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum RecentManagerError {
     NotFound,
     InvalidUri,
@@ -4508,77 +6157,7 @@ impl SetValue for RecentManagerError {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ReliefStyle {
-    Normal,
-    None,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ReliefStyle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ReliefStyle::{}",
-            match *self {
-                ReliefStyle::Normal => "Normal",
-                ReliefStyle::None => "None",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ReliefStyle {
-    type GlibType = gtk_sys::GtkReliefStyle;
-
-    fn to_glib(&self) -> gtk_sys::GtkReliefStyle {
-        match *self {
-            ReliefStyle::Normal => gtk_sys::GTK_RELIEF_NORMAL,
-            ReliefStyle::None => gtk_sys::GTK_RELIEF_NONE,
-            ReliefStyle::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkReliefStyle> for ReliefStyle {
-    fn from_glib(value: gtk_sys::GtkReliefStyle) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ReliefStyle::Normal,
-            1 => ReliefStyle::None,
-            value => ReliefStyle::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ReliefStyle {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_relief_style_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ReliefStyle {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ReliefStyle {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ReliefStyle {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum RevealerTransitionType {
     None,
     Crossfade,
@@ -4682,6 +6261,7 @@ impl SetValue for RevealerTransitionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ScrollStep {
     Steps,
     Pages,
@@ -4769,6 +6349,7 @@ impl SetValue for ScrollStep {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ScrollType {
     None,
     Jump,
@@ -4896,6 +6477,7 @@ impl SetValue for ScrollType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ScrollablePolicy {
     Minimum,
     Natural,
@@ -4967,6 +6549,7 @@ impl SetValue for ScrollablePolicy {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SelectionMode {
     None,
     Single,
@@ -5046,6 +6629,7 @@ impl SetValue for SelectionMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SensitivityType {
     Auto,
     On,
@@ -5121,27 +6705,24 @@ impl SetValue for SensitivityType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ShadowType {
-    None,
-    In,
-    Out,
-    EtchedIn,
-    EtchedOut,
+#[non_exhaustive]
+pub enum ShortcutScope {
+    Local,
+    Managed,
+    Global,
     #[doc(hidden)]
     __Unknown(i32),
 }
 
-impl fmt::Display for ShadowType {
+impl fmt::Display for ShortcutScope {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ShadowType::{}",
+            "ShortcutScope::{}",
             match *self {
-                ShadowType::None => "None",
-                ShadowType::In => "In",
-                ShadowType::Out => "Out",
-                ShadowType::EtchedIn => "EtchedIn",
-                ShadowType::EtchedOut => "EtchedOut",
+                ShortcutScope::Local => "Local",
+                ShortcutScope::Managed => "Managed",
+                ShortcutScope::Global => "Global",
                 _ => "Unknown",
             }
         )
@@ -5149,61 +6730,58 @@ impl fmt::Display for ShadowType {
 }
 
 #[doc(hidden)]
-impl ToGlib for ShadowType {
-    type GlibType = gtk_sys::GtkShadowType;
+impl ToGlib for ShortcutScope {
+    type GlibType = gtk_sys::GtkShortcutScope;
 
-    fn to_glib(&self) -> gtk_sys::GtkShadowType {
+    fn to_glib(&self) -> gtk_sys::GtkShortcutScope {
         match *self {
-            ShadowType::None => gtk_sys::GTK_SHADOW_NONE,
-            ShadowType::In => gtk_sys::GTK_SHADOW_IN,
-            ShadowType::Out => gtk_sys::GTK_SHADOW_OUT,
-            ShadowType::EtchedIn => gtk_sys::GTK_SHADOW_ETCHED_IN,
-            ShadowType::EtchedOut => gtk_sys::GTK_SHADOW_ETCHED_OUT,
-            ShadowType::__Unknown(value) => value,
+            ShortcutScope::Local => gtk_sys::GTK_SHORTCUT_SCOPE_LOCAL,
+            ShortcutScope::Managed => gtk_sys::GTK_SHORTCUT_SCOPE_MANAGED,
+            ShortcutScope::Global => gtk_sys::GTK_SHORTCUT_SCOPE_GLOBAL,
+            ShortcutScope::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkShadowType> for ShadowType {
-    fn from_glib(value: gtk_sys::GtkShadowType) -> Self {
+impl FromGlib<gtk_sys::GtkShortcutScope> for ShortcutScope {
+    fn from_glib(value: gtk_sys::GtkShortcutScope) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ShadowType::None,
-            1 => ShadowType::In,
-            2 => ShadowType::Out,
-            3 => ShadowType::EtchedIn,
-            4 => ShadowType::EtchedOut,
-            value => ShadowType::__Unknown(value),
+            0 => ShortcutScope::Local,
+            1 => ShortcutScope::Managed,
+            2 => ShortcutScope::Global,
+            value => ShortcutScope::__Unknown(value),
         }
     }
 }
 
-impl StaticType for ShadowType {
+impl StaticType for ShortcutScope {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_shadow_type_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_shortcut_scope_get_type()) }
     }
 }
 
-impl<'a> FromValueOptional<'a> for ShadowType {
+impl<'a> FromValueOptional<'a> for ShortcutScope {
     unsafe fn from_value_optional(value: &Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
-impl<'a> FromValue<'a> for ShadowType {
+impl<'a> FromValue<'a> for ShortcutScope {
     unsafe fn from_value(value: &Value) -> Self {
         from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for ShadowType {
+impl SetValue for ShortcutScope {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum ShortcutType {
     Accelerator,
     GesturePinch,
@@ -5313,6 +6891,7 @@ impl SetValue for ShortcutType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SizeGroupMode {
     None,
     Horizontal,
@@ -5392,6 +6971,7 @@ impl SetValue for SizeGroupMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SizeRequestMode {
     HeightForWidth,
     WidthForHeight,
@@ -5467,6 +7047,7 @@ impl SetValue for SizeRequestMode {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SortType {
     Ascending,
     Descending,
@@ -5538,6 +7119,163 @@ impl SetValue for SortType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum SorterChange {
+    Different,
+    Inverted,
+    LessStrict,
+    MoreStrict,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SorterChange {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SorterChange::{}",
+            match *self {
+                SorterChange::Different => "Different",
+                SorterChange::Inverted => "Inverted",
+                SorterChange::LessStrict => "LessStrict",
+                SorterChange::MoreStrict => "MoreStrict",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SorterChange {
+    type GlibType = gtk_sys::GtkSorterChange;
+
+    fn to_glib(&self) -> gtk_sys::GtkSorterChange {
+        match *self {
+            SorterChange::Different => gtk_sys::GTK_SORTER_CHANGE_DIFFERENT,
+            SorterChange::Inverted => gtk_sys::GTK_SORTER_CHANGE_INVERTED,
+            SorterChange::LessStrict => gtk_sys::GTK_SORTER_CHANGE_LESS_STRICT,
+            SorterChange::MoreStrict => gtk_sys::GTK_SORTER_CHANGE_MORE_STRICT,
+            SorterChange::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSorterChange> for SorterChange {
+    fn from_glib(value: gtk_sys::GtkSorterChange) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SorterChange::Different,
+            1 => SorterChange::Inverted,
+            2 => SorterChange::LessStrict,
+            3 => SorterChange::MoreStrict,
+            value => SorterChange::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SorterChange {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_sorter_change_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SorterChange {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SorterChange {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SorterChange {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum SorterOrder {
+    Partial,
+    None,
+    Total,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SorterOrder {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SorterOrder::{}",
+            match *self {
+                SorterOrder::Partial => "Partial",
+                SorterOrder::None => "None",
+                SorterOrder::Total => "Total",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SorterOrder {
+    type GlibType = gtk_sys::GtkSorterOrder;
+
+    fn to_glib(&self) -> gtk_sys::GtkSorterOrder {
+        match *self {
+            SorterOrder::Partial => gtk_sys::GTK_SORTER_ORDER_PARTIAL,
+            SorterOrder::None => gtk_sys::GTK_SORTER_ORDER_NONE,
+            SorterOrder::Total => gtk_sys::GTK_SORTER_ORDER_TOTAL,
+            SorterOrder::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSorterOrder> for SorterOrder {
+    fn from_glib(value: gtk_sys::GtkSorterOrder) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SorterOrder::Partial,
+            1 => SorterOrder::None,
+            2 => SorterOrder::Total,
+            value => SorterOrder::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SorterOrder {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_sorter_order_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SorterOrder {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SorterOrder {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SorterOrder {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SpinButtonUpdatePolicy {
     Always,
     IfValid,
@@ -5609,6 +7347,7 @@ impl SetValue for SpinButtonUpdatePolicy {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum SpinType {
     StepForward,
     StepBackward,
@@ -5700,6 +7439,7 @@ impl SetValue for SpinType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum StackTransitionType {
     None,
     Crossfade,
@@ -5863,6 +7603,167 @@ impl SetValue for StackTransitionType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum StringFilterMatchMode {
+    Exact,
+    Substring,
+    Prefix,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for StringFilterMatchMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "StringFilterMatchMode::{}",
+            match *self {
+                StringFilterMatchMode::Exact => "Exact",
+                StringFilterMatchMode::Substring => "Substring",
+                StringFilterMatchMode::Prefix => "Prefix",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for StringFilterMatchMode {
+    type GlibType = gtk_sys::GtkStringFilterMatchMode;
+
+    fn to_glib(&self) -> gtk_sys::GtkStringFilterMatchMode {
+        match *self {
+            StringFilterMatchMode::Exact => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_EXACT,
+            StringFilterMatchMode::Substring => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_SUBSTRING,
+            StringFilterMatchMode::Prefix => gtk_sys::GTK_STRING_FILTER_MATCH_MODE_PREFIX,
+            StringFilterMatchMode::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkStringFilterMatchMode> for StringFilterMatchMode {
+    fn from_glib(value: gtk_sys::GtkStringFilterMatchMode) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => StringFilterMatchMode::Exact,
+            1 => StringFilterMatchMode::Substring,
+            2 => StringFilterMatchMode::Prefix,
+            value => StringFilterMatchMode::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for StringFilterMatchMode {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_string_filter_match_mode_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for StringFilterMatchMode {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for StringFilterMatchMode {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for StringFilterMatchMode {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+pub enum SystemSetting {
+    Dpi,
+    FontName,
+    FontConfig,
+    Display,
+    IconTheme,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for SystemSetting {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SystemSetting::{}",
+            match *self {
+                SystemSetting::Dpi => "Dpi",
+                SystemSetting::FontName => "FontName",
+                SystemSetting::FontConfig => "FontConfig",
+                SystemSetting::Display => "Display",
+                SystemSetting::IconTheme => "IconTheme",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for SystemSetting {
+    type GlibType = gtk_sys::GtkSystemSetting;
+
+    fn to_glib(&self) -> gtk_sys::GtkSystemSetting {
+        match *self {
+            SystemSetting::Dpi => gtk_sys::GTK_SYSTEM_SETTING_DPI,
+            SystemSetting::FontName => gtk_sys::GTK_SYSTEM_SETTING_FONT_NAME,
+            SystemSetting::FontConfig => gtk_sys::GTK_SYSTEM_SETTING_FONT_CONFIG,
+            SystemSetting::Display => gtk_sys::GTK_SYSTEM_SETTING_DISPLAY,
+            SystemSetting::IconTheme => gtk_sys::GTK_SYSTEM_SETTING_ICON_THEME,
+            SystemSetting::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkSystemSetting> for SystemSetting {
+    fn from_glib(value: gtk_sys::GtkSystemSetting) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => SystemSetting::Dpi,
+            1 => SystemSetting::FontName,
+            2 => SystemSetting::FontConfig,
+            3 => SystemSetting::Display,
+            4 => SystemSetting::IconTheme,
+            value => SystemSetting::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for SystemSetting {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_system_setting_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for SystemSetting {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for SystemSetting {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for SystemSetting {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextBufferTargetInfo {
     BufferContents,
     RichText,
@@ -5940,6 +7841,7 @@ impl SetValue for TextBufferTargetInfo {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextDirection {
     None,
     Ltr,
@@ -6015,6 +7917,7 @@ impl SetValue for TextDirection {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextExtendSelection {
     Word,
     Line,
@@ -6086,6 +7989,7 @@ impl SetValue for TextExtendSelection {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextViewLayer {
     BelowText,
     AboveText,
@@ -6157,8 +8061,8 @@ impl SetValue for TextViewLayer {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TextWindowType {
-    Private,
     Widget,
     Text,
     Left,
@@ -6175,7 +8079,6 @@ impl fmt::Display for TextWindowType {
             f,
             "TextWindowType::{}",
             match *self {
-                TextWindowType::Private => "Private",
                 TextWindowType::Widget => "Widget",
                 TextWindowType::Text => "Text",
                 TextWindowType::Left => "Left",
@@ -6194,7 +8097,6 @@ impl ToGlib for TextWindowType {
 
     fn to_glib(&self) -> gtk_sys::GtkTextWindowType {
         match *self {
-            TextWindowType::Private => gtk_sys::GTK_TEXT_WINDOW_PRIVATE,
             TextWindowType::Widget => gtk_sys::GTK_TEXT_WINDOW_WIDGET,
             TextWindowType::Text => gtk_sys::GTK_TEXT_WINDOW_TEXT,
             TextWindowType::Left => gtk_sys::GTK_TEXT_WINDOW_LEFT,
@@ -6211,7 +8113,6 @@ impl FromGlib<gtk_sys::GtkTextWindowType> for TextWindowType {
     fn from_glib(value: gtk_sys::GtkTextWindowType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TextWindowType::Private,
             1 => TextWindowType::Widget,
             2 => TextWindowType::Text,
             3 => TextWindowType::Left,
@@ -6248,85 +8149,7 @@ impl SetValue for TextWindowType {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum ToolbarStyle {
-    Icons,
-    Text,
-    Both,
-    BothHoriz,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for ToolbarStyle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ToolbarStyle::{}",
-            match *self {
-                ToolbarStyle::Icons => "Icons",
-                ToolbarStyle::Text => "Text",
-                ToolbarStyle::Both => "Both",
-                ToolbarStyle::BothHoriz => "BothHoriz",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for ToolbarStyle {
-    type GlibType = gtk_sys::GtkToolbarStyle;
-
-    fn to_glib(&self) -> gtk_sys::GtkToolbarStyle {
-        match *self {
-            ToolbarStyle::Icons => gtk_sys::GTK_TOOLBAR_ICONS,
-            ToolbarStyle::Text => gtk_sys::GTK_TOOLBAR_TEXT,
-            ToolbarStyle::Both => gtk_sys::GTK_TOOLBAR_BOTH,
-            ToolbarStyle::BothHoriz => gtk_sys::GTK_TOOLBAR_BOTH_HORIZ,
-            ToolbarStyle::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkToolbarStyle> for ToolbarStyle {
-    fn from_glib(value: gtk_sys::GtkToolbarStyle) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => ToolbarStyle::Icons,
-            1 => ToolbarStyle::Text,
-            2 => ToolbarStyle::Both,
-            3 => ToolbarStyle::BothHoriz,
-            value => ToolbarStyle::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for ToolbarStyle {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_toolbar_style_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for ToolbarStyle {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for ToolbarStyle {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for ToolbarStyle {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TreeViewColumnSizing {
     GrowOnly,
     Autosize,
@@ -6402,6 +8225,7 @@ impl SetValue for TreeViewColumnSizing {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TreeViewDropPosition {
     Before,
     After,
@@ -6481,6 +8305,7 @@ impl SetValue for TreeViewDropPosition {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum TreeViewGridLines {
     None,
     Horizontal,
@@ -6560,6 +8385,7 @@ impl SetValue for TreeViewGridLines {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum Unit {
     None,
     Points,
@@ -6639,160 +8465,7 @@ impl SetValue for Unit {
 }
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum WindowPosition {
-    None,
-    Center,
-    Mouse,
-    CenterAlways,
-    CenterOnParent,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for WindowPosition {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "WindowPosition::{}",
-            match *self {
-                WindowPosition::None => "None",
-                WindowPosition::Center => "Center",
-                WindowPosition::Mouse => "Mouse",
-                WindowPosition::CenterAlways => "CenterAlways",
-                WindowPosition::CenterOnParent => "CenterOnParent",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for WindowPosition {
-    type GlibType = gtk_sys::GtkWindowPosition;
-
-    fn to_glib(&self) -> gtk_sys::GtkWindowPosition {
-        match *self {
-            WindowPosition::None => gtk_sys::GTK_WIN_POS_NONE,
-            WindowPosition::Center => gtk_sys::GTK_WIN_POS_CENTER,
-            WindowPosition::Mouse => gtk_sys::GTK_WIN_POS_MOUSE,
-            WindowPosition::CenterAlways => gtk_sys::GTK_WIN_POS_CENTER_ALWAYS,
-            WindowPosition::CenterOnParent => gtk_sys::GTK_WIN_POS_CENTER_ON_PARENT,
-            WindowPosition::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkWindowPosition> for WindowPosition {
-    fn from_glib(value: gtk_sys::GtkWindowPosition) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => WindowPosition::None,
-            1 => WindowPosition::Center,
-            2 => WindowPosition::Mouse,
-            3 => WindowPosition::CenterAlways,
-            4 => WindowPosition::CenterOnParent,
-            value => WindowPosition::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for WindowPosition {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_window_position_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for WindowPosition {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for WindowPosition {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for WindowPosition {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-pub enum WindowType {
-    Toplevel,
-    Popup,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for WindowType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "WindowType::{}",
-            match *self {
-                WindowType::Toplevel => "Toplevel",
-                WindowType::Popup => "Popup",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for WindowType {
-    type GlibType = gtk_sys::GtkWindowType;
-
-    fn to_glib(&self) -> gtk_sys::GtkWindowType {
-        match *self {
-            WindowType::Toplevel => gtk_sys::GTK_WINDOW_TOPLEVEL,
-            WindowType::Popup => gtk_sys::GTK_WINDOW_POPUP,
-            WindowType::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkWindowType> for WindowType {
-    fn from_glib(value: gtk_sys::GtkWindowType) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => WindowType::Toplevel,
-            1 => WindowType::Popup,
-            value => WindowType::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for WindowType {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_window_type_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for WindowType {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for WindowType {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for WindowType {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum WrapMode {
     None,
     Char,

@@ -31,11 +31,10 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
             frame_clock: *mut gdk_sys::GdkFrameClock,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
-            let widget: Widget = from_glib_borrow(widget);
-            let widget = widget.downcast().unwrap();
+            let widget: Borrowed<Widget> = from_glib_borrow(widget);
             let frame_clock = from_glib_borrow(frame_clock);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&widget, &frame_clock);
+            let res = (*callback)(&widget.unsafe_cast_ref(), &frame_clock);
             res.to_glib()
         }
         let callback = Some(callback_func::<Self, P> as _);

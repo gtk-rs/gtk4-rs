@@ -5,6 +5,7 @@
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -17,23 +18,24 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Application;
-use Bin;
 use Buildable;
 use ColorChooser;
-use Container;
+use ConstraintTarget;
 use Dialog;
 use LayoutManager;
+use Native;
 use Overflow;
 use Root;
+use ShortcutManager;
 use Widget;
 use Window;
-use WindowPosition;
-use WindowType;
 
 glib_wrapper! {
-    pub struct ColorChooserDialog(Object<gtk_sys::GtkColorChooserDialog, gtk_sys::GtkColorChooserDialogClass, ColorChooserDialogClass>) @extends Dialog, Window, Bin, Container, Widget, @implements Buildable, Root, ColorChooser;
+    pub struct ColorChooserDialog(Object<gtk_sys::GtkColorChooserDialog, ColorChooserDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, ColorChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_color_chooser_dialog_get_type(),
@@ -51,15 +53,64 @@ impl ColorChooserDialog {
             .unsafe_cast()
         }
     }
+
+    pub fn get_property_show_editor(&self) -> bool {
+        unsafe {
+            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"show-editor\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `show-editor` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_show_editor(&self, show_editor: bool) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"show-editor\0".as_ptr() as *const _,
+                Value::from(&show_editor).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_show_editor_notify<F: Fn(&ColorChooserDialog) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_editor_trampoline<F: Fn(&ColorChooserDialog) + 'static>(
+            this: *mut gtk_sys::GtkColorChooserDialog,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-editor\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_editor_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
 pub struct ColorChooserDialogBuilder {
     show_editor: Option<bool>,
     use_header_bar: Option<i32>,
-    accept_focus: Option<bool>,
     application: Option<Application>,
-    attached_to: Option<Widget>,
+    child: Option<Widget>,
     decorated: Option<bool>,
     default_height: Option<i32>,
     default_widget: Option<Widget>,
@@ -67,8 +118,8 @@ pub struct ColorChooserDialogBuilder {
     deletable: Option<bool>,
     destroy_with_parent: Option<bool>,
     display: Option<gdk::Display>,
-    focus_on_map: Option<bool>,
     focus_visible: Option<bool>,
+    focus_widget: Option<Widget>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     mnemonics_visible: Option<bool>,
@@ -77,24 +128,19 @@ pub struct ColorChooserDialogBuilder {
     startup_id: Option<String>,
     title: Option<String>,
     transient_for: Option<Window>,
-    type_: Option<WindowType>,
-    type_hint: Option<gdk::SurfaceTypeHint>,
-    window_position: Option<WindowPosition>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -111,7 +157,7 @@ pub struct ColorChooserDialogBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
-    focus_widget: Option<Widget>,
+    accessible_role: Option<AccessibleRole>,
     rgba: Option<gdk::RGBA>,
     use_alpha: Option<bool>,
 }
@@ -129,14 +175,11 @@ impl ColorChooserDialogBuilder {
         if let Some(ref use_header_bar) = self.use_header_bar {
             properties.push(("use-header-bar", use_header_bar));
         }
-        if let Some(ref accept_focus) = self.accept_focus {
-            properties.push(("accept-focus", accept_focus));
-        }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
         }
-        if let Some(ref attached_to) = self.attached_to {
-            properties.push(("attached-to", attached_to));
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref decorated) = self.decorated {
             properties.push(("decorated", decorated));
@@ -159,11 +202,11 @@ impl ColorChooserDialogBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        if let Some(ref focus_on_map) = self.focus_on_map {
-            properties.push(("focus-on-map", focus_on_map));
-        }
         if let Some(ref focus_visible) = self.focus_visible {
             properties.push(("focus-visible", focus_visible));
+        }
+        if let Some(ref focus_widget) = self.focus_widget {
+            properties.push(("focus-widget", focus_widget));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -189,20 +232,14 @@ impl ColorChooserDialogBuilder {
         if let Some(ref transient_for) = self.transient_for {
             properties.push(("transient-for", transient_for));
         }
-        if let Some(ref type_) = self.type_ {
-            properties.push(("type", type_));
-        }
-        if let Some(ref type_hint) = self.type_hint {
-            properties.push(("type-hint", type_hint));
-        }
-        if let Some(ref window_position) = self.window_position {
-            properties.push(("window-position", window_position));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -210,17 +247,14 @@ impl ColorChooserDialogBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -234,14 +268,8 @@ impl ColorChooserDialogBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -291,8 +319,8 @@ impl ColorChooserDialogBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        if let Some(ref focus_widget) = self.focus_widget {
-            properties.push(("focus-widget", focus_widget));
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         if let Some(ref rgba) = self.rgba {
             properties.push(("rgba", rgba));
@@ -300,10 +328,11 @@ impl ColorChooserDialogBuilder {
         if let Some(ref use_alpha) = self.use_alpha {
             properties.push(("use-alpha", use_alpha));
         }
-        glib::Object::new(ColorChooserDialog::static_type(), &properties)
+        let ret = glib::Object::new(ColorChooserDialog::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<ColorChooserDialog>()
+            .expect("downcast");
+        ret
     }
 
     pub fn show_editor(mut self, show_editor: bool) -> Self {
@@ -316,18 +345,13 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn accept_focus(mut self, accept_focus: bool) -> Self {
-        self.accept_focus = Some(accept_focus);
-        self
-    }
-
     pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
         self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn attached_to<P: IsA<Widget>>(mut self, attached_to: &P) -> Self {
-        self.attached_to = Some(attached_to.clone().upcast());
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -366,13 +390,13 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn focus_on_map(mut self, focus_on_map: bool) -> Self {
-        self.focus_on_map = Some(focus_on_map);
+    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
+        self.focus_visible = Some(focus_visible);
         self
     }
 
-    pub fn focus_visible(mut self, focus_visible: bool) -> Self {
-        self.focus_visible = Some(focus_visible);
+    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+        self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
 
@@ -416,21 +440,6 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn type_(mut self, type_: WindowType) -> Self {
-        self.type_ = Some(type_);
-        self
-    }
-
-    pub fn type_hint(mut self, type_hint: gdk::SurfaceTypeHint) -> Self {
-        self.type_hint = Some(type_hint);
-        self
-    }
-
-    pub fn window_position(mut self, window_position: WindowPosition) -> Self {
-        self.window_position = Some(window_position);
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -438,6 +447,11 @@ impl ColorChooserDialogBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -451,23 +465,18 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -491,18 +500,8 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -586,8 +585,8 @@ impl ColorChooserDialogBuilder {
         self
     }
 
-    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
-        self.focus_widget = Some(focus_widget.clone().upcast());
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 
@@ -599,65 +598,6 @@ impl ColorChooserDialogBuilder {
     pub fn use_alpha(mut self, use_alpha: bool) -> Self {
         self.use_alpha = Some(use_alpha);
         self
-    }
-}
-
-pub const NONE_COLOR_CHOOSER_DIALOG: Option<&ColorChooserDialog> = None;
-
-pub trait ColorChooserDialogExt: 'static {
-    fn get_property_show_editor(&self) -> bool;
-
-    fn set_property_show_editor(&self, show_editor: bool);
-
-    fn connect_property_show_editor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ColorChooserDialog>> ColorChooserDialogExt for O {
-    fn get_property_show_editor(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"show-editor\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `show-editor` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_show_editor(&self, show_editor: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"show-editor\0".as_ptr() as *const _,
-                Value::from(&show_editor).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_show_editor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_editor_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkColorChooserDialog,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<ColorChooserDialog>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ColorChooserDialog::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::show-editor\0".as_ptr() as *const _,
-                Some(transmute(notify_show_editor_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
     }
 }
 

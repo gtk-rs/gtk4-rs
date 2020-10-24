@@ -10,7 +10,7 @@ jobs:
     name: Rust project
     runs-on: ubuntu-latest
     container:
-      image: fedora:latest
+      image: docker.io/bilelmoussaoui/gtk4
     strategy:
       matrix:
         rust:
@@ -19,7 +19,6 @@ jobs:
           - nightly
           - "1.40.0"
     steps:
-      - run: sudo dnf install -y gtk4-devel gcc
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:

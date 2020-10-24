@@ -2,12 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -19,7 +22,7 @@ use AssistantPageType;
 use Widget;
 
 glib_wrapper! {
-    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, gtk_sys::GtkAssistantPageClass, AssistantPageClass>);
+    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, AssistantPageClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_assistant_page_get_type(),
@@ -122,7 +125,9 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::complete\0".as_ptr() as *const _,
-                Some(transmute(notify_complete_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_complete_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -145,7 +150,9 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::page-type\0".as_ptr() as *const _,
-                Some(transmute(notify_page_type_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_page_type_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -168,10 +175,67 @@ impl AssistantPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct AssistantPageBuilder {
+    child: Option<Widget>,
+    complete: Option<bool>,
+    page_type: Option<AssistantPageType>,
+    title: Option<String>,
+}
+
+impl AssistantPageBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> AssistantPage {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
+        }
+        if let Some(ref complete) = self.complete {
+            properties.push(("complete", complete));
+        }
+        if let Some(ref page_type) = self.page_type {
+            properties.push(("page-type", page_type));
+        }
+        if let Some(ref title) = self.title {
+            properties.push(("title", title));
+        }
+        let ret = glib::Object::new(AssistantPage::static_type(), &properties)
+            .expect("object new")
+            .downcast::<AssistantPage>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
+        self
+    }
+
+    pub fn complete(mut self, complete: bool) -> Self {
+        self.complete = Some(complete);
+        self
+    }
+
+    pub fn page_type(mut self, page_type: AssistantPageType) -> Self {
+        self.page_type = Some(page_type);
+        self
+    }
+
+    pub fn title(mut self, title: &str) -> Self {
+        self.title = Some(title.to_string());
+        self
     }
 }
 

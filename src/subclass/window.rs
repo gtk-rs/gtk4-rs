@@ -4,12 +4,12 @@ use glib::translate::*;
 
 use glib::subclass::prelude::*;
 
-use super::bin::BinImpl;
-use BinClass;
+use super::widget::WidgetImpl;
+use WidgetClass;
 use Window;
 use WindowClass;
 
-pub trait WindowImpl: WindowImplExt + BinImpl + 'static {
+pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self, window: &Window) {
         self.parent_activate_focus(window)
     }
@@ -42,7 +42,7 @@ pub trait WindowImplExt {
 impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
     fn parent_activate_focus(&self, window: &Window) {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWindowClass;
             let f = (*parent_class)
                 .activate_focus
@@ -53,7 +53,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
     fn parent_activate_default(&self, window: &Window) {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWindowClass;
             let f = (*parent_class)
                 .activate_default
@@ -64,7 +64,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
     fn parent_keys_changed(&self, window: &Window) {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWindowClass;
             let f = (*parent_class)
                 .keys_changed
@@ -75,7 +75,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
     fn parent_enable_debugging(&self, window: &Window, toggle: bool) -> bool {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWindowClass;
             let f = (*parent_class)
                 .enable_debugging
@@ -86,7 +86,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
     fn parent_close_request(&self, window: &Window) -> glib::signal::Inhibit {
         unsafe {
-            let data = self.get_type_data();
+            let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkWindowClass;
             let f = (*parent_class)
                 .close_request
@@ -98,7 +98,7 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
 
 unsafe impl<T: ObjectSubclass + WindowImpl> IsSubclassable<T> for WindowClass {
     fn override_vfuncs(&mut self) {
-        <BinClass as IsSubclassable<T>>::override_vfuncs(self);
+        <WidgetClass as IsSubclassable<T>>::override_vfuncs(self);
         unsafe {
             let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWindowClass);
             klass.activate_focus = Some(window_activate_focus::<T>);
@@ -116,7 +116,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Window = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
 
     imp.activate_focus(&wrap)
 }
@@ -127,7 +127,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Window = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
 
     imp.activate_default(&wrap)
 }
@@ -138,7 +138,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Window = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
 
     imp.keys_changed(&wrap)
 }
@@ -152,7 +152,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Window = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
     let toggle: bool = from_glib(toggleptr);
 
     imp.enable_debugging(&wrap, toggle).to_glib()
@@ -166,7 +166,7 @@ where
 {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
-    let wrap: Window = from_glib_borrow(ptr);
+    let wrap = from_glib_borrow(ptr);
 
     imp.close_request(&wrap).to_glib()
 }

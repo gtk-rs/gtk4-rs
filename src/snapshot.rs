@@ -3,16 +3,18 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
 use glib::translate::*;
+use graphene::{Point, Rect};
+use gsk::ColorStop;
 use gtk_sys;
 use Snapshot;
 
 impl Snapshot {
     pub fn append_linear_gradient(
         &self,
-        bounds: &graphene::Rect,
-        start_point: &graphene::Point,
-        end_point: &graphene::Point,
-        stops: &[gsk::ColorStop],
+        bounds: &Rect,
+        start_point: &Point,
+        end_point: &Point,
+        stops: &[ColorStop],
     ) {
         let n_stops = stops.len() as usize;
         unsafe {
@@ -29,10 +31,10 @@ impl Snapshot {
 
     pub fn append_repeating_linear_gradient(
         &self,
-        bounds: &graphene::Rect,
-        start_point: &graphene::Point,
-        end_point: &graphene::Point,
-        stops: &[gsk::ColorStop],
+        bounds: &Rect,
+        start_point: &Point,
+        end_point: &Point,
+        stops: &[ColorStop],
     ) {
         let n_stops = stops.len() as usize;
         unsafe {

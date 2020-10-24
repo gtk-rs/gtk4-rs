@@ -5,28 +5,29 @@
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use glib_sys;
-use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar, gtk_sys::GtkHeaderBarClass, HeaderBarClass>) @extends Container, Widget, @implements Buildable;
+    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar, HeaderBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_header_bar_get_type(),
@@ -38,6 +39,156 @@ impl HeaderBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(gtk_sys::gtk_header_bar_new()).unsafe_cast() }
     }
+
+    pub fn get_decoration_layout(&self) -> Option<GString> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_header_bar_get_decoration_layout(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_show_title_buttons(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_header_bar_get_show_title_buttons(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_title_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_header_bar_get_title_widget(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn pack_end<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_header_bar_pack_end(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn pack_start<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_header_bar_pack_start(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn remove<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+        }
+    }
+
+    pub fn set_decoration_layout(&self, layout: Option<&str>) {
+        unsafe {
+            gtk_sys::gtk_header_bar_set_decoration_layout(
+                self.to_glib_none().0,
+                layout.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_show_title_buttons(&self, setting: bool) {
+        unsafe {
+            gtk_sys::gtk_header_bar_set_show_title_buttons(
+                self.to_glib_none().0,
+                setting.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_title_widget<P: IsA<Widget>>(&self, title_widget: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_header_bar_set_title_widget(
+                self.to_glib_none().0,
+                title_widget.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_decoration_layout_trampoline<F: Fn(&HeaderBar) + 'static>(
+            this: *mut gtk_sys::GtkHeaderBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::decoration-layout\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_decoration_layout_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_show_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_title_buttons_trampoline<F: Fn(&HeaderBar) + 'static>(
+            this: *mut gtk_sys::GtkHeaderBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-title-buttons\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_title_buttons_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
+            this: *mut gtk_sys::GtkHeaderBar,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::title-widget\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_title_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for HeaderBar {
@@ -48,29 +199,22 @@ impl Default for HeaderBar {
 
 #[derive(Clone, Default)]
 pub struct HeaderBarBuilder {
-    custom_title: Option<Widget>,
     decoration_layout: Option<String>,
-    decoration_layout_set: Option<bool>,
-    has_subtitle: Option<bool>,
     show_title_buttons: Option<bool>,
-    spacing: Option<i32>,
-    subtitle: Option<String>,
-    title: Option<String>,
+    title_widget: Option<Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -87,6 +231,7 @@ pub struct HeaderBarBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl HeaderBarBuilder {
@@ -96,29 +241,14 @@ impl HeaderBarBuilder {
 
     pub fn build(self) -> HeaderBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref custom_title) = self.custom_title {
-            properties.push(("custom-title", custom_title));
-        }
         if let Some(ref decoration_layout) = self.decoration_layout {
             properties.push(("decoration-layout", decoration_layout));
-        }
-        if let Some(ref decoration_layout_set) = self.decoration_layout_set {
-            properties.push(("decoration-layout-set", decoration_layout_set));
-        }
-        if let Some(ref has_subtitle) = self.has_subtitle {
-            properties.push(("has-subtitle", has_subtitle));
         }
         if let Some(ref show_title_buttons) = self.show_title_buttons {
             properties.push(("show-title-buttons", show_title_buttons));
         }
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
-        }
-        if let Some(ref subtitle) = self.subtitle {
-            properties.push(("subtitle", subtitle));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
+        if let Some(ref title_widget) = self.title_widget {
+            properties.push(("title-widget", title_widget));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -126,23 +256,23 @@ impl HeaderBarBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -156,14 +286,8 @@ impl HeaderBarBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -213,29 +337,18 @@ impl HeaderBarBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(HeaderBar::static_type(), &properties)
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        let ret = glib::Object::new(HeaderBar::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
-    }
-
-    pub fn custom_title<P: IsA<Widget>>(mut self, custom_title: &P) -> Self {
-        self.custom_title = Some(custom_title.clone().upcast());
-        self
+            .downcast::<HeaderBar>()
+            .expect("downcast");
+        ret
     }
 
     pub fn decoration_layout(mut self, decoration_layout: &str) -> Self {
         self.decoration_layout = Some(decoration_layout.to_string());
-        self
-    }
-
-    pub fn decoration_layout_set(mut self, decoration_layout_set: bool) -> Self {
-        self.decoration_layout_set = Some(decoration_layout_set);
-        self
-    }
-
-    pub fn has_subtitle(mut self, has_subtitle: bool) -> Self {
-        self.has_subtitle = Some(has_subtitle);
         self
     }
 
@@ -244,18 +357,8 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn spacing(mut self, spacing: i32) -> Self {
-        self.spacing = Some(spacing);
-        self
-    }
-
-    pub fn subtitle(mut self, subtitle: &str) -> Self {
-        self.subtitle = Some(subtitle.to_string());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
+    pub fn title_widget<P: IsA<Widget>>(mut self, title_widget: &P) -> Self {
+        self.title_widget = Some(title_widget.clone().upcast());
         self
     }
 
@@ -269,6 +372,11 @@ impl HeaderBarBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -279,23 +387,18 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -319,18 +422,8 @@ impl HeaderBarBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -413,445 +506,10 @@ impl HeaderBarBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
 
-pub const NONE_HEADER_BAR: Option<&HeaderBar> = None;
-
-pub trait HeaderBarExt: 'static {
-    fn get_custom_title(&self) -> Option<Widget>;
-
-    fn get_decoration_layout(&self) -> Option<GString>;
-
-    fn get_has_subtitle(&self) -> bool;
-
-    fn get_show_title_buttons(&self) -> bool;
-
-    fn get_subtitle(&self) -> Option<GString>;
-
-    fn get_title(&self) -> Option<GString>;
-
-    fn pack_end<P: IsA<Widget>>(&self, child: &P);
-
-    fn pack_start<P: IsA<Widget>>(&self, child: &P);
-
-    fn set_custom_title<P: IsA<Widget>>(&self, title_widget: Option<&P>);
-
-    fn set_decoration_layout(&self, layout: Option<&str>);
-
-    fn set_has_subtitle(&self, setting: bool);
-
-    fn set_show_title_buttons(&self, setting: bool);
-
-    fn set_subtitle(&self, subtitle: Option<&str>);
-
-    fn set_title(&self, title: Option<&str>);
-
-    fn get_property_decoration_layout_set(&self) -> bool;
-
-    fn set_property_decoration_layout_set(&self, decoration_layout_set: bool);
-
-    fn get_property_spacing(&self) -> i32;
-
-    fn set_property_spacing(&self, spacing: i32);
-
-    fn connect_property_custom_title_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_decoration_layout_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_decoration_layout_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_has_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_show_title_buttons_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<HeaderBar>> HeaderBarExt for O {
-    fn get_custom_title(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_custom_title(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_decoration_layout(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_decoration_layout(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_has_subtitle(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_header_bar_get_has_subtitle(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_show_title_buttons(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_header_bar_get_show_title_buttons(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_subtitle(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_subtitle(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_title(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_title(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn pack_end<P: IsA<Widget>>(&self, child: &P) {
-        unsafe {
-            gtk_sys::gtk_header_bar_pack_end(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn pack_start<P: IsA<Widget>>(&self, child: &P) {
-        unsafe {
-            gtk_sys::gtk_header_bar_pack_start(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_custom_title<P: IsA<Widget>>(&self, title_widget: Option<&P>) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_custom_title(
-                self.as_ref().to_glib_none().0,
-                title_widget.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_decoration_layout(&self, layout: Option<&str>) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_decoration_layout(
-                self.as_ref().to_glib_none().0,
-                layout.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_has_subtitle(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_has_subtitle(
-                self.as_ref().to_glib_none().0,
-                setting.to_glib(),
-            );
-        }
-    }
-
-    fn set_show_title_buttons(&self, setting: bool) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_show_title_buttons(
-                self.as_ref().to_glib_none().0,
-                setting.to_glib(),
-            );
-        }
-    }
-
-    fn set_subtitle(&self, subtitle: Option<&str>) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_subtitle(
-                self.as_ref().to_glib_none().0,
-                subtitle.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_title(&self, title: Option<&str>) {
-        unsafe {
-            gtk_sys::gtk_header_bar_set_title(
-                self.as_ref().to_glib_none().0,
-                title.to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_decoration_layout_set(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"decoration-layout-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `decoration-layout-set` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_decoration_layout_set(&self, decoration_layout_set: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"decoration-layout-set\0".as_ptr() as *const _,
-                Value::from(&decoration_layout_set).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_spacing(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"spacing\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `spacing` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_spacing(&self, spacing: i32) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"spacing\0".as_ptr() as *const _,
-                Value::from(&spacing).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_custom_title_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_custom_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::custom-title\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_custom_title_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_decoration_layout_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::decoration-layout\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_decoration_layout_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_decoration_layout_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_decoration_layout_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::decoration-layout-set\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_decoration_layout_set_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_has_subtitle_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_subtitle_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::has-subtitle\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_has_subtitle_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_show_title_buttons_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_title_buttons_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::show-title-buttons\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_show_title_buttons_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_spacing_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_subtitle_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
-                Some(transmute(notify_subtitle_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<HeaderBar>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&HeaderBar::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
-                Some(transmute(notify_title_trampoline::<Self, F> as usize)),
-                Box_::into_raw(f),
-            )
-        }
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
     }
 }
 

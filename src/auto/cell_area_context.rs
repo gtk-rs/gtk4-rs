@@ -8,6 +8,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -23,6 +24,34 @@ glib_wrapper! {
 
     match fn {
         get_type => || gtk_sys::gtk_cell_area_context_get_type(),
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct CellAreaContextBuilder {
+    area: Option<CellArea>,
+}
+
+impl CellAreaContextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> CellAreaContext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref area) = self.area {
+            properties.push(("area", area));
+        }
+        let ret = glib::Object::new(CellAreaContext::static_type(), &properties)
+            .expect("object new")
+            .downcast::<CellAreaContext>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn area<P: IsA<CellArea>>(mut self, area: &P) -> Self {
+        self.area = Some(area.clone().upcast());
+        self
     }
 }
 
@@ -268,15 +297,15 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             P: IsA<CellAreaContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
+            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-height\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_minimum_height_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_minimum_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -295,15 +324,15 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             P: IsA<CellAreaContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
+            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-width\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_minimum_width_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_minimum_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -322,15 +351,15 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             P: IsA<CellAreaContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
+            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-height\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_natural_height_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_natural_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -349,15 +378,15 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             P: IsA<CellAreaContext>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast())
+            f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-width\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_natural_width_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_natural_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

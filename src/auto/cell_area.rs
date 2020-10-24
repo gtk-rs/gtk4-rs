@@ -10,8 +10,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
-use glib::StaticType;
-use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
@@ -42,33 +40,6 @@ glib_wrapper! {
     }
 }
 
-#[derive(Clone, Default)]
-pub struct CellAreaBuilder {
-    focus_cell: Option<CellRenderer>,
-}
-
-impl CellAreaBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    pub fn build(self) -> CellArea {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref focus_cell) = self.focus_cell {
-            properties.push(("focus-cell", focus_cell));
-        }
-        glib::Object::new(CellArea::static_type(), &properties)
-            .expect("object new")
-            .downcast()
-            .expect("downcast")
-    }
-
-    pub fn focus_cell<P: IsA<CellRenderer>>(mut self, focus_cell: &P) -> Self {
-        self.focus_cell = Some(focus_cell.clone().upcast());
-        self
-    }
-}
-
 pub const NONE_CELL_AREA: Option<&CellArea> = None;
 
 pub trait CellAreaExt: 'static {
@@ -81,11 +52,11 @@ pub trait CellAreaExt: 'static {
         edit_only: bool,
     ) -> bool;
 
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(
+    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: IsA<gdk::Event>>(
         &self,
         widget: &P,
         renderer: &Q,
-        event: &gdk::Event,
+        event: &R,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> bool;
@@ -126,11 +97,11 @@ pub trait CellAreaExt: 'static {
 
     fn create_context(&self) -> Option<CellAreaContext>;
 
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<gdk::Event>>(
         &self,
         context: &P,
         widget: &Q,
-        event: &gdk::Event,
+        event: &R,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> i32;
@@ -306,11 +277,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>>(
+    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: IsA<gdk::Event>>(
         &self,
         widget: &P,
         renderer: &Q,
-        event: &gdk::Event,
+        event: &R,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> bool {
@@ -319,7 +290,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
                 flags.to_glib(),
             ))
@@ -435,11 +406,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<gdk::Event>>(
         &self,
         context: &P,
         widget: &Q,
-        event: &gdk::Event,
+        event: &R,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> i32 {
@@ -448,7 +419,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
                 flags.to_glib(),
             )
@@ -878,7 +849,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
             f(
-                &CellArea::from_glib_borrow(this).unsafe_cast(),
+                &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
                 &from_glib_borrow(editable),
                 &from_glib_borrow(cell_area),
@@ -890,7 +861,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"add-editable\0".as_ptr() as *const _,
-                Some(transmute(add_editable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    add_editable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -915,7 +888,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &CellArea::from_glib_borrow(this).unsafe_cast(),
+                &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(model),
                 &from_glib_borrow(iter),
                 from_glib(is_expander),
@@ -927,7 +900,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply-attributes\0".as_ptr() as *const _,
-                Some(transmute(apply_attributes_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    apply_attributes_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -951,7 +926,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
             f(
-                &CellArea::from_glib_borrow(this).unsafe_cast(),
+                &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
                 path,
             )
@@ -961,7 +936,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"focus-changed\0".as_ptr() as *const _,
-                Some(transmute(focus_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    focus_changed_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -984,7 +961,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &CellArea::from_glib_borrow(this).unsafe_cast(),
+                &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
                 &from_glib_borrow(editable),
             )
@@ -994,7 +971,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"remove-editable\0".as_ptr() as *const _,
-                Some(transmute(remove_editable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    remove_editable_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1009,14 +988,16 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+            f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::edit-widget\0".as_ptr() as *const _,
-                Some(transmute(notify_edit_widget_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_edit_widget_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1031,14 +1012,16 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+            f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::edited-cell\0".as_ptr() as *const _,
-                Some(transmute(notify_edited_cell_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_edited_cell_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -1053,14 +1036,16 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            f(&CellArea::from_glib_borrow(this).unsafe_cast())
+            f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-cell\0".as_ptr() as *const _,
-                Some(transmute(notify_focus_cell_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_focus_cell_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

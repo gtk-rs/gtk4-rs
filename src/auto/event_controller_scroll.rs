@@ -7,6 +7,8 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use libc;
@@ -15,6 +17,8 @@ use std::fmt;
 use std::mem::transmute;
 use EventController;
 use EventControllerScrollFlags;
+use PropagationLimit;
+use PropagationPhase;
 
 glib_wrapper! {
     pub struct EventControllerScroll(Object<gtk_sys::GtkEventControllerScroll, gtk_sys::GtkEventControllerScrollClass, EventControllerScrollClass>) @extends EventController;
@@ -69,7 +73,9 @@ impl EventControllerScroll {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"decelerate\0".as_ptr() as *const _,
-                Some(transmute(decelerate_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    decelerate_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -95,7 +101,9 @@ impl EventControllerScroll {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"scroll\0".as_ptr() as *const _,
-                Some(transmute(scroll_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    scroll_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -117,7 +125,9 @@ impl EventControllerScroll {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"scroll-begin\0".as_ptr() as *const _,
-                Some(transmute(scroll_begin_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    scroll_begin_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -139,7 +149,9 @@ impl EventControllerScroll {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"scroll-end\0".as_ptr() as *const _,
-                Some(transmute(scroll_end_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    scroll_end_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -162,10 +174,67 @@ impl EventControllerScroll {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::flags\0".as_ptr() as *const _,
-                Some(transmute(notify_flags_trampoline::<F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_flags_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct EventControllerScrollBuilder {
+    flags: Option<EventControllerScrollFlags>,
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl EventControllerScrollBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> EventControllerScroll {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref flags) = self.flags {
+            properties.push(("flags", flags));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new(EventControllerScroll::static_type(), &properties)
+            .expect("object new")
+            .downcast::<EventControllerScroll>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn flags(mut self, flags: EventControllerScrollFlags) -> Self {
+        self.flags = Some(flags);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

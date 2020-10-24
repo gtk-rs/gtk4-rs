@@ -11,13 +11,14 @@ use glib::StaticType;
 use glib::ToValue;
 use gtk_sys;
 use std::fmt;
+use Accessible;
+use AccessibleRole;
 use Align;
-use Bin;
 use Buildable;
 use CellEditable;
 use CellLayout;
 use ComboBox;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
 use Overflow;
 use SensitivityType;
@@ -25,7 +26,7 @@ use TreeModel;
 use Widget;
 
 glib_wrapper! {
-    pub struct ComboBoxText(Object<gtk_sys::GtkComboBoxText, gtk_sys::GtkComboBoxTextClass, ComboBoxTextClass>) @extends ComboBox, Bin, Container, Widget, @implements Buildable, CellEditable, CellLayout;
+    pub struct ComboBoxText(Object<gtk_sys::GtkComboBoxText, ComboBoxTextClass>) @extends ComboBox, Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
         get_type => || gtk_sys::gtk_combo_box_text_get_type(),
@@ -38,10 +39,83 @@ impl ComboBoxText {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_combo_box_text_new()).unsafe_cast() }
     }
 
-    pub fn new_with_entry() -> ComboBoxText {
+    pub fn with_entry() -> ComboBoxText {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_combo_box_text_new_with_entry()).unsafe_cast()
+        }
+    }
+
+    pub fn append(&self, id: Option<&str>, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_append(
+                self.to_glib_none().0,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn append_text(&self, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_append_text(self.to_glib_none().0, text.to_glib_none().0);
+        }
+    }
+
+    pub fn get_active_text(&self) -> Option<GString> {
+        unsafe {
+            from_glib_full(gtk_sys::gtk_combo_box_text_get_active_text(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn insert(&self, position: i32, id: Option<&str>, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_insert(
+                self.to_glib_none().0,
+                position,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn insert_text(&self, position: i32, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_insert_text(
+                self.to_glib_none().0,
+                position,
+                text.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn prepend(&self, id: Option<&str>, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_prepend(
+                self.to_glib_none().0,
+                id.to_glib_none().0,
+                text.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn prepend_text(&self, text: &str) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_prepend_text(self.to_glib_none().0, text.to_glib_none().0);
+        }
+    }
+
+    pub fn remove(&self, position: i32) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_remove(self.to_glib_none().0, position);
+        }
+    }
+
+    pub fn remove_all(&self) {
+        unsafe {
+            gtk_sys::gtk_combo_box_text_remove_all(self.to_glib_none().0);
         }
     }
 }
@@ -57,6 +131,7 @@ pub struct ComboBoxTextBuilder {
     active: Option<i32>,
     active_id: Option<String>,
     button_sensitivity: Option<SensitivityType>,
+    child: Option<Widget>,
     entry_text_column: Option<i32>,
     has_entry: Option<bool>,
     has_frame: Option<bool>,
@@ -65,19 +140,17 @@ pub struct ComboBoxTextBuilder {
     popup_fixed_width: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -94,6 +167,7 @@ pub struct ComboBoxTextBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
     editing_canceled: Option<bool>,
 }
 
@@ -112,6 +186,9 @@ impl ComboBoxTextBuilder {
         }
         if let Some(ref button_sensitivity) = self.button_sensitivity {
             properties.push(("button-sensitivity", button_sensitivity));
+        }
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref entry_text_column) = self.entry_text_column {
             properties.push(("entry-text-column", entry_text_column));
@@ -137,23 +214,23 @@ impl ComboBoxTextBuilder {
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
         }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
         }
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -167,14 +244,8 @@ impl ComboBoxTextBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -224,13 +295,17 @@ impl ComboBoxTextBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
         if let Some(ref editing_canceled) = self.editing_canceled {
             properties.push(("editing-canceled", editing_canceled));
         }
-        glib::Object::new(ComboBoxText::static_type(), &properties)
+        let ret = glib::Object::new(ComboBoxText::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<ComboBoxText>()
+            .expect("downcast");
+        ret
     }
 
     pub fn active(mut self, active: i32) -> Self {
@@ -245,6 +320,11 @@ impl ComboBoxTextBuilder {
 
     pub fn button_sensitivity(mut self, button_sensitivity: SensitivityType) -> Self {
         self.button_sensitivity = Some(button_sensitivity);
+        self
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -288,6 +368,11 @@ impl ComboBoxTextBuilder {
         self
     }
 
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
     pub fn css_name(mut self, css_name: &str) -> Self {
         self.css_name = Some(css_name.to_string());
         self
@@ -298,23 +383,18 @@ impl ComboBoxTextBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -338,18 +418,8 @@ impl ComboBoxTextBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -433,112 +503,14 @@ impl ComboBoxTextBuilder {
         self
     }
 
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
     pub fn editing_canceled(mut self, editing_canceled: bool) -> Self {
         self.editing_canceled = Some(editing_canceled);
         self
-    }
-}
-
-pub const NONE_COMBO_BOX_TEXT: Option<&ComboBoxText> = None;
-
-pub trait ComboBoxTextExt: 'static {
-    fn append(&self, id: Option<&str>, text: &str);
-
-    fn append_text(&self, text: &str);
-
-    fn get_active_text(&self) -> Option<GString>;
-
-    fn insert(&self, position: i32, id: Option<&str>, text: &str);
-
-    fn insert_text(&self, position: i32, text: &str);
-
-    fn prepend(&self, id: Option<&str>, text: &str);
-
-    fn prepend_text(&self, text: &str);
-
-    fn remove(&self, position: i32);
-
-    fn remove_all(&self);
-}
-
-impl<O: IsA<ComboBoxText>> ComboBoxTextExt for O {
-    fn append(&self, id: Option<&str>, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_append(
-                self.as_ref().to_glib_none().0,
-                id.to_glib_none().0,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn append_text(&self, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_append_text(
-                self.as_ref().to_glib_none().0,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_active_text(&self) -> Option<GString> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_combo_box_text_get_active_text(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn insert(&self, position: i32, id: Option<&str>, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_insert(
-                self.as_ref().to_glib_none().0,
-                position,
-                id.to_glib_none().0,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn insert_text(&self, position: i32, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_insert_text(
-                self.as_ref().to_glib_none().0,
-                position,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn prepend(&self, id: Option<&str>, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_prepend(
-                self.as_ref().to_glib_none().0,
-                id.to_glib_none().0,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn prepend_text(&self, text: &str) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_prepend_text(
-                self.as_ref().to_glib_none().0,
-                text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn remove(&self, position: i32) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_remove(self.as_ref().to_glib_none().0, position);
-        }
-    }
-
-    fn remove_all(&self) {
-        unsafe {
-            gtk_sys::gtk_combo_box_text_remove_all(self.as_ref().to_glib_none().0);
-        }
     }
 }
 

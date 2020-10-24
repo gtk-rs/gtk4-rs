@@ -48,7 +48,7 @@ where
 {
     let f: &F = &*(f as *const F);
     match f(
-        &Overlay::from_glib_borrow(this).unsafe_cast(),
+        &Overlay::from_glib_borrow(this).unsafe_cast_ref(),
         &from_glib_borrow(widget),
     ) {
         Some(rect) => {

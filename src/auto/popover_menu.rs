@@ -3,8 +3,10 @@
 // DO NOT EDIT
 
 use gdk;
+use gio;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -18,19 +20,22 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Align;
-use Bin;
 use Buildable;
-use Container;
+use ConstraintTarget;
 use LayoutManager;
+use Native;
 use Overflow;
 use Popover;
-use PopoverConstraint;
+use PopoverMenuFlags;
 use PositionType;
+use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, gtk_sys::GtkPopoverMenuClass, PopoverMenuClass>) @extends Popover, Bin, Container, Widget, @implements Buildable;
+    pub struct PopoverMenu(Object<gtk_sys::GtkPopoverMenu, PopoverMenuClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_menu_get_type(),
@@ -38,42 +43,146 @@ glib_wrapper! {
 }
 
 impl PopoverMenu {
-    pub fn new() -> PopoverMenu {
+    pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenu {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_popover_menu_new()).unsafe_cast() }
+        unsafe {
+            Widget::from_glib_none(gtk_sys::gtk_popover_menu_new_from_model(
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            ))
+            .unsafe_cast()
+        }
     }
-}
 
-impl Default for PopoverMenu {
-    fn default() -> Self {
-        Self::new()
+    pub fn from_model_full<P: IsA<gio::MenuModel>>(
+        model: &P,
+        flags: PopoverMenuFlags,
+    ) -> PopoverMenu {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_full(gtk_sys::gtk_popover_menu_new_from_model_full(
+                model.as_ref().to_glib_none().0,
+                flags.to_glib(),
+            ))
+            .unsafe_cast()
+        }
+    }
+
+    pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_popover_menu_get_menu_model(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_popover_menu_set_menu_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_visible_submenu(&self) -> Option<GString> {
+        unsafe {
+            let mut value = Value::from_type(<GString as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"visible-submenu\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `visible-submenu` getter")
+        }
+    }
+
+    pub fn set_property_visible_submenu(&self, visible_submenu: Option<&str>) {
+        unsafe {
+            gobject_sys::g_object_set_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"visible-submenu\0".as_ptr() as *const _,
+                Value::from(visible_submenu).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_menu_model_notify<F: Fn(&PopoverMenu) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&PopoverMenu) + 'static>(
+            this: *mut gtk_sys::GtkPopoverMenu,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::menu-model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_menu_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_visible_submenu_notify<F: Fn(&PopoverMenu) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_submenu_trampoline<F: Fn(&PopoverMenu) + 'static>(
+            this: *mut gtk_sys::GtkPopoverMenu,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-submenu\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_submenu_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
 #[derive(Clone, Default)]
 pub struct PopoverMenuBuilder {
+    menu_model: Option<gio::MenuModel>,
     visible_submenu: Option<String>,
-    constrain_to: Option<PopoverConstraint>,
+    autohide: Option<bool>,
+    child: Option<Widget>,
     default_widget: Option<Widget>,
-    modal: Option<bool>,
+    has_arrow: Option<bool>,
+    mnemonics_visible: Option<bool>,
     pointing_to: Option<gdk::Rectangle>,
     position: Option<PositionType>,
-    relative_to: Option<Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
     css_name: Option<String>,
     cursor: Option<gdk::Cursor>,
-    expand: Option<bool>,
     focus_on_click: Option<bool>,
+    focusable: Option<bool>,
     halign: Option<Align>,
-    has_focus: Option<bool>,
     has_tooltip: Option<bool>,
     height_request: Option<i32>,
     hexpand: Option<bool>,
     hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
     layout_manager: Option<LayoutManager>,
-    margin: Option<i32>,
     margin_bottom: Option<i32>,
     margin_end: Option<i32>,
     margin_start: Option<i32>,
@@ -90,6 +199,7 @@ pub struct PopoverMenuBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl PopoverMenuBuilder {
@@ -99,17 +209,26 @@ impl PopoverMenuBuilder {
 
     pub fn build(self) -> PopoverMenu {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref menu_model) = self.menu_model {
+            properties.push(("menu-model", menu_model));
+        }
         if let Some(ref visible_submenu) = self.visible_submenu {
             properties.push(("visible-submenu", visible_submenu));
         }
-        if let Some(ref constrain_to) = self.constrain_to {
-            properties.push(("constrain-to", constrain_to));
+        if let Some(ref autohide) = self.autohide {
+            properties.push(("autohide", autohide));
+        }
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref default_widget) = self.default_widget {
             properties.push(("default-widget", default_widget));
         }
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
+        if let Some(ref has_arrow) = self.has_arrow {
+            properties.push(("has-arrow", has_arrow));
+        }
+        if let Some(ref mnemonics_visible) = self.mnemonics_visible {
+            properties.push(("mnemonics-visible", mnemonics_visible));
         }
         if let Some(ref pointing_to) = self.pointing_to {
             properties.push(("pointing-to", pointing_to));
@@ -117,14 +236,14 @@ impl PopoverMenuBuilder {
         if let Some(ref position) = self.position {
             properties.push(("position", position));
         }
-        if let Some(ref relative_to) = self.relative_to {
-            properties.push(("relative-to", relative_to));
-        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
         if let Some(ref can_target) = self.can_target {
             properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
         }
         if let Some(ref css_name) = self.css_name {
             properties.push(("css-name", css_name));
@@ -132,17 +251,14 @@ impl PopoverMenuBuilder {
         if let Some(ref cursor) = self.cursor {
             properties.push(("cursor", cursor));
         }
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
         if let Some(ref focus_on_click) = self.focus_on_click {
             properties.push(("focus-on-click", focus_on_click));
         }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
         if let Some(ref halign) = self.halign {
             properties.push(("halign", halign));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
         }
         if let Some(ref has_tooltip) = self.has_tooltip {
             properties.push(("has-tooltip", has_tooltip));
@@ -156,14 +272,8 @@ impl PopoverMenuBuilder {
         if let Some(ref hexpand_set) = self.hexpand_set {
             properties.push(("hexpand-set", hexpand_set));
         }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
-        }
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
         }
         if let Some(ref margin_bottom) = self.margin_bottom {
             properties.push(("margin-bottom", margin_bottom));
@@ -213,10 +323,19 @@ impl PopoverMenuBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new(PopoverMenu::static_type(), &properties)
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        let ret = glib::Object::new(PopoverMenu::static_type(), &properties)
             .expect("object new")
-            .downcast()
-            .expect("downcast")
+            .downcast::<PopoverMenu>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+        self.menu_model = Some(menu_model.clone().upcast());
+        self
     }
 
     pub fn visible_submenu(mut self, visible_submenu: &str) -> Self {
@@ -224,8 +343,13 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn constrain_to(mut self, constrain_to: PopoverConstraint) -> Self {
-        self.constrain_to = Some(constrain_to);
+    pub fn autohide(mut self, autohide: bool) -> Self {
+        self.autohide = Some(autohide);
+        self
+    }
+
+    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 
@@ -234,8 +358,13 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
+    pub fn has_arrow(mut self, has_arrow: bool) -> Self {
+        self.has_arrow = Some(has_arrow);
+        self
+    }
+
+    pub fn mnemonics_visible(mut self, mnemonics_visible: bool) -> Self {
+        self.mnemonics_visible = Some(mnemonics_visible);
         self
     }
 
@@ -249,11 +378,6 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn relative_to<P: IsA<Widget>>(mut self, relative_to: &P) -> Self {
-        self.relative_to = Some(relative_to.clone().upcast());
-        self
-    }
-
     pub fn can_focus(mut self, can_focus: bool) -> Self {
         self.can_focus = Some(can_focus);
         self
@@ -261,6 +385,11 @@ impl PopoverMenuBuilder {
 
     pub fn can_target(mut self, can_target: bool) -> Self {
         self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
         self
     }
 
@@ -274,23 +403,18 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
     pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
         self.focus_on_click = Some(focus_on_click);
         self
     }
 
-    pub fn halign(mut self, halign: Align) -> Self {
-        self.halign = Some(halign);
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
         self
     }
 
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
         self
     }
 
@@ -314,18 +438,8 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
     pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
-        self
-    }
-
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
         self
     }
 
@@ -408,94 +522,10 @@ impl PopoverMenuBuilder {
         self.width_request = Some(width_request);
         self
     }
-}
 
-pub const NONE_POPOVER_MENU: Option<&PopoverMenu> = None;
-
-pub trait PopoverMenuExt: 'static {
-    fn add_submenu<P: IsA<Widget>>(&self, submenu: &P, name: &str);
-
-    fn open_submenu(&self, name: &str);
-
-    fn get_property_visible_submenu(&self) -> Option<GString>;
-
-    fn set_property_visible_submenu(&self, visible_submenu: Option<&str>);
-
-    fn connect_property_visible_submenu_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<PopoverMenu>> PopoverMenuExt for O {
-    fn add_submenu<P: IsA<Widget>>(&self, submenu: &P, name: &str) {
-        unsafe {
-            gtk_sys::gtk_popover_menu_add_submenu(
-                self.as_ref().to_glib_none().0,
-                submenu.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-            );
-        }
-    }
-
-    fn open_submenu(&self, name: &str) {
-        unsafe {
-            gtk_sys::gtk_popover_menu_open_submenu(
-                self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_visible_submenu(&self) -> Option<GString> {
-        unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"visible-submenu\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `visible-submenu` getter")
-        }
-    }
-
-    fn set_property_visible_submenu(&self, visible_submenu: Option<&str>) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"visible-submenu\0".as_ptr() as *const _,
-                Value::from(visible_submenu).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_visible_submenu_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visible_submenu_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPopoverMenu,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<PopoverMenu>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&PopoverMenu::from_glib_borrow(this).unsafe_cast())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::visible-submenu\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_visible_submenu_trampoline::<Self, F> as usize,
-                )),
-                Box_::into_raw(f),
-            )
-        }
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
     }
 }
 

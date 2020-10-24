@@ -7,10 +7,12 @@ use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use glib::Value;
 use glib_sys;
 use gobject_sys;
@@ -21,15 +23,22 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
+use Accessible;
+use AccessibleRole;
+use Adjustment;
+use Align;
 use Buildable;
 use CellArea;
 use CellLayout;
 use CellRenderer;
-use Container;
+use ConstraintTarget;
 use IconViewDropPosition;
+use LayoutManager;
 use MovementStep;
 use Orientation;
+use Overflow;
 use Scrollable;
+use ScrollablePolicy;
 use SelectionMode;
 use Tooltip;
 use TreeIter;
@@ -38,7 +47,7 @@ use TreePath;
 use Widget;
 
 glib_wrapper! {
-    pub struct IconView(Object<gtk_sys::GtkIconView, gtk_sys::GtkIconViewClass, IconViewClass>) @extends Container, Widget, @implements Buildable, CellLayout, Scrollable;
+    pub struct IconView(Object<gtk_sys::GtkIconView, IconViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_icon_view_get_type(),
@@ -51,7 +60,7 @@ impl IconView {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_icon_view_new()).unsafe_cast() }
     }
 
-    pub fn new_with_area<P: IsA<CellArea>>(area: &P) -> IconView {
+    pub fn with_area<P: IsA<CellArea>>(area: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_area(
@@ -61,7 +70,7 @@ impl IconView {
         }
     }
 
-    pub fn new_with_model<P: IsA<TreeModel>>(model: &P) -> IconView {
+    pub fn with_model<P: IsA<TreeModel>>(model: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_model(
@@ -70,275 +79,27 @@ impl IconView {
             .unsafe_cast()
         }
     }
-}
 
-impl Default for IconView {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-pub const NONE_ICON_VIEW: Option<&IconView> = None;
-
-pub trait IconViewExt: 'static {
-    fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable>;
-
-    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
-
-    fn enable_model_drag_source(
-        &self,
-        start_button_mask: gdk::ModifierType,
-        formats: &gdk::ContentFormats,
-        actions: gdk::DragAction,
-    );
-
-    fn get_activate_on_single_click(&self) -> bool;
-
-    fn get_cell_rect<P: IsA<CellRenderer>>(
-        &self,
-        path: &TreePath,
-        cell: Option<&P>,
-    ) -> Option<gdk::Rectangle>;
-
-    fn get_column_spacing(&self) -> i32;
-
-    fn get_columns(&self) -> i32;
-
-    fn get_cursor(&self) -> Option<(TreePath, CellRenderer)>;
-
-    fn get_dest_item_at_pos(
-        &self,
-        drag_x: i32,
-        drag_y: i32,
-    ) -> Option<(TreePath, IconViewDropPosition)>;
-
-    fn get_drag_dest_item(&self) -> (TreePath, IconViewDropPosition);
-
-    fn get_item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)>;
-
-    fn get_item_column(&self, path: &TreePath) -> i32;
-
-    fn get_item_orientation(&self) -> Orientation;
-
-    fn get_item_padding(&self) -> i32;
-
-    fn get_item_row(&self, path: &TreePath) -> i32;
-
-    fn get_item_width(&self) -> i32;
-
-    fn get_margin(&self) -> i32;
-
-    fn get_markup_column(&self) -> i32;
-
-    fn get_model(&self) -> Option<TreeModel>;
-
-    fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath>;
-
-    fn get_pixbuf_column(&self) -> i32;
-
-    fn get_reorderable(&self) -> bool;
-
-    fn get_row_spacing(&self) -> i32;
-
-    fn get_selected_items(&self) -> Vec<TreePath>;
-
-    fn get_selection_mode(&self) -> SelectionMode;
-
-    fn get_spacing(&self) -> i32;
-
-    fn get_text_column(&self) -> i32;
-
-    fn get_tooltip_column(&self) -> i32;
-
-    fn get_tooltip_context(
-        &self,
-        x: &mut i32,
-        y: &mut i32,
-        keyboard_tip: bool,
-    ) -> Option<(TreeModel, TreePath, TreeIter)>;
-
-    fn get_visible_range(&self) -> Option<(TreePath, TreePath)>;
-
-    fn item_activated(&self, path: &TreePath);
-
-    fn path_is_selected(&self, path: &TreePath) -> bool;
-
-    fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32);
-
-    fn select_all(&self);
-
-    fn select_path(&self, path: &TreePath);
-
-    fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P);
-
-    fn set_activate_on_single_click(&self, single: bool);
-
-    fn set_column_spacing(&self, column_spacing: i32);
-
-    fn set_columns(&self, columns: i32);
-
-    fn set_cursor<P: IsA<CellRenderer>>(
-        &self,
-        path: &TreePath,
-        cell: Option<&P>,
-        start_editing: bool,
-    );
-
-    fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition);
-
-    fn set_item_orientation(&self, orientation: Orientation);
-
-    fn set_item_padding(&self, item_padding: i32);
-
-    fn set_item_width(&self, item_width: i32);
-
-    fn set_margin(&self, margin: i32);
-
-    fn set_markup_column(&self, column: i32);
-
-    fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>);
-
-    fn set_pixbuf_column(&self, column: i32);
-
-    fn set_reorderable(&self, reorderable: bool);
-
-    fn set_row_spacing(&self, row_spacing: i32);
-
-    fn set_selection_mode(&self, mode: SelectionMode);
-
-    fn set_spacing(&self, spacing: i32);
-
-    fn set_text_column(&self, column: i32);
-
-    fn set_tooltip_cell<P: IsA<CellRenderer>>(
-        &self,
-        tooltip: &Tooltip,
-        path: &TreePath,
-        cell: Option<&P>,
-    );
-
-    fn set_tooltip_column(&self, column: i32);
-
-    fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath);
-
-    fn unselect_all(&self);
-
-    fn unselect_path(&self, path: &TreePath);
-
-    fn unset_model_drag_dest(&self);
-
-    fn unset_model_drag_source(&self);
-
-    fn get_property_cell_area(&self) -> Option<CellArea>;
-
-    fn connect_activate_cursor_item<F: Fn(&Self) -> bool + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn emit_activate_cursor_item(&self) -> bool;
-
-    fn connect_item_activated<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_cursor(&self, step: MovementStep, count: i32) -> bool;
-
-    fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_select_all(&self);
-
-    fn connect_select_cursor_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_select_cursor_item(&self);
-
-    fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_toggle_cursor_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_cursor_item(&self);
-
-    fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_unselect_all(&self);
-
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_columns_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_item_orientation_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_item_padding_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_item_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_markup_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_pixbuf_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_selection_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_tooltip_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<IconView>> IconViewExt for O {
-    fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
+    pub fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_full(gtk_sys::gtk_icon_view_create_drag_icon(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
         }
     }
 
-    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
+    pub fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
             gtk_sys::gtk_icon_view_enable_model_drag_dest(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 formats.to_glib_none().0,
                 actions.to_glib(),
             );
         }
     }
 
-    fn enable_model_drag_source(
+    pub fn enable_model_drag_source(
         &self,
         start_button_mask: gdk::ModifierType,
         formats: &gdk::ContentFormats,
@@ -346,7 +107,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     ) {
         unsafe {
             gtk_sys::gtk_icon_view_enable_model_drag_source(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 start_button_mask.to_glib(),
                 formats.to_glib_none().0,
                 actions.to_glib(),
@@ -354,15 +115,15 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_activate_on_single_click(&self) -> bool {
+    pub fn get_activate_on_single_click(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_icon_view_get_activate_on_single_click(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_cell_rect<P: IsA<CellRenderer>>(
+    pub fn get_cell_rect<P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
         cell: Option<&P>,
@@ -370,7 +131,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_cell_rect(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
                 rect.to_glib_none_mut().0,
@@ -383,20 +144,20 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_column_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_column_spacing(self.as_ref().to_glib_none().0) }
+    pub fn get_column_spacing(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_column_spacing(self.to_glib_none().0) }
     }
 
-    fn get_columns(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_columns(self.as_ref().to_glib_none().0) }
+    pub fn get_columns(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_columns(self.to_glib_none().0) }
     }
 
-    fn get_cursor(&self) -> Option<(TreePath, CellRenderer)> {
+    pub fn get_cursor(&self) -> Option<(TreePath, CellRenderer)> {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_cursor(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 &mut path,
                 &mut cell,
             ));
@@ -408,7 +169,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_dest_item_at_pos(
+    pub fn get_dest_item_at_pos(
         &self,
         drag_x: i32,
         drag_y: i32,
@@ -417,7 +178,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_dest_item_at_pos(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 drag_x,
                 drag_y,
                 &mut path,
@@ -432,12 +193,12 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_drag_dest_item(&self) -> (TreePath, IconViewDropPosition) {
+    pub fn get_drag_dest_item(&self) -> (TreePath, IconViewDropPosition) {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
             gtk_sys::gtk_icon_view_get_drag_dest_item(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 &mut path,
                 pos.as_mut_ptr(),
             );
@@ -446,12 +207,12 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
+    pub fn get_item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_item_at_pos(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 x,
                 y,
                 &mut path,
@@ -465,111 +226,107 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_item_column(&self, path: &TreePath) -> i32 {
+    pub fn get_item_column(&self, path: &TreePath) -> i32 {
         unsafe {
             gtk_sys::gtk_icon_view_get_item_column(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             )
         }
     }
 
-    fn get_item_orientation(&self) -> Orientation {
+    pub fn get_item_orientation(&self) -> Orientation {
         unsafe {
             from_glib(gtk_sys::gtk_icon_view_get_item_orientation(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_item_padding(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_item_padding(self.as_ref().to_glib_none().0) }
+    pub fn get_item_padding(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_item_padding(self.to_glib_none().0) }
     }
 
-    fn get_item_row(&self, path: &TreePath) -> i32 {
+    pub fn get_item_row(&self, path: &TreePath) -> i32 {
         unsafe {
             gtk_sys::gtk_icon_view_get_item_row(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             )
         }
     }
 
-    fn get_item_width(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_item_width(self.as_ref().to_glib_none().0) }
+    pub fn get_item_width(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_item_width(self.to_glib_none().0) }
     }
 
-    fn get_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_margin(self.as_ref().to_glib_none().0) }
+    pub fn get_margin(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_margin(self.to_glib_none().0) }
     }
 
-    fn get_markup_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_markup_column(self.as_ref().to_glib_none().0) }
+    pub fn get_markup_column(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_markup_column(self.to_glib_none().0) }
     }
 
-    fn get_model(&self) -> Option<TreeModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_icon_view_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    pub fn get_model(&self) -> Option<TreeModel> {
+        unsafe { from_glib_none(gtk_sys::gtk_icon_view_get_model(self.to_glib_none().0)) }
     }
 
-    fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
+    pub fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
         unsafe {
             from_glib_full(gtk_sys::gtk_icon_view_get_path_at_pos(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 x,
                 y,
             ))
         }
     }
 
-    fn get_pixbuf_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_pixbuf_column(self.as_ref().to_glib_none().0) }
+    pub fn get_pixbuf_column(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_pixbuf_column(self.to_glib_none().0) }
     }
 
-    fn get_reorderable(&self) -> bool {
+    pub fn get_reorderable(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_icon_view_get_reorderable(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_row_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_row_spacing(self.as_ref().to_glib_none().0) }
+    pub fn get_row_spacing(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_row_spacing(self.to_glib_none().0) }
     }
 
-    fn get_selected_items(&self) -> Vec<TreePath> {
+    pub fn get_selected_items(&self) -> Vec<TreePath> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_view_get_selected_items(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_selection_mode(&self) -> SelectionMode {
+    pub fn get_selection_mode(&self) -> SelectionMode {
         unsafe {
             from_glib(gtk_sys::gtk_icon_view_get_selection_mode(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
             ))
         }
     }
 
-    fn get_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_spacing(self.as_ref().to_glib_none().0) }
+    pub fn get_spacing(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_spacing(self.to_glib_none().0) }
     }
 
-    fn get_text_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_text_column(self.as_ref().to_glib_none().0) }
+    pub fn get_text_column(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_text_column(self.to_glib_none().0) }
     }
 
-    fn get_tooltip_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
+    pub fn get_tooltip_column(&self) -> i32 {
+        unsafe { gtk_sys::gtk_icon_view_get_tooltip_column(self.to_glib_none().0) }
     }
 
-    fn get_tooltip_context(
+    pub fn get_tooltip_context(
         &self,
         x: &mut i32,
         y: &mut i32,
@@ -580,7 +337,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
             let mut path = ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_tooltip_context(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 x,
                 y,
                 keyboard_tip.to_glib(),
@@ -596,12 +353,12 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn get_visible_range(&self) -> Option<(TreePath, TreePath)> {
+    pub fn get_visible_range(&self) -> Option<(TreePath, TreePath)> {
         unsafe {
             let mut start_path = ptr::null_mut();
             let mut end_path = ptr::null_mut();
             let ret = from_glib(gtk_sys::gtk_icon_view_get_visible_range(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 &mut start_path,
                 &mut end_path,
             ));
@@ -613,28 +370,28 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn item_activated(&self, path: &TreePath) {
+    pub fn item_activated(&self, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_icon_view_item_activated(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn path_is_selected(&self, path: &TreePath) -> bool {
+    pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_icon_view_path_is_selected(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
         }
     }
 
-    fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32) {
+    pub fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32) {
         unsafe {
             gtk_sys::gtk_icon_view_scroll_to_path(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 use_align.to_glib(),
                 row_align,
@@ -643,22 +400,22 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn select_all(&self) {
+    pub fn select_all(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_select_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_select_all(self.to_glib_none().0);
         }
     }
 
-    fn select_path(&self, path: &TreePath) {
+    pub fn select_path(&self, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_icon_view_select_path(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
+    pub fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&IconView, &TreePath)>(
             icon_view: *mut gtk_sys::GtkIconView,
@@ -674,38 +431,35 @@ impl<O: IsA<IconView>> IconViewExt for O {
         let super_callback0: &P = &func_data;
         unsafe {
             gtk_sys::gtk_icon_view_selected_foreach(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 func,
                 super_callback0 as *const _ as usize as *mut _,
             );
         }
     }
 
-    fn set_activate_on_single_click(&self, single: bool) {
+    pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             gtk_sys::gtk_icon_view_set_activate_on_single_click(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 single.to_glib(),
             );
         }
     }
 
-    fn set_column_spacing(&self, column_spacing: i32) {
+    pub fn set_column_spacing(&self, column_spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_column_spacing(
-                self.as_ref().to_glib_none().0,
-                column_spacing,
-            );
+            gtk_sys::gtk_icon_view_set_column_spacing(self.to_glib_none().0, column_spacing);
         }
     }
 
-    fn set_columns(&self, columns: i32) {
+    pub fn set_columns(&self, columns: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_columns(self.as_ref().to_glib_none().0, columns);
+            gtk_sys::gtk_icon_view_set_columns(self.to_glib_none().0, columns);
         }
     }
 
-    fn set_cursor<P: IsA<CellRenderer>>(
+    pub fn set_cursor<P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
         cell: Option<&P>,
@@ -713,7 +467,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     ) {
         unsafe {
             gtk_sys::gtk_icon_view_set_cursor(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
                 start_editing.to_glib(),
@@ -721,101 +475,95 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
+    pub fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
         unsafe {
             gtk_sys::gtk_icon_view_set_drag_dest_item(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 pos.to_glib(),
             );
         }
     }
 
-    fn set_item_orientation(&self, orientation: Orientation) {
+    pub fn set_item_orientation(&self, orientation: Orientation) {
         unsafe {
             gtk_sys::gtk_icon_view_set_item_orientation(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 orientation.to_glib(),
             );
         }
     }
 
-    fn set_item_padding(&self, item_padding: i32) {
+    pub fn set_item_padding(&self, item_padding: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_item_padding(self.as_ref().to_glib_none().0, item_padding);
+            gtk_sys::gtk_icon_view_set_item_padding(self.to_glib_none().0, item_padding);
         }
     }
 
-    fn set_item_width(&self, item_width: i32) {
+    pub fn set_item_width(&self, item_width: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_item_width(self.as_ref().to_glib_none().0, item_width);
+            gtk_sys::gtk_icon_view_set_item_width(self.to_glib_none().0, item_width);
         }
     }
 
-    fn set_margin(&self, margin: i32) {
+    pub fn set_margin(&self, margin: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_margin(self.as_ref().to_glib_none().0, margin);
+            gtk_sys::gtk_icon_view_set_margin(self.to_glib_none().0, margin);
         }
     }
 
-    fn set_markup_column(&self, column: i32) {
+    pub fn set_markup_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_markup_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_markup_column(self.to_glib_none().0, column);
         }
     }
 
-    fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
+    pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             gtk_sys::gtk_icon_view_set_model(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    fn set_pixbuf_column(&self, column: i32) {
+    pub fn set_pixbuf_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_pixbuf_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_pixbuf_column(self.to_glib_none().0, column);
         }
     }
 
-    fn set_reorderable(&self, reorderable: bool) {
+    pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_reorderable(
-                self.as_ref().to_glib_none().0,
-                reorderable.to_glib(),
-            );
+            gtk_sys::gtk_icon_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
         }
     }
 
-    fn set_row_spacing(&self, row_spacing: i32) {
+    pub fn set_row_spacing(&self, row_spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_row_spacing(self.as_ref().to_glib_none().0, row_spacing);
+            gtk_sys::gtk_icon_view_set_row_spacing(self.to_glib_none().0, row_spacing);
         }
     }
 
-    fn set_selection_mode(&self, mode: SelectionMode) {
+    pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_selection_mode(
-                self.as_ref().to_glib_none().0,
-                mode.to_glib(),
-            );
+            gtk_sys::gtk_icon_view_set_selection_mode(self.to_glib_none().0, mode.to_glib());
         }
     }
 
-    fn set_spacing(&self, spacing: i32) {
+    pub fn set_spacing(&self, spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_spacing(self.as_ref().to_glib_none().0, spacing);
+            gtk_sys::gtk_icon_view_set_spacing(self.to_glib_none().0, spacing);
         }
     }
 
-    fn set_text_column(&self, column: i32) {
+    pub fn set_text_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_text_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_text_column(self.to_glib_none().0, column);
         }
     }
 
-    fn set_tooltip_cell<P: IsA<CellRenderer>>(
+    pub fn set_tooltip_cell<P: IsA<CellRenderer>>(
         &self,
         tooltip: &Tooltip,
         path: &TreePath,
@@ -823,7 +571,7 @@ impl<O: IsA<IconView>> IconViewExt for O {
     ) {
         unsafe {
             gtk_sys::gtk_icon_view_set_tooltip_cell(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
@@ -831,54 +579,54 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn set_tooltip_column(&self, column: i32) {
+    pub fn set_tooltip_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
+            gtk_sys::gtk_icon_view_set_tooltip_column(self.to_glib_none().0, column);
         }
     }
 
-    fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath) {
+    pub fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_icon_view_set_tooltip_item(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn unselect_all(&self) {
+    pub fn unselect_all(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unselect_all(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unselect_all(self.to_glib_none().0);
         }
     }
 
-    fn unselect_path(&self, path: &TreePath) {
+    pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
             gtk_sys::gtk_icon_view_unselect_path(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
         }
     }
 
-    fn unset_model_drag_dest(&self) {
+    pub fn unset_model_drag_dest(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unset_model_drag_dest(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unset_model_drag_dest(self.to_glib_none().0);
         }
     }
 
-    fn unset_model_drag_source(&self) {
+    pub fn unset_model_drag_source(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unset_model_drag_source(self.as_ref().to_glib_none().0);
+            gtk_sys::gtk_icon_view_unset_model_drag_source(self.to_glib_none().0);
         }
     }
 
-    fn get_property_cell_area(&self) -> Option<CellArea> {
+    pub fn get_property_cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = Value::from_type(<CellArea as StaticType>::static_type());
             gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+                self.as_ptr() as *mut gobject_sys::GObject,
                 b"cell-area\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -888,36 +636,33 @@ impl<O: IsA<IconView>> IconViewExt for O {
         }
     }
 
-    fn connect_activate_cursor_item<F: Fn(&Self) -> bool + 'static>(
+    pub fn connect_activate_cursor_item<F: Fn(&IconView) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn activate_cursor_item_trampoline<P, F: Fn(&P) -> bool + 'static>(
+        unsafe extern "C" fn activate_cursor_item_trampoline<F: Fn(&IconView) -> bool + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<IconView>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast()).to_glib()
+            f(&from_glib_borrow(this)).to_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-cursor-item\0".as_ptr() as *const _,
-                Some(transmute(
-                    activate_cursor_item_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_cursor_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_activate_cursor_item(&self) -> bool {
+    pub fn emit_activate_cursor_item(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("activate-cursor-item", &[])
                 .unwrap()
         };
@@ -927,52 +672,54 @@ impl<O: IsA<IconView>> IconViewExt for O {
             .unwrap()
     }
 
-    fn connect_item_activated<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn item_activated_trampoline<P, F: Fn(&P, &TreePath) + 'static>(
+    pub fn connect_item_activated<F: Fn(&IconView, &TreePath) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn item_activated_trampoline<F: Fn(&IconView, &TreePath) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             path: *mut gtk_sys::GtkTreePath,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(
-                &IconView::from_glib_borrow(this).unsafe_cast(),
-                &from_glib_borrow(path),
-            )
+            f(&from_glib_borrow(this), &from_glib_borrow(path))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"item-activated\0".as_ptr() as *const _,
-                Some(transmute(item_activated_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    item_activated_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32) -> bool + 'static>(
+    pub fn connect_move_cursor<
+        F: Fn(&IconView, MovementStep, i32, bool, bool) -> bool + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn move_cursor_trampoline<
-            P,
-            F: Fn(&P, MovementStep, i32) -> bool + 'static,
+            F: Fn(&IconView, MovementStep, i32, bool, bool) -> bool + 'static,
         >(
             this: *mut gtk_sys::GtkIconView,
             step: gtk_sys::GtkMovementStep,
             count: libc::c_int,
+            extend: glib_sys::gboolean,
+            modify: glib_sys::gboolean,
             f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
-        where
-            P: IsA<IconView>,
-        {
+        ) -> glib_sys::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &IconView::from_glib_borrow(this).unsafe_cast(),
+                &from_glib_borrow(this),
                 from_glib(step),
                 count,
+                from_glib(extend),
+                from_glib(modify),
             )
             .to_glib()
         }
@@ -981,16 +728,24 @@ impl<O: IsA<IconView>> IconViewExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute(move_cursor_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    move_cursor_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_move_cursor(&self, step: MovementStep, count: i32) -> bool {
+    pub fn emit_move_cursor(
+        &self,
+        step: MovementStep,
+        count: i32,
+        extend: bool,
+        modify: bool,
+    ) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
-                .emit("move-cursor", &[&step, &count])
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("move-cursor", &[&step, &count, &extend, &modify])
                 .unwrap()
         };
         res.unwrap()
@@ -999,533 +754,1027 @@ impl<O: IsA<IconView>> IconViewExt for O {
             .unwrap()
     }
 
-    fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_select_all<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn select_all_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-all\0".as_ptr() as *const _,
-                Some(transmute(select_all_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    select_all_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_select_all(&self) {
+    pub fn emit_select_all(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("select-all", &[])
                 .unwrap()
         };
     }
 
-    fn connect_select_cursor_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn select_cursor_item_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_select_cursor_item<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn select_cursor_item_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-cursor-item\0".as_ptr() as *const _,
-                Some(transmute(select_cursor_item_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    select_cursor_item_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_select_cursor_item(&self) {
+    pub fn emit_select_cursor_item(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("select-cursor-item", &[])
                 .unwrap()
         };
     }
 
-    fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_selection_changed<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn selection_changed_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute(selection_changed_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    selection_changed_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_toggle_cursor_item<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggle_cursor_item_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_toggle_cursor_item<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn toggle_cursor_item_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-cursor-item\0".as_ptr() as *const _,
-                Some(transmute(toggle_cursor_item_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    toggle_cursor_item_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_toggle_cursor_item(&self) {
+    pub fn emit_toggle_cursor_item(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("toggle-cursor-item", &[])
                 .unwrap()
         };
     }
 
-    fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_unselect_all<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn unselect_all_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute(unselect_all_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    unselect_all_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn emit_unselect_all(&self) {
+    pub fn emit_unselect_all(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.to_glib_none().0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
                 .emit("unselect-all", &[])
                 .unwrap()
         };
     }
 
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_activate_on_single_click_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_activate_on_single_click_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_activate_on_single_click_trampoline<
+            F: Fn(&IconView) + 'static,
+        >(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_activate_on_single_click_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_column_spacing_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_column_spacing_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_column_spacing_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_columns_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_columns_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_columns_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_columns_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::columns\0".as_ptr() as *const _,
-                Some(transmute(notify_columns_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_columns_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_item_orientation_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_item_orientation_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_item_orientation_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_item_orientation_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-orientation\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_item_orientation_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_orientation_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_item_padding_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_item_padding_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_item_padding_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_item_padding_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-padding\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_item_padding_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_padding_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_item_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_item_width_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_item_width_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_item_width_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-width\0".as_ptr() as *const _,
-                Some(transmute(notify_item_width_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_width_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_margin_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_margin_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_margin_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin\0".as_ptr() as *const _,
-                Some(transmute(notify_margin_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_margin_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_markup_column_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_markup_column_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_markup_column_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_markup_column_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::markup-column\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_markup_column_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_markup_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_model_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute(notify_model_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_pixbuf_column_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_pixbuf_column_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pixbuf_column_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_pixbuf_column_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-column\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_pixbuf_column_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pixbuf_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_reorderable_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reorderable\0".as_ptr() as *const _,
-                Some(transmute(notify_reorderable_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_reorderable_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_row_spacing_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_row_spacing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_spacing_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_selection_mode_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_selection_mode_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_selection_mode_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_selection_mode_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_selection_mode_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_selection_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_spacing_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_spacing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_spacing_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_column_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_text_column_notify<F: Fn(&IconView) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_column_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-column\0".as_ptr() as *const _,
-                Some(transmute(notify_text_column_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_column_trampoline::<F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    fn connect_property_tooltip_column_notify<F: Fn(&Self) + 'static>(
+    pub fn connect_property_tooltip_column_notify<F: Fn(&IconView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_tooltip_column_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_tooltip_column_trampoline<F: Fn(&IconView) + 'static>(
             this: *mut gtk_sys::GtkIconView,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
-        ) where
-            P: IsA<IconView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&IconView::from_glib_borrow(this).unsafe_cast())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-column\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_tooltip_column_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tooltip_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl Default for IconView {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct IconViewBuilder {
+    activate_on_single_click: Option<bool>,
+    cell_area: Option<CellArea>,
+    column_spacing: Option<i32>,
+    columns: Option<i32>,
+    item_orientation: Option<Orientation>,
+    item_padding: Option<i32>,
+    item_width: Option<i32>,
+    margin: Option<i32>,
+    markup_column: Option<i32>,
+    model: Option<TreeModel>,
+    pixbuf_column: Option<i32>,
+    reorderable: Option<bool>,
+    row_spacing: Option<i32>,
+    selection_mode: Option<SelectionMode>,
+    spacing: Option<i32>,
+    text_column: Option<i32>,
+    tooltip_column: Option<i32>,
+    can_focus: Option<bool>,
+    can_target: Option<bool>,
+    css_classes: Option<Vec<String>>,
+    css_name: Option<String>,
+    cursor: Option<gdk::Cursor>,
+    focus_on_click: Option<bool>,
+    focusable: Option<bool>,
+    halign: Option<Align>,
+    has_tooltip: Option<bool>,
+    height_request: Option<i32>,
+    hexpand: Option<bool>,
+    hexpand_set: Option<bool>,
+    layout_manager: Option<LayoutManager>,
+    margin_bottom: Option<i32>,
+    margin_end: Option<i32>,
+    margin_start: Option<i32>,
+    margin_top: Option<i32>,
+    name: Option<String>,
+    opacity: Option<f64>,
+    overflow: Option<Overflow>,
+    receives_default: Option<bool>,
+    sensitive: Option<bool>,
+    tooltip_markup: Option<String>,
+    tooltip_text: Option<String>,
+    valign: Option<Align>,
+    vexpand: Option<bool>,
+    vexpand_set: Option<bool>,
+    visible: Option<bool>,
+    width_request: Option<i32>,
+    accessible_role: Option<AccessibleRole>,
+    hadjustment: Option<Adjustment>,
+    hscroll_policy: Option<ScrollablePolicy>,
+    vadjustment: Option<Adjustment>,
+    vscroll_policy: Option<ScrollablePolicy>,
+}
+
+impl IconViewBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> IconView {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref activate_on_single_click) = self.activate_on_single_click {
+            properties.push(("activate-on-single-click", activate_on_single_click));
+        }
+        if let Some(ref cell_area) = self.cell_area {
+            properties.push(("cell-area", cell_area));
+        }
+        if let Some(ref column_spacing) = self.column_spacing {
+            properties.push(("column-spacing", column_spacing));
+        }
+        if let Some(ref columns) = self.columns {
+            properties.push(("columns", columns));
+        }
+        if let Some(ref item_orientation) = self.item_orientation {
+            properties.push(("item-orientation", item_orientation));
+        }
+        if let Some(ref item_padding) = self.item_padding {
+            properties.push(("item-padding", item_padding));
+        }
+        if let Some(ref item_width) = self.item_width {
+            properties.push(("item-width", item_width));
+        }
+        if let Some(ref margin) = self.margin {
+            properties.push(("margin", margin));
+        }
+        if let Some(ref markup_column) = self.markup_column {
+            properties.push(("markup-column", markup_column));
+        }
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        if let Some(ref pixbuf_column) = self.pixbuf_column {
+            properties.push(("pixbuf-column", pixbuf_column));
+        }
+        if let Some(ref reorderable) = self.reorderable {
+            properties.push(("reorderable", reorderable));
+        }
+        if let Some(ref row_spacing) = self.row_spacing {
+            properties.push(("row-spacing", row_spacing));
+        }
+        if let Some(ref selection_mode) = self.selection_mode {
+            properties.push(("selection-mode", selection_mode));
+        }
+        if let Some(ref spacing) = self.spacing {
+            properties.push(("spacing", spacing));
+        }
+        if let Some(ref text_column) = self.text_column {
+            properties.push(("text-column", text_column));
+        }
+        if let Some(ref tooltip_column) = self.tooltip_column {
+            properties.push(("tooltip-column", tooltip_column));
+        }
+        if let Some(ref can_focus) = self.can_focus {
+            properties.push(("can-focus", can_focus));
+        }
+        if let Some(ref can_target) = self.can_target {
+            properties.push(("can-target", can_target));
+        }
+        if let Some(ref css_classes) = self.css_classes {
+            properties.push(("css-classes", css_classes));
+        }
+        if let Some(ref css_name) = self.css_name {
+            properties.push(("css-name", css_name));
+        }
+        if let Some(ref cursor) = self.cursor {
+            properties.push(("cursor", cursor));
+        }
+        if let Some(ref focus_on_click) = self.focus_on_click {
+            properties.push(("focus-on-click", focus_on_click));
+        }
+        if let Some(ref focusable) = self.focusable {
+            properties.push(("focusable", focusable));
+        }
+        if let Some(ref halign) = self.halign {
+            properties.push(("halign", halign));
+        }
+        if let Some(ref has_tooltip) = self.has_tooltip {
+            properties.push(("has-tooltip", has_tooltip));
+        }
+        if let Some(ref height_request) = self.height_request {
+            properties.push(("height-request", height_request));
+        }
+        if let Some(ref hexpand) = self.hexpand {
+            properties.push(("hexpand", hexpand));
+        }
+        if let Some(ref hexpand_set) = self.hexpand_set {
+            properties.push(("hexpand-set", hexpand_set));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        if let Some(ref margin_bottom) = self.margin_bottom {
+            properties.push(("margin-bottom", margin_bottom));
+        }
+        if let Some(ref margin_end) = self.margin_end {
+            properties.push(("margin-end", margin_end));
+        }
+        if let Some(ref margin_start) = self.margin_start {
+            properties.push(("margin-start", margin_start));
+        }
+        if let Some(ref margin_top) = self.margin_top {
+            properties.push(("margin-top", margin_top));
+        }
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref opacity) = self.opacity {
+            properties.push(("opacity", opacity));
+        }
+        if let Some(ref overflow) = self.overflow {
+            properties.push(("overflow", overflow));
+        }
+        if let Some(ref receives_default) = self.receives_default {
+            properties.push(("receives-default", receives_default));
+        }
+        if let Some(ref sensitive) = self.sensitive {
+            properties.push(("sensitive", sensitive));
+        }
+        if let Some(ref tooltip_markup) = self.tooltip_markup {
+            properties.push(("tooltip-markup", tooltip_markup));
+        }
+        if let Some(ref tooltip_text) = self.tooltip_text {
+            properties.push(("tooltip-text", tooltip_text));
+        }
+        if let Some(ref valign) = self.valign {
+            properties.push(("valign", valign));
+        }
+        if let Some(ref vexpand) = self.vexpand {
+            properties.push(("vexpand", vexpand));
+        }
+        if let Some(ref vexpand_set) = self.vexpand_set {
+            properties.push(("vexpand-set", vexpand_set));
+        }
+        if let Some(ref visible) = self.visible {
+            properties.push(("visible", visible));
+        }
+        if let Some(ref width_request) = self.width_request {
+            properties.push(("width-request", width_request));
+        }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
+        }
+        if let Some(ref hadjustment) = self.hadjustment {
+            properties.push(("hadjustment", hadjustment));
+        }
+        if let Some(ref hscroll_policy) = self.hscroll_policy {
+            properties.push(("hscroll-policy", hscroll_policy));
+        }
+        if let Some(ref vadjustment) = self.vadjustment {
+            properties.push(("vadjustment", vadjustment));
+        }
+        if let Some(ref vscroll_policy) = self.vscroll_policy {
+            properties.push(("vscroll-policy", vscroll_policy));
+        }
+        let ret = glib::Object::new(IconView::static_type(), &properties)
+            .expect("object new")
+            .downcast::<IconView>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn activate_on_single_click(mut self, activate_on_single_click: bool) -> Self {
+        self.activate_on_single_click = Some(activate_on_single_click);
+        self
+    }
+
+    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+        self.cell_area = Some(cell_area.clone().upcast());
+        self
+    }
+
+    pub fn column_spacing(mut self, column_spacing: i32) -> Self {
+        self.column_spacing = Some(column_spacing);
+        self
+    }
+
+    pub fn columns(mut self, columns: i32) -> Self {
+        self.columns = Some(columns);
+        self
+    }
+
+    pub fn item_orientation(mut self, item_orientation: Orientation) -> Self {
+        self.item_orientation = Some(item_orientation);
+        self
+    }
+
+    pub fn item_padding(mut self, item_padding: i32) -> Self {
+        self.item_padding = Some(item_padding);
+        self
+    }
+
+    pub fn item_width(mut self, item_width: i32) -> Self {
+        self.item_width = Some(item_width);
+        self
+    }
+
+    pub fn margin(mut self, margin: i32) -> Self {
+        self.margin = Some(margin);
+        self
+    }
+
+    pub fn markup_column(mut self, markup_column: i32) -> Self {
+        self.markup_column = Some(markup_column);
+        self
+    }
+
+    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+
+    pub fn pixbuf_column(mut self, pixbuf_column: i32) -> Self {
+        self.pixbuf_column = Some(pixbuf_column);
+        self
+    }
+
+    pub fn reorderable(mut self, reorderable: bool) -> Self {
+        self.reorderable = Some(reorderable);
+        self
+    }
+
+    pub fn row_spacing(mut self, row_spacing: i32) -> Self {
+        self.row_spacing = Some(row_spacing);
+        self
+    }
+
+    pub fn selection_mode(mut self, selection_mode: SelectionMode) -> Self {
+        self.selection_mode = Some(selection_mode);
+        self
+    }
+
+    pub fn spacing(mut self, spacing: i32) -> Self {
+        self.spacing = Some(spacing);
+        self
+    }
+
+    pub fn text_column(mut self, text_column: i32) -> Self {
+        self.text_column = Some(text_column);
+        self
+    }
+
+    pub fn tooltip_column(mut self, tooltip_column: i32) -> Self {
+        self.tooltip_column = Some(tooltip_column);
+        self
+    }
+
+    pub fn can_focus(mut self, can_focus: bool) -> Self {
+        self.can_focus = Some(can_focus);
+        self
+    }
+
+    pub fn can_target(mut self, can_target: bool) -> Self {
+        self.can_target = Some(can_target);
+        self
+    }
+
+    pub fn css_classes(mut self, css_classes: Vec<String>) -> Self {
+        self.css_classes = Some(css_classes);
+        self
+    }
+
+    pub fn css_name(mut self, css_name: &str) -> Self {
+        self.css_name = Some(css_name.to_string());
+        self
+    }
+
+    pub fn cursor(mut self, cursor: &gdk::Cursor) -> Self {
+        self.cursor = Some(cursor.clone());
+        self
+    }
+
+    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
+        self.focus_on_click = Some(focus_on_click);
+        self
+    }
+
+    pub fn focusable(mut self, focusable: bool) -> Self {
+        self.focusable = Some(focusable);
+        self
+    }
+
+    pub fn halign(mut self, halign: Align) -> Self {
+        self.halign = Some(halign);
+        self
+    }
+
+    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
+        self.has_tooltip = Some(has_tooltip);
+        self
+    }
+
+    pub fn height_request(mut self, height_request: i32) -> Self {
+        self.height_request = Some(height_request);
+        self
+    }
+
+    pub fn hexpand(mut self, hexpand: bool) -> Self {
+        self.hexpand = Some(hexpand);
+        self
+    }
+
+    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
+        self.hexpand_set = Some(hexpand_set);
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+
+    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
+        self.margin_bottom = Some(margin_bottom);
+        self
+    }
+
+    pub fn margin_end(mut self, margin_end: i32) -> Self {
+        self.margin_end = Some(margin_end);
+        self
+    }
+
+    pub fn margin_start(mut self, margin_start: i32) -> Self {
+        self.margin_start = Some(margin_start);
+        self
+    }
+
+    pub fn margin_top(mut self, margin_top: i32) -> Self {
+        self.margin_top = Some(margin_top);
+        self
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn opacity(mut self, opacity: f64) -> Self {
+        self.opacity = Some(opacity);
+        self
+    }
+
+    pub fn overflow(mut self, overflow: Overflow) -> Self {
+        self.overflow = Some(overflow);
+        self
+    }
+
+    pub fn receives_default(mut self, receives_default: bool) -> Self {
+        self.receives_default = Some(receives_default);
+        self
+    }
+
+    pub fn sensitive(mut self, sensitive: bool) -> Self {
+        self.sensitive = Some(sensitive);
+        self
+    }
+
+    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
+        self.tooltip_markup = Some(tooltip_markup.to_string());
+        self
+    }
+
+    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
+        self.tooltip_text = Some(tooltip_text.to_string());
+        self
+    }
+
+    pub fn valign(mut self, valign: Align) -> Self {
+        self.valign = Some(valign);
+        self
+    }
+
+    pub fn vexpand(mut self, vexpand: bool) -> Self {
+        self.vexpand = Some(vexpand);
+        self
+    }
+
+    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
+        self.vexpand_set = Some(vexpand_set);
+        self
+    }
+
+    pub fn visible(mut self, visible: bool) -> Self {
+        self.visible = Some(visible);
+        self
+    }
+
+    pub fn width_request(mut self, width_request: i32) -> Self {
+        self.width_request = Some(width_request);
+        self
+    }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
+        self
+    }
+
+    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+        self.hadjustment = Some(hadjustment.clone().upcast());
+        self
+    }
+
+    pub fn hscroll_policy(mut self, hscroll_policy: ScrollablePolicy) -> Self {
+        self.hscroll_policy = Some(hscroll_policy);
+        self
+    }
+
+    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+        self.vadjustment = Some(vadjustment.clone().upcast());
+        self
+    }
+
+    pub fn vscroll_policy(mut self, vscroll_policy: ScrollablePolicy) -> Self {
+        self.vscroll_policy = Some(vscroll_policy);
+        self
     }
 }
 

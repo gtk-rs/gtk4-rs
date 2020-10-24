@@ -153,14 +153,16 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             P: IsA<Scrollable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hadjustment\0".as_ptr() as *const _,
-                Some(transmute(notify_hadjustment_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_hadjustment_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -178,15 +180,15 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             P: IsA<Scrollable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hscroll-policy\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_hscroll_policy_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_hscroll_policy_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -202,14 +204,16 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             P: IsA<Scrollable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vadjustment\0".as_ptr() as *const _,
-                Some(transmute(notify_vadjustment_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_vadjustment_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -227,15 +231,15 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
             P: IsA<Scrollable>,
         {
             let f: &F = &*(f as *const F);
-            f(&Scrollable::from_glib_borrow(this).unsafe_cast())
+            f(&Scrollable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vscroll-policy\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_vscroll_policy_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_vscroll_policy_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

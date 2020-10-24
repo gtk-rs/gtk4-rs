@@ -7,6 +7,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use glib_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
@@ -32,6 +34,61 @@ impl BoxLayout {
             LayoutManager::from_glib_full(gtk_sys::gtk_box_layout_new(orientation.to_glib()))
                 .unsafe_cast()
         }
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct BoxLayoutBuilder {
+    baseline_position: Option<BaselinePosition>,
+    homogeneous: Option<bool>,
+    spacing: Option<i32>,
+    orientation: Option<Orientation>,
+}
+
+impl BoxLayoutBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> BoxLayout {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref baseline_position) = self.baseline_position {
+            properties.push(("baseline-position", baseline_position));
+        }
+        if let Some(ref homogeneous) = self.homogeneous {
+            properties.push(("homogeneous", homogeneous));
+        }
+        if let Some(ref spacing) = self.spacing {
+            properties.push(("spacing", spacing));
+        }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
+        }
+        let ret = glib::Object::new(BoxLayout::static_type(), &properties)
+            .expect("object new")
+            .downcast::<BoxLayout>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {
+        self.baseline_position = Some(baseline_position);
+        self
+    }
+
+    pub fn homogeneous(mut self, homogeneous: bool) -> Self {
+        self.homogeneous = Some(homogeneous);
+        self
+    }
+
+    pub fn spacing(mut self, spacing: i32) -> Self {
+        self.spacing = Some(spacing);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
+        self
     }
 }
 
@@ -117,15 +174,15 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
             P: IsA<BoxLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&BoxLayout::from_glib_borrow(this).unsafe_cast())
+            f(&BoxLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute(
-                    notify_baseline_position_trampoline::<Self, F> as usize,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_baseline_position_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -141,14 +198,16 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
             P: IsA<BoxLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&BoxLayout::from_glib_borrow(this).unsafe_cast())
+            f(&BoxLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(transmute(notify_homogeneous_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_homogeneous_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -163,14 +222,16 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
             P: IsA<BoxLayout>,
         {
             let f: &F = &*(f as *const F);
-            f(&BoxLayout::from_glib_borrow(this).unsafe_cast())
+            f(&BoxLayout::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute(notify_spacing_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_spacing_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }

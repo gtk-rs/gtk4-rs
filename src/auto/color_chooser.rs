@@ -89,7 +89,7 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         {
             let f: &F = &*(f as *const F);
             f(
-                &ColorChooser::from_glib_borrow(this).unsafe_cast(),
+                &ColorChooser::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(color),
             )
         }
@@ -98,7 +98,9 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"color-activated\0".as_ptr() as *const _,
-                Some(transmute(color_activated_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    color_activated_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -113,14 +115,16 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
             P: IsA<ColorChooser>,
         {
             let f: &F = &*(f as *const F);
-            f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
+            f(&ColorChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute(notify_rgba_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_rgba_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
@@ -135,14 +139,16 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
             P: IsA<ColorChooser>,
         {
             let f: &F = &*(f as *const F);
-            f(&ColorChooser::from_glib_borrow(this).unsafe_cast())
+            f(&ColorChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-alpha\0".as_ptr() as *const _,
-                Some(transmute(notify_use_alpha_trampoline::<Self, F> as usize)),
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_alpha_trampoline::<Self, F> as *const (),
+                )),
                 Box_::into_raw(f),
             )
         }
