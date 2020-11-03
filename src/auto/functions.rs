@@ -122,11 +122,6 @@ pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
     unsafe { from_glib(gtk_sys::gtk_accelerator_valid(keyval, modifiers.to_glib())) }
 }
 
-pub fn css_parser_error_quark() -> glib::Quark {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(gtk_sys::gtk_css_parser_error_quark()) }
-}
-
 pub fn css_parser_warning_quark() -> glib::Quark {
     assert_initialized_main_thread!();
     unsafe { from_glib(gtk_sys::gtk_css_parser_warning_quark()) }

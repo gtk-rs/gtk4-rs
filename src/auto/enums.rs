@@ -1624,6 +1624,7 @@ impl FromGlib<gtk_sys::GtkBuilderError> for BuilderError {
 impl ErrorDomain for BuilderError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_builder_error_quark()) }
     }
 
@@ -2259,6 +2260,7 @@ impl FromGlib<gtk_sys::GtkConstraintVflParserError> for ConstraintVflParserError
 impl ErrorDomain for ConstraintVflParserError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_constraint_vfl_parser_error_quark()) }
     }
 
@@ -2447,6 +2449,7 @@ impl FromGlib<gtk_sys::GtkCssParserError> for CssParserError {
 impl ErrorDomain for CssParserError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_css_parser_error_quark()) }
     }
 
@@ -3088,6 +3091,7 @@ impl FromGlib<gtk_sys::GtkFileChooserError> for FileChooserError {
 impl ErrorDomain for FileChooserError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_file_chooser_error_quark()) }
     }
 
@@ -3410,6 +3414,7 @@ impl FromGlib<gtk_sys::GtkIconThemeError> for IconThemeError {
 impl ErrorDomain for IconThemeError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_icon_theme_error_quark()) }
     }
 
@@ -5422,6 +5427,7 @@ impl FromGlib<gtk_sys::GtkPrintError> for PrintError {
 impl ErrorDomain for PrintError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_print_error_quark()) }
     }
 
@@ -6110,6 +6116,7 @@ impl FromGlib<gtk_sys::GtkRecentManagerError> for RecentManagerError {
 impl ErrorDomain for RecentManagerError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gtk_sys::gtk_recent_manager_error_quark()) }
     }
 
