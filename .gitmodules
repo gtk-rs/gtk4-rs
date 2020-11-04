@@ -1,6 +1,0 @@
-[submodule "gir"]
-	path = gir
-	url = https://github.com/gtk-rs/gir.git
-[submodule "gir-files"]
-	path = gir-files
-	url = https://github.com/gtk-rs/gir-files.git
