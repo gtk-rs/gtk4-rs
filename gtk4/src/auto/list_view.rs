@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -32,6 +31,7 @@ use Orientation;
 use Overflow;
 use Scrollable;
 use ScrollablePolicy;
+use SelectionModel;
 use Widget;
 
 glib_wrapper! {
@@ -43,23 +43,13 @@ glib_wrapper! {
 }
 
 impl ListView {
-    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> ListView {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_list_view_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-            ))
-            .unsafe_cast()
-        }
-    }
-
-    pub fn with_factory<P: IsA<gio::ListModel>, Q: IsA<ListItemFactory>>(
+    pub fn new<P: IsA<SelectionModel>, Q: IsA<ListItemFactory>>(
         model: Option<&P>,
         factory: Option<&Q>,
     ) -> ListView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_list_view_new_with_factory(
+            Widget::from_glib_none(gtk_sys::gtk_list_view_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
                 factory.map(|p| p.as_ref()).to_glib_full(),
             ))
@@ -79,7 +69,7 @@ impl ListView {
         unsafe { from_glib_none(gtk_sys::gtk_list_view_get_factory(self.to_glib_none().0)) }
     }
 
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(gtk_sys::gtk_list_view_get_model(self.to_glib_none().0)) }
     }
 
@@ -117,7 +107,7 @@ impl ListView {
         }
     }
 
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             gtk_sys::gtk_list_view_set_model(
                 self.to_glib_none().0,
@@ -296,7 +286,7 @@ impl ListView {
 pub struct ListViewBuilder {
     enable_rubberband: Option<bool>,
     factory: Option<ListItemFactory>,
-    model: Option<gio::ListModel>,
+    model: Option<SelectionModel>,
     show_separators: Option<bool>,
     single_click_activate: Option<bool>,
     orientation: Option<Orientation>,
@@ -480,7 +470,7 @@ impl ListViewBuilder {
         self
     }
 
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+    pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }

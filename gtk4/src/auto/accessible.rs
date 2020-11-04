@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -41,15 +40,15 @@ pub trait AccessibleExt: 'static {
 
     //fn update_property(&self, first_property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn update_property_value(&self, property: AccessibleProperty, value: &glib::Value);
+    //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]);
 
     //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn update_relation_value(&self, relation: AccessibleRelation, value: &glib::Value);
+    //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]);
 
     //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    fn update_state_value(&self, state: AccessibleState, value: &glib::Value);
+    //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]);
 
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole);
 
@@ -96,43 +95,25 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     //    unsafe { TODO: call gtk_sys:gtk_accessible_update_property() }
     //}
 
-    fn update_property_value(&self, property: AccessibleProperty, value: &glib::Value) {
-        unsafe {
-            gtk_sys::gtk_accessible_update_property_value(
-                self.as_ref().to_glib_none().0,
-                property.to_glib(),
-                value.to_glib_none().0,
-            );
-        }
-    }
+    //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]) {
+    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_property_value() }
+    //}
 
     //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_accessible_update_relation() }
     //}
 
-    fn update_relation_value(&self, relation: AccessibleRelation, value: &glib::Value) {
-        unsafe {
-            gtk_sys::gtk_accessible_update_relation_value(
-                self.as_ref().to_glib_none().0,
-                relation.to_glib(),
-                value.to_glib_none().0,
-            );
-        }
-    }
+    //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]) {
+    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_relation_value() }
+    //}
 
     //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_accessible_update_state() }
     //}
 
-    fn update_state_value(&self, state: AccessibleState, value: &glib::Value) {
-        unsafe {
-            gtk_sys::gtk_accessible_update_state_value(
-                self.as_ref().to_glib_none().0,
-                state.to_glib(),
-                value.to_glib_none().0,
-            );
-        }
-    }
+    //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]) {
+    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_state_value() }
+    //}
 
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {

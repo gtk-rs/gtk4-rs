@@ -121,7 +121,7 @@ impl ContentFormats {
     pub fn union_deserialize_gtypes(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(gdk_sys::gdk_content_formats_union_deserialize_gtypes(
-                self.to_glib_none().0,
+                self.to_glib_full(),
             ))
         }
     }
@@ -129,7 +129,7 @@ impl ContentFormats {
     pub fn union_deserialize_mime_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(gdk_sys::gdk_content_formats_union_deserialize_mime_types(
-                self.to_glib_none().0,
+                self.to_glib_full(),
             ))
         }
     }

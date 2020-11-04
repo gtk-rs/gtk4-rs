@@ -51,6 +51,16 @@ pub const GSK_CORNER_TOP_RIGHT: GskCorner = 1;
 pub const GSK_CORNER_BOTTOM_RIGHT: GskCorner = 2;
 pub const GSK_CORNER_BOTTOM_LEFT: GskCorner = 3;
 
+pub type GskGLUniformType = c_int;
+pub const GSK_GL_UNIFORM_TYPE_NONE: GskGLUniformType = 0;
+pub const GSK_GL_UNIFORM_TYPE_FLOAT: GskGLUniformType = 1;
+pub const GSK_GL_UNIFORM_TYPE_INT: GskGLUniformType = 2;
+pub const GSK_GL_UNIFORM_TYPE_UINT: GskGLUniformType = 3;
+pub const GSK_GL_UNIFORM_TYPE_BOOL: GskGLUniformType = 4;
+pub const GSK_GL_UNIFORM_TYPE_VEC2: GskGLUniformType = 5;
+pub const GSK_GL_UNIFORM_TYPE_VEC3: GskGLUniformType = 6;
+pub const GSK_GL_UNIFORM_TYPE_VEC4: GskGLUniformType = 7;
+
 pub type GskRenderNodeType = c_int;
 pub const GSK_NOT_A_RENDER_NODE: GskRenderNodeType = 0;
 pub const GSK_CONTAINER_NODE: GskRenderNodeType = 1;
@@ -58,22 +68,25 @@ pub const GSK_CAIRO_NODE: GskRenderNodeType = 2;
 pub const GSK_COLOR_NODE: GskRenderNodeType = 3;
 pub const GSK_LINEAR_GRADIENT_NODE: GskRenderNodeType = 4;
 pub const GSK_REPEATING_LINEAR_GRADIENT_NODE: GskRenderNodeType = 5;
-pub const GSK_BORDER_NODE: GskRenderNodeType = 6;
-pub const GSK_TEXTURE_NODE: GskRenderNodeType = 7;
-pub const GSK_INSET_SHADOW_NODE: GskRenderNodeType = 8;
-pub const GSK_OUTSET_SHADOW_NODE: GskRenderNodeType = 9;
-pub const GSK_TRANSFORM_NODE: GskRenderNodeType = 10;
-pub const GSK_OPACITY_NODE: GskRenderNodeType = 11;
-pub const GSK_COLOR_MATRIX_NODE: GskRenderNodeType = 12;
-pub const GSK_REPEAT_NODE: GskRenderNodeType = 13;
-pub const GSK_CLIP_NODE: GskRenderNodeType = 14;
-pub const GSK_ROUNDED_CLIP_NODE: GskRenderNodeType = 15;
-pub const GSK_SHADOW_NODE: GskRenderNodeType = 16;
-pub const GSK_BLEND_NODE: GskRenderNodeType = 17;
-pub const GSK_CROSS_FADE_NODE: GskRenderNodeType = 18;
-pub const GSK_TEXT_NODE: GskRenderNodeType = 19;
-pub const GSK_BLUR_NODE: GskRenderNodeType = 20;
-pub const GSK_DEBUG_NODE: GskRenderNodeType = 21;
+pub const GSK_RADIAL_GRADIENT_NODE: GskRenderNodeType = 6;
+pub const GSK_REPEATING_RADIAL_GRADIENT_NODE: GskRenderNodeType = 7;
+pub const GSK_BORDER_NODE: GskRenderNodeType = 8;
+pub const GSK_TEXTURE_NODE: GskRenderNodeType = 9;
+pub const GSK_INSET_SHADOW_NODE: GskRenderNodeType = 10;
+pub const GSK_OUTSET_SHADOW_NODE: GskRenderNodeType = 11;
+pub const GSK_TRANSFORM_NODE: GskRenderNodeType = 12;
+pub const GSK_OPACITY_NODE: GskRenderNodeType = 13;
+pub const GSK_COLOR_MATRIX_NODE: GskRenderNodeType = 14;
+pub const GSK_REPEAT_NODE: GskRenderNodeType = 15;
+pub const GSK_CLIP_NODE: GskRenderNodeType = 16;
+pub const GSK_ROUNDED_CLIP_NODE: GskRenderNodeType = 17;
+pub const GSK_SHADOW_NODE: GskRenderNodeType = 18;
+pub const GSK_BLEND_NODE: GskRenderNodeType = 19;
+pub const GSK_CROSS_FADE_NODE: GskRenderNodeType = 20;
+pub const GSK_TEXT_NODE: GskRenderNodeType = 21;
+pub const GSK_BLUR_NODE: GskRenderNodeType = 22;
+pub const GSK_DEBUG_NODE: GskRenderNodeType = 23;
+pub const GSK_GL_SHADER_NODE: GskRenderNodeType = 24;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -131,6 +144,20 @@ pub struct _GskGLRendererClass(c_void);
 pub type GskGLRendererClass = *mut _GskGLRendererClass;
 
 #[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GskGLShaderClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GskGLShaderClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskGLShaderClass @ {:?}", self as *const _))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct _GskRendererClass(c_void);
 
 pub type GskRendererClass = *mut _GskRendererClass;
@@ -147,6 +174,16 @@ impl ::std::fmt::Debug for GskRoundedRect {
         f.debug_struct(&format!("GskRoundedRect @ {:?}", self as *const _))
             .field("bounds", &self.bounds)
             .field("corner", &self.corner)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskShaderArgsBuilder(c_void);
+
+impl ::std::fmt::Debug for GskShaderArgsBuilder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskShaderArgsBuilder @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -318,6 +355,26 @@ impl ::std::fmt::Debug for GskGLRenderer {
 }
 
 #[repr(C)]
+pub struct GskGLShader(c_void);
+
+impl ::std::fmt::Debug for GskGLShader {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskGLShader @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskGLShaderNode(c_void);
+
+impl ::std::fmt::Debug for GskGLShaderNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskGLShaderNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskInsetShadowNode(c_void);
 
 impl ::std::fmt::Debug for GskInsetShadowNode {
@@ -353,6 +410,16 @@ pub struct GskOutsetShadowNode(c_void);
 impl ::std::fmt::Debug for GskOutsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskOutsetShadowNode @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRadialGradientNode(c_void);
+
+impl ::std::fmt::Debug for GskRadialGradientNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskRadialGradientNode @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -394,6 +461,19 @@ impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
             "GskRepeatingLinearGradientNode @ {:?}",
+            self as *const _
+        ))
+        .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskRepeatingRadialGradientNode(c_void);
+
+impl ::std::fmt::Debug for GskRepeatingRadialGradientNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!(
+            "GskRepeatingRadialGradientNode @ {:?}",
             self as *const _
         ))
         .finish()
@@ -474,6 +554,11 @@ extern "C" {
     pub fn gsk_corner_get_type() -> GType;
 
     //=========================================================================
+    // GskGLUniformType
+    //=========================================================================
+    pub fn gsk_gl_uniform_type_get_type() -> GType;
+
+    //=========================================================================
     // GskRenderNodeType
     //=========================================================================
     pub fn gsk_render_node_type_get_type() -> GType;
@@ -540,6 +625,59 @@ extern "C" {
         bottom: c_float,
         left: c_float,
     ) -> *mut GskRoundedRect;
+
+    //=========================================================================
+    // GskShaderArgsBuilder
+    //=========================================================================
+    pub fn gsk_shader_args_builder_get_type() -> GType;
+    pub fn gsk_shader_args_builder_new(
+        shader: *mut GskGLShader,
+        initial_values: *mut glib::GBytes,
+    ) -> *mut GskShaderArgsBuilder;
+    pub fn gsk_shader_args_builder_free_to_args(
+        builder: *mut GskShaderArgsBuilder,
+    ) -> *mut glib::GBytes;
+    pub fn gsk_shader_args_builder_ref(
+        builder: *mut GskShaderArgsBuilder,
+    ) -> *mut GskShaderArgsBuilder;
+    pub fn gsk_shader_args_builder_set_bool(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: gboolean,
+    );
+    pub fn gsk_shader_args_builder_set_float(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: c_float,
+    );
+    pub fn gsk_shader_args_builder_set_int(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: i32,
+    );
+    pub fn gsk_shader_args_builder_set_uint(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: u32,
+    );
+    pub fn gsk_shader_args_builder_set_vec2(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: *const graphene::graphene_vec2_t,
+    );
+    pub fn gsk_shader_args_builder_set_vec3(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: *const graphene::graphene_vec3_t,
+    );
+    pub fn gsk_shader_args_builder_set_vec4(
+        builder: *mut GskShaderArgsBuilder,
+        idx: c_int,
+        value: *const graphene::graphene_vec4_t,
+    );
+    pub fn gsk_shader_args_builder_to_args(builder: *mut GskShaderArgsBuilder)
+        -> *mut glib::GBytes;
+    pub fn gsk_shader_args_builder_unref(builder: *mut GskShaderArgsBuilder);
 
     //=========================================================================
     // GskTransform
@@ -762,6 +900,90 @@ extern "C" {
     pub fn gsk_gl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
+    // GskGLShader
+    //=========================================================================
+    pub fn gsk_gl_shader_get_type() -> GType;
+    pub fn gsk_gl_shader_new_from_bytes(sourcecode: *mut glib::GBytes) -> *mut GskGLShader;
+    pub fn gsk_gl_shader_new_from_resource(resource_path: *const c_char) -> *mut GskGLShader;
+    pub fn gsk_gl_shader_compile(
+        shader: *mut GskGLShader,
+        renderer: *mut GskRenderer,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    pub fn gsk_gl_shader_find_uniform_by_name(
+        shader: *mut GskGLShader,
+        name: *const c_char,
+    ) -> c_int;
+    pub fn gsk_gl_shader_format_args(shader: *mut GskGLShader, ...) -> *mut glib::GBytes;
+    //pub fn gsk_gl_shader_format_args_va(shader: *mut GskGLShader, uniforms: /*Unimplemented*/va_list) -> *mut glib::GBytes;
+    pub fn gsk_gl_shader_get_arg_bool(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+    ) -> gboolean;
+    pub fn gsk_gl_shader_get_arg_float(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+    ) -> c_float;
+    pub fn gsk_gl_shader_get_arg_int(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+    ) -> i32;
+    pub fn gsk_gl_shader_get_arg_uint(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+    ) -> u32;
+    pub fn gsk_gl_shader_get_arg_vec2(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+        out_value: *mut graphene::graphene_vec2_t,
+    );
+    pub fn gsk_gl_shader_get_arg_vec3(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+        out_value: *mut graphene::graphene_vec3_t,
+    );
+    pub fn gsk_gl_shader_get_arg_vec4(
+        shader: *mut GskGLShader,
+        args: *mut glib::GBytes,
+        idx: c_int,
+        out_value: *mut graphene::graphene_vec4_t,
+    );
+    pub fn gsk_gl_shader_get_args_size(shader: *mut GskGLShader) -> size_t;
+    pub fn gsk_gl_shader_get_n_textures(shader: *mut GskGLShader) -> c_int;
+    pub fn gsk_gl_shader_get_n_uniforms(shader: *mut GskGLShader) -> c_int;
+    pub fn gsk_gl_shader_get_resource(shader: *mut GskGLShader) -> *const c_char;
+    pub fn gsk_gl_shader_get_source(shader: *mut GskGLShader) -> *mut glib::GBytes;
+    pub fn gsk_gl_shader_get_uniform_name(shader: *mut GskGLShader, idx: c_int) -> *const c_char;
+    pub fn gsk_gl_shader_get_uniform_offset(shader: *mut GskGLShader, idx: c_int) -> c_int;
+    pub fn gsk_gl_shader_get_uniform_type(shader: *mut GskGLShader, idx: c_int)
+        -> GskGLUniformType;
+
+    //=========================================================================
+    // GskGLShaderNode
+    //=========================================================================
+    pub fn gsk_gl_shader_node_get_type() -> GType;
+    pub fn gsk_gl_shader_node_new(
+        shader: *mut GskGLShader,
+        bounds: *const graphene::graphene_rect_t,
+        args: *mut glib::GBytes,
+        children: *mut *mut GskRenderNode,
+        n_children: c_uint,
+    ) -> *mut GskGLShaderNode;
+    pub fn gsk_gl_shader_node_get_args(node: *mut GskGLShaderNode) -> *mut glib::GBytes;
+    pub fn gsk_gl_shader_node_get_child(
+        node: *mut GskGLShaderNode,
+        idx: c_uint,
+    ) -> *mut GskRenderNode;
+    pub fn gsk_gl_shader_node_get_n_children(node: *mut GskGLShaderNode) -> c_uint;
+    pub fn gsk_gl_shader_node_get_shader(node: *mut GskGLShaderNode) -> *mut GskGLShader;
+
+    //=========================================================================
     // GskInsetShadowNode
     //=========================================================================
     pub fn gsk_inset_shadow_node_get_type() -> GType;
@@ -835,6 +1057,33 @@ extern "C" {
     pub fn gsk_outset_shadow_node_peek_outline(
         node: *mut GskOutsetShadowNode,
     ) -> *const GskRoundedRect;
+
+    //=========================================================================
+    // GskRadialGradientNode
+    //=========================================================================
+    pub fn gsk_radial_gradient_node_get_type() -> GType;
+    pub fn gsk_radial_gradient_node_new(
+        bounds: *const graphene::graphene_rect_t,
+        center: *const graphene::graphene_point_t,
+        hradius: c_float,
+        vradius: c_float,
+        start: c_float,
+        end: c_float,
+        color_stops: *const GskColorStop,
+        n_color_stops: size_t,
+    ) -> *mut GskRadialGradientNode;
+    pub fn gsk_radial_gradient_node_get_end(node: *mut GskRadialGradientNode) -> c_float;
+    pub fn gsk_radial_gradient_node_get_hradius(node: *mut GskRadialGradientNode) -> c_float;
+    pub fn gsk_radial_gradient_node_get_n_color_stops(node: *mut GskRadialGradientNode) -> size_t;
+    pub fn gsk_radial_gradient_node_get_start(node: *mut GskRadialGradientNode) -> c_float;
+    pub fn gsk_radial_gradient_node_get_vradius(node: *mut GskRadialGradientNode) -> c_float;
+    pub fn gsk_radial_gradient_node_peek_center(
+        node: *mut GskRadialGradientNode,
+    ) -> *const graphene::graphene_point_t;
+    pub fn gsk_radial_gradient_node_peek_color_stops(
+        node: *mut GskRadialGradientNode,
+        n_stops: *mut size_t,
+    ) -> *const GskColorStop;
 
     //=========================================================================
     // GskRenderNode
@@ -911,6 +1160,21 @@ extern "C" {
     ) -> *mut GskRepeatingLinearGradientNode;
 
     //=========================================================================
+    // GskRepeatingRadialGradientNode
+    //=========================================================================
+    pub fn gsk_repeating_radial_gradient_node_get_type() -> GType;
+    pub fn gsk_repeating_radial_gradient_node_new(
+        bounds: *const graphene::graphene_rect_t,
+        center: *const graphene::graphene_point_t,
+        hradius: c_float,
+        vradius: c_float,
+        start: c_float,
+        end: c_float,
+        color_stops: *const GskColorStop,
+        n_color_stops: size_t,
+    ) -> *mut GskRepeatingRadialGradientNode;
+
+    //=========================================================================
     // GskRoundedClipNode
     //=========================================================================
     pub fn gsk_rounded_clip_node_get_type() -> GType;
@@ -944,11 +1208,11 @@ extern "C" {
         color: *const gdk::GdkRGBA,
         offset: *const graphene::graphene_point_t,
     ) -> *mut GskTextNode;
-    pub fn gsk_text_node_peek_font(node: *mut GskRenderNode) -> *mut pango::PangoFont;
     pub fn gsk_text_node_get_num_glyphs(node: *mut GskTextNode) -> c_uint;
     pub fn gsk_text_node_get_offset(node: *mut GskTextNode) -> *const graphene::graphene_point_t;
     pub fn gsk_text_node_has_color_glyphs(node: *mut GskTextNode) -> gboolean;
     pub fn gsk_text_node_peek_color(node: *mut GskTextNode) -> *const gdk::GdkRGBA;
+    pub fn gsk_text_node_peek_font(node: *mut GskTextNode) -> *mut pango::PangoFont;
     pub fn gsk_text_node_peek_glyphs(
         node: *mut GskTextNode,
         n_glyphs: *mut c_uint,

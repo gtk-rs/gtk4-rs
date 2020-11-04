@@ -118,8 +118,6 @@ pub trait DirectoryListExt: 'static {
 
     fn set_monitored(&self, monitored: bool);
 
-    fn get_property_item_type(&self) -> glib::types::Type;
-
     fn get_property_loading(&self) -> bool;
 
     fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -129,8 +127,6 @@ pub trait DirectoryListExt: 'static {
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -215,21 +211,6 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
                 self.as_ref().to_glib_none().0,
                 monitored.to_glib(),
             );
-        }
-    }
-
-    fn get_property_item_type(&self) -> glib::types::Type {
-        unsafe {
-            let mut value = Value::from_type(<glib::types::Type as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
-                b"item-type\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `item-type` getter")
-                .unwrap()
         }
     }
 
@@ -338,30 +319,6 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
                 b"notify::io-priority\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_io_priority_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_item_type_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::item-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_item_type_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

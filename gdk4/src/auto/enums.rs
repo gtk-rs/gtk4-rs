@@ -1120,6 +1120,7 @@ impl SetValue for KeyMatch {
 pub enum MemoryFormat {
     B8g8r8a8Premultiplied,
     A8r8g8b8Premultiplied,
+    R8g8b8a8Premultiplied,
     B8g8r8a8,
     A8r8g8b8,
     R8g8b8a8,
@@ -1139,6 +1140,7 @@ impl fmt::Display for MemoryFormat {
             match *self {
                 MemoryFormat::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
                 MemoryFormat::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
+                MemoryFormat::R8g8b8a8Premultiplied => "R8g8b8a8Premultiplied",
                 MemoryFormat::B8g8r8a8 => "B8g8r8a8",
                 MemoryFormat::A8r8g8b8 => "A8r8g8b8",
                 MemoryFormat::R8g8b8a8 => "R8g8b8a8",
@@ -1160,6 +1162,7 @@ impl ToGlib for MemoryFormat {
         match *self {
             MemoryFormat::B8g8r8a8Premultiplied => gdk_sys::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED,
             MemoryFormat::A8r8g8b8Premultiplied => gdk_sys::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED,
+            MemoryFormat::R8g8b8a8Premultiplied => gdk_sys::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED,
             MemoryFormat::B8g8r8a8 => gdk_sys::GDK_MEMORY_B8G8R8A8,
             MemoryFormat::A8r8g8b8 => gdk_sys::GDK_MEMORY_A8R8G8B8,
             MemoryFormat::R8g8b8a8 => gdk_sys::GDK_MEMORY_R8G8B8A8,
@@ -1179,13 +1182,14 @@ impl FromGlib<gdk_sys::GdkMemoryFormat> for MemoryFormat {
         match value {
             0 => MemoryFormat::B8g8r8a8Premultiplied,
             1 => MemoryFormat::A8r8g8b8Premultiplied,
-            2 => MemoryFormat::B8g8r8a8,
-            3 => MemoryFormat::A8r8g8b8,
-            4 => MemoryFormat::R8g8b8a8,
-            5 => MemoryFormat::A8b8g8r8,
-            6 => MemoryFormat::R8g8b8,
-            7 => MemoryFormat::B8g8r8,
-            8 => MemoryFormat::NFormats,
+            2 => MemoryFormat::R8g8b8a8Premultiplied,
+            3 => MemoryFormat::B8g8r8a8,
+            4 => MemoryFormat::A8r8g8b8,
+            5 => MemoryFormat::R8g8b8a8,
+            6 => MemoryFormat::A8b8g8r8,
+            7 => MemoryFormat::R8g8b8,
+            8 => MemoryFormat::B8g8r8,
+            9 => MemoryFormat::NFormats,
             value => MemoryFormat::__Unknown(value),
         }
     }

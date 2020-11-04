@@ -7,7 +7,6 @@ use glib;
 use glib::translate::*;
 use glib::GString;
 use gtk_sys;
-use libc;
 use std::mem;
 use std::ptr;
 
@@ -46,30 +45,29 @@ impl RecentInfo {
         unsafe { from_glib(gtk_sys::gtk_recent_info_exists(self.to_glib_none().0)) }
     }
 
-    pub fn get_added(&self) -> libc::c_long {
-        unsafe { gtk_sys::gtk_recent_info_get_added(self.to_glib_none().0) }
+    pub fn get_added(&self) -> Option<glib::DateTime> {
+        unsafe { from_glib_none(gtk_sys::gtk_recent_info_get_added(self.to_glib_none().0)) }
     }
 
     pub fn get_age(&self) -> i32 {
         unsafe { gtk_sys::gtk_recent_info_get_age(self.to_glib_none().0) }
     }
 
-    pub fn get_application_info(&self, app_name: &str) -> Option<(GString, u32, libc::c_long)> {
+    pub fn get_application_info(&self, app_name: &str) -> Option<(GString, u32, glib::DateTime)> {
         unsafe {
             let mut app_exec = ptr::null();
             let mut count = mem::MaybeUninit::uninit();
-            let mut time_ = mem::MaybeUninit::uninit();
+            let mut stamp = ptr::null_mut();
             let ret = from_glib(gtk_sys::gtk_recent_info_get_application_info(
                 self.to_glib_none().0,
                 app_name.to_glib_none().0,
                 &mut app_exec,
                 count.as_mut_ptr(),
-                time_.as_mut_ptr(),
+                &mut stamp,
             ));
             let count = count.assume_init();
-            let time_ = time_.assume_init();
             if ret {
-                Some((from_glib_none(app_exec), count, time_))
+                Some((from_glib_none(app_exec), count, from_glib_none(stamp)))
             } else {
                 None
             }
@@ -129,8 +127,8 @@ impl RecentInfo {
         }
     }
 
-    pub fn get_modified(&self) -> libc::c_long {
-        unsafe { gtk_sys::gtk_recent_info_get_modified(self.to_glib_none().0) }
+    pub fn get_modified(&self) -> Option<glib::DateTime> {
+        unsafe { from_glib_none(gtk_sys::gtk_recent_info_get_modified(self.to_glib_none().0)) }
     }
 
     pub fn get_private_hint(&self) -> bool {
@@ -161,8 +159,8 @@ impl RecentInfo {
         }
     }
 
-    pub fn get_visited(&self) -> libc::c_long {
-        unsafe { gtk_sys::gtk_recent_info_get_visited(self.to_glib_none().0) }
+    pub fn get_visited(&self) -> Option<glib::DateTime> {
+        unsafe { from_glib_none(gtk_sys::gtk_recent_info_get_visited(self.to_glib_none().0)) }
     }
 
     pub fn has_application(&self, app_name: &str) -> bool {

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -32,6 +31,7 @@ use Orientation;
 use Overflow;
 use Scrollable;
 use ScrollablePolicy;
+use SelectionModel;
 use Widget;
 
 glib_wrapper! {
@@ -43,23 +43,13 @@ glib_wrapper! {
 }
 
 impl GridView {
-    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> GridView {
-        assert_initialized_main_thread!();
-        unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_grid_view_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-            ))
-            .unsafe_cast()
-        }
-    }
-
-    pub fn with_factory<P: IsA<gio::ListModel>, Q: IsA<ListItemFactory>>(
+    pub fn new<P: IsA<SelectionModel>, Q: IsA<ListItemFactory>>(
         model: Option<&P>,
         factory: Option<&Q>,
     ) -> GridView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_grid_view_new_with_factory(
+            Widget::from_glib_none(gtk_sys::gtk_grid_view_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
                 factory.map(|p| p.as_ref()).to_glib_full(),
             ))
@@ -87,7 +77,7 @@ impl GridView {
         unsafe { gtk_sys::gtk_grid_view_get_min_columns(self.to_glib_none().0) }
     }
 
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(gtk_sys::gtk_grid_view_get_model(self.to_glib_none().0)) }
     }
 
@@ -129,7 +119,7 @@ impl GridView {
         }
     }
 
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             gtk_sys::gtk_grid_view_set_model(
                 self.to_glib_none().0,
@@ -326,7 +316,7 @@ pub struct GridViewBuilder {
     factory: Option<ListItemFactory>,
     max_columns: Option<u32>,
     min_columns: Option<u32>,
-    model: Option<gio::ListModel>,
+    model: Option<SelectionModel>,
     single_click_activate: Option<bool>,
     orientation: Option<Orientation>,
     can_focus: Option<bool>,
@@ -522,7 +512,7 @@ impl GridViewBuilder {
         self
     }
 
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+    pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }

@@ -50,14 +50,6 @@ impl ScrolledWindow {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_scrolled_window_new()).unsafe_cast() }
     }
 
-    pub fn get_capture_button_press(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_capture_button_press(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     pub fn get_child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(gtk_sys::gtk_scrolled_window_get_child(
@@ -174,15 +166,6 @@ impl ScrolledWindow {
             from_glib_none(gtk_sys::gtk_scrolled_window_get_vscrollbar(
                 self.to_glib_none().0,
             ))
-        }
-    }
-
-    pub fn set_capture_button_press(&self, capture_button_press: bool) {
-        unsafe {
-            gtk_sys::gtk_scrolled_window_set_capture_button_press(
-                self.to_glib_none().0,
-                capture_button_press.to_glib(),
-            );
         }
     }
 

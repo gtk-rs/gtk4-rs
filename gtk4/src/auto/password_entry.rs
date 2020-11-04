@@ -4,8 +4,10 @@
 
 use gdk;
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectExt;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -125,6 +127,35 @@ impl PasswordEntry {
                 Value::from(placeholder_text).to_glib_none().0,
             );
         }
+    }
+
+    pub fn connect_activate<F: Fn(&PasswordEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&PasswordEntry) + 'static>(
+            this: *mut gtk_sys::GtkPasswordEntry,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn emit_activate(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+                .emit("activate", &[])
+                .unwrap()
+        };
     }
 
     pub fn connect_property_activates_default_notify<F: Fn(&PasswordEntry) + 'static>(

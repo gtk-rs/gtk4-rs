@@ -30,20 +30,15 @@ glib_wrapper! {
 }
 
 impl ColumnViewColumn {
-    pub fn new(title: Option<&str>) -> ColumnViewColumn {
-        assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_column_view_column_new(title.to_glib_none().0)) }
-    }
-
-    pub fn with_factory<P: IsA<ListItemFactory>>(
+    pub fn new<P: IsA<ListItemFactory>>(
         title: Option<&str>,
-        factory: &P,
+        factory: Option<&P>,
     ) -> ColumnViewColumn {
-        skip_assert_initialized!();
+        assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_column_view_column_new_with_factory(
+            from_glib_full(gtk_sys::gtk_column_view_column_new(
                 title.to_glib_none().0,
-                factory.as_ref().to_glib_full(),
+                factory.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
     }

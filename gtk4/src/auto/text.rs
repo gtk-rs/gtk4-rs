@@ -74,6 +74,14 @@ impl Text {
         unsafe { from_glib_none(gtk_sys::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
+    pub fn get_enable_emoji_completion(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_text_get_enable_emoji_completion(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(gtk_sys::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
@@ -106,12 +114,28 @@ impl Text {
         }
     }
 
+    pub fn get_propagate_text_width(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_text_get_propagate_text_width(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn get_tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(gtk_sys::gtk_text_get_tabs(self.to_glib_none().0)) }
     }
 
     pub fn get_text_length(&self) -> u16 {
         unsafe { gtk_sys::gtk_text_get_text_length(self.to_glib_none().0) }
+    }
+
+    pub fn get_truncate_multiline(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_text_get_truncate_multiline(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     pub fn get_visibility(&self) -> bool {
@@ -141,6 +165,15 @@ impl Text {
     pub fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
             gtk_sys::gtk_text_set_buffer(self.to_glib_none().0, buffer.as_ref().to_glib_none().0);
+        }
+    }
+
+    pub fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
+        unsafe {
+            gtk_sys::gtk_text_set_enable_emoji_completion(
+                self.to_glib_none().0,
+                enable_emoji_completion.to_glib(),
+            );
         }
     }
 
@@ -189,9 +222,27 @@ impl Text {
         }
     }
 
+    pub fn set_propagate_text_width(&self, propagate_text_width: bool) {
+        unsafe {
+            gtk_sys::gtk_text_set_propagate_text_width(
+                self.to_glib_none().0,
+                propagate_text_width.to_glib(),
+            );
+        }
+    }
+
     pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
             gtk_sys::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
+        }
+    }
+
+    pub fn set_truncate_multiline(&self, truncate_multiline: bool) {
+        unsafe {
+            gtk_sys::gtk_text_set_truncate_multiline(
+                self.to_glib_none().0,
+                truncate_multiline.to_glib(),
+            );
         }
     }
 
@@ -204,31 +255,6 @@ impl Text {
     pub fn unset_invisible_char(&self) {
         unsafe {
             gtk_sys::gtk_text_unset_invisible_char(self.to_glib_none().0);
-        }
-    }
-
-    pub fn get_property_enable_emoji_completion(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"enable-emoji-completion\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `enable-emoji-completion` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_enable_emoji_completion(&self, enable_emoji_completion: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"enable-emoji-completion\0".as_ptr() as *const _,
-                Value::from(&enable_emoji_completion).to_glib_none().0,
-            );
         }
     }
 
@@ -281,31 +307,6 @@ impl Text {
         }
     }
 
-    pub fn get_property_propagate_text_width(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"propagate-text-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `propagate-text-width` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_propagate_text_width(&self, propagate_text_width: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"propagate-text-width\0".as_ptr() as *const _,
-                Value::from(&propagate_text_width).to_glib_none().0,
-            );
-        }
-    }
-
     pub fn get_property_scroll_offset(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
@@ -318,31 +319,6 @@ impl Text {
                 .get()
                 .expect("Return Value for property `scroll-offset` getter")
                 .unwrap()
-        }
-    }
-
-    pub fn get_property_truncate_multiline(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"truncate-multiline\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `truncate-multiline` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_truncate_multiline(&self, truncate_multiline: bool) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"truncate-multiline\0".as_ptr() as *const _,
-                Value::from(&truncate_multiline).to_glib_none().0,
-            );
         }
     }
 

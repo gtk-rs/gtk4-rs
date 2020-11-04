@@ -28,10 +28,10 @@ glib_wrapper! {
 
 #[derive(Clone, Default)]
 pub struct GridLayoutChildBuilder {
+    column: Option<i32>,
     column_span: Option<i32>,
-    left_attach: Option<i32>,
+    row: Option<i32>,
     row_span: Option<i32>,
-    top_attach: Option<i32>,
     child_widget: Option<Widget>,
     layout_manager: Option<LayoutManager>,
 }
@@ -43,17 +43,17 @@ impl GridLayoutChildBuilder {
 
     pub fn build(self) -> GridLayoutChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref column) = self.column {
+            properties.push(("column", column));
+        }
         if let Some(ref column_span) = self.column_span {
             properties.push(("column-span", column_span));
         }
-        if let Some(ref left_attach) = self.left_attach {
-            properties.push(("left-attach", left_attach));
+        if let Some(ref row) = self.row {
+            properties.push(("row", row));
         }
         if let Some(ref row_span) = self.row_span {
             properties.push(("row-span", row_span));
-        }
-        if let Some(ref top_attach) = self.top_attach {
-            properties.push(("top-attach", top_attach));
         }
         if let Some(ref child_widget) = self.child_widget {
             properties.push(("child-widget", child_widget));
@@ -68,23 +68,23 @@ impl GridLayoutChildBuilder {
         ret
     }
 
+    pub fn column(mut self, column: i32) -> Self {
+        self.column = Some(column);
+        self
+    }
+
     pub fn column_span(mut self, column_span: i32) -> Self {
         self.column_span = Some(column_span);
         self
     }
 
-    pub fn left_attach(mut self, left_attach: i32) -> Self {
-        self.left_attach = Some(left_attach);
+    pub fn row(mut self, row: i32) -> Self {
+        self.row = Some(row);
         self
     }
 
     pub fn row_span(mut self, row_span: i32) -> Self {
         self.row_span = Some(row_span);
-        self
-    }
-
-    pub fn top_attach(mut self, top_attach: i32) -> Self {
-        self.top_attach = Some(top_attach);
         self
     }
 
@@ -102,46 +102,52 @@ impl GridLayoutChildBuilder {
 pub const NONE_GRID_LAYOUT_CHILD: Option<&GridLayoutChild> = None;
 
 pub trait GridLayoutChildExt: 'static {
+    fn get_column(&self) -> i32;
+
     fn get_column_span(&self) -> i32;
 
-    fn get_left_attach(&self) -> i32;
+    fn get_row(&self) -> i32;
 
     fn get_row_span(&self) -> i32;
 
-    fn get_top_attach(&self) -> i32;
+    fn set_column(&self, column: i32);
 
     fn set_column_span(&self, span: i32);
 
-    fn set_left_attach(&self, attach: i32);
+    fn set_row(&self, row: i32);
 
     fn set_row_span(&self, span: i32);
 
-    fn set_top_attach(&self, attach: i32);
+    fn connect_property_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_column_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_left_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_row_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_top_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
+    fn get_column(&self) -> i32 {
+        unsafe { gtk_sys::gtk_grid_layout_child_get_column(self.as_ref().to_glib_none().0) }
+    }
+
     fn get_column_span(&self) -> i32 {
         unsafe { gtk_sys::gtk_grid_layout_child_get_column_span(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_left_attach(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_left_attach(self.as_ref().to_glib_none().0) }
+    fn get_row(&self) -> i32 {
+        unsafe { gtk_sys::gtk_grid_layout_child_get_row(self.as_ref().to_glib_none().0) }
     }
 
     fn get_row_span(&self) -> i32 {
         unsafe { gtk_sys::gtk_grid_layout_child_get_row_span(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_top_attach(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_top_attach(self.as_ref().to_glib_none().0) }
+    fn set_column(&self, column: i32) {
+        unsafe {
+            gtk_sys::gtk_grid_layout_child_set_column(self.as_ref().to_glib_none().0, column);
+        }
     }
 
     fn set_column_span(&self, span: i32) {
@@ -150,9 +156,9 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
         }
     }
 
-    fn set_left_attach(&self, attach: i32) {
+    fn set_row(&self, row: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_left_attach(self.as_ref().to_glib_none().0, attach);
+            gtk_sys::gtk_grid_layout_child_set_row(self.as_ref().to_glib_none().0, row);
         }
     }
 
@@ -162,9 +168,27 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
         }
     }
 
-    fn set_top_attach(&self, attach: i32) {
+    fn connect_property_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_column_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkGridLayoutChild,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<GridLayoutChild>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
+        }
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_top_attach(self.as_ref().to_glib_none().0, attach);
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::column\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_column_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -192,8 +216,8 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
         }
     }
 
-    fn connect_property_left_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_left_attach_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkGridLayoutChild,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
@@ -207,9 +231,9 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::left-attach\0".as_ptr() as *const _,
+                b"notify::row\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_left_attach_trampoline::<Self, F> as *const (),
+                    notify_row_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -234,30 +258,6 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
                 b"notify::row-span\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_row_span_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_top_attach_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_top_attach_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) where
-            P: IsA<GridLayoutChild>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&GridLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::top-attach\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_top_attach_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

@@ -163,70 +163,6 @@ impl SetValue for CellRendererState {
 }
 
 bitflags! {
-    pub struct DebugFlag: u32 {
-        const TEXT = 1;
-        const TREE = 2;
-        const KEYBINDINGS = 4;
-        const MODULES = 8;
-        const GEOMETRY = 16;
-        const ICONTHEME = 32;
-        const PRINTING = 64;
-        const BUILDER = 128;
-        const SIZE_REQUEST = 256;
-        const NO_CSS_CACHE = 512;
-        const INTERACTIVE = 1024;
-        const TOUCHSCREEN = 2048;
-        const ACTIONS = 4096;
-        const LAYOUT = 8192;
-        const SNAPSHOT = 16384;
-        const CONSTRAINTS = 32768;
-        const BUILDER_OBJECTS = 65536;
-        const A11Y = 131072;
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for DebugFlag {
-    type GlibType = gtk_sys::GtkDebugFlag;
-
-    fn to_glib(&self) -> gtk_sys::GtkDebugFlag {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDebugFlag> for DebugFlag {
-    fn from_glib(value: gtk_sys::GtkDebugFlag) -> DebugFlag {
-        skip_assert_initialized!();
-        DebugFlag::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for DebugFlag {
-    fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_debug_flag_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for DebugFlag {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for DebugFlag {
-    unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for DebugFlag {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct DialogFlags: u32 {
         const MODAL = 1;
         const DESTROY_WITH_PARENT = 2;
@@ -441,6 +377,7 @@ bitflags! {
         const VERTICAL_WRITING = 256;
         const EMOJI = 512;
         const NO_EMOJI = 1024;
+        const PRIVATE = 2048;
     }
 }
 

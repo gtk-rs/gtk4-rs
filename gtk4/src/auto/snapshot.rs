@@ -113,6 +113,58 @@ impl Snapshot {
         }
     }
 
+    pub fn append_radial_gradient(
+        &self,
+        bounds: &graphene::Rect,
+        center: &graphene::Point,
+        hradius: f32,
+        vradius: f32,
+        start: f32,
+        end: f32,
+        stops: &[&gsk::ColorStop],
+    ) {
+        let n_stops = stops.len() as usize;
+        unsafe {
+            gtk_sys::gtk_snapshot_append_radial_gradient(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+                center.to_glib_none().0,
+                hradius,
+                vradius,
+                start,
+                end,
+                stops.to_glib_none().0,
+                n_stops,
+            );
+        }
+    }
+
+    pub fn append_repeating_radial_gradient(
+        &self,
+        bounds: &graphene::Rect,
+        center: &graphene::Point,
+        hradius: f32,
+        vradius: f32,
+        start: f32,
+        end: f32,
+        stops: &[&gsk::ColorStop],
+    ) {
+        let n_stops = stops.len() as usize;
+        unsafe {
+            gtk_sys::gtk_snapshot_append_repeating_radial_gradient(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+                center.to_glib_none().0,
+                hradius,
+                vradius,
+                start,
+                end,
+                stops.to_glib_none().0,
+                n_stops,
+            );
+        }
+    }
+
     pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: &graphene::Rect) {
         unsafe {
             gtk_sys::gtk_snapshot_append_texture(
@@ -133,6 +185,12 @@ impl Snapshot {
                 self.to_glib_full(),
                 size.to_glib_none().0,
             ))
+        }
+    }
+
+    pub fn gl_shader_pop_texture(&self) {
+        unsafe {
+            gtk_sys::gtk_snapshot_gl_shader_pop_texture(self.to_glib_none().0);
         }
     }
 
@@ -188,6 +246,10 @@ impl Snapshot {
 
     //pub fn push_debug(&self, message: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_push_debug() }
+    //}
+
+    //pub fn push_gl_shader(&self, shader: /*Ignored*/&gsk::GLShader, bounds: &graphene::Rect, take_args: &glib::Bytes) {
+    //    unsafe { TODO: call gtk_sys:gtk_snapshot_push_gl_shader() }
     //}
 
     pub fn push_opacity(&self, opacity: f64) {

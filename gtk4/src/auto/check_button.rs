@@ -8,6 +8,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib_sys;
@@ -20,15 +21,13 @@ use AccessibleRole;
 use Actionable;
 use Align;
 use Buildable;
-use Button;
 use ConstraintTarget;
 use LayoutManager;
 use Overflow;
-use ToggleButton;
 use Widget;
 
 glib_wrapper! {
-    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass, CheckButtonClass>) @extends ToggleButton, Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass, CheckButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_check_button_get_type(),
@@ -41,7 +40,7 @@ impl CheckButton {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_check_button_new()).unsafe_cast() }
     }
 
-    pub fn with_label(label: &str) -> CheckButton {
+    pub fn with_label(label: Option<&str>) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_check_button_new_with_label(
@@ -51,7 +50,7 @@ impl CheckButton {
         }
     }
 
-    pub fn with_mnemonic(label: &str) -> CheckButton {
+    pub fn with_mnemonic(label: Option<&str>) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_check_button_new_with_mnemonic(
@@ -70,12 +69,9 @@ impl Default for CheckButton {
 
 #[derive(Clone, Default)]
 pub struct CheckButtonBuilder {
-    draw_indicator: Option<bool>,
-    inconsistent: Option<bool>,
     active: Option<bool>,
-    child: Option<Widget>,
-    has_frame: Option<bool>,
-    icon_name: Option<String>,
+    group: Option<CheckButton>,
+    inconsistent: Option<bool>,
     label: Option<String>,
     use_underline: Option<bool>,
     can_focus: Option<bool>,
@@ -118,23 +114,14 @@ impl CheckButtonBuilder {
 
     pub fn build(self) -> CheckButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref draw_indicator) = self.draw_indicator {
-            properties.push(("draw-indicator", draw_indicator));
-        }
-        if let Some(ref inconsistent) = self.inconsistent {
-            properties.push(("inconsistent", inconsistent));
-        }
         if let Some(ref active) = self.active {
             properties.push(("active", active));
         }
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
+        if let Some(ref group) = self.group {
+            properties.push(("group", group));
         }
-        if let Some(ref has_frame) = self.has_frame {
-            properties.push(("has-frame", has_frame));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
+        if let Some(ref inconsistent) = self.inconsistent {
+            properties.push(("inconsistent", inconsistent));
         }
         if let Some(ref label) = self.label {
             properties.push(("label", label));
@@ -242,33 +229,18 @@ impl CheckButtonBuilder {
         ret
     }
 
-    pub fn draw_indicator(mut self, draw_indicator: bool) -> Self {
-        self.draw_indicator = Some(draw_indicator);
-        self
-    }
-
-    pub fn inconsistent(mut self, inconsistent: bool) -> Self {
-        self.inconsistent = Some(inconsistent);
-        self
-    }
-
     pub fn active(mut self, active: bool) -> Self {
         self.active = Some(active);
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
+    pub fn group<P: IsA<CheckButton>>(mut self, group: &P) -> Self {
+        self.group = Some(group.clone().upcast());
         self
     }
 
-    pub fn has_frame(mut self, has_frame: bool) -> Self {
-        self.has_frame = Some(has_frame);
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
+    pub fn inconsistent(mut self, inconsistent: bool) -> Self {
+        self.inconsistent = Some(inconsistent);
         self
     }
 
@@ -441,27 +413,45 @@ impl CheckButtonBuilder {
 pub const NONE_CHECK_BUTTON: Option<&CheckButton> = None;
 
 pub trait CheckButtonExt: 'static {
-    fn get_draw_indicator(&self) -> bool;
+    fn get_active(&self) -> bool;
 
     fn get_inconsistent(&self) -> bool;
 
-    fn set_draw_indicator(&self, draw_indicator: bool);
+    fn get_label(&self) -> Option<GString>;
+
+    fn get_use_underline(&self) -> bool;
+
+    fn set_active(&self, setting: bool);
+
+    fn set_group<P: IsA<CheckButton>>(&self, group: Option<&P>);
 
     fn set_inconsistent(&self, inconsistent: bool);
 
-    fn connect_property_draw_indicator_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    fn set_label(&self, label: Option<&str>);
+
+    fn set_use_underline(&self, setting: bool);
+
+    fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
+
+    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<CheckButton>> CheckButtonExt for O {
-    fn get_draw_indicator(&self) -> bool {
+    fn get_active(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_check_button_get_draw_indicator(
+            from_glib(gtk_sys::gtk_check_button_get_active(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -475,11 +465,33 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn set_draw_indicator(&self, draw_indicator: bool) {
+    fn get_label(&self) -> Option<GString> {
         unsafe {
-            gtk_sys::gtk_check_button_set_draw_indicator(
+            from_glib_none(gtk_sys::gtk_check_button_get_label(
                 self.as_ref().to_glib_none().0,
-                draw_indicator.to_glib(),
+            ))
+        }
+    }
+
+    fn get_use_underline(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_check_button_get_use_underline(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn set_active(&self, setting: bool) {
+        unsafe {
+            gtk_sys::gtk_check_button_set_active(self.as_ref().to_glib_none().0, setting.to_glib());
+        }
+    }
+
+    fn set_group<P: IsA<CheckButton>>(&self, group: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_check_button_set_group(
+                self.as_ref().to_glib_none().0,
+                group.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -493,11 +505,49 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_draw_indicator_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_draw_indicator_trampoline<P, F: Fn(&P) + 'static>(
+    fn set_label(&self, label: Option<&str>) {
+        unsafe {
+            gtk_sys::gtk_check_button_set_label(
+                self.as_ref().to_glib_none().0,
+                label.to_glib_none().0,
+            );
+        }
+    }
+
+    fn set_use_underline(&self, setting: bool) {
+        unsafe {
+            gtk_sys::gtk_check_button_set_use_underline(
+                self.as_ref().to_glib_none().0,
+                setting.to_glib(),
+            );
+        }
+    }
+
+    fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCheckButton,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CheckButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"toggled\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    toggled_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut gtk_sys::GtkCheckButton,
             _param_spec: glib_sys::gpointer,
             f: glib_sys::gpointer,
@@ -511,9 +561,33 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::draw-indicator\0".as_ptr() as *const _,
+                b"notify::active\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_draw_indicator_trampoline::<Self, F> as *const (),
+                    notify_active_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCheckButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CheckButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::group\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_group_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -541,6 +615,57 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
                 b"notify::inconsistent\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_inconsistent_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCheckButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CheckButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::label\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_label_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkCheckButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<CheckButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-underline\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

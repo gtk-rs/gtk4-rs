@@ -18,7 +18,6 @@ use AccessibleProperty;
 use AccessibleRelation;
 use AccessibleRole;
 use AccessibleState;
-use Orientation;
 use PageSetup;
 use PrintSettings;
 use StyleContext;
@@ -138,10 +137,9 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call gtk_sys:gtk_distribute_natural_allocation() }
 //}
 
-pub fn get_debug_flags() -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { gtk_sys::gtk_get_debug_flags() }
-}
+//pub fn get_debug_flags() -> /*Ignored*/DebugFlags {
+//    unsafe { TODO: call gtk_sys:gtk_get_debug_flags() }
+//}
 
 pub fn get_default_language() -> Option<pango::Language> {
     assert_initialized_main_thread!();
@@ -499,29 +497,6 @@ pub fn render_option<P: IsA<StyleContext>>(
     }
 }
 
-pub fn render_slider<P: IsA<StyleContext>>(
-    context: &P,
-    cr: &cairo::Context,
-    x: f64,
-    y: f64,
-    width: f64,
-    height: f64,
-    orientation: Orientation,
-) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_render_slider(
-            context.as_ref().to_glib_none().0,
-            mut_override(cr.to_glib_none().0),
-            x,
-            y,
-            width,
-            height,
-            orientation.to_glib(),
-        );
-    }
-}
-
 pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
@@ -536,12 +511,9 @@ pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     }
 }
 
-pub fn set_debug_flags(flags: u32) {
-    assert_initialized_main_thread!();
-    unsafe {
-        gtk_sys::gtk_set_debug_flags(flags);
-    }
-}
+//pub fn set_debug_flags(flags: /*Ignored*/DebugFlags) {
+//    unsafe { TODO: call gtk_sys:gtk_set_debug_flags() }
+//}
 
 //pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call gtk_sys:gtk_show_about_dialog() }

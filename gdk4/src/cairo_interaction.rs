@@ -6,17 +6,10 @@ use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use gdk_sys;
 use glib::translate::*;
-use {GLContext, Rectangle, Surface, RGBA};
+use {Rectangle, Surface, RGBA};
 
 pub trait GdkCairoSurfaceExt {
     fn create_region(&self) -> Option<Region>;
-    unsafe fn upload_to_gl(
-        &self,
-        target: i32,
-        width: i32,
-        height: i32,
-        context: Option<&GLContext>,
-    );
 }
 
 impl GdkCairoSurfaceExt for cairo::Surface {
@@ -26,23 +19,6 @@ impl GdkCairoSurfaceExt for cairo::Surface {
                 self.to_glib_none().0,
             ))
         }
-    }
-
-    unsafe fn upload_to_gl(
-        &self,
-        target: i32,
-        width: i32,
-        height: i32,
-        context: Option<&GLContext>,
-    ) {
-        assert_initialized_main_thread!();
-        gdk_sys::gdk_cairo_surface_upload_to_gl(
-            mut_override(self.to_glib_none().0),
-            target,
-            width,
-            height,
-            context.to_glib_none().0,
-        );
     }
 }
 

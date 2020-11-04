@@ -5,6 +5,7 @@
 use cairo;
 use gdk_pixbuf;
 use gdk_sys;
+use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
@@ -157,6 +158,11 @@ pub fn set_allowed_backends(backends: &str) {
     unsafe {
         gdk_sys::gdk_set_allowed_backends(backends.to_glib_none().0);
     }
+}
+
+pub fn toplevel_size_get_type() -> glib::types::Type {
+    assert_initialized_main_thread!();
+    unsafe { from_glib(gdk_sys::gdk_toplevel_size_get_type()) }
 }
 
 pub fn unicode_to_keyval(wc: u32) -> u32 {

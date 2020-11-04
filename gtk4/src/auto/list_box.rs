@@ -49,6 +49,12 @@ impl ListBox {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_list_box_new()).unsafe_cast() }
     }
 
+    pub fn append<P: IsA<Widget>>(&self, child: &P) {
+        unsafe {
+            gtk_sys::gtk_list_box_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+        }
+    }
+
     pub fn bind_model<P: IsA<gio::ListModel>>(
         &self,
         model: Option<&P>,

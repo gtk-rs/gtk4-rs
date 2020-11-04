@@ -18,6 +18,7 @@ use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem;
 use std::mem::transmute;
 use Accessible;
 use AccessibleRole;
@@ -415,6 +416,8 @@ pub trait PopoverExt: 'static {
 
     fn get_mnemonics_visible(&self) -> bool;
 
+    fn get_offset(&self) -> (i32, i32);
+
     fn get_pointing_to(&self) -> Option<gdk::Rectangle>;
 
     fn get_position(&self) -> PositionType;
@@ -432,6 +435,8 @@ pub trait PopoverExt: 'static {
     fn set_has_arrow(&self, has_arrow: bool);
 
     fn set_mnemonics_visible(&self, mnemonics_visible: bool);
+
+    fn set_offset(&self, x_offset: i32, y_offset: i32);
 
     fn set_pointing_to(&self, rect: &gdk::Rectangle);
 
@@ -496,6 +501,21 @@ impl<O: IsA<Popover>> PopoverExt for O {
             from_glib(gtk_sys::gtk_popover_get_mnemonics_visible(
                 self.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    fn get_offset(&self) -> (i32, i32) {
+        unsafe {
+            let mut x_offset = mem::MaybeUninit::uninit();
+            let mut y_offset = mem::MaybeUninit::uninit();
+            gtk_sys::gtk_popover_get_offset(
+                self.as_ref().to_glib_none().0,
+                x_offset.as_mut_ptr(),
+                y_offset.as_mut_ptr(),
+            );
+            let x_offset = x_offset.assume_init();
+            let y_offset = y_offset.assume_init();
+            (x_offset, y_offset)
         }
     }
 
@@ -570,6 +590,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
                 self.as_ref().to_glib_none().0,
                 mnemonics_visible.to_glib(),
             );
+        }
+    }
+
+    fn set_offset(&self, x_offset: i32, y_offset: i32) {
+        unsafe {
+            gtk_sys::gtk_popover_set_offset(self.as_ref().to_glib_none().0, x_offset, y_offset);
         }
     }
 

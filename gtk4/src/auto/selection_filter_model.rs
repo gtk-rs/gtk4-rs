@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -32,15 +31,6 @@ impl SelectionFilterModel {
         unsafe {
             from_glib_full(gtk_sys::gtk_selection_filter_model_new(
                 model.map(|p| p.as_ref()).to_glib_none().0,
-            ))
-        }
-    }
-
-    pub fn new_for_type(item_type: glib::types::Type) -> SelectionFilterModel {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_selection_filter_model_new_for_type(
-                item_type.to_glib(),
             ))
         }
     }

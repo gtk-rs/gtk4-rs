@@ -29,6 +29,7 @@ use LayoutManager;
 use Overflow;
 use Scrollable;
 use ScrollablePolicy;
+use SelectionModel;
 use SortType;
 use Sorter;
 use Widget;
@@ -42,7 +43,7 @@ glib_wrapper! {
 }
 
 impl ColumnView {
-    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> ColumnView {
+    pub fn new<P: IsA<SelectionModel>>(model: Option<&P>) -> ColumnView {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(gtk_sys::gtk_column_view_new(
@@ -70,7 +71,7 @@ impl ColumnView {
         }
     }
 
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(gtk_sys::gtk_column_view_get_model(self.to_glib_none().0)) }
     }
 
@@ -135,7 +136,7 @@ impl ColumnView {
         }
     }
 
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             gtk_sys::gtk_column_view_set_model(
                 self.to_glib_none().0,
@@ -417,7 +418,7 @@ impl ColumnView {
 #[derive(Clone, Default)]
 pub struct ColumnViewBuilder {
     enable_rubberband: Option<bool>,
-    model: Option<gio::ListModel>,
+    model: Option<SelectionModel>,
     reorderable: Option<bool>,
     show_column_separators: Option<bool>,
     show_row_separators: Option<bool>,
@@ -597,7 +598,7 @@ impl ColumnViewBuilder {
         self
     }
 
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+    pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }

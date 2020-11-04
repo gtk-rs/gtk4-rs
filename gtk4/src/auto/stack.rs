@@ -43,7 +43,16 @@ impl Stack {
         unsafe { Widget::from_glib_none(gtk_sys::gtk_stack_new()).unsafe_cast() }
     }
 
-    pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: &str) -> Option<StackPage> {
+    pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_stack_add_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: Option<&str>) -> Option<StackPage> {
         unsafe {
             from_glib_none(gtk_sys::gtk_stack_add_named(
                 self.to_glib_none().0,
@@ -56,7 +65,7 @@ impl Stack {
     pub fn add_titled<P: IsA<Widget>>(
         &self,
         child: &P,
-        name: &str,
+        name: Option<&str>,
         title: &str,
     ) -> Option<StackPage> {
         unsafe {

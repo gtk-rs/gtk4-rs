@@ -71,6 +71,16 @@ impl FileFilter {
         }
     }
 
+    pub fn get_name(&self) -> Option<GString> {
+        unsafe { from_glib_none(gtk_sys::gtk_file_filter_get_name(self.to_glib_none().0)) }
+    }
+
+    pub fn set_name(&self, name: Option<&str>) {
+        unsafe {
+            gtk_sys::gtk_file_filter_set_name(self.to_glib_none().0, name.to_glib_none().0);
+        }
+    }
+
     pub fn to_gvariant(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
     }
