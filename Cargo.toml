@@ -1,0 +1,11 @@
+[workspace]
+members = [
+  "gdk4",
+  "gdk4/sys",
+  "gsk4",
+  "gsk4/sys",
+  "gtk4",
+  "gtk4/sys",
+]
+
+exclude = ["gir"]
