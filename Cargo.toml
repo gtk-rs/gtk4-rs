@@ -8,4 +8,4 @@ members = [
   "gtk4/sys",
 ]
 
-exclude = ["gir"]
+exclude = ["checker", "gir"]
