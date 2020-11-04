@@ -510,6 +510,7 @@ impl FromGlib<gsk_sys::GskSerializationError> for SerializationError {
 impl ErrorDomain for SerializationError {
     fn domain() -> Quark {
         skip_assert_initialized!();
+
         unsafe { from_glib(gsk_sys::gsk_serialization_error_quark()) }
     }
 
