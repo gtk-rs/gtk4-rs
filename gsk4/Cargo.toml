@@ -35,17 +35,17 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 [dependencies]
 libc = "0.2"
 bitflags = "1.0"
-glib-sys = { git = "https://github.com/gtk-rs/sys" }
-gdk4-sys = { git = "https://github.com/gtk-rs/sys" }
-graphene-sys = { git = "https://github.com/gtk-rs/graphene" }
-gsk4-sys = { git = "https://github.com/gtk-rs/sys" }
-gobject-sys = { git = "https://github.com/gtk-rs/sys" }
-cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
-cairo-rs = { git = "https://github.com/gtk-rs/cairo" }
-glib = { git = "https://github.com/gtk-rs/glib" }
-gdk4 = { git = "https://github.com/gtk-rs/gdk4" }
-graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/graphene" }
-pango = { git = "https://github.com/gtk-rs/pango" }
+glib-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
+gdk4-sys = { path = "../gdk4/sys" }
+graphene-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
+gsk4-sys = { path = "./sys" }
+gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
+cairo-sys-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
+cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
+glib = { git = "https://github.com/gtk-rs/gtk-rs" }
+gdk4 = { path = "../gdk4" }
+graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs" }
+pango = { git = "https://github.com/gtk-rs/gtk-rs" }
 
 [dev-dependencies]
 gir-format-check = "^0.1"
