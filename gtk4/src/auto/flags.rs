@@ -163,6 +163,70 @@ impl SetValue for CellRendererState {
 }
 
 bitflags! {
+    pub struct DebugFlags: u32 {
+        const TEXT = 1;
+        const TREE = 2;
+        const KEYBINDINGS = 4;
+        const MODULES = 8;
+        const GEOMETRY = 16;
+        const ICONTHEME = 32;
+        const PRINTING = 64;
+        const BUILDER = 128;
+        const SIZE_REQUEST = 256;
+        const NO_CSS_CACHE = 512;
+        const INTERACTIVE = 1024;
+        const TOUCHSCREEN = 2048;
+        const ACTIONS = 4096;
+        const LAYOUT = 8192;
+        const SNAPSHOT = 16384;
+        const CONSTRAINTS = 32768;
+        const BUILDER_OBJECTS = 65536;
+        const A11Y = 131072;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for DebugFlags {
+    type GlibType = gtk_sys::GtkDebugFlags;
+
+    fn to_glib(&self) -> gtk_sys::GtkDebugFlags {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gtk_sys::GtkDebugFlags> for DebugFlags {
+    fn from_glib(value: gtk_sys::GtkDebugFlags) -> DebugFlags {
+        skip_assert_initialized!();
+        DebugFlags::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for DebugFlags {
+    fn static_type() -> Type {
+        unsafe { from_glib(gtk_sys::gtk_debug_flags_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for DebugFlags {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for DebugFlags {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for DebugFlags {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+bitflags! {
     pub struct DialogFlags: u32 {
         const MODAL = 1;
         const DESTROY_WITH_PARENT = 2;

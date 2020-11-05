@@ -18,6 +18,7 @@ use AccessibleProperty;
 use AccessibleRelation;
 use AccessibleRole;
 use AccessibleState;
+use DebugFlags;
 use PageSetup;
 use PrintSettings;
 use StyleContext;
@@ -137,9 +138,10 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call gtk_sys:gtk_distribute_natural_allocation() }
 //}
 
-//pub fn get_debug_flags() -> /*Ignored*/DebugFlags {
-//    unsafe { TODO: call gtk_sys:gtk_get_debug_flags() }
-//}
+pub fn get_debug_flags() -> DebugFlags {
+    assert_initialized_main_thread!();
+    unsafe { from_glib(gtk_sys::gtk_get_debug_flags()) }
+}
 
 pub fn get_default_language() -> Option<pango::Language> {
     assert_initialized_main_thread!();
@@ -511,9 +513,12 @@ pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     }
 }
 
-//pub fn set_debug_flags(flags: /*Ignored*/DebugFlags) {
-//    unsafe { TODO: call gtk_sys:gtk_set_debug_flags() }
-//}
+pub fn set_debug_flags(flags: DebugFlags) {
+    assert_initialized_main_thread!();
+    unsafe {
+        gtk_sys::gtk_set_debug_flags(flags.to_glib());
+    }
+}
 
 //pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call gtk_sys:gtk_show_about_dialog() }

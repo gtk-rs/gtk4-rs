@@ -74,6 +74,7 @@ generate = [
     "Gtk.CustomLayout",
     "Gtk.CustomSorter",
     "Gtk.DebugFlag",
+    "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",

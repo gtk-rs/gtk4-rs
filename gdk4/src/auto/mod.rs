@@ -198,6 +198,7 @@ pub use self::flags::FrameClockPhase;
 pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
+pub use self::flags::ToplevelState;
 
 pub mod functions;
 

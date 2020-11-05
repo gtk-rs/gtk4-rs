@@ -23,6 +23,7 @@ use Surface;
 use SurfaceEdge;
 use Texture;
 use ToplevelLayout;
+use ToplevelState;
 
 glib_wrapper! {
     pub struct Toplevel(Interface<gdk_sys::GdkToplevel>) @requires Surface;
@@ -49,7 +50,7 @@ pub trait ToplevelExt: 'static {
 
     fn focus(&self, timestamp: u32);
 
-    //fn get_state(&self) -> /*Ignored*/ToplevelState;
+    fn get_state(&self) -> ToplevelState;
 
     fn inhibit_system_shortcuts<P: IsA<Event>>(&self, event: Option<&P>);
 
@@ -173,9 +174,13 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    //fn get_state(&self) -> /*Ignored*/ToplevelState {
-    //    unsafe { TODO: call gdk_sys:gdk_toplevel_get_state() }
-    //}
+    fn get_state(&self) -> ToplevelState {
+        unsafe {
+            from_glib(gdk_sys::gdk_toplevel_get_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn inhibit_system_shortcuts<P: IsA<Event>>(&self, event: Option<&P>) {
         unsafe {

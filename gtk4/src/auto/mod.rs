@@ -1234,6 +1234,7 @@ mod flags;
 pub use self::flags::ApplicationInhibitFlags;
 pub use self::flags::BuilderClosureFlags;
 pub use self::flags::CellRendererState;
+pub use self::flags::DebugFlags;
 pub use self::flags::DialogFlags;
 pub use self::flags::EventControllerScrollFlags;
 pub use self::flags::FontChooserLevel;

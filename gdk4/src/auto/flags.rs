@@ -387,3 +387,66 @@ impl SetValue for SeatCapabilities {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
+
+bitflags! {
+    pub struct ToplevelState: u32 {
+        const WITHDRAWN = 1;
+        const MINIMIZED = 2;
+        const MAXIMIZED = 4;
+        const STICKY = 8;
+        const FULLSCREEN = 16;
+        const ABOVE = 32;
+        const BELOW = 64;
+        const FOCUSED = 128;
+        const TILED = 256;
+        const TOP_TILED = 512;
+        const TOP_RESIZABLE = 1024;
+        const RIGHT_TILED = 2048;
+        const RIGHT_RESIZABLE = 4096;
+        const BOTTOM_TILED = 8192;
+        const BOTTOM_RESIZABLE = 16384;
+        const LEFT_TILED = 32768;
+        const LEFT_RESIZABLE = 65536;
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for ToplevelState {
+    type GlibType = gdk_sys::GdkToplevelState;
+
+    fn to_glib(&self) -> gdk_sys::GdkToplevelState {
+        self.bits()
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<gdk_sys::GdkToplevelState> for ToplevelState {
+    fn from_glib(value: gdk_sys::GdkToplevelState) -> ToplevelState {
+        skip_assert_initialized!();
+        ToplevelState::from_bits_truncate(value)
+    }
+}
+
+impl StaticType for ToplevelState {
+    fn static_type() -> Type {
+        unsafe { from_glib(gdk_sys::gdk_toplevel_state_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for ToplevelState {
+    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for ToplevelState {
+    unsafe fn from_value(value: &Value) -> Self {
+        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for ToplevelState {
+    unsafe fn set_value(value: &mut Value, this: &Self) {
+        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
