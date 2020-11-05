@@ -57,18 +57,13 @@ impl TextNode {
         unsafe { from_glib_none(gsk_sys::gsk_text_node_peek_color(self.to_glib_none().0)) }
     }
 
+    pub fn peek_font(&self) -> Option<pango::Font> {
+        unsafe { from_glib_none(gsk_sys::gsk_text_node_peek_font(self.to_glib_none().0)) }
+    }
+
     //pub fn peek_glyphs(&self) -> /*Ignored*/Vec<pango::GlyphInfo> {
     //    unsafe { TODO: call gsk_sys:gsk_text_node_peek_glyphs() }
     //}
-
-    pub fn peek_font<P: IsA<RenderNode>>(node: &P) -> Option<pango::Font> {
-        skip_assert_initialized!();
-        unsafe {
-            from_glib_none(gsk_sys::gsk_text_node_peek_font(
-                node.as_ref().to_glib_none().0,
-            ))
-        }
-    }
 }
 
 impl fmt::Display for TextNode {

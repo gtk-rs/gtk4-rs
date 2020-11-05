@@ -396,7 +396,7 @@ impl GridBuilder {
 pub const NONE_GRID: Option<&Grid> = None;
 
 pub trait GridExt: 'static {
-    fn attach<P: IsA<Widget>>(&self, child: &P, left: i32, top: i32, width: i32, height: i32);
+    fn attach<P: IsA<Widget>>(&self, child: &P, column: i32, row: i32, width: i32, height: i32);
 
     fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(
         &self,
@@ -409,7 +409,7 @@ pub trait GridExt: 'static {
 
     fn get_baseline_row(&self) -> i32;
 
-    fn get_child_at(&self, left: i32, top: i32) -> Option<Widget>;
+    fn get_child_at(&self, column: i32, row: i32) -> Option<Widget>;
 
     fn get_column_homogeneous(&self) -> bool;
 
@@ -469,13 +469,13 @@ pub trait GridExt: 'static {
 }
 
 impl<O: IsA<Grid>> GridExt for O {
-    fn attach<P: IsA<Widget>>(&self, child: &P, left: i32, top: i32, width: i32, height: i32) {
+    fn attach<P: IsA<Widget>>(&self, child: &P, column: i32, row: i32, width: i32, height: i32) {
         unsafe {
             gtk_sys::gtk_grid_attach(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                left,
-                top,
+                column,
+                row,
                 width,
                 height,
             );
@@ -506,12 +506,12 @@ impl<O: IsA<Grid>> GridExt for O {
         unsafe { gtk_sys::gtk_grid_get_baseline_row(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_child_at(&self, left: i32, top: i32) -> Option<Widget> {
+    fn get_child_at(&self, column: i32, row: i32) -> Option<Widget> {
         unsafe {
             from_glib_none(gtk_sys::gtk_grid_get_child_at(
                 self.as_ref().to_glib_none().0,
-                left,
-                top,
+                column,
+                row,
             ))
         }
     }
@@ -573,23 +573,23 @@ impl<O: IsA<Grid>> GridExt for O {
 
     fn query_child<P: IsA<Widget>>(&self, child: &P) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut left = mem::MaybeUninit::uninit();
-            let mut top = mem::MaybeUninit::uninit();
+            let mut column = mem::MaybeUninit::uninit();
+            let mut row = mem::MaybeUninit::uninit();
             let mut width = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
             gtk_sys::gtk_grid_query_child(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                left.as_mut_ptr(),
-                top.as_mut_ptr(),
+                column.as_mut_ptr(),
+                row.as_mut_ptr(),
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let left = left.assume_init();
-            let top = top.assume_init();
+            let column = column.assume_init();
+            let row = row.assume_init();
             let width = width.assume_init();
             let height = height.assume_init();
-            (left, top, width, height)
+            (column, row, width, height)
         }
     }
 

@@ -232,6 +232,8 @@ pub enum RenderNodeType {
     ColorNode,
     LinearGradientNode,
     RepeatingLinearGradientNode,
+    RadialGradientNode,
+    RepeatingRadialGradientNode,
     BorderNode,
     TextureNode,
     InsetShadowNode,
@@ -248,6 +250,7 @@ pub enum RenderNodeType {
     TextNode,
     BlurNode,
     DebugNode,
+    GlShaderNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -264,6 +267,8 @@ impl fmt::Display for RenderNodeType {
                 RenderNodeType::ColorNode => "ColorNode",
                 RenderNodeType::LinearGradientNode => "LinearGradientNode",
                 RenderNodeType::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
+                RenderNodeType::RadialGradientNode => "RadialGradientNode",
+                RenderNodeType::RepeatingRadialGradientNode => "RepeatingRadialGradientNode",
                 RenderNodeType::BorderNode => "BorderNode",
                 RenderNodeType::TextureNode => "TextureNode",
                 RenderNodeType::InsetShadowNode => "InsetShadowNode",
@@ -280,6 +285,7 @@ impl fmt::Display for RenderNodeType {
                 RenderNodeType::TextNode => "TextNode",
                 RenderNodeType::BlurNode => "BlurNode",
                 RenderNodeType::DebugNode => "DebugNode",
+                RenderNodeType::GlShaderNode => "GlShaderNode",
                 _ => "Unknown",
             }
         )
@@ -300,6 +306,10 @@ impl ToGlib for RenderNodeType {
             RenderNodeType::RepeatingLinearGradientNode => {
                 gsk_sys::GSK_REPEATING_LINEAR_GRADIENT_NODE
             }
+            RenderNodeType::RadialGradientNode => gsk_sys::GSK_RADIAL_GRADIENT_NODE,
+            RenderNodeType::RepeatingRadialGradientNode => {
+                gsk_sys::GSK_REPEATING_RADIAL_GRADIENT_NODE
+            }
             RenderNodeType::BorderNode => gsk_sys::GSK_BORDER_NODE,
             RenderNodeType::TextureNode => gsk_sys::GSK_TEXTURE_NODE,
             RenderNodeType::InsetShadowNode => gsk_sys::GSK_INSET_SHADOW_NODE,
@@ -316,6 +326,7 @@ impl ToGlib for RenderNodeType {
             RenderNodeType::TextNode => gsk_sys::GSK_TEXT_NODE,
             RenderNodeType::BlurNode => gsk_sys::GSK_BLUR_NODE,
             RenderNodeType::DebugNode => gsk_sys::GSK_DEBUG_NODE,
+            RenderNodeType::GlShaderNode => gsk_sys::GSK_GL_SHADER_NODE,
             RenderNodeType::__Unknown(value) => value,
         }
     }
@@ -332,22 +343,25 @@ impl FromGlib<gsk_sys::GskRenderNodeType> for RenderNodeType {
             3 => RenderNodeType::ColorNode,
             4 => RenderNodeType::LinearGradientNode,
             5 => RenderNodeType::RepeatingLinearGradientNode,
-            6 => RenderNodeType::BorderNode,
-            7 => RenderNodeType::TextureNode,
-            8 => RenderNodeType::InsetShadowNode,
-            9 => RenderNodeType::OutsetShadowNode,
-            10 => RenderNodeType::TransformNode,
-            11 => RenderNodeType::OpacityNode,
-            12 => RenderNodeType::ColorMatrixNode,
-            13 => RenderNodeType::RepeatNode,
-            14 => RenderNodeType::ClipNode,
-            15 => RenderNodeType::RoundedClipNode,
-            16 => RenderNodeType::ShadowNode,
-            17 => RenderNodeType::BlendNode,
-            18 => RenderNodeType::CrossFadeNode,
-            19 => RenderNodeType::TextNode,
-            20 => RenderNodeType::BlurNode,
-            21 => RenderNodeType::DebugNode,
+            6 => RenderNodeType::RadialGradientNode,
+            7 => RenderNodeType::RepeatingRadialGradientNode,
+            8 => RenderNodeType::BorderNode,
+            9 => RenderNodeType::TextureNode,
+            10 => RenderNodeType::InsetShadowNode,
+            11 => RenderNodeType::OutsetShadowNode,
+            12 => RenderNodeType::TransformNode,
+            13 => RenderNodeType::OpacityNode,
+            14 => RenderNodeType::ColorMatrixNode,
+            15 => RenderNodeType::RepeatNode,
+            16 => RenderNodeType::ClipNode,
+            17 => RenderNodeType::RoundedClipNode,
+            18 => RenderNodeType::ShadowNode,
+            19 => RenderNodeType::BlendNode,
+            20 => RenderNodeType::CrossFadeNode,
+            21 => RenderNodeType::TextNode,
+            22 => RenderNodeType::BlurNode,
+            23 => RenderNodeType::DebugNode,
+            24 => RenderNodeType::GlShaderNode,
             value => RenderNodeType::__Unknown(value),
         }
     }

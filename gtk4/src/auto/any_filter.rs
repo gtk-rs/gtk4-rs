@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gio;
-use glib::object::Cast;
 use glib::translate::*;
 use gtk_sys;
 use std::fmt;
@@ -22,7 +21,7 @@ glib_wrapper! {
 impl AnyFilter {
     pub fn new() -> AnyFilter {
         assert_initialized_main_thread!();
-        unsafe { Filter::from_glib_full(gtk_sys::gtk_any_filter_new()).unsafe_cast() }
+        unsafe { from_glib_full(gtk_sys::gtk_any_filter_new()) }
     }
 }
 

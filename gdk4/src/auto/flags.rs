@@ -389,7 +389,7 @@ impl SetValue for SeatCapabilities {
 }
 
 bitflags! {
-    pub struct SurfaceState: u32 {
+    pub struct ToplevelState: u32 {
         const WITHDRAWN = 1;
         const MINIMIZED = 2;
         const MAXIMIZED = 4;
@@ -411,41 +411,41 @@ bitflags! {
 }
 
 #[doc(hidden)]
-impl ToGlib for SurfaceState {
-    type GlibType = gdk_sys::GdkSurfaceState;
+impl ToGlib for ToplevelState {
+    type GlibType = gdk_sys::GdkToplevelState;
 
-    fn to_glib(&self) -> gdk_sys::GdkSurfaceState {
+    fn to_glib(&self) -> gdk_sys::GdkToplevelState {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSurfaceState> for SurfaceState {
-    fn from_glib(value: gdk_sys::GdkSurfaceState) -> SurfaceState {
+impl FromGlib<gdk_sys::GdkToplevelState> for ToplevelState {
+    fn from_glib(value: gdk_sys::GdkToplevelState) -> ToplevelState {
         skip_assert_initialized!();
-        SurfaceState::from_bits_truncate(value)
+        ToplevelState::from_bits_truncate(value)
     }
 }
 
-impl StaticType for SurfaceState {
+impl StaticType for ToplevelState {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_surface_state_get_type()) }
+        unsafe { from_glib(gdk_sys::gdk_toplevel_state_get_type()) }
     }
 }
 
-impl<'a> FromValueOptional<'a> for SurfaceState {
+impl<'a> FromValueOptional<'a> for ToplevelState {
     unsafe fn from_value_optional(value: &Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
-impl<'a> FromValue<'a> for SurfaceState {
+impl<'a> FromValue<'a> for ToplevelState {
     unsafe fn from_value(value: &Value) -> Self {
         from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for SurfaceState {
+impl SetValue for ToplevelState {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }

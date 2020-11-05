@@ -163,7 +163,7 @@ impl SetValue for CellRendererState {
 }
 
 bitflags! {
-    pub struct DebugFlag: u32 {
+    pub struct DebugFlags: u32 {
         const TEXT = 1;
         const TREE = 2;
         const KEYBINDINGS = 4;
@@ -186,41 +186,41 @@ bitflags! {
 }
 
 #[doc(hidden)]
-impl ToGlib for DebugFlag {
-    type GlibType = gtk_sys::GtkDebugFlag;
+impl ToGlib for DebugFlags {
+    type GlibType = gtk_sys::GtkDebugFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkDebugFlag {
+    fn to_glib(&self) -> gtk_sys::GtkDebugFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDebugFlag> for DebugFlag {
-    fn from_glib(value: gtk_sys::GtkDebugFlag) -> DebugFlag {
+impl FromGlib<gtk_sys::GtkDebugFlags> for DebugFlags {
+    fn from_glib(value: gtk_sys::GtkDebugFlags) -> DebugFlags {
         skip_assert_initialized!();
-        DebugFlag::from_bits_truncate(value)
+        DebugFlags::from_bits_truncate(value)
     }
 }
 
-impl StaticType for DebugFlag {
+impl StaticType for DebugFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_debug_flag_get_type()) }
+        unsafe { from_glib(gtk_sys::gtk_debug_flags_get_type()) }
     }
 }
 
-impl<'a> FromValueOptional<'a> for DebugFlag {
+impl<'a> FromValueOptional<'a> for DebugFlags {
     unsafe fn from_value_optional(value: &Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
-impl<'a> FromValue<'a> for DebugFlag {
+impl<'a> FromValue<'a> for DebugFlags {
     unsafe fn from_value(value: &Value) -> Self {
         from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for DebugFlag {
+impl SetValue for DebugFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
         gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -441,6 +441,7 @@ bitflags! {
         const VERTICAL_WRITING = 256;
         const EMOJI = 512;
         const NO_EMOJI = 1024;
+        const PRIVATE = 2048;
     }
 }
 

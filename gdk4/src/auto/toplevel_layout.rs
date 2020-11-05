@@ -18,9 +18,9 @@ glib_wrapper! {
 }
 
 impl ToplevelLayout {
-    pub fn new(min_width: i32, min_height: i32) -> ToplevelLayout {
+    pub fn new() -> ToplevelLayout {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gdk_sys::gdk_toplevel_layout_new(min_width, min_height)) }
+        unsafe { from_glib_full(gdk_sys::gdk_toplevel_layout_new()) }
     }
 
     pub fn copy(&self) -> Option<ToplevelLayout> {
@@ -60,14 +60,6 @@ impl ToplevelLayout {
         }
     }
 
-    pub fn get_min_height(&self) -> i32 {
-        unsafe { gdk_sys::gdk_toplevel_layout_get_min_height(self.to_glib_none().0) }
-    }
-
-    pub fn get_min_width(&self) -> i32 {
-        unsafe { gdk_sys::gdk_toplevel_layout_get_min_width(self.to_glib_none().0) }
-    }
-
     pub fn get_resizable(&self) -> bool {
         unsafe {
             from_glib(gdk_sys::gdk_toplevel_layout_get_resizable(
@@ -96,6 +88,12 @@ impl ToplevelLayout {
         unsafe {
             gdk_sys::gdk_toplevel_layout_set_resizable(self.to_glib_none().0, resizable.to_glib());
         }
+    }
+}
+
+impl Default for ToplevelLayout {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

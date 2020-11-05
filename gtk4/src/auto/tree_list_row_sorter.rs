@@ -28,10 +28,9 @@ impl TreeListRowSorter {
     pub fn new<P: IsA<Sorter>>(sorter: Option<&P>) -> TreeListRowSorter {
         assert_initialized_main_thread!();
         unsafe {
-            Sorter::from_glib_full(gtk_sys::gtk_tree_list_row_sorter_new(
+            from_glib_full(gtk_sys::gtk_tree_list_row_sorter_new(
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
-            .unsafe_cast()
         }
     }
 }

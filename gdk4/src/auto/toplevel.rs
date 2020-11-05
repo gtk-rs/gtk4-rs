@@ -21,9 +21,9 @@ use Event;
 use FullscreenMode;
 use Surface;
 use SurfaceEdge;
-use SurfaceState;
 use Texture;
 use ToplevelLayout;
+use ToplevelState;
 
 glib_wrapper! {
     pub struct Toplevel(Interface<gdk_sys::GdkToplevel>) @requires Surface;
@@ -50,7 +50,7 @@ pub trait ToplevelExt: 'static {
 
     fn focus(&self, timestamp: u32);
 
-    fn get_state(&self) -> SurfaceState;
+    fn get_state(&self) -> ToplevelState;
 
     fn inhibit_system_shortcuts<P: IsA<Event>>(&self, event: Option<&P>);
 
@@ -58,7 +58,7 @@ pub trait ToplevelExt: 'static {
 
     fn minimize(&self) -> bool;
 
-    fn present(&self, width: i32, height: i32, layout: &ToplevelLayout) -> bool;
+    fn present(&self, layout: &ToplevelLayout) -> bool;
 
     fn restore_system_shortcuts(&self);
 
@@ -99,6 +99,8 @@ pub trait ToplevelExt: 'static {
     fn get_property_title(&self) -> Option<GString>;
 
     fn get_property_transient_for(&self) -> Option<Surface>;
+
+    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -172,7 +174,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_state(&self) -> SurfaceState {
+    fn get_state(&self) -> ToplevelState {
         unsafe {
             from_glib(gdk_sys::gdk_toplevel_get_state(
                 self.as_ref().to_glib_none().0,
@@ -201,12 +203,10 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn present(&self, width: i32, height: i32, layout: &ToplevelLayout) -> bool {
+    fn present(&self, layout: &ToplevelLayout) -> bool {
         unsafe {
             from_glib(gdk_sys::gdk_toplevel_present(
                 self.as_ref().to_glib_none().0,
-                width,
-                height,
                 layout.to_glib_none().0,
             ))
         }
@@ -426,6 +426,10 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
                 .expect("Return Value for property `transient-for` getter")
         }
     }
+
+    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Out size: Gdk.ToplevelSize
+    //}
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P, F: Fn(&P) + 'static>(

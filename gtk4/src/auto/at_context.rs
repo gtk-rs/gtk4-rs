@@ -3,9 +3,15 @@
 // DO NOT EDIT
 
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
+use glib::signal::connect_raw;
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib_sys;
 use gtk_sys;
+use std::boxed::Box as Box_;
 use std::fmt;
+use std::mem::transmute;
 use Accessible;
 use AccessibleRole;
 
@@ -47,11 +53,26 @@ impl ATContext {
         }
     }
 
-    //pub fn connect_state_change<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Unimplemented states: *.Pointer
-    //    Unimplemented properties: *.Pointer
-    //    Unimplemented relations: *.Pointer
-    //}
+    pub fn connect_state_change<F: Fn(&ATContext) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn state_change_trampoline<F: Fn(&ATContext) + 'static>(
+            this: *mut gtk_sys::GtkATContext,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"state-change\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    state_change_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl fmt::Display for ATContext {

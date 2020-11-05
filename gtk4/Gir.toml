@@ -74,6 +74,7 @@ generate = [
     "Gtk.CustomLayout",
     "Gtk.CustomSorter",
     "Gtk.DebugFlag",
+    "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
@@ -1648,7 +1649,15 @@ status = "generate"
     #manual
     ignore = true
     [[object.function]]
+    name = "append_radial_gradient"
+    #manual
+    ignore = true
+    [[object.function]]
     name = "append_repeating_linear_gradient"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "append_repeating_radial_gradient"
     #manual
     ignore = true
 

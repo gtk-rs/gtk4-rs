@@ -144,31 +144,6 @@ impl ColorButton {
         }
     }
 
-    pub fn connect_property_rgba_notify<F: Fn(&ColorButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rgba_trampoline<F: Fn(&ColorButton) + 'static>(
-            this: *mut gtk_sys::GtkColorButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_rgba_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     pub fn connect_property_show_editor_notify<F: Fn(&ColorButton) + 'static>(
         &self,
         f: F,
@@ -218,31 +193,6 @@ impl ColorButton {
             )
         }
     }
-
-    pub fn connect_property_use_alpha_notify<F: Fn(&ColorButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_alpha_trampoline<F: Fn(&ColorButton) + 'static>(
-            this: *mut gtk_sys::GtkColorButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::use-alpha\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_use_alpha_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
 }
 
 impl Default for ColorButton {
@@ -254,10 +204,8 @@ impl Default for ColorButton {
 #[derive(Clone, Default)]
 pub struct ColorButtonBuilder {
     modal: Option<bool>,
-    rgba: Option<gdk::RGBA>,
     show_editor: Option<bool>,
     title: Option<String>,
-    use_alpha: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -288,6 +236,8 @@ pub struct ColorButtonBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    rgba: Option<gdk::RGBA>,
+    use_alpha: Option<bool>,
 }
 
 impl ColorButtonBuilder {
@@ -300,17 +250,11 @@ impl ColorButtonBuilder {
         if let Some(ref modal) = self.modal {
             properties.push(("modal", modal));
         }
-        if let Some(ref rgba) = self.rgba {
-            properties.push(("rgba", rgba));
-        }
         if let Some(ref show_editor) = self.show_editor {
             properties.push(("show-editor", show_editor));
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
-        }
-        if let Some(ref use_alpha) = self.use_alpha {
-            properties.push(("use-alpha", use_alpha));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -402,6 +346,12 @@ impl ColorButtonBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
+        if let Some(ref rgba) = self.rgba {
+            properties.push(("rgba", rgba));
+        }
+        if let Some(ref use_alpha) = self.use_alpha {
+            properties.push(("use-alpha", use_alpha));
+        }
         let ret = glib::Object::new(ColorButton::static_type(), &properties)
             .expect("object new")
             .downcast::<ColorButton>()
@@ -414,11 +364,6 @@ impl ColorButtonBuilder {
         self
     }
 
-    pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
-        self.rgba = Some(rgba.clone());
-        self
-    }
-
     pub fn show_editor(mut self, show_editor: bool) -> Self {
         self.show_editor = Some(show_editor);
         self
@@ -426,11 +371,6 @@ impl ColorButtonBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn use_alpha(mut self, use_alpha: bool) -> Self {
-        self.use_alpha = Some(use_alpha);
         self
     }
 
@@ -581,6 +521,16 @@ impl ColorButtonBuilder {
 
     pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
         self.accessible_role = Some(accessible_role);
+        self
+    }
+
+    pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
+        self.rgba = Some(rgba.clone());
+        self
+    }
+
+    pub fn use_alpha(mut self, use_alpha: bool) -> Self {
+        self.use_alpha = Some(use_alpha);
         self
     }
 }

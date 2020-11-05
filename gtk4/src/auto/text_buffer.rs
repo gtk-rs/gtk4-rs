@@ -155,11 +155,11 @@ pub trait TextBufferExt: 'static {
 
     fn get_iter_at_child_anchor<P: IsA<TextChildAnchor>>(&self, anchor: &P) -> TextIter;
 
-    fn get_iter_at_line(&self, line_number: i32) -> TextIter;
+    fn get_iter_at_line(&self, line_number: i32) -> Option<TextIter>;
 
-    fn get_iter_at_line_index(&self, line_number: i32, byte_index: i32) -> TextIter;
+    fn get_iter_at_line_index(&self, line_number: i32, byte_index: i32) -> Option<TextIter>;
 
-    fn get_iter_at_line_offset(&self, line_number: i32, char_offset: i32) -> TextIter;
+    fn get_iter_at_line_offset(&self, line_number: i32, char_offset: i32) -> Option<TextIter>;
 
     fn get_iter_at_mark<P: IsA<TextMark>>(&self, mark: &P) -> TextIter;
 
@@ -600,41 +600,53 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_iter_at_line(&self, line_number: i32) -> TextIter {
+    fn get_iter_at_line(&self, line_number: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line(
+            let ret = from_glib(gtk_sys::gtk_text_buffer_get_iter_at_line(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 line_number,
-            );
-            iter
+            ));
+            if ret {
+                Some(iter)
+            } else {
+                None
+            }
         }
     }
 
-    fn get_iter_at_line_index(&self, line_number: i32, byte_index: i32) -> TextIter {
+    fn get_iter_at_line_index(&self, line_number: i32, byte_index: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line_index(
+            let ret = from_glib(gtk_sys::gtk_text_buffer_get_iter_at_line_index(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 line_number,
                 byte_index,
-            );
-            iter
+            ));
+            if ret {
+                Some(iter)
+            } else {
+                None
+            }
         }
     }
 
-    fn get_iter_at_line_offset(&self, line_number: i32, char_offset: i32) -> TextIter {
+    fn get_iter_at_line_offset(&self, line_number: i32, char_offset: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            gtk_sys::gtk_text_buffer_get_iter_at_line_offset(
+            let ret = from_glib(gtk_sys::gtk_text_buffer_get_iter_at_line_offset(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 line_number,
                 char_offset,
-            );
-            iter
+            ));
+            if ret {
+                Some(iter)
+            } else {
+                None
+            }
         }
     }
 

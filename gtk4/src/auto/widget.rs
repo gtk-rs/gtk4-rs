@@ -57,10 +57,6 @@ glib_wrapper! {
 }
 
 impl Widget {
-    //pub fn new(type_: glib::types::Type, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Widget {
-    //    unsafe { TODO: call gtk_sys:gtk_widget_new() }
-    //}
-
     pub fn get_default_direction() -> TextDirection {
         assert_initialized_main_thread!();
         unsafe { from_glib(gtk_sys::gtk_widget_get_default_direction()) }
@@ -190,6 +186,8 @@ pub trait WidgetExt: 'static {
     fn get_margin_start(&self) -> i32;
 
     fn get_margin_top(&self) -> i32;
+
+    fn get_name(&self) -> Option<GString>;
 
     fn get_native(&self) -> Option<Native>;
 
@@ -358,6 +356,8 @@ pub trait WidgetExt: 'static {
     fn set_margin_start(&self, margin: i32);
 
     fn set_margin_top(&self, margin: i32);
+
+    fn set_name(&self, name: &str);
 
     fn set_opacity(&self, opacity: f64);
 
@@ -986,6 +986,10 @@ impl<O: IsA<Widget>> WidgetExt for O {
 
     fn get_margin_top(&self) -> i32 {
         unsafe { gtk_sys::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
+    }
+
+    fn get_name(&self) -> Option<GString> {
+        unsafe { from_glib_none(gtk_sys::gtk_widget_get_name(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_native(&self) -> Option<Native> {
@@ -1630,6 +1634,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn set_margin_top(&self, margin: i32) {
         unsafe {
             gtk_sys::gtk_widget_set_margin_top(self.as_ref().to_glib_none().0, margin);
+        }
+    }
+
+    fn set_name(&self, name: &str) {
+        unsafe {
+            gtk_sys::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 

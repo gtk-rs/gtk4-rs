@@ -13,7 +13,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use glib_sys;
 use gobject_sys;
 use gtk_sys;
@@ -95,6 +94,10 @@ impl SpinButton {
         }
     }
 
+    pub fn get_climb_rate(&self) -> f64 {
+        unsafe { gtk_sys::gtk_spin_button_get_climb_rate(self.to_glib_none().0) }
+    }
+
     pub fn get_digits(&self) -> u32 {
         unsafe { gtk_sys::gtk_spin_button_get_digits(self.to_glib_none().0) }
     }
@@ -170,6 +173,12 @@ impl SpinButton {
         }
     }
 
+    pub fn set_climb_rate(&self, climb_rate: f64) {
+        unsafe {
+            gtk_sys::gtk_spin_button_set_climb_rate(self.to_glib_none().0, climb_rate);
+        }
+    }
+
     pub fn set_digits(&self, digits: u32) {
         unsafe {
             gtk_sys::gtk_spin_button_set_digits(self.to_glib_none().0, digits);
@@ -230,31 +239,6 @@ impl SpinButton {
     pub fn update(&self) {
         unsafe {
             gtk_sys::gtk_spin_button_update(self.to_glib_none().0);
-        }
-    }
-
-    pub fn get_property_climb_rate(&self) -> f64 {
-        unsafe {
-            let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"climb-rate\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `climb-rate` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn set_property_climb_rate(&self, climb_rate: f64) {
-        unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"climb-rate\0".as_ptr() as *const _,
-                Value::from(&climb_rate).to_glib_none().0,
-            );
         }
     }
 

@@ -70,6 +70,7 @@ impl Default for ToggleButton {
 #[derive(Clone, Default)]
 pub struct ToggleButtonBuilder {
     active: Option<bool>,
+    group: Option<ToggleButton>,
     child: Option<Widget>,
     has_frame: Option<bool>,
     icon_name: Option<String>,
@@ -117,6 +118,9 @@ impl ToggleButtonBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {
             properties.push(("active", active));
+        }
+        if let Some(ref group) = self.group {
+            properties.push(("group", group));
         }
         if let Some(ref child) = self.child {
             properties.push(("child", child));
@@ -235,6 +239,11 @@ impl ToggleButtonBuilder {
 
     pub fn active(mut self, active: bool) -> Self {
         self.active = Some(active);
+        self
+    }
+
+    pub fn group<P: IsA<ToggleButton>>(mut self, group: &P) -> Self {
+        self.group = Some(group.clone().upcast());
         self
     }
 
@@ -426,11 +435,15 @@ pub trait ToggleButtonExt: 'static {
 
     fn set_active(&self, is_active: bool);
 
+    fn set_group<P: IsA<ToggleButton>>(&self, group: Option<&P>);
+
     fn toggled(&self);
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
@@ -447,6 +460,15 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
             gtk_sys::gtk_toggle_button_set_active(
                 self.as_ref().to_glib_none().0,
                 is_active.to_glib(),
+            );
+        }
+    }
+
+    fn set_group<P: IsA<ToggleButton>>(&self, group: Option<&P>) {
+        unsafe {
+            gtk_sys::gtk_toggle_button_set_group(
+                self.as_ref().to_glib_none().0,
+                group.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -498,6 +520,30 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
                 b"notify::active\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_active_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkToggleButton,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<ToggleButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&ToggleButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::group\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_group_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

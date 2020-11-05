@@ -47,15 +47,9 @@ impl Surface {
         }
     }
 
-    pub fn new_toplevel(display: &Display, width: i32, height: i32) -> Surface {
+    pub fn new_toplevel(display: &Display) -> Surface {
         skip_assert_initialized!();
-        unsafe {
-            from_glib_full(gdk_sys::gdk_surface_new_toplevel(
-                display.to_glib_none().0,
-                width,
-                height,
-            ))
-        }
+        unsafe { from_glib_full(gdk_sys::gdk_surface_new_toplevel(display.to_glib_none().0)) }
     }
 
     pub fn beep(&self) {
@@ -115,22 +109,26 @@ impl Surface {
         }
     }
 
-    pub fn get_device_position(&self, device: &Device) -> (f64, f64, ModifierType) {
+    pub fn get_device_position(&self, device: &Device) -> Option<(f64, f64, ModifierType)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
             let mut mask = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_surface_get_device_position(
+            let ret = from_glib(gdk_sys::gdk_surface_get_device_position(
                 self.to_glib_none().0,
                 device.to_glib_none().0,
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),
                 mask.as_mut_ptr(),
-            );
+            ));
             let x = x.assume_init();
             let y = y.assume_init();
             let mask = mask.assume_init();
-            (x, y, from_glib(mask))
+            if ret {
+                Some((x, y, from_glib(mask)))
+            } else {
+                None
+            }
         }
     }
 
@@ -289,27 +287,6 @@ impl Surface {
         }
     }
 
-    pub fn connect_popup_layout_changed<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn popup_layout_changed_trampoline<F: Fn(&Surface) + 'static>(
-            this: *mut gdk_sys::GdkSurface,
-            f: glib_sys::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"popup-layout-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    popup_layout_changed_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     pub fn connect_render<F: Fn(&Surface, &cairo::Region) -> bool + 'static>(
         &self,
         f: F,
@@ -388,6 +365,31 @@ impl Surface {
         }
     }
 
+    pub fn connect_property_height_notify<F: Fn(&Surface) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_height_trampoline<F: Fn(&Surface) + 'static>(
+            this: *mut gdk_sys::GdkSurface,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::height\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_height_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     pub fn connect_property_mapped_notify<F: Fn(&Surface) + 'static>(
         &self,
         f: F,
@@ -407,6 +409,31 @@ impl Surface {
                 b"notify::mapped\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_mapped_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_width_notify<F: Fn(&Surface) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_width_trampoline<F: Fn(&Surface) + 'static>(
+            this: *mut gdk_sys::GdkSurface,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::width\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

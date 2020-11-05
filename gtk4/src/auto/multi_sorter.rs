@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use gio;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -22,7 +21,7 @@ glib_wrapper! {
 impl MultiSorter {
     pub fn new() -> MultiSorter {
         assert_initialized_main_thread!();
-        unsafe { Sorter::from_glib_full(gtk_sys::gtk_multi_sorter_new()).unsafe_cast() }
+        unsafe { from_glib_full(gtk_sys::gtk_multi_sorter_new()) }
     }
 }
 

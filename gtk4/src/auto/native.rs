@@ -23,7 +23,7 @@ glib_wrapper! {
 }
 
 impl Native {
-    pub fn get_for_surface(surface: &gdk::Surface) -> Option<Widget> {
+    pub fn get_for_surface(surface: &gdk::Surface) -> Option<Native> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(gtk_sys::gtk_native_get_for_surface(

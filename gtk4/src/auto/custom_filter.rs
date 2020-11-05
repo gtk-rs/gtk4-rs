@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use gtk_sys;
@@ -51,12 +50,11 @@ impl CustomFilter {
         let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             match_func_data;
         unsafe {
-            Filter::from_glib_full(gtk_sys::gtk_custom_filter_new(
+            from_glib_full(gtk_sys::gtk_custom_filter_new(
                 match_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call2,
             ))
-            .unsafe_cast()
         }
     }
 }

@@ -54,6 +54,10 @@ impl IconTheme {
         }
     }
 
+    pub fn get_display(&self) -> Option<gdk::Display> {
+        unsafe { from_glib_none(gtk_sys::gtk_icon_theme_get_display(self.to_glib_none().0)) }
+    }
+
     pub fn get_icon_names(&self) -> Vec<GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_icon_names(
@@ -149,20 +153,6 @@ impl IconTheme {
                 self.to_glib_none().0,
                 theme_name.to_glib_none().0,
             );
-        }
-    }
-
-    pub fn get_property_display(&self) -> Option<gdk::Display> {
-        unsafe {
-            let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
         }
     }
 

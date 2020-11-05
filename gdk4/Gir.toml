@@ -65,6 +65,7 @@ generate = [
     "Gdk.Texture",
     "Gdk.Toplevel",
     "Gdk.ToplevelLayout",
+    "Gdk.ToplevelState",
     "Gdk.TouchEvent",
     "Gdk.TouchpadEvent",
     "Gdk.TouchpadGesturePhase",

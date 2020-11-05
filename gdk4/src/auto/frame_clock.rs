@@ -44,6 +44,10 @@ impl FrameClock {
         }
     }
 
+    pub fn get_fps(&self) -> f64 {
+        unsafe { gdk_sys::gdk_frame_clock_get_fps(self.to_glib_none().0) }
+    }
+
     pub fn get_frame_counter(&self) -> i64 {
         unsafe { gdk_sys::gdk_frame_clock_get_frame_counter(self.to_glib_none().0) }
     }

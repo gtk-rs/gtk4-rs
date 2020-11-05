@@ -24,7 +24,6 @@ use Align;
 use Application;
 use Buildable;
 use ConstraintTarget;
-use Dialog;
 use LayoutManager;
 use License;
 use Native;
@@ -35,7 +34,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+    pub struct AboutDialog(Object<gtk_sys::GtkAboutDialog, AboutDialogClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_about_dialog_get_type(),
@@ -751,7 +750,6 @@ pub struct AboutDialogBuilder {
     website: Option<String>,
     website_label: Option<String>,
     wrap_license: Option<bool>,
-    use_header_bar: Option<i32>,
     application: Option<Application>,
     child: Option<Widget>,
     decorated: Option<bool>,
@@ -857,9 +855,6 @@ impl AboutDialogBuilder {
         }
         if let Some(ref wrap_license) = self.wrap_license {
             properties.push(("wrap-license", wrap_license));
-        }
-        if let Some(ref use_header_bar) = self.use_header_bar {
-            properties.push(("use-header-bar", use_header_bar));
         }
         if let Some(ref application) = self.application {
             properties.push(("application", application));
@@ -1092,11 +1087,6 @@ impl AboutDialogBuilder {
 
     pub fn wrap_license(mut self, wrap_license: bool) -> Self {
         self.wrap_license = Some(wrap_license);
-        self
-    }
-
-    pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {
-        self.use_header_bar = Some(use_header_bar);
         self
     }
 
