@@ -1,0 +1,452 @@
+[options]
+girs_dir = "gir-files"
+library = "Gdk"
+version = "4.0"
+min_cfg_version = "3.94"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+single_version_file = true
+deprecate_by_min_version = true
+
+generate = [
+    "Gdk.AnchorHints",
+    "Gdk.AxisFlags",
+    "Gdk.AxisUse",
+    "Gdk.ButtonEvent",
+    "Gdk.CairoContext",
+    "Gdk.ConfigureEvent",
+    "Gdk.ContentFormatsBuilder",
+    "Gdk.ContentProvider",
+    "Gdk.CrossingEvent",
+    "Gdk.CrossingMode",
+    "Gdk.DeleteEvent",
+    "Gdk.DevicePad",
+    "Gdk.DevicePadFeature",
+    "Gdk.DeviceToolType",
+    "Gdk.DNDEvent",
+    "Gdk.Drag",
+    "Gdk.DragAction",
+    "Gdk.DragCancelReason",
+    "Gdk.DragSurface",
+    "Gdk.EventSequence",
+    "Gdk.EventType",
+    "Gdk.FocusEvent",
+    "Gdk.FrameClock",
+    "Gdk.FrameClockPhase",
+    "Gdk.FrameTimings",
+    "Gdk.FullscreenMode",
+    "Gdk.GLContext",
+    "Gdk.GLError",
+    "Gdk.GLTexture",
+    "Gdk.GrabBrokenEvent",
+    "Gdk.Gravity",
+    "Gdk.InputSource",
+    "Gdk.KeyEvent",
+    "Gdk.KeyMatch",
+    "Gdk.MemoryFormat",
+    "Gdk.MemoryTexture",
+    "Gdk.ModifierType",
+    "Gdk.MotionEvent",
+    "Gdk.NotifyType",
+    "Gdk.PadEvent",
+    "Gdk.Paintable",
+    "Gdk.PaintableFlags",
+    "Gdk.Popup",
+    "Gdk.ProximityEvent",
+    "Gdk.ScrollDirection",
+    "Gdk.ScrollEvent",
+    "Gdk.Seat",
+    "Gdk.SeatCapabilities",
+    "Gdk.Snapshot",
+    "Gdk.SubpixelLayout",
+    "Gdk.SurfaceEdge",
+    "Gdk.SurfaceState",
+    "Gdk.Texture",
+    "Gdk.Toplevel",
+    "Gdk.ToplevelLayout",
+    "Gdk.TouchEvent",
+    "Gdk.TouchpadEvent",
+    "Gdk.TouchpadGesturePhase",
+    "Gdk.VulkanContext",
+    "Gdk.VulkanError",
+]
+
+manual = [
+    # "Gdk.TimeCoord",
+    "cairo.Content",
+    "cairo.Context",
+    "cairo.Region",
+    "cairo.Surface",
+    "Gdk.KeymapKey",
+    "Gdk.RGBA",
+    "GdkPixbuf.Pixbuf",
+    "Gio.AppLaunchContext",
+    "Gio.Cancellable",
+    "Gio.File",
+    "Gio.Icon",
+    "Gio.InputStream",
+    "Gio.OutputStream",
+    "GLib.Bytes",
+    "GLib.Error",
+    "GLib.Priority",
+    "GLib.Quark",
+    "GLib.String",
+    "GObject.Value",
+    "Pango.Direction",
+    "Pango.Layout",
+    "Pango.LayoutLine",
+]
+
+[[object]]
+name = "Gdk.*"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+        [[object.function.parameter]]
+        name = "surface"
+        const = true
+    [[object.function]]
+    pattern = "cairo_.+"
+    #manual trait
+    ignore = true
+    [[object.function]]
+    name = "pango_layout_get_clip_region"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "pango_layout_line_get_clip_region"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "content_register_deserializer"
+    #manual: unsafe
+    ignore = true
+    [[object.function]]
+    name = "content_register_serializer"
+    #manual: unsafe
+    ignore = true
+    [[object.function]]
+    name = "content_serialize_async"
+    #manual: init assert
+    ignore = true
+    [[object.function]]
+    name = "content_deserialize_async"
+    #manual: out
+    ignore = true
+
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.Clipboard"
+status = "generate"
+generate_builder = true
+    [[object.function]]
+    name = "read_async"
+    ignore = true #array
+
+[[object]]
+name = "Gdk.ContentDeserializer"
+status = "generate"
+    [[object.function]]
+    name = "get_input_stream"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_mime_type"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_value"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true #unsafe
+
+[[object]]
+name = "Gdk.ContentFormats"
+status = "generate"
+    [[object.function]]
+    # gir error
+    name = "get_gtypes"
+    ignore = true
+
+[[object]]
+name = "Gdk.ContentSerializer"
+status = "generate"
+    [[object.function]]
+    name = "get_mime_type"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_output_stream"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_value"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true #unsafe
+
+[[object]]
+name = "Gdk.Cursor"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.Device"
+status = "generate"
+    [[object.function]]
+    name = "get_history"
+    ignore = true # need to call "free_history" function by hand
+    [[object.function]]
+    name = "free_history"
+    ignore = true # cannot be used as is
+
+[[object]]
+name = "Gdk.DeviceTool"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.Display"
+status = "generate"
+    [[object.function]]
+    name = "get_app_launch_context"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_clipboard"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_default_group"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_default_seat"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_keymap"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_name"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_primary_clipboard"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "get_primary_monitor"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "map_keycode"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    [[object.function]]
+    name = "map_keyval"
+    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+
+[[object]]
+name = "Gdk.DisplayManager"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.DrawContext"
+status = "generate"
+manual_traits = ["DrawContextExtManual"]
+    [[object.function]]
+    name = "get_frame_region"
+    #manual
+    ignore = true
+
+[[object]]
+name = "Gdk.Drop"
+status = "generate"
+    [[object.function]]
+    name = "read_async"
+    ignore = true # const ptr
+
+[[object]]
+name = "Gdk.Event"
+status = "generate"
+    [[object.function]]
+    name = "get_axes"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_button"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_click_count"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_crossing_detail"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_crossing_mode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_device_tool"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_drop"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_event_sequence"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_focus_in"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_grab_surface"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_key_group"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_key_is_modifier"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_keycode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_keyval"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_motion_history"
+    #manual: requires GDK_MOTION_NOTIFY
+    ignore = true
+    [[object.function]]
+    name = "get_pad_axis_value"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_pad_button"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_pad_group_mode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scancode"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scroll_deltas"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_scroll_direction"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touch_emulating_pointer"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_angle_delta"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_deltas"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_gesture_n_fingers"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_gesture_phase"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "get_touchpad_scale"
+    #manual: type-specific
+    ignore = true
+    [[object.function]]
+    name = "new"
+    # disabled for now: applications are not supposed to create events
+    ignore = true
+    [[object.function]]
+    pattern = "set_.+"
+    # applications should not use setters
+    ignore = true
+
+[[object]]
+name = "Gdk.Monitor"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.PopupLayout"
+status = "generate"
+manual_traits = ["PopupLayoutExtManual"]
+    [[object.function]]
+    name = "get_offset"
+    # invalid mutability, manual
+    ignore = true
+
+[[object]]
+name = "Gdk.Rectangle"
+status = "generate"
+init_function_expression = "|_ptr| ()"
+clear_function_expression = "|_ptr| ()"
+
+[[object]]
+name = "Gdk.Surface"
+status = "generate"
+manual_traits = ["SurfaceExtManual"]
+    [[object.function]]
+    name = "create_similar_surface"
+    #manual
+    ignore = true
+    [[object.function]]
+    name = "set_opaque_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+    [[object.function]]
+    name = "translate_coordinates"
+    # mutability issue, manual
+    ignore = true

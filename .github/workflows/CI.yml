@@ -24,30 +24,25 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
           override: true
-      - uses: actions-rs/cargo@v1
-        name: "Docs"
-        with:
-          command: doc
-          args: --features "dox,embed-lgpl-docs"
-      - uses: actions-rs/cargo@v1
-        name: "Test"
-        with:
-          command: test
-          args: --features "embed-lgpl-docs"
-      - uses: actions-rs/cargo@v1
-        name: "Build"
-        with:
-          command: build
-          args: --features "purge-lgpl-docs"
-      - run: git diff -R --exit-code
-      # - uses: actions/checkout@v2
-      #   with:
-      #     repository: gtk-rs/examples4
-      #     ref: master
-      #     path: examples4
-      # - name: Examples
-      #   working-directory: examples4
-      #   run: cargo check
+      - name: install dependencies
+        run: sudo dnf install -y xorg-x11-server-Xvfb
+      # gsk4
+      - name: "gsk4: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gsk4/Cargo.toml --all-features
+      - name: "gsk4: build"
+        run: cargo build --manifest-path gsk4/Cargo.toml --all-features
+      # gdk4
+      - name: "gdk4: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gdk4/Cargo.toml --all-features
+      - name: "gdk4: build"
+        run: cargo build --manifest-path gdk4/Cargo.toml --all-features
+      # gtk4
+      - name: "gtk4: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gtk4/Cargo.toml --all-features
+      - name: "gtk4: build"
+        run: cargo build --manifest-path gtk4/Cargo.toml --all-features
+
+      - uses: bcomnes/cleanup-xvfb@v1
 
   fmt:
     name: Rustfmt
@@ -64,13 +59,11 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-      - run: make regen_check
 
   checker:
     name: gtk-rs checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
           repository: gtk-rs/checker
