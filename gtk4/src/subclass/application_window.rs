@@ -1,15 +1,13 @@
 use glib::subclass::prelude::*;
 
 use super::window::WindowImpl;
-use ApplicationWindowClass;
-use WindowClass;
+use ApplicationWindow;
+use Window;
 
 pub trait ApplicationWindowImpl: WindowImpl + 'static {}
 
-unsafe impl<T: ObjectSubclass + ApplicationWindowImpl> IsSubclassable<T>
-    for ApplicationWindowClass
-{
-    fn override_vfuncs(&mut self) {
-        <WindowClass as IsSubclassable<T>>::override_vfuncs(self);
+unsafe impl<T: ApplicationWindowImpl> IsSubclassable<T> for ApplicationWindow {
+    fn override_vfuncs(class: &mut glib::Class<Self>) {
+        <Window as IsSubclassable<T>>::override_vfuncs(class);
     }
 }

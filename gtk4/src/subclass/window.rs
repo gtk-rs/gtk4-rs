@@ -5,9 +5,8 @@ use glib::translate::*;
 use glib::subclass::prelude::*;
 
 use super::widget::WidgetImpl;
-use WidgetClass;
+use Widget;
 use Window;
-use WindowClass;
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self, window: &Window) {
@@ -96,17 +95,16 @@ impl<T: WindowImpl + ObjectImpl> WindowImplExt for T {
     }
 }
 
-unsafe impl<T: ObjectSubclass + WindowImpl> IsSubclassable<T> for WindowClass {
-    fn override_vfuncs(&mut self) {
-        <WidgetClass as IsSubclassable<T>>::override_vfuncs(self);
-        unsafe {
-            let klass = &mut *(self as *mut Self as *mut gtk_sys::GtkWindowClass);
-            klass.activate_focus = Some(window_activate_focus::<T>);
-            klass.activate_default = Some(window_activate_default::<T>);
-            klass.keys_changed = Some(window_keys_changed::<T>);
-            klass.enable_debugging = Some(window_enable_debugging::<T>);
-            klass.close_request = Some(window_close_request::<T>);
-        }
+unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
+    fn override_vfuncs(class: &mut ::glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+
+        let klass = class.as_mut();
+        klass.activate_focus = Some(window_activate_focus::<T>);
+        klass.activate_default = Some(window_activate_default::<T>);
+        klass.keys_changed = Some(window_keys_changed::<T>);
+        klass.enable_debugging = Some(window_enable_debugging::<T>);
+        klass.close_request = Some(window_close_request::<T>);
     }
 }
 
