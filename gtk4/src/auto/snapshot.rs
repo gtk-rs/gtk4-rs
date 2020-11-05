@@ -113,58 +113,6 @@ impl Snapshot {
         }
     }
 
-    pub fn append_radial_gradient(
-        &self,
-        bounds: &graphene::Rect,
-        center: &graphene::Point,
-        hradius: f32,
-        vradius: f32,
-        start: f32,
-        end: f32,
-        stops: &[&gsk::ColorStop],
-    ) {
-        let n_stops = stops.len() as usize;
-        unsafe {
-            gtk_sys::gtk_snapshot_append_radial_gradient(
-                self.to_glib_none().0,
-                bounds.to_glib_none().0,
-                center.to_glib_none().0,
-                hradius,
-                vradius,
-                start,
-                end,
-                stops.to_glib_none().0,
-                n_stops,
-            );
-        }
-    }
-
-    pub fn append_repeating_radial_gradient(
-        &self,
-        bounds: &graphene::Rect,
-        center: &graphene::Point,
-        hradius: f32,
-        vradius: f32,
-        start: f32,
-        end: f32,
-        stops: &[&gsk::ColorStop],
-    ) {
-        let n_stops = stops.len() as usize;
-        unsafe {
-            gtk_sys::gtk_snapshot_append_repeating_radial_gradient(
-                self.to_glib_none().0,
-                bounds.to_glib_none().0,
-                center.to_glib_none().0,
-                hradius,
-                vradius,
-                start,
-                end,
-                stops.to_glib_none().0,
-                n_stops,
-            );
-        }
-    }
-
     pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: &graphene::Rect) {
         unsafe {
             gtk_sys::gtk_snapshot_append_texture(
