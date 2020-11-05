@@ -415,29 +415,6 @@ pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(
     }
 }
 
-pub fn render_insertion_cursor<P: IsA<StyleContext>>(
-    context: &P,
-    cr: &cairo::Context,
-    x: f64,
-    y: f64,
-    layout: &pango::Layout,
-    index: i32,
-    direction: pango::Direction,
-) {
-    skip_assert_initialized!();
-    unsafe {
-        gtk_sys::gtk_render_insertion_cursor(
-            context.as_ref().to_glib_none().0,
-            mut_override(cr.to_glib_none().0),
-            x,
-            y,
-            layout.to_glib_none().0,
-            index,
-            direction.to_glib(),
-        );
-    }
-}
-
 pub fn render_layout<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,

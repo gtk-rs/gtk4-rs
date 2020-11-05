@@ -2,12 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use gdk;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::Value;
 use glib_sys;
+use gobject_sys;
 use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -27,12 +31,14 @@ impl ATContext {
     pub fn create<P: IsA<Accessible>>(
         accessible_role: AccessibleRole,
         accessible: &P,
+        display: &gdk::Display,
     ) -> Option<ATContext> {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(gtk_sys::gtk_at_context_create(
                 accessible_role.to_glib(),
                 accessible.as_ref().to_glib_none().0,
+                display.to_glib_none().0,
             ))
         }
     }
@@ -50,6 +56,20 @@ impl ATContext {
             from_glib(gtk_sys::gtk_at_context_get_accessible_role(
                 self.to_glib_none().0,
             ))
+        }
+    }
+
+    pub fn get_property_display(&self) -> Option<gdk::Display> {
+        unsafe {
+            let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
+            gobject_sys::g_object_get_property(
+                self.as_ptr() as *mut gobject_sys::GObject,
+                b"display\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `display` getter")
         }
     }
 

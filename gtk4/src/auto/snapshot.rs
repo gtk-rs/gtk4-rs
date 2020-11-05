@@ -27,7 +27,7 @@ impl Snapshot {
         unsafe { from_glib_full(gtk_sys::gtk_snapshot_new()) }
     }
 
-    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 81 }; 4) {
+    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 80 }; 4) {
     //    unsafe { TODO: call gtk_sys:gtk_snapshot_append_border() }
     //}
 

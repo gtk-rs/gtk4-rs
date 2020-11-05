@@ -2765,22 +2765,6 @@ impl ::std::fmt::Debug for GdkPaintableInterface {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GdkPoint {
-    pub x: c_int,
-    pub y: c_int,
-}
-
-impl ::std::fmt::Debug for GdkPoint {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkPoint @ {:?}", self as *const _))
-            .field("x", &self.x)
-            .field("y", &self.y)
-            .finish()
-    }
-}
-
-#[repr(C)]
 pub struct _GdkPopupInterface(c_void);
 
 pub type GdkPopupInterface = *mut _GdkPopupInterface;

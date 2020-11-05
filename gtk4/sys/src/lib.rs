@@ -9064,6 +9064,7 @@ extern "C" {
     pub fn gtk_at_context_create(
         accessible_role: GtkAccessibleRole,
         accessible: *mut GtkAccessible,
+        display: *mut gdk::GdkDisplay,
     ) -> *mut GtkATContext;
     pub fn gtk_at_context_get_accessible(self_: *mut GtkATContext) -> *mut GtkAccessible;
     pub fn gtk_at_context_get_accessible_role(self_: *mut GtkATContext) -> GtkAccessibleRole;
@@ -13322,6 +13323,7 @@ extern "C" {
     pub fn gtk_popover_get_type() -> GType;
     pub fn gtk_popover_new() -> *mut GtkWidget;
     pub fn gtk_popover_get_autohide(popover: *mut GtkPopover) -> gboolean;
+    pub fn gtk_popover_get_cascade_popdown(popover: *mut GtkPopover) -> gboolean;
     pub fn gtk_popover_get_child(popover: *mut GtkPopover) -> *mut GtkWidget;
     pub fn gtk_popover_get_has_arrow(popover: *mut GtkPopover) -> gboolean;
     pub fn gtk_popover_get_mnemonics_visible(popover: *mut GtkPopover) -> gboolean;
@@ -13338,6 +13340,7 @@ extern "C" {
     pub fn gtk_popover_popdown(popover: *mut GtkPopover);
     pub fn gtk_popover_popup(popover: *mut GtkPopover);
     pub fn gtk_popover_set_autohide(popover: *mut GtkPopover, autohide: gboolean);
+    pub fn gtk_popover_set_cascade_popdown(popover: *mut GtkPopover, cascade_popdown: gboolean);
     pub fn gtk_popover_set_child(popover: *mut GtkPopover, child: *mut GtkWidget);
     pub fn gtk_popover_set_default_widget(popover: *mut GtkPopover, widget: *mut GtkWidget);
     pub fn gtk_popover_set_has_arrow(popover: *mut GtkPopover, has_arrow: gboolean);
@@ -13355,7 +13358,16 @@ extern "C" {
         model: *mut gio::GMenuModel,
         flags: GtkPopoverMenuFlags,
     ) -> *mut GtkWidget;
+    pub fn gtk_popover_menu_add_child(
+        popover: *mut GtkPopoverMenu,
+        child: *mut GtkWidget,
+        id: *const c_char,
+    ) -> gboolean;
     pub fn gtk_popover_menu_get_menu_model(popover: *mut GtkPopoverMenu) -> *mut gio::GMenuModel;
+    pub fn gtk_popover_menu_remove_child(
+        popover: *mut GtkPopoverMenu,
+        child: *mut GtkWidget,
+    ) -> gboolean;
     pub fn gtk_popover_menu_set_menu_model(
         popover: *mut GtkPopoverMenu,
         model: *mut gio::GMenuModel,
@@ -13366,8 +13378,17 @@ extern "C" {
     //=========================================================================
     pub fn gtk_popover_menu_bar_get_type() -> GType;
     pub fn gtk_popover_menu_bar_new_from_model(model: *mut gio::GMenuModel) -> *mut GtkWidget;
+    pub fn gtk_popover_menu_bar_add_child(
+        bar: *mut GtkPopoverMenuBar,
+        child: *mut GtkWidget,
+        id: *const c_char,
+    ) -> gboolean;
     pub fn gtk_popover_menu_bar_get_menu_model(bar: *mut GtkPopoverMenuBar)
         -> *mut gio::GMenuModel;
+    pub fn gtk_popover_menu_bar_remove_child(
+        bar: *mut GtkPopoverMenuBar,
+        child: *mut GtkWidget,
+    ) -> gboolean;
     pub fn gtk_popover_menu_bar_set_menu_model(
         bar: *mut GtkPopoverMenuBar,
         model: *mut gio::GMenuModel,
@@ -16788,6 +16809,7 @@ extern "C" {
         start_pos: c_int,
         end_pos: c_int,
     ) -> *mut c_char;
+    pub fn gtk_editable_get_delegate(editable: *mut GtkEditable) -> *mut GtkEditable;
     pub fn gtk_editable_get_editable(editable: *mut GtkEditable) -> gboolean;
     pub fn gtk_editable_get_enable_undo(editable: *mut GtkEditable) -> gboolean;
     pub fn gtk_editable_get_max_width_chars(editable: *mut GtkEditable) -> c_int;
@@ -17392,15 +17414,6 @@ extern "C" {
         texture: *mut gdk::GdkTexture,
         x: c_double,
         y: c_double,
-    );
-    pub fn gtk_render_insertion_cursor(
-        context: *mut GtkStyleContext,
-        cr: *mut cairo::cairo_t,
-        x: c_double,
-        y: c_double,
-        layout: *mut pango::PangoLayout,
-        index: c_int,
-        direction: pango::PangoDirection,
     );
     pub fn gtk_render_layout(
         context: *mut GtkStyleContext,

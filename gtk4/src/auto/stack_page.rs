@@ -16,10 +16,12 @@ use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+use Accessible;
+use AccessibleRole;
 use Widget;
 
 glib_wrapper! {
-    pub struct StackPage(Object<gtk_sys::GtkStackPage, StackPageClass>);
+    pub struct StackPage(Object<gtk_sys::GtkStackPage, StackPageClass>) @implements Accessible;
 
     match fn {
         get_type => || gtk_sys::gtk_stack_page_get_type(),
@@ -234,6 +236,7 @@ pub struct StackPageBuilder {
     title: Option<String>,
     use_underline: Option<bool>,
     visible: Option<bool>,
+    accessible_role: Option<AccessibleRole>,
 }
 
 impl StackPageBuilder {
@@ -263,6 +266,9 @@ impl StackPageBuilder {
         }
         if let Some(ref visible) = self.visible {
             properties.push(("visible", visible));
+        }
+        if let Some(ref accessible_role) = self.accessible_role {
+            properties.push(("accessible-role", accessible_role));
         }
         let ret = glib::Object::new(StackPage::static_type(), &properties)
             .expect("object new")
@@ -303,6 +309,11 @@ impl StackPageBuilder {
 
     pub fn visible(mut self, visible: bool) -> Self {
         self.visible = Some(visible);
+        self
+    }
+
+    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
+        self.accessible_role = Some(accessible_role);
         self
     }
 }

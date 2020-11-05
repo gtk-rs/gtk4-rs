@@ -56,6 +56,7 @@ impl Default for Popover {
 #[derive(Clone, Default)]
 pub struct PopoverBuilder {
     autohide: Option<bool>,
+    cascade_popdown: Option<bool>,
     child: Option<Widget>,
     default_widget: Option<Widget>,
     has_arrow: Option<bool>,
@@ -103,6 +104,9 @@ impl PopoverBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autohide) = self.autohide {
             properties.push(("autohide", autohide));
+        }
+        if let Some(ref cascade_popdown) = self.cascade_popdown {
+            properties.push(("cascade-popdown", cascade_popdown));
         }
         if let Some(ref child) = self.child {
             properties.push(("child", child));
@@ -221,6 +225,11 @@ impl PopoverBuilder {
 
     pub fn autohide(mut self, autohide: bool) -> Self {
         self.autohide = Some(autohide);
+        self
+    }
+
+    pub fn cascade_popdown(mut self, cascade_popdown: bool) -> Self {
+        self.cascade_popdown = Some(cascade_popdown);
         self
     }
 
@@ -410,6 +419,8 @@ pub const NONE_POPOVER: Option<&Popover> = None;
 pub trait PopoverExt: 'static {
     fn get_autohide(&self) -> bool;
 
+    fn get_cascade_popdown(&self) -> bool;
+
     fn get_child(&self) -> Option<Widget>;
 
     fn get_has_arrow(&self) -> bool;
@@ -427,6 +438,8 @@ pub trait PopoverExt: 'static {
     fn popup(&self);
 
     fn set_autohide(&self, autohide: bool);
+
+    fn set_cascade_popdown(&self, cascade_popdown: bool);
 
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
@@ -452,6 +465,11 @@ pub trait PopoverExt: 'static {
 
     fn connect_property_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    fn connect_property_cascade_popdown_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
+
     fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
@@ -475,6 +493,14 @@ impl<O: IsA<Popover>> PopoverExt for O {
     fn get_autohide(&self) -> bool {
         unsafe {
             from_glib(gtk_sys::gtk_popover_get_autohide(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_cascade_popdown(&self) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_get_cascade_popdown(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -557,6 +583,15 @@ impl<O: IsA<Popover>> PopoverExt for O {
     fn set_autohide(&self, autohide: bool) {
         unsafe {
             gtk_sys::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.to_glib());
+        }
+    }
+
+    fn set_cascade_popdown(&self, cascade_popdown: bool) {
+        unsafe {
+            gtk_sys::gtk_popover_set_cascade_popdown(
+                self.as_ref().to_glib_none().0,
+                cascade_popdown.to_glib(),
+            );
         }
     }
 
@@ -700,6 +735,33 @@ impl<O: IsA<Popover>> PopoverExt for O {
                 b"notify::autohide\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_autohide_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_cascade_popdown_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_cascade_popdown_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut gtk_sys::GtkPopover,
+            _param_spec: glib_sys::gpointer,
+            f: glib_sys::gpointer,
+        ) where
+            P: IsA<Popover>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Popover::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::cascade-popdown\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_cascade_popdown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
