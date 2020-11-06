@@ -73,7 +73,14 @@ jobs:
   checker:
     name: gtk-rs checker
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        crate:
+          - gdk4
+          - gsk4
+          - gtk4
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
           repository: gtk-rs/checker
@@ -81,5 +88,9 @@ jobs:
           path: checker
       - working-directory: checker
         run: cargo build --release
-      - run: "./checker/target/release/checker ."
-      - run: "./checker/check_init_asserts"
+      - run: cargo run -- ../${{matrix.crate}}
+        working-directory: checker
+      - run: cargo run -- ../${{matrix.crate}}/sys
+        working-directory: checker
+      - run: ./check_init_asserts ../${{matrix.crate}}
+        working-directory: checker
