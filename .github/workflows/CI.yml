@@ -60,6 +60,25 @@ jobs:
           command: fmt
           args: --all -- --check
 
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/bilelmoussaoui/gtk4
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add clippy
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -- -D warnings
+
   regen_check:
     name: regen checker
     runs-on: ubuntu-latest
