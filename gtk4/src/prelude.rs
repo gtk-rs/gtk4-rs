@@ -12,6 +12,7 @@ pub use color_chooser::ColorChooserExtManual;
 pub use combo_box::ComboBoxExtManual;
 pub use dialog::DialogExtManual;
 pub use editable::EditableExtManual;
+pub use entry::EntryExtManual;
 pub use entry_buffer::EntryBufferExtManual;
 pub use entry_completion::EntryCompletionExtManual;
 pub use im_context_simple::IMContextSimpleExtManual;

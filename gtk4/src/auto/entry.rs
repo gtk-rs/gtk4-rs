@@ -788,8 +788,6 @@ pub trait EntryExt: 'static {
 
     fn get_input_purpose(&self) -> InputPurpose;
 
-    fn get_invisible_char(&self) -> Option<char>;
-
     fn get_max_length(&self) -> i32;
 
     fn get_overwrite_mode(&self) -> bool;
@@ -1299,15 +1297,6 @@ impl<O: IsA<Entry>> EntryExt for O {
             from_glib(gtk_sys::gtk_entry_get_input_purpose(
                 self.as_ref().to_glib_none().0,
             ))
-        }
-    }
-
-    fn get_invisible_char(&self) -> Option<char> {
-        unsafe {
-            std::convert::TryFrom::try_from(gtk_sys::gtk_entry_get_invisible_char(
-                self.as_ref().to_glib_none().0,
-            ))
-            .expect("conversion from an invalid Unicode value attempted")
         }
     }
 
