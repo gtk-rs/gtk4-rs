@@ -11,7 +11,7 @@ use Buildable;
 use Sorter;
 
 glib_wrapper! {
-    pub struct MultiSorter(Object<gtk_sys::GtkMultiSorter, gtk_sys::GtkMultiSorterClass, MultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
+    pub struct MultiSorter(Object<gtk_sys::GtkMultiSorter, gtk_sys::GtkMultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_multi_sorter_get_type(),

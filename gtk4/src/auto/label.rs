@@ -36,7 +36,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Label(Object<gtk_sys::GtkLabel, LabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Label(Object<gtk_sys::GtkLabel>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_label_get_type(),

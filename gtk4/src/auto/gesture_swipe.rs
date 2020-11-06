@@ -19,7 +19,7 @@ use Gesture;
 use GestureSingle;
 
 glib_wrapper! {
-    pub struct GestureSwipe(Object<gtk_sys::GtkGestureSwipe, gtk_sys::GtkGestureSwipeClass, GestureSwipeClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureSwipe(Object<gtk_sys::GtkGestureSwipe, gtk_sys::GtkGestureSwipeClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_swipe_get_type(),

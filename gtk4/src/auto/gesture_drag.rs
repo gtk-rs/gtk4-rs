@@ -19,7 +19,7 @@ use Gesture;
 use GestureSingle;
 
 glib_wrapper! {
-    pub struct GestureDrag(Object<gtk_sys::GtkGestureDrag, gtk_sys::GtkGestureDragClass, GestureDragClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureDrag(Object<gtk_sys::GtkGestureDrag, gtk_sys::GtkGestureDragClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_drag_get_type(),

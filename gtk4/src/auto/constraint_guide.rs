@@ -21,7 +21,7 @@ use ConstraintStrength;
 use ConstraintTarget;
 
 glib_wrapper! {
-    pub struct ConstraintGuide(Object<gtk_sys::GtkConstraintGuide, gtk_sys::GtkConstraintGuideClass, ConstraintGuideClass>) @implements ConstraintTarget;
+    pub struct ConstraintGuide(Object<gtk_sys::GtkConstraintGuide, gtk_sys::GtkConstraintGuideClass>) @implements ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_constraint_guide_get_type(),

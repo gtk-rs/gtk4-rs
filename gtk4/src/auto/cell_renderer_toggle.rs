@@ -23,7 +23,7 @@ use CellRendererMode;
 use TreePath;
 
 glib_wrapper! {
-    pub struct CellRendererToggle(Object<gtk_sys::GtkCellRendererToggle, CellRendererToggleClass>) @extends CellRenderer;
+    pub struct CellRendererToggle(Object<gtk_sys::GtkCellRendererToggle>) @extends CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_toggle_get_type(),

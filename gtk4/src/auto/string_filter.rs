@@ -19,7 +19,7 @@ use Filter;
 use StringFilterMatchMode;
 
 glib_wrapper! {
-    pub struct StringFilter(Object<gtk_sys::GtkStringFilter, gtk_sys::GtkStringFilterClass, StringFilterClass>) @extends Filter;
+    pub struct StringFilter(Object<gtk_sys::GtkStringFilter, gtk_sys::GtkStringFilterClass>) @extends Filter;
 
     match fn {
         get_type => || gtk_sys::gtk_string_filter_get_type(),

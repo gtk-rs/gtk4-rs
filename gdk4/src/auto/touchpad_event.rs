@@ -10,7 +10,7 @@ use Event;
 use TouchpadGesturePhase;
 
 glib_wrapper! {
-    pub struct TouchpadEvent(Object<gdk_sys::GdkTouchpadEvent, TouchpadEventClass>) @extends Event;
+    pub struct TouchpadEvent(Object<gdk_sys::GdkTouchpadEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_touchpad_event_get_type(),

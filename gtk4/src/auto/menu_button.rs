@@ -30,7 +30,7 @@ use Popover;
 use Widget;
 
 glib_wrapper! {
-    pub struct MenuButton(Object<gtk_sys::GtkMenuButton, MenuButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct MenuButton(Object<gtk_sys::GtkMenuButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_menu_button_get_type(),

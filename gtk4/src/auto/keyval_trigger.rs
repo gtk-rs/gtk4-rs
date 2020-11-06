@@ -12,7 +12,7 @@ use std::fmt;
 use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct KeyvalTrigger(Object<gtk_sys::GtkKeyvalTrigger, gtk_sys::GtkKeyvalTriggerClass, KeyvalTriggerClass>) @extends ShortcutTrigger;
+    pub struct KeyvalTrigger(Object<gtk_sys::GtkKeyvalTrigger, gtk_sys::GtkKeyvalTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_keyval_trigger_get_type(),

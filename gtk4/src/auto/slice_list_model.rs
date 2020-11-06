@@ -17,7 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct SliceListModel(Object<gtk_sys::GtkSliceListModel, gtk_sys::GtkSliceListModelClass, SliceListModelClass>) @implements gio::ListModel;
+    pub struct SliceListModel(Object<gtk_sys::GtkSliceListModel, gtk_sys::GtkSliceListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_slice_list_model_get_type(),

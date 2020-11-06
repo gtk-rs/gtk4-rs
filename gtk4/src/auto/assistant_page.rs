@@ -22,7 +22,7 @@ use AssistantPageType;
 use Widget;
 
 glib_wrapper! {
-    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage, AssistantPageClass>);
+    pub struct AssistantPage(Object<gtk_sys::GtkAssistantPage>);
 
     match fn {
         get_type => || gtk_sys::gtk_assistant_page_get_type(),

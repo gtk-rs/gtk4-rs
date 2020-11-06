@@ -16,7 +16,7 @@ use TreePath;
 use TreeSortable;
 
 glib_wrapper! {
-    pub struct TreeModelSort(Object<gtk_sys::GtkTreeModelSort, gtk_sys::GtkTreeModelSortClass, TreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
+    pub struct TreeModelSort(Object<gtk_sys::GtkTreeModelSort, gtk_sys::GtkTreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
 
     match fn {
         get_type => || gtk_sys::gtk_tree_model_sort_get_type(),

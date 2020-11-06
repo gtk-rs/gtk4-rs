@@ -9,7 +9,7 @@ use std::fmt;
 use Renderer;
 
 glib_wrapper! {
-    pub struct CairoRenderer(Object<gsk_sys::GskCairoRenderer, gsk_sys::GskCairoRendererClass, CairoRendererClass>) @extends Renderer;
+    pub struct CairoRenderer(Object<gsk_sys::GskCairoRenderer, gsk_sys::GskCairoRendererClass>) @extends Renderer;
 
     match fn {
         get_type => || gsk_sys::gsk_cairo_renderer_get_type(),

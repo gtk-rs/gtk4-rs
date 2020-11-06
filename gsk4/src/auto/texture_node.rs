@@ -11,7 +11,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct TextureNode(Object<gsk_sys::GskTextureNode, TextureNodeClass>) @extends RenderNode;
+    pub struct TextureNode(Object<gsk_sys::GskTextureNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_texture_node_get_type(),

@@ -14,7 +14,7 @@ use ConstraintRelation;
 use ConstraintTarget;
 
 glib_wrapper! {
-    pub struct Constraint(Object<gtk_sys::GtkConstraint, gtk_sys::GtkConstraintClass, ConstraintClass>);
+    pub struct Constraint(Object<gtk_sys::GtkConstraint, gtk_sys::GtkConstraintClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_constraint_get_type(),

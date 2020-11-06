@@ -18,7 +18,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct WidgetPaintable(Object<gtk_sys::GtkWidgetPaintable, gtk_sys::GtkWidgetPaintableClass, WidgetPaintableClass>) @implements gdk::Paintable;
+    pub struct WidgetPaintable(Object<gtk_sys::GtkWidgetPaintable, gtk_sys::GtkWidgetPaintableClass>) @implements gdk::Paintable;
 
     match fn {
         get_type => || gtk_sys::gtk_widget_paintable_get_type(),

@@ -29,7 +29,7 @@ use TreePath;
 use Widget;
 
 glib_wrapper! {
-    pub struct CellRenderer(Object<gtk_sys::GtkCellRenderer, gtk_sys::GtkCellRendererClass, CellRendererClass>);
+    pub struct CellRenderer(Object<gtk_sys::GtkCellRenderer, gtk_sys::GtkCellRendererClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_get_type(),

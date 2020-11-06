@@ -27,7 +27,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar, HeaderBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_header_bar_get_type(),

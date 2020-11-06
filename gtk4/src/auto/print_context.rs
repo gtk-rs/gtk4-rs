@@ -11,7 +11,7 @@ use std::mem;
 use PageSetup;
 
 glib_wrapper! {
-    pub struct PrintContext(Object<gtk_sys::GtkPrintContext, PrintContextClass>);
+    pub struct PrintContext(Object<gtk_sys::GtkPrintContext>);
 
     match fn {
         get_type => || gtk_sys::gtk_print_context_get_type(),

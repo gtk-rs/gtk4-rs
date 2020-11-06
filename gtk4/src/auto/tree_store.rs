@@ -14,7 +14,7 @@ use TreeModel;
 use TreeSortable;
 
 glib_wrapper! {
-    pub struct TreeStore(Object<gtk_sys::GtkTreeStore, gtk_sys::GtkTreeStoreClass, TreeStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
+    pub struct TreeStore(Object<gtk_sys::GtkTreeStore, gtk_sys::GtkTreeStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
 
     match fn {
         get_type => || gtk_sys::gtk_tree_store_get_type(),

@@ -17,7 +17,7 @@ use std::mem::transmute;
 use EventController;
 
 glib_wrapper! {
-    pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass, EventControllerLegacyClass>) @extends EventController;
+    pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_event_controller_legacy_get_type(),

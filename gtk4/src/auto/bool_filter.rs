@@ -17,7 +17,7 @@ use std::mem::transmute;
 use Filter;
 
 glib_wrapper! {
-    pub struct BoolFilter(Object<gtk_sys::GtkBoolFilter, gtk_sys::GtkBoolFilterClass, BoolFilterClass>) @extends Filter;
+    pub struct BoolFilter(Object<gtk_sys::GtkBoolFilter, gtk_sys::GtkBoolFilterClass>) @extends Filter;
 
     match fn {
         get_type => || gtk_sys::gtk_bool_filter_get_type(),

@@ -21,7 +21,7 @@ use PrintQuality;
 use Unit;
 
 glib_wrapper! {
-    pub struct PrintSettings(Object<gtk_sys::GtkPrintSettings, PrintSettingsClass>);
+    pub struct PrintSettings(Object<gtk_sys::GtkPrintSettings>);
 
     match fn {
         get_type => || gtk_sys::gtk_print_settings_get_type(),

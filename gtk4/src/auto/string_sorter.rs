@@ -17,7 +17,7 @@ use std::mem::transmute;
 use Sorter;
 
 glib_wrapper! {
-    pub struct StringSorter(Object<gtk_sys::GtkStringSorter, gtk_sys::GtkStringSorterClass, StringSorterClass>) @extends Sorter;
+    pub struct StringSorter(Object<gtk_sys::GtkStringSorter, gtk_sys::GtkStringSorterClass>) @extends Sorter;
 
     match fn {
         get_type => || gtk_sys::gtk_string_sorter_get_type(),

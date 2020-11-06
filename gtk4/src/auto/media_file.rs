@@ -17,7 +17,7 @@ use std::mem::transmute;
 use MediaStream;
 
 glib_wrapper! {
-    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass, MediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
+    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
 
     match fn {
         get_type => || gtk_sys::gtk_media_file_get_type(),

@@ -16,7 +16,7 @@ use FrameClockPhase;
 use FrameTimings;
 
 glib_wrapper! {
-    pub struct FrameClock(Object<gdk_sys::GdkFrameClock, gdk_sys::GdkFrameClockClass, FrameClockClass>);
+    pub struct FrameClock(Object<gdk_sys::GdkFrameClock, gdk_sys::GdkFrameClockClass>);
 
     match fn {
         get_type => || gdk_sys::gdk_frame_clock_get_type(),

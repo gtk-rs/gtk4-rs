@@ -10,7 +10,7 @@ use Event;
 use ScrollDirection;
 
 glib_wrapper! {
-    pub struct ScrollEvent(Object<gdk_sys::GdkScrollEvent, ScrollEventClass>) @extends Event;
+    pub struct ScrollEvent(Object<gdk_sys::GdkScrollEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_scroll_event_get_type(),

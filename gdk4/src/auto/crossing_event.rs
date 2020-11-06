@@ -10,7 +10,7 @@ use Event;
 use NotifyType;
 
 glib_wrapper! {
-    pub struct CrossingEvent(Object<gdk_sys::GdkCrossingEvent, CrossingEventClass>) @extends Event;
+    pub struct CrossingEvent(Object<gdk_sys::GdkCrossingEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_crossing_event_get_type(),

@@ -20,7 +20,7 @@ use LayoutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct FixedLayoutChild(Object<gtk_sys::GtkFixedLayoutChild, gtk_sys::GtkFixedLayoutChildClass, FixedLayoutChildClass>) @extends LayoutChild;
+    pub struct FixedLayoutChild(Object<gtk_sys::GtkFixedLayoutChild, gtk_sys::GtkFixedLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_fixed_layout_child_get_type(),

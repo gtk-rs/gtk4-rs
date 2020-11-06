@@ -18,7 +18,7 @@ use std::mem::transmute;
 use SelectionModel;
 
 glib_wrapper! {
-    pub struct NoSelection(Object<gtk_sys::GtkNoSelection, gtk_sys::GtkNoSelectionClass, NoSelectionClass>) @implements gio::ListModel, SelectionModel;
+    pub struct NoSelection(Object<gtk_sys::GtkNoSelection, gtk_sys::GtkNoSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
         get_type => || gtk_sys::gtk_no_selection_get_type(),

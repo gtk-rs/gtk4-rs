@@ -9,7 +9,7 @@ use std::fmt;
 use Window;
 
 glib_wrapper! {
-    pub struct WindowGroup(Object<gtk_sys::GtkWindowGroup, gtk_sys::GtkWindowGroupClass, WindowGroupClass>);
+    pub struct WindowGroup(Object<gtk_sys::GtkWindowGroup, gtk_sys::GtkWindowGroupClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_window_group_get_type(),

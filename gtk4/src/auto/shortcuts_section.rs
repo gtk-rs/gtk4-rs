@@ -33,7 +33,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ShortcutsSection(Object<gtk_sys::GtkShortcutsSection, gtk_sys::GtkShortcutsSectionClass, ShortcutsSectionClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct ShortcutsSection(Object<gtk_sys::GtkShortcutsSection, gtk_sys::GtkShortcutsSectionClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcuts_section_get_type(),

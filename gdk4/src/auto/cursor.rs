@@ -13,7 +13,7 @@ use std::fmt;
 use Texture;
 
 glib_wrapper! {
-    pub struct Cursor(Object<gdk_sys::GdkCursor, CursorClass>);
+    pub struct Cursor(Object<gdk_sys::GdkCursor>);
 
     match fn {
         get_type => || gdk_sys::gdk_cursor_get_type(),

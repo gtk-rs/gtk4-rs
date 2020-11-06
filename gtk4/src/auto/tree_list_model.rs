@@ -19,7 +19,7 @@ use std::mem::transmute;
 use TreeListRow;
 
 glib_wrapper! {
-    pub struct TreeListModel(Object<gtk_sys::GtkTreeListModel, gtk_sys::GtkTreeListModelClass, TreeListModelClass>) @implements gio::ListModel;
+    pub struct TreeListModel(Object<gtk_sys::GtkTreeListModel, gtk_sys::GtkTreeListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_tree_list_model_get_type(),

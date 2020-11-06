@@ -9,7 +9,7 @@ use std::fmt;
 use Renderer;
 
 glib_wrapper! {
-    pub struct VulkanRenderer(Object<gsk_sys::GskVulkanRenderer, gsk_sys::GskVulkanRendererClass, VulkanRendererClass>) @extends Renderer;
+    pub struct VulkanRenderer(Object<gsk_sys::GskVulkanRenderer, gsk_sys::GskVulkanRendererClass>) @extends Renderer;
 
     match fn {
         get_type => || gsk_sys::gsk_vulkan_renderer_get_type(),

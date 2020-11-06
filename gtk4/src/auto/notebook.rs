@@ -38,7 +38,7 @@ use PositionType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Notebook(Object<gtk_sys::GtkNotebook, NotebookClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Notebook(Object<gtk_sys::GtkNotebook>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_notebook_get_type(),

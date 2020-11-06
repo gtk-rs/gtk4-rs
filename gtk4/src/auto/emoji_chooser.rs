@@ -23,7 +23,7 @@ use ShortcutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct EmojiChooser(Object<gtk_sys::GtkEmojiChooser, gtk_sys::GtkEmojiChooserClass, EmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
+    pub struct EmojiChooser(Object<gtk_sys::GtkEmojiChooser, gtk_sys::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_emoji_chooser_get_type(),

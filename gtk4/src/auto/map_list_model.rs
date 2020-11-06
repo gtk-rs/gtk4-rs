@@ -20,7 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct MapListModel(Object<gtk_sys::GtkMapListModel, gtk_sys::GtkMapListModelClass, MapListModelClass>) @implements gio::ListModel;
+    pub struct MapListModel(Object<gtk_sys::GtkMapListModel, gtk_sys::GtkMapListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_map_list_model_get_type(),

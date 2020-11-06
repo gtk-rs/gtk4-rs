@@ -9,7 +9,7 @@ use Event;
 use Surface;
 
 glib_wrapper! {
-    pub struct GrabBrokenEvent(Object<gdk_sys::GdkGrabBrokenEvent, GrabBrokenEventClass>) @extends Event;
+    pub struct GrabBrokenEvent(Object<gdk_sys::GdkGrabBrokenEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_grab_broken_event_get_type(),

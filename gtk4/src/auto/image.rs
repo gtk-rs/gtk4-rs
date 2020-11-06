@@ -35,7 +35,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Image(Object<gtk_sys::GtkImage, ImageClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Image(Object<gtk_sys::GtkImage>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_image_get_type(),

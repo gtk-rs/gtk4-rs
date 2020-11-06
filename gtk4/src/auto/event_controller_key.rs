@@ -21,7 +21,7 @@ use IMContext;
 use Widget;
 
 glib_wrapper! {
-    pub struct EventControllerKey(Object<gtk_sys::GtkEventControllerKey, gtk_sys::GtkEventControllerKeyClass, EventControllerKeyClass>) @extends EventController;
+    pub struct EventControllerKey(Object<gtk_sys::GtkEventControllerKey, gtk_sys::GtkEventControllerKeyClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_event_controller_key_get_type(),

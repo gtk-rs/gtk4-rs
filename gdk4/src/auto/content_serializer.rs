@@ -10,7 +10,7 @@ use glib::GString;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ContentSerializer(Object<gdk_sys::GdkContentSerializer, ContentSerializerClass>);
+    pub struct ContentSerializer(Object<gdk_sys::GdkContentSerializer>);
 
     match fn {
         get_type => || gdk_sys::gdk_content_serializer_get_type(),

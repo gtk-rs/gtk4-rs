@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Scrollbar(Object<gtk_sys::GtkScrollbar, ScrollbarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct Scrollbar(Object<gtk_sys::GtkScrollbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_scrollbar_get_type(),

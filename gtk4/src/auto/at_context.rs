@@ -20,7 +20,7 @@ use Accessible;
 use AccessibleRole;
 
 glib_wrapper! {
-    pub struct ATContext(Object<gtk_sys::GtkATContext, gtk_sys::GtkATContextClass, ATContextClass>);
+    pub struct ATContext(Object<gtk_sys::GtkATContext, gtk_sys::GtkATContextClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_at_context_get_type(),

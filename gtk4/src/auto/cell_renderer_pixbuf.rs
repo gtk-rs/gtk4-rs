@@ -27,7 +27,7 @@ use CellRendererMode;
 use IconSize;
 
 glib_wrapper! {
-    pub struct CellRendererPixbuf(Object<gtk_sys::GtkCellRendererPixbuf, CellRendererPixbufClass>) @extends CellRenderer;
+    pub struct CellRendererPixbuf(Object<gtk_sys::GtkCellRendererPixbuf>) @extends CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_pixbuf_get_type(),

@@ -26,7 +26,7 @@ use CellRendererMode;
 use CellRendererText;
 
 glib_wrapper! {
-    pub struct CellRendererSpin(Object<gtk_sys::GtkCellRendererSpin, CellRendererSpinClass>) @extends CellRendererText, CellRenderer;
+    pub struct CellRendererSpin(Object<gtk_sys::GtkCellRendererSpin>) @extends CellRendererText, CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_spin_get_type(),

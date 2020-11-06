@@ -22,7 +22,7 @@ use PropagationLimit;
 use PropagationPhase;
 
 glib_wrapper! {
-    pub struct GestureLongPress(Object<gtk_sys::GtkGestureLongPress, gtk_sys::GtkGestureLongPressClass, GestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureLongPress(Object<gtk_sys::GtkGestureLongPress, gtk_sys::GtkGestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_long_press_get_type(),

@@ -27,7 +27,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ShortcutLabel(Object<gtk_sys::GtkShortcutLabel, gtk_sys::GtkShortcutLabelClass, ShortcutLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct ShortcutLabel(Object<gtk_sys::GtkShortcutLabel, gtk_sys::GtkShortcutLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcut_label_get_type(),

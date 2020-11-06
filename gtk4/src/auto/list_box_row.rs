@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListBoxRow(Object<gtk_sys::GtkListBoxRow, gtk_sys::GtkListBoxRowClass, ListBoxRowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct ListBoxRow(Object<gtk_sys::GtkListBoxRow, gtk_sys::GtkListBoxRowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_list_box_row_get_type(),

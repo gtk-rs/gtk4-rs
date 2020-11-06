@@ -18,7 +18,7 @@ use std::mem::transmute;
 use Sorter;
 
 glib_wrapper! {
-    pub struct SortListModel(Object<gtk_sys::GtkSortListModel, gtk_sys::GtkSortListModelClass, SortListModelClass>) @implements gio::ListModel;
+    pub struct SortListModel(Object<gtk_sys::GtkSortListModel, gtk_sys::GtkSortListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_sort_list_model_get_type(),

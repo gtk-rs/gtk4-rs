@@ -32,7 +32,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct LockButton(Object<gtk_sys::GtkLockButton, LockButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct LockButton(Object<gtk_sys::GtkLockButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_lock_button_get_type(),

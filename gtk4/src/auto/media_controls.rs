@@ -26,7 +26,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct MediaControls(Object<gtk_sys::GtkMediaControls, gtk_sys::GtkMediaControlsClass, MediaControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct MediaControls(Object<gtk_sys::GtkMediaControls, gtk_sys::GtkMediaControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_media_controls_get_type(),

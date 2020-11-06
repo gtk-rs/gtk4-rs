@@ -12,7 +12,7 @@ use std::fmt;
 use ShortcutAction;
 
 glib_wrapper! {
-    pub struct SignalAction(Object<gtk_sys::GtkSignalAction, gtk_sys::GtkSignalActionClass, SignalActionClass>) @extends ShortcutAction;
+    pub struct SignalAction(Object<gtk_sys::GtkSignalAction, gtk_sys::GtkSignalActionClass>) @extends ShortcutAction;
 
     match fn {
         get_type => || gtk_sys::gtk_signal_action_get_type(),

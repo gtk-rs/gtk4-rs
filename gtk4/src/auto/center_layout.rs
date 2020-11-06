@@ -13,7 +13,7 @@ use Orientation;
 use Widget;
 
 glib_wrapper! {
-    pub struct CenterLayout(Object<gtk_sys::GtkCenterLayout, gtk_sys::GtkCenterLayoutClass, CenterLayoutClass>) @extends LayoutManager;
+    pub struct CenterLayout(Object<gtk_sys::GtkCenterLayout, gtk_sys::GtkCenterLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_center_layout_get_type(),

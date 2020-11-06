@@ -10,7 +10,7 @@ use BlendMode;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct BlendNode(Object<gsk_sys::GskBlendNode, BlendNodeClass>) @extends RenderNode;
+    pub struct BlendNode(Object<gsk_sys::GskBlendNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_blend_node_get_type(),

@@ -29,7 +29,7 @@ use Seat;
 use Surface;
 
 glib_wrapper! {
-    pub struct Display(Object<gdk_sys::GdkDisplay, DisplayClass>);
+    pub struct Display(Object<gdk_sys::GdkDisplay>);
 
     match fn {
         get_type => || gdk_sys::gdk_display_get_type(),

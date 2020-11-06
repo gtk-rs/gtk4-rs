@@ -8,7 +8,7 @@ use std::fmt;
 use LayoutChild;
 
 glib_wrapper! {
-    pub struct ConstraintLayoutChild(Object<gtk_sys::GtkConstraintLayoutChild, gtk_sys::GtkConstraintLayoutChildClass, ConstraintLayoutChildClass>) @extends LayoutChild;
+    pub struct ConstraintLayoutChild(Object<gtk_sys::GtkConstraintLayoutChild, gtk_sys::GtkConstraintLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_constraint_layout_child_get_type(),

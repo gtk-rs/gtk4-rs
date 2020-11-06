@@ -12,7 +12,7 @@ use std::fmt;
 use ShortcutAction;
 
 glib_wrapper! {
-    pub struct NamedAction(Object<gtk_sys::GtkNamedAction, gtk_sys::GtkNamedActionClass, NamedActionClass>) @extends ShortcutAction;
+    pub struct NamedAction(Object<gtk_sys::GtkNamedAction, gtk_sys::GtkNamedActionClass>) @extends ShortcutAction;
 
     match fn {
         get_type => || gtk_sys::gtk_named_action_get_type(),

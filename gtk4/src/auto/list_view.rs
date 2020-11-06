@@ -35,7 +35,7 @@ use SelectionModel;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListView(Object<gtk_sys::GtkListView, gtk_sys::GtkListViewClass, ListViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+    pub struct ListView(Object<gtk_sys::GtkListView, gtk_sys::GtkListViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_list_view_get_type(),

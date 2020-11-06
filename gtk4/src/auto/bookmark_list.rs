@@ -20,7 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct BookmarkList(Object<gtk_sys::GtkBookmarkList, gtk_sys::GtkBookmarkListClass, BookmarkListClass>) @implements gio::ListModel;
+    pub struct BookmarkList(Object<gtk_sys::GtkBookmarkList, gtk_sys::GtkBookmarkListClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_bookmark_list_get_type(),

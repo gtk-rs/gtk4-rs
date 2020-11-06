@@ -13,7 +13,7 @@ use std::fmt;
 use Display;
 
 glib_wrapper! {
-    pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext, AppLaunchContextClass>) @extends gio::AppLaunchContext;
+    pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext>) @extends gio::AppLaunchContext;
 
     match fn {
         get_type => || gdk_sys::gdk_app_launch_context_get_type(),

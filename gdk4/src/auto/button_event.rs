@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct ButtonEvent(Object<gdk_sys::GdkButtonEvent, ButtonEventClass>) @extends Event;
+    pub struct ButtonEvent(Object<gdk_sys::GdkButtonEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_button_event_get_type(),

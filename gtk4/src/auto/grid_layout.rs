@@ -18,7 +18,7 @@ use BaselinePosition;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct GridLayout(Object<gtk_sys::GtkGridLayout, gtk_sys::GtkGridLayoutClass, GridLayoutClass>) @extends LayoutManager;
+    pub struct GridLayout(Object<gtk_sys::GtkGridLayout, gtk_sys::GtkGridLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_grid_layout_get_type(),

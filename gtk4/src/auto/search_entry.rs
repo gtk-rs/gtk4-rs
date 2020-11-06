@@ -32,7 +32,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct SearchEntry(Object<gtk_sys::GtkSearchEntry, SearchEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+    pub struct SearchEntry(Object<gtk_sys::GtkSearchEntry>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_search_entry_get_type(),

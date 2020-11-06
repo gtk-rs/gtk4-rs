@@ -27,7 +27,7 @@ use CellRendererText;
 use TreePath;
 
 glib_wrapper! {
-    pub struct CellRendererAccel(Object<gtk_sys::GtkCellRendererAccel, CellRendererAccelClass>) @extends CellRendererText, CellRenderer;
+    pub struct CellRendererAccel(Object<gtk_sys::GtkCellRendererAccel>) @extends CellRendererText, CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_accel_get_type(),

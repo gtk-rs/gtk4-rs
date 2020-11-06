@@ -34,7 +34,7 @@ use ScrollType;
 use Widget;
 
 glib_wrapper! {
-    pub struct Range(Object<gtk_sys::GtkRange, gtk_sys::GtkRangeClass, RangeClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct Range(Object<gtk_sys::GtkRange, gtk_sys::GtkRangeClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_range_get_type(),

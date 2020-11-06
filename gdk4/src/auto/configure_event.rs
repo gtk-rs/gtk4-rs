@@ -9,7 +9,7 @@ use std::mem;
 use Event;
 
 glib_wrapper! {
-    pub struct ConfigureEvent(Object<gdk_sys::GdkConfigureEvent, ConfigureEventClass>) @extends Event;
+    pub struct ConfigureEvent(Object<gdk_sys::GdkConfigureEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_configure_event_get_type(),

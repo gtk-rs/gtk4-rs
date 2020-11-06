@@ -26,7 +26,7 @@ use TreeListRow;
 use Widget;
 
 glib_wrapper! {
-    pub struct TreeExpander(Object<gtk_sys::GtkTreeExpander, gtk_sys::GtkTreeExpanderClass, TreeExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct TreeExpander(Object<gtk_sys::GtkTreeExpander, gtk_sys::GtkTreeExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_tree_expander_get_type(),

@@ -24,7 +24,7 @@ use TextDirection;
 use WrapMode;
 
 glib_wrapper! {
-    pub struct TextTag(Object<gtk_sys::GtkTextTag, gtk_sys::GtkTextTagClass, TextTagClass>);
+    pub struct TextTag(Object<gtk_sys::GtkTextTag, gtk_sys::GtkTextTagClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_text_tag_get_type(),

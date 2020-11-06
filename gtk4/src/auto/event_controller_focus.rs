@@ -18,7 +18,7 @@ use std::mem::transmute;
 use EventController;
 
 glib_wrapper! {
-    pub struct EventControllerFocus(Object<gtk_sys::GtkEventControllerFocus, gtk_sys::GtkEventControllerFocusClass, EventControllerFocusClass>) @extends EventController;
+    pub struct EventControllerFocus(Object<gtk_sys::GtkEventControllerFocus, gtk_sys::GtkEventControllerFocusClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_event_controller_focus_get_type(),

@@ -35,7 +35,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Text(Object<gtk_sys::GtkText, TextClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+    pub struct Text(Object<gtk_sys::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_text_get_type(),

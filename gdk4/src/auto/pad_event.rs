@@ -9,7 +9,7 @@ use std::mem;
 use Event;
 
 glib_wrapper! {
-    pub struct PadEvent(Object<gdk_sys::GdkPadEvent, PadEventClass>) @extends Event;
+    pub struct PadEvent(Object<gdk_sys::GdkPadEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_pad_event_get_type(),

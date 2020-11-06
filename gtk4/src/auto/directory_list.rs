@@ -21,7 +21,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct DirectoryList(Object<gtk_sys::GtkDirectoryList, gtk_sys::GtkDirectoryListClass, DirectoryListClass>) @implements gio::ListModel;
+    pub struct DirectoryList(Object<gtk_sys::GtkDirectoryList, gtk_sys::GtkDirectoryListClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_directory_list_get_type(),

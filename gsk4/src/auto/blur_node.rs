@@ -9,7 +9,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct BlurNode(Object<gsk_sys::GskBlurNode, BlurNodeClass>) @extends RenderNode;
+    pub struct BlurNode(Object<gsk_sys::GskBlurNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_blur_node_get_type(),

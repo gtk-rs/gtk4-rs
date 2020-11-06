@@ -29,7 +29,7 @@ use Display;
 use Texture;
 
 glib_wrapper! {
-    pub struct Clipboard(Object<gdk_sys::GdkClipboard, ClipboardClass>);
+    pub struct Clipboard(Object<gdk_sys::GdkClipboard>);
 
     match fn {
         get_type => || gdk_sys::gdk_clipboard_get_type(),

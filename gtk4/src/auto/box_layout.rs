@@ -20,7 +20,7 @@ use Orientable;
 use Orientation;
 
 glib_wrapper! {
-    pub struct BoxLayout(Object<gtk_sys::GtkBoxLayout, gtk_sys::GtkBoxLayoutClass, BoxLayoutClass>) @extends LayoutManager, @implements Orientable;
+    pub struct BoxLayout(Object<gtk_sys::GtkBoxLayout, gtk_sys::GtkBoxLayoutClass>) @extends LayoutManager, @implements Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_box_layout_get_type(),

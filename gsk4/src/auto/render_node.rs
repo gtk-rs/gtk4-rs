@@ -13,7 +13,7 @@ use std::ptr;
 use RenderNodeType;
 
 glib_wrapper! {
-    pub struct RenderNode(Object<gsk_sys::GskRenderNode, RenderNodeClass>);
+    pub struct RenderNode(Object<gsk_sys::GskRenderNode>);
 
     match fn {
         get_type => || gsk_sys::gsk_render_node_get_type(),

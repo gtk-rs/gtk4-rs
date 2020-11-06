@@ -22,7 +22,7 @@ use NativeDialog;
 use Window;
 
 glib_wrapper! {
-    pub struct FileChooserNative(Object<gtk_sys::GtkFileChooserNative, gtk_sys::GtkFileChooserNativeClass, FileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
+    pub struct FileChooserNative(Object<gtk_sys::GtkFileChooserNative, gtk_sys::GtkFileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_file_chooser_native_get_type(),

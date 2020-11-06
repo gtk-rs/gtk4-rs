@@ -9,7 +9,7 @@ use std::fmt;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct OverlayLayout(Object<gtk_sys::GtkOverlayLayout, gtk_sys::GtkOverlayLayoutClass, OverlayLayoutClass>) @extends LayoutManager;
+    pub struct OverlayLayout(Object<gtk_sys::GtkOverlayLayout, gtk_sys::GtkOverlayLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_overlay_layout_get_type(),

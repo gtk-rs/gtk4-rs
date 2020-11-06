@@ -17,7 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass, FlattenListModelClass>) @implements gio::ListModel;
+    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_flatten_list_model_get_type(),

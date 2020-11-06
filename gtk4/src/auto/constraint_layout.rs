@@ -14,7 +14,7 @@ use ConstraintGuide;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct ConstraintLayout(Object<gtk_sys::GtkConstraintLayout, gtk_sys::GtkConstraintLayoutClass, ConstraintLayoutClass>) @extends LayoutManager, @implements Buildable;
+    pub struct ConstraintLayout(Object<gtk_sys::GtkConstraintLayout, gtk_sys::GtkConstraintLayoutClass>) @extends LayoutManager, @implements Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_constraint_layout_get_type(),

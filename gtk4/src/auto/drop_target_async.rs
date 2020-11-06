@@ -22,7 +22,7 @@ use PropagationLimit;
 use PropagationPhase;
 
 glib_wrapper! {
-    pub struct DropTargetAsync(Object<gtk_sys::GtkDropTargetAsync, gtk_sys::GtkDropTargetAsyncClass, DropTargetAsyncClass>) @extends EventController;
+    pub struct DropTargetAsync(Object<gtk_sys::GtkDropTargetAsync, gtk_sys::GtkDropTargetAsyncClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_drop_target_async_get_type(),

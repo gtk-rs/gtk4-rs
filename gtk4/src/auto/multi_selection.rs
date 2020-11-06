@@ -18,7 +18,7 @@ use std::mem::transmute;
 use SelectionModel;
 
 glib_wrapper! {
-    pub struct MultiSelection(Object<gtk_sys::GtkMultiSelection, gtk_sys::GtkMultiSelectionClass, MultiSelectionClass>) @implements gio::ListModel, SelectionModel;
+    pub struct MultiSelection(Object<gtk_sys::GtkMultiSelection, gtk_sys::GtkMultiSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
         get_type => || gtk_sys::gtk_multi_selection_get_type(),

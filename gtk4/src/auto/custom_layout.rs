@@ -8,7 +8,7 @@ use std::fmt;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct CustomLayout(Object<gtk_sys::GtkCustomLayout, gtk_sys::GtkCustomLayoutClass, CustomLayoutClass>) @extends LayoutManager;
+    pub struct CustomLayout(Object<gtk_sys::GtkCustomLayout, gtk_sys::GtkCustomLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_custom_layout_get_type(),

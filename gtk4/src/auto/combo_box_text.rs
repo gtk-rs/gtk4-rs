@@ -26,7 +26,7 @@ use TreeModel;
 use Widget;
 
 glib_wrapper! {
-    pub struct ComboBoxText(Object<gtk_sys::GtkComboBoxText, ComboBoxTextClass>) @extends ComboBox, Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
+    pub struct ComboBoxText(Object<gtk_sys::GtkComboBoxText>) @extends ComboBox, Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
         get_type => || gtk_sys::gtk_combo_box_text_get_type(),

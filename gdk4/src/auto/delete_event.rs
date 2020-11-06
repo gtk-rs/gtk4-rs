@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct DeleteEvent(Object<gdk_sys::GdkDeleteEvent, DeleteEventClass>) @extends Event;
+    pub struct DeleteEvent(Object<gdk_sys::GdkDeleteEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_delete_event_get_type(),

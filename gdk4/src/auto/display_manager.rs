@@ -17,7 +17,7 @@ use std::mem::transmute;
 use Display;
 
 glib_wrapper! {
-    pub struct DisplayManager(Object<gdk_sys::GdkDisplayManager, DisplayManagerClass>);
+    pub struct DisplayManager(Object<gdk_sys::GdkDisplayManager>);
 
     match fn {
         get_type => || gdk_sys::gdk_display_manager_get_type(),

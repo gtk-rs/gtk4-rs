@@ -12,7 +12,7 @@ use AxisFlags;
 use DeviceToolType;
 
 glib_wrapper! {
-    pub struct DeviceTool(Object<gdk_sys::GdkDeviceTool, DeviceToolClass>);
+    pub struct DeviceTool(Object<gdk_sys::GdkDeviceTool>);
 
     match fn {
         get_type => || gdk_sys::gdk_device_tool_get_type(),

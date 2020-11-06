@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct TouchEvent(Object<gdk_sys::GdkTouchEvent, TouchEventClass>) @extends Event;
+    pub struct TouchEvent(Object<gdk_sys::GdkTouchEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_touch_event_get_type(),

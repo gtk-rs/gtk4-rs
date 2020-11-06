@@ -26,7 +26,7 @@ use TextTag;
 use TextTagTable;
 
 glib_wrapper! {
-    pub struct TextBuffer(Object<gtk_sys::GtkTextBuffer, gtk_sys::GtkTextBufferClass, TextBufferClass>);
+    pub struct TextBuffer(Object<gtk_sys::GtkTextBuffer, gtk_sys::GtkTextBufferClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_text_buffer_get_type(),

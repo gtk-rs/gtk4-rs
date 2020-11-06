@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct FocusEvent(Object<gdk_sys::GdkFocusEvent, FocusEventClass>) @extends Event;
+    pub struct FocusEvent(Object<gdk_sys::GdkFocusEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_focus_event_get_type(),

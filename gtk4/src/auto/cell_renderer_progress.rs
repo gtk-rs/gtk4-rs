@@ -24,7 +24,7 @@ use Orientable;
 use Orientation;
 
 glib_wrapper! {
-    pub struct CellRendererProgress(Object<gtk_sys::GtkCellRendererProgress, CellRendererProgressClass>) @extends CellRenderer, @implements Orientable;
+    pub struct CellRendererProgress(Object<gtk_sys::GtkCellRendererProgress>) @extends CellRenderer, @implements Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_progress_get_type(),

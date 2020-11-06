@@ -21,7 +21,7 @@ use std::mem::transmute;
 use Window;
 
 glib_wrapper! {
-    pub struct MountOperation(Object<gtk_sys::GtkMountOperation, gtk_sys::GtkMountOperationClass, MountOperationClass>) @extends gio::MountOperation;
+    pub struct MountOperation(Object<gtk_sys::GtkMountOperation, gtk_sys::GtkMountOperationClass>) @extends gio::MountOperation;
 
     match fn {
         get_type => || gtk_sys::gtk_mount_operation_get_type(),

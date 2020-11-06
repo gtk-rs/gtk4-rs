@@ -11,7 +11,7 @@ use std::ptr;
 use DrawContext;
 
 glib_wrapper! {
-    pub struct GLContext(Object<gdk_sys::GdkGLContext, GLContextClass>) @extends DrawContext;
+    pub struct GLContext(Object<gdk_sys::GdkGLContext>) @extends DrawContext;
 
     match fn {
         get_type => || gdk_sys::gdk_gl_context_get_type(),

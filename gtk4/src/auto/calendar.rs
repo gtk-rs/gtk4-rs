@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Calendar(Object<gtk_sys::GtkCalendar, CalendarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Calendar(Object<gtk_sys::GtkCalendar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_calendar_get_type(),

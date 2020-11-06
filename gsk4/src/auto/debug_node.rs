@@ -10,7 +10,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct DebugNode(Object<gsk_sys::GskDebugNode, DebugNodeClass>) @extends RenderNode;
+    pub struct DebugNode(Object<gsk_sys::GskDebugNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_debug_node_get_type(),

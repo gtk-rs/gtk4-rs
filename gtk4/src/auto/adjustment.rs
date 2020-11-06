@@ -16,7 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct Adjustment(Object<gtk_sys::GtkAdjustment, gtk_sys::GtkAdjustmentClass, AdjustmentClass>);
+    pub struct Adjustment(Object<gtk_sys::GtkAdjustment, gtk_sys::GtkAdjustmentClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_adjustment_get_type(),

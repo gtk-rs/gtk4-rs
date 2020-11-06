@@ -10,7 +10,7 @@ use RenderNode;
 use Transform;
 
 glib_wrapper! {
-    pub struct TransformNode(Object<gsk_sys::GskTransformNode, TransformNodeClass>) @extends RenderNode;
+    pub struct TransformNode(Object<gsk_sys::GskTransformNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_transform_node_get_type(),

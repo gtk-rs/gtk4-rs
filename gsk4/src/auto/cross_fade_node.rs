@@ -9,7 +9,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct CrossFadeNode(Object<gsk_sys::GskCrossFadeNode, CrossFadeNodeClass>) @extends RenderNode;
+    pub struct CrossFadeNode(Object<gsk_sys::GskCrossFadeNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_cross_fade_node_get_type(),
