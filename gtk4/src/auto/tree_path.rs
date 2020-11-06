@@ -46,7 +46,7 @@ impl TreePath {
         }
     }
 
-    pub fn from_string(path: &str) -> TreePath {
+    pub fn from_string(path: &str) -> Option<TreePath> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(gtk_sys::gtk_tree_path_new_from_string(

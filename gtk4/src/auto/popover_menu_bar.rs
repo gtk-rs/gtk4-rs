@@ -45,10 +45,29 @@ impl PopoverMenuBar {
         }
     }
 
+    pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_menu_bar_add_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                id.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(gtk_sys::gtk_popover_menu_bar_get_menu_model(
                 self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_menu_bar_remove_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
             ))
         }
     }

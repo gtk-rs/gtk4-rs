@@ -67,10 +67,29 @@ impl PopoverMenu {
         }
     }
 
+    pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_menu_add_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
+                id.to_glib_none().0,
+            ))
+        }
+    }
+
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(gtk_sys::gtk_popover_menu_get_menu_model(
                 self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
+        unsafe {
+            from_glib(gtk_sys::gtk_popover_menu_remove_child(
+                self.to_glib_none().0,
+                child.as_ref().to_glib_none().0,
             ))
         }
     }
@@ -164,6 +183,7 @@ pub struct PopoverMenuBuilder {
     menu_model: Option<gio::MenuModel>,
     visible_submenu: Option<String>,
     autohide: Option<bool>,
+    cascade_popdown: Option<bool>,
     child: Option<Widget>,
     default_widget: Option<Widget>,
     has_arrow: Option<bool>,
@@ -217,6 +237,9 @@ impl PopoverMenuBuilder {
         }
         if let Some(ref autohide) = self.autohide {
             properties.push(("autohide", autohide));
+        }
+        if let Some(ref cascade_popdown) = self.cascade_popdown {
+            properties.push(("cascade-popdown", cascade_popdown));
         }
         if let Some(ref child) = self.child {
             properties.push(("child", child));
@@ -345,6 +368,11 @@ impl PopoverMenuBuilder {
 
     pub fn autohide(mut self, autohide: bool) -> Self {
         self.autohide = Some(autohide);
+        self
+    }
+
+    pub fn cascade_popdown(mut self, cascade_popdown: bool) -> Self {
+        self.cascade_popdown = Some(cascade_popdown);
         self
     }
 

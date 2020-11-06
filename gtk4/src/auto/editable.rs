@@ -50,6 +50,8 @@ pub trait EditableExt: 'static {
 
     fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<GString>;
 
+    fn get_delegate(&self) -> Option<Editable>;
+
     fn get_editable(&self) -> bool;
 
     fn get_enable_undo(&self) -> bool;
@@ -151,6 +153,14 @@ impl<O: IsA<Editable>> EditableExt for O {
                 self.as_ref().to_glib_none().0,
                 start_pos,
                 end_pos,
+            ))
+        }
+    }
+
+    fn get_delegate(&self) -> Option<Editable> {
+        unsafe {
+            from_glib_none(gtk_sys::gtk_editable_get_delegate(
+                self.as_ref().to_glib_none().0,
             ))
         }
     }

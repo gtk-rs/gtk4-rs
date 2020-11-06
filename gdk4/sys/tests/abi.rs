@@ -414,13 +414,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GdkPoint",
-        Layout {
-            size: size_of::<GdkPoint>(),
-            alignment: align_of::<GdkPoint>(),
-        },
-    ),
-    (
         "GdkRGBA",
         Layout {
             size: size_of::<GdkRGBA>(),

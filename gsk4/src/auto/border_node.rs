@@ -18,7 +18,7 @@ glib_wrapper! {
 }
 
 impl BorderNode {
-    //pub fn new(outline: &RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 81 }; 4) -> BorderNode {
+    //pub fn new(outline: &RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 80 }; 4) -> BorderNode {
     //    unsafe { TODO: call gsk_sys:gsk_border_node_new() }
     //}
 
