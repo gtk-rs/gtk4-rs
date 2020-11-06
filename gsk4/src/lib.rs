@@ -2,11 +2,14 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+#![allow(clippy::let_unit_value)]
+#![allow(clippy::new_without_default)]
+#![allow(clippy::type_complexity)]
+#![allow(clippy::trivially_copy_pass_by_ref)]
+#![allow(clippy::derive_hash_xor_eq)]
+#![allow(clippy::needless_doctest_main)]
+#![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
-#![cfg_attr(feature = "cargo-clippy", allow(cast_ptr_alignment))]
-#![cfg_attr(feature = "cargo-clippy", allow(transmute_int_to_char))]
-#![cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ptr))]
-#![cfg_attr(feature = "cargo-clippy", allow(trivially_copy_pass_by_ref))]
 
 extern crate gdk4_sys as gdk_sys;
 extern crate glib_sys;
@@ -34,9 +37,14 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ref))]
-#[cfg_attr(feature = "cargo-clippy", allow(type_complexity))]
-#[cfg_attr(feature = "cargo-clippy", allow(unreadable_literal))]
+#[allow(clippy::match_same_arms)]
+#[allow(clippy::let_and_return)]
+#[allow(clippy::many_single_char_names)]
+#[allow(clippy::wrong_self_convention)]
+#[allow(clippy::cognitive_complexity)]
+#[allow(clippy::clone_on_copy)]
+#[allow(clippy::cast_ptr_alignment)]
+#[allow(unused_imports)]
 mod auto;
 
 pub mod prelude;

@@ -51,7 +51,7 @@ impl CssLocation {
 #[doc(hidden)]
 impl FromGlibPtrNone<*const gtk_sys::GtkCssLocation> for CssLocation {
     unsafe fn from_glib_none(ptr: *const gtk_sys::GtkCssLocation) -> Self {
-        CssLocation((*ptr).clone())
+        CssLocation(*ptr)
     }
 }
 

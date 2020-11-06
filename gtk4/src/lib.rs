@@ -4,12 +4,13 @@
 
 // TODO: Introduction
 
-#![cfg_attr(feature = "cargo-clippy", allow(let_unit_value))]
-#![cfg_attr(feature = "cargo-clippy", allow(new_without_default))]
-#![cfg_attr(feature = "cargo-clippy", allow(type_complexity))]
-#![cfg_attr(feature = "cargo-clippy", allow(transmute_ptr_to_ref))]
-#![cfg_attr(feature = "cargo-clippy", allow(trivially_copy_pass_by_ref))]
-#![cfg_attr(feature = "cargo-clippy", allow(derive_hash_xor_eq))]
+#![allow(clippy::let_unit_value)]
+#![allow(clippy::new_without_default)]
+#![allow(clippy::type_complexity)]
+#![allow(clippy::trivially_copy_pass_by_ref)]
+#![allow(clippy::derive_hash_xor_eq)]
+#![allow(clippy::needless_doctest_main)]
+#![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
 extern crate libc;
@@ -51,11 +52,14 @@ pub const STYLE_PROVIDER_PRIORITY_USER: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORI
 #[macro_use]
 mod rt;
 
-#[cfg_attr(feature = "cargo-clippy", allow(too_many_arguments))]
-#[cfg_attr(feature = "cargo-clippy", allow(match_same_arms))]
-#[cfg_attr(feature = "cargo-clippy", allow(let_and_return))]
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
-#[cfg_attr(feature = "cargo-clippy", allow(wrong_self_convention))]
+#[allow(clippy::match_same_arms)]
+#[allow(clippy::let_and_return)]
+#[allow(clippy::many_single_char_names)]
+#[allow(clippy::wrong_self_convention)]
+#[allow(clippy::cognitive_complexity)]
+#[allow(clippy::clone_on_copy)]
+#[allow(clippy::many_single_char_names)]
+#[allow(clippy::cast_ptr_alignment)]
 #[allow(unused_imports)]
 mod auto;
 
