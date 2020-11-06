@@ -79,7 +79,8 @@ impl TextIter {
             ch: u32,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
-            let ch = from_glib(ch);
+            let ch = std::convert::TryFrom::try_from(ch)
+                .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             let res = (*callback)(ch);
             res.to_glib()
@@ -328,7 +329,8 @@ impl TextIter {
             ch: u32,
             user_data: glib_sys::gpointer,
         ) -> glib_sys::gboolean {
-            let ch = from_glib(ch);
+            let ch = std::convert::TryFrom::try_from(ch)
+                .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             let res = (*callback)(ch);
             res.to_glib()
@@ -504,7 +506,10 @@ impl TextIter {
     }
 
     pub fn get_char(&self) -> char {
-        unsafe { from_glib(gtk_sys::gtk_text_iter_get_char(self.to_glib_none().0)) }
+        unsafe {
+            std::convert::TryFrom::try_from(gtk_sys::gtk_text_iter_get_char(self.to_glib_none().0))
+                .expect("conversion from an invalid Unicode value attempted")
+        }
     }
 
     pub fn get_chars_in_line(&self) -> i32 {

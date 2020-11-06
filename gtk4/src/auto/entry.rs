@@ -1304,9 +1304,10 @@ impl<O: IsA<Entry>> EntryExt for O {
 
     fn get_invisible_char(&self) -> Option<char> {
         unsafe {
-            from_glib(gtk_sys::gtk_entry_get_invisible_char(
+            std::convert::TryFrom::try_from(gtk_sys::gtk_entry_get_invisible_char(
                 self.as_ref().to_glib_none().0,
             ))
+            .expect("conversion from an invalid Unicode value attempted")
         }
     }
 
