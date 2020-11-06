@@ -60,6 +60,16 @@ jobs:
           command: fmt
           args: --all -- --check
 
+  regen_check:
+    name: regen checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - run: python3 generator.py --yes
+      - run: git diff -R --exit-code
+
   checker:
     name: gtk-rs checker
     runs-on: ubuntu-latest
