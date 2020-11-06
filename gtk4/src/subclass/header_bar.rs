@@ -1,13 +1,13 @@
 use glib::subclass::prelude::*;
 
 use super::widget::WidgetImpl;
-use HeaderBarClass;
-use WidgetClass;
+use HeaderBar;
+use Widget;
 
 pub trait HeaderBarImpl: WidgetImpl {}
 
-unsafe impl<T: ObjectSubclass + HeaderBarImpl> IsSubclassable<T> for HeaderBarClass {
-    fn override_vfuncs(&mut self) {
-        <WidgetClass as IsSubclassable<T>>::override_vfuncs(self);
+unsafe impl<T: HeaderBarImpl> IsSubclassable<T> for HeaderBar {
+    fn override_vfuncs(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::override_vfuncs(class);
     }
 }

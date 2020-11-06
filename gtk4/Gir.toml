@@ -848,14 +848,14 @@ manual_traits = ["EditableExtManual"]
 name = "Gtk.Entry"
 status = "generate"
 generate_builder = true
+manual_traits = ["EntryExtManual"]
     [[object.function]]
     name = "get_buffer"
         [object.function.return]
         nullable = false
     [[object.function]]
     name = "get_invisible_char"
-        [object.function.return]
-        nullable = true
+    manual = true
     [[object.function]]
     name = "set_invisible_char"
         [[object.function.parameter]]

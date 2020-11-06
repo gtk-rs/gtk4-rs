@@ -80,6 +80,7 @@ mod constraint_guide;
 mod css_location;
 mod dialog;
 mod editable;
+mod entry;
 mod entry_buffer;
 mod entry_completion;
 mod file_chooser_dialog;

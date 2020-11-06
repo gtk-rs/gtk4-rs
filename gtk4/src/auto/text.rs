@@ -95,7 +95,12 @@ impl Text {
     }
 
     pub fn get_invisible_char(&self) -> char {
-        unsafe { from_glib(gtk_sys::gtk_text_get_invisible_char(self.to_glib_none().0)) }
+        unsafe {
+            std::convert::TryFrom::try_from(gtk_sys::gtk_text_get_invisible_char(
+                self.to_glib_none().0,
+            ))
+            .expect("conversion from an invalid Unicode value attempted")
+        }
     }
 
     pub fn get_max_length(&self) -> i32 {
