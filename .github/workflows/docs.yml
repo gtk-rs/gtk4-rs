@@ -24,14 +24,16 @@ jobs:
       - run: "./gir/target/release/gir -c ./gsk4/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc"
       - run: "./gir/target/release/gir -c ./gdk4/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc"
       - run: "./gir/target/release/gir -c ./gtk4/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc"
+      - run: "./gir/target/release/gir -c ./gdk4-x11/Gir.toml -d ./gir-files --doc-target-path docs.md -m doc"
       - run: cargo install rustdoc-stripper
       - run: rustdoc-stripper -g -o ./gdk4/docs.md
       - run: rustdoc-stripper -g -o ./gsk4/docs.md
       - run: rustdoc-stripper -g -o ./gtk4/docs.md
+      - run: rustdoc-stripper -g -o ./gdk4-x11/docs.md
       - uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: -p gtk4 -p gtk4-sys -p gsk4 -p gsk4-sys -p gdk4 -p gdk4-sys --no-deps
+          args: --workspace --no-deps
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2

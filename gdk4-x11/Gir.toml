@@ -1,0 +1,74 @@
+[options]
+girs_dir = "gir-files"
+library = "GdkX11"
+version = "4.0"
+min_cfg_version = "3.94"
+target_path = "."
+work_mode = "normal"
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+
+generate = [
+    "GdkX11.X11AppLaunchContext",
+    "GdkX11.X11DeviceType",
+    "GdkX11.X11Drag",
+    "GdkX11.X11GLContext",
+    "GdkX11.X11Monitor",
+    "GdkX11.X11Surface",
+]
+
+manual = [
+    "Gdk.AppLaunchContext",
+    "Gdk.Cursor",
+    "Gdk.Device",
+    "Gdk.Display",
+    "Gdk.Drag",
+    "Gdk.GLContext",
+    "Gdk.DrawContext",
+    "Gdk.Monitor",
+    "Gdk.Rectangle",
+    "Gdk.Surface",
+    "Gio.AppLaunchContext",
+    "xlib.Atom",
+    "xlib.Cursor",
+    "xlib.Display",
+    "xlib.Screen",
+    "xlib.Window",
+    "xlib.XID",
+]
+
+[[object]]
+name = "GdkX11.X11DeviceManagerXI2"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "GdkX11.X11DeviceXI2"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "GdkX11.X11Display"
+status = "generate"
+    [[object.function]]
+    name = "get_xdisplay"
+    # x11 types don't implement glib traits
+    manual = true
+    [[object.function]]
+    name = "get_xscreen"
+    # x11 types don't implement glib traits
+    manual = true
+    [[object.function]]
+    name = "text_property_to_text_list"
+    # requires a manual implementation
+    manual = true
+
+
+[[object]]
+name = "GdkX11.X11Screen"
+status = "generate"
+    [[object.function]]
+    name = "get_xscreen"
+    # x11 types don't implement glib traits
+    manual = true

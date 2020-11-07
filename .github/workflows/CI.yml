@@ -36,6 +36,11 @@ jobs:
         run: xvfb-run --auto-servernum cargo test --manifest-path gdk4/Cargo.toml --all-features
       - name: "gdk4: build"
         run: cargo build --manifest-path gdk4/Cargo.toml --all-features
+      # gdk4-x11
+      - name: "gdk4-x11: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gdk4-x11/Cargo.toml --all-features
+      - name: "gdk4-x11: build"
+        run: cargo build --manifest-path gdk4-x11/Cargo.toml --all-features
       # gtk4
       - name: "gtk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gtk4/Cargo.toml --all-features
@@ -96,6 +101,7 @@ jobs:
       matrix:
         crate:
           - gdk4
+          - gdk4-x11
           - gsk4
           - gtk4
     steps:
