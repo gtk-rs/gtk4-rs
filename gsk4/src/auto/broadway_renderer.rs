@@ -9,7 +9,7 @@ use std::fmt;
 use Renderer;
 
 glib_wrapper! {
-    pub struct BroadwayRenderer(Object<gsk_sys::GskBroadwayRenderer, gsk_sys::GskBroadwayRendererClass, BroadwayRendererClass>) @extends Renderer;
+    pub struct BroadwayRenderer(Object<gsk_sys::GskBroadwayRenderer, gsk_sys::GskBroadwayRendererClass>) @extends Renderer;
 
     match fn {
         get_type => || gsk_sys::gsk_broadway_renderer_get_type(),

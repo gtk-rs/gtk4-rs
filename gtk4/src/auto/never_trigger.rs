@@ -8,7 +8,7 @@ use std::fmt;
 use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct NeverTrigger(Object<gtk_sys::GtkNeverTrigger, gtk_sys::GtkNeverTriggerClass, NeverTriggerClass>) @extends ShortcutTrigger;
+    pub struct NeverTrigger(Object<gtk_sys::GtkNeverTrigger, gtk_sys::GtkNeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_never_trigger_get_type(),

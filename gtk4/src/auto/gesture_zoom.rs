@@ -17,7 +17,7 @@ use EventController;
 use Gesture;
 
 glib_wrapper! {
-    pub struct GestureZoom(Object<gtk_sys::GtkGestureZoom, gtk_sys::GtkGestureZoomClass, GestureZoomClass>) @extends Gesture, EventController;
+    pub struct GestureZoom(Object<gtk_sys::GtkGestureZoom, gtk_sys::GtkGestureZoomClass>) @extends Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_zoom_get_type(),

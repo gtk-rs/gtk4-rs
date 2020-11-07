@@ -16,7 +16,7 @@ use Buildable;
 use TextTag;
 
 glib_wrapper! {
-    pub struct TextTagTable(Object<gtk_sys::GtkTextTagTable, TextTagTableClass>) @implements Buildable;
+    pub struct TextTagTable(Object<gtk_sys::GtkTextTagTable>) @implements Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_text_tag_table_get_type(),

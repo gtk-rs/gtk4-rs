@@ -8,7 +8,7 @@ use std::fmt;
 use ShortcutAction;
 
 glib_wrapper! {
-    pub struct NothingAction(Object<gtk_sys::GtkNothingAction, gtk_sys::GtkNothingActionClass, NothingActionClass>) @extends ShortcutAction;
+    pub struct NothingAction(Object<gtk_sys::GtkNothingAction, gtk_sys::GtkNothingActionClass>) @extends ShortcutAction;
 
     match fn {
         get_type => || gtk_sys::gtk_nothing_action_get_type(),

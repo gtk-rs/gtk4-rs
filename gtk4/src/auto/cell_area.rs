@@ -33,7 +33,7 @@ use TreePath;
 use Widget;
 
 glib_wrapper! {
-    pub struct CellArea(Object<gtk_sys::GtkCellArea, gtk_sys::GtkCellAreaClass, CellAreaClass>) @implements Buildable, CellLayout;
+    pub struct CellArea(Object<gtk_sys::GtkCellArea, gtk_sys::GtkCellAreaClass>) @implements Buildable, CellLayout;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_area_get_type(),

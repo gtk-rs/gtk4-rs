@@ -26,7 +26,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct AspectFrame(Object<gtk_sys::GtkAspectFrame, AspectFrameClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct AspectFrame(Object<gtk_sys::GtkAspectFrame>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_aspect_frame_get_type(),

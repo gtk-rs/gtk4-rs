@@ -19,7 +19,7 @@ use LayoutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct OverlayLayoutChild(Object<gtk_sys::GtkOverlayLayoutChild, gtk_sys::GtkOverlayLayoutChildClass, OverlayLayoutChildClass>) @extends LayoutChild;
+    pub struct OverlayLayoutChild(Object<gtk_sys::GtkOverlayLayoutChild, gtk_sys::GtkOverlayLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_overlay_layout_child_get_type(),

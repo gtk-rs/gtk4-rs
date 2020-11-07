@@ -8,7 +8,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct ContainerNode(Object<gsk_sys::GskContainerNode, ContainerNodeClass>) @extends RenderNode;
+    pub struct ContainerNode(Object<gsk_sys::GskContainerNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_container_node_get_type(),

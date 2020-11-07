@@ -9,7 +9,7 @@ use std::fmt;
 use Sorter;
 
 glib_wrapper! {
-    pub struct CustomSorter(Object<gtk_sys::GtkCustomSorter, gtk_sys::GtkCustomSorterClass, CustomSorterClass>) @extends Sorter;
+    pub struct CustomSorter(Object<gtk_sys::GtkCustomSorter, gtk_sys::GtkCustomSorterClass>) @extends Sorter;
 
     match fn {
         get_type => || gtk_sys::gtk_custom_sorter_get_type(),

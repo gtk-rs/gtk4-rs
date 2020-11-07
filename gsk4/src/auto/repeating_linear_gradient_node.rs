@@ -8,7 +8,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct RepeatingLinearGradientNode(Object<gsk_sys::GskRepeatingLinearGradientNode, RepeatingLinearGradientNodeClass>) @extends RenderNode;
+    pub struct RepeatingLinearGradientNode(Object<gsk_sys::GskRepeatingLinearGradientNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_repeating_linear_gradient_node_get_type(),

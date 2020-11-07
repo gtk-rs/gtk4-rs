@@ -17,7 +17,7 @@ use std;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct IconPaintable(Object<gtk_sys::GtkIconPaintable, IconPaintableClass>) @implements gdk::Paintable;
+    pub struct IconPaintable(Object<gtk_sys::GtkIconPaintable>) @implements gdk::Paintable;
 
     match fn {
         get_type => || gtk_sys::gtk_icon_paintable_get_type(),

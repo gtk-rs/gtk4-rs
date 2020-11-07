@@ -23,7 +23,7 @@ use DragCancelReason;
 use Surface;
 
 glib_wrapper! {
-    pub struct Drag(Object<gdk_sys::GdkDrag, DragClass>);
+    pub struct Drag(Object<gdk_sys::GdkDrag>);
 
     match fn {
         get_type => || gdk_sys::gdk_drag_get_type(),

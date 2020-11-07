@@ -17,7 +17,7 @@ use FilterChange;
 use FilterMatch;
 
 glib_wrapper! {
-    pub struct Filter(Object<gtk_sys::GtkFilter, gtk_sys::GtkFilterClass, FilterClass>);
+    pub struct Filter(Object<gtk_sys::GtkFilter, gtk_sys::GtkFilterClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_filter_get_type(),

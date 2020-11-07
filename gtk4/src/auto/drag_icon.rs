@@ -28,7 +28,7 @@ use Root;
 use Widget;
 
 glib_wrapper! {
-    pub struct DragIcon(Object<gtk_sys::GtkDragIcon, gtk_sys::GtkDragIconClass, DragIconClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root;
+    pub struct DragIcon(Object<gtk_sys::GtkDragIcon, gtk_sys::GtkDragIconClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root;
 
     match fn {
         get_type => || gtk_sys::gtk_drag_icon_get_type(),

@@ -27,7 +27,7 @@ use Shortcut;
 use ShortcutScope;
 
 glib_wrapper! {
-    pub struct ShortcutController(Object<gtk_sys::GtkShortcutController, gtk_sys::GtkShortcutControllerClass, ShortcutControllerClass>) @extends EventController, @implements gio::ListModel, Buildable;
+    pub struct ShortcutController(Object<gtk_sys::GtkShortcutController, gtk_sys::GtkShortcutControllerClass>) @extends EventController, @implements gio::ListModel, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcut_controller_get_type(),

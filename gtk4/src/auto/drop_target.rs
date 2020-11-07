@@ -23,7 +23,7 @@ use PropagationLimit;
 use PropagationPhase;
 
 glib_wrapper! {
-    pub struct DropTarget(Object<gtk_sys::GtkDropTarget, gtk_sys::GtkDropTargetClass, DropTargetClass>) @extends EventController;
+    pub struct DropTarget(Object<gtk_sys::GtkDropTarget, gtk_sys::GtkDropTargetClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_drop_target_get_type(),

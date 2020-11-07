@@ -10,7 +10,7 @@ use std::mem;
 use Widget;
 
 glib_wrapper! {
-    pub struct TextChildAnchor(Object<gtk_sys::GtkTextChildAnchor, gtk_sys::GtkTextChildAnchorClass, TextChildAnchorClass>);
+    pub struct TextChildAnchor(Object<gtk_sys::GtkTextChildAnchor, gtk_sys::GtkTextChildAnchorClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_text_child_anchor_get_type(),

@@ -11,7 +11,7 @@ use std::fmt;
 use IMContext;
 
 glib_wrapper! {
-    pub struct IMMulticontext(Object<gtk_sys::GtkIMMulticontext, gtk_sys::GtkIMMulticontextClass, IMMulticontextClass>) @extends IMContext;
+    pub struct IMMulticontext(Object<gtk_sys::GtkIMMulticontext, gtk_sys::GtkIMMulticontextClass>) @extends IMContext;
 
     match fn {
         get_type => || gtk_sys::gtk_im_multicontext_get_type(),

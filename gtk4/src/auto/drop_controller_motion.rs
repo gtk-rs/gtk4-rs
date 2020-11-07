@@ -20,7 +20,7 @@ use std::mem::transmute;
 use EventController;
 
 glib_wrapper! {
-    pub struct DropControllerMotion(Object<gtk_sys::GtkDropControllerMotion, gtk_sys::GtkDropControllerMotionClass, DropControllerMotionClass>) @extends EventController;
+    pub struct DropControllerMotion(Object<gtk_sys::GtkDropControllerMotion, gtk_sys::GtkDropControllerMotionClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_drop_controller_motion_get_type(),

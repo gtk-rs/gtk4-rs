@@ -28,7 +28,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct DropDown(Object<gtk_sys::GtkDropDown, gtk_sys::GtkDropDownClass, DropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct DropDown(Object<gtk_sys::GtkDropDown, gtk_sys::GtkDropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_drop_down_get_type(),

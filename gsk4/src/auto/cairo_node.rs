@@ -10,7 +10,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct CairoNode(Object<gsk_sys::GskCairoNode, CairoNodeClass>) @extends RenderNode;
+    pub struct CairoNode(Object<gsk_sys::GskCairoNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_cairo_node_get_type(),

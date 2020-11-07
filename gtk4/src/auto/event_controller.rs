@@ -19,7 +19,7 @@ use PropagationPhase;
 use Widget;
 
 glib_wrapper! {
-    pub struct EventController(Object<gtk_sys::GtkEventController, gtk_sys::GtkEventControllerClass, EventControllerClass>);
+    pub struct EventController(Object<gtk_sys::GtkEventController, gtk_sys::GtkEventControllerClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_event_controller_get_type(),

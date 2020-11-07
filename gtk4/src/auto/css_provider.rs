@@ -19,7 +19,7 @@ use CssSection;
 use StyleProvider;
 
 glib_wrapper! {
-    pub struct CssProvider(Object<gtk_sys::GtkCssProvider, gtk_sys::GtkCssProviderClass, CssProviderClass>) @implements StyleProvider;
+    pub struct CssProvider(Object<gtk_sys::GtkCssProvider, gtk_sys::GtkCssProviderClass>) @implements StyleProvider;
 
     match fn {
         get_type => || gtk_sys::gtk_css_provider_get_type(),

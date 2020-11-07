@@ -10,7 +10,7 @@ use RenderNode;
 use RoundedRect;
 
 glib_wrapper! {
-    pub struct RoundedClipNode(Object<gsk_sys::GskRoundedClipNode, RoundedClipNodeClass>) @extends RenderNode;
+    pub struct RoundedClipNode(Object<gsk_sys::GskRoundedClipNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_rounded_clip_node_get_type(),

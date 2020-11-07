@@ -19,7 +19,7 @@ use LayoutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct GridLayoutChild(Object<gtk_sys::GtkGridLayoutChild, gtk_sys::GtkGridLayoutChildClass, GridLayoutChildClass>) @extends LayoutChild;
+    pub struct GridLayoutChild(Object<gtk_sys::GtkGridLayoutChild, gtk_sys::GtkGridLayoutChildClass>) @extends LayoutChild;
 
     match fn {
         get_type => || gtk_sys::gtk_grid_layout_child_get_type(),

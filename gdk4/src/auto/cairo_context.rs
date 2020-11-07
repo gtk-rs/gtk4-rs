@@ -9,7 +9,7 @@ use std::fmt;
 use DrawContext;
 
 glib_wrapper! {
-    pub struct CairoContext(Object<gdk_sys::GdkCairoContext, CairoContextClass>) @extends DrawContext;
+    pub struct CairoContext(Object<gdk_sys::GdkCairoContext>) @extends DrawContext;
 
     match fn {
         get_type => || gdk_sys::gdk_cairo_context_get_type(),

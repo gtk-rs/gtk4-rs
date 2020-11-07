@@ -20,7 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct TreeListRow(Object<gtk_sys::GtkTreeListRow, gtk_sys::GtkTreeListRowClass, TreeListRowClass>);
+    pub struct TreeListRow(Object<gtk_sys::GtkTreeListRow, gtk_sys::GtkTreeListRowClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_tree_list_row_get_type(),

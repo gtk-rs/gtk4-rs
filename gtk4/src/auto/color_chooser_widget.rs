@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ColorChooserWidget(Object<gtk_sys::GtkColorChooserWidget, ColorChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
+    pub struct ColorChooserWidget(Object<gtk_sys::GtkColorChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_color_chooser_widget_get_type(),

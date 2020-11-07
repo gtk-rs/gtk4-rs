@@ -10,7 +10,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct ClipNode(Object<gsk_sys::GskClipNode, ClipNodeClass>) @extends RenderNode;
+    pub struct ClipNode(Object<gsk_sys::GskClipNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_clip_node_get_type(),

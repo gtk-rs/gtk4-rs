@@ -87,6 +87,6 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'stat
     f(
         &Editable::from_glib_borrow(this).unsafe_cast_ref(),
         string,
-        transmute(position),
+        &mut *position,
     );
 }

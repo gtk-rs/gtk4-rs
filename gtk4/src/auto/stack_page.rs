@@ -21,7 +21,7 @@ use AccessibleRole;
 use Widget;
 
 glib_wrapper! {
-    pub struct StackPage(Object<gtk_sys::GtkStackPage, StackPageClass>) @implements Accessible;
+    pub struct StackPage(Object<gtk_sys::GtkStackPage>) @implements Accessible;
 
     match fn {
         get_type => || gtk_sys::gtk_stack_page_get_type(),

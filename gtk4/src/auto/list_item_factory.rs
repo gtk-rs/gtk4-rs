@@ -7,7 +7,7 @@ use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ListItemFactory(Object<gtk_sys::GtkListItemFactory, gtk_sys::GtkListItemFactoryClass, ListItemFactoryClass>);
+    pub struct ListItemFactory(Object<gtk_sys::GtkListItemFactory, gtk_sys::GtkListItemFactoryClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_list_item_factory_get_type(),

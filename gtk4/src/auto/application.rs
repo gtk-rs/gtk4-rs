@@ -22,7 +22,7 @@ use ApplicationInhibitFlags;
 use Window;
 
 glib_wrapper! {
-    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass, ApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
+    pub struct Application(Object<gtk_sys::GtkApplication, gtk_sys::GtkApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
 
     match fn {
         get_type => || gtk_sys::gtk_application_get_type(),

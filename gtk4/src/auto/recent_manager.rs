@@ -23,7 +23,7 @@ use RecentData;
 use RecentInfo;
 
 glib_wrapper! {
-    pub struct RecentManager(Object<gtk_sys::GtkRecentManager, gtk_sys::GtkRecentManagerClass, RecentManagerClass>);
+    pub struct RecentManager(Object<gtk_sys::GtkRecentManager, gtk_sys::GtkRecentManagerClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_recent_manager_get_type(),

@@ -26,7 +26,7 @@ use DragAction;
 use Surface;
 
 glib_wrapper! {
-    pub struct Drop(Object<gdk_sys::GdkDrop, DropClass>);
+    pub struct Drop(Object<gdk_sys::GdkDrop>);
 
     match fn {
         get_type => || gdk_sys::gdk_drop_get_type(),

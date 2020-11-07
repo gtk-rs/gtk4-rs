@@ -7,7 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct Snapshot(Object<gdk_sys::GdkSnapshot, gdk_sys::GdkSnapshotClass, SnapshotClass>);
+    pub struct Snapshot(Object<gdk_sys::GdkSnapshot, gdk_sys::GdkSnapshotClass>);
 
     match fn {
         get_type => || gdk_sys::gdk_snapshot_get_type(),

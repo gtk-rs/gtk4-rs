@@ -10,7 +10,7 @@ use RenderNode;
 use RoundedRect;
 
 glib_wrapper! {
-    pub struct BorderNode(Object<gsk_sys::GskBorderNode, BorderNodeClass>) @extends RenderNode;
+    pub struct BorderNode(Object<gsk_sys::GskBorderNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_border_node_get_type(),

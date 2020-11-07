@@ -22,7 +22,7 @@ use ListItemFactory;
 use Sorter;
 
 glib_wrapper! {
-    pub struct ColumnViewColumn(Object<gtk_sys::GtkColumnViewColumn, gtk_sys::GtkColumnViewColumnClass, ColumnViewColumnClass>);
+    pub struct ColumnViewColumn(Object<gtk_sys::GtkColumnViewColumn, gtk_sys::GtkColumnViewColumnClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_column_view_column_get_type(),

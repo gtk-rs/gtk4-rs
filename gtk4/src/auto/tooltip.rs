@@ -11,7 +11,7 @@ use std::fmt;
 use Widget;
 
 glib_wrapper! {
-    pub struct Tooltip(Object<gtk_sys::GtkTooltip, TooltipClass>);
+    pub struct Tooltip(Object<gtk_sys::GtkTooltip>);
 
     match fn {
         get_type => || gtk_sys::gtk_tooltip_get_type(),

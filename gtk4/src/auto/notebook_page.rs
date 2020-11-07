@@ -21,7 +21,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct NotebookPage(Object<gtk_sys::GtkNotebookPage, NotebookPageClass>);
+    pub struct NotebookPage(Object<gtk_sys::GtkNotebookPage>);
 
     match fn {
         get_type => || gtk_sys::gtk_notebook_page_get_type(),

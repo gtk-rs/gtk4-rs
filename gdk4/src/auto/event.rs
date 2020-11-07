@@ -16,7 +16,7 @@ use Seat;
 use Surface;
 
 glib_wrapper! {
-    pub struct Event(Object<gdk_sys::GdkEvent, EventClass>);
+    pub struct Event(Object<gdk_sys::GdkEvent>);
 
     match fn {
         get_type => || gdk_sys::gdk_event_get_type(),

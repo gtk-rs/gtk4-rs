@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct SearchBar(Object<gtk_sys::GtkSearchBar, SearchBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct SearchBar(Object<gtk_sys::GtkSearchBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_search_bar_get_type(),

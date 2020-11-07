@@ -39,7 +39,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct Assistant(Object<gtk_sys::GtkAssistant, AssistantClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+    pub struct Assistant(Object<gtk_sys::GtkAssistant>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_assistant_get_type(),

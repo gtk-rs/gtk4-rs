@@ -13,7 +13,7 @@ use SizeRequestMode;
 use Widget;
 
 glib_wrapper! {
-    pub struct LayoutManager(Object<gtk_sys::GtkLayoutManager, gtk_sys::GtkLayoutManagerClass, LayoutManagerClass>);
+    pub struct LayoutManager(Object<gtk_sys::GtkLayoutManager, gtk_sys::GtkLayoutManagerClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_layout_manager_get_type(),

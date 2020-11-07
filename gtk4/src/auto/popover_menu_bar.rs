@@ -27,7 +27,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct PopoverMenuBar(Object<gtk_sys::GtkPopoverMenuBar, PopoverMenuBarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct PopoverMenuBar(Object<gtk_sys::GtkPopoverMenuBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_popover_menu_bar_get_type(),

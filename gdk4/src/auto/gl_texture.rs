@@ -9,7 +9,7 @@ use Paintable;
 use Texture;
 
 glib_wrapper! {
-    pub struct GLTexture(Object<gdk_sys::GdkGLTexture, gdk_sys::GdkGLTextureClass, GLTextureClass>) @extends Texture, @implements Paintable;
+    pub struct GLTexture(Object<gdk_sys::GdkGLTexture, gdk_sys::GdkGLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
         get_type => || gdk_sys::gdk_gl_texture_get_type(),

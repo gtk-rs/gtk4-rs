@@ -9,7 +9,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct OpacityNode(Object<gsk_sys::GskOpacityNode, OpacityNodeClass>) @extends RenderNode;
+    pub struct OpacityNode(Object<gsk_sys::GskOpacityNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_opacity_node_get_type(),

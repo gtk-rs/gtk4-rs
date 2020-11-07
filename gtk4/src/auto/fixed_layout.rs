@@ -9,7 +9,7 @@ use std::fmt;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct FixedLayout(Object<gtk_sys::GtkFixedLayout, gtk_sys::GtkFixedLayoutClass, FixedLayoutClass>) @extends LayoutManager;
+    pub struct FixedLayout(Object<gtk_sys::GtkFixedLayout, gtk_sys::GtkFixedLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_fixed_layout_get_type(),

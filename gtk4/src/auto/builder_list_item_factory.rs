@@ -15,7 +15,7 @@ use BuilderScope;
 use ListItemFactory;
 
 glib_wrapper! {
-    pub struct BuilderListItemFactory(Object<gtk_sys::GtkBuilderListItemFactory, gtk_sys::GtkBuilderListItemFactoryClass, BuilderListItemFactoryClass>) @extends ListItemFactory;
+    pub struct BuilderListItemFactory(Object<gtk_sys::GtkBuilderListItemFactory, gtk_sys::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
         get_type => || gtk_sys::gtk_builder_list_item_factory_get_type(),

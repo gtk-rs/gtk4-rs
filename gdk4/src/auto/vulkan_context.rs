@@ -14,7 +14,7 @@ use std::mem::transmute;
 use DrawContext;
 
 glib_wrapper! {
-    pub struct VulkanContext(Object<gdk_sys::GdkVulkanContext, VulkanContextClass>) @extends DrawContext;
+    pub struct VulkanContext(Object<gdk_sys::GdkVulkanContext>) @extends DrawContext;
 
     match fn {
         get_type => || gdk_sys::gdk_vulkan_context_get_type(),

@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct ProximityEvent(Object<gdk_sys::GdkProximityEvent, ProximityEventClass>) @extends Event;
+    pub struct ProximityEvent(Object<gdk_sys::GdkProximityEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_proximity_event_get_type(),

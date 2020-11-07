@@ -8,7 +8,7 @@ use std::fmt;
 use Event;
 
 glib_wrapper! {
-    pub struct MotionEvent(Object<gdk_sys::GdkMotionEvent, MotionEventClass>) @extends Event;
+    pub struct MotionEvent(Object<gdk_sys::GdkMotionEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_motion_event_get_type(),

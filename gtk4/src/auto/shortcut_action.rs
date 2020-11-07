@@ -12,7 +12,7 @@ use ShortcutActionFlags;
 use Widget;
 
 glib_wrapper! {
-    pub struct ShortcutAction(Object<gtk_sys::GtkShortcutAction, gtk_sys::GtkShortcutActionClass, ShortcutActionClass>);
+    pub struct ShortcutAction(Object<gtk_sys::GtkShortcutAction, gtk_sys::GtkShortcutActionClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_shortcut_action_get_type(),

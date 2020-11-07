@@ -33,7 +33,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct PrintOperation(Object<gtk_sys::GtkPrintOperation, gtk_sys::GtkPrintOperationClass, PrintOperationClass>) @implements PrintOperationPreview;
+    pub struct PrintOperation(Object<gtk_sys::GtkPrintOperation, gtk_sys::GtkPrintOperationClass>) @implements PrintOperationPreview;
 
     match fn {
         get_type => || gtk_sys::gtk_print_operation_get_type(),

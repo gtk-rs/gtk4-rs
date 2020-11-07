@@ -18,7 +18,7 @@ use SorterChange;
 use SorterOrder;
 
 glib_wrapper! {
-    pub struct Sorter(Object<gtk_sys::GtkSorter, gtk_sys::GtkSorterClass, SorterClass>);
+    pub struct Sorter(Object<gtk_sys::GtkSorter, gtk_sys::GtkSorterClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_sorter_get_type(),

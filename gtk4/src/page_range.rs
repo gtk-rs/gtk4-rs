@@ -53,7 +53,7 @@ impl FromGlibContainerAsVec<gtk_sys::GtkPageRange, *mut gtk_sys::GtkPageRange> f
 
         let mut res = Vec::with_capacity(num);
         for i in 0..num {
-            res.push(PageRange(ptr::read(ptr.offset(i as isize))));
+            res.push(PageRange(ptr::read(ptr.add(i))));
         }
         res
     }

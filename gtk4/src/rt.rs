@@ -57,6 +57,19 @@ pub fn is_initialized_main_thread() -> bool {
 }
 
 /// Informs this crate that GTK has been initialized and the current thread is the main one.
+///
+/// # Panics
+///
+/// This function will panic if you attempt to initialize GTK from more than
+/// one thread.
+///
+/// # Safety
+///
+/// You must only call this if:
+///
+/// 1. You have initialized the underlying GTK library yourself.
+/// 2. You did 1 on the thread with which you are calling this function
+/// 3. You ensure that this thread is the main thread for the process.
 pub unsafe fn set_initialized() {
     skip_assert_initialized!();
     if is_initialized_main_thread() {

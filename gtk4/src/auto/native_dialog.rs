@@ -19,7 +19,7 @@ use ResponseType;
 use Window;
 
 glib_wrapper! {
-    pub struct NativeDialog(Object<gtk_sys::GtkNativeDialog, gtk_sys::GtkNativeDialogClass, NativeDialogClass>);
+    pub struct NativeDialog(Object<gtk_sys::GtkNativeDialog, gtk_sys::GtkNativeDialogClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_native_dialog_get_type(),

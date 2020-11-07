@@ -25,7 +25,7 @@ use PropagationLimit;
 use PropagationPhase;
 
 glib_wrapper! {
-    pub struct DragSource(Object<gtk_sys::GtkDragSource, gtk_sys::GtkDragSourceClass, DragSourceClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct DragSource(Object<gtk_sys::GtkDragSource, gtk_sys::GtkDragSourceClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_drag_source_get_type(),

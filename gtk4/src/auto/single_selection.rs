@@ -18,7 +18,7 @@ use std::mem::transmute;
 use SelectionModel;
 
 glib_wrapper! {
-    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass, SingleSelectionClass>) @implements gio::ListModel, SelectionModel;
+    pub struct SingleSelection(Object<gtk_sys::GtkSingleSelection, gtk_sys::GtkSingleSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
         get_type => || gtk_sys::gtk_single_selection_get_type(),

@@ -22,7 +22,7 @@ use BuilderClosureFlags;
 use BuilderScope;
 
 glib_wrapper! {
-    pub struct Builder(Object<gtk_sys::GtkBuilder, gtk_sys::GtkBuilderClass, BuilderClass>);
+    pub struct Builder(Object<gtk_sys::GtkBuilder, gtk_sys::GtkBuilderClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_builder_get_type(),

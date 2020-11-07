@@ -10,7 +10,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct ColorMatrixNode(Object<gsk_sys::GskColorMatrixNode, ColorMatrixNodeClass>) @extends RenderNode;
+    pub struct ColorMatrixNode(Object<gsk_sys::GskColorMatrixNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_color_matrix_node_get_type(),

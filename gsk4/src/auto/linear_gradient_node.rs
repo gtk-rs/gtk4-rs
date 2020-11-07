@@ -11,7 +11,7 @@ use ColorStop;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct LinearGradientNode(Object<gsk_sys::GskLinearGradientNode, LinearGradientNodeClass>) @extends RenderNode;
+    pub struct LinearGradientNode(Object<gsk_sys::GskLinearGradientNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_linear_gradient_node_get_type(),

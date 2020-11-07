@@ -9,7 +9,7 @@ use std::fmt;
 use Renderer;
 
 glib_wrapper! {
-    pub struct GLRenderer(Object<gsk_sys::GskGLRenderer, gsk_sys::GskGLRendererClass, GLRendererClass>) @extends Renderer;
+    pub struct GLRenderer(Object<gsk_sys::GskGLRenderer, gsk_sys::GskGLRendererClass>) @extends Renderer;
 
     match fn {
         get_type => || gsk_sys::gsk_gl_renderer_get_type(),

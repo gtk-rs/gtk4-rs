@@ -16,7 +16,7 @@ use ListItem;
 use ListItemFactory;
 
 glib_wrapper! {
-    pub struct SignalListItemFactory(Object<gtk_sys::GtkSignalListItemFactory, gtk_sys::GtkSignalListItemFactoryClass, SignalListItemFactoryClass>) @extends ListItemFactory;
+    pub struct SignalListItemFactory(Object<gtk_sys::GtkSignalListItemFactory, gtk_sys::GtkSignalListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
         get_type => || gtk_sys::gtk_signal_list_item_factory_get_type(),

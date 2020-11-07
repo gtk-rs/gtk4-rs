@@ -23,7 +23,7 @@ use std::ptr;
 use ContentFormats;
 
 glib_wrapper! {
-    pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass, ContentProviderClass>);
+    pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass>);
 
     match fn {
         get_type => || gdk_sys::gdk_content_provider_get_type(),

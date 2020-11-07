@@ -22,7 +22,7 @@ use Rectangle;
 use SubpixelLayout;
 
 glib_wrapper! {
-    pub struct Monitor(Object<gdk_sys::GdkMonitor, gdk_sys::GdkMonitorClass, MonitorClass>);
+    pub struct Monitor(Object<gdk_sys::GdkMonitor, gdk_sys::GdkMonitorClass>);
 
     match fn {
         get_type => || gdk_sys::gdk_monitor_get_type(),

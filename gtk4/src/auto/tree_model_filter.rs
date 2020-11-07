@@ -18,7 +18,7 @@ use TreeModel;
 use TreePath;
 
 glib_wrapper! {
-    pub struct TreeModelFilter(Object<gtk_sys::GtkTreeModelFilter, gtk_sys::GtkTreeModelFilterClass, TreeModelFilterClass>) @implements TreeDragSource, TreeModel;
+    pub struct TreeModelFilter(Object<gtk_sys::GtkTreeModelFilter, gtk_sys::GtkTreeModelFilterClass>) @implements TreeDragSource, TreeModel;
 
     match fn {
         get_type => || gtk_sys::gtk_tree_model_filter_get_type(),

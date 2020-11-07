@@ -10,7 +10,7 @@ use RenderNode;
 use RoundedRect;
 
 glib_wrapper! {
-    pub struct OutsetShadowNode(Object<gsk_sys::GskOutsetShadowNode, OutsetShadowNodeClass>) @extends RenderNode;
+    pub struct OutsetShadowNode(Object<gsk_sys::GskOutsetShadowNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_outset_shadow_node_get_type(),

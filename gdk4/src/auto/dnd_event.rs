@@ -9,7 +9,7 @@ use Drop;
 use Event;
 
 glib_wrapper! {
-    pub struct DNDEvent(Object<gdk_sys::GdkDNDEvent, DNDEventClass>) @extends Event;
+    pub struct DNDEvent(Object<gdk_sys::GdkDNDEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_dnd_event_get_type(),

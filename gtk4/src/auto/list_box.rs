@@ -36,7 +36,7 @@ use SelectionMode;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListBox(Object<gtk_sys::GtkListBox, ListBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct ListBox(Object<gtk_sys::GtkListBox>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_list_box_get_type(),

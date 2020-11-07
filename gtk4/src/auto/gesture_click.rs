@@ -20,7 +20,7 @@ use Gesture;
 use GestureSingle;
 
 glib_wrapper! {
-    pub struct GestureClick(Object<gtk_sys::GtkGestureClick, gtk_sys::GtkGestureClickClass, GestureClickClass>) @extends GestureSingle, Gesture, EventController;
+    pub struct GestureClick(Object<gtk_sys::GtkGestureClick, gtk_sys::GtkGestureClickClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_click_get_type(),

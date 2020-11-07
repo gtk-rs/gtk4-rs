@@ -26,7 +26,7 @@ use IconPaintable;
 use TextDirection;
 
 glib_wrapper! {
-    pub struct IconTheme(Object<gtk_sys::GtkIconTheme, IconThemeClass>);
+    pub struct IconTheme(Object<gtk_sys::GtkIconTheme>);
 
     match fn {
         get_type => || gtk_sys::gtk_icon_theme_get_type(),

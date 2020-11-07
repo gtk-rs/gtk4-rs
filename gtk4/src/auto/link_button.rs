@@ -29,7 +29,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct LinkButton(Object<gtk_sys::GtkLinkButton, LinkButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct LinkButton(Object<gtk_sys::GtkLinkButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_link_button_get_type(),

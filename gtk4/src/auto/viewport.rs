@@ -29,7 +29,7 @@ use ScrollablePolicy;
 use Widget;
 
 glib_wrapper! {
-    pub struct Viewport(Object<gtk_sys::GtkViewport, ViewportClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+    pub struct Viewport(Object<gtk_sys::GtkViewport>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_viewport_get_type(),

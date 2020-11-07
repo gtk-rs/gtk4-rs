@@ -9,7 +9,7 @@ use std::fmt;
 use IMContext;
 
 glib_wrapper! {
-    pub struct IMContextSimple(Object<gtk_sys::GtkIMContextSimple, gtk_sys::GtkIMContextSimpleClass, IMContextSimpleClass>) @extends IMContext;
+    pub struct IMContextSimple(Object<gtk_sys::GtkIMContextSimple, gtk_sys::GtkIMContextSimpleClass>) @extends IMContext;
 
     match fn {
         get_type => || gtk_sys::gtk_im_context_simple_get_type(),

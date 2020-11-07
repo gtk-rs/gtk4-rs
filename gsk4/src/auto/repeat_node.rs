@@ -10,7 +10,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct RepeatNode(Object<gsk_sys::GskRepeatNode, RepeatNodeClass>) @extends RenderNode;
+    pub struct RepeatNode(Object<gsk_sys::GskRepeatNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_repeat_node_get_type(),

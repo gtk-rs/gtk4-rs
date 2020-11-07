@@ -15,7 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib_wrapper! {
-    pub struct StringObject(Object<gtk_sys::GtkStringObject, gtk_sys::GtkStringObjectClass, StringObjectClass>);
+    pub struct StringObject(Object<gtk_sys::GtkStringObject, gtk_sys::GtkStringObjectClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_string_object_get_type(),

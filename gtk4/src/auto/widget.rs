@@ -49,7 +49,7 @@ use TextDirection;
 use Tooltip;
 
 glib_wrapper! {
-    pub struct Widget(Object<gtk_sys::GtkWidget, gtk_sys::GtkWidgetClass, WidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Widget(Object<gtk_sys::GtkWidget, gtk_sys::GtkWidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_widget_get_type(),

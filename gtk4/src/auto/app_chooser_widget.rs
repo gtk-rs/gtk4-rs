@@ -30,7 +30,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct AppChooserWidget(Object<gtk_sys::GtkAppChooserWidget, AppChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
+    pub struct AppChooserWidget(Object<gtk_sys::GtkAppChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_app_chooser_widget_get_type(),

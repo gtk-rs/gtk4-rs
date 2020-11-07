@@ -20,7 +20,7 @@ use Scrollable;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListBase(Object<gtk_sys::GtkListBase, gtk_sys::GtkListBaseClass, ListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+    pub struct ListBase(Object<gtk_sys::GtkListBase, gtk_sys::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_list_base_get_type(),

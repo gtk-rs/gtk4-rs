@@ -11,7 +11,7 @@ use Buildable;
 use Filter;
 
 glib_wrapper! {
-    pub struct MultiFilter(Object<gtk_sys::GtkMultiFilter, gtk_sys::GtkMultiFilterClass, MultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
+    pub struct MultiFilter(Object<gtk_sys::GtkMultiFilter, gtk_sys::GtkMultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_multi_filter_get_type(),

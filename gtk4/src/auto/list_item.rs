@@ -19,7 +19,7 @@ use std::mem::transmute;
 use Widget;
 
 glib_wrapper! {
-    pub struct ListItem(Object<gtk_sys::GtkListItem, gtk_sys::GtkListItemClass, ListItemClass>);
+    pub struct ListItem(Object<gtk_sys::GtkListItem, gtk_sys::GtkListItemClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_list_item_get_type(),

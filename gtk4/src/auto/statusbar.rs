@@ -28,7 +28,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Statusbar(Object<gtk_sys::GtkStatusbar, StatusbarClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Statusbar(Object<gtk_sys::GtkStatusbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_statusbar_get_type(),

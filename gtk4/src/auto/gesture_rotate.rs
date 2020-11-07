@@ -17,7 +17,7 @@ use EventController;
 use Gesture;
 
 glib_wrapper! {
-    pub struct GestureRotate(Object<gtk_sys::GtkGestureRotate, gtk_sys::GtkGestureRotateClass, GestureRotateClass>) @extends Gesture, EventController;
+    pub struct GestureRotate(Object<gtk_sys::GtkGestureRotate, gtk_sys::GtkGestureRotateClass>) @extends Gesture, EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_rotate_get_type(),

@@ -22,7 +22,7 @@ use CellRendererMode;
 use IconSize;
 
 glib_wrapper! {
-    pub struct CellRendererSpinner(Object<gtk_sys::GtkCellRendererSpinner, CellRendererSpinnerClass>) @extends CellRenderer;
+    pub struct CellRendererSpinner(Object<gtk_sys::GtkCellRendererSpinner>) @extends CellRenderer;
 
     match fn {
         get_type => || gtk_sys::gtk_cell_renderer_spinner_get_type(),

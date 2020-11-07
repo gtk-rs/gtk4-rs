@@ -22,7 +22,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Separator(Object<gtk_sys::GtkSeparator, SeparatorClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+    pub struct Separator(Object<gtk_sys::GtkSeparator>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         get_type => || gtk_sys::gtk_separator_get_type(),

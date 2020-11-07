@@ -11,7 +11,7 @@ use KeyMatch;
 use ModifierType;
 
 glib_wrapper! {
-    pub struct KeyEvent(Object<gdk_sys::GdkKeyEvent, KeyEventClass>) @extends Event;
+    pub struct KeyEvent(Object<gdk_sys::GdkKeyEvent>) @extends Event;
 
     match fn {
         get_type => || gdk_sys::gdk_key_event_get_type(),

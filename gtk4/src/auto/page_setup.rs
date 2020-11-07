@@ -13,7 +13,7 @@ use PaperSize;
 use Unit;
 
 glib_wrapper! {
-    pub struct PageSetup(Object<gtk_sys::GtkPageSetup, PageSetupClass>);
+    pub struct PageSetup(Object<gtk_sys::GtkPageSetup>);
 
     match fn {
         get_type => || gtk_sys::gtk_page_setup_get_type(),

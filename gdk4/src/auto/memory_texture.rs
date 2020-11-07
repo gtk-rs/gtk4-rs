@@ -12,7 +12,7 @@ use Paintable;
 use Texture;
 
 glib_wrapper! {
-    pub struct MemoryTexture(Object<gdk_sys::GdkMemoryTexture, gdk_sys::GdkMemoryTextureClass, MemoryTextureClass>) @extends Texture, @implements Paintable;
+    pub struct MemoryTexture(Object<gdk_sys::GdkMemoryTexture, gdk_sys::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
         get_type => || gdk_sys::gdk_memory_texture_get_type(),

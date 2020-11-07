@@ -18,7 +18,7 @@ use std::mem::transmute;
 use Filter;
 
 glib_wrapper! {
-    pub struct FilterListModel(Object<gtk_sys::GtkFilterListModel, gtk_sys::GtkFilterListModelClass, FilterListModelClass>) @implements gio::ListModel;
+    pub struct FilterListModel(Object<gtk_sys::GtkFilterListModel, gtk_sys::GtkFilterListModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_filter_list_model_get_type(),

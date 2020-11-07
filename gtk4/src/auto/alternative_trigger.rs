@@ -12,7 +12,7 @@ use std::fmt;
 use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct AlternativeTrigger(Object<gtk_sys::GtkAlternativeTrigger, gtk_sys::GtkAlternativeTriggerClass, AlternativeTriggerClass>) @extends ShortcutTrigger;
+    pub struct AlternativeTrigger(Object<gtk_sys::GtkAlternativeTrigger, gtk_sys::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
         get_type => || gtk_sys::gtk_alternative_trigger_get_type(),

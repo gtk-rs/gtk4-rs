@@ -29,7 +29,7 @@ use Monitor;
 use VulkanContext;
 
 glib_wrapper! {
-    pub struct Surface(Object<gdk_sys::GdkSurface, gdk_sys::GdkSurfaceClass, SurfaceClass>);
+    pub struct Surface(Object<gdk_sys::GdkSurface, gdk_sys::GdkSurfaceClass>);
 
     match fn {
         get_type => || gdk_sys::gdk_surface_get_type(),

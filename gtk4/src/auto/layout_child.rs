@@ -10,7 +10,7 @@ use LayoutManager;
 use Widget;
 
 glib_wrapper! {
-    pub struct LayoutChild(Object<gtk_sys::GtkLayoutChild, gtk_sys::GtkLayoutChildClass, LayoutChildClass>);
+    pub struct LayoutChild(Object<gtk_sys::GtkLayoutChild, gtk_sys::GtkLayoutChildClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_layout_child_get_type(),

@@ -20,7 +20,7 @@ use std::mem::transmute;
 use CellArea;
 
 glib_wrapper! {
-    pub struct CellAreaContext(Object<gtk_sys::GtkCellAreaContext, gtk_sys::GtkCellAreaContextClass, CellAreaContextClass>);
+    pub struct CellAreaContext(Object<gtk_sys::GtkCellAreaContext, gtk_sys::GtkCellAreaContextClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_cell_area_context_get_type(),

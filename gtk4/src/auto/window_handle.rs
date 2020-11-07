@@ -25,7 +25,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct WindowHandle(Object<gtk_sys::GtkWindowHandle, gtk_sys::GtkWindowHandleClass, WindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct WindowHandle(Object<gtk_sys::GtkWindowHandle, gtk_sys::GtkWindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_window_handle_get_type(),

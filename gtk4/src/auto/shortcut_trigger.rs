@@ -11,7 +11,7 @@ use gtk_sys;
 use std::fmt;
 
 glib_wrapper! {
-    pub struct ShortcutTrigger(Object<gtk_sys::GtkShortcutTrigger, gtk_sys::GtkShortcutTriggerClass, ShortcutTriggerClass>);
+    pub struct ShortcutTrigger(Object<gtk_sys::GtkShortcutTrigger, gtk_sys::GtkShortcutTriggerClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_shortcut_trigger_get_type(),

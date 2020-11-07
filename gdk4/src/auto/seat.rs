@@ -17,7 +17,7 @@ use Display;
 use SeatCapabilities;
 
 glib_wrapper! {
-    pub struct Seat(Object<gdk_sys::GdkSeat, SeatClass>);
+    pub struct Seat(Object<gdk_sys::GdkSeat>);
 
     match fn {
         get_type => || gdk_sys::gdk_seat_get_type(),

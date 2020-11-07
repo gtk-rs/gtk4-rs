@@ -27,7 +27,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct ToggleButton(Object<gtk_sys::GtkToggleButton, gtk_sys::GtkToggleButtonClass, ToggleButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct ToggleButton(Object<gtk_sys::GtkToggleButton, gtk_sys::GtkToggleButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_toggle_button_get_type(),

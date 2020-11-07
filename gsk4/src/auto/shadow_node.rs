@@ -8,7 +8,7 @@ use std::fmt;
 use RenderNode;
 
 glib_wrapper! {
-    pub struct ShadowNode(Object<gsk_sys::GskShadowNode, ShadowNodeClass>) @extends RenderNode;
+    pub struct ShadowNode(Object<gsk_sys::GskShadowNode>) @extends RenderNode;
 
     match fn {
         get_type => || gsk_sys::gsk_shadow_node_get_type(),

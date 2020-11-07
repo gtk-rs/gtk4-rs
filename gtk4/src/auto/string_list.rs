@@ -11,7 +11,7 @@ use std::fmt;
 use Buildable;
 
 glib_wrapper! {
-    pub struct StringList(Object<gtk_sys::GtkStringList, gtk_sys::GtkStringListClass, StringListClass>) @implements gio::ListModel, Buildable;
+    pub struct StringList(Object<gtk_sys::GtkStringList, gtk_sys::GtkStringListClass>) @implements gio::ListModel, Buildable;
 
     match fn {
         get_type => || gtk_sys::gtk_string_list_get_type(),

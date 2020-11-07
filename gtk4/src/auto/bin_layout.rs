@@ -9,7 +9,7 @@ use std::fmt;
 use LayoutManager;
 
 glib_wrapper! {
-    pub struct BinLayout(Object<gtk_sys::GtkBinLayout, gtk_sys::GtkBinLayoutClass, BinLayoutClass>) @extends LayoutManager;
+    pub struct BinLayout(Object<gtk_sys::GtkBinLayout, gtk_sys::GtkBinLayoutClass>) @extends LayoutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_bin_layout_get_type(),

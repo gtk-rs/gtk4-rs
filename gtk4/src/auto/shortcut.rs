@@ -19,7 +19,7 @@ use ShortcutAction;
 use ShortcutTrigger;
 
 glib_wrapper! {
-    pub struct Shortcut(Object<gtk_sys::GtkShortcut, gtk_sys::GtkShortcutClass, ShortcutClass>);
+    pub struct Shortcut(Object<gtk_sys::GtkShortcut, gtk_sys::GtkShortcutClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_shortcut_get_type(),

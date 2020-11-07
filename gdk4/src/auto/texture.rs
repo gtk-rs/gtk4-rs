@@ -13,7 +13,7 @@ use std::ptr;
 use Paintable;
 
 glib_wrapper! {
-    pub struct Texture(Object<gdk_sys::GdkTexture, gdk_sys::GdkTextureClass, TextureClass>) @implements Paintable;
+    pub struct Texture(Object<gdk_sys::GdkTexture, gdk_sys::GdkTextureClass>) @implements Paintable;
 
     match fn {
         get_type => || gdk_sys::gdk_texture_get_type(),

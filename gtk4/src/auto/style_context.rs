@@ -22,7 +22,7 @@ use StyleContextPrintFlags;
 use StyleProvider;
 
 glib_wrapper! {
-    pub struct StyleContext(Object<gtk_sys::GtkStyleContext, gtk_sys::GtkStyleContextClass, StyleContextClass>);
+    pub struct StyleContext(Object<gtk_sys::GtkStyleContext, gtk_sys::GtkStyleContextClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_style_context_get_type(),

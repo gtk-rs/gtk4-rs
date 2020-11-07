@@ -11,7 +11,7 @@ use std::fmt;
 use Filter;
 
 glib_wrapper! {
-    pub struct CustomFilter(Object<gtk_sys::GtkCustomFilter, gtk_sys::GtkCustomFilterClass, CustomFilterClass>) @extends Filter;
+    pub struct CustomFilter(Object<gtk_sys::GtkCustomFilter, gtk_sys::GtkCustomFilterClass>) @extends Filter;
 
     match fn {
         get_type => || gtk_sys::gtk_custom_filter_get_type(),

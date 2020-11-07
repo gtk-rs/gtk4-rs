@@ -85,7 +85,7 @@ impl<'a> ToGlibContainerFromSlice<'a, *const gsk_sys::GskShadow> for Shadow {
     fn to_glib_full_from_slice(t: &[Self]) -> *const gsk_sys::GskShadow {
         assert_initialized_main_thread!();
 
-        if t.len() == 0 {
+        if t.is_empty() {
             return ptr::null_mut();
         }
 
@@ -114,7 +114,7 @@ impl<'a> ToGlibContainerFromSlice<'a, *mut gsk_sys::GskShadow> for Shadow {
 
     fn to_glib_full_from_slice(t: &[Self]) -> *mut gsk_sys::GskShadow {
         assert_initialized_main_thread!();
-        if t.len() == 0 {
+        if t.is_empty() {
             return ptr::null_mut();
         }
 

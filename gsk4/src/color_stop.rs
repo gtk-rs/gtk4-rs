@@ -101,7 +101,7 @@ impl<'a> ToGlibContainerFromSlice<'a, *const gsk_sys::GskColorStop> for ColorSto
     fn to_glib_full_from_slice(t: &[Self]) -> *const gsk_sys::GskColorStop {
         assert_initialized_main_thread!();
 
-        if t.len() == 0 {
+        if t.is_empty() {
             return ptr::null_mut();
         }
 

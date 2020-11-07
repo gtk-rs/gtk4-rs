@@ -19,7 +19,7 @@ use Editable;
 use Widget;
 
 glib_wrapper! {
-    pub struct EditableLabel(Object<gtk_sys::GtkEditableLabel, gtk_sys::GtkEditableLabelClass, EditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+    pub struct EditableLabel(Object<gtk_sys::GtkEditableLabel, gtk_sys::GtkEditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_editable_label_get_type(),

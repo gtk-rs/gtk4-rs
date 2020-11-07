@@ -35,7 +35,7 @@ use Sorter;
 use Widget;
 
 glib_wrapper! {
-    pub struct ColumnView(Object<gtk_sys::GtkColumnView, gtk_sys::GtkColumnViewClass, ColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+    pub struct ColumnView(Object<gtk_sys::GtkColumnView, gtk_sys::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
         get_type => || gtk_sys::gtk_column_view_get_type(),

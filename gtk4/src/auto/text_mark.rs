@@ -13,7 +13,7 @@ use std::fmt;
 use TextBuffer;
 
 glib_wrapper! {
-    pub struct TextMark(Object<gtk_sys::GtkTextMark, gtk_sys::GtkTextMarkClass, TextMarkClass>);
+    pub struct TextMark(Object<gtk_sys::GtkTextMark, gtk_sys::GtkTextMarkClass>);
 
     match fn {
         get_type => || gtk_sys::gtk_text_mark_get_type(),

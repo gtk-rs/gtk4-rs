@@ -23,6 +23,10 @@ impl GdkCairoSurfaceExt for cairo::Surface {
 }
 
 pub trait GdkCairoContextExt {
+    /// # Safety
+    ///
+    /// It's the responsibility of the caller to ensure that source
+    /// is a valid GL resource.
     unsafe fn draw_from_gl(
         &self,
         surface: &Surface,

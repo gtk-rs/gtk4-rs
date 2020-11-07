@@ -22,7 +22,7 @@ use EventController;
 use EventSequenceState;
 
 glib_wrapper! {
-    pub struct Gesture(Object<gtk_sys::GtkGesture, gtk_sys::GtkGestureClass, GestureClass>) @extends EventController;
+    pub struct Gesture(Object<gtk_sys::GtkGesture, gtk_sys::GtkGestureClass>) @extends EventController;
 
     match fn {
         get_type => || gtk_sys::gtk_gesture_get_type(),

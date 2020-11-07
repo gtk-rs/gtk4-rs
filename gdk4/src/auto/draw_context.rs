@@ -17,7 +17,7 @@ use Display;
 use Surface;
 
 glib_wrapper! {
-    pub struct DrawContext(Object<gdk_sys::GdkDrawContext, DrawContextClass>);
+    pub struct DrawContext(Object<gdk_sys::GdkDrawContext>);
 
     match fn {
         get_type => || gdk_sys::gdk_draw_context_get_type(),

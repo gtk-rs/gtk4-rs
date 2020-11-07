@@ -30,7 +30,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Switch(Object<gtk_sys::GtkSwitch, SwitchClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct Switch(Object<gtk_sys::GtkSwitch>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_switch_get_type(),

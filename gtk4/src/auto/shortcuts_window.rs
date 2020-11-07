@@ -36,7 +36,7 @@ use Widget;
 use Window;
 
 glib_wrapper! {
-    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow, ShortcutsWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
+    pub struct ShortcutsWindow(Object<gtk_sys::GtkShortcutsWindow>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
         get_type => || gtk_sys::gtk_shortcuts_window_get_type(),

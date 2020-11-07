@@ -18,7 +18,7 @@ use std::mem::transmute;
 use SelectionModel;
 
 glib_wrapper! {
-    pub struct SelectionFilterModel(Object<gtk_sys::GtkSelectionFilterModel, gtk_sys::GtkSelectionFilterModelClass, SelectionFilterModelClass>) @implements gio::ListModel;
+    pub struct SelectionFilterModel(Object<gtk_sys::GtkSelectionFilterModel, gtk_sys::GtkSelectionFilterModelClass>) @implements gio::ListModel;
 
     match fn {
         get_type => || gtk_sys::gtk_selection_filter_model_get_type(),

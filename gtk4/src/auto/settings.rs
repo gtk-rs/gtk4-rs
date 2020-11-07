@@ -21,7 +21,7 @@ use std::mem::transmute;
 use StyleProvider;
 
 glib_wrapper! {
-    pub struct Settings(Object<gtk_sys::GtkSettings, SettingsClass>) @implements StyleProvider;
+    pub struct Settings(Object<gtk_sys::GtkSettings>) @implements StyleProvider;
 
     match fn {
         get_type => || gtk_sys::gtk_settings_get_type(),

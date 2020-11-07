@@ -35,7 +35,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct FileChooserWidget(Object<gtk_sys::GtkFileChooserWidget, FileChooserWidgetClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
+    pub struct FileChooserWidget(Object<gtk_sys::GtkFileChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
 
     match fn {
         get_type => || gtk_sys::gtk_file_chooser_widget_get_type(),

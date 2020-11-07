@@ -33,7 +33,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass, PasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
         get_type => || gtk_sys::gtk_password_entry_get_type(),

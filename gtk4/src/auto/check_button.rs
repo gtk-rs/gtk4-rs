@@ -27,7 +27,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass, CheckButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+    pub struct CheckButton(Object<gtk_sys::GtkCheckButton, gtk_sys::GtkCheckButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
         get_type => || gtk_sys::gtk_check_button_get_type(),

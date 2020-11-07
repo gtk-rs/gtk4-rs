@@ -22,7 +22,7 @@ use Overflow;
 use Widget;
 
 glib_wrapper! {
-    pub struct Fixed(Object<gtk_sys::GtkFixed, gtk_sys::GtkFixedClass, FixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct Fixed(Object<gtk_sys::GtkFixed, gtk_sys::GtkFixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || gtk_sys::gtk_fixed_get_type(),

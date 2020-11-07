@@ -18,7 +18,7 @@ use SortType;
 use Sorter;
 
 glib_wrapper! {
-    pub struct NumericSorter(Object<gtk_sys::GtkNumericSorter, gtk_sys::GtkNumericSorterClass, NumericSorterClass>) @extends Sorter;
+    pub struct NumericSorter(Object<gtk_sys::GtkNumericSorter, gtk_sys::GtkNumericSorterClass>) @extends Sorter;
 
     match fn {
         get_type => || gtk_sys::gtk_numeric_sorter_get_type(),
