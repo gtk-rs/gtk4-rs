@@ -18,7 +18,6 @@ extern crate libc;
 extern crate bitflags;
 extern crate once_cell;
 
-extern crate atk_sys;
 extern crate cairo_sys;
 extern crate gdk4_sys as gdk_sys;
 extern crate gdk_pixbuf_sys;
@@ -31,7 +30,6 @@ extern crate gtk4_sys as gtk_sys;
 extern crate pango_sys;
 #[macro_use]
 extern crate glib;
-extern crate atk;
 extern crate cairo;
 extern crate gdk4 as gdk;
 extern crate gdk_pixbuf;
