@@ -4,9 +4,6 @@ system-deps = "2.0"
 [dependencies]
 libc = "0.2"
 
-[dependencies.atk-sys]
-git = "https://github.com/gtk-rs/gtk-rs"
-
 [dependencies.cairo-sys-rs]
 git = "https://github.com/gtk-rs/gtk-rs"
 

@@ -9,7 +9,6 @@
     clippy::unreadable_literal
 )]
 
-extern crate atk_sys as atk;
 extern crate cairo_sys as cairo;
 extern crate gdk4_sys as gdk;
 extern crate gdk_pixbuf_sys as gdk_pixbuf;
