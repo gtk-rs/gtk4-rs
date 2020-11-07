@@ -1,0 +1,5 @@
+(function() {var implementors = {};
+implementors["gdk4"] = [{"text":"impl ErrorDomain for GLError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for VulkanError","synthetic":false,"types":[]}];
+implementors["gsk4"] = [{"text":"impl ErrorDomain for SerializationError","synthetic":false,"types":[]}];
+implementors["gtk4"] = [{"text":"impl ErrorDomain for BuilderError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for ConstraintVflParserError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for CssParserError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for FileChooserError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for IconThemeError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for PrintError","synthetic":false,"types":[]},{"text":"impl ErrorDomain for RecentManagerError","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
