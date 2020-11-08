@@ -4,6 +4,8 @@ members = [
   "gdk4/sys",
   "gdk4-x11",
   "gdk4-x11/sys",
+  "gdk4-wayland",
+  "gdk4-wayland/sys",
   "gsk4",
   "gsk4/sys",
   "gtk4",

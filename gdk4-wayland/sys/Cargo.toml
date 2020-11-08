@@ -1,0 +1,32 @@
+[package]
+name = "gdk4-wayland-sys"
+version = "0.1.0"
+authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
+build = "build.rs"
+[package.metadata.system-deps.gtk4_wayland]
+name = "gtk4-wayland"
+version = "3.94"
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[lib]
+name = "gdk4_wayland_sys"
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.gdk4-sys]
+path = "../../gdk4/sys"
+
+[dependencies.glib-sys]
+git = "https://github.com/gtk-rs/gtk-rs.git"
+
+[build-dependencies]
+system-deps = "2.0"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+dox = []
