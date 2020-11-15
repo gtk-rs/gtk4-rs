@@ -25,6 +25,6 @@ package = "gobject-sys"
 path = "../gdk4"
 package = "gdk4"
 
-[dependencies.gdk_x11_sys]
+[dependencies.gdk4_x11_sys]
 path = "./sys"
-package = "gdk4x11-sys"
+package = "gdk4-x11-sys"
