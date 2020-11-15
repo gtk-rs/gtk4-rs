@@ -7,7 +7,7 @@
 #[macro_use]
 extern crate glib;
 extern crate gdk;
-extern crate gdk_x11_sys;
+extern crate gdk4_x11_sys as gdk_x11_sys;
 extern crate gio;
 extern crate glib_sys;
 extern crate gobject_sys;

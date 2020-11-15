@@ -1,5 +1,5 @@
 [package]
-name = "gdk4x11-sys"
+name = "gdk4-x11-sys"
 version = "0.1.0"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
@@ -11,7 +11,7 @@ version = "3.94"
 features = ["dox"]
 
 [lib]
-name = "gdk_x11_sys"
+name = "gdk4_x11_sys"
 
 [dependencies]
 libc = "0.2"
