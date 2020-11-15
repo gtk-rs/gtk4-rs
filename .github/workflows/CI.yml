@@ -52,6 +52,9 @@ jobs:
       - name: "gtk4: build"
         run: cargo build --manifest-path gtk4/Cargo.toml --all-features
 
+      - name: "examples"
+        run: cargo build --manifest-path examples/Cargo.toml --bins --examples --all-features
+
       - uses: bcomnes/cleanup-xvfb@v1
 
   fmt:
