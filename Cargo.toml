@@ -11,6 +11,7 @@ members = [
   "gsk4/sys",
   "gtk4",
   "gtk4/sys",
+  "gtk4-macros",
 ]
 
 exclude = ["checker", "gir"]
