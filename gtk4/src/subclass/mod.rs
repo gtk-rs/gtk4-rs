@@ -2,6 +2,7 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+pub mod adjustment;
 pub mod application;
 pub mod application_window;
 pub mod box_;
@@ -12,6 +13,7 @@ pub mod widget;
 pub mod window;
 
 pub mod prelude {
+    pub use super::adjustment::AdjustmentImpl;
     pub use super::application::GtkApplicationImpl;
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
