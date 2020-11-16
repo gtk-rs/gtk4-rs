@@ -9,6 +9,8 @@ pub mod box_;
 pub mod button;
 pub mod dialog;
 pub mod header_bar;
+pub mod list_box;
+pub mod list_box_row;
 pub mod widget;
 pub mod window;
 
@@ -20,6 +22,8 @@ pub mod prelude {
     pub use super::button::ButtonImpl;
     pub use super::dialog::DialogImpl;
     pub use super::header_bar::HeaderBarImpl;
+    pub use super::list_box::ListBoxImpl;
+    pub use super::list_box_row::ListBoxRowImpl;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
     pub use gio::subclass::prelude::*;
