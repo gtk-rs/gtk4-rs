@@ -8,6 +8,7 @@
     clippy::type_complexity,
     clippy::unreadable_literal
 )]
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 extern crate gdk4_sys as gdk;
 extern crate glib_sys as glib;

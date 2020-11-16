@@ -8,6 +8,7 @@
     clippy::type_complexity,
     clippy::unreadable_literal
 )]
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 extern crate cairo_sys as cairo;
 extern crate gdk_pixbuf_sys as gdk_pixbuf;
