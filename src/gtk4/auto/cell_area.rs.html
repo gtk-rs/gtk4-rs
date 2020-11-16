@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `gtk4/src/auto/cell_area.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_area.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_area.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_area.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
@@ -1561,7 +1563,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellArea</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">gtk_sys</span>::<span class="ident">GtkCellArea</span>, <span class="ident">gtk_sys</span>::<span class="ident">GtkCellAreaClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>, <span class="ident">CellLayout</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">get_type</span> <span class="op">=&gt;</span> <span class="op">||</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_type</span>(),
+        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_type</span>(),
     }
 }
 
@@ -1591,14 +1593,14 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whether `self` was successfully activated.</span>
-    <span class="kw">fn</span> <span class="ident">activate</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">activate</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
         <span class="ident">edit_only</span>: <span class="ident">bool</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// This is used by `CellArea` subclasses when handling events</span>
     <span class="doccomment">/// to activate cells, the base `CellArea` class activates cells</span>
@@ -1619,19 +1621,19 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether cell activation was successful</span>
-    <span class="kw">fn</span> <span class="ident">activate_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">activate_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Adds `renderer` to `self` with the default child cell properties.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the `CellRenderer` to add to `self`</span>
-    <span class="kw">fn</span> <span class="ident">add</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">add</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Adds `sibling` to `renderer`’s focusable area, focus will be drawn</span>
     <span class="doccomment">/// around `renderer` and all of its siblings if `renderer` can</span>
@@ -1643,7 +1645,7 @@
     <span class="doccomment">/// the `CellRenderer` expected to have focus</span>
     <span class="doccomment">/// ## `sibling`</span>
     <span class="doccomment">/// the `CellRenderer` to add to `renderer`’s focus area</span>
-    <span class="kw">fn</span> <span class="ident">add_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">add_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -1662,7 +1664,7 @@
     <span class="doccomment">/// ## `is_expanded`</span>
     <span class="doccomment">/// whether `iter` is expanded in the view and</span>
     <span class="doccomment">///  children are visible</span>
-    <span class="kw">fn</span> <span class="ident">apply_attributes</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">apply_attributes</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">tree_model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>,
@@ -1678,7 +1680,7 @@
     <span class="doccomment">/// the attribute name</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// the `TreeModel` column to fetch attribute values from</span>
-    <span class="kw">fn</span> <span class="ident">attribute_connect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">column</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">attribute_connect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">column</span>: <span class="ident">i32</span>);
 
     <span class="doccomment">/// Disconnects `attribute` for the `renderer` in `self` so that</span>
     <span class="doccomment">/// attribute will no longer be updated with values from the</span>
@@ -1687,7 +1689,7 @@
     <span class="doccomment">/// the `CellRenderer` to disconnect an attribute for</span>
     <span class="doccomment">/// ## `attribute`</span>
     <span class="doccomment">/// the attribute name</span>
-    <span class="kw">fn</span> <span class="ident">attribute_disconnect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
+    <span class="kw">fn</span> <span class="ident">attribute_disconnect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
     <span class="doccomment">/// Returns the model column that an attribute has been mapped to,</span>
     <span class="doccomment">/// or -1 if the attribute is not mapped.</span>
@@ -1699,7 +1701,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the model column, or -1</span>
-    <span class="kw">fn</span> <span class="ident">attribute_get_column</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">fn</span> <span class="ident">attribute_get_column</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
     <span class="comment">//fn cell_get&lt;P: IsA&lt;CellRenderer&gt;&gt;(&amp;self, renderer: &amp;P, first_prop_name: &amp;str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);</span>
 
@@ -1726,7 +1728,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created `CellAreaContext` copy of `context`.</span>
-    <span class="kw">fn</span> <span class="ident">copy_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">copy_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Creates a `CellAreaContext` to be used with `self` for</span>
     <span class="doccomment">/// all purposes. `CellAreaContext` stores geometry information</span>
@@ -1738,7 +1740,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created `CellAreaContext` which can be used with `self`.</span>
-    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Delegates event handling to a `CellArea`.</span>
     <span class="doccomment">/// ## `context`</span>
@@ -1755,14 +1757,14 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if the event was handled by `self`.</span>
-    <span class="kw">fn</span> <span class="ident">event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">i32</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
     <span class="doccomment">/// This should be called by the `self`’s owning layout widget</span>
     <span class="doccomment">/// when focus is to be passed to `self`, or moved within `self`</span>
@@ -1777,14 +1779,14 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if focus remains inside `self` as a result of this call.</span>
-    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">direction</span>: <span class="ident">DirectionType</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">direction</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Calls `callback` for every `CellRenderer` in `self`.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// the ``GtkCellCallback`` to call</span>
     <span class="doccomment">/// ## `callback_data`</span>
     <span class="doccomment">/// user provided data pointer</span>
-    <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>);
 
     <span class="doccomment">/// Calls `callback` for every `CellRenderer` in `self` with the</span>
     <span class="doccomment">/// allocated rectangle inside `cell_area`.</span>
@@ -1803,7 +1805,7 @@
     <span class="kw">fn</span> <span class="ident">foreach_alloc</span><span class="op">&lt;</span>
         <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
         <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -1826,13 +1828,13 @@
     <span class="doccomment">///  for this row</span>
     <span class="doccomment">/// ## `allocation`</span>
     <span class="doccomment">/// where to store the allocation for `renderer`</span>
-    <span class="kw">fn</span> <span class="ident">get_cell_allocation</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_cell_allocation</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>;
 
     <span class="doccomment">/// Gets the `CellRenderer` at `x` and `y` coordinates inside `self` and optionally</span>
     <span class="doccomment">/// returns the full cell allocation for it inside `cell_area`.</span>
@@ -1854,14 +1856,14 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `CellRenderer` at `x` and `y`.</span>
-    <span class="kw">fn</span> <span class="ident">get_cell_at_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_cell_at_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">x</span>: <span class="ident">i32</span>,
         <span class="ident">y</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">CellRenderer</span>, <span class="ident">gdk</span>::<span class="ident">Rectangle</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">CellRenderer</span>, <span class="ident">gdk</span>::<span class="ident">Rectangle</span>);
 
     <span class="doccomment">/// Gets the current `TreePath` string for the currently</span>
     <span class="doccomment">/// applied `TreeIter`, this is implicitly updated when</span>
@@ -1874,7 +1876,7 @@
     <span class="doccomment">/// The current `TreePath` string for the current</span>
     <span class="doccomment">/// attributes applied to `self`. This string belongs to the area and</span>
     <span class="doccomment">/// should not be freed.</span>
-    <span class="kw">fn</span> <span class="ident">get_current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the `CellEditable` widget currently used</span>
     <span class="doccomment">/// to edit the currently edited cell.</span>
@@ -1882,7 +1884,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The currently active `CellEditable` widget</span>
-    <span class="kw">fn</span> <span class="ident">get_edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the `CellRenderer` in `self` that is currently</span>
     <span class="doccomment">/// being edited.</span>
@@ -1890,14 +1892,14 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The currently edited `CellRenderer`</span>
-    <span class="kw">fn</span> <span class="ident">get_edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves the currently focused cell for `self`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the currently focused cell in `self`.</span>
-    <span class="kw">fn</span> <span class="ident">get_focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the `CellRenderer` which is expected to be focusable</span>
     <span class="doccomment">/// for which `renderer` is, or may be a sibling.</span>
@@ -1913,7 +1915,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `CellRenderer` for which `renderer`</span>
     <span class="doccomment">///  is a sibling, or `None`.</span>
-    <span class="kw">fn</span> <span class="ident">get_focus_from_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_focus_from_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the focus sibling cell renderers for `renderer`.</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -1923,7 +1925,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `glib::List` of ``GtkCellRenderers``.</span>
     <span class="doccomment">///  The returned list is internal and should not be freed.</span>
-    <span class="kw">fn</span> <span class="ident">get_focus_siblings</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_focus_siblings</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves a cell area’s initial minimum and natural height.</span>
     <span class="doccomment">///</span>
@@ -1940,11 +1942,11 @@
     <span class="doccomment">/// location to store the minimum height, or `None`</span>
     <span class="doccomment">/// ## `natural_height`</span>
     <span class="doccomment">/// location to store the natural height, or `None`</span>
-    <span class="kw">fn</span> <span class="ident">get_preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Retrieves a cell area’s minimum and natural height if it would be given</span>
     <span class="doccomment">/// the specified `width`.</span>
@@ -1970,12 +1972,12 @@
     <span class="doccomment">/// location to store the minimum height, or `None`</span>
     <span class="doccomment">/// ## `natural_height`</span>
     <span class="doccomment">/// location to store the natural height, or `None`</span>
-    <span class="kw">fn</span> <span class="ident">get_preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">width</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Retrieves a cell area’s initial minimum and natural width.</span>
     <span class="doccomment">///</span>
@@ -1992,11 +1994,11 @@
     <span class="doccomment">/// location to store the minimum width, or `None`</span>
     <span class="doccomment">/// ## `natural_width`</span>
     <span class="doccomment">/// location to store the natural width, or `None`</span>
-    <span class="kw">fn</span> <span class="ident">get_preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Retrieves a cell area’s minimum and natural width if it would be given</span>
     <span class="doccomment">/// the specified `height`.</span>
@@ -2022,12 +2024,12 @@
     <span class="doccomment">/// location to store the minimum width, or `None`</span>
     <span class="doccomment">/// ## `natural_width`</span>
     <span class="doccomment">/// location to store the natural width, or `None`</span>
-    <span class="kw">fn</span> <span class="ident">get_preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Gets whether the area prefers a height-for-width layout</span>
     <span class="doccomment">/// or a width-for-height layout.</span>
@@ -2035,7 +2037,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `SizeRequestMode` preferred by `self`.</span>
-    <span class="kw">fn</span> <span class="ident">get_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">SizeRequestMode</span>;
+    <span class="kw">fn</span> <span class="ident">get_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>;
 
     <span class="doccomment">/// Checks if `self` contains `renderer`.</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -2044,7 +2046,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if `renderer` is in the `self`.</span>
-    <span class="kw">fn</span> <span class="ident">has_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">has_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// This is a convenience function for `CellArea` implementations</span>
     <span class="doccomment">/// to get the inner area where a given `CellRenderer` will be</span>
@@ -2056,11 +2058,11 @@
     <span class="doccomment">///  is to be placed</span>
     <span class="doccomment">/// ## `inner_area`</span>
     <span class="doccomment">/// the return location for the inner cell area</span>
-    <span class="kw">fn</span> <span class="ident">inner_cell_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">inner_cell_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>;
 
     <span class="doccomment">/// Returns whether the area can do anything when activated,</span>
     <span class="doccomment">/// after applying new attributes to `self`.</span>
@@ -2068,7 +2070,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether `self` can do anything when activated.</span>
-    <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Returns whether `sibling` is one of `renderer`’s focus siblings</span>
     <span class="doccomment">/// (see `CellAreaExt::add_focus_sibling`).</span>
@@ -2080,16 +2082,16 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if `sibling` is a focus sibling of `renderer`</span>
-    <span class="kw">fn</span> <span class="ident">is_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">is_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Removes `renderer` from `self`.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the `CellRenderer` to remove from `self`</span>
-    <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Removes `sibling` from `renderer`’s focus sibling list</span>
     <span class="doccomment">/// (see `CellAreaExt::add_focus_sibling`).</span>
@@ -2097,7 +2099,7 @@
     <span class="doccomment">/// the `CellRenderer` expected to have focus</span>
     <span class="doccomment">/// ## `sibling`</span>
     <span class="doccomment">/// the `CellRenderer` to remove from `renderer`’s focus area</span>
-    <span class="kw">fn</span> <span class="ident">remove_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">remove_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -2121,13 +2123,13 @@
     <span class="doccomment">/// location to store the minimum size, or `None`</span>
     <span class="doccomment">/// ## `natural_size`</span>
     <span class="doccomment">/// location to store the natural size, or `None`</span>
-    <span class="kw">fn</span> <span class="ident">request_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">request_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Explicitly sets the currently focused cell to `renderer`.</span>
     <span class="doccomment">///</span>
@@ -2137,7 +2139,7 @@
     <span class="doccomment">/// as `TreeViewExt::set_cursor_on_cell`.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the `CellRenderer` to give focus to</span>
-    <span class="kw">fn</span> <span class="ident">set_focus_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">set_focus_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Snapshots `self`’s cells according to `self`’s layout onto at</span>
     <span class="doccomment">/// the given coordinates.</span>
@@ -2155,7 +2157,7 @@
     <span class="doccomment">/// the `CellRendererState` for `self` in this row.</span>
     <span class="doccomment">/// ## `paint_focus`</span>
     <span class="doccomment">/// whether `self` should paint focus on focused cells for focused rows or not.</span>
-    <span class="kw">fn</span> <span class="ident">snapshot</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">snapshot</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -2194,7 +2196,7 @@
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// This signal is emitted whenever applying attributes to `area` from `model`</span>
     <span class="doccomment">/// ## `model`</span>
@@ -2208,7 +2210,7 @@
     <span class="kw">fn</span> <span class="ident">connect_apply_attributes</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">bool</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Indicates that focus changed on this `area`. This signal</span>
     <span class="doccomment">/// is emitted either as a result of focus handling or event</span>
@@ -2225,7 +2227,7 @@
     <span class="kw">fn</span> <span class="ident">connect_focus_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Indicates that editing finished on `renderer` and that `editable`</span>
     <span class="doccomment">/// should be removed from the owning cell-layouting widget.</span>
@@ -2236,24 +2238,24 @@
     <span class="kw">fn</span> <span class="ident">connect_remove_editable</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">CellEditable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="kw">fn</span> <span class="ident">connect_property_edit_widget_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_property_edit_widget_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="kw">fn</span> <span class="ident">connect_property_edited_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_property_edited_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="kw">fn</span> <span class="ident">connect_property_focus_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_property_focus_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;&gt;</span> <span class="ident">CellAreaExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">activate</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">CellAreaExt</span> <span class="kw">for</span> <span class="ident">O</span> {
+    <span class="kw">fn</span> <span class="ident">activate</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
         <span class="ident">edit_only</span>: <span class="ident">bool</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_activate</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2266,14 +2268,14 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">activate_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">activate_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_activate_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2286,7 +2288,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">add</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">add</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_add</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2295,7 +2297,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">add_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">add_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -2313,7 +2315,7 @@
     <span class="comment">//    unsafe { TODO: call gtk_sys:gtk_cell_area_add_with_properties() }</span>
     <span class="comment">//}</span>
 
-    <span class="kw">fn</span> <span class="ident">apply_attributes</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">apply_attributes</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">tree_model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>,
@@ -2331,7 +2333,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">attribute_connect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">column</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">attribute_connect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">column</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_attribute_connect</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2342,7 +2344,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">attribute_disconnect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">attribute_disconnect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_attribute_disconnect</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2352,7 +2354,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">attribute_get_column</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">attribute_get_column</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_attribute_get_column</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2378,7 +2380,7 @@
     <span class="comment">//    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_set_valist() }</span>
     <span class="comment">//}</span>
 
-    <span class="kw">fn</span> <span class="ident">copy_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">copy_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_copy_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2387,7 +2389,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_create_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2395,14 +2397,14 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_event</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2415,7 +2417,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">direction</span>: <span class="ident">DirectionType</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">direction</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_focus</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2424,12 +2426,12 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>) {
         <span class="kw">let</span> <span class="ident">callback_data</span>: <span class="ident">P</span> <span class="op">=</span> <span class="ident">callback</span>;
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">callback_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">callback_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(
             <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkCellRenderer</span>,
             <span class="ident">data</span>: <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>,
-        ) <span class="op">-&gt;</span> <span class="ident">glib_sys</span>::<span class="ident">gboolean</span> {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib_sys</span>::<span class="ident">gboolean</span> {
             <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">renderer</span>);
             <span class="kw">let</span> <span class="ident">callback</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">P</span> <span class="op">=</span> <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">P</span>;
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">callback</span>)(<span class="kw-2">&amp;</span><span class="ident">renderer</span>);
@@ -2449,7 +2451,7 @@
     <span class="kw">fn</span> <span class="ident">foreach_alloc</span><span class="op">&lt;</span>
         <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
         <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+        <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -2462,13 +2464,13 @@
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">callback_func</span><span class="op">&lt;</span>
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
             <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-            <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+            <span class="ident">R</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
         <span class="op">&gt;</span>(
             <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkCellRenderer</span>,
             <span class="ident">cell_area</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk_sys</span>::<span class="ident">GdkRectangle</span>,
             <span class="ident">cell_background</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk_sys</span>::<span class="ident">GdkRectangle</span>,
             <span class="ident">data</span>: <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>,
-        ) <span class="op">-&gt;</span> <span class="ident">glib_sys</span>::<span class="ident">gboolean</span> {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib_sys</span>::<span class="ident">gboolean</span> {
             <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">renderer</span>);
             <span class="kw">let</span> <span class="ident">cell_area</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cell_area</span>);
             <span class="kw">let</span> <span class="ident">cell_background</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cell_background</span>);
@@ -2491,13 +2493,13 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_cell_allocation</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_cell_allocation</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">allocation</span> <span class="op">=</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>::<span class="ident">uninitialized</span>();
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_cell_allocation</span>(
@@ -2512,14 +2514,14 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_cell_at_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_cell_at_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
         <span class="ident">x</span>: <span class="ident">i32</span>,
         <span class="ident">y</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">CellRenderer</span>, <span class="ident">gdk</span>::<span class="ident">Rectangle</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">CellRenderer</span>, <span class="ident">gdk</span>::<span class="ident">Rectangle</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">alloc_area</span> <span class="op">=</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>::<span class="ident">uninitialized</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_cell_at_position</span>(
@@ -2535,7 +2537,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_current_path_string</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2543,7 +2545,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_edit_widget</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2551,7 +2553,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_edited_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2559,7 +2561,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_focus_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2567,7 +2569,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_focus_from_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_focus_from_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_focus_from_sibling</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2576,7 +2578,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_focus_siblings</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_focus_siblings</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">FromGlibPtrContainer</span>::<span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_focus_siblings</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2585,11 +2587,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_height</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_height</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -2606,12 +2608,12 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">width</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_height</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_height</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -2629,11 +2631,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_width</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_width</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -2650,12 +2652,12 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">get_preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_width</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_width</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -2673,7 +2675,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">SizeRequestMode</span> {
+    <span class="kw">fn</span> <span class="ident">get_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_get_request_mode</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2681,7 +2683,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">has_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">has_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_has_renderer</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2690,11 +2692,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">inner_cell_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">inner_cell_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inner_area</span> <span class="op">=</span> <span class="ident">gdk</span>::<span class="ident">Rectangle</span>::<span class="ident">uninitialized</span>();
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_inner_cell_area</span>(
@@ -2707,7 +2709,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_is_activatable</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2715,11 +2717,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">is_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">is_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_is_focus_sibling</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2729,7 +2731,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_remove</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2738,7 +2740,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">remove_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">remove_focus_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -2752,13 +2754,13 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">request_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">request_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -2777,7 +2779,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_focus_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">set_focus_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_cell_area_set_focus_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2786,7 +2788,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">snapshot</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">snapshot</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
@@ -2821,7 +2823,7 @@
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">add_editable_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">CellEditable</span>, <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -2861,7 +2863,7 @@
     <span class="kw">fn</span> <span class="ident">connect_apply_attributes</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">bool</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">apply_attributes_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">bool</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -2900,7 +2902,7 @@
     <span class="kw">fn</span> <span class="ident">connect_focus_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">focus_changed_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -2936,7 +2938,7 @@
     <span class="kw">fn</span> <span class="ident">connect_remove_editable</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">CellEditable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">remove_editable_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="kw-2">&amp;</span><span class="ident">CellEditable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -2968,7 +2970,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_property_edit_widget_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_property_edit_widget_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_edit_widget_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkCellArea</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>,
@@ -2992,7 +2994,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_property_edited_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_property_edited_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_edited_cell_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkCellArea</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>,
@@ -3016,7 +3018,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_property_focus_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_property_focus_cell_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_focus_cell_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkCellArea</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>,
@@ -3042,7 +3044,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CellArea</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;CellArea&quot;</span>)
     }
 }

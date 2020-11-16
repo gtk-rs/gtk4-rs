@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `gdk4/src/auto/functions.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>functions.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/functions.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>functions.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -186,7 +188,7 @@
 <span class="kw">use</span> <span class="ident">Event</span>;
 <span class="kw">use</span> <span class="ident">Texture</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_angle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;&gt;</span>(<span class="ident">event1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">event2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_angle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">event1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">event2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -204,10 +206,10 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_center</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;&gt;</span>(
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_center</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">event1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">event2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -228,7 +230,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_distance</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;&gt;</span>(<span class="ident">event1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">event2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_get_distance</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">event1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">event2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">distance</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -246,12 +248,12 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intern_mime_type</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intern_mime_type</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_intern_mime_type</span>(<span class="ident">string</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_convert_case</span>(<span class="ident">symbol</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">u32</span>, <span class="ident">u32</span>) {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_convert_case</span>(<span class="ident">symbol</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">u32</span>, <span class="ident">u32</span>) {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lower</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
@@ -263,37 +265,37 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_from_name</span>(<span class="ident">keyval_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_from_name</span>(<span class="ident">keyval_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_from_name</span>(<span class="ident">keyval_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_is_lower</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_is_lower</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_is_lower</span>(<span class="ident">keyval</span>)) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_is_upper</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_is_upper</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_is_upper</span>(<span class="ident">keyval</span>)) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_name</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_name</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_name</span>(<span class="ident">keyval</span>)) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_lower</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_lower</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_to_lower</span>(<span class="ident">keyval</span>) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_unicode</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_unicode</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_to_unicode</span>(<span class="ident">keyval</span>) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_upper</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval_to_upper</span>(<span class="ident">keyval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">gdk_sys</span>::<span class="ident">gdk_keyval_to_upper</span>(<span class="ident">keyval</span>) }
 }
@@ -304,7 +306,7 @@
     <span class="ident">src_y</span>: <span class="ident">i32</span>,
     <span class="ident">width</span>: <span class="ident">i32</span>,
     <span class="ident">height</span>: <span class="ident">i32</span>,
-) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf</span>::<span class="ident">Pixbuf</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf</span>::<span class="ident">Pixbuf</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_pixbuf_get_from_surface</span>(
@@ -317,7 +319,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_get_from_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;&gt;</span>(<span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf</span>::<span class="ident">Pixbuf</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_get_from_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf</span>::<span class="ident">Pixbuf</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_pixbuf_get_from_texture</span>(
@@ -333,12 +335,12 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">toplevel_size_get_type</span>() <span class="op">-&gt;</span> <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">toplevel_size_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">gdk_sys</span>::<span class="ident">gdk_toplevel_size_get_type</span>()) }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unicode_to_keyval</span>(<span class="ident">wc</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unicode_to_keyval</span>(<span class="ident">wc</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
     <span class="kw">unsafe</span> { <span class="ident">gdk_sys</span>::<span class="ident">gdk_unicode_to_keyval</span>(<span class="ident">wc</span>) }
 }

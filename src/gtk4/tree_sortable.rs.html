@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `gtk4/src/tree_sortable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tree_sortable.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/tree_sortable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tree_sortable.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -259,11 +261,11 @@
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">i32</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span>,
-            <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="ident">x</span>) <span class="op">=&gt;</span> {
-                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;=</span> <span class="ident">i32</span>::<span class="ident">max_value</span>() <span class="kw">as</span> <span class="ident">u32</span>, <span class="string">&quot;column index is too big&quot;</span>);
+            <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span>,
+            <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">i32</span>::<span class="ident">max_value</span>() <span class="kw">as</span> <span class="ident">u32</span>, <span class="string">&quot;column index is too big&quot;</span>);
                 <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i32</span>
             }
         }
@@ -273,12 +275,12 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SortColumn</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">val</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">SortColumn</span> {
+    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">val</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SortColumn</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">val</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span> <span class="op">=&gt;</span> <span class="ident">SortColumn</span>::<span class="ident">Default</span>,
-            <span class="ident">x</span> <span class="op">=&gt;</span> {
-                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&gt;=</span> <span class="number">0</span>, <span class="string">&quot;invalid column index&quot;</span>);
+            <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SortColumn</span>::<span class="ident">Default</span>,
+            <span class="ident">x</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;invalid column index&quot;</span>);
                 <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u32</span>)
             }
         }
@@ -286,13 +288,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">SortColumn</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;SortColumn::{}&quot;</span>,
             <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-                <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=&gt;</span> <span class="string">&quot;Default&quot;</span>,
-                <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="string">&quot;Index&quot;</span>,
+                <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Default&quot;</span>,
+                <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Index&quot;</span>,
             }
         )
     }
@@ -316,7 +318,7 @@
     <span class="doccomment">/// Destroy notifier of `user_data`, or `None`</span>
     <span class="kw">fn</span> <span class="ident">set_default_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
     <span class="doccomment">/// Sets the comparison function used when sorting to be `sort_func`. If the</span>
     <span class="doccomment">/// current sort column id of `self` is the same as `sort_column_id`, then</span>
     <span class="doccomment">/// the model will sort using this function.</span>
@@ -330,7 +332,7 @@
     <span class="doccomment">/// Destroy notifier of `user_data`, or `None`</span>
     <span class="kw">fn</span> <span class="ident">set_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
     <span class="doccomment">/// Fills in `sort_column_id` and `order` with the current sort column and the</span>
     <span class="doccomment">/// order. It returns `true` unless the `sort_column_id` is</span>
     <span class="doccomment">/// `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID` or</span>
@@ -344,7 +346,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if the sort column is not one of the special sort</span>
     <span class="doccomment">///  column ids.</span>
-    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
     <span class="doccomment">/// Sets the current sort column to be `sort_column_id`. The `self` will</span>
     <span class="doccomment">/// resort itself to reflect this change, after emitting a</span>
     <span class="doccomment">/// `TreeSortable::sort-column-changed` signal. `sort_column_id` may either be</span>
@@ -362,12 +364,12 @@
     <span class="kw">fn</span> <span class="ident">set_unsorted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">trampoline</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">trampoline</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
     <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeModel</span>,
     <span class="ident">iter</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeIter</span>,
     <span class="ident">iter2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeIter</span>,
     <span class="ident">f</span>: <span class="ident">gpointer</span>,
-) <span class="op">-&gt;</span> <span class="ident">i32</span>
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;</span>,
 {
@@ -380,24 +382,24 @@
     .<span class="ident">to_glib</span>()
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">destroy_closure</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">destroy_closure</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="ident">gpointer</span>,
 ) {
     <span class="ident">Box</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>::<span class="ident">from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
 }
 
-<span class="kw">fn</span> <span class="ident">into_raw</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">func</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">gpointer</span>
+<span class="kw">fn</span> <span class="ident">into_raw</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">func</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gpointer</span>
 <span class="kw">where</span>
-    <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">let</span> <span class="ident">func</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">func</span>);
     <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">func</span>) <span class="kw">as</span> <span class="ident">gpointer</span>
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;&gt;</span> <span class="ident">TreeSortableExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">TreeSortableExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">uninitialized</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">order</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">uninitialized</span>();
@@ -406,7 +408,7 @@
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sort_column_id</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">order</span>,
             );
-            <span class="kw">if</span> <span class="ident">sort_column_id</span> <span class="op">!=</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span> {
+            <span class="kw">if</span> <span class="ident">sort_column_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span> {
                 <span class="prelude-val">Some</span>((<span class="ident">from_glib</span>(<span class="ident">sort_column_id</span>), <span class="ident">from_glib</span>(<span class="ident">order</span>)))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
@@ -416,7 +418,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_default_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_default_sort_func</span>(
@@ -451,7 +453,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     {
         <span class="kw">unsafe</span> {
             <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_sort_func</span>(

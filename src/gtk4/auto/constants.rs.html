@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `gtk4/src/auto/constants.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constants.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/constants.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constants.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -271,257 +273,257 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CStr</span>;
 
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">IM_MODULE_EXTENSION_POINT_NAME</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_IM_MODULE_EXTENSION_POINT_NAME</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">LEVEL_BAR_OFFSET_FULL</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_LEVEL_BAR_OFFSET_FULL</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">LEVEL_BAR_OFFSET_HIGH</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_LEVEL_BAR_OFFSET_HIGH</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">LEVEL_BAR_OFFSET_LOW</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_LEVEL_BAR_OFFSET_LOW</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">MEDIA_FILE_EXTENSION_POINT_NAME</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_MEDIA_FILE_EXTENSION_POINT_NAME</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_A3</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_A3</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_A4</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_A4</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_A5</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_A5</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_B5</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_B5</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_EXECUTIVE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_EXECUTIVE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_LEGAL</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_LEGAL</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PAPER_NAME_LETTER</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PAPER_NAME_LETTER</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_COLLATE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_COLLATE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_DEFAULT_SOURCE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_DEFAULT_SOURCE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_DITHER</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_DITHER</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_DUPLEX</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_DUPLEX</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_FINISHINGS</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_FINISHINGS</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_MEDIA_TYPE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_MEDIA_TYPE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_NUMBER_UP</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_NUMBER_UP</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_NUMBER_UP_LAYOUT</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_N_COPIES</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_N_COPIES</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_ORIENTATION</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_ORIENTATION</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_OUTPUT_BASENAME</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_OUTPUT_BASENAME</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_OUTPUT_BIN</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_OUTPUT_BIN</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_OUTPUT_DIR</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_OUTPUT_DIR</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_OUTPUT_FILE_FORMAT</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_OUTPUT_URI</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_OUTPUT_URI</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PAGE_RANGES</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PAGE_RANGES</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PAGE_SET</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PAGE_SET</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PAPER_FORMAT</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PAPER_FORMAT</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PAPER_HEIGHT</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PAPER_HEIGHT</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PAPER_WIDTH</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PAPER_WIDTH</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PRINTER</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PRINTER</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PRINTER_LPI</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PRINTER_LPI</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_PRINT_PAGES</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_PRINT_PAGES</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_QUALITY</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_QUALITY</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_RESOLUTION</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_RESOLUTION</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_RESOLUTION_X</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_RESOLUTION_X</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_RESOLUTION_Y</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_RESOLUTION_Y</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_REVERSE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_REVERSE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_SCALE</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_SCALE</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_USE_COLOR</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_USE_COLOR</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_WIN32_DRIVER_EXTRA</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
     });
 <span class="kw">pub</span> <span class="kw">static</span> <span class="ident">PRINT_SETTINGS_WIN32_DRIVER_VERSION</span>: <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">||</span> <span class="kw">unsafe</span> {
+    <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="kw">unsafe</span> {
         <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">gtk_sys</span>::<span class="ident">GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION</span>)
             .<span class="ident">to_str</span>()
             .<span class="ident">unwrap</span>()
