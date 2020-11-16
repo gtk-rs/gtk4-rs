@@ -63,13 +63,12 @@ def def_check_submodule(submodule_path, conf):
 def build_gir_if_needed(updated_submodule):
     if updated_submodule == FAILURE:
         return False
-    elif updated_submodule == NEED_UPDATE or not isfile('./gir/target/release/gir'):
-        print('=> Building gir...')
-        if update_workspace() is True:
-            print('<= Done!')
-        else:
-            print('<= Failed...')
-            return False
+    print('=> Building gir...')
+    if update_workspace() is True:
+        print('<= Done!')
+    else:
+        print('<= Failed...')
+        return False
     return True
 
 
