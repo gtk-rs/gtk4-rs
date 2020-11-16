@@ -2,6 +2,7 @@ use gtk_sys;
 
 use glib::subclass::prelude::*;
 use glib::translate::*;
+use glib::Cast;
 
 use Application;
 use Window;
@@ -9,39 +10,51 @@ use Window;
 pub trait GtkApplicationImpl:
     ObjectImpl + GtkApplicationImplExt + gio::subclass::ApplicationImpl
 {
-    fn window_added(&self, application: &Application, window: &Window) {
+    fn window_added(&self, application: &Self::Type, window: &Window) {
         self.parent_window_added(application, window)
     }
 
-    fn window_removed(&self, application: &Application, window: &Window) {
+    fn window_removed(&self, application: &Self::Type, window: &Window) {
         self.parent_window_removed(application, window)
     }
 }
 
-pub trait GtkApplicationImplExt {
-    fn parent_window_added(&self, application: &Application, window: &Window);
-    fn parent_window_removed(&self, application: &Application, window: &Window);
+pub trait GtkApplicationImplExt: ObjectSubclass {
+    fn parent_window_added(&self, application: &Self::Type, window: &Window);
+    fn parent_window_removed(&self, application: &Self::Type, window: &Window);
 }
 
 impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
-    fn parent_window_added(&self, application: &Application, window: &Window) {
+    fn parent_window_added(&self, application: &Self::Type, window: &Window) {
         unsafe {
             let data = T::type_data();
             let parent_class =
                 data.as_ref().get_parent_class() as *mut gtk_sys::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_added {
-                f(application.to_glib_none().0, window.to_glib_none().0)
+                f(
+                    application
+                        .unsafe_cast_ref::<Application>()
+                        .to_glib_none()
+                        .0,
+                    window.to_glib_none().0,
+                )
             }
         }
     }
 
-    fn parent_window_removed(&self, application: &Application, window: &Window) {
+    fn parent_window_removed(&self, application: &Self::Type, window: &Window) {
         unsafe {
             let data = T::type_data();
             let parent_class =
                 data.as_ref().get_parent_class() as *mut gtk_sys::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_removed {
-                f(application.to_glib_none().0, window.to_glib_none().0)
+                f(
+                    application
+                        .unsafe_cast_ref::<Application>()
+                        .to_glib_none()
+                        .0,
+                    window.to_glib_none().0,
+                )
             }
         }
     }
@@ -65,7 +78,7 @@ unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<Application> = from_glib_borrow(ptr);
 
-    imp.window_added(&wrap, &from_glib_borrow(wptr))
+    imp.window_added(wrap.unsafe_cast_ref(), &from_glib_borrow(wptr))
 }
 
 unsafe extern "C" fn application_window_removed<T: GtkApplicationImpl>(
@@ -76,5 +89,5 @@ unsafe extern "C" fn application_window_removed<T: GtkApplicationImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<Application> = from_glib_borrow(ptr);
 
-    imp.window_removed(&wrap, &from_glib_borrow(wptr))
+    imp.window_removed(wrap.unsafe_cast_ref(), &from_glib_borrow(wptr))
 }
