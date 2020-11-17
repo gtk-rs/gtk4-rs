@@ -12,6 +12,7 @@ pub mod drawing_area;
 pub mod flow_box_child;
 pub mod list_box_row;
 pub mod popover;
+pub mod toggle_button;
 pub mod widget;
 pub mod window;
 
@@ -26,6 +27,7 @@ pub mod prelude {
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::popover::PopoverImpl;
+    pub use super::toggle_button::ToggleButtonImpl;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
     pub use gio::subclass::prelude::*;
