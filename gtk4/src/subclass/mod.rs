@@ -8,6 +8,7 @@ pub mod application_window;
 pub mod box_;
 pub mod button;
 pub mod dialog;
+pub mod drawing_area;
 pub mod flow_box;
 pub mod flow_box_child;
 pub mod header_bar;
@@ -23,6 +24,7 @@ pub mod prelude {
     pub use super::box_::BoxImpl;
     pub use super::button::ButtonImpl;
     pub use super::dialog::DialogImpl;
+    pub use super::drawing_area::DrawingAreaImpl;
     pub use super::flow_box::FlowBoxImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::header_bar::HeaderBarImpl;
