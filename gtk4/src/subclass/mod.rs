@@ -10,6 +10,7 @@ pub mod button;
 pub mod check_button;
 pub mod dialog;
 pub mod drawing_area;
+pub mod entry;
 pub mod flow_box_child;
 pub mod list_box_row;
 pub mod popover;
@@ -26,6 +27,7 @@ pub mod prelude {
     pub use super::check_button::CheckButtonImpl;
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
+    pub use super::entry::EntryImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::popover::PopoverImpl;
