@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["application",""],["application_window",""],["box_",""],["dialog",""],["header_bar",""],["prelude",""],["widget",""],["window",""]]});
+initSidebarItems({"mod":[["adjustment",""],["application",""],["application_window",""],["box_",""],["button",""],["dialog",""],["drawing_area",""],["flow_box_child",""],["list_box_row",""],["prelude",""],["widget",""],["window",""]]});

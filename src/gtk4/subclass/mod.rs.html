@@ -24,25 +24,41 @@
 <span id="21">21</span>
 <span id="22">22</span>
 <span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">adjustment</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application_window</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">box_</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dialog</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">header_bar</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">drawing_area</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">flow_box_child</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">list_box_row</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">prelude</span> {
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">adjustment</span>::<span class="ident">AdjustmentImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">application</span>::<span class="ident">GtkApplicationImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">application_window</span>::<span class="ident">ApplicationWindowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">box_</span>::<span class="ident">BoxImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">button</span>::<span class="ident">ButtonImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">dialog</span>::<span class="ident">DialogImpl</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">header_bar</span>::<span class="ident">HeaderBarImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">drawing_area</span>::<span class="ident">DrawingAreaImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">flow_box_child</span>::<span class="ident">FlowBoxChildImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">list_box_row</span>::<span class="ident">ListBoxRowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">widget</span>::<span class="ident">WidgetImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">window</span>::<span class="ident">WindowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gio</span>::<span class="ident">subclass</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
