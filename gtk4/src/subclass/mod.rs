@@ -15,6 +15,7 @@ pub mod flow_box_child;
 pub mod list_box_row;
 pub mod native_dialog;
 pub mod popover;
+pub mod style_context;
 pub mod toggle_button;
 pub mod widget;
 pub mod window;
@@ -33,6 +34,7 @@ pub mod prelude {
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::native_dialog::NativeDialogImpl;
     pub use super::popover::PopoverImpl;
+    pub use super::style_context::StyleContextImpl;
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
