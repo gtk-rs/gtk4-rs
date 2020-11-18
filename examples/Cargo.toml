@@ -10,10 +10,8 @@ autobins = false
 path = "../gtk4"
 package = "gtk4"
 
-
 [dependencies.gio]
 git = "https://github.com/gtk-rs/gtk-rs"
-
 
 [[bin]]
 name = "basic"
