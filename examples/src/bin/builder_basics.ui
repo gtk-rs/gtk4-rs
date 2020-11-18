@@ -23,13 +23,6 @@
         <property name="tooltip_markup" translatable="yes">Thank you for trying this example</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkBox" id="messagedialog-action_area1">
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-        </child>
         <child>
           <object class="GtkLabel" id="label2">
             <property name="label" translatable="yes">You have pressed the button</property>
