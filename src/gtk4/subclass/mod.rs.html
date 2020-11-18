@@ -32,6 +32,18 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -42,10 +54,16 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application_window</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">box_</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">check_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dialog</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">drawing_area</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">entry</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">flow_box_child</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">list_box_row</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">native_dialog</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">popover</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_context</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">toggle_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
 
@@ -55,10 +73,16 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">application_window</span>::<span class="ident">ApplicationWindowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">box_</span>::<span class="ident">BoxImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">button</span>::<span class="ident">ButtonImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">check_button</span>::<span class="ident">CheckButtonImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">dialog</span>::<span class="ident">DialogImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">drawing_area</span>::<span class="ident">DrawingAreaImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">entry</span>::<span class="ident">EntryImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">flow_box_child</span>::<span class="ident">FlowBoxChildImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">list_box_row</span>::<span class="ident">ListBoxRowImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">native_dialog</span>::<span class="ident">NativeDialogImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">popover</span>::<span class="ident">PopoverImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">style_context</span>::<span class="ident">StyleContextImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">toggle_button</span>::<span class="ident">ToggleButtonImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">widget</span>::<span class="ident">WidgetImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">window</span>::<span class="ident">WindowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gio</span>::<span class="ident">subclass</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
