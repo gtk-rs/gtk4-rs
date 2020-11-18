@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window1">
+    <property name="title" translatable="yes">Builder Basics</property>
+    <property name="default_width">320</property>
+    <property name="default_height">240</property>
+    <child>
+      <object class="GtkButton" id="button1">
+        <property name="label" translatable="yes">Big Useless Button</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMessageDialog" id="messagedialog1">
+    <property name="transient-for">window1</property>
+    <property name="resizable">0</property>
+    <property name="modal">1</property>
+    <property name="hide-on-close">1</property>
+    <property name="buttons">ok</property>
+    <child internal-child="message_area">
+      <object class="GtkBox" id="messagedialog-vbox1">
+        <property name="name">msgdialog</property>
+        <property name="width_request">300</property>
+        <property name="tooltip_markup" translatable="yes">Thank you for trying this example</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkBox" id="messagedialog-action_area1">
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label2">
+            <property name="label" translatable="yes">You have pressed the button</property>
+            <property name="ellipsize">end</property>
+            <property name="width_chars">40</property>
+            <property name="lines">1</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
