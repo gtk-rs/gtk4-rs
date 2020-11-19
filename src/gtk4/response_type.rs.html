@@ -140,32 +140,32 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
 <span class="doccomment">/// Predefined values for use as response ids in `DialogExt::add_button`.</span>
-<span class="doccomment">/// All predefined values are negative; GTK leaves values of 0 or greater for</span>
+<span class="doccomment">/// All predefined values are negative; GTK+ leaves values of 0 or greater for</span>
 <span class="doccomment">/// application-defined response ids.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ResponseType</span> {
     <span class="doccomment">/// Returned if an action widget has no response id,</span>
     <span class="doccomment">///  or if the dialog gets programmatically hidden or destroyed</span>
     <span class="prelude-val">None</span>,
-    <span class="doccomment">/// Generic response id, not used by GTK dialogs</span>
+    <span class="doccomment">/// Generic response id, not used by GTK+ dialogs</span>
     <span class="ident">Reject</span>,
-    <span class="doccomment">/// Generic response id, not used by GTK dialogs</span>
+    <span class="doccomment">/// Generic response id, not used by GTK+ dialogs</span>
     <span class="ident">Accept</span>,
     <span class="doccomment">/// Returned if the dialog is deleted</span>
     <span class="ident">DeleteEvent</span>,
-    <span class="doccomment">/// Returned by OK buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by OK buttons in GTK+ dialogs</span>
     <span class="prelude-val">Ok</span>,
-    <span class="doccomment">/// Returned by Cancel buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by Cancel buttons in GTK+ dialogs</span>
     <span class="ident">Cancel</span>,
-    <span class="doccomment">/// Returned by Close buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by Close buttons in GTK+ dialogs</span>
     <span class="ident">Close</span>,
-    <span class="doccomment">/// Returned by Yes buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by Yes buttons in GTK+ dialogs</span>
     <span class="ident">Yes</span>,
-    <span class="doccomment">/// Returned by No buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by No buttons in GTK+ dialogs</span>
     <span class="ident">No</span>,
-    <span class="doccomment">/// Returned by Apply buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by Apply buttons in GTK+ dialogs</span>
     <span class="ident">Apply</span>,
-    <span class="doccomment">/// Returned by Help buttons in GTK dialogs</span>
+    <span class="doccomment">/// Returned by Help buttons in GTK+ dialogs</span>
     <span class="ident">Help</span>,
     <span class="ident">Other</span>(<span class="ident">u16</span>),
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>

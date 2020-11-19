@@ -1078,6 +1078,67 @@
 <span class="kw">use</span> <span class="ident">Widget</span>;
 
 <span class="macro">glib_wrapper</span><span class="macro">!</span> {
+    <span class="doccomment">/// `Popover` is a bubble-like context window, primarily meant to</span>
+    <span class="doccomment">/// provide context-dependent information or options. Popovers are</span>
+    <span class="doccomment">/// attached to a widget, passed at construction time on `Popover::new`,</span>
+    <span class="doccomment">/// or updated afterwards through `PopoverExt::set_relative_to`, by</span>
+    <span class="doccomment">/// default they will point to the whole widget area, although this</span>
+    <span class="doccomment">/// behavior can be changed through `PopoverExt::set_pointing_to`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The position of a popover relative to the widget it is attached to</span>
+    <span class="doccomment">/// can also be changed through `PopoverExt::set_position`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// By default, `Popover` performs a GTK+ grab, in order to ensure</span>
+    <span class="doccomment">/// input events get redirected to it while it is shown, and also so</span>
+    <span class="doccomment">/// the popover is dismissed in the expected situations (clicks outside</span>
+    <span class="doccomment">/// the popover, or the Esc key being pressed). If no such modal behavior</span>
+    <span class="doccomment">/// is desired on a popover, `PopoverExt::set_modal` may be called on it</span>
+    <span class="doccomment">/// to tweak its behavior.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `Popover` as menu replacement</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `Popover` is often used to replace menus. To facilitate this, it</span>
+    <span class="doccomment">/// supports being populated from a `gio::MenuModel`, using</span>
+    <span class="doccomment">/// `Popover::new_from_model`. In addition to all the regular menu</span>
+    <span class="doccomment">/// model features, this function supports rendering sections in the</span>
+    <span class="doccomment">/// model in a more compact form, as a row of icon buttons instead of</span>
+    <span class="doccomment">/// menu items.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// To use this rendering, set the ”display-hint” attribute of the</span>
+    <span class="doccomment">/// section to ”horizontal-buttons” and set the icons of your items</span>
+    <span class="doccomment">/// with the ”verb-icon” attribute.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```plain</span>
+    <span class="doccomment">/// popover</span>
+    <span class="doccomment">/// ├── arrow</span>
+    <span class="doccomment">/// ╰── contents.background[.menu]</span>
+    <span class="doccomment">///     ╰── &lt;child&gt;</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The contents child node always gets the .background style class and it</span>
+    <span class="doccomment">/// gets the .menu style class if the popover is menu-like (e.g. `PopoverMenu`</span>
+    <span class="doccomment">/// or created using `Popover::new_from_model`).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Particular uses of `Popover`, such as touch selection popups</span>
+    <span class="doccomment">/// or magnifiers in `Entry` or `TextView` get style classes</span>
+    <span class="doccomment">/// like .touch-selection or .magnifier to differentiate from</span>
+    <span class="doccomment">/// plain popovers.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// When styling a popover directly, the popover node should usually not have any</span>
+    <span class="doccomment">/// background.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that, in order to accomplish appropriate arrow visuals, `Popover` uses</span>
+    <span class="doccomment">/// custom drawing for the arrow node. This makes it possible for the arrow to change</span>
+    <span class="doccomment">/// its shape dynamically, but it also limits the possibilities of styling it using CSS.</span>
+    <span class="doccomment">/// In particular, the arrow gets drawn over the content node&#39;s border so they look</span>
+    <span class="doccomment">/// like one shape, which means that the border-width of the content node and the arrow</span>
+    <span class="doccomment">/// node should be the same. The arrow also does not support any border shape other than</span>
+    <span class="doccomment">/// solid, no border-radius, only one border width (border-bottom-width is used) and no box-shadow.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Implements</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`PopoverExt`](trait.PopoverExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Popover</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">gtk_sys</span>::<span class="ident">GtkPopover</span>, <span class="ident">gtk_sys</span>::<span class="ident">GtkPopoverClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1086,11 +1147,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Popover</span> {
-    <span class="doccomment">/// Creates a new popover.</span>
+    <span class="doccomment">/// Creates a new popover to point to `relative_to`</span>
+    <span class="doccomment">/// ## `relative_to`</span>
+    <span class="doccomment">/// `Widget` the popover is related to</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new popover</span>
+    <span class="doccomment">/// a new `Popover`</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Popover</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_popover_new</span>()).<span class="ident">unsafe_cast</span>() }
@@ -1470,52 +1533,18 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`EmojiChooser`](struct.EmojiChooser.html), [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html)</span>
+<span class="doccomment">/// [`PopoverMenu`](struct.PopoverMenu.html), [`Popover`](struct.Popover.html)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PopoverExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Returns whether the popover is modal.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// See `PopoverExt::set_autohide` for the</span>
-    <span class="doccomment">/// implications of this.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` is modal</span>
     <span class="kw">fn</span> <span class="ident">get_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns whether the popover will close after a modal child is closed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` will close after a modal child.</span>
     <span class="kw">fn</span> <span class="ident">get_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the child widget of `self`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget of `self`</span>
     <span class="kw">fn</span> <span class="ident">get_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets whether this popover is showing an arrow</span>
-    <span class="doccomment">/// pointing at the widget that it is relative to.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// whether the popover has an arrow</span>
     <span class="kw">fn</span> <span class="ident">get_has_arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the value of the `Popover:mnemonics-visible` property.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if mnemonics are supposed to be visible in this popover</span>
     <span class="kw">fn</span> <span class="ident">get_mnemonics_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the offset previous set with `PopoverExt::set_offset`.</span>
-    <span class="doccomment">/// ## `x_offset`</span>
-    <span class="doccomment">/// a location for the x_offset</span>
-    <span class="doccomment">/// ## `y_offset`</span>
-    <span class="doccomment">/// a location for the y_offset</span>
     <span class="kw">fn</span> <span class="ident">get_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// If a rectangle to point to has been set, this function will</span>
@@ -1547,60 +1576,29 @@
     <span class="doccomment">/// the popover without a transition, use `WidgetExt::show`.</span>
     <span class="kw">fn</span> <span class="ident">popup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets whether `self` is modal.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A modal popover will grab the keyboard focus on it when being</span>
-    <span class="doccomment">/// displayed. Clicking outside the popover area or pressing Esc will</span>
-    <span class="doccomment">/// dismiss the popover.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Called this function on an already showing popup with a new autohide value</span>
-    <span class="doccomment">/// different from the current one, will cause the popup to be hidden.</span>
-    <span class="doccomment">/// ## `autohide`</span>
-    <span class="doccomment">/// `true` to dismiss the popover on outside clicks</span>
     <span class="kw">fn</span> <span class="ident">set_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If `cascade_popdown` is `true`, the popover will be closed when a child</span>
-    <span class="doccomment">/// modal popover is closed. If `false`, `self` will stay visible.</span>
-    <span class="doccomment">/// ## `cascade_popdown`</span>
-    <span class="doccomment">/// `true` if the popover should follow a child closing</span>
     <span class="kw">fn</span> <span class="ident">set_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cascade_popdown</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the child widget of `self`.</span>
-    <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the child widget</span>
     <span class="kw">fn</span> <span class="ident">set_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// The default widget is the widget that’s activated when the user</span>
-    <span class="doccomment">/// presses Enter in a dialog (for example). This function sets or</span>
-    <span class="doccomment">/// unsets the default widget for a `Popover`.</span>
+    <span class="doccomment">/// Sets the widget that should be set as default widget while</span>
+    <span class="doccomment">/// the popover is shown (see `gtk_window_set_default`). `Popover`</span>
+    <span class="doccomment">/// remembers the previous default widget and reestablishes it</span>
+    <span class="doccomment">/// when the popover is dismissed.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a child widget of `self` to set as</span>
-    <span class="doccomment">///  the default, or `None` to unset the default widget for the popover</span>
+    <span class="doccomment">/// the new default widget, or `None`</span>
     <span class="kw">fn</span> <span class="ident">set_default_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets whether this popover should draw an arrow</span>
-    <span class="doccomment">/// pointing at the widget it is relative to.</span>
-    <span class="doccomment">/// ## `has_arrow`</span>
-    <span class="doccomment">/// `true` to draw an arrow</span>
     <span class="kw">fn</span> <span class="ident">set_has_arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_arrow</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the `Popover:mnemonics-visible` property.</span>
-    <span class="doccomment">/// ## `mnemonics_visible`</span>
-    <span class="doccomment">/// the new value</span>
     <span class="kw">fn</span> <span class="ident">set_mnemonics_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mnemonics_visible</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the offset to use when calculating the position of the popover.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// These values are used when preparing the ``GtkPopupLayout`` for positioning</span>
-    <span class="doccomment">/// the popover.</span>
-    <span class="doccomment">/// ## `x_offset`</span>
-    <span class="doccomment">/// the x offset to adjust the position by</span>
-    <span class="doccomment">/// ## `y_offset`</span>
-    <span class="doccomment">/// the y offset to adjust the position by</span>
     <span class="kw">fn</span> <span class="ident">set_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x_offset</span>: <span class="ident">i32</span>, <span class="ident">y_offset</span>: <span class="ident">i32</span>);
 
     <span class="doccomment">/// Sets the rectangle that `self` will point to, in the</span>
-    <span class="doccomment">/// coordinate space of the `self` parent.</span>
+    <span class="doccomment">/// coordinate space of the widget `self` is attached to,</span>
+    <span class="doccomment">/// see `PopoverExt::set_relative_to`.</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// rectangle to point to</span>
     <span class="kw">fn</span> <span class="ident">set_pointing_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Rectangle</span>);
@@ -1621,6 +1619,8 @@
 
     <span class="kw">fn</span> <span class="ident">emit_activate_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
+    <span class="doccomment">/// This signal is emitted when the popover is dismissed either through</span>
+    <span class="doccomment">/// API or user interaction.</span>
     <span class="kw">fn</span> <span class="ident">connect_closed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="kw">fn</span> <span class="ident">connect_property_autohide_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;

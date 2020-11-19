@@ -66,6 +66,18 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2018, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -74,6 +86,18 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">gtk_sys</span>;
 
+<span class="doccomment">/// `CssLocation` is used to present a location in a file - or other</span>
+<span class="doccomment">/// source of data parsed by the CSS engine.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The `bytes` and `line_bytes` offsets are meant to be used to</span>
+<span class="doccomment">/// programmatically match data. The `lines` and `line_chars` offsets</span>
+<span class="doccomment">/// can be used for printing the location in a file.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that the `lines` parameter starts from 0 and is increased</span>
+<span class="doccomment">/// whenever a CSS line break is encountered. (CSS defines the C character</span>
+<span class="doccomment">/// sequences &quot;\r\n&quot;, &quot;\r&quot;, &quot;\n&quot; and &quot;\f&quot; as newlines.)</span>
+<span class="doccomment">/// If your document uses different rules for line breaking, you might want</span>
+<span class="doccomment">/// run into problems here.</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssLocation</span>(<span class="ident">gtk_sys</span>::<span class="ident">GtkCssLocation</span>);

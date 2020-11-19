@@ -53,6 +53,7 @@
 <span id="50">50</span>
 <span id="51">51</span>
 <span id="52">52</span>
+<span id="53">53</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">glib</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
@@ -82,7 +83,8 @@
     <span class="doccomment">/// `gio::Application::id_is_valid`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no application ID is given then some features (most notably application</span>
-    <span class="doccomment">/// uniqueness) will be disabled.</span>
+    <span class="doccomment">/// uniqueness) will be disabled. A null application ID is only allowed with</span>
+    <span class="doccomment">/// GTK+ 3.6 or later.</span>
     <span class="doccomment">/// ## `application_id`</span>
     <span class="doccomment">/// The application ID.</span>
     <span class="doccomment">/// ## `flags`</span>

@@ -461,6 +461,20 @@
 <span id="458">458</span>
 <span id="459">459</span>
 <span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -506,7 +520,7 @@
     }
 
     <span class="doccomment">/// The ::backspace signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted when the user asks for it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
@@ -531,7 +545,7 @@
     }
 
     <span class="doccomment">/// The ::copy-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted to copy the selection to the clipboard.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
@@ -556,7 +570,7 @@
     }
 
     <span class="doccomment">/// The ::cut-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted to cut the selection to the clipboard.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
@@ -581,7 +595,7 @@
     }
 
     <span class="doccomment">/// The ::delete-from-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted when the user initiates a text deletion.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `type_` is `DeleteType::Chars`, GTK deletes the selection</span>
@@ -622,7 +636,7 @@
     }
 
     <span class="doccomment">/// The ::insert-at-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted when the user initiates the insertion of a</span>
     <span class="doccomment">/// fixed string at the cursor.</span>
     <span class="doccomment">///</span>
@@ -650,7 +664,7 @@
     }
 
     <span class="doccomment">/// The ::insert-emoji signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted to present the Emoji chooser for the `self_`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are Ctrl-. and Ctrl-;</span>
@@ -674,7 +688,7 @@
     }
 
     <span class="doccomment">/// The ::move-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted when the user initiates a cursor movement.</span>
     <span class="doccomment">/// If the cursor is not visible in `self_`, this signal causes</span>
     <span class="doccomment">/// the viewport to be moved instead.</span>
@@ -685,7 +699,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal come in two variants,</span>
     <span class="doccomment">/// the variant with the Shift modifier extends the selection,</span>
-    <span class="doccomment">/// the variant without the Shift modifier does not.</span>
+    <span class="doccomment">/// the variant without the Shift modifer does not.</span>
     <span class="doccomment">/// There are too many key combinations to list them all here.</span>
     <span class="doccomment">/// - Arrow keys move by individual characters/lines</span>
     <span class="doccomment">/// - Ctrl-arrow key combinations move by words/paragraphs</span>
@@ -729,7 +743,7 @@
     }
 
     <span class="doccomment">/// The ::paste-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted to paste the contents of the clipboard</span>
     <span class="doccomment">/// into the text view.</span>
     <span class="doccomment">///</span>
@@ -754,6 +768,20 @@
         }
     }
 
+    <span class="doccomment">/// The ::populate-popup signal gets emitted before showing the</span>
+    <span class="doccomment">/// context menu of the self.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If you need to add items to the context menu, connect</span>
+    <span class="doccomment">/// to this signal and append your items to the `widget`, which</span>
+    <span class="doccomment">/// will be a `Menu` in this case.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If `Text:populate-all` is `true`, this signal will</span>
+    <span class="doccomment">/// also be emitted to populate touch popups. In this case,</span>
+    <span class="doccomment">/// `widget` will be a different container, e.g. a `Toolbar`.</span>
+    <span class="doccomment">/// The signal handler should not make assumptions about the</span>
+    <span class="doccomment">/// type of `widget`.</span>
+    <span class="doccomment">/// ## `widget`</span>
+    <span class="doccomment">/// the container that is being populated</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_populate_popup</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">populate_popup_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkText</span>,
@@ -800,7 +828,7 @@
     }
 
     <span class="doccomment">/// The ::toggle-overwrite signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`GtkBindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
     <span class="doccomment">/// which gets emitted to toggle the overwrite mode of the self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal is Insert.</span>

@@ -7,18 +7,18 @@
     type <a href="#associatedtype.Instance" class="type">Instance</a>: <a class="trait" href="../../../gtk4/subclass/prelude/trait.InstanceStruct.html" title="trait gtk4::subclass::prelude::InstanceStruct">InstanceStruct</a>;
     type <a href="#associatedtype.Class" class="type">Class</a>: <a class="trait" href="../../../gtk4/subclass/prelude/trait.ClassStruct.html" title="trait gtk4::subclass::prelude::ClassStruct">ClassStruct</a>;
 
-    const <a href="#associatedconstant.NAME" class="constant"><b>NAME</b></a>: &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>;
-    const <a href="#associatedconstant.ABSTRACT" class="constant"><b>ABSTRACT</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+    pub const <a href="#associatedconstant.NAME" class="constant"><b>NAME</b></a>: &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>;
+    pub const <a href="#associatedconstant.ABSTRACT" class="constant"><b>ABSTRACT</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
 
-    fn <a href="#tymethod.type_data" class="fnname">type_data</a>() -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html" title="struct core::ptr::non_null::NonNull">NonNull</a>&lt;TypeData&gt;;
-<div class="item-spacer"></div>    fn <a href="#tymethod.get_type" class="fnname">get_type</a>() -&gt; Type;
+    pub fn <a href="#tymethod.type_data" class="fnname">type_data</a>() -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html" title="struct core::ptr::non_null::NonNull">NonNull</a>&lt;TypeData&gt;;
+<div class="item-spacer"></div>    pub fn <a href="#tymethod.get_type" class="fnname">get_type</a>() -&gt; Type;
 
-    fn <a href="#method.get_instance" class="fnname">get_instance</a>(&amp;self) -&gt; Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a> { ... }
-<div class="item-spacer"></div>    fn <a href="#method.from_instance" class="fnname">from_instance</a>(obj: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self { ... }
-<div class="item-spacer"></div>    fn <a href="#method.type_init" class="fnname">type_init</a>(_type_: &amp;mut InitializingType&lt;Self&gt;) { ... }
-<div class="item-spacer"></div>    fn <a href="#method.class_init" class="fnname">class_init</a>(_klass: &amp;mut Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) { ... }
-<div class="item-spacer"></div>    fn <a href="#method.new" class="fnname">new</a>() -&gt; Self { ... }
-<div class="item-spacer"></div>    fn <a href="#method.with_class" class="fnname">with_class</a>(_klass: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) -&gt; Self { ... }
+    pub fn <a href="#method.get_instance" class="fnname">get_instance</a>(&amp;self) -&gt; Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a> { ... }
+<div class="item-spacer"></div>    pub fn <a href="#method.from_instance" class="fnname">from_instance</a>(obj: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self { ... }
+<div class="item-spacer"></div>    pub fn <a href="#method.type_init" class="fnname">type_init</a>(_type_: &amp;mut InitializingType&lt;Self&gt;) { ... }
+<div class="item-spacer"></div>    pub fn <a href="#method.class_init" class="fnname">class_init</a>(_klass: &amp;mut Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) { ... }
+<div class="item-spacer"></div>    pub fn <a href="#method.new" class="fnname">new</a>() -&gt; Self { ... }
+<div class="item-spacer"></div>    pub fn <a href="#method.with_class" class="fnname">with_class</a>(_klass: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) -&gt; Self { ... }
 }</pre></div><div class="docblock"><p>The central trait for subclassing a <code>GObject</code> type.</p>
 <p>Links together the type name, parent type and the instance and
 class structs for type registration and allows subclasses to
@@ -33,37 +33,37 @@ used in most cases.</p>
 </div><h3 id="associatedtype.Class" class="method"><code>type <a href="#associatedtype.Class" class="type">Class</a>: <a class="trait" href="../../../gtk4/subclass/prelude/trait.ClassStruct.html" title="trait gtk4::subclass::prelude::ClassStruct">ClassStruct</a></code></h3><div class="docblock"><p>The C class struct.</p>
 <p>See <a href="../simple/struct.ClassStruct.html"><code>simple::ClassStruct</code></a> for an basic instance struct that should be
 used in most cases.</p>
-</div></div><span class="loading-content">Loading content...</span><h2 id="associated-const" class="small-section-header">Associated Constants<a href="#associated-const" class="anchor"></a></h2><div class="methods"><h3 id="associatedconstant.NAME" class="method"><code>const <a href="#associatedconstant.NAME" class="constant"><b>NAME</b></a>: &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code></h3><div class="docblock"><p><code>GObject</code> type name.</p>
+</div></div><span class="loading-content">Loading content...</span><h2 id="associated-const" class="small-section-header">Associated Constants<a href="#associated-const" class="anchor"></a></h2><div class="methods"><h3 id="associatedconstant.NAME" class="method"><code>pub const <a href="#associatedconstant.NAME" class="constant"><b>NAME</b></a>: &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code></h3><div class="docblock"><p><code>GObject</code> type name.</p>
 <p>This must be unique in the whole process.</p>
-</div><h3 id="associatedconstant.ABSTRACT" class="method"><code>const <a href="#associatedconstant.ABSTRACT" class="constant"><b>ABSTRACT</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></h3><div class="docblock"><p>If this subclass is an abstract class or not.</p>
+</div><h3 id="associatedconstant.ABSTRACT" class="method"><code>pub const <a href="#associatedconstant.ABSTRACT" class="constant"><b>ABSTRACT</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></h3><div class="docblock"><p>If this subclass is an abstract class or not.</p>
 <p>By default all subclasses are non-abstract types but setting this to <code>true</code> will create an
 abstract class instead.</p>
 <p>Abstract classes can't be instantiated and require a non-abstract subclass.</p>
 <p>Optional.</p>
-</div></div><span class="loading-content">Loading content...</span><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.type_data" class="method"><code>fn <a href="#tymethod.type_data" class="fnname">type_data</a>() -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html" title="struct core::ptr::non_null::NonNull">NonNull</a>&lt;TypeData&gt;</code></h3><div class="docblock"><p>Storage for the type-specific data used during registration.</p>
+</div></div><span class="loading-content">Loading content...</span><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.type_data" class="method"><code>pub fn <a href="#tymethod.type_data" class="fnname">type_data</a>() -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/ptr/non_null/struct.NonNull.html" title="struct core::ptr::non_null::NonNull">NonNull</a>&lt;TypeData&gt;</code></h3><div class="docblock"><p>Storage for the type-specific data used during registration.</p>
 <p>This is usually generated by the <a href="../../macro.glib_object_subclass.html"><code>glib_object_subclass!</code></a> macro.</p>
-</div><h3 id="tymethod.get_type" class="method"><code>fn <a href="#tymethod.get_type" class="fnname">get_type</a>() -&gt; Type</code></h3><div class="docblock"><p>Returns the <code>glib::Type</code> ID of the subclass.</p>
+</div><h3 id="tymethod.get_type" class="method"><code>pub fn <a href="#tymethod.get_type" class="fnname">get_type</a>() -&gt; Type</code></h3><div class="docblock"><p>Returns the <code>glib::Type</code> ID of the subclass.</p>
 <p>This will register the type with the type system on the first call and is usually generated
 by the <a href="../../macro.glib_object_subclass.html"><code>glib_object_subclass!</code></a> macro.</p>
-</div></div><span class="loading-content">Loading content...</span><h2 id="provided-methods" class="small-section-header">Provided methods<a href="#provided-methods" class="anchor"></a></h2><div class="methods"><h3 id="method.get_instance" class="method"><code>fn <a href="#method.get_instance" class="fnname">get_instance</a>(&amp;self) -&gt; Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a></code></h3><div class="docblock"><p>Returns the corresponding object instance.</p>
-</div><h3 id="method.from_instance" class="method"><code>fn <a href="#method.from_instance" class="fnname">from_instance</a>(obj: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self</code></h3><div class="docblock"><p>Returns the implementation from an instance.</p>
-</div><h3 id="method.type_init" class="method"><code>fn <a href="#method.type_init" class="fnname">type_init</a>(_type_: &amp;mut InitializingType&lt;Self&gt;)</code></h3><div class="docblock"><p>Additional type initialization.</p>
+</div></div><span class="loading-content">Loading content...</span><h2 id="provided-methods" class="small-section-header">Provided methods<a href="#provided-methods" class="anchor"></a></h2><div class="methods"><h3 id="method.get_instance" class="method"><code>pub fn <a href="#method.get_instance" class="fnname">get_instance</a>(&amp;self) -&gt; Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a></code></h3><div class="docblock"><p>Returns the corresponding object instance.</p>
+</div><h3 id="method.from_instance" class="method"><code>pub fn <a href="#method.from_instance" class="fnname">from_instance</a>(obj: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Type" title="type gtk4::subclass::prelude::ObjectSubclass::Type">Type</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self</code></h3><div class="docblock"><p>Returns the implementation from an instance.</p>
+</div><h3 id="method.type_init" class="method"><code>pub fn <a href="#method.type_init" class="fnname">type_init</a>(_type_: &amp;mut InitializingType&lt;Self&gt;)</code></h3><div class="docblock"><p>Additional type initialization.</p>
 <p>This is called right after the type was registered and allows
 subclasses to do additional type-specific initialization, e.g.
 for implementing <code>GObject</code> interfaces.</p>
 <p>Optional</p>
-</div><h3 id="method.class_init" class="method"><code>fn <a href="#method.class_init" class="fnname">class_init</a>(_klass: &amp;mut Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>)</code></h3><div class="docblock"><p>Class initialization.</p>
+</div><h3 id="method.class_init" class="method"><code>pub fn <a href="#method.class_init" class="fnname">class_init</a>(_klass: &amp;mut Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>)</code></h3><div class="docblock"><p>Class initialization.</p>
 <p>This is called after <code>type_init</code> and before the first instance
 of the subclass is created. Subclasses can use this to do class-
 specific initialization, e.g. for installing properties or signals
 on the class or calling class methods.</p>
 <p>Optional</p>
-</div><h3 id="method.new" class="method"><code>fn <a href="#method.new" class="fnname">new</a>() -&gt; Self</code></h3><div class="docblock"><p>Constructor.</p>
+</div><h3 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; Self</code></h3><div class="docblock"><p>Constructor.</p>
 <p>This is called during object instantiation before further subclasses
 are initialized, and should return a new instance of the subclass
 private struct.</p>
 <p>Optional, either implement this or <code>with_class()</code>.</p>
-</div><h3 id="method.with_class" class="method"><code>fn <a href="#method.with_class" class="fnname">with_class</a>(_klass: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) -&gt; Self</code></h3><div class="docblock"><p>Constructor.</p>
+</div><h3 id="method.with_class" class="method"><code>pub fn <a href="#method.with_class" class="fnname">with_class</a>(_klass: &amp;Self::<a class="type" href="../../../gtk4/subclass/prelude/trait.ObjectSubclass.html#associatedtype.Class" title="type gtk4::subclass::prelude::ObjectSubclass::Class">Class</a>) -&gt; Self</code></h3><div class="docblock"><p>Constructor.</p>
 <p>This is called during object instantiation before further subclasses
 are initialized, and should return a new instance of the subclass
 private struct.</p>

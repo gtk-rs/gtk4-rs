@@ -31,6 +31,11 @@
 <span id="28">28</span>
 <span id="29">29</span>
 <span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -45,6 +50,11 @@
 <span class="kw">use</span> <span class="ident">Widget</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryCompletionExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Gets the entry `self` has been attached to.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The entry `self` has been attached to</span>
     <span class="kw">fn</span> <span class="ident">get_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Entry</span><span class="op">&gt;</span>;
 }
 
