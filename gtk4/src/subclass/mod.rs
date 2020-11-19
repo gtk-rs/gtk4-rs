@@ -11,6 +11,7 @@ pub mod button;
 pub mod check_button;
 pub mod dialog;
 pub mod drawing_area;
+pub mod editable;
 pub mod entry;
 pub mod filter;
 pub mod flow_box_child;
@@ -37,6 +38,7 @@ pub mod prelude {
     pub use super::check_button::CheckButtonImpl;
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
+    pub use super::editable::EditableImpl;
     pub use super::entry::EntryImpl;
     pub use super::filter::FilterImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
