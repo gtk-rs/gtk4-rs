@@ -56,7 +56,7 @@ jobs:
       - uses: bcomnes/cleanup-xvfb@v1
 
   fmt:
-    name: Rustfmt
+    name: rustfmt
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -71,9 +71,8 @@ jobs:
           command: fmt
           args: --all -- --check
 
-
   clippy:
-    name: Clippy
+    name: clippy
     runs-on: ubuntu-20.04
     container:
       image: docker.io/bilelmoussaoui/gtk4

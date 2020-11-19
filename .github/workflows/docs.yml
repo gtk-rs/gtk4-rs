@@ -1,5 +1,4 @@
-
-name: github pages
+name: docs
 
 on:
   push:
@@ -7,7 +6,8 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    name: build
     container:
       image: docker.io/bilelmoussaoui/gtk4
     steps:
@@ -37,7 +37,8 @@ jobs:
           command: doc
           args: --workspace --no-deps
 
-      - name: Deploy
+      - name: deploy
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
