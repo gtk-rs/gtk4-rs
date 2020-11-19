@@ -85,10 +85,21 @@ jobs:
           toolchain: stable
           override: true
       - run: rustup component add clippy
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: -- -D warnings
+      - working-directory: gdk4
+        name: gdk4
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gdk4-wayland
+        name: gdk4-wayland
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gdk4-x11
+        name: gdk4-x11
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gsk4
+        name: gsk4
+        run: cargo clippy --features "broadway, vulkan" --all-targets -- -D warnings
+      - working-directory: gtk4
+        name: gtk4
+        run: cargo clippy --all-targets -- -D warnings
 
   regen_check:
     name: regen checker
