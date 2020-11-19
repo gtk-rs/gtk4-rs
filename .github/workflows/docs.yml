@@ -1,13 +1,14 @@
-
-name: github pages
+name: docs
 
 on:
   push:
     branches: [master]
+  pull_request:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    name: build
     container:
       image: docker.io/bilelmoussaoui/gtk4
     steps:
@@ -35,9 +36,10 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: --workspace --no-deps
+          args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys --all-features --no-deps
 
-      - name: Deploy
+      - name: deploy
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}

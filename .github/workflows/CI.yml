@@ -8,7 +8,7 @@ name: CI
 jobs:
   check:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: docker.io/bilelmoussaoui/gtk4
     strategy:
@@ -17,15 +17,13 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.41.0"
+          - "1.48.0"
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.rust }}
           override: true
-      - name: install dependencies
-        run: sudo dnf install -y xorg-x11-server-Xvfb
       # gsk4
       - name: "gsk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gsk4/Cargo.toml --features "broadway, vulkan"
@@ -58,8 +56,8 @@ jobs:
       - uses: bcomnes/cleanup-xvfb@v1
 
   fmt:
-    name: Rustfmt
-    runs-on: ubuntu-latest
+    name: rustfmt
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -73,10 +71,9 @@ jobs:
           command: fmt
           args: --all -- --check
 
-
   clippy:
-    name: Clippy
-    runs-on: ubuntu-latest
+    name: clippy
+    runs-on: ubuntu-20.04
     container:
       image: docker.io/bilelmoussaoui/gtk4
     steps:
@@ -87,14 +84,25 @@ jobs:
           toolchain: stable
           override: true
       - run: rustup component add clippy
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: -- -D warnings
+      - working-directory: gdk4
+        name: gdk4
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gdk4-wayland
+        name: gdk4-wayland
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gdk4-x11
+        name: gdk4-x11
+        run: cargo clippy --all-targets -- -D warnings
+      - working-directory: gsk4
+        name: gsk4
+        run: cargo clippy --features "broadway, vulkan" --all-targets -- -D warnings
+      - working-directory: gtk4
+        name: gtk4
+        run: cargo clippy --all-targets -- -D warnings
 
   regen_check:
     name: regen checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -104,7 +112,7 @@ jobs:
 
   checker:
     name: gtk-rs checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         crate:

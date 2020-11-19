@@ -11,7 +11,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -56,7 +55,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
+    pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -193,10 +192,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn set_property_texture<P: IsA<gdk::Texture> + SetValueOptional>(
-        &self,
-        texture: Option<&P>,
-    ) {
+    pub fn set_property_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,

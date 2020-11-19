@@ -11,7 +11,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
@@ -223,7 +222,7 @@ impl Image {
         }
     }
 
-    pub fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
+    pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
@@ -243,10 +242,7 @@ impl Image {
         }
     }
 
-    pub fn set_property_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        paintable: Option<&P>,
-    ) {
+    pub fn set_property_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
