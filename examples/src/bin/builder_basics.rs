@@ -1,24 +1,24 @@
 //! # Builder Basics Sample
 //!
-//! This sample demonstrates how to use the builder with an imported glade file
+//! This sample demonstrates how to use the builder with an imported UI file
 
 use gio::prelude::*;
 use gtk::prelude::*;
 
-use gtk::{ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
+use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 
 use std::env::args;
 
-fn build_ui(application: &gtk::Application) {
-    let glade_src = include_str!("builder_basics.ui");
+fn build_ui(application: &Application) {
+    let glade_src = include_str!("ui/builder_basics.ui");
     let builder = Builder::from_string(glade_src);
 
-    let window: ApplicationWindow = builder.get_object("window1").expect("Couldn't get window1");
+    let window: ApplicationWindow = builder.get_object("window").expect("Couldn't get window");
     window.set_application(Some(application));
-    let bigbutton: Button = builder.get_object("button1").expect("Couldn't get button1");
+    let bigbutton: Button = builder.get_object("button").expect("Couldn't get button");
     let dialog: MessageDialog = builder
-        .get_object("messagedialog1")
-        .expect("Couldn't get messagedialog1");
+        .get_object("messagedialog")
+        .expect("Couldn't get messagedialog");
 
     dialog.connect_response(move |d: &MessageDialog, _: ResponseType| {
         d.close();
