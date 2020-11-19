@@ -17,6 +17,7 @@ pub mod layout_manager;
 pub mod list_box_row;
 pub mod native_dialog;
 pub mod popover;
+pub mod recent_manager;
 pub mod scrollable;
 pub mod sorter;
 pub mod style_context;
@@ -40,6 +41,7 @@ pub mod prelude {
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::native_dialog::NativeDialogImpl;
     pub use super::popover::PopoverImpl;
+    pub use super::recent_manager::RecentManagerImpl;
     pub use super::scrollable::ScrollableImpl;
     pub use super::sorter::SorterImpl;
     pub use super::style_context::StyleContextImpl;
