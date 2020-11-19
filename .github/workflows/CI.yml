@@ -24,8 +24,6 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
           override: true
-      - name: install dependencies
-        run: sudo dnf install -y xorg-x11-server-Xvfb
       # gsk4
       - name: "gsk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gsk4/Cargo.toml --features "broadway, vulkan"
