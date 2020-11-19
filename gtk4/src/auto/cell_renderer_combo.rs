@@ -9,7 +9,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
@@ -83,7 +82,7 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn set_property_model<P: IsA<TreeModel> + SetValueOptional>(&self, model: Option<&P>) {
+    pub fn set_property_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,

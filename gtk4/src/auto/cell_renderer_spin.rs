@@ -9,7 +9,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
@@ -53,10 +52,7 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn set_property_adjustment<P: IsA<Adjustment> + SetValueOptional>(
-        &self,
-        adjustment: Option<&P>,
-    ) {
+    pub fn set_property_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
             gobject_sys::g_object_set_property(
                 self.as_ptr() as *mut gobject_sys::GObject,
