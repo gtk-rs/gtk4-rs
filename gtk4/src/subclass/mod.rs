@@ -12,6 +12,7 @@ pub mod dialog;
 pub mod drawing_area;
 pub mod entry;
 pub mod flow_box_child;
+pub mod layout_manager;
 pub mod list_box_row;
 pub mod native_dialog;
 pub mod popover;
@@ -31,6 +32,7 @@ pub mod prelude {
     pub use super::drawing_area::DrawingAreaImpl;
     pub use super::entry::EntryImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
+    pub use super::layout_manager::LayoutManagerImpl;
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::native_dialog::NativeDialogImpl;
     pub use super::popover::PopoverImpl;
