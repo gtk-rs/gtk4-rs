@@ -8,7 +8,7 @@ name: CI
 jobs:
   check:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: docker.io/bilelmoussaoui/gtk4
     strategy:
@@ -59,7 +59,7 @@ jobs:
 
   fmt:
     name: Rustfmt
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -76,7 +76,7 @@ jobs:
 
   clippy:
     name: Clippy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: docker.io/bilelmoussaoui/gtk4
     steps:
@@ -94,7 +94,7 @@ jobs:
 
   regen_check:
     name: regen checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -104,7 +104,7 @@ jobs:
 
   checker:
     name: gtk-rs checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         crate:
