@@ -2,8 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
 use glib::error::ErrorDomain;
+use glib::gobject_ffi;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
@@ -12,7 +13,6 @@ use glib::value::Value;
 use glib::Quark;
 use glib::StaticType;
 use glib::Type;
-use gobject_sys;
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -62,31 +62,31 @@ impl fmt::Display for AxisUse {
 
 #[doc(hidden)]
 impl ToGlib for AxisUse {
-    type GlibType = gdk_sys::GdkAxisUse;
+    type GlibType = ffi::GdkAxisUse;
 
-    fn to_glib(&self) -> gdk_sys::GdkAxisUse {
+    fn to_glib(&self) -> ffi::GdkAxisUse {
         match *self {
-            AxisUse::Ignore => gdk_sys::GDK_AXIS_IGNORE,
-            AxisUse::X => gdk_sys::GDK_AXIS_X,
-            AxisUse::Y => gdk_sys::GDK_AXIS_Y,
-            AxisUse::DeltaX => gdk_sys::GDK_AXIS_DELTA_X,
-            AxisUse::DeltaY => gdk_sys::GDK_AXIS_DELTA_Y,
-            AxisUse::Pressure => gdk_sys::GDK_AXIS_PRESSURE,
-            AxisUse::Xtilt => gdk_sys::GDK_AXIS_XTILT,
-            AxisUse::Ytilt => gdk_sys::GDK_AXIS_YTILT,
-            AxisUse::Wheel => gdk_sys::GDK_AXIS_WHEEL,
-            AxisUse::Distance => gdk_sys::GDK_AXIS_DISTANCE,
-            AxisUse::Rotation => gdk_sys::GDK_AXIS_ROTATION,
-            AxisUse::Slider => gdk_sys::GDK_AXIS_SLIDER,
-            AxisUse::Last => gdk_sys::GDK_AXIS_LAST,
+            AxisUse::Ignore => ffi::GDK_AXIS_IGNORE,
+            AxisUse::X => ffi::GDK_AXIS_X,
+            AxisUse::Y => ffi::GDK_AXIS_Y,
+            AxisUse::DeltaX => ffi::GDK_AXIS_DELTA_X,
+            AxisUse::DeltaY => ffi::GDK_AXIS_DELTA_Y,
+            AxisUse::Pressure => ffi::GDK_AXIS_PRESSURE,
+            AxisUse::Xtilt => ffi::GDK_AXIS_XTILT,
+            AxisUse::Ytilt => ffi::GDK_AXIS_YTILT,
+            AxisUse::Wheel => ffi::GDK_AXIS_WHEEL,
+            AxisUse::Distance => ffi::GDK_AXIS_DISTANCE,
+            AxisUse::Rotation => ffi::GDK_AXIS_ROTATION,
+            AxisUse::Slider => ffi::GDK_AXIS_SLIDER,
+            AxisUse::Last => ffi::GDK_AXIS_LAST,
             AxisUse::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkAxisUse> for AxisUse {
-    fn from_glib(value: gdk_sys::GdkAxisUse) -> Self {
+impl FromGlib<ffi::GdkAxisUse> for AxisUse {
+    fn from_glib(value: ffi::GdkAxisUse) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AxisUse::Ignore,
@@ -109,7 +109,7 @@ impl FromGlib<gdk_sys::GdkAxisUse> for AxisUse {
 
 impl StaticType for AxisUse {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_axis_use_get_type()) }
+        unsafe { from_glib(ffi::gdk_axis_use_get_type()) }
     }
 }
 
@@ -121,13 +121,13 @@ impl<'a> FromValueOptional<'a> for AxisUse {
 
 impl<'a> FromValue<'a> for AxisUse {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for AxisUse {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -170,27 +170,27 @@ impl fmt::Display for CrossingMode {
 
 #[doc(hidden)]
 impl ToGlib for CrossingMode {
-    type GlibType = gdk_sys::GdkCrossingMode;
+    type GlibType = ffi::GdkCrossingMode;
 
-    fn to_glib(&self) -> gdk_sys::GdkCrossingMode {
+    fn to_glib(&self) -> ffi::GdkCrossingMode {
         match *self {
-            CrossingMode::Normal => gdk_sys::GDK_CROSSING_NORMAL,
-            CrossingMode::Grab => gdk_sys::GDK_CROSSING_GRAB,
-            CrossingMode::Ungrab => gdk_sys::GDK_CROSSING_UNGRAB,
-            CrossingMode::GtkGrab => gdk_sys::GDK_CROSSING_GTK_GRAB,
-            CrossingMode::GtkUngrab => gdk_sys::GDK_CROSSING_GTK_UNGRAB,
-            CrossingMode::StateChanged => gdk_sys::GDK_CROSSING_STATE_CHANGED,
-            CrossingMode::TouchBegin => gdk_sys::GDK_CROSSING_TOUCH_BEGIN,
-            CrossingMode::TouchEnd => gdk_sys::GDK_CROSSING_TOUCH_END,
-            CrossingMode::DeviceSwitch => gdk_sys::GDK_CROSSING_DEVICE_SWITCH,
+            CrossingMode::Normal => ffi::GDK_CROSSING_NORMAL,
+            CrossingMode::Grab => ffi::GDK_CROSSING_GRAB,
+            CrossingMode::Ungrab => ffi::GDK_CROSSING_UNGRAB,
+            CrossingMode::GtkGrab => ffi::GDK_CROSSING_GTK_GRAB,
+            CrossingMode::GtkUngrab => ffi::GDK_CROSSING_GTK_UNGRAB,
+            CrossingMode::StateChanged => ffi::GDK_CROSSING_STATE_CHANGED,
+            CrossingMode::TouchBegin => ffi::GDK_CROSSING_TOUCH_BEGIN,
+            CrossingMode::TouchEnd => ffi::GDK_CROSSING_TOUCH_END,
+            CrossingMode::DeviceSwitch => ffi::GDK_CROSSING_DEVICE_SWITCH,
             CrossingMode::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkCrossingMode> for CrossingMode {
-    fn from_glib(value: gdk_sys::GdkCrossingMode) -> Self {
+impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
+    fn from_glib(value: ffi::GdkCrossingMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CrossingMode::Normal,
@@ -209,7 +209,7 @@ impl FromGlib<gdk_sys::GdkCrossingMode> for CrossingMode {
 
 impl StaticType for CrossingMode {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_crossing_mode_get_type()) }
+        unsafe { from_glib(ffi::gdk_crossing_mode_get_type()) }
     }
 }
 
@@ -221,13 +221,13 @@ impl<'a> FromValueOptional<'a> for CrossingMode {
 
 impl<'a> FromValue<'a> for CrossingMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CrossingMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -258,21 +258,21 @@ impl fmt::Display for DevicePadFeature {
 
 #[doc(hidden)]
 impl ToGlib for DevicePadFeature {
-    type GlibType = gdk_sys::GdkDevicePadFeature;
+    type GlibType = ffi::GdkDevicePadFeature;
 
-    fn to_glib(&self) -> gdk_sys::GdkDevicePadFeature {
+    fn to_glib(&self) -> ffi::GdkDevicePadFeature {
         match *self {
-            DevicePadFeature::Button => gdk_sys::GDK_DEVICE_PAD_FEATURE_BUTTON,
-            DevicePadFeature::Ring => gdk_sys::GDK_DEVICE_PAD_FEATURE_RING,
-            DevicePadFeature::Strip => gdk_sys::GDK_DEVICE_PAD_FEATURE_STRIP,
+            DevicePadFeature::Button => ffi::GDK_DEVICE_PAD_FEATURE_BUTTON,
+            DevicePadFeature::Ring => ffi::GDK_DEVICE_PAD_FEATURE_RING,
+            DevicePadFeature::Strip => ffi::GDK_DEVICE_PAD_FEATURE_STRIP,
             DevicePadFeature::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkDevicePadFeature> for DevicePadFeature {
-    fn from_glib(value: gdk_sys::GdkDevicePadFeature) -> Self {
+impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
+    fn from_glib(value: ffi::GdkDevicePadFeature) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DevicePadFeature::Button,
@@ -285,7 +285,7 @@ impl FromGlib<gdk_sys::GdkDevicePadFeature> for DevicePadFeature {
 
 impl StaticType for DevicePadFeature {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_device_pad_feature_get_type()) }
+        unsafe { from_glib(ffi::gdk_device_pad_feature_get_type()) }
     }
 }
 
@@ -297,13 +297,13 @@ impl<'a> FromValueOptional<'a> for DevicePadFeature {
 
 impl<'a> FromValue<'a> for DevicePadFeature {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DevicePadFeature {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -344,26 +344,26 @@ impl fmt::Display for DeviceToolType {
 
 #[doc(hidden)]
 impl ToGlib for DeviceToolType {
-    type GlibType = gdk_sys::GdkDeviceToolType;
+    type GlibType = ffi::GdkDeviceToolType;
 
-    fn to_glib(&self) -> gdk_sys::GdkDeviceToolType {
+    fn to_glib(&self) -> ffi::GdkDeviceToolType {
         match *self {
-            DeviceToolType::Unknown => gdk_sys::GDK_DEVICE_TOOL_TYPE_UNKNOWN,
-            DeviceToolType::Pen => gdk_sys::GDK_DEVICE_TOOL_TYPE_PEN,
-            DeviceToolType::Eraser => gdk_sys::GDK_DEVICE_TOOL_TYPE_ERASER,
-            DeviceToolType::Brush => gdk_sys::GDK_DEVICE_TOOL_TYPE_BRUSH,
-            DeviceToolType::Pencil => gdk_sys::GDK_DEVICE_TOOL_TYPE_PENCIL,
-            DeviceToolType::Airbrush => gdk_sys::GDK_DEVICE_TOOL_TYPE_AIRBRUSH,
-            DeviceToolType::Mouse => gdk_sys::GDK_DEVICE_TOOL_TYPE_MOUSE,
-            DeviceToolType::Lens => gdk_sys::GDK_DEVICE_TOOL_TYPE_LENS,
+            DeviceToolType::Unknown => ffi::GDK_DEVICE_TOOL_TYPE_UNKNOWN,
+            DeviceToolType::Pen => ffi::GDK_DEVICE_TOOL_TYPE_PEN,
+            DeviceToolType::Eraser => ffi::GDK_DEVICE_TOOL_TYPE_ERASER,
+            DeviceToolType::Brush => ffi::GDK_DEVICE_TOOL_TYPE_BRUSH,
+            DeviceToolType::Pencil => ffi::GDK_DEVICE_TOOL_TYPE_PENCIL,
+            DeviceToolType::Airbrush => ffi::GDK_DEVICE_TOOL_TYPE_AIRBRUSH,
+            DeviceToolType::Mouse => ffi::GDK_DEVICE_TOOL_TYPE_MOUSE,
+            DeviceToolType::Lens => ffi::GDK_DEVICE_TOOL_TYPE_LENS,
             DeviceToolType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkDeviceToolType> for DeviceToolType {
-    fn from_glib(value: gdk_sys::GdkDeviceToolType) -> Self {
+impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
+    fn from_glib(value: ffi::GdkDeviceToolType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DeviceToolType::Unknown,
@@ -381,7 +381,7 @@ impl FromGlib<gdk_sys::GdkDeviceToolType> for DeviceToolType {
 
 impl StaticType for DeviceToolType {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_device_tool_type_get_type()) }
+        unsafe { from_glib(ffi::gdk_device_tool_type_get_type()) }
     }
 }
 
@@ -393,13 +393,13 @@ impl<'a> FromValueOptional<'a> for DeviceToolType {
 
 impl<'a> FromValue<'a> for DeviceToolType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DeviceToolType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -430,21 +430,21 @@ impl fmt::Display for DragCancelReason {
 
 #[doc(hidden)]
 impl ToGlib for DragCancelReason {
-    type GlibType = gdk_sys::GdkDragCancelReason;
+    type GlibType = ffi::GdkDragCancelReason;
 
-    fn to_glib(&self) -> gdk_sys::GdkDragCancelReason {
+    fn to_glib(&self) -> ffi::GdkDragCancelReason {
         match *self {
-            DragCancelReason::NoTarget => gdk_sys::GDK_DRAG_CANCEL_NO_TARGET,
-            DragCancelReason::UserCancelled => gdk_sys::GDK_DRAG_CANCEL_USER_CANCELLED,
-            DragCancelReason::Error => gdk_sys::GDK_DRAG_CANCEL_ERROR,
+            DragCancelReason::NoTarget => ffi::GDK_DRAG_CANCEL_NO_TARGET,
+            DragCancelReason::UserCancelled => ffi::GDK_DRAG_CANCEL_USER_CANCELLED,
+            DragCancelReason::Error => ffi::GDK_DRAG_CANCEL_ERROR,
             DragCancelReason::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkDragCancelReason> for DragCancelReason {
-    fn from_glib(value: gdk_sys::GdkDragCancelReason) -> Self {
+impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
+    fn from_glib(value: ffi::GdkDragCancelReason) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DragCancelReason::NoTarget,
@@ -457,7 +457,7 @@ impl FromGlib<gdk_sys::GdkDragCancelReason> for DragCancelReason {
 
 impl StaticType for DragCancelReason {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_drag_cancel_reason_get_type()) }
+        unsafe { from_glib(ffi::gdk_drag_cancel_reason_get_type()) }
     }
 }
 
@@ -469,13 +469,13 @@ impl<'a> FromValueOptional<'a> for DragCancelReason {
 
 impl<'a> FromValue<'a> for DragCancelReason {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DragCancelReason {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -560,48 +560,48 @@ impl fmt::Display for EventType {
 
 #[doc(hidden)]
 impl ToGlib for EventType {
-    type GlibType = gdk_sys::GdkEventType;
+    type GlibType = ffi::GdkEventType;
 
-    fn to_glib(&self) -> gdk_sys::GdkEventType {
+    fn to_glib(&self) -> ffi::GdkEventType {
         match *self {
-            EventType::Delete => gdk_sys::GDK_DELETE,
-            EventType::MotionNotify => gdk_sys::GDK_MOTION_NOTIFY,
-            EventType::ButtonPress => gdk_sys::GDK_BUTTON_PRESS,
-            EventType::ButtonRelease => gdk_sys::GDK_BUTTON_RELEASE,
-            EventType::KeyPress => gdk_sys::GDK_KEY_PRESS,
-            EventType::KeyRelease => gdk_sys::GDK_KEY_RELEASE,
-            EventType::EnterNotify => gdk_sys::GDK_ENTER_NOTIFY,
-            EventType::LeaveNotify => gdk_sys::GDK_LEAVE_NOTIFY,
-            EventType::FocusChange => gdk_sys::GDK_FOCUS_CHANGE,
-            EventType::Configure => gdk_sys::GDK_CONFIGURE,
-            EventType::ProximityIn => gdk_sys::GDK_PROXIMITY_IN,
-            EventType::ProximityOut => gdk_sys::GDK_PROXIMITY_OUT,
-            EventType::DragEnter => gdk_sys::GDK_DRAG_ENTER,
-            EventType::DragLeave => gdk_sys::GDK_DRAG_LEAVE,
-            EventType::DragMotion => gdk_sys::GDK_DRAG_MOTION,
-            EventType::DropStart => gdk_sys::GDK_DROP_START,
-            EventType::Scroll => gdk_sys::GDK_SCROLL,
-            EventType::GrabBroken => gdk_sys::GDK_GRAB_BROKEN,
-            EventType::TouchBegin => gdk_sys::GDK_TOUCH_BEGIN,
-            EventType::TouchUpdate => gdk_sys::GDK_TOUCH_UPDATE,
-            EventType::TouchEnd => gdk_sys::GDK_TOUCH_END,
-            EventType::TouchCancel => gdk_sys::GDK_TOUCH_CANCEL,
-            EventType::TouchpadSwipe => gdk_sys::GDK_TOUCHPAD_SWIPE,
-            EventType::TouchpadPinch => gdk_sys::GDK_TOUCHPAD_PINCH,
-            EventType::PadButtonPress => gdk_sys::GDK_PAD_BUTTON_PRESS,
-            EventType::PadButtonRelease => gdk_sys::GDK_PAD_BUTTON_RELEASE,
-            EventType::PadRing => gdk_sys::GDK_PAD_RING,
-            EventType::PadStrip => gdk_sys::GDK_PAD_STRIP,
-            EventType::PadGroupMode => gdk_sys::GDK_PAD_GROUP_MODE,
-            EventType::EventLast => gdk_sys::GDK_EVENT_LAST,
+            EventType::Delete => ffi::GDK_DELETE,
+            EventType::MotionNotify => ffi::GDK_MOTION_NOTIFY,
+            EventType::ButtonPress => ffi::GDK_BUTTON_PRESS,
+            EventType::ButtonRelease => ffi::GDK_BUTTON_RELEASE,
+            EventType::KeyPress => ffi::GDK_KEY_PRESS,
+            EventType::KeyRelease => ffi::GDK_KEY_RELEASE,
+            EventType::EnterNotify => ffi::GDK_ENTER_NOTIFY,
+            EventType::LeaveNotify => ffi::GDK_LEAVE_NOTIFY,
+            EventType::FocusChange => ffi::GDK_FOCUS_CHANGE,
+            EventType::Configure => ffi::GDK_CONFIGURE,
+            EventType::ProximityIn => ffi::GDK_PROXIMITY_IN,
+            EventType::ProximityOut => ffi::GDK_PROXIMITY_OUT,
+            EventType::DragEnter => ffi::GDK_DRAG_ENTER,
+            EventType::DragLeave => ffi::GDK_DRAG_LEAVE,
+            EventType::DragMotion => ffi::GDK_DRAG_MOTION,
+            EventType::DropStart => ffi::GDK_DROP_START,
+            EventType::Scroll => ffi::GDK_SCROLL,
+            EventType::GrabBroken => ffi::GDK_GRAB_BROKEN,
+            EventType::TouchBegin => ffi::GDK_TOUCH_BEGIN,
+            EventType::TouchUpdate => ffi::GDK_TOUCH_UPDATE,
+            EventType::TouchEnd => ffi::GDK_TOUCH_END,
+            EventType::TouchCancel => ffi::GDK_TOUCH_CANCEL,
+            EventType::TouchpadSwipe => ffi::GDK_TOUCHPAD_SWIPE,
+            EventType::TouchpadPinch => ffi::GDK_TOUCHPAD_PINCH,
+            EventType::PadButtonPress => ffi::GDK_PAD_BUTTON_PRESS,
+            EventType::PadButtonRelease => ffi::GDK_PAD_BUTTON_RELEASE,
+            EventType::PadRing => ffi::GDK_PAD_RING,
+            EventType::PadStrip => ffi::GDK_PAD_STRIP,
+            EventType::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
+            EventType::EventLast => ffi::GDK_EVENT_LAST,
             EventType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkEventType> for EventType {
-    fn from_glib(value: gdk_sys::GdkEventType) -> Self {
+impl FromGlib<ffi::GdkEventType> for EventType {
+    fn from_glib(value: ffi::GdkEventType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EventType::Delete,
@@ -641,7 +641,7 @@ impl FromGlib<gdk_sys::GdkEventType> for EventType {
 
 impl StaticType for EventType {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_event_type_get_type()) }
+        unsafe { from_glib(ffi::gdk_event_type_get_type()) }
     }
 }
 
@@ -653,13 +653,13 @@ impl<'a> FromValueOptional<'a> for EventType {
 
 impl<'a> FromValue<'a> for EventType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EventType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -688,20 +688,20 @@ impl fmt::Display for FullscreenMode {
 
 #[doc(hidden)]
 impl ToGlib for FullscreenMode {
-    type GlibType = gdk_sys::GdkFullscreenMode;
+    type GlibType = ffi::GdkFullscreenMode;
 
-    fn to_glib(&self) -> gdk_sys::GdkFullscreenMode {
+    fn to_glib(&self) -> ffi::GdkFullscreenMode {
         match *self {
-            FullscreenMode::CurrentMonitor => gdk_sys::GDK_FULLSCREEN_ON_CURRENT_MONITOR,
-            FullscreenMode::AllMonitors => gdk_sys::GDK_FULLSCREEN_ON_ALL_MONITORS,
+            FullscreenMode::CurrentMonitor => ffi::GDK_FULLSCREEN_ON_CURRENT_MONITOR,
+            FullscreenMode::AllMonitors => ffi::GDK_FULLSCREEN_ON_ALL_MONITORS,
             FullscreenMode::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkFullscreenMode> for FullscreenMode {
-    fn from_glib(value: gdk_sys::GdkFullscreenMode) -> Self {
+impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
+    fn from_glib(value: ffi::GdkFullscreenMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FullscreenMode::CurrentMonitor,
@@ -713,7 +713,7 @@ impl FromGlib<gdk_sys::GdkFullscreenMode> for FullscreenMode {
 
 impl StaticType for FullscreenMode {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_fullscreen_mode_get_type()) }
+        unsafe { from_glib(ffi::gdk_fullscreen_mode_get_type()) }
     }
 }
 
@@ -725,13 +725,13 @@ impl<'a> FromValueOptional<'a> for FullscreenMode {
 
 impl<'a> FromValue<'a> for FullscreenMode {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FullscreenMode {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -766,23 +766,23 @@ impl fmt::Display for GLError {
 
 #[doc(hidden)]
 impl ToGlib for GLError {
-    type GlibType = gdk_sys::GdkGLError;
+    type GlibType = ffi::GdkGLError;
 
-    fn to_glib(&self) -> gdk_sys::GdkGLError {
+    fn to_glib(&self) -> ffi::GdkGLError {
         match *self {
-            GLError::NotAvailable => gdk_sys::GDK_GL_ERROR_NOT_AVAILABLE,
-            GLError::UnsupportedFormat => gdk_sys::GDK_GL_ERROR_UNSUPPORTED_FORMAT,
-            GLError::UnsupportedProfile => gdk_sys::GDK_GL_ERROR_UNSUPPORTED_PROFILE,
-            GLError::CompilationFailed => gdk_sys::GDK_GL_ERROR_COMPILATION_FAILED,
-            GLError::LinkFailed => gdk_sys::GDK_GL_ERROR_LINK_FAILED,
+            GLError::NotAvailable => ffi::GDK_GL_ERROR_NOT_AVAILABLE,
+            GLError::UnsupportedFormat => ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT,
+            GLError::UnsupportedProfile => ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE,
+            GLError::CompilationFailed => ffi::GDK_GL_ERROR_COMPILATION_FAILED,
+            GLError::LinkFailed => ffi::GDK_GL_ERROR_LINK_FAILED,
             GLError::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkGLError> for GLError {
-    fn from_glib(value: gdk_sys::GdkGLError) -> Self {
+impl FromGlib<ffi::GdkGLError> for GLError {
+    fn from_glib(value: ffi::GdkGLError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => GLError::NotAvailable,
@@ -799,7 +799,7 @@ impl ErrorDomain for GLError {
     fn domain() -> Quark {
         skip_assert_initialized!();
 
-        unsafe { from_glib(gdk_sys::gdk_gl_error_quark()) }
+        unsafe { from_glib(ffi::gdk_gl_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -821,7 +821,7 @@ impl ErrorDomain for GLError {
 
 impl StaticType for GLError {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_gl_error_get_type()) }
+        unsafe { from_glib(ffi::gdk_gl_error_get_type()) }
     }
 }
 
@@ -833,13 +833,13 @@ impl<'a> FromValueOptional<'a> for GLError {
 
 impl<'a> FromValue<'a> for GLError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for GLError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -884,28 +884,28 @@ impl fmt::Display for Gravity {
 
 #[doc(hidden)]
 impl ToGlib for Gravity {
-    type GlibType = gdk_sys::GdkGravity;
+    type GlibType = ffi::GdkGravity;
 
-    fn to_glib(&self) -> gdk_sys::GdkGravity {
+    fn to_glib(&self) -> ffi::GdkGravity {
         match *self {
-            Gravity::NorthWest => gdk_sys::GDK_GRAVITY_NORTH_WEST,
-            Gravity::North => gdk_sys::GDK_GRAVITY_NORTH,
-            Gravity::NorthEast => gdk_sys::GDK_GRAVITY_NORTH_EAST,
-            Gravity::West => gdk_sys::GDK_GRAVITY_WEST,
-            Gravity::Center => gdk_sys::GDK_GRAVITY_CENTER,
-            Gravity::East => gdk_sys::GDK_GRAVITY_EAST,
-            Gravity::SouthWest => gdk_sys::GDK_GRAVITY_SOUTH_WEST,
-            Gravity::South => gdk_sys::GDK_GRAVITY_SOUTH,
-            Gravity::SouthEast => gdk_sys::GDK_GRAVITY_SOUTH_EAST,
-            Gravity::Static => gdk_sys::GDK_GRAVITY_STATIC,
+            Gravity::NorthWest => ffi::GDK_GRAVITY_NORTH_WEST,
+            Gravity::North => ffi::GDK_GRAVITY_NORTH,
+            Gravity::NorthEast => ffi::GDK_GRAVITY_NORTH_EAST,
+            Gravity::West => ffi::GDK_GRAVITY_WEST,
+            Gravity::Center => ffi::GDK_GRAVITY_CENTER,
+            Gravity::East => ffi::GDK_GRAVITY_EAST,
+            Gravity::SouthWest => ffi::GDK_GRAVITY_SOUTH_WEST,
+            Gravity::South => ffi::GDK_GRAVITY_SOUTH,
+            Gravity::SouthEast => ffi::GDK_GRAVITY_SOUTH_EAST,
+            Gravity::Static => ffi::GDK_GRAVITY_STATIC,
             Gravity::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkGravity> for Gravity {
-    fn from_glib(value: gdk_sys::GdkGravity) -> Self {
+impl FromGlib<ffi::GdkGravity> for Gravity {
+    fn from_glib(value: ffi::GdkGravity) -> Self {
         skip_assert_initialized!();
         match value {
             1 => Gravity::NorthWest,
@@ -925,7 +925,7 @@ impl FromGlib<gdk_sys::GdkGravity> for Gravity {
 
 impl StaticType for Gravity {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_gravity_get_type()) }
+        unsafe { from_glib(ffi::gdk_gravity_get_type()) }
     }
 }
 
@@ -937,13 +937,13 @@ impl<'a> FromValueOptional<'a> for Gravity {
 
 impl<'a> FromValue<'a> for Gravity {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for Gravity {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -982,25 +982,25 @@ impl fmt::Display for InputSource {
 
 #[doc(hidden)]
 impl ToGlib for InputSource {
-    type GlibType = gdk_sys::GdkInputSource;
+    type GlibType = ffi::GdkInputSource;
 
-    fn to_glib(&self) -> gdk_sys::GdkInputSource {
+    fn to_glib(&self) -> ffi::GdkInputSource {
         match *self {
-            InputSource::Mouse => gdk_sys::GDK_SOURCE_MOUSE,
-            InputSource::Pen => gdk_sys::GDK_SOURCE_PEN,
-            InputSource::Keyboard => gdk_sys::GDK_SOURCE_KEYBOARD,
-            InputSource::Touchscreen => gdk_sys::GDK_SOURCE_TOUCHSCREEN,
-            InputSource::Touchpad => gdk_sys::GDK_SOURCE_TOUCHPAD,
-            InputSource::Trackpoint => gdk_sys::GDK_SOURCE_TRACKPOINT,
-            InputSource::TabletPad => gdk_sys::GDK_SOURCE_TABLET_PAD,
+            InputSource::Mouse => ffi::GDK_SOURCE_MOUSE,
+            InputSource::Pen => ffi::GDK_SOURCE_PEN,
+            InputSource::Keyboard => ffi::GDK_SOURCE_KEYBOARD,
+            InputSource::Touchscreen => ffi::GDK_SOURCE_TOUCHSCREEN,
+            InputSource::Touchpad => ffi::GDK_SOURCE_TOUCHPAD,
+            InputSource::Trackpoint => ffi::GDK_SOURCE_TRACKPOINT,
+            InputSource::TabletPad => ffi::GDK_SOURCE_TABLET_PAD,
             InputSource::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkInputSource> for InputSource {
-    fn from_glib(value: gdk_sys::GdkInputSource) -> Self {
+impl FromGlib<ffi::GdkInputSource> for InputSource {
+    fn from_glib(value: ffi::GdkInputSource) -> Self {
         skip_assert_initialized!();
         match value {
             0 => InputSource::Mouse,
@@ -1017,7 +1017,7 @@ impl FromGlib<gdk_sys::GdkInputSource> for InputSource {
 
 impl StaticType for InputSource {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_input_source_get_type()) }
+        unsafe { from_glib(ffi::gdk_input_source_get_type()) }
     }
 }
 
@@ -1029,13 +1029,13 @@ impl<'a> FromValueOptional<'a> for InputSource {
 
 impl<'a> FromValue<'a> for InputSource {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for InputSource {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1066,21 +1066,21 @@ impl fmt::Display for KeyMatch {
 
 #[doc(hidden)]
 impl ToGlib for KeyMatch {
-    type GlibType = gdk_sys::GdkKeyMatch;
+    type GlibType = ffi::GdkKeyMatch;
 
-    fn to_glib(&self) -> gdk_sys::GdkKeyMatch {
+    fn to_glib(&self) -> ffi::GdkKeyMatch {
         match *self {
-            KeyMatch::None => gdk_sys::GDK_KEY_MATCH_NONE,
-            KeyMatch::Partial => gdk_sys::GDK_KEY_MATCH_PARTIAL,
-            KeyMatch::Exact => gdk_sys::GDK_KEY_MATCH_EXACT,
+            KeyMatch::None => ffi::GDK_KEY_MATCH_NONE,
+            KeyMatch::Partial => ffi::GDK_KEY_MATCH_PARTIAL,
+            KeyMatch::Exact => ffi::GDK_KEY_MATCH_EXACT,
             KeyMatch::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkKeyMatch> for KeyMatch {
-    fn from_glib(value: gdk_sys::GdkKeyMatch) -> Self {
+impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
+    fn from_glib(value: ffi::GdkKeyMatch) -> Self {
         skip_assert_initialized!();
         match value {
             0 => KeyMatch::None,
@@ -1093,7 +1093,7 @@ impl FromGlib<gdk_sys::GdkKeyMatch> for KeyMatch {
 
 impl StaticType for KeyMatch {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_key_match_get_type()) }
+        unsafe { from_glib(ffi::gdk_key_match_get_type()) }
     }
 }
 
@@ -1105,13 +1105,13 @@ impl<'a> FromValueOptional<'a> for KeyMatch {
 
 impl<'a> FromValue<'a> for KeyMatch {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for KeyMatch {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1156,28 +1156,28 @@ impl fmt::Display for MemoryFormat {
 
 #[doc(hidden)]
 impl ToGlib for MemoryFormat {
-    type GlibType = gdk_sys::GdkMemoryFormat;
+    type GlibType = ffi::GdkMemoryFormat;
 
-    fn to_glib(&self) -> gdk_sys::GdkMemoryFormat {
+    fn to_glib(&self) -> ffi::GdkMemoryFormat {
         match *self {
-            MemoryFormat::B8g8r8a8Premultiplied => gdk_sys::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED,
-            MemoryFormat::A8r8g8b8Premultiplied => gdk_sys::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED,
-            MemoryFormat::R8g8b8a8Premultiplied => gdk_sys::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED,
-            MemoryFormat::B8g8r8a8 => gdk_sys::GDK_MEMORY_B8G8R8A8,
-            MemoryFormat::A8r8g8b8 => gdk_sys::GDK_MEMORY_A8R8G8B8,
-            MemoryFormat::R8g8b8a8 => gdk_sys::GDK_MEMORY_R8G8B8A8,
-            MemoryFormat::A8b8g8r8 => gdk_sys::GDK_MEMORY_A8B8G8R8,
-            MemoryFormat::R8g8b8 => gdk_sys::GDK_MEMORY_R8G8B8,
-            MemoryFormat::B8g8r8 => gdk_sys::GDK_MEMORY_B8G8R8,
-            MemoryFormat::NFormats => gdk_sys::GDK_MEMORY_N_FORMATS,
+            MemoryFormat::B8g8r8a8Premultiplied => ffi::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED,
+            MemoryFormat::A8r8g8b8Premultiplied => ffi::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED,
+            MemoryFormat::R8g8b8a8Premultiplied => ffi::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED,
+            MemoryFormat::B8g8r8a8 => ffi::GDK_MEMORY_B8G8R8A8,
+            MemoryFormat::A8r8g8b8 => ffi::GDK_MEMORY_A8R8G8B8,
+            MemoryFormat::R8g8b8a8 => ffi::GDK_MEMORY_R8G8B8A8,
+            MemoryFormat::A8b8g8r8 => ffi::GDK_MEMORY_A8B8G8R8,
+            MemoryFormat::R8g8b8 => ffi::GDK_MEMORY_R8G8B8,
+            MemoryFormat::B8g8r8 => ffi::GDK_MEMORY_B8G8R8,
+            MemoryFormat::NFormats => ffi::GDK_MEMORY_N_FORMATS,
             MemoryFormat::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkMemoryFormat> for MemoryFormat {
-    fn from_glib(value: gdk_sys::GdkMemoryFormat) -> Self {
+impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
+    fn from_glib(value: ffi::GdkMemoryFormat) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MemoryFormat::B8g8r8a8Premultiplied,
@@ -1197,7 +1197,7 @@ impl FromGlib<gdk_sys::GdkMemoryFormat> for MemoryFormat {
 
 impl StaticType for MemoryFormat {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_memory_format_get_type()) }
+        unsafe { from_glib(ffi::gdk_memory_format_get_type()) }
     }
 }
 
@@ -1209,13 +1209,13 @@ impl<'a> FromValueOptional<'a> for MemoryFormat {
 
 impl<'a> FromValue<'a> for MemoryFormat {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for MemoryFormat {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1252,24 +1252,24 @@ impl fmt::Display for NotifyType {
 
 #[doc(hidden)]
 impl ToGlib for NotifyType {
-    type GlibType = gdk_sys::GdkNotifyType;
+    type GlibType = ffi::GdkNotifyType;
 
-    fn to_glib(&self) -> gdk_sys::GdkNotifyType {
+    fn to_glib(&self) -> ffi::GdkNotifyType {
         match *self {
-            NotifyType::Ancestor => gdk_sys::GDK_NOTIFY_ANCESTOR,
-            NotifyType::Virtual => gdk_sys::GDK_NOTIFY_VIRTUAL,
-            NotifyType::Inferior => gdk_sys::GDK_NOTIFY_INFERIOR,
-            NotifyType::Nonlinear => gdk_sys::GDK_NOTIFY_NONLINEAR,
-            NotifyType::NonlinearVirtual => gdk_sys::GDK_NOTIFY_NONLINEAR_VIRTUAL,
-            NotifyType::Unknown => gdk_sys::GDK_NOTIFY_UNKNOWN,
+            NotifyType::Ancestor => ffi::GDK_NOTIFY_ANCESTOR,
+            NotifyType::Virtual => ffi::GDK_NOTIFY_VIRTUAL,
+            NotifyType::Inferior => ffi::GDK_NOTIFY_INFERIOR,
+            NotifyType::Nonlinear => ffi::GDK_NOTIFY_NONLINEAR,
+            NotifyType::NonlinearVirtual => ffi::GDK_NOTIFY_NONLINEAR_VIRTUAL,
+            NotifyType::Unknown => ffi::GDK_NOTIFY_UNKNOWN,
             NotifyType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkNotifyType> for NotifyType {
-    fn from_glib(value: gdk_sys::GdkNotifyType) -> Self {
+impl FromGlib<ffi::GdkNotifyType> for NotifyType {
+    fn from_glib(value: ffi::GdkNotifyType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NotifyType::Ancestor,
@@ -1285,7 +1285,7 @@ impl FromGlib<gdk_sys::GdkNotifyType> for NotifyType {
 
 impl StaticType for NotifyType {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_notify_type_get_type()) }
+        unsafe { from_glib(ffi::gdk_notify_type_get_type()) }
     }
 }
 
@@ -1297,13 +1297,13 @@ impl<'a> FromValueOptional<'a> for NotifyType {
 
 impl<'a> FromValue<'a> for NotifyType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for NotifyType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1338,23 +1338,23 @@ impl fmt::Display for ScrollDirection {
 
 #[doc(hidden)]
 impl ToGlib for ScrollDirection {
-    type GlibType = gdk_sys::GdkScrollDirection;
+    type GlibType = ffi::GdkScrollDirection;
 
-    fn to_glib(&self) -> gdk_sys::GdkScrollDirection {
+    fn to_glib(&self) -> ffi::GdkScrollDirection {
         match *self {
-            ScrollDirection::Up => gdk_sys::GDK_SCROLL_UP,
-            ScrollDirection::Down => gdk_sys::GDK_SCROLL_DOWN,
-            ScrollDirection::Left => gdk_sys::GDK_SCROLL_LEFT,
-            ScrollDirection::Right => gdk_sys::GDK_SCROLL_RIGHT,
-            ScrollDirection::Smooth => gdk_sys::GDK_SCROLL_SMOOTH,
+            ScrollDirection::Up => ffi::GDK_SCROLL_UP,
+            ScrollDirection::Down => ffi::GDK_SCROLL_DOWN,
+            ScrollDirection::Left => ffi::GDK_SCROLL_LEFT,
+            ScrollDirection::Right => ffi::GDK_SCROLL_RIGHT,
+            ScrollDirection::Smooth => ffi::GDK_SCROLL_SMOOTH,
             ScrollDirection::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkScrollDirection> for ScrollDirection {
-    fn from_glib(value: gdk_sys::GdkScrollDirection) -> Self {
+impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
+    fn from_glib(value: ffi::GdkScrollDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollDirection::Up,
@@ -1369,7 +1369,7 @@ impl FromGlib<gdk_sys::GdkScrollDirection> for ScrollDirection {
 
 impl StaticType for ScrollDirection {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_scroll_direction_get_type()) }
+        unsafe { from_glib(ffi::gdk_scroll_direction_get_type()) }
     }
 }
 
@@ -1381,13 +1381,13 @@ impl<'a> FromValueOptional<'a> for ScrollDirection {
 
 impl<'a> FromValue<'a> for ScrollDirection {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ScrollDirection {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1424,24 +1424,24 @@ impl fmt::Display for SubpixelLayout {
 
 #[doc(hidden)]
 impl ToGlib for SubpixelLayout {
-    type GlibType = gdk_sys::GdkSubpixelLayout;
+    type GlibType = ffi::GdkSubpixelLayout;
 
-    fn to_glib(&self) -> gdk_sys::GdkSubpixelLayout {
+    fn to_glib(&self) -> ffi::GdkSubpixelLayout {
         match *self {
-            SubpixelLayout::Unknown => gdk_sys::GDK_SUBPIXEL_LAYOUT_UNKNOWN,
-            SubpixelLayout::None => gdk_sys::GDK_SUBPIXEL_LAYOUT_NONE,
-            SubpixelLayout::HorizontalRgb => gdk_sys::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB,
-            SubpixelLayout::HorizontalBgr => gdk_sys::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR,
-            SubpixelLayout::VerticalRgb => gdk_sys::GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB,
-            SubpixelLayout::VerticalBgr => gdk_sys::GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR,
+            SubpixelLayout::Unknown => ffi::GDK_SUBPIXEL_LAYOUT_UNKNOWN,
+            SubpixelLayout::None => ffi::GDK_SUBPIXEL_LAYOUT_NONE,
+            SubpixelLayout::HorizontalRgb => ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB,
+            SubpixelLayout::HorizontalBgr => ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR,
+            SubpixelLayout::VerticalRgb => ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB,
+            SubpixelLayout::VerticalBgr => ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR,
             SubpixelLayout::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSubpixelLayout> for SubpixelLayout {
-    fn from_glib(value: gdk_sys::GdkSubpixelLayout) -> Self {
+impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
+    fn from_glib(value: ffi::GdkSubpixelLayout) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SubpixelLayout::Unknown,
@@ -1457,7 +1457,7 @@ impl FromGlib<gdk_sys::GdkSubpixelLayout> for SubpixelLayout {
 
 impl StaticType for SubpixelLayout {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_subpixel_layout_get_type()) }
+        unsafe { from_glib(ffi::gdk_subpixel_layout_get_type()) }
     }
 }
 
@@ -1469,13 +1469,13 @@ impl<'a> FromValueOptional<'a> for SubpixelLayout {
 
 impl<'a> FromValue<'a> for SubpixelLayout {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SubpixelLayout {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1516,26 +1516,26 @@ impl fmt::Display for SurfaceEdge {
 
 #[doc(hidden)]
 impl ToGlib for SurfaceEdge {
-    type GlibType = gdk_sys::GdkSurfaceEdge;
+    type GlibType = ffi::GdkSurfaceEdge;
 
-    fn to_glib(&self) -> gdk_sys::GdkSurfaceEdge {
+    fn to_glib(&self) -> ffi::GdkSurfaceEdge {
         match *self {
-            SurfaceEdge::NorthWest => gdk_sys::GDK_SURFACE_EDGE_NORTH_WEST,
-            SurfaceEdge::North => gdk_sys::GDK_SURFACE_EDGE_NORTH,
-            SurfaceEdge::NorthEast => gdk_sys::GDK_SURFACE_EDGE_NORTH_EAST,
-            SurfaceEdge::West => gdk_sys::GDK_SURFACE_EDGE_WEST,
-            SurfaceEdge::East => gdk_sys::GDK_SURFACE_EDGE_EAST,
-            SurfaceEdge::SouthWest => gdk_sys::GDK_SURFACE_EDGE_SOUTH_WEST,
-            SurfaceEdge::South => gdk_sys::GDK_SURFACE_EDGE_SOUTH,
-            SurfaceEdge::SouthEast => gdk_sys::GDK_SURFACE_EDGE_SOUTH_EAST,
+            SurfaceEdge::NorthWest => ffi::GDK_SURFACE_EDGE_NORTH_WEST,
+            SurfaceEdge::North => ffi::GDK_SURFACE_EDGE_NORTH,
+            SurfaceEdge::NorthEast => ffi::GDK_SURFACE_EDGE_NORTH_EAST,
+            SurfaceEdge::West => ffi::GDK_SURFACE_EDGE_WEST,
+            SurfaceEdge::East => ffi::GDK_SURFACE_EDGE_EAST,
+            SurfaceEdge::SouthWest => ffi::GDK_SURFACE_EDGE_SOUTH_WEST,
+            SurfaceEdge::South => ffi::GDK_SURFACE_EDGE_SOUTH,
+            SurfaceEdge::SouthEast => ffi::GDK_SURFACE_EDGE_SOUTH_EAST,
             SurfaceEdge::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSurfaceEdge> for SurfaceEdge {
-    fn from_glib(value: gdk_sys::GdkSurfaceEdge) -> Self {
+impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
+    fn from_glib(value: ffi::GdkSurfaceEdge) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SurfaceEdge::NorthWest,
@@ -1553,7 +1553,7 @@ impl FromGlib<gdk_sys::GdkSurfaceEdge> for SurfaceEdge {
 
 impl StaticType for SurfaceEdge {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_surface_edge_get_type()) }
+        unsafe { from_glib(ffi::gdk_surface_edge_get_type()) }
     }
 }
 
@@ -1565,13 +1565,13 @@ impl<'a> FromValueOptional<'a> for SurfaceEdge {
 
 impl<'a> FromValue<'a> for SurfaceEdge {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SurfaceEdge {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1604,22 +1604,22 @@ impl fmt::Display for TouchpadGesturePhase {
 
 #[doc(hidden)]
 impl ToGlib for TouchpadGesturePhase {
-    type GlibType = gdk_sys::GdkTouchpadGesturePhase;
+    type GlibType = ffi::GdkTouchpadGesturePhase;
 
-    fn to_glib(&self) -> gdk_sys::GdkTouchpadGesturePhase {
+    fn to_glib(&self) -> ffi::GdkTouchpadGesturePhase {
         match *self {
-            TouchpadGesturePhase::Begin => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN,
-            TouchpadGesturePhase::Update => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE,
-            TouchpadGesturePhase::End => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_END,
-            TouchpadGesturePhase::Cancel => gdk_sys::GDK_TOUCHPAD_GESTURE_PHASE_CANCEL,
+            TouchpadGesturePhase::Begin => ffi::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN,
+            TouchpadGesturePhase::Update => ffi::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE,
+            TouchpadGesturePhase::End => ffi::GDK_TOUCHPAD_GESTURE_PHASE_END,
+            TouchpadGesturePhase::Cancel => ffi::GDK_TOUCHPAD_GESTURE_PHASE_CANCEL,
             TouchpadGesturePhase::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
-    fn from_glib(value: gdk_sys::GdkTouchpadGesturePhase) -> Self {
+impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
+    fn from_glib(value: ffi::GdkTouchpadGesturePhase) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TouchpadGesturePhase::Begin,
@@ -1633,7 +1633,7 @@ impl FromGlib<gdk_sys::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
 
 impl StaticType for TouchpadGesturePhase {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_touchpad_gesture_phase_get_type()) }
+        unsafe { from_glib(ffi::gdk_touchpad_gesture_phase_get_type()) }
     }
 }
 
@@ -1645,13 +1645,13 @@ impl<'a> FromValueOptional<'a> for TouchpadGesturePhase {
 
 impl<'a> FromValue<'a> for TouchpadGesturePhase {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TouchpadGesturePhase {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -1680,20 +1680,20 @@ impl fmt::Display for VulkanError {
 
 #[doc(hidden)]
 impl ToGlib for VulkanError {
-    type GlibType = gdk_sys::GdkVulkanError;
+    type GlibType = ffi::GdkVulkanError;
 
-    fn to_glib(&self) -> gdk_sys::GdkVulkanError {
+    fn to_glib(&self) -> ffi::GdkVulkanError {
         match *self {
-            VulkanError::Unsupported => gdk_sys::GDK_VULKAN_ERROR_UNSUPPORTED,
-            VulkanError::NotAvailable => gdk_sys::GDK_VULKAN_ERROR_NOT_AVAILABLE,
+            VulkanError::Unsupported => ffi::GDK_VULKAN_ERROR_UNSUPPORTED,
+            VulkanError::NotAvailable => ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE,
             VulkanError::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkVulkanError> for VulkanError {
-    fn from_glib(value: gdk_sys::GdkVulkanError) -> Self {
+impl FromGlib<ffi::GdkVulkanError> for VulkanError {
+    fn from_glib(value: ffi::GdkVulkanError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => VulkanError::Unsupported,
@@ -1707,7 +1707,7 @@ impl ErrorDomain for VulkanError {
     fn domain() -> Quark {
         skip_assert_initialized!();
 
-        unsafe { from_glib(gdk_sys::gdk_vulkan_error_quark()) }
+        unsafe { from_glib(ffi::gdk_vulkan_error_quark()) }
     }
 
     fn code(self) -> i32 {
@@ -1726,7 +1726,7 @@ impl ErrorDomain for VulkanError {
 
 impl StaticType for VulkanError {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_vulkan_error_get_type()) }
+        unsafe { from_glib(ffi::gdk_vulkan_error_get_type()) }
     }
 }
 
@@ -1738,12 +1738,12 @@ impl<'a> FromValueOptional<'a> for VulkanError {
 
 impl<'a> FromValue<'a> for VulkanError {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_enum(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
 impl SetValue for VulkanError {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
 }

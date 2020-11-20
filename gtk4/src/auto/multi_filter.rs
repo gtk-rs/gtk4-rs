@@ -2,19 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::ffi;
+use crate::Buildable;
+use crate::Filter;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Buildable;
-use Filter;
 
-glib_wrapper! {
-    pub struct MultiFilter(Object<gtk_sys::GtkMultiFilter, gtk_sys::GtkMultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
+glib::glib_wrapper! {
+    pub struct MultiFilter(Object<ffi::GtkMultiFilter, ffi::GtkMultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || gtk_sys::gtk_multi_filter_get_type(),
+        get_type => || ffi::gtk_multi_filter_get_type(),
     }
 }
 
@@ -29,7 +28,7 @@ pub trait MultiFilterExt: 'static {
 impl<O: IsA<MultiFilter>> MultiFilterExt for O {
     fn append<P: IsA<Filter>>(&self, filter: &P) {
         unsafe {
-            gtk_sys::gtk_multi_filter_append(
+            ffi::gtk_multi_filter_append(
                 self.as_ref().to_glib_none().0,
                 filter.as_ref().to_glib_full(),
             );
@@ -38,7 +37,7 @@ impl<O: IsA<MultiFilter>> MultiFilterExt for O {
 
     fn remove(&self, position: u32) {
         unsafe {
-            gtk_sys::gtk_multi_filter_remove(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_multi_filter_remove(self.as_ref().to_glib_none().0, position);
         }
     }
 }

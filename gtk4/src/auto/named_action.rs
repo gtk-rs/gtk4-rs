@@ -2,35 +2,31 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ShortcutAction;
+use glib;
 use glib::object::Cast;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use ShortcutAction;
 
-glib_wrapper! {
-    pub struct NamedAction(Object<gtk_sys::GtkNamedAction, gtk_sys::GtkNamedActionClass>) @extends ShortcutAction;
+glib::glib_wrapper! {
+    pub struct NamedAction(Object<ffi::GtkNamedAction, ffi::GtkNamedActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || gtk_sys::gtk_named_action_get_type(),
+        get_type => || ffi::gtk_named_action_get_type(),
     }
 }
 
 impl NamedAction {
     pub fn new(name: &str) -> NamedAction {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_named_action_new(name.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_named_action_new(name.to_glib_none().0)) }
     }
 
-    pub fn get_action_name(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_named_action_get_action_name(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_action_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_named_action_get_action_name(self.to_glib_none().0)) }
     }
 }
 

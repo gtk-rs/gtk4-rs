@@ -2,18 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNode;
+use crate::RoundedRect;
 use glib::object::IsA;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
-use RoundedRect;
 
-glib_wrapper! {
-    pub struct RoundedClipNode(Object<gsk_sys::GskRoundedClipNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct RoundedClipNode(Object<ffi::GskRoundedClipNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_rounded_clip_node_get_type(),
+        get_type => || ffi::gsk_rounded_clip_node_get_type(),
     }
 }
 
@@ -21,7 +21,7 @@ impl RoundedClipNode {
     pub fn new<P: IsA<RenderNode>>(child: &P, clip: &RoundedRect) -> RoundedClipNode {
         skip_assert_initialized!();
         unsafe {
-            from_glib_none(gsk_sys::gsk_rounded_clip_node_new(
+            from_glib_none(ffi::gsk_rounded_clip_node_new(
                 child.as_ref().to_glib_none().0,
                 clip.to_glib_none().0,
             ))
@@ -29,19 +29,11 @@ impl RoundedClipNode {
     }
 
     pub fn get_child(&self) -> Option<RenderNode> {
-        unsafe {
-            from_glib_none(gsk_sys::gsk_rounded_clip_node_get_child(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_child(self.to_glib_none().0)) }
     }
 
     pub fn peek_clip(&self) -> Option<RoundedRect> {
-        unsafe {
-            from_glib_none(gsk_sys::gsk_rounded_clip_node_peek_clip(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gsk_rounded_clip_node_peek_clip(self.to_glib_none().0)) }
     }
 }
 

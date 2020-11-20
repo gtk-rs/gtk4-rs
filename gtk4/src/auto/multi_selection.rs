@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::SelectionModel;
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -10,18 +12,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use SelectionModel;
 
-glib_wrapper! {
-    pub struct MultiSelection(Object<gtk_sys::GtkMultiSelection, gtk_sys::GtkMultiSelectionClass>) @implements gio::ListModel, SelectionModel;
+glib::glib_wrapper! {
+    pub struct MultiSelection(Object<ffi::GtkMultiSelection, ffi::GtkMultiSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_multi_selection_get_type(),
+        get_type => || ffi::gtk_multi_selection_get_type(),
     }
 }
 
@@ -29,7 +28,7 @@ impl MultiSelection {
     pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> MultiSelection {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_multi_selection_new(
+            from_glib_full(ffi::gtk_multi_selection_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
@@ -77,7 +76,7 @@ pub trait MultiSelectionExt: 'static {
 impl<O: IsA<MultiSelection>> MultiSelectionExt for O {
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_multi_selection_get_model(
+            from_glib_none(ffi::gtk_multi_selection_get_model(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -85,7 +84,7 @@ impl<O: IsA<MultiSelection>> MultiSelectionExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_multi_selection_set_model(
+            ffi::gtk_multi_selection_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -94,9 +93,9 @@ impl<O: IsA<MultiSelection>> MultiSelectionExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkMultiSelection,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMultiSelection,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<MultiSelection>,
         {

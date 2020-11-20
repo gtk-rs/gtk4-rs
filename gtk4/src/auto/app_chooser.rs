@@ -2,22 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Widget;
 use gio;
+use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Widget;
 
-glib_wrapper! {
-    pub struct AppChooser(Interface<gtk_sys::GtkAppChooser>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct AppChooser(Interface<ffi::GtkAppChooser>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_app_chooser_get_type(),
+        get_type => || ffi::gtk_app_chooser_get_type(),
     }
 }
 
@@ -26,7 +26,7 @@ pub const NONE_APP_CHOOSER: Option<&AppChooser> = None;
 pub trait AppChooserExt: 'static {
     fn get_app_info(&self) -> Option<gio::AppInfo>;
 
-    fn get_content_type(&self) -> Option<GString>;
+    fn get_content_type(&self) -> Option<glib::GString>;
 
     fn refresh(&self);
 }
@@ -34,15 +34,15 @@ pub trait AppChooserExt: 'static {
 impl<O: IsA<AppChooser>> AppChooserExt for O {
     fn get_app_info(&self) -> Option<gio::AppInfo> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_app_chooser_get_app_info(
+            from_glib_full(ffi::gtk_app_chooser_get_app_info(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_content_type(&self) -> Option<GString> {
+    fn get_content_type(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_app_chooser_get_content_type(
+            from_glib_full(ffi::gtk_app_chooser_get_content_type(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -50,7 +50,7 @@ impl<O: IsA<AppChooser>> AppChooserExt for O {
 
     fn refresh(&self) {
         unsafe {
-            gtk_sys::gtk_app_chooser_refresh(self.as_ref().to_glib_none().0);
+            ffi::gtk_app_chooser_refresh(self.as_ref().to_glib_none().0);
         }
     }
 }

@@ -2,39 +2,38 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Dialog;
+use crate::FileChooser;
+use crate::FileChooserAction;
+use crate::FileFilter;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use Dialog;
-use FileChooser;
-use FileChooserAction;
-use FileFilter;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct FileChooserButton(Object<gtk_sys::GtkFileChooserButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
+glib::glib_wrapper! {
+    pub struct FileChooserButton(Object<ffi::GtkFileChooserButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_file_chooser_button_get_type(),
+        get_type => || ffi::gtk_file_chooser_button_get_type(),
     }
 }
 
@@ -42,7 +41,7 @@ impl FileChooserButton {
     pub fn new(title: &str, action: FileChooserAction) -> FileChooserButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_file_chooser_button_new(
+            Widget::from_glib_none(ffi::gtk_file_chooser_button_new(
                 title.to_glib_none().0,
                 action.to_glib(),
             ))
@@ -53,7 +52,7 @@ impl FileChooserButton {
     pub fn with_dialog<P: IsA<Dialog>>(dialog: &P) -> FileChooserButton {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_file_chooser_button_new_with_dialog(
+            Widget::from_glib_none(ffi::gtk_file_chooser_button_new_with_dialog(
                 dialog.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -62,49 +61,46 @@ impl FileChooserButton {
 
     pub fn get_modal(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_file_chooser_button_get_modal(
+            from_glib(ffi::gtk_file_chooser_button_get_modal(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_title(&self) -> Option<GString> {
+    pub fn get_title(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_file_chooser_button_get_title(
+            from_glib_none(ffi::gtk_file_chooser_button_get_title(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_width_chars(&self) -> i32 {
-        unsafe { gtk_sys::gtk_file_chooser_button_get_width_chars(self.to_glib_none().0) }
+        unsafe { ffi::gtk_file_chooser_button_get_width_chars(self.to_glib_none().0) }
     }
 
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            gtk_sys::gtk_file_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_file_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
     pub fn set_title(&self, title: &str) {
         unsafe {
-            gtk_sys::gtk_file_chooser_button_set_title(
-                self.to_glib_none().0,
-                title.to_glib_none().0,
-            );
+            ffi::gtk_file_chooser_button_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     pub fn set_width_chars(&self, n_chars: i32) {
         unsafe {
-            gtk_sys::gtk_file_chooser_button_set_width_chars(self.to_glib_none().0, n_chars);
+            ffi::gtk_file_chooser_button_set_width_chars(self.to_glib_none().0, n_chars);
         }
     }
 
     pub fn connect_file_set<F: Fn(&FileChooserButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn file_set_trampoline<F: Fn(&FileChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserButton,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserButton,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -127,9 +123,9 @@ impl FileChooserButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&FileChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -152,9 +148,9 @@ impl FileChooserButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&FileChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -177,9 +173,9 @@ impl FileChooserButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<F: Fn(&FileChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,23 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::CssLocation;
 use gio;
 use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
-use CssLocation;
 
-glib_wrapper! {
+glib::glib_wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct CssSection(Shared<gtk_sys::GtkCssSection>);
+    pub struct CssSection(Shared<ffi::GtkCssSection>);
 
     match fn {
-        ref => |ptr| gtk_sys::gtk_css_section_ref(ptr),
-        unref => |ptr| gtk_sys::gtk_css_section_unref(ptr),
-        get_type => || gtk_sys::gtk_css_section_get_type(),
+        ref => |ptr| ffi::gtk_css_section_ref(ptr),
+        unref => |ptr| ffi::gtk_css_section_unref(ptr),
+        get_type => || ffi::gtk_css_section_get_type(),
     }
 }
 
@@ -30,7 +29,7 @@ impl CssSection {
     ) -> CssSection {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_css_section_new(
+            from_glib_full(ffi::gtk_css_section_new(
                 file.map(|p| p.as_ref()).to_glib_none().0,
                 start.to_glib_none().0,
                 end.to_glib_none().0,
@@ -39,24 +38,20 @@ impl CssSection {
     }
 
     pub fn get_end_location(&self) -> Option<CssLocation> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_css_section_get_end_location(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_css_section_get_end_location(self.to_glib_none().0)) }
     }
 
     pub fn get_file(&self) -> Option<gio::File> {
-        unsafe { from_glib_none(gtk_sys::gtk_css_section_get_file(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_css_section_get_file(self.to_glib_none().0)) }
     }
 
     pub fn get_parent(&self) -> Option<CssSection> {
-        unsafe { from_glib_none(gtk_sys::gtk_css_section_get_parent(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_css_section_get_parent(self.to_glib_none().0)) }
     }
 
     pub fn get_start_location(&self) -> Option<CssLocation> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_css_section_get_start_location(
+            from_glib_none(ffi::gtk_css_section_get_start_location(
                 self.to_glib_none().0,
             ))
         }
@@ -64,12 +59,12 @@ impl CssSection {
 
     pub fn print(&self, string: &mut glib::String) {
         unsafe {
-            gtk_sys::gtk_css_section_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+            ffi::gtk_css_section_print(self.to_glib_none().0, string.to_glib_none_mut().0);
         }
     }
 
-    fn to_string(&self) -> GString {
-        unsafe { from_glib_full(gtk_sys::gtk_css_section_to_string(self.to_glib_none().0)) }
+    fn to_string(&self) -> glib::GString {
+        unsafe { from_glib_full(ffi::gtk_css_section_to_string(self.to_glib_none().0)) }
     }
 }
 

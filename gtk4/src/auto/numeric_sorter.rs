@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::SortType;
+use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,25 +12,21 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use SortType;
-use Sorter;
 
-glib_wrapper! {
-    pub struct NumericSorter(Object<gtk_sys::GtkNumericSorter, gtk_sys::GtkNumericSorterClass>) @extends Sorter;
+glib::glib_wrapper! {
+    pub struct NumericSorter(Object<ffi::GtkNumericSorter, ffi::GtkNumericSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || gtk_sys::gtk_numeric_sorter_get_type(),
+        get_type => || ffi::gtk_numeric_sorter_get_type(),
     }
 }
 
 impl NumericSorter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> NumericSorter {
-    //    unsafe { TODO: call gtk_sys:gtk_numeric_sorter_new() }
+    //    unsafe { TODO: call ffi:gtk_numeric_sorter_new() }
     //}
 }
 
@@ -78,24 +77,24 @@ pub trait NumericSorterExt: 'static {
 
 impl<O: IsA<NumericSorter>> NumericSorterExt for O {
     //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call gtk_sys:gtk_numeric_sorter_get_expression() }
+    //    unsafe { TODO: call ffi:gtk_numeric_sorter_get_expression() }
     //}
 
     fn get_sort_order(&self) -> SortType {
         unsafe {
-            from_glib(gtk_sys::gtk_numeric_sorter_get_sort_order(
+            from_glib(ffi::gtk_numeric_sorter_get_sort_order(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call gtk_sys:gtk_numeric_sorter_set_expression() }
+    //    unsafe { TODO: call ffi:gtk_numeric_sorter_set_expression() }
     //}
 
     fn set_sort_order(&self, sort_order: SortType) {
         unsafe {
-            gtk_sys::gtk_numeric_sorter_set_sort_order(
+            ffi::gtk_numeric_sorter_set_sort_order(
                 self.as_ref().to_glib_none().0,
                 sort_order.to_glib(),
             );
@@ -104,9 +103,9 @@ impl<O: IsA<NumericSorter>> NumericSorterExt for O {
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkNumericSorter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNumericSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<NumericSorter>,
         {
@@ -128,9 +127,9 @@ impl<O: IsA<NumericSorter>> NumericSorterExt for O {
 
     fn connect_property_sort_order_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sort_order_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkNumericSorter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNumericSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<NumericSorter>,
         {

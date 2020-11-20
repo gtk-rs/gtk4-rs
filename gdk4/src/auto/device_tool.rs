@@ -2,42 +2,38 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::AxisFlags;
+use crate::DeviceToolType;
 use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
-use AxisFlags;
-use DeviceToolType;
 
-glib_wrapper! {
-    pub struct DeviceTool(Object<gdk_sys::GdkDeviceTool>);
+glib::glib_wrapper! {
+    pub struct DeviceTool(Object<ffi::GdkDeviceTool>);
 
     match fn {
-        get_type => || gdk_sys::gdk_device_tool_get_type(),
+        get_type => || ffi::gdk_device_tool_get_type(),
     }
 }
 
 impl DeviceTool {
     pub fn get_axes(&self) -> AxisFlags {
-        unsafe { from_glib(gdk_sys::gdk_device_tool_get_axes(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_device_tool_get_axes(self.to_glib_none().0)) }
     }
 
     pub fn get_hardware_id(&self) -> u64 {
-        unsafe { gdk_sys::gdk_device_tool_get_hardware_id(self.to_glib_none().0) }
+        unsafe { ffi::gdk_device_tool_get_hardware_id(self.to_glib_none().0) }
     }
 
     pub fn get_serial(&self) -> u64 {
-        unsafe { gdk_sys::gdk_device_tool_get_serial(self.to_glib_none().0) }
+        unsafe { ffi::gdk_device_tool_get_serial(self.to_glib_none().0) }
     }
 
     pub fn get_tool_type(&self) -> DeviceToolType {
-        unsafe {
-            from_glib(gdk_sys::gdk_device_tool_get_tool_type(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_device_tool_get_tool_type(self.to_glib_none().0)) }
     }
 }
 

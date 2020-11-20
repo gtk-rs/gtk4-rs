@@ -2,27 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Editable;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Editable;
-use Widget;
 
-glib_wrapper! {
-    pub struct EditableLabel(Object<gtk_sys::GtkEditableLabel, gtk_sys::GtkEditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+glib::glib_wrapper! {
+    pub struct EditableLabel(Object<ffi::GtkEditableLabel, ffi::GtkEditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || gtk_sys::gtk_editable_label_get_type(),
+        get_type => || ffi::gtk_editable_label_get_type(),
     }
 }
 
@@ -30,8 +29,7 @@ impl EditableLabel {
     pub fn new(str: &str) -> EditableLabel {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_editable_label_new(str.to_glib_none().0))
-                .unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_editable_label_new(str.to_glib_none().0)).unsafe_cast()
         }
     }
 }
@@ -51,7 +49,7 @@ pub trait EditableLabelExt: 'static {
 impl<O: IsA<EditableLabel>> EditableLabelExt for O {
     fn get_editing(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_editable_label_get_editing(
+            from_glib(ffi::gtk_editable_label_get_editing(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -59,24 +57,21 @@ impl<O: IsA<EditableLabel>> EditableLabelExt for O {
 
     fn start_editing(&self) {
         unsafe {
-            gtk_sys::gtk_editable_label_start_editing(self.as_ref().to_glib_none().0);
+            ffi::gtk_editable_label_start_editing(self.as_ref().to_glib_none().0);
         }
     }
 
     fn stop_editing(&self, commit: bool) {
         unsafe {
-            gtk_sys::gtk_editable_label_stop_editing(
-                self.as_ref().to_glib_none().0,
-                commit.to_glib(),
-            );
+            ffi::gtk_editable_label_stop_editing(self.as_ref().to_glib_none().0, commit.to_glib());
         }
     }
 
     fn connect_property_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditableLabel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditableLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<EditableLabel>,
         {

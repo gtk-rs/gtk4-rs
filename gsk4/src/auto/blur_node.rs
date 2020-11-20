@@ -2,17 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNode;
 use glib::object::IsA;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct BlurNode(Object<gsk_sys::GskBlurNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct BlurNode(Object<ffi::GskBlurNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_blur_node_get_type(),
+        get_type => || ffi::gsk_blur_node_get_type(),
     }
 }
 
@@ -20,7 +20,7 @@ impl BlurNode {
     pub fn new<P: IsA<RenderNode>>(child: &P, radius: f32) -> BlurNode {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_blur_node_new(
+            from_glib_full(ffi::gsk_blur_node_new(
                 child.as_ref().to_glib_none().0,
                 radius,
             ))
@@ -28,11 +28,11 @@ impl BlurNode {
     }
 
     pub fn get_child(&self) -> Option<RenderNode> {
-        unsafe { from_glib_none(gsk_sys::gsk_blur_node_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_blur_node_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_radius(&self) -> f32 {
-        unsafe { gsk_sys::gsk_blur_node_get_radius(self.to_glib_none().0) }
+        unsafe { ffi::gsk_blur_node_get_radius(self.to_glib_none().0) }
     }
 }
 

@@ -2,38 +2,36 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Widget;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Widget;
 
-glib_wrapper! {
-    pub struct Editable(Interface<gtk_sys::GtkEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Editable(Interface<ffi::GtkEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_editable_get_type(),
+        get_type => || ffi::gtk_editable_get_type(),
     }
 }
 
 impl Editable {
     //pub fn install_properties(object_class: /*Ignored*/&mut glib::ObjectClass, first_prop: u32) -> u32 {
-    //    unsafe { TODO: call gtk_sys:gtk_editable_install_properties() }
+    //    unsafe { TODO: call ffi:gtk_editable_install_properties() }
     //}
 }
 
@@ -48,7 +46,7 @@ pub trait EditableExt: 'static {
 
     fn get_alignment(&self) -> f32;
 
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<GString>;
+    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<glib::GString>;
 
     fn get_delegate(&self) -> Option<Editable>;
 
@@ -62,7 +60,7 @@ pub trait EditableExt: 'static {
 
     fn get_selection_bounds(&self) -> Option<(i32, i32)>;
 
-    fn get_text(&self) -> Option<GString>;
+    fn get_text(&self) -> Option<glib::GString>;
 
     fn get_width_chars(&self) -> i32;
 
@@ -127,29 +125,29 @@ pub trait EditableExt: 'static {
 impl<O: IsA<Editable>> EditableExt for O {
     fn delete_selection(&self) {
         unsafe {
-            gtk_sys::gtk_editable_delete_selection(self.as_ref().to_glib_none().0);
+            ffi::gtk_editable_delete_selection(self.as_ref().to_glib_none().0);
         }
     }
 
     fn delete_text(&self, start_pos: i32, end_pos: i32) {
         unsafe {
-            gtk_sys::gtk_editable_delete_text(self.as_ref().to_glib_none().0, start_pos, end_pos);
+            ffi::gtk_editable_delete_text(self.as_ref().to_glib_none().0, start_pos, end_pos);
         }
     }
 
     fn finish_delegate(&self) {
         unsafe {
-            gtk_sys::gtk_editable_finish_delegate(self.as_ref().to_glib_none().0);
+            ffi::gtk_editable_finish_delegate(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_alignment(&self) -> f32 {
-        unsafe { gtk_sys::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<GString> {
+    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<glib::GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_editable_get_chars(
+            from_glib_full(ffi::gtk_editable_get_chars(
                 self.as_ref().to_glib_none().0,
                 start_pos,
                 end_pos,
@@ -159,7 +157,7 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn get_delegate(&self) -> Option<Editable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_editable_get_delegate(
+            from_glib_none(ffi::gtk_editable_get_delegate(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -167,7 +165,7 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn get_editable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_editable_get_editable(
+            from_glib(ffi::gtk_editable_get_editable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -175,25 +173,25 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn get_enable_undo(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_editable_get_enable_undo(
+            from_glib(ffi::gtk_editable_get_enable_undo(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_max_width_chars(&self) -> i32 {
-        unsafe { gtk_sys::gtk_editable_get_max_width_chars(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_editable_get_max_width_chars(self.as_ref().to_glib_none().0) }
     }
 
     fn get_position(&self) -> i32 {
-        unsafe { gtk_sys::gtk_editable_get_position(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_editable_get_position(self.as_ref().to_glib_none().0) }
     }
 
     fn get_selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut start_pos = mem::MaybeUninit::uninit();
             let mut end_pos = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_editable_get_selection_bounds(
+            let ret = from_glib(ffi::gtk_editable_get_selection_bounds(
                 self.as_ref().to_glib_none().0,
                 start_pos.as_mut_ptr(),
                 end_pos.as_mut_ptr(),
@@ -208,28 +206,24 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_text(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_editable_get_text(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    fn get_text(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_editable_get_text(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_width_chars(&self) -> i32 {
-        unsafe { gtk_sys::gtk_editable_get_width_chars(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_editable_get_width_chars(self.as_ref().to_glib_none().0) }
     }
 
     fn init_delegate(&self) {
         unsafe {
-            gtk_sys::gtk_editable_init_delegate(self.as_ref().to_glib_none().0);
+            ffi::gtk_editable_init_delegate(self.as_ref().to_glib_none().0);
         }
     }
 
     fn insert_text(&self, text: &str, position: &mut i32) {
         let length = text.len() as i32;
         unsafe {
-            gtk_sys::gtk_editable_insert_text(
+            ffi::gtk_editable_insert_text(
                 self.as_ref().to_glib_none().0,
                 text.to_glib_none().0,
                 length,
@@ -240,28 +234,25 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn select_region(&self, start_pos: i32, end_pos: i32) {
         unsafe {
-            gtk_sys::gtk_editable_select_region(self.as_ref().to_glib_none().0, start_pos, end_pos);
+            ffi::gtk_editable_select_region(self.as_ref().to_glib_none().0, start_pos, end_pos);
         }
     }
 
     fn set_alignment(&self, xalign: f32) {
         unsafe {
-            gtk_sys::gtk_editable_set_alignment(self.as_ref().to_glib_none().0, xalign);
+            ffi::gtk_editable_set_alignment(self.as_ref().to_glib_none().0, xalign);
         }
     }
 
     fn set_editable(&self, is_editable: bool) {
         unsafe {
-            gtk_sys::gtk_editable_set_editable(
-                self.as_ref().to_glib_none().0,
-                is_editable.to_glib(),
-            );
+            ffi::gtk_editable_set_editable(self.as_ref().to_glib_none().0, is_editable.to_glib());
         }
     }
 
     fn set_enable_undo(&self, enable_undo: bool) {
         unsafe {
-            gtk_sys::gtk_editable_set_enable_undo(
+            ffi::gtk_editable_set_enable_undo(
                 self.as_ref().to_glib_none().0,
                 enable_undo.to_glib(),
             );
@@ -270,33 +261,33 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn set_max_width_chars(&self, n_chars: i32) {
         unsafe {
-            gtk_sys::gtk_editable_set_max_width_chars(self.as_ref().to_glib_none().0, n_chars);
+            ffi::gtk_editable_set_max_width_chars(self.as_ref().to_glib_none().0, n_chars);
         }
     }
 
     fn set_position(&self, position: i32) {
         unsafe {
-            gtk_sys::gtk_editable_set_position(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_editable_set_position(self.as_ref().to_glib_none().0, position);
         }
     }
 
     fn set_text(&self, text: &str) {
         unsafe {
-            gtk_sys::gtk_editable_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_editable_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     fn set_width_chars(&self, n_chars: i32) {
         unsafe {
-            gtk_sys::gtk_editable_set_width_chars(self.as_ref().to_glib_none().0, n_chars);
+            ffi::gtk_editable_set_width_chars(self.as_ref().to_glib_none().0, n_chars);
         }
     }
 
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cursor-position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -310,8 +301,8 @@ impl<O: IsA<Editable>> EditableExt for O {
     fn get_property_selection_bound(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"selection-bound\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -325,8 +316,8 @@ impl<O: IsA<Editable>> EditableExt for O {
     fn get_property_xalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -339,8 +330,8 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn set_property_xalign(&self, xalign: f32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xalign\0".as_ptr() as *const _,
                 Value::from(&xalign).to_glib_none().0,
             );
@@ -349,8 +340,8 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -372,10 +363,10 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn delete_text_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
+            this: *mut ffi::GtkEditable,
             start_pos: libc::c_int,
             end_pos: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -404,9 +395,9 @@ impl<O: IsA<Editable>> EditableExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -428,9 +419,9 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -452,9 +443,9 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_undo_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -479,9 +470,9 @@ impl<O: IsA<Editable>> EditableExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -506,9 +497,9 @@ impl<O: IsA<Editable>> EditableExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_bound_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -530,9 +521,9 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -554,9 +545,9 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {
@@ -578,9 +569,9 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Editable>,
         {

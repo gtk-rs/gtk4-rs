@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_x11_sys;
+use crate::ffi;
 use glib::translate::*;
 use std::fmt;
 
@@ -33,21 +33,21 @@ impl fmt::Display for X11DeviceType {
 
 #[doc(hidden)]
 impl ToGlib for X11DeviceType {
-    type GlibType = gdk_x11_sys::GdkX11DeviceType;
+    type GlibType = ffi::GdkX11DeviceType;
 
-    fn to_glib(&self) -> gdk_x11_sys::GdkX11DeviceType {
+    fn to_glib(&self) -> ffi::GdkX11DeviceType {
         match *self {
-            X11DeviceType::Logical => gdk_x11_sys::GDK_X11_DEVICE_TYPE_LOGICAL,
-            X11DeviceType::Physical => gdk_x11_sys::GDK_X11_DEVICE_TYPE_PHYSICAL,
-            X11DeviceType::Floating => gdk_x11_sys::GDK_X11_DEVICE_TYPE_FLOATING,
+            X11DeviceType::Logical => ffi::GDK_X11_DEVICE_TYPE_LOGICAL,
+            X11DeviceType::Physical => ffi::GDK_X11_DEVICE_TYPE_PHYSICAL,
+            X11DeviceType::Floating => ffi::GDK_X11_DEVICE_TYPE_FLOATING,
             X11DeviceType::__Unknown(value) => value,
         }
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_x11_sys::GdkX11DeviceType> for X11DeviceType {
-    fn from_glib(value: gdk_x11_sys::GdkX11DeviceType) -> Self {
+impl FromGlib<ffi::GdkX11DeviceType> for X11DeviceType {
+    fn from_glib(value: ffi::GdkX11DeviceType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => X11DeviceType::Logical,

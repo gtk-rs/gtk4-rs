@@ -2,6 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -10,32 +19,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct WindowHandle(Object<gtk_sys::GtkWindowHandle, gtk_sys::GtkWindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct WindowHandle(Object<ffi::GtkWindowHandle, ffi::GtkWindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_window_handle_get_type(),
+        get_type => || ffi::gtk_window_handle_get_type(),
     }
 }
 
 impl WindowHandle {
     pub fn new() -> WindowHandle {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_window_handle_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_window_handle_new()).unsafe_cast() }
     }
 }
 
@@ -356,7 +355,7 @@ pub trait WindowHandleExt: 'static {
 impl<O: IsA<WindowHandle>> WindowHandleExt for O {
     fn get_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_window_handle_get_child(
+            from_glib_none(ffi::gtk_window_handle_get_child(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -364,7 +363,7 @@ impl<O: IsA<WindowHandle>> WindowHandleExt for O {
 
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_window_handle_set_child(
+            ffi::gtk_window_handle_set_child(
                 self.as_ref().to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -373,9 +372,9 @@ impl<O: IsA<WindowHandle>> WindowHandleExt for O {
 
     fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindowHandle,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkWindowHandle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<WindowHandle>,
         {

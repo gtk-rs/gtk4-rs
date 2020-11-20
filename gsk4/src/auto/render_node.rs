@@ -2,27 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNodeType;
 use cairo;
 use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use graphene;
-use gsk_sys;
 use std::fmt;
 use std::ptr;
-use RenderNodeType;
 
-glib_wrapper! {
-    pub struct RenderNode(Object<gsk_sys::GskRenderNode>);
+glib::glib_wrapper! {
+    pub struct RenderNode(Object<ffi::GskRenderNode>);
 
     match fn {
-        get_type => || gsk_sys::gsk_render_node_get_type(),
+        get_type => || ffi::gsk_render_node_get_type(),
     }
 }
 
 impl RenderNode {
     //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
-    //    unsafe { TODO: call gsk_sys:gsk_render_node_deserialize() }
+    //    unsafe { TODO: call ffi:gsk_render_node_deserialize() }
     //}
 }
 
@@ -43,7 +43,7 @@ pub trait RenderNodeExt: 'static {
 impl<O: IsA<RenderNode>> RenderNodeExt for O {
     fn draw(&self, cr: &cairo::Context) {
         unsafe {
-            gsk_sys::gsk_render_node_draw(
+            ffi::gsk_render_node_draw(
                 self.as_ref().to_glib_none().0,
                 mut_override(cr.to_glib_none().0),
             );
@@ -53,7 +53,7 @@ impl<O: IsA<RenderNode>> RenderNodeExt for O {
     fn get_bounds(&self) -> graphene::Rect {
         unsafe {
             let mut bounds = graphene::Rect::uninitialized();
-            gsk_sys::gsk_render_node_get_bounds(
+            ffi::gsk_render_node_get_bounds(
                 self.as_ref().to_glib_none().0,
                 bounds.to_glib_none_mut().0,
             );
@@ -63,7 +63,7 @@ impl<O: IsA<RenderNode>> RenderNodeExt for O {
 
     fn get_node_type(&self) -> RenderNodeType {
         unsafe {
-            from_glib(gsk_sys::gsk_render_node_get_node_type(
+            from_glib(ffi::gsk_render_node_get_node_type(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -71,7 +71,7 @@ impl<O: IsA<RenderNode>> RenderNodeExt for O {
 
     fn serialize(&self) -> Option<glib::Bytes> {
         unsafe {
-            from_glib_full(gsk_sys::gsk_render_node_serialize(
+            from_glib_full(ffi::gsk_render_node_serialize(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -80,7 +80,7 @@ impl<O: IsA<RenderNode>> RenderNodeExt for O {
     fn write_to_file(&self, filename: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gsk_sys::gsk_render_node_write_to_file(
+            let _ = ffi::gsk_render_node_write_to_file(
                 self.as_ref().to_glib_none().0,
                 filename.to_glib_none().0,
                 &mut error,

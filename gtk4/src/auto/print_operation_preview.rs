@@ -2,24 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::PageSetup;
+use crate::PrintContext;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use PageSetup;
-use PrintContext;
 
-glib_wrapper! {
-    pub struct PrintOperationPreview(Interface<gtk_sys::GtkPrintOperationPreview>);
+glib::glib_wrapper! {
+    pub struct PrintOperationPreview(Interface<ffi::GtkPrintOperationPreview>);
 
     match fn {
-        get_type => || gtk_sys::gtk_print_operation_preview_get_type(),
+        get_type => || ffi::gtk_print_operation_preview_get_type(),
     }
 }
 
@@ -43,13 +42,13 @@ pub trait PrintOperationPreviewExt: 'static {
 impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
     fn end_preview(&self) {
         unsafe {
-            gtk_sys::gtk_print_operation_preview_end_preview(self.as_ref().to_glib_none().0);
+            ffi::gtk_print_operation_preview_end_preview(self.as_ref().to_glib_none().0);
         }
     }
 
     fn is_selected(&self, page_nr: i32) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_print_operation_preview_is_selected(
+            from_glib(ffi::gtk_print_operation_preview_is_selected(
                 self.as_ref().to_glib_none().0,
                 page_nr,
             ))
@@ -58,10 +57,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
 
     fn render_page(&self, page_nr: i32) {
         unsafe {
-            gtk_sys::gtk_print_operation_preview_render_page(
-                self.as_ref().to_glib_none().0,
-                page_nr,
-            );
+            ffi::gtk_print_operation_preview_render_page(self.as_ref().to_glib_none().0, page_nr);
         }
     }
 
@@ -73,10 +69,10 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
             P,
             F: Fn(&P, &PrintContext, &PageSetup) + 'static,
         >(
-            this: *mut gtk_sys::GtkPrintOperationPreview,
-            context: *mut gtk_sys::GtkPrintContext,
-            page_setup: *mut gtk_sys::GtkPageSetup,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPrintOperationPreview,
+            context: *mut ffi::GtkPrintContext,
+            page_setup: *mut ffi::GtkPageSetup,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<PrintOperationPreview>,
         {
@@ -102,9 +98,9 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
 
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_trampoline<P, F: Fn(&P, &PrintContext) + 'static>(
-            this: *mut gtk_sys::GtkPrintOperationPreview,
-            context: *mut gtk_sys::GtkPrintContext,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPrintOperationPreview,
+            context: *mut ffi::GtkPrintContext,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<PrintOperationPreview>,
         {

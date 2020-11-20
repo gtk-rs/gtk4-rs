@@ -2,18 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::Event;
+use crate::ScrollDirection;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use Event;
-use ScrollDirection;
 
-glib_wrapper! {
-    pub struct ScrollEvent(Object<gdk_sys::GdkScrollEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct ScrollEvent(Object<ffi::GdkScrollEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_scroll_event_get_type(),
+        get_type => || ffi::gdk_scroll_event_get_type(),
     }
 }
 
@@ -22,7 +22,7 @@ impl ScrollEvent {
         unsafe {
             let mut delta_x = mem::MaybeUninit::uninit();
             let mut delta_y = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_scroll_event_get_deltas(
+            ffi::gdk_scroll_event_get_deltas(
                 self.to_glib_none().0,
                 delta_x.as_mut_ptr(),
                 delta_y.as_mut_ptr(),
@@ -34,15 +34,11 @@ impl ScrollEvent {
     }
 
     pub fn get_direction(&self) -> ScrollDirection {
-        unsafe {
-            from_glib(gdk_sys::gdk_scroll_event_get_direction(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
     }
 
     pub fn is_stop(&self) -> bool {
-        unsafe { from_glib(gdk_sys::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
     }
 }
 

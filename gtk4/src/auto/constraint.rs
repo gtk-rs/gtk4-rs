@@ -2,22 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ConstraintAttribute;
+use crate::ConstraintRelation;
+use crate::ConstraintTarget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use ConstraintAttribute;
-use ConstraintRelation;
-use ConstraintTarget;
 
-glib_wrapper! {
-    pub struct Constraint(Object<gtk_sys::GtkConstraint, gtk_sys::GtkConstraintClass>);
+glib::glib_wrapper! {
+    pub struct Constraint(Object<ffi::GtkConstraint, ffi::GtkConstraintClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_constraint_get_type(),
+        get_type => || ffi::gtk_constraint_get_type(),
     }
 }
 
@@ -34,7 +34,7 @@ impl Constraint {
     ) -> Constraint {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_constraint_new(
+            from_glib_full(ffi::gtk_constraint_new(
                 target.map(|p| p.as_ref()).to_glib_none().0,
                 target_attribute.to_glib(),
                 relation.to_glib(),
@@ -56,7 +56,7 @@ impl Constraint {
     ) -> Constraint {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_constraint_new_constant(
+            from_glib_full(ffi::gtk_constraint_new_constant(
                 target.map(|p| p.as_ref()).to_glib_none().0,
                 target_attribute.to_glib(),
                 relation.to_glib(),
@@ -186,16 +186,16 @@ pub trait ConstraintExt: 'static {
 
 impl<O: IsA<Constraint>> ConstraintExt for O {
     fn get_constant(&self) -> f64 {
-        unsafe { gtk_sys::gtk_constraint_get_constant(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_constraint_get_constant(self.as_ref().to_glib_none().0) }
     }
 
     fn get_multiplier(&self) -> f64 {
-        unsafe { gtk_sys::gtk_constraint_get_multiplier(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_constraint_get_multiplier(self.as_ref().to_glib_none().0) }
     }
 
     fn get_relation(&self) -> ConstraintRelation {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_get_relation(
+            from_glib(ffi::gtk_constraint_get_relation(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -203,7 +203,7 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn get_source(&self) -> Option<ConstraintTarget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_constraint_get_source(
+            from_glib_none(ffi::gtk_constraint_get_source(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -211,19 +211,19 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn get_source_attribute(&self) -> ConstraintAttribute {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_get_source_attribute(
+            from_glib(ffi::gtk_constraint_get_source_attribute(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_strength(&self) -> i32 {
-        unsafe { gtk_sys::gtk_constraint_get_strength(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_constraint_get_strength(self.as_ref().to_glib_none().0) }
     }
 
     fn get_target(&self) -> Option<ConstraintTarget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_constraint_get_target(
+            from_glib_none(ffi::gtk_constraint_get_target(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -231,7 +231,7 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn get_target_attribute(&self) -> ConstraintAttribute {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_get_target_attribute(
+            from_glib(ffi::gtk_constraint_get_target_attribute(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -239,7 +239,7 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn is_attached(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_is_attached(
+            from_glib(ffi::gtk_constraint_is_attached(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -247,7 +247,7 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn is_constant(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_is_constant(
+            from_glib(ffi::gtk_constraint_is_constant(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -255,7 +255,7 @@ impl<O: IsA<Constraint>> ConstraintExt for O {
 
     fn is_required(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_constraint_is_required(
+            from_glib(ffi::gtk_constraint_is_required(
                 self.as_ref().to_glib_none().0,
             ))
         }

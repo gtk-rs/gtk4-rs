@@ -2,6 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Editable;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -12,39 +22,27 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use Editable;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct SearchBar(Object<gtk_sys::GtkSearchBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct SearchBar(Object<ffi::GtkSearchBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_search_bar_get_type(),
+        get_type => || ffi::gtk_search_bar_get_type(),
     }
 }
 
 impl SearchBar {
     pub fn new() -> SearchBar {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_search_bar_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_search_bar_new()).unsafe_cast() }
     }
 
     pub fn connect_entry<P: IsA<Editable>>(&self, entry: &P) {
         unsafe {
-            gtk_sys::gtk_search_bar_connect_entry(
+            ffi::gtk_search_bar_connect_entry(
                 self.to_glib_none().0,
                 entry.as_ref().to_glib_none().0,
             );
@@ -52,28 +50,24 @@ impl SearchBar {
     }
 
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_search_bar_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_search_bar_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_key_capture_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_search_bar_get_key_capture_widget(
+            from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_search_mode(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_search_bar_get_search_mode(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_search_bar_get_search_mode(self.to_glib_none().0)) }
     }
 
     pub fn get_show_close_button(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_search_bar_get_show_close_button(
+            from_glib(ffi::gtk_search_bar_get_show_close_button(
                 self.to_glib_none().0,
             ))
         }
@@ -81,7 +75,7 @@ impl SearchBar {
 
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_child(
+            ffi::gtk_search_bar_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -90,7 +84,7 @@ impl SearchBar {
 
     pub fn set_key_capture_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_key_capture_widget(
+            ffi::gtk_search_bar_set_key_capture_widget(
                 self.to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -99,21 +93,21 @@ impl SearchBar {
 
     pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.to_glib());
+            ffi::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.to_glib());
         }
     }
 
     pub fn set_show_close_button(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.to_glib());
         }
     }
 
     pub fn get_property_search_mode_enabled(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"search-mode-enabled\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -126,8 +120,8 @@ impl SearchBar {
 
     pub fn set_property_search_mode_enabled(&self, search_mode_enabled: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"search-mode-enabled\0".as_ptr() as *const _,
                 Value::from(&search_mode_enabled).to_glib_none().0,
             );
@@ -139,9 +133,9 @@ impl SearchBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&SearchBar) + 'static>(
-            this: *mut gtk_sys::GtkSearchBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSearchBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -164,9 +158,9 @@ impl SearchBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_key_capture_widget_trampoline<F: Fn(&SearchBar) + 'static>(
-            this: *mut gtk_sys::GtkSearchBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSearchBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -189,9 +183,9 @@ impl SearchBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_mode_enabled_trampoline<F: Fn(&SearchBar) + 'static>(
-            this: *mut gtk_sys::GtkSearchBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSearchBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -214,9 +208,9 @@ impl SearchBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_close_button_trampoline<F: Fn(&SearchBar) + 'static>(
-            this: *mut gtk_sys::GtkSearchBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSearchBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

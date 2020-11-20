@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,24 +11,21 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Sorter;
 
-glib_wrapper! {
-    pub struct StringSorter(Object<gtk_sys::GtkStringSorter, gtk_sys::GtkStringSorterClass>) @extends Sorter;
+glib::glib_wrapper! {
+    pub struct StringSorter(Object<ffi::GtkStringSorter, ffi::GtkStringSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || gtk_sys::gtk_string_sorter_get_type(),
+        get_type => || ffi::gtk_string_sorter_get_type(),
     }
 }
 
 impl StringSorter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringSorter {
-    //    unsafe { TODO: call gtk_sys:gtk_string_sorter_new() }
+    //    unsafe { TODO: call ffi:gtk_string_sorter_new() }
     //}
 }
 
@@ -77,24 +76,24 @@ pub trait StringSorterExt: 'static {
 
 impl<O: IsA<StringSorter>> StringSorterExt for O {
     //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call gtk_sys:gtk_string_sorter_get_expression() }
+    //    unsafe { TODO: call ffi:gtk_string_sorter_get_expression() }
     //}
 
     fn get_ignore_case(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_string_sorter_get_ignore_case(
+            from_glib(ffi::gtk_string_sorter_get_ignore_case(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call gtk_sys:gtk_string_sorter_set_expression() }
+    //    unsafe { TODO: call ffi:gtk_string_sorter_set_expression() }
     //}
 
     fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
-            gtk_sys::gtk_string_sorter_set_ignore_case(
+            ffi::gtk_string_sorter_set_ignore_case(
                 self.as_ref().to_glib_none().0,
                 ignore_case.to_glib(),
             );
@@ -103,9 +102,9 @@ impl<O: IsA<StringSorter>> StringSorterExt for O {
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringSorter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringSorter>,
         {
@@ -127,9 +126,9 @@ impl<O: IsA<StringSorter>> StringSorterExt for O {
 
     fn connect_property_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ignore_case_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringSorter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringSorter>,
         {

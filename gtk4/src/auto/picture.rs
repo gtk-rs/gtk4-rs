@@ -2,50 +2,49 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use gdk_pixbuf;
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Picture(Object<gtk_sys::GtkPicture, gtk_sys::GtkPictureClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Picture(Object<ffi::GtkPicture, ffi::GtkPictureClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_picture_get_type(),
+        get_type => || ffi::gtk_picture_get_type(),
     }
 }
 
 impl Picture {
     pub fn new() -> Picture {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_picture_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_picture_new()).unsafe_cast() }
     }
 
     pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_file(
+            Widget::from_glib_none(ffi::gtk_picture_new_for_file(
                 file.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -55,7 +54,7 @@ impl Picture {
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_filename(
+            Widget::from_glib_none(ffi::gtk_picture_new_for_filename(
                 filename.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -65,7 +64,7 @@ impl Picture {
     pub fn new_for_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_paintable(
+            Widget::from_glib_none(ffi::gtk_picture_new_for_paintable(
                 paintable.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -75,7 +74,7 @@ impl Picture {
     pub fn new_for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_pixbuf(pixbuf.to_glib_none().0))
+            Widget::from_glib_none(ffi::gtk_picture_new_for_pixbuf(pixbuf.to_glib_none().0))
                 .unsafe_cast()
         }
     }
@@ -83,7 +82,7 @@ impl Picture {
     pub fn new_for_resource(resource_path: Option<&str>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_picture_new_for_resource(
+            Widget::from_glib_none(ffi::gtk_picture_new_for_resource(
                 resource_path.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -434,7 +433,7 @@ impl PictureBuilder {
 pub const NONE_PICTURE: Option<&Picture> = None;
 
 pub trait PictureExt: 'static {
-    fn get_alternative_text(&self) -> Option<GString>;
+    fn get_alternative_text(&self) -> Option<glib::GString>;
 
     fn get_can_shrink(&self) -> bool;
 
@@ -478,9 +477,9 @@ pub trait PictureExt: 'static {
 }
 
 impl<O: IsA<Picture>> PictureExt for O {
-    fn get_alternative_text(&self) -> Option<GString> {
+    fn get_alternative_text(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_picture_get_alternative_text(
+            from_glib_none(ffi::gtk_picture_get_alternative_text(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -488,23 +487,19 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn get_can_shrink(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_picture_get_can_shrink(
+            from_glib(ffi::gtk_picture_get_can_shrink(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_file(&self) -> Option<gio::File> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_picture_get_file(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_picture_get_file(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_keep_aspect_ratio(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_picture_get_keep_aspect_ratio(
+            from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -512,7 +507,7 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn get_paintable(&self) -> Option<gdk::Paintable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_picture_get_paintable(
+            from_glib_none(ffi::gtk_picture_get_paintable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -520,7 +515,7 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_alternative_text(&self, alternative_text: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_picture_set_alternative_text(
+            ffi::gtk_picture_set_alternative_text(
                 self.as_ref().to_glib_none().0,
                 alternative_text.to_glib_none().0,
             );
@@ -529,16 +524,13 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
-            gtk_sys::gtk_picture_set_can_shrink(
-                self.as_ref().to_glib_none().0,
-                can_shrink.to_glib(),
-            );
+            ffi::gtk_picture_set_can_shrink(self.as_ref().to_glib_none().0, can_shrink.to_glib());
         }
     }
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_picture_set_file(
+            ffi::gtk_picture_set_file(
                 self.as_ref().to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -547,7 +539,7 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_picture_set_filename(
+            ffi::gtk_picture_set_filename(
                 self.as_ref().to_glib_none().0,
                 filename.to_glib_none().0,
             );
@@ -556,7 +548,7 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
         unsafe {
-            gtk_sys::gtk_picture_set_keep_aspect_ratio(
+            ffi::gtk_picture_set_keep_aspect_ratio(
                 self.as_ref().to_glib_none().0,
                 keep_aspect_ratio.to_glib(),
             );
@@ -565,7 +557,7 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_picture_set_paintable(
+            ffi::gtk_picture_set_paintable(
                 self.as_ref().to_glib_none().0,
                 paintable.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -574,16 +566,13 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
-            gtk_sys::gtk_picture_set_pixbuf(
-                self.as_ref().to_glib_none().0,
-                pixbuf.to_glib_none().0,
-            );
+            ffi::gtk_picture_set_pixbuf(self.as_ref().to_glib_none().0, pixbuf.to_glib_none().0);
         }
     }
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_picture_set_resource(
+            ffi::gtk_picture_set_resource(
                 self.as_ref().to_glib_none().0,
                 resource_path.to_glib_none().0,
             );
@@ -595,9 +584,9 @@ impl<O: IsA<Picture>> PictureExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_alternative_text_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPicture,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Picture>,
         {
@@ -619,9 +608,9 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn connect_property_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_shrink_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPicture,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Picture>,
         {
@@ -643,9 +632,9 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPicture,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Picture>,
         {
@@ -670,9 +659,9 @@ impl<O: IsA<Picture>> PictureExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_keep_aspect_ratio_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPicture,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Picture>,
         {
@@ -694,9 +683,9 @@ impl<O: IsA<Picture>> PictureExt for O {
 
     fn connect_property_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paintable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkPicture,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Picture>,
         {

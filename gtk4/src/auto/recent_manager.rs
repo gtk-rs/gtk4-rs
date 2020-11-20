@@ -2,43 +2,40 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RecentData;
+use crate::RecentInfo;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::ptr;
-use RecentData;
-use RecentInfo;
 
-glib_wrapper! {
-    pub struct RecentManager(Object<gtk_sys::GtkRecentManager, gtk_sys::GtkRecentManagerClass>);
+glib::glib_wrapper! {
+    pub struct RecentManager(Object<ffi::GtkRecentManager, ffi::GtkRecentManagerClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_recent_manager_get_type(),
+        get_type => || ffi::gtk_recent_manager_get_type(),
     }
 }
 
 impl RecentManager {
     pub fn new() -> RecentManager {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_recent_manager_new()) }
+        unsafe { from_glib_full(ffi::gtk_recent_manager_new()) }
     }
 
     pub fn get_default() -> Option<RecentManager> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(gtk_sys::gtk_recent_manager_get_default()) }
+        unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }
     }
 }
 
@@ -95,7 +92,7 @@ pub trait RecentManagerExt: 'static {
 
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error>;
 
-    fn get_property_filename(&self) -> Option<GString>;
+    fn get_property_filename(&self) -> Option<glib::GString>;
 
     fn get_property_size(&self) -> i32;
 
@@ -107,7 +104,7 @@ pub trait RecentManagerExt: 'static {
 impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_recent_manager_add_full(
+            from_glib(ffi::gtk_recent_manager_add_full(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 recent_data.to_glib_none().0,
@@ -117,7 +114,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn add_item(&self, uri: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_recent_manager_add_item(
+            from_glib(ffi::gtk_recent_manager_add_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
             ))
@@ -126,7 +123,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn get_items(&self) -> Vec<RecentInfo> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_recent_manager_get_items(
+            FromGlibPtrContainer::from_glib_full(ffi::gtk_recent_manager_get_items(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -134,7 +131,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn has_item(&self, uri: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_recent_manager_has_item(
+            from_glib(ffi::gtk_recent_manager_has_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
             ))
@@ -144,7 +141,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn lookup_item(&self, uri: &str) -> Result<Option<RecentInfo>, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let ret = gtk_sys::gtk_recent_manager_lookup_item(
+            let ret = ffi::gtk_recent_manager_lookup_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 &mut error,
@@ -160,7 +157,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_recent_manager_move_item(
+            let _ = ffi::gtk_recent_manager_move_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 new_uri.to_glib_none().0,
@@ -178,7 +175,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         unsafe {
             let mut error = ptr::null_mut();
             let ret =
-                gtk_sys::gtk_recent_manager_purge_items(self.as_ref().to_glib_none().0, &mut error);
+                ffi::gtk_recent_manager_purge_items(self.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
                 Ok(ret)
             } else {
@@ -190,7 +187,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gtk_sys::gtk_recent_manager_remove_item(
+            let _ = ffi::gtk_recent_manager_remove_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 &mut error,
@@ -203,11 +200,11 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn get_property_filename(&self) -> Option<GString> {
+    fn get_property_filename(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"filename\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -220,8 +217,8 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn get_property_size(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -234,8 +231,8 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkRecentManager,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkRecentManager,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<RecentManager>,
         {
@@ -257,9 +254,9 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkRecentManager,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkRecentManager,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<RecentManager>,
         {

@@ -2,7 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::Display;
 use gio;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -10,20 +11,19 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
-use Display;
 
-glib_wrapper! {
-    pub struct AppLaunchContext(Object<gdk_sys::GdkAppLaunchContext>) @extends gio::AppLaunchContext;
+glib::glib_wrapper! {
+    pub struct AppLaunchContext(Object<ffi::GdkAppLaunchContext>) @extends gio::AppLaunchContext;
 
     match fn {
-        get_type => || gdk_sys::gdk_app_launch_context_get_type(),
+        get_type => || ffi::gdk_app_launch_context_get_type(),
     }
 }
 
 impl AppLaunchContext {
     pub fn get_display(&self) -> Option<Display> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_app_launch_context_get_display(
+            from_glib_none(ffi::gdk_app_launch_context_get_display(
                 self.to_glib_none().0,
             ))
         }
@@ -31,13 +31,13 @@ impl AppLaunchContext {
 
     pub fn set_desktop(&self, desktop: i32) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_desktop(self.to_glib_none().0, desktop);
+            ffi::gdk_app_launch_context_set_desktop(self.to_glib_none().0, desktop);
         }
     }
 
     pub fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_icon(
+            ffi::gdk_app_launch_context_set_icon(
                 self.to_glib_none().0,
                 icon.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -46,7 +46,7 @@ impl AppLaunchContext {
 
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_icon_name(
+            ffi::gdk_app_launch_context_set_icon_name(
                 self.to_glib_none().0,
                 icon_name.to_glib_none().0,
             );
@@ -55,7 +55,7 @@ impl AppLaunchContext {
 
     pub fn set_timestamp(&self, timestamp: u32) {
         unsafe {
-            gdk_sys::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
+            ffi::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
         }
     }
 }

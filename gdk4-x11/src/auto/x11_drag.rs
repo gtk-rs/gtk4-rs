@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_x11_sys;
+use crate::ffi;
 use glib::translate::*;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct X11Drag(Object<gdk_x11_sys::GdkX11Drag, gdk_x11_sys::GdkX11DragClass>) @extends gdk::Drag;
+glib::glib_wrapper! {
+    pub struct X11Drag(Object<ffi::GdkX11Drag, ffi::GdkX11DragClass>) @extends gdk::Drag;
 
     match fn {
-        get_type => || gdk_x11_sys::gdk_x11_drag_get_type(),
+        get_type => || ffi::gdk_x11_drag_get_type(),
     }
 }
 

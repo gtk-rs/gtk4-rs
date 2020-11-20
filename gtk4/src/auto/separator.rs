@@ -2,30 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Orientable;
+use crate::Orientation;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Orientable;
-use Orientation;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Separator(Object<gtk_sys::GtkSeparator>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
+glib::glib_wrapper! {
+    pub struct Separator(Object<ffi::GtkSeparator>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || gtk_sys::gtk_separator_get_type(),
+        get_type => || ffi::gtk_separator_get_type(),
     }
 }
 
@@ -33,7 +33,7 @@ impl Separator {
     pub fn new(orientation: Orientation) -> Separator {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_separator_new(orientation.to_glib())).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_separator_new(orientation.to_glib())).unsafe_cast()
         }
     }
 }

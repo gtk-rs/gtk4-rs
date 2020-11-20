@@ -2,35 +2,33 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::EventController;
+use crate::Gesture;
+use crate::GestureSingle;
 use gdk;
-use gdk_sys;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use Gesture;
-use GestureSingle;
 
-glib_wrapper! {
-    pub struct GestureClick(Object<gtk_sys::GtkGestureClick, gtk_sys::GtkGestureClickClass>) @extends GestureSingle, Gesture, EventController;
+glib::glib_wrapper! {
+    pub struct GestureClick(Object<ffi::GtkGestureClick, ffi::GtkGestureClickClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_gesture_click_get_type(),
+        get_type => || ffi::gtk_gesture_click_get_type(),
     }
 }
 
 impl GestureClick {
     pub fn new() -> GestureClick {
         assert_initialized_main_thread!();
-        unsafe { Gesture::from_glib_full(gtk_sys::gtk_gesture_click_new()).unsafe_cast() }
+        unsafe { Gesture::from_glib_full(ffi::gtk_gesture_click_new()).unsafe_cast() }
     }
 
     pub fn connect_pressed<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
@@ -38,11 +36,11 @@ impl GestureClick {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn pressed_trampoline<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
-            this: *mut gtk_sys::GtkGestureClick,
+            this: *mut ffi::GtkGestureClick,
             n_press: libc::c_int,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), n_press, x, y)
@@ -65,11 +63,11 @@ impl GestureClick {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn released_trampoline<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
-            this: *mut gtk_sys::GtkGestureClick,
+            this: *mut ffi::GtkGestureClick,
             n_press: libc::c_int,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), n_press, x, y)
@@ -89,8 +87,8 @@ impl GestureClick {
 
     pub fn connect_stopped<F: Fn(&GestureClick) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stopped_trampoline<F: Fn(&GestureClick) + 'static>(
-            this: *mut gtk_sys::GtkGestureClick,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGestureClick,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -117,12 +115,12 @@ impl GestureClick {
         unsafe extern "C" fn unpaired_release_trampoline<
             F: Fn(&GestureClick, f64, f64, u32, &gdk::EventSequence) + 'static,
         >(
-            this: *mut gtk_sys::GtkGestureClick,
+            this: *mut ffi::GtkGestureClick,
             x: libc::c_double,
             y: libc::c_double,
             button: libc::c_uint,
-            sequence: *mut gdk_sys::GdkEventSequence,
-            f: glib_sys::gpointer,
+            sequence: *mut gdk::ffi::GdkEventSequence,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(

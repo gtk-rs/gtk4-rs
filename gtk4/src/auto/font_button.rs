@@ -2,51 +2,50 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::FontChooser;
+use crate::FontChooserLevel;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use FontChooser;
-use FontChooserLevel;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct FontButton(Object<gtk_sys::GtkFontButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
+glib::glib_wrapper! {
+    pub struct FontButton(Object<ffi::GtkFontButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_font_button_get_type(),
+        get_type => || ffi::gtk_font_button_get_type(),
     }
 }
 
 impl FontButton {
     pub fn new() -> FontButton {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_font_button_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_font_button_new()).unsafe_cast() }
     }
 
     pub fn with_font(fontname: &str) -> FontButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_font_button_new_with_font(
+            Widget::from_glib_none(ffi::gtk_font_button_new_with_font(
                 fontname.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -54,49 +53,49 @@ impl FontButton {
     }
 
     pub fn get_modal(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_font_button_get_modal(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_font_button_get_modal(self.to_glib_none().0)) }
     }
 
-    pub fn get_title(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_font_button_get_title(self.to_glib_none().0)) }
+    pub fn get_title(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_font_button_get_title(self.to_glib_none().0)) }
     }
 
     pub fn get_use_font(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_font_button_get_use_font(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_font_button_get_use_font(self.to_glib_none().0)) }
     }
 
     pub fn get_use_size(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_font_button_get_use_size(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_font_button_get_use_size(self.to_glib_none().0)) }
     }
 
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            gtk_sys::gtk_font_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_font_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
     pub fn set_title(&self, title: &str) {
         unsafe {
-            gtk_sys::gtk_font_button_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::gtk_font_button_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     pub fn set_use_font(&self, use_font: bool) {
         unsafe {
-            gtk_sys::gtk_font_button_set_use_font(self.to_glib_none().0, use_font.to_glib());
+            ffi::gtk_font_button_set_use_font(self.to_glib_none().0, use_font.to_glib());
         }
     }
 
     pub fn set_use_size(&self, use_size: bool) {
         unsafe {
-            gtk_sys::gtk_font_button_set_use_size(self.to_glib_none().0, use_size.to_glib());
+            ffi::gtk_font_button_set_use_size(self.to_glib_none().0, use_size.to_glib());
         }
     }
 
     pub fn connect_font_set<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn font_set_trampoline<F: Fn(&FontButton) + 'static>(
-            this: *mut gtk_sys::GtkFontButton,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFontButton,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -119,9 +118,9 @@ impl FontButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&FontButton) + 'static>(
-            this: *mut gtk_sys::GtkFontButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFontButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -144,9 +143,9 @@ impl FontButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&FontButton) + 'static>(
-            this: *mut gtk_sys::GtkFontButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFontButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -169,9 +168,9 @@ impl FontButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_font_trampoline<F: Fn(&FontButton) + 'static>(
-            this: *mut gtk_sys::GtkFontButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFontButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -194,9 +193,9 @@ impl FontButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_size_trampoline<F: Fn(&FontButton) + 'static>(
-            this: *mut gtk_sys::GtkFontButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFontButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,6 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::BaselinePosition;
+use crate::LayoutManager;
+use crate::Orientable;
+use crate::Orientation;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,21 +14,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use BaselinePosition;
-use LayoutManager;
-use Orientable;
-use Orientation;
 
-glib_wrapper! {
-    pub struct BoxLayout(Object<gtk_sys::GtkBoxLayout, gtk_sys::GtkBoxLayoutClass>) @extends LayoutManager, @implements Orientable;
+glib::glib_wrapper! {
+    pub struct BoxLayout(Object<ffi::GtkBoxLayout, ffi::GtkBoxLayoutClass>) @extends LayoutManager, @implements Orientable;
 
     match fn {
-        get_type => || gtk_sys::gtk_box_layout_get_type(),
+        get_type => || ffi::gtk_box_layout_get_type(),
     }
 }
 
@@ -31,7 +30,7 @@ impl BoxLayout {
     pub fn new(orientation: Orientation) -> BoxLayout {
         assert_initialized_main_thread!();
         unsafe {
-            LayoutManager::from_glib_full(gtk_sys::gtk_box_layout_new(orientation.to_glib()))
+            LayoutManager::from_glib_full(ffi::gtk_box_layout_new(orientation.to_glib()))
                 .unsafe_cast()
         }
     }
@@ -120,7 +119,7 @@ pub trait BoxLayoutExt: 'static {
 impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
     fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
-            from_glib(gtk_sys::gtk_box_layout_get_baseline_position(
+            from_glib(ffi::gtk_box_layout_get_baseline_position(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -128,19 +127,19 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
 
     fn get_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_box_layout_get_homogeneous(
+            from_glib(ffi::gtk_box_layout_get_homogeneous(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_spacing(&self) -> u32 {
-        unsafe { gtk_sys::gtk_box_layout_get_spacing(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_box_layout_get_spacing(self.as_ref().to_glib_none().0) }
     }
 
     fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
-            gtk_sys::gtk_box_layout_set_baseline_position(
+            ffi::gtk_box_layout_set_baseline_position(
                 self.as_ref().to_glib_none().0,
                 position.to_glib(),
             );
@@ -149,7 +148,7 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
 
     fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            gtk_sys::gtk_box_layout_set_homogeneous(
+            ffi::gtk_box_layout_set_homogeneous(
                 self.as_ref().to_glib_none().0,
                 homogeneous.to_glib(),
             );
@@ -158,7 +157,7 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
 
     fn set_spacing(&self, spacing: u32) {
         unsafe {
-            gtk_sys::gtk_box_layout_set_spacing(self.as_ref().to_glib_none().0, spacing);
+            ffi::gtk_box_layout_set_spacing(self.as_ref().to_glib_none().0, spacing);
         }
     }
 
@@ -167,9 +166,9 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_baseline_position_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkBoxLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkBoxLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<BoxLayout>,
         {
@@ -191,9 +190,9 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
 
     fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkBoxLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkBoxLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<BoxLayout>,
         {
@@ -215,9 +214,9 @@ impl<O: IsA<BoxLayout>> BoxLayoutExt for O {
 
     fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkBoxLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkBoxLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<BoxLayout>,
         {

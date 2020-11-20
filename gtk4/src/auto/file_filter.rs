@@ -2,41 +2,39 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Buildable;
+use crate::Filter;
 use glib;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Buildable;
-use Filter;
 
-glib_wrapper! {
-    pub struct FileFilter(Object<gtk_sys::GtkFileFilter>) @extends Filter, @implements Buildable;
+glib::glib_wrapper! {
+    pub struct FileFilter(Object<ffi::GtkFileFilter>) @extends Filter, @implements Buildable;
 
     match fn {
-        get_type => || gtk_sys::gtk_file_filter_get_type(),
+        get_type => || ffi::gtk_file_filter_get_type(),
     }
 }
 
 impl FileFilter {
     pub fn new() -> FileFilter {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_file_filter_new()) }
+        unsafe { from_glib_full(ffi::gtk_file_filter_new()) }
     }
 
     pub fn from_gvariant(variant: &glib::Variant) -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_file_filter_new_from_gvariant(
+            from_glib_full(ffi::gtk_file_filter_new_from_gvariant(
                 variant.to_glib_none().0,
             ))
         }
@@ -44,45 +42,42 @@ impl FileFilter {
 
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {
-            gtk_sys::gtk_file_filter_add_mime_type(
-                self.to_glib_none().0,
-                mime_type.to_glib_none().0,
-            );
+            ffi::gtk_file_filter_add_mime_type(self.to_glib_none().0, mime_type.to_glib_none().0);
         }
     }
 
     pub fn add_pattern(&self, pattern: &str) {
         unsafe {
-            gtk_sys::gtk_file_filter_add_pattern(self.to_glib_none().0, pattern.to_glib_none().0);
+            ffi::gtk_file_filter_add_pattern(self.to_glib_none().0, pattern.to_glib_none().0);
         }
     }
 
     pub fn add_pixbuf_formats(&self) {
         unsafe {
-            gtk_sys::gtk_file_filter_add_pixbuf_formats(self.to_glib_none().0);
+            ffi::gtk_file_filter_add_pixbuf_formats(self.to_glib_none().0);
         }
     }
 
-    pub fn get_attributes(&self) -> Vec<GString> {
+    pub fn get_attributes(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_file_filter_get_attributes(
+            FromGlibPtrContainer::from_glib_none(ffi::gtk_file_filter_get_attributes(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_name(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_file_filter_get_name(self.to_glib_none().0)) }
+    pub fn get_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_file_filter_get_name(self.to_glib_none().0)) }
     }
 
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_file_filter_set_name(self.to_glib_none().0, name.to_glib_none().0);
+            ffi::gtk_file_filter_set_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
     pub fn to_gvariant(&self) -> Option<glib::Variant> {
-        unsafe { from_glib_none(gtk_sys::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
     }
 
     pub fn connect_property_name_notify<F: Fn(&FileFilter) + 'static>(
@@ -90,9 +85,9 @@ impl FileFilter {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&FileFilter) + 'static>(
-            this: *mut gtk_sys::GtkFileFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,22 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Event;
 
-glib_wrapper! {
-    pub struct FocusEvent(Object<gdk_sys::GdkFocusEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct FocusEvent(Object<ffi::GdkFocusEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_focus_event_get_type(),
+        get_type => || ffi::gdk_focus_event_get_type(),
     }
 }
 
 impl FocusEvent {
     pub fn get_in(&self) -> bool {
-        unsafe { from_glib(gdk_sys::gdk_focus_event_get_in(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_focus_event_get_in(self.to_glib_none().0)) }
     }
 }
 

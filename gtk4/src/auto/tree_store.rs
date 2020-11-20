@@ -2,32 +2,32 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Buildable;
+use crate::TreeDragDest;
+use crate::TreeDragSource;
+use crate::TreeIter;
+use crate::TreeModel;
+use crate::TreeSortable;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Buildable;
-use TreeDragDest;
-use TreeDragSource;
-use TreeIter;
-use TreeModel;
-use TreeSortable;
 
-glib_wrapper! {
-    pub struct TreeStore(Object<gtk_sys::GtkTreeStore, gtk_sys::GtkTreeStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
+glib::glib_wrapper! {
+    pub struct TreeStore(Object<ffi::GtkTreeStore, ffi::GtkTreeStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_store_get_type(),
+        get_type => || ffi::gtk_tree_store_get_type(),
     }
 }
 
 impl TreeStore {
     //pub fn new(n_columns: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeStore {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_new() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_new() }
     //}
 
     //pub fn newv(types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }) -> TreeStore {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_newv() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_newv() }
     //}
 }
 
@@ -79,7 +79,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     fn append(&self, parent: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_store_append(
+            ffi::gtk_tree_store_append(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -90,14 +90,14 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
     fn clear(&self) {
         unsafe {
-            gtk_sys::gtk_tree_store_clear(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_store_clear(self.as_ref().to_glib_none().0);
         }
     }
 
     fn insert(&self, parent: Option<&TreeIter>, position: i32) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_store_insert(
+            ffi::gtk_tree_store_insert(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -110,7 +110,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     fn insert_after(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_store_insert_after(
+            ffi::gtk_tree_store_insert_after(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -123,7 +123,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     fn insert_before(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_store_insert_before(
+            ffi::gtk_tree_store_insert_before(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -134,16 +134,16 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     }
 
     //fn insert_with_values(&self, parent: Option<&TreeIter>, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_insert_with_values() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_insert_with_values() }
     //}
 
     //fn insert_with_valuesv(&self, parent: Option<&TreeIter>, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_insert_with_valuesv() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_insert_with_valuesv() }
     //}
 
     fn is_ancestor(&self, iter: &TreeIter, descendant: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_store_is_ancestor(
+            from_glib(ffi::gtk_tree_store_is_ancestor(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 mut_override(descendant.to_glib_none().0),
@@ -153,7 +153,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
     fn iter_depth(&self, iter: &TreeIter) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_store_iter_depth(
+            ffi::gtk_tree_store_iter_depth(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             )
@@ -162,7 +162,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
     fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_store_iter_is_valid(
+            from_glib(ffi::gtk_tree_store_iter_is_valid(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
@@ -171,7 +171,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
     fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
-            gtk_sys::gtk_tree_store_move_after(
+            ffi::gtk_tree_store_move_after(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 mut_override(position.to_glib_none().0),
@@ -181,7 +181,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
     fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
-            gtk_sys::gtk_tree_store_move_before(
+            ffi::gtk_tree_store_move_before(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 mut_override(position.to_glib_none().0),
@@ -192,7 +192,7 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     fn prepend(&self, parent: Option<&TreeIter>) -> TreeIter {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            gtk_sys::gtk_tree_store_prepend(
+            ffi::gtk_tree_store_prepend(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -202,32 +202,32 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
     }
 
     //fn remove(&self, iter: /*Unimplemented*/TreeIter) -> bool {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_remove() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_remove() }
     //}
 
     //fn reorder(&self, parent: Option<&TreeIter>, new_order: &[i32]) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_reorder() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_reorder() }
     //}
 
     //fn set(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_set() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_set() }
     //}
 
     //fn set_column_types(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_set_column_types() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_set_column_types() }
     //}
 
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_set_valist() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_set_valist() }
     //}
 
     //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: &[&glib::Value]) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_store_set_valuesv() }
+    //    unsafe { TODO: call ffi:gtk_tree_store_set_valuesv() }
     //}
 
     fn swap(&self, a: &TreeIter, b: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_store_swap(
+            ffi::gtk_tree_store_swap(
                 self.as_ref().to_glib_none().0,
                 mut_override(a.to_glib_none().0),
                 mut_override(b.to_glib_none().0),

@@ -2,8 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::X11DeviceType;
 use gdk;
-use gdk_x11_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,22 +12,20 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use gobject_sys;
 use std::fmt;
-use X11DeviceType;
 
-glib_wrapper! {
-    pub struct X11DeviceXI2(Object<gdk_x11_sys::GdkX11DeviceXI2, gdk_x11_sys::GdkX11DeviceXI2Class>) @extends gdk::Device;
+glib::glib_wrapper! {
+    pub struct X11DeviceXI2(Object<ffi::GdkX11DeviceXI2, ffi::GdkX11DeviceXI2Class>) @extends gdk::Device;
 
     match fn {
-        get_type => || gdk_x11_sys::gdk_x11_device_xi2_get_type(),
+        get_type => || ffi::gdk_x11_device_xi2_get_type(),
     }
 }
 
 impl X11DeviceXI2 {
     pub fn get_device_type(&self) -> X11DeviceType {
         unsafe {
-            from_glib(gdk_x11_sys::gdk_x11_device_xi2_get_device_type(
+            from_glib(ffi::gdk_x11_device_xi2_get_device_type(
                 self.to_glib_none().0,
             ))
         }
@@ -34,15 +33,15 @@ impl X11DeviceXI2 {
 
     pub fn set_device_type(&self, type_: X11DeviceType) {
         unsafe {
-            gdk_x11_sys::gdk_x11_device_xi2_set_device_type(self.to_glib_none().0, type_.to_glib());
+            ffi::gdk_x11_device_xi2_set_device_type(self.to_glib_none().0, type_.to_glib());
         }
     }
 
     pub fn get_property_device_id(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"device-id\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );

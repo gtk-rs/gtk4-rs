@@ -2,18 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNode;
+use crate::Transform;
 use glib::object::IsA;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
-use Transform;
 
-glib_wrapper! {
-    pub struct TransformNode(Object<gsk_sys::GskTransformNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct TransformNode(Object<ffi::GskTransformNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_transform_node_get_type(),
+        get_type => || ffi::gsk_transform_node_get_type(),
     }
 }
 
@@ -21,7 +21,7 @@ impl TransformNode {
     pub fn new<P: IsA<RenderNode>>(child: &P, transform: &Transform) -> TransformNode {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_transform_node_new(
+            from_glib_full(ffi::gsk_transform_node_new(
                 child.as_ref().to_glib_none().0,
                 transform.to_glib_none().0,
             ))
@@ -29,15 +29,11 @@ impl TransformNode {
     }
 
     pub fn get_child(&self) -> Option<RenderNode> {
-        unsafe { from_glib_none(gsk_sys::gsk_transform_node_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_transform_node_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_transform(&self) -> Option<Transform> {
-        unsafe {
-            from_glib_none(gsk_sys::gsk_transform_node_get_transform(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gsk_transform_node_get_transform(self.to_glib_none().0)) }
     }
 }
 

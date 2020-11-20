@@ -2,6 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::LayoutChild;
+use crate::LayoutManager;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,21 +13,16 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
 use gsk;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use LayoutChild;
-use LayoutManager;
-use Widget;
 
-glib_wrapper! {
-    pub struct FixedLayoutChild(Object<gtk_sys::GtkFixedLayoutChild, gtk_sys::GtkFixedLayoutChildClass>) @extends LayoutChild;
+glib::glib_wrapper! {
+    pub struct FixedLayoutChild(Object<ffi::GtkFixedLayoutChild, ffi::GtkFixedLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || gtk_sys::gtk_fixed_layout_child_get_type(),
+        get_type => || ffi::gtk_fixed_layout_child_get_type(),
     }
 }
 
@@ -86,7 +85,7 @@ pub trait FixedLayoutChildExt: 'static {
 impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
     fn get_transform(&self) -> Option<gsk::Transform> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_fixed_layout_child_get_transform(
+            from_glib_none(ffi::gtk_fixed_layout_child_get_transform(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -94,7 +93,7 @@ impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
 
     fn set_transform(&self, transform: &gsk::Transform) {
         unsafe {
-            gtk_sys::gtk_fixed_layout_child_set_transform(
+            ffi::gtk_fixed_layout_child_set_transform(
                 self.as_ref().to_glib_none().0,
                 transform.to_glib_none().0,
             );
@@ -103,9 +102,9 @@ impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
 
     fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transform_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFixedLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFixedLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FixedLayoutChild>,
         {

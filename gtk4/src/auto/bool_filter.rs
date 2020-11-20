@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Filter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,24 +11,21 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Filter;
 
-glib_wrapper! {
-    pub struct BoolFilter(Object<gtk_sys::GtkBoolFilter, gtk_sys::GtkBoolFilterClass>) @extends Filter;
+glib::glib_wrapper! {
+    pub struct BoolFilter(Object<ffi::GtkBoolFilter, ffi::GtkBoolFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || gtk_sys::gtk_bool_filter_get_type(),
+        get_type => || ffi::gtk_bool_filter_get_type(),
     }
 }
 
 impl BoolFilter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> BoolFilter {
-    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_new() }
+    //    unsafe { TODO: call ffi:gtk_bool_filter_new() }
     //}
 }
 
@@ -77,32 +76,32 @@ pub trait BoolFilterExt: 'static {
 
 impl<O: IsA<BoolFilter>> BoolFilterExt for O {
     //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_get_expression() }
+    //    unsafe { TODO: call ffi:gtk_bool_filter_get_expression() }
     //}
 
     fn get_invert(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_bool_filter_get_invert(
+            from_glib(ffi::gtk_bool_filter_get_invert(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn set_expression(&self, expression: /*Ignored*/&Expression) {
-    //    unsafe { TODO: call gtk_sys:gtk_bool_filter_set_expression() }
+    //    unsafe { TODO: call ffi:gtk_bool_filter_set_expression() }
     //}
 
     fn set_invert(&self, invert: bool) {
         unsafe {
-            gtk_sys::gtk_bool_filter_set_invert(self.as_ref().to_glib_none().0, invert.to_glib());
+            ffi::gtk_bool_filter_set_invert(self.as_ref().to_glib_none().0, invert.to_glib());
         }
     }
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkBoolFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkBoolFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<BoolFilter>,
         {
@@ -124,9 +123,9 @@ impl<O: IsA<BoolFilter>> BoolFilterExt for O {
 
     fn connect_property_invert_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invert_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkBoolFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkBoolFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<BoolFilter>,
         {

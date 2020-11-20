@@ -3,9 +3,6 @@
 // DO NOT EDIT
 
 #[cfg(not(feature = "dox"))]
-extern crate system_deps;
-
-#[cfg(not(feature = "dox"))]
 use std::process;
 
 #[cfg(feature = "dox")]

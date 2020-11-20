@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::BaselinePosition;
+use crate::LayoutManager;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,26 +12,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use BaselinePosition;
-use LayoutManager;
 
-glib_wrapper! {
-    pub struct GridLayout(Object<gtk_sys::GtkGridLayout, gtk_sys::GtkGridLayoutClass>) @extends LayoutManager;
+glib::glib_wrapper! {
+    pub struct GridLayout(Object<ffi::GtkGridLayout, ffi::GtkGridLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_grid_layout_get_type(),
+        get_type => || ffi::gtk_grid_layout_get_type(),
     }
 }
 
 impl GridLayout {
     pub fn new() -> GridLayout {
         assert_initialized_main_thread!();
-        unsafe { LayoutManager::from_glib_full(gtk_sys::gtk_grid_layout_new()).unsafe_cast() }
+        unsafe { LayoutManager::from_glib_full(ffi::gtk_grid_layout_new()).unsafe_cast() }
     }
 }
 
@@ -152,24 +151,24 @@ pub trait GridLayoutExt: 'static {
 
 impl<O: IsA<GridLayout>> GridLayoutExt for O {
     fn get_baseline_row(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_get_baseline_row(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_get_baseline_row(self.as_ref().to_glib_none().0) }
     }
 
     fn get_column_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_layout_get_column_homogeneous(
+            from_glib(ffi::gtk_grid_layout_get_column_homogeneous(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_column_spacing(&self) -> u32 {
-        unsafe { gtk_sys::gtk_grid_layout_get_column_spacing(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_get_column_spacing(self.as_ref().to_glib_none().0) }
     }
 
     fn get_row_baseline_position(&self, row: i32) -> BaselinePosition {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_layout_get_row_baseline_position(
+            from_glib(ffi::gtk_grid_layout_get_row_baseline_position(
                 self.as_ref().to_glib_none().0,
                 row,
             ))
@@ -178,25 +177,25 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
 
     fn get_row_homogeneous(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_layout_get_row_homogeneous(
+            from_glib(ffi::gtk_grid_layout_get_row_homogeneous(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_row_spacing(&self) -> u32 {
-        unsafe { gtk_sys::gtk_grid_layout_get_row_spacing(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_get_row_spacing(self.as_ref().to_glib_none().0) }
     }
 
     fn set_baseline_row(&self, row: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_baseline_row(self.as_ref().to_glib_none().0, row);
+            ffi::gtk_grid_layout_set_baseline_row(self.as_ref().to_glib_none().0, row);
         }
     }
 
     fn set_column_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_column_homogeneous(
+            ffi::gtk_grid_layout_set_column_homogeneous(
                 self.as_ref().to_glib_none().0,
                 homogeneous.to_glib(),
             );
@@ -205,13 +204,13 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
 
     fn set_column_spacing(&self, spacing: u32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_column_spacing(self.as_ref().to_glib_none().0, spacing);
+            ffi::gtk_grid_layout_set_column_spacing(self.as_ref().to_glib_none().0, spacing);
         }
     }
 
     fn set_row_baseline_position(&self, row: i32, pos: BaselinePosition) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_row_baseline_position(
+            ffi::gtk_grid_layout_set_row_baseline_position(
                 self.as_ref().to_glib_none().0,
                 row,
                 pos.to_glib(),
@@ -221,7 +220,7 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
 
     fn set_row_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_row_homogeneous(
+            ffi::gtk_grid_layout_set_row_homogeneous(
                 self.as_ref().to_glib_none().0,
                 homogeneous.to_glib(),
             );
@@ -230,7 +229,7 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
 
     fn set_row_spacing(&self, spacing: u32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_set_row_spacing(self.as_ref().to_glib_none().0, spacing);
+            ffi::gtk_grid_layout_set_row_spacing(self.as_ref().to_glib_none().0, spacing);
         }
     }
 
@@ -239,9 +238,9 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_baseline_row_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayout>,
         {
@@ -266,9 +265,9 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayout>,
         {
@@ -293,9 +292,9 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayout>,
         {
@@ -320,9 +319,9 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayout>,
         {
@@ -344,9 +343,9 @@ impl<O: IsA<GridLayout>> GridLayoutExt for O {
 
     fn connect_property_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayout,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayout>,
         {

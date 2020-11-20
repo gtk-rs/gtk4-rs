@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use gio;
 use glib;
 use glib::object::Cast;
@@ -12,18 +13,15 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib_wrapper! {
-    pub struct TreeListRow(Object<gtk_sys::GtkTreeListRow, gtk_sys::GtkTreeListRowClass>);
+glib::glib_wrapper! {
+    pub struct TreeListRow(Object<ffi::GtkTreeListRow, ffi::GtkTreeListRowClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_list_row_get_type(),
+        get_type => || ffi::gtk_tree_list_row_get_type(),
     }
 }
 
@@ -92,7 +90,7 @@ pub trait TreeListRowExt: 'static {
 impl<O: IsA<TreeListRow>> TreeListRowExt for O {
     fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_row_get_child_row(
+            from_glib_full(ffi::gtk_tree_list_row_get_child_row(
                 self.as_ref().to_glib_none().0,
                 position,
             ))
@@ -101,19 +99,19 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn get_children(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_list_row_get_children(
+            from_glib_none(ffi::gtk_tree_list_row_get_children(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_depth(&self) -> u32 {
-        unsafe { gtk_sys::gtk_tree_list_row_get_depth(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_list_row_get_depth(self.as_ref().to_glib_none().0) }
     }
 
     fn get_expanded(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_list_row_get_expanded(
+            from_glib(ffi::gtk_tree_list_row_get_expanded(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -121,7 +119,7 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn get_item(&self) -> Option<glib::Object> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_row_get_item(
+            from_glib_full(ffi::gtk_tree_list_row_get_item(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -129,19 +127,19 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn get_parent(&self) -> Option<TreeListRow> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_row_get_parent(
+            from_glib_full(ffi::gtk_tree_list_row_get_parent(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_position(&self) -> u32 {
-        unsafe { gtk_sys::gtk_tree_list_row_get_position(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_list_row_get_position(self.as_ref().to_glib_none().0) }
     }
 
     fn is_expandable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_list_row_is_expandable(
+            from_glib(ffi::gtk_tree_list_row_is_expandable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -149,18 +147,15 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn set_expanded(&self, expanded: bool) {
         unsafe {
-            gtk_sys::gtk_tree_list_row_set_expanded(
-                self.as_ref().to_glib_none().0,
-                expanded.to_glib(),
-            );
+            ffi::gtk_tree_list_row_set_expanded(self.as_ref().to_glib_none().0, expanded.to_glib());
         }
     }
 
     fn get_property_expandable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"expandable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -173,9 +168,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn connect_property_children_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_children_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRow>,
         {
@@ -197,9 +192,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn connect_property_depth_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_depth_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRow>,
         {
@@ -221,9 +216,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn connect_property_expandable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expandable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRow>,
         {
@@ -245,9 +240,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn connect_property_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expanded_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRow>,
         {
@@ -269,9 +264,9 @@ impl<O: IsA<TreeListRow>> TreeListRowExt for O {
 
     fn connect_property_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRow>,
         {

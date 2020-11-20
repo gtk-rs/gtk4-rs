@@ -2,23 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ShortcutAction;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use ShortcutAction;
 
-glib_wrapper! {
-    pub struct ActivateAction(Object<gtk_sys::GtkActivateAction, gtk_sys::GtkActivateActionClass>) @extends ShortcutAction;
+glib::glib_wrapper! {
+    pub struct ActivateAction(Object<ffi::GtkActivateAction, ffi::GtkActivateActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || gtk_sys::gtk_activate_action_get_type(),
+        get_type => || ffi::gtk_activate_action_get_type(),
     }
 }
 
 impl ActivateAction {
     pub fn get() -> Option<ShortcutAction> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(gtk_sys::gtk_activate_action_get()) }
+        unsafe { from_glib_none(ffi::gtk_activate_action_get()) }
     }
 }
 

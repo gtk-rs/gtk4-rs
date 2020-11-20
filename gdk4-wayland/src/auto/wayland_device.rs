@@ -2,27 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_wayland_sys;
+use crate::ffi;
+use glib;
 use glib::translate::*;
-use glib::GString;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct WaylandDevice(Object<gdk_wayland_sys::GdkWaylandDevice, gdk_wayland_sys::GdkWaylandDeviceClass>) @extends gdk::Device;
+glib::glib_wrapper! {
+    pub struct WaylandDevice(Object<ffi::GdkWaylandDevice, ffi::GdkWaylandDeviceClass>) @extends gdk::Device;
 
     match fn {
-        get_type => || gdk_wayland_sys::gdk_wayland_device_get_type(),
+        get_type => || ffi::gdk_wayland_device_get_type(),
     }
 }
 
 impl WaylandDevice {
-    pub fn get_node_path(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gdk_wayland_sys::gdk_wayland_device_get_node_path(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_node_path(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gdk_wayland_device_get_node_path(self.to_glib_none().0)) }
     }
 }
 

@@ -3,6 +3,7 @@ name = "gdk4-wayland-sys"
 version = "0.1.0"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 build = "build.rs"
+edition = "2018"
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "3.94"

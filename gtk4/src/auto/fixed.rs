@@ -2,6 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -9,30 +18,21 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use gsk;
-use gtk_sys;
 use std::fmt;
 use std::mem;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Fixed(Object<gtk_sys::GtkFixed, gtk_sys::GtkFixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Fixed(Object<ffi::GtkFixed, ffi::GtkFixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_fixed_get_type(),
+        get_type => || ffi::gtk_fixed_get_type(),
     }
 }
 
 impl Fixed {
     pub fn new() -> Fixed {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_fixed_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_fixed_new()).unsafe_cast() }
     }
 }
 
@@ -352,7 +352,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_fixed_get_child_position(
+            ffi::gtk_fixed_get_child_position(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -366,7 +366,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
     fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_fixed_get_child_transform(
+            from_glib_none(ffi::gtk_fixed_get_child_transform(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             ))
@@ -375,7 +375,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64) {
         unsafe {
-            gtk_sys::gtk_fixed_move(
+            ffi::gtk_fixed_move(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 x,
@@ -386,7 +386,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
     fn put<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64) {
         unsafe {
-            gtk_sys::gtk_fixed_put(
+            ffi::gtk_fixed_put(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 x,
@@ -397,7 +397,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
     fn remove<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_fixed_remove(
+            ffi::gtk_fixed_remove(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -406,7 +406,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
     fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>) {
         unsafe {
-            gtk_sys::gtk_fixed_set_child_transform(
+            ffi::gtk_fixed_set_child_transform(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 transform.to_glib_none().0,

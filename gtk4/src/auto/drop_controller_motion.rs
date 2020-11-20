@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::EventController;
 use gdk;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
@@ -10,20 +12,16 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
 
-glib_wrapper! {
-    pub struct DropControllerMotion(Object<gtk_sys::GtkDropControllerMotion, gtk_sys::GtkDropControllerMotionClass>) @extends EventController;
+glib::glib_wrapper! {
+    pub struct DropControllerMotion(Object<ffi::GtkDropControllerMotion, ffi::GtkDropControllerMotionClass>) @extends EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_drop_controller_motion_get_type(),
+        get_type => || ffi::gtk_drop_controller_motion_get_type(),
     }
 }
 
@@ -31,13 +29,13 @@ impl DropControllerMotion {
     pub fn new() -> DropControllerMotion {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(gtk_sys::gtk_drop_controller_motion_new()).unsafe_cast()
+            EventController::from_glib_full(ffi::gtk_drop_controller_motion_new()).unsafe_cast()
         }
     }
 
     pub fn contains_pointer(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_drop_controller_motion_contains_pointer(
+            from_glib(ffi::gtk_drop_controller_motion_contains_pointer(
                 self.to_glib_none().0,
             ))
         }
@@ -45,7 +43,7 @@ impl DropControllerMotion {
 
     pub fn get_drop(&self) -> Option<gdk::Drop> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_drop_controller_motion_get_drop(
+            from_glib_none(ffi::gtk_drop_controller_motion_get_drop(
                 self.to_glib_none().0,
             ))
         }
@@ -53,7 +51,7 @@ impl DropControllerMotion {
 
     pub fn is_pointer(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_drop_controller_motion_is_pointer(
+            from_glib(ffi::gtk_drop_controller_motion_is_pointer(
                 self.to_glib_none().0,
             ))
         }
@@ -62,8 +60,8 @@ impl DropControllerMotion {
     pub fn get_property_contains_pointer(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"contains-pointer\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -77,8 +75,8 @@ impl DropControllerMotion {
     pub fn get_property_is_pointer(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"is-pointer\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -94,10 +92,10 @@ impl DropControllerMotion {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn enter_trampoline<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
-            this: *mut gtk_sys::GtkDropControllerMotion,
+            this: *mut ffi::GtkDropControllerMotion,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y)
@@ -117,8 +115,8 @@ impl DropControllerMotion {
 
     pub fn connect_leave<F: Fn(&DropControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&DropControllerMotion) + 'static>(
-            this: *mut gtk_sys::GtkDropControllerMotion,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropControllerMotion,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -141,10 +139,10 @@ impl DropControllerMotion {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn motion_trampoline<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
-            this: *mut gtk_sys::GtkDropControllerMotion,
+            this: *mut ffi::GtkDropControllerMotion,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y)
@@ -169,9 +167,9 @@ impl DropControllerMotion {
         unsafe extern "C" fn notify_contains_pointer_trampoline<
             F: Fn(&DropControllerMotion) + 'static,
         >(
-            this: *mut gtk_sys::GtkDropControllerMotion,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropControllerMotion,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -194,9 +192,9 @@ impl DropControllerMotion {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_drop_trampoline<F: Fn(&DropControllerMotion) + 'static>(
-            this: *mut gtk_sys::GtkDropControllerMotion,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropControllerMotion,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -221,9 +219,9 @@ impl DropControllerMotion {
         unsafe extern "C" fn notify_is_pointer_trampoline<
             F: Fn(&DropControllerMotion) + 'static,
         >(
-            this: *mut gtk_sys::GtkDropControllerMotion,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropControllerMotion,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

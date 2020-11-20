@@ -2,42 +2,40 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Widget;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Widget;
 
-glib_wrapper! {
-    pub struct NotebookPage(Object<gtk_sys::GtkNotebookPage>);
+glib::glib_wrapper! {
+    pub struct NotebookPage(Object<ffi::GtkNotebookPage>);
 
     match fn {
-        get_type => || gtk_sys::gtk_notebook_page_get_type(),
+        get_type => || ffi::gtk_notebook_page_get_type(),
     }
 }
 
 impl NotebookPage {
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_notebook_page_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_notebook_page_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_property_detachable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"detachable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -50,8 +48,8 @@ impl NotebookPage {
 
     pub fn set_property_detachable(&self, detachable: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"detachable\0".as_ptr() as *const _,
                 Value::from(&detachable).to_glib_none().0,
             );
@@ -61,8 +59,8 @@ impl NotebookPage {
     pub fn get_property_menu(&self) -> Option<Widget> {
         unsafe {
             let mut value = Value::from_type(<Widget as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -72,11 +70,11 @@ impl NotebookPage {
         }
     }
 
-    pub fn get_property_menu_label(&self) -> Option<GString> {
+    pub fn get_property_menu_label(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu-label\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -88,8 +86,8 @@ impl NotebookPage {
 
     pub fn set_property_menu_label(&self, menu_label: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu-label\0".as_ptr() as *const _,
                 Value::from(menu_label).to_glib_none().0,
             );
@@ -99,8 +97,8 @@ impl NotebookPage {
     pub fn get_property_position(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -113,8 +111,8 @@ impl NotebookPage {
 
     pub fn set_property_position(&self, position: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position\0".as_ptr() as *const _,
                 Value::from(&position).to_glib_none().0,
             );
@@ -124,8 +122,8 @@ impl NotebookPage {
     pub fn get_property_reorderable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"reorderable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -138,8 +136,8 @@ impl NotebookPage {
 
     pub fn set_property_reorderable(&self, reorderable: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"reorderable\0".as_ptr() as *const _,
                 Value::from(&reorderable).to_glib_none().0,
             );
@@ -149,8 +147,8 @@ impl NotebookPage {
     pub fn get_property_tab(&self) -> Option<Widget> {
         unsafe {
             let mut value = Value::from_type(<Widget as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -161,8 +159,8 @@ impl NotebookPage {
     pub fn get_property_tab_expand(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-expand\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -175,8 +173,8 @@ impl NotebookPage {
 
     pub fn set_property_tab_expand(&self, tab_expand: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-expand\0".as_ptr() as *const _,
                 Value::from(&tab_expand).to_glib_none().0,
             );
@@ -186,8 +184,8 @@ impl NotebookPage {
     pub fn get_property_tab_fill(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-fill\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -200,19 +198,19 @@ impl NotebookPage {
 
     pub fn set_property_tab_fill(&self, tab_fill: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-fill\0".as_ptr() as *const _,
                 Value::from(&tab_fill).to_glib_none().0,
             );
         }
     }
 
-    pub fn get_property_tab_label(&self) -> Option<GString> {
+    pub fn get_property_tab_label(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-label\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -224,8 +222,8 @@ impl NotebookPage {
 
     pub fn set_property_tab_label(&self, tab_label: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-label\0".as_ptr() as *const _,
                 Value::from(tab_label).to_glib_none().0,
             );
@@ -237,9 +235,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_detachable_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -262,9 +260,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_label_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -287,9 +285,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -312,9 +310,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -337,9 +335,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_expand_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -362,9 +360,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_fill_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -387,9 +385,9 @@ impl NotebookPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_label_trampoline<F: Fn(&NotebookPage) + 'static>(
-            this: *mut gtk_sys::GtkNotebookPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkNotebookPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

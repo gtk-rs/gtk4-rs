@@ -2,23 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::BuilderScope;
+use crate::ListItemFactory;
 use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use BuilderScope;
-use ListItemFactory;
 
-glib_wrapper! {
-    pub struct BuilderListItemFactory(Object<gtk_sys::GtkBuilderListItemFactory, gtk_sys::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
+glib::glib_wrapper! {
+    pub struct BuilderListItemFactory(Object<ffi::GtkBuilderListItemFactory, ffi::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
-        get_type => || gtk_sys::gtk_builder_list_item_factory_get_type(),
+        get_type => || ffi::gtk_builder_list_item_factory_get_type(),
     }
 }
 
@@ -29,7 +28,7 @@ impl BuilderListItemFactory {
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();
         unsafe {
-            ListItemFactory::from_glib_full(gtk_sys::gtk_builder_list_item_factory_new_from_bytes(
+            ListItemFactory::from_glib_full(ffi::gtk_builder_list_item_factory_new_from_bytes(
                 scope.map(|p| p.as_ref()).to_glib_none().0,
                 bytes.to_glib_none().0,
             ))
@@ -43,27 +42,25 @@ impl BuilderListItemFactory {
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();
         unsafe {
-            ListItemFactory::from_glib_full(
-                gtk_sys::gtk_builder_list_item_factory_new_from_resource(
-                    scope.map(|p| p.as_ref()).to_glib_none().0,
-                    resource_path.to_glib_none().0,
-                ),
-            )
+            ListItemFactory::from_glib_full(ffi::gtk_builder_list_item_factory_new_from_resource(
+                scope.map(|p| p.as_ref()).to_glib_none().0,
+                resource_path.to_glib_none().0,
+            ))
             .unsafe_cast()
         }
     }
 
     pub fn get_bytes(&self) -> Option<glib::Bytes> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_builder_list_item_factory_get_bytes(
+            from_glib_none(ffi::gtk_builder_list_item_factory_get_bytes(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_resource(&self) -> Option<GString> {
+    pub fn get_resource(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_builder_list_item_factory_get_resource(
+            from_glib_none(ffi::gtk_builder_list_item_factory_get_resource(
                 self.to_glib_none().0,
             ))
         }
@@ -71,7 +68,7 @@ impl BuilderListItemFactory {
 
     pub fn get_scope(&self) -> Option<BuilderScope> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_builder_list_item_factory_get_scope(
+            from_glib_none(ffi::gtk_builder_list_item_factory_get_scope(
                 self.to_glib_none().0,
             ))
         }

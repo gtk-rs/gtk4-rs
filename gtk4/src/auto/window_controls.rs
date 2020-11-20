@@ -2,35 +2,34 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::PackType;
+use crate::Widget;
 use gdk;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use PackType;
-use Widget;
 
-glib_wrapper! {
-    pub struct WindowControls(Object<gtk_sys::GtkWindowControls, gtk_sys::GtkWindowControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct WindowControls(Object<ffi::GtkWindowControls, ffi::GtkWindowControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_window_controls_get_type(),
+        get_type => || ffi::gtk_window_controls_get_type(),
     }
 }
 
@@ -38,7 +37,7 @@ impl WindowControls {
     pub fn new(side: PackType) -> WindowControls {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_window_controls_new(side.to_glib())).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_window_controls_new(side.to_glib())).unsafe_cast()
         }
     }
 }
@@ -353,7 +352,7 @@ impl WindowControlsBuilder {
 pub const NONE_WINDOW_CONTROLS: Option<&WindowControls> = None;
 
 pub trait WindowControlsExt: 'static {
-    fn get_decoration_layout(&self) -> Option<GString>;
+    fn get_decoration_layout(&self) -> Option<glib::GString>;
 
     fn get_empty(&self) -> bool;
 
@@ -374,9 +373,9 @@ pub trait WindowControlsExt: 'static {
 }
 
 impl<O: IsA<WindowControls>> WindowControlsExt for O {
-    fn get_decoration_layout(&self) -> Option<GString> {
+    fn get_decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_window_controls_get_decoration_layout(
+            from_glib_none(ffi::gtk_window_controls_get_decoration_layout(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -384,7 +383,7 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn get_empty(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_window_controls_get_empty(
+            from_glib(ffi::gtk_window_controls_get_empty(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -392,7 +391,7 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn get_side(&self) -> PackType {
         unsafe {
-            from_glib(gtk_sys::gtk_window_controls_get_side(
+            from_glib(ffi::gtk_window_controls_get_side(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -400,7 +399,7 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_window_controls_set_decoration_layout(
+            ffi::gtk_window_controls_set_decoration_layout(
                 self.as_ref().to_glib_none().0,
                 layout.to_glib_none().0,
             );
@@ -409,7 +408,7 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn set_side(&self, side: PackType) {
         unsafe {
-            gtk_sys::gtk_window_controls_set_side(self.as_ref().to_glib_none().0, side.to_glib());
+            ffi::gtk_window_controls_set_side(self.as_ref().to_glib_none().0, side.to_glib());
         }
     }
 
@@ -418,9 +417,9 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindowControls,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<WindowControls>,
         {
@@ -442,9 +441,9 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn connect_property_empty_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_empty_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindowControls,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<WindowControls>,
         {
@@ -466,9 +465,9 @@ impl<O: IsA<WindowControls>> WindowControlsExt for O {
 
     fn connect_property_side_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_side_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWindowControls,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<WindowControls>,
         {

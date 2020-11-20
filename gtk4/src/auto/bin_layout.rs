@@ -2,24 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::LayoutManager;
 use glib::object::Cast;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use LayoutManager;
 
-glib_wrapper! {
-    pub struct BinLayout(Object<gtk_sys::GtkBinLayout, gtk_sys::GtkBinLayoutClass>) @extends LayoutManager;
+glib::glib_wrapper! {
+    pub struct BinLayout(Object<ffi::GtkBinLayout, ffi::GtkBinLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_bin_layout_get_type(),
+        get_type => || ffi::gtk_bin_layout_get_type(),
     }
 }
 
 impl BinLayout {
     pub fn new() -> BinLayout {
         assert_initialized_main_thread!();
-        unsafe { LayoutManager::from_glib_full(gtk_sys::gtk_bin_layout_new()).unsafe_cast() }
+        unsafe { LayoutManager::from_glib_full(ffi::gtk_bin_layout_new()).unsafe_cast() }
     }
 }
 

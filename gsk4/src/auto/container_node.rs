@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNode;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct ContainerNode(Object<gsk_sys::GskContainerNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct ContainerNode(Object<ffi::GskContainerNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_container_node_get_type(),
+        get_type => || ffi::gsk_container_node_get_type(),
     }
 }
 
@@ -20,7 +20,7 @@ impl ContainerNode {
         assert_initialized_main_thread!();
         let n_children = children.len() as u32;
         unsafe {
-            from_glib_full(gsk_sys::gsk_container_node_new(
+            from_glib_full(ffi::gsk_container_node_new(
                 children.to_glib_none().0,
                 n_children,
             ))
@@ -29,7 +29,7 @@ impl ContainerNode {
 
     pub fn get_child(&self, idx: u32) -> Option<RenderNode> {
         unsafe {
-            from_glib_none(gsk_sys::gsk_container_node_get_child(
+            from_glib_none(ffi::gsk_container_node_get_child(
                 self.to_glib_none().0,
                 idx,
             ))
@@ -37,7 +37,7 @@ impl ContainerNode {
     }
 
     pub fn get_n_children(&self) -> u32 {
-        unsafe { gsk_sys::gsk_container_node_get_n_children(self.to_glib_none().0) }
+        unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
     }
 }
 

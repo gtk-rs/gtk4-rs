@@ -2,17 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use Event;
 
-glib_wrapper! {
-    pub struct ConfigureEvent(Object<gdk_sys::GdkConfigureEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct ConfigureEvent(Object<ffi::GdkConfigureEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_configure_event_get_type(),
+        get_type => || ffi::gdk_configure_event_get_type(),
     }
 }
 
@@ -21,7 +21,7 @@ impl ConfigureEvent {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_configure_event_get_size(
+            ffi::gdk_configure_event_get_size(
                 self.to_glib_none().0,
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),

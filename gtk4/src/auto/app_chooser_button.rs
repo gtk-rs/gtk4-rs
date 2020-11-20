@@ -2,38 +2,37 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::AppChooser;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use AppChooser;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct AppChooserButton(Object<gtk_sys::GtkAppChooserButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
+glib::glib_wrapper! {
+    pub struct AppChooserButton(Object<ffi::GtkAppChooserButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_app_chooser_button_get_type(),
+        get_type => || ffi::gtk_app_chooser_button_get_type(),
     }
 }
 
@@ -41,7 +40,7 @@ impl AppChooserButton {
     pub fn new(content_type: &str) -> AppChooserButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_app_chooser_button_new(
+            Widget::from_glib_none(ffi::gtk_app_chooser_button_new(
                 content_type.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -50,7 +49,7 @@ impl AppChooserButton {
 
     pub fn append_custom_item<P: IsA<gio::Icon>>(&self, name: &str, label: &str, icon: &P) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_append_custom_item(
+            ffi::gtk_app_chooser_button_append_custom_item(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
                 label.to_glib_none().0,
@@ -61,29 +60,25 @@ impl AppChooserButton {
 
     pub fn append_separator(&self) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_append_separator(self.to_glib_none().0);
+            ffi::gtk_app_chooser_button_append_separator(self.to_glib_none().0);
         }
     }
 
-    pub fn get_heading(&self) -> Option<GString> {
+    pub fn get_heading(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_app_chooser_button_get_heading(
+            from_glib_none(ffi::gtk_app_chooser_button_get_heading(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_modal(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_app_chooser_button_get_modal(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_app_chooser_button_get_modal(self.to_glib_none().0)) }
     }
 
     pub fn get_show_default_item(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_app_chooser_button_get_show_default_item(
+            from_glib(ffi::gtk_app_chooser_button_get_show_default_item(
                 self.to_glib_none().0,
             ))
         }
@@ -91,7 +86,7 @@ impl AppChooserButton {
 
     pub fn get_show_dialog_item(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_app_chooser_button_get_show_dialog_item(
+            from_glib(ffi::gtk_app_chooser_button_get_show_dialog_item(
                 self.to_glib_none().0,
             ))
         }
@@ -99,7 +94,7 @@ impl AppChooserButton {
 
     pub fn set_active_custom_item(&self, name: &str) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_set_active_custom_item(
+            ffi::gtk_app_chooser_button_set_active_custom_item(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
             );
@@ -108,7 +103,7 @@ impl AppChooserButton {
 
     pub fn set_heading(&self, heading: &str) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_set_heading(
+            ffi::gtk_app_chooser_button_set_heading(
                 self.to_glib_none().0,
                 heading.to_glib_none().0,
             );
@@ -117,13 +112,13 @@ impl AppChooserButton {
 
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
     pub fn set_show_default_item(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_set_show_default_item(
+            ffi::gtk_app_chooser_button_set_show_default_item(
                 self.to_glib_none().0,
                 setting.to_glib(),
             );
@@ -132,7 +127,7 @@ impl AppChooserButton {
 
     pub fn set_show_dialog_item(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_app_chooser_button_set_show_dialog_item(
+            ffi::gtk_app_chooser_button_set_show_dialog_item(
                 self.to_glib_none().0,
                 setting.to_glib(),
             );
@@ -141,8 +136,8 @@ impl AppChooserButton {
 
     pub fn connect_changed<F: Fn(&AppChooserButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&AppChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkAppChooserButton,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserButton,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -167,14 +162,14 @@ impl AppChooserButton {
         unsafe extern "C" fn custom_item_activated_trampoline<
             F: Fn(&AppChooserButton, &str) + 'static,
         >(
-            this: *mut gtk_sys::GtkAppChooserButton,
+            this: *mut ffi::GtkAppChooserButton,
             item_name: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
-                &GString::from_glib_borrow(item_name),
+                &glib::GString::from_glib_borrow(item_name),
             )
         }
         unsafe {
@@ -195,9 +190,9 @@ impl AppChooserButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_heading_trampoline<F: Fn(&AppChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkAppChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -220,9 +215,9 @@ impl AppChooserButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&AppChooserButton) + 'static>(
-            this: *mut gtk_sys::GtkAppChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -247,9 +242,9 @@ impl AppChooserButton {
         unsafe extern "C" fn notify_show_default_item_trampoline<
             F: Fn(&AppChooserButton) + 'static,
         >(
-            this: *mut gtk_sys::GtkAppChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -274,9 +269,9 @@ impl AppChooserButton {
         unsafe extern "C" fn notify_show_dialog_item_trampoline<
             F: Fn(&AppChooserButton) + 'static,
         >(
-            this: *mut gtk_sys::GtkAppChooserButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

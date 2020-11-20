@@ -2,19 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use gdk;
 use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct ShortcutTrigger(Object<gtk_sys::GtkShortcutTrigger, gtk_sys::GtkShortcutTriggerClass>);
+glib::glib_wrapper! {
+    pub struct ShortcutTrigger(Object<ffi::GtkShortcutTrigger, ffi::GtkShortcutTriggerClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_shortcut_trigger_get_type(),
+        get_type => || ffi::gtk_shortcut_trigger_get_type(),
     }
 }
 
@@ -22,7 +21,7 @@ impl ShortcutTrigger {
     pub fn parse_string(string: &str) -> Option<ShortcutTrigger> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_shortcut_trigger_parse_string(
+            from_glib_full(ffi::gtk_shortcut_trigger_parse_string(
                 string.to_glib_none().0,
             ))
         }
@@ -36,9 +35,9 @@ pub trait ShortcutTriggerExt: 'static {
 
     fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool;
 
-    fn to_label(&self, display: &gdk::Display) -> Option<GString>;
+    fn to_label(&self, display: &gdk::Display) -> Option<glib::GString>;
 
-    fn to_string(&self) -> GString;
+    fn to_string(&self) -> glib::GString;
 
     fn trigger<P: IsA<gdk::Event>>(&self, event: &P, enable_mnemonics: bool) -> gdk::KeyMatch;
 }
@@ -46,7 +45,7 @@ pub trait ShortcutTriggerExt: 'static {
 impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
     fn print(&self, string: &mut glib::String) {
         unsafe {
-            gtk_sys::gtk_shortcut_trigger_print(
+            ffi::gtk_shortcut_trigger_print(
                 self.as_ref().to_glib_none().0,
                 string.to_glib_none_mut().0,
             );
@@ -55,7 +54,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
 
     fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_shortcut_trigger_print_label(
+            from_glib(ffi::gtk_shortcut_trigger_print_label(
                 self.as_ref().to_glib_none().0,
                 display.to_glib_none().0,
                 string.to_glib_none_mut().0,
@@ -63,18 +62,18 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
-    fn to_label(&self, display: &gdk::Display) -> Option<GString> {
+    fn to_label(&self, display: &gdk::Display) -> Option<glib::GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_shortcut_trigger_to_label(
+            from_glib_full(ffi::gtk_shortcut_trigger_to_label(
                 self.as_ref().to_glib_none().0,
                 display.to_glib_none().0,
             ))
         }
     }
 
-    fn to_string(&self) -> GString {
+    fn to_string(&self) -> glib::GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_shortcut_trigger_to_string(
+            from_glib_full(ffi::gtk_shortcut_trigger_to_string(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -82,7 +81,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
 
     fn trigger<P: IsA<gdk::Event>>(&self, event: &P, enable_mnemonics: bool) -> gdk::KeyMatch {
         unsafe {
-            from_glib(gtk_sys::gtk_shortcut_trigger_trigger(
+            from_glib(ffi::gtk_shortcut_trigger_trigger(
                 self.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
                 enable_mnemonics.to_glib(),

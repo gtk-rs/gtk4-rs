@@ -2,38 +2,37 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Native;
+use crate::Popover;
+use crate::ShortcutManager;
+use crate::Widget;
+use glib;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Native;
-use Popover;
-use ShortcutManager;
-use Widget;
 
-glib_wrapper! {
-    pub struct EmojiChooser(Object<gtk_sys::GtkEmojiChooser, gtk_sys::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
+glib::glib_wrapper! {
+    pub struct EmojiChooser(Object<ffi::GtkEmojiChooser, ffi::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_emoji_chooser_get_type(),
+        get_type => || ffi::gtk_emoji_chooser_get_type(),
     }
 }
 
 impl EmojiChooser {
     pub fn new() -> EmojiChooser {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_emoji_chooser_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_emoji_chooser_new()).unsafe_cast() }
     }
 
     pub fn connect_emoji_picked<F: Fn(&EmojiChooser, &str) + 'static>(
@@ -41,12 +40,15 @@ impl EmojiChooser {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn emoji_picked_trampoline<F: Fn(&EmojiChooser, &str) + 'static>(
-            this: *mut gtk_sys::GtkEmojiChooser,
+            this: *mut ffi::GtkEmojiChooser,
             text: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &GString::from_glib_borrow(text))
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(text),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

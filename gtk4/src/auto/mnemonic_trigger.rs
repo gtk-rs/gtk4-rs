@@ -2,30 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ShortcutTrigger;
 use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use ShortcutTrigger;
 
-glib_wrapper! {
-    pub struct MnemonicTrigger(Object<gtk_sys::GtkMnemonicTrigger, gtk_sys::GtkMnemonicTriggerClass>) @extends ShortcutTrigger;
+glib::glib_wrapper! {
+    pub struct MnemonicTrigger(Object<ffi::GtkMnemonicTrigger, ffi::GtkMnemonicTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || gtk_sys::gtk_mnemonic_trigger_get_type(),
+        get_type => || ffi::gtk_mnemonic_trigger_get_type(),
     }
 }
 
 impl MnemonicTrigger {
     pub fn new(keyval: u32) -> MnemonicTrigger {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_mnemonic_trigger_new(keyval)) }
+        unsafe { from_glib_full(ffi::gtk_mnemonic_trigger_new(keyval)) }
     }
 
     pub fn get_keyval(&self) -> u32 {
-        unsafe { gtk_sys::gtk_mnemonic_trigger_get_keyval(self.to_glib_none().0) }
+        unsafe { ffi::gtk_mnemonic_trigger_get_keyval(self.to_glib_none().0) }
     }
 }
 

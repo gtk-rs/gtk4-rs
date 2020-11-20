@@ -11,6 +11,7 @@ version = "0.1.0"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
 repository = "https://github.com/gtk-rs/gtk4"
 build = "build.rs"
+edition = "2018"
 exclude = [
     "gir-files/*",
 ]

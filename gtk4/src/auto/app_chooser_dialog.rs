@@ -2,46 +2,44 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::AppChooser;
+use crate::Application;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Dialog;
+use crate::DialogFlags;
+use crate::LayoutManager;
+use crate::Native;
+use crate::Overflow;
+use crate::Root;
+use crate::ShortcutManager;
+use crate::Widget;
+use crate::Window;
 use gdk;
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use AppChooser;
-use Application;
-use Buildable;
-use ConstraintTarget;
-use Dialog;
-use DialogFlags;
-use LayoutManager;
-use Native;
-use Overflow;
-use Root;
-use ShortcutManager;
-use Widget;
-use Window;
 
-glib_wrapper! {
-    pub struct AppChooserDialog(Object<gtk_sys::GtkAppChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, AppChooser;
+glib::glib_wrapper! {
+    pub struct AppChooserDialog(Object<ffi::GtkAppChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, AppChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_app_chooser_dialog_get_type(),
+        get_type => || ffi::gtk_app_chooser_dialog_get_type(),
     }
 }
 
@@ -53,7 +51,7 @@ impl AppChooserDialog {
     ) -> AppChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_app_chooser_dialog_new(
+            Widget::from_glib_none(ffi::gtk_app_chooser_dialog_new(
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 flags.to_glib(),
                 file.as_ref().to_glib_none().0,
@@ -69,7 +67,7 @@ impl AppChooserDialog {
     ) -> AppChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_app_chooser_dialog_new_for_content_type(
+            Widget::from_glib_none(ffi::gtk_app_chooser_dialog_new_for_content_type(
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 flags.to_glib(),
                 content_type.to_glib_none().0,
@@ -78,9 +76,9 @@ impl AppChooserDialog {
         }
     }
 
-    pub fn get_heading(&self) -> Option<GString> {
+    pub fn get_heading(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_app_chooser_dialog_get_heading(
+            from_glib_none(ffi::gtk_app_chooser_dialog_get_heading(
                 self.to_glib_none().0,
             ))
         }
@@ -88,7 +86,7 @@ impl AppChooserDialog {
 
     pub fn get_widget(&self) -> Widget {
         unsafe {
-            from_glib_none(gtk_sys::gtk_app_chooser_dialog_get_widget(
+            from_glib_none(ffi::gtk_app_chooser_dialog_get_widget(
                 self.to_glib_none().0,
             ))
         }
@@ -96,7 +94,7 @@ impl AppChooserDialog {
 
     pub fn set_heading(&self, heading: &str) {
         unsafe {
-            gtk_sys::gtk_app_chooser_dialog_set_heading(
+            ffi::gtk_app_chooser_dialog_set_heading(
                 self.to_glib_none().0,
                 heading.to_glib_none().0,
             );
@@ -106,8 +104,8 @@ impl AppChooserDialog {
     pub fn get_property_gfile(&self) -> Option<gio::File> {
         unsafe {
             let mut value = Value::from_type(<gio::File as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gfile\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -122,9 +120,9 @@ impl AppChooserDialog {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_heading_trampoline<F: Fn(&AppChooserDialog) + 'static>(
-            this: *mut gtk_sys::GtkAppChooserDialog,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAppChooserDialog,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

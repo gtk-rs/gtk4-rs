@@ -2,8 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Application;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Native;
+use crate::Overflow;
+use crate::Root;
+use crate::ShortcutManager;
+use crate::ShortcutsWindow;
+use crate::Widget;
+use crate::Window;
 use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -11,31 +25,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Application;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Native;
-use Overflow;
-use Root;
-use ShortcutManager;
-use ShortcutsWindow;
-use Widget;
-use Window;
 
-glib_wrapper! {
-    pub struct ApplicationWindow(Object<gtk_sys::GtkApplicationWindow, gtk_sys::GtkApplicationWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
+glib::glib_wrapper! {
+    pub struct ApplicationWindow(Object<ffi::GtkApplicationWindow, ffi::GtkApplicationWindowClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, gio::ActionGroup, gio::ActionMap;
 
     match fn {
-        get_type => || gtk_sys::gtk_application_window_get_type(),
+        get_type => || ffi::gtk_application_window_get_type(),
     }
 }
 
@@ -43,7 +41,7 @@ impl ApplicationWindow {
     pub fn new<P: IsA<Application>>(application: &P) -> ApplicationWindow {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_application_window_new(
+            Widget::from_glib_none(ffi::gtk_application_window_new(
                 application.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -540,19 +538,19 @@ pub trait ApplicationWindowExt: 'static {
 impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
     fn get_help_overlay(&self) -> Option<ShortcutsWindow> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_application_window_get_help_overlay(
+            from_glib_none(ffi::gtk_application_window_get_help_overlay(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_id(&self) -> u32 {
-        unsafe { gtk_sys::gtk_application_window_get_id(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_application_window_get_id(self.as_ref().to_glib_none().0) }
     }
 
     fn get_show_menubar(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_application_window_get_show_menubar(
+            from_glib(ffi::gtk_application_window_get_show_menubar(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -560,7 +558,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
 
     fn set_help_overlay(&self, help_overlay: Option<&ShortcutsWindow>) {
         unsafe {
-            gtk_sys::gtk_application_window_set_help_overlay(
+            ffi::gtk_application_window_set_help_overlay(
                 self.as_ref().to_glib_none().0,
                 help_overlay.to_glib_none().0,
             );
@@ -569,7 +567,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
 
     fn set_show_menubar(&self, show_menubar: bool) {
         unsafe {
-            gtk_sys::gtk_application_window_set_show_menubar(
+            ffi::gtk_application_window_set_show_menubar(
                 self.as_ref().to_glib_none().0,
                 show_menubar.to_glib(),
             );
@@ -581,9 +579,9 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_menubar_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkApplicationWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkApplicationWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<ApplicationWindow>,
         {

@@ -2,90 +2,73 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::ArrowType;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Popover;
+use crate::Widget;
 use gdk;
 use gio;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use ArrowType;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Popover;
-use Widget;
 
-glib_wrapper! {
-    pub struct MenuButton(Object<gtk_sys::GtkMenuButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct MenuButton(Object<ffi::GtkMenuButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_menu_button_get_type(),
+        get_type => || ffi::gtk_menu_button_get_type(),
     }
 }
 
 impl MenuButton {
     pub fn new() -> MenuButton {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_menu_button_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_menu_button_new()).unsafe_cast() }
     }
 
     pub fn get_direction(&self) -> ArrowType {
-        unsafe {
-            from_glib(gtk_sys::gtk_menu_button_get_direction(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_menu_button_get_direction(self.to_glib_none().0)) }
     }
 
     pub fn get_has_frame(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_menu_button_get_has_frame(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_menu_button_get_has_frame(self.to_glib_none().0)) }
     }
 
-    pub fn get_icon_name(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_menu_button_get_icon_name(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_icon_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_menu_button_get_icon_name(self.to_glib_none().0)) }
     }
 
-    pub fn get_label(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_menu_button_get_label(self.to_glib_none().0)) }
+    pub fn get_label(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_menu_button_get_label(self.to_glib_none().0)) }
     }
 
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_menu_button_get_menu_model(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_menu_button_get_menu_model(self.to_glib_none().0)) }
     }
 
     pub fn get_popover(&self) -> Option<Popover> {
-        unsafe { from_glib_none(gtk_sys::gtk_menu_button_get_popover(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
     pub fn get_use_underline(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_menu_button_get_use_underline(
+            from_glib(ffi::gtk_menu_button_get_use_underline(
                 self.to_glib_none().0,
             ))
         }
@@ -93,21 +76,21 @@ impl MenuButton {
 
     pub fn popdown(&self) {
         unsafe {
-            gtk_sys::gtk_menu_button_popdown(self.to_glib_none().0);
+            ffi::gtk_menu_button_popdown(self.to_glib_none().0);
         }
     }
 
     pub fn popup(&self) {
         unsafe {
-            gtk_sys::gtk_menu_button_popup(self.to_glib_none().0);
+            ffi::gtk_menu_button_popup(self.to_glib_none().0);
         }
     }
 
     pub fn set_create_popup_func(&self, func: Option<Box_<dyn Fn(&MenuButton) + 'static>>) {
         let func_data: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> = Box_::new(func);
         unsafe extern "C" fn func_func(
-            menu_button: *mut gtk_sys::GtkMenuButton,
-            user_data: glib_sys::gpointer,
+            menu_button: *mut ffi::GtkMenuButton,
+            user_data: glib::ffi::gpointer,
         ) {
             let menu_button = from_glib_borrow(menu_button);
             let callback: &Option<Box_<dyn Fn(&MenuButton) + 'static>> = &*(user_data as *mut _);
@@ -122,14 +105,14 @@ impl MenuButton {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_notify_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_notify_func(data: glib::ffi::gpointer) {
             let _callback: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_notify_func as _);
         let super_callback0: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> = func_data;
         unsafe {
-            gtk_sys::gtk_menu_button_set_create_popup_func(
+            ffi::gtk_menu_button_set_create_popup_func(
                 self.to_glib_none().0,
                 func,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -140,34 +123,31 @@ impl MenuButton {
 
     pub fn set_direction(&self, direction: ArrowType) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_direction(self.to_glib_none().0, direction.to_glib());
+            ffi::gtk_menu_button_set_direction(self.to_glib_none().0, direction.to_glib());
         }
     }
 
     pub fn set_has_frame(&self, has_frame: bool) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
+            ffi::gtk_menu_button_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
         }
     }
 
     pub fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_icon_name(
-                self.to_glib_none().0,
-                icon_name.to_glib_none().0,
-            );
+            ffi::gtk_menu_button_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
     pub fn set_label(&self, label: &str) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_label(self.to_glib_none().0, label.to_glib_none().0);
+            ffi::gtk_menu_button_set_label(self.to_glib_none().0, label.to_glib_none().0);
         }
     }
 
     pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_menu_model(
+            ffi::gtk_menu_button_set_menu_model(
                 self.to_glib_none().0,
                 menu_model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -176,7 +156,7 @@ impl MenuButton {
 
     pub fn set_popover<P: IsA<Widget>>(&self, popover: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_popover(
+            ffi::gtk_menu_button_set_popover(
                 self.to_glib_none().0,
                 popover.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -185,10 +165,7 @@ impl MenuButton {
 
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            gtk_sys::gtk_menu_button_set_use_underline(
-                self.to_glib_none().0,
-                use_underline.to_glib(),
-            );
+            ffi::gtk_menu_button_set_use_underline(self.to_glib_none().0, use_underline.to_glib());
         }
     }
 
@@ -197,9 +174,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -222,9 +199,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -247,9 +224,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -272,9 +249,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -297,9 +274,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -322,9 +299,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_popover_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -347,9 +324,9 @@ impl MenuButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&MenuButton) + 'static>(
-            this: *mut gtk_sys::GtkMenuButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

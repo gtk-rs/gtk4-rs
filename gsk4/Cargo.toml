@@ -10,6 +10,7 @@ version = "0.1.0"
 description = "Rust bindings for the GSK 4 library"
 repository = "https://github.com/gtk-rs/gsk4"
 build = "build.rs"
+edition = "2018"
 exclude = [
     "gir-files/*",
 ]

@@ -2,6 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::ColumnViewColumn;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Scrollable;
+use crate::ScrollablePolicy;
+use crate::SelectionModel;
+use crate::SortType;
+use crate::Sorter;
+use crate::Widget;
 use gdk;
 use gio;
 use glib::object::Cast;
@@ -12,33 +28,16 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use ColumnViewColumn;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Scrollable;
-use ScrollablePolicy;
-use SelectionModel;
-use SortType;
-use Sorter;
-use Widget;
 
-glib_wrapper! {
-    pub struct ColumnView(Object<gtk_sys::GtkColumnView, gtk_sys::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+glib::glib_wrapper! {
+    pub struct ColumnView(Object<ffi::GtkColumnView, ffi::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_column_view_get_type(),
+        get_type => || ffi::gtk_column_view_get_type(),
     }
 }
 
@@ -46,7 +45,7 @@ impl ColumnView {
     pub fn new<P: IsA<SelectionModel>>(model: Option<&P>) -> ColumnView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_column_view_new(
+            Widget::from_glib_none(ffi::gtk_column_view_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
             .unsafe_cast()
@@ -55,37 +54,33 @@ impl ColumnView {
 
     pub fn append_column(&self, column: &ColumnViewColumn) {
         unsafe {
-            gtk_sys::gtk_column_view_append_column(self.to_glib_none().0, column.to_glib_none().0);
+            ffi::gtk_column_view_append_column(self.to_glib_none().0, column.to_glib_none().0);
         }
     }
 
     pub fn get_columns(&self) -> Option<gio::ListModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_column_view_get_columns(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_column_view_get_columns(self.to_glib_none().0)) }
     }
 
     pub fn get_enable_rubberband(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_column_view_get_enable_rubberband(
+            from_glib(ffi::gtk_column_view_get_enable_rubberband(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_model(&self) -> Option<SelectionModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_column_view_get_model(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_column_view_get_model(self.to_glib_none().0)) }
     }
 
     pub fn get_reorderable(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_column_view_get_reorderable(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
     pub fn get_show_column_separators(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_column_view_get_show_column_separators(
+            from_glib(ffi::gtk_column_view_get_show_column_separators(
                 self.to_glib_none().0,
             ))
         }
@@ -93,7 +88,7 @@ impl ColumnView {
 
     pub fn get_show_row_separators(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_column_view_get_show_row_separators(
+            from_glib(ffi::gtk_column_view_get_show_row_separators(
                 self.to_glib_none().0,
             ))
         }
@@ -101,19 +96,19 @@ impl ColumnView {
 
     pub fn get_single_click_activate(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_column_view_get_single_click_activate(
+            from_glib(ffi::gtk_column_view_get_single_click_activate(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_sorter(&self) -> Option<Sorter> {
-        unsafe { from_glib_none(gtk_sys::gtk_column_view_get_sorter(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
         unsafe {
-            gtk_sys::gtk_column_view_insert_column(
+            ffi::gtk_column_view_insert_column(
                 self.to_glib_none().0,
                 position,
                 column.to_glib_none().0,
@@ -123,13 +118,13 @@ impl ColumnView {
 
     pub fn remove_column(&self, column: &ColumnViewColumn) {
         unsafe {
-            gtk_sys::gtk_column_view_remove_column(self.to_glib_none().0, column.to_glib_none().0);
+            ffi::gtk_column_view_remove_column(self.to_glib_none().0, column.to_glib_none().0);
         }
     }
 
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
-            gtk_sys::gtk_column_view_set_enable_rubberband(
+            ffi::gtk_column_view_set_enable_rubberband(
                 self.to_glib_none().0,
                 enable_rubberband.to_glib(),
             );
@@ -138,7 +133,7 @@ impl ColumnView {
 
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_column_view_set_model(
+            ffi::gtk_column_view_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -147,13 +142,13 @@ impl ColumnView {
 
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            gtk_sys::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
+            ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
         }
     }
 
     pub fn set_show_column_separators(&self, show_column_separators: bool) {
         unsafe {
-            gtk_sys::gtk_column_view_set_show_column_separators(
+            ffi::gtk_column_view_set_show_column_separators(
                 self.to_glib_none().0,
                 show_column_separators.to_glib(),
             );
@@ -162,7 +157,7 @@ impl ColumnView {
 
     pub fn set_show_row_separators(&self, show_row_separators: bool) {
         unsafe {
-            gtk_sys::gtk_column_view_set_show_row_separators(
+            ffi::gtk_column_view_set_show_row_separators(
                 self.to_glib_none().0,
                 show_row_separators.to_glib(),
             );
@@ -171,7 +166,7 @@ impl ColumnView {
 
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
-            gtk_sys::gtk_column_view_set_single_click_activate(
+            ffi::gtk_column_view_set_single_click_activate(
                 self.to_glib_none().0,
                 single_click_activate.to_glib(),
             );
@@ -180,7 +175,7 @@ impl ColumnView {
 
     pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
         unsafe {
-            gtk_sys::gtk_column_view_sort_by_column(
+            ffi::gtk_column_view_sort_by_column(
                 self.to_glib_none().0,
                 column.to_glib_none().0,
                 direction.to_glib(),
@@ -190,9 +185,9 @@ impl ColumnView {
 
     pub fn connect_activate<F: Fn(&ColumnView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ColumnView, u32) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
+            this: *mut ffi::GtkColumnView,
             position: libc::c_uint,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), position)
@@ -215,9 +210,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_columns_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -240,9 +235,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_rubberband_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -265,9 +260,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -290,9 +285,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -317,9 +312,9 @@ impl ColumnView {
         unsafe extern "C" fn notify_show_column_separators_trampoline<
             F: Fn(&ColumnView) + 'static,
         >(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -342,9 +337,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_row_separators_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -369,9 +364,9 @@ impl ColumnView {
         unsafe extern "C" fn notify_single_click_activate_trampoline<
             F: Fn(&ColumnView) + 'static,
         >(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -394,9 +389,9 @@ impl ColumnView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&ColumnView) + 'static>(
-            this: *mut gtk_sys::GtkColumnView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,24 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Window;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Window;
 
-glib_wrapper! {
-    pub struct WindowGroup(Object<gtk_sys::GtkWindowGroup, gtk_sys::GtkWindowGroupClass>);
+glib::glib_wrapper! {
+    pub struct WindowGroup(Object<ffi::GtkWindowGroup, ffi::GtkWindowGroupClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_window_group_get_type(),
+        get_type => || ffi::gtk_window_group_get_type(),
     }
 }
 
 impl WindowGroup {
     pub fn new() -> WindowGroup {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_window_group_new()) }
+        unsafe { from_glib_full(ffi::gtk_window_group_new()) }
     }
 }
 
@@ -42,7 +42,7 @@ pub trait WindowGroupExt: 'static {
 impl<O: IsA<WindowGroup>> WindowGroupExt for O {
     fn add_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_window_group_add_window(
+            ffi::gtk_window_group_add_window(
                 self.as_ref().to_glib_none().0,
                 window.as_ref().to_glib_none().0,
             );
@@ -51,7 +51,7 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
 
     fn list_windows(&self) -> Vec<Window> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_window_group_list_windows(
+            FromGlibPtrContainer::from_glib_container(ffi::gtk_window_group_list_windows(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -59,7 +59,7 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
 
     fn remove_window<P: IsA<Window>>(&self, window: &P) {
         unsafe {
-            gtk_sys::gtk_window_group_remove_window(
+            ffi::gtk_window_group_remove_window(
                 self.as_ref().to_glib_none().0,
                 window.as_ref().to_glib_none().0,
             );

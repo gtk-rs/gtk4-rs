@@ -2,25 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::PaintableFlags;
+use crate::Snapshot;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use PaintableFlags;
-use Snapshot;
 
-glib_wrapper! {
-    pub struct Paintable(Interface<gdk_sys::GdkPaintable>);
+glib::glib_wrapper! {
+    pub struct Paintable(Interface<ffi::GdkPaintable>);
 
     match fn {
-        get_type => || gdk_sys::gdk_paintable_get_type(),
+        get_type => || ffi::gdk_paintable_get_type(),
     }
 }
 
@@ -28,7 +27,7 @@ impl Paintable {
     pub fn new_empty(intrinsic_width: i32, intrinsic_height: i32) -> Option<Paintable> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_paintable_new_empty(
+            from_glib_full(ffi::gdk_paintable_new_empty(
                 intrinsic_width,
                 intrinsic_height,
             ))
@@ -79,7 +78,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         unsafe {
             let mut concrete_width = mem::MaybeUninit::uninit();
             let mut concrete_height = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_paintable_compute_concrete_size(
+            ffi::gdk_paintable_compute_concrete_size(
                 self.as_ref().to_glib_none().0,
                 specified_width,
                 specified_height,
@@ -96,47 +95,43 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
     fn get_current_image(&self) -> Option<Paintable> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_paintable_get_current_image(
+            from_glib_full(ffi::gdk_paintable_get_current_image(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_flags(&self) -> PaintableFlags {
-        unsafe {
-            from_glib(gdk_sys::gdk_paintable_get_flags(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_paintable_get_flags(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_intrinsic_aspect_ratio(&self) -> f64 {
-        unsafe { gdk_sys::gdk_paintable_get_intrinsic_aspect_ratio(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_paintable_get_intrinsic_aspect_ratio(self.as_ref().to_glib_none().0) }
     }
 
     fn get_intrinsic_height(&self) -> i32 {
-        unsafe { gdk_sys::gdk_paintable_get_intrinsic_height(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_paintable_get_intrinsic_height(self.as_ref().to_glib_none().0) }
     }
 
     fn get_intrinsic_width(&self) -> i32 {
-        unsafe { gdk_sys::gdk_paintable_get_intrinsic_width(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_paintable_get_intrinsic_width(self.as_ref().to_glib_none().0) }
     }
 
     fn invalidate_contents(&self) {
         unsafe {
-            gdk_sys::gdk_paintable_invalidate_contents(self.as_ref().to_glib_none().0);
+            ffi::gdk_paintable_invalidate_contents(self.as_ref().to_glib_none().0);
         }
     }
 
     fn invalidate_size(&self) {
         unsafe {
-            gdk_sys::gdk_paintable_invalidate_size(self.as_ref().to_glib_none().0);
+            ffi::gdk_paintable_invalidate_size(self.as_ref().to_glib_none().0);
         }
     }
 
     fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64) {
         unsafe {
-            gdk_sys::gdk_paintable_snapshot(
+            ffi::gdk_paintable_snapshot(
                 self.as_ref().to_glib_none().0,
                 snapshot.to_glib_none().0,
                 width,
@@ -147,8 +142,8 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_contents_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkPaintable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkPaintable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Paintable>,
         {
@@ -170,8 +165,8 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_size_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkPaintable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkPaintable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Paintable>,
         {

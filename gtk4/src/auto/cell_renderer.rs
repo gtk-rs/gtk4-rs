@@ -2,6 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::CellEditable;
+use crate::CellRendererMode;
+use crate::CellRendererState;
+use crate::Requisition;
+use crate::SizeRequestMode;
+use crate::Snapshot;
+use crate::StateFlags;
+use crate::TreePath;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -10,29 +20,17 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use CellEditable;
-use CellRendererMode;
-use CellRendererState;
-use Requisition;
-use SizeRequestMode;
-use Snapshot;
-use StateFlags;
-use TreePath;
-use Widget;
 
-glib_wrapper! {
-    pub struct CellRenderer(Object<gtk_sys::GtkCellRenderer, gtk_sys::GtkCellRendererClass>);
+glib::glib_wrapper! {
+    pub struct CellRenderer(Object<ffi::GtkCellRenderer, ffi::GtkCellRendererClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_renderer_get_type(),
+        get_type => || ffi::gtk_cell_renderer_get_type(),
     }
 }
 
@@ -224,7 +222,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         flags: CellRendererState,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_activate(
+            from_glib(ffi::gtk_cell_renderer_activate(
                 self.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -244,7 +242,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut aligned_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_aligned_area(
+            ffi::gtk_cell_renderer_get_aligned_area(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 flags.to_glib(),
@@ -259,7 +257,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut xalign = mem::MaybeUninit::uninit();
             let mut yalign = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_alignment(
+            ffi::gtk_cell_renderer_get_alignment(
                 self.as_ref().to_glib_none().0,
                 xalign.as_mut_ptr(),
                 yalign.as_mut_ptr(),
@@ -274,7 +272,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_fixed_size(
+            ffi::gtk_cell_renderer_get_fixed_size(
                 self.as_ref().to_glib_none().0,
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
@@ -287,7 +285,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn get_is_expanded(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_is_expanded(
+            from_glib(ffi::gtk_cell_renderer_get_is_expanded(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -295,7 +293,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn get_is_expander(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_is_expander(
+            from_glib(ffi::gtk_cell_renderer_get_is_expander(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -305,7 +303,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut xpad = mem::MaybeUninit::uninit();
             let mut ypad = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_padding(
+            ffi::gtk_cell_renderer_get_padding(
                 self.as_ref().to_glib_none().0,
                 xpad.as_mut_ptr(),
                 ypad.as_mut_ptr(),
@@ -320,7 +318,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_preferred_height(
+            ffi::gtk_cell_renderer_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -336,7 +334,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_preferred_height_for_width(
+            ffi::gtk_cell_renderer_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 width,
@@ -353,7 +351,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
             let mut natural_size = Requisition::uninitialized();
-            gtk_sys::gtk_cell_renderer_get_preferred_size(
+            ffi::gtk_cell_renderer_get_preferred_size(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.to_glib_none_mut().0,
@@ -367,7 +365,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_preferred_width(
+            ffi::gtk_cell_renderer_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -387,7 +385,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_renderer_get_preferred_width_for_height(
+            ffi::gtk_cell_renderer_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 height,
@@ -402,7 +400,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn get_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_request_mode(
+            from_glib(ffi::gtk_cell_renderer_get_request_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -410,7 +408,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn get_sensitive(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_sensitive(
+            from_glib(ffi::gtk_cell_renderer_get_sensitive(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -422,7 +420,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         cell_state: CellRendererState,
     ) -> StateFlags {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_state(
+            from_glib(ffi::gtk_cell_renderer_get_state(
                 self.as_ref().to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
                 cell_state.to_glib(),
@@ -432,7 +430,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn get_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_get_visible(
+            from_glib(ffi::gtk_cell_renderer_get_visible(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -440,7 +438,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn is_activatable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_is_activatable(
+            from_glib(ffi::gtk_cell_renderer_is_activatable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -448,27 +446,19 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_alignment(&self, xalign: f32, yalign: f32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_alignment(
-                self.as_ref().to_glib_none().0,
-                xalign,
-                yalign,
-            );
+            ffi::gtk_cell_renderer_set_alignment(self.as_ref().to_glib_none().0, xalign, yalign);
         }
     }
 
     fn set_fixed_size(&self, width: i32, height: i32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_fixed_size(
-                self.as_ref().to_glib_none().0,
-                width,
-                height,
-            );
+            ffi::gtk_cell_renderer_set_fixed_size(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
     fn set_is_expanded(&self, is_expander: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_is_expanded(
+            ffi::gtk_cell_renderer_set_is_expanded(
                 self.as_ref().to_glib_none().0,
                 is_expander.to_glib(),
             );
@@ -477,7 +467,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_is_expander(&self, is_expander: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_is_expander(
+            ffi::gtk_cell_renderer_set_is_expander(
                 self.as_ref().to_glib_none().0,
                 is_expander.to_glib(),
             );
@@ -486,13 +476,13 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_padding(&self, xpad: i32, ypad: i32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_padding(self.as_ref().to_glib_none().0, xpad, ypad);
+            ffi::gtk_cell_renderer_set_padding(self.as_ref().to_glib_none().0, xpad, ypad);
         }
     }
 
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_sensitive(
+            ffi::gtk_cell_renderer_set_sensitive(
                 self.as_ref().to_glib_none().0,
                 sensitive.to_glib(),
             );
@@ -501,10 +491,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_visible(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_set_visible(
-                self.as_ref().to_glib_none().0,
-                visible.to_glib(),
-            );
+            ffi::gtk_cell_renderer_set_visible(self.as_ref().to_glib_none().0, visible.to_glib());
         }
     }
 
@@ -517,7 +504,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         flags: CellRendererState,
     ) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_snapshot(
+            ffi::gtk_cell_renderer_snapshot(
                 self.as_ref().to_glib_none().0,
                 snapshot.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -538,7 +525,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         flags: CellRendererState,
     ) -> Option<CellEditable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_renderer_start_editing(
+            from_glib_none(ffi::gtk_cell_renderer_start_editing(
                 self.as_ref().to_glib_none().0,
                 event.map(|p| p.as_ref()).to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -552,17 +539,14 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_stop_editing(
-                self.as_ref().to_glib_none().0,
-                canceled.to_glib(),
-            );
+            ffi::gtk_cell_renderer_stop_editing(self.as_ref().to_glib_none().0, canceled.to_glib());
         }
     }
 
     fn set_property_cell_background(&self, cell_background: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cell-background\0".as_ptr() as *const _,
                 Value::from(cell_background).to_glib_none().0,
             );
@@ -572,8 +556,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_cell_background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cell-background-rgba\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -585,8 +569,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cell-background-rgba\0".as_ptr() as *const _,
                 Value::from(cell_background_rgba).to_glib_none().0,
             );
@@ -596,8 +580,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_cell_background_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cell-background-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -610,8 +594,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_cell_background_set(&self, cell_background_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cell-background-set\0".as_ptr() as *const _,
                 Value::from(&cell_background_set).to_glib_none().0,
             );
@@ -621,8 +605,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_editing(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editing\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -636,8 +620,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_height(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"height\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -650,8 +634,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_height(&self, height: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"height\0".as_ptr() as *const _,
                 Value::from(&height).to_glib_none().0,
             );
@@ -661,8 +645,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_mode(&self) -> CellRendererMode {
         unsafe {
             let mut value = Value::from_type(<CellRendererMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -675,8 +659,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_mode(&self, mode: CellRendererMode) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"mode\0".as_ptr() as *const _,
                 Value::from(&mode).to_glib_none().0,
             );
@@ -686,8 +670,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"width\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -700,8 +684,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_width(&self, width: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"width\0".as_ptr() as *const _,
                 Value::from(&width).to_glib_none().0,
             );
@@ -711,8 +695,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_xalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -725,8 +709,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_xalign(&self, xalign: f32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xalign\0".as_ptr() as *const _,
                 Value::from(&xalign).to_glib_none().0,
             );
@@ -736,8 +720,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_xpad(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xpad\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -750,8 +734,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_xpad(&self, xpad: u32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xpad\0".as_ptr() as *const _,
                 Value::from(&xpad).to_glib_none().0,
             );
@@ -761,8 +745,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_yalign(&self) -> f32 {
         unsafe {
             let mut value = Value::from_type(<f32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"yalign\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -775,8 +759,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_yalign(&self, yalign: f32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"yalign\0".as_ptr() as *const _,
                 Value::from(&yalign).to_glib_none().0,
             );
@@ -786,8 +770,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     fn get_property_ypad(&self) -> u32 {
         unsafe {
             let mut value = Value::from_type(<u32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ypad\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -800,8 +784,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn set_property_ypad(&self, ypad: u32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ypad\0".as_ptr() as *const _,
                 Value::from(&ypad).to_glib_none().0,
             );
@@ -810,8 +794,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn editing_canceled_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -839,10 +823,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P,
             F: Fn(&P, &CellEditable, TreePath) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellRenderer,
-            editable: *mut gtk_sys::GtkCellEditable,
+            this: *mut ffi::GtkCellRenderer,
+            editable: *mut ffi::GtkCellEditable,
             path: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -872,9 +856,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -899,9 +883,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -926,9 +910,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -950,9 +934,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -974,9 +958,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -998,9 +982,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_is_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_expanded_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1022,9 +1006,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_is_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_expander_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1046,9 +1030,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1070,9 +1054,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sensitive_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1094,9 +1078,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1118,9 +1102,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1142,9 +1126,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1166,9 +1150,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_xpad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xpad_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1190,9 +1174,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {
@@ -1214,9 +1198,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn connect_property_ypad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ypad_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRenderer,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRenderer,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRenderer>,
         {

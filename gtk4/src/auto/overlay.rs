@@ -2,6 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -11,50 +20,37 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Overlay(Object<gtk_sys::GtkOverlay>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Overlay(Object<ffi::GtkOverlay>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_overlay_get_type(),
+        get_type => || ffi::gtk_overlay_get_type(),
     }
 }
 
 impl Overlay {
     pub fn new() -> Overlay {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_overlay_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_overlay_new()).unsafe_cast() }
     }
 
     pub fn add_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_overlay_add_overlay(
-                self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-            );
+            ffi::gtk_overlay_add_overlay(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_overlay_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_overlay_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_overlay_get_clip_overlay(
+            from_glib(ffi::gtk_overlay_get_clip_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             ))
@@ -63,7 +59,7 @@ impl Overlay {
 
     pub fn get_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_overlay_get_measure_overlay(
+            from_glib(ffi::gtk_overlay_get_measure_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             ))
@@ -72,7 +68,7 @@ impl Overlay {
 
     pub fn remove_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_overlay_remove_overlay(
+            ffi::gtk_overlay_remove_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -81,7 +77,7 @@ impl Overlay {
 
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_overlay_set_child(
+            ffi::gtk_overlay_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -90,7 +86,7 @@ impl Overlay {
 
     pub fn set_clip_overlay<P: IsA<Widget>>(&self, widget: &P, clip_overlay: bool) {
         unsafe {
-            gtk_sys::gtk_overlay_set_clip_overlay(
+            ffi::gtk_overlay_set_clip_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 clip_overlay.to_glib(),
@@ -100,7 +96,7 @@ impl Overlay {
 
     pub fn set_measure_overlay<P: IsA<Widget>>(&self, widget: &P, measure: bool) {
         unsafe {
-            gtk_sys::gtk_overlay_set_measure_overlay(
+            ffi::gtk_overlay_set_measure_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 measure.to_glib(),
@@ -117,9 +113,9 @@ impl Overlay {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Overlay) + 'static>(
-            this: *mut gtk_sys::GtkOverlay,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkOverlay,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

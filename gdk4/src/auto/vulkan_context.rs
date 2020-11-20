@@ -2,30 +2,29 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::DrawContext;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use DrawContext;
 
-glib_wrapper! {
-    pub struct VulkanContext(Object<gdk_sys::GdkVulkanContext>) @extends DrawContext;
+glib::glib_wrapper! {
+    pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext;
 
     match fn {
-        get_type => || gdk_sys::gdk_vulkan_context_get_type(),
+        get_type => || ffi::gdk_vulkan_context_get_type(),
     }
 }
 
 impl VulkanContext {
     pub fn connect_images_updated<F: Fn(&VulkanContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn images_updated_trampoline<F: Fn(&VulkanContext) + 'static>(
-            this: *mut gdk_sys::GdkVulkanContext,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkVulkanContext,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

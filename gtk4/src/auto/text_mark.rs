@@ -2,21 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::TextBuffer;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use TextBuffer;
 
-glib_wrapper! {
-    pub struct TextMark(Object<gtk_sys::GtkTextMark, gtk_sys::GtkTextMarkClass>);
+glib::glib_wrapper! {
+    pub struct TextMark(Object<ffi::GtkTextMark, ffi::GtkTextMarkClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_text_mark_get_type(),
+        get_type => || ffi::gtk_text_mark_get_type(),
     }
 }
 
@@ -24,7 +24,7 @@ impl TextMark {
     pub fn new(name: Option<&str>, left_gravity: bool) -> TextMark {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_text_mark_new(
+            from_glib_full(ffi::gtk_text_mark_new(
                 name.to_glib_none().0,
                 left_gravity.to_glib(),
             ))
@@ -78,7 +78,7 @@ pub trait TextMarkExt: 'static {
 
     fn get_left_gravity(&self) -> bool;
 
-    fn get_name(&self) -> Option<GString>;
+    fn get_name(&self) -> Option<glib::GString>;
 
     fn get_visible(&self) -> bool;
 
@@ -88,7 +88,7 @@ pub trait TextMarkExt: 'static {
 impl<O: IsA<TextMark>> TextMarkExt for O {
     fn get_buffer(&self) -> Option<TextBuffer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_mark_get_buffer(
+            from_glib_none(ffi::gtk_text_mark_get_buffer(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -96,7 +96,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
 
     fn get_deleted(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_deleted(
+            from_glib(ffi::gtk_text_mark_get_deleted(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -104,23 +104,19 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
 
     fn get_left_gravity(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_left_gravity(
+            from_glib(ffi::gtk_text_mark_get_left_gravity(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_name(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_text_mark_get_name(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    fn get_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_text_mark_get_name(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_mark_get_visible(
+            from_glib(ffi::gtk_text_mark_get_visible(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -128,7 +124,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
 
     fn set_visible(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_text_mark_set_visible(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_text_mark_set_visible(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 }

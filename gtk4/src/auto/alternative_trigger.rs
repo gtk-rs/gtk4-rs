@@ -2,20 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ShortcutTrigger;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use ShortcutTrigger;
 
-glib_wrapper! {
-    pub struct AlternativeTrigger(Object<gtk_sys::GtkAlternativeTrigger, gtk_sys::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
+glib::glib_wrapper! {
+    pub struct AlternativeTrigger(Object<ffi::GtkAlternativeTrigger, ffi::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || gtk_sys::gtk_alternative_trigger_get_type(),
+        get_type => || ffi::gtk_alternative_trigger_get_type(),
     }
 }
 
@@ -26,7 +26,7 @@ impl AlternativeTrigger {
     ) -> AlternativeTrigger {
         skip_assert_initialized!();
         unsafe {
-            ShortcutTrigger::from_glib_full(gtk_sys::gtk_alternative_trigger_new(
+            ShortcutTrigger::from_glib_full(ffi::gtk_alternative_trigger_new(
                 first.as_ref().to_glib_full(),
                 second.as_ref().to_glib_full(),
             ))
@@ -36,7 +36,7 @@ impl AlternativeTrigger {
 
     pub fn get_first(&self) -> ShortcutTrigger {
         unsafe {
-            from_glib_none(gtk_sys::gtk_alternative_trigger_get_first(
+            from_glib_none(ffi::gtk_alternative_trigger_get_first(
                 self.to_glib_none().0,
             ))
         }
@@ -44,7 +44,7 @@ impl AlternativeTrigger {
 
     pub fn get_second(&self) -> ShortcutTrigger {
         unsafe {
-            from_glib_none(gtk_sys::gtk_alternative_trigger_get_second(
+            from_glib_none(ffi::gtk_alternative_trigger_get_second(
                 self.to_glib_none().0,
             ))
         }

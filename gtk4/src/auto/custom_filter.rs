@@ -2,19 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Filter;
 use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
-use Filter;
 
-glib_wrapper! {
-    pub struct CustomFilter(Object<gtk_sys::GtkCustomFilter, gtk_sys::GtkCustomFilterClass>) @extends Filter;
+glib::glib_wrapper! {
+    pub struct CustomFilter(Object<ffi::GtkCustomFilter, ffi::GtkCustomFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || gtk_sys::gtk_custom_filter_get_type(),
+        get_type => || ffi::gtk_custom_filter_get_type(),
     }
 }
 
@@ -24,9 +24,9 @@ impl CustomFilter {
         let match_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             Box_::new(match_func);
         unsafe extern "C" fn match_func_func(
-            item: *mut gobject_sys::GObject,
-            user_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            item: *mut glib::gobject_ffi::GObject,
+            user_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let item = from_glib_borrow(item);
             let callback: &Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>> =
                 &*(user_data as *mut _);
@@ -42,7 +42,7 @@ impl CustomFilter {
         } else {
             None
         };
-        unsafe extern "C" fn user_destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
@@ -50,7 +50,7 @@ impl CustomFilter {
         let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             match_func_data;
         unsafe {
-            from_glib_full(gtk_sys::gtk_custom_filter_new(
+            from_glib_full(ffi::gtk_custom_filter_new(
                 match_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call2,
@@ -70,9 +70,9 @@ impl<O: IsA<CustomFilter>> CustomFilterExt for O {
         let match_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             Box_::new(match_func);
         unsafe extern "C" fn match_func_func(
-            item: *mut gobject_sys::GObject,
-            user_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            item: *mut glib::gobject_ffi::GObject,
+            user_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let item = from_glib_borrow(item);
             let callback: &Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>> =
                 &*(user_data as *mut _);
@@ -88,7 +88,7 @@ impl<O: IsA<CustomFilter>> CustomFilterExt for O {
         } else {
             None
         };
-        unsafe extern "C" fn user_destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn user_destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
@@ -96,7 +96,7 @@ impl<O: IsA<CustomFilter>> CustomFilterExt for O {
         let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             match_func_data;
         unsafe {
-            gtk_sys::gtk_custom_filter_set_filter_func(
+            ffi::gtk_custom_filter_set_filter_func(
                 self.as_ref().to_glib_none().0,
                 match_func,
                 Box_::into_raw(super_callback0) as *mut _,

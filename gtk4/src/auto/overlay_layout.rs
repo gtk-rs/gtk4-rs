@@ -2,24 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::LayoutManager;
 use glib::object::Cast;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use LayoutManager;
 
-glib_wrapper! {
-    pub struct OverlayLayout(Object<gtk_sys::GtkOverlayLayout, gtk_sys::GtkOverlayLayoutClass>) @extends LayoutManager;
+glib::glib_wrapper! {
+    pub struct OverlayLayout(Object<ffi::GtkOverlayLayout, ffi::GtkOverlayLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_overlay_layout_get_type(),
+        get_type => || ffi::gtk_overlay_layout_get_type(),
     }
 }
 
 impl OverlayLayout {
     pub fn new() -> OverlayLayout {
         assert_initialized_main_thread!();
-        unsafe { LayoutManager::from_glib_full(gtk_sys::gtk_overlay_layout_new()).unsafe_cast() }
+        unsafe { LayoutManager::from_glib_full(ffi::gtk_overlay_layout_new()).unsafe_cast() }
     }
 }
 

@@ -2,21 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::LayoutChild;
+use crate::Orientation;
+use crate::SizeRequestMode;
+use crate::Widget;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 use std::mem;
-use LayoutChild;
-use Orientation;
-use SizeRequestMode;
-use Widget;
 
-glib_wrapper! {
-    pub struct LayoutManager(Object<gtk_sys::GtkLayoutManager, gtk_sys::GtkLayoutManagerClass>);
+glib::glib_wrapper! {
+    pub struct LayoutManager(Object<ffi::GtkLayoutManager, ffi::GtkLayoutManagerClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_layout_manager_get_type(),
+        get_type => || ffi::gtk_layout_manager_get_type(),
     }
 }
 
@@ -44,7 +44,7 @@ pub trait LayoutManagerExt: 'static {
 impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
     fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32) {
         unsafe {
-            gtk_sys::gtk_layout_manager_allocate(
+            ffi::gtk_layout_manager_allocate(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 width,
@@ -56,7 +56,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
 
     fn get_layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_layout_manager_get_layout_child(
+            from_glib_none(ffi::gtk_layout_manager_get_layout_child(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
@@ -65,7 +65,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
 
     fn get_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            from_glib(gtk_sys::gtk_layout_manager_get_request_mode(
+            from_glib(ffi::gtk_layout_manager_get_request_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -73,7 +73,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
 
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_layout_manager_get_widget(
+            from_glib_none(ffi::gtk_layout_manager_get_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -81,7 +81,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
 
     fn layout_changed(&self) {
         unsafe {
-            gtk_sys::gtk_layout_manager_layout_changed(self.as_ref().to_glib_none().0);
+            ffi::gtk_layout_manager_layout_changed(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -96,7 +96,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
             let mut natural = mem::MaybeUninit::uninit();
             let mut minimum_baseline = mem::MaybeUninit::uninit();
             let mut natural_baseline = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_layout_manager_measure(
+            ffi::gtk_layout_manager_measure(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 orientation.to_glib(),

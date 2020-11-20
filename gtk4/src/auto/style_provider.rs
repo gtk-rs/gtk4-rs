@@ -2,22 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib_wrapper! {
-    pub struct StyleProvider(Interface<gtk_sys::GtkStyleProvider>);
+glib::glib_wrapper! {
+    pub struct StyleProvider(Interface<ffi::GtkStyleProvider>);
 
     match fn {
-        get_type => || gtk_sys::gtk_style_provider_get_type(),
+        get_type => || ffi::gtk_style_provider_get_type(),
     }
 }
 
@@ -30,8 +29,8 @@ pub trait StyleProviderExt: 'static {
 impl<O: IsA<StyleProvider>> StyleProviderExt for O {
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStyleProvider,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStyleProvider,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StyleProvider>,
         {

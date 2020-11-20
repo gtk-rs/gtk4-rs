@@ -2,26 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::IMContext;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
-use IMContext;
 
-glib_wrapper! {
-    pub struct IMMulticontext(Object<gtk_sys::GtkIMMulticontext, gtk_sys::GtkIMMulticontextClass>) @extends IMContext;
+glib::glib_wrapper! {
+    pub struct IMMulticontext(Object<ffi::GtkIMMulticontext, ffi::GtkIMMulticontextClass>) @extends IMContext;
 
     match fn {
-        get_type => || gtk_sys::gtk_im_multicontext_get_type(),
+        get_type => || ffi::gtk_im_multicontext_get_type(),
     }
 }
 
 impl IMMulticontext {
     pub fn new() -> IMMulticontext {
         assert_initialized_main_thread!();
-        unsafe { IMContext::from_glib_full(gtk_sys::gtk_im_multicontext_new()).unsafe_cast() }
+        unsafe { IMContext::from_glib_full(ffi::gtk_im_multicontext_new()).unsafe_cast() }
     }
 }
 
@@ -34,15 +34,15 @@ impl Default for IMMulticontext {
 pub const NONE_IM_MULTICONTEXT: Option<&IMMulticontext> = None;
 
 pub trait IMMulticontextExt: 'static {
-    fn get_context_id(&self) -> Option<GString>;
+    fn get_context_id(&self) -> Option<glib::GString>;
 
     fn set_context_id(&self, context_id: &str);
 }
 
 impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
-    fn get_context_id(&self) -> Option<GString> {
+    fn get_context_id(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_im_multicontext_get_context_id(
+            from_glib_none(ffi::gtk_im_multicontext_get_context_id(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -50,7 +50,7 @@ impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
 
     fn set_context_id(&self, context_id: &str) {
         unsafe {
-            gtk_sys::gtk_im_multicontext_set_context_id(
+            ffi::gtk_im_multicontext_set_context_id(
                 self.as_ref().to_glib_none().0,
                 context_id.to_glib_none().0,
             );

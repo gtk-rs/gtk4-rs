@@ -2,19 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_wayland_sys;
+use crate::ffi;
+use crate::WaylandSurface;
+use glib;
 use glib::translate::*;
-use glib::GString;
 use std::boxed::Box as Box_;
 use std::fmt;
-use WaylandSurface;
 
-glib_wrapper! {
-    pub struct WaylandToplevel(Object<gdk_wayland_sys::GdkWaylandToplevel>) @extends WaylandSurface, gdk::Surface, @implements gdk::Toplevel;
+glib::glib_wrapper! {
+    pub struct WaylandToplevel(Object<ffi::GdkWaylandToplevel>) @extends WaylandSurface, gdk::Surface, @implements gdk::Toplevel;
 
     match fn {
-        get_type => || gdk_wayland_sys::gdk_wayland_toplevel_get_type(),
+        get_type => || ffi::gdk_wayland_toplevel_get_type(),
     }
 }
 
@@ -22,25 +21,25 @@ impl WaylandToplevel {
     pub fn export_handle<P: Fn(&WaylandToplevel, &str) + 'static>(&self, callback: P) -> bool {
         let callback_data: Box_<P> = Box_::new(callback);
         unsafe extern "C" fn callback_func<P: Fn(&WaylandToplevel, &str) + 'static>(
-            toplevel: *mut gdk_wayland_sys::GdkWaylandToplevel,
+            toplevel: *mut ffi::GdkWaylandToplevel,
             handle: *const libc::c_char,
-            user_data: glib_sys::gpointer,
+            user_data: glib::ffi::gpointer,
         ) {
             let toplevel = from_glib_borrow(toplevel);
-            let handle: Borrowed<GString> = from_glib_borrow(handle);
+            let handle: Borrowed<glib::GString> = from_glib_borrow(handle);
             let callback: &P = &*(user_data as *mut _);
             (*callback)(&toplevel, handle.as_str());
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func_func<P: Fn(&WaylandToplevel, &str) + 'static>(
-            data: glib_sys::gpointer,
+            data: glib::ffi::gpointer,
         ) {
             let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(destroy_func_func::<P> as _);
         let super_callback0: Box_<P> = callback_data;
         unsafe {
-            from_glib(gdk_wayland_sys::gdk_wayland_toplevel_export_handle(
+            from_glib(ffi::gdk_wayland_toplevel_export_handle(
                 self.to_glib_none().0,
                 callback,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -51,7 +50,7 @@ impl WaylandToplevel {
 
     pub fn set_application_id(&self, application_id: &str) {
         unsafe {
-            gdk_wayland_sys::gdk_wayland_toplevel_set_application_id(
+            ffi::gdk_wayland_toplevel_set_application_id(
                 self.to_glib_none().0,
                 application_id.to_glib_none().0,
             );
@@ -60,18 +59,16 @@ impl WaylandToplevel {
 
     pub fn set_transient_for_exported(&self, parent_handle_str: &str) -> bool {
         unsafe {
-            from_glib(
-                gdk_wayland_sys::gdk_wayland_toplevel_set_transient_for_exported(
-                    self.to_glib_none().0,
-                    parent_handle_str.to_glib_none().0,
-                ),
-            )
+            from_glib(ffi::gdk_wayland_toplevel_set_transient_for_exported(
+                self.to_glib_none().0,
+                parent_handle_str.to_glib_none().0,
+            ))
         }
     }
 
     pub fn unexport_handle(&self) {
         unsafe {
-            gdk_wayland_sys::gdk_wayland_toplevel_unexport_handle(self.to_glib_none().0);
+            ffi::gdk_wayland_toplevel_unexport_handle(self.to_glib_none().0);
         }
     }
 }

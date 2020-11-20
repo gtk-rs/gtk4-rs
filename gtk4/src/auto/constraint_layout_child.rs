@@ -2,16 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::LayoutChild;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use LayoutChild;
 
-glib_wrapper! {
-    pub struct ConstraintLayoutChild(Object<gtk_sys::GtkConstraintLayoutChild, gtk_sys::GtkConstraintLayoutChildClass>) @extends LayoutChild;
+glib::glib_wrapper! {
+    pub struct ConstraintLayoutChild(Object<ffi::GtkConstraintLayoutChild, ffi::GtkConstraintLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || gtk_sys::gtk_constraint_layout_child_get_type(),
+        get_type => || ffi::gtk_constraint_layout_child_get_type(),
     }
 }
 

@@ -2,32 +2,32 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::ShortcutAction;
+use glib;
 use glib::object::Cast;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
 use std::fmt;
-use ShortcutAction;
 
-glib_wrapper! {
-    pub struct SignalAction(Object<gtk_sys::GtkSignalAction, gtk_sys::GtkSignalActionClass>) @extends ShortcutAction;
+glib::glib_wrapper! {
+    pub struct SignalAction(Object<ffi::GtkSignalAction, ffi::GtkSignalActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || gtk_sys::gtk_signal_action_get_type(),
+        get_type => || ffi::gtk_signal_action_get_type(),
     }
 }
 
 impl SignalAction {
     pub fn new(signal_name: &str) -> SignalAction {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_signal_action_new(signal_name.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_signal_action_new(signal_name.to_glib_none().0)) }
     }
 
-    pub fn get_signal_name(&self) -> Option<GString> {
+    pub fn get_signal_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_signal_action_get_signal_name(
+            from_glib_none(ffi::gtk_signal_action_get_signal_name(
                 self.to_glib_none().0,
             ))
         }

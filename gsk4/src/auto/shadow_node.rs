@@ -2,26 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::RenderNode;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct ShadowNode(Object<gsk_sys::GskShadowNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct ShadowNode(Object<ffi::GskShadowNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_shadow_node_get_type(),
+        get_type => || ffi::gsk_shadow_node_get_type(),
     }
 }
 
 impl ShadowNode {
     pub fn get_child(&self) -> Option<RenderNode> {
-        unsafe { from_glib_none(gsk_sys::gsk_shadow_node_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_shadow_node_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_n_shadows(&self) -> usize {
-        unsafe { gsk_sys::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
+        unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
     }
 }
 

@@ -2,23 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::ffi;
+use crate::Drop;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Drop;
-use Event;
 
-glib_wrapper! {
-    pub struct DNDEvent(Object<gdk_sys::GdkDNDEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct DNDEvent(Object<ffi::GdkDNDEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_dnd_event_get_type(),
+        get_type => || ffi::gdk_dnd_event_get_type(),
     }
 }
 
 impl DNDEvent {
     pub fn get_drop(&self) -> Option<Drop> {
-        unsafe { from_glib_none(gdk_sys::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
     }
 }
 

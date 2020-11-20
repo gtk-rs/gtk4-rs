@@ -3,6 +3,6 @@
 // DO NOT EDIT
 
 #[allow(unused_imports)]
-use auto::*;
+use crate::auto::*;
 
 pub type Allocation = gdk::Rectangle;

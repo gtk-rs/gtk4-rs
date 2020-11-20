@@ -2,30 +2,29 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::FileChooser;
+use crate::FileChooserAction;
+use crate::FileFilter;
+use crate::NativeDialog;
+use crate::Window;
+use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use FileChooser;
-use FileChooserAction;
-use FileFilter;
-use NativeDialog;
-use Window;
 
-glib_wrapper! {
-    pub struct FileChooserNative(Object<gtk_sys::GtkFileChooserNative, gtk_sys::GtkFileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
+glib::glib_wrapper! {
+    pub struct FileChooserNative(Object<ffi::GtkFileChooserNative, ffi::GtkFileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_file_chooser_native_get_type(),
+        get_type => || ffi::gtk_file_chooser_native_get_type(),
     }
 }
 
@@ -39,7 +38,7 @@ impl FileChooserNative {
     ) -> FileChooserNative {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_file_chooser_native_new(
+            from_glib_full(ffi::gtk_file_chooser_native_new(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 action.to_glib(),
@@ -162,9 +161,9 @@ impl FileChooserNativeBuilder {
 pub const NONE_FILE_CHOOSER_NATIVE: Option<&FileChooserNative> = None;
 
 pub trait FileChooserNativeExt: 'static {
-    fn get_accept_label(&self) -> Option<GString>;
+    fn get_accept_label(&self) -> Option<glib::GString>;
 
-    fn get_cancel_label(&self) -> Option<GString>;
+    fn get_cancel_label(&self) -> Option<glib::GString>;
 
     fn set_accept_label(&self, accept_label: Option<&str>);
 
@@ -178,17 +177,17 @@ pub trait FileChooserNativeExt: 'static {
 }
 
 impl<O: IsA<FileChooserNative>> FileChooserNativeExt for O {
-    fn get_accept_label(&self) -> Option<GString> {
+    fn get_accept_label(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_file_chooser_native_get_accept_label(
+            from_glib_none(ffi::gtk_file_chooser_native_get_accept_label(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_cancel_label(&self) -> Option<GString> {
+    fn get_cancel_label(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_file_chooser_native_get_cancel_label(
+            from_glib_none(ffi::gtk_file_chooser_native_get_cancel_label(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -196,7 +195,7 @@ impl<O: IsA<FileChooserNative>> FileChooserNativeExt for O {
 
     fn set_accept_label(&self, accept_label: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_file_chooser_native_set_accept_label(
+            ffi::gtk_file_chooser_native_set_accept_label(
                 self.as_ref().to_glib_none().0,
                 accept_label.to_glib_none().0,
             );
@@ -205,7 +204,7 @@ impl<O: IsA<FileChooserNative>> FileChooserNativeExt for O {
 
     fn set_cancel_label(&self, cancel_label: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_file_chooser_native_set_cancel_label(
+            ffi::gtk_file_chooser_native_set_cancel_label(
                 self.as_ref().to_glib_none().0,
                 cancel_label.to_glib_none().0,
             );
@@ -217,9 +216,9 @@ impl<O: IsA<FileChooserNative>> FileChooserNativeExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_accept_label_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserNative,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserNative,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FileChooserNative>,
         {
@@ -244,9 +243,9 @@ impl<O: IsA<FileChooserNative>> FileChooserNativeExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cancel_label_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserNative,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserNative,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FileChooserNative>,
         {

@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
 use gdk;
-use gdk_x11_sys;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,14 +11,13 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use gobject_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct X11DeviceManagerXI2(Object<gdk_x11_sys::GdkX11DeviceManagerXI2, gdk_x11_sys::GdkX11DeviceManagerXI2Class>);
+glib::glib_wrapper! {
+    pub struct X11DeviceManagerXI2(Object<ffi::GdkX11DeviceManagerXI2, ffi::GdkX11DeviceManagerXI2Class>);
 
     match fn {
-        get_type => || gdk_x11_sys::gdk_x11_device_manager_xi2_get_type(),
+        get_type => || ffi::gdk_x11_device_manager_xi2_get_type(),
     }
 }
 
@@ -26,8 +25,8 @@ impl X11DeviceManagerXI2 {
     pub fn get_property_display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -40,8 +39,8 @@ impl X11DeviceManagerXI2 {
     pub fn get_property_major(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"major\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -55,8 +54,8 @@ impl X11DeviceManagerXI2 {
     pub fn get_property_minor(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"minor\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -70,8 +69,8 @@ impl X11DeviceManagerXI2 {
     pub fn get_property_opcode(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"opcode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );

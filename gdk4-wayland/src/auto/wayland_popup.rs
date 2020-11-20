@@ -2,17 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_wayland_sys;
+use crate::ffi;
+use crate::WaylandSurface;
 use glib::translate::*;
 use std::fmt;
-use WaylandSurface;
 
-glib_wrapper! {
-    pub struct WaylandPopup(Object<gdk_wayland_sys::GdkWaylandPopup>) @extends WaylandSurface, gdk::Surface, @implements gdk::Popup;
+glib::glib_wrapper! {
+    pub struct WaylandPopup(Object<ffi::GdkWaylandPopup>) @extends WaylandSurface, gdk::Surface, @implements gdk::Popup;
 
     match fn {
-        get_type => || gdk_wayland_sys::gdk_wayland_popup_get_type(),
+        get_type => || ffi::gdk_wayland_popup_get_type(),
     }
 }
 

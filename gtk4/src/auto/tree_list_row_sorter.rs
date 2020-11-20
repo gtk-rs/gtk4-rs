@@ -2,6 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,18 +11,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Sorter;
 
-glib_wrapper! {
-    pub struct TreeListRowSorter(Object<gtk_sys::GtkTreeListRowSorter, gtk_sys::GtkTreeListRowSorterClass>) @extends Sorter;
+glib::glib_wrapper! {
+    pub struct TreeListRowSorter(Object<ffi::GtkTreeListRowSorter, ffi::GtkTreeListRowSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_list_row_sorter_get_type(),
+        get_type => || ffi::gtk_tree_list_row_sorter_get_type(),
     }
 }
 
@@ -28,7 +27,7 @@ impl TreeListRowSorter {
     pub fn new<P: IsA<Sorter>>(sorter: Option<&P>) -> TreeListRowSorter {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_list_row_sorter_new(
+            from_glib_full(ffi::gtk_tree_list_row_sorter_new(
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
@@ -76,7 +75,7 @@ pub trait TreeListRowSorterExt: 'static {
 impl<O: IsA<TreeListRowSorter>> TreeListRowSorterExt for O {
     fn get_sorter(&self) -> Option<Sorter> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_list_row_sorter_get_sorter(
+            from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -84,7 +83,7 @@ impl<O: IsA<TreeListRowSorter>> TreeListRowSorterExt for O {
 
     fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_tree_list_row_sorter_set_sorter(
+            ffi::gtk_tree_list_row_sorter_set_sorter(
                 self.as_ref().to_glib_none().0,
                 sorter.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -93,9 +92,9 @@ impl<O: IsA<TreeListRowSorter>> TreeListRowSorterExt for O {
 
     fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeListRowSorter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeListRowSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeListRowSorter>,
         {

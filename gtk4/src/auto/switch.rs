@@ -2,6 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Actionable;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use gdk;
 use glib;
 use glib::object::Cast;
@@ -13,60 +23,48 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Actionable;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Switch(Object<gtk_sys::GtkSwitch>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+glib::glib_wrapper! {
+    pub struct Switch(Object<ffi::GtkSwitch>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || gtk_sys::gtk_switch_get_type(),
+        get_type => || ffi::gtk_switch_get_type(),
     }
 }
 
 impl Switch {
     pub fn new() -> Switch {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_switch_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_switch_new()).unsafe_cast() }
     }
 
     pub fn get_active(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_switch_get_active(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_switch_get_active(self.to_glib_none().0)) }
     }
 
     pub fn get_state(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_switch_get_state(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_switch_get_state(self.to_glib_none().0)) }
     }
 
     pub fn set_active(&self, is_active: bool) {
         unsafe {
-            gtk_sys::gtk_switch_set_active(self.to_glib_none().0, is_active.to_glib());
+            ffi::gtk_switch_set_active(self.to_glib_none().0, is_active.to_glib());
         }
     }
 
     pub fn set_state(&self, state: bool) {
         unsafe {
-            gtk_sys::gtk_switch_set_state(self.to_glib_none().0, state.to_glib());
+            ffi::gtk_switch_set_state(self.to_glib_none().0, state.to_glib());
         }
     }
 
     pub fn connect_activate<F: Fn(&Switch) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&Switch) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSwitch,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -86,7 +84,7 @@ impl Switch {
 
     pub fn emit_activate(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("activate", &[])
                 .unwrap()
         };
@@ -99,10 +97,10 @@ impl Switch {
         unsafe extern "C" fn state_set_trampoline<
             F: Fn(&Switch, bool) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkSwitch,
-            state: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkSwitch,
+            state: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(state)).to_glib()
         }
@@ -124,9 +122,9 @@ impl Switch {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&Switch) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSwitch,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -146,9 +144,9 @@ impl Switch {
 
     pub fn connect_property_state_notify<F: Fn(&Switch) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_trampoline<F: Fn(&Switch) + 'static>(
-            this: *mut gtk_sys::GtkSwitch,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSwitch,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

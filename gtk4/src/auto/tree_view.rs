@@ -2,6 +2,29 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::CellRenderer;
+use crate::ConstraintTarget;
+use crate::Editable;
+use crate::LayoutManager;
+use crate::MovementStep;
+use crate::Overflow;
+use crate::Scrollable;
+use crate::ScrollablePolicy;
+use crate::Tooltip;
+use crate::TreeIter;
+use crate::TreeModel;
+use crate::TreePath;
+use crate::TreeSelection;
+use crate::TreeViewColumn;
+use crate::TreeViewDropPosition;
+use crate::TreeViewGridLines;
+use crate::Widget;
 use gdk;
 use glib;
 use glib::object::Cast;
@@ -10,60 +33,34 @@ use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use CellRenderer;
-use ConstraintTarget;
-use Editable;
-use LayoutManager;
-use MovementStep;
-use Overflow;
-use Scrollable;
-use ScrollablePolicy;
-use Tooltip;
-use TreeIter;
-use TreeModel;
-use TreePath;
-use TreeSelection;
-use TreeViewColumn;
-use TreeViewDropPosition;
-use TreeViewGridLines;
-use Widget;
 
-glib_wrapper! {
-    pub struct TreeView(Object<gtk_sys::GtkTreeView, gtk_sys::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+glib::glib_wrapper! {
+    pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_view_get_type(),
+        get_type => || ffi::gtk_tree_view_get_type(),
     }
 }
 
 impl TreeView {
     pub fn new() -> TreeView {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_tree_view_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_tree_view_new()).unsafe_cast() }
     }
 
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> TreeView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_tree_view_new_with_model(
+            Widget::from_glib_none(ffi::gtk_tree_view_new_with_model(
                 model.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -984,7 +981,7 @@ pub trait TreeViewExt: 'static {
 impl<O: IsA<TreeView>> TreeViewExt for O {
     fn append_column(&self, column: &TreeViewColumn) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_view_append_column(
+            ffi::gtk_tree_view_append_column(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
             )
@@ -993,13 +990,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn collapse_all(&self) {
         unsafe {
-            gtk_sys::gtk_tree_view_collapse_all(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_view_collapse_all(self.as_ref().to_glib_none().0);
         }
     }
 
     fn collapse_row(&self, path: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_collapse_row(
+            from_glib(ffi::gtk_tree_view_collapse_row(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
@@ -1008,7 +1005,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn columns_autosize(&self) {
         unsafe {
-            gtk_sys::gtk_tree_view_columns_autosize(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_view_columns_autosize(self.as_ref().to_glib_none().0);
         }
     }
 
@@ -1016,7 +1013,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut tx = mem::MaybeUninit::uninit();
             let mut ty = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_bin_window_to_tree_coords(
+            ffi::gtk_tree_view_convert_bin_window_to_tree_coords(
                 self.as_ref().to_glib_none().0,
                 bx,
                 by,
@@ -1033,7 +1030,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut wx = mem::MaybeUninit::uninit();
             let mut wy = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_bin_window_to_widget_coords(
+            ffi::gtk_tree_view_convert_bin_window_to_widget_coords(
                 self.as_ref().to_glib_none().0,
                 bx,
                 by,
@@ -1050,7 +1047,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut bx = mem::MaybeUninit::uninit();
             let mut by = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_tree_to_bin_window_coords(
+            ffi::gtk_tree_view_convert_tree_to_bin_window_coords(
                 self.as_ref().to_glib_none().0,
                 tx,
                 ty,
@@ -1067,7 +1064,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut wx = mem::MaybeUninit::uninit();
             let mut wy = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_tree_to_widget_coords(
+            ffi::gtk_tree_view_convert_tree_to_widget_coords(
                 self.as_ref().to_glib_none().0,
                 tx,
                 ty,
@@ -1084,7 +1081,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut bx = mem::MaybeUninit::uninit();
             let mut by = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_widget_to_bin_window_coords(
+            ffi::gtk_tree_view_convert_widget_to_bin_window_coords(
                 self.as_ref().to_glib_none().0,
                 wx,
                 wy,
@@ -1101,7 +1098,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut tx = mem::MaybeUninit::uninit();
             let mut ty = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_convert_widget_to_tree_coords(
+            ffi::gtk_tree_view_convert_widget_to_tree_coords(
                 self.as_ref().to_glib_none().0,
                 wx,
                 wy,
@@ -1116,7 +1113,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_view_create_row_drag_icon(
+            from_glib_full(ffi::gtk_tree_view_create_row_drag_icon(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
@@ -1125,7 +1122,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
-            gtk_sys::gtk_tree_view_enable_model_drag_dest(
+            ffi::gtk_tree_view_enable_model_drag_dest(
                 self.as_ref().to_glib_none().0,
                 formats.to_glib_none().0,
                 actions.to_glib(),
@@ -1140,7 +1137,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         actions: gdk::DragAction,
     ) {
         unsafe {
-            gtk_sys::gtk_tree_view_enable_model_drag_source(
+            ffi::gtk_tree_view_enable_model_drag_source(
                 self.as_ref().to_glib_none().0,
                 start_button_mask.to_glib(),
                 formats.to_glib_none().0,
@@ -1151,13 +1148,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn expand_all(&self) {
         unsafe {
-            gtk_sys::gtk_tree_view_expand_all(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_view_expand_all(self.as_ref().to_glib_none().0);
         }
     }
 
     fn expand_row(&self, path: &TreePath, open_all: bool) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_expand_row(
+            from_glib(ffi::gtk_tree_view_expand_row(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 open_all.to_glib(),
@@ -1167,7 +1164,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn expand_to_path(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_view_expand_to_path(
+            ffi::gtk_tree_view_expand_to_path(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
@@ -1176,7 +1173,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_activate_on_single_click(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_activate_on_single_click(
+            from_glib(ffi::gtk_tree_view_get_activate_on_single_click(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1189,7 +1186,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_background_area(
+            ffi::gtk_tree_view_get_background_area(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 column.to_glib_none().0,
@@ -1206,7 +1203,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_cell_area(
+            ffi::gtk_tree_view_get_cell_area(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 column.to_glib_none().0,
@@ -1218,7 +1215,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_column(&self, n: i32) -> Option<TreeViewColumn> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_view_get_column(
+            from_glib_none(ffi::gtk_tree_view_get_column(
                 self.as_ref().to_glib_none().0,
                 n,
             ))
@@ -1227,7 +1224,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_columns(&self) -> Vec<TreeViewColumn> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_tree_view_get_columns(
+            FromGlibPtrContainer::from_glib_container(ffi::gtk_tree_view_get_columns(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1237,7 +1234,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut focus_column = ptr::null_mut();
-            gtk_sys::gtk_tree_view_get_cursor(
+            ffi::gtk_tree_view_get_cursor(
                 self.as_ref().to_glib_none().0,
                 &mut path,
                 &mut focus_column,
@@ -1254,7 +1251,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_tree_view_get_dest_row_at_pos(
+            let ret = from_glib(ffi::gtk_tree_view_get_dest_row_at_pos(
                 self.as_ref().to_glib_none().0,
                 drag_x,
                 drag_y,
@@ -1274,7 +1271,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_tree_view_get_drag_dest_row(
+            ffi::gtk_tree_view_get_drag_dest_row(
                 self.as_ref().to_glib_none().0,
                 &mut path,
                 pos.as_mut_ptr(),
@@ -1286,7 +1283,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_enable_search(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_enable_search(
+            from_glib(ffi::gtk_tree_view_get_enable_search(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1294,7 +1291,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_enable_tree_lines(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_enable_tree_lines(
+            from_glib(ffi::gtk_tree_view_get_enable_tree_lines(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1302,7 +1299,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_expander_column(&self) -> Option<TreeViewColumn> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_view_get_expander_column(
+            from_glib_none(ffi::gtk_tree_view_get_expander_column(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1310,7 +1307,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_fixed_height_mode(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_fixed_height_mode(
+            from_glib(ffi::gtk_tree_view_get_fixed_height_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1318,7 +1315,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_grid_lines(&self) -> TreeViewGridLines {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_grid_lines(
+            from_glib(ffi::gtk_tree_view_get_grid_lines(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1326,7 +1323,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_headers_clickable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_headers_clickable(
+            from_glib(ffi::gtk_tree_view_get_headers_clickable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1334,7 +1331,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_headers_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_headers_visible(
+            from_glib(ffi::gtk_tree_view_get_headers_visible(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1342,7 +1339,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_hover_expand(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_hover_expand(
+            from_glib(ffi::gtk_tree_view_get_hover_expand(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1350,26 +1347,22 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_hover_selection(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_hover_selection(
+            from_glib(ffi::gtk_tree_view_get_hover_selection(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_level_indentation(&self) -> i32 {
-        unsafe { gtk_sys::gtk_tree_view_get_level_indentation(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_view_get_level_indentation(self.as_ref().to_glib_none().0) }
     }
 
     fn get_model(&self) -> Option<TreeModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_tree_view_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_tree_view_get_model(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_n_columns(&self) -> u32 {
-        unsafe { gtk_sys::gtk_tree_view_get_n_columns(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_view_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
     fn get_path_at_pos(
@@ -1382,7 +1375,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let mut column = ptr::null_mut();
             let mut cell_x = mem::MaybeUninit::uninit();
             let mut cell_y = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_tree_view_get_path_at_pos(
+            let ret = from_glib(ffi::gtk_tree_view_get_path_at_pos(
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
@@ -1403,43 +1396,43 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_reorderable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_reorderable(
+            from_glib(ffi::gtk_tree_view_get_reorderable(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_row_separator_func() }
+    //    unsafe { TODO: call ffi:gtk_tree_view_get_row_separator_func() }
     //}
 
     fn get_rubber_banding(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_rubber_banding(
+            from_glib(ffi::gtk_tree_view_get_rubber_banding(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_search_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_tree_view_get_search_column(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_view_get_search_column(self.as_ref().to_glib_none().0) }
     }
 
     fn get_search_entry(&self) -> Option<Editable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_view_get_search_entry(
+            from_glib_none(ffi::gtk_tree_view_get_search_entry(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn get_search_equal_func(&self) -> Option<Box_<dyn Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>> {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_get_search_equal_func() }
+    //    unsafe { TODO: call ffi:gtk_tree_view_get_search_equal_func() }
     //}
 
     fn get_selection(&self) -> TreeSelection {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_view_get_selection(
+            from_glib_none(ffi::gtk_tree_view_get_selection(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1447,14 +1440,14 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_show_expanders(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_get_show_expanders(
+            from_glib(ffi::gtk_tree_view_get_show_expanders(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_tooltip_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_tree_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
     }
 
     fn get_tooltip_context(
@@ -1467,7 +1460,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let mut model = ptr::null_mut();
             let mut path = ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_view_get_tooltip_context(
+            let ret = from_glib(ffi::gtk_tree_view_get_tooltip_context(
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
@@ -1488,7 +1481,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             let mut start_path = ptr::null_mut();
             let mut end_path = ptr::null_mut();
-            let ret = from_glib(gtk_sys::gtk_tree_view_get_visible_range(
+            let ret = from_glib(ffi::gtk_tree_view_get_visible_range(
                 self.as_ref().to_glib_none().0,
                 &mut start_path,
                 &mut end_path,
@@ -1504,7 +1497,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn get_visible_rect(&self) -> gdk::Rectangle {
         unsafe {
             let mut visible_rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_tree_view_get_visible_rect(
+            ffi::gtk_tree_view_get_visible_rect(
                 self.as_ref().to_glib_none().0,
                 visible_rect.to_glib_none_mut().0,
             );
@@ -1514,7 +1507,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn insert_column(&self, column: &TreeViewColumn, position: i32) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_view_insert_column(
+            ffi::gtk_tree_view_insert_column(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
                 position,
@@ -1523,7 +1516,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     //fn insert_column_with_attributes<P: IsA<CellRenderer>>(&self, position: i32, title: &str, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> i32 {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_view_insert_column_with_attributes() }
+    //    unsafe { TODO: call ffi:gtk_tree_view_insert_column_with_attributes() }
     //}
 
     fn insert_column_with_data_func<
@@ -1541,11 +1534,11 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<CellRenderer>,
             Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
         >(
-            tree_column: *mut gtk_sys::GtkTreeViewColumn,
-            cell: *mut gtk_sys::GtkCellRenderer,
-            tree_model: *mut gtk_sys::GtkTreeModel,
-            iter: *mut gtk_sys::GtkTreeIter,
-            data: glib_sys::gpointer,
+            tree_column: *mut ffi::GtkTreeViewColumn,
+            cell: *mut ffi::GtkCellRenderer,
+            tree_model: *mut ffi::GtkTreeModel,
+            iter: *mut ffi::GtkTreeIter,
+            data: glib::ffi::gpointer,
         ) {
             let tree_column = from_glib_borrow(tree_column);
             let cell = from_glib_borrow(cell);
@@ -1559,14 +1552,14 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<CellRenderer>,
             Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
         >(
-            data: glib_sys::gpointer,
+            data: glib::ffi::gpointer,
         ) {
             let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
         }
         let destroy_call6 = Some(dnotify_func::<P, Q> as _);
         let super_callback0: Box_<Q> = func_data;
         unsafe {
-            gtk_sys::gtk_tree_view_insert_column_with_data_func(
+            ffi::gtk_tree_view_insert_column_with_data_func(
                 self.as_ref().to_glib_none().0,
                 position,
                 title.to_glib_none().0,
@@ -1588,7 +1581,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let mut column = ptr::null_mut();
             let mut cell_x = mem::MaybeUninit::uninit();
             let mut cell_y = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_tree_view_is_blank_at_pos(
+            let ret = from_glib(ffi::gtk_tree_view_is_blank_at_pos(
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
@@ -1609,7 +1602,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn is_rubber_banding_active(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_is_rubber_banding_active(
+            from_glib(ffi::gtk_tree_view_is_rubber_banding_active(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1618,9 +1611,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn map_expanded_rows<P: FnMut(&TreeView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeView, &TreePath)>(
-            tree_view: *mut gtk_sys::GtkTreeView,
-            path: *mut gtk_sys::GtkTreePath,
-            user_data: glib_sys::gpointer,
+            tree_view: *mut ffi::GtkTreeView,
+            path: *mut ffi::GtkTreePath,
+            user_data: glib::ffi::gpointer,
         ) {
             let tree_view = from_glib_borrow(tree_view);
             let path = from_glib_borrow(path);
@@ -1630,7 +1623,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
         unsafe {
-            gtk_sys::gtk_tree_view_map_expanded_rows(
+            ffi::gtk_tree_view_map_expanded_rows(
                 self.as_ref().to_glib_none().0,
                 func,
                 super_callback0 as *const _ as usize as *mut _,
@@ -1640,7 +1633,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn move_column_after(&self, column: &TreeViewColumn, base_column: Option<&TreeViewColumn>) {
         unsafe {
-            gtk_sys::gtk_tree_view_move_column_after(
+            ffi::gtk_tree_view_move_column_after(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
                 base_column.to_glib_none().0,
@@ -1650,7 +1643,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn remove_column(&self, column: &TreeViewColumn) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_view_remove_column(
+            ffi::gtk_tree_view_remove_column(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
             )
@@ -1659,7 +1652,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
         unsafe {
-            gtk_sys::gtk_tree_view_row_activated(
+            ffi::gtk_tree_view_row_activated(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 column.to_glib_none().0,
@@ -1669,7 +1662,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn row_expanded(&self, path: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_view_row_expanded(
+            from_glib(ffi::gtk_tree_view_row_expanded(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
@@ -1685,7 +1678,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         col_align: f32,
     ) {
         unsafe {
-            gtk_sys::gtk_tree_view_scroll_to_cell(
+            ffi::gtk_tree_view_scroll_to_cell(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 column.to_glib_none().0,
@@ -1698,13 +1691,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn scroll_to_point(&self, tree_x: i32, tree_y: i32) {
         unsafe {
-            gtk_sys::gtk_tree_view_scroll_to_point(self.as_ref().to_glib_none().0, tree_x, tree_y);
+            ffi::gtk_tree_view_scroll_to_point(self.as_ref().to_glib_none().0, tree_x, tree_y);
         }
     }
 
     fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_activate_on_single_click(
+            ffi::gtk_tree_view_set_activate_on_single_click(
                 self.as_ref().to_glib_none().0,
                 single.to_glib(),
             );
@@ -1729,12 +1722,12 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             >,
         > = Box_::new(func);
         unsafe extern "C" fn func_func(
-            tree_view: *mut gtk_sys::GtkTreeView,
-            column: *mut gtk_sys::GtkTreeViewColumn,
-            prev_column: *mut gtk_sys::GtkTreeViewColumn,
-            next_column: *mut gtk_sys::GtkTreeViewColumn,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            tree_view: *mut ffi::GtkTreeView,
+            column: *mut ffi::GtkTreeViewColumn,
+            prev_column: *mut ffi::GtkTreeViewColumn,
+            next_column: *mut ffi::GtkTreeViewColumn,
+            data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let tree_view = from_glib_borrow(tree_view);
             let column = from_glib_borrow(column);
             let prev_column = from_glib_borrow(prev_column);
@@ -1757,7 +1750,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<
                 Option<
                     Box_<
@@ -1777,7 +1770,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             >,
         > = func_data;
         unsafe {
-            gtk_sys::gtk_tree_view_set_column_drag_function(
+            ffi::gtk_tree_view_set_column_drag_function(
                 self.as_ref().to_glib_none().0,
                 func,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -1793,7 +1786,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         start_editing: bool,
     ) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_cursor(
+            ffi::gtk_tree_view_set_cursor(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 focus_column.to_glib_none().0,
@@ -1810,7 +1803,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         start_editing: bool,
     ) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_cursor_on_cell(
+            ffi::gtk_tree_view_set_cursor_on_cell(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 focus_column.to_glib_none().0,
@@ -1822,7 +1815,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_drag_dest_row(&self, path: Option<&TreePath>, pos: TreeViewDropPosition) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_drag_dest_row(
+            ffi::gtk_tree_view_set_drag_dest_row(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 pos.to_glib(),
@@ -1832,7 +1825,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_enable_search(&self, enable_search: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_enable_search(
+            ffi::gtk_tree_view_set_enable_search(
                 self.as_ref().to_glib_none().0,
                 enable_search.to_glib(),
             );
@@ -1841,7 +1834,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_enable_tree_lines(&self, enabled: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_enable_tree_lines(
+            ffi::gtk_tree_view_set_enable_tree_lines(
                 self.as_ref().to_glib_none().0,
                 enabled.to_glib(),
             );
@@ -1850,7 +1843,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_expander_column(&self, column: Option<&TreeViewColumn>) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_expander_column(
+            ffi::gtk_tree_view_set_expander_column(
                 self.as_ref().to_glib_none().0,
                 column.to_glib_none().0,
             );
@@ -1859,7 +1852,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_fixed_height_mode(&self, enable: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_fixed_height_mode(
+            ffi::gtk_tree_view_set_fixed_height_mode(
                 self.as_ref().to_glib_none().0,
                 enable.to_glib(),
             );
@@ -1868,16 +1861,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_grid_lines(&self, grid_lines: TreeViewGridLines) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_grid_lines(
-                self.as_ref().to_glib_none().0,
-                grid_lines.to_glib(),
-            );
+            ffi::gtk_tree_view_set_grid_lines(self.as_ref().to_glib_none().0, grid_lines.to_glib());
         }
     }
 
     fn set_headers_clickable(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_headers_clickable(
+            ffi::gtk_tree_view_set_headers_clickable(
                 self.as_ref().to_glib_none().0,
                 setting.to_glib(),
             );
@@ -1886,7 +1876,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_headers_visible(&self, headers_visible: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_headers_visible(
+            ffi::gtk_tree_view_set_headers_visible(
                 self.as_ref().to_glib_none().0,
                 headers_visible.to_glib(),
             );
@@ -1895,34 +1885,25 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_hover_expand(&self, expand: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_hover_expand(
-                self.as_ref().to_glib_none().0,
-                expand.to_glib(),
-            );
+            ffi::gtk_tree_view_set_hover_expand(self.as_ref().to_glib_none().0, expand.to_glib());
         }
     }
 
     fn set_hover_selection(&self, hover: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_hover_selection(
-                self.as_ref().to_glib_none().0,
-                hover.to_glib(),
-            );
+            ffi::gtk_tree_view_set_hover_selection(self.as_ref().to_glib_none().0, hover.to_glib());
         }
     }
 
     fn set_level_indentation(&self, indentation: i32) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_level_indentation(
-                self.as_ref().to_glib_none().0,
-                indentation,
-            );
+            ffi::gtk_tree_view_set_level_indentation(self.as_ref().to_glib_none().0, indentation);
         }
     }
 
     fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_model(
+            ffi::gtk_tree_view_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -1931,7 +1912,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_reorderable(
+            ffi::gtk_tree_view_set_reorderable(
                 self.as_ref().to_glib_none().0,
                 reorderable.to_glib(),
             );
@@ -1945,10 +1926,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         let func_data: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
             Box_::new(func);
         unsafe extern "C" fn func_func(
-            model: *mut gtk_sys::GtkTreeModel,
-            iter: *mut gtk_sys::GtkTreeIter,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            model: *mut ffi::GtkTreeModel,
+            iter: *mut ffi::GtkTreeIter,
+            data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
             let iter = from_glib_borrow(iter);
             let callback: &Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> =
@@ -1965,7 +1946,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
@@ -1973,7 +1954,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         let super_callback0: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
             func_data;
         unsafe {
-            gtk_sys::gtk_tree_view_set_row_separator_func(
+            ffi::gtk_tree_view_set_row_separator_func(
                 self.as_ref().to_glib_none().0,
                 func,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -1984,22 +1965,19 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_rubber_banding(&self, enable: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_rubber_banding(
-                self.as_ref().to_glib_none().0,
-                enable.to_glib(),
-            );
+            ffi::gtk_tree_view_set_rubber_banding(self.as_ref().to_glib_none().0, enable.to_glib());
         }
     }
 
     fn set_search_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_search_column(self.as_ref().to_glib_none().0, column);
+            ffi::gtk_tree_view_set_search_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_search_entry<P: IsA<Editable>>(&self, entry: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_search_entry(
+            ffi::gtk_tree_view_set_search_entry(
                 self.as_ref().to_glib_none().0,
                 entry.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -2014,14 +1992,14 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe extern "C" fn search_equal_func_func<
             P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static,
         >(
-            model: *mut gtk_sys::GtkTreeModel,
+            model: *mut ffi::GtkTreeModel,
             column: libc::c_int,
             key: *const libc::c_char,
-            iter: *mut gtk_sys::GtkTreeIter,
-            search_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            iter: *mut ffi::GtkTreeIter,
+            search_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
-            let key: Borrowed<GString> = from_glib_borrow(key);
+            let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(search_data as *mut _);
             let res = (*callback)(&model, column, key.as_str(), &iter);
@@ -2031,14 +2009,14 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe extern "C" fn search_destroy_func<
             P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static,
         >(
-            data: glib_sys::gpointer,
+            data: glib::ffi::gpointer,
         ) {
             let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(search_destroy_func::<P> as _);
         let super_callback0: Box_<P> = search_equal_func_data;
         unsafe {
-            gtk_sys::gtk_tree_view_set_search_equal_func(
+            ffi::gtk_tree_view_set_search_equal_func(
                 self.as_ref().to_glib_none().0,
                 search_equal_func,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -2049,7 +2027,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_show_expanders(&self, enabled: bool) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_show_expanders(
+            ffi::gtk_tree_view_set_show_expanders(
                 self.as_ref().to_glib_none().0,
                 enabled.to_glib(),
             );
@@ -2064,7 +2042,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         cell: Option<&P>,
     ) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_tooltip_cell(
+            ffi::gtk_tree_view_set_tooltip_cell(
                 self.as_ref().to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
@@ -2076,13 +2054,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_tooltip_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
+            ffi::gtk_tree_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_tooltip_row(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_view_set_tooltip_row(
+            ffi::gtk_tree_view_set_tooltip_row(
                 self.as_ref().to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
@@ -2092,21 +2070,21 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn unset_rows_drag_dest(&self) {
         unsafe {
-            gtk_sys::gtk_tree_view_unset_rows_drag_dest(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_view_unset_rows_drag_dest(self.as_ref().to_glib_none().0);
         }
     }
 
     fn unset_rows_drag_source(&self) {
         unsafe {
-            gtk_sys::gtk_tree_view_unset_rows_drag_source(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_view_unset_rows_drag_source(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_property_enable_grid_lines(&self) -> TreeViewGridLines {
         unsafe {
             let mut value = Value::from_type(<TreeViewGridLines as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"enable-grid-lines\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -2119,8 +2097,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_property_enable_grid_lines(&self, enable_grid_lines: TreeViewGridLines) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"enable-grid-lines\0".as_ptr() as *const _,
                 Value::from(&enable_grid_lines).to_glib_none().0,
             );
@@ -2129,8 +2107,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn columns_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2152,8 +2130,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_cursor_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cursor_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2181,12 +2159,12 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, bool, bool, bool) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            object: glib_sys::gboolean,
-            p0: glib_sys::gboolean,
-            p1: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            object: glib::ffi::gboolean,
+            p0: glib::ffi::gboolean,
+            p1: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2214,7 +2192,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_expand_collapse_cursor_row(&self, object: bool, p0: bool, p1: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("expand-collapse-cursor-row", &[&object, &p0, &p1])
                 .unwrap()
         };
@@ -2232,13 +2210,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, MovementStep, i32, bool, bool) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            step: gtk_sys::GtkMovementStep,
+            this: *mut ffi::GtkTreeView,
+            step: ffi::GtkMovementStep,
             direction: libc::c_int,
-            extend: glib_sys::gboolean,
-            modify: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            extend: glib::ffi::gboolean,
+            modify: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2273,7 +2251,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         modify: bool,
     ) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("move-cursor", &[&step, &direction, &extend, &modify])
                 .unwrap()
         };
@@ -2291,10 +2269,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, &TreePath, &TreeViewColumn) + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            path: *mut gtk_sys::GtkTreePath,
-            column: *mut gtk_sys::GtkTreeViewColumn,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            path: *mut ffi::GtkTreePath,
+            column: *mut ffi::GtkTreeViewColumn,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2320,7 +2298,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("row-activated", &[&path, &column])
                 .unwrap()
         };
@@ -2334,10 +2312,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, &TreeIter, &TreePath) + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            iter: *mut gtk_sys::GtkTreeIter,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            iter: *mut ffi::GtkTreeIter,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2366,10 +2344,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn row_expanded_trampoline<P, F: Fn(&P, &TreeIter, &TreePath) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            iter: *mut gtk_sys::GtkTreeIter,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            iter: *mut ffi::GtkTreeIter,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2395,9 +2373,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_select_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2419,7 +2397,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_select_all(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-all", &[])
                 .unwrap()
         };
@@ -2434,9 +2412,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn select_cursor_parent_trampoline<P, F: Fn(&P) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2458,7 +2436,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_select_cursor_parent(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-cursor-parent", &[])
                 .unwrap()
         };
@@ -2473,10 +2451,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn select_cursor_row_trampoline<P, F: Fn(&P, bool) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            object: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            object: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2502,7 +2480,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_select_cursor_row(&self, object: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-cursor-row", &[&object])
                 .unwrap()
         };
@@ -2517,9 +2495,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn start_interactive_search_trampoline<P, F: Fn(&P) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2541,7 +2519,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_start_interactive_search(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("start-interactive-search", &[])
                 .unwrap()
         };
@@ -2561,11 +2539,11 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            iter: *mut gtk_sys::GtkTreeIter,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            iter: *mut ffi::GtkTreeIter,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2600,11 +2578,11 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P,
             F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeView,
-            iter: *mut gtk_sys::GtkTreeIter,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            iter: *mut ffi::GtkTreeIter,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2631,9 +2609,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_row_trampoline<P, F: Fn(&P) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2655,7 +2633,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_toggle_cursor_row(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("toggle-cursor-row", &[])
                 .unwrap()
         };
@@ -2667,9 +2645,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) -> bool + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTreeView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TreeView>,
         {
@@ -2691,7 +2669,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn emit_unselect_all(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("unselect-all", &[])
                 .unwrap()
         };
@@ -2706,9 +2684,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_activate_on_single_click_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2733,9 +2711,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_grid_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2760,9 +2738,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_search_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2787,9 +2765,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_tree_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2814,9 +2792,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_expander_column_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2841,9 +2819,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_fixed_height_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2868,9 +2846,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_clickable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2895,9 +2873,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_visible_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2922,9 +2900,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_expand_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2949,9 +2927,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_selection_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -2976,9 +2954,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_level_indentation_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3000,9 +2978,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3024,9 +3002,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3051,9 +3029,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_rubber_banding_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3078,9 +3056,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_column_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3105,9 +3083,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_expanders_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {
@@ -3132,9 +3110,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_column_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeView>,
         {

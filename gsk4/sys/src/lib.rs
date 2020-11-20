@@ -10,13 +10,12 @@
 )]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
-extern crate cairo_sys as cairo;
-extern crate gdk4_sys as gdk;
-extern crate glib_sys as glib;
-extern crate gobject_sys as gobject;
-extern crate graphene_sys as graphene;
-extern crate libc;
-extern crate pango_sys as pango;
+use cairo_sys as cairo;
+use gdk4_sys as gdk;
+use glib_sys as glib;
+use gobject_sys as gobject;
+use graphene_sys as graphene;
+use pango_sys as pango;
 
 #[allow(unused_imports)]
 use libc::{

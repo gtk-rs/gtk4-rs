@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ffi;
+use crate::EventController;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
 use gdk;
-use gdk_sys;
 use glib;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
@@ -12,78 +15,68 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use PropagationLimit;
-use PropagationPhase;
 
-glib_wrapper! {
-    pub struct DropTarget(Object<gtk_sys::GtkDropTarget, gtk_sys::GtkDropTargetClass>) @extends EventController;
+glib::glib_wrapper! {
+    pub struct DropTarget(Object<ffi::GtkDropTarget, ffi::GtkDropTargetClass>) @extends EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_drop_target_get_type(),
+        get_type => || ffi::gtk_drop_target_get_type(),
     }
 }
 
 impl DropTarget {
     pub fn new(type_: glib::types::Type, actions: gdk::DragAction) -> DropTarget {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(gtk_sys::gtk_drop_target_new(
-                type_.to_glib(),
-                actions.to_glib(),
-            ))
-        }
+        unsafe { from_glib_full(ffi::gtk_drop_target_new(type_.to_glib(), actions.to_glib())) }
     }
 
     pub fn get_actions(&self) -> gdk::DragAction {
-        unsafe { from_glib(gtk_sys::gtk_drop_target_get_actions(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
     pub fn get_drop(&self) -> Option<gdk::Drop> {
-        unsafe { from_glib_none(gtk_sys::gtk_drop_target_get_drop(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_drop_target_get_drop(self.to_glib_none().0)) }
     }
 
     pub fn get_formats(&self) -> Option<gdk::ContentFormats> {
-        unsafe { from_glib_full(gtk_sys::gtk_drop_target_get_formats(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
     }
 
     //pub fn get_gtypes(&self) -> /*Unimplemented*/Option<CArray TypeId { ns_id: 0, id: 30 }> {
-    //    unsafe { TODO: call gtk_sys:gtk_drop_target_get_gtypes() }
+    //    unsafe { TODO: call ffi:gtk_drop_target_get_gtypes() }
     //}
 
     pub fn get_preload(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_drop_target_get_preload(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_drop_target_get_preload(self.to_glib_none().0)) }
     }
 
     pub fn get_value(&self) -> Option<glib::Value> {
-        unsafe { from_glib_none(gtk_sys::gtk_drop_target_get_value(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_drop_target_get_value(self.to_glib_none().0)) }
     }
 
     pub fn reject(&self) {
         unsafe {
-            gtk_sys::gtk_drop_target_reject(self.to_glib_none().0);
+            ffi::gtk_drop_target_reject(self.to_glib_none().0);
         }
     }
 
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            gtk_sys::gtk_drop_target_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
     //pub fn set_gtypes(&self, types: /*Unimplemented*/Option<&CArray TypeId { ns_id: 0, id: 30 }>) {
-    //    unsafe { TODO: call gtk_sys:gtk_drop_target_set_gtypes() }
+    //    unsafe { TODO: call ffi:gtk_drop_target_set_gtypes() }
     //}
 
     pub fn set_preload(&self, preload: bool) {
         unsafe {
-            gtk_sys::gtk_drop_target_set_preload(self.to_glib_none().0, preload.to_glib());
+            ffi::gtk_drop_target_set_preload(self.to_glib_none().0, preload.to_glib());
         }
     }
 
@@ -92,10 +85,10 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn accept_trampoline<F: Fn(&DropTarget, &gdk::Drop) -> bool + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            drop: *mut gdk_sys::GdkDrop,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkDropTarget,
+            drop: *mut gdk::ffi::GdkDrop,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop)).to_glib()
         }
@@ -119,11 +112,11 @@ impl DropTarget {
         unsafe extern "C" fn enter_trampoline<
             F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTarget,
+            this: *mut ffi::GtkDropTarget,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> gdk_sys::GdkDragAction {
+            f: glib::ffi::gpointer,
+        ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y).to_glib()
         }
@@ -142,8 +135,8 @@ impl DropTarget {
 
     pub fn connect_leave<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -168,11 +161,11 @@ impl DropTarget {
         unsafe extern "C" fn motion_trampoline<
             F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTarget,
+            this: *mut ffi::GtkDropTarget,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> gdk_sys::GdkDragAction {
+            f: glib::ffi::gpointer,
+        ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y).to_glib()
         }
@@ -194,9 +187,9 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -219,9 +212,9 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_drop_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -244,9 +237,9 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -269,9 +262,9 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_preload_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -294,9 +287,9 @@ impl DropTarget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut gtk_sys::GtkDropTarget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
