@@ -11,6 +11,7 @@ pub mod check_button;
 pub mod dialog;
 pub mod drawing_area;
 pub mod entry;
+pub mod filter;
 pub mod flow_box_child;
 pub mod layout_manager;
 pub mod list_box_row;
@@ -33,6 +34,7 @@ pub mod prelude {
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
     pub use super::entry::EntryImpl;
+    pub use super::filter::FilterImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::layout_manager::LayoutManagerImpl;
     pub use super::list_box_row::ListBoxRowImpl;
