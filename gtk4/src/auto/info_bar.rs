@@ -59,7 +59,7 @@ impl InfoBar {
         }
     }
 
-    pub fn add_button(&self, button_text: &str, response_id: ResponseType) -> Option<Button> {
+    pub fn add_button(&self, button_text: &str, response_id: ResponseType) -> Button {
         unsafe {
             from_glib_none(gtk_sys::gtk_info_bar_add_button(
                 self.to_glib_none().0,

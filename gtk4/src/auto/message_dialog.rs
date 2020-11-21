@@ -61,7 +61,7 @@ impl MessageDialog {
     //    unsafe { TODO: call gtk_sys:gtk_message_dialog_format_secondary_text() }
     //}
 
-    pub fn get_message_area(&self) -> Option<Widget> {
+    pub fn get_message_area(&self) -> Widget {
         unsafe {
             from_glib_none(gtk_sys::gtk_message_dialog_get_message_area(
                 self.to_glib_none().0,

@@ -404,33 +404,50 @@ status = "generate"
 name = "Gtk.AboutDialog"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_program_name"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.Actionable"
 status = "generate"
+trust_return_value_nullability = true
 manual_traits = ["ActionableExtManual"]
     [[object.property]]
     #value glib.Variant
     name = "action-target"
     ignore = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_action_target_value"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.ActionBar"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.Adjustment"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.AlternativeTrigger"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.AppChooserButton"
@@ -441,34 +458,51 @@ generate_builder = true
 name = "Gtk.AppChooserDialog"
 status = "generate"
 generate_builder = true
-    [[object.function]]
-    name = "get_widget"
-        [object.function.return]
-        nullable = false
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.AppChooserWidget"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_default_text"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.Application"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
     ignore = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_menu_by_id"
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "get_menubar"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.ApplicationWindow"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.AspectFrame"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.Assistant"
@@ -765,15 +799,8 @@ manual_traits = ["ConstraintGuideExtManual"]
 name = "Gtk.Dialog"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 manual_traits = ["DialogExtManual"]
-    [[object.function]]
-    name = "add_button"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_content_area"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "get_response_for_widget"
     ignore = true
@@ -842,11 +869,8 @@ manual_traits = ["EditableExtManual"]
 name = "Gtk.Entry"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 manual_traits = ["EntryExtManual"]
-    [[object.function]]
-    name = "get_buffer"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "get_invisible_char"
     manual = true
@@ -856,15 +880,16 @@ manual_traits = ["EntryExtManual"]
         name = "ch"
         nullable = true
     [[object.function]]
-    name = "set_placeholder_text"
-        [[object.function.parameter]]
-        name = "text"
-        nullable = true
-    [[object.function]]
     name = "set_tabs"
         [[object.function.parameter]]
         name = "tabs"
         const = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_completion"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.EntryBuffer"
@@ -1145,6 +1170,7 @@ manual_traits = ["IMContextSimpleExtManual"]
 name = "Gtk.InfoBar"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.KeyvalTrigger"
@@ -1155,9 +1181,16 @@ generate_builder = true
 name = "Gtk.Label"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
+    [[object.function]]
+    name = "get_extra_menu"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.LevelBar"
@@ -1254,6 +1287,7 @@ generate_builder = true
 name = "Gtk.MessageDialog"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 
 [[object]]
 name = "Gtk.MnemonicTrigger"
@@ -1639,6 +1673,7 @@ generate_builder = true
 name = "Gtk.SpinButton"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 manual_traits = ["SpinButtonExtManual"]
     [[object.function]]
     name = "get_adjustment"
@@ -1727,15 +1762,8 @@ generate_builder = true
 name = "Gtk.TextBuffer"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = true
 manual_traits = ["TextBufferExtManual"]
-    [[object.function]]
-    name = "register_deserialize_tagset"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "register_serialize_tagset"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "paste_clipboard"
         [[object.function.parameter]]

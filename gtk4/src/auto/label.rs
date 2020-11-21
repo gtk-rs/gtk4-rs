@@ -79,11 +79,11 @@ impl Label {
         unsafe { from_glib(gtk_sys::gtk_label_get_justify(self.to_glib_none().0)) }
     }
 
-    pub fn get_label(&self) -> Option<GString> {
+    pub fn get_label(&self) -> GString {
         unsafe { from_glib_none(gtk_sys::gtk_label_get_label(self.to_glib_none().0)) }
     }
 
-    pub fn get_layout(&self) -> Option<pango::Layout> {
+    pub fn get_layout(&self) -> pango::Layout {
         unsafe { from_glib_none(gtk_sys::gtk_label_get_layout(self.to_glib_none().0)) }
     }
 
@@ -153,7 +153,7 @@ impl Label {
         }
     }
 
-    pub fn get_text(&self) -> Option<GString> {
+    pub fn get_text(&self) -> GString {
         unsafe { from_glib_none(gtk_sys::gtk_label_get_text(self.to_glib_none().0)) }
     }
 
