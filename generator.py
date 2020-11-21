@@ -2,6 +2,7 @@
 
 from os import listdir
 from os.path import isfile, isdir, join
+import argparse
 import subprocess
 import sys
 
@@ -9,6 +10,9 @@ import sys
 NOTHING_TO_BE_DONE = 0
 NEED_UPDATE = 1
 FAILURE = 2
+
+DEFAULT_GIR_DIRECTORY = 'gir-files'
+DEFAULT_GIR_PATH = './gir/target/release/gir'
 
 
 def run_command(command, folder=None):
@@ -31,7 +35,7 @@ def update_workspace():
 
 def ask_yes_no_question(question, conf):
     question = '{} [y/N] '.format(question)
-    if conf["yes"] is True:
+    if conf.yes:
         print(question)
         return True
     if sys.version_info[0] < 3:
@@ -64,7 +68,7 @@ def build_gir_if_needed(updated_submodule):
     if updated_submodule == FAILURE:
         return False
     print('=> Building gir...')
-    if update_workspace() is True:
+    if update_workspace():
         print('<= Done!')
     else:
         print('<= Failed...')
@@ -78,102 +82,69 @@ def regen_crates(path, conf, level=0):
         if isdir(entry_file):
             if level < 2 and not regen_crates(entry_file, conf, level + 1):
                 return False
-        elif entry == 'Gir.toml':
+        elif entry.startswith("Gir") and entry.endswith(".toml"):
             print('==> Regenerating "{}"...'.format(entry_file))
 
-            args = [conf["gir_path"], '-c', entry_file, '-o', path, '-d', conf["gir_files"]]
+            args = [conf.gir_path, '-c', entry_file, '-o', path, '-d', conf.gir_directory]
             if level > 1:
                 args.append('-m')
                 args.append('sys')
             error = False
             try:
-                error = run_command(args) is False
+                error = not run_command(args)
             except Exception as err:
                 print('The following error occurred: {}'.format(err))
                 error = True
-            if error is True:
+            if error:
                 if not ask_yes_no_question('Do you want to continue?', conf):
                     return False
             print('<== Done!')
     return True
 
 
-def print_help():
-    print("generator.py            Helper to regenerate gtk-rs crates using gir.")
-    print("")
-    print("[OPTIONS]")
-    print("  -h | --help           Display this message")
-    print("  --gir-path [PATH]     Sets the path of the gir executable to run")
-    print("                        (`./gir/target/release/gir` by default)")
-    print("  --gir-files [PATH]    Sets the path of the gir-files folder")
-    print("                        (`gir-files` by default)")
-    print("  --yes                 Always answer `yes` to any question asked by the script")
-    print("  --no-fmt              If set, this script won't run `cargo fmt`")
-
-
 def parse_args(args):
-    conf = {
-        "gir_path": None,
-        "gir_files": None,
-        "yes": False,
-        "run_fmt": True,
-    }
-    i = 0
+    parser = argparse.ArgumentParser(description='Helper to regenerate gtk-rs crates using gir.',
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    while i < len(args):
-        arg = args[i]
-        if arg == "-h" or arg == "--help":
-            print_help()
-            return None
-        elif arg == "--gir-path":
-            i += 1
-            if i >= len(args):
-                print("Expected argument after `--gir-path` option...")
-                return None
-            if not isfile(args[i]):
-                print("`{}` file doesn't exist. Aborting...".format(args[i]))
-                return None
-            conf["gir_path"] = args[i]
-        elif arg == "--gir-files":
-            i += 1
-            if i >= len(args):
-                print("Expected argument after `--gir-files` option...")
-                return None
-            if not isdir(args[i]):
-                print("`{}` folder doesn't exist. Aborting...".format(args[i]))
-                return None
-            conf["gir_files"] = args[i]
-        elif arg == "--yes":
-            conf["yes"] = True
-        elif arg == "--no-fmt":
-            conf["run_fmt"] = False
-        else:
-            print("Unknown argument `{}`.".format(arg))
-            return None
-        i += 1
-    return conf
+    parser.add_argument('path', nargs="*", default='.',
+                        help='Paths in which to look for Gir.toml files')
+    parser.add_argument('--gir-directory', default=DEFAULT_GIR_DIRECTORY,
+                        help='Path of the gir-files folder')
+    parser.add_argument('--gir-path', default=DEFAULT_GIR_PATH,
+                        help='Path of the gir executable to run')
+    parser.add_argument('--yes', action='store_true',
+                        help=' Always answer `yes` to any question asked by the script')
+    parser.add_argument('--no-fmt', action='store_true',
+                        help='If set, this script will not run `cargo fmt`')
+
+    return parser.parse_args()
 
 
 def main():
     gir_path = None
 
     conf = parse_args(sys.argv[1:])
-    if conf is None:
-        return 1
 
-    if conf["gir_files"] is None:
+    if conf.gir_directory == DEFAULT_GIR_DIRECTORY:
         if def_check_submodule("gir-files", conf) == FAILURE:
             return 1
-        conf["gir_files"] = "gir-files"
-    if conf["gir_path"] is None:
+    elif not isdir(conf.gir_directory):
+        print("`{}` dir doesn't exist. Aborting...".format(path))
+        return 1
+
+    if conf.gir_path == DEFAULT_GIR_PATH:
         if not build_gir_if_needed(def_check_submodule("gir", conf)):
             return 1
-        conf["gir_path"] = "./gir/target/release/gir"
+    elif not isfile(conf.gir_path):
+        print("`{}` file doesn't exist. Aborting...".format(path))
+        return 1
 
     print('=> Regenerating crates...')
-    if not regen_crates(".", conf):
-        return 1
-    if conf["run_fmt"] is True and not run_command(['cargo', 'fmt']):
+    for path in conf.path:
+        print('=> Looking in path `{}`'.format(path))
+        if not regen_crates(path, conf):
+            return 1
+    if not conf.no_fmt and not run_command(['cargo', 'fmt']):
         return 1
     print('<= Done!')
     print("Don't forget to check if everything has been correctly generated!")
