@@ -1,6 +1,4 @@
-#[doc(hidden)]
-pub extern crate gdk4_wayland_sys as gdk_wayland_sys;
-pub use gdk4_wayland_sys as ffi;
+pub use ffi;
 
 extern crate gdk;
 extern crate glib;

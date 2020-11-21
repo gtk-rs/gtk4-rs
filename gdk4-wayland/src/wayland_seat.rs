@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::WaylandSeat;
 use glib::translate::ToGlibPtr;
 use glib::IsA;
