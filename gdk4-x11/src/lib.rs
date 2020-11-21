@@ -4,9 +4,7 @@
 
 #![allow(deprecated)]
 
-#[doc(hidden)]
-pub extern crate gdk4_x11_sys as gdk_x11_sys;
-pub use gdk4_x11_sys as ffi;
+pub use ffi;
 
 extern crate gdk;
 extern crate gio;
