@@ -34,7 +34,7 @@ impl AlternativeTrigger {
         }
     }
 
-    pub fn get_first(&self) -> Option<ShortcutTrigger> {
+    pub fn get_first(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(gtk_sys::gtk_alternative_trigger_get_first(
                 self.to_glib_none().0,
@@ -42,7 +42,7 @@ impl AlternativeTrigger {
         }
     }
 
-    pub fn get_second(&self) -> Option<ShortcutTrigger> {
+    pub fn get_second(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(gtk_sys::gtk_alternative_trigger_get_second(
                 self.to_glib_none().0,

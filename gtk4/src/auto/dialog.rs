@@ -541,7 +541,7 @@ pub trait DialogExt: 'static {
 
     fn get_content_area(&self) -> Box;
 
-    fn get_header_bar(&self) -> Option<HeaderBar>;
+    fn get_header_bar(&self) -> HeaderBar;
 
     fn get_widget_for_response(&self, response_id: ResponseType) -> Option<Widget>;
 
@@ -593,7 +593,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
         }
     }
 
-    fn get_header_bar(&self) -> Option<HeaderBar> {
+    fn get_header_bar(&self) -> HeaderBar {
         unsafe {
             from_glib_none(gtk_sys::gtk_dialog_get_header_bar(
                 self.as_ref().to_glib_none().0,

@@ -105,16 +105,16 @@ pub trait TextBufferExt: 'static {
 
     fn copy_clipboard(&self, clipboard: &gdk::Clipboard);
 
-    fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor>;
+    fn create_child_anchor(&self, iter: &mut TextIter) -> TextChildAnchor;
 
     fn create_mark(
         &self,
         mark_name: Option<&str>,
         where_: &TextIter,
         left_gravity: bool,
-    ) -> Option<TextMark>;
+    ) -> TextMark;
 
-    //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<TextTag>;
+    //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TextTag;
 
     fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool);
 
@@ -151,7 +151,7 @@ pub trait TextBufferExt: 'static {
 
     fn get_has_selection(&self) -> bool;
 
-    fn get_insert(&self) -> Option<TextMark>;
+    fn get_insert(&self) -> TextMark;
 
     fn get_iter_at_child_anchor<P: IsA<TextChildAnchor>>(&self, anchor: &P) -> TextIter;
 
@@ -173,29 +173,19 @@ pub trait TextBufferExt: 'static {
 
     fn get_modified(&self) -> bool;
 
-    fn get_selection_bound(&self) -> Option<TextMark>;
+    fn get_selection_bound(&self) -> TextMark;
 
     fn get_selection_bounds(&self) -> Option<(TextIter, TextIter)>;
 
-    fn get_selection_content(&self) -> Option<gdk::ContentProvider>;
+    fn get_selection_content(&self) -> gdk::ContentProvider;
 
-    fn get_slice(
-        &self,
-        start: &TextIter,
-        end: &TextIter,
-        include_hidden_chars: bool,
-    ) -> Option<GString>;
+    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString;
 
     fn get_start_iter(&self) -> TextIter;
 
-    fn get_tag_table(&self) -> Option<TextTagTable>;
+    fn get_tag_table(&self) -> TextTagTable;
 
-    fn get_text(
-        &self,
-        start: &TextIter,
-        end: &TextIter,
-        include_hidden_chars: bool,
-    ) -> Option<GString>;
+    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString;
 
     fn insert(&self, iter: &mut TextIter, text: &str);
 
@@ -415,7 +405,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn create_child_anchor(&self, iter: &mut TextIter) -> Option<TextChildAnchor> {
+    fn create_child_anchor(&self, iter: &mut TextIter) -> TextChildAnchor {
         unsafe {
             from_glib_none(gtk_sys::gtk_text_buffer_create_child_anchor(
                 self.as_ref().to_glib_none().0,
@@ -429,7 +419,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         mark_name: Option<&str>,
         where_: &TextIter,
         left_gravity: bool,
-    ) -> Option<TextMark> {
+    ) -> TextMark {
         unsafe {
             from_glib_none(gtk_sys::gtk_text_buffer_create_mark(
                 self.as_ref().to_glib_none().0,
@@ -440,7 +430,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<TextTag> {
+    //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TextTag {
     //    unsafe { TODO: call gtk_sys:gtk_text_buffer_create_tag() }
     //}
 
@@ -580,7 +570,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_insert(&self) -> Option<TextMark> {
+    fn get_insert(&self) -> TextMark {
         unsafe {
             from_glib_none(gtk_sys::gtk_text_buffer_get_insert(
                 self.as_ref().to_glib_none().0,
@@ -699,7 +689,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_selection_bound(&self) -> Option<TextMark> {
+    fn get_selection_bound(&self) -> TextMark {
         unsafe {
             from_glib_none(gtk_sys::gtk_text_buffer_get_selection_bound(
                 self.as_ref().to_glib_none().0,
@@ -724,7 +714,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_selection_content(&self) -> Option<gdk::ContentProvider> {
+    fn get_selection_content(&self) -> gdk::ContentProvider {
         unsafe {
             from_glib_full(gtk_sys::gtk_text_buffer_get_selection_content(
                 self.as_ref().to_glib_none().0,
@@ -732,12 +722,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_slice(
-        &self,
-        start: &TextIter,
-        end: &TextIter,
-        include_hidden_chars: bool,
-    ) -> Option<GString> {
+    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString {
         unsafe {
             from_glib_full(gtk_sys::gtk_text_buffer_get_slice(
                 self.as_ref().to_glib_none().0,
@@ -759,7 +744,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_tag_table(&self) -> Option<TextTagTable> {
+    fn get_tag_table(&self) -> TextTagTable {
         unsafe {
             from_glib_none(gtk_sys::gtk_text_buffer_get_tag_table(
                 self.as_ref().to_glib_none().0,
@@ -767,12 +752,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_text(
-        &self,
-        start: &TextIter,
-        end: &TextIter,
-        include_hidden_chars: bool,
-    ) -> Option<GString> {
+    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString {
         unsafe {
             from_glib_full(gtk_sys::gtk_text_buffer_get_text(
                 self.as_ref().to_glib_none().0,
