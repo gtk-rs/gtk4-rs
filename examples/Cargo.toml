@@ -3,8 +3,7 @@ name = "gtk4-rs-examples"
 version = "0.1.0"
 authors = ["The Gtk-rs Project Developers"]
 edition = "2018"
-autobins = false
-
+default-run = "basic"
 
 [dependencies.gtk]
 path = "../gtk4"
@@ -12,7 +11,3 @@ package = "gtk4"
 
 [dependencies.gio]
 git = "https://github.com/gtk-rs/gtk-rs"
-
-
-[[bin]]
-name = "basic"

@@ -1,0 +1,46 @@
+{
+    "app-id" : "com.github.gtk4_rs.examples",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "tags" : [
+        "development"
+    ],
+    "desktop-file-name-suffix" : " ☢",
+    "finish-args" : [
+        "--device=dri",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--talk-name=org.a11y.Bus"
+    ],
+    "build-options" : {
+        "append-path" : "/usr/lib/sdk/rust-stable/bin",
+        "build-args" : [
+            "--share=network"
+        ]
+    },
+    "command": "basic",
+    "modules" : [
+        {
+            "name" : "gtk4-rs",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "cargo build",
+                "install -D target/debug/basic /app/bin/basic",
+                "mkdir -p /app/share/applications/",
+                "echo '[Desktop Entry]\nName=Basic\nExec=basic\nType=Application\nIcon=gtk4-demo' > /app/share/applications/com.github.gtk4_rs.examples.desktop"
+            ],
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : ".."
+                }
+            ]
+        }
+    ]
+}
+
