@@ -61,7 +61,6 @@ generate = [
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
-    "Gdk.SurfaceState",
     "Gdk.Texture",
     "Gdk.Toplevel",
     "Gdk.ToplevelLayout",
