@@ -1,5 +1,3 @@
-use crate::ffi;
-
 use std::mem;
 
 use glib::subclass::prelude::*;

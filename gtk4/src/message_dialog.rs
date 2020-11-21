@@ -7,7 +7,6 @@ use glib::translate::*;
 use libc::c_char;
 use std::ptr;
 
-use crate::ffi;
 use crate::{ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 
 impl MessageDialog {

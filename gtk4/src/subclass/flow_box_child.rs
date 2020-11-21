@@ -1,4 +1,3 @@
-use crate::ffi;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;

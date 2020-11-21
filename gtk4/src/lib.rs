@@ -13,9 +13,7 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-#[doc(hidden)]
-pub extern crate gtk4_sys as gtk_sys;
-pub use gtk4_sys as ffi;
+pub use ffi;
 
 extern crate bitflags;
 extern crate libc;

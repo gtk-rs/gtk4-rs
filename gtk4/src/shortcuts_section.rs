@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::ShortcutsSection;
 use glib::object::ObjectType;
 use glib::signal::{connect_raw, SignalHandlerId};

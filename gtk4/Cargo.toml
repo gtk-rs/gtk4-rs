@@ -26,7 +26,7 @@ name = "gtk4"
 [features]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/purge-lgpl-docs", "gsk4/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/embed-lgpl-docs", "gsk4/embed-lgpl-docs"]
-dox = ["gdk4/dox", "gsk4/dox", "gtk4-sys/dox"]
+dox = ["gdk4/dox", "gsk4/dox", "ffi/dox"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]
@@ -48,7 +48,7 @@ glib-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 graphene-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 gsk4-sys = { path = "../gsk4/sys" }
-gtk4-sys =  { path = "./sys" }
+ffi =  { package = "gtk4-sys", path = "./sys" }
 pango-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_46"] }

@@ -1,4 +1,3 @@
-use crate::ffi;
 use glib::translate::{from_glib, FromGlib, ToGlib, ToGlibPtr, ToGlibPtrMut};
 use glib::value::{FromValue, FromValueOptional, SetValue};
 use glib::{StaticType, Type, Value};

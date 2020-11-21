@@ -1,4 +1,3 @@
-use crate::ffi;
 use glib::translate::*;
 use std::mem;
 

@@ -1,9 +1,7 @@
 use glib::object::{Cast, ObjectType};
 use glib::translate::*;
 use glib::Value;
-use gobject_sys;
 use std::ptr;
-use crate::ffi;
 use RadioToolButton;
 use ToolItem;
 

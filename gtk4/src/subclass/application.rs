@@ -2,7 +2,6 @@ use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
-use crate::ffi;
 use crate::{Application, Window};
 
 pub trait GtkApplicationImpl:

@@ -1,5 +1,3 @@
-use crate::ffi;
-
 use glib::subclass::object::ObjectImpl;
 use glib::subclass::prelude::*;
 use glib::translate::*;

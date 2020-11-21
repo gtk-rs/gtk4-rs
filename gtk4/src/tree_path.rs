@@ -2,7 +2,6 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-use crate::ffi;
 use crate::TreePath;
 use glib::translate::*;
 use std::slice;

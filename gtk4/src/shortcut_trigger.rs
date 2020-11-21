@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::ShortcutTrigger;
 use glib::translate::*;
 use glib::IsA;

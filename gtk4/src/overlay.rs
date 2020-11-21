@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::{Overlay, Widget};
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};

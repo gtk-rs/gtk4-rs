@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::IconTheme;
 use glib::translate::*;
 

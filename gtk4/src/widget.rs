@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::Widget;
 use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;

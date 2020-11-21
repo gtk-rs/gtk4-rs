@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::ConstraintGuide;
 use glib::translate::*;
 use glib::IsA;

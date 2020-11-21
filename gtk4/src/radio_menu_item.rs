@@ -1,7 +1,6 @@
 use glib::object::Cast;
 use glib::translate::*;
 use std::ptr;
-use crate::ffi;
 use RadioMenuItem;
 use Widget;
 
