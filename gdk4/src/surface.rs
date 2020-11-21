@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::Surface;
 use glib::object::IsA;
 use glib::translate::*;

@@ -19,7 +19,7 @@ exclude = [
 name = "gdk4"
 
 [features]
-dox = ["gdk4-sys/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
+dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/embed-lgpl-docs", "gio/embed-lgpl-docs"]
 
@@ -35,7 +35,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 glib-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-gdk4-sys = { path = "./sys" }
+ffi = { package = "gdk4-sys", path = "./sys" }
 gio-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/gtk-rs" }

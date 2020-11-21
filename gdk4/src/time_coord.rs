@@ -3,7 +3,6 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 /*
 
-use crate::ffi;
 use glib::translate::*;
 #[repr(C)]
 pub struct TimeCoord(ffi::GdkTimeCoord);

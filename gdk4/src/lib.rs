@@ -11,9 +11,7 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-#[doc(hidden)]
-pub extern crate gdk4_sys as gdk_sys;
-pub use gdk4_sys as ffi;
+pub use ffi;
 extern crate gdk_pixbuf;
 extern crate gio;
 extern crate gio_sys;

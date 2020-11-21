@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::PopupLayout;
 use glib::translate::*;
 
