@@ -1,12 +1,11 @@
-use gtk_sys;
+use crate::ffi;
 
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use super::widget::WidgetImpl;
-use DrawingArea;
-use Widget;
+use crate::{DrawingArea, Widget};
 
 pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
     fn resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {
@@ -22,8 +21,7 @@ impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
     fn parent_resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {
         unsafe {
             let data = T::type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkDrawingAreaClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkDrawingAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
                     drawing_area
@@ -48,7 +46,7 @@ unsafe impl<T: DrawingAreaImpl> IsSubclassable<T> for DrawingArea {
 }
 
 unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(
-    ptr: *mut gtk_sys::GtkDrawingArea,
+    ptr: *mut ffi::GtkDrawingArea,
     width: i32,
     height: i32,
 ) {

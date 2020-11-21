@@ -2,17 +2,17 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
 use glib::object::{Cast, IsA};
 use glib::translate::*;
-use gtk_sys;
 
-use {TreeModel, TreeModelFilter, TreePath};
+use crate::{TreeModel, TreeModelFilter, TreePath};
 
 impl TreeModelFilter {
     pub fn new<T: IsA<TreeModel>>(child_model: &T, root: Option<&TreePath>) -> TreeModelFilter {
         skip_assert_initialized!();
         unsafe {
-            TreeModel::from_glib_none(gtk_sys::gtk_tree_model_filter_new(
+            TreeModel::from_glib_none(ffi::gtk_tree_model_filter_new(
                 child_model.as_ref().to_glib_none().0,
                 mut_override(root.to_glib_none().0),
             ))

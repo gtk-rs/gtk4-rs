@@ -13,9 +13,12 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-extern crate libc;
-#[macro_use]
+#[doc(hidden)]
+pub extern crate gtk4_sys as gtk_sys;
+pub use gtk4_sys as ffi;
+
 extern crate bitflags;
+extern crate libc;
 extern crate once_cell;
 
 extern crate cairo_sys;
@@ -26,7 +29,6 @@ extern crate glib_sys;
 extern crate gobject_sys;
 extern crate graphene_sys;
 extern crate gsk4_sys as gsk_sys;
-extern crate gtk4_sys as gtk_sys;
 extern crate pango_sys;
 #[macro_use]
 extern crate glib;
@@ -38,14 +40,12 @@ extern crate graphene;
 extern crate gsk4 as gsk;
 extern crate pango;
 
-pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 =
-    gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
-pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
-pub const STYLE_PROVIDER_PRIORITY_SETTINGS: u32 =
-    gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS as u32;
+pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
+pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
+pub const STYLE_PROVIDER_PRIORITY_SETTINGS: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS as u32;
 pub const STYLE_PROVIDER_PRIORITY_APPLICATION: u32 =
-    gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION as u32;
-pub const STYLE_PROVIDER_PRIORITY_USER: u32 = gtk_sys::GTK_STYLE_PROVIDER_PRIORITY_USER as u32;
+    ffi::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION as u32;
+pub const STYLE_PROVIDER_PRIORITY_USER: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_USER as u32;
 
 #[macro_use]
 mod rt;

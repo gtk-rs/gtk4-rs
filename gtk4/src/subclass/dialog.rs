@@ -1,13 +1,11 @@
-use gtk_sys;
+use crate::ffi;
 
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use super::window::WindowImpl;
-use Dialog;
-use ResponseType;
-use Window;
+use crate::{Dialog, ResponseType, Window};
 
 pub trait DialogImpl: DialogImplExt + WindowImpl {
     fn response(&self, dialog: &Self::Type, response: ResponseType) {
@@ -28,7 +26,7 @@ impl<T: DialogImpl> DialogImplExt for T {
     fn parent_response(&self, dialog: &Self::Type, response: ResponseType) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkDialogClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
                     dialog.unsafe_cast_ref::<Dialog>().to_glib_none().0,
@@ -41,7 +39,7 @@ impl<T: DialogImpl> DialogImplExt for T {
     fn parent_close(&self, dialog: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkDialogClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).close {
                 f(dialog.unsafe_cast_ref::<Dialog>().to_glib_none().0)
             }
@@ -59,10 +57,7 @@ unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
     }
 }
 
-unsafe extern "C" fn dialog_response<T: DialogImpl>(
-    ptr: *mut gtk_sys::GtkDialog,
-    responseptr: i32,
-) {
+unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Dialog> = from_glib_borrow(ptr);
@@ -71,7 +66,7 @@ unsafe extern "C" fn dialog_response<T: DialogImpl>(
     imp.response(wrap.unsafe_cast_ref(), res)
 }
 
-unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut gtk_sys::GtkDialog) {
+unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut ffi::GtkDialog) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Dialog> = from_glib_borrow(ptr);

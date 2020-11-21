@@ -2,17 +2,15 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
+use crate::{TextBuffer, TextIter};
 use glib::object::{Cast, IsA};
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use libc::{c_char, c_int};
 use std::boxed::Box as Box_;
 use std::mem::transmute;
 use std::{slice, str};
-use TextBuffer;
-use TextIter;
 
 pub trait TextBufferExtManual: 'static {
     fn connect_insert_text<F: Fn(&Self, &mut TextIter, &str) + 'static>(
@@ -39,11 +37,11 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
 }
 
 unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &mut TextIter, &str) + 'static>(
-    this: *mut gtk_sys::GtkTextBuffer,
-    location: *mut gtk_sys::GtkTextIter,
+    this: *mut ffi::GtkTextBuffer,
+    location: *mut ffi::GtkTextIter,
     text: *mut c_char,
     len: c_int,
-    f: glib_sys::gpointer,
+    f: glib::ffi::gpointer,
 ) where
     T: IsA<TextBuffer>,
 {

@@ -2,16 +2,16 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
+use crate::TreePath;
 use glib::translate::*;
-use gtk_sys;
 use std::slice;
-use TreePath;
 
 impl TreePath {
     pub fn get_indices(&self) -> Vec<i32> {
         unsafe {
             let mut count = 0;
-            let ptr = gtk_sys::gtk_tree_path_get_indices_with_depth(
+            let ptr = ffi::gtk_tree_path_get_indices_with_depth(
                 mut_override(self.to_glib_none().0),
                 &mut count,
             );

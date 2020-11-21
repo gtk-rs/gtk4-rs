@@ -2031,7 +2031,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
                 path,

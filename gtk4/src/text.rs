@@ -2,26 +2,21 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-use glib;
+use crate::ffi;
+use crate::{DeleteType, MovementStep, Text, Widget};
 use glib::object::ObjectExt;
 use glib::object::ObjectType;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::GString;
-use gobject_sys;
-use gtk_sys;
 use std::mem::transmute;
-use DeleteType;
-use MovementStep;
-use Text;
-use Widget;
 
 impl Text {
     pub fn connect_activate<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -39,8 +34,8 @@ impl Text {
 
     pub fn connect_backspace<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn backspace_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -58,8 +53,8 @@ impl Text {
 
     pub fn connect_copy_clipboard<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn copy_clipboard_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -77,8 +72,8 @@ impl Text {
 
     pub fn connect_cut_clipboard<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cut_clipboard_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -101,10 +96,10 @@ impl Text {
         unsafe extern "C" fn delete_from_cursor_trampoline<
             F: Fn(&Text, DeleteType, i32) + 'static,
         >(
-            this: *mut gtk_sys::GtkText,
-            type_: gtk_sys::GtkDeleteType,
+            this: *mut ffi::GtkText,
+            type_: ffi::GtkDeleteType,
             count: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(type_), count)
@@ -122,9 +117,9 @@ impl Text {
 
     pub fn connect_insert_at_cursor<F: Fn(&Text, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_at_cursor_trampoline<F: Fn(&Text, &str) + 'static>(
-            this: *mut gtk_sys::GtkText,
+            this: *mut ffi::GtkText,
             string: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &GString::from_glib_borrow(string))
@@ -142,8 +137,8 @@ impl Text {
 
     pub fn connect_insert_emoji<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_emoji_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -166,11 +161,11 @@ impl Text {
         unsafe extern "C" fn move_cursor_trampoline<
             F: Fn(&Text, MovementStep, i32, bool) + 'static,
         >(
-            this: *mut gtk_sys::GtkText,
-            step: gtk_sys::GtkMovementStep,
+            this: *mut ffi::GtkText,
+            step: ffi::GtkMovementStep,
             count: libc::c_int,
-            extend: glib_sys::gboolean,
-            f: glib_sys::gpointer,
+            extend: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
@@ -193,8 +188,8 @@ impl Text {
 
     pub fn connect_paste_clipboard<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paste_clipboard_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -212,9 +207,9 @@ impl Text {
 
     pub fn connect_populate_popup<F: Fn(&Text, &Widget) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn populate_popup_trampoline<F: Fn(&Text, &Widget) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            widget: *mut gtk_sys::GtkWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            widget: *mut ffi::GtkWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(widget))
@@ -232,9 +227,9 @@ impl Text {
 
     pub fn connect_preedit_changed<F: Fn(&Text, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<F: Fn(&Text, &str) + 'static>(
-            this: *mut gtk_sys::GtkText,
+            this: *mut ffi::GtkText,
             preedit: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &GString::from_glib_borrow(preedit))
@@ -252,8 +247,8 @@ impl Text {
 
     pub fn connect_toggle_overwrite<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_overwrite_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -270,99 +265,99 @@ impl Text {
     }
 
     pub fn emit_activate(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("activate", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_backspace(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("backspace", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_copy_clipboard(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("copy-clipboard", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_cut_clipboard(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("cut-clipboard", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("delete-from-cursor", &[&type_, &count])
                 .unwrap()
         };
     }
 
     pub fn emit_insert_at_cursor(&self, string: &str) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("insert-at-cursor", &[&string])
                 .unwrap()
         };
     }
 
     pub fn emit_insert_emoji(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("insert-emoji", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend: bool) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("move-cursor", &[&step, &count, &extend])
                 .unwrap()
         };
     }
 
     pub fn emit_paste_clipboard(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("paste-clipboard", &[])
                 .unwrap()
         };
     }
 
     pub fn emit_preedit_changed(&self, preedit: &str) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("preedit-changed", &[&preedit])
                 .unwrap()
         };
     }
 
     pub fn emit_toggle_overwrite(&self) {
-        let stash: Stash<*mut gtk_sys::GtkText, _> = self.to_glib_none();
+        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
         let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
                 .emit("toggle-overwrite", &[])
                 .unwrap()
         };

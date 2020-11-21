@@ -1,13 +1,12 @@
+use crate::ffi;
+use crate::SpinButton;
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
 use glib::IsA;
-use glib_sys::{GFALSE, GTRUE};
-use gtk_sys::{GtkSpinButton, GTK_INPUT_ERROR};
 use libc::{c_double, c_int};
 use std::boxed::Box as Box_;
 use std::mem::transmute;
-use SpinButton;
 
 pub trait SpinButtonExtManual: 'static {
     fn connect_input<F>(&self, input_func: F) -> SignalHandlerId
@@ -33,7 +32,7 @@ impl<T: IsA<SpinButton>> SpinButtonExtManual for T {
 }
 
 unsafe extern "C" fn input_trampoline<T, F: Fn(&T) -> Option<Result<f64, ()>> + 'static>(
-    this: *mut GtkSpinButton,
+    this: *mut ffi::GtkSpinButton,
     new_value: *mut c_double,
     f: &F,
 ) -> c_int
@@ -43,9 +42,9 @@ where
     match f(&SpinButton::from_glib_borrow(this).unsafe_cast_ref()) {
         Some(Ok(v)) => {
             *new_value = v;
-            GTRUE
+            glib::ffi::GTRUE
         }
-        Some(Err(_)) => GTK_INPUT_ERROR,
-        None => GFALSE,
+        Some(Err(_)) => ffi::GTK_INPUT_ERROR,
+        None => glib::ffi::GFALSE,
     }
 }

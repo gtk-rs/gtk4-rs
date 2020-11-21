@@ -2,11 +2,11 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
+use crate::Snapshot;
 use glib::translate::*;
 use graphene::{Point, Rect};
 use gsk::ColorStop;
-use gtk_sys;
-use Snapshot;
 
 impl Snapshot {
     pub fn append_linear_gradient(
@@ -18,7 +18,7 @@ impl Snapshot {
     ) {
         let n_stops = stops.len() as usize;
         unsafe {
-            gtk_sys::gtk_snapshot_append_linear_gradient(
+            ffi::gtk_snapshot_append_linear_gradient(
                 self.to_glib_none().0,
                 bounds.to_glib_none().0,
                 start_point.to_glib_none().0,
@@ -41,7 +41,7 @@ impl Snapshot {
     ) {
         let n_stops = stops.len() as usize;
         unsafe {
-            gtk_sys::gtk_snapshot_append_radial_gradient(
+            ffi::gtk_snapshot_append_radial_gradient(
                 self.to_glib_none().0,
                 bounds.to_glib_none().0,
                 center.to_glib_none().0,
@@ -67,7 +67,7 @@ impl Snapshot {
     ) {
         let n_stops = stops.len() as usize;
         unsafe {
-            gtk_sys::gtk_snapshot_append_repeating_radial_gradient(
+            ffi::gtk_snapshot_append_repeating_radial_gradient(
                 self.to_glib_none().0,
                 bounds.to_glib_none().0,
                 center.to_glib_none().0,
@@ -90,7 +90,7 @@ impl Snapshot {
     ) {
         let n_stops = stops.len() as usize;
         unsafe {
-            gtk_sys::gtk_snapshot_append_repeating_linear_gradient(
+            ffi::gtk_snapshot_append_repeating_linear_gradient(
                 self.to_glib_none().0,
                 bounds.to_glib_none().0,
                 start_point.to_glib_none().0,

@@ -8,14 +8,13 @@
 pub extern crate gdk4_x11_sys as gdk_x11_sys;
 pub use gdk4_x11_sys as ffi;
 
-extern crate glib;
 extern crate gdk;
 extern crate gio;
+extern crate glib;
 extern crate glib_sys;
 extern crate gobject_sys;
 extern crate libc;
 extern crate x11;
-
 
 #[macro_use]
 mod rt;

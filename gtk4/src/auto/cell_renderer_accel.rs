@@ -149,7 +149,7 @@ impl CellRendererAccel {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path_string));
             f(&from_glib_borrow(this), path)
         }
         unsafe {
@@ -182,7 +182,7 @@ impl CellRendererAccel {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path_string));
             f(
                 &from_glib_borrow(this),
                 path,

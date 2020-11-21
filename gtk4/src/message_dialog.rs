@@ -4,15 +4,11 @@
 
 use glib::object::{Cast, IsA};
 use glib::translate::*;
-use gtk_sys;
 use libc::c_char;
 use std::ptr;
-use ButtonsType;
-use DialogFlags;
-use MessageDialog;
-use MessageType;
-use Widget;
-use Window;
+
+use crate::ffi;
+use crate::{ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 
 impl MessageDialog {
     pub fn new<T: IsA<Window>>(
@@ -25,7 +21,7 @@ impl MessageDialog {
         assert_initialized_main_thread!();
         unsafe {
             let message: Stash<*const c_char, _> = message.to_glib_none();
-            Widget::from_glib_none(gtk_sys::gtk_message_dialog_new(
+            Widget::from_glib_none(ffi::gtk_message_dialog_new(
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 flags.to_glib(),
                 type_.to_glib(),

@@ -1,11 +1,11 @@
-use gtk_sys;
+use crate::ffi;
 
 use glib::subclass::object::ObjectImpl;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, Object};
 
-use Adjustment;
+use crate::Adjustment;
 
 pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
     fn changed(&self, adjustment: &Self::Type) {
@@ -26,7 +26,7 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
     fn parent_changed(&self, adjustment: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkAdjustmentClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).changed {
                 f(adjustment.unsafe_cast_ref::<Adjustment>().to_glib_none().0)
             }
@@ -36,7 +36,7 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
     fn parent_value_changed(&self, adjustment: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkAdjustmentClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(adjustment.unsafe_cast_ref::<Adjustment>().to_glib_none().0)
             }
@@ -54,7 +54,7 @@ unsafe impl<T: AdjustmentImpl> IsSubclassable<T> for Adjustment {
     }
 }
 
-unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut gtk_sys::GtkAdjustment) {
+unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdjustment) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Adjustment> = from_glib_borrow(ptr);
@@ -62,7 +62,7 @@ unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut gtk_sys::Gt
     imp.changed(wrap.unsafe_cast_ref())
 }
 
-unsafe extern "C" fn adjustment_value_changed<T: AdjustmentImpl>(ptr: *mut gtk_sys::GtkAdjustment) {
+unsafe extern "C" fn adjustment_value_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdjustment) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Adjustment> = from_glib_borrow(ptr);

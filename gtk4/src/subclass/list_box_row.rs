@@ -1,12 +1,10 @@
-use gtk_sys;
-
+use crate::ffi;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use super::widget::WidgetImpl;
-use ListBoxRow;
-use Widget;
+use crate::{ListBoxRow, Widget};
 
 pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     fn activate(&self, row: &Self::Type) {
@@ -22,7 +20,7 @@ impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {
     fn parent_activate(&self, row: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkListBoxRowClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkListBoxRowClass;
             if let Some(f) = (*parent_class).activate {
                 f(row.unsafe_cast_ref::<ListBoxRow>().to_glib_none().0)
             }
@@ -39,7 +37,7 @@ unsafe impl<T: ListBoxRowImpl> IsSubclassable<T> for ListBoxRow {
     }
 }
 
-unsafe extern "C" fn row_activate<T: ListBoxRowImpl>(ptr: *mut gtk_sys::GtkListBoxRow) {
+unsafe extern "C" fn row_activate<T: ListBoxRowImpl>(ptr: *mut ffi::GtkListBoxRow) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<ListBoxRow> = from_glib_borrow(ptr);

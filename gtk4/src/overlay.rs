@@ -1,26 +1,22 @@
-use gdk::Rectangle;
-use gdk_sys::GdkRectangle;
+use crate::ffi;
+use crate::{Overlay, Widget};
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
 use glib::IsA;
-use glib_sys::{gboolean, gpointer};
-use gtk_sys::{GtkOverlay, GtkWidget};
 use std::mem::transmute;
 use std::ptr;
-use Overlay;
-use Widget;
 
 pub trait OverlayExtManual: 'static {
     fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId
     where
-        F: Fn(&Self, &Widget) -> Option<Rectangle> + 'static;
+        F: Fn(&Self, &Widget) -> Option<gdk::Rectangle> + 'static;
 }
 
 impl<O: IsA<Overlay>> OverlayExtManual for O {
     fn connect_get_child_position<F>(&self, f: F) -> SignalHandlerId
     where
-        F: Fn(&Self, &Widget) -> Option<Rectangle> + 'static,
+        F: Fn(&Self, &Widget) -> Option<gdk::Rectangle> + 'static,
     {
         unsafe {
             let f: Box<F> = Box::new(f);
@@ -36,13 +32,13 @@ impl<O: IsA<Overlay>> OverlayExtManual for O {
 
 unsafe extern "C" fn get_child_position_trampoline<
     T,
-    F: Fn(&T, &Widget) -> Option<Rectangle> + 'static,
+    F: Fn(&T, &Widget) -> Option<gdk::Rectangle> + 'static,
 >(
-    this: *mut GtkOverlay,
-    widget: *mut GtkWidget,
-    allocation: *mut GdkRectangle,
-    f: gpointer,
-) -> gboolean
+    this: *mut ffi::GtkOverlay,
+    widget: *mut ffi::GtkWidget,
+    allocation: *mut gdk::ffi::GdkRectangle,
+    f: glib::ffi::gpointer,
+) -> glib::ffi::gboolean
 where
     T: IsA<Overlay>,
 {
