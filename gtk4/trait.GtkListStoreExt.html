@@ -16,13 +16,13 @@
 }</pre></div><div class="docblock"><p>Trait containing all <code>ListStore</code> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
 <p><a href="struct.ListStore.html"><code>ListStore</code></a></p>
-</div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.append" class="method"><code>pub fn <a href="#tymethod.append" class="fnname">append</a>(&amp;self) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code></h3><div class="docblock"><p>Appends a new row to <code>self</code>. <code>iter</code> will be changed to point to this new
+</div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.append" class="method"><code>pub fn <a href="#tymethod.append" class="fnname">append</a>(&amp;self) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#188" title="goto source code">[src]</a></h3><div class="docblock"><p>Appends a new row to <code>self</code>. <code>iter</code> will be changed to point to this new
 row. The row will be empty after this function is called. To fill in
 values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore::set_value</code>.</p>
 <h2 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h2>
 <p>An unset <code>TreeIter</code> to set to the appended row</p>
-</div><h3 id="tymethod.clear" class="method"><code>pub fn <a href="#tymethod.clear" class="fnname">clear</a>(&amp;self)</code></h3><div class="docblock"><p>Removes all rows from the list store.</p>
-</div><h3 id="tymethod.insert" class="method"><code>pub fn <a href="#tymethod.insert" class="fnname">insert</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code></h3><div class="docblock"><p>Creates a new row at <code>position</code>. <code>iter</code> will be changed to point to this new
+</div><h3 id="tymethod.clear" class="method"><code>pub fn <a href="#tymethod.clear" class="fnname">clear</a>(&amp;self)</code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#191" title="goto source code">[src]</a></h3><div class="docblock"><p>Removes all rows from the list store.</p>
+</div><h3 id="tymethod.insert" class="method"><code>pub fn <a href="#tymethod.insert" class="fnname">insert</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#202" title="goto source code">[src]</a></h3><div class="docblock"><p>Creates a new row at <code>position</code>. <code>iter</code> will be changed to point to this new
 row. If <code>position</code> is -1 or is larger than the number of rows on the list,
 then the new row will be appended to the list. The row will be empty after
 this function is called. To fill in values, you need to call
@@ -31,7 +31,7 @@ this function is called. To fill in values, you need to call
 <p>An unset <code>TreeIter</code> to set to the new row</p>
 <h2 id="position" class="section-header"><a href="#position"><code>position</code></a></h2>
 <p>position to insert the new row, or -1 for last</p>
-</div><h3 id="tymethod.insert_after" class="method"><code>pub fn <a href="#tymethod.insert_after" class="fnname">insert_after</a>(&amp;self, sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code></h3><div class="docblock"><p>Inserts a new row after <code>sibling</code>. If <code>sibling</code> is <code>None</code>, then the row will be
+</div><h3 id="tymethod.insert_after" class="method"><code>pub fn <a href="#tymethod.insert_after" class="fnname">insert_after</a>(&amp;self, sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#212" title="goto source code">[src]</a></h3><div class="docblock"><p>Inserts a new row after <code>sibling</code>. If <code>sibling</code> is <code>None</code>, then the row will be
 prepended to the beginning of the list. <code>iter</code> will be changed to point to
 this new row. The row will be empty after this function is called. To fill
 in values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore::set_value</code>.</p>
@@ -39,7 +39,7 @@ in values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore
 <p>An unset <code>TreeIter</code> to set to the new row</p>
 <h2 id="sibling" class="section-header"><a href="#sibling"><code>sibling</code></a></h2>
 <p>A valid <code>TreeIter</code>, or <code>None</code></p>
-</div><h3 id="tymethod.insert_before" class="method"><code>pub fn <a href="#tymethod.insert_before" class="fnname">insert_before</a>(&amp;self, sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code></h3><div class="docblock"><p>Inserts a new row before <code>sibling</code>. If <code>sibling</code> is <code>None</code>, then the row will
+</div><h3 id="tymethod.insert_before" class="method"><code>pub fn <a href="#tymethod.insert_before" class="fnname">insert_before</a>(&amp;self, sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#222" title="goto source code">[src]</a></h3><div class="docblock"><p>Inserts a new row before <code>sibling</code>. If <code>sibling</code> is <code>None</code>, then the row will
 be appended to the end of the list. <code>iter</code> will be changed to point to this
 new row. The row will be empty after this function is called. To fill in
 values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore::set_value</code>.</p>
@@ -47,7 +47,7 @@ values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore::s
 <p>An unset <code>TreeIter</code> to set to the new row</p>
 <h2 id="sibling-1" class="section-header"><a href="#sibling-1"><code>sibling</code></a></h2>
 <p>A valid <code>TreeIter</code>, or <code>None</code></p>
-</div><h3 id="tymethod.iter_is_valid" class="method"><code>pub fn <a href="#tymethod.iter_is_valid" class="fnname">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></h3><div class="docblock"><blockquote>
+</div><h3 id="tymethod.iter_is_valid" class="method"><code>pub fn <a href="#tymethod.iter_is_valid" class="fnname">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#238" title="goto source code">[src]</a></h3><div class="docblock"><blockquote>
 <p>This function is slow. Only use it for debugging and/or testing
 purposes.</p>
 </blockquote>
@@ -56,33 +56,33 @@ purposes.</p>
 <p>A <code>TreeIter</code>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p><code>true</code> if the iter is valid, <code>false</code> if the iter is invalid.</p>
-</div><h3 id="tymethod.move_after" class="method"><code>pub fn <a href="#tymethod.move_after" class="fnname">move_after</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, position: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</code></h3><div class="docblock"><p>Moves <code>iter</code> in <code>self</code> to the position after <code>position</code>. Note that this
+</div><h3 id="tymethod.move_after" class="method"><code>pub fn <a href="#tymethod.move_after" class="fnname">move_after</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, position: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#247" title="goto source code">[src]</a></h3><div class="docblock"><p>Moves <code>iter</code> in <code>self</code> to the position after <code>position</code>. Note that this
 function only works with unsorted stores. If <code>position</code> is <code>None</code>, <code>iter</code>
 will be moved to the start of the list.</p>
 <h2 id="iter-5" class="section-header"><a href="#iter-5"><code>iter</code></a></h2>
 <p>A <code>TreeIter</code>.</p>
 <h2 id="position-1" class="section-header"><a href="#position-1"><code>position</code></a></h2>
 <p>A <code>TreeIter</code> or <code>None</code>.</p>
-</div><h3 id="tymethod.move_before" class="method"><code>pub fn <a href="#tymethod.move_before" class="fnname">move_before</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, position: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</code></h3><div class="docblock"><p>Moves <code>iter</code> in <code>self</code> to the position before <code>position</code>. Note that this
+</div><h3 id="tymethod.move_before" class="method"><code>pub fn <a href="#tymethod.move_before" class="fnname">move_before</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, position: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#256" title="goto source code">[src]</a></h3><div class="docblock"><p>Moves <code>iter</code> in <code>self</code> to the position before <code>position</code>. Note that this
 function only works with unsorted stores. If <code>position</code> is <code>None</code>, <code>iter</code>
 will be moved to the end of the list.</p>
 <h2 id="iter-6" class="section-header"><a href="#iter-6"><code>iter</code></a></h2>
 <p>A <code>TreeIter</code>.</p>
 <h2 id="position-2" class="section-header"><a href="#position-2"><code>position</code></a></h2>
 <p>A <code>TreeIter</code>, or <code>None</code>.</p>
-</div><h3 id="tymethod.prepend" class="method"><code>pub fn <a href="#tymethod.prepend" class="fnname">prepend</a>(&amp;self) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code></h3><div class="docblock"><p>Prepends a new row to <code>self</code>. <code>iter</code> will be changed to point to this new
+</div><h3 id="tymethod.prepend" class="method"><code>pub fn <a href="#tymethod.prepend" class="fnname">prepend</a>(&amp;self) -&gt; <a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#263" title="goto source code">[src]</a></h3><div class="docblock"><p>Prepends a new row to <code>self</code>. <code>iter</code> will be changed to point to this new
 row. The row will be empty after this function is called. To fill in
 values, you need to call <code>GtkListStoreExt::set</code> or <code>ListStore::set_value</code>.</p>
 <h2 id="iter-7" class="section-header"><a href="#iter-7"><code>iter</code></a></h2>
 <p>An unset <code>TreeIter</code> to set to the prepend row</p>
-</div><h3 id="tymethod.remove" class="method"><code>pub fn <a href="#tymethod.remove" class="fnname">remove</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></h3><div class="docblock"><p>Removes the given row from the list store. After being removed,
+</div><h3 id="tymethod.remove" class="method"><code>pub fn <a href="#tymethod.remove" class="fnname">remove</a>(&amp;self, iter: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#274" title="goto source code">[src]</a></h3><div class="docblock"><p>Removes the given row from the list store. After being removed,
 <code>iter</code> is set to be the next valid row, or invalidated if it pointed
 to the last row in <code>self</code>.</p>
 <h2 id="iter-8" class="section-header"><a href="#iter-8"><code>iter</code></a></h2>
 <p>A valid <code>TreeIter</code></p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p><code>true</code> if <code>iter</code> is valid, <code>false</code> if not.</p>
-</div><h3 id="tymethod.swap" class="method"><code>pub fn <a href="#tymethod.swap" class="fnname">swap</a>(&amp;self, a: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, b: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>)</code></h3><div class="docblock"><p>Swaps <code>a</code> and <code>b</code> in <code>self</code>. Note that this function only works with
+</div><h3 id="tymethod.swap" class="method"><code>pub fn <a href="#tymethod.swap" class="fnname">swap</a>(&amp;self, a: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, b: &amp;<a class="struct" href="../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>)</code><a class="srclink" href="../src/gtk4/auto/list_store.rs.html#292" title="goto source code">[src]</a></h3><div class="docblock"><p>Swaps <code>a</code> and <code>b</code> in <code>self</code>. Note that this function only works with
 unsorted stores.</p>
 <h2 id="a" class="section-header"><a href="#a"><code>a</code></a></h2>
 <p>A <code>TreeIter</code>.</p>
