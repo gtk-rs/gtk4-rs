@@ -73,7 +73,6 @@ generate = [
     "Gtk.CustomFilter",
     "Gtk.CustomLayout",
     "Gtk.CustomSorter",
-    "Gtk.DebugFlag",
     "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
@@ -408,11 +407,6 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
-
-[[object]]
-name = "Gtk.AccelLabel"
-status = "generate"
-generate_builder = true
 
 [[object]]
 name = "Gtk.Actionable"
@@ -1469,31 +1463,6 @@ status = "generate"
 name = "Gtk.ProgressBar"
 status = "generate"
 generate_builder = true
-
-[[object]]
-name = "Gtk.RadioButton"
-status = "generate"
-generate_builder = true
-    [[object.function]]
-    pattern = ".+_from_widget"
-        [[object.function.parameter]]
-        name = "radio_group_member"
-        nullable = false
-    [[object.function]]
-    name = "new"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "new_with_label"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "new_with_mnemonic"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "set_group"
-    ignore = true
 
 [[object]]
 name = "Gtk.Range"
