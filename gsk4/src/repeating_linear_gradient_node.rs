@@ -1,10 +1,7 @@
 use glib::translate::*;
-use crate::ffi;
 use std::fmt;
 use graphene::{Rect, Point};
-use crate::RenderNode;
-use crate::ColorStop;
-use crate::RepeatingLinearGradientNode;
+use crate::{RenderNode, ColorStop, RepeatingLinearGradientNode};
 
 
 impl RepeatingLinearGradientNode {

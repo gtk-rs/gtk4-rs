@@ -4,11 +4,8 @@
 
 use glib::translate::*;
 use graphene::{Point, Rect};
-use crate::ffi;
 use std::fmt;
-use crate::RenderNode;
-use crate::ColorStop;
-use crate::LinearGradientNode;
+use crate::{RenderNode, ColorStop, LinearGradientNode};
 
 impl LinearGradientNode {
     pub fn new(

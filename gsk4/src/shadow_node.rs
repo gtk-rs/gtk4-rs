@@ -1,10 +1,7 @@
 
 use glib::translate::*;
-use crate::ffi;
 use std::fmt;
-use crate::RenderNode;
-use crate::Shadow;
-use crate::ShadowNode;
+use crate::{RenderNode, Shadow, ShadowNode};
 
 impl ShadowNode {
     pub fn new<P: IsA<RenderNode>>(child: &P, shadows: &[Shadow]) -> ShadowNode {

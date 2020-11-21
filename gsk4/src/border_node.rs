@@ -1,4 +1,3 @@
-use crate::ffi;
 use crate::BorderNode;
 use glib::translate::*;
 use glib::IsA;
