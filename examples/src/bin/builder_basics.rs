@@ -10,8 +10,8 @@ use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, Respon
 use std::env::args;
 
 fn build_ui(application: &Application) {
-    let glade_src = include_str!("ui/builder_basics.ui");
-    let builder = Builder::from_string(glade_src);
+    let ui_src = include_str!("ui/builder_basics.ui");
+    let builder = Builder::from_string(ui_src);
 
     let window: ApplicationWindow = builder.get_object("window").expect("Couldn't get window");
     window.set_application(Some(application));
@@ -21,7 +21,7 @@ fn build_ui(application: &Application) {
         .expect("Couldn't get messagedialog");
 
     dialog.connect_response(move |d: &MessageDialog, _: ResponseType| {
-        d.close();
+        d.hide();
     });
 
     bigbutton.connect_clicked(move |_| {
