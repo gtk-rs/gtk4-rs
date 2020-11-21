@@ -1637,7 +1637,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the header bar</span>
-    <span class="kw">fn</span> <span class="ident">get_header_bar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HeaderBar</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_header_bar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HeaderBar</span>;
 
     <span class="doccomment">/// Gets the widget button that uses the given response ID in the action area</span>
     <span class="doccomment">/// of a dialog.</span>
@@ -1733,7 +1733,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_header_bar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HeaderBar</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_header_bar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">HeaderBar</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_dialog_get_header_bar</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
