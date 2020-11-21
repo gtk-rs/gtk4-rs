@@ -2,15 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::StyleContext;
-use cairo;
-use gdk;
 use glib::object::IsA;
 use glib::translate::*;
-use graphene;
-use gsk;
-use pango;
 use std::fmt;
 
 glib::glib_wrapper! {

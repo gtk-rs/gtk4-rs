@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Device;
 use crate::Event;
 use crate::FullscreenMode;
@@ -11,7 +10,6 @@ use crate::SurfaceEdge;
 use crate::Texture;
 use crate::ToplevelLayout;
 use crate::ToplevelState;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;

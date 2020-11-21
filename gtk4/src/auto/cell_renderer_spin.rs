@@ -2,23 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Adjustment;
 use crate::CellRenderer;
 use crate::CellRendererMode;
 use crate::CellRendererText;
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -51,10 +47,7 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn set_property_adjustment<P: IsA<Adjustment> + SetValueOptional>(
-        &self,
-        adjustment: Option<&P>,
-    ) {
+    pub fn set_property_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

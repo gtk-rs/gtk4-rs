@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::RenderNode;
 use crate::RoundedRect;
-use gdk;
 use glib::translate::*;
 use std::fmt;
 

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Buildable;
 use crate::CellAreaContext;
 use crate::CellEditable;
@@ -17,14 +16,11 @@ use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreePath;
 use crate::Widget;
-use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -845,7 +841,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
@@ -922,7 +918,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),

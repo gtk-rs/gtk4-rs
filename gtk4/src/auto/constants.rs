@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use std::ffi::CStr;
 
 pub static IM_MODULE_EXTENSION_POINT_NAME: once_cell::sync::Lazy<&'static str> =

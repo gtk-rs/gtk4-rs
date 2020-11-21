@@ -2,11 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Paintable;
-use gdk_pixbuf;
-use gio;
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;

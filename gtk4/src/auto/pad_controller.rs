@@ -2,13 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::EventController;
 use crate::PadActionType;
 use crate::PropagationLimit;
 use crate::PropagationPhase;
-use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;

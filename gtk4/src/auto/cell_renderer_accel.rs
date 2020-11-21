@@ -2,13 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::CellRenderer;
 use crate::CellRendererAccelMode;
 use crate::CellRendererMode;
 use crate::CellRendererText;
 use crate::TreePath;
-use gdk;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -17,8 +15,6 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -149,7 +145,7 @@ impl CellRendererAccel {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
             f(&from_glib_borrow(this), path)
         }
         unsafe {
@@ -182,7 +178,7 @@ impl CellRendererAccel {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
             f(
                 &from_glib_borrow(this),
                 path,

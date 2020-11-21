@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::ShortcutAction;
 use crate::Widget;
-use glib;
 use glib::object::Cast;
 use glib::translate::*;
 use std::boxed::Box as Box_;

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::CellEditable;
 use crate::CellRendererMode;
 use crate::CellRendererState;
@@ -12,7 +11,6 @@ use crate::Snapshot;
 use crate::StateFlags;
 use crate::TreePath;
 use crate::Widget;
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -20,7 +18,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -831,7 +828,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             P: IsA<CellRenderer>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellRenderer::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(editable),

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Buildable;
 use crate::CellArea;
 use crate::CellLayout;
@@ -12,7 +11,6 @@ use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreeViewColumnSizing;
 use crate::Widget;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Align;
@@ -12,8 +11,6 @@ use crate::LayoutManager;
 use crate::MediaStream;
 use crate::Overflow;
 use crate::Widget;
-use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -21,7 +18,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;

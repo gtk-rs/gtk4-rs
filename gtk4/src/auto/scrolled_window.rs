@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Adjustment;
@@ -17,8 +16,6 @@ use crate::PolicyType;
 use crate::PositionType;
 use crate::ScrollType;
 use crate::Widget;
-use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;

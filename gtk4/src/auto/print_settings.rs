@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::NumberUpLayout;
 use crate::PageOrientation;
 use crate::PageRange;
@@ -12,9 +11,7 @@ use crate::PrintDuplex;
 use crate::PrintPages;
 use crate::PrintQuality;
 use crate::Unit;
-use glib;
 use glib::translate::*;
-use std;
 use std::fmt;
 use std::mem;
 use std::ptr;

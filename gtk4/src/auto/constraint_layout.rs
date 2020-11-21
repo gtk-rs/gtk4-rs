@@ -2,12 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Buildable;
 use crate::Constraint;
 use crate::ConstraintGuide;
 use crate::LayoutManager;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;

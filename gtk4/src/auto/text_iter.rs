@@ -2,17 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::TextBuffer;
 use crate::TextChildAnchor;
 use crate::TextMark;
 use crate::TextSearchFlags;
 use crate::TextTag;
-use gdk;
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use pango;
 use std::cmp;
 
 glib::glib_wrapper! {

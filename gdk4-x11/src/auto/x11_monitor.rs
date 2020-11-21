@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
-use gdk;
 use glib::translate::*;
 use std::fmt;
 use x11::xlib;

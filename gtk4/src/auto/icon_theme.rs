@@ -2,13 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::IconLookupFlags;
 use crate::IconPaintable;
 use crate::TextDirection;
-use gdk;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -18,7 +14,6 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;

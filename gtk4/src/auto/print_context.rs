@@ -2,11 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::PageSetup;
-use cairo;
 use glib::translate::*;
-use pango;
 use std::fmt;
 use std::mem;
 

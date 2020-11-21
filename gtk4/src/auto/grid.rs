@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Align;
@@ -15,7 +14,6 @@ use crate::Orientation;
 use crate::Overflow;
 use crate::PositionType;
 use crate::Widget;
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;

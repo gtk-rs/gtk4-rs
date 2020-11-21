@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleProperty;
 use crate::AccessibleRelation;
@@ -17,12 +16,8 @@ use crate::TreeModel;
 use crate::TreePath;
 use crate::Widget;
 use crate::Window;
-use cairo;
-use gdk;
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
-use pango;
 use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;

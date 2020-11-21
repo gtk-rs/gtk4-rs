@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Display;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;

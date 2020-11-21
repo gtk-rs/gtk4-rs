@@ -2,21 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::CellRenderer;
 use crate::CellRendererMode;
 use crate::IconSize;
-use gdk;
-use gdk_pixbuf;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
@@ -52,7 +46,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
+    pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -189,10 +183,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn set_property_texture<P: IsA<gdk::Texture> + SetValueOptional>(
-        &self,
-        texture: Option<&P>,
-    ) {
+    pub fn set_property_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

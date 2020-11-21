@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Align;
@@ -16,16 +15,12 @@ use crate::Root;
 use crate::ShortcutManager;
 use crate::Widget;
 use crate::WindowGroup;
-use gdk;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
@@ -666,10 +661,7 @@ pub trait GtkWindowExt: 'static {
 
     fn get_property_focus_widget(&self) -> Option<Widget>;
 
-    fn set_property_focus_widget<P: IsA<Widget> + SetValueOptional>(
-        &self,
-        focus_widget: Option<&P>,
-    );
+    fn set_property_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>);
 
     fn get_property_is_active(&self) -> bool;
 
@@ -1188,10 +1180,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_property_focus_widget<P: IsA<Widget> + SetValueOptional>(
-        &self,
-        focus_widget: Option<&P>,
-    ) {
+    fn set_property_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

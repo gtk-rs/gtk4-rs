@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Align;
@@ -13,9 +12,6 @@ use crate::LayoutManager;
 use crate::MovementStep;
 use crate::Overflow;
 use crate::Widget;
-use gdk;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
@@ -25,8 +21,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -74,12 +68,12 @@ impl Label {
         unsafe { from_glib(ffi::gtk_label_get_justify(self.to_glib_none().0)) }
     }
 
-    pub fn get_label(&self) -> GString {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_label(self.to_glib_none().0)) }
+    pub fn get_label(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::gtk_label_get_label(self.to_glib_none().0)) }
     }
 
     pub fn get_layout(&self) -> pango::Layout {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_layout(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_label_get_layout(self.to_glib_none().0)) }
     }
 
     pub fn get_layout_offsets(&self) -> (i32, i32) {
@@ -140,8 +134,8 @@ impl Label {
         unsafe { from_glib(ffi::gtk_label_get_single_line_mode(self.to_glib_none().0)) }
     }
 
-    pub fn get_text(&self) -> GString {
-        unsafe { from_glib_none(gtk_sys::gtk_label_get_text(self.to_glib_none().0)) }
+    pub fn get_text(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::gtk_label_get_text(self.to_glib_none().0)) }
     }
 
     pub fn get_use_markup(&self) -> bool {

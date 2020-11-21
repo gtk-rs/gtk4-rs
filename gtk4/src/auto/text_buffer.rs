@@ -2,14 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::TextChildAnchor;
 use crate::TextIter;
 use crate::TextMark;
 use crate::TextTag;
 use crate::TextTagTable;
-use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -176,13 +173,23 @@ pub trait TextBufferExt: 'static {
 
     fn get_selection_content(&self) -> gdk::ContentProvider;
 
-    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString;
+    fn get_slice(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> glib::GString;
 
     fn get_start_iter(&self) -> TextIter;
 
     fn get_tag_table(&self) -> TextTagTable;
 
-    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString;
+    fn get_text(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> glib::GString;
 
     fn insert(&self, iter: &mut TextIter, text: &str);
 
@@ -428,7 +435,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     //fn create_tag(&self, tag_name: Option<&str>, first_property_name: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TextTag {
-    //    unsafe { TODO: call gtk_sys:gtk_text_buffer_create_tag() }
+    //    unsafe { TODO: call ffi:gtk_text_buffer_create_tag() }
     //}
 
     fn cut_clipboard(&self, clipboard: &gdk::Clipboard, default_editable: bool) {
@@ -719,7 +726,12 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_slice(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString {
+    fn get_slice(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_buffer_get_slice(
                 self.as_ref().to_glib_none().0,
@@ -749,7 +761,12 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_text(&self, start: &TextIter, end: &TextIter, include_hidden_chars: bool) -> GString {
+    fn get_text(
+        &self,
+        start: &TextIter,
+        end: &TextIter,
+        include_hidden_chars: bool,
+    ) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_buffer_get_text(
                 self.as_ref().to_glib_none().0,

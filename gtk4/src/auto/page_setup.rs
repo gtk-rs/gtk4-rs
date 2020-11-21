@@ -2,13 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::PageOrientation;
 use crate::PaperSize;
 use crate::Unit;
-use glib;
 use glib::translate::*;
-use std;
 use std::fmt;
 use std::ptr;
 

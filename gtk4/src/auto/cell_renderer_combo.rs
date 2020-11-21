@@ -2,26 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::CellRenderer;
 use crate::CellRendererMode;
 use crate::CellRendererText;
 use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreePath;
-use gdk;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -79,7 +74,7 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn set_property_model<P: IsA<TreeModel> + SetValueOptional>(&self, model: Option<&P>) {
+    pub fn set_property_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -127,7 +122,7 @@ impl CellRendererCombo {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
             f(&from_glib_borrow(this), path, &from_glib_borrow(new_iter))
         }
         unsafe {

@@ -2,17 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::FileChooserAction;
 use crate::FileFilter;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;

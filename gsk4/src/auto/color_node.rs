@@ -2,11 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::RenderNode;
-use gdk;
 use glib::translate::*;
-use graphene;
 use std::fmt;
 
 glib::glib_wrapper! {

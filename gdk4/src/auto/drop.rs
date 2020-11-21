@@ -2,15 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::ContentFormats;
 use crate::Device;
 use crate::Display;
 use crate::Drag;
 use crate::DragAction;
 use crate::Surface;
-use gio;
-use glib;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;

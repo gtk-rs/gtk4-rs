@@ -2,12 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::CellRenderer;
 use crate::CellRendererMode;
 use crate::TreePath;
-use gdk;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -16,8 +13,6 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -2031,7 +2026,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(ffi::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
                 path,

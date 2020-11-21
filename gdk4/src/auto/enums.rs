@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use glib::error::ErrorDomain;
-use glib::gobject_ffi;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;

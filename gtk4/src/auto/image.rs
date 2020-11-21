@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ffi;
 use crate::Accessible;
 use crate::AccessibleRole;
 use crate::Align;
@@ -13,21 +12,15 @@ use crate::ImageType;
 use crate::LayoutManager;
 use crate::Overflow;
 use crate::Widget;
-use gdk;
-use gdk_pixbuf;
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::value::SetValueOptional;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -209,7 +202,7 @@ impl Image {
         }
     }
 
-    pub fn set_property_gicon<P: IsA<gio::Icon> + SetValueOptional>(&self, gicon: Option<&P>) {
+    pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -229,10 +222,7 @@ impl Image {
         }
     }
 
-    pub fn set_property_paintable<P: IsA<gdk::Paintable> + SetValueOptional>(
-        &self,
-        paintable: Option<&P>,
-    ) {
+    pub fn set_property_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
