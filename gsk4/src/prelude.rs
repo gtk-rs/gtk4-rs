@@ -4,6 +4,6 @@
 
 //! Traits intended for blanket imports.
 
-pub use auto::traits::*;
+pub use crate::auto::traits::*;
 #[doc(hidden)]
 pub use glib::prelude::*;
