@@ -34,11 +34,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 [dependencies]
 libc = "0.2"
 bitflags = "1.0"
-glib-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 ffi = { package = "gdk4-sys", path = "./sys" }
-gio-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-cairo-sys-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
 gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_46"]  }

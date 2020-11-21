@@ -9,8 +9,6 @@ pub use ffi;
 extern crate gdk;
 extern crate gio;
 extern crate glib;
-extern crate glib_sys;
-extern crate gobject_sys;
 extern crate libc;
 extern crate x11;
 

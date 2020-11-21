@@ -14,14 +14,10 @@
 pub use ffi;
 extern crate gdk_pixbuf;
 extern crate gio;
-extern crate gio_sys;
-extern crate glib_sys;
 #[macro_use]
 extern crate glib;
 extern crate bitflags;
 extern crate cairo;
-extern crate cairo_sys;
-extern crate gobject_sys;
 extern crate libc;
 extern crate pango;
 
