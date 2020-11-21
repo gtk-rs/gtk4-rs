@@ -4,7 +4,6 @@
 
 use crate::ffi;
 use crate::WaylandSurface;
-use glib;
 use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;

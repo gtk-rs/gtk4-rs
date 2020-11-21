@@ -2,9 +2,9 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
 use gdk::RGBA;
 use glib::translate::*;
-use crate::ffi;
 use std::mem;
 use std::ptr;
 
@@ -54,10 +54,7 @@ impl<'a> ToGlibPtrMut<'a, *mut ffi::GskColorStop> for ColorStop {
 
 #[doc(hidden)]
 impl FromGlibContainerAsVec<ffi::GskColorStop, *const ffi::GskColorStop> for ColorStop {
-    unsafe fn from_glib_none_num_as_vec(
-        ptr: *const ffi::GskColorStop,
-        num: usize,
-    ) -> Vec<Self> {
+    unsafe fn from_glib_none_num_as_vec(ptr: *const ffi::GskColorStop, num: usize) -> Vec<Self> {
         if num == 0 || ptr.is_null() {
             return Vec::new();
         }
@@ -69,10 +66,7 @@ impl FromGlibContainerAsVec<ffi::GskColorStop, *const ffi::GskColorStop> for Col
         res
     }
 
-    unsafe fn from_glib_container_num_as_vec(
-        _: *const ffi::GskColorStop,
-        _: usize,
-    ) -> Vec<Self> {
+    unsafe fn from_glib_container_num_as_vec(_: *const ffi::GskColorStop, _: usize) -> Vec<Self> {
         // Can't really free a *const
         unimplemented!();
     }
