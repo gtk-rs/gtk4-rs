@@ -86,6 +86,7 @@ manual = [
     "Gio.File",
     "Gio.Icon",
     "Gio.InputStream",
+    "Gio.ListModel",
     "Gio.OutputStream",
     "GLib.Bytes",
     "GLib.Error",

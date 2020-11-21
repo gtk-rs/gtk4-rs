@@ -40,7 +40,7 @@ gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
 cairo-sys-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
-gio = { git = "https://github.com/gtk-rs/gtk-rs" }
+gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_46"]  }
 glib = { git = "https://github.com/gtk-rs/gtk-rs" }
 pango = { git = "https://github.com/gtk-rs/gtk-rs" }
 
