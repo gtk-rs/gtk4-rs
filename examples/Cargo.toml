@@ -13,6 +13,8 @@ package = "gtk4"
 [dependencies.gio]
 git = "https://github.com/gtk-rs/gtk-rs"
 
-
 [[bin]]
 name = "basic"
+
+[[bin]]
+name = "builder_basics"
