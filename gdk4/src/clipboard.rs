@@ -2,13 +2,14 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::ffi;
+use crate::Clipboard;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
 use std::future;
 use std::pin::Pin;
 use std::ptr;
-use Clipboard;
 
 impl Clipboard {
     pub fn read_async<
@@ -25,13 +26,13 @@ impl Clipboard {
         unsafe extern "C" fn read_async_trampoline<
             Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
         >(
-            _source_object: *mut gobject_sys::GObject,
-            res: *mut gio_sys::GAsyncResult,
-            user_data: glib_sys::gpointer,
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
         ) {
             let mut error = ptr::null_mut();
             let mut out_mime_type = ptr::null();
-            let ret = gdk_sys::gdk_clipboard_read_finish(
+            let ret = ffi::gdk_clipboard_read_finish(
                 _source_object as *mut _,
                 res,
                 &mut out_mime_type,
@@ -47,7 +48,7 @@ impl Clipboard {
         }
         let callback = read_async_trampoline::<Q>;
         unsafe {
-            gdk_sys::gdk_clipboard_read_async(
+            ffi::gdk_clipboard_read_async(
                 self.to_glib_none().0,
                 mime_types.to_glib_none().0,
                 io_priority.to_glib(),

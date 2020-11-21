@@ -11,20 +11,21 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-extern crate gdk4_sys as gdk_sys;
+#[doc(hidden)]
+pub extern crate gdk4_sys as gdk_sys;
+pub use gdk4_sys as ffi;
 extern crate gdk_pixbuf;
 extern crate gio;
 extern crate gio_sys;
 extern crate glib_sys;
 #[macro_use]
 extern crate glib;
+extern crate bitflags;
 extern crate cairo;
 extern crate cairo_sys;
 extern crate gobject_sys;
 extern crate libc;
 extern crate pango;
-#[macro_use]
-extern crate bitflags;
 
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {

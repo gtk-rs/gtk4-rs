@@ -23,7 +23,7 @@ impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
                 orientation.to_glib(),
                 colors_per_line,
                 colors.len() as c_int,
-                colors.as_ptr() as *mut gdk_sys::GdkRGBA,
+                colors.as_ptr() as *mut gdk::ffi::GdkRGBA,
             )
         }
     }

@@ -5,9 +5,6 @@
 use crate::ffi;
 use crate::Event;
 use crate::Texture;
-use cairo;
-use gdk_pixbuf;
-use glib;
 use glib::object::IsA;
 use glib::translate::*;
 use std::mem;
