@@ -16,9 +16,6 @@ name = "gdk4_wayland_sys"
 [dependencies]
 libc = "0.2"
 
-[dependencies.gdk4-sys]
-path = "../../gdk4/sys"
-
 [dependencies.glib-sys]
 git = "https://github.com/gtk-rs/gtk-rs.git"
 

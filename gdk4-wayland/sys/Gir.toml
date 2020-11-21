@@ -8,6 +8,3 @@ single_version_file = "."
 external_libraries = [
    "GLib",
 ]
-
-[external_libraries]
-gdk4 = "Gdk"
