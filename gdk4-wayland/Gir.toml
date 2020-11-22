@@ -19,12 +19,12 @@ generate = [
 manual = [
     "Gdk.Device",
     "Gdk.Display",
-    "Gdk.GLContext",
     "Gdk.DrawContext",
+    "Gdk.GLContext",
     "Gdk.Monitor",
-    "Gdk.Surface",
     "Gdk.Popup",
     "Gdk.Seat",
+    "Gdk.Surface",
     "Gdk.Toplevel",
 ]
 
