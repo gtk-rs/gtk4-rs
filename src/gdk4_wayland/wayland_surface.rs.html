@@ -20,14 +20,13 @@
 <span id="17">17</span>
 <span id="18">18</span>
 <span id="19">19</span>
-<span id="20">20</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">WaylandSurface</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="ident">ToGlibPtr</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">IsA</span>;
 <span class="kw">use</span> <span class="ident">wayland_client</span>::<span class="ident">protocol</span>::<span class="ident">wl_surface</span>::<span class="ident">WlSurface</span>;
 <span class="kw">use</span> <span class="ident">wayland_client</span>::<span class="ident">sys</span>::<span class="ident">client</span>::<span class="ident">wl_proxy</span>;
 <span class="kw">use</span> <span class="ident">wayland_client</span>::<span class="ident">Proxy</span>;
-<span class="kw">use</span> <span class="ident">WaylandSurface</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WaylandSurfaceManualExt</span> {
     <span class="kw">fn</span> <span class="ident">get_wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WlSurface</span>;
@@ -36,8 +35,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">WaylandSurface</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">WaylandSurfaceManualExt</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">get_wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WlSurface</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span>
-                <span class="ident">gdk_wayland_sys</span>::<span class="ident">gdk_wayland_surface_get_wl_surface</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_wayland_surface_get_wl_surface</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
             <span class="ident">Proxy</span>::<span class="ident">from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
         }
     }

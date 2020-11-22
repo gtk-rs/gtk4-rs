@@ -72,22 +72,20 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
-<span id="72">72</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 <span class="comment">/*
 
-use gdk_sys;
 use glib::translate::*;
 #[repr(C)]
-pub struct TimeCoord(gdk_sys::GdkTimeCoord);
+pub struct TimeCoord(ffi::GdkTimeCoord);
 
 impl TimeCoord {
     pub fn new(time: u32, axes: [f64; 128]) -&gt; TimeCoord {
         assert_initialized_main_thread!();
-        TimeCoord(gdk_sys::GdkTimeCoord { time, axes })
+        TimeCoord(ffi::GdkTimeCoord { time, axes })
     }
 
     pub fn get_time(&amp;self) -&gt; u32 {
@@ -100,27 +98,27 @@ impl TimeCoord {
 
 #[doc(hidden)]
 impl GlibPtrDefault for TimeCoord {
-    type GlibType = *mut gdk_sys::GdkTimeCoord;
+    type GlibType = *mut ffi::GdkTimeCoord;
 }
 #[doc(hidden)]
-impl FromGlibPtrNone&lt;*mut gdk_sys::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_none(ptr: *mut gdk_sys::GdkTimeCoord) -&gt; Self {
+impl FromGlibPtrNone&lt;*mut ffi::GdkTimeCoord&gt; for TimeCoord {
+    unsafe fn from_glib_none(ptr: *mut ffi::GdkTimeCoord) -&gt; Self {
         TimeCoord(*ptr)
     }
 }
 
 #[doc(hidden)]
-impl FromGlibPtrFull&lt;*mut gdk_sys::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_full(ptr: *mut gdk_sys::GdkTimeCoord) -&gt; Self {
+impl FromGlibPtrFull&lt;*mut ffi::GdkTimeCoord&gt; for TimeCoord {
+    unsafe fn from_glib_full(ptr: *mut ffi::GdkTimeCoord) -&gt; Self {
         let res = from_glib_none(ptr);
-        glib_sys::g_free(ptr as *mut _);
+        glib::ffi::g_free(ptr as *mut _);
         res
     }
 }
 
 #[doc(hidden)]
-impl FromGlibContainerAsVec&lt;gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_none_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
+impl FromGlibContainerAsVec&lt;ffi::GdkTimeCoord, *mut ffi::GdkTimeCoord&gt; for TimeCoord {
+    unsafe fn from_glib_none_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
         if num == 0 || ptr.is_null() {
             return Vec::new();
         }
@@ -133,15 +131,15 @@ impl FromGlibContainerAsVec&lt;gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord
     }
 
     unsafe fn from_glib_container_num_as_vec(
-        ptr: *mut gdk_sys::GdkTimeCoord,
+        ptr: *mut ffi::GdkTimeCoord,
         num: usize,
     ) -&gt; Vec&lt;Self&gt; {
         let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
-        glib_sys::g_free(ptr as *mut _);
+        glib::ffi::g_free(ptr as *mut _);
         res
     }
 
-    unsafe fn from_glib_full_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
+    unsafe fn from_glib_full_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
         FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
     }
 }

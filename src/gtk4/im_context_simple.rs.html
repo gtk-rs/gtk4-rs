@@ -36,17 +36,15 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
-<span id="36">36</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2018, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">IMContextSimple</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
-<span class="kw">use</span> <span class="ident">IMContextSimple</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextSimpleExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="kw">fn</span> <span class="ident">add_compose_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">compose_file</span>: <span class="ident">P</span>);
@@ -57,7 +55,7 @@
     <span class="kw">fn</span> <span class="ident">add_compose_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">compose_file</span>: <span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">compose_file</span> <span class="op">=</span> <span class="ident">compose_file</span>.<span class="ident">as_ref</span>();
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_im_context_simple_add_compose_file</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_im_context_simple_add_compose_file</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">compose_file</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
@@ -67,7 +65,7 @@
     <span class="comment">/*fn add_table(&amp;self, data: &amp;[u16], max_seq_len: u32, n_seqs: u32) {
         assert!(max_seq_len * n_seqs &lt; data.len() as u32);
         unsafe {
-            gtk_sys::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0,
+            ffi::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0,
                                                  data.to_glib_none().0,
                                                  max_seq_len as i32,
                                                  n_seqs as i32);

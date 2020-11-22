@@ -53,12 +53,10 @@
 <span id="50">50</span>
 <span id="51">51</span>
 <span id="52">52</span>
-<span id="53">53</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">glib</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">rt</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Application</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">rt</span>;
-<span class="kw">use</span> <span class="ident">Application</span>;
 
 <span class="kw">impl</span> <span class="ident">Application</span> {
     <span class="doccomment">/// Creates a new `Application` instance.</span>
@@ -100,7 +98,7 @@
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">rt</span>::<span class="ident">init</span>()<span class="question-mark">?</span>;
         <span class="kw">unsafe</span> {
-            <span class="prelude-ty">Option</span>::<span class="ident">from_glib_full</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_application_new</span>(
+            <span class="prelude-ty">Option</span>::<span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_application_new</span>(
                 <span class="ident">application_id</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
             ))

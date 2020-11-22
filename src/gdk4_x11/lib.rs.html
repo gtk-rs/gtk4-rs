@@ -23,10 +23,6 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2020, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -34,17 +30,13 @@
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
 
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi</span>;
+
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gdk</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gdk4_x11_sys</span> <span class="kw">as</span> <span class="ident">gdk_x11_sys</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gio</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib_sys</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gobject_sys</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">x11</span>;
-
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">x11</span>::<span class="ident">xlib</span>;
 
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;

@@ -46,17 +46,13 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2018, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">PadActionEntry</span>, <span class="ident">PadController</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
-<span class="kw">use</span> <span class="ident">PadActionEntry</span>;
-<span class="kw">use</span> <span class="ident">PadController</span>;
 
 <span class="kw">impl</span> <span class="ident">PadController</span> {
     <span class="doccomment">/// This is a convenience function to add a group of action entries on</span>
@@ -79,7 +75,7 @@
         <span class="kw">let</span> <span class="ident">entries</span> <span class="op">=</span> <span class="ident">entries</span>
             .<span class="ident">iter</span>()
             .<span class="ident">zip</span>(<span class="ident">entry_strings</span>.<span class="ident">iter</span>())
-            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">e</span>, (<span class="ident">label</span>, <span class="ident">action_name</span>))<span class="op">|</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkPadActionEntry</span> {
+            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">e</span>, (<span class="ident">label</span>, <span class="ident">action_name</span>))<span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">GtkPadActionEntry</span> {
                 <span class="ident">type_</span>: <span class="ident">e</span>.<span class="ident">get_type</span>().<span class="ident">to_glib</span>(),
                 <span class="ident">index</span>: <span class="ident">e</span>.<span class="ident">get_index</span>(),
                 <span class="ident">mode</span>: <span class="ident">e</span>.<span class="ident">get_mode</span>(),
@@ -88,7 +84,7 @@
             })
             .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_pad_controller_set_action_entries</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_pad_controller_set_action_entries</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">entries</span>.<span class="ident">as_ptr</span>(),
                 <span class="ident">n_entries</span>,

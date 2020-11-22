@@ -229,10 +229,6 @@
 <span id="226">226</span>
 <span id="227">227</span>
 <span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2015, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -240,15 +236,11 @@
 
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cmp</span>::<span class="ident">Ordering</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
-<span class="kw">use</span> <span class="ident">SortType</span>;
 
-<span class="kw">use</span> <span class="ident">glib_sys</span>::<span class="ident">gpointer</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>::{<span class="ident">GtkTreeIter</span>, <span class="ident">GtkTreeModel</span>};
-<span class="kw">use</span> {<span class="ident">TreeIter</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeSortable</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">SortType</span>, <span class="ident">TreeIter</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeSortable</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SortColumn</span> {
@@ -263,7 +255,7 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span>,
+            <span class="ident">SortColumn</span>::<span class="ident">Default</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span>,
             <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">i32</span>::<span class="ident">max_value</span>() <span class="kw">as</span> <span class="ident">u32</span>, <span class="string">&quot;column index is too big&quot;</span>);
                 <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i32</span>
@@ -278,7 +270,7 @@
     <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">val</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SortColumn</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">val</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SortColumn</span>::<span class="ident">Default</span>,
+            <span class="ident">ffi</span>::<span class="ident">GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SortColumn</span>::<span class="ident">Default</span>,
             <span class="ident">x</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;invalid column index&quot;</span>);
                 <span class="ident">SortColumn</span>::<span class="ident">Index</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">u32</span>)
@@ -365,10 +357,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">trampoline</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
-    <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeModel</span>,
-    <span class="ident">iter</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeIter</span>,
-    <span class="ident">iter2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GtkTreeIter</span>,
-    <span class="ident">f</span>: <span class="ident">gpointer</span>,
+    <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkTreeModel</span>,
+    <span class="ident">iter</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkTreeIter</span>,
+    <span class="ident">iter2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkTreeIter</span>,
+    <span class="ident">f</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;</span>,
@@ -383,18 +375,18 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">destroy_closure</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="ident">gpointer</span>,
+    <span class="ident">ptr</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
 ) {
     <span class="ident">Box</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>::<span class="ident">from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
 }
 
-<span class="kw">fn</span> <span class="ident">into_raw</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">func</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gpointer</span>
+<span class="kw">fn</span> <span class="ident">into_raw</span><span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">func</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>
 <span class="kw">where</span>
     <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 {
     <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
     <span class="kw">let</span> <span class="ident">func</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">func</span>);
-    <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">func</span>) <span class="kw">as</span> <span class="ident">gpointer</span>
+    <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">func</span>) <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">TreeSortableExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
@@ -403,12 +395,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">uninitialized</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">order</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">uninitialized</span>();
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_get_sort_column_id</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_tree_sortable_get_sort_column_id</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sort_column_id</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">order</span>,
             );
-            <span class="kw">if</span> <span class="ident">sort_column_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span> {
+            <span class="kw">if</span> <span class="ident">sort_column_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span> {
                 <span class="prelude-val">Some</span>((<span class="ident">from_glib</span>(<span class="ident">sort_column_id</span>), <span class="ident">from_glib</span>(<span class="ident">order</span>)))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
@@ -421,7 +413,7 @@
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_default_sort_func</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_tree_sortable_set_default_sort_func</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="prelude-val">Some</span>(<span class="ident">trampoline</span>::<span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">F</span><span class="op">&gt;</span>),
                 <span class="ident">into_raw</span>(<span class="ident">sort_func</span>),
@@ -433,7 +425,7 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">set_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">order</span>: <span class="ident">SortType</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_sort_column_id</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_tree_sortable_set_sort_column_id</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">sort_column_id</span>.<span class="ident">to_glib</span>(),
                 <span class="ident">order</span>.<span class="ident">to_glib</span>(),
@@ -443,9 +435,9 @@
 
     <span class="kw">fn</span> <span class="ident">set_unsorted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_sort_column_id</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_tree_sortable_set_sort_column_id</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">gtk_sys</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span>,
+                <span class="ident">ffi</span>::<span class="ident">GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span>,
                 <span class="ident">SortType</span>::<span class="ident">Ascending</span>.<span class="ident">to_glib</span>(),
             );
         }
@@ -456,7 +448,7 @@
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_tree_sortable_set_sort_func</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_tree_sortable_set_sort_func</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">sort_column_id</span>.<span class="ident">to_glib</span>(),
                 <span class="prelude-val">Some</span>(<span class="ident">trampoline</span>::<span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">F</span><span class="op">&gt;</span>),

@@ -54,11 +54,6 @@
 <span id="51">51</span>
 <span id="52">52</span>
 <span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2016, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -66,15 +61,10 @@
 
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">c_char</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
-<span class="kw">use</span> <span class="ident">ButtonsType</span>;
-<span class="kw">use</span> <span class="ident">DialogFlags</span>;
-<span class="kw">use</span> <span class="ident">MessageDialog</span>;
-<span class="kw">use</span> <span class="ident">MessageType</span>;
-<span class="kw">use</span> <span class="ident">Widget</span>;
-<span class="kw">use</span> <span class="ident">Window</span>;
+
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ButtonsType</span>, <span class="ident">DialogFlags</span>, <span class="ident">MessageDialog</span>, <span class="ident">MessageType</span>, <span class="ident">Widget</span>, <span class="ident">Window</span>};
 
 <span class="kw">impl</span> <span class="ident">MessageDialog</span> {
     <span class="doccomment">/// Creates a new message dialog, which is a simple dialog with some text</span>
@@ -105,7 +95,7 @@
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">message</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">message</span>.<span class="ident">to_glib_none</span>();
-            <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_message_dialog_new</span>(
+            <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_message_dialog_new</span>(
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
                 <span class="ident">type_</span>.<span class="ident">to_glib</span>(),

@@ -125,17 +125,15 @@
 <span id="122">122</span>
 <span id="123">123</span>
 <span id="124">124</span>
-<span id="125">125</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Snapshot</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">graphene</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>};
 <span class="kw">use</span> <span class="ident">gsk</span>::<span class="ident">ColorStop</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
-<span class="kw">use</span> <span class="ident">Snapshot</span>;
 
 <span class="kw">impl</span> <span class="ident">Snapshot</span> {
     <span class="doccomment">/// Appends a linear gradient node with the given stops to `self`.</span>
@@ -158,7 +156,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_snapshot_append_linear_gradient</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_linear_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">start_point</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -181,7 +179,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_snapshot_append_radial_gradient</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_radial_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -207,7 +205,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_snapshot_append_repeating_radial_gradient</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_repeating_radial_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -241,7 +239,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_snapshot_append_repeating_linear_gradient</span>(
+            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_repeating_linear_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">start_point</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

@@ -46,9 +46,9 @@
 <span id="43">43</span>
 <span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">ShortcutTrigger</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">ShortcutTrigger</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ShortcutTriggerExtManual</span> {
     <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
@@ -61,31 +61,31 @@
 <span class="kw">impl</span> <span class="ident">ShortcutTriggerExtManual</span> <span class="kw">for</span> <span class="ident">ShortcutTrigger</span> {
     <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_shortcut_trigger_compare</span>(
-                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
-                    <span class="kw">as</span> <span class="ident">glib_sys</span>::<span class="ident">gconstpointer</span>,
-                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="ident">trigger2</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
-                    <span class="kw">as</span> <span class="ident">glib_sys</span>::<span class="ident">gconstpointer</span>,
+            <span class="ident">ffi</span>::<span class="ident">gtk_shortcut_trigger_compare</span>(
+                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
+                    <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gconstpointer</span>,
+                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="ident">trigger2</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
+                    <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gconstpointer</span>,
             )
         }
     }
 
     <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_shortcut_trigger_equal</span>(
-                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
-                    <span class="kw">as</span> <span class="ident">glib_sys</span>::<span class="ident">gconstpointer</span>,
-                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="ident">trigger2</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
-                    <span class="kw">as</span> <span class="ident">glib_sys</span>::<span class="ident">gconstpointer</span>,
+            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_shortcut_trigger_equal</span>(
+                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
+                    <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gconstpointer</span>,
+                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="ident">trigger2</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
+                    <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gconstpointer</span>,
             ))
         }
     }
 
     <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">gtk_sys</span>::<span class="ident">gtk_shortcut_trigger_hash</span>(
-                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gtk_sys</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
-                    <span class="kw">as</span> <span class="ident">glib_sys</span>::<span class="ident">gconstpointer</span>,
+            <span class="ident">ffi</span>::<span class="ident">gtk_shortcut_trigger_hash</span>(
+                <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkShortcutTrigger</span><span class="op">&gt;</span>::<span class="ident">to_glib_none</span>(<span class="self">self</span>).<span class="number">0</span>
+                    <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gconstpointer</span>,
             )
         }
     }

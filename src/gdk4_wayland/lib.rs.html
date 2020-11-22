@@ -24,10 +24,10 @@
 <span id="21">21</span>
 <span id="22">22</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi</span>;
+
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gdk</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gdk4_wayland_sys</span> <span class="kw">as</span> <span class="ident">gdk_wayland_sys</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">wayland_client</span>;
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>

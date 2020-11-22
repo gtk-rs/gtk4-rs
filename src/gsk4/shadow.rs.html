@@ -128,7 +128,6 @@
 <span id="125">125</span>
 <span id="126">126</span>
 <span id="127">127</span>
-<span id="128">128</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -136,18 +135,17 @@
 
 <span class="kw">use</span> <span class="ident">gdk</span>::<span class="ident">RGBA</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gsk_sys</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shadow</span>(<span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shadow</span>(<span class="ident">ffi</span>::<span class="ident">GskShadow</span>);
 
 <span class="kw">impl</span> <span class="ident">Shadow</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">color</span>: <span class="ident">RGBA</span>, <span class="ident">dx</span>: <span class="ident">f32</span>, <span class="ident">dy</span>: <span class="ident">f32</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shadow</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
-        <span class="ident">Shadow</span>(<span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span> {
+        <span class="ident">Shadow</span>(<span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
             <span class="ident">color</span>: <span class="kw">unsafe</span> { <span class="kw-2">*</span><span class="ident">color</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> },
             <span class="ident">dx</span>,
             <span class="ident">dy</span>,
@@ -173,48 +171,48 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibPtr</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibPtr</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">Self</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib_none</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">to_glib_none</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Shadow</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>;
-        <span class="ident">Stash</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="self">self</span>)
+        <span class="ident">Stash</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="self">self</span>)
     }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibPtrMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibPtrMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="self">Self</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_glib_none_mut</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StashMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">to_glib_none_mut</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StashMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Shadow</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>;
-        <span class="ident">StashMut</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="self">self</span>)
+        <span class="ident">StashMut</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="self">self</span>)
     }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Shadow</span>)
     }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibContainerFromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibContainerFromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>];
 
-    <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
+    <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         (<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>, <span class="ident">t</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
+    <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         (<span class="ident">ToGlibContainerFromSlice</span>::<span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>), <span class="ident">t</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span> {
+    <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
 
         <span class="kw">if</span> <span class="ident">t</span>.<span class="ident">is_empty</span>() {
@@ -222,8 +220,8 @@
         }
 
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">glib_sys</span>::<span class="ident">g_malloc</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">t</span>.<span class="ident">len</span>())
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>;
+            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">g_malloc</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">t</span>.<span class="ident">len</span>())
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>;
             <span class="ident">ptr</span>::<span class="ident">copy_nonoverlapping</span>(<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>, <span class="ident">res</span>, <span class="ident">t</span>.<span class="ident">len</span>());
             <span class="ident">res</span>
         }
@@ -231,28 +229,28 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibContainerFromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ToGlibContainerFromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shadow</span> {
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>];
 
-    <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
+    <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
-        (<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="ident">t</span>)
+        (<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="ident">t</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
+    <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         (<span class="ident">ToGlibContainerFromSlice</span>::<span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>), <span class="ident">t</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span> {
+    <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">if</span> <span class="ident">t</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
         }
 
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">glib_sys</span>::<span class="ident">g_malloc</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">t</span>.<span class="ident">len</span>())
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gsk_sys</span>::<span class="ident">GskShadow</span>;
+            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">g_malloc</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GskShadow</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">t</span>.<span class="ident">len</span>())
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>;
             <span class="ident">ptr</span>::<span class="ident">copy_nonoverlapping</span>(<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>, <span class="ident">res</span>, <span class="ident">t</span>.<span class="ident">len</span>());
             <span class="ident">res</span>
         }

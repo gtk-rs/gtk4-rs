@@ -19,17 +19,13 @@
 <span id="16">16</span>
 <span id="17">17</span>
 <span id="18">18</span>
-<span id="19">19</span>
-<span id="20">20</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
-<span class="kw">use</span> <span class="ident">gdk_sys</span>;
-<span class="kw">use</span> <span class="ident">glib</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">ContentDeserializer</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">ContentDeserializer</span>;
 
 <span class="kw">impl</span> <span class="ident">ContentDeserializer</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">glib</span>::<span class="ident">Value</span>) {
@@ -37,8 +33,8 @@
 
         <span class="kw">let</span> <span class="ident">src_value</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">to_glib_none</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">dest_value</span> <span class="op">=</span> <span class="ident">gdk_sys</span>::<span class="ident">gdk_content_deserializer_get_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-            <span class="ident">gobject_sys</span>::<span class="ident">g_value_copy</span>(<span class="ident">src_value</span>.<span class="number">0</span>, <span class="ident">dest_value</span>);
+            <span class="kw">let</span> <span class="ident">dest_value</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_deserializer_get_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
+            <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_value_copy</span>(<span class="ident">src_value</span>.<span class="number">0</span>, <span class="ident">dest_value</span>);
         }
     }
 }

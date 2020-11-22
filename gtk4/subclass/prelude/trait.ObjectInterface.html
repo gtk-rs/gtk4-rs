@@ -11,7 +11,7 @@
 }</pre></div><div class="docblock"><p>The central trait for defining a <code>GObject</code> interface.</p>
 <p>Links together the type name and the interface struct for type registration and allows to hook
 into various steps of the type registration and initialization.</p>
-<p>This must only be implemented on <code>#[repr(C)]</code> structs and have <code>gobject_sys::GTypeInterface</code> as
+<p>This must only be implemented on <code>#[repr(C)]</code> structs and have <code>gobject_ffi::GTypeInterface</code> as
 the first field.</p>
 <p>See <a href="fn.register_interface.html"><code>register_interface</code></a> for registering an implementation of this trait
 with the type system.</p>

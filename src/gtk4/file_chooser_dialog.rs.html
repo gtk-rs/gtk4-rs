@@ -84,24 +84,16 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
-<span id="84">84</span>
-<span id="85">85</span>
-<span id="86">86</span>
-<span id="87">87</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2016, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">FileChooserAction</span>, <span class="ident">FileChooserDialog</span>, <span class="ident">ResponseType</span>, <span class="ident">Widget</span>, <span class="ident">Window</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">c_char</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
-<span class="kw">use</span> <span class="ident">FileChooserAction</span>;
-<span class="kw">use</span> <span class="ident">FileChooserDialog</span>;
-<span class="kw">use</span> <span class="ident">ResponseType</span>;
-<span class="kw">use</span> <span class="ident">Widget</span>;
-<span class="kw">use</span> <span class="ident">Window</span>;
 
 <span class="kw">impl</span> <span class="ident">FileChooserDialog</span> {
     <span class="doccomment">/// Creates a new `FileChooserDialog`. This function is analogous to</span>
@@ -127,13 +119,13 @@
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="kw">match</span> <span class="ident">buttons</span>.<span class="ident">len</span>() {
-                <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
+                <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
                     <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">action</span>.<span class="ident">to_glib</span>(),
                     <span class="ident">ptr</span>::<span class="ident">null</span>::<span class="op">&lt;</span><span class="ident">c_char</span><span class="op">&gt;</span>(),
                 ),
-                <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
+                <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
                     <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">action</span>.<span class="ident">to_glib</span>(),
@@ -141,7 +133,7 @@
                     <span class="ident">buttons</span>[<span class="number">0</span>].<span class="number">1</span>.<span class="ident">to_glib</span>(),
                     <span class="ident">ptr</span>::<span class="ident">null</span>::<span class="op">&lt;</span><span class="ident">c_char</span><span class="op">&gt;</span>(),
                 ),
-                <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
+                <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
                     <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">action</span>.<span class="ident">to_glib</span>(),
@@ -151,7 +143,7 @@
                     <span class="ident">buttons</span>[<span class="number">1</span>].<span class="number">1</span>.<span class="ident">to_glib</span>(),
                     <span class="ident">ptr</span>::<span class="ident">null</span>::<span class="op">&lt;</span><span class="ident">c_char</span><span class="op">&gt;</span>(),
                 ),
-                <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">gtk_sys</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
+                <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi</span>::<span class="ident">gtk_file_chooser_dialog_new</span>(
                     <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">action</span>.<span class="ident">to_glib</span>(),

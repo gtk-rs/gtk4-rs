@@ -33,21 +33,15 @@
 <span id="30">30</span>
 <span id="31">31</span>
 <span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Entry</span>, <span class="ident">EntryCompletion</span>, <span class="ident">Widget</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">IsA</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">Cast</span>;
-<span class="kw">use</span> <span class="ident">gtk_sys</span>;
-<span class="kw">use</span> <span class="ident">Entry</span>;
-<span class="kw">use</span> <span class="ident">EntryCompletion</span>;
-<span class="kw">use</span> <span class="ident">Widget</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryCompletionExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the entry `self` has been attached to.</span>
@@ -61,7 +55,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">EntryCompletion</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">EntryCompletionExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">get_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Entry</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>::<span class="ident">from_glib_none</span>(<span class="ident">gtk_sys</span>::<span class="ident">gtk_entry_completion_get_entry</span>(
+            <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>::<span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_completion_get_entry</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">widget</span><span class="op">|</span> {
