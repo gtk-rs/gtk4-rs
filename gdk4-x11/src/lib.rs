@@ -5,13 +5,7 @@
 #![allow(deprecated)]
 
 pub use ffi;
-
-extern crate gdk;
-extern crate gio;
-extern crate glib;
-extern crate libc;
-extern crate x11;
-
+pub use x11::xlib;
 #[macro_use]
 mod rt;
 

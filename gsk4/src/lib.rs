@@ -13,14 +13,6 @@
 
 pub use ffi;
 
-extern crate bitflags;
-extern crate cairo;
-extern crate gdk;
-extern crate glib;
-extern crate graphene;
-extern crate libc;
-extern crate pango;
-
 // GSK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
     () => {};

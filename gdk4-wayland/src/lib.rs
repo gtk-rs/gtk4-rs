@@ -1,8 +1,5 @@
 pub use ffi;
-
-extern crate gdk;
-extern crate glib;
-extern crate wayland_client;
+pub use wayland_client;
 
 #[allow(unused_imports)]
 #[allow(clippy::let_and_return)]
