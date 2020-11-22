@@ -2,34 +2,33 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Monitor;
 use glib::translate::*;
-use Monitor;
 
-glib_wrapper! {
+glib::glib_wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
-    pub struct ToplevelLayout(Shared<gdk_sys::GdkToplevelLayout>);
+    pub struct ToplevelLayout(Shared<ffi::GdkToplevelLayout>);
 
     match fn {
-        ref => |ptr| gdk_sys::gdk_toplevel_layout_ref(ptr),
-        unref => |ptr| gdk_sys::gdk_toplevel_layout_unref(ptr),
-        get_type => || gdk_sys::gdk_toplevel_layout_get_type(),
+        ref => |ptr| ffi::gdk_toplevel_layout_ref(ptr),
+        unref => |ptr| ffi::gdk_toplevel_layout_unref(ptr),
+        get_type => || ffi::gdk_toplevel_layout_get_type(),
     }
 }
 
 impl ToplevelLayout {
     pub fn new() -> ToplevelLayout {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gdk_sys::gdk_toplevel_layout_new()) }
+        unsafe { from_glib_full(ffi::gdk_toplevel_layout_new()) }
     }
 
     pub fn copy(&self) -> Option<ToplevelLayout> {
-        unsafe { from_glib_full(gdk_sys::gdk_toplevel_layout_copy(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gdk_toplevel_layout_copy(self.to_glib_none().0)) }
     }
 
     fn equal(&self, other: &ToplevelLayout) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_layout_equal(
+            from_glib(ffi::gdk_toplevel_layout_equal(
                 self.to_glib_none().0,
                 other.to_glib_none().0,
             ))
@@ -38,7 +37,7 @@ impl ToplevelLayout {
 
     pub fn get_fullscreen(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_layout_get_fullscreen(
+            from_glib(ffi::gdk_toplevel_layout_get_fullscreen(
                 self.to_glib_none().0,
             ))
         }
@@ -46,7 +45,7 @@ impl ToplevelLayout {
 
     pub fn get_fullscreen_monitor(&self) -> Option<Monitor> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_toplevel_layout_get_fullscreen_monitor(
+            from_glib_none(ffi::gdk_toplevel_layout_get_fullscreen_monitor(
                 self.to_glib_none().0,
             ))
         }
@@ -54,7 +53,7 @@ impl ToplevelLayout {
 
     pub fn get_maximized(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_layout_get_maximized(
+            from_glib(ffi::gdk_toplevel_layout_get_maximized(
                 self.to_glib_none().0,
             ))
         }
@@ -62,7 +61,7 @@ impl ToplevelLayout {
 
     pub fn get_resizable(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_layout_get_resizable(
+            from_glib(ffi::gdk_toplevel_layout_get_resizable(
                 self.to_glib_none().0,
             ))
         }
@@ -70,7 +69,7 @@ impl ToplevelLayout {
 
     pub fn set_fullscreen(&self, fullscreen: bool, monitor: Option<&Monitor>) {
         unsafe {
-            gdk_sys::gdk_toplevel_layout_set_fullscreen(
+            ffi::gdk_toplevel_layout_set_fullscreen(
                 self.to_glib_none().0,
                 fullscreen.to_glib(),
                 monitor.to_glib_none().0,
@@ -80,13 +79,13 @@ impl ToplevelLayout {
 
     pub fn set_maximized(&self, maximized: bool) {
         unsafe {
-            gdk_sys::gdk_toplevel_layout_set_maximized(self.to_glib_none().0, maximized.to_glib());
+            ffi::gdk_toplevel_layout_set_maximized(self.to_glib_none().0, maximized.to_glib());
         }
     }
 
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
-            gdk_sys::gdk_toplevel_layout_set_resizable(self.to_glib_none().0, resizable.to_glib());
+            ffi::gdk_toplevel_layout_set_resizable(self.to_glib_none().0, resizable.to_glib());
         }
     }
 }

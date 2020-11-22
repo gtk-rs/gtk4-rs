@@ -2,7 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,22 +13,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Widget;
 
-glib_wrapper! {
-    pub struct CellEditable(Interface<gtk_sys::GtkCellEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct CellEditable(Interface<ffi::GtkCellEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_editable_get_type(),
+        get_type => || ffi::gtk_cell_editable_get_type(),
     }
 }
 
@@ -55,19 +51,19 @@ pub trait CellEditableExt: 'static {
 impl<O: IsA<CellEditable>> CellEditableExt for O {
     fn editing_done(&self) {
         unsafe {
-            gtk_sys::gtk_cell_editable_editing_done(self.as_ref().to_glib_none().0);
+            ffi::gtk_cell_editable_editing_done(self.as_ref().to_glib_none().0);
         }
     }
 
     fn remove_widget(&self) {
         unsafe {
-            gtk_sys::gtk_cell_editable_remove_widget(self.as_ref().to_glib_none().0);
+            ffi::gtk_cell_editable_remove_widget(self.as_ref().to_glib_none().0);
         }
     }
 
     fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_cell_editable_start_editing(
+            ffi::gtk_cell_editable_start_editing(
                 self.as_ref().to_glib_none().0,
                 event.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -77,8 +73,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
     fn get_property_editing_canceled(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editing-canceled\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -91,8 +87,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     fn set_property_editing_canceled(&self, editing_canceled: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editing-canceled\0".as_ptr() as *const _,
                 Value::from(&editing_canceled).to_glib_none().0,
             );
@@ -101,8 +97,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn editing_done_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellEditable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellEditable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellEditable>,
         {
@@ -124,8 +120,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn remove_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellEditable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellEditable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellEditable>,
         {
@@ -150,9 +146,9 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_canceled_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellEditable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellEditable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellEditable>,
         {

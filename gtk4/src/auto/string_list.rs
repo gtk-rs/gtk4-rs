@@ -2,26 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::Buildable;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
-use Buildable;
 
-glib_wrapper! {
-    pub struct StringList(Object<gtk_sys::GtkStringList, gtk_sys::GtkStringListClass>) @implements gio::ListModel, Buildable;
+glib::glib_wrapper! {
+    pub struct StringList(Object<ffi::GtkStringList, ffi::GtkStringListClass>) @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || gtk_sys::gtk_string_list_get_type(),
+        get_type => || ffi::gtk_string_list_get_type(),
     }
 }
 
 impl StringList {
     pub fn new(strings: &[&str]) -> StringList {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_string_list_new(strings.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_string_list_new(strings.to_glib_none().0)) }
     }
 }
 
@@ -30,7 +27,7 @@ pub const NONE_STRING_LIST: Option<&StringList> = None;
 pub trait StringListExt: 'static {
     fn append(&self, string: &str);
 
-    fn get_string(&self, position: u32) -> Option<GString>;
+    fn get_string(&self, position: u32) -> Option<glib::GString>;
 
     fn remove(&self, position: u32);
 
@@ -42,16 +39,13 @@ pub trait StringListExt: 'static {
 impl<O: IsA<StringList>> StringListExt for O {
     fn append(&self, string: &str) {
         unsafe {
-            gtk_sys::gtk_string_list_append(
-                self.as_ref().to_glib_none().0,
-                string.to_glib_none().0,
-            );
+            ffi::gtk_string_list_append(self.as_ref().to_glib_none().0, string.to_glib_none().0);
         }
     }
 
-    fn get_string(&self, position: u32) -> Option<GString> {
+    fn get_string(&self, position: u32) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_string_list_get_string(
+            from_glib_none(ffi::gtk_string_list_get_string(
                 self.as_ref().to_glib_none().0,
                 position,
             ))
@@ -60,13 +54,13 @@ impl<O: IsA<StringList>> StringListExt for O {
 
     fn remove(&self, position: u32) {
         unsafe {
-            gtk_sys::gtk_string_list_remove(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_string_list_remove(self.as_ref().to_glib_none().0, position);
         }
     }
 
     fn splice(&self, position: u32, n_removals: u32, additions: &[&str]) {
         unsafe {
-            gtk_sys::gtk_string_list_splice(
+            ffi::gtk_string_list_splice(
                 self.as_ref().to_glib_none().0,
                 position,
                 n_removals,
@@ -77,7 +71,7 @@ impl<O: IsA<StringList>> StringListExt for O {
 
     fn take(&self, string: &str) {
         unsafe {
-            gtk_sys::gtk_string_list_take(self.as_ref().to_glib_none().0, string.to_glib_full());
+            ffi::gtk_string_list_take(self.as_ref().to_glib_none().0, string.to_glib_full());
         }
     }
 }

@@ -2,37 +2,34 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Application;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Dialog;
+use crate::FontChooser;
+use crate::FontChooserLevel;
+use crate::LayoutManager;
+use crate::Native;
+use crate::Overflow;
+use crate::Root;
+use crate::ShortcutManager;
+use crate::Widget;
+use crate::Window;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use gtk_sys;
-use pango;
 use std::fmt;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Application;
-use Buildable;
-use ConstraintTarget;
-use Dialog;
-use FontChooser;
-use FontChooserLevel;
-use LayoutManager;
-use Native;
-use Overflow;
-use Root;
-use ShortcutManager;
-use Widget;
-use Window;
 
-glib_wrapper! {
-    pub struct FontChooserDialog(Object<gtk_sys::GtkFontChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FontChooser;
+glib::glib_wrapper! {
+    pub struct FontChooserDialog(Object<ffi::GtkFontChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FontChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_font_chooser_dialog_get_type(),
+        get_type => || ffi::gtk_font_chooser_dialog_get_type(),
     }
 }
 
@@ -40,7 +37,7 @@ impl FontChooserDialog {
     pub fn new<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>) -> FontChooserDialog {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_font_chooser_dialog_new(
+            Widget::from_glib_none(ffi::gtk_font_chooser_dialog_new(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
             ))

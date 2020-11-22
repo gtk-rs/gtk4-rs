@@ -3,25 +3,24 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 use std::ops;
 
-glib_wrapper! {
+glib::glib_wrapper! {
     #[derive(PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct Border(Boxed<gtk_sys::GtkBorder>);
+    pub struct Border(Boxed<ffi::GtkBorder>);
 
     match fn {
-        copy => |ptr| gtk_sys::gtk_border_copy(mut_override(ptr)),
-        free => |ptr| gtk_sys::gtk_border_free(ptr),
+        copy => |ptr| ffi::gtk_border_copy(mut_override(ptr)),
+        free => |ptr| ffi::gtk_border_free(ptr),
         init => |_ptr| (),
         clear => |_ptr| (),
-        get_type => || gtk_sys::gtk_border_get_type(),
+        get_type => || ffi::gtk_border_get_type(),
     }
 }
 
 impl ops::Deref for Border {
-    type Target = gtk_sys::GtkBorder;
+    type Target = ffi::GtkBorder;
 
     fn deref(&self) -> &Self::Target {
         &(*self.0)
@@ -37,7 +36,7 @@ impl ops::DerefMut for Border {
 impl Border {
     pub fn new() -> Border {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_border_new()) }
+        unsafe { from_glib_full(ffi::gtk_border_new()) }
     }
 }
 

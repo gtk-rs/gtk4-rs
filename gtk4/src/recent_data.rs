@@ -3,7 +3,6 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use gtk_sys;
 use libc::c_char;
 
 pub struct RecentData {
@@ -17,15 +16,15 @@ pub struct RecentData {
 }
 
 #[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *mut gtk_sys::GtkRecentData> for RecentData {
+impl<'a> ToGlibPtr<'a, *mut ffi::GtkRecentData> for RecentData {
     type Storage = (
-        Box<gtk_sys::GtkRecentData>,
+        Box<ffi::GtkRecentData>,
         [Stash<'a, *mut c_char, Option<String>>; 2],
         [Stash<'a, *mut c_char, String>; 3],
         Stash<'a, *mut *mut c_char, [String]>,
     );
 
-    fn to_glib_none(&'a self) -> Stash<'a, *mut gtk_sys::GtkRecentData, Self> {
+    fn to_glib_none(&'a self) -> Stash<'a, *mut ffi::GtkRecentData, Self> {
         let display_name = self.display_name.to_glib_none();
         let description = self.description.to_glib_none();
         let mime_type = self.mime_type.to_glib_none();
@@ -33,7 +32,7 @@ impl<'a> ToGlibPtr<'a, *mut gtk_sys::GtkRecentData> for RecentData {
         let app_exec = self.app_exec.to_glib_none();
         let groups = self.groups.to_glib_none();
 
-        let mut data = Box::new(gtk_sys::GtkRecentData {
+        let mut data = Box::new(ffi::GtkRecentData {
             display_name: display_name.0,
             description: description.0,
             mime_type: mime_type.0,

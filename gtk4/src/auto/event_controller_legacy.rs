@@ -2,25 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
+use crate::EventController;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
 
-glib_wrapper! {
-    pub struct EventControllerLegacy(Object<gtk_sys::GtkEventControllerLegacy, gtk_sys::GtkEventControllerLegacyClass>) @extends EventController;
+glib::glib_wrapper! {
+    pub struct EventControllerLegacy(Object<ffi::GtkEventControllerLegacy, ffi::GtkEventControllerLegacyClass>) @extends EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_event_controller_legacy_get_type(),
+        get_type => || ffi::gtk_event_controller_legacy_get_type(),
     }
 }
 
@@ -28,8 +24,7 @@ impl EventControllerLegacy {
     pub fn new() -> EventControllerLegacy {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(gtk_sys::gtk_event_controller_legacy_new())
-                .unsafe_cast()
+            EventController::from_glib_full(ffi::gtk_event_controller_legacy_new()).unsafe_cast()
         }
     }
 
@@ -40,10 +35,10 @@ impl EventControllerLegacy {
         unsafe extern "C" fn event_trampoline<
             F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkEventControllerLegacy,
-            event: *mut gdk_sys::GdkEvent,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkEventControllerLegacy,
+            event: *mut gdk::ffi::GdkEvent,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
         }

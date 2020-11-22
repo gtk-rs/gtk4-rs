@@ -1,7 +1,7 @@
-#[macro_use]
-extern crate glib;
+pub use ffi;
+
 extern crate gdk;
-extern crate gdk4_wayland_sys as gdk_wayland_sys;
+extern crate glib;
 extern crate wayland_client;
 
 #[allow(unused_imports)]

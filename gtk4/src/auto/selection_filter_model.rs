@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::SelectionModel;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,18 +10,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use SelectionModel;
 
-glib_wrapper! {
-    pub struct SelectionFilterModel(Object<gtk_sys::GtkSelectionFilterModel, gtk_sys::GtkSelectionFilterModelClass>) @implements gio::ListModel;
+glib::glib_wrapper! {
+    pub struct SelectionFilterModel(Object<ffi::GtkSelectionFilterModel, ffi::GtkSelectionFilterModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_selection_filter_model_get_type(),
+        get_type => || ffi::gtk_selection_filter_model_get_type(),
     }
 }
 
@@ -29,7 +26,7 @@ impl SelectionFilterModel {
     pub fn new<P: IsA<SelectionModel>>(model: Option<&P>) -> SelectionFilterModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_selection_filter_model_new(
+            from_glib_full(ffi::gtk_selection_filter_model_new(
                 model.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
@@ -77,7 +74,7 @@ pub trait SelectionFilterModelExt: 'static {
 impl<O: IsA<SelectionFilterModel>> SelectionFilterModelExt for O {
     fn get_model(&self) -> Option<SelectionModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_selection_filter_model_get_model(
+            from_glib_none(ffi::gtk_selection_filter_model_get_model(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -85,7 +82,7 @@ impl<O: IsA<SelectionFilterModel>> SelectionFilterModelExt for O {
 
     fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_selection_filter_model_set_model(
+            ffi::gtk_selection_filter_model_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -94,9 +91,9 @@ impl<O: IsA<SelectionFilterModel>> SelectionFilterModelExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSelectionFilterModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSelectionFilterModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<SelectionFilterModel>,
         {

@@ -2,37 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use cairo;
+use crate::RenderNode;
 use glib::translate::*;
-use graphene;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct CairoNode(Object<gsk_sys::GskCairoNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct CairoNode(Object<ffi::GskCairoNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_cairo_node_get_type(),
+        get_type => || ffi::gsk_cairo_node_get_type(),
     }
 }
 
 impl CairoNode {
     pub fn new(bounds: &graphene::Rect) -> CairoNode {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gsk_sys::gsk_cairo_node_new(bounds.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gsk_cairo_node_new(bounds.to_glib_none().0)) }
     }
 
     pub fn get_draw_context(&self) -> Option<cairo::Context> {
-        unsafe {
-            from_glib_full(gsk_sys::gsk_cairo_node_get_draw_context(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_full(ffi::gsk_cairo_node_get_draw_context(self.to_glib_none().0)) }
     }
 
     pub fn peek_surface(&self) -> Option<cairo::Surface> {
-        unsafe { from_glib_none(gsk_sys::gsk_cairo_node_peek_surface(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_cairo_node_peek_surface(self.to_glib_none().0)) }
     }
 }
 

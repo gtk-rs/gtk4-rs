@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::RenderNode;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct RepeatingLinearGradientNode(Object<gsk_sys::GskRepeatingLinearGradientNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct RepeatingLinearGradientNode(Object<ffi::GskRepeatingLinearGradientNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_repeating_linear_gradient_node_get_type(),
+        get_type => || ffi::gsk_repeating_linear_gradient_node_get_type(),
     }
 }
 

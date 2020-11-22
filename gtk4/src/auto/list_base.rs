@@ -2,28 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Orientable;
+use crate::Scrollable;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Orientable;
-use Scrollable;
-use Widget;
 
-glib_wrapper! {
-    pub struct ListBase(Object<gtk_sys::GtkListBase, gtk_sys::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+glib::glib_wrapper! {
+    pub struct ListBase(Object<ffi::GtkListBase, ffi::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_list_base_get_type(),
+        get_type => || ffi::gtk_list_base_get_type(),
     }
 }
 
@@ -36,9 +34,9 @@ pub trait ListBaseExt: 'static {
 impl<O: IsA<ListBase>> ListBaseExt for O {
     fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkListBase,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListBase,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<ListBase>,
         {

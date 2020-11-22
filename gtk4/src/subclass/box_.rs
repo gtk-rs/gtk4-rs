@@ -1,8 +1,7 @@
 use glib::subclass::prelude::*;
 
 use super::widget::WidgetImpl;
-use Box;
-use Widget;
+use crate::{Box, Widget};
 
 pub trait BoxImpl: WidgetImpl {}
 

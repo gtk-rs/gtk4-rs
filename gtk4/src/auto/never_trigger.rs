@@ -2,23 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::ShortcutTrigger;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use ShortcutTrigger;
 
-glib_wrapper! {
-    pub struct NeverTrigger(Object<gtk_sys::GtkNeverTrigger, gtk_sys::GtkNeverTriggerClass>) @extends ShortcutTrigger;
+glib::glib_wrapper! {
+    pub struct NeverTrigger(Object<ffi::GtkNeverTrigger, ffi::GtkNeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || gtk_sys::gtk_never_trigger_get_type(),
+        get_type => || ffi::gtk_never_trigger_get_type(),
     }
 }
 
 impl NeverTrigger {
     pub fn get() -> Option<NeverTrigger> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(gtk_sys::gtk_never_trigger_get()) }
+        unsafe { from_glib_none(ffi::gtk_never_trigger_get()) }
     }
 }
 

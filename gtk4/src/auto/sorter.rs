@@ -2,26 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::Ordering;
+use crate::SorterChange;
+use crate::SorterOrder;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Ordering;
-use SorterChange;
-use SorterOrder;
 
-glib_wrapper! {
-    pub struct Sorter(Object<gtk_sys::GtkSorter, gtk_sys::GtkSorterClass>);
+glib::glib_wrapper! {
+    pub struct Sorter(Object<ffi::GtkSorter, ffi::GtkSorterClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_sorter_get_type(),
+        get_type => || ffi::gtk_sorter_get_type(),
     }
 }
 
@@ -41,7 +38,7 @@ pub trait SorterExt: 'static {
 impl<O: IsA<Sorter>> SorterExt for O {
     fn changed(&self, change: SorterChange) {
         unsafe {
-            gtk_sys::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.to_glib());
+            ffi::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.to_glib());
         }
     }
 
@@ -51,7 +48,7 @@ impl<O: IsA<Sorter>> SorterExt for O {
         item2: &Q,
     ) -> Ordering {
         unsafe {
-            from_glib(gtk_sys::gtk_sorter_compare(
+            from_glib(ffi::gtk_sorter_compare(
                 self.as_ref().to_glib_none().0,
                 item1.as_ref().to_glib_none().0,
                 item2.as_ref().to_glib_none().0,
@@ -60,18 +57,14 @@ impl<O: IsA<Sorter>> SorterExt for O {
     }
 
     fn get_order(&self) -> SorterOrder {
-        unsafe {
-            from_glib(gtk_sys::gtk_sorter_get_order(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_sorter_get_order(self.as_ref().to_glib_none().0)) }
     }
 
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, SorterChange) + 'static>(
-            this: *mut gtk_sys::GtkSorter,
-            change: gtk_sys::GtkSorterChange,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSorter,
+            change: ffi::GtkSorterChange,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Sorter>,
         {

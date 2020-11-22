@@ -2,8 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -12,25 +18,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct PopoverMenuBar(Object<gtk_sys::GtkPopoverMenuBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct PopoverMenuBar(Object<ffi::GtkPopoverMenuBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_popover_menu_bar_get_type(),
+        get_type => || ffi::gtk_popover_menu_bar_get_type(),
     }
 }
 
@@ -38,7 +34,7 @@ impl PopoverMenuBar {
     pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenuBar {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_popover_menu_bar_new_from_model(
+            Widget::from_glib_none(ffi::gtk_popover_menu_bar_new_from_model(
                 model.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -47,7 +43,7 @@ impl PopoverMenuBar {
 
     pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_popover_menu_bar_add_child(
+            from_glib(ffi::gtk_popover_menu_bar_add_child(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 id.to_glib_none().0,
@@ -57,7 +53,7 @@ impl PopoverMenuBar {
 
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_popover_menu_bar_get_menu_model(
+            from_glib_none(ffi::gtk_popover_menu_bar_get_menu_model(
                 self.to_glib_none().0,
             ))
         }
@@ -65,7 +61,7 @@ impl PopoverMenuBar {
 
     pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_popover_menu_bar_remove_child(
+            from_glib(ffi::gtk_popover_menu_bar_remove_child(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
@@ -74,7 +70,7 @@ impl PopoverMenuBar {
 
     pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_popover_menu_bar_set_menu_model(
+            ffi::gtk_popover_menu_bar_set_menu_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -86,9 +82,9 @@ impl PopoverMenuBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&PopoverMenuBar) + 'static>(
-            this: *mut gtk_sys::GtkPopoverMenuBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPopoverMenuBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,59 +11,52 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Widget;
 
-glib_wrapper! {
-    pub struct ListItem(Object<gtk_sys::GtkListItem, gtk_sys::GtkListItemClass>);
+glib::glib_wrapper! {
+    pub struct ListItem(Object<ffi::GtkListItem, ffi::GtkListItemClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_list_item_get_type(),
+        get_type => || ffi::gtk_list_item_get_type(),
     }
 }
 
 impl ListItem {
     pub fn get_activatable(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_list_item_get_activatable(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_list_item_get_activatable(self.to_glib_none().0)) }
     }
 
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_list_item_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_list_item_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_item(&self) -> Option<glib::Object> {
-        unsafe { from_glib_none(gtk_sys::gtk_list_item_get_item(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_list_item_get_item(self.to_glib_none().0)) }
     }
 
     pub fn get_position(&self) -> u32 {
-        unsafe { gtk_sys::gtk_list_item_get_position(self.to_glib_none().0) }
+        unsafe { ffi::gtk_list_item_get_position(self.to_glib_none().0) }
     }
 
     pub fn get_selectable(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_list_item_get_selectable(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_list_item_get_selectable(self.to_glib_none().0)) }
     }
 
     pub fn get_selected(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_list_item_get_selected(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_list_item_get_selected(self.to_glib_none().0)) }
     }
 
     pub fn set_activatable(&self, activatable: bool) {
         unsafe {
-            gtk_sys::gtk_list_item_set_activatable(self.to_glib_none().0, activatable.to_glib());
+            ffi::gtk_list_item_set_activatable(self.to_glib_none().0, activatable.to_glib());
         }
     }
 
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_list_item_set_child(
+            ffi::gtk_list_item_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -72,7 +65,7 @@ impl ListItem {
 
     pub fn set_selectable(&self, selectable: bool) {
         unsafe {
-            gtk_sys::gtk_list_item_set_selectable(self.to_glib_none().0, selectable.to_glib());
+            ffi::gtk_list_item_set_selectable(self.to_glib_none().0, selectable.to_glib());
         }
     }
 
@@ -81,9 +74,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -106,9 +99,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -131,9 +124,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -156,9 +149,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -181,9 +174,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -206,9 +199,9 @@ impl ListItem {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<F: Fn(&ListItem) + 'static>(
-            this: *mut gtk_sys::GtkListItem,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

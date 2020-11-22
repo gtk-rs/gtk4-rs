@@ -1,14 +1,13 @@
+use crate::Editable;
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
 use glib::IsA;
-use gtk_sys::GtkEditable;
 use libc::{c_char, c_int, c_uchar};
 use std::ffi::CStr;
 use std::mem::transmute;
 use std::slice;
 use std::str;
-use Editable;
 
 impl Editable {
     pub fn delegate_get_property<P: IsA<Editable> + IsA<glib::Object>>(
@@ -19,7 +18,7 @@ impl Editable {
     ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(gtk_sys::gtk_editable_delegate_get_property(
+            from_glib(ffi::gtk_editable_delegate_get_property(
                 object.upcast_ref::<glib::Object>().to_glib_none().0,
                 prop_id,
                 value.to_glib_none_mut().0,
@@ -36,7 +35,7 @@ impl Editable {
     ) -> bool {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib(gtk_sys::gtk_editable_delegate_set_property(
+            from_glib(ffi::gtk_editable_delegate_set_property(
                 object.upcast_ref::<glib::Object>().to_glib_none().0,
                 prop_id,
                 value.to_glib_none().0,
@@ -70,7 +69,7 @@ impl<T: IsA<Editable>> EditableExtManual for T {
 }
 
 unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'static>(
-    this: *mut GtkEditable,
+    this: *mut ffi::GtkEditable,
     new_text: *mut c_char,
     new_text_length: c_int,
     position: *mut c_int,

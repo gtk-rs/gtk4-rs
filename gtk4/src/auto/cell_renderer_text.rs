@@ -2,40 +2,33 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::CellRenderer;
+use crate::CellRendererMode;
+use crate::TreePath;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use CellRenderer;
-use CellRendererMode;
-use TreePath;
 
-glib_wrapper! {
-    pub struct CellRendererText(Object<gtk_sys::GtkCellRendererText, gtk_sys::GtkCellRendererTextClass>) @extends CellRenderer;
+glib::glib_wrapper! {
+    pub struct CellRendererText(Object<ffi::GtkCellRendererText, ffi::GtkCellRendererTextClass>) @extends CellRenderer;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_renderer_text_get_type(),
+        get_type => || ffi::gtk_cell_renderer_text_get_type(),
     }
 }
 
 impl CellRendererText {
     pub fn new() -> CellRendererText {
         assert_initialized_main_thread!();
-        unsafe { CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_text_new()).unsafe_cast() }
+        unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_text_new()).unsafe_cast() }
     }
 }
 
@@ -647,7 +640,7 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_ellipsize_set(&self, ellipsize_set: bool);
 
-    fn get_property_family(&self) -> Option<GString>;
+    fn get_property_family(&self) -> Option<glib::GString>;
 
     fn set_property_family(&self, family: Option<&str>);
 
@@ -655,7 +648,7 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_family_set(&self, family_set: bool);
 
-    fn get_property_font(&self) -> Option<GString>;
+    fn get_property_font(&self) -> Option<glib::GString>;
 
     fn set_property_font(&self, font: Option<&str>);
 
@@ -673,7 +666,7 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_foreground_set(&self, foreground_set: bool);
 
-    fn get_property_language(&self) -> Option<GString>;
+    fn get_property_language(&self) -> Option<glib::GString>;
 
     fn set_property_language(&self, language: Option<&str>);
 
@@ -687,7 +680,7 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_max_width_chars(&self, max_width_chars: i32);
 
-    fn get_property_placeholder_text(&self) -> Option<GString>;
+    fn get_property_placeholder_text(&self) -> Option<glib::GString>;
 
     fn set_property_placeholder_text(&self, placeholder_text: Option<&str>);
 
@@ -747,7 +740,7 @@ pub trait CellRendererTextExt: 'static {
 
     fn set_property_style_set(&self, style_set: bool);
 
-    fn get_property_text(&self) -> Option<GString>;
+    fn get_property_text(&self) -> Option<glib::GString>;
 
     fn set_property_text(&self, text: Option<&str>);
 
@@ -920,7 +913,7 @@ pub trait CellRendererTextExt: 'static {
 impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn set_fixed_height_from_font(&self, number_of_rows: i32) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_text_set_fixed_height_from_font(
+            ffi::gtk_cell_renderer_text_set_fixed_height_from_font(
                 self.as_ref().to_glib_none().0,
                 number_of_rows,
             );
@@ -930,8 +923,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_align_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"align-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -944,8 +937,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_align_set(&self, align_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"align-set\0".as_ptr() as *const _,
                 Value::from(&align_set).to_glib_none().0,
             );
@@ -955,8 +948,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_alignment(&self) -> pango::Alignment {
         unsafe {
             let mut value = Value::from_type(<pango::Alignment as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"alignment\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -969,8 +962,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_alignment(&self, alignment: pango::Alignment) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"alignment\0".as_ptr() as *const _,
                 Value::from(&alignment).to_glib_none().0,
             );
@@ -980,8 +973,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_attributes(&self) -> Option<pango::AttrList> {
         unsafe {
             let mut value = Value::from_type(<pango::AttrList as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"attributes\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -993,8 +986,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_attributes(&self, attributes: Option<&pango::AttrList>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"attributes\0".as_ptr() as *const _,
                 Value::from(attributes).to_glib_none().0,
             );
@@ -1003,8 +996,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_background(&self, background: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"background\0".as_ptr() as *const _,
                 Value::from(background).to_glib_none().0,
             );
@@ -1014,8 +1007,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"background-rgba\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1027,8 +1020,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"background-rgba\0".as_ptr() as *const _,
                 Value::from(background_rgba).to_glib_none().0,
             );
@@ -1038,8 +1031,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_background_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"background-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1052,8 +1045,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_background_set(&self, background_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"background-set\0".as_ptr() as *const _,
                 Value::from(&background_set).to_glib_none().0,
             );
@@ -1063,8 +1056,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_editable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1077,8 +1070,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_editable(&self, editable: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editable\0".as_ptr() as *const _,
                 Value::from(&editable).to_glib_none().0,
             );
@@ -1088,8 +1081,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_editable_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editable-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1102,8 +1095,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_editable_set(&self, editable_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editable-set\0".as_ptr() as *const _,
                 Value::from(&editable_set).to_glib_none().0,
             );
@@ -1113,8 +1106,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_ellipsize(&self) -> pango::EllipsizeMode {
         unsafe {
             let mut value = Value::from_type(<pango::EllipsizeMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ellipsize\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1127,8 +1120,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_ellipsize(&self, ellipsize: pango::EllipsizeMode) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ellipsize\0".as_ptr() as *const _,
                 Value::from(&ellipsize).to_glib_none().0,
             );
@@ -1138,8 +1131,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_ellipsize_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ellipsize-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1152,19 +1145,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_ellipsize_set(&self, ellipsize_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"ellipsize-set\0".as_ptr() as *const _,
                 Value::from(&ellipsize_set).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_family(&self) -> Option<GString> {
+    fn get_property_family(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"family\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1176,8 +1169,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_family(&self, family: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"family\0".as_ptr() as *const _,
                 Value::from(family).to_glib_none().0,
             );
@@ -1187,8 +1180,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_family_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"family-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1201,19 +1194,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_family_set(&self, family_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"family-set\0".as_ptr() as *const _,
                 Value::from(&family_set).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_font(&self) -> Option<GString> {
+    fn get_property_font(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"font\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1225,8 +1218,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_font(&self, font: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"font\0".as_ptr() as *const _,
                 Value::from(font).to_glib_none().0,
             );
@@ -1236,8 +1229,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             let mut value = Value::from_type(<pango::FontDescription as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"font-desc\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1249,8 +1242,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"font-desc\0".as_ptr() as *const _,
                 Value::from(font_desc).to_glib_none().0,
             );
@@ -1259,8 +1252,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_foreground(&self, foreground: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"foreground\0".as_ptr() as *const _,
                 Value::from(foreground).to_glib_none().0,
             );
@@ -1270,8 +1263,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"foreground-rgba\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1283,8 +1276,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"foreground-rgba\0".as_ptr() as *const _,
                 Value::from(foreground_rgba).to_glib_none().0,
             );
@@ -1294,8 +1287,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_foreground_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"foreground-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1308,19 +1301,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_foreground_set(&self, foreground_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"foreground-set\0".as_ptr() as *const _,
                 Value::from(&foreground_set).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_language(&self) -> Option<GString> {
+    fn get_property_language(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"language\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1332,8 +1325,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_language(&self, language: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"language\0".as_ptr() as *const _,
                 Value::from(language).to_glib_none().0,
             );
@@ -1343,8 +1336,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_language_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"language-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1357,8 +1350,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_language_set(&self, language_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"language-set\0".as_ptr() as *const _,
                 Value::from(&language_set).to_glib_none().0,
             );
@@ -1367,8 +1360,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_markup(&self, markup: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"markup\0".as_ptr() as *const _,
                 Value::from(markup).to_glib_none().0,
             );
@@ -1378,8 +1371,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_max_width_chars(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"max-width-chars\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1392,19 +1385,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_max_width_chars(&self, max_width_chars: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"max-width-chars\0".as_ptr() as *const _,
                 Value::from(&max_width_chars).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_placeholder_text(&self) -> Option<GString> {
+    fn get_property_placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1416,8 +1409,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 Value::from(placeholder_text).to_glib_none().0,
             );
@@ -1427,8 +1420,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_rise(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"rise\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1441,8 +1434,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_rise(&self, rise: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"rise\0".as_ptr() as *const _,
                 Value::from(&rise).to_glib_none().0,
             );
@@ -1452,8 +1445,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_rise_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"rise-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1466,8 +1459,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_rise_set(&self, rise_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"rise-set\0".as_ptr() as *const _,
                 Value::from(&rise_set).to_glib_none().0,
             );
@@ -1477,8 +1470,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_scale(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"scale\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1491,8 +1484,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_scale(&self, scale: f64) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"scale\0".as_ptr() as *const _,
                 Value::from(&scale).to_glib_none().0,
             );
@@ -1502,8 +1495,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_scale_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"scale-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1516,8 +1509,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_scale_set(&self, scale_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"scale-set\0".as_ptr() as *const _,
                 Value::from(&scale_set).to_glib_none().0,
             );
@@ -1527,8 +1520,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_single_paragraph_mode(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"single-paragraph-mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1541,8 +1534,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_single_paragraph_mode(&self, single_paragraph_mode: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"single-paragraph-mode\0".as_ptr() as *const _,
                 Value::from(&single_paragraph_mode).to_glib_none().0,
             );
@@ -1552,8 +1545,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_size(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1566,8 +1559,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_size(&self, size: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
                 Value::from(&size).to_glib_none().0,
             );
@@ -1577,8 +1570,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_size_points(&self) -> f64 {
         unsafe {
             let mut value = Value::from_type(<f64 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size-points\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1591,8 +1584,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_size_points(&self, size_points: f64) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size-points\0".as_ptr() as *const _,
                 Value::from(&size_points).to_glib_none().0,
             );
@@ -1602,8 +1595,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_size_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1616,8 +1609,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_size_set(&self, size_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size-set\0".as_ptr() as *const _,
                 Value::from(&size_set).to_glib_none().0,
             );
@@ -1627,8 +1620,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_stretch(&self) -> pango::Stretch {
         unsafe {
             let mut value = Value::from_type(<pango::Stretch as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"stretch\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1641,8 +1634,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_stretch(&self, stretch: pango::Stretch) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"stretch\0".as_ptr() as *const _,
                 Value::from(&stretch).to_glib_none().0,
             );
@@ -1652,8 +1645,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_stretch_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"stretch-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1666,8 +1659,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_stretch_set(&self, stretch_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"stretch-set\0".as_ptr() as *const _,
                 Value::from(&stretch_set).to_glib_none().0,
             );
@@ -1677,8 +1670,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_strikethrough(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"strikethrough\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1691,8 +1684,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_strikethrough(&self, strikethrough: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"strikethrough\0".as_ptr() as *const _,
                 Value::from(&strikethrough).to_glib_none().0,
             );
@@ -1702,8 +1695,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_strikethrough_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"strikethrough-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1716,8 +1709,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_strikethrough_set(&self, strikethrough_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"strikethrough-set\0".as_ptr() as *const _,
                 Value::from(&strikethrough_set).to_glib_none().0,
             );
@@ -1727,8 +1720,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_style(&self) -> pango::Style {
         unsafe {
             let mut value = Value::from_type(<pango::Style as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"style\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1741,8 +1734,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_style(&self, style: pango::Style) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"style\0".as_ptr() as *const _,
                 Value::from(&style).to_glib_none().0,
             );
@@ -1752,8 +1745,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_style_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"style-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1766,19 +1759,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_style_set(&self, style_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"style-set\0".as_ptr() as *const _,
                 Value::from(&style_set).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_text(&self) -> Option<GString> {
+    fn get_property_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1790,8 +1783,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_text(&self, text: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
                 Value::from(text).to_glib_none().0,
             );
@@ -1801,8 +1794,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_underline(&self) -> pango::Underline {
         unsafe {
             let mut value = Value::from_type(<pango::Underline as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"underline\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1815,8 +1808,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_underline(&self, underline: pango::Underline) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"underline\0".as_ptr() as *const _,
                 Value::from(&underline).to_glib_none().0,
             );
@@ -1826,8 +1819,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_underline_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"underline-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1840,8 +1833,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_underline_set(&self, underline_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"underline-set\0".as_ptr() as *const _,
                 Value::from(&underline_set).to_glib_none().0,
             );
@@ -1851,8 +1844,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_variant(&self) -> pango::Variant {
         unsafe {
             let mut value = Value::from_type(<pango::Variant as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"variant\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1865,8 +1858,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_variant(&self, variant: pango::Variant) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"variant\0".as_ptr() as *const _,
                 Value::from(&variant).to_glib_none().0,
             );
@@ -1876,8 +1869,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_variant_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"variant-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1890,8 +1883,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_variant_set(&self, variant_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"variant-set\0".as_ptr() as *const _,
                 Value::from(&variant_set).to_glib_none().0,
             );
@@ -1901,8 +1894,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_weight(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"weight\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1915,8 +1908,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_weight(&self, weight: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"weight\0".as_ptr() as *const _,
                 Value::from(&weight).to_glib_none().0,
             );
@@ -1926,8 +1919,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_weight_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"weight-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1940,8 +1933,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_weight_set(&self, weight_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"weight-set\0".as_ptr() as *const _,
                 Value::from(&weight_set).to_glib_none().0,
             );
@@ -1951,8 +1944,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_width_chars(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"width-chars\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1965,8 +1958,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_width_chars(&self, width_chars: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"width-chars\0".as_ptr() as *const _,
                 Value::from(&width_chars).to_glib_none().0,
             );
@@ -1976,8 +1969,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_wrap_mode(&self) -> pango::WrapMode {
         unsafe {
             let mut value = Value::from_type(<pango::WrapMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"wrap-mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1990,8 +1983,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_wrap_mode(&self, wrap_mode: pango::WrapMode) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"wrap-mode\0".as_ptr() as *const _,
                 Value::from(&wrap_mode).to_glib_none().0,
             );
@@ -2001,8 +1994,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     fn get_property_wrap_width(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"wrap-width\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -2015,8 +2008,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn set_property_wrap_width(&self, wrap_width: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"wrap-width\0".as_ptr() as *const _,
                 Value::from(&wrap_width).to_glib_none().0,
             );
@@ -2025,19 +2018,19 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, TreePath, &str) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
+            this: *mut ffi::GtkCellRendererText,
             path: *mut libc::c_char,
             new_text: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
                 path,
-                &GString::from_glib_borrow(new_text),
+                &glib::GString::from_glib_borrow(new_text),
             )
         }
         unsafe {
@@ -2055,9 +2048,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2079,9 +2072,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2103,9 +2096,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2127,9 +2120,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2154,9 +2147,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2181,9 +2174,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2205,9 +2198,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2232,9 +2225,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2256,9 +2249,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2283,9 +2276,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_ellipsize_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2307,9 +2300,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2331,9 +2324,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2355,9 +2348,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2379,9 +2372,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2403,9 +2396,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2430,9 +2423,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2457,9 +2450,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2481,9 +2474,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2508,9 +2501,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2532,9 +2525,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_markup_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2559,9 +2552,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2586,9 +2579,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2610,9 +2603,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2634,9 +2627,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2658,9 +2651,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2682,9 +2675,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2709,9 +2702,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_single_paragraph_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2733,9 +2726,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2757,9 +2750,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2781,9 +2774,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2805,9 +2798,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2829,9 +2822,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2856,9 +2849,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2883,9 +2876,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2907,9 +2900,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2931,9 +2924,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2955,9 +2948,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -2979,9 +2972,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3006,9 +2999,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3030,9 +3023,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3054,9 +3047,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3078,9 +3071,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3102,9 +3095,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3126,9 +3119,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3150,9 +3143,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {
@@ -3174,9 +3167,9 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     fn connect_property_wrap_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellRendererText>,
         {

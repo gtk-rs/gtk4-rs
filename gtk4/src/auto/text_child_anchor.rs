@@ -2,25 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Widget;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 use std::mem;
-use Widget;
 
-glib_wrapper! {
-    pub struct TextChildAnchor(Object<gtk_sys::GtkTextChildAnchor, gtk_sys::GtkTextChildAnchorClass>);
+glib::glib_wrapper! {
+    pub struct TextChildAnchor(Object<ffi::GtkTextChildAnchor, ffi::GtkTextChildAnchorClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_text_child_anchor_get_type(),
+        get_type => || ffi::gtk_text_child_anchor_get_type(),
     }
 }
 
 impl TextChildAnchor {
     pub fn new() -> TextChildAnchor {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_text_child_anchor_new()) }
+        unsafe { from_glib_full(ffi::gtk_text_child_anchor_new()) }
     }
 }
 
@@ -41,7 +40,7 @@ pub trait TextChildAnchorExt: 'static {
 impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
     fn get_deleted(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_child_anchor_get_deleted(
+            from_glib(ffi::gtk_text_child_anchor_get_deleted(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -51,7 +50,7 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
         unsafe {
             let mut out_len = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(
-                gtk_sys::gtk_text_child_anchor_get_widgets(
+                ffi::gtk_text_child_anchor_get_widgets(
                     self.as_ref().to_glib_none().0,
                     out_len.as_mut_ptr(),
                 ),

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,18 +10,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Widget;
 
-glib_wrapper! {
-    pub struct WidgetPaintable(Object<gtk_sys::GtkWidgetPaintable, gtk_sys::GtkWidgetPaintableClass>) @implements gdk::Paintable;
+glib::glib_wrapper! {
+    pub struct WidgetPaintable(Object<ffi::GtkWidgetPaintable, ffi::GtkWidgetPaintableClass>) @implements gdk::Paintable;
 
     match fn {
-        get_type => || gtk_sys::gtk_widget_paintable_get_type(),
+        get_type => || ffi::gtk_widget_paintable_get_type(),
     }
 }
 
@@ -29,7 +26,7 @@ impl WidgetPaintable {
     pub fn new<P: IsA<Widget>>(widget: Option<&P>) -> WidgetPaintable {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_widget_paintable_new(
+            from_glib_full(ffi::gtk_widget_paintable_new(
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
@@ -77,7 +74,7 @@ pub trait WidgetPaintableExt: 'static {
 impl<O: IsA<WidgetPaintable>> WidgetPaintableExt for O {
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_widget_paintable_get_widget(
+            from_glib_none(ffi::gtk_widget_paintable_get_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -85,7 +82,7 @@ impl<O: IsA<WidgetPaintable>> WidgetPaintableExt for O {
 
     fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_widget_paintable_set_widget(
+            ffi::gtk_widget_paintable_set_widget(
                 self.as_ref().to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -94,9 +91,9 @@ impl<O: IsA<WidgetPaintable>> WidgetPaintableExt for O {
 
     fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkWidgetPaintable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkWidgetPaintable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<WidgetPaintable>,
         {

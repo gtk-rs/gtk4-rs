@@ -2,7 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::ListBase;
+use crate::ListItemFactory;
+use crate::Orientable;
+use crate::Orientation;
+use crate::Overflow;
+use crate::Scrollable;
+use crate::ScrollablePolicy;
+use crate::SelectionModel;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,34 +26,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use ListBase;
-use ListItemFactory;
-use Orientable;
-use Orientation;
-use Overflow;
-use Scrollable;
-use ScrollablePolicy;
-use SelectionModel;
-use Widget;
 
-glib_wrapper! {
-    pub struct GridView(Object<gtk_sys::GtkGridView, gtk_sys::GtkGridViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
+glib::glib_wrapper! {
+    pub struct GridView(Object<ffi::GtkGridView, ffi::GtkGridViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_grid_view_get_type(),
+        get_type => || ffi::gtk_grid_view_get_type(),
     }
 }
 
@@ -49,7 +45,7 @@ impl GridView {
     ) -> GridView {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_grid_view_new(
+            Widget::from_glib_none(ffi::gtk_grid_view_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
                 factory.map(|p| p.as_ref()).to_glib_full(),
             ))
@@ -59,31 +55,31 @@ impl GridView {
 
     pub fn get_enable_rubberband(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_view_get_enable_rubberband(
+            from_glib(ffi::gtk_grid_view_get_enable_rubberband(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_factory(&self) -> Option<ListItemFactory> {
-        unsafe { from_glib_none(gtk_sys::gtk_grid_view_get_factory(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_grid_view_get_factory(self.to_glib_none().0)) }
     }
 
     pub fn get_max_columns(&self) -> u32 {
-        unsafe { gtk_sys::gtk_grid_view_get_max_columns(self.to_glib_none().0) }
+        unsafe { ffi::gtk_grid_view_get_max_columns(self.to_glib_none().0) }
     }
 
     pub fn get_min_columns(&self) -> u32 {
-        unsafe { gtk_sys::gtk_grid_view_get_min_columns(self.to_glib_none().0) }
+        unsafe { ffi::gtk_grid_view_get_min_columns(self.to_glib_none().0) }
     }
 
     pub fn get_model(&self) -> Option<SelectionModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_grid_view_get_model(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_grid_view_get_model(self.to_glib_none().0)) }
     }
 
     pub fn get_single_click_activate(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_grid_view_get_single_click_activate(
+            from_glib(ffi::gtk_grid_view_get_single_click_activate(
                 self.to_glib_none().0,
             ))
         }
@@ -91,7 +87,7 @@ impl GridView {
 
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_enable_rubberband(
+            ffi::gtk_grid_view_set_enable_rubberband(
                 self.to_glib_none().0,
                 enable_rubberband.to_glib(),
             );
@@ -100,7 +96,7 @@ impl GridView {
 
     pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_factory(
+            ffi::gtk_grid_view_set_factory(
                 self.to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -109,19 +105,19 @@ impl GridView {
 
     pub fn set_max_columns(&self, max_columns: u32) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_max_columns(self.to_glib_none().0, max_columns);
+            ffi::gtk_grid_view_set_max_columns(self.to_glib_none().0, max_columns);
         }
     }
 
     pub fn set_min_columns(&self, min_columns: u32) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_min_columns(self.to_glib_none().0, min_columns);
+            ffi::gtk_grid_view_set_min_columns(self.to_glib_none().0, min_columns);
         }
     }
 
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_model(
+            ffi::gtk_grid_view_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -130,7 +126,7 @@ impl GridView {
 
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
-            gtk_sys::gtk_grid_view_set_single_click_activate(
+            ffi::gtk_grid_view_set_single_click_activate(
                 self.to_glib_none().0,
                 single_click_activate.to_glib(),
             );
@@ -139,9 +135,9 @@ impl GridView {
 
     pub fn connect_activate<F: Fn(&GridView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&GridView, u32) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
+            this: *mut ffi::GtkGridView,
             position: libc::c_uint,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), position)
@@ -164,9 +160,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_rubberband_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -189,9 +185,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -214,9 +210,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_columns_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -239,9 +235,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_columns_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -264,9 +260,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -289,9 +285,9 @@ impl GridView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_single_click_activate_trampoline<F: Fn(&GridView) + 'static>(
-            this: *mut gtk_sys::GtkGridView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

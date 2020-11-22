@@ -2,7 +2,6 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-use glib;
 use glib::translate::*;
 use libc::c_uint;
 use std::cell::Cell;
@@ -17,8 +16,8 @@ static INITIALIZED: AtomicBool = ATOMIC_BOOL_INIT;
 /// Asserts that this is the main thread and `gtk::init` has been called.
 macro_rules! assert_initialized_main_thread {
     () => {
-        if !::rt::is_initialized_main_thread() {
-            if ::rt::is_initialized() {
+        if !crate::rt::is_initialized_main_thread() {
+            if crate::rt::is_initialized() {
                 panic!("GTK may only be used from the main thread.");
             } else {
                 panic!("GTK has not been initialized. Call `gtk::init` first.");
@@ -36,7 +35,7 @@ macro_rules! skip_assert_initialized {
 #[allow(unused_macros)]
 macro_rules! assert_not_initialized {
     () => {
-        if ::rt::is_initialized() {
+        if crate::rt::is_initialized() {
             panic!("This function has to be called before `gtk::init`.");
         }
     };
@@ -76,7 +75,7 @@ pub unsafe fn set_initialized() {
         return;
     } else if is_initialized() {
         panic!("Attempted to initialize GTK from two different threads.");
-    } else if !{ from_glib(gtk_sys::gtk_is_initialized()) } {
+    } else if !{ from_glib(ffi::gtk_is_initialized()) } {
         panic!("GTK was not actually initialized");
     }
     INITIALIZED.store(true, Ordering::Release);
@@ -102,12 +101,12 @@ pub fn init() -> Result<(), glib::BoolError> {
         panic!("Attempted to initialize GTK from two different threads.");
     }
     unsafe {
-        if from_glib(gtk_sys::gtk_init_check()) {
+        if from_glib(ffi::gtk_init_check()) {
             if !glib::MainContext::default().acquire() {
                 return Err(glib_bool_error!("Failed to acquire default main context"));
             }
 
-            if !{ from_glib(gtk_sys::gtk_is_initialized()) } {
+            if !{ from_glib(ffi::gtk_is_initialized()) } {
                 return Err(glib_bool_error!("GTK was not actually initialized"));
             }
 
@@ -121,27 +120,27 @@ pub fn init() -> Result<(), glib::BoolError> {
 
 pub fn get_major_version() -> u32 {
     skip_assert_initialized!();
-    unsafe { gtk_sys::gtk_get_major_version() as u32 }
+    unsafe { ffi::gtk_get_major_version() as u32 }
 }
 
 pub fn get_minor_version() -> u32 {
     skip_assert_initialized!();
-    unsafe { gtk_sys::gtk_get_minor_version() as u32 }
+    unsafe { ffi::gtk_get_minor_version() as u32 }
 }
 
 pub fn get_micro_version() -> u32 {
     skip_assert_initialized!();
-    unsafe { gtk_sys::gtk_get_micro_version() as u32 }
+    unsafe { ffi::gtk_get_micro_version() as u32 }
 }
 
 pub fn get_binary_age() -> u32 {
     skip_assert_initialized!();
-    unsafe { gtk_sys::gtk_get_binary_age() as u32 }
+    unsafe { ffi::gtk_get_binary_age() as u32 }
 }
 
 pub fn get_interface_age() -> u32 {
     skip_assert_initialized!();
-    unsafe { gtk_sys::gtk_get_interface_age() as u32 }
+    unsafe { ffi::gtk_get_interface_age() as u32 }
 }
 
 pub fn check_version(
@@ -151,7 +150,7 @@ pub fn check_version(
 ) -> Option<String> {
     skip_assert_initialized!();
     unsafe {
-        from_glib_none(gtk_sys::gtk_check_version(
+        from_glib_none(ffi::gtk_check_version(
             required_major as c_uint,
             required_minor as c_uint,
             required_micro as c_uint,

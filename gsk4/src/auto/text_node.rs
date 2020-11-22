@@ -2,20 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::RenderNode;
 use glib::object::IsA;
 use glib::translate::*;
-use graphene;
-use gsk_sys;
-use pango;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct TextNode(Object<gsk_sys::GskTextNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct TextNode(Object<ffi::GskTextNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_text_node_get_type(),
+        get_type => || ffi::gsk_text_node_get_type(),
     }
 }
 
@@ -28,7 +24,7 @@ impl TextNode {
     ) -> Option<TextNode> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_text_node_new(
+            from_glib_full(ffi::gsk_text_node_new(
                 font.as_ref().to_glib_none().0,
                 glyphs.to_glib_none_mut().0,
                 color.to_glib_none().0,
@@ -38,31 +34,27 @@ impl TextNode {
     }
 
     pub fn get_num_glyphs(&self) -> u32 {
-        unsafe { gsk_sys::gsk_text_node_get_num_glyphs(self.to_glib_none().0) }
+        unsafe { ffi::gsk_text_node_get_num_glyphs(self.to_glib_none().0) }
     }
 
     pub fn get_offset(&self) -> Option<graphene::Point> {
-        unsafe { from_glib_none(gsk_sys::gsk_text_node_get_offset(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_text_node_get_offset(self.to_glib_none().0)) }
     }
 
     pub fn has_color_glyphs(&self) -> bool {
-        unsafe {
-            from_glib(gsk_sys::gsk_text_node_has_color_glyphs(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gsk_text_node_has_color_glyphs(self.to_glib_none().0)) }
     }
 
     pub fn peek_color(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(gsk_sys::gsk_text_node_peek_color(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_text_node_peek_color(self.to_glib_none().0)) }
     }
 
     pub fn peek_font(&self) -> Option<pango::Font> {
-        unsafe { from_glib_none(gsk_sys::gsk_text_node_peek_font(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_text_node_peek_font(self.to_glib_none().0)) }
     }
 
     //pub fn peek_glyphs(&self) -> /*Ignored*/Vec<pango::GlyphInfo> {
-    //    unsafe { TODO: call gsk_sys:gsk_text_node_peek_glyphs() }
+    //    unsafe { TODO: call ffi:gsk_text_node_peek_glyphs() }
     //}
 }
 

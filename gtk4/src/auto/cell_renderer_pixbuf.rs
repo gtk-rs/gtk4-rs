@@ -2,50 +2,41 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_pixbuf;
-use gio;
+use crate::CellRenderer;
+use crate::CellRendererMode;
+use crate::IconSize;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use CellRenderer;
-use CellRendererMode;
-use IconSize;
 
-glib_wrapper! {
-    pub struct CellRendererPixbuf(Object<gtk_sys::GtkCellRendererPixbuf>) @extends CellRenderer;
+glib::glib_wrapper! {
+    pub struct CellRendererPixbuf(Object<ffi::GtkCellRendererPixbuf>) @extends CellRenderer;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_renderer_pixbuf_get_type(),
+        get_type => || ffi::gtk_cell_renderer_pixbuf_get_type(),
     }
 }
 
 impl CellRendererPixbuf {
     pub fn new() -> CellRendererPixbuf {
         assert_initialized_main_thread!();
-        unsafe {
-            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_pixbuf_new()).unsafe_cast()
-        }
+        unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_pixbuf_new()).unsafe_cast() }
     }
 
     pub fn get_property_gicon(&self) -> Option<gio::Icon> {
         unsafe {
             let mut value = Value::from_type(<gio::Icon as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gicon\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -57,19 +48,19 @@ impl CellRendererPixbuf {
 
     pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gicon\0".as_ptr() as *const _,
                 Value::from(gicon).to_glib_none().0,
             );
         }
     }
 
-    pub fn get_property_icon_name(&self) -> Option<GString> {
+    pub fn get_property_icon_name(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-name\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -81,8 +72,8 @@ impl CellRendererPixbuf {
 
     pub fn set_property_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-name\0".as_ptr() as *const _,
                 Value::from(icon_name).to_glib_none().0,
             );
@@ -92,8 +83,8 @@ impl CellRendererPixbuf {
     pub fn get_property_icon_size(&self) -> IconSize {
         unsafe {
             let mut value = Value::from_type(<IconSize as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-size\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -106,8 +97,8 @@ impl CellRendererPixbuf {
 
     pub fn set_property_icon_size(&self, icon_size: IconSize) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-size\0".as_ptr() as *const _,
                 Value::from(&icon_size).to_glib_none().0,
             );
@@ -116,8 +107,8 @@ impl CellRendererPixbuf {
 
     pub fn set_property_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf\0".as_ptr() as *const _,
                 Value::from(pixbuf).to_glib_none().0,
             );
@@ -127,8 +118,8 @@ impl CellRendererPixbuf {
     pub fn get_property_pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {
             let mut value = Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-closed\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -143,8 +134,8 @@ impl CellRendererPixbuf {
         pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>,
     ) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-closed\0".as_ptr() as *const _,
                 Value::from(pixbuf_expander_closed).to_glib_none().0,
             );
@@ -154,8 +145,8 @@ impl CellRendererPixbuf {
     pub fn get_property_pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {
             let mut value = Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-open\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -170,8 +161,8 @@ impl CellRendererPixbuf {
         pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>,
     ) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-open\0".as_ptr() as *const _,
                 Value::from(pixbuf_expander_open).to_glib_none().0,
             );
@@ -181,8 +172,8 @@ impl CellRendererPixbuf {
     pub fn get_property_texture(&self) -> Option<gdk::Texture> {
         unsafe {
             let mut value = Value::from_type(<gdk::Texture as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"texture\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -194,8 +185,8 @@ impl CellRendererPixbuf {
 
     pub fn set_property_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"texture\0".as_ptr() as *const _,
                 Value::from(texture).to_glib_none().0,
             );
@@ -207,9 +198,9 @@ impl CellRendererPixbuf {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_gicon_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -232,9 +223,9 @@ impl CellRendererPixbuf {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -257,9 +248,9 @@ impl CellRendererPixbuf {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_size_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -282,9 +273,9 @@ impl CellRendererPixbuf {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixbuf_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -309,9 +300,9 @@ impl CellRendererPixbuf {
         unsafe extern "C" fn notify_pixbuf_expander_closed_trampoline<
             F: Fn(&CellRendererPixbuf) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -336,9 +327,9 @@ impl CellRendererPixbuf {
         unsafe extern "C" fn notify_pixbuf_expander_open_trampoline<
             F: Fn(&CellRendererPixbuf) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -361,9 +352,9 @@ impl CellRendererPixbuf {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_texture_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererPixbuf,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererPixbuf,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

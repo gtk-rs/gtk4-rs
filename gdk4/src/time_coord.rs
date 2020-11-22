@@ -3,15 +3,14 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 /*
 
-use gdk_sys;
 use glib::translate::*;
 #[repr(C)]
-pub struct TimeCoord(gdk_sys::GdkTimeCoord);
+pub struct TimeCoord(ffi::GdkTimeCoord);
 
 impl TimeCoord {
     pub fn new(time: u32, axes: [f64; 128]) -> TimeCoord {
         assert_initialized_main_thread!();
-        TimeCoord(gdk_sys::GdkTimeCoord { time, axes })
+        TimeCoord(ffi::GdkTimeCoord { time, axes })
     }
 
     pub fn get_time(&self) -> u32 {
@@ -24,27 +23,27 @@ impl TimeCoord {
 
 #[doc(hidden)]
 impl GlibPtrDefault for TimeCoord {
-    type GlibType = *mut gdk_sys::GdkTimeCoord;
+    type GlibType = *mut ffi::GdkTimeCoord;
 }
 #[doc(hidden)]
-impl FromGlibPtrNone<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
-    unsafe fn from_glib_none(ptr: *mut gdk_sys::GdkTimeCoord) -> Self {
+impl FromGlibPtrNone<*mut ffi::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_none(ptr: *mut ffi::GdkTimeCoord) -> Self {
         TimeCoord(*ptr)
     }
 }
 
 #[doc(hidden)]
-impl FromGlibPtrFull<*mut gdk_sys::GdkTimeCoord> for TimeCoord {
-    unsafe fn from_glib_full(ptr: *mut gdk_sys::GdkTimeCoord) -> Self {
+impl FromGlibPtrFull<*mut ffi::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_full(ptr: *mut ffi::GdkTimeCoord) -> Self {
         let res = from_glib_none(ptr);
-        glib_sys::g_free(ptr as *mut _);
+        glib::ffi::g_free(ptr as *mut _);
         res
     }
 }
 
 #[doc(hidden)]
-impl FromGlibContainerAsVec<gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord> for TimeCoord {
-    unsafe fn from_glib_none_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+impl FromGlibContainerAsVec<ffi::GdkTimeCoord, *mut ffi::GdkTimeCoord> for TimeCoord {
+    unsafe fn from_glib_none_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -> Vec<Self> {
         if num == 0 || ptr.is_null() {
             return Vec::new();
         }
@@ -57,15 +56,15 @@ impl FromGlibContainerAsVec<gdk_sys::GdkTimeCoord, *mut gdk_sys::GdkTimeCoord> f
     }
 
     unsafe fn from_glib_container_num_as_vec(
-        ptr: *mut gdk_sys::GdkTimeCoord,
+        ptr: *mut ffi::GdkTimeCoord,
         num: usize,
     ) -> Vec<Self> {
         let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
-        glib_sys::g_free(ptr as *mut _);
+        glib::ffi::g_free(ptr as *mut _);
         res
     }
 
-    unsafe fn from_glib_full_num_as_vec(ptr: *mut gdk_sys::GdkTimeCoord, num: usize) -> Vec<Self> {
+    unsafe fn from_glib_full_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -> Vec<Self> {
         FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
     }
 }

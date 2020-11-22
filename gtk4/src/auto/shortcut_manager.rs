@@ -4,14 +4,13 @@
 
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct ShortcutManager(Interface<gtk_sys::GtkShortcutManager>);
+glib::glib_wrapper! {
+    pub struct ShortcutManager(Interface<ffi::GtkShortcutManager>);
 
     match fn {
-        get_type => || gtk_sys::gtk_shortcut_manager_get_type(),
+        get_type => || ffi::gtk_shortcut_manager_get_type(),
     }
 }
 

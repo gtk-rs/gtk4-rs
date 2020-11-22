@@ -2,56 +2,49 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Editable;
+use crate::EntryBuffer;
+use crate::InputHints;
+use crate::InputPurpose;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use Editable;
-use EntryBuffer;
-use InputHints;
-use InputPurpose;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Text(Object<gtk_sys::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+glib::glib_wrapper! {
+    pub struct Text(Object<ffi::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || gtk_sys::gtk_text_get_type(),
+        get_type => || ffi::gtk_text_get_type(),
     }
 }
 
 impl Text {
     pub fn new() -> Text {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_text_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_text_new()).unsafe_cast() }
     }
 
     pub fn with_buffer<P: IsA<EntryBuffer>>(buffer: &P) -> Text {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_text_new_with_buffer(
+            Widget::from_glib_none(ffi::gtk_text_new_with_buffer(
                 buffer.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -59,97 +52,83 @@ impl Text {
     }
 
     pub fn get_activates_default(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_text_get_activates_default(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_text_get_activates_default(self.to_glib_none().0)) }
     }
 
     pub fn get_attributes(&self) -> Option<pango::AttrList> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_attributes(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_text_get_attributes(self.to_glib_none().0)) }
     }
 
     pub fn get_buffer(&self) -> Option<EntryBuffer> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_buffer(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
     pub fn get_enable_emoji_completion(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_get_enable_emoji_completion(
+            from_glib(ffi::gtk_text_get_enable_emoji_completion(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_extra_menu(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
 
     pub fn get_input_hints(&self) -> InputHints {
-        unsafe { from_glib(gtk_sys::gtk_text_get_input_hints(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_text_get_input_hints(self.to_glib_none().0)) }
     }
 
     pub fn get_input_purpose(&self) -> InputPurpose {
-        unsafe { from_glib(gtk_sys::gtk_text_get_input_purpose(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_text_get_input_purpose(self.to_glib_none().0)) }
     }
 
     pub fn get_invisible_char(&self) -> char {
         unsafe {
-            std::convert::TryFrom::try_from(gtk_sys::gtk_text_get_invisible_char(
-                self.to_glib_none().0,
-            ))
-            .expect("conversion from an invalid Unicode value attempted")
+            std::convert::TryFrom::try_from(ffi::gtk_text_get_invisible_char(self.to_glib_none().0))
+                .expect("conversion from an invalid Unicode value attempted")
         }
     }
 
     pub fn get_max_length(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_get_max_length(self.to_glib_none().0) }
+        unsafe { ffi::gtk_text_get_max_length(self.to_glib_none().0) }
     }
 
     pub fn get_overwrite_mode(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_text_get_overwrite_mode(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_text_get_overwrite_mode(self.to_glib_none().0)) }
     }
 
-    pub fn get_placeholder_text(&self) -> Option<GString> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_text_get_placeholder_text(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_placeholder_text(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_text_get_placeholder_text(self.to_glib_none().0)) }
     }
 
     pub fn get_propagate_text_width(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_get_propagate_text_width(
+            from_glib(ffi::gtk_text_get_propagate_text_width(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_tabs(&self) -> Option<pango::TabArray> {
-        unsafe { from_glib_none(gtk_sys::gtk_text_get_tabs(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_text_get_tabs(self.to_glib_none().0)) }
     }
 
     pub fn get_text_length(&self) -> u16 {
-        unsafe { gtk_sys::gtk_text_get_text_length(self.to_glib_none().0) }
+        unsafe { ffi::gtk_text_get_text_length(self.to_glib_none().0) }
     }
 
     pub fn get_truncate_multiline(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_text_get_truncate_multiline(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_text_get_truncate_multiline(self.to_glib_none().0)) }
     }
 
     pub fn get_visibility(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_text_get_visibility(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_text_get_visibility(self.to_glib_none().0)) }
     }
 
     pub fn grab_focus_without_selecting(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_grab_focus_without_selecting(
+            from_glib(ffi::gtk_text_grab_focus_without_selecting(
                 self.to_glib_none().0,
             ))
         }
@@ -157,25 +136,25 @@ impl Text {
 
     pub fn set_activates_default(&self, activates: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_activates_default(self.to_glib_none().0, activates.to_glib());
+            ffi::gtk_text_set_activates_default(self.to_glib_none().0, activates.to_glib());
         }
     }
 
     pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
         unsafe {
-            gtk_sys::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
+            ffi::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
         }
     }
 
     pub fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
-            gtk_sys::gtk_text_set_buffer(self.to_glib_none().0, buffer.as_ref().to_glib_none().0);
+            ffi::gtk_text_set_buffer(self.to_glib_none().0, buffer.as_ref().to_glib_none().0);
         }
     }
 
     pub fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_enable_emoji_completion(
+            ffi::gtk_text_set_enable_emoji_completion(
                 self.to_glib_none().0,
                 enable_emoji_completion.to_glib(),
             );
@@ -184,7 +163,7 @@ impl Text {
 
     pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_text_set_extra_menu(
+            ffi::gtk_text_set_extra_menu(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -193,43 +172,43 @@ impl Text {
 
     pub fn set_input_hints(&self, hints: InputHints) {
         unsafe {
-            gtk_sys::gtk_text_set_input_hints(self.to_glib_none().0, hints.to_glib());
+            ffi::gtk_text_set_input_hints(self.to_glib_none().0, hints.to_glib());
         }
     }
 
     pub fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
-            gtk_sys::gtk_text_set_input_purpose(self.to_glib_none().0, purpose.to_glib());
+            ffi::gtk_text_set_input_purpose(self.to_glib_none().0, purpose.to_glib());
         }
     }
 
     pub fn set_invisible_char(&self, ch: char) {
         unsafe {
-            gtk_sys::gtk_text_set_invisible_char(self.to_glib_none().0, ch.to_glib());
+            ffi::gtk_text_set_invisible_char(self.to_glib_none().0, ch.to_glib());
         }
     }
 
     pub fn set_max_length(&self, length: i32) {
         unsafe {
-            gtk_sys::gtk_text_set_max_length(self.to_glib_none().0, length);
+            ffi::gtk_text_set_max_length(self.to_glib_none().0, length);
         }
     }
 
     pub fn set_overwrite_mode(&self, overwrite: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_overwrite_mode(self.to_glib_none().0, overwrite.to_glib());
+            ffi::gtk_text_set_overwrite_mode(self.to_glib_none().0, overwrite.to_glib());
         }
     }
 
     pub fn set_placeholder_text(&self, text: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_text_set_placeholder_text(self.to_glib_none().0, text.to_glib_none().0);
+            ffi::gtk_text_set_placeholder_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
     pub fn set_propagate_text_width(&self, propagate_text_width: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_propagate_text_width(
+            ffi::gtk_text_set_propagate_text_width(
                 self.to_glib_none().0,
                 propagate_text_width.to_glib(),
             );
@@ -238,13 +217,13 @@ impl Text {
 
     pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
-            gtk_sys::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
+            ffi::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
         }
     }
 
     pub fn set_truncate_multiline(&self, truncate_multiline: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_truncate_multiline(
+            ffi::gtk_text_set_truncate_multiline(
                 self.to_glib_none().0,
                 truncate_multiline.to_glib(),
             );
@@ -253,21 +232,21 @@ impl Text {
 
     pub fn set_visibility(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_text_set_visibility(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_text_set_visibility(self.to_glib_none().0, visible.to_glib());
         }
     }
 
     pub fn unset_invisible_char(&self) {
         unsafe {
-            gtk_sys::gtk_text_unset_invisible_char(self.to_glib_none().0);
+            ffi::gtk_text_unset_invisible_char(self.to_glib_none().0);
         }
     }
 
-    pub fn get_property_im_module(&self) -> Option<GString> {
+    pub fn get_property_im_module(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -279,8 +258,8 @@ impl Text {
 
     pub fn set_property_im_module(&self, im_module: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
                 Value::from(im_module).to_glib_none().0,
             );
@@ -290,8 +269,8 @@ impl Text {
     pub fn get_property_invisible_char_set(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"invisible-char-set\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -304,8 +283,8 @@ impl Text {
 
     pub fn set_property_invisible_char_set(&self, invisible_char_set: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"invisible-char-set\0".as_ptr() as *const _,
                 Value::from(&invisible_char_set).to_glib_none().0,
             );
@@ -315,8 +294,8 @@ impl Text {
     pub fn get_property_scroll_offset(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"scroll-offset\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -332,9 +311,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_activates_default_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -357,9 +336,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -379,9 +358,9 @@ impl Text {
 
     pub fn connect_property_buffer_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -404,9 +383,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_emoji_completion_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -429,9 +408,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -454,9 +433,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -479,9 +458,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -504,9 +483,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -529,9 +508,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_char_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -554,9 +533,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_char_set_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -579,9 +558,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -604,9 +583,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_mode_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -629,9 +608,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -654,9 +633,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagate_text_width_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -679,9 +658,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_offset_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -701,9 +680,9 @@ impl Text {
 
     pub fn connect_property_tabs_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -726,9 +705,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_truncate_multiline_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -751,9 +730,9 @@ impl Text {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visibility_trampoline<F: Fn(&Text) + 'static>(
-            this: *mut gtk_sys::GtkText,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkText,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

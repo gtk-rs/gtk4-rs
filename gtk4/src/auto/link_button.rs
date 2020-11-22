@@ -2,37 +2,33 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Actionable;
+use crate::Align;
+use crate::Buildable;
+use crate::Button;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Actionable;
-use Align;
-use Buildable;
-use Button;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct LinkButton(Object<gtk_sys::GtkLinkButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
+glib::glib_wrapper! {
+    pub struct LinkButton(Object<ffi::GtkLinkButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || gtk_sys::gtk_link_button_get_type(),
+        get_type => || ffi::gtk_link_button_get_type(),
     }
 }
 
@@ -40,14 +36,14 @@ impl LinkButton {
     pub fn new(uri: &str) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_link_button_new(uri.to_glib_none().0)).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_link_button_new(uri.to_glib_none().0)).unsafe_cast()
         }
     }
 
     pub fn with_label(uri: &str, label: Option<&str>) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_link_button_new_with_label(
+            Widget::from_glib_none(ffi::gtk_link_button_new_with_label(
                 uri.to_glib_none().0,
                 label.to_glib_none().0,
             ))
@@ -55,23 +51,23 @@ impl LinkButton {
         }
     }
 
-    pub fn get_uri(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_link_button_get_uri(self.to_glib_none().0)) }
+    pub fn get_uri(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_link_button_get_uri(self.to_glib_none().0)) }
     }
 
     pub fn get_visited(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_link_button_get_visited(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_link_button_get_visited(self.to_glib_none().0)) }
     }
 
     pub fn set_uri(&self, uri: &str) {
         unsafe {
-            gtk_sys::gtk_link_button_set_uri(self.to_glib_none().0, uri.to_glib_none().0);
+            ffi::gtk_link_button_set_uri(self.to_glib_none().0, uri.to_glib_none().0);
         }
     }
 
     pub fn set_visited(&self, visited: bool) {
         unsafe {
-            gtk_sys::gtk_link_button_set_visited(self.to_glib_none().0, visited.to_glib());
+            ffi::gtk_link_button_set_visited(self.to_glib_none().0, visited.to_glib());
         }
     }
 
@@ -82,9 +78,9 @@ impl LinkButton {
         unsafe extern "C" fn activate_link_trampoline<
             F: Fn(&LinkButton) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkLinkButton,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkLinkButton,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this)).to_glib()
         }
@@ -106,9 +102,9 @@ impl LinkButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<F: Fn(&LinkButton) + 'static>(
-            this: *mut gtk_sys::GtkLinkButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkLinkButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -131,9 +127,9 @@ impl LinkButton {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visited_trampoline<F: Fn(&LinkButton) + 'static>(
-            this: *mut gtk_sys::GtkLinkButton,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkLinkButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

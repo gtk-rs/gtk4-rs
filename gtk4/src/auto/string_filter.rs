@@ -2,33 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Filter;
+use crate::StringFilterMatchMode;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Filter;
-use StringFilterMatchMode;
 
-glib_wrapper! {
-    pub struct StringFilter(Object<gtk_sys::GtkStringFilter, gtk_sys::GtkStringFilterClass>) @extends Filter;
+glib::glib_wrapper! {
+    pub struct StringFilter(Object<ffi::GtkStringFilter, ffi::GtkStringFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || gtk_sys::gtk_string_filter_get_type(),
+        get_type => || ffi::gtk_string_filter_get_type(),
     }
 }
 
 impl StringFilter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringFilter {
-    //    unsafe { TODO: call gtk_sys:gtk_string_filter_new() }
+    //    unsafe { TODO: call ffi:gtk_string_filter_new() }
     //}
 }
 
@@ -88,7 +85,7 @@ pub trait StringFilterExt: 'static {
 
     fn get_match_mode(&self) -> StringFilterMatchMode;
 
-    fn get_search(&self) -> Option<GString>;
+    fn get_search(&self) -> Option<glib::GString>;
 
     //fn set_expression(&self, expression: /*Ignored*/&Expression);
 
@@ -109,12 +106,12 @@ pub trait StringFilterExt: 'static {
 
 impl<O: IsA<StringFilter>> StringFilterExt for O {
     //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call gtk_sys:gtk_string_filter_get_expression() }
+    //    unsafe { TODO: call ffi:gtk_string_filter_get_expression() }
     //}
 
     fn get_ignore_case(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_string_filter_get_ignore_case(
+            from_glib(ffi::gtk_string_filter_get_ignore_case(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -122,27 +119,27 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn get_match_mode(&self) -> StringFilterMatchMode {
         unsafe {
-            from_glib(gtk_sys::gtk_string_filter_get_match_mode(
+            from_glib(ffi::gtk_string_filter_get_match_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    fn get_search(&self) -> Option<GString> {
+    fn get_search(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_string_filter_get_search(
+            from_glib_none(ffi::gtk_string_filter_get_search(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn set_expression(&self, expression: /*Ignored*/&Expression) {
-    //    unsafe { TODO: call gtk_sys:gtk_string_filter_set_expression() }
+    //    unsafe { TODO: call ffi:gtk_string_filter_set_expression() }
     //}
 
     fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
-            gtk_sys::gtk_string_filter_set_ignore_case(
+            ffi::gtk_string_filter_set_ignore_case(
                 self.as_ref().to_glib_none().0,
                 ignore_case.to_glib(),
             );
@@ -151,16 +148,13 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn set_match_mode(&self, mode: StringFilterMatchMode) {
         unsafe {
-            gtk_sys::gtk_string_filter_set_match_mode(
-                self.as_ref().to_glib_none().0,
-                mode.to_glib(),
-            );
+            ffi::gtk_string_filter_set_match_mode(self.as_ref().to_glib_none().0, mode.to_glib());
         }
     }
 
     fn set_search(&self, search: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_string_filter_set_search(
+            ffi::gtk_string_filter_set_search(
                 self.as_ref().to_glib_none().0,
                 search.to_glib_none().0,
             );
@@ -169,9 +163,9 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringFilter>,
         {
@@ -193,9 +187,9 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn connect_property_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ignore_case_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringFilter>,
         {
@@ -217,9 +211,9 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn connect_property_match_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_match_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringFilter>,
         {
@@ -241,9 +235,9 @@ impl<O: IsA<StringFilter>> StringFilterExt for O {
 
     fn connect_property_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringFilter,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringFilter>,
         {

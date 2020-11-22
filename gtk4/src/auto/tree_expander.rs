@@ -2,7 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::TreeListRow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,33 +18,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use TreeListRow;
-use Widget;
 
-glib_wrapper! {
-    pub struct TreeExpander(Object<gtk_sys::GtkTreeExpander, gtk_sys::GtkTreeExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct TreeExpander(Object<ffi::GtkTreeExpander, ffi::GtkTreeExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_expander_get_type(),
+        get_type => || ffi::gtk_tree_expander_get_type(),
     }
 }
 
 impl TreeExpander {
     pub fn new() -> TreeExpander {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_tree_expander_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_tree_expander_new()).unsafe_cast() }
     }
 }
 
@@ -376,19 +373,19 @@ pub trait TreeExpanderExt: 'static {
 impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
     fn get_child(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_expander_get_child(
+            from_glib_none(ffi::gtk_tree_expander_get_child(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn get_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_expander_get_item() }
+    //    unsafe { TODO: call ffi:gtk_tree_expander_get_item() }
     //}
 
     fn get_list_row(&self) -> Option<TreeListRow> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_tree_expander_get_list_row(
+            from_glib_none(ffi::gtk_tree_expander_get_list_row(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -396,7 +393,7 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
 
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_tree_expander_set_child(
+            ffi::gtk_tree_expander_set_child(
                 self.as_ref().to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -405,7 +402,7 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
 
     fn set_list_row<P: IsA<TreeListRow>>(&self, list_row: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_tree_expander_set_list_row(
+            ffi::gtk_tree_expander_set_list_row(
                 self.as_ref().to_glib_none().0,
                 list_row.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -414,9 +411,9 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
 
     fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeExpander,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeExpander>,
         {
@@ -438,9 +435,9 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
 
     fn connect_property_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeExpander,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeExpander>,
         {
@@ -462,9 +459,9 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
 
     fn connect_property_list_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_row_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeExpander,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeExpander>,
         {

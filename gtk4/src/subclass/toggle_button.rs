@@ -1,12 +1,9 @@
-use gtk_sys;
-
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use super::button::ButtonImpl;
-use Button;
-use ToggleButton;
+use crate::{Button, ToggleButton};
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     fn toggled(&self, toggle_button: &Self::Type) {
@@ -22,8 +19,7 @@ impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {
     fn parent_toggled(&self, toggle_button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkToggleButtonClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkToggleButtonClass;
             if let Some(f) = (*parent_class).toggled {
                 f(toggle_button
                     .unsafe_cast_ref::<ToggleButton>()
@@ -43,9 +39,7 @@ unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
     }
 }
 
-unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(
-    ptr: *mut gtk_sys::GtkToggleButton,
-) {
+unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(ptr: *mut ffi::GtkToggleButton) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<ToggleButton> = from_glib_borrow(ptr);

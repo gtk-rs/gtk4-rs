@@ -2,25 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
-use gio;
-use glib;
 use glib::translate::*;
-use glib::GString;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct ContentDeserializer(Object<gdk_sys::GdkContentDeserializer>);
+glib::glib_wrapper! {
+    pub struct ContentDeserializer(Object<ffi::GdkContentDeserializer>);
 
     match fn {
-        get_type => || gdk_sys::gdk_content_deserializer_get_type(),
+        get_type => || ffi::gdk_content_deserializer_get_type(),
     }
 }
 
 impl ContentDeserializer {
     pub fn get_cancellable(&self) -> Option<gio::Cancellable> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_content_deserializer_get_cancellable(
+            from_glib_none(ffi::gdk_content_deserializer_get_cancellable(
                 self.to_glib_none().0,
             ))
         }
@@ -28,7 +24,7 @@ impl ContentDeserializer {
 
     pub fn get_gtype(&self) -> glib::types::Type {
         unsafe {
-            from_glib(gdk_sys::gdk_content_deserializer_get_gtype(
+            from_glib(ffi::gdk_content_deserializer_get_gtype(
                 self.to_glib_none().0,
             ))
         }
@@ -36,27 +32,27 @@ impl ContentDeserializer {
 
     pub fn get_input_stream(&self) -> gio::InputStream {
         unsafe {
-            from_glib_none(gdk_sys::gdk_content_deserializer_get_input_stream(
+            from_glib_none(ffi::gdk_content_deserializer_get_input_stream(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_mime_type(&self) -> GString {
+    pub fn get_mime_type(&self) -> glib::GString {
         unsafe {
-            from_glib_none(gdk_sys::gdk_content_deserializer_get_mime_type(
+            from_glib_none(ffi::gdk_content_deserializer_get_mime_type(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_priority(&self) -> i32 {
-        unsafe { gdk_sys::gdk_content_deserializer_get_priority(self.to_glib_none().0) }
+        unsafe { ffi::gdk_content_deserializer_get_priority(self.to_glib_none().0) }
     }
 
     pub fn get_value(&self) -> glib::Value {
         unsafe {
-            from_glib_none(gdk_sys::gdk_content_deserializer_get_value(
+            from_glib_none(ffi::gdk_content_deserializer_get_value(
                 self.to_glib_none().0,
             ))
         }
@@ -64,7 +60,7 @@ impl ContentDeserializer {
 
     pub fn return_error(&self, error: &mut glib::Error) {
         unsafe {
-            gdk_sys::gdk_content_deserializer_return_error(
+            ffi::gdk_content_deserializer_return_error(
                 self.to_glib_none().0,
                 error.to_glib_none_mut().0,
             );
@@ -73,7 +69,7 @@ impl ContentDeserializer {
 
     pub fn return_success(&self) {
         unsafe {
-            gdk_sys::gdk_content_deserializer_return_success(self.to_glib_none().0);
+            ffi::gdk_content_deserializer_return_success(self.to_glib_none().0);
         }
     }
 }

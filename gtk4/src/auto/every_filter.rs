@@ -2,26 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::Buildable;
+use crate::Filter;
+use crate::MultiFilter;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Buildable;
-use Filter;
-use MultiFilter;
 
-glib_wrapper! {
-    pub struct EveryFilter(Object<gtk_sys::GtkEveryFilter, gtk_sys::GtkEveryFilterClass>) @extends MultiFilter, Filter, @implements gio::ListModel, Buildable;
+glib::glib_wrapper! {
+    pub struct EveryFilter(Object<ffi::GtkEveryFilter, ffi::GtkEveryFilterClass>) @extends MultiFilter, Filter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || gtk_sys::gtk_every_filter_get_type(),
+        get_type => || ffi::gtk_every_filter_get_type(),
     }
 }
 
 impl EveryFilter {
     pub fn new() -> EveryFilter {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_every_filter_new()) }
+        unsafe { from_glib_full(ffi::gtk_every_filter_new()) }
     }
 }
 

@@ -2,47 +2,43 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct HeaderBar(Object<gtk_sys::GtkHeaderBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct HeaderBar(Object<ffi::GtkHeaderBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_header_bar_get_type(),
+        get_type => || ffi::gtk_header_bar_get_type(),
     }
 }
 
 impl HeaderBar {
     pub fn new() -> HeaderBar {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_header_bar_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_header_bar_new()).unsafe_cast() }
     }
 
-    pub fn get_decoration_layout(&self) -> Option<GString> {
+    pub fn get_decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_decoration_layout(
+            from_glib_none(ffi::gtk_header_bar_get_decoration_layout(
                 self.to_glib_none().0,
             ))
         }
@@ -50,47 +46,37 @@ impl HeaderBar {
 
     pub fn get_show_title_buttons(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_header_bar_get_show_title_buttons(
+            from_glib(ffi::gtk_header_bar_get_show_title_buttons(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_title_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_header_bar_get_title_widget(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
 
     pub fn pack_end<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            gtk_sys::gtk_header_bar_pack_end(
-                self.to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
+            ffi::gtk_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     pub fn pack_start<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            gtk_sys::gtk_header_bar_pack_start(
-                self.to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
+            ffi::gtk_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     pub fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            gtk_sys::gtk_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::gtk_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     pub fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_header_bar_set_decoration_layout(
+            ffi::gtk_header_bar_set_decoration_layout(
                 self.to_glib_none().0,
                 layout.to_glib_none().0,
             );
@@ -99,16 +85,13 @@ impl HeaderBar {
 
     pub fn set_show_title_buttons(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_header_bar_set_show_title_buttons(
-                self.to_glib_none().0,
-                setting.to_glib(),
-            );
+            ffi::gtk_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.to_glib());
         }
     }
 
     pub fn set_title_widget<P: IsA<Widget>>(&self, title_widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_header_bar_set_title_widget(
+            ffi::gtk_header_bar_set_title_widget(
                 self.to_glib_none().0,
                 title_widget.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -120,9 +103,9 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_decoration_layout_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -145,9 +128,9 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_title_buttons_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -170,9 +153,9 @@ impl HeaderBar {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
-            this: *mut gtk_sys::GtkHeaderBar,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkHeaderBar,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

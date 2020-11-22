@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,16 +9,13 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use gobject_sys;
-use gtk_sys;
-use std;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct IconPaintable(Object<gtk_sys::GtkIconPaintable>) @implements gdk::Paintable;
+glib::glib_wrapper! {
+    pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;
 
     match fn {
-        get_type => || gtk_sys::gtk_icon_paintable_get_type(),
+        get_type => || ffi::gtk_icon_paintable_get_type(),
     }
 }
 
@@ -28,7 +23,7 @@ impl IconPaintable {
     pub fn new_for_file<P: IsA<gio::File>>(file: &P, size: i32, scale: i32) -> IconPaintable {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_paintable_new_for_file(
+            from_glib_full(ffi::gtk_icon_paintable_new_for_file(
                 file.as_ref().to_glib_none().0,
                 size,
                 scale,
@@ -37,30 +32,22 @@ impl IconPaintable {
     }
 
     pub fn get_file(&self) -> Option<gio::File> {
-        unsafe { from_glib_full(gtk_sys::gtk_icon_paintable_get_file(self.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_icon_paintable_get_file(self.to_glib_none().0)) }
     }
 
     pub fn get_icon_name(&self) -> Option<std::path::PathBuf> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_icon_paintable_get_icon_name(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_icon_paintable_get_icon_name(self.to_glib_none().0)) }
     }
 
     pub fn is_symbolic(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_icon_paintable_is_symbolic(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_icon_paintable_is_symbolic(self.to_glib_none().0)) }
     }
 
     pub fn get_property_is_symbolic(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"is-symbolic\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );

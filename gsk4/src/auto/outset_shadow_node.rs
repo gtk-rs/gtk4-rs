@@ -2,18 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::RenderNode;
+use crate::RoundedRect;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
-use RoundedRect;
 
-glib_wrapper! {
-    pub struct OutsetShadowNode(Object<gsk_sys::GskOutsetShadowNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct OutsetShadowNode(Object<ffi::GskOutsetShadowNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_outset_shadow_node_get_type(),
+        get_type => || ffi::gsk_outset_shadow_node_get_type(),
     }
 }
 
@@ -28,7 +26,7 @@ impl OutsetShadowNode {
     ) -> OutsetShadowNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_outset_shadow_node_new(
+            from_glib_full(ffi::gsk_outset_shadow_node_new(
                 outline.to_glib_none().0,
                 color.to_glib_none().0,
                 dx,
@@ -40,24 +38,24 @@ impl OutsetShadowNode {
     }
 
     pub fn get_blur_radius(&self) -> f32 {
-        unsafe { gsk_sys::gsk_outset_shadow_node_get_blur_radius(self.to_glib_none().0) }
+        unsafe { ffi::gsk_outset_shadow_node_get_blur_radius(self.to_glib_none().0) }
     }
 
     pub fn get_dx(&self) -> f32 {
-        unsafe { gsk_sys::gsk_outset_shadow_node_get_dx(self.to_glib_none().0) }
+        unsafe { ffi::gsk_outset_shadow_node_get_dx(self.to_glib_none().0) }
     }
 
     pub fn get_dy(&self) -> f32 {
-        unsafe { gsk_sys::gsk_outset_shadow_node_get_dy(self.to_glib_none().0) }
+        unsafe { ffi::gsk_outset_shadow_node_get_dy(self.to_glib_none().0) }
     }
 
     pub fn get_spread(&self) -> f32 {
-        unsafe { gsk_sys::gsk_outset_shadow_node_get_spread(self.to_glib_none().0) }
+        unsafe { ffi::gsk_outset_shadow_node_get_spread(self.to_glib_none().0) }
     }
 
     pub fn peek_color(&self) -> Option<gdk::RGBA> {
         unsafe {
-            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_color(
+            from_glib_none(ffi::gsk_outset_shadow_node_peek_color(
                 self.to_glib_none().0,
             ))
         }
@@ -65,7 +63,7 @@ impl OutsetShadowNode {
 
     pub fn peek_outline(&self) -> Option<RoundedRect> {
         unsafe {
-            from_glib_none(gsk_sys::gsk_outset_shadow_node_peek_outline(
+            from_glib_none(ffi::gsk_outset_shadow_node_peek_outline(
                 self.to_glib_none().0,
             ))
         }

@@ -2,34 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Device;
+use crate::Event;
+use crate::FullscreenMode;
+use crate::Surface;
+use crate::SurfaceEdge;
+use crate::Texture;
+use crate::ToplevelLayout;
+use crate::ToplevelState;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Device;
-use Event;
-use FullscreenMode;
-use Surface;
-use SurfaceEdge;
-use Texture;
-use ToplevelLayout;
-use ToplevelState;
 
-glib_wrapper! {
-    pub struct Toplevel(Interface<gdk_sys::GdkToplevel>) @requires Surface;
+glib::glib_wrapper! {
+    pub struct Toplevel(Interface<ffi::GdkToplevel>) @requires Surface;
 
     match fn {
-        get_type => || gdk_sys::gdk_toplevel_get_type(),
+        get_type => || ffi::gdk_toplevel_get_type(),
     }
 }
 
@@ -94,9 +90,9 @@ pub trait ToplevelExt: 'static {
 
     fn get_property_shortcuts_inhibited(&self) -> bool;
 
-    fn get_property_startup_id(&self) -> Option<GString>;
+    fn get_property_startup_id(&self) -> Option<glib::GString>;
 
-    fn get_property_title(&self) -> Option<GString>;
+    fn get_property_title(&self) -> Option<glib::GString>;
 
     fn get_property_transient_for(&self) -> Option<Surface>;
 
@@ -135,7 +131,7 @@ pub trait ToplevelExt: 'static {
 impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn begin_move(&self, device: &Device, button: i32, x: f64, y: f64, timestamp: u32) {
         unsafe {
-            gdk_sys::gdk_toplevel_begin_move(
+            ffi::gdk_toplevel_begin_move(
                 self.as_ref().to_glib_none().0,
                 device.to_glib_none().0,
                 button,
@@ -156,7 +152,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         timestamp: u32,
     ) {
         unsafe {
-            gdk_sys::gdk_toplevel_begin_resize(
+            ffi::gdk_toplevel_begin_resize(
                 self.as_ref().to_glib_none().0,
                 edge.to_glib(),
                 device.to_glib_none().0,
@@ -170,21 +166,17 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn focus(&self, timestamp: u32) {
         unsafe {
-            gdk_sys::gdk_toplevel_focus(self.as_ref().to_glib_none().0, timestamp);
+            ffi::gdk_toplevel_focus(self.as_ref().to_glib_none().0, timestamp);
         }
     }
 
     fn get_state(&self) -> ToplevelState {
-        unsafe {
-            from_glib(gdk_sys::gdk_toplevel_get_state(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_toplevel_get_state(self.as_ref().to_glib_none().0)) }
     }
 
     fn inhibit_system_shortcuts<P: IsA<Event>>(&self, event: Option<&P>) {
         unsafe {
-            gdk_sys::gdk_toplevel_inhibit_system_shortcuts(
+            ffi::gdk_toplevel_inhibit_system_shortcuts(
                 self.as_ref().to_glib_none().0,
                 event.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -192,20 +184,16 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     }
 
     fn lower(&self) -> bool {
-        unsafe { from_glib(gdk_sys::gdk_toplevel_lower(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_toplevel_lower(self.as_ref().to_glib_none().0)) }
     }
 
     fn minimize(&self) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_toplevel_minimize(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_toplevel_minimize(self.as_ref().to_glib_none().0)) }
     }
 
     fn present(&self, layout: &ToplevelLayout) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_present(
+            from_glib(ffi::gdk_toplevel_present(
                 self.as_ref().to_glib_none().0,
                 layout.to_glib_none().0,
             ))
@@ -214,31 +202,25 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn restore_system_shortcuts(&self) {
         unsafe {
-            gdk_sys::gdk_toplevel_restore_system_shortcuts(self.as_ref().to_glib_none().0);
+            ffi::gdk_toplevel_restore_system_shortcuts(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_decorated(&self, decorated: bool) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_decorated(
-                self.as_ref().to_glib_none().0,
-                decorated.to_glib(),
-            );
+            ffi::gdk_toplevel_set_decorated(self.as_ref().to_glib_none().0, decorated.to_glib());
         }
     }
 
     fn set_deletable(&self, deletable: bool) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_deletable(
-                self.as_ref().to_glib_none().0,
-                deletable.to_glib(),
-            );
+            ffi::gdk_toplevel_set_deletable(self.as_ref().to_glib_none().0, deletable.to_glib());
         }
     }
 
     fn set_icon_list(&self, surfaces: &[Texture]) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_icon_list(
+            ffi::gdk_toplevel_set_icon_list(
                 self.as_ref().to_glib_none().0,
                 surfaces.to_glib_none().0,
             );
@@ -247,13 +229,13 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn set_modal(&self, modal: bool) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
+            ffi::gdk_toplevel_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
         }
     }
 
     fn set_startup_id(&self, startup_id: &str) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_startup_id(
+            ffi::gdk_toplevel_set_startup_id(
                 self.as_ref().to_glib_none().0,
                 startup_id.to_glib_none().0,
             );
@@ -262,13 +244,13 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn set_title(&self, title: &str) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
+            ffi::gdk_toplevel_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
         }
     }
 
     fn set_transient_for(&self, parent: &Surface) {
         unsafe {
-            gdk_sys::gdk_toplevel_set_transient_for(
+            ffi::gdk_toplevel_set_transient_for(
                 self.as_ref().to_glib_none().0,
                 parent.to_glib_none().0,
             );
@@ -277,7 +259,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn show_window_menu<P: IsA<Event>>(&self, event: &P) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_show_window_menu(
+            from_glib(ffi::gdk_toplevel_show_window_menu(
                 self.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
             ))
@@ -286,7 +268,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn supports_edge_constraints(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_toplevel_supports_edge_constraints(
+            from_glib(ffi::gdk_toplevel_supports_edge_constraints(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -295,8 +277,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_decorated(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"decorated\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -310,8 +292,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_deletable(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"deletable\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -325,8 +307,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_fullscreen_mode(&self) -> FullscreenMode {
         unsafe {
             let mut value = Value::from_type(<FullscreenMode as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreen-mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -339,8 +321,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn set_property_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreen-mode\0".as_ptr() as *const _,
                 Value::from(&fullscreen_mode).to_glib_none().0,
             );
@@ -350,7 +332,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     //fn get_property_icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
     //    unsafe {
     //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        gobject_sys::g_object_get_property(self.to_glib_none().0 as *mut gobject_sys::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
+    //        glib::gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut glib::gobject_ffi::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get().expect("Return Value for property `icon-list` getter").unwrap()
     //    }
     //}
@@ -358,8 +340,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_modal(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"modal\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -373,8 +355,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_shortcuts_inhibited(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"shortcuts-inhibited\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -385,11 +367,11 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_startup_id(&self) -> Option<GString> {
+    fn get_property_startup_id(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"startup-id\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -399,11 +381,11 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_title(&self) -> Option<GString> {
+    fn get_property_title(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -416,8 +398,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     fn get_property_transient_for(&self) -> Option<Surface> {
         unsafe {
             let mut value = Value::from_type(<Surface as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"transient-for\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -433,9 +415,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -457,9 +439,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_deletable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -484,9 +466,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_fullscreen_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -508,9 +490,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_list_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -532,9 +514,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -559,9 +541,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcuts_inhibited_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -583,9 +565,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_startup_id_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -607,9 +589,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -631,9 +613,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {
@@ -658,9 +640,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkToplevel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkToplevel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Toplevel>,
         {

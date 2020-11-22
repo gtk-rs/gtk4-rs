@@ -2,27 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::TreeIter;
+use crate::TreeModelFlags;
+use crate::TreePath;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use TreeIter;
-use TreeModelFlags;
-use TreePath;
 
-glib_wrapper! {
-    pub struct TreeModel(Interface<gtk_sys::GtkTreeModel>);
+glib::glib_wrapper! {
+    pub struct TreeModel(Interface<ffi::GtkTreeModel>);
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_model_get_type(),
+        get_type => || ffi::gtk_tree_model_get_type(),
     }
 }
 
@@ -47,7 +43,7 @@ pub trait TreeModelExt: 'static {
 
     fn get_path(&self, iter: &TreeIter) -> Option<TreePath>;
 
-    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<GString>;
+    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
     //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
@@ -99,11 +95,11 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(
-            model: *mut gtk_sys::GtkTreeModel,
-            path: *mut gtk_sys::GtkTreePath,
-            iter: *mut gtk_sys::GtkTreeIter,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            model: *mut ffi::GtkTreeModel,
+            path: *mut ffi::GtkTreePath,
+            iter: *mut ffi::GtkTreeIter,
+            data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let iter = from_glib_borrow(iter);
@@ -114,7 +110,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
         unsafe {
-            gtk_sys::gtk_tree_model_foreach(
+            ffi::gtk_tree_model_foreach(
                 self.as_ref().to_glib_none().0,
                 func,
                 super_callback0 as *const _ as usize as *mut _,
@@ -123,12 +119,12 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_model_get() }
+    //    unsafe { TODO: call ffi:gtk_tree_model_get() }
     //}
 
     fn get_column_type(&self, index_: i32) -> glib::types::Type {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_get_column_type(
+            from_glib(ffi::gtk_tree_model_get_column_type(
                 self.as_ref().to_glib_none().0,
                 index_,
             ))
@@ -137,7 +133,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn get_flags(&self) -> TreeModelFlags {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_get_flags(
+            from_glib(ffi::gtk_tree_model_get_flags(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -146,7 +142,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn get_iter(&self, path: &TreePath) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_get_iter(
+            let ret = from_glib(ffi::gtk_tree_model_get_iter(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(path.to_glib_none().0),
@@ -162,7 +158,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn get_iter_first(&self) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_get_iter_first(
+            let ret = from_glib(ffi::gtk_tree_model_get_iter_first(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ));
@@ -177,7 +173,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn get_iter_from_string(&self, path_string: &str) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_get_iter_from_string(
+            let ret = from_glib(ffi::gtk_tree_model_get_iter_from_string(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 path_string.to_glib_none().0,
@@ -191,21 +187,21 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     fn get_n_columns(&self) -> i32 {
-        unsafe { gtk_sys::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
     fn get_path(&self, iter: &TreeIter) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_get_path(
+            from_glib_full(ffi::gtk_tree_model_get_path(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
         }
     }
 
-    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<GString> {
+    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_tree_model_get_string_from_iter(
+            from_glib_full(ffi::gtk_tree_model_get_string_from_iter(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
@@ -213,13 +209,13 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     }
 
     //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call gtk_sys:gtk_tree_model_get_valist() }
+    //    unsafe { TODO: call ffi:gtk_tree_model_get_valist() }
     //}
 
     fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
         unsafe {
             let mut value = glib::Value::uninitialized();
-            gtk_sys::gtk_tree_model_get_value(
+            ffi::gtk_tree_model_get_value(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 column,
@@ -232,7 +228,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_iter_children(
+            let ret = from_glib(ffi::gtk_tree_model_iter_children(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -247,7 +243,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn iter_has_child(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_has_child(
+            from_glib(ffi::gtk_tree_model_iter_has_child(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
@@ -256,7 +252,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32 {
         unsafe {
-            gtk_sys::gtk_tree_model_iter_n_children(
+            ffi::gtk_tree_model_iter_n_children(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             )
@@ -265,7 +261,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn iter_next(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_next(
+            from_glib(ffi::gtk_tree_model_iter_next(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
@@ -275,7 +271,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_iter_nth_child(
+            let ret = from_glib(ffi::gtk_tree_model_iter_nth_child(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(parent.to_glib_none().0),
@@ -292,7 +288,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
     fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_tree_model_iter_parent(
+            let ret = from_glib(ffi::gtk_tree_model_iter_parent(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 mut_override(child.to_glib_none().0),
@@ -307,7 +303,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn iter_previous(&self, iter: &TreeIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_model_iter_previous(
+            from_glib(ffi::gtk_tree_model_iter_previous(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
             ))
@@ -316,7 +312,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn row_changed(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_changed(
+            ffi::gtk_tree_model_row_changed(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 mut_override(iter.to_glib_none().0),
@@ -326,7 +322,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn row_deleted(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_deleted(
+            ffi::gtk_tree_model_row_deleted(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
@@ -335,7 +331,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_has_child_toggled(
+            ffi::gtk_tree_model_row_has_child_toggled(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 mut_override(iter.to_glib_none().0),
@@ -345,7 +341,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn row_inserted(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
-            gtk_sys::gtk_tree_model_row_inserted(
+            ffi::gtk_tree_model_row_inserted(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 mut_override(iter.to_glib_none().0),
@@ -358,10 +354,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn row_changed_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(
-            this: *mut gtk_sys::GtkTreeModel,
-            path: *mut gtk_sys::GtkTreePath,
-            iter: *mut gtk_sys::GtkTreeIter,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeModel,
+            path: *mut ffi::GtkTreePath,
+            iter: *mut ffi::GtkTreeIter,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeModel>,
         {
@@ -387,9 +383,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
     fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn row_deleted_trampoline<P, F: Fn(&P, &TreePath) + 'static>(
-            this: *mut gtk_sys::GtkTreeModel,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeModel,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeModel>,
         {
@@ -420,10 +416,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             P,
             F: Fn(&P, &TreePath, &TreeIter) + 'static,
         >(
-            this: *mut gtk_sys::GtkTreeModel,
-            path: *mut gtk_sys::GtkTreePath,
-            iter: *mut gtk_sys::GtkTreeIter,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeModel,
+            path: *mut ffi::GtkTreePath,
+            iter: *mut ffi::GtkTreeIter,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeModel>,
         {
@@ -452,10 +448,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn row_inserted_trampoline<P, F: Fn(&P, &TreePath, &TreeIter) + 'static>(
-            this: *mut gtk_sys::GtkTreeModel,
-            path: *mut gtk_sys::GtkTreePath,
-            iter: *mut gtk_sys::GtkTreeIter,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeModel,
+            path: *mut ffi::GtkTreePath,
+            iter: *mut ffi::GtkTreeIter,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeModel>,
         {

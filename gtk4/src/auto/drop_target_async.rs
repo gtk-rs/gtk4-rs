@@ -2,8 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
+use crate::EventController;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -11,21 +12,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use PropagationLimit;
-use PropagationPhase;
 
-glib_wrapper! {
-    pub struct DropTargetAsync(Object<gtk_sys::GtkDropTargetAsync, gtk_sys::GtkDropTargetAsyncClass>) @extends EventController;
+glib::glib_wrapper! {
+    pub struct DropTargetAsync(Object<ffi::GtkDropTargetAsync, ffi::GtkDropTargetAsyncClass>) @extends EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_drop_target_async_get_type(),
+        get_type => || ffi::gtk_drop_target_async_get_type(),
     }
 }
 
@@ -33,7 +28,7 @@ impl DropTargetAsync {
     pub fn new(formats: Option<&gdk::ContentFormats>, actions: gdk::DragAction) -> DropTargetAsync {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_drop_target_async_new(
+            from_glib_full(ffi::gtk_drop_target_async_new(
                 formats.to_glib_full(),
                 actions.to_glib(),
             ))
@@ -42,7 +37,7 @@ impl DropTargetAsync {
 
     pub fn get_actions(&self) -> gdk::DragAction {
         unsafe {
-            from_glib(gtk_sys::gtk_drop_target_async_get_actions(
+            from_glib(ffi::gtk_drop_target_async_get_actions(
                 self.to_glib_none().0,
             ))
         }
@@ -50,7 +45,7 @@ impl DropTargetAsync {
 
     pub fn get_formats(&self) -> Option<gdk::ContentFormats> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_drop_target_async_get_formats(
+            from_glib_full(ffi::gtk_drop_target_async_get_formats(
                 self.to_glib_none().0,
             ))
         }
@@ -58,25 +53,19 @@ impl DropTargetAsync {
 
     pub fn reject_drop(&self, drop: &gdk::Drop) {
         unsafe {
-            gtk_sys::gtk_drop_target_async_reject_drop(
-                self.to_glib_none().0,
-                drop.to_glib_none().0,
-            );
+            ffi::gtk_drop_target_async_reject_drop(self.to_glib_none().0, drop.to_glib_none().0);
         }
     }
 
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            gtk_sys::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
     pub fn set_formats(&self, formats: Option<&gdk::ContentFormats>) {
         unsafe {
-            gtk_sys::gtk_drop_target_async_set_formats(
-                self.to_glib_none().0,
-                formats.to_glib_none().0,
-            );
+            ffi::gtk_drop_target_async_set_formats(self.to_glib_none().0, formats.to_glib_none().0);
         }
     }
 
@@ -87,10 +76,10 @@ impl DropTargetAsync {
         unsafe extern "C" fn accept_trampoline<
             F: Fn(&DropTargetAsync, &gdk::Drop) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            drop: *mut gdk_sys::GdkDrop,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkDropTargetAsync,
+            drop: *mut gdk::ffi::GdkDrop,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop)).to_glib()
         }
@@ -116,12 +105,12 @@ impl DropTargetAsync {
         unsafe extern "C" fn drag_enter_trampoline<
             F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> gdk::DragAction + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            drop: *mut gdk_sys::GdkDrop,
+            this: *mut ffi::GtkDropTargetAsync,
+            drop: *mut gdk::ffi::GdkDrop,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> gdk_sys::GdkDragAction {
+            f: glib::ffi::gpointer,
+        ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
         }
@@ -145,9 +134,9 @@ impl DropTargetAsync {
         unsafe extern "C" fn drag_leave_trampoline<
             F: Fn(&DropTargetAsync, &gdk::Drop) + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            drop: *mut gdk_sys::GdkDrop,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTargetAsync,
+            drop: *mut gdk::ffi::GdkDrop,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop))
@@ -174,12 +163,12 @@ impl DropTargetAsync {
         unsafe extern "C" fn drag_motion_trampoline<
             F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> gdk::DragAction + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            drop: *mut gdk_sys::GdkDrop,
+            this: *mut ffi::GtkDropTargetAsync,
+            drop: *mut gdk::ffi::GdkDrop,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> gdk_sys::GdkDragAction {
+            f: glib::ffi::gpointer,
+        ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
         }
@@ -203,12 +192,12 @@ impl DropTargetAsync {
         unsafe extern "C" fn drop_trampoline<
             F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            drop: *mut gdk_sys::GdkDrop,
+            this: *mut ffi::GtkDropTargetAsync,
+            drop: *mut gdk::ffi::GdkDrop,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
         }
@@ -230,9 +219,9 @@ impl DropTargetAsync {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&DropTargetAsync) + 'static>(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTargetAsync,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -255,9 +244,9 @@ impl DropTargetAsync {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<F: Fn(&DropTargetAsync) + 'static>(
-            this: *mut gtk_sys::GtkDropTargetAsync,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropTargetAsync,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

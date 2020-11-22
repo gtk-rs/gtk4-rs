@@ -2,29 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
+use crate::EventController;
+use crate::IMContext;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use IMContext;
-use Widget;
 
-glib_wrapper! {
-    pub struct EventControllerKey(Object<gtk_sys::GtkEventControllerKey, gtk_sys::GtkEventControllerKeyClass>) @extends EventController;
+glib::glib_wrapper! {
+    pub struct EventControllerKey(Object<ffi::GtkEventControllerKey, ffi::GtkEventControllerKeyClass>) @extends EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_event_controller_key_get_type(),
+        get_type => || ffi::gtk_event_controller_key_get_type(),
     }
 }
 
@@ -32,13 +27,13 @@ impl EventControllerKey {
     pub fn new() -> EventControllerKey {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(gtk_sys::gtk_event_controller_key_new()).unsafe_cast()
+            EventController::from_glib_full(ffi::gtk_event_controller_key_new()).unsafe_cast()
         }
     }
 
     pub fn forward<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_event_controller_key_forward(
+            from_glib(ffi::gtk_event_controller_key_forward(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             ))
@@ -46,12 +41,12 @@ impl EventControllerKey {
     }
 
     pub fn get_group(&self) -> u32 {
-        unsafe { gtk_sys::gtk_event_controller_key_get_group(self.to_glib_none().0) }
+        unsafe { ffi::gtk_event_controller_key_get_group(self.to_glib_none().0) }
     }
 
     pub fn get_im_context(&self) -> Option<IMContext> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_key_get_im_context(
+            from_glib_none(ffi::gtk_event_controller_key_get_im_context(
                 self.to_glib_none().0,
             ))
         }
@@ -59,7 +54,7 @@ impl EventControllerKey {
 
     pub fn set_im_context<P: IsA<IMContext>>(&self, im_context: &P) {
         unsafe {
-            gtk_sys::gtk_event_controller_key_set_im_context(
+            ffi::gtk_event_controller_key_set_im_context(
                 self.to_glib_none().0,
                 im_context.as_ref().to_glib_none().0,
             );
@@ -68,8 +63,8 @@ impl EventControllerKey {
 
     pub fn connect_im_update<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(
-            this: *mut gtk_sys::GtkEventControllerKey,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEventControllerKey,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -96,12 +91,12 @@ impl EventControllerKey {
         unsafe extern "C" fn key_pressed_trampoline<
             F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkEventControllerKey,
+            this: *mut ffi::GtkEventControllerKey,
             keyval: libc::c_uint,
             keycode: libc::c_uint,
-            state: gdk_sys::GdkModifierType,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            state: gdk::ffi::GdkModifierType,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), keyval, keycode, from_glib(state)).to_glib()
         }
@@ -127,11 +122,11 @@ impl EventControllerKey {
         unsafe extern "C" fn key_released_trampoline<
             F: Fn(&EventControllerKey, u32, u32, gdk::ModifierType) + 'static,
         >(
-            this: *mut gtk_sys::GtkEventControllerKey,
+            this: *mut ffi::GtkEventControllerKey,
             keyval: libc::c_uint,
             keycode: libc::c_uint,
-            state: gdk_sys::GdkModifierType,
-            f: glib_sys::gpointer,
+            state: gdk::ffi::GdkModifierType,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), keyval, keycode, from_glib(state))
@@ -158,10 +153,10 @@ impl EventControllerKey {
         unsafe extern "C" fn modifiers_trampoline<
             F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
         >(
-            this: *mut gtk_sys::GtkEventControllerKey,
-            keyval: gdk_sys::GdkModifierType,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkEventControllerKey,
+            keyval: gdk::ffi::GdkModifierType,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(keyval)).to_glib()
         }

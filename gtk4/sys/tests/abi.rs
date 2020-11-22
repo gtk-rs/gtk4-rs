@@ -2,9 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-extern crate gtk4_sys;
-extern crate shell_words;
-extern crate tempfile;
 use gtk4_sys::*;
 use std::env;
 use std::error::Error;

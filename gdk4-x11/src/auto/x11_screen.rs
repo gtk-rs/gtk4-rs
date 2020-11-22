@@ -2,48 +2,43 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_x11_sys;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use xlib;
+use x11::xlib;
 
-glib_wrapper! {
-    pub struct X11Screen(Object<gdk_x11_sys::GdkX11Screen, gdk_x11_sys::GdkX11ScreenClass>);
+glib::glib_wrapper! {
+    pub struct X11Screen(Object<ffi::GdkX11Screen, ffi::GdkX11ScreenClass>);
 
     match fn {
-        get_type => || gdk_x11_sys::gdk_x11_screen_get_type(),
+        get_type => || ffi::gdk_x11_screen_get_type(),
     }
 }
 
 impl X11Screen {
     pub fn get_current_desktop(&self) -> u32 {
-        unsafe { gdk_x11_sys::gdk_x11_screen_get_current_desktop(self.to_glib_none().0) }
+        unsafe { ffi::gdk_x11_screen_get_current_desktop(self.to_glib_none().0) }
     }
 
     pub fn get_monitor_output(&self, monitor_num: i32) -> xlib::XID {
-        unsafe {
-            gdk_x11_sys::gdk_x11_screen_get_monitor_output(self.to_glib_none().0, monitor_num)
-        }
+        unsafe { ffi::gdk_x11_screen_get_monitor_output(self.to_glib_none().0, monitor_num) }
     }
 
     pub fn get_number_of_desktops(&self) -> u32 {
-        unsafe { gdk_x11_sys::gdk_x11_screen_get_number_of_desktops(self.to_glib_none().0) }
+        unsafe { ffi::gdk_x11_screen_get_number_of_desktops(self.to_glib_none().0) }
     }
 
     pub fn get_screen_number(&self) -> i32 {
-        unsafe { gdk_x11_sys::gdk_x11_screen_get_screen_number(self.to_glib_none().0) }
+        unsafe { ffi::gdk_x11_screen_get_screen_number(self.to_glib_none().0) }
     }
 
-    pub fn get_window_manager_name(&self) -> Option<GString> {
+    pub fn get_window_manager_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gdk_x11_sys::gdk_x11_screen_get_window_manager_name(
+            from_glib_none(ffi::gdk_x11_screen_get_window_manager_name(
                 self.to_glib_none().0,
             ))
         }
@@ -51,7 +46,7 @@ impl X11Screen {
 
     pub fn supports_net_wm_hint(&self, property_name: &str) -> bool {
         unsafe {
-            from_glib(gdk_x11_sys::gdk_x11_screen_supports_net_wm_hint(
+            from_glib(ffi::gdk_x11_screen_supports_net_wm_hint(
                 self.to_glib_none().0,
                 property_name.to_glib_none().0,
             ))
@@ -63,8 +58,8 @@ impl X11Screen {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn window_manager_changed_trampoline<F: Fn(&X11Screen) + 'static>(
-            this: *mut gdk_x11_sys::GdkX11Screen,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkX11Screen,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

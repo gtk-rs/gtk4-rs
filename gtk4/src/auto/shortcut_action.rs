@@ -2,20 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::ShortcutActionFlags;
+use crate::Widget;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
-use ShortcutActionFlags;
-use Widget;
 
-glib_wrapper! {
-    pub struct ShortcutAction(Object<gtk_sys::GtkShortcutAction, gtk_sys::GtkShortcutActionClass>);
+glib::glib_wrapper! {
+    pub struct ShortcutAction(Object<ffi::GtkShortcutAction, ffi::GtkShortcutActionClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_shortcut_action_get_type(),
+        get_type => || ffi::gtk_shortcut_action_get_type(),
     }
 }
 
@@ -23,7 +20,7 @@ impl ShortcutAction {
     pub fn parse_string(string: &str) -> Option<ShortcutAction> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_shortcut_action_parse_string(
+            from_glib_full(ffi::gtk_shortcut_action_parse_string(
                 string.to_glib_none().0,
             ))
         }
@@ -42,7 +39,7 @@ pub trait ShortcutActionExt: 'static {
 
     fn print(&self, string: &mut glib::String);
 
-    fn to_string(&self) -> GString;
+    fn to_string(&self) -> glib::GString;
 }
 
 impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
@@ -53,7 +50,7 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         args: Option<&glib::Variant>,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_shortcut_action_activate(
+            from_glib(ffi::gtk_shortcut_action_activate(
                 self.as_ref().to_glib_none().0,
                 flags.to_glib(),
                 widget.as_ref().to_glib_none().0,
@@ -64,16 +61,16 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
 
     fn print(&self, string: &mut glib::String) {
         unsafe {
-            gtk_sys::gtk_shortcut_action_print(
+            ffi::gtk_shortcut_action_print(
                 self.as_ref().to_glib_none().0,
                 string.to_glib_none_mut().0,
             );
         }
     }
 
-    fn to_string(&self) -> GString {
+    fn to_string(&self) -> glib::GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_shortcut_action_to_string(
+            from_glib_full(ffi::gtk_shortcut_action_to_string(
                 self.as_ref().to_glib_none().0,
             ))
         }

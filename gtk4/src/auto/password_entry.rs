@@ -2,9 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Editable;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
@@ -12,43 +18,30 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use Editable;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct PasswordEntry(Object<gtk_sys::GtkPasswordEntry, gtk_sys::GtkPasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
+glib::glib_wrapper! {
+    pub struct PasswordEntry(Object<ffi::GtkPasswordEntry, ffi::GtkPasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || gtk_sys::gtk_password_entry_get_type(),
+        get_type => || ffi::gtk_password_entry_get_type(),
     }
 }
 
 impl PasswordEntry {
     pub fn new() -> PasswordEntry {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_password_entry_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_password_entry_new()).unsafe_cast() }
     }
 
     pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_password_entry_get_extra_menu(
+            from_glib_none(ffi::gtk_password_entry_get_extra_menu(
                 self.to_glib_none().0,
             ))
         }
@@ -56,7 +49,7 @@ impl PasswordEntry {
 
     pub fn get_show_peek_icon(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_password_entry_get_show_peek_icon(
+            from_glib(ffi::gtk_password_entry_get_show_peek_icon(
                 self.to_glib_none().0,
             ))
         }
@@ -64,7 +57,7 @@ impl PasswordEntry {
 
     pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_password_entry_set_extra_menu(
+            ffi::gtk_password_entry_set_extra_menu(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -73,7 +66,7 @@ impl PasswordEntry {
 
     pub fn set_show_peek_icon(&self, show_peek_icon: bool) {
         unsafe {
-            gtk_sys::gtk_password_entry_set_show_peek_icon(
+            ffi::gtk_password_entry_set_show_peek_icon(
                 self.to_glib_none().0,
                 show_peek_icon.to_glib(),
             );
@@ -83,8 +76,8 @@ impl PasswordEntry {
     pub fn get_property_activates_default(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"activates-default\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -97,19 +90,19 @@ impl PasswordEntry {
 
     pub fn set_property_activates_default(&self, activates_default: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"activates-default\0".as_ptr() as *const _,
                 Value::from(&activates_default).to_glib_none().0,
             );
         }
     }
 
-    pub fn get_property_placeholder_text(&self) -> Option<GString> {
+    pub fn get_property_placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -121,8 +114,8 @@ impl PasswordEntry {
 
     pub fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
                 Value::from(placeholder_text).to_glib_none().0,
             );
@@ -131,8 +124,8 @@ impl PasswordEntry {
 
     pub fn connect_activate<F: Fn(&PasswordEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&PasswordEntry) + 'static>(
-            this: *mut gtk_sys::GtkPasswordEntry,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPasswordEntry,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -152,7 +145,7 @@ impl PasswordEntry {
 
     pub fn emit_activate(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("activate", &[])
                 .unwrap()
         };
@@ -165,9 +158,9 @@ impl PasswordEntry {
         unsafe extern "C" fn notify_activates_default_trampoline<
             F: Fn(&PasswordEntry) + 'static,
         >(
-            this: *mut gtk_sys::GtkPasswordEntry,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPasswordEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -190,9 +183,9 @@ impl PasswordEntry {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&PasswordEntry) + 'static>(
-            this: *mut gtk_sys::GtkPasswordEntry,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPasswordEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -215,9 +208,9 @@ impl PasswordEntry {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&PasswordEntry) + 'static>(
-            this: *mut gtk_sys::GtkPasswordEntry,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPasswordEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -240,9 +233,9 @@ impl PasswordEntry {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_peek_icon_trampoline<F: Fn(&PasswordEntry) + 'static>(
-            this: *mut gtk_sys::GtkPasswordEntry,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkPasswordEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

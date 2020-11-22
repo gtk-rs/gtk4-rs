@@ -4,28 +4,26 @@
 
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
-use gtk_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct Buildable(Interface<gtk_sys::GtkBuildable>);
+glib::glib_wrapper! {
+    pub struct Buildable(Interface<ffi::GtkBuildable>);
 
     match fn {
-        get_type => || gtk_sys::gtk_buildable_get_type(),
+        get_type => || ffi::gtk_buildable_get_type(),
     }
 }
 
 pub const NONE_BUILDABLE: Option<&Buildable> = None;
 
 pub trait BuildableExt: 'static {
-    fn get_buildable_id(&self) -> Option<GString>;
+    fn get_buildable_id(&self) -> Option<glib::GString>;
 }
 
 impl<O: IsA<Buildable>> BuildableExt for O {
-    fn get_buildable_id(&self) -> Option<GString> {
+    fn get_buildable_id(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_buildable_get_buildable_id(
+            from_glib_none(ffi::gtk_buildable_get_buildable_id(
                 self.as_ref().to_glib_none().0,
             ))
         }

@@ -2,7 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::CellRenderer;
+use crate::CellRendererMode;
+use crate::CellRendererText;
+use crate::TreeIter;
+use crate::TreeModel;
+use crate::TreePath;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -12,42 +17,29 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use CellRenderer;
-use CellRendererMode;
-use CellRendererText;
-use TreeIter;
-use TreeModel;
-use TreePath;
 
-glib_wrapper! {
-    pub struct CellRendererCombo(Object<gtk_sys::GtkCellRendererCombo>) @extends CellRendererText, CellRenderer;
+glib::glib_wrapper! {
+    pub struct CellRendererCombo(Object<ffi::GtkCellRendererCombo>) @extends CellRendererText, CellRenderer;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_renderer_combo_get_type(),
+        get_type => || ffi::gtk_cell_renderer_combo_get_type(),
     }
 }
 
 impl CellRendererCombo {
     pub fn new() -> CellRendererCombo {
         assert_initialized_main_thread!();
-        unsafe {
-            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_combo_new()).unsafe_cast()
-        }
+        unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_combo_new()).unsafe_cast() }
     }
 
     pub fn get_property_has_entry(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"has-entry\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -60,8 +52,8 @@ impl CellRendererCombo {
 
     pub fn set_property_has_entry(&self, has_entry: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"has-entry\0".as_ptr() as *const _,
                 Value::from(&has_entry).to_glib_none().0,
             );
@@ -71,8 +63,8 @@ impl CellRendererCombo {
     pub fn get_property_model(&self) -> Option<TreeModel> {
         unsafe {
             let mut value = Value::from_type(<TreeModel as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"model\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -84,8 +76,8 @@ impl CellRendererCombo {
 
     pub fn set_property_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"model\0".as_ptr() as *const _,
                 Value::from(model).to_glib_none().0,
             );
@@ -95,8 +87,8 @@ impl CellRendererCombo {
     pub fn get_property_text_column(&self) -> i32 {
         unsafe {
             let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-column\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -109,8 +101,8 @@ impl CellRendererCombo {
 
     pub fn set_property_text_column(&self, text_column: i32) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-column\0".as_ptr() as *const _,
                 Value::from(&text_column).to_glib_none().0,
             );
@@ -124,13 +116,13 @@ impl CellRendererCombo {
         unsafe extern "C" fn changed_trampoline<
             F: Fn(&CellRendererCombo, TreePath, &TreeIter) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellRendererCombo,
+            this: *mut ffi::GtkCellRendererCombo,
             path_string: *mut libc::c_char,
-            new_iter: *mut gtk_sys::GtkTreeIter,
-            f: glib_sys::gpointer,
+            new_iter: *mut ffi::GtkTreeIter,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path_string));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path_string));
             f(&from_glib_borrow(this), path, &from_glib_borrow(new_iter))
         }
         unsafe {
@@ -151,9 +143,9 @@ impl CellRendererCombo {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_entry_trampoline<F: Fn(&CellRendererCombo) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererCombo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererCombo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -176,9 +168,9 @@ impl CellRendererCombo {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&CellRendererCombo) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererCombo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererCombo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -201,9 +193,9 @@ impl CellRendererCombo {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_column_trampoline<F: Fn(&CellRendererCombo) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererCombo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererCombo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

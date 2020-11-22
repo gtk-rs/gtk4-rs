@@ -2,8 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::CornerType;
+use crate::DirectionType;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::PolicyType;
+use crate::PositionType;
+use crate::ScrollType;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
@@ -14,53 +26,32 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use CornerType;
-use DirectionType;
-use LayoutManager;
-use Overflow;
-use PolicyType;
-use PositionType;
-use ScrollType;
-use Widget;
 
-glib_wrapper! {
-    pub struct ScrolledWindow(Object<gtk_sys::GtkScrolledWindow>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct ScrolledWindow(Object<ffi::GtkScrolledWindow>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_scrolled_window_get_type(),
+        get_type => || ffi::gtk_scrolled_window_get_type(),
     }
 }
 
 impl ScrolledWindow {
     pub fn new() -> ScrolledWindow {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_scrolled_window_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_scrolled_window_new()).unsafe_cast() }
     }
 
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_scrolled_window_get_child(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_scrolled_window_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_hadjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_scrolled_window_get_hadjustment(
+            from_glib_none(ffi::gtk_scrolled_window_get_hadjustment(
                 self.to_glib_none().0,
             ))
         }
@@ -68,7 +59,7 @@ impl ScrolledWindow {
 
     pub fn get_has_frame(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_has_frame(
+            from_glib(ffi::gtk_scrolled_window_get_has_frame(
                 self.to_glib_none().0,
             ))
         }
@@ -76,7 +67,7 @@ impl ScrolledWindow {
 
     pub fn get_hscrollbar(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_scrolled_window_get_hscrollbar(
+            from_glib_none(ffi::gtk_scrolled_window_get_hscrollbar(
                 self.to_glib_none().0,
             ))
         }
@@ -84,31 +75,31 @@ impl ScrolledWindow {
 
     pub fn get_kinetic_scrolling(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_kinetic_scrolling(
+            from_glib(ffi::gtk_scrolled_window_get_kinetic_scrolling(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_max_content_height(&self) -> i32 {
-        unsafe { gtk_sys::gtk_scrolled_window_get_max_content_height(self.to_glib_none().0) }
+        unsafe { ffi::gtk_scrolled_window_get_max_content_height(self.to_glib_none().0) }
     }
 
     pub fn get_max_content_width(&self) -> i32 {
-        unsafe { gtk_sys::gtk_scrolled_window_get_max_content_width(self.to_glib_none().0) }
+        unsafe { ffi::gtk_scrolled_window_get_max_content_width(self.to_glib_none().0) }
     }
 
     pub fn get_min_content_height(&self) -> i32 {
-        unsafe { gtk_sys::gtk_scrolled_window_get_min_content_height(self.to_glib_none().0) }
+        unsafe { ffi::gtk_scrolled_window_get_min_content_height(self.to_glib_none().0) }
     }
 
     pub fn get_min_content_width(&self) -> i32 {
-        unsafe { gtk_sys::gtk_scrolled_window_get_min_content_width(self.to_glib_none().0) }
+        unsafe { ffi::gtk_scrolled_window_get_min_content_width(self.to_glib_none().0) }
     }
 
     pub fn get_overlay_scrolling(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_overlay_scrolling(
+            from_glib(ffi::gtk_scrolled_window_get_overlay_scrolling(
                 self.to_glib_none().0,
             ))
         }
@@ -116,7 +107,7 @@ impl ScrolledWindow {
 
     pub fn get_placement(&self) -> CornerType {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_placement(
+            from_glib(ffi::gtk_scrolled_window_get_placement(
                 self.to_glib_none().0,
             ))
         }
@@ -126,7 +117,7 @@ impl ScrolledWindow {
         unsafe {
             let mut hscrollbar_policy = mem::MaybeUninit::uninit();
             let mut vscrollbar_policy = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_scrolled_window_get_policy(
+            ffi::gtk_scrolled_window_get_policy(
                 self.to_glib_none().0,
                 hscrollbar_policy.as_mut_ptr(),
                 vscrollbar_policy.as_mut_ptr(),
@@ -139,7 +130,7 @@ impl ScrolledWindow {
 
     pub fn get_propagate_natural_height(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_propagate_natural_height(
+            from_glib(ffi::gtk_scrolled_window_get_propagate_natural_height(
                 self.to_glib_none().0,
             ))
         }
@@ -147,7 +138,7 @@ impl ScrolledWindow {
 
     pub fn get_propagate_natural_width(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_scrolled_window_get_propagate_natural_width(
+            from_glib(ffi::gtk_scrolled_window_get_propagate_natural_width(
                 self.to_glib_none().0,
             ))
         }
@@ -155,7 +146,7 @@ impl ScrolledWindow {
 
     pub fn get_vadjustment(&self) -> Option<Adjustment> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_scrolled_window_get_vadjustment(
+            from_glib_none(ffi::gtk_scrolled_window_get_vadjustment(
                 self.to_glib_none().0,
             ))
         }
@@ -163,7 +154,7 @@ impl ScrolledWindow {
 
     pub fn get_vscrollbar(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_scrolled_window_get_vscrollbar(
+            from_glib_none(ffi::gtk_scrolled_window_get_vscrollbar(
                 self.to_glib_none().0,
             ))
         }
@@ -171,7 +162,7 @@ impl ScrolledWindow {
 
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_child(
+            ffi::gtk_scrolled_window_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -180,7 +171,7 @@ impl ScrolledWindow {
 
     pub fn set_hadjustment<P: IsA<Adjustment>>(&self, hadjustment: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_hadjustment(
+            ffi::gtk_scrolled_window_set_hadjustment(
                 self.to_glib_none().0,
                 hadjustment.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -189,13 +180,13 @@ impl ScrolledWindow {
 
     pub fn set_has_frame(&self, has_frame: bool) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
+            ffi::gtk_scrolled_window_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
         }
     }
 
     pub fn set_kinetic_scrolling(&self, kinetic_scrolling: bool) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_kinetic_scrolling(
+            ffi::gtk_scrolled_window_set_kinetic_scrolling(
                 self.to_glib_none().0,
                 kinetic_scrolling.to_glib(),
             );
@@ -204,31 +195,31 @@ impl ScrolledWindow {
 
     pub fn set_max_content_height(&self, height: i32) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_max_content_height(self.to_glib_none().0, height);
+            ffi::gtk_scrolled_window_set_max_content_height(self.to_glib_none().0, height);
         }
     }
 
     pub fn set_max_content_width(&self, width: i32) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_max_content_width(self.to_glib_none().0, width);
+            ffi::gtk_scrolled_window_set_max_content_width(self.to_glib_none().0, width);
         }
     }
 
     pub fn set_min_content_height(&self, height: i32) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_min_content_height(self.to_glib_none().0, height);
+            ffi::gtk_scrolled_window_set_min_content_height(self.to_glib_none().0, height);
         }
     }
 
     pub fn set_min_content_width(&self, width: i32) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_min_content_width(self.to_glib_none().0, width);
+            ffi::gtk_scrolled_window_set_min_content_width(self.to_glib_none().0, width);
         }
     }
 
     pub fn set_overlay_scrolling(&self, overlay_scrolling: bool) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_overlay_scrolling(
+            ffi::gtk_scrolled_window_set_overlay_scrolling(
                 self.to_glib_none().0,
                 overlay_scrolling.to_glib(),
             );
@@ -237,7 +228,7 @@ impl ScrolledWindow {
 
     pub fn set_placement(&self, window_placement: CornerType) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_placement(
+            ffi::gtk_scrolled_window_set_placement(
                 self.to_glib_none().0,
                 window_placement.to_glib(),
             );
@@ -246,7 +237,7 @@ impl ScrolledWindow {
 
     pub fn set_policy(&self, hscrollbar_policy: PolicyType, vscrollbar_policy: PolicyType) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_policy(
+            ffi::gtk_scrolled_window_set_policy(
                 self.to_glib_none().0,
                 hscrollbar_policy.to_glib(),
                 vscrollbar_policy.to_glib(),
@@ -256,7 +247,7 @@ impl ScrolledWindow {
 
     pub fn set_propagate_natural_height(&self, propagate: bool) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_propagate_natural_height(
+            ffi::gtk_scrolled_window_set_propagate_natural_height(
                 self.to_glib_none().0,
                 propagate.to_glib(),
             );
@@ -265,7 +256,7 @@ impl ScrolledWindow {
 
     pub fn set_propagate_natural_width(&self, propagate: bool) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_propagate_natural_width(
+            ffi::gtk_scrolled_window_set_propagate_natural_width(
                 self.to_glib_none().0,
                 propagate.to_glib(),
             );
@@ -274,7 +265,7 @@ impl ScrolledWindow {
 
     pub fn set_vadjustment<P: IsA<Adjustment>>(&self, vadjustment: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_set_vadjustment(
+            ffi::gtk_scrolled_window_set_vadjustment(
                 self.to_glib_none().0,
                 vadjustment.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -283,15 +274,15 @@ impl ScrolledWindow {
 
     pub fn unset_placement(&self) {
         unsafe {
-            gtk_sys::gtk_scrolled_window_unset_placement(self.to_glib_none().0);
+            ffi::gtk_scrolled_window_unset_placement(self.to_glib_none().0);
         }
     }
 
     pub fn get_property_hscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"hscrollbar-policy\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -304,8 +295,8 @@ impl ScrolledWindow {
 
     pub fn set_property_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"hscrollbar-policy\0".as_ptr() as *const _,
                 Value::from(&hscrollbar_policy).to_glib_none().0,
             );
@@ -315,8 +306,8 @@ impl ScrolledWindow {
     pub fn get_property_vscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"vscrollbar-policy\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -329,8 +320,8 @@ impl ScrolledWindow {
 
     pub fn set_property_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"vscrollbar-policy\0".as_ptr() as *const _,
                 Value::from(&vscrollbar_policy).to_glib_none().0,
             );
@@ -340,8 +331,8 @@ impl ScrolledWindow {
     pub fn get_property_window_placement(&self) -> CornerType {
         unsafe {
             let mut value = Value::from_type(<CornerType as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"window-placement\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -354,8 +345,8 @@ impl ScrolledWindow {
 
     pub fn set_property_window_placement(&self, window_placement: CornerType) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"window-placement\0".as_ptr() as *const _,
                 Value::from(&window_placement).to_glib_none().0,
             );
@@ -369,9 +360,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn edge_overshot_trampoline<
             F: Fn(&ScrolledWindow, PositionType) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            pos: gtk_sys::GtkPositionType,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            pos: ffi::GtkPositionType,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(pos))
@@ -396,9 +387,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn edge_reached_trampoline<
             F: Fn(&ScrolledWindow, PositionType) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            pos: gtk_sys::GtkPositionType,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            pos: ffi::GtkPositionType,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(pos))
@@ -423,9 +414,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn move_focus_out_trampoline<
             F: Fn(&ScrolledWindow, DirectionType) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            direction_type: gtk_sys::GtkDirectionType,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            direction_type: ffi::GtkDirectionType,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), from_glib(direction_type))
@@ -445,7 +436,7 @@ impl ScrolledWindow {
 
     pub fn emit_move_focus_out(&self, direction_type: DirectionType) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("move-focus-out", &[&direction_type])
                 .unwrap()
         };
@@ -458,11 +449,11 @@ impl ScrolledWindow {
         unsafe extern "C" fn scroll_child_trampoline<
             F: Fn(&ScrolledWindow, ScrollType, bool) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            scroll: gtk_sys::GtkScrollType,
-            horizontal: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkScrolledWindow,
+            scroll: ffi::GtkScrollType,
+            horizontal: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -486,7 +477,7 @@ impl ScrolledWindow {
 
     pub fn emit_scroll_child(&self, scroll: ScrollType, horizontal: bool) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("scroll-child", &[&scroll, &horizontal])
                 .unwrap()
         };
@@ -501,9 +492,9 @@ impl ScrolledWindow {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ScrolledWindow) + 'static>(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -526,9 +517,9 @@ impl ScrolledWindow {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_hadjustment_trampoline<F: Fn(&ScrolledWindow) + 'static>(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -551,9 +542,9 @@ impl ScrolledWindow {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<F: Fn(&ScrolledWindow) + 'static>(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -578,9 +569,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_hscrollbar_policy_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -605,9 +596,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_kinetic_scrolling_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -632,9 +623,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_max_content_height_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -659,9 +650,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_max_content_width_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -686,9 +677,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_min_content_height_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -713,9 +704,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_min_content_width_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -740,9 +731,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_overlay_scrolling_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -767,9 +758,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_propagate_natural_height_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -794,9 +785,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_propagate_natural_width_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -819,9 +810,9 @@ impl ScrolledWindow {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_vadjustment_trampoline<F: Fn(&ScrolledWindow) + 'static>(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -846,9 +837,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_vscrollbar_policy_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -873,9 +864,9 @@ impl ScrolledWindow {
         unsafe extern "C" fn notify_window_placement_trampoline<
             F: Fn(&ScrolledWindow) + 'static,
         >(
-            this: *mut gtk_sys::GtkScrolledWindow,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkScrolledWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

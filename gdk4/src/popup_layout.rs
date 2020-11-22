@@ -1,4 +1,4 @@
-use auto::PopupLayout;
+use crate::PopupLayout;
 use glib::translate::*;
 
 pub trait PopupLayoutExtManual {
@@ -10,7 +10,7 @@ impl PopupLayoutExtManual for PopupLayout {
         let mut dx = 0;
         let mut dy = 0;
         unsafe {
-            gdk_sys::gdk_popup_layout_get_offset(self.to_glib_none().0, &mut dx, &mut dy);
+            ffi::gdk_popup_layout_get_offset(self.to_glib_none().0, &mut dx, &mut dy);
         }
         (dx, dy)
     }

@@ -1,20 +1,14 @@
 // Copyright 2019, The Gtk-rs Project Developers.
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
-
-use gdk_sys;
-use gio;
-use gio_sys;
-use glib;
+use crate::ffi;
+use crate::Drop;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::GString;
-use glib_sys;
-use gobject_sys;
 use std::future;
 use std::pin::Pin;
 use std::ptr;
-use Drop;
 
 impl Drop {
     pub fn read_async<
@@ -31,13 +25,13 @@ impl Drop {
         unsafe extern "C" fn read_async_trampoline<
             Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
         >(
-            _source_object: *mut gobject_sys::GObject,
-            res: *mut gio_sys::GAsyncResult,
-            user_data: glib_sys::gpointer,
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
         ) {
             let mut error = ptr::null_mut();
             let mut out_mime_type = ptr::null();
-            let ret = gdk_sys::gdk_drop_read_finish(
+            let ret = ffi::gdk_drop_read_finish(
                 _source_object as *mut _,
                 res,
                 &mut out_mime_type,
@@ -53,7 +47,7 @@ impl Drop {
         }
         let callback = read_async_trampoline::<Q>;
         unsafe {
-            gdk_sys::gdk_drop_read_async(
+            ffi::gdk_drop_read_async(
                 self.to_glib_none().0,
                 mime_types.to_glib_none().0,
                 io_priority.to_glib(),

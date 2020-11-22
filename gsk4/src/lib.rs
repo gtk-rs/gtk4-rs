@@ -11,21 +11,16 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-extern crate gdk4_sys as gdk_sys;
-extern crate glib_sys;
-extern crate graphene_sys;
-extern crate gsk4_sys as gsk_sys;
+pub use ffi;
+
 #[macro_use]
 extern crate glib;
 extern crate bitflags;
 extern crate cairo;
-extern crate cairo_sys;
-extern crate gobject_sys;
+extern crate gdk;
+extern crate graphene;
 extern crate libc;
 extern crate pango;
-
-extern crate gdk4 as gdk;
-extern crate graphene;
 
 // GSK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {

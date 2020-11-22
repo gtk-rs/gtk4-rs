@@ -2,18 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::RenderNode;
 use glib::translate::*;
-use graphene;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct ColorNode(Object<gsk_sys::GskColorNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct ColorNode(Object<ffi::GskColorNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_color_node_get_type(),
+        get_type => || ffi::gsk_color_node_get_type(),
     }
 }
 
@@ -21,7 +18,7 @@ impl ColorNode {
     pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> ColorNode {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_color_node_new(
+            from_glib_full(ffi::gsk_color_node_new(
                 rgba.to_glib_none().0,
                 bounds.to_glib_none().0,
             ))
@@ -29,7 +26,7 @@ impl ColorNode {
     }
 
     pub fn peek_color(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(gsk_sys::gsk_color_node_peek_color(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_color_node_peek_color(self.to_glib_none().0)) }
     }
 }
 

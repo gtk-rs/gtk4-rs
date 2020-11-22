@@ -2,6 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::EventController;
+use crate::Gesture;
+use crate::GestureSingle;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -9,46 +14,38 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use Gesture;
-use GestureSingle;
-use PropagationLimit;
-use PropagationPhase;
 
-glib_wrapper! {
-    pub struct GestureLongPress(Object<gtk_sys::GtkGestureLongPress, gtk_sys::GtkGestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
+glib::glib_wrapper! {
+    pub struct GestureLongPress(Object<ffi::GtkGestureLongPress, ffi::GtkGestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_gesture_long_press_get_type(),
+        get_type => || ffi::gtk_gesture_long_press_get_type(),
     }
 }
 
 impl GestureLongPress {
     pub fn new() -> GestureLongPress {
         assert_initialized_main_thread!();
-        unsafe { Gesture::from_glib_full(gtk_sys::gtk_gesture_long_press_new()).unsafe_cast() }
+        unsafe { Gesture::from_glib_full(ffi::gtk_gesture_long_press_new()).unsafe_cast() }
     }
 
     pub fn get_delay_factor(&self) -> f64 {
-        unsafe { gtk_sys::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
+        unsafe { ffi::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
     }
 
     pub fn set_delay_factor(&self, delay_factor: f64) {
         unsafe {
-            gtk_sys::gtk_gesture_long_press_set_delay_factor(self.to_glib_none().0, delay_factor);
+            ffi::gtk_gesture_long_press_set_delay_factor(self.to_glib_none().0, delay_factor);
         }
     }
 
     pub fn connect_cancelled<F: Fn(&GestureLongPress) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancelled_trampoline<F: Fn(&GestureLongPress) + 'static>(
-            this: *mut gtk_sys::GtkGestureLongPress,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGestureLongPress,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -71,10 +68,10 @@ impl GestureLongPress {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn pressed_trampoline<F: Fn(&GestureLongPress, f64, f64) + 'static>(
-            this: *mut gtk_sys::GtkGestureLongPress,
+            this: *mut ffi::GtkGestureLongPress,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y)
@@ -97,9 +94,9 @@ impl GestureLongPress {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_delay_factor_trampoline<F: Fn(&GestureLongPress) + 'static>(
-            this: *mut gtk_sys::GtkGestureLongPress,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGestureLongPress,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

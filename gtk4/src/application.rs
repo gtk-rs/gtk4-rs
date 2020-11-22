@@ -1,7 +1,6 @@
-use glib;
+use crate::rt;
+use crate::Application;
 use glib::translate::*;
-use rt;
-use Application;
 
 impl Application {
     pub fn new(
@@ -11,7 +10,7 @@ impl Application {
         skip_assert_initialized!();
         rt::init()?;
         unsafe {
-            Option::from_glib_full(gtk_sys::gtk_application_new(
+            Option::from_glib_full(ffi::gtk_application_new(
                 application_id.to_glib_none().0,
                 flags.to_glib(),
             ))

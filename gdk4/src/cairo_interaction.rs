@@ -2,11 +2,10 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+use crate::{Rectangle, Surface, RGBA};
 use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
-use gdk_sys;
 use glib::translate::*;
-use {Rectangle, Surface, RGBA};
 
 pub trait GdkCairoSurfaceExt {
     fn create_region(&self) -> Option<Region>;
@@ -15,7 +14,7 @@ pub trait GdkCairoSurfaceExt {
 impl GdkCairoSurfaceExt for cairo::Surface {
     fn create_region(&self) -> Option<Region> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_cairo_region_create_from_surface(
+            from_glib_full(ffi::gdk_cairo_region_create_from_surface(
                 self.to_glib_none().0,
             ))
         }
@@ -61,7 +60,7 @@ impl GdkCairoContextExt for Context {
         height: i32,
     ) {
         skip_assert_initialized!();
-        gdk_sys::gdk_cairo_draw_from_gl(
+        ffi::gdk_cairo_draw_from_gl(
             mut_override(self.to_glib_none().0),
             surface.to_glib_none().0,
             source,
@@ -76,30 +75,25 @@ impl GdkCairoContextExt for Context {
 
     fn set_source_rgba(&self, rgba: &RGBA) {
         unsafe {
-            gdk_sys::gdk_cairo_set_source_rgba(self.to_glib_none().0, rgba.to_glib_none().0);
+            ffi::gdk_cairo_set_source_rgba(self.to_glib_none().0, rgba.to_glib_none().0);
         }
     }
 
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64) {
         unsafe {
-            gdk_sys::gdk_cairo_set_source_pixbuf(
-                self.to_glib_none().0,
-                pixbuf.to_glib_none().0,
-                x,
-                y,
-            );
+            ffi::gdk_cairo_set_source_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0, x, y);
         }
     }
 
     fn rectangle(&self, rectangle: &Rectangle) {
         unsafe {
-            gdk_sys::gdk_cairo_rectangle(self.to_glib_none().0, rectangle.to_glib_none().0);
+            ffi::gdk_cairo_rectangle(self.to_glib_none().0, rectangle.to_glib_none().0);
         }
     }
 
     fn add_region(&self, region: &Region) {
         unsafe {
-            gdk_sys::gdk_cairo_region(self.to_glib_none().0, region.to_glib_none().0);
+            ffi::gdk_cairo_region(self.to_glib_none().0, region.to_glib_none().0);
         }
     }
 }

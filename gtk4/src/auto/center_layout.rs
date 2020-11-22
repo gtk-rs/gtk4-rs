@@ -2,28 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::BaselinePosition;
+use crate::LayoutManager;
+use crate::Orientation;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use BaselinePosition;
-use LayoutManager;
-use Orientation;
-use Widget;
 
-glib_wrapper! {
-    pub struct CenterLayout(Object<gtk_sys::GtkCenterLayout, gtk_sys::GtkCenterLayoutClass>) @extends LayoutManager;
+glib::glib_wrapper! {
+    pub struct CenterLayout(Object<ffi::GtkCenterLayout, ffi::GtkCenterLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_center_layout_get_type(),
+        get_type => || ffi::gtk_center_layout_get_type(),
     }
 }
 
 impl CenterLayout {
     pub fn new() -> CenterLayout {
         assert_initialized_main_thread!();
-        unsafe { LayoutManager::from_glib_full(gtk_sys::gtk_center_layout_new()).unsafe_cast() }
+        unsafe { LayoutManager::from_glib_full(ffi::gtk_center_layout_new()).unsafe_cast() }
     }
 }
 
@@ -60,7 +59,7 @@ pub trait CenterLayoutExt: 'static {
 impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
     fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
-            from_glib(gtk_sys::gtk_center_layout_get_baseline_position(
+            from_glib(ffi::gtk_center_layout_get_baseline_position(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -68,7 +67,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn get_center_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_layout_get_center_widget(
+            from_glib_none(ffi::gtk_center_layout_get_center_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -76,7 +75,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn get_end_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_layout_get_end_widget(
+            from_glib_none(ffi::gtk_center_layout_get_end_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -84,7 +83,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn get_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(gtk_sys::gtk_center_layout_get_orientation(
+            from_glib(ffi::gtk_center_layout_get_orientation(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -92,7 +91,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn get_start_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_center_layout_get_start_widget(
+            from_glib_none(ffi::gtk_center_layout_get_start_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -100,7 +99,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn set_baseline_position(&self, baseline_position: BaselinePosition) {
         unsafe {
-            gtk_sys::gtk_center_layout_set_baseline_position(
+            ffi::gtk_center_layout_set_baseline_position(
                 self.as_ref().to_glib_none().0,
                 baseline_position.to_glib(),
             );
@@ -109,7 +108,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn set_center_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_center_layout_set_center_widget(
+            ffi::gtk_center_layout_set_center_widget(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -118,7 +117,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn set_end_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_center_layout_set_end_widget(
+            ffi::gtk_center_layout_set_end_widget(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );
@@ -127,7 +126,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
-            gtk_sys::gtk_center_layout_set_orientation(
+            ffi::gtk_center_layout_set_orientation(
                 self.as_ref().to_glib_none().0,
                 orientation.to_glib(),
             );
@@ -136,7 +135,7 @@ impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
 
     fn set_start_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
-            gtk_sys::gtk_center_layout_set_start_widget(
+            ffi::gtk_center_layout_set_start_widget(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             );

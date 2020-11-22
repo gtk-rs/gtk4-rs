@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::LayoutChild;
+use crate::LayoutManager;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,20 +12,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use LayoutChild;
-use LayoutManager;
-use Widget;
 
-glib_wrapper! {
-    pub struct OverlayLayoutChild(Object<gtk_sys::GtkOverlayLayoutChild, gtk_sys::GtkOverlayLayoutChildClass>) @extends LayoutChild;
+glib::glib_wrapper! {
+    pub struct OverlayLayoutChild(Object<ffi::GtkOverlayLayoutChild, ffi::GtkOverlayLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || gtk_sys::gtk_overlay_layout_child_get_type(),
+        get_type => || ffi::gtk_overlay_layout_child_get_type(),
     }
 }
 
@@ -101,7 +99,7 @@ pub trait OverlayLayoutChildExt: 'static {
 impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
     fn get_clip_overlay(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_overlay_layout_child_get_clip_overlay(
+            from_glib(ffi::gtk_overlay_layout_child_get_clip_overlay(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -109,7 +107,7 @@ impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
 
     fn get_measure(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_overlay_layout_child_get_measure(
+            from_glib(ffi::gtk_overlay_layout_child_get_measure(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -117,7 +115,7 @@ impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
 
     fn set_clip_overlay(&self, clip_overlay: bool) {
         unsafe {
-            gtk_sys::gtk_overlay_layout_child_set_clip_overlay(
+            ffi::gtk_overlay_layout_child_set_clip_overlay(
                 self.as_ref().to_glib_none().0,
                 clip_overlay.to_glib(),
             );
@@ -126,7 +124,7 @@ impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
 
     fn set_measure(&self, measure: bool) {
         unsafe {
-            gtk_sys::gtk_overlay_layout_child_set_measure(
+            ffi::gtk_overlay_layout_child_set_measure(
                 self.as_ref().to_glib_none().0,
                 measure.to_glib(),
             );
@@ -138,9 +136,9 @@ impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_clip_overlay_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkOverlayLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkOverlayLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<OverlayLayoutChild>,
         {
@@ -162,9 +160,9 @@ impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
 
     fn connect_property_measure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_measure_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkOverlayLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkOverlayLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<OverlayLayoutChild>,
         {

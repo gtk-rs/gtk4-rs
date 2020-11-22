@@ -2,8 +2,28 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::CellArea;
+use crate::CellLayout;
+use crate::CellRenderer;
+use crate::ConstraintTarget;
+use crate::IconViewDropPosition;
+use crate::LayoutManager;
+use crate::MovementStep;
+use crate::Orientation;
+use crate::Overflow;
+use crate::Scrollable;
+use crate::ScrollablePolicy;
+use crate::SelectionMode;
+use crate::Tooltip;
+use crate::TreeIter;
+use crate::TreeModel;
+use crate::TreePath;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
@@ -14,56 +34,30 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
 use std::ptr;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use CellArea;
-use CellLayout;
-use CellRenderer;
-use ConstraintTarget;
-use IconViewDropPosition;
-use LayoutManager;
-use MovementStep;
-use Orientation;
-use Overflow;
-use Scrollable;
-use ScrollablePolicy;
-use SelectionMode;
-use Tooltip;
-use TreeIter;
-use TreeModel;
-use TreePath;
-use Widget;
 
-glib_wrapper! {
-    pub struct IconView(Object<gtk_sys::GtkIconView>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
+glib::glib_wrapper! {
+    pub struct IconView(Object<ffi::GtkIconView>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_icon_view_get_type(),
+        get_type => || ffi::gtk_icon_view_get_type(),
     }
 }
 
 impl IconView {
     pub fn new() -> IconView {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_icon_view_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_icon_view_new()).unsafe_cast() }
     }
 
     pub fn with_area<P: IsA<CellArea>>(area: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_area(
+            Widget::from_glib_none(ffi::gtk_icon_view_new_with_area(
                 area.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -73,7 +67,7 @@ impl IconView {
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> IconView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_icon_view_new_with_model(
+            Widget::from_glib_none(ffi::gtk_icon_view_new_with_model(
                 model.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -82,7 +76,7 @@ impl IconView {
 
     pub fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_view_create_drag_icon(
+            from_glib_full(ffi::gtk_icon_view_create_drag_icon(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
@@ -91,7 +85,7 @@ impl IconView {
 
     pub fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
-            gtk_sys::gtk_icon_view_enable_model_drag_dest(
+            ffi::gtk_icon_view_enable_model_drag_dest(
                 self.to_glib_none().0,
                 formats.to_glib_none().0,
                 actions.to_glib(),
@@ -106,7 +100,7 @@ impl IconView {
         actions: gdk::DragAction,
     ) {
         unsafe {
-            gtk_sys::gtk_icon_view_enable_model_drag_source(
+            ffi::gtk_icon_view_enable_model_drag_source(
                 self.to_glib_none().0,
                 start_button_mask.to_glib(),
                 formats.to_glib_none().0,
@@ -117,7 +111,7 @@ impl IconView {
 
     pub fn get_activate_on_single_click(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_view_get_activate_on_single_click(
+            from_glib(ffi::gtk_icon_view_get_activate_on_single_click(
                 self.to_glib_none().0,
             ))
         }
@@ -130,7 +124,7 @@ impl IconView {
     ) -> Option<gdk::Rectangle> {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_cell_rect(
+            let ret = from_glib(ffi::gtk_icon_view_get_cell_rect(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
@@ -145,18 +139,18 @@ impl IconView {
     }
 
     pub fn get_column_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_column_spacing(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_column_spacing(self.to_glib_none().0) }
     }
 
     pub fn get_columns(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_columns(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_columns(self.to_glib_none().0) }
     }
 
     pub fn get_cursor(&self) -> Option<(TreePath, CellRenderer)> {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_cursor(
+            let ret = from_glib(ffi::gtk_icon_view_get_cursor(
                 self.to_glib_none().0,
                 &mut path,
                 &mut cell,
@@ -177,7 +171,7 @@ impl IconView {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_dest_item_at_pos(
+            let ret = from_glib(ffi::gtk_icon_view_get_dest_item_at_pos(
                 self.to_glib_none().0,
                 drag_x,
                 drag_y,
@@ -197,7 +191,7 @@ impl IconView {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_icon_view_get_drag_dest_item(
+            ffi::gtk_icon_view_get_drag_dest_item(
                 self.to_glib_none().0,
                 &mut path,
                 pos.as_mut_ptr(),
@@ -211,7 +205,7 @@ impl IconView {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_item_at_pos(
+            let ret = from_glib(ffi::gtk_icon_view_get_item_at_pos(
                 self.to_glib_none().0,
                 x,
                 y,
@@ -228,7 +222,7 @@ impl IconView {
 
     pub fn get_item_column(&self, path: &TreePath) -> i32 {
         unsafe {
-            gtk_sys::gtk_icon_view_get_item_column(
+            ffi::gtk_icon_view_get_item_column(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             )
@@ -237,19 +231,19 @@ impl IconView {
 
     pub fn get_item_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_view_get_item_orientation(
+            from_glib(ffi::gtk_icon_view_get_item_orientation(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_item_padding(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_item_padding(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_item_padding(self.to_glib_none().0) }
     }
 
     pub fn get_item_row(&self, path: &TreePath) -> i32 {
         unsafe {
-            gtk_sys::gtk_icon_view_get_item_row(
+            ffi::gtk_icon_view_get_item_row(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             )
@@ -257,24 +251,24 @@ impl IconView {
     }
 
     pub fn get_item_width(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_item_width(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_item_width(self.to_glib_none().0) }
     }
 
     pub fn get_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_margin(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_margin(self.to_glib_none().0) }
     }
 
     pub fn get_markup_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_markup_column(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_markup_column(self.to_glib_none().0) }
     }
 
     pub fn get_model(&self) -> Option<TreeModel> {
-        unsafe { from_glib_none(gtk_sys::gtk_icon_view_get_model(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_icon_view_get_model(self.to_glib_none().0)) }
     }
 
     pub fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_view_get_path_at_pos(
+            from_glib_full(ffi::gtk_icon_view_get_path_at_pos(
                 self.to_glib_none().0,
                 x,
                 y,
@@ -283,47 +277,39 @@ impl IconView {
     }
 
     pub fn get_pixbuf_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_pixbuf_column(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_pixbuf_column(self.to_glib_none().0) }
     }
 
     pub fn get_reorderable(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_icon_view_get_reorderable(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_icon_view_get_reorderable(self.to_glib_none().0)) }
     }
 
     pub fn get_row_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_row_spacing(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_row_spacing(self.to_glib_none().0) }
     }
 
     pub fn get_selected_items(&self) -> Vec<TreePath> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_view_get_selected_items(
+            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_view_get_selected_items(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_selection_mode(&self) -> SelectionMode {
-        unsafe {
-            from_glib(gtk_sys::gtk_icon_view_get_selection_mode(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_icon_view_get_selection_mode(self.to_glib_none().0)) }
     }
 
     pub fn get_spacing(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_spacing(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_spacing(self.to_glib_none().0) }
     }
 
     pub fn get_text_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_text_column(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_text_column(self.to_glib_none().0) }
     }
 
     pub fn get_tooltip_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_icon_view_get_tooltip_column(self.to_glib_none().0) }
+        unsafe { ffi::gtk_icon_view_get_tooltip_column(self.to_glib_none().0) }
     }
 
     pub fn get_tooltip_context(
@@ -336,7 +322,7 @@ impl IconView {
             let mut model = ptr::null_mut();
             let mut path = ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_tooltip_context(
+            let ret = from_glib(ffi::gtk_icon_view_get_tooltip_context(
                 self.to_glib_none().0,
                 x,
                 y,
@@ -357,7 +343,7 @@ impl IconView {
         unsafe {
             let mut start_path = ptr::null_mut();
             let mut end_path = ptr::null_mut();
-            let ret = from_glib(gtk_sys::gtk_icon_view_get_visible_range(
+            let ret = from_glib(ffi::gtk_icon_view_get_visible_range(
                 self.to_glib_none().0,
                 &mut start_path,
                 &mut end_path,
@@ -372,7 +358,7 @@ impl IconView {
 
     pub fn item_activated(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_icon_view_item_activated(
+            ffi::gtk_icon_view_item_activated(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
@@ -381,7 +367,7 @@ impl IconView {
 
     pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_view_path_is_selected(
+            from_glib(ffi::gtk_icon_view_path_is_selected(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             ))
@@ -390,7 +376,7 @@ impl IconView {
 
     pub fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32) {
         unsafe {
-            gtk_sys::gtk_icon_view_scroll_to_path(
+            ffi::gtk_icon_view_scroll_to_path(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 use_align.to_glib(),
@@ -402,13 +388,13 @@ impl IconView {
 
     pub fn select_all(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_select_all(self.to_glib_none().0);
+            ffi::gtk_icon_view_select_all(self.to_glib_none().0);
         }
     }
 
     pub fn select_path(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_icon_view_select_path(
+            ffi::gtk_icon_view_select_path(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
@@ -418,9 +404,9 @@ impl IconView {
     pub fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&IconView, &TreePath)>(
-            icon_view: *mut gtk_sys::GtkIconView,
-            path: *mut gtk_sys::GtkTreePath,
-            data: glib_sys::gpointer,
+            icon_view: *mut ffi::GtkIconView,
+            path: *mut ffi::GtkTreePath,
+            data: glib::ffi::gpointer,
         ) {
             let icon_view = from_glib_borrow(icon_view);
             let path = from_glib_borrow(path);
@@ -430,7 +416,7 @@ impl IconView {
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
         unsafe {
-            gtk_sys::gtk_icon_view_selected_foreach(
+            ffi::gtk_icon_view_selected_foreach(
                 self.to_glib_none().0,
                 func,
                 super_callback0 as *const _ as usize as *mut _,
@@ -440,7 +426,7 @@ impl IconView {
 
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_activate_on_single_click(
+            ffi::gtk_icon_view_set_activate_on_single_click(
                 self.to_glib_none().0,
                 single.to_glib(),
             );
@@ -449,13 +435,13 @@ impl IconView {
 
     pub fn set_column_spacing(&self, column_spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_column_spacing(self.to_glib_none().0, column_spacing);
+            ffi::gtk_icon_view_set_column_spacing(self.to_glib_none().0, column_spacing);
         }
     }
 
     pub fn set_columns(&self, columns: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_columns(self.to_glib_none().0, columns);
+            ffi::gtk_icon_view_set_columns(self.to_glib_none().0, columns);
         }
     }
 
@@ -466,7 +452,7 @@ impl IconView {
         start_editing: bool,
     ) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_cursor(
+            ffi::gtk_icon_view_set_cursor(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
@@ -477,7 +463,7 @@ impl IconView {
 
     pub fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_drag_dest_item(
+            ffi::gtk_icon_view_set_drag_dest_item(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 pos.to_glib(),
@@ -487,40 +473,37 @@ impl IconView {
 
     pub fn set_item_orientation(&self, orientation: Orientation) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_item_orientation(
-                self.to_glib_none().0,
-                orientation.to_glib(),
-            );
+            ffi::gtk_icon_view_set_item_orientation(self.to_glib_none().0, orientation.to_glib());
         }
     }
 
     pub fn set_item_padding(&self, item_padding: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_item_padding(self.to_glib_none().0, item_padding);
+            ffi::gtk_icon_view_set_item_padding(self.to_glib_none().0, item_padding);
         }
     }
 
     pub fn set_item_width(&self, item_width: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_item_width(self.to_glib_none().0, item_width);
+            ffi::gtk_icon_view_set_item_width(self.to_glib_none().0, item_width);
         }
     }
 
     pub fn set_margin(&self, margin: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_margin(self.to_glib_none().0, margin);
+            ffi::gtk_icon_view_set_margin(self.to_glib_none().0, margin);
         }
     }
 
     pub fn set_markup_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_markup_column(self.to_glib_none().0, column);
+            ffi::gtk_icon_view_set_markup_column(self.to_glib_none().0, column);
         }
     }
 
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_model(
+            ffi::gtk_icon_view_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -529,37 +512,37 @@ impl IconView {
 
     pub fn set_pixbuf_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_pixbuf_column(self.to_glib_none().0, column);
+            ffi::gtk_icon_view_set_pixbuf_column(self.to_glib_none().0, column);
         }
     }
 
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
+            ffi::gtk_icon_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
         }
     }
 
     pub fn set_row_spacing(&self, row_spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_row_spacing(self.to_glib_none().0, row_spacing);
+            ffi::gtk_icon_view_set_row_spacing(self.to_glib_none().0, row_spacing);
         }
     }
 
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_selection_mode(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_icon_view_set_selection_mode(self.to_glib_none().0, mode.to_glib());
         }
     }
 
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_spacing(self.to_glib_none().0, spacing);
+            ffi::gtk_icon_view_set_spacing(self.to_glib_none().0, spacing);
         }
     }
 
     pub fn set_text_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_text_column(self.to_glib_none().0, column);
+            ffi::gtk_icon_view_set_text_column(self.to_glib_none().0, column);
         }
     }
 
@@ -570,7 +553,7 @@ impl IconView {
         cell: Option<&P>,
     ) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_tooltip_cell(
+            ffi::gtk_icon_view_set_tooltip_cell(
                 self.to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
@@ -581,13 +564,13 @@ impl IconView {
 
     pub fn set_tooltip_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_tooltip_column(self.to_glib_none().0, column);
+            ffi::gtk_icon_view_set_tooltip_column(self.to_glib_none().0, column);
         }
     }
 
     pub fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_icon_view_set_tooltip_item(
+            ffi::gtk_icon_view_set_tooltip_item(
                 self.to_glib_none().0,
                 tooltip.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
@@ -597,13 +580,13 @@ impl IconView {
 
     pub fn unselect_all(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unselect_all(self.to_glib_none().0);
+            ffi::gtk_icon_view_unselect_all(self.to_glib_none().0);
         }
     }
 
     pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
-            gtk_sys::gtk_icon_view_unselect_path(
+            ffi::gtk_icon_view_unselect_path(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
             );
@@ -612,21 +595,21 @@ impl IconView {
 
     pub fn unset_model_drag_dest(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unset_model_drag_dest(self.to_glib_none().0);
+            ffi::gtk_icon_view_unset_model_drag_dest(self.to_glib_none().0);
         }
     }
 
     pub fn unset_model_drag_source(&self) {
         unsafe {
-            gtk_sys::gtk_icon_view_unset_model_drag_source(self.to_glib_none().0);
+            ffi::gtk_icon_view_unset_model_drag_source(self.to_glib_none().0);
         }
     }
 
     pub fn get_property_cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = Value::from_type(<CellArea as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"cell-area\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -641,9 +624,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_cursor_item_trampoline<F: Fn(&IconView) -> bool + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this)).to_glib()
         }
@@ -662,7 +645,7 @@ impl IconView {
 
     pub fn emit_activate_cursor_item(&self) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("activate-cursor-item", &[])
                 .unwrap()
         };
@@ -677,9 +660,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn item_activated_trampoline<F: Fn(&IconView, &TreePath) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            path: *mut gtk_sys::GtkTreePath,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            path: *mut ffi::GtkTreePath,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(path))
@@ -706,13 +689,13 @@ impl IconView {
         unsafe extern "C" fn move_cursor_trampoline<
             F: Fn(&IconView, MovementStep, i32, bool, bool) -> bool + 'static,
         >(
-            this: *mut gtk_sys::GtkIconView,
-            step: gtk_sys::GtkMovementStep,
+            this: *mut ffi::GtkIconView,
+            step: ffi::GtkMovementStep,
             count: libc::c_int,
-            extend: glib_sys::gboolean,
-            modify: glib_sys::gboolean,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            extend: glib::ffi::gboolean,
+            modify: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
@@ -744,7 +727,7 @@ impl IconView {
         modify: bool,
     ) -> bool {
         let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("move-cursor", &[&step, &count, &extend, &modify])
                 .unwrap()
         };
@@ -756,8 +739,8 @@ impl IconView {
 
     pub fn connect_select_all<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -777,7 +760,7 @@ impl IconView {
 
     pub fn emit_select_all(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-all", &[])
                 .unwrap()
         };
@@ -785,8 +768,8 @@ impl IconView {
 
     pub fn connect_select_cursor_item<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_cursor_item_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -806,7 +789,7 @@ impl IconView {
 
     pub fn emit_select_cursor_item(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-cursor-item", &[])
                 .unwrap()
         };
@@ -814,8 +797,8 @@ impl IconView {
 
     pub fn connect_selection_changed<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selection_changed_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -835,8 +818,8 @@ impl IconView {
 
     pub fn connect_toggle_cursor_item<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_item_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -856,7 +839,7 @@ impl IconView {
 
     pub fn emit_toggle_cursor_item(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("toggle-cursor-item", &[])
                 .unwrap()
         };
@@ -864,8 +847,8 @@ impl IconView {
 
     pub fn connect_unselect_all<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -885,7 +868,7 @@ impl IconView {
 
     pub fn emit_unselect_all(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("unselect-all", &[])
                 .unwrap()
         };
@@ -898,9 +881,9 @@ impl IconView {
         unsafe extern "C" fn notify_activate_on_single_click_trampoline<
             F: Fn(&IconView) + 'static,
         >(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -923,9 +906,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -948,9 +931,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_columns_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -973,9 +956,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_orientation_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -998,9 +981,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_padding_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1023,9 +1006,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_width_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1048,9 +1031,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1073,9 +1056,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_markup_column_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1098,9 +1081,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1123,9 +1106,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixbuf_column_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1148,9 +1131,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1173,9 +1156,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1198,9 +1181,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_mode_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1223,9 +1206,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1248,9 +1231,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_column_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -1273,9 +1256,9 @@ impl IconView {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_column_trampoline<F: Fn(&IconView) + 'static>(
-            this: *mut gtk_sys::GtkIconView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

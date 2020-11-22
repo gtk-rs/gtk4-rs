@@ -2,27 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use PropagationLimit;
-use PropagationPhase;
-use Widget;
 
-glib_wrapper! {
-    pub struct EventController(Object<gtk_sys::GtkEventController, gtk_sys::GtkEventControllerClass>);
+glib::glib_wrapper! {
+    pub struct EventController(Object<ffi::GtkEventController, ffi::GtkEventControllerClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_event_controller_get_type(),
+        get_type => || ffi::gtk_event_controller_get_type(),
     }
 }
 
@@ -37,7 +33,7 @@ pub trait EventControllerExt: 'static {
 
     fn get_current_event_time(&self) -> u32;
 
-    fn get_name(&self) -> Option<GString>;
+    fn get_name(&self) -> Option<glib::GString>;
 
     fn get_propagation_limit(&self) -> PropagationLimit;
 
@@ -71,7 +67,7 @@ pub trait EventControllerExt: 'static {
 impl<O: IsA<EventController>> EventControllerExt for O {
     fn get_current_event(&self) -> Option<gdk::Event> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_get_current_event(
+            from_glib_none(ffi::gtk_event_controller_get_current_event(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -79,7 +75,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn get_current_event_device(&self) -> Option<gdk::Device> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_get_current_event_device(
+            from_glib_none(ffi::gtk_event_controller_get_current_event_device(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -87,21 +83,19 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn get_current_event_state(&self) -> gdk::ModifierType {
         unsafe {
-            from_glib(gtk_sys::gtk_event_controller_get_current_event_state(
+            from_glib(ffi::gtk_event_controller_get_current_event_state(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_current_event_time(&self) -> u32 {
-        unsafe {
-            gtk_sys::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_name(&self) -> Option<GString> {
+    fn get_name(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_get_name(
+            from_glib_none(ffi::gtk_event_controller_get_name(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -109,7 +103,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn get_propagation_limit(&self) -> PropagationLimit {
         unsafe {
-            from_glib(gtk_sys::gtk_event_controller_get_propagation_limit(
+            from_glib(ffi::gtk_event_controller_get_propagation_limit(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -117,7 +111,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn get_propagation_phase(&self) -> PropagationPhase {
         unsafe {
-            from_glib(gtk_sys::gtk_event_controller_get_propagation_phase(
+            from_glib(ffi::gtk_event_controller_get_propagation_phase(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -125,7 +119,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn get_widget(&self) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_event_controller_get_widget(
+            from_glib_none(ffi::gtk_event_controller_get_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -133,13 +127,13 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn reset(&self) {
         unsafe {
-            gtk_sys::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
+            ffi::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_name(&self, name: &str) {
         unsafe {
-            gtk_sys::gtk_event_controller_set_name(
+            ffi::gtk_event_controller_set_name(
                 self.as_ref().to_glib_none().0,
                 name.to_glib_none().0,
             );
@@ -148,7 +142,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn set_propagation_limit(&self, limit: PropagationLimit) {
         unsafe {
-            gtk_sys::gtk_event_controller_set_propagation_limit(
+            ffi::gtk_event_controller_set_propagation_limit(
                 self.as_ref().to_glib_none().0,
                 limit.to_glib(),
             );
@@ -157,7 +151,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn set_propagation_phase(&self, phase: PropagationPhase) {
         unsafe {
-            gtk_sys::gtk_event_controller_set_propagation_phase(
+            ffi::gtk_event_controller_set_propagation_phase(
                 self.as_ref().to_glib_none().0,
                 phase.to_glib(),
             );
@@ -166,9 +160,9 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEventController,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEventController,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<EventController>,
         {
@@ -193,9 +187,9 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_limit_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEventController,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEventController,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<EventController>,
         {
@@ -220,9 +214,9 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_phase_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEventController,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEventController,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<EventController>,
         {
@@ -244,9 +238,9 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkEventController,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkEventController,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<EventController>,
         {

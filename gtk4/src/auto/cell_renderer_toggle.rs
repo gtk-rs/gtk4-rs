@@ -2,7 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::CellRenderer;
+use crate::CellRendererMode;
+use crate::TreePath;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -11,36 +13,27 @@ use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use CellRenderer;
-use CellRendererMode;
-use TreePath;
 
-glib_wrapper! {
-    pub struct CellRendererToggle(Object<gtk_sys::GtkCellRendererToggle>) @extends CellRenderer;
+glib::glib_wrapper! {
+    pub struct CellRendererToggle(Object<ffi::GtkCellRendererToggle>) @extends CellRenderer;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_renderer_toggle_get_type(),
+        get_type => || ffi::gtk_cell_renderer_toggle_get_type(),
     }
 }
 
 impl CellRendererToggle {
     pub fn new() -> CellRendererToggle {
         assert_initialized_main_thread!();
-        unsafe {
-            CellRenderer::from_glib_none(gtk_sys::gtk_cell_renderer_toggle_new()).unsafe_cast()
-        }
+        unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_toggle_new()).unsafe_cast() }
     }
 
     pub fn get_activatable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_toggle_get_activatable(
+            from_glib(ffi::gtk_cell_renderer_toggle_get_activatable(
                 self.to_glib_none().0,
             ))
         }
@@ -48,7 +41,7 @@ impl CellRendererToggle {
 
     pub fn get_active(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_toggle_get_active(
+            from_glib(ffi::gtk_cell_renderer_toggle_get_active(
                 self.to_glib_none().0,
             ))
         }
@@ -56,7 +49,7 @@ impl CellRendererToggle {
 
     pub fn get_radio(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_renderer_toggle_get_radio(
+            from_glib(ffi::gtk_cell_renderer_toggle_get_radio(
                 self.to_glib_none().0,
             ))
         }
@@ -64,30 +57,27 @@ impl CellRendererToggle {
 
     pub fn set_activatable(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_toggle_set_activatable(
-                self.to_glib_none().0,
-                setting.to_glib(),
-            );
+            ffi::gtk_cell_renderer_toggle_set_activatable(self.to_glib_none().0, setting.to_glib());
         }
     }
 
     pub fn set_active(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_toggle_set_active(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_cell_renderer_toggle_set_active(self.to_glib_none().0, setting.to_glib());
         }
     }
 
     pub fn set_radio(&self, radio: bool) {
         unsafe {
-            gtk_sys::gtk_cell_renderer_toggle_set_radio(self.to_glib_none().0, radio.to_glib());
+            ffi::gtk_cell_renderer_toggle_set_radio(self.to_glib_none().0, radio.to_glib());
         }
     }
 
     pub fn get_property_inconsistent(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"inconsistent\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -100,8 +90,8 @@ impl CellRendererToggle {
 
     pub fn set_property_inconsistent(&self, inconsistent: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"inconsistent\0".as_ptr() as *const _,
                 Value::from(&inconsistent).to_glib_none().0,
             );
@@ -113,12 +103,12 @@ impl CellRendererToggle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<F: Fn(&CellRendererToggle, TreePath) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererToggle,
+            this: *mut ffi::GtkCellRendererToggle,
             path: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(&from_glib_borrow(this), path)
         }
         unsafe {
@@ -139,9 +129,9 @@ impl CellRendererToggle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<F: Fn(&CellRendererToggle) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererToggle,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererToggle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -164,9 +154,9 @@ impl CellRendererToggle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&CellRendererToggle) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererToggle,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererToggle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -191,9 +181,9 @@ impl CellRendererToggle {
         unsafe extern "C" fn notify_inconsistent_trampoline<
             F: Fn(&CellRendererToggle) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellRendererToggle,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererToggle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -216,9 +206,9 @@ impl CellRendererToggle {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_radio_trampoline<F: Fn(&CellRendererToggle) + 'static>(
-            this: *mut gtk_sys::GtkCellRendererToggle,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellRendererToggle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

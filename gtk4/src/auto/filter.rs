@@ -2,25 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::FilterChange;
+use crate::FilterMatch;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use FilterChange;
-use FilterMatch;
 
-glib_wrapper! {
-    pub struct Filter(Object<gtk_sys::GtkFilter, gtk_sys::GtkFilterClass>);
+glib::glib_wrapper! {
+    pub struct Filter(Object<ffi::GtkFilter, ffi::GtkFilterClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_filter_get_type(),
+        get_type => || ffi::gtk_filter_get_type(),
     }
 }
 
@@ -39,13 +36,13 @@ pub trait FilterExt: 'static {
 impl<O: IsA<Filter>> FilterExt for O {
     fn changed(&self, change: FilterChange) {
         unsafe {
-            gtk_sys::gtk_filter_changed(self.as_ref().to_glib_none().0, change.to_glib());
+            ffi::gtk_filter_changed(self.as_ref().to_glib_none().0, change.to_glib());
         }
     }
 
     fn get_strictness(&self) -> FilterMatch {
         unsafe {
-            from_glib(gtk_sys::gtk_filter_get_strictness(
+            from_glib(ffi::gtk_filter_get_strictness(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -53,7 +50,7 @@ impl<O: IsA<Filter>> FilterExt for O {
 
     fn match_<P: IsA<glib::Object>>(&self, item: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_filter_match(
+            from_glib(ffi::gtk_filter_match(
                 self.as_ref().to_glib_none().0,
                 item.as_ref().to_glib_none().0,
             ))
@@ -62,9 +59,9 @@ impl<O: IsA<Filter>> FilterExt for O {
 
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, FilterChange) + 'static>(
-            this: *mut gtk_sys::GtkFilter,
-            change: gtk_sys::GtkFilterChange,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFilter,
+            change: ffi::GtkFilterChange,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Filter>,
         {

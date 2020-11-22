@@ -2,24 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
+use crate::Surface;
 use glib::translate::*;
 use std::fmt;
-use Event;
-use Surface;
 
-glib_wrapper! {
-    pub struct GrabBrokenEvent(Object<gdk_sys::GdkGrabBrokenEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct GrabBrokenEvent(Object<ffi::GdkGrabBrokenEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_grab_broken_event_get_type(),
+        get_type => || ffi::gdk_grab_broken_event_get_type(),
     }
 }
 
 impl GrabBrokenEvent {
     pub fn get_grab_surface(&self) -> Option<Surface> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_grab_broken_event_get_grab_surface(
+            from_glib_none(ffi::gdk_grab_broken_event_get_grab_surface(
                 self.to_glib_none().0,
             ))
         }
@@ -27,7 +26,7 @@ impl GrabBrokenEvent {
 
     pub fn get_implicit(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_grab_broken_event_get_implicit(
+            from_glib(ffi::gdk_grab_broken_event_get_implicit(
                 self.to_glib_none().0,
             ))
         }

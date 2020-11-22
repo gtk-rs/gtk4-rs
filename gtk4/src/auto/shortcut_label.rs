@@ -2,35 +2,31 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct ShortcutLabel(Object<gtk_sys::GtkShortcutLabel, gtk_sys::GtkShortcutLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct ShortcutLabel(Object<ffi::GtkShortcutLabel, ffi::GtkShortcutLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_shortcut_label_get_type(),
+        get_type => || ffi::gtk_shortcut_label_get_type(),
     }
 }
 
@@ -38,24 +34,22 @@ impl ShortcutLabel {
     pub fn new(accelerator: &str) -> ShortcutLabel {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_shortcut_label_new(
-                accelerator.to_glib_none().0,
-            ))
-            .unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_shortcut_label_new(accelerator.to_glib_none().0))
+                .unsafe_cast()
         }
     }
 
-    pub fn get_accelerator(&self) -> Option<GString> {
+    pub fn get_accelerator(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_shortcut_label_get_accelerator(
+            from_glib_none(ffi::gtk_shortcut_label_get_accelerator(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_disabled_text(&self) -> Option<GString> {
+    pub fn get_disabled_text(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_shortcut_label_get_disabled_text(
+            from_glib_none(ffi::gtk_shortcut_label_get_disabled_text(
                 self.to_glib_none().0,
             ))
         }
@@ -63,7 +57,7 @@ impl ShortcutLabel {
 
     pub fn set_accelerator(&self, accelerator: &str) {
         unsafe {
-            gtk_sys::gtk_shortcut_label_set_accelerator(
+            ffi::gtk_shortcut_label_set_accelerator(
                 self.to_glib_none().0,
                 accelerator.to_glib_none().0,
             );
@@ -72,7 +66,7 @@ impl ShortcutLabel {
 
     pub fn set_disabled_text(&self, disabled_text: &str) {
         unsafe {
-            gtk_sys::gtk_shortcut_label_set_disabled_text(
+            ffi::gtk_shortcut_label_set_disabled_text(
                 self.to_glib_none().0,
                 disabled_text.to_glib_none().0,
             );
@@ -84,9 +78,9 @@ impl ShortcutLabel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_accelerator_trampoline<F: Fn(&ShortcutLabel) + 'static>(
-            this: *mut gtk_sys::GtkShortcutLabel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkShortcutLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -109,9 +103,9 @@ impl ShortcutLabel {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_text_trampoline<F: Fn(&ShortcutLabel) + 'static>(
-            this: *mut gtk_sys::GtkShortcutLabel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkShortcutLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

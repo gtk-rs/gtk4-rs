@@ -2,38 +2,34 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
+use crate::MediaStream;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use MediaStream;
 
-glib_wrapper! {
-    pub struct MediaFile(Object<gtk_sys::GtkMediaFile, gtk_sys::GtkMediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
+glib::glib_wrapper! {
+    pub struct MediaFile(Object<ffi::GtkMediaFile, ffi::GtkMediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
 
     match fn {
-        get_type => || gtk_sys::gtk_media_file_get_type(),
+        get_type => || ffi::gtk_media_file_get_type(),
     }
 }
 
 impl MediaFile {
     pub fn new() -> MediaFile {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_media_file_new()) }
+        unsafe { from_glib_full(ffi::gtk_media_file_new()) }
     }
 
     pub fn new_for_file<P: IsA<gio::File>>(file: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_media_file_new_for_file(
+            from_glib_full(ffi::gtk_media_file_new_for_file(
                 file.as_ref().to_glib_none().0,
             ))
         }
@@ -42,7 +38,7 @@ impl MediaFile {
     pub fn new_for_filename(filename: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_media_file_new_for_filename(
+            from_glib_full(ffi::gtk_media_file_new_for_filename(
                 filename.to_glib_none().0,
             ))
         }
@@ -51,7 +47,7 @@ impl MediaFile {
     pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_media_file_new_for_input_stream(
+            from_glib_full(ffi::gtk_media_file_new_for_input_stream(
                 stream.as_ref().to_glib_none().0,
             ))
         }
@@ -60,7 +56,7 @@ impl MediaFile {
     pub fn new_for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_media_file_new_for_resource(
+            from_glib_full(ffi::gtk_media_file_new_for_resource(
                 resource_path.to_glib_none().0,
             ))
         }
@@ -99,21 +95,17 @@ pub trait MediaFileExt: 'static {
 impl<O: IsA<MediaFile>> MediaFileExt for O {
     fn clear(&self) {
         unsafe {
-            gtk_sys::gtk_media_file_clear(self.as_ref().to_glib_none().0);
+            ffi::gtk_media_file_clear(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_file(&self) -> Option<gio::File> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_media_file_get_file(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_media_file_get_file(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_input_stream(&self) -> Option<gio::InputStream> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_media_file_get_input_stream(
+            from_glib_none(ffi::gtk_media_file_get_input_stream(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -121,7 +113,7 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_media_file_set_file(
+            ffi::gtk_media_file_set_file(
                 self.as_ref().to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -130,7 +122,7 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_media_file_set_filename(
+            ffi::gtk_media_file_set_filename(
                 self.as_ref().to_glib_none().0,
                 filename.to_glib_none().0,
             );
@@ -139,7 +131,7 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
     fn set_input_stream<P: IsA<gio::InputStream>>(&self, stream: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_media_file_set_input_stream(
+            ffi::gtk_media_file_set_input_stream(
                 self.as_ref().to_glib_none().0,
                 stream.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -148,7 +140,7 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_media_file_set_resource(
+            ffi::gtk_media_file_set_resource(
                 self.as_ref().to_glib_none().0,
                 resource_path.to_glib_none().0,
             );
@@ -157,9 +149,9 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkMediaFile,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMediaFile,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<MediaFile>,
         {
@@ -184,9 +176,9 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_stream_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkMediaFile,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkMediaFile,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<MediaFile>,
         {

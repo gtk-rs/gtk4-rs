@@ -4,26 +4,26 @@
 
 //! Traits intended for blanket imports.
 
-pub use auto::traits::*;
+pub use crate::auto::traits::*;
 
-pub use actionable::ActionableExtManual;
-pub use builder::BuilderExtManual;
-pub use color_chooser::ColorChooserExtManual;
-pub use combo_box::ComboBoxExtManual;
-pub use dialog::DialogExtManual;
-pub use editable::EditableExtManual;
-pub use entry::EntryExtManual;
-pub use entry_buffer::EntryBufferExtManual;
-pub use entry_completion::EntryCompletionExtManual;
-pub use im_context_simple::IMContextSimpleExtManual;
-pub use list_store::GtkListStoreExtManual;
-pub use notebook::NotebookExtManual;
-pub use overlay::OverlayExtManual;
-pub use spin_button::SpinButtonExtManual;
-pub use text_buffer::TextBufferExtManual;
-pub use tree_sortable::TreeSortableExtManual;
-pub use tree_store::TreeStoreExtManual;
-pub use widget::WidgetExtManual;
+pub use crate::actionable::ActionableExtManual;
+pub use crate::builder::BuilderExtManual;
+pub use crate::color_chooser::ColorChooserExtManual;
+pub use crate::combo_box::ComboBoxExtManual;
+pub use crate::dialog::DialogExtManual;
+pub use crate::editable::EditableExtManual;
+pub use crate::entry::EntryExtManual;
+pub use crate::entry_buffer::EntryBufferExtManual;
+pub use crate::entry_completion::EntryCompletionExtManual;
+pub use crate::im_context_simple::IMContextSimpleExtManual;
+pub use crate::list_store::GtkListStoreExtManual;
+pub use crate::notebook::NotebookExtManual;
+pub use crate::overlay::OverlayExtManual;
+pub use crate::spin_button::SpinButtonExtManual;
+pub use crate::text_buffer::TextBufferExtManual;
+pub use crate::tree_sortable::TreeSortableExtManual;
+pub use crate::tree_store::TreeStoreExtManual;
+pub use crate::widget::WidgetExtManual;
 
 #[doc(hidden)]
 pub use glib::prelude::*;

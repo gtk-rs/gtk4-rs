@@ -2,21 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Native;
+use crate::Widget;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Native;
-use Widget;
 
-glib_wrapper! {
-    pub struct Root(Interface<gtk_sys::GtkRoot>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Root(Interface<ffi::GtkRoot>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_root_get_type(),
+        get_type => || ffi::gtk_root_get_type(),
     }
 }
 
@@ -30,12 +29,12 @@ pub trait RootExt: 'static {
 
 impl<O: IsA<Root>> RootExt for O {
     fn get_focus(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_root_get_focus(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_root_get_focus(self.as_ref().to_glib_none().0)) }
     }
 
     fn set_focus<P: IsA<Widget>>(&self, focus: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_root_set_focus(
+            ffi::gtk_root_set_focus(
                 self.as_ref().to_glib_none().0,
                 focus.map(|p| p.as_ref()).to_glib_none().0,
             );

@@ -2,8 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::MediaStream;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -11,40 +18,28 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use MediaStream;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct Video(Object<gtk_sys::GtkVideo, gtk_sys::GtkVideoClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Video(Object<ffi::GtkVideo, ffi::GtkVideoClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_video_get_type(),
+        get_type => || ffi::gtk_video_get_type(),
     }
 }
 
 impl Video {
     pub fn new() -> Video {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_video_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_video_new()).unsafe_cast() }
     }
 
     pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_video_new_for_file(
+            Widget::from_glib_none(ffi::gtk_video_new_for_file(
                 file.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -54,7 +49,7 @@ impl Video {
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_video_new_for_filename(
+            Widget::from_glib_none(ffi::gtk_video_new_for_filename(
                 filename.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -64,7 +59,7 @@ impl Video {
     pub fn new_for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_video_new_for_media_stream(
+            Widget::from_glib_none(ffi::gtk_video_new_for_media_stream(
                 stream.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -74,7 +69,7 @@ impl Video {
     pub fn new_for_resource(resource_path: Option<&str>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_video_new_for_resource(
+            Widget::from_glib_none(ffi::gtk_video_new_for_resource(
                 resource_path.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -448,24 +443,20 @@ pub trait VideoExt: 'static {
 
 impl<O: IsA<Video>> VideoExt for O {
     fn get_autoplay(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_video_get_autoplay(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_video_get_autoplay(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_file(&self) -> Option<gio::File> {
-        unsafe { from_glib_none(gtk_sys::gtk_video_get_file(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_video_get_file(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_loop(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_video_get_loop(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_video_get_loop(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_media_stream(&self) -> Option<MediaStream> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_video_get_media_stream(
+            from_glib_none(ffi::gtk_video_get_media_stream(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -473,13 +464,13 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn set_autoplay(&self, autoplay: bool) {
         unsafe {
-            gtk_sys::gtk_video_set_autoplay(self.as_ref().to_glib_none().0, autoplay.to_glib());
+            ffi::gtk_video_set_autoplay(self.as_ref().to_glib_none().0, autoplay.to_glib());
         }
     }
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_video_set_file(
+            ffi::gtk_video_set_file(
                 self.as_ref().to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -488,22 +479,19 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn set_filename(&self, filename: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_video_set_filename(
-                self.as_ref().to_glib_none().0,
-                filename.to_glib_none().0,
-            );
+            ffi::gtk_video_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
         }
     }
 
     fn set_loop(&self, loop_: bool) {
         unsafe {
-            gtk_sys::gtk_video_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
+            ffi::gtk_video_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
         }
     }
 
     fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_video_set_media_stream(
+            ffi::gtk_video_set_media_stream(
                 self.as_ref().to_glib_none().0,
                 stream.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -512,7 +500,7 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_video_set_resource(
+            ffi::gtk_video_set_resource(
                 self.as_ref().to_glib_none().0,
                 resource_path.to_glib_none().0,
             );
@@ -521,9 +509,9 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn connect_property_autoplay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkVideo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Video>,
         {
@@ -545,9 +533,9 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkVideo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Video>,
         {
@@ -569,9 +557,9 @@ impl<O: IsA<Video>> VideoExt for O {
 
     fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkVideo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Video>,
         {
@@ -596,9 +584,9 @@ impl<O: IsA<Video>> VideoExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkVideo,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Video>,
         {

@@ -2,29 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
-use glib;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib_wrapper! {
-    pub struct DirectoryList(Object<gtk_sys::GtkDirectoryList, gtk_sys::GtkDirectoryListClass>) @implements gio::ListModel;
+glib::glib_wrapper! {
+    pub struct DirectoryList(Object<ffi::GtkDirectoryList, ffi::GtkDirectoryListClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_directory_list_get_type(),
+        get_type => || ffi::gtk_directory_list_get_type(),
     }
 }
 
@@ -32,7 +26,7 @@ impl DirectoryList {
     pub fn new<P: IsA<gio::File>>(attributes: Option<&str>, file: Option<&P>) -> DirectoryList {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_directory_list_new(
+            from_glib_full(ffi::gtk_directory_list_new(
                 attributes.to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             ))
@@ -98,7 +92,7 @@ impl DirectoryListBuilder {
 pub const NONE_DIRECTORY_LIST: Option<&DirectoryList> = None;
 
 pub trait DirectoryListExt: 'static {
-    fn get_attributes(&self) -> Option<GString>;
+    fn get_attributes(&self) -> Option<glib::GString>;
 
     fn get_error(&self) -> Option<glib::Error>;
 
@@ -134,9 +128,9 @@ pub trait DirectoryListExt: 'static {
 }
 
 impl<O: IsA<DirectoryList>> DirectoryListExt for O {
-    fn get_attributes(&self) -> Option<GString> {
+    fn get_attributes(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_directory_list_get_attributes(
+            from_glib_none(ffi::gtk_directory_list_get_attributes(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -144,7 +138,7 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn get_error(&self) -> Option<glib::Error> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_directory_list_get_error(
+            from_glib_none(ffi::gtk_directory_list_get_error(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -152,19 +146,19 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn get_file(&self) -> Option<gio::File> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_directory_list_get_file(
+            from_glib_none(ffi::gtk_directory_list_get_file(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_io_priority(&self) -> i32 {
-        unsafe { gtk_sys::gtk_directory_list_get_io_priority(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_directory_list_get_io_priority(self.as_ref().to_glib_none().0) }
     }
 
     fn get_monitored(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_directory_list_get_monitored(
+            from_glib(ffi::gtk_directory_list_get_monitored(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -172,7 +166,7 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn is_loading(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_directory_list_is_loading(
+            from_glib(ffi::gtk_directory_list_is_loading(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -180,7 +174,7 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn set_attributes(&self, attributes: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_directory_list_set_attributes(
+            ffi::gtk_directory_list_set_attributes(
                 self.as_ref().to_glib_none().0,
                 attributes.to_glib_none().0,
             );
@@ -189,7 +183,7 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_directory_list_set_file(
+            ffi::gtk_directory_list_set_file(
                 self.as_ref().to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -198,16 +192,13 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn set_io_priority(&self, io_priority: i32) {
         unsafe {
-            gtk_sys::gtk_directory_list_set_io_priority(
-                self.as_ref().to_glib_none().0,
-                io_priority,
-            );
+            ffi::gtk_directory_list_set_io_priority(self.as_ref().to_glib_none().0, io_priority);
         }
     }
 
     fn set_monitored(&self, monitored: bool) {
         unsafe {
-            gtk_sys::gtk_directory_list_set_monitored(
+            ffi::gtk_directory_list_set_monitored(
                 self.as_ref().to_glib_none().0,
                 monitored.to_glib(),
             );
@@ -217,8 +208,8 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
     fn get_property_loading(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"loading\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -231,9 +222,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {
@@ -255,9 +246,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {
@@ -279,9 +270,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {
@@ -303,9 +294,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_io_priority_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {
@@ -327,9 +318,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {
@@ -351,9 +342,9 @@ impl<O: IsA<DirectoryList>> DirectoryListExt for O {
 
     fn connect_property_monitored_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_monitored_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDirectoryList,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DirectoryList>,
         {

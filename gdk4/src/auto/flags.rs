@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use bitflags::bitflags;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
@@ -10,7 +10,6 @@ use glib::value::SetValue;
 use glib::value::Value;
 use glib::StaticType;
 use glib::Type;
-use gobject_sys;
 
 bitflags! {
     pub struct AnchorHints: u32 {
@@ -28,16 +27,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for AnchorHints {
-    type GlibType = gdk_sys::GdkAnchorHints;
+    type GlibType = ffi::GdkAnchorHints;
 
-    fn to_glib(&self) -> gdk_sys::GdkAnchorHints {
+    fn to_glib(&self) -> ffi::GdkAnchorHints {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkAnchorHints> for AnchorHints {
-    fn from_glib(value: gdk_sys::GdkAnchorHints) -> AnchorHints {
+impl FromGlib<ffi::GdkAnchorHints> for AnchorHints {
+    fn from_glib(value: ffi::GdkAnchorHints) -> AnchorHints {
         skip_assert_initialized!();
         AnchorHints::from_bits_truncate(value)
     }
@@ -45,7 +44,7 @@ impl FromGlib<gdk_sys::GdkAnchorHints> for AnchorHints {
 
 impl StaticType for AnchorHints {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_anchor_hints_get_type()) }
+        unsafe { from_glib(ffi::gdk_anchor_hints_get_type()) }
     }
 }
 
@@ -57,13 +56,13 @@ impl<'a> FromValueOptional<'a> for AnchorHints {
 
 impl<'a> FromValue<'a> for AnchorHints {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for AnchorHints {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -85,16 +84,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for AxisFlags {
-    type GlibType = gdk_sys::GdkAxisFlags;
+    type GlibType = ffi::GdkAxisFlags;
 
-    fn to_glib(&self) -> gdk_sys::GdkAxisFlags {
+    fn to_glib(&self) -> ffi::GdkAxisFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkAxisFlags> for AxisFlags {
-    fn from_glib(value: gdk_sys::GdkAxisFlags) -> AxisFlags {
+impl FromGlib<ffi::GdkAxisFlags> for AxisFlags {
+    fn from_glib(value: ffi::GdkAxisFlags) -> AxisFlags {
         skip_assert_initialized!();
         AxisFlags::from_bits_truncate(value)
     }
@@ -102,7 +101,7 @@ impl FromGlib<gdk_sys::GdkAxisFlags> for AxisFlags {
 
 impl StaticType for AxisFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_axis_flags_get_type()) }
+        unsafe { from_glib(ffi::gdk_axis_flags_get_type()) }
     }
 }
 
@@ -114,13 +113,13 @@ impl<'a> FromValueOptional<'a> for AxisFlags {
 
 impl<'a> FromValue<'a> for AxisFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for AxisFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -135,16 +134,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for DragAction {
-    type GlibType = gdk_sys::GdkDragAction;
+    type GlibType = ffi::GdkDragAction;
 
-    fn to_glib(&self) -> gdk_sys::GdkDragAction {
+    fn to_glib(&self) -> ffi::GdkDragAction {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkDragAction> for DragAction {
-    fn from_glib(value: gdk_sys::GdkDragAction) -> DragAction {
+impl FromGlib<ffi::GdkDragAction> for DragAction {
+    fn from_glib(value: ffi::GdkDragAction) -> DragAction {
         skip_assert_initialized!();
         DragAction::from_bits_truncate(value)
     }
@@ -152,7 +151,7 @@ impl FromGlib<gdk_sys::GdkDragAction> for DragAction {
 
 impl StaticType for DragAction {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_drag_action_get_type()) }
+        unsafe { from_glib(ffi::gdk_drag_action_get_type()) }
     }
 }
 
@@ -164,13 +163,13 @@ impl<'a> FromValueOptional<'a> for DragAction {
 
 impl<'a> FromValue<'a> for DragAction {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DragAction {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -189,16 +188,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for FrameClockPhase {
-    type GlibType = gdk_sys::GdkFrameClockPhase;
+    type GlibType = ffi::GdkFrameClockPhase;
 
-    fn to_glib(&self) -> gdk_sys::GdkFrameClockPhase {
+    fn to_glib(&self) -> ffi::GdkFrameClockPhase {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkFrameClockPhase> for FrameClockPhase {
-    fn from_glib(value: gdk_sys::GdkFrameClockPhase) -> FrameClockPhase {
+impl FromGlib<ffi::GdkFrameClockPhase> for FrameClockPhase {
+    fn from_glib(value: ffi::GdkFrameClockPhase) -> FrameClockPhase {
         skip_assert_initialized!();
         FrameClockPhase::from_bits_truncate(value)
     }
@@ -206,7 +205,7 @@ impl FromGlib<gdk_sys::GdkFrameClockPhase> for FrameClockPhase {
 
 impl StaticType for FrameClockPhase {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_frame_clock_phase_get_type()) }
+        unsafe { from_glib(ffi::gdk_frame_clock_phase_get_type()) }
     }
 }
 
@@ -218,13 +217,13 @@ impl<'a> FromValueOptional<'a> for FrameClockPhase {
 
 impl<'a> FromValue<'a> for FrameClockPhase {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FrameClockPhase {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -247,16 +246,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for ModifierType {
-    type GlibType = gdk_sys::GdkModifierType;
+    type GlibType = ffi::GdkModifierType;
 
-    fn to_glib(&self) -> gdk_sys::GdkModifierType {
+    fn to_glib(&self) -> ffi::GdkModifierType {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkModifierType> for ModifierType {
-    fn from_glib(value: gdk_sys::GdkModifierType) -> ModifierType {
+impl FromGlib<ffi::GdkModifierType> for ModifierType {
+    fn from_glib(value: ffi::GdkModifierType) -> ModifierType {
         skip_assert_initialized!();
         ModifierType::from_bits_truncate(value)
     }
@@ -264,7 +263,7 @@ impl FromGlib<gdk_sys::GdkModifierType> for ModifierType {
 
 impl StaticType for ModifierType {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_modifier_type_get_type()) }
+        unsafe { from_glib(ffi::gdk_modifier_type_get_type()) }
     }
 }
 
@@ -276,13 +275,13 @@ impl<'a> FromValueOptional<'a> for ModifierType {
 
 impl<'a> FromValue<'a> for ModifierType {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ModifierType {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -295,16 +294,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for PaintableFlags {
-    type GlibType = gdk_sys::GdkPaintableFlags;
+    type GlibType = ffi::GdkPaintableFlags;
 
-    fn to_glib(&self) -> gdk_sys::GdkPaintableFlags {
+    fn to_glib(&self) -> ffi::GdkPaintableFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkPaintableFlags> for PaintableFlags {
-    fn from_glib(value: gdk_sys::GdkPaintableFlags) -> PaintableFlags {
+impl FromGlib<ffi::GdkPaintableFlags> for PaintableFlags {
+    fn from_glib(value: ffi::GdkPaintableFlags) -> PaintableFlags {
         skip_assert_initialized!();
         PaintableFlags::from_bits_truncate(value)
     }
@@ -312,7 +311,7 @@ impl FromGlib<gdk_sys::GdkPaintableFlags> for PaintableFlags {
 
 impl StaticType for PaintableFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_paintable_flags_get_type()) }
+        unsafe { from_glib(ffi::gdk_paintable_flags_get_type()) }
     }
 }
 
@@ -324,13 +323,13 @@ impl<'a> FromValueOptional<'a> for PaintableFlags {
 
 impl<'a> FromValue<'a> for PaintableFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PaintableFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -349,16 +348,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for SeatCapabilities {
-    type GlibType = gdk_sys::GdkSeatCapabilities;
+    type GlibType = ffi::GdkSeatCapabilities;
 
-    fn to_glib(&self) -> gdk_sys::GdkSeatCapabilities {
+    fn to_glib(&self) -> ffi::GdkSeatCapabilities {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkSeatCapabilities> for SeatCapabilities {
-    fn from_glib(value: gdk_sys::GdkSeatCapabilities) -> SeatCapabilities {
+impl FromGlib<ffi::GdkSeatCapabilities> for SeatCapabilities {
+    fn from_glib(value: ffi::GdkSeatCapabilities) -> SeatCapabilities {
         skip_assert_initialized!();
         SeatCapabilities::from_bits_truncate(value)
     }
@@ -366,7 +365,7 @@ impl FromGlib<gdk_sys::GdkSeatCapabilities> for SeatCapabilities {
 
 impl StaticType for SeatCapabilities {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_seat_capabilities_get_type()) }
+        unsafe { from_glib(ffi::gdk_seat_capabilities_get_type()) }
     }
 }
 
@@ -378,13 +377,13 @@ impl<'a> FromValueOptional<'a> for SeatCapabilities {
 
 impl<'a> FromValue<'a> for SeatCapabilities {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for SeatCapabilities {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -412,16 +411,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for ToplevelState {
-    type GlibType = gdk_sys::GdkToplevelState;
+    type GlibType = ffi::GdkToplevelState;
 
-    fn to_glib(&self) -> gdk_sys::GdkToplevelState {
+    fn to_glib(&self) -> ffi::GdkToplevelState {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gdk_sys::GdkToplevelState> for ToplevelState {
-    fn from_glib(value: gdk_sys::GdkToplevelState) -> ToplevelState {
+impl FromGlib<ffi::GdkToplevelState> for ToplevelState {
+    fn from_glib(value: ffi::GdkToplevelState) -> ToplevelState {
         skip_assert_initialized!();
         ToplevelState::from_bits_truncate(value)
     }
@@ -429,7 +428,7 @@ impl FromGlib<gdk_sys::GdkToplevelState> for ToplevelState {
 
 impl StaticType for ToplevelState {
     fn static_type() -> Type {
-        unsafe { from_glib(gdk_sys::gdk_toplevel_state_get_type()) }
+        unsafe { from_glib(ffi::gdk_toplevel_state_get_type()) }
     }
 }
 
@@ -441,12 +440,12 @@ impl<'a> FromValueOptional<'a> for ToplevelState {
 
 impl<'a> FromValue<'a> for ToplevelState {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ToplevelState {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }

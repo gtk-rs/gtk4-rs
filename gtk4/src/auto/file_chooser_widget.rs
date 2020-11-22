@@ -2,8 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::FileChooser;
+use crate::FileChooserAction;
+use crate::FileFilter;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
@@ -11,34 +20,18 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use FileChooser;
-use FileChooserAction;
-use FileFilter;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct FileChooserWidget(Object<gtk_sys::GtkFileChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
+glib::glib_wrapper! {
+    pub struct FileChooserWidget(Object<ffi::GtkFileChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
 
     match fn {
-        get_type => || gtk_sys::gtk_file_chooser_widget_get_type(),
+        get_type => || ffi::gtk_file_chooser_widget_get_type(),
     }
 }
 
@@ -46,16 +39,15 @@ impl FileChooserWidget {
     pub fn new(action: FileChooserAction) -> FileChooserWidget {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_file_chooser_widget_new(action.to_glib()))
-                .unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_file_chooser_widget_new(action.to_glib())).unsafe_cast()
         }
     }
 
     pub fn get_property_search_mode(&self) -> bool {
         unsafe {
             let mut value = Value::from_type(<bool as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"search-mode\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -68,19 +60,19 @@ impl FileChooserWidget {
 
     pub fn set_property_search_mode(&self, search_mode: bool) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"search-mode\0".as_ptr() as *const _,
                 Value::from(&search_mode).to_glib_none().0,
             );
         }
     }
 
-    pub fn get_property_subtitle(&self) -> Option<GString> {
+    pub fn get_property_subtitle(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"subtitle\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -95,8 +87,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn desktop_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -116,7 +108,7 @@ impl FileChooserWidget {
 
     pub fn emit_desktop_folder(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("desktop-folder", &[])
                 .unwrap()
         };
@@ -127,8 +119,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn down_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -148,7 +140,7 @@ impl FileChooserWidget {
 
     pub fn emit_down_folder(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("down-folder", &[])
                 .unwrap()
         };
@@ -159,8 +151,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn home_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -180,7 +172,7 @@ impl FileChooserWidget {
 
     pub fn emit_home_folder(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("home-folder", &[])
                 .unwrap()
         };
@@ -193,12 +185,15 @@ impl FileChooserWidget {
         unsafe extern "C" fn location_popup_trampoline<
             F: Fn(&FileChooserWidget, &str) + 'static,
         >(
-            this: *mut gtk_sys::GtkFileChooserWidget,
+            this: *mut ffi::GtkFileChooserWidget,
             path: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &GString::from_glib_borrow(path))
+            f(
+                &from_glib_borrow(this),
+                &glib::GString::from_glib_borrow(path),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -215,7 +210,7 @@ impl FileChooserWidget {
 
     pub fn emit_location_popup(&self, path: &str) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("location-popup", &[&path])
                 .unwrap()
         };
@@ -228,8 +223,8 @@ impl FileChooserWidget {
         unsafe extern "C" fn location_popup_on_paste_trampoline<
             F: Fn(&FileChooserWidget) + 'static,
         >(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -249,7 +244,7 @@ impl FileChooserWidget {
 
     pub fn emit_location_popup_on_paste(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("location-popup-on-paste", &[])
                 .unwrap()
         };
@@ -262,8 +257,8 @@ impl FileChooserWidget {
         unsafe extern "C" fn location_toggle_popup_trampoline<
             F: Fn(&FileChooserWidget) + 'static,
         >(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -283,7 +278,7 @@ impl FileChooserWidget {
 
     pub fn emit_location_toggle_popup(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("location-toggle-popup", &[])
                 .unwrap()
         };
@@ -294,8 +289,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn places_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -315,7 +310,7 @@ impl FileChooserWidget {
 
     pub fn emit_places_shortcut(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("places-shortcut", &[])
                 .unwrap()
         };
@@ -326,9 +321,9 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn quick_bookmark_trampoline<F: Fn(&FileChooserWidget, i32) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
+            this: *mut ffi::GtkFileChooserWidget,
             bookmark_index: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), bookmark_index)
@@ -348,7 +343,7 @@ impl FileChooserWidget {
 
     pub fn emit_quick_bookmark(&self, bookmark_index: i32) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("quick-bookmark", &[&bookmark_index])
                 .unwrap()
         };
@@ -359,8 +354,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn recent_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -380,7 +375,7 @@ impl FileChooserWidget {
 
     pub fn emit_recent_shortcut(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("recent-shortcut", &[])
                 .unwrap()
         };
@@ -391,8 +386,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn search_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -412,7 +407,7 @@ impl FileChooserWidget {
 
     pub fn emit_search_shortcut(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("search-shortcut", &[])
                 .unwrap()
         };
@@ -423,8 +418,8 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn show_hidden_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -444,7 +439,7 @@ impl FileChooserWidget {
 
     pub fn emit_show_hidden(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("show-hidden", &[])
                 .unwrap()
         };
@@ -452,8 +447,8 @@ impl FileChooserWidget {
 
     pub fn connect_up_folder<F: Fn(&FileChooserWidget) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn up_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -473,7 +468,7 @@ impl FileChooserWidget {
 
     pub fn emit_up_folder(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("up-folder", &[])
                 .unwrap()
         };
@@ -484,9 +479,9 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_mode_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -509,9 +504,9 @@ impl FileChooserWidget {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&FileChooserWidget) + 'static>(
-            this: *mut gtk_sys::GtkFileChooserWidget,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFileChooserWidget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

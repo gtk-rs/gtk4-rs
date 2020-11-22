@@ -2,25 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Gravity;
+use crate::PopupLayout;
+use crate::Surface;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Gravity;
-use PopupLayout;
-use Surface;
 
-glib_wrapper! {
-    pub struct Popup(Interface<gdk_sys::GdkPopup>) @requires Surface;
+glib::glib_wrapper! {
+    pub struct Popup(Interface<ffi::GdkPopup>) @requires Surface;
 
     match fn {
-        get_type => || gdk_sys::gdk_popup_get_type(),
+        get_type => || ffi::gdk_popup_get_type(),
     }
 }
 
@@ -46,32 +44,24 @@ pub trait PopupExt: 'static {
 
 impl<O: IsA<Popup>> PopupExt for O {
     fn get_autohide(&self) -> bool {
-        unsafe {
-            from_glib(gdk_sys::gdk_popup_get_autohide(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gdk_popup_get_autohide(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_parent(&self) -> Option<Surface> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_popup_get_parent(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gdk_popup_get_parent(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_position_x(&self) -> i32 {
-        unsafe { gdk_sys::gdk_popup_get_position_x(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_popup_get_position_x(self.as_ref().to_glib_none().0) }
     }
 
     fn get_position_y(&self) -> i32 {
-        unsafe { gdk_sys::gdk_popup_get_position_y(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_popup_get_position_y(self.as_ref().to_glib_none().0) }
     }
 
     fn get_rect_anchor(&self) -> Gravity {
         unsafe {
-            from_glib(gdk_sys::gdk_popup_get_rect_anchor(
+            from_glib(ffi::gdk_popup_get_rect_anchor(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -79,7 +69,7 @@ impl<O: IsA<Popup>> PopupExt for O {
 
     fn get_surface_anchor(&self) -> Gravity {
         unsafe {
-            from_glib(gdk_sys::gdk_popup_get_surface_anchor(
+            from_glib(ffi::gdk_popup_get_surface_anchor(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -87,7 +77,7 @@ impl<O: IsA<Popup>> PopupExt for O {
 
     fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_popup_present(
+            from_glib(ffi::gdk_popup_present(
                 self.as_ref().to_glib_none().0,
                 width,
                 height,
@@ -98,8 +88,8 @@ impl<O: IsA<Popup>> PopupExt for O {
 
     fn connect_popup_layout_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popup_layout_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkPopup,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkPopup,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Popup>,
         {

@@ -2,28 +2,25 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::AccessibleProperty;
+use crate::AccessibleRelation;
+use crate::AccessibleRole;
+use crate::AccessibleState;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use AccessibleProperty;
-use AccessibleRelation;
-use AccessibleRole;
-use AccessibleState;
 
-glib_wrapper! {
-    pub struct Accessible(Interface<gtk_sys::GtkAccessible>);
+glib::glib_wrapper! {
+    pub struct Accessible(Interface<ffi::GtkAccessible>);
 
     match fn {
-        get_type => || gtk_sys::gtk_accessible_get_type(),
+        get_type => || ffi::gtk_accessible_get_type(),
     }
 }
 
@@ -61,7 +58,7 @@ pub trait AccessibleExt: 'static {
 impl<O: IsA<Accessible>> AccessibleExt for O {
     fn get_accessible_role(&self) -> AccessibleRole {
         unsafe {
-            from_glib(gtk_sys::gtk_accessible_get_accessible_role(
+            from_glib(ffi::gtk_accessible_get_accessible_role(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -69,56 +66,50 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
 
     fn reset_property(&self, property: AccessibleProperty) {
         unsafe {
-            gtk_sys::gtk_accessible_reset_property(
-                self.as_ref().to_glib_none().0,
-                property.to_glib(),
-            );
+            ffi::gtk_accessible_reset_property(self.as_ref().to_glib_none().0, property.to_glib());
         }
     }
 
     fn reset_relation(&self, relation: AccessibleRelation) {
         unsafe {
-            gtk_sys::gtk_accessible_reset_relation(
-                self.as_ref().to_glib_none().0,
-                relation.to_glib(),
-            );
+            ffi::gtk_accessible_reset_relation(self.as_ref().to_glib_none().0, relation.to_glib());
         }
     }
 
     fn reset_state(&self, state: AccessibleState) {
         unsafe {
-            gtk_sys::gtk_accessible_reset_state(self.as_ref().to_glib_none().0, state.to_glib());
+            ffi::gtk_accessible_reset_state(self.as_ref().to_glib_none().0, state.to_glib());
         }
     }
 
     //fn update_property(&self, first_property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_property() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_property() }
     //}
 
     //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_property_value() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_property_value() }
     //}
 
     //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_relation() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_relation() }
     //}
 
     //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_relation_value() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_relation_value() }
     //}
 
     //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_state() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_state() }
     //}
 
     //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call gtk_sys:gtk_accessible_update_state_value() }
+    //    unsafe { TODO: call ffi:gtk_accessible_update_state_value() }
     //}
 
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"accessible-role\0".as_ptr() as *const _,
                 Value::from(&accessible_role).to_glib_none().0,
             );
@@ -130,9 +121,9 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_accessible_role_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkAccessible,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAccessible,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Accessible>,
         {

@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use bitflags::bitflags;
 use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
@@ -9,8 +10,6 @@ use glib::value::SetValue;
 use glib::value::Value;
 use glib::StaticType;
 use glib::Type;
-use gobject_sys;
-use gtk_sys;
 
 bitflags! {
     pub struct ApplicationInhibitFlags: u32 {
@@ -23,16 +22,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for ApplicationInhibitFlags {
-    type GlibType = gtk_sys::GtkApplicationInhibitFlags;
+    type GlibType = ffi::GtkApplicationInhibitFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkApplicationInhibitFlags {
+    fn to_glib(&self) -> ffi::GtkApplicationInhibitFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
-    fn from_glib(value: gtk_sys::GtkApplicationInhibitFlags) -> ApplicationInhibitFlags {
+impl FromGlib<ffi::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
+    fn from_glib(value: ffi::GtkApplicationInhibitFlags) -> ApplicationInhibitFlags {
         skip_assert_initialized!();
         ApplicationInhibitFlags::from_bits_truncate(value)
     }
@@ -40,7 +39,7 @@ impl FromGlib<gtk_sys::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
 
 impl StaticType for ApplicationInhibitFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_application_inhibit_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_application_inhibit_flags_get_type()) }
     }
 }
 
@@ -52,13 +51,13 @@ impl<'a> FromValueOptional<'a> for ApplicationInhibitFlags {
 
 impl<'a> FromValue<'a> for ApplicationInhibitFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ApplicationInhibitFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -70,16 +69,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for BuilderClosureFlags {
-    type GlibType = gtk_sys::GtkBuilderClosureFlags;
+    type GlibType = ffi::GtkBuilderClosureFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkBuilderClosureFlags {
+    fn to_glib(&self) -> ffi::GtkBuilderClosureFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkBuilderClosureFlags> for BuilderClosureFlags {
-    fn from_glib(value: gtk_sys::GtkBuilderClosureFlags) -> BuilderClosureFlags {
+impl FromGlib<ffi::GtkBuilderClosureFlags> for BuilderClosureFlags {
+    fn from_glib(value: ffi::GtkBuilderClosureFlags) -> BuilderClosureFlags {
         skip_assert_initialized!();
         BuilderClosureFlags::from_bits_truncate(value)
     }
@@ -87,7 +86,7 @@ impl FromGlib<gtk_sys::GtkBuilderClosureFlags> for BuilderClosureFlags {
 
 impl StaticType for BuilderClosureFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_builder_closure_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_builder_closure_flags_get_type()) }
     }
 }
 
@@ -99,13 +98,13 @@ impl<'a> FromValueOptional<'a> for BuilderClosureFlags {
 
 impl<'a> FromValue<'a> for BuilderClosureFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BuilderClosureFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -123,16 +122,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for CellRendererState {
-    type GlibType = gtk_sys::GtkCellRendererState;
+    type GlibType = ffi::GtkCellRendererState;
 
-    fn to_glib(&self) -> gtk_sys::GtkCellRendererState {
+    fn to_glib(&self) -> ffi::GtkCellRendererState {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkCellRendererState> for CellRendererState {
-    fn from_glib(value: gtk_sys::GtkCellRendererState) -> CellRendererState {
+impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
+    fn from_glib(value: ffi::GtkCellRendererState) -> CellRendererState {
         skip_assert_initialized!();
         CellRendererState::from_bits_truncate(value)
     }
@@ -140,7 +139,7 @@ impl FromGlib<gtk_sys::GtkCellRendererState> for CellRendererState {
 
 impl StaticType for CellRendererState {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_cell_renderer_state_get_type()) }
+        unsafe { from_glib(ffi::gtk_cell_renderer_state_get_type()) }
     }
 }
 
@@ -152,13 +151,13 @@ impl<'a> FromValueOptional<'a> for CellRendererState {
 
 impl<'a> FromValue<'a> for CellRendererState {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CellRendererState {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -187,16 +186,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for DebugFlags {
-    type GlibType = gtk_sys::GtkDebugFlags;
+    type GlibType = ffi::GtkDebugFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkDebugFlags {
+    fn to_glib(&self) -> ffi::GtkDebugFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDebugFlags> for DebugFlags {
-    fn from_glib(value: gtk_sys::GtkDebugFlags) -> DebugFlags {
+impl FromGlib<ffi::GtkDebugFlags> for DebugFlags {
+    fn from_glib(value: ffi::GtkDebugFlags) -> DebugFlags {
         skip_assert_initialized!();
         DebugFlags::from_bits_truncate(value)
     }
@@ -204,7 +203,7 @@ impl FromGlib<gtk_sys::GtkDebugFlags> for DebugFlags {
 
 impl StaticType for DebugFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_debug_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_debug_flags_get_type()) }
     }
 }
 
@@ -216,13 +215,13 @@ impl<'a> FromValueOptional<'a> for DebugFlags {
 
 impl<'a> FromValue<'a> for DebugFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DebugFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -236,16 +235,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for DialogFlags {
-    type GlibType = gtk_sys::GtkDialogFlags;
+    type GlibType = ffi::GtkDialogFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkDialogFlags {
+    fn to_glib(&self) -> ffi::GtkDialogFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkDialogFlags> for DialogFlags {
-    fn from_glib(value: gtk_sys::GtkDialogFlags) -> DialogFlags {
+impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
+    fn from_glib(value: ffi::GtkDialogFlags) -> DialogFlags {
         skip_assert_initialized!();
         DialogFlags::from_bits_truncate(value)
     }
@@ -253,7 +252,7 @@ impl FromGlib<gtk_sys::GtkDialogFlags> for DialogFlags {
 
 impl StaticType for DialogFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_dialog_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_dialog_flags_get_type()) }
     }
 }
 
@@ -265,13 +264,13 @@ impl<'a> FromValueOptional<'a> for DialogFlags {
 
 impl<'a> FromValue<'a> for DialogFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DialogFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -288,16 +287,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for EventControllerScrollFlags {
-    type GlibType = gtk_sys::GtkEventControllerScrollFlags;
+    type GlibType = ffi::GtkEventControllerScrollFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkEventControllerScrollFlags {
+    fn to_glib(&self) -> ffi::GtkEventControllerScrollFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkEventControllerScrollFlags> for EventControllerScrollFlags {
-    fn from_glib(value: gtk_sys::GtkEventControllerScrollFlags) -> EventControllerScrollFlags {
+impl FromGlib<ffi::GtkEventControllerScrollFlags> for EventControllerScrollFlags {
+    fn from_glib(value: ffi::GtkEventControllerScrollFlags) -> EventControllerScrollFlags {
         skip_assert_initialized!();
         EventControllerScrollFlags::from_bits_truncate(value)
     }
@@ -305,7 +304,7 @@ impl FromGlib<gtk_sys::GtkEventControllerScrollFlags> for EventControllerScrollF
 
 impl StaticType for EventControllerScrollFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_event_controller_scroll_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_event_controller_scroll_flags_get_type()) }
     }
 }
 
@@ -317,13 +316,13 @@ impl<'a> FromValueOptional<'a> for EventControllerScrollFlags {
 
 impl<'a> FromValue<'a> for EventControllerScrollFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EventControllerScrollFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -339,16 +338,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for FontChooserLevel {
-    type GlibType = gtk_sys::GtkFontChooserLevel;
+    type GlibType = ffi::GtkFontChooserLevel;
 
-    fn to_glib(&self) -> gtk_sys::GtkFontChooserLevel {
+    fn to_glib(&self) -> ffi::GtkFontChooserLevel {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkFontChooserLevel> for FontChooserLevel {
-    fn from_glib(value: gtk_sys::GtkFontChooserLevel) -> FontChooserLevel {
+impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
+    fn from_glib(value: ffi::GtkFontChooserLevel) -> FontChooserLevel {
         skip_assert_initialized!();
         FontChooserLevel::from_bits_truncate(value)
     }
@@ -356,7 +355,7 @@ impl FromGlib<gtk_sys::GtkFontChooserLevel> for FontChooserLevel {
 
 impl StaticType for FontChooserLevel {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_font_chooser_level_get_type()) }
+        unsafe { from_glib(ffi::gtk_font_chooser_level_get_type()) }
     }
 }
 
@@ -368,13 +367,13 @@ impl<'a> FromValueOptional<'a> for FontChooserLevel {
 
 impl<'a> FromValue<'a> for FontChooserLevel {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FontChooserLevel {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -388,16 +387,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for IconLookupFlags {
-    type GlibType = gtk_sys::GtkIconLookupFlags;
+    type GlibType = ffi::GtkIconLookupFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkIconLookupFlags {
+    fn to_glib(&self) -> ffi::GtkIconLookupFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkIconLookupFlags> for IconLookupFlags {
-    fn from_glib(value: gtk_sys::GtkIconLookupFlags) -> IconLookupFlags {
+impl FromGlib<ffi::GtkIconLookupFlags> for IconLookupFlags {
+    fn from_glib(value: ffi::GtkIconLookupFlags) -> IconLookupFlags {
         skip_assert_initialized!();
         IconLookupFlags::from_bits_truncate(value)
     }
@@ -405,7 +404,7 @@ impl FromGlib<gtk_sys::GtkIconLookupFlags> for IconLookupFlags {
 
 impl StaticType for IconLookupFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_icon_lookup_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_icon_lookup_flags_get_type()) }
     }
 }
 
@@ -417,13 +416,13 @@ impl<'a> FromValueOptional<'a> for IconLookupFlags {
 
 impl<'a> FromValue<'a> for IconLookupFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for IconLookupFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -447,16 +446,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for InputHints {
-    type GlibType = gtk_sys::GtkInputHints;
+    type GlibType = ffi::GtkInputHints;
 
-    fn to_glib(&self) -> gtk_sys::GtkInputHints {
+    fn to_glib(&self) -> ffi::GtkInputHints {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkInputHints> for InputHints {
-    fn from_glib(value: gtk_sys::GtkInputHints) -> InputHints {
+impl FromGlib<ffi::GtkInputHints> for InputHints {
+    fn from_glib(value: ffi::GtkInputHints) -> InputHints {
         skip_assert_initialized!();
         InputHints::from_bits_truncate(value)
     }
@@ -464,7 +463,7 @@ impl FromGlib<gtk_sys::GtkInputHints> for InputHints {
 
 impl StaticType for InputHints {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_input_hints_get_type()) }
+        unsafe { from_glib(ffi::gtk_input_hints_get_type()) }
     }
 }
 
@@ -476,13 +475,13 @@ impl<'a> FromValueOptional<'a> for InputHints {
 
 impl<'a> FromValue<'a> for InputHints {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for InputHints {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -496,16 +495,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for PickFlags {
-    type GlibType = gtk_sys::GtkPickFlags;
+    type GlibType = ffi::GtkPickFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkPickFlags {
+    fn to_glib(&self) -> ffi::GtkPickFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkPickFlags> for PickFlags {
-    fn from_glib(value: gtk_sys::GtkPickFlags) -> PickFlags {
+impl FromGlib<ffi::GtkPickFlags> for PickFlags {
+    fn from_glib(value: ffi::GtkPickFlags) -> PickFlags {
         skip_assert_initialized!();
         PickFlags::from_bits_truncate(value)
     }
@@ -513,7 +512,7 @@ impl FromGlib<gtk_sys::GtkPickFlags> for PickFlags {
 
 impl StaticType for PickFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_pick_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_pick_flags_get_type()) }
     }
 }
 
@@ -525,13 +524,13 @@ impl<'a> FromValueOptional<'a> for PickFlags {
 
 impl<'a> FromValue<'a> for PickFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PickFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -545,16 +544,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for PlacesOpenFlags {
-    type GlibType = gtk_sys::GtkPlacesOpenFlags;
+    type GlibType = ffi::GtkPlacesOpenFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkPlacesOpenFlags {
+    fn to_glib(&self) -> ffi::GtkPlacesOpenFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkPlacesOpenFlags> for PlacesOpenFlags {
-    fn from_glib(value: gtk_sys::GtkPlacesOpenFlags) -> PlacesOpenFlags {
+impl FromGlib<ffi::GtkPlacesOpenFlags> for PlacesOpenFlags {
+    fn from_glib(value: ffi::GtkPlacesOpenFlags) -> PlacesOpenFlags {
         skip_assert_initialized!();
         PlacesOpenFlags::from_bits_truncate(value)
     }
@@ -562,7 +561,7 @@ impl FromGlib<gtk_sys::GtkPlacesOpenFlags> for PlacesOpenFlags {
 
 impl StaticType for PlacesOpenFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_places_open_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_places_open_flags_get_type()) }
     }
 }
 
@@ -574,13 +573,13 @@ impl<'a> FromValueOptional<'a> for PlacesOpenFlags {
 
 impl<'a> FromValue<'a> for PlacesOpenFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PlacesOpenFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -592,16 +591,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for PopoverMenuFlags {
-    type GlibType = gtk_sys::GtkPopoverMenuFlags;
+    type GlibType = ffi::GtkPopoverMenuFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkPopoverMenuFlags {
+    fn to_glib(&self) -> ffi::GtkPopoverMenuFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkPopoverMenuFlags> for PopoverMenuFlags {
-    fn from_glib(value: gtk_sys::GtkPopoverMenuFlags) -> PopoverMenuFlags {
+impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
+    fn from_glib(value: ffi::GtkPopoverMenuFlags) -> PopoverMenuFlags {
         skip_assert_initialized!();
         PopoverMenuFlags::from_bits_truncate(value)
     }
@@ -609,7 +608,7 @@ impl FromGlib<gtk_sys::GtkPopoverMenuFlags> for PopoverMenuFlags {
 
 impl StaticType for PopoverMenuFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_popover_menu_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_popover_menu_flags_get_type()) }
     }
 }
 
@@ -621,13 +620,13 @@ impl<'a> FromValueOptional<'a> for PopoverMenuFlags {
 
 impl<'a> FromValue<'a> for PopoverMenuFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PopoverMenuFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -639,16 +638,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for ShortcutActionFlags {
-    type GlibType = gtk_sys::GtkShortcutActionFlags;
+    type GlibType = ffi::GtkShortcutActionFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkShortcutActionFlags {
+    fn to_glib(&self) -> ffi::GtkShortcutActionFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkShortcutActionFlags> for ShortcutActionFlags {
-    fn from_glib(value: gtk_sys::GtkShortcutActionFlags) -> ShortcutActionFlags {
+impl FromGlib<ffi::GtkShortcutActionFlags> for ShortcutActionFlags {
+    fn from_glib(value: ffi::GtkShortcutActionFlags) -> ShortcutActionFlags {
         skip_assert_initialized!();
         ShortcutActionFlags::from_bits_truncate(value)
     }
@@ -656,7 +655,7 @@ impl FromGlib<gtk_sys::GtkShortcutActionFlags> for ShortcutActionFlags {
 
 impl StaticType for ShortcutActionFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_shortcut_action_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_shortcut_action_flags_get_type()) }
     }
 }
 
@@ -668,13 +667,13 @@ impl<'a> FromValueOptional<'a> for ShortcutActionFlags {
 
 impl<'a> FromValue<'a> for ShortcutActionFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ShortcutActionFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -701,16 +700,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for StateFlags {
-    type GlibType = gtk_sys::GtkStateFlags;
+    type GlibType = ffi::GtkStateFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkStateFlags {
+    fn to_glib(&self) -> ffi::GtkStateFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkStateFlags> for StateFlags {
-    fn from_glib(value: gtk_sys::GtkStateFlags) -> StateFlags {
+impl FromGlib<ffi::GtkStateFlags> for StateFlags {
+    fn from_glib(value: ffi::GtkStateFlags) -> StateFlags {
         skip_assert_initialized!();
         StateFlags::from_bits_truncate(value)
     }
@@ -718,7 +717,7 @@ impl FromGlib<gtk_sys::GtkStateFlags> for StateFlags {
 
 impl StaticType for StateFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_state_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_state_flags_get_type()) }
     }
 }
 
@@ -730,13 +729,13 @@ impl<'a> FromValueOptional<'a> for StateFlags {
 
 impl<'a> FromValue<'a> for StateFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for StateFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -751,16 +750,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for StyleContextPrintFlags {
-    type GlibType = gtk_sys::GtkStyleContextPrintFlags;
+    type GlibType = ffi::GtkStyleContextPrintFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkStyleContextPrintFlags {
+    fn to_glib(&self) -> ffi::GtkStyleContextPrintFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
-    fn from_glib(value: gtk_sys::GtkStyleContextPrintFlags) -> StyleContextPrintFlags {
+impl FromGlib<ffi::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
+    fn from_glib(value: ffi::GtkStyleContextPrintFlags) -> StyleContextPrintFlags {
         skip_assert_initialized!();
         StyleContextPrintFlags::from_bits_truncate(value)
     }
@@ -768,7 +767,7 @@ impl FromGlib<gtk_sys::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
 
 impl StaticType for StyleContextPrintFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_style_context_print_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_style_context_print_flags_get_type()) }
     }
 }
 
@@ -780,13 +779,13 @@ impl<'a> FromValueOptional<'a> for StyleContextPrintFlags {
 
 impl<'a> FromValue<'a> for StyleContextPrintFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for StyleContextPrintFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -800,16 +799,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for TextSearchFlags {
-    type GlibType = gtk_sys::GtkTextSearchFlags;
+    type GlibType = ffi::GtkTextSearchFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkTextSearchFlags {
+    fn to_glib(&self) -> ffi::GtkTextSearchFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkTextSearchFlags> for TextSearchFlags {
-    fn from_glib(value: gtk_sys::GtkTextSearchFlags) -> TextSearchFlags {
+impl FromGlib<ffi::GtkTextSearchFlags> for TextSearchFlags {
+    fn from_glib(value: ffi::GtkTextSearchFlags) -> TextSearchFlags {
         skip_assert_initialized!();
         TextSearchFlags::from_bits_truncate(value)
     }
@@ -817,7 +816,7 @@ impl FromGlib<gtk_sys::GtkTextSearchFlags> for TextSearchFlags {
 
 impl StaticType for TextSearchFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_text_search_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_text_search_flags_get_type()) }
     }
 }
 
@@ -829,13 +828,13 @@ impl<'a> FromValueOptional<'a> for TextSearchFlags {
 
 impl<'a> FromValue<'a> for TextSearchFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextSearchFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
 
@@ -848,16 +847,16 @@ bitflags! {
 
 #[doc(hidden)]
 impl ToGlib for TreeModelFlags {
-    type GlibType = gtk_sys::GtkTreeModelFlags;
+    type GlibType = ffi::GtkTreeModelFlags;
 
-    fn to_glib(&self) -> gtk_sys::GtkTreeModelFlags {
+    fn to_glib(&self) -> ffi::GtkTreeModelFlags {
         self.bits()
     }
 }
 
 #[doc(hidden)]
-impl FromGlib<gtk_sys::GtkTreeModelFlags> for TreeModelFlags {
-    fn from_glib(value: gtk_sys::GtkTreeModelFlags) -> TreeModelFlags {
+impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
+    fn from_glib(value: ffi::GtkTreeModelFlags) -> TreeModelFlags {
         skip_assert_initialized!();
         TreeModelFlags::from_bits_truncate(value)
     }
@@ -865,7 +864,7 @@ impl FromGlib<gtk_sys::GtkTreeModelFlags> for TreeModelFlags {
 
 impl StaticType for TreeModelFlags {
     fn static_type() -> Type {
-        unsafe { from_glib(gtk_sys::gtk_tree_model_flags_get_type()) }
+        unsafe { from_glib(ffi::gtk_tree_model_flags_get_type()) }
     }
 }
 
@@ -877,12 +876,12 @@ impl<'a> FromValueOptional<'a> for TreeModelFlags {
 
 impl<'a> FromValue<'a> for TreeModelFlags {
     unsafe fn from_value(value: &Value) -> Self {
-        from_glib(gobject_sys::g_value_get_flags(value.to_glib_none().0))
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TreeModelFlags {
     unsafe fn set_value(value: &mut Value, this: &Self) {
-        gobject_sys::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }

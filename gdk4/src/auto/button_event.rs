@@ -2,22 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Event;
 
-glib_wrapper! {
-    pub struct ButtonEvent(Object<gdk_sys::GdkButtonEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct ButtonEvent(Object<ffi::GdkButtonEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_button_event_get_type(),
+        get_type => || ffi::gdk_button_event_get_type(),
     }
 }
 
 impl ButtonEvent {
     pub fn get_button(&self) -> u32 {
-        unsafe { gdk_sys::gdk_button_event_get_button(self.to_glib_none().0) }
+        unsafe { ffi::gdk_button_event_get_button(self.to_glib_none().0) }
     }
 }
 

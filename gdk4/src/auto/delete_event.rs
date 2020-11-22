@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Event;
 
-glib_wrapper! {
-    pub struct DeleteEvent(Object<gdk_sys::GdkDeleteEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct DeleteEvent(Object<ffi::GdkDeleteEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_delete_event_get_type(),
+        get_type => || ffi::gdk_delete_event_get_type(),
     }
 }
 

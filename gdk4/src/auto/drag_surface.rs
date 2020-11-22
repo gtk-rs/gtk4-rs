@@ -2,17 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Surface;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
-use Surface;
 
-glib_wrapper! {
-    pub struct DragSurface(Interface<gdk_sys::GdkDragSurface>) @requires Surface;
+glib::glib_wrapper! {
+    pub struct DragSurface(Interface<ffi::GdkDragSurface>) @requires Surface;
 
     match fn {
-        get_type => || gdk_sys::gdk_drag_surface_get_type(),
+        get_type => || ffi::gdk_drag_surface_get_type(),
     }
 }
 
@@ -25,7 +24,7 @@ pub trait DragSurfaceExt: 'static {
 impl<O: IsA<DragSurface>> DragSurfaceExt for O {
     fn present(&self, width: i32, height: i32) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_drag_surface_present(
+            from_glib(ffi::gdk_drag_surface_present(
                 self.as_ref().to_glib_none().0,
                 width,
                 height,

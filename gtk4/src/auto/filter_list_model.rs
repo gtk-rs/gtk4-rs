@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::Filter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,18 +10,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Filter;
 
-glib_wrapper! {
-    pub struct FilterListModel(Object<gtk_sys::GtkFilterListModel, gtk_sys::GtkFilterListModelClass>) @implements gio::ListModel;
+glib::glib_wrapper! {
+    pub struct FilterListModel(Object<ffi::GtkFilterListModel, ffi::GtkFilterListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_filter_list_model_get_type(),
+        get_type => || ffi::gtk_filter_list_model_get_type(),
     }
 }
 
@@ -32,7 +29,7 @@ impl FilterListModel {
     ) -> FilterListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_filter_list_model_new(
+            from_glib_full(ffi::gtk_filter_list_model_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
                 filter.map(|p| p.as_ref()).to_glib_full(),
             ))
@@ -115,7 +112,7 @@ pub trait FilterListModelExt: 'static {
 impl<O: IsA<FilterListModel>> FilterListModelExt for O {
     fn get_filter(&self) -> Option<Filter> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_filter_list_model_get_filter(
+            from_glib_none(ffi::gtk_filter_list_model_get_filter(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -123,7 +120,7 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn get_incremental(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_filter_list_model_get_incremental(
+            from_glib(ffi::gtk_filter_list_model_get_incremental(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -131,19 +128,19 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_filter_list_model_get_model(
+            from_glib_none(ffi::gtk_filter_list_model_get_model(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_pending(&self) -> u32 {
-        unsafe { gtk_sys::gtk_filter_list_model_get_pending(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_filter_list_model_get_pending(self.as_ref().to_glib_none().0) }
     }
 
     fn set_filter<P: IsA<Filter>>(&self, filter: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_filter_list_model_set_filter(
+            ffi::gtk_filter_list_model_set_filter(
                 self.as_ref().to_glib_none().0,
                 filter.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -152,7 +149,7 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn set_incremental(&self, incremental: bool) {
         unsafe {
-            gtk_sys::gtk_filter_list_model_set_incremental(
+            ffi::gtk_filter_list_model_set_incremental(
                 self.as_ref().to_glib_none().0,
                 incremental.to_glib(),
             );
@@ -161,7 +158,7 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_filter_list_model_set_model(
+            ffi::gtk_filter_list_model_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -170,9 +167,9 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn connect_property_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFilterListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFilterListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FilterListModel>,
         {
@@ -194,9 +191,9 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn connect_property_incremental_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_incremental_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFilterListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFilterListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FilterListModel>,
         {
@@ -218,9 +215,9 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFilterListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFilterListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FilterListModel>,
         {
@@ -242,9 +239,9 @@ impl<O: IsA<FilterListModel>> FilterListModelExt for O {
 
     fn connect_property_pending_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pending_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFilterListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFilterListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FilterListModel>,
         {

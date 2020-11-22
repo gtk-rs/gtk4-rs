@@ -2,30 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Border;
+use crate::StateFlags;
+use crate::StyleContextPrintFlags;
+use crate::StyleProvider;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Border;
-use StateFlags;
-use StyleContextPrintFlags;
-use StyleProvider;
 
-glib_wrapper! {
-    pub struct StyleContext(Object<gtk_sys::GtkStyleContext, gtk_sys::GtkStyleContextClass>);
+glib::glib_wrapper! {
+    pub struct StyleContext(Object<ffi::GtkStyleContext, ffi::GtkStyleContextClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_style_context_get_type(),
+        get_type => || ffi::gtk_style_context_get_type(),
     }
 }
 
@@ -37,7 +33,7 @@ impl StyleContext {
     ) {
         skip_assert_initialized!();
         unsafe {
-            gtk_sys::gtk_style_context_add_provider_for_display(
+            ffi::gtk_style_context_add_provider_for_display(
                 display.to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
                 priority,
@@ -51,7 +47,7 @@ impl StyleContext {
     ) {
         skip_assert_initialized!();
         unsafe {
-            gtk_sys::gtk_style_context_remove_provider_for_display(
+            ffi::gtk_style_context_remove_provider_for_display(
                 display.to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
             );
@@ -126,7 +122,7 @@ pub trait StyleContextExt: 'static {
 
     fn set_state(&self, flags: StateFlags);
 
-    fn to_string(&self, flags: StyleContextPrintFlags) -> GString;
+    fn to_string(&self, flags: StyleContextPrintFlags) -> glib::GString;
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -134,7 +130,7 @@ pub trait StyleContextExt: 'static {
 impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn add_class(&self, class_name: &str) {
         unsafe {
-            gtk_sys::gtk_style_context_add_class(
+            ffi::gtk_style_context_add_class(
                 self.as_ref().to_glib_none().0,
                 class_name.to_glib_none().0,
             );
@@ -143,7 +139,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32) {
         unsafe {
-            gtk_sys::gtk_style_context_add_provider(
+            ffi::gtk_style_context_add_provider(
                 self.as_ref().to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
                 priority,
@@ -154,7 +150,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_border(&self) -> Border {
         unsafe {
             let mut border = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_border(
+            ffi::gtk_style_context_get_border(
                 self.as_ref().to_glib_none().0,
                 border.to_glib_none_mut().0,
             );
@@ -165,7 +161,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_color(&self) -> gdk::RGBA {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
-            gtk_sys::gtk_style_context_get_color(
+            ffi::gtk_style_context_get_color(
                 self.as_ref().to_glib_none().0,
                 color.to_glib_none_mut().0,
             );
@@ -175,7 +171,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn get_display(&self) -> Option<gdk::Display> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_style_context_get_display(
+            from_glib_none(ffi::gtk_style_context_get_display(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -184,7 +180,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_margin(&self) -> Border {
         unsafe {
             let mut margin = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_margin(
+            ffi::gtk_style_context_get_margin(
                 self.as_ref().to_glib_none().0,
                 margin.to_glib_none_mut().0,
             );
@@ -195,7 +191,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn get_padding(&self) -> Border {
         unsafe {
             let mut padding = Border::uninitialized();
-            gtk_sys::gtk_style_context_get_padding(
+            ffi::gtk_style_context_get_padding(
                 self.as_ref().to_glib_none().0,
                 padding.to_glib_none_mut().0,
             );
@@ -204,12 +200,12 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     }
 
     fn get_scale(&self) -> i32 {
-        unsafe { gtk_sys::gtk_style_context_get_scale(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_style_context_get_scale(self.as_ref().to_glib_none().0) }
     }
 
     fn get_state(&self) -> StateFlags {
         unsafe {
-            from_glib(gtk_sys::gtk_style_context_get_state(
+            from_glib(ffi::gtk_style_context_get_state(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -217,7 +213,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn has_class(&self, class_name: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_style_context_has_class(
+            from_glib(ffi::gtk_style_context_has_class(
                 self.as_ref().to_glib_none().0,
                 class_name.to_glib_none().0,
             ))
@@ -227,7 +223,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
     fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA> {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_style_context_lookup_color(
+            let ret = from_glib(ffi::gtk_style_context_lookup_color(
                 self.as_ref().to_glib_none().0,
                 color_name.to_glib_none().0,
                 color.to_glib_none_mut().0,
@@ -242,7 +238,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn remove_class(&self, class_name: &str) {
         unsafe {
-            gtk_sys::gtk_style_context_remove_class(
+            ffi::gtk_style_context_remove_class(
                 self.as_ref().to_glib_none().0,
                 class_name.to_glib_none().0,
             );
@@ -251,7 +247,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn remove_provider<P: IsA<StyleProvider>>(&self, provider: &P) {
         unsafe {
-            gtk_sys::gtk_style_context_remove_provider(
+            ffi::gtk_style_context_remove_provider(
                 self.as_ref().to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
             );
@@ -260,19 +256,19 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn restore(&self) {
         unsafe {
-            gtk_sys::gtk_style_context_restore(self.as_ref().to_glib_none().0);
+            ffi::gtk_style_context_restore(self.as_ref().to_glib_none().0);
         }
     }
 
     fn save(&self) {
         unsafe {
-            gtk_sys::gtk_style_context_save(self.as_ref().to_glib_none().0);
+            ffi::gtk_style_context_save(self.as_ref().to_glib_none().0);
         }
     }
 
     fn set_display(&self, display: &gdk::Display) {
         unsafe {
-            gtk_sys::gtk_style_context_set_display(
+            ffi::gtk_style_context_set_display(
                 self.as_ref().to_glib_none().0,
                 display.to_glib_none().0,
             );
@@ -281,19 +277,19 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn set_scale(&self, scale: i32) {
         unsafe {
-            gtk_sys::gtk_style_context_set_scale(self.as_ref().to_glib_none().0, scale);
+            ffi::gtk_style_context_set_scale(self.as_ref().to_glib_none().0, scale);
         }
     }
 
     fn set_state(&self, flags: StateFlags) {
         unsafe {
-            gtk_sys::gtk_style_context_set_state(self.as_ref().to_glib_none().0, flags.to_glib());
+            ffi::gtk_style_context_set_state(self.as_ref().to_glib_none().0, flags.to_glib());
         }
     }
 
-    fn to_string(&self, flags: StyleContextPrintFlags) -> GString {
+    fn to_string(&self, flags: StyleContextPrintFlags) -> glib::GString {
         unsafe {
-            from_glib_full(gtk_sys::gtk_style_context_to_string(
+            from_glib_full(ffi::gtk_style_context_to_string(
                 self.as_ref().to_glib_none().0,
                 flags.to_glib(),
             ))
@@ -302,9 +298,9 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStyleContext,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStyleContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StyleContext>,
         {

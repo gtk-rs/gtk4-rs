@@ -42,6 +42,7 @@ license = "MIT"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
+edition = "2018"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.gtk4]

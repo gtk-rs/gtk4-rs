@@ -2,24 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Renderer;
 use glib::object::Cast;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use Renderer;
 
-glib_wrapper! {
-    pub struct VulkanRenderer(Object<gsk_sys::GskVulkanRenderer, gsk_sys::GskVulkanRendererClass>) @extends Renderer;
+glib::glib_wrapper! {
+    pub struct VulkanRenderer(Object<ffi::GskVulkanRenderer, ffi::GskVulkanRendererClass>) @extends Renderer;
 
     match fn {
-        get_type => || gsk_sys::gsk_vulkan_renderer_get_type(),
+        get_type => || ffi::gsk_vulkan_renderer_get_type(),
     }
 }
 
 impl VulkanRenderer {
     pub fn new() -> VulkanRenderer {
         assert_initialized_main_thread!();
-        unsafe { Renderer::from_glib_full(gsk_sys::gsk_vulkan_renderer_new()).unsafe_cast() }
+        unsafe { Renderer::from_glib_full(ffi::gsk_vulkan_renderer_new()).unsafe_cast() }
     }
 }
 

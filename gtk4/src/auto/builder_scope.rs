@@ -4,14 +4,13 @@
 
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct BuilderScope(Interface<gtk_sys::GtkBuilderScope>);
+glib::glib_wrapper! {
+    pub struct BuilderScope(Interface<ffi::GtkBuilderScope>);
 
     match fn {
-        get_type => || gtk_sys::gtk_builder_scope_get_type(),
+        get_type => || ffi::gtk_builder_scope_get_type(),
     }
 }
 

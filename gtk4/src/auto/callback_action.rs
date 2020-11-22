@@ -2,20 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib;
+use crate::ShortcutAction;
+use crate::Widget;
 use glib::object::Cast;
 use glib::translate::*;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
-use ShortcutAction;
-use Widget;
 
-glib_wrapper! {
-    pub struct CallbackAction(Object<gtk_sys::GtkCallbackAction, gtk_sys::GtkCallbackActionClass>) @extends ShortcutAction;
+glib::glib_wrapper! {
+    pub struct CallbackAction(Object<ffi::GtkCallbackAction, ffi::GtkCallbackActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || gtk_sys::gtk_callback_action_get_type(),
+        get_type => || ffi::gtk_callback_action_get_type(),
     }
 }
 
@@ -27,10 +25,10 @@ impl CallbackAction {
         let callback_data: Box_<Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>>> =
             Box_::new(callback);
         unsafe extern "C" fn callback_func(
-            widget: *mut gtk_sys::GtkWidget,
-            args: *mut glib_sys::GVariant,
-            user_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            widget: *mut ffi::GtkWidget,
+            args: *mut glib::ffi::GVariant,
+            user_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let widget = from_glib_borrow(widget);
             let args = from_glib_borrow(args);
             let callback: &Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>> =
@@ -47,7 +45,7 @@ impl CallbackAction {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>>> =
                 Box_::from_raw(data as *mut _);
         }
@@ -55,7 +53,7 @@ impl CallbackAction {
         let super_callback0: Box_<Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>>> =
             callback_data;
         unsafe {
-            ShortcutAction::from_glib_full(gtk_sys::gtk_callback_action_new(
+            ShortcutAction::from_glib_full(ffi::gtk_callback_action_new(
                 callback,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call2,

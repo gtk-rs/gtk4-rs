@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Event;
 
-glib_wrapper! {
-    pub struct ProximityEvent(Object<gdk_sys::GdkProximityEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct ProximityEvent(Object<ffi::GdkProximityEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_proximity_event_get_type(),
+        get_type => || ffi::gdk_proximity_event_get_type(),
     }
 }
 

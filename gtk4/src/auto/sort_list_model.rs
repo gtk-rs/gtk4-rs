@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,18 +10,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Sorter;
 
-glib_wrapper! {
-    pub struct SortListModel(Object<gtk_sys::GtkSortListModel, gtk_sys::GtkSortListModelClass>) @implements gio::ListModel;
+glib::glib_wrapper! {
+    pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_sort_list_model_get_type(),
+        get_type => || ffi::gtk_sort_list_model_get_type(),
     }
 }
 
@@ -32,7 +29,7 @@ impl SortListModel {
     ) -> SortListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_sort_list_model_new(
+            from_glib_full(ffi::gtk_sort_list_model_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
@@ -115,7 +112,7 @@ pub trait SortListModelExt: 'static {
 impl<O: IsA<SortListModel>> SortListModelExt for O {
     fn get_incremental(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_sort_list_model_get_incremental(
+            from_glib(ffi::gtk_sort_list_model_get_incremental(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -123,19 +120,19 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_sort_list_model_get_model(
+            from_glib_none(ffi::gtk_sort_list_model_get_model(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_pending(&self) -> u32 {
-        unsafe { gtk_sys::gtk_sort_list_model_get_pending(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_sort_list_model_get_pending(self.as_ref().to_glib_none().0) }
     }
 
     fn get_sorter(&self) -> Option<Sorter> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_sort_list_model_get_sorter(
+            from_glib_none(ffi::gtk_sort_list_model_get_sorter(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -143,7 +140,7 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn set_incremental(&self, incremental: bool) {
         unsafe {
-            gtk_sys::gtk_sort_list_model_set_incremental(
+            ffi::gtk_sort_list_model_set_incremental(
                 self.as_ref().to_glib_none().0,
                 incremental.to_glib(),
             );
@@ -152,7 +149,7 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_sort_list_model_set_model(
+            ffi::gtk_sort_list_model_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -161,7 +158,7 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_sort_list_model_set_sorter(
+            ffi::gtk_sort_list_model_set_sorter(
                 self.as_ref().to_glib_none().0,
                 sorter.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -170,9 +167,9 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn connect_property_incremental_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_incremental_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSortListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<SortListModel>,
         {
@@ -194,9 +191,9 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSortListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<SortListModel>,
         {
@@ -218,9 +215,9 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn connect_property_pending_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pending_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSortListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<SortListModel>,
         {
@@ -242,9 +239,9 @@ impl<O: IsA<SortListModel>> SortListModelExt for O {
 
     fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkSortListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<SortListModel>,
         {

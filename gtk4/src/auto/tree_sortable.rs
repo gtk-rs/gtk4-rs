@@ -2,23 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::TreeModel;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use TreeModel;
 
-glib_wrapper! {
-    pub struct TreeSortable(Interface<gtk_sys::GtkTreeSortable>) @requires TreeModel;
+glib::glib_wrapper! {
+    pub struct TreeSortable(Interface<ffi::GtkTreeSortable>) @requires TreeModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_tree_sortable_get_type(),
+        get_type => || ffi::gtk_tree_sortable_get_type(),
     }
 }
 
@@ -35,7 +33,7 @@ pub trait TreeSortableExt: 'static {
 impl<O: IsA<TreeSortable>> TreeSortableExt for O {
     fn has_default_sort_func(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_tree_sortable_has_default_sort_func(
+            from_glib(ffi::gtk_tree_sortable_has_default_sort_func(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -43,14 +41,14 @@ impl<O: IsA<TreeSortable>> TreeSortableExt for O {
 
     fn sort_column_changed(&self) {
         unsafe {
-            gtk_sys::gtk_tree_sortable_sort_column_changed(self.as_ref().to_glib_none().0);
+            ffi::gtk_tree_sortable_sort_column_changed(self.as_ref().to_glib_none().0);
         }
     }
 
     fn connect_sort_column_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn sort_column_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTreeSortable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTreeSortable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TreeSortable>,
         {

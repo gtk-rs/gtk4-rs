@@ -10,6 +10,7 @@ version = "0.1.0"
 description = "Rust bindings for the GSK 4 library"
 repository = "https://github.com/gtk-rs/gsk4"
 build = "build.rs"
+edition = "2018"
 exclude = [
     "gir-files/*",
 ]
@@ -18,9 +19,9 @@ exclude = [
 name = "gsk4"
 
 [features]
-dox = ["gsk4-sys/dox", "gdk4/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/dox"]
-purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/purge-lgpl-docs", "graphene/purge-lgpl-docs", "cairo-rs/purge-lgpl-docs"]
-embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk4/embed-lgpl-docs", "graphene/embed-lgpl-docs", "cairo-rs/embed-lgpl-docs"]
+dox = ["ffi/dox", "gdk/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/dox"]
+purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "graphene/purge-lgpl-docs", "cairo-rs/purge-lgpl-docs"]
+embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "graphene/embed-lgpl-docs", "cairo-rs/embed-lgpl-docs"]
 vulkan = []
 broadway = []
 
@@ -35,15 +36,10 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 [dependencies]
 libc = "0.2"
 bitflags = "1.0"
-glib-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-gdk4-sys = { path = "../gdk4/sys" }
-graphene-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-gsk4-sys = { path = "./sys" }
-gobject-sys = { git = "https://github.com/gtk-rs/gtk-rs" }
-cairo-sys-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
+ffi = { package = "gsk4-sys", path = "./sys" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 glib = { git = "https://github.com/gtk-rs/gtk-rs" }
-gdk4 = { path = "../gdk4" }
+gdk = { package = "gdk4", path = "../gdk4" }
 graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs" }
 pango = { git = "https://github.com/gtk-rs/gtk-rs" }
 

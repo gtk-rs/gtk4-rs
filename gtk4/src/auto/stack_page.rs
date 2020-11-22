@@ -2,102 +2,95 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Widget;
 
-glib_wrapper! {
-    pub struct StackPage(Object<gtk_sys::GtkStackPage>) @implements Accessible;
+glib::glib_wrapper! {
+    pub struct StackPage(Object<ffi::GtkStackPage>) @implements Accessible;
 
     match fn {
-        get_type => || gtk_sys::gtk_stack_page_get_type(),
+        get_type => || ffi::gtk_stack_page_get_type(),
     }
 }
 
 impl StackPage {
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn get_icon_name(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
+    pub fn get_icon_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
     }
 
-    pub fn get_name(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_name(self.to_glib_none().0)) }
+    pub fn get_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_stack_page_get_name(self.to_glib_none().0)) }
     }
 
     pub fn get_needs_attention(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_stack_page_get_needs_attention(
+            from_glib(ffi::gtk_stack_page_get_needs_attention(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_title(&self) -> Option<GString> {
-        unsafe { from_glib_none(gtk_sys::gtk_stack_page_get_title(self.to_glib_none().0)) }
+    pub fn get_title(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_stack_page_get_title(self.to_glib_none().0)) }
     }
 
     pub fn get_use_underline(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_stack_page_get_use_underline(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_stack_page_get_use_underline(self.to_glib_none().0)) }
     }
 
     pub fn get_visible(&self) -> bool {
-        unsafe { from_glib(gtk_sys::gtk_stack_page_get_visible(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_stack_page_get_visible(self.to_glib_none().0)) }
     }
 
     pub fn set_icon_name(&self, setting: &str) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_icon_name(self.to_glib_none().0, setting.to_glib_none().0);
+            ffi::gtk_stack_page_set_icon_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
     pub fn set_name(&self, setting: &str) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_name(self.to_glib_none().0, setting.to_glib_none().0);
+            ffi::gtk_stack_page_set_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
     pub fn set_needs_attention(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.to_glib());
         }
     }
 
     pub fn set_title(&self, setting: &str) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_title(self.to_glib_none().0, setting.to_glib_none().0);
+            ffi::gtk_stack_page_set_title(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
     pub fn set_use_underline(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.to_glib());
         }
     }
 
     pub fn set_visible(&self, visible: bool) {
         unsafe {
-            gtk_sys::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());
         }
     }
 
@@ -106,9 +99,9 @@ impl StackPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StackPage) + 'static>(
-            this: *mut gtk_sys::GtkStackPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStackPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -131,9 +124,9 @@ impl StackPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_needs_attention_trampoline<F: Fn(&StackPage) + 'static>(
-            this: *mut gtk_sys::GtkStackPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStackPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -156,9 +149,9 @@ impl StackPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StackPage) + 'static>(
-            this: *mut gtk_sys::GtkStackPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStackPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -181,9 +174,9 @@ impl StackPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&StackPage) + 'static>(
-            this: *mut gtk_sys::GtkStackPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStackPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -206,9 +199,9 @@ impl StackPage {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<F: Fn(&StackPage) + 'static>(
-            this: *mut gtk_sys::GtkStackPage,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStackPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

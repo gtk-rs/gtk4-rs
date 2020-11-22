@@ -2,66 +2,60 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
-use gio;
-use gio_sys;
-use glib;
+use crate::ContentFormats;
+use crate::Device;
+use crate::Display;
+use crate::Drag;
+use crate::DragAction;
+use crate::Surface;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::pin::Pin;
 use std::ptr;
-use ContentFormats;
-use Device;
-use Display;
-use Drag;
-use DragAction;
-use Surface;
 
-glib_wrapper! {
-    pub struct Drop(Object<gdk_sys::GdkDrop>);
+glib::glib_wrapper! {
+    pub struct Drop(Object<ffi::GdkDrop>);
 
     match fn {
-        get_type => || gdk_sys::gdk_drop_get_type(),
+        get_type => || ffi::gdk_drop_get_type(),
     }
 }
 
 impl Drop {
     pub fn finish(&self, action: DragAction) {
         unsafe {
-            gdk_sys::gdk_drop_finish(self.to_glib_none().0, action.to_glib());
+            ffi::gdk_drop_finish(self.to_glib_none().0, action.to_glib());
         }
     }
 
     pub fn get_actions(&self) -> DragAction {
-        unsafe { from_glib(gdk_sys::gdk_drop_get_actions(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_drop_get_actions(self.to_glib_none().0)) }
     }
 
     pub fn get_device(&self) -> Option<Device> {
-        unsafe { from_glib_none(gdk_sys::gdk_drop_get_device(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
     pub fn get_display(&self) -> Option<Display> {
-        unsafe { from_glib_none(gdk_sys::gdk_drop_get_display(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
     pub fn get_drag(&self) -> Option<Drag> {
-        unsafe { from_glib_none(gdk_sys::gdk_drop_get_drag(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_drop_get_drag(self.to_glib_none().0)) }
     }
 
     pub fn get_formats(&self) -> Option<ContentFormats> {
-        unsafe { from_glib_none(gdk_sys::gdk_drop_get_formats(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
     pub fn get_surface(&self) -> Option<Surface> {
-        unsafe { from_glib_none(gdk_sys::gdk_drop_get_surface(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
 
     pub fn read_value_async<
@@ -78,13 +72,12 @@ impl Drop {
         unsafe extern "C" fn read_value_async_trampoline<
             Q: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
         >(
-            _source_object: *mut gobject_sys::GObject,
-            res: *mut gio_sys::GAsyncResult,
-            user_data: glib_sys::gpointer,
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
         ) {
             let mut error = ptr::null_mut();
-            let ret =
-                gdk_sys::gdk_drop_read_value_finish(_source_object as *mut _, res, &mut error);
+            let ret = ffi::gdk_drop_read_value_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(from_glib_none(ret))
             } else {
@@ -95,7 +88,7 @@ impl Drop {
         }
         let callback = read_value_async_trampoline::<Q>;
         unsafe {
-            gdk_sys::gdk_drop_read_value_async(
+            ffi::gdk_drop_read_value_async(
                 self.to_glib_none().0,
                 type_.to_glib(),
                 io_priority.to_glib(),
@@ -124,7 +117,7 @@ impl Drop {
 
     pub fn status(&self, actions: DragAction, preferred: DragAction) {
         unsafe {
-            gdk_sys::gdk_drop_status(
+            ffi::gdk_drop_status(
                 self.to_glib_none().0,
                 actions.to_glib(),
                 preferred.to_glib(),
@@ -134,9 +127,9 @@ impl Drop {
 
     pub fn connect_property_display_notify<F: Fn(&Drop) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drop) + 'static>(
-            this: *mut gdk_sys::GdkDrop,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkDrop,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

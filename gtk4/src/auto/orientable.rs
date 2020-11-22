@@ -2,23 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Orientation;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Orientation;
 
-glib_wrapper! {
-    pub struct Orientable(Interface<gtk_sys::GtkOrientable>);
+glib::glib_wrapper! {
+    pub struct Orientable(Interface<ffi::GtkOrientable>);
 
     match fn {
-        get_type => || gtk_sys::gtk_orientable_get_type(),
+        get_type => || ffi::gtk_orientable_get_type(),
     }
 }
 
@@ -35,7 +33,7 @@ pub trait OrientableExt: 'static {
 impl<O: IsA<Orientable>> OrientableExt for O {
     fn get_orientation(&self) -> Orientation {
         unsafe {
-            from_glib(gtk_sys::gtk_orientable_get_orientation(
+            from_glib(ffi::gtk_orientable_get_orientation(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -43,7 +41,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
 
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
-            gtk_sys::gtk_orientable_set_orientation(
+            ffi::gtk_orientable_set_orientation(
                 self.as_ref().to_glib_none().0,
                 orientation.to_glib(),
             );
@@ -52,9 +50,9 @@ impl<O: IsA<Orientable>> OrientableExt for O {
 
     fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkOrientable,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkOrientable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<Orientable>,
         {

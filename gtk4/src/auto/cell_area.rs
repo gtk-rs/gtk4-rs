@@ -2,41 +2,35 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
+use crate::Buildable;
+use crate::CellAreaContext;
+use crate::CellEditable;
+use crate::CellLayout;
+use crate::CellRenderer;
+use crate::CellRendererState;
+use crate::DirectionType;
+use crate::Orientation;
+use crate::SizeRequestMode;
+use crate::Snapshot;
+use crate::TreeIter;
+use crate::TreeModel;
+use crate::TreePath;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use Buildable;
-use CellAreaContext;
-use CellEditable;
-use CellLayout;
-use CellRenderer;
-use CellRendererState;
-use DirectionType;
-use Orientation;
-use SizeRequestMode;
-use Snapshot;
-use TreeIter;
-use TreeModel;
-use TreePath;
-use Widget;
 
-glib_wrapper! {
-    pub struct CellArea(Object<gtk_sys::GtkCellArea, gtk_sys::GtkCellAreaClass>) @implements Buildable, CellLayout;
+glib::glib_wrapper! {
+    pub struct CellArea(Object<ffi::GtkCellArea, ffi::GtkCellAreaClass>) @implements Buildable, CellLayout;
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_area_get_type(),
+        get_type => || ffi::gtk_cell_area_get_type(),
     }
 }
 
@@ -140,7 +134,7 @@ pub trait CellAreaExt: 'static {
         y: i32,
     ) -> (CellRenderer, gdk::Rectangle);
 
-    fn get_current_path_string(&self) -> Option<GString>;
+    fn get_current_path_string(&self) -> Option<glib::GString>;
 
     fn get_edit_widget(&self) -> Option<CellEditable>;
 
@@ -266,7 +260,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         edit_only: bool,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_activate(
+            from_glib(ffi::gtk_cell_area_activate(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -286,7 +280,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         flags: CellRendererState,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_activate_cell(
+            from_glib(ffi::gtk_cell_area_activate_cell(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
@@ -299,7 +293,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn add<P: IsA<CellRenderer>>(&self, renderer: &P) {
         unsafe {
-            gtk_sys::gtk_cell_area_add(
+            ffi::gtk_cell_area_add(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             );
@@ -312,7 +306,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         sibling: &Q,
     ) {
         unsafe {
-            gtk_sys::gtk_cell_area_add_focus_sibling(
+            ffi::gtk_cell_area_add_focus_sibling(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 sibling.as_ref().to_glib_none().0,
@@ -321,7 +315,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     //fn add_with_properties<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_area_add_with_properties() }
+    //    unsafe { TODO: call ffi:gtk_cell_area_add_with_properties() }
     //}
 
     fn apply_attributes<P: IsA<TreeModel>>(
@@ -332,7 +326,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         is_expanded: bool,
     ) {
         unsafe {
-            gtk_sys::gtk_cell_area_apply_attributes(
+            ffi::gtk_cell_area_apply_attributes(
                 self.as_ref().to_glib_none().0,
                 tree_model.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
@@ -344,7 +338,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn attribute_connect<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str, column: i32) {
         unsafe {
-            gtk_sys::gtk_cell_area_attribute_connect(
+            ffi::gtk_cell_area_attribute_connect(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 attribute.to_glib_none().0,
@@ -355,7 +349,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn attribute_disconnect<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str) {
         unsafe {
-            gtk_sys::gtk_cell_area_attribute_disconnect(
+            ffi::gtk_cell_area_attribute_disconnect(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 attribute.to_glib_none().0,
@@ -365,7 +359,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn attribute_get_column<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str) -> i32 {
         unsafe {
-            gtk_sys::gtk_cell_area_attribute_get_column(
+            ffi::gtk_cell_area_attribute_get_column(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 attribute.to_glib_none().0,
@@ -374,24 +368,24 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_get() }
+    //    unsafe { TODO: call ffi:gtk_cell_area_cell_get() }
     //}
 
     //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_get_valist() }
+    //    unsafe { TODO: call ffi:gtk_cell_area_cell_get_valist() }
     //}
 
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_set() }
+    //    unsafe { TODO: call ffi:gtk_cell_area_cell_set() }
     //}
 
     //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_area_cell_set_valist() }
+    //    unsafe { TODO: call ffi:gtk_cell_area_cell_set_valist() }
     //}
 
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_cell_area_copy_context(
+            from_glib_full(ffi::gtk_cell_area_copy_context(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
             ))
@@ -400,7 +394,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn create_context(&self) -> Option<CellAreaContext> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_cell_area_create_context(
+            from_glib_full(ffi::gtk_cell_area_create_context(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -415,7 +409,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         flags: CellRendererState,
     ) -> i32 {
         unsafe {
-            gtk_sys::gtk_cell_area_event(
+            ffi::gtk_cell_area_event(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -428,7 +422,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn focus(&self, direction: DirectionType) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_focus(
+            from_glib(ffi::gtk_cell_area_focus(
                 self.as_ref().to_glib_none().0,
                 direction.to_glib(),
             ))
@@ -438,9 +432,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P) {
         let callback_data: P = callback;
         unsafe extern "C" fn callback_func<P: FnMut(&CellRenderer) -> bool>(
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            renderer: *mut ffi::GtkCellRenderer,
+            data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let renderer = from_glib_borrow(renderer);
             let callback: *mut P = data as *const _ as usize as *mut P;
             let res = (*callback)(&renderer);
@@ -449,7 +443,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         let callback = Some(callback_func::<P> as _);
         let super_callback0: &P = &callback_data;
         unsafe {
-            gtk_sys::gtk_cell_area_foreach(
+            ffi::gtk_cell_area_foreach(
                 self.as_ref().to_glib_none().0,
                 callback,
                 super_callback0 as *const _ as usize as *mut _,
@@ -475,11 +469,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             Q: IsA<Widget>,
             R: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool,
         >(
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            cell_area: *const gdk_sys::GdkRectangle,
-            cell_background: *const gdk_sys::GdkRectangle,
-            data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            renderer: *mut ffi::GtkCellRenderer,
+            cell_area: *const gdk::ffi::GdkRectangle,
+            cell_background: *const gdk::ffi::GdkRectangle,
+            data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let renderer = from_glib_borrow(renderer);
             let cell_area = from_glib_borrow(cell_area);
             let cell_background = from_glib_borrow(cell_background);
@@ -490,7 +484,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         let callback = Some(callback_func::<P, Q, R> as _);
         let super_callback0: &R = &callback_data;
         unsafe {
-            gtk_sys::gtk_cell_area_foreach_alloc(
+            ffi::gtk_cell_area_foreach_alloc(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -511,7 +505,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut allocation = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_area_get_cell_allocation(
+            ffi::gtk_cell_area_get_cell_allocation(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -533,7 +527,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     ) -> (CellRenderer, gdk::Rectangle) {
         unsafe {
             let mut alloc_area = gdk::Rectangle::uninitialized();
-            let ret = from_glib_none(gtk_sys::gtk_cell_area_get_cell_at_position(
+            let ret = from_glib_none(ffi::gtk_cell_area_get_cell_at_position(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -546,9 +540,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_current_path_string(&self) -> Option<GString> {
+    fn get_current_path_string(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_area_get_current_path_string(
+            from_glib_none(ffi::gtk_cell_area_get_current_path_string(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -556,7 +550,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_edit_widget(&self) -> Option<CellEditable> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_area_get_edit_widget(
+            from_glib_none(ffi::gtk_cell_area_get_edit_widget(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -564,7 +558,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_edited_cell(&self) -> Option<CellRenderer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_area_get_edited_cell(
+            from_glib_none(ffi::gtk_cell_area_get_edited_cell(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -572,7 +566,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_focus_cell(&self) -> Option<CellRenderer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_area_get_focus_cell(
+            from_glib_none(ffi::gtk_cell_area_get_focus_cell(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -580,7 +574,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_area_get_focus_from_sibling(
+            from_glib_none(ffi::gtk_cell_area_get_focus_from_sibling(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             ))
@@ -589,7 +583,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(gtk_sys::gtk_cell_area_get_focus_siblings(
+            FromGlibPtrContainer::from_glib_none(ffi::gtk_cell_area_get_focus_siblings(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             ))
@@ -604,7 +598,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_area_get_preferred_height(
+            ffi::gtk_cell_area_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -626,7 +620,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_area_get_preferred_height_for_width(
+            ffi::gtk_cell_area_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -648,7 +642,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_area_get_preferred_width(
+            ffi::gtk_cell_area_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -670,7 +664,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_area_get_preferred_width_for_height(
+            ffi::gtk_cell_area_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -686,7 +680,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn get_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_get_request_mode(
+            from_glib(ffi::gtk_cell_area_get_request_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -694,7 +688,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn has_renderer<P: IsA<CellRenderer>>(&self, renderer: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_has_renderer(
+            from_glib(ffi::gtk_cell_area_has_renderer(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             ))
@@ -708,7 +702,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     ) -> gdk::Rectangle {
         unsafe {
             let mut inner_area = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_cell_area_inner_cell_area(
+            ffi::gtk_cell_area_inner_cell_area(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
@@ -720,7 +714,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn is_activatable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_is_activatable(
+            from_glib(ffi::gtk_cell_area_is_activatable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -732,7 +726,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         sibling: &Q,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_cell_area_is_focus_sibling(
+            from_glib(ffi::gtk_cell_area_is_focus_sibling(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 sibling.as_ref().to_glib_none().0,
@@ -742,7 +736,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn remove<P: IsA<CellRenderer>>(&self, renderer: &P) {
         unsafe {
-            gtk_sys::gtk_cell_area_remove(
+            ffi::gtk_cell_area_remove(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             );
@@ -755,7 +749,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         sibling: &Q,
     ) {
         unsafe {
-            gtk_sys::gtk_cell_area_remove_focus_sibling(
+            ffi::gtk_cell_area_remove_focus_sibling(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 sibling.as_ref().to_glib_none().0,
@@ -773,7 +767,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_cell_area_request_renderer(
+            ffi::gtk_cell_area_request_renderer(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 orientation.to_glib(),
@@ -790,7 +784,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn set_focus_cell<P: IsA<CellRenderer>>(&self, renderer: &P) {
         unsafe {
-            gtk_sys::gtk_cell_area_set_focus_cell(
+            ffi::gtk_cell_area_set_focus_cell(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
             );
@@ -808,7 +802,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         paint_focus: bool,
     ) {
         unsafe {
-            gtk_sys::gtk_cell_area_snapshot(
+            ffi::gtk_cell_area_snapshot(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -823,7 +817,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
-            gtk_sys::gtk_cell_area_stop_editing(self.as_ref().to_glib_none().0, canceled.to_glib());
+            ffi::gtk_cell_area_stop_editing(self.as_ref().to_glib_none().0, canceled.to_glib());
         }
     }
 
@@ -837,17 +831,17 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P,
             F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellArea,
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            editable: *mut gtk_sys::GtkCellEditable,
-            cell_area: *mut gdk_sys::GdkRectangle,
+            this: *mut ffi::GtkCellArea,
+            renderer: *mut ffi::GtkCellRenderer,
+            editable: *mut ffi::GtkCellEditable,
+            cell_area: *mut gdk::ffi::GdkRectangle,
             path: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
@@ -877,12 +871,12 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P,
             F: Fn(&P, &TreeModel, &TreeIter, bool, bool) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellArea,
-            model: *mut gtk_sys::GtkTreeModel,
-            iter: *mut gtk_sys::GtkTreeIter,
-            is_expander: glib_sys::gboolean,
-            is_expanded: glib_sys::gboolean,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellArea,
+            model: *mut ffi::GtkTreeModel,
+            iter: *mut ffi::GtkTreeIter,
+            is_expander: glib::ffi::gboolean,
+            is_expanded: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
@@ -916,15 +910,15 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P,
             F: Fn(&P, &CellRenderer, TreePath) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellArea,
-            renderer: *mut gtk_sys::GtkCellRenderer,
+            this: *mut ffi::GtkCellArea,
+            renderer: *mut ffi::GtkCellRenderer,
             path: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
             let f: &F = &*(f as *const F);
-            let path = from_glib_full(gtk_sys::gtk_tree_path_new_from_string(path));
+            let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(renderer),
@@ -952,10 +946,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             P,
             F: Fn(&P, &CellRenderer, &CellEditable) + 'static,
         >(
-            this: *mut gtk_sys::GtkCellArea,
-            renderer: *mut gtk_sys::GtkCellRenderer,
-            editable: *mut gtk_sys::GtkCellEditable,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellArea,
+            renderer: *mut ffi::GtkCellRenderer,
+            editable: *mut ffi::GtkCellEditable,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
@@ -981,9 +975,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn connect_property_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edit_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellArea,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellArea,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
@@ -1005,9 +999,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn connect_property_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edited_cell_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellArea,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellArea,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {
@@ -1029,9 +1023,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     fn connect_property_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_cell_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkCellArea,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkCellArea,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<CellArea>,
         {

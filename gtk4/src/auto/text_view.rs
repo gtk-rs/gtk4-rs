@@ -2,71 +2,62 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Adjustment;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::DeleteType;
+use crate::InputHints;
+use crate::InputPurpose;
+use crate::Justification;
+use crate::LayoutManager;
+use crate::MovementStep;
+use crate::Overflow;
+use crate::ScrollStep;
+use crate::Scrollable;
+use crate::ScrollablePolicy;
+use crate::TextBuffer;
+use crate::TextChildAnchor;
+use crate::TextExtendSelection;
+use crate::TextIter;
+use crate::TextMark;
+use crate::TextWindowType;
+use crate::Widget;
+use crate::WrapMode;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use libc;
-use pango;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Adjustment;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use DeleteType;
-use InputHints;
-use InputPurpose;
-use Justification;
-use LayoutManager;
-use MovementStep;
-use Overflow;
-use ScrollStep;
-use Scrollable;
-use ScrollablePolicy;
-use TextBuffer;
-use TextChildAnchor;
-use TextExtendSelection;
-use TextIter;
-use TextMark;
-use TextWindowType;
-use Widget;
-use WrapMode;
 
-glib_wrapper! {
-    pub struct TextView(Object<gtk_sys::GtkTextView, gtk_sys::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
+glib::glib_wrapper! {
+    pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || gtk_sys::gtk_text_view_get_type(),
+        get_type => || ffi::gtk_text_view_get_type(),
     }
 }
 
 impl TextView {
     pub fn new() -> TextView {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_text_view_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_text_view_new()).unsafe_cast() }
     }
 
     pub fn with_buffer<P: IsA<TextBuffer>>(buffer: &P) -> TextView {
         skip_assert_initialized!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_text_view_new_with_buffer(
+            Widget::from_glib_none(ffi::gtk_text_view_new_with_buffer(
                 buffer.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
@@ -759,7 +750,7 @@ pub trait TextViewExt: 'static {
         window_y: i32,
     ) -> (i32, i32);
 
-    fn get_property_im_module(&self) -> Option<GString>;
+    fn get_property_im_module(&self) -> Option<glib::GString>;
 
     fn set_property_im_module(&self, im_module: Option<&str>);
 
@@ -904,7 +895,7 @@ pub trait TextViewExt: 'static {
 impl<O: IsA<TextView>> TextViewExt for O {
     fn add_child_at_anchor<P: IsA<Widget>, Q: IsA<TextChildAnchor>>(&self, child: &P, anchor: &Q) {
         unsafe {
-            gtk_sys::gtk_text_view_add_child_at_anchor(
+            ffi::gtk_text_view_add_child_at_anchor(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 anchor.as_ref().to_glib_none().0,
@@ -914,7 +905,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn add_overlay<P: IsA<Widget>>(&self, child: &P, xpos: i32, ypos: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_add_overlay(
+            ffi::gtk_text_view_add_overlay(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 xpos,
@@ -925,7 +916,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn backward_display_line(&self, iter: &mut TextIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_backward_display_line(
+            from_glib(ffi::gtk_text_view_backward_display_line(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ))
@@ -934,7 +925,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn backward_display_line_start(&self, iter: &mut TextIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_backward_display_line_start(
+            from_glib(ffi::gtk_text_view_backward_display_line_start(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ))
@@ -950,7 +941,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             let mut window_x = mem::MaybeUninit::uninit();
             let mut window_y = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_text_view_buffer_to_window_coords(
+            ffi::gtk_text_view_buffer_to_window_coords(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
                 buffer_x,
@@ -966,7 +957,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn forward_display_line(&self, iter: &mut TextIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_forward_display_line(
+            from_glib(ffi::gtk_text_view_forward_display_line(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ))
@@ -975,7 +966,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn forward_display_line_end(&self, iter: &mut TextIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_forward_display_line_end(
+            from_glib(ffi::gtk_text_view_forward_display_line_end(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
             ))
@@ -984,19 +975,19 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_accepts_tab(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_accepts_tab(
+            from_glib(ffi::gtk_text_view_get_accepts_tab(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_bottom_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_bottom_margin(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_bottom_margin(self.as_ref().to_glib_none().0) }
     }
 
     fn get_buffer(&self) -> Option<TextBuffer> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_view_get_buffer(
+            from_glib_none(ffi::gtk_text_view_get_buffer(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1006,7 +997,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             let mut strong = gdk::Rectangle::uninitialized();
             let mut weak = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_cursor_locations(
+            ffi::gtk_text_view_get_cursor_locations(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none().0,
                 strong.to_glib_none_mut().0,
@@ -1018,7 +1009,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_cursor_visible(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_cursor_visible(
+            from_glib(ffi::gtk_text_view_get_cursor_visible(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1026,7 +1017,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_editable(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_editable(
+            from_glib(ffi::gtk_text_view_get_editable(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1034,7 +1025,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_view_get_extra_menu(
+            from_glib_none(ffi::gtk_text_view_get_extra_menu(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1042,7 +1033,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_gutter(&self, win: TextWindowType) -> Option<Widget> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_text_view_get_gutter(
+            from_glib_none(ffi::gtk_text_view_get_gutter(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
             ))
@@ -1050,12 +1041,12 @@ impl<O: IsA<TextView>> TextViewExt for O {
     }
 
     fn get_indent(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_indent(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_indent(self.as_ref().to_glib_none().0) }
     }
 
     fn get_input_hints(&self) -> InputHints {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_input_hints(
+            from_glib(ffi::gtk_text_view_get_input_hints(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1063,7 +1054,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_input_purpose(&self) -> InputPurpose {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_input_purpose(
+            from_glib(ffi::gtk_text_view_get_input_purpose(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1072,7 +1063,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
     fn get_iter_at_location(&self, x: i32, y: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
-            let ret = from_glib(gtk_sys::gtk_text_view_get_iter_at_location(
+            let ret = from_glib(ffi::gtk_text_view_get_iter_at_location(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 x,
@@ -1090,7 +1081,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             let mut iter = TextIter::uninitialized();
             let mut trailing = mem::MaybeUninit::uninit();
-            let ret = from_glib(gtk_sys::gtk_text_view_get_iter_at_position(
+            let ret = from_glib(ffi::gtk_text_view_get_iter_at_position(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 trailing.as_mut_ptr(),
@@ -1109,7 +1100,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
     fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
         unsafe {
             let mut location = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_iter_location(
+            ffi::gtk_text_view_get_iter_location(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none().0,
                 location.to_glib_none_mut().0,
@@ -1120,21 +1111,21 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_justification(&self) -> Justification {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_justification(
+            from_glib(ffi::gtk_text_view_get_justification(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_left_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_left_margin(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_left_margin(self.as_ref().to_glib_none().0) }
     }
 
     fn get_line_at_y(&self, y: i32) -> (TextIter, i32) {
         unsafe {
             let mut target_iter = TextIter::uninitialized();
             let mut line_top = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_text_view_get_line_at_y(
+            ffi::gtk_text_view_get_line_at_y(
                 self.as_ref().to_glib_none().0,
                 target_iter.to_glib_none_mut().0,
                 y,
@@ -1149,7 +1140,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             let mut y = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_text_view_get_line_yrange(
+            ffi::gtk_text_view_get_line_yrange(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none().0,
                 y.as_mut_ptr(),
@@ -1163,7 +1154,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_monospace(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_monospace(
+            from_glib(ffi::gtk_text_view_get_monospace(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1171,44 +1162,40 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_overwrite(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_overwrite(
+            from_glib(ffi::gtk_text_view_get_overwrite(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_pixels_above_lines(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_pixels_above_lines(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_pixels_above_lines(self.as_ref().to_glib_none().0) }
     }
 
     fn get_pixels_below_lines(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_pixels_below_lines(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_pixels_below_lines(self.as_ref().to_glib_none().0) }
     }
 
     fn get_pixels_inside_wrap(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_pixels_inside_wrap(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_pixels_inside_wrap(self.as_ref().to_glib_none().0) }
     }
 
     fn get_right_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_right_margin(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_right_margin(self.as_ref().to_glib_none().0) }
     }
 
     fn get_tabs(&self) -> Option<pango::TabArray> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_text_view_get_tabs(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_full(ffi::gtk_text_view_get_tabs(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_top_margin(&self) -> i32 {
-        unsafe { gtk_sys::gtk_text_view_get_top_margin(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_text_view_get_top_margin(self.as_ref().to_glib_none().0) }
     }
 
     fn get_visible_rect(&self) -> gdk::Rectangle {
         unsafe {
             let mut visible_rect = gdk::Rectangle::uninitialized();
-            gtk_sys::gtk_text_view_get_visible_rect(
+            ffi::gtk_text_view_get_visible_rect(
                 self.as_ref().to_glib_none().0,
                 visible_rect.to_glib_none_mut().0,
             );
@@ -1218,7 +1205,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn get_wrap_mode(&self) -> WrapMode {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_get_wrap_mode(
+            from_glib(ffi::gtk_text_view_get_wrap_mode(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1226,7 +1213,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn im_context_filter_keypress<P: IsA<gdk::Event>>(&self, event: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_im_context_filter_keypress(
+            from_glib(ffi::gtk_text_view_im_context_filter_keypress(
                 self.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
             ))
@@ -1235,7 +1222,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn move_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_move_mark_onscreen(
+            from_glib(ffi::gtk_text_view_move_mark_onscreen(
                 self.as_ref().to_glib_none().0,
                 mark.as_ref().to_glib_none().0,
             ))
@@ -1244,7 +1231,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn move_overlay<P: IsA<Widget>>(&self, child: &P, xpos: i32, ypos: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_move_overlay(
+            ffi::gtk_text_view_move_overlay(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 xpos,
@@ -1255,7 +1242,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn move_visually(&self, iter: &mut TextIter, count: i32) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_move_visually(
+            from_glib(ffi::gtk_text_view_move_visually(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 count,
@@ -1265,7 +1252,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn place_cursor_onscreen(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_place_cursor_onscreen(
+            from_glib(ffi::gtk_text_view_place_cursor_onscreen(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -1273,7 +1260,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
-            gtk_sys::gtk_text_view_remove(
+            ffi::gtk_text_view_remove(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             );
@@ -1282,19 +1269,19 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn reset_cursor_blink(&self) {
         unsafe {
-            gtk_sys::gtk_text_view_reset_cursor_blink(self.as_ref().to_glib_none().0);
+            ffi::gtk_text_view_reset_cursor_blink(self.as_ref().to_glib_none().0);
         }
     }
 
     fn reset_im_context(&self) {
         unsafe {
-            gtk_sys::gtk_text_view_reset_im_context(self.as_ref().to_glib_none().0);
+            ffi::gtk_text_view_reset_im_context(self.as_ref().to_glib_none().0);
         }
     }
 
     fn scroll_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P) {
         unsafe {
-            gtk_sys::gtk_text_view_scroll_mark_onscreen(
+            ffi::gtk_text_view_scroll_mark_onscreen(
                 self.as_ref().to_glib_none().0,
                 mark.as_ref().to_glib_none().0,
             );
@@ -1310,7 +1297,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         yalign: f64,
     ) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_scroll_to_iter(
+            from_glib(ffi::gtk_text_view_scroll_to_iter(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 within_margin,
@@ -1330,7 +1317,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         yalign: f64,
     ) {
         unsafe {
-            gtk_sys::gtk_text_view_scroll_to_mark(
+            ffi::gtk_text_view_scroll_to_mark(
                 self.as_ref().to_glib_none().0,
                 mark.as_ref().to_glib_none().0,
                 within_margin,
@@ -1343,7 +1330,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_accepts_tab(&self, accepts_tab: bool) {
         unsafe {
-            gtk_sys::gtk_text_view_set_accepts_tab(
+            ffi::gtk_text_view_set_accepts_tab(
                 self.as_ref().to_glib_none().0,
                 accepts_tab.to_glib(),
             );
@@ -1352,13 +1339,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_bottom_margin(&self, bottom_margin: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_bottom_margin(self.as_ref().to_glib_none().0, bottom_margin);
+            ffi::gtk_text_view_set_bottom_margin(self.as_ref().to_glib_none().0, bottom_margin);
         }
     }
 
     fn set_buffer<P: IsA<TextBuffer>>(&self, buffer: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_text_view_set_buffer(
+            ffi::gtk_text_view_set_buffer(
                 self.as_ref().to_glib_none().0,
                 buffer.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -1367,7 +1354,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_cursor_visible(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_text_view_set_cursor_visible(
+            ffi::gtk_text_view_set_cursor_visible(
                 self.as_ref().to_glib_none().0,
                 setting.to_glib(),
             );
@@ -1376,13 +1363,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_editable(&self, setting: bool) {
         unsafe {
-            gtk_sys::gtk_text_view_set_editable(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_text_view_set_editable(self.as_ref().to_glib_none().0, setting.to_glib());
         }
     }
 
     fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_text_view_set_extra_menu(
+            ffi::gtk_text_view_set_extra_menu(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -1391,7 +1378,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_gutter<P: IsA<Widget>>(&self, win: TextWindowType, widget: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_text_view_set_gutter(
+            ffi::gtk_text_view_set_gutter(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
                 widget.map(|p| p.as_ref()).to_glib_none().0,
@@ -1401,28 +1388,25 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_indent(&self, indent: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_indent(self.as_ref().to_glib_none().0, indent);
+            ffi::gtk_text_view_set_indent(self.as_ref().to_glib_none().0, indent);
         }
     }
 
     fn set_input_hints(&self, hints: InputHints) {
         unsafe {
-            gtk_sys::gtk_text_view_set_input_hints(self.as_ref().to_glib_none().0, hints.to_glib());
+            ffi::gtk_text_view_set_input_hints(self.as_ref().to_glib_none().0, hints.to_glib());
         }
     }
 
     fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
-            gtk_sys::gtk_text_view_set_input_purpose(
-                self.as_ref().to_glib_none().0,
-                purpose.to_glib(),
-            );
+            ffi::gtk_text_view_set_input_purpose(self.as_ref().to_glib_none().0, purpose.to_glib());
         }
     }
 
     fn set_justification(&self, justification: Justification) {
         unsafe {
-            gtk_sys::gtk_text_view_set_justification(
+            ffi::gtk_text_view_set_justification(
                 self.as_ref().to_glib_none().0,
                 justification.to_glib(),
             );
@@ -1431,31 +1415,25 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_left_margin(&self, left_margin: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_left_margin(self.as_ref().to_glib_none().0, left_margin);
+            ffi::gtk_text_view_set_left_margin(self.as_ref().to_glib_none().0, left_margin);
         }
     }
 
     fn set_monospace(&self, monospace: bool) {
         unsafe {
-            gtk_sys::gtk_text_view_set_monospace(
-                self.as_ref().to_glib_none().0,
-                monospace.to_glib(),
-            );
+            ffi::gtk_text_view_set_monospace(self.as_ref().to_glib_none().0, monospace.to_glib());
         }
     }
 
     fn set_overwrite(&self, overwrite: bool) {
         unsafe {
-            gtk_sys::gtk_text_view_set_overwrite(
-                self.as_ref().to_glib_none().0,
-                overwrite.to_glib(),
-            );
+            ffi::gtk_text_view_set_overwrite(self.as_ref().to_glib_none().0, overwrite.to_glib());
         }
     }
 
     fn set_pixels_above_lines(&self, pixels_above_lines: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_pixels_above_lines(
+            ffi::gtk_text_view_set_pixels_above_lines(
                 self.as_ref().to_glib_none().0,
                 pixels_above_lines,
             );
@@ -1464,7 +1442,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_pixels_below_lines(&self, pixels_below_lines: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_pixels_below_lines(
+            ffi::gtk_text_view_set_pixels_below_lines(
                 self.as_ref().to_glib_none().0,
                 pixels_below_lines,
             );
@@ -1473,7 +1451,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_pixels_inside_wrap(
+            ffi::gtk_text_view_set_pixels_inside_wrap(
                 self.as_ref().to_glib_none().0,
                 pixels_inside_wrap,
             );
@@ -1482,13 +1460,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_right_margin(&self, right_margin: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_right_margin(self.as_ref().to_glib_none().0, right_margin);
+            ffi::gtk_text_view_set_right_margin(self.as_ref().to_glib_none().0, right_margin);
         }
     }
 
     fn set_tabs(&self, tabs: &pango::TabArray) {
         unsafe {
-            gtk_sys::gtk_text_view_set_tabs(
+            ffi::gtk_text_view_set_tabs(
                 self.as_ref().to_glib_none().0,
                 mut_override(tabs.to_glib_none().0),
             );
@@ -1497,22 +1475,19 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_top_margin(&self, top_margin: i32) {
         unsafe {
-            gtk_sys::gtk_text_view_set_top_margin(self.as_ref().to_glib_none().0, top_margin);
+            ffi::gtk_text_view_set_top_margin(self.as_ref().to_glib_none().0, top_margin);
         }
     }
 
     fn set_wrap_mode(&self, wrap_mode: WrapMode) {
         unsafe {
-            gtk_sys::gtk_text_view_set_wrap_mode(
-                self.as_ref().to_glib_none().0,
-                wrap_mode.to_glib(),
-            );
+            ffi::gtk_text_view_set_wrap_mode(self.as_ref().to_glib_none().0, wrap_mode.to_glib());
         }
     }
 
     fn starts_display_line(&self, iter: &TextIter) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_text_view_starts_display_line(
+            from_glib(ffi::gtk_text_view_starts_display_line(
                 self.as_ref().to_glib_none().0,
                 iter.to_glib_none().0,
             ))
@@ -1528,7 +1503,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             let mut buffer_x = mem::MaybeUninit::uninit();
             let mut buffer_y = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_text_view_window_to_buffer_coords(
+            ffi::gtk_text_view_window_to_buffer_coords(
                 self.as_ref().to_glib_none().0,
                 win.to_glib(),
                 window_x,
@@ -1542,11 +1517,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_property_im_module(&self) -> Option<GString> {
+    fn get_property_im_module(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<GString as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -1558,8 +1533,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn set_property_im_module(&self, im_module: Option<&str>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
                 Value::from(im_module).to_glib_none().0,
             );
@@ -1568,8 +1543,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn backspace_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1591,7 +1566,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_backspace(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("backspace", &[])
                 .unwrap()
         };
@@ -1599,8 +1574,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn copy_clipboard_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1622,7 +1597,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_copy_clipboard(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("copy-clipboard", &[])
                 .unwrap()
         };
@@ -1630,8 +1605,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cut_clipboard_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1653,7 +1628,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_cut_clipboard(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("cut-clipboard", &[])
                 .unwrap()
         };
@@ -1667,10 +1642,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
             P,
             F: Fn(&P, DeleteType, i32) + 'static,
         >(
-            this: *mut gtk_sys::GtkTextView,
-            type_: gtk_sys::GtkDeleteType,
+            this: *mut ffi::GtkTextView,
+            type_: ffi::GtkDeleteType,
             count: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1696,7 +1671,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("delete-from-cursor", &[&type_, &count])
                 .unwrap()
         };
@@ -1720,13 +1695,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 ) -> glib::signal::Inhibit
                 + 'static,
         >(
-            this: *mut gtk_sys::GtkTextView,
-            granularity: gtk_sys::GtkTextExtendSelection,
-            location: *mut gtk_sys::GtkTextIter,
-            start: *mut gtk_sys::GtkTextIter,
-            end: *mut gtk_sys::GtkTextIter,
-            f: glib_sys::gpointer,
-        ) -> glib_sys::gboolean
+            this: *mut ffi::GtkTextView,
+            granularity: ffi::GtkTextExtendSelection,
+            location: *mut ffi::GtkTextIter,
+            start: *mut ffi::GtkTextIter,
+            end: *mut ffi::GtkTextIter,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean
         where
             P: IsA<TextView>,
         {
@@ -1755,16 +1730,16 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_at_cursor_trampoline<P, F: Fn(&P, &str) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
+            this: *mut ffi::GtkTextView,
             string: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                &GString::from_glib_borrow(string),
+                &glib::GString::from_glib_borrow(string),
             )
         }
         unsafe {
@@ -1782,7 +1757,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_insert_at_cursor(&self, string: &str) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("insert-at-cursor", &[&string])
                 .unwrap()
         };
@@ -1790,8 +1765,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_emoji_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1813,7 +1788,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_insert_emoji(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("insert-emoji", &[])
                 .unwrap()
         };
@@ -1827,11 +1802,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
             P,
             F: Fn(&P, MovementStep, i32, bool) + 'static,
         >(
-            this: *mut gtk_sys::GtkTextView,
-            step: gtk_sys::GtkMovementStep,
+            this: *mut ffi::GtkTextView,
+            step: ffi::GtkMovementStep,
             count: libc::c_int,
-            extend_selection: glib_sys::gboolean,
-            f: glib_sys::gpointer,
+            extend_selection: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1858,7 +1833,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_move_cursor(&self, step: MovementStep, count: i32, extend_selection: bool) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("move-cursor", &[&step, &count, &extend_selection])
                 .unwrap()
         };
@@ -1869,10 +1844,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn move_viewport_trampoline<P, F: Fn(&P, ScrollStep, i32) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            step: gtk_sys::GtkScrollStep,
+            this: *mut ffi::GtkTextView,
+            step: ffi::GtkScrollStep,
             count: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1898,7 +1873,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_move_viewport(&self, step: ScrollStep, count: i32) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("move-viewport", &[&step, &count])
                 .unwrap()
         };
@@ -1906,8 +1881,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paste_clipboard_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1929,7 +1904,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_paste_clipboard(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("paste-clipboard", &[])
                 .unwrap()
         };
@@ -1937,16 +1912,16 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<P, F: Fn(&P, &str) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
+            this: *mut ffi::GtkTextView,
             preedit: *mut libc::c_char,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
-                &GString::from_glib_borrow(preedit),
+                &glib::GString::from_glib_borrow(preedit),
             )
         }
         unsafe {
@@ -1964,7 +1939,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_preedit_changed(&self, preedit: &str) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("preedit-changed", &[&preedit])
                 .unwrap()
         };
@@ -1972,9 +1947,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P, bool) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            select: glib_sys::gboolean,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            select: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -1999,7 +1974,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_select_all(&self, select: bool) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("select-all", &[&select])
                 .unwrap()
         };
@@ -2007,8 +1982,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn set_anchor_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2030,7 +2005,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_set_anchor(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("set-anchor", &[])
                 .unwrap()
         };
@@ -2038,8 +2013,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2061,7 +2036,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_toggle_cursor_visible(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("toggle-cursor-visible", &[])
                 .unwrap()
         };
@@ -2069,8 +2044,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_overwrite_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2092,7 +2067,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn emit_toggle_overwrite(&self) {
         let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut gobject_sys::GObject)
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit("toggle-overwrite", &[])
                 .unwrap()
         };
@@ -2100,9 +2075,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accepts_tab_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2127,9 +2102,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_bottom_margin_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2151,9 +2126,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2178,9 +2153,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2202,9 +2177,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2226,9 +2201,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2250,9 +2225,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2274,9 +2249,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2298,9 +2273,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2325,9 +2300,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2352,9 +2327,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2376,9 +2351,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2400,9 +2375,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_monospace_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2424,9 +2399,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2451,9 +2426,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2478,9 +2453,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2505,9 +2480,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2532,9 +2507,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2556,9 +2531,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2580,9 +2555,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_top_margin_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {
@@ -2604,9 +2579,9 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkTextView,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkTextView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<TextView>,
         {

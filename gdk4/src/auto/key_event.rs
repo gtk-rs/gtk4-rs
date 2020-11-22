@@ -2,52 +2,51 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
+use crate::KeyMatch;
+use crate::ModifierType;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use Event;
-use KeyMatch;
-use ModifierType;
 
-glib_wrapper! {
-    pub struct KeyEvent(Object<gdk_sys::GdkKeyEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct KeyEvent(Object<ffi::GdkKeyEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_key_event_get_type(),
+        get_type => || ffi::gdk_key_event_get_type(),
     }
 }
 
 impl KeyEvent {
     pub fn get_consumed_modifiers(&self) -> ModifierType {
         unsafe {
-            from_glib(gdk_sys::gdk_key_event_get_consumed_modifiers(
+            from_glib(ffi::gdk_key_event_get_consumed_modifiers(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_keycode(&self) -> u32 {
-        unsafe { gdk_sys::gdk_key_event_get_keycode(self.to_glib_none().0) }
+        unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
     }
 
     pub fn get_keyval(&self) -> u32 {
-        unsafe { gdk_sys::gdk_key_event_get_keyval(self.to_glib_none().0) }
+        unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0) }
     }
 
     pub fn get_layout(&self) -> u32 {
-        unsafe { gdk_sys::gdk_key_event_get_layout(self.to_glib_none().0) }
+        unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }
     }
 
     pub fn get_level(&self) -> u32 {
-        unsafe { gdk_sys::gdk_key_event_get_level(self.to_glib_none().0) }
+        unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
     }
 
     pub fn get_match(&self) -> Option<(u32, ModifierType)> {
         unsafe {
             let mut keyval = mem::MaybeUninit::uninit();
             let mut modifiers = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_key_event_get_match(
+            let ret = from_glib(ffi::gdk_key_event_get_match(
                 self.to_glib_none().0,
                 keyval.as_mut_ptr(),
                 modifiers.as_mut_ptr(),
@@ -63,12 +62,12 @@ impl KeyEvent {
     }
 
     pub fn is_modifier(&self) -> bool {
-        unsafe { from_glib(gdk_sys::gdk_key_event_is_modifier(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
     }
 
     pub fn matches(&self, keyval: u32, modifiers: ModifierType) -> KeyMatch {
         unsafe {
-            from_glib(gdk_sys::gdk_key_event_matches(
+            from_glib(ffi::gdk_key_event_matches(
                 self.to_glib_none().0,
                 keyval,
                 modifiers.to_glib(),

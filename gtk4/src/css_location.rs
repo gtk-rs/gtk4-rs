@@ -3,11 +3,10 @@
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
 use glib::translate::*;
-use gtk_sys;
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct CssLocation(gtk_sys::GtkCssLocation);
+pub struct CssLocation(ffi::GtkCssLocation);
 
 impl CssLocation {
     pub fn new(
@@ -18,7 +17,7 @@ impl CssLocation {
         line_chars: usize,
     ) -> CssLocation {
         assert_initialized_main_thread!();
-        CssLocation(gtk_sys::GtkCssLocation {
+        CssLocation(ffi::GtkCssLocation {
             bytes,
             chars,
             lines,
@@ -49,17 +48,17 @@ impl CssLocation {
 }
 
 #[doc(hidden)]
-impl FromGlibPtrNone<*const gtk_sys::GtkCssLocation> for CssLocation {
-    unsafe fn from_glib_none(ptr: *const gtk_sys::GtkCssLocation) -> Self {
+impl FromGlibPtrNone<*const ffi::GtkCssLocation> for CssLocation {
+    unsafe fn from_glib_none(ptr: *const ffi::GtkCssLocation) -> Self {
         CssLocation(*ptr)
     }
 }
 
 #[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *const gtk_sys::GtkCssLocation> for CssLocation {
+impl<'a> ToGlibPtr<'a, *const ffi::GtkCssLocation> for CssLocation {
     type Storage = &'a Self;
 
-    fn to_glib_none(&'a self) -> Stash<*const gtk_sys::GtkCssLocation, Self> {
+    fn to_glib_none(&'a self) -> Stash<*const ffi::GtkCssLocation, Self> {
         Stash(&self.0, self)
     }
 }

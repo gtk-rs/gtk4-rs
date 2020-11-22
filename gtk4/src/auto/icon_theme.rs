@@ -2,52 +2,45 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
+use crate::IconLookupFlags;
+use crate::IconPaintable;
+use crate::TextDirection;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
-use std;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use IconLookupFlags;
-use IconPaintable;
-use TextDirection;
 
-glib_wrapper! {
-    pub struct IconTheme(Object<gtk_sys::GtkIconTheme>);
+glib::glib_wrapper! {
+    pub struct IconTheme(Object<ffi::GtkIconTheme>);
 
     match fn {
-        get_type => || gtk_sys::gtk_icon_theme_get_type(),
+        get_type => || ffi::gtk_icon_theme_get_type(),
     }
 }
 
 impl IconTheme {
     pub fn new() -> IconTheme {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_icon_theme_new()) }
+        unsafe { from_glib_full(ffi::gtk_icon_theme_new()) }
     }
 
     pub fn add_resource_path(&self, path: &str) {
         unsafe {
-            gtk_sys::gtk_icon_theme_add_resource_path(self.to_glib_none().0, path.to_glib_none().0);
+            ffi::gtk_icon_theme_add_resource_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 
     pub fn add_search_path<P: AsRef<std::path::Path>>(&self, path: P) {
         unsafe {
-            gtk_sys::gtk_icon_theme_add_search_path(
+            ffi::gtk_icon_theme_add_search_path(
                 self.to_glib_none().0,
                 path.as_ref().to_glib_none().0,
             );
@@ -55,20 +48,20 @@ impl IconTheme {
     }
 
     pub fn get_display(&self) -> Option<gdk::Display> {
-        unsafe { from_glib_none(gtk_sys::gtk_icon_theme_get_display(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_icon_theme_get_display(self.to_glib_none().0)) }
     }
 
-    pub fn get_icon_names(&self) -> Vec<GString> {
+    pub fn get_icon_names(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_icon_names(
+            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_icon_names(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_resource_path(&self) -> Vec<GString> {
+    pub fn get_resource_path(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_resource_path(
+            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
                 self.to_glib_none().0,
             ))
         }
@@ -76,23 +69,19 @@ impl IconTheme {
 
     pub fn get_search_path(&self) -> Vec<std::path::PathBuf> {
         unsafe {
-            FromGlibPtrContainer::from_glib_full(gtk_sys::gtk_icon_theme_get_search_path(
+            FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_search_path(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn get_theme_name(&self) -> Option<GString> {
-        unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_get_theme_name(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_theme_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
     pub fn has_icon(&self, icon_name: &str) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_icon_theme_has_icon(
+            from_glib(ffi::gtk_icon_theme_has_icon(
                 self.to_glib_none().0,
                 icon_name.to_glib_none().0,
             ))
@@ -108,7 +97,7 @@ impl IconTheme {
         flags: IconLookupFlags,
     ) -> Option<IconPaintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_by_gicon(
+            from_glib_full(ffi::gtk_icon_theme_lookup_by_gicon(
                 self.to_glib_none().0,
                 icon.as_ref().to_glib_none().0,
                 size,
@@ -129,7 +118,7 @@ impl IconTheme {
         flags: IconLookupFlags,
     ) -> Option<IconPaintable> {
         unsafe {
-            from_glib_full(gtk_sys::gtk_icon_theme_lookup_icon(
+            from_glib_full(ffi::gtk_icon_theme_lookup_icon(
                 self.to_glib_none().0,
                 icon_name.to_glib_none().0,
                 fallbacks.to_glib_none().0,
@@ -143,23 +132,20 @@ impl IconTheme {
 
     pub fn set_search_path(&self, path: &[&std::path::Path]) {
         unsafe {
-            gtk_sys::gtk_icon_theme_set_search_path(self.to_glib_none().0, path.to_glib_none().0);
+            ffi::gtk_icon_theme_set_search_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 
     pub fn set_theme_name(&self, theme_name: Option<&str>) {
         unsafe {
-            gtk_sys::gtk_icon_theme_set_theme_name(
-                self.to_glib_none().0,
-                theme_name.to_glib_none().0,
-            );
+            ffi::gtk_icon_theme_set_theme_name(self.to_glib_none().0, theme_name.to_glib_none().0);
         }
     }
 
     pub fn set_property_display(&self, display: Option<&gdk::Display>) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
                 Value::from(display).to_glib_none().0,
             );
@@ -168,8 +154,8 @@ impl IconTheme {
 
     pub fn set_property_resource_path(&self, resource_path: &[&str]) {
         unsafe {
-            gobject_sys::g_object_set_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"resource-path\0".as_ptr() as *const _,
                 Value::from(resource_path).to_glib_none().0,
             );
@@ -179,7 +165,7 @@ impl IconTheme {
     pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(gtk_sys::gtk_icon_theme_get_for_display(
+            from_glib_none(ffi::gtk_icon_theme_get_for_display(
                 display.to_glib_none().0,
             ))
         }
@@ -187,8 +173,8 @@ impl IconTheme {
 
     pub fn connect_changed<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -211,9 +197,9 @@ impl IconTheme {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -236,9 +222,9 @@ impl IconTheme {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_names_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -261,9 +247,9 @@ impl IconTheme {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_resource_path_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -286,9 +272,9 @@ impl IconTheme {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_path_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -311,9 +297,9 @@ impl IconTheme {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_theme_name_trampoline<F: Fn(&IconTheme) + 'static>(
-            this: *mut gtk_sys::GtkIconTheme,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkIconTheme,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

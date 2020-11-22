@@ -2,28 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Paintable;
+use crate::Texture;
 use glib::translate::*;
 use std::fmt;
-use Paintable;
-use Texture;
 
-glib_wrapper! {
-    pub struct GLTexture(Object<gdk_sys::GdkGLTexture, gdk_sys::GdkGLTextureClass>) @extends Texture, @implements Paintable;
+glib::glib_wrapper! {
+    pub struct GLTexture(Object<ffi::GdkGLTexture, ffi::GdkGLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || gdk_sys::gdk_gl_texture_get_type(),
+        get_type => || ffi::gdk_gl_texture_get_type(),
     }
 }
 
 impl GLTexture {
     //pub fn new(context: &GLContext, id: u32, width: i32, height: i32, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> GLTexture {
-    //    unsafe { TODO: call gdk_sys:gdk_gl_texture_new() }
+    //    unsafe { TODO: call ffi:gdk_gl_texture_new() }
     //}
 
     pub fn release(&self) {
         unsafe {
-            gdk_sys::gdk_gl_texture_release(self.to_glib_none().0);
+            ffi::gdk_gl_texture_release(self.to_glib_none().0);
         }
     }
 }

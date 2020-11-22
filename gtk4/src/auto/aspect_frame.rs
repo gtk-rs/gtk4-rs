@@ -2,7 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -11,25 +18,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct AspectFrame(Object<gtk_sys::GtkAspectFrame>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct AspectFrame(Object<ffi::GtkAspectFrame>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_aspect_frame_get_type(),
+        get_type => || ffi::gtk_aspect_frame_get_type(),
     }
 }
 
@@ -37,7 +34,7 @@ impl AspectFrame {
     pub fn new(xalign: f32, yalign: f32, ratio: f32, obey_child: bool) -> AspectFrame {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_aspect_frame_new(
+            Widget::from_glib_none(ffi::gtk_aspect_frame_new(
                 xalign,
                 yalign,
                 ratio,
@@ -48,32 +45,28 @@ impl AspectFrame {
     }
 
     pub fn get_child(&self) -> Option<Widget> {
-        unsafe { from_glib_none(gtk_sys::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
     }
 
     pub fn get_obey_child(&self) -> bool {
-        unsafe {
-            from_glib(gtk_sys::gtk_aspect_frame_get_obey_child(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib(ffi::gtk_aspect_frame_get_obey_child(self.to_glib_none().0)) }
     }
 
     pub fn get_ratio(&self) -> f32 {
-        unsafe { gtk_sys::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
+        unsafe { ffi::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
     }
 
     pub fn get_xalign(&self) -> f32 {
-        unsafe { gtk_sys::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
+        unsafe { ffi::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
     }
 
     pub fn get_yalign(&self) -> f32 {
-        unsafe { gtk_sys::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
+        unsafe { ffi::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
     }
 
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_aspect_frame_set_child(
+            ffi::gtk_aspect_frame_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -82,25 +75,25 @@ impl AspectFrame {
 
     pub fn set_obey_child(&self, obey_child: bool) {
         unsafe {
-            gtk_sys::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.to_glib());
+            ffi::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.to_glib());
         }
     }
 
     pub fn set_ratio(&self, ratio: f32) {
         unsafe {
-            gtk_sys::gtk_aspect_frame_set_ratio(self.to_glib_none().0, ratio);
+            ffi::gtk_aspect_frame_set_ratio(self.to_glib_none().0, ratio);
         }
     }
 
     pub fn set_xalign(&self, xalign: f32) {
         unsafe {
-            gtk_sys::gtk_aspect_frame_set_xalign(self.to_glib_none().0, xalign);
+            ffi::gtk_aspect_frame_set_xalign(self.to_glib_none().0, xalign);
         }
     }
 
     pub fn set_yalign(&self, yalign: f32) {
         unsafe {
-            gtk_sys::gtk_aspect_frame_set_yalign(self.to_glib_none().0, yalign);
+            ffi::gtk_aspect_frame_set_yalign(self.to_glib_none().0, yalign);
         }
     }
 
@@ -109,9 +102,9 @@ impl AspectFrame {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&AspectFrame) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAspectFrame,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -134,9 +127,9 @@ impl AspectFrame {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_obey_child_trampoline<F: Fn(&AspectFrame) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAspectFrame,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -159,9 +152,9 @@ impl AspectFrame {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_ratio_trampoline<F: Fn(&AspectFrame) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAspectFrame,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -184,9 +177,9 @@ impl AspectFrame {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&AspectFrame) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAspectFrame,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -209,9 +202,9 @@ impl AspectFrame {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&AspectFrame) + 'static>(
-            this: *mut gtk_sys::GtkAspectFrame,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkAspectFrame,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

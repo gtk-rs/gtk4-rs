@@ -2,23 +2,22 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
-use Event;
 
-glib_wrapper! {
-    pub struct TouchEvent(Object<gdk_sys::GdkTouchEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct TouchEvent(Object<ffi::GdkTouchEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_touch_event_get_type(),
+        get_type => || ffi::gdk_touch_event_get_type(),
     }
 }
 
 impl TouchEvent {
     pub fn get_emulating_pointer(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_touch_event_get_emulating_pointer(
+            from_glib(ffi::gdk_touch_event_get_emulating_pointer(
                 self.to_glib_none().0,
             ))
         }

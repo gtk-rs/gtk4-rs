@@ -2,18 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
+use crate::TouchpadGesturePhase;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use Event;
-use TouchpadGesturePhase;
 
-glib_wrapper! {
-    pub struct TouchpadEvent(Object<gdk_sys::GdkTouchpadEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct TouchpadEvent(Object<ffi::GdkTouchpadEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_touchpad_event_get_type(),
+        get_type => || ffi::gdk_touchpad_event_get_type(),
     }
 }
 
@@ -22,7 +21,7 @@ impl TouchpadEvent {
         unsafe {
             let mut dx = mem::MaybeUninit::uninit();
             let mut dy = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_touchpad_event_get_deltas(
+            ffi::gdk_touchpad_event_get_deltas(
                 self.to_glib_none().0,
                 dx.as_mut_ptr(),
                 dy.as_mut_ptr(),
@@ -35,22 +34,22 @@ impl TouchpadEvent {
 
     pub fn get_gesture_phase(&self) -> TouchpadGesturePhase {
         unsafe {
-            from_glib(gdk_sys::gdk_touchpad_event_get_gesture_phase(
+            from_glib(ffi::gdk_touchpad_event_get_gesture_phase(
                 self.to_glib_none().0,
             ))
         }
     }
 
     pub fn get_n_fingers(&self) -> u32 {
-        unsafe { gdk_sys::gdk_touchpad_event_get_n_fingers(self.to_glib_none().0) }
+        unsafe { ffi::gdk_touchpad_event_get_n_fingers(self.to_glib_none().0) }
     }
 
     pub fn get_pinch_angle_delta(&self) -> f64 {
-        unsafe { gdk_sys::gdk_touchpad_event_get_pinch_angle_delta(self.to_glib_none().0) }
+        unsafe { ffi::gdk_touchpad_event_get_pinch_angle_delta(self.to_glib_none().0) }
     }
 
     pub fn get_pinch_scale(&self) -> f64 {
-        unsafe { gdk_sys::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
+        unsafe { ffi::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
     }
 }
 

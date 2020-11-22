@@ -2,8 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use cairo;
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -11,33 +17,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct DrawingArea(Object<gtk_sys::GtkDrawingArea, gtk_sys::GtkDrawingAreaClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct DrawingArea(Object<ffi::GtkDrawingArea, ffi::GtkDrawingAreaClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_drawing_area_get_type(),
+        get_type => || ffi::gtk_drawing_area_get_type(),
     }
 }
 
 impl DrawingArea {
     pub fn new() -> DrawingArea {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(gtk_sys::gtk_drawing_area_new()).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_drawing_area_new()).unsafe_cast() }
     }
 }
 
@@ -385,22 +380,22 @@ pub trait DrawingAreaExt: 'static {
 
 impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
     fn get_content_height(&self) -> i32 {
-        unsafe { gtk_sys::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
     fn get_content_width(&self) -> i32 {
-        unsafe { gtk_sys::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
     }
 
     fn set_content_height(&self, height: i32) {
         unsafe {
-            gtk_sys::gtk_drawing_area_set_content_height(self.as_ref().to_glib_none().0, height);
+            ffi::gtk_drawing_area_set_content_height(self.as_ref().to_glib_none().0, height);
         }
     }
 
     fn set_content_width(&self, width: i32) {
         unsafe {
-            gtk_sys::gtk_drawing_area_set_content_width(self.as_ref().to_glib_none().0, width);
+            ffi::gtk_drawing_area_set_content_width(self.as_ref().to_glib_none().0, width);
         }
     }
 
@@ -412,11 +407,11 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
             Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
         > = Box_::new(draw_func);
         unsafe extern "C" fn draw_func_func(
-            drawing_area: *mut gtk_sys::GtkDrawingArea,
-            cr: *mut cairo_sys::cairo_t,
+            drawing_area: *mut ffi::GtkDrawingArea,
+            cr: *mut cairo::ffi::cairo_t,
             width: libc::c_int,
             height: libc::c_int,
-            user_data: glib_sys::gpointer,
+            user_data: glib::ffi::gpointer,
         ) {
             let drawing_area = from_glib_borrow(drawing_area);
             let cr = from_glib_borrow(cr);
@@ -433,7 +428,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_func(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
             let _callback: Box_<
                 Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
             > = Box_::from_raw(data as *mut _);
@@ -443,7 +438,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
             Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
         > = draw_func_data;
         unsafe {
-            gtk_sys::gtk_drawing_area_set_draw_func(
+            ffi::gtk_drawing_area_set_draw_func(
                 self.as_ref().to_glib_none().0,
                 draw_func,
                 Box_::into_raw(super_callback0) as *mut _,
@@ -454,10 +449,10 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
-            this: *mut gtk_sys::GtkDrawingArea,
+            this: *mut ffi::GtkDrawingArea,
             width: libc::c_int,
             height: libc::c_int,
-            f: glib_sys::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DrawingArea>,
         {
@@ -486,9 +481,9 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_height_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDrawingArea,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDrawingArea,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DrawingArea>,
         {
@@ -513,9 +508,9 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDrawingArea,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDrawingArea,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DrawingArea>,
         {

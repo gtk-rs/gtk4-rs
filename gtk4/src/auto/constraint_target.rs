@@ -4,14 +4,13 @@
 
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct ConstraintTarget(Interface<gtk_sys::GtkConstraintTarget>);
+glib::glib_wrapper! {
+    pub struct ConstraintTarget(Interface<ffi::GtkConstraintTarget>);
 
     match fn {
-        get_type => || gtk_sys::gtk_constraint_target_get_type(),
+        get_type => || ffi::gtk_constraint_target_get_type(),
     }
 }
 

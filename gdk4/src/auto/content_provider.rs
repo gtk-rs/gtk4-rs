@@ -2,10 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
-use gio;
-use gio_sys;
-use glib;
+use crate::ContentFormats;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -13,20 +10,17 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 use std::pin::Pin;
 use std::ptr;
-use ContentFormats;
 
-glib_wrapper! {
-    pub struct ContentProvider(Object<gdk_sys::GdkContentProvider, gdk_sys::GdkContentProviderClass>);
+glib::glib_wrapper! {
+    pub struct ContentProvider(Object<ffi::GdkContentProvider, ffi::GdkContentProviderClass>);
 
     match fn {
-        get_type => || gdk_sys::gdk_content_provider_get_type(),
+        get_type => || ffi::gdk_content_provider_get_type(),
     }
 }
 
@@ -34,7 +28,7 @@ impl ContentProvider {
     pub fn new_for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_new_for_bytes(
+            from_glib_full(ffi::gdk_content_provider_new_for_bytes(
                 mime_type.to_glib_none().0,
                 bytes.to_glib_none().0,
             ))
@@ -44,21 +38,21 @@ impl ContentProvider {
     pub fn new_for_value(value: &glib::Value) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_new_for_value(
+            from_glib_full(ffi::gdk_content_provider_new_for_value(
                 value.to_glib_none().0,
             ))
         }
     }
 
     //pub fn new_typed(type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ContentProvider {
-    //    unsafe { TODO: call gdk_sys:gdk_content_provider_new_typed() }
+    //    unsafe { TODO: call ffi:gdk_content_provider_new_typed() }
     //}
 
     pub fn new_union(providers: &[ContentProvider]) -> ContentProvider {
         assert_initialized_main_thread!();
         let n_providers = providers.len() as usize;
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_new_union(
+            from_glib_full(ffi::gdk_content_provider_new_union(
                 providers.to_glib_full(),
                 n_providers,
             ))
@@ -114,14 +108,14 @@ pub trait ContentProviderExt: 'static {
 impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn content_changed(&self) {
         unsafe {
-            gdk_sys::gdk_content_provider_content_changed(self.as_ref().to_glib_none().0);
+            ffi::gdk_content_provider_content_changed(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = gdk_sys::gdk_content_provider_get_value(
+            let _ = ffi::gdk_content_provider_get_value(
                 self.as_ref().to_glib_none().0,
                 value.to_glib_none_mut().0,
                 &mut error,
@@ -136,7 +130,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn ref_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_ref_formats(
+            from_glib_full(ffi::gdk_content_provider_ref_formats(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -144,7 +138,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn ref_storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            from_glib_full(gdk_sys::gdk_content_provider_ref_storable_formats(
+            from_glib_full(ffi::gdk_content_provider_ref_storable_formats(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -166,12 +160,12 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         unsafe extern "C" fn write_mime_type_async_trampoline<
             R: FnOnce(Result<(), glib::Error>) + Send + 'static,
         >(
-            _source_object: *mut gobject_sys::GObject,
-            res: *mut gio_sys::GAsyncResult,
-            user_data: glib_sys::gpointer,
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
         ) {
             let mut error = ptr::null_mut();
-            let _ = gdk_sys::gdk_content_provider_write_mime_type_finish(
+            let _ = ffi::gdk_content_provider_write_mime_type_finish(
                 _source_object as *mut _,
                 res,
                 &mut error,
@@ -186,7 +180,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
         let callback = write_mime_type_async_trampoline::<R>;
         unsafe {
-            gdk_sys::gdk_content_provider_write_mime_type_async(
+            ffi::gdk_content_provider_write_mime_type_async(
                 self.as_ref().to_glib_none().0,
                 mime_type.to_glib_none().0,
                 stream.as_ref().to_glib_none().0,
@@ -225,8 +219,8 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn get_property_formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"formats\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -239,8 +233,8 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn get_property_storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.to_glib_none().0 as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"storable-formats\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -252,8 +246,8 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn content_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkContentProvider,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkContentProvider,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<ContentProvider>,
         {
@@ -275,9 +269,9 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkContentProvider,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkContentProvider,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<ContentProvider>,
         {
@@ -302,9 +296,9 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_storable_formats_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gdk_sys::GdkContentProvider,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkContentProvider,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<ContentProvider>,
         {

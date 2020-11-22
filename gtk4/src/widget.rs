@@ -1,9 +1,7 @@
-use gdk;
+use crate::Widget;
 use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;
 use glib::ObjectExt;
-use gtk_sys;
-use Widget;
 
 use glib::Continue;
 
@@ -27,10 +25,10 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
             O: IsA<Widget>,
             P: Fn(&O, &gdk::FrameClock) -> Continue + 'static,
         >(
-            widget: *mut gtk_sys::GtkWidget,
-            frame_clock: *mut gdk_sys::GdkFrameClock,
-            user_data: glib_sys::gpointer,
-        ) -> glib_sys::gboolean {
+            widget: *mut ffi::GtkWidget,
+            frame_clock: *mut gdk::ffi::GdkFrameClock,
+            user_data: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
             let widget: Borrowed<Widget> = from_glib_borrow(widget);
             let frame_clock = from_glib_borrow(frame_clock);
             let callback: &P = &*(user_data as *mut _);
@@ -43,14 +41,14 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
             O: IsA<Widget>,
             P: Fn(&O, &gdk::FrameClock) -> Continue + 'static,
         >(
-            data: glib_sys::gpointer,
+            data: glib::ffi::gpointer,
         ) {
             let _callback: Box<P> = Box::from_raw(data as *mut _);
         }
         let destroy_call = Some(notify_func::<Self, P> as _);
 
         let id = unsafe {
-            gtk_sys::gtk_widget_add_tick_callback(
+            ffi::gtk_widget_add_tick_callback(
                 self.as_ref().to_glib_none().0,
                 callback,
                 Box::into_raw(callback_data) as *mut _,
@@ -65,7 +63,7 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
 
     fn set_name(&self, name: &str) {
         unsafe {
-            gtk_sys::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
+            ffi::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 }
@@ -79,7 +77,7 @@ impl TickCallbackId {
     pub fn remove(self) {
         if let Some(widget) = self.widget.upgrade() {
             unsafe {
-                gtk_sys::gtk_widget_remove_tick_callback(widget.to_glib_none().0, self.id);
+                ffi::gtk_widget_remove_tick_callback(widget.to_glib_none().0, self.id);
             }
         }
     }

@@ -2,32 +2,30 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::RenderNode;
+use crate::RoundedRect;
 use glib::translate::*;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
-use RoundedRect;
 
-glib_wrapper! {
-    pub struct BorderNode(Object<gsk_sys::GskBorderNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct BorderNode(Object<ffi::GskBorderNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_border_node_get_type(),
+        get_type => || ffi::gsk_border_node_get_type(),
     }
 }
 
 impl BorderNode {
     //pub fn new(outline: &RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 80 }; 4) -> BorderNode {
-    //    unsafe { TODO: call gsk_sys:gsk_border_node_new() }
+    //    unsafe { TODO: call ffi:gsk_border_node_new() }
     //}
 
     pub fn peek_colors(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(gsk_sys::gsk_border_node_peek_colors(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_border_node_peek_colors(self.to_glib_none().0)) }
     }
 
     pub fn peek_outline(&self) -> Option<RoundedRect> {
-        unsafe { from_glib_none(gsk_sys::gsk_border_node_peek_outline(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_border_node_peek_outline(self.to_glib_none().0)) }
     }
 }
 

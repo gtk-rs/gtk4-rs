@@ -1,12 +1,9 @@
-use gtk_sys;
-
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use super::widget::WidgetImpl;
-use Popover;
-use Widget;
+use crate::{Popover, Widget};
 
 pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     fn activate_default(&self, button: &Self::Type) {
@@ -27,7 +24,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
     fn parent_activate_default(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkPopoverClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).activate_default {
                 f(button.unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
@@ -37,7 +34,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
     fn parent_closed(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut gtk_sys::GtkPopoverClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).closed {
                 f(button.unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
@@ -55,7 +52,7 @@ unsafe impl<T: PopoverImpl> IsSubclassable<T> for Popover {
     }
 }
 
-unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut gtk_sys::GtkPopover) {
+unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Popover> = from_glib_borrow(ptr);
@@ -63,7 +60,7 @@ unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut gtk_sys:
     imp.activate_default(wrap.unsafe_cast_ref())
 }
 
-unsafe extern "C" fn popover_closed<T: PopoverImpl>(ptr: *mut gtk_sys::GtkPopover) {
+unsafe extern "C" fn popover_closed<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Popover> = from_glib_borrow(ptr);

@@ -2,34 +2,27 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::Widget;
 use glib::object::IsA;
 use glib::translate::*;
-use gsk;
-use gtk_sys;
 use std::fmt;
 use std::mem;
-use Accessible;
-use Buildable;
-use ConstraintTarget;
-use Widget;
 
-glib_wrapper! {
-    pub struct Native(Interface<gtk_sys::GtkNative>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct Native(Interface<ffi::GtkNative>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_native_get_type(),
+        get_type => || ffi::gtk_native_get_type(),
     }
 }
 
 impl Native {
     pub fn get_for_surface(surface: &gdk::Surface) -> Option<Native> {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(gtk_sys::gtk_native_get_for_surface(
-                surface.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_native_get_for_surface(surface.to_glib_none().0)) }
     }
 }
 
@@ -48,31 +41,23 @@ pub trait NativeExt: 'static {
 impl<O: IsA<Native>> NativeExt for O {
     fn check_resize(&self) {
         unsafe {
-            gtk_sys::gtk_native_check_resize(self.as_ref().to_glib_none().0);
+            ffi::gtk_native_check_resize(self.as_ref().to_glib_none().0);
         }
     }
 
     fn get_renderer(&self) -> Option<gsk::Renderer> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_native_get_renderer(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_surface(&self) -> Option<gdk::Surface> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_native_get_surface(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_surface_transform(&self) -> (f64, f64) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
-            gtk_sys::gtk_native_get_surface_transform(
+            ffi::gtk_native_get_surface_transform(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),

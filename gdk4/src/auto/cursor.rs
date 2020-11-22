@@ -2,21 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Texture;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
 use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
-use Texture;
 
-glib_wrapper! {
-    pub struct Cursor(Object<gdk_sys::GdkCursor>);
+glib::glib_wrapper! {
+    pub struct Cursor(Object<ffi::GdkCursor>);
 
     match fn {
-        get_type => || gdk_sys::gdk_cursor_get_type(),
+        get_type => || ffi::gdk_cursor_get_type(),
     }
 }
 
@@ -24,7 +22,7 @@ impl Cursor {
     pub fn from_name(name: &str, fallback: Option<&Cursor>) -> Option<Cursor> {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_cursor_new_from_name(
+            from_glib_full(ffi::gdk_cursor_new_from_name(
                 name.to_glib_none().0,
                 fallback.to_glib_none().0,
             ))
@@ -39,7 +37,7 @@ impl Cursor {
     ) -> Cursor {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gdk_sys::gdk_cursor_new_from_texture(
+            from_glib_full(ffi::gdk_cursor_new_from_texture(
                 texture.as_ref().to_glib_none().0,
                 hotspot_x,
                 hotspot_y,
@@ -49,23 +47,23 @@ impl Cursor {
     }
 
     pub fn get_fallback(&self) -> Option<Cursor> {
-        unsafe { from_glib_none(gdk_sys::gdk_cursor_get_fallback(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_cursor_get_fallback(self.to_glib_none().0)) }
     }
 
     pub fn get_hotspot_x(&self) -> i32 {
-        unsafe { gdk_sys::gdk_cursor_get_hotspot_x(self.to_glib_none().0) }
+        unsafe { ffi::gdk_cursor_get_hotspot_x(self.to_glib_none().0) }
     }
 
     pub fn get_hotspot_y(&self) -> i32 {
-        unsafe { gdk_sys::gdk_cursor_get_hotspot_y(self.to_glib_none().0) }
+        unsafe { ffi::gdk_cursor_get_hotspot_y(self.to_glib_none().0) }
     }
 
-    pub fn get_name(&self) -> Option<GString> {
-        unsafe { from_glib_none(gdk_sys::gdk_cursor_get_name(self.to_glib_none().0)) }
+    pub fn get_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gdk_cursor_get_name(self.to_glib_none().0)) }
     }
 
     pub fn get_texture(&self) -> Option<Texture> {
-        unsafe { from_glib_none(gdk_sys::gdk_cursor_get_texture(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_cursor_get_texture(self.to_glib_none().0)) }
     }
 }
 

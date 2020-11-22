@@ -2,21 +2,20 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::CellArea;
+use crate::CellRenderer;
+use crate::TreeIter;
+use crate::TreeModel;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
-use CellArea;
-use CellRenderer;
-use TreeIter;
-use TreeModel;
 
-glib_wrapper! {
-    pub struct CellLayout(Interface<gtk_sys::GtkCellLayout>);
+glib::glib_wrapper! {
+    pub struct CellLayout(Interface<ffi::GtkCellLayout>);
 
     match fn {
-        get_type => || gtk_sys::gtk_cell_layout_get_type(),
+        get_type => || ffi::gtk_cell_layout_get_type(),
     }
 }
 
@@ -51,7 +50,7 @@ pub trait CellLayoutExt: 'static {
 impl<O: IsA<CellLayout>> CellLayoutExt for O {
     fn add_attribute<P: IsA<CellRenderer>>(&self, cell: &P, attribute: &str, column: i32) {
         unsafe {
-            gtk_sys::gtk_cell_layout_add_attribute(
+            ffi::gtk_cell_layout_add_attribute(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 attribute.to_glib_none().0,
@@ -62,13 +61,13 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn clear(&self) {
         unsafe {
-            gtk_sys::gtk_cell_layout_clear(self.as_ref().to_glib_none().0);
+            ffi::gtk_cell_layout_clear(self.as_ref().to_glib_none().0);
         }
     }
 
     fn clear_attributes<P: IsA<CellRenderer>>(&self, cell: &P) {
         unsafe {
-            gtk_sys::gtk_cell_layout_clear_attributes(
+            ffi::gtk_cell_layout_clear_attributes(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
             );
@@ -77,7 +76,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn get_area(&self) -> Option<CellArea> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_cell_layout_get_area(
+            from_glib_none(ffi::gtk_cell_layout_get_area(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -85,7 +84,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn get_cells(&self) -> Vec<CellRenderer> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gtk_sys::gtk_cell_layout_get_cells(
+            FromGlibPtrContainer::from_glib_container(ffi::gtk_cell_layout_get_cells(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -93,7 +92,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn pack_end<P: IsA<CellRenderer>>(&self, cell: &P, expand: bool) {
         unsafe {
-            gtk_sys::gtk_cell_layout_pack_end(
+            ffi::gtk_cell_layout_pack_end(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 expand.to_glib(),
@@ -103,7 +102,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn pack_start<P: IsA<CellRenderer>>(&self, cell: &P, expand: bool) {
         unsafe {
-            gtk_sys::gtk_cell_layout_pack_start(
+            ffi::gtk_cell_layout_pack_start(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 expand.to_glib(),
@@ -113,7 +112,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
     fn reorder<P: IsA<CellRenderer>>(&self, cell: &P, position: i32) {
         unsafe {
-            gtk_sys::gtk_cell_layout_reorder(
+            ffi::gtk_cell_layout_reorder(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 position,
@@ -122,7 +121,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
     }
 
     //fn set_attributes<P: IsA<CellRenderer>>(&self, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call gtk_sys:gtk_cell_layout_set_attributes() }
+    //    unsafe { TODO: call ffi:gtk_cell_layout_set_attributes() }
     //}
 
     fn set_cell_data_func<P: IsA<CellRenderer>>(
@@ -134,11 +133,11 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             Option<Box_<dyn Fn(&CellLayout, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
         > = Box_::new(func);
         unsafe extern "C" fn func_func<P: IsA<CellRenderer>>(
-            cell_layout: *mut gtk_sys::GtkCellLayout,
-            cell: *mut gtk_sys::GtkCellRenderer,
-            tree_model: *mut gtk_sys::GtkTreeModel,
-            iter: *mut gtk_sys::GtkTreeIter,
-            data: glib_sys::gpointer,
+            cell_layout: *mut ffi::GtkCellLayout,
+            cell: *mut ffi::GtkCellRenderer,
+            tree_model: *mut ffi::GtkTreeModel,
+            iter: *mut ffi::GtkTreeIter,
+            data: glib::ffi::gpointer,
         ) {
             let cell_layout = from_glib_borrow(cell_layout);
             let cell = from_glib_borrow(cell);
@@ -158,7 +157,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         } else {
             None
         };
-        unsafe extern "C" fn destroy_func<P: IsA<CellRenderer>>(data: glib_sys::gpointer) {
+        unsafe extern "C" fn destroy_func<P: IsA<CellRenderer>>(data: glib::ffi::gpointer) {
             let _callback: Box_<
                 Option<Box_<dyn Fn(&CellLayout, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
             > = Box_::from_raw(data as *mut _);
@@ -168,7 +167,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             Option<Box_<dyn Fn(&CellLayout, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
         > = func_data;
         unsafe {
-            gtk_sys::gtk_cell_layout_set_cell_data_func(
+            ffi::gtk_cell_layout_set_cell_data_func(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
                 func,

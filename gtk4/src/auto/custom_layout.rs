@@ -2,22 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::LayoutManager;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use LayoutManager;
 
-glib_wrapper! {
-    pub struct CustomLayout(Object<gtk_sys::GtkCustomLayout, gtk_sys::GtkCustomLayoutClass>) @extends LayoutManager;
+glib::glib_wrapper! {
+    pub struct CustomLayout(Object<ffi::GtkCustomLayout, ffi::GtkCustomLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || gtk_sys::gtk_custom_layout_get_type(),
+        get_type => || ffi::gtk_custom_layout_get_type(),
     }
 }
 
 impl CustomLayout {
     //pub fn new<P: FnMut(&Widget, &Orientation, i32, i32, i32, i32, i32), Q: FnMut(&Widget, i32, i32, i32)>(request_mode: Option<&mut dyn (FnMut(&Widget) -> SizeRequestMode)>, measure: P, allocate: Q) -> CustomLayout {
-    //    unsafe { TODO: call gtk_sys:gtk_custom_layout_new() }
+    //    unsafe { TODO: call ffi:gtk_custom_layout_new() }
     //}
 }
 

@@ -2,26 +2,24 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
+use crate::Buildable;
+use crate::Sorter;
 use glib::object::IsA;
 use glib::translate::*;
-use gtk_sys;
 use std::fmt;
-use Buildable;
-use Sorter;
 
-glib_wrapper! {
-    pub struct MultiSorter(Object<gtk_sys::GtkMultiSorter, gtk_sys::GtkMultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
+glib::glib_wrapper! {
+    pub struct MultiSorter(Object<ffi::GtkMultiSorter, ffi::GtkMultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || gtk_sys::gtk_multi_sorter_get_type(),
+        get_type => || ffi::gtk_multi_sorter_get_type(),
     }
 }
 
 impl MultiSorter {
     pub fn new() -> MultiSorter {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_multi_sorter_new()) }
+        unsafe { from_glib_full(ffi::gtk_multi_sorter_new()) }
     }
 }
 
@@ -42,7 +40,7 @@ pub trait MultiSorterExt: 'static {
 impl<O: IsA<MultiSorter>> MultiSorterExt for O {
     fn append<P: IsA<Sorter>>(&self, sorter: &P) {
         unsafe {
-            gtk_sys::gtk_multi_sorter_append(
+            ffi::gtk_multi_sorter_append(
                 self.as_ref().to_glib_none().0,
                 sorter.as_ref().to_glib_full(),
             );
@@ -51,7 +49,7 @@ impl<O: IsA<MultiSorter>> MultiSorterExt for O {
 
     fn remove(&self, position: u32) {
         unsafe {
-            gtk_sys::gtk_multi_sorter_remove(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_multi_sorter_remove(self.as_ref().to_glib_none().0, position);
         }
     }
 }

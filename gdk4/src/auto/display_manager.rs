@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Display;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -10,24 +10,22 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Display;
 
-glib_wrapper! {
-    pub struct DisplayManager(Object<gdk_sys::GdkDisplayManager>);
+glib::glib_wrapper! {
+    pub struct DisplayManager(Object<ffi::GdkDisplayManager>);
 
     match fn {
-        get_type => || gdk_sys::gdk_display_manager_get_type(),
+        get_type => || ffi::gdk_display_manager_get_type(),
     }
 }
 
 impl DisplayManager {
     pub fn get_default_display(&self) -> Option<Display> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_display_manager_get_default_display(
+            from_glib_none(ffi::gdk_display_manager_get_default_display(
                 self.to_glib_none().0,
             ))
         }
@@ -35,7 +33,7 @@ impl DisplayManager {
 
     pub fn list_displays(&self) -> Vec<Display> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(gdk_sys::gdk_display_manager_list_displays(
+            FromGlibPtrContainer::from_glib_container(ffi::gdk_display_manager_list_displays(
                 self.to_glib_none().0,
             ))
         }
@@ -43,7 +41,7 @@ impl DisplayManager {
 
     pub fn open_display(&self, name: &str) -> Option<Display> {
         unsafe {
-            from_glib_none(gdk_sys::gdk_display_manager_open_display(
+            from_glib_none(ffi::gdk_display_manager_open_display(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
             ))
@@ -52,7 +50,7 @@ impl DisplayManager {
 
     pub fn set_default_display(&self, display: &Display) {
         unsafe {
-            gdk_sys::gdk_display_manager_set_default_display(
+            ffi::gdk_display_manager_set_default_display(
                 self.to_glib_none().0,
                 display.to_glib_none().0,
             );
@@ -61,7 +59,7 @@ impl DisplayManager {
 
     pub fn get() -> Option<DisplayManager> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(gdk_sys::gdk_display_manager_get()) }
+        unsafe { from_glib_none(ffi::gdk_display_manager_get()) }
     }
 
     pub fn connect_display_opened<F: Fn(&DisplayManager, &Display) + 'static>(
@@ -71,9 +69,9 @@ impl DisplayManager {
         unsafe extern "C" fn display_opened_trampoline<
             F: Fn(&DisplayManager, &Display) + 'static,
         >(
-            this: *mut gdk_sys::GdkDisplayManager,
-            display: *mut gdk_sys::GdkDisplay,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkDisplayManager,
+            display: *mut ffi::GdkDisplay,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(display))
@@ -96,9 +94,9 @@ impl DisplayManager {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_display_trampoline<F: Fn(&DisplayManager) + 'static>(
-            this: *mut gdk_sys::GdkDisplayManager,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GdkDisplayManager,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

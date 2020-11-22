@@ -2,16 +2,12 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-use cairo;
-use pango;
-
+use crate::{ContentDeserializer, ContentSerializer};
 use glib::object::IsA;
 use glib::translate::*;
 use std::future;
 use std::pin::Pin;
 use std::ptr;
-use ContentDeserializer;
-use ContentSerializer;
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
@@ -26,7 +22,7 @@ pub fn pango_layout_line_get_clip_region(
 
     let ptr: *const i32 = index_ranges.as_ptr() as _;
     unsafe {
-        from_glib_full(gdk_sys::gdk_pango_layout_line_get_clip_region(
+        from_glib_full(ffi::gdk_pango_layout_line_get_clip_region(
             line.to_glib_none().0,
             x_origin,
             y_origin,
@@ -46,7 +42,7 @@ pub fn pango_layout_get_clip_region(
 
     let ptr: *const i32 = index_ranges.as_ptr() as _;
     unsafe {
-        from_glib_full(gdk_sys::gdk_pango_layout_get_clip_region(
+        from_glib_full(ffi::gdk_pango_layout_get_clip_region(
             layout.to_glib_none().0,
             x_origin,
             y_origin,
@@ -73,14 +69,13 @@ pub fn content_deserialize_async<
     unsafe extern "C" fn content_deserialize_async_trampoline<
         R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
     >(
-        _source_object: *mut gobject_sys::GObject,
-        res: *mut gio_sys::GAsyncResult,
-        user_data: glib_sys::gpointer,
+        _source_object: *mut glib::gobject_ffi::GObject,
+        res: *mut gio::ffi::GAsyncResult,
+        user_data: glib::ffi::gpointer,
     ) {
         let mut error = ptr::null_mut();
         let mut value = glib::Value::uninitialized();
-        let _ =
-            gdk_sys::gdk_content_deserialize_finish(res, value.to_glib_none_mut().0, &mut error);
+        let _ = ffi::gdk_content_deserialize_finish(res, value.to_glib_none_mut().0, &mut error);
         let result = if error.is_null() {
             Ok(value)
         } else {
@@ -91,7 +86,7 @@ pub fn content_deserialize_async<
     }
     let callback = content_deserialize_async_trampoline::<R>;
     unsafe {
-        gdk_sys::gdk_content_deserialize_async(
+        ffi::gdk_content_deserialize_async(
             stream.as_ref().to_glib_none().0,
             mime_type.to_glib_none().0,
             type_.to_glib(),
@@ -144,22 +139,21 @@ pub fn content_register_deserializer<
         T: 'static,
         P: Fn(&ContentDeserializer, &mut Option<T>) + 'static,
     >(
-        deserializer: *mut gdk_sys::GdkContentDeserializer,
+        deserializer: *mut ffi::GdkContentDeserializer,
     ) {
         let deserializer: ContentDeserializer = from_glib_full(deserializer);
         let callback: &P =
-            &*(gdk_sys::gdk_content_deserializer_get_user_data(deserializer.to_glib_none().0)
+            &*(ffi::gdk_content_deserializer_get_user_data(deserializer.to_glib_none().0)
                 as *mut _);
 
         let mut task_data: *mut Option<T> =
-            gdk_sys::gdk_content_deserializer_get_task_data(deserializer.to_glib_none().0)
-                as *mut _;
+            ffi::gdk_content_deserializer_get_task_data(deserializer.to_glib_none().0) as *mut _;
         if task_data.is_null() {
-            unsafe extern "C" fn notify_func<T: 'static>(data: glib_sys::gpointer) {
+            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) {
                 let _task_data: Box<Option<T>> = Box::from_raw(data as *mut _);
             }
             task_data = Box::into_raw(Box::new(None));
-            gdk_sys::gdk_content_deserializer_set_task_data(
+            ffi::gdk_content_deserializer_set_task_data(
                 deserializer.to_glib_none().0,
                 task_data as *mut _,
                 Some(notify_func::<T>),
@@ -173,14 +167,14 @@ pub fn content_register_deserializer<
         T: 'static,
         P: Fn(&ContentDeserializer, &mut Option<T>) + 'static,
     >(
-        data: glib_sys::gpointer,
+        data: glib::ffi::gpointer,
     ) {
         let _callback: Box<P> = Box::from_raw(data as *mut _);
     }
     let destroy_call4 = Some(notify_func::<T, P> as _);
     let super_callback0: Box<P> = deserialize_data;
     unsafe {
-        gdk_sys::gdk_content_register_deserializer(
+        ffi::gdk_content_register_deserializer(
             mime_type.to_glib_none().0,
             type_.to_glib(),
             deserialize,
@@ -204,21 +198,20 @@ pub fn content_register_serializer<
         T: 'static,
         P: Fn(&ContentSerializer, &mut Option<T>) + 'static,
     >(
-        serializer: *mut gdk_sys::GdkContentSerializer,
+        serializer: *mut ffi::GdkContentSerializer,
     ) {
         let serializer: ContentSerializer = from_glib_full(serializer);
         let callback: &P =
-            &*(gdk_sys::gdk_content_serializer_get_user_data(serializer.to_glib_none().0)
-                as *mut _);
+            &*(ffi::gdk_content_serializer_get_user_data(serializer.to_glib_none().0) as *mut _);
 
         let mut task_data: *mut Option<T> =
-            gdk_sys::gdk_content_serializer_get_task_data(serializer.to_glib_none().0) as *mut _;
+            ffi::gdk_content_serializer_get_task_data(serializer.to_glib_none().0) as *mut _;
         if task_data.is_null() {
-            unsafe extern "C" fn notify_func<T: 'static>(data: glib_sys::gpointer) {
+            unsafe extern "C" fn notify_func<T: 'static>(data: glib::ffi::gpointer) {
                 let _task_data: Box<Option<T>> = Box::from_raw(data as *mut _);
             }
             task_data = Box::into_raw(Box::new(None));
-            gdk_sys::gdk_content_serializer_set_task_data(
+            ffi::gdk_content_serializer_set_task_data(
                 serializer.to_glib_none().0,
                 task_data as *mut _,
                 Some(notify_func::<T>),
@@ -232,14 +225,14 @@ pub fn content_register_serializer<
         T: 'static,
         P: Fn(&ContentSerializer, &mut Option<T>) + 'static,
     >(
-        data: glib_sys::gpointer,
+        data: glib::ffi::gpointer,
     ) {
         let _callback: Box<P> = Box::from_raw(data as *mut _);
     }
     let destroy_call4 = Some(notify_func::<T, P> as _);
     let super_callback0: Box<P> = serialize_data;
     unsafe {
-        gdk_sys::gdk_content_register_serializer(
+        ffi::gdk_content_register_serializer(
             type_.to_glib(),
             mime_type.to_glib_none().0,
             serialize,
@@ -266,12 +259,12 @@ pub fn content_serialize_async<
     unsafe extern "C" fn content_serialize_async_trampoline<
         R: FnOnce(Result<(), glib::Error>) + Send + 'static,
     >(
-        _source_object: *mut gobject_sys::GObject,
-        res: *mut gio_sys::GAsyncResult,
-        user_data: glib_sys::gpointer,
+        _source_object: *mut glib::gobject_ffi::GObject,
+        res: *mut gio::ffi::GAsyncResult,
+        user_data: glib::ffi::gpointer,
     ) {
         let mut error = ptr::null_mut();
-        let _ = gdk_sys::gdk_content_serialize_finish(res, &mut error);
+        let _ = ffi::gdk_content_serialize_finish(res, &mut error);
         let result = if error.is_null() {
             Ok(())
         } else {
@@ -282,7 +275,7 @@ pub fn content_serialize_async<
     }
     let callback = content_serialize_async_trampoline::<R>;
     unsafe {
-        gdk_sys::gdk_content_serialize_async(
+        ffi::gdk_content_serialize_async(
             stream.as_ref().to_glib_none().0,
             mime_type.to_glib_none().0,
             value.to_glib_none().0,

@@ -2,16 +2,11 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-use auto::DialogExt;
+use crate::{Dialog, DialogExt, DialogFlags, ResponseType, Widget, Window};
 use glib::object::Cast;
 use glib::translate::*;
 use glib::IsA;
 use std::ptr;
-use Dialog;
-use DialogFlags;
-use ResponseType;
-use Widget;
-use Window;
 
 impl Dialog {
     pub fn new_with_buttons<T: IsA<Window>>(
@@ -22,7 +17,7 @@ impl Dialog {
     ) -> Dialog {
         assert_initialized_main_thread!();
         let ret: Dialog = unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_dialog_new_with_buttons(
+            Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 flags.to_glib(),
@@ -51,7 +46,7 @@ impl<O: IsA<Dialog>> DialogExtManual for O {
 
     fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType {
         unsafe {
-            from_glib(gtk_sys::gtk_dialog_get_response_for_widget(
+            from_glib(ffi::gtk_dialog_get_response_for_widget(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
             ))

@@ -2,18 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::RenderNode;
 use glib::object::IsA;
 use glib::translate::*;
-use graphene;
-use gsk_sys;
 use std::fmt;
-use RenderNode;
 
-glib_wrapper! {
-    pub struct RepeatNode(Object<gsk_sys::GskRepeatNode>) @extends RenderNode;
+glib::glib_wrapper! {
+    pub struct RepeatNode(Object<ffi::GskRepeatNode>) @extends RenderNode;
 
     match fn {
-        get_type => || gsk_sys::gsk_repeat_node_get_type(),
+        get_type => || ffi::gsk_repeat_node_get_type(),
     }
 }
 
@@ -25,7 +23,7 @@ impl RepeatNode {
     ) -> RepeatNode {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gsk_sys::gsk_repeat_node_new(
+            from_glib_full(ffi::gsk_repeat_node_new(
                 bounds.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 child_bounds.to_glib_none().0,
@@ -34,12 +32,12 @@ impl RepeatNode {
     }
 
     pub fn get_child(&self) -> Option<RenderNode> {
-        unsafe { from_glib_none(gsk_sys::gsk_repeat_node_get_child(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gsk_repeat_node_get_child(self.to_glib_none().0)) }
     }
 
     pub fn peek_child_bounds(&self) -> Option<graphene::Rect> {
         unsafe {
-            from_glib_none(gsk_sys::gsk_repeat_node_peek_child_bounds(
+            from_glib_none(ffi::gsk_repeat_node_peek_child_bounds(
                 self.to_glib_none().0,
             ))
         }

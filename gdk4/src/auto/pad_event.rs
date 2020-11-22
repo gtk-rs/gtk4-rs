@@ -2,17 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::Event;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use Event;
 
-glib_wrapper! {
-    pub struct PadEvent(Object<gdk_sys::GdkPadEvent>) @extends Event;
+glib::glib_wrapper! {
+    pub struct PadEvent(Object<ffi::GdkPadEvent>) @extends Event;
 
     match fn {
-        get_type => || gdk_sys::gdk_pad_event_get_type(),
+        get_type => || ffi::gdk_pad_event_get_type(),
     }
 }
 
@@ -21,7 +20,7 @@ impl PadEvent {
         unsafe {
             let mut index = mem::MaybeUninit::uninit();
             let mut value = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_pad_event_get_axis_value(
+            ffi::gdk_pad_event_get_axis_value(
                 self.to_glib_none().0,
                 index.as_mut_ptr(),
                 value.as_mut_ptr(),
@@ -33,14 +32,14 @@ impl PadEvent {
     }
 
     pub fn get_button(&self) -> u32 {
-        unsafe { gdk_sys::gdk_pad_event_get_button(self.to_glib_none().0) }
+        unsafe { ffi::gdk_pad_event_get_button(self.to_glib_none().0) }
     }
 
     pub fn get_group_mode(&self) -> (u32, u32) {
         unsafe {
             let mut group = mem::MaybeUninit::uninit();
             let mut mode = mem::MaybeUninit::uninit();
-            gdk_sys::gdk_pad_event_get_group_mode(
+            ffi::gdk_pad_event_get_group_mode(
                 self.to_glib_none().0,
                 group.as_mut_ptr(),
                 mode.as_mut_ptr(),

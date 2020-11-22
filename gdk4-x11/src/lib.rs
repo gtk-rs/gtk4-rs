@@ -4,17 +4,13 @@
 
 #![allow(deprecated)]
 
-#[macro_use]
-extern crate glib;
+pub use ffi;
+
 extern crate gdk;
-extern crate gdk4_x11_sys as gdk_x11_sys;
 extern crate gio;
-extern crate glib_sys;
-extern crate gobject_sys;
+extern crate glib;
 extern crate libc;
 extern crate x11;
-
-pub(crate) use x11::xlib;
 
 #[macro_use]
 mod rt;

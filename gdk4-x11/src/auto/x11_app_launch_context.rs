@@ -2,17 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_x11_sys;
-use gio;
 use glib::translate::*;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct X11AppLaunchContext(Object<gdk_x11_sys::GdkX11AppLaunchContext, gdk_x11_sys::GdkX11AppLaunchContextClass>) @extends gdk::AppLaunchContext, gio::AppLaunchContext;
+glib::glib_wrapper! {
+    pub struct X11AppLaunchContext(Object<ffi::GdkX11AppLaunchContext, ffi::GdkX11AppLaunchContextClass>) @extends gdk::AppLaunchContext, gio::AppLaunchContext;
 
     match fn {
-        get_type => || gdk_x11_sys::gdk_x11_app_launch_context_get_type(),
+        get_type => || ffi::gdk_x11_app_launch_context_get_type(),
     }
 }
 

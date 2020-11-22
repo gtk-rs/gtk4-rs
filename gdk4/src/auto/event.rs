@@ -2,24 +2,23 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
+use crate::AxisUse;
+use crate::Device;
+use crate::Display;
+use crate::EventType;
+use crate::ModifierType;
+use crate::Seat;
+use crate::Surface;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use AxisUse;
-use Device;
-use Display;
-use EventType;
-use ModifierType;
-use Seat;
-use Surface;
 
-glib_wrapper! {
-    pub struct Event(Object<gdk_sys::GdkEvent>);
+glib::glib_wrapper! {
+    pub struct Event(Object<ffi::GdkEvent>);
 
     match fn {
-        get_type => || gdk_sys::gdk_event_get_type(),
+        get_type => || ffi::gdk_event_get_type(),
     }
 }
 
@@ -55,7 +54,7 @@ impl<O: IsA<Event>> EventExt for O {
     fn get_axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_axis(
+            let ret = from_glib(ffi::gdk_event_get_axis(
                 self.as_ref().to_glib_none().0,
                 axis_use.to_glib(),
                 value.as_mut_ptr(),
@@ -70,36 +69,28 @@ impl<O: IsA<Event>> EventExt for O {
     }
 
     fn get_device(&self) -> Option<Device> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_device(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gdk_event_get_device(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_display(&self) -> Option<Display> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_display(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gdk_event_get_display(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_event_type(&self) -> EventType {
         unsafe {
-            from_glib(gdk_sys::gdk_event_get_event_type(
+            from_glib(ffi::gdk_event_get_event_type(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord> {
-    //    unsafe { TODO: call gdk_sys:gdk_event_get_history() }
+    //    unsafe { TODO: call ffi:gdk_event_get_history() }
     //}
 
     fn get_modifier_state(&self) -> ModifierType {
         unsafe {
-            from_glib(gdk_sys::gdk_event_get_modifier_state(
+            from_glib(ffi::gdk_event_get_modifier_state(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -107,7 +98,7 @@ impl<O: IsA<Event>> EventExt for O {
 
     fn get_pointer_emulated(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_event_get_pointer_emulated(
+            from_glib(ffi::gdk_event_get_pointer_emulated(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -117,7 +108,7 @@ impl<O: IsA<Event>> EventExt for O {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
-            let ret = from_glib(gdk_sys::gdk_event_get_position(
+            let ret = from_glib(ffi::gdk_event_get_position(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),
@@ -133,24 +124,20 @@ impl<O: IsA<Event>> EventExt for O {
     }
 
     fn get_seat(&self) -> Option<Seat> {
-        unsafe { from_glib_none(gdk_sys::gdk_event_get_seat(self.as_ref().to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gdk_event_get_seat(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_surface(&self) -> Option<Surface> {
-        unsafe {
-            from_glib_none(gdk_sys::gdk_event_get_surface(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gdk_event_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_time(&self) -> u32 {
-        unsafe { gdk_sys::gdk_event_get_time(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gdk_event_get_time(self.as_ref().to_glib_none().0) }
     }
 
     fn triggers_context_menu(&self) -> bool {
         unsafe {
-            from_glib(gdk_sys::gdk_event_triggers_context_menu(
+            from_glib(ffi::gdk_event_triggers_context_menu(
                 self.as_ref().to_glib_none().0,
             ))
         }

@@ -2,8 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_sys;
+use crate::EventController;
+use crate::Gesture;
+use crate::GestureSingle;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
@@ -12,59 +15,51 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
-use libc;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use EventController;
-use Gesture;
-use GestureSingle;
-use PropagationLimit;
-use PropagationPhase;
 
-glib_wrapper! {
-    pub struct DragSource(Object<gtk_sys::GtkDragSource, gtk_sys::GtkDragSourceClass>) @extends GestureSingle, Gesture, EventController;
+glib::glib_wrapper! {
+    pub struct DragSource(Object<ffi::GtkDragSource, ffi::GtkDragSourceClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || gtk_sys::gtk_drag_source_get_type(),
+        get_type => || ffi::gtk_drag_source_get_type(),
     }
 }
 
 impl DragSource {
     pub fn new() -> DragSource {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_drag_source_new()) }
+        unsafe { from_glib_full(ffi::gtk_drag_source_new()) }
     }
 
     pub fn drag_cancel(&self) {
         unsafe {
-            gtk_sys::gtk_drag_source_drag_cancel(self.to_glib_none().0);
+            ffi::gtk_drag_source_drag_cancel(self.to_glib_none().0);
         }
     }
 
     pub fn get_actions(&self) -> gdk::DragAction {
-        unsafe { from_glib(gtk_sys::gtk_drag_source_get_actions(self.to_glib_none().0)) }
+        unsafe { from_glib(ffi::gtk_drag_source_get_actions(self.to_glib_none().0)) }
     }
 
     pub fn get_content(&self) -> Option<gdk::ContentProvider> {
-        unsafe { from_glib_none(gtk_sys::gtk_drag_source_get_content(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_drag_source_get_content(self.to_glib_none().0)) }
     }
 
     pub fn get_drag(&self) -> Option<gdk::Drag> {
-        unsafe { from_glib_none(gtk_sys::gtk_drag_source_get_drag(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_drag_source_get_drag(self.to_glib_none().0)) }
     }
 
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            gtk_sys::gtk_drag_source_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drag_source_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
     pub fn set_content<P: IsA<gdk::ContentProvider>>(&self, content: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_drag_source_set_content(
+            ffi::gtk_drag_source_set_content(
                 self.to_glib_none().0,
                 content.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -73,7 +68,7 @@ impl DragSource {
 
     pub fn set_icon<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>, hot_x: i32, hot_y: i32) {
         unsafe {
-            gtk_sys::gtk_drag_source_set_icon(
+            ffi::gtk_drag_source_set_icon(
                 self.to_glib_none().0,
                 paintable.map(|p| p.as_ref()).to_glib_none().0,
                 hot_x,
@@ -87,9 +82,9 @@ impl DragSource {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn drag_begin_trampoline<F: Fn(&DragSource, &gdk::Drag) + 'static>(
-            this: *mut gtk_sys::GtkDragSource,
-            drag: *mut gdk_sys::GdkDrag,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDragSource,
+            drag: *mut gdk::ffi::GdkDrag,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(drag))
@@ -116,10 +111,10 @@ impl DragSource {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn drag_end_trampoline<F: Fn(&DragSource, &gdk::Drag, bool) + 'static>(
-            this: *mut gtk_sys::GtkDragSource,
-            drag: *mut gdk_sys::GdkDrag,
-            delete_data: glib_sys::gboolean,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDragSource,
+            drag: *mut gdk::ffi::GdkDrag,
+            delete_data: glib::ffi::gboolean,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
@@ -150,11 +145,11 @@ impl DragSource {
         unsafe extern "C" fn prepare_trampoline<
             F: Fn(&DragSource, f64, f64) -> Option<gdk::ContentProvider> + 'static,
         >(
-            this: *mut gtk_sys::GtkDragSource,
+            this: *mut ffi::GtkDragSource,
             x: libc::c_double,
             y: libc::c_double,
-            f: glib_sys::gpointer,
-        ) -> *mut gdk_sys::GdkContentProvider {
+            f: glib::ffi::gpointer,
+        ) -> *mut gdk::ffi::GdkContentProvider {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), x, y).to_glib_full()
         }
@@ -176,9 +171,9 @@ impl DragSource {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&DragSource) + 'static>(
-            this: *mut gtk_sys::GtkDragSource,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDragSource,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
@@ -201,9 +196,9 @@ impl DragSource {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_trampoline<F: Fn(&DragSource) + 'static>(
-            this: *mut gtk_sys::GtkDragSource,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDragSource,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

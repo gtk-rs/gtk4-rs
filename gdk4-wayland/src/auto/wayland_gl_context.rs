@@ -2,16 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_wayland_sys;
 use glib::translate::*;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct WaylandGLContext(Object<gdk_wayland_sys::GdkWaylandGLContext, gdk_wayland_sys::GdkWaylandGLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
+glib::glib_wrapper! {
+    pub struct WaylandGLContext(Object<ffi::GdkWaylandGLContext, ffi::GdkWaylandGLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
 
     match fn {
-        get_type => || gdk_wayland_sys::gdk_wayland_gl_context_get_type(),
+        get_type => || ffi::gdk_wayland_gl_context_get_type(),
     }
 }
 

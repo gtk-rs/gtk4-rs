@@ -2,16 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gdk_wayland_sys;
 use glib::translate::*;
 use std::fmt;
 
-glib_wrapper! {
-    pub struct WaylandMonitor(Object<gdk_wayland_sys::GdkWaylandMonitor, gdk_wayland_sys::GdkWaylandMonitorClass>) @extends gdk::Monitor;
+glib::glib_wrapper! {
+    pub struct WaylandMonitor(Object<ffi::GdkWaylandMonitor, ffi::GdkWaylandMonitorClass>) @extends gdk::Monitor;
 
     match fn {
-        get_type => || gdk_wayland_sys::gdk_wayland_monitor_get_type(),
+        get_type => || ffi::gdk_wayland_monitor_get_type(),
     }
 }
 

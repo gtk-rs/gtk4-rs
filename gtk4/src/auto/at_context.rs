@@ -2,7 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
+use crate::Accessible;
+use crate::AccessibleRole;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -10,20 +11,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::Value;
-use glib_sys;
-use gobject_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
 
-glib_wrapper! {
-    pub struct ATContext(Object<gtk_sys::GtkATContext, gtk_sys::GtkATContextClass>);
+glib::glib_wrapper! {
+    pub struct ATContext(Object<ffi::GtkATContext, ffi::GtkATContextClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_at_context_get_type(),
+        get_type => || ffi::gtk_at_context_get_type(),
     }
 }
 
@@ -35,7 +31,7 @@ impl ATContext {
     ) -> Option<ATContext> {
         skip_assert_initialized!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_at_context_create(
+            from_glib_full(ffi::gtk_at_context_create(
                 accessible_role.to_glib(),
                 accessible.as_ref().to_glib_none().0,
                 display.to_glib_none().0,
@@ -44,16 +40,12 @@ impl ATContext {
     }
 
     pub fn get_accessible(&self) -> Option<Accessible> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_at_context_get_accessible(
-                self.to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_at_context_get_accessible(self.to_glib_none().0)) }
     }
 
     pub fn get_accessible_role(&self) -> AccessibleRole {
         unsafe {
-            from_glib(gtk_sys::gtk_at_context_get_accessible_role(
+            from_glib(ffi::gtk_at_context_get_accessible_role(
                 self.to_glib_none().0,
             ))
         }
@@ -62,8 +54,8 @@ impl ATContext {
     pub fn get_property_display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
-            gobject_sys::g_object_get_property(
-                self.as_ptr() as *mut gobject_sys::GObject,
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -75,8 +67,8 @@ impl ATContext {
 
     pub fn connect_state_change<F: Fn(&ATContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn state_change_trampoline<F: Fn(&ATContext) + 'static>(
-            this: *mut gtk_sys::GtkATContext,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkATContext,
+            f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))

@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gio;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -10,17 +9,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib_wrapper! {
-    pub struct FlattenListModel(Object<gtk_sys::GtkFlattenListModel, gtk_sys::GtkFlattenListModelClass>) @implements gio::ListModel;
+glib::glib_wrapper! {
+    pub struct FlattenListModel(Object<ffi::GtkFlattenListModel, ffi::GtkFlattenListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || gtk_sys::gtk_flatten_list_model_get_type(),
+        get_type => || ffi::gtk_flatten_list_model_get_type(),
     }
 }
 
@@ -28,7 +25,7 @@ impl FlattenListModel {
     pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> FlattenListModel {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(gtk_sys::gtk_flatten_list_model_new(
+            from_glib_full(ffi::gtk_flatten_list_model_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
@@ -78,7 +75,7 @@ pub trait FlattenListModelExt: 'static {
 impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
     fn get_model(&self) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_flatten_list_model_get_model(
+            from_glib_none(ffi::gtk_flatten_list_model_get_model(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -86,7 +83,7 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
 
     fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_flatten_list_model_get_model_for_item(
+            from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
                 self.as_ref().to_glib_none().0,
                 position,
             ))
@@ -95,7 +92,7 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_flatten_list_model_set_model(
+            ffi::gtk_flatten_list_model_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -104,9 +101,9 @@ impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkFlattenListModel,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkFlattenListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<FlattenListModel>,
         {

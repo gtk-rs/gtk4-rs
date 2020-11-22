@@ -2,22 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use cairo;
-use gdk_pixbuf;
-use gdk_sys;
-use glib;
+use crate::Event;
+use crate::Texture;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
 use std::mem;
-use Event;
-use Texture;
 
 pub fn events_get_angle<P: IsA<Event>, Q: IsA<Event>>(event1: &P, event2: &Q) -> Option<f64> {
     skip_assert_initialized!();
     unsafe {
         let mut angle = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_angle(
+        let ret = from_glib(ffi::gdk_events_get_angle(
             event1.as_ref().to_glib_none().0,
             event2.as_ref().to_glib_none().0,
             angle.as_mut_ptr(),
@@ -39,7 +34,7 @@ pub fn events_get_center<P: IsA<Event>, Q: IsA<Event>>(
     unsafe {
         let mut x = mem::MaybeUninit::uninit();
         let mut y = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_center(
+        let ret = from_glib(ffi::gdk_events_get_center(
             event1.as_ref().to_glib_none().0,
             event2.as_ref().to_glib_none().0,
             x.as_mut_ptr(),
@@ -59,7 +54,7 @@ pub fn events_get_distance<P: IsA<Event>, Q: IsA<Event>>(event1: &P, event2: &Q)
     skip_assert_initialized!();
     unsafe {
         let mut distance = mem::MaybeUninit::uninit();
-        let ret = from_glib(gdk_sys::gdk_events_get_distance(
+        let ret = from_glib(ffi::gdk_events_get_distance(
             event1.as_ref().to_glib_none().0,
             event2.as_ref().to_glib_none().0,
             distance.as_mut_ptr(),
@@ -73,9 +68,9 @@ pub fn events_get_distance<P: IsA<Event>, Q: IsA<Event>>(event1: &P, event2: &Q)
     }
 }
 
-pub fn intern_mime_type(string: &str) -> Option<GString> {
+pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     assert_initialized_main_thread!();
-    unsafe { from_glib_none(gdk_sys::gdk_intern_mime_type(string.to_glib_none().0)) }
+    unsafe { from_glib_none(ffi::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
 pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
@@ -83,7 +78,7 @@ pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
     unsafe {
         let mut lower = mem::MaybeUninit::uninit();
         let mut upper = mem::MaybeUninit::uninit();
-        gdk_sys::gdk_keyval_convert_case(symbol, lower.as_mut_ptr(), upper.as_mut_ptr());
+        ffi::gdk_keyval_convert_case(symbol, lower.as_mut_ptr(), upper.as_mut_ptr());
         let lower = lower.assume_init();
         let upper = upper.assume_init();
         (lower, upper)
@@ -92,37 +87,37 @@ pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
 
 pub fn keyval_from_name(keyval_name: &str) -> u32 {
     assert_initialized_main_thread!();
-    unsafe { gdk_sys::gdk_keyval_from_name(keyval_name.to_glib_none().0) }
+    unsafe { ffi::gdk_keyval_from_name(keyval_name.to_glib_none().0) }
 }
 
 pub fn keyval_is_lower(keyval: u32) -> bool {
     assert_initialized_main_thread!();
-    unsafe { from_glib(gdk_sys::gdk_keyval_is_lower(keyval)) }
+    unsafe { from_glib(ffi::gdk_keyval_is_lower(keyval)) }
 }
 
 pub fn keyval_is_upper(keyval: u32) -> bool {
     assert_initialized_main_thread!();
-    unsafe { from_glib(gdk_sys::gdk_keyval_is_upper(keyval)) }
+    unsafe { from_glib(ffi::gdk_keyval_is_upper(keyval)) }
 }
 
-pub fn keyval_name(keyval: u32) -> Option<GString> {
+pub fn keyval_name(keyval: u32) -> Option<glib::GString> {
     assert_initialized_main_thread!();
-    unsafe { from_glib_none(gdk_sys::gdk_keyval_name(keyval)) }
+    unsafe { from_glib_none(ffi::gdk_keyval_name(keyval)) }
 }
 
 pub fn keyval_to_lower(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe { gdk_sys::gdk_keyval_to_lower(keyval) }
+    unsafe { ffi::gdk_keyval_to_lower(keyval) }
 }
 
 pub fn keyval_to_unicode(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe { gdk_sys::gdk_keyval_to_unicode(keyval) }
+    unsafe { ffi::gdk_keyval_to_unicode(keyval) }
 }
 
 pub fn keyval_to_upper(keyval: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe { gdk_sys::gdk_keyval_to_upper(keyval) }
+    unsafe { ffi::gdk_keyval_to_upper(keyval) }
 }
 
 pub fn pixbuf_get_from_surface(
@@ -134,7 +129,7 @@ pub fn pixbuf_get_from_surface(
 ) -> Option<gdk_pixbuf::Pixbuf> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(gdk_sys::gdk_pixbuf_get_from_surface(
+        from_glib_full(ffi::gdk_pixbuf_get_from_surface(
             mut_override(surface.to_glib_none().0),
             src_x,
             src_y,
@@ -147,7 +142,7 @@ pub fn pixbuf_get_from_surface(
 pub fn pixbuf_get_from_texture<P: IsA<Texture>>(texture: &P) -> Option<gdk_pixbuf::Pixbuf> {
     skip_assert_initialized!();
     unsafe {
-        from_glib_full(gdk_sys::gdk_pixbuf_get_from_texture(
+        from_glib_full(ffi::gdk_pixbuf_get_from_texture(
             texture.as_ref().to_glib_none().0,
         ))
     }
@@ -156,16 +151,16 @@ pub fn pixbuf_get_from_texture<P: IsA<Texture>>(texture: &P) -> Option<gdk_pixbu
 pub fn set_allowed_backends(backends: &str) {
     assert_initialized_main_thread!();
     unsafe {
-        gdk_sys::gdk_set_allowed_backends(backends.to_glib_none().0);
+        ffi::gdk_set_allowed_backends(backends.to_glib_none().0);
     }
 }
 
 pub fn toplevel_size_get_type() -> glib::types::Type {
     assert_initialized_main_thread!();
-    unsafe { from_glib(gdk_sys::gdk_toplevel_size_get_type()) }
+    unsafe { from_glib(ffi::gdk_toplevel_size_get_type()) }
 }
 
 pub fn unicode_to_keyval(wc: u32) -> u32 {
     assert_initialized_main_thread!();
-    unsafe { gdk_sys::gdk_unicode_to_keyval(wc) }
+    unsafe { ffi::gdk_unicode_to_keyval(wc) }
 }

@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::LayoutChild;
+use crate::LayoutManager;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -9,20 +12,15 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use LayoutChild;
-use LayoutManager;
-use Widget;
 
-glib_wrapper! {
-    pub struct GridLayoutChild(Object<gtk_sys::GtkGridLayoutChild, gtk_sys::GtkGridLayoutChildClass>) @extends LayoutChild;
+glib::glib_wrapper! {
+    pub struct GridLayoutChild(Object<ffi::GtkGridLayoutChild, ffi::GtkGridLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || gtk_sys::gtk_grid_layout_child_get_type(),
+        get_type => || ffi::gtk_grid_layout_child_get_type(),
     }
 }
 
@@ -129,50 +127,50 @@ pub trait GridLayoutChildExt: 'static {
 
 impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
     fn get_column(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_column(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_child_get_column(self.as_ref().to_glib_none().0) }
     }
 
     fn get_column_span(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_column_span(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_child_get_column_span(self.as_ref().to_glib_none().0) }
     }
 
     fn get_row(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_row(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_child_get_row(self.as_ref().to_glib_none().0) }
     }
 
     fn get_row_span(&self) -> i32 {
-        unsafe { gtk_sys::gtk_grid_layout_child_get_row_span(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_grid_layout_child_get_row_span(self.as_ref().to_glib_none().0) }
     }
 
     fn set_column(&self, column: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_column(self.as_ref().to_glib_none().0, column);
+            ffi::gtk_grid_layout_child_set_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
     fn set_column_span(&self, span: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_column_span(self.as_ref().to_glib_none().0, span);
+            ffi::gtk_grid_layout_child_set_column_span(self.as_ref().to_glib_none().0, span);
         }
     }
 
     fn set_row(&self, row: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_row(self.as_ref().to_glib_none().0, row);
+            ffi::gtk_grid_layout_child_set_row(self.as_ref().to_glib_none().0, row);
         }
     }
 
     fn set_row_span(&self, span: i32) {
         unsafe {
-            gtk_sys::gtk_grid_layout_child_set_row_span(self.as_ref().to_glib_none().0, span);
+            ffi::gtk_grid_layout_child_set_row_span(self.as_ref().to_glib_none().0, span);
         }
     }
 
     fn connect_property_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayoutChild>,
         {
@@ -194,9 +192,9 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
 
     fn connect_property_column_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_span_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayoutChild>,
         {
@@ -218,9 +216,9 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
 
     fn connect_property_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayoutChild>,
         {
@@ -242,9 +240,9 @@ impl<O: IsA<GridLayoutChild>> GridLayoutChildExt for O {
 
     fn connect_property_row_span_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_span_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkGridLayoutChild,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkGridLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<GridLayoutChild>,
         {

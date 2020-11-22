@@ -7,40 +7,37 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::GString;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib_wrapper! {
-    pub struct StringObject(Object<gtk_sys::GtkStringObject, gtk_sys::GtkStringObjectClass>);
+glib::glib_wrapper! {
+    pub struct StringObject(Object<ffi::GtkStringObject, ffi::GtkStringObjectClass>);
 
     match fn {
-        get_type => || gtk_sys::gtk_string_object_get_type(),
+        get_type => || ffi::gtk_string_object_get_type(),
     }
 }
 
 impl StringObject {
     pub fn new(string: &str) -> StringObject {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(gtk_sys::gtk_string_object_new(string.to_glib_none().0)) }
+        unsafe { from_glib_full(ffi::gtk_string_object_new(string.to_glib_none().0)) }
     }
 }
 
 pub const NONE_STRING_OBJECT: Option<&StringObject> = None;
 
 pub trait StringObjectExt: 'static {
-    fn get_string(&self) -> GString;
+    fn get_string(&self) -> glib::GString;
 
     fn connect_property_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<StringObject>> StringObjectExt for O {
-    fn get_string(&self) -> GString {
+    fn get_string(&self) -> glib::GString {
         unsafe {
-            from_glib_none(gtk_sys::gtk_string_object_get_string(
+            from_glib_none(ffi::gtk_string_object_get_string(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -48,9 +45,9 @@ impl<O: IsA<StringObject>> StringObjectExt for O {
 
     fn connect_property_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_string_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkStringObject,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkStringObject,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<StringObject>,
         {

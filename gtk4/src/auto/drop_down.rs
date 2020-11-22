@@ -2,9 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk;
-use gio;
-use glib;
+use crate::Accessible;
+use crate::AccessibleRole;
+use crate::Align;
+use crate::Buildable;
+use crate::ConstraintTarget;
+use crate::LayoutManager;
+use crate::ListItemFactory;
+use crate::Overflow;
+use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -12,38 +18,27 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib_sys;
-use gtk_sys;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use Accessible;
-use AccessibleRole;
-use Align;
-use Buildable;
-use ConstraintTarget;
-use LayoutManager;
-use ListItemFactory;
-use Overflow;
-use Widget;
 
-glib_wrapper! {
-    pub struct DropDown(Object<gtk_sys::GtkDropDown, gtk_sys::GtkDropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+glib::glib_wrapper! {
+    pub struct DropDown(Object<ffi::GtkDropDown, ffi::GtkDropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || gtk_sys::gtk_drop_down_get_type(),
+        get_type => || ffi::gtk_drop_down_get_type(),
     }
 }
 
 impl DropDown {
     //pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>, expression: /*Ignored*/Option<&Expression>) -> DropDown {
-    //    unsafe { TODO: call gtk_sys:gtk_drop_down_new() }
+    //    unsafe { TODO: call ffi:gtk_drop_down_new() }
     //}
 
     pub fn from_strings(strings: &[&str]) -> DropDown {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(gtk_sys::gtk_drop_down_new_from_strings(
+            Widget::from_glib_none(ffi::gtk_drop_down_new_from_strings(
                 strings.to_glib_none().0,
             ))
             .unsafe_cast()
@@ -440,19 +435,19 @@ pub trait DropDownExt: 'static {
 impl<O: IsA<DropDown>> DropDownExt for O {
     fn get_enable_search(&self) -> bool {
         unsafe {
-            from_glib(gtk_sys::gtk_drop_down_get_enable_search(
+            from_glib(ffi::gtk_drop_down_get_enable_search(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call gtk_sys:gtk_drop_down_get_expression() }
+    //    unsafe { TODO: call ffi:gtk_drop_down_get_expression() }
     //}
 
     fn get_factory(&self) -> Option<ListItemFactory> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_drop_down_get_factory(
+            from_glib_none(ffi::gtk_drop_down_get_factory(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -460,27 +455,23 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn get_list_factory(&self) -> Option<ListItemFactory> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_drop_down_get_list_factory(
+            from_glib_none(ffi::gtk_drop_down_get_list_factory(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
     fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(gtk_sys::gtk_drop_down_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gtk_drop_down_get_model(self.as_ref().to_glib_none().0)) }
     }
 
     fn get_selected(&self) -> u32 {
-        unsafe { gtk_sys::gtk_drop_down_get_selected(self.as_ref().to_glib_none().0) }
+        unsafe { ffi::gtk_drop_down_get_selected(self.as_ref().to_glib_none().0) }
     }
 
     fn get_selected_item(&self) -> Option<glib::Object> {
         unsafe {
-            from_glib_none(gtk_sys::gtk_drop_down_get_selected_item(
+            from_glib_none(ffi::gtk_drop_down_get_selected_item(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -488,7 +479,7 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn set_enable_search(&self, enable_search: bool) {
         unsafe {
-            gtk_sys::gtk_drop_down_set_enable_search(
+            ffi::gtk_drop_down_set_enable_search(
                 self.as_ref().to_glib_none().0,
                 enable_search.to_glib(),
             );
@@ -496,12 +487,12 @@ impl<O: IsA<DropDown>> DropDownExt for O {
     }
 
     //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call gtk_sys:gtk_drop_down_set_expression() }
+    //    unsafe { TODO: call ffi:gtk_drop_down_set_expression() }
     //}
 
     fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_drop_down_set_factory(
+            ffi::gtk_drop_down_set_factory(
                 self.as_ref().to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -510,7 +501,7 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn set_list_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_drop_down_set_list_factory(
+            ffi::gtk_drop_down_set_list_factory(
                 self.as_ref().to_glib_none().0,
                 factory.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -519,7 +510,7 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
-            gtk_sys::gtk_drop_down_set_model(
+            ffi::gtk_drop_down_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -528,7 +519,7 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn set_selected(&self, position: u32) {
         unsafe {
-            gtk_sys::gtk_drop_down_set_selected(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_drop_down_set_selected(self.as_ref().to_glib_none().0, position);
         }
     }
 
@@ -537,9 +528,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_search_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -561,9 +552,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -585,9 +576,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn connect_property_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -612,9 +603,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_factory_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -636,9 +627,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -660,9 +651,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
 
     fn connect_property_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {
@@ -687,9 +678,9 @@ impl<O: IsA<DropDown>> DropDownExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_item_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut gtk_sys::GtkDropDown,
-            _param_spec: glib_sys::gpointer,
-            f: glib_sys::gpointer,
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
         ) where
             P: IsA<DropDown>,
         {

@@ -2,20 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use gdk_sys;
-use glib;
+use crate::MemoryFormat;
+use crate::Paintable;
+use crate::Texture;
 use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
-use MemoryFormat;
-use Paintable;
-use Texture;
 
-glib_wrapper! {
-    pub struct MemoryTexture(Object<gdk_sys::GdkMemoryTexture, gdk_sys::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
+glib::glib_wrapper! {
+    pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || gdk_sys::gdk_memory_texture_get_type(),
+        get_type => || ffi::gdk_memory_texture_get_type(),
     }
 }
 
@@ -29,7 +27,7 @@ impl MemoryTexture {
     ) -> MemoryTexture {
         assert_initialized_main_thread!();
         unsafe {
-            Texture::from_glib_full(gdk_sys::gdk_memory_texture_new(
+            Texture::from_glib_full(ffi::gdk_memory_texture_new(
                 width,
                 height,
                 format.to_glib(),

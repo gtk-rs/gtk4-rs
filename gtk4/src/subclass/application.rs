@@ -1,11 +1,8 @@
-use gtk_sys;
-
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
-use Application;
-use Window;
+use crate::{Application, Window};
 
 pub trait GtkApplicationImpl:
     ObjectImpl + GtkApplicationImplExt + gio::subclass::ApplicationImpl
@@ -28,8 +25,7 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
     fn parent_window_added(&self, application: &Self::Type, window: &Window) {
         unsafe {
             let data = T::type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkApplicationClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_added {
                 f(
                     application
@@ -45,8 +41,7 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
     fn parent_window_removed(&self, application: &Self::Type, window: &Window) {
         unsafe {
             let data = T::type_data();
-            let parent_class =
-                data.as_ref().get_parent_class() as *mut gtk_sys::GtkApplicationClass;
+            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkApplicationClass;
             if let Some(f) = (*parent_class).window_removed {
                 f(
                     application
@@ -71,8 +66,8 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
 }
 
 unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
-    ptr: *mut gtk_sys::GtkApplication,
-    wptr: *mut gtk_sys::GtkWindow,
+    ptr: *mut ffi::GtkApplication,
+    wptr: *mut ffi::GtkWindow,
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
@@ -82,8 +77,8 @@ unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
 }
 
 unsafe extern "C" fn application_window_removed<T: GtkApplicationImpl>(
-    ptr: *mut gtk_sys::GtkApplication,
-    wptr: *mut gtk_sys::GtkWindow,
+    ptr: *mut ffi::GtkApplication,
+    wptr: *mut ffi::GtkWindow,
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
