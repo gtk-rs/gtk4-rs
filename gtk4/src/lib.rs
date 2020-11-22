@@ -13,21 +13,19 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
-pub use ffi;
-
 extern crate bitflags;
 extern crate libc;
 extern crate once_cell;
 
-#[macro_use]
-extern crate glib;
-extern crate cairo;
-extern crate gdk;
-extern crate gdk_pixbuf;
-extern crate gio;
-extern crate graphene;
-extern crate gsk;
-extern crate pango;
+pub use cairo;
+pub use ffi;
+pub use gdk;
+pub use gdk_pixbuf;
+pub use gio;
+pub use glib;
+pub use graphene;
+pub use gsk;
+pub use pango;
 
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
 pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
