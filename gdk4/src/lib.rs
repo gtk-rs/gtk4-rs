@@ -12,12 +12,11 @@
 #![allow(deprecated)]
 
 pub use ffi;
-extern crate gdk_pixbuf;
-extern crate gio;
-#[macro_use]
-extern crate glib;
 extern crate bitflags;
 extern crate cairo;
+extern crate gdk_pixbuf;
+extern crate gio;
+extern crate glib;
 extern crate libc;
 extern crate pango;
 

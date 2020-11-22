@@ -13,11 +13,10 @@
 
 pub use ffi;
 
-#[macro_use]
-extern crate glib;
 extern crate bitflags;
 extern crate cairo;
 extern crate gdk;
+extern crate glib;
 extern crate graphene;
 extern crate libc;
 extern crate pango;
