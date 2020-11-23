@@ -20,13 +20,17 @@ impl BorderNode {
     //    unsafe { TODO: call ffi:gsk_border_node_new() }
     //}
 
-    pub fn peek_colors(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(ffi::gsk_border_node_peek_colors(self.to_glib_none().0)) }
+    pub fn get_colors(&self) -> Option<gdk::RGBA> {
+        unsafe { from_glib_none(ffi::gsk_border_node_get_colors(self.to_glib_none().0)) }
     }
 
-    pub fn peek_outline(&self) -> Option<RoundedRect> {
-        unsafe { from_glib_none(ffi::gsk_border_node_peek_outline(self.to_glib_none().0)) }
+    pub fn get_outline(&self) -> Option<RoundedRect> {
+        unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
     }
+
+    //pub fn get_widths(&self) -> /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4 {
+    //    unsafe { TODO: call ffi:gsk_border_node_get_widths() }
+    //}
 }
 
 impl fmt::Display for BorderNode {

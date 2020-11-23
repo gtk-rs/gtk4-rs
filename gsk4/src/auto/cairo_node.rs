@@ -24,8 +24,8 @@ impl CairoNode {
         unsafe { from_glib_full(ffi::gsk_cairo_node_get_draw_context(self.to_glib_none().0)) }
     }
 
-    pub fn peek_surface(&self) -> Option<cairo::Surface> {
-        unsafe { from_glib_none(ffi::gsk_cairo_node_peek_surface(self.to_glib_none().0)) }
+    pub fn get_surface(&self) -> Option<cairo::Surface> {
+        unsafe { from_glib_none(ffi::gsk_cairo_node_get_surface(self.to_glib_none().0)) }
     }
 }
 

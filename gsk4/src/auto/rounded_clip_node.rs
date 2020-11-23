@@ -31,8 +31,8 @@ impl RoundedClipNode {
         unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn peek_clip(&self) -> Option<RoundedRect> {
-        unsafe { from_glib_none(ffi::gsk_rounded_clip_node_peek_clip(self.to_glib_none().0)) }
+    pub fn get_clip(&self) -> Option<RoundedRect> {
+        unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_clip(self.to_glib_none().0)) }
     }
 }
 

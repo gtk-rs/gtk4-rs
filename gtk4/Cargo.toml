@@ -16,10 +16,6 @@ exclude = [
     "gir-files/*",
 ]
 
-[badges]
-appveyor = { repository = "GuillaumeGomez/gtk4", service = "github" }
-travis-ci = { repository = "gtk-rs/gtk4" }
-
 [lib]
 name = "gtk4"
 

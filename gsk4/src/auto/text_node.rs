@@ -33,6 +33,18 @@ impl TextNode {
         }
     }
 
+    pub fn get_color(&self) -> Option<gdk::RGBA> {
+        unsafe { from_glib_none(ffi::gsk_text_node_get_color(self.to_glib_none().0)) }
+    }
+
+    pub fn get_font(&self) -> Option<pango::Font> {
+        unsafe { from_glib_none(ffi::gsk_text_node_get_font(self.to_glib_none().0)) }
+    }
+
+    //pub fn get_glyphs(&self) -> /*Ignored*/Vec<pango::GlyphInfo> {
+    //    unsafe { TODO: call ffi:gsk_text_node_get_glyphs() }
+    //}
+
     pub fn get_num_glyphs(&self) -> u32 {
         unsafe { ffi::gsk_text_node_get_num_glyphs(self.to_glib_none().0) }
     }
@@ -44,18 +56,6 @@ impl TextNode {
     pub fn has_color_glyphs(&self) -> bool {
         unsafe { from_glib(ffi::gsk_text_node_has_color_glyphs(self.to_glib_none().0)) }
     }
-
-    pub fn peek_color(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(ffi::gsk_text_node_peek_color(self.to_glib_none().0)) }
-    }
-
-    pub fn peek_font(&self) -> Option<pango::Font> {
-        unsafe { from_glib_none(ffi::gsk_text_node_peek_font(self.to_glib_none().0)) }
-    }
-
-    //pub fn peek_glyphs(&self) -> /*Ignored*/Vec<pango::GlyphInfo> {
-    //    unsafe { TODO: call ffi:gsk_text_node_peek_glyphs() }
-    //}
 }
 
 impl fmt::Display for TextNode {

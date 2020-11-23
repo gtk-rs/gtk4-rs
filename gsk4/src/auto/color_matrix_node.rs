@@ -35,17 +35,17 @@ impl ColorMatrixNode {
         unsafe { from_glib_none(ffi::gsk_color_matrix_node_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn peek_color_matrix(&self) -> Option<graphene::Matrix> {
+    pub fn get_color_matrix(&self) -> Option<graphene::Matrix> {
         unsafe {
-            from_glib_none(ffi::gsk_color_matrix_node_peek_color_matrix(
+            from_glib_none(ffi::gsk_color_matrix_node_get_color_matrix(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    pub fn peek_color_offset(&self) -> Option<graphene::Vec4> {
+    pub fn get_color_offset(&self) -> Option<graphene::Vec4> {
         unsafe {
-            from_glib_none(ffi::gsk_color_matrix_node_peek_color_offset(
+            from_glib_none(ffi::gsk_color_matrix_node_get_color_offset(
                 self.to_glib_none().0,
             ))
         }

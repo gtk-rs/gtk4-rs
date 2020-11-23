@@ -31,11 +31,11 @@ impl WaylandDisplay {
         }
     }
 
-    pub fn set_cursor_theme(&self, theme: &str, size: i32) {
+    pub fn set_cursor_theme(&self, name: &str, size: i32) {
         unsafe {
             ffi::gdk_wayland_display_set_cursor_theme(
                 self.to_glib_none().0,
-                theme.to_glib_none().0,
+                name.to_glib_none().0,
                 size,
             );
         }

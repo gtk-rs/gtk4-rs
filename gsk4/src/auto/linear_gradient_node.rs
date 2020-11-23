@@ -17,15 +17,11 @@ glib::glib_wrapper! {
 }
 
 impl LinearGradientNode {
-    pub fn get_n_color_stops(&self) -> usize {
-        unsafe { ffi::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0) }
-    }
-
-    pub fn peek_color_stops(&self) -> Vec<ColorStop> {
+    pub fn get_color_stops(&self) -> Vec<ColorStop> {
         unsafe {
             let mut n_stops = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
-                ffi::gsk_linear_gradient_node_peek_color_stops(
+                ffi::gsk_linear_gradient_node_get_color_stops(
                     self.to_glib_none().0,
                     n_stops.as_mut_ptr(),
                 ),
@@ -35,17 +31,17 @@ impl LinearGradientNode {
         }
     }
 
-    pub fn peek_end(&self) -> Option<graphene::Point> {
-        unsafe {
-            from_glib_none(ffi::gsk_linear_gradient_node_peek_end(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_end(&self) -> Option<graphene::Point> {
+        unsafe { from_glib_none(ffi::gsk_linear_gradient_node_get_end(self.to_glib_none().0)) }
     }
 
-    pub fn peek_start(&self) -> Option<graphene::Point> {
+    pub fn get_n_color_stops(&self) -> usize {
+        unsafe { ffi::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0) }
+    }
+
+    pub fn get_start(&self) -> Option<graphene::Point> {
         unsafe {
-            from_glib_none(ffi::gsk_linear_gradient_node_peek_start(
+            from_glib_none(ffi::gsk_linear_gradient_node_get_start(
                 self.to_glib_none().0,
             ))
         }

@@ -11,13 +11,6 @@ pub use self::blur_node::BlurNode;
 mod border_node;
 pub use self::border_node::BorderNode;
 
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
-mod broadway_renderer;
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
-pub use self::broadway_renderer::BroadwayRenderer;
-
 mod cairo_node;
 pub use self::cairo_node::CairoNode;
 
@@ -85,13 +78,6 @@ pub use self::texture_node::TextureNode;
 
 mod transform_node;
 pub use self::transform_node::TransformNode;
-
-#[cfg(any(feature = "vulkan", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "vulkan")))]
-mod vulkan_renderer;
-#[cfg(any(feature = "vulkan", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "vulkan")))]
-pub use self::vulkan_renderer::VulkanRenderer;
 
 mod transform;
 pub use self::transform::Transform;

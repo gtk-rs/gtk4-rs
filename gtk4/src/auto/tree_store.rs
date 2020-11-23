@@ -59,7 +59,7 @@ pub trait TreeStoreExt: 'static {
 
     fn prepend(&self, parent: Option<&TreeIter>) -> TreeIter;
 
-    //fn remove(&self, iter: /*Unimplemented*/TreeIter) -> bool;
+    fn remove(&self, iter: &TreeIter) -> bool;
 
     //fn reorder(&self, parent: Option<&TreeIter>, new_order: &[i32]);
 
@@ -200,9 +200,14 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
         }
     }
 
-    //fn remove(&self, iter: /*Unimplemented*/TreeIter) -> bool {
-    //    unsafe { TODO: call ffi:gtk_tree_store_remove() }
-    //}
+    fn remove(&self, iter: &TreeIter) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_store_remove(
+                self.as_ref().to_glib_none().0,
+                mut_override(iter.to_glib_none().0),
+            ))
+        }
+    }
 
     //fn reorder(&self, parent: Option<&TreeIter>, new_order: &[i32]) {
     //    unsafe { TODO: call ffi:gtk_tree_store_reorder() }

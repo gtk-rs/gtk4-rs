@@ -35,12 +35,8 @@ impl RepeatNode {
         unsafe { from_glib_none(ffi::gsk_repeat_node_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn peek_child_bounds(&self) -> Option<graphene::Rect> {
-        unsafe {
-            from_glib_none(ffi::gsk_repeat_node_peek_child_bounds(
-                self.to_glib_none().0,
-            ))
-        }
+    pub fn get_child_bounds(&self) -> Option<graphene::Rect> {
+        unsafe { from_glib_none(ffi::gsk_repeat_node_get_child_bounds(self.to_glib_none().0)) }
     }
 }
 

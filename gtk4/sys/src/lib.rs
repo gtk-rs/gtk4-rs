@@ -438,12 +438,6 @@ pub const GTK_LICENSE_BSD_3: GtkLicense = 15;
 pub const GTK_LICENSE_APACHE_2_0: GtkLicense = 16;
 pub const GTK_LICENSE_MPL_2_0: GtkLicense = 17;
 
-pub type GtkMenuDirectionType = c_int;
-pub const GTK_MENU_DIR_PARENT: GtkMenuDirectionType = 0;
-pub const GTK_MENU_DIR_CHILD: GtkMenuDirectionType = 1;
-pub const GTK_MENU_DIR_NEXT: GtkMenuDirectionType = 2;
-pub const GTK_MENU_DIR_PREV: GtkMenuDirectionType = 3;
-
 pub type GtkMessageType = c_int;
 pub const GTK_MESSAGE_INFO: GtkMessageType = 0;
 pub const GTK_MESSAGE_WARNING: GtkMessageType = 1;
@@ -521,10 +515,6 @@ pub const GTK_POLICY_ALWAYS: GtkPolicyType = 0;
 pub const GTK_POLICY_AUTOMATIC: GtkPolicyType = 1;
 pub const GTK_POLICY_NEVER: GtkPolicyType = 2;
 pub const GTK_POLICY_EXTERNAL: GtkPolicyType = 3;
-
-pub type GtkPopoverConstraint = c_int;
-pub const GTK_POPOVER_CONSTRAINT_NONE: GtkPopoverConstraint = 0;
-pub const GTK_POPOVER_CONSTRAINT_WINDOW: GtkPopoverConstraint = 1;
 
 pub type GtkPositionType = c_int;
 pub const GTK_POS_LEFT: GtkPositionType = 0;
@@ -756,11 +746,6 @@ pub const GTK_SYSTEM_SETTING_FONT_CONFIG: GtkSystemSetting = 2;
 pub const GTK_SYSTEM_SETTING_DISPLAY: GtkSystemSetting = 3;
 pub const GTK_SYSTEM_SETTING_ICON_THEME: GtkSystemSetting = 4;
 
-pub type GtkTextBufferTargetInfo = c_int;
-pub const GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS: GtkTextBufferTargetInfo = -1;
-pub const GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT: GtkTextBufferTargetInfo = -2;
-pub const GTK_TEXT_BUFFER_TARGET_INFO_TEXT: GtkTextBufferTargetInfo = -3;
-
 pub type GtkTextDirection = c_int;
 pub const GTK_TEXT_DIR_NONE: GtkTextDirection = 0;
 pub const GTK_TEXT_DIR_LTR: GtkTextDirection = 1;
@@ -977,11 +962,6 @@ pub type GtkPickFlags = c_uint;
 pub const GTK_PICK_DEFAULT: GtkPickFlags = 0;
 pub const GTK_PICK_INSENSITIVE: GtkPickFlags = 1;
 pub const GTK_PICK_NON_TARGETABLE: GtkPickFlags = 2;
-
-pub type GtkPlacesOpenFlags = c_uint;
-pub const GTK_PLACES_OPEN_NORMAL: GtkPlacesOpenFlags = 1;
-pub const GTK_PLACES_OPEN_NEW_TAB: GtkPlacesOpenFlags = 2;
-pub const GTK_PLACES_OPEN_NEW_WINDOW: GtkPlacesOpenFlags = 4;
 
 pub type GtkPopoverMenuFlags = c_uint;
 pub const GTK_POPOVER_MENU_NESTED: GtkPopoverMenuFlags = 1;
@@ -3707,7 +3687,7 @@ pub type GtkRootInterface = *mut _GtkRootInterface;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GtkScaleButtonClass {
-    pub parent_class: GtkButtonClass,
+    pub parent_class: GtkWidgetClass,
     pub value_changed: Option<unsafe extern "C" fn(*mut GtkScaleButton, c_double)>,
     pub padding: [gpointer; 8],
 }
@@ -6912,7 +6892,7 @@ impl ::std::fmt::Debug for GtkScale {
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GtkScaleButton {
-    pub parent_instance: GtkButton,
+    pub parent_instance: GtkWidget,
 }
 
 impl ::std::fmt::Debug for GtkScaleButton {
@@ -7894,11 +7874,19 @@ extern "C" {
     // GtkAccessibleProperty
     //=========================================================================
     pub fn gtk_accessible_property_get_type() -> GType;
+    pub fn gtk_accessible_property_init_value(
+        property: GtkAccessibleProperty,
+        value: *mut gobject::GValue,
+    );
 
     //=========================================================================
     // GtkAccessibleRelation
     //=========================================================================
     pub fn gtk_accessible_relation_get_type() -> GType;
+    pub fn gtk_accessible_relation_init_value(
+        relation: GtkAccessibleRelation,
+        value: *mut gobject::GValue,
+    );
 
     //=========================================================================
     // GtkAccessibleRole
@@ -7914,6 +7902,7 @@ extern "C" {
     // GtkAccessibleState
     //=========================================================================
     pub fn gtk_accessible_state_get_type() -> GType;
+    pub fn gtk_accessible_state_init_value(state: GtkAccessibleState, value: *mut gobject::GValue);
 
     //=========================================================================
     // GtkAccessibleTristate
@@ -8080,11 +8069,6 @@ extern "C" {
     pub fn gtk_license_get_type() -> GType;
 
     //=========================================================================
-    // GtkMenuDirectionType
-    //=========================================================================
-    pub fn gtk_menu_direction_type_get_type() -> GType;
-
-    //=========================================================================
     // GtkMessageType
     //=========================================================================
     pub fn gtk_message_type_get_type() -> GType;
@@ -8148,11 +8132,6 @@ extern "C" {
     // GtkPolicyType
     //=========================================================================
     pub fn gtk_policy_type_get_type() -> GType;
-
-    //=========================================================================
-    // GtkPopoverConstraint
-    //=========================================================================
-    pub fn gtk_popover_constraint_get_type() -> GType;
 
     //=========================================================================
     // GtkPositionType
@@ -8307,11 +8286,6 @@ extern "C" {
     pub fn gtk_system_setting_get_type() -> GType;
 
     //=========================================================================
-    // GtkTextBufferTargetInfo
-    //=========================================================================
-    pub fn gtk_text_buffer_target_info_get_type() -> GType;
-
-    //=========================================================================
     // GtkTextDirection
     //=========================================================================
     pub fn gtk_text_direction_get_type() -> GType;
@@ -8405,11 +8379,6 @@ extern "C" {
     // GtkPickFlags
     //=========================================================================
     pub fn gtk_pick_flags_get_type() -> GType;
-
-    //=========================================================================
-    // GtkPlacesOpenFlags
-    //=========================================================================
-    pub fn gtk_places_open_flags_get_type() -> GType;
 
     //=========================================================================
     // GtkPopoverMenuFlags
@@ -9146,7 +9115,7 @@ extern "C" {
     // GtkActivateAction
     //=========================================================================
     pub fn gtk_activate_action_get_type() -> GType;
-    pub fn gtk_activate_action_get() -> *mut GtkShortcutAction;
+    pub fn gtk_activate_action_get() -> *mut GtkActivateAction;
 
     //=========================================================================
     // GtkAdjustment
@@ -9743,7 +9712,7 @@ extern "C" {
         callback: GtkShortcutFunc,
         data: gpointer,
         destroy: glib::GDestroyNotify,
-    ) -> *mut GtkShortcutAction;
+    ) -> *mut GtkCallbackAction;
 
     //=========================================================================
     // GtkCellArea
@@ -12151,8 +12120,8 @@ extern "C" {
     pub fn gtk_icon_view_get_tooltip_column(icon_view: *mut GtkIconView) -> c_int;
     pub fn gtk_icon_view_get_tooltip_context(
         icon_view: *mut GtkIconView,
-        x: *mut c_int,
-        y: *mut c_int,
+        x: c_int,
+        y: c_int,
         keyboard_tip: gboolean,
         model: *mut *mut GtkTreeModel,
         path: *mut *mut GtkTreePath,
@@ -12845,7 +12814,7 @@ extern "C" {
     // GtkMnemonicAction
     //=========================================================================
     pub fn gtk_mnemonic_action_get_type() -> GType;
-    pub fn gtk_mnemonic_action_get() -> *mut GtkShortcutAction;
+    pub fn gtk_mnemonic_action_get() -> *mut GtkMnemonicAction;
 
     //=========================================================================
     // GtkMnemonicTrigger
@@ -13076,7 +13045,7 @@ extern "C" {
     // GtkNothingAction
     //=========================================================================
     pub fn gtk_nothing_action_get_type() -> GType;
-    pub fn gtk_nothing_action_get() -> *mut GtkShortcutAction;
+    pub fn gtk_nothing_action_get() -> *mut GtkNothingAction;
 
     //=========================================================================
     // GtkNumericSorter
@@ -15403,7 +15372,7 @@ extern "C" {
     pub fn gtk_tree_expander_get_type() -> GType;
     pub fn gtk_tree_expander_new() -> *mut GtkWidget;
     pub fn gtk_tree_expander_get_child(self_: *mut GtkTreeExpander) -> *mut GtkWidget;
-    pub fn gtk_tree_expander_get_item(self_: *mut GtkTreeExpander) -> gpointer;
+    pub fn gtk_tree_expander_get_item(self_: *mut GtkTreeExpander) -> *mut gobject::GObject;
     pub fn gtk_tree_expander_get_list_row(self_: *mut GtkTreeExpander) -> *mut GtkTreeListRow;
     pub fn gtk_tree_expander_set_child(self_: *mut GtkTreeExpander, child: *mut GtkWidget);
     pub fn gtk_tree_expander_set_list_row(
@@ -15860,8 +15829,8 @@ extern "C" {
     pub fn gtk_tree_view_get_tooltip_column(tree_view: *mut GtkTreeView) -> c_int;
     pub fn gtk_tree_view_get_tooltip_context(
         tree_view: *mut GtkTreeView,
-        x: *mut c_int,
-        y: *mut c_int,
+        x: c_int,
+        y: c_int,
         keyboard_tip: gboolean,
         model: *mut *mut GtkTreeModel,
         path: *mut *mut GtkTreePath,

@@ -17,7 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl RenderNode {
-    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
+    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Ignored*/ParseLocation, /*Ignored*/ParseLocation, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
     //    unsafe { TODO: call ffi:gsk_render_node_deserialize() }
     //}
 }

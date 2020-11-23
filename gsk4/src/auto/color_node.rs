@@ -25,8 +25,8 @@ impl ColorNode {
         }
     }
 
-    pub fn peek_color(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(ffi::gsk_color_node_peek_color(self.to_glib_none().0)) }
+    pub fn get_color(&self) -> Option<gdk::RGBA> {
+        unsafe { from_glib_none(ffi::gsk_color_node_get_color(self.to_glib_none().0)) }
     }
 }
 

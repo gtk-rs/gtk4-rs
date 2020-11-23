@@ -285,6 +285,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskParseLocation",
+        Layout {
+            size: size_of::<GskParseLocation>(),
+            alignment: align_of::<GskParseLocation>(),
+        },
+    ),
+    (
         "GskRenderNodeType",
         Layout {
             size: size_of::<GskRenderNodeType>(),

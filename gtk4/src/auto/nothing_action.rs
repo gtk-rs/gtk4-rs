@@ -15,7 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl NothingAction {
-    pub fn get() -> Option<ShortcutAction> {
+    pub fn get() -> Option<NothingAction> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_nothing_action_get()) }
     }

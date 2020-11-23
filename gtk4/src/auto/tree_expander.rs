@@ -355,7 +355,7 @@ pub const NONE_TREE_EXPANDER: Option<&TreeExpander> = None;
 pub trait TreeExpanderExt: 'static {
     fn get_child(&self) -> Option<Widget>;
 
-    //fn get_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer>;
+    fn get_item(&self) -> Option<glib::Object>;
 
     fn get_list_row(&self) -> Option<TreeListRow>;
 
@@ -379,9 +379,13 @@ impl<O: IsA<TreeExpander>> TreeExpanderExt for O {
         }
     }
 
-    //fn get_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi:gtk_tree_expander_get_item() }
-    //}
+    fn get_item(&self) -> Option<glib::Object> {
+        unsafe {
+            from_glib_none(ffi::gtk_tree_expander_get_item(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn get_list_row(&self) -> Option<TreeListRow> {
         unsafe {

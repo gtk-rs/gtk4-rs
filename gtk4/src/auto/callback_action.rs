@@ -4,7 +4,6 @@
 
 use crate::ShortcutAction;
 use crate::Widget;
-use glib::object::Cast;
 use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -53,12 +52,11 @@ impl CallbackAction {
         let super_callback0: Box_<Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>>> =
             callback_data;
         unsafe {
-            ShortcutAction::from_glib_full(ffi::gtk_callback_action_new(
+            from_glib_full(ffi::gtk_callback_action_new(
                 callback,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call2,
             ))
-            .unsafe_cast()
         }
     }
 }

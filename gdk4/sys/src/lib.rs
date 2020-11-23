@@ -2835,11 +2835,11 @@ pub struct _GdkTextureClass(c_void);
 pub type GdkTextureClass = *mut _GdkTextureClass;
 
 #[repr(C)]
+#[derive(Copy, Clone)]
 pub struct GdkTimeCoord {
     pub time: u32,
     pub flags: GdkAxisFlags,
-    _truncated_record_marker: c_void,
-    // /*Ignored*/field axes has empty c:type
+    pub axes: [c_double; 12],
 }
 
 impl ::std::fmt::Debug for GdkTimeCoord {
@@ -2847,6 +2847,7 @@ impl ::std::fmt::Debug for GdkTimeCoord {
         f.debug_struct(&format!("GdkTimeCoord @ {:?}", self as *const _))
             .field("time", &self.time)
             .field("flags", &self.flags)
+            .field("axes", &self.axes)
             .finish()
     }
 }

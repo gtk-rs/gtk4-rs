@@ -51,6 +51,16 @@ impl ATContext {
         }
     }
 
+    pub fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"accessible-role\0".as_ptr() as *const _,
+                Value::from(&accessible_role).to_glib_none().0,
+            );
+        }
+    }
+
     pub fn get_property_display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
@@ -62,6 +72,16 @@ impl ATContext {
             value
                 .get()
                 .expect("Return Value for property `display` getter")
+        }
+    }
+
+    pub fn set_property_display(&self, display: Option<&gdk::Display>) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"display\0".as_ptr() as *const _,
+                Value::from(display).to_glib_none().0,
+            );
         }
     }
 
@@ -80,6 +100,56 @@ impl ATContext {
                 b"state-change\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     state_change_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_accessible_role_notify<F: Fn(&ATContext) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accessible_role_trampoline<F: Fn(&ATContext) + 'static>(
+            this: *mut ffi::GtkATContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accessible-role\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accessible_role_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_display_notify<F: Fn(&ATContext) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_display_trampoline<F: Fn(&ATContext) + 'static>(
+            this: *mut ffi::GtkATContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::display\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_display_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

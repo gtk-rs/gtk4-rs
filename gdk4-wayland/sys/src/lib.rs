@@ -159,7 +159,7 @@ extern "C" {
     ) -> gboolean;
     pub fn gdk_wayland_display_set_cursor_theme(
         display: *mut GdkWaylandDisplay,
-        theme: *const c_char,
+        name: *const c_char,
         size: c_int,
     );
     pub fn gdk_wayland_display_set_startup_notification_id(
