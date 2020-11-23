@@ -1,7 +1,6 @@
-
-use glib::translate::*;
-use std::fmt;
 use crate::{RenderNode, Shadow, ShadowNode};
+use glib::translate::*;
+use glib::IsA;
 
 impl ShadowNode {
     pub fn new<P: IsA<RenderNode>>(child: &P, shadows: &[Shadow]) -> ShadowNode {
@@ -18,11 +17,6 @@ impl ShadowNode {
 
     pub fn peek_shadow(&self, i: usize) -> Option<Shadow> {
         assert!(i < self.get_n_shadows());
-        unsafe {
-            from_glib_none(ffi::gsk_shadow_node_peek_shadow(
-                self.to_glib_none().0,
-                i,
-            ))
-        }
+        unsafe { from_glib_none(ffi::gsk_shadow_node_peek_shadow(self.to_glib_none().0, i)) }
     }
 }

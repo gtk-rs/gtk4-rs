@@ -13,15 +13,6 @@
 
 pub use ffi;
 
-#[macro_use]
-extern crate glib;
-extern crate bitflags;
-extern crate cairo;
-extern crate gdk;
-extern crate graphene;
-extern crate libc;
-extern crate pango;
-
 // GSK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
     () => {};
@@ -48,8 +39,11 @@ pub use auto::*;
 
 mod border_node;
 mod color_stop;
+mod linear_gradient_node;
+mod repeating_linear_gradient_node;
 mod rounded_rect;
 mod shadow;
+mod shadow_node;
 
 pub use border_node::BorderNodeManualExt;
 pub use color_stop::ColorStop;

@@ -21,3 +21,6 @@ package = "gdk4"
 [dependencies.ffi]
 path = "./sys"
 package = "gdk4-x11-sys"
+
+[dev-dependencies]
+gir-format-check = "^0.1"
