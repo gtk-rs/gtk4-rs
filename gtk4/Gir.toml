@@ -384,12 +384,6 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_program_name"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Actionable"
@@ -399,12 +393,6 @@ manual_traits = ["ActionableExtManual"]
     #value glib.Variant
     name = "action-target"
     ignore = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_action_target_value"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ActionBar"
@@ -445,12 +433,6 @@ generate_builder = true
 name = "Gtk.AppChooserWidget"
 status = "generate"
 generate_builder = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_default_text"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Application"
@@ -460,16 +442,6 @@ trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
     ignore = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_menu_by_id"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
-    name = "get_menubar"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ApplicationWindow"
@@ -905,12 +877,6 @@ manual_traits = ["EntryExtManual"]
         [[object.function.parameter]]
         name = "tabs"
         const = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_completion"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.EntryBuffer"
@@ -1229,12 +1195,6 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_extra_menu"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.LayoutChild"
