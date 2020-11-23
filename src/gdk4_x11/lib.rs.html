@@ -17,12 +17,6 @@
 <span id="14">14</span>
 <span id="15">15</span>
 <span id="16">16</span>
-<span id="17">17</span>
-<span id="18">18</span>
-<span id="19">19</span>
-<span id="20">20</span>
-<span id="21">21</span>
-<span id="22">22</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2020, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -31,13 +25,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi</span>;
-
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gdk</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gio</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">glib</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">x11</span>;
-
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">x11</span>::<span class="ident">xlib</span>;
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;
 

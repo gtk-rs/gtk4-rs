@@ -160,6 +160,8 @@
 <span id="157">157</span>
 <span id="158">158</span>
 <span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -266,17 +268,19 @@
     <span class="kw">unsafe</span> {
         <span class="kw">if</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_init_check</span>()) {
             <span class="kw">if</span> <span class="op">!</span><span class="ident">glib</span>::<span class="ident">MainContext</span>::<span class="ident">default</span>().<span class="ident">acquire</span>() {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;Failed to acquire default main context&quot;</span>));
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">glib</span>::<span class="macro">glib_bool_error</span><span class="macro">!</span>(
+                    <span class="string">&quot;Failed to acquire default main context&quot;</span>
+                ));
             }
 
             <span class="kw">if</span> <span class="op">!</span>{ <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_is_initialized</span>()) } {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;GTK was not actually initialized&quot;</span>));
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">glib</span>::<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;GTK was not actually initialized&quot;</span>));
             }
 
             <span class="ident">set_initialized</span>();
             <span class="prelude-val">Ok</span>(())
         } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;Failed to initialize GTK&quot;</span>))
+            <span class="prelude-val">Err</span>(<span class="ident">glib</span>::<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;Failed to initialize GTK&quot;</span>))
         }
     }
 }
