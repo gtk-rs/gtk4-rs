@@ -822,10 +822,10 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     imp.unroot(wrap.unsafe_cast_ref())
 }
 
-pub unsafe trait WidgetClassSubclassExt: ObjectSubclass + WidgetImpl {
-    fn set_template_bytes(klass: &mut <Self as ObjectSubclass>::Class, template: &glib::Bytes) {
+pub unsafe trait WidgetClassSubclassExt: ClassStruct {
+    fn set_template_bytes(&mut self, template: &glib::Bytes) {
         unsafe {
-            let type_class = klass as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
             let widget_class =
                 glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
                     as *mut ffi::GtkWidgetClass;
@@ -833,22 +833,19 @@ pub unsafe trait WidgetClassSubclassExt: ObjectSubclass + WidgetImpl {
         }
     }
 
-    fn set_template(klass: &mut <Self as ObjectSubclass>::Class, template: &[u8]) {
+    fn set_template(&mut self, template: &[u8]) {
         let template_bytes = glib::Bytes::from(template);
-        Self::set_template_bytes(klass, &template_bytes);
+        self.set_template_bytes(&template_bytes);
     }
 
-    fn set_template_static(klass: &mut <Self as ObjectSubclass>::Class, template: &'static [u8]) {
+    fn set_template_static(&mut self, template: &'static [u8]) {
         let template_bytes = glib::Bytes::from_static(template);
-        Self::set_template_bytes(klass, &template_bytes);
+        self.set_template_bytes(&template_bytes);
     }
 
-    fn set_template_from_resource(
-        klass: &mut <Self as ObjectSubclass>::Class,
-        resource_name: &str,
-    ) {
+    fn set_template_from_resource(&mut self, resource_name: &str) {
         unsafe {
-            let type_class = klass as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
             let widget_class =
                 glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
                     as *mut ffi::GtkWidgetClass;
@@ -859,9 +856,9 @@ pub unsafe trait WidgetClassSubclassExt: ObjectSubclass + WidgetImpl {
         }
     }
 
-    fn bind_template_child(klass: &mut <Self as ObjectSubclass>::Class, name: &str) {
+    fn bind_template_child(&mut self, name: &str) {
         unsafe {
-            let type_class = klass as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
             let widget_class =
                 glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
                     as *mut ffi::GtkWidgetClass;
@@ -876,17 +873,19 @@ pub unsafe trait WidgetClassSubclassExt: ObjectSubclass + WidgetImpl {
 
     #[allow(clippy::missing_safety_doc)]
     unsafe fn bind_template_child_with_offset<T>(
-        klass: &mut <Self as ObjectSubclass>::Class,
+        &mut self,
         name: &str,
-        offset: field_offset::FieldOffset<Self, TemplateChild<T>>,
+        offset: field_offset::FieldOffset<Self::Type, TemplateChild<T>>,
     ) where
         T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
     {
-        let type_class = klass as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+        let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
         let widget_class =
             glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
                 as *mut ffi::GtkWidgetClass;
-        let private_offset = Self::type_data().as_ref().private_offset;
+        let private_offset = <Self::Type as ObjectSubclass>::type_data()
+            .as_ref()
+            .private_offset;
         ffi::gtk_widget_class_bind_template_child_full(
             widget_class,
             name.to_glib_none().0,
@@ -896,7 +895,7 @@ pub unsafe trait WidgetClassSubclassExt: ObjectSubclass + WidgetImpl {
     }
 }
 
-unsafe impl<T: ObjectSubclass + WidgetImpl> WidgetClassSubclassExt for T {}
+unsafe impl<T: ClassStruct> WidgetClassSubclassExt for T where T::Type: WidgetImpl {}
 
 #[derive(Debug, PartialEq, Eq)]
 #[repr(transparent)]
@@ -931,6 +930,6 @@ where
     }
 }
 
-pub trait CompositeTemplate: WidgetClassSubclassExt {
+pub trait CompositeTemplate: WidgetImpl {
     fn bind_template_children(klass: &mut Self::Class);
 }

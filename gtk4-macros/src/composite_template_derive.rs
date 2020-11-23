@@ -28,8 +28,7 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
             }
 
             quote! {
-                Self::bind_template_child_with_offset(
-                    klass,
+                klass.bind_template_child_with_offset(
                     &#value_id,
                     #crate_ident::offset_of!(Self => #ident),
                 );

@@ -52,7 +52,7 @@ impl ObjectSubclass for ExApplicationWindowPriv {
     // at once.
     fn class_init(klass: &mut Self::Class) {
         let template = include_bytes!("composite_template.ui");
-        Self::set_template(klass, template);
+        klass.set_template(template);
         Self::bind_template_children(klass);
     }
 }
