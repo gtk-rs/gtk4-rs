@@ -49,7 +49,7 @@ mod imp {
         // bind_template_children() to bind all children
         // at once.
         fn class_init(klass: &mut Self::Class) {
-            let template = include_bytes!("ui/composite_template.ui");
+            let template = include_bytes!("composite_template.ui");
             klass.set_template(template);
             Self::bind_template_children(klass);
         }

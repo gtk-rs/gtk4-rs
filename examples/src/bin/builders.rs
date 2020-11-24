@@ -14,9 +14,7 @@ use std::env::args;
 fn build_ui(application: &Application) {
     let window = ApplicationWindowBuilder::new()
         .application(application)
-        .title("First GTK+ Program")
-        .halign(Align::Center)
-        .valign(Align::Center)
+        .title("First GTK Program")
         .default_width(350)
         .default_height(70)
         .build();
@@ -26,7 +24,8 @@ fn build_ui(application: &Application) {
         .margin_bottom(10)
         .margin_start(10)
         .margin_end(10)
-        .visible(true)
+        .halign(Align::Center)
+        .valign(Align::Center)
         .label("Click Me!")
         .build();
 
