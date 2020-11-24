@@ -4,11 +4,10 @@
 //! These allow to set construct-only properties and other construct
 //! properties when creating the widget.
 
-
 use gio::prelude::*;
 use gtk::prelude::*;
 
-use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder, Align};
+use gtk::{Align, Application, ApplicationWindowBuilder, ButtonBuilder};
 
 use std::env::args;
 
@@ -38,7 +37,7 @@ fn build_ui(application: &Application) {
 
 fn main() {
     let application =
-       Application::new(Some("com.github.gtk-rs.examples.basic"), Default::default())
+        Application::new(Some("com.github.gtk-rs.examples.basic"), Default::default())
             .expect("Initialization failed...");
 
     application.connect_activate(|app| {
