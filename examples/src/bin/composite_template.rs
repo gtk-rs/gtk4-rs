@@ -57,7 +57,13 @@ impl ObjectSubclass for ExApplicationWindowPriv {
     }
 }
 
-impl ObjectImpl for ExApplicationWindowPriv {}
+impl ObjectImpl for ExApplicationWindowPriv {
+    fn constructed(&self, obj: &Self::Type) {
+        obj.init_template();
+        obj.init_label();
+        self.parent_constructed(obj);
+    }
+}
 impl WidgetImpl for ExApplicationWindowPriv {}
 impl WindowImpl for ExApplicationWindowPriv {}
 impl ApplicationWindowImpl for ExApplicationWindowPriv {}
@@ -69,14 +75,10 @@ glib_wrapper! {
 
 impl ExApplicationWindow {
     pub fn new<P: glib::IsA<gtk::Application> + glib::value::ToValue>(app: &P) -> Self {
-        let win = glib::Object::new(Self::static_type(), &[("application", app)])
+        glib::Object::new(Self::static_type(), &[("application", app)])
             .expect("Failed to create ExApplicationWindow")
             .downcast::<ExApplicationWindow>()
-            .expect("Created object is of wrong type");
-        // init_template() must be run after the object is constructed.
-        win.init_template();
-        win.init_label();
-        win
+            .expect("Created object is of wrong type")
     }
 
     pub fn init_label(&self) {
