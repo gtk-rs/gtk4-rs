@@ -86,7 +86,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         self.parent_root(widget)
     }
 
-    fn set_focus_child(&self, widget: &Self::Type, child: &Widget) {
+    fn set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>) {
         self.parent_set_focus_child(widget, child)
     }
 
@@ -160,7 +160,7 @@ pub trait WidgetImplExt: ObjectSubclass {
     ) -> bool;
     fn parent_realize(&self, widget: &Self::Type);
     fn parent_root(&self, widget: &Self::Type);
-    fn parent_set_focus_child(&self, widget: &Self::Type, child: &Widget);
+    fn parent_set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>);
     fn parent_show(&self, widget: &Self::Type);
     fn parent_size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32);
     fn parent_snapshot(&self, widget: &Self::Type, snapshot: &Snapshot);
@@ -397,7 +397,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_set_focus_child(&self, widget: &Self::Type, child: &Widget) {
+    fn parent_set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkWidgetClass;
@@ -759,9 +759,9 @@ unsafe extern "C" fn widget_set_focus_child<T: WidgetImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
-    let child = from_glib_borrow(child_ptr);
+    let child: Borrowed<Option<Widget>> = from_glib_borrow(child_ptr);
 
-    imp.set_focus_child(wrap.unsafe_cast_ref(), &child)
+    imp.set_focus_child(wrap.unsafe_cast_ref(), child.as_ref().as_ref())
 }
 
 unsafe extern "C" fn widget_show<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
