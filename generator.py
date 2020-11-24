@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-from os import listdir
-from os.path import isfile, isdir, join
+from pathlib import Path
 import argparse
 import subprocess
 import sys
@@ -11,50 +10,47 @@ NOTHING_TO_BE_DONE = 0
 NEED_UPDATE = 1
 FAILURE = 2
 
-DEFAULT_GIR_DIRECTORY = 'gir-files'
-DEFAULT_GIR_PATH = './gir/target/release/gir'
+DEFAULT_GIR_FILES_DIRECTORY = Path('./gir-files')
+DEFAULT_GIR_DIRECTORY = Path('./gir/')
+DEFAULT_GIR_PATH = DEFAULT_GIR_DIRECTORY / 'target/release/gir'
 
 
 def run_command(command, folder=None):
     if folder is None:
         folder = "."
-    child = subprocess.Popen(command, cwd=folder)
-    child.communicate()
-    if child.returncode != 0:
-        print("Command `{}` failed with return code `{}`...".format(command, child.returncode))
+    ret = subprocess.run(command, cwd=folder)
+    if ret.returncode != 0:
+        print("Command `{}` failed with `{}`...".format(command, ret))
         return False
     return True
 
 
 def update_workspace():
-    try:
-        return run_command(['cargo', 'build', '--release'], 'gir')
-    except:
-        return False
+    return run_command(['cargo', 'build', '--release'], 'gir')
 
 
 def ask_yes_no_question(question, conf):
     question = '{} [y/N] '.format(question)
     if conf.yes:
-        print(question)
+        print(question + 'y')
         return True
     line = input(question)
     return line.strip().lower() == 'y'
 
 
 def def_check_submodule(submodule_path, conf):
-    if len(listdir(submodule_path)) != 0:
+    if any(submodule_path.iterdir()):
         return NOTHING_TO_BE_DONE
-    print('=> Initializing gir submodule...')
-    if not run_command(['git', 'submodule', 'update', '--init']):
+    print('=> Initializing {} submodule...'.format(submodule_path))
+    if not run_command(['git', 'submodule', 'update', '--init', submodule_path]):
         return FAILURE
     print('<= Done!')
 
-    if ask_yes_no_question('Do you want to update gir submodule?', conf):
-        print('=> Updating gir submodule...')
-        if not run_command(['git', 'reset', '--hard', 'HEAD'], 'gir'):
+    if ask_yes_no_question('Do you want to update {} submodule?'.format(submodule_path), conf):
+        print('=> Updating submodule...')
+        if not run_command(['git', 'reset', '--hard', 'HEAD'], submodule_path):
             return FAILURE
-        if not run_command(['git', 'pull', '-f', 'origin', 'master'], 'gir'):
+        if not run_command(['git', 'pull', '-f', 'origin', 'master'], submodule_path):
             return FAILURE
         print('<= Done!')
         return NEED_UPDATE
@@ -73,41 +69,66 @@ def build_gir_if_needed(updated_submodule):
     return True
 
 
-def regen_crates(path, conf, level=0):
-    for entry in listdir(path):
-        entry_file = join(path, entry)
-        if isdir(entry_file):
-            if level < 2 and not regen_crates(entry_file, conf, level + 1):
+def regen_crates(path, conf):
+    if path.is_dir():
+        for entry in path.rglob("Gir*.toml"):
+            if not regen_crates(entry, conf):
                 return False
-        elif entry.startswith("Gir") and entry.endswith(".toml"):
-            print('==> Regenerating "{}"...'.format(entry_file))
+    elif path.match("Gir*.toml"):
+        print('==> Regenerating "{}"...'.format(path))
 
-            args = [conf.gir_path, '-c', entry_file, '-o', path, '-d', conf.gir_directory]
-            if level > 1:
-                args.append('-m')
-                args.append('sys')
-            error = False
-            try:
-                error = not run_command(args)
-            except Exception as err:
-                print('The following error occurred: {}'.format(err))
-                error = True
-            if error:
-                if not ask_yes_no_question('Do you want to continue?', conf):
-                    return False
-            print('<== Done!')
+        args = [conf.gir_path, '-c', path, '-o', path.parent, '-d', conf.gir_files_path]
+        if path.parent.name.endswith("sys"):
+            args.extend(['-m', 'sys'])
+        error = False
+        try:
+            error = not run_command(args)
+        except Exception as err:
+            print('The following error occurred: {}'.format(err))
+            error = True
+        if error:
+            if not ask_yes_no_question('Do you want to continue?', conf):
+                return False
+        print('<== Done!')
+    else:
+        print('==> {} is not a valid Gir*.toml file'.format(path))
+        return False
     return True
 
 
-def parse_args(args):
+def valid_path(path):
+    path = Path(path)
+    if not path.exists():
+        raise argparse.ArgumentTypeError("`{}` no such file or directory".format(path))
+    return path
+
+
+def directory_path(path):
+    path = Path(path)
+    if not path.is_dir():
+        raise argparse.ArgumentTypeError("`{}` directory not found".format(path))
+    return path
+
+
+def file_path(path):
+    path = Path(path)
+    if not path.is_file():
+        raise argparse.ArgumentTypeError("`{}` file not found".format(path))
+    return path
+
+
+def parse_args():
     parser = argparse.ArgumentParser(description='Helper to regenerate gtk-rs crates using gir.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('path', nargs="*", default='.',
+    parser.add_argument('path', nargs="*", default=[Path('.')],
+                        type=valid_path,
                         help='Paths in which to look for Gir.toml files')
-    parser.add_argument('--gir-directory', default=DEFAULT_GIR_DIRECTORY,
+    parser.add_argument('--gir-files-directory', dest="gir_files_path", default=DEFAULT_GIR_FILES_DIRECTORY,
+                        type=directory_path,
                         help='Path of the gir-files folder')
     parser.add_argument('--gir-path', default=DEFAULT_GIR_PATH,
+                        type=file_path,
                         help='Path of the gir executable to run')
     parser.add_argument('--yes', action='store_true',
                         help=' Always answer `yes` to any question asked by the script')
@@ -118,23 +139,15 @@ def parse_args(args):
 
 
 def main():
-    gir_path = None
+    conf = parse_args()
 
-    conf = parse_args(sys.argv[1:])
-
-    if conf.gir_directory == DEFAULT_GIR_DIRECTORY:
-        if def_check_submodule("gir-files", conf) == FAILURE:
+    if conf.gir_files_path == DEFAULT_GIR_FILES_DIRECTORY:
+        if def_check_submodule(conf.gir_files_path, conf) == FAILURE:
             return 1
-    elif not isdir(conf.gir_directory):
-        print("`{}` dir doesn't exist. Aborting...".format(path))
-        return 1
 
     if conf.gir_path == DEFAULT_GIR_PATH:
-        if not build_gir_if_needed(def_check_submodule("gir", conf)):
+        if not build_gir_if_needed(def_check_submodule(DEFAULT_GIR_DIRECTORY, conf)):
             return 1
-    elif not isfile(conf.gir_path):
-        print("`{}` file doesn't exist. Aborting...".format(path))
-        return 1
 
     print('=> Regenerating crates...')
     for path in conf.path:
