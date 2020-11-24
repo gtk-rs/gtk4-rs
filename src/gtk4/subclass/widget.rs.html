@@ -936,9 +936,30 @@
 <span id="933">933</span>
 <span id="934">934</span>
 <span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
-
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
@@ -992,8 +1013,12 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
-        <span class="self">self</span>.<span class="ident">parent_measure</span>(<span class="ident">widget</span>, <span class="ident">orientation</span>, <span class="ident">for_size</span>)
+        <span class="ident">min</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">min_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+    ) {
+        <span class="self">self</span>.<span class="ident">parent_measure</span>(<span class="ident">widget</span>, <span class="ident">orientation</span>, <span class="ident">for_size</span>, <span class="ident">min</span>, <span class="ident">nat</span>, <span class="ident">min_base</span>, <span class="ident">nat_base</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -1080,7 +1105,11 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
+        <span class="ident">min</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">min_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+    );
     <span class="kw">fn</span> <span class="ident">parent_mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">parent_move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>);
     <span class="kw">fn</span> <span class="ident">parent_query_tooltip</span>(
@@ -1232,7 +1261,11 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
+        <span class="ident">min</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">min_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+        <span class="ident">nat_base</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
+    ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkWidgetClass</span>;
@@ -1241,27 +1274,15 @@
                 .<span class="ident">measure</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;measure\&quot;&quot;</span>);
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">minimum_base_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">natural_base_size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-
             <span class="ident">f</span>(
                 <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
                 <span class="ident">for_size</span>,
-                <span class="ident">minimum_size</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="ident">natural_size</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="ident">minimum_base_size</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="ident">natural_base_size</span>.<span class="ident">as_mut_ptr</span>(),
+                <span class="ident">min</span>,
+                <span class="ident">nat</span>,
+                <span class="ident">min_base</span>,
+                <span class="ident">nat_base</span>,
             );
-
-            (
-                <span class="ident">minimum_size</span>.<span class="ident">assume_init</span>(),
-                <span class="ident">natural_size</span>.<span class="ident">assume_init</span>(),
-                <span class="ident">minimum_base_size</span>.<span class="ident">assume_init</span>(),
-                <span class="ident">natural_base_size</span>.<span class="ident">assume_init</span>(),
-            )
         }
     }
 
@@ -1594,7 +1615,32 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">orientation</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">orientation_ptr</span>);
 
-    <span class="kw">let</span> (<span class="ident">min</span>, <span class="ident">nat</span>, <span class="ident">min_base</span>, <span class="ident">nat_base</span>) <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">measure</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">orientation</span>, <span class="ident">for_size</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nat</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min_base</span> <span class="op">=</span> <span class="op">-</span><span class="number">1</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nat_base</span> <span class="op">=</span> <span class="op">-</span><span class="number">1</span>;
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">min_ptr</span>.<span class="ident">is_null</span>() {
+        <span class="ident">min</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">min_ptr</span>;
+    }
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">nat_ptr</span>.<span class="ident">is_null</span>() {
+        <span class="ident">nat</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">nat_ptr</span>;
+    }
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">min_base_ptr</span>.<span class="ident">is_null</span>() {
+        <span class="ident">min_base</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">min_base_ptr</span>;
+    }
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">nat_base_ptr</span>.<span class="ident">is_null</span>() {
+        <span class="ident">nat_base</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">nat_base_ptr</span>;
+    }
+
+    <span class="ident">imp</span>.<span class="ident">measure</span>(
+        <span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(),
+        <span class="ident">orientation</span>,
+        <span class="ident">for_size</span>,
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">min</span>,
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">nat</span>,
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">min_base</span>,
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">nat_base</span>,
+    );
     <span class="kw">if</span> <span class="op">!</span><span class="ident">min_ptr</span>.<span class="ident">is_null</span>() {
         <span class="kw-2">*</span><span class="ident">min_ptr</span> <span class="op">=</span> <span class="ident">min</span>;
     }
