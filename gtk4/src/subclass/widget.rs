@@ -1,5 +1,3 @@
-use std::mem;
-
 use glib::prelude::*;
 use glib::subclass::prelude::*;
 use glib::translate::*;
@@ -53,8 +51,12 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         widget: &Self::Type,
         orientation: Orientation,
         for_size: i32,
-    ) -> (i32, i32, i32, i32) {
-        self.parent_measure(widget, orientation, for_size)
+        min: &mut i32,
+        nat: &mut i32,
+        min_base: &mut i32,
+        nat_base: &mut i32,
+    ) {
+        self.parent_measure(widget, orientation, for_size, min, nat, min_base, nat_base)
     }
 
     fn mnemonic_activate(&self, widget: &Self::Type, group_cycling: bool) -> bool {
@@ -141,7 +143,11 @@ pub trait WidgetImplExt: ObjectSubclass {
         widget: &Self::Type,
         orientation: Orientation,
         for_size: i32,
-    ) -> (i32, i32, i32, i32);
+        min: &mut i32,
+        nat: &mut i32,
+        min_base: &mut i32,
+        nat_base: &mut i32,
+    );
     fn parent_mnemonic_activate(&self, widget: &Self::Type, group_cycling: bool) -> bool;
     fn parent_move_focus(&self, widget: &Self::Type, direction_type: DirectionType);
     fn parent_query_tooltip(
@@ -293,7 +299,11 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         widget: &Self::Type,
         orientation: Orientation,
         for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+        min: &mut i32,
+        nat: &mut i32,
+        min_base: &mut i32,
+        nat_base: &mut i32,
+    ) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkWidgetClass;
@@ -302,27 +312,15 @@ impl<T: WidgetImpl> WidgetImplExt for T {
                 .measure
                 .expect("No parent class impl for \"measure\"");
 
-            let mut minimum_size = mem::MaybeUninit::uninit();
-            let mut natural_size = mem::MaybeUninit::uninit();
-            let mut minimum_base_size = mem::MaybeUninit::uninit();
-            let mut natural_base_size = mem::MaybeUninit::uninit();
-
             f(
                 widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
                 orientation.to_glib(),
                 for_size,
-                minimum_size.as_mut_ptr(),
-                natural_size.as_mut_ptr(),
-                minimum_base_size.as_mut_ptr(),
-                natural_base_size.as_mut_ptr(),
+                min,
+                nat,
+                min_base,
+                nat_base,
             );
-
-            (
-                minimum_size.assume_init(),
-                natural_size.assume_init(),
-                minimum_base_size.assume_init(),
-                natural_base_size.assume_init(),
-            )
         }
     }
 
@@ -655,7 +653,32 @@ unsafe extern "C" fn widget_measure<T: WidgetImpl>(
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let orientation = from_glib(orientation_ptr);
 
-    let (min, nat, min_base, nat_base) = imp.measure(wrap.unsafe_cast_ref(), orientation, for_size);
+    let mut min = 0;
+    let mut nat = 0;
+    let mut min_base = -1;
+    let mut nat_base = -1;
+    if !min_ptr.is_null() {
+        min = *min_ptr;
+    }
+    if !nat_ptr.is_null() {
+        nat = *nat_ptr;
+    }
+    if !min_base_ptr.is_null() {
+        min_base = *min_base_ptr;
+    }
+    if !nat_base_ptr.is_null() {
+        nat_base = *nat_base_ptr;
+    }
+
+    imp.measure(
+        wrap.unsafe_cast_ref(),
+        orientation,
+        for_size,
+        &mut min,
+        &mut nat,
+        &mut min_base,
+        &mut nat_base,
+    );
     if !min_ptr.is_null() {
         *min_ptr = min;
     }
