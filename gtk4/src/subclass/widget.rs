@@ -1,5 +1,6 @@
 use std::mem;
 
+use glib::prelude::*;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
@@ -819,4 +820,116 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.unroot(wrap.unsafe_cast_ref())
+}
+
+pub unsafe trait WidgetClassSubclassExt: ClassStruct {
+    fn set_template_bytes(&mut self, template: &glib::Bytes) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_template(widget_class, template.to_glib_none().0);
+        }
+    }
+
+    fn set_template(&mut self, template: &[u8]) {
+        let template_bytes = glib::Bytes::from(template);
+        self.set_template_bytes(&template_bytes);
+    }
+
+    fn set_template_static(&mut self, template: &'static [u8]) {
+        let template_bytes = glib::Bytes::from_static(template);
+        self.set_template_bytes(&template_bytes);
+    }
+
+    fn set_template_from_resource(&mut self, resource_name: &str) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_template_from_resource(
+                widget_class,
+                resource_name.to_glib_none().0,
+            );
+        }
+    }
+
+    fn bind_template_child(&mut self, name: &str) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_bind_template_child_full(
+                widget_class,
+                name.to_glib_none().0,
+                false as glib::ffi::gboolean,
+                0,
+            );
+        }
+    }
+
+    #[allow(clippy::missing_safety_doc)]
+    unsafe fn bind_template_child_with_offset<T>(
+        &mut self,
+        name: &str,
+        offset: field_offset::FieldOffset<Self::Type, TemplateChild<T>>,
+    ) where
+        T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+    {
+        let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+        let widget_class =
+            glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                as *mut ffi::GtkWidgetClass;
+        let private_offset = <Self::Type as ObjectSubclass>::type_data()
+            .as_ref()
+            .private_offset;
+        ffi::gtk_widget_class_bind_template_child_full(
+            widget_class,
+            name.to_glib_none().0,
+            false as glib::ffi::gboolean,
+            private_offset + (offset.get_byte_offset() as isize),
+        )
+    }
+}
+
+unsafe impl<T: ClassStruct> WidgetClassSubclassExt for T where T::Type: WidgetImpl {}
+
+#[derive(Debug, PartialEq, Eq)]
+#[repr(transparent)]
+pub struct TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    ptr: *mut <T as ObjectType>::GlibType,
+}
+
+impl<T> Default for TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    fn default() -> Self {
+        Self {
+            ptr: std::ptr::null_mut(),
+        }
+    }
+}
+
+impl<T> TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    #[track_caller]
+    pub fn get(&self) -> T {
+        unsafe {
+            Option::<T>::from_glib_none(self.ptr)
+                .expect("Failed to retrieve template child. Please check that it has been bound.")
+        }
+    }
+}
+
+pub trait CompositeTemplate: WidgetImpl {
+    fn bind_template_children(klass: &mut Self::Class);
 }

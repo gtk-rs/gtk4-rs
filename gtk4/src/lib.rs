@@ -14,6 +14,19 @@
 #![allow(deprecated)]
 
 pub use ffi;
+#[macro_use]
+#[doc(hidden)]
+#[allow(unused_imports)]
+pub extern crate field_offset;
+#[macro_use]
+#[doc(hidden)]
+#[allow(unused_imports)]
+pub extern crate gtk4_macros;
+
+#[doc(hidden)]
+pub use field_offset::*;
+#[doc(hidden)]
+pub use gtk4_macros::*;
 
 pub const STYLE_PROVIDER_PRIORITY_FALLBACK: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK as u32;
 pub const STYLE_PROVIDER_PRIORITY_THEME: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME as u32;
