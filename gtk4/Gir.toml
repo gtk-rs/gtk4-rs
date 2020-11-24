@@ -54,6 +54,7 @@ generate = [
     "Gtk.CellRendererState",
     "Gtk.Clipboard",
     "Gtk.ConstraintAttribute",
+    "Gtk.ConstraintLayout",
     "Gtk.ConstraintLayoutChild",
     "Gtk.ConstraintRelation",
     "Gtk.ConstraintStrength",
@@ -538,7 +539,6 @@ trust_return_value_nullability = false
 name = "Gtk.Builder"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
 manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
@@ -571,7 +571,6 @@ generate_builder = true
 name = "Gtk.Calendar"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.CellArea"
@@ -715,6 +714,8 @@ generate_builder = true
 [[object]]
 name = "Gtk.CenterLayout"
 status = "generate"
+# remove_after_upstream_fix
+# <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
 trust_return_value_nullability = false
 
 [[object]]
@@ -726,7 +727,6 @@ generate_builder = true
 name = "Gtk.ColorButton"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.ColorChooser"
@@ -752,19 +752,28 @@ generate_builder = true
 name = "Gtk.ColumnView"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
+    [[object.function]]
+    name = "get_sorter"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.ColumnViewColumn"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
+    [[object.function]]
+    name = "get_sorter"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.ComboBox"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
 manual_traits = ["ComboBoxExtManual"]
     [[object.function]]
     name = "set_active_iter"
@@ -783,6 +792,12 @@ manual_traits = ["ComboBoxExtManual"]
     name = "active"
     #manual Option
     generate = ["notify"]
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
+    [[object.function]]
+    name = "get_model"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.ComboBoxText"
@@ -808,11 +823,6 @@ manual_traits = ["ConstraintGuideExtManual"]
     [[object.function]]
     name = "get_nat_size"
     ignore = true
-
-[[object]]
-name = "Gtk.ConstraintLayout"
-status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.CssSection"
@@ -848,6 +858,8 @@ trust_return_value_nullability = false
 name = "Gtk.DragSource"
 status = "generate"
 generate_builder = true
+# remove_after_upstream_fix
+# <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
 trust_return_value_nullability = false
 
 [[object]]
@@ -1154,7 +1166,12 @@ generate_builder = true
 name = "Gtk.HeaderBar"
 status = "generate"
 generate_builder = true
-trust_return_value_nullability = false
+    # remove_after_upstream_fix
+    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
+    [[object.function]]
+    name = "get_decoration_layout"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.IconPaintable"

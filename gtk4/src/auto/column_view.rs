@@ -54,7 +54,7 @@ impl ColumnView {
         }
     }
 
-    pub fn get_columns(&self) -> Option<gio::ListModel> {
+    pub fn get_columns(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_column_view_get_columns(self.to_glib_none().0)) }
     }
 

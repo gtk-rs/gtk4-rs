@@ -43,9 +43,9 @@ pub trait ConstraintLayoutExt: 'static {
 
     fn add_guide<P: IsA<ConstraintGuide>>(&self, guide: &P);
 
-    fn observe_constraints(&self) -> Option<gio::ListModel>;
+    fn observe_constraints(&self) -> gio::ListModel;
 
-    fn observe_guides(&self) -> Option<gio::ListModel>;
+    fn observe_guides(&self) -> gio::ListModel;
 
     fn remove_all_constraints(&self);
 
@@ -81,7 +81,7 @@ impl<O: IsA<ConstraintLayout>> ConstraintLayoutExt for O {
         }
     }
 
-    fn observe_constraints(&self) -> Option<gio::ListModel> {
+    fn observe_constraints(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_constraint_layout_observe_constraints(
                 self.as_ref().to_glib_none().0,
@@ -89,7 +89,7 @@ impl<O: IsA<ConstraintLayout>> ConstraintLayoutExt for O {
         }
     }
 
-    fn observe_guides(&self) -> Option<gio::ListModel> {
+    fn observe_guides(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_constraint_layout_observe_guides(
                 self.as_ref().to_glib_none().0,

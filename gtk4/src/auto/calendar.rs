@@ -43,7 +43,7 @@ impl Calendar {
         }
     }
 
-    pub fn get_date(&self) -> Option<glib::DateTime> {
+    pub fn get_date(&self) -> glib::DateTime {
         unsafe { from_glib_full(ffi::gtk_calendar_get_date(self.to_glib_none().0)) }
     }
 

@@ -50,7 +50,7 @@ impl ColorButton {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
 
-    pub fn get_title(&self) -> Option<glib::GString> {
+    pub fn get_title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_color_button_get_title(self.to_glib_none().0)) }
     }
 
