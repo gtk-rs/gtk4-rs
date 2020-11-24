@@ -94,7 +94,7 @@ pub trait StyleContextExt: 'static {
 
     fn get_color(&self) -> gdk::RGBA;
 
-    fn get_display(&self) -> Option<gdk::Display>;
+    fn get_display(&self) -> gdk::Display;
 
     fn get_margin(&self) -> Border;
 
@@ -169,7 +169,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_display(&self) -> Option<gdk::Display> {
+    fn get_display(&self) -> gdk::Display {
         unsafe {
             from_glib_none(ffi::gtk_style_context_get_display(
                 self.as_ref().to_glib_none().0,

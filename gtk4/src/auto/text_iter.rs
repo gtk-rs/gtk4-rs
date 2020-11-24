@@ -500,7 +500,7 @@ impl TextIter {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_child_anchor(self.to_glib_none().0)) }
     }
 
-    pub fn get_language(&self) -> Option<pango::Language> {
+    pub fn get_language(&self) -> pango::Language {
         unsafe { from_glib_full(ffi::gtk_text_iter_get_language(self.to_glib_none().0)) }
     }
 

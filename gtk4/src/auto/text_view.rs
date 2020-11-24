@@ -611,7 +611,7 @@ pub trait TextViewExt: 'static {
 
     fn get_bottom_margin(&self) -> i32;
 
-    fn get_buffer(&self) -> Option<TextBuffer>;
+    fn get_buffer(&self) -> TextBuffer;
 
     fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
 
@@ -985,7 +985,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe { ffi::gtk_text_view_get_bottom_margin(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_buffer(&self) -> Option<TextBuffer> {
+    fn get_buffer(&self) -> TextBuffer {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_buffer(
                 self.as_ref().to_glib_none().0,

@@ -380,11 +380,11 @@ pub const NONE_SCALE_BUTTON: Option<&ScaleButton> = None;
 pub trait ScaleButtonExt: 'static {
     fn get_adjustment(&self) -> Adjustment;
 
-    fn get_minus_button(&self) -> Option<Button>;
+    fn get_minus_button(&self) -> Button;
 
-    fn get_plus_button(&self) -> Option<Button>;
+    fn get_plus_button(&self) -> Button;
 
-    fn get_popup(&self) -> Option<Widget>;
+    fn get_popup(&self) -> Widget;
 
     fn get_value(&self) -> f64;
 
@@ -422,7 +422,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn get_minus_button(&self) -> Option<Button> {
+    fn get_minus_button(&self) -> Button {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_minus_button(
                 self.as_ref().to_glib_none().0,
@@ -430,7 +430,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn get_plus_button(&self) -> Option<Button> {
+    fn get_plus_button(&self) -> Button {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_plus_button(
                 self.as_ref().to_glib_none().0,
@@ -438,7 +438,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn get_popup(&self) -> Option<Widget> {
+    fn get_popup(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_popup(
                 self.as_ref().to_glib_none().0,

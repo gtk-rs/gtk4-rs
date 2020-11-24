@@ -23,9 +23,9 @@ glib::glib_wrapper! {
 pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
 
 pub trait SelectionModelExt: 'static {
-    fn get_selection(&self) -> Option<Bitset>;
+    fn get_selection(&self) -> Bitset;
 
-    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Option<Bitset>;
+    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
 
     fn is_selected(&self, position: u32) -> bool;
 
@@ -49,7 +49,7 @@ pub trait SelectionModelExt: 'static {
 }
 
 impl<O: IsA<SelectionModel>> SelectionModelExt for O {
-    fn get_selection(&self) -> Option<Bitset> {
+    fn get_selection(&self) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection(
                 self.as_ref().to_glib_none().0,
@@ -57,7 +57,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
-    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Option<Bitset> {
+    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection_in_range(
                 self.as_ref().to_glib_none().0,

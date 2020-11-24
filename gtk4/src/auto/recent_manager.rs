@@ -31,7 +31,7 @@ impl RecentManager {
         unsafe { from_glib_full(ffi::gtk_recent_manager_new()) }
     }
 
-    pub fn get_default() -> Option<RecentManager> {
+    pub fn get_default() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }
     }

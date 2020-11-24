@@ -95,7 +95,7 @@ pub trait SingleSelectionExt: 'static {
 
     fn get_can_unselect(&self) -> bool;
 
-    fn get_model(&self) -> Option<gio::ListModel>;
+    fn get_model(&self) -> gio::ListModel;
 
     fn get_selected(&self) -> u32;
 
@@ -141,7 +141,7 @@ impl<O: IsA<SingleSelection>> SingleSelectionExt for O {
         }
     }
 
-    fn get_model(&self) -> Option<gio::ListModel> {
+    fn get_model(&self) -> gio::ListModel {
         unsafe {
             from_glib_none(ffi::gtk_single_selection_get_model(
                 self.as_ref().to_glib_none().0,

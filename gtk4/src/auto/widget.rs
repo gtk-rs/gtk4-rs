@@ -95,9 +95,9 @@ pub trait WidgetExt: 'static {
 
     fn contains(&self, x: f64, y: f64) -> bool;
 
-    fn create_pango_context(&self) -> Option<pango::Context>;
+    fn create_pango_context(&self) -> pango::Context;
 
-    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout>;
+    fn create_pango_layout(&self, text: Option<&str>) -> pango::Layout;
 
     fn drag_check_threshold(
         &self,
@@ -135,7 +135,7 @@ pub trait WidgetExt: 'static {
 
     fn get_direction(&self) -> TextDirection;
 
-    fn get_display(&self) -> Option<gdk::Display>;
+    fn get_display(&self) -> gdk::Display;
 
     fn get_first_child(&self) -> Option<Widget>;
 
@@ -185,7 +185,7 @@ pub trait WidgetExt: 'static {
 
     fn get_overflow(&self) -> Overflow;
 
-    fn get_pango_context(&self) -> Option<pango::Context>;
+    fn get_pango_context(&self) -> pango::Context;
 
     fn get_parent(&self) -> Option<Widget>;
 
@@ -193,7 +193,7 @@ pub trait WidgetExt: 'static {
 
     fn get_prev_sibling(&self) -> Option<Widget>;
 
-    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard>;
+    fn get_primary_clipboard(&self) -> gdk::Clipboard;
 
     fn get_realized(&self) -> bool;
 
@@ -207,7 +207,7 @@ pub trait WidgetExt: 'static {
 
     fn get_sensitive(&self) -> bool;
 
-    fn get_settings(&self) -> Option<Settings>;
+    fn get_settings(&self) -> Settings;
 
     fn get_size(&self, orientation: Orientation) -> i32;
 
@@ -283,9 +283,9 @@ pub trait WidgetExt: 'static {
 
     fn mnemonic_activate(&self, group_cycling: bool) -> bool;
 
-    fn observe_children(&self) -> Option<gio::ListModel>;
+    fn observe_children(&self) -> gio::ListModel;
 
-    fn observe_controllers(&self) -> Option<gio::ListModel>;
+    fn observe_controllers(&self) -> gio::ListModel;
 
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget>;
 
@@ -699,7 +699,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn create_pango_context(&self) -> Option<pango::Context> {
+    fn create_pango_context(&self) -> pango::Context {
         unsafe {
             from_glib_full(ffi::gtk_widget_create_pango_context(
                 self.as_ref().to_glib_none().0,
@@ -707,7 +707,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn create_pango_layout(&self, text: Option<&str>) -> Option<pango::Layout> {
+    fn create_pango_layout(&self, text: Option<&str>) -> pango::Layout {
         unsafe {
             from_glib_full(ffi::gtk_widget_create_pango_layout(
                 self.as_ref().to_glib_none().0,
@@ -828,7 +828,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_display(&self) -> Option<gdk::Display> {
+    fn get_display(&self) -> gdk::Display {
         unsafe { from_glib_none(ffi::gtk_widget_get_display(self.as_ref().to_glib_none().0)) }
     }
 
@@ -972,7 +972,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { from_glib(ffi::gtk_widget_get_overflow(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_pango_context(&self) -> Option<pango::Context> {
+    fn get_pango_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_pango_context(
                 self.as_ref().to_glib_none().0,
@@ -1005,7 +1005,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_primary_clipboard(&self) -> Option<gdk::Clipboard> {
+    fn get_primary_clipboard(&self) -> gdk::Clipboard {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_primary_clipboard(
                 self.as_ref().to_glib_none().0,
@@ -1049,7 +1049,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_settings(&self) -> Option<Settings> {
+    fn get_settings(&self) -> Settings {
         unsafe { from_glib_none(ffi::gtk_widget_get_settings(self.as_ref().to_glib_none().0)) }
     }
 
@@ -1305,7 +1305,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn observe_children(&self) -> Option<gio::ListModel> {
+    fn observe_children(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_widget_observe_children(
                 self.as_ref().to_glib_none().0,
@@ -1313,7 +1313,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn observe_controllers(&self) -> Option<gio::ListModel> {
+    fn observe_controllers(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_widget_observe_controllers(
                 self.as_ref().to_glib_none().0,
