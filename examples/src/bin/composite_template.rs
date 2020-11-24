@@ -2,15 +2,10 @@
 //!
 //! This sample demonstrates how to create a widget using GTK's composite templates.
 
-#[macro_use]
-extern crate glib;
-#[macro_use]
-extern crate gtk;
-
 use gio::{prelude::ApplicationExtManual, ApplicationExt};
 use glib::subclass::prelude::*;
-use glib::{Cast, StaticType};
-use gtk::WidgetExt;
+use glib::{glib_object_subclass, glib_wrapper, Cast, StaticType};
+use gtk::{CompositeTemplate, WidgetExt};
 
 mod imp {
     use super::*;
