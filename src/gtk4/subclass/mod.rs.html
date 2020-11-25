@@ -52,11 +52,20 @@
 <span id="49">49</span>
 <span id="50">50</span>
 <span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
 
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">actionable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">adjustment</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application_window</span>;
@@ -65,13 +74,16 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">check_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dialog</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">drawing_area</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">editable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">entry</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">filter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">flow_box_child</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">layout_manager</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">list_box_row</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">media_file</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">native_dialog</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">popover</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">recent_manager</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">scrollable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sorter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_context</span>;
@@ -80,6 +92,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">prelude</span> {
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">actionable</span>::<span class="ident">ActionableImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">adjustment</span>::<span class="ident">AdjustmentImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">application</span>::<span class="ident">GtkApplicationImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">application_window</span>::<span class="ident">ApplicationWindowImpl</span>;
@@ -88,13 +101,16 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">check_button</span>::<span class="ident">CheckButtonImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">dialog</span>::<span class="ident">DialogImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">drawing_area</span>::<span class="ident">DrawingAreaImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">editable</span>::<span class="ident">EditableImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">entry</span>::<span class="ident">EntryImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">filter</span>::<span class="ident">FilterImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">flow_box_child</span>::<span class="ident">FlowBoxChildImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">layout_manager</span>::<span class="ident">LayoutManagerImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">list_box_row</span>::<span class="ident">ListBoxRowImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">media_file</span>::<span class="ident">MediaFileImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">native_dialog</span>::<span class="ident">NativeDialogImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">popover</span>::<span class="ident">PopoverImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">recent_manager</span>::<span class="ident">RecentManagerImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">scrollable</span>::<span class="ident">ScrollableImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">sorter</span>::<span class="ident">SorterImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">style_context</span>::<span class="ident">StyleContextImpl</span>;
