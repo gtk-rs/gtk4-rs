@@ -19,14 +19,13 @@ exclude = [
 name = "gsk4"
 
 [features]
-dox = ["ffi/dox", "gdk/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/dox"]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "graphene/purge-lgpl-docs", "cairo-rs/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "graphene/embed-lgpl-docs", "cairo-rs/embed-lgpl-docs"]
 vulkan = []
 broadway = []
 
 [package.metadata.docs.rs]
-features = ["dox", "embed-lgpl-docs"]
+features = ["embed-lgpl-docs"]
 
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"

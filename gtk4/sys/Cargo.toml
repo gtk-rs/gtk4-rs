@@ -35,9 +35,6 @@ git = "https://github.com/gtk-rs/gtk-rs"
 shell-words = "1.0.0"
 tempfile = "3"
 
-[features]
-dox = []
-
 [lib]
 name = "gtk4_sys"
 
