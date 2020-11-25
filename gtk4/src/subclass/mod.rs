@@ -2,6 +2,7 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
+pub mod actionable;
 pub mod adjustment;
 pub mod application;
 pub mod application_window;
@@ -10,13 +11,16 @@ pub mod button;
 pub mod check_button;
 pub mod dialog;
 pub mod drawing_area;
+pub mod editable;
 pub mod entry;
 pub mod filter;
 pub mod flow_box_child;
 pub mod layout_manager;
 pub mod list_box_row;
+pub mod media_file;
 pub mod native_dialog;
 pub mod popover;
+pub mod recent_manager;
 pub mod scrollable;
 pub mod sorter;
 pub mod style_context;
@@ -25,6 +29,7 @@ pub mod widget;
 pub mod window;
 
 pub mod prelude {
+    pub use super::actionable::ActionableImpl;
     pub use super::adjustment::AdjustmentImpl;
     pub use super::application::GtkApplicationImpl;
     pub use super::application_window::ApplicationWindowImpl;
@@ -33,13 +38,16 @@ pub mod prelude {
     pub use super::check_button::CheckButtonImpl;
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
+    pub use super::editable::EditableImpl;
     pub use super::entry::EntryImpl;
     pub use super::filter::FilterImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::layout_manager::LayoutManagerImpl;
     pub use super::list_box_row::ListBoxRowImpl;
+    pub use super::media_file::MediaFileImpl;
     pub use super::native_dialog::NativeDialogImpl;
     pub use super::popover::PopoverImpl;
+    pub use super::recent_manager::RecentManagerImpl;
     pub use super::scrollable::ScrollableImpl;
     pub use super::sorter::SorterImpl;
     pub use super::style_context::StyleContextImpl;
