@@ -1266,7 +1266,7 @@ impl Settings {
         unsafe { from_glib_none(ffi::gtk_settings_get_default()) }
     }
 
-    pub fn get_for_display(display: &gdk::Display) -> Option<Settings> {
+    pub fn get_for_display(display: &gdk::Display) -> Settings {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_settings_get_for_display(display.to_glib_none().0)) }
     }

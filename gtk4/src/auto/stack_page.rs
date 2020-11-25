@@ -26,7 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl StackPage {
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn get_child(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 

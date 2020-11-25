@@ -39,7 +39,7 @@ impl SearchEntry {
         unsafe { Widget::from_glib_none(ffi::gtk_search_entry_new()).unsafe_cast() }
     }
 
-    pub fn get_key_capture_widget(&self) -> Option<Widget> {
+    pub fn get_key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_entry_get_key_capture_widget(
                 self.to_glib_none().0,

@@ -48,7 +48,7 @@ impl Window {
         unsafe { from_glib_none(ffi::gtk_window_get_default_icon_name()) }
     }
 
-    pub fn get_toplevels() -> Option<gio::ListModel> {
+    pub fn get_toplevels() -> gio::ListModel {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_window_get_toplevels()) }
     }
@@ -573,7 +573,7 @@ pub trait GtkWindowExt: 'static {
 
     fn get_focus_visible(&self) -> bool;
 
-    fn get_group(&self) -> Option<WindowGroup>;
+    fn get_group(&self) -> WindowGroup;
 
     fn get_hide_on_close(&self) -> bool;
 
@@ -853,7 +853,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_group(&self) -> Option<WindowGroup> {
+    fn get_group(&self) -> WindowGroup {
         unsafe { from_glib_none(ffi::gtk_window_get_group(self.as_ref().to_glib_none().0)) }
     }
 

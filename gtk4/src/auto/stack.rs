@@ -39,7 +39,7 @@ impl Stack {
         unsafe { Widget::from_glib_none(ffi::gtk_stack_new()).unsafe_cast() }
     }
 
-    pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
+    pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_child(
                 self.to_glib_none().0,
@@ -48,7 +48,7 @@ impl Stack {
         }
     }
 
-    pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: Option<&str>) -> Option<StackPage> {
+    pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: Option<&str>) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_named(
                 self.to_glib_none().0,
@@ -63,7 +63,7 @@ impl Stack {
         child: &P,
         name: Option<&str>,
         title: &str,
-    ) -> Option<StackPage> {
+    ) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_titled(
                 self.to_glib_none().0,
@@ -100,7 +100,7 @@ impl Stack {
         }
     }
 
-    pub fn get_pages(&self) -> Option<SelectionModel> {
+    pub fn get_pages(&self) -> SelectionModel {
         unsafe { from_glib_full(ffi::gtk_stack_get_pages(self.to_glib_none().0)) }
     }
 

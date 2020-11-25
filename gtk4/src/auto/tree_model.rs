@@ -41,7 +41,7 @@ pub trait TreeModelExt: 'static {
 
     fn get_n_columns(&self) -> i32;
 
-    fn get_path(&self, iter: &TreeIter) -> Option<TreePath>;
+    fn get_path(&self, iter: &TreeIter) -> TreePath;
 
     fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
@@ -190,7 +190,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         unsafe { ffi::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_path(&self, iter: &TreeIter) -> Option<TreePath> {
+    fn get_path(&self, iter: &TreeIter) -> TreePath {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_get_path(
                 self.as_ref().to_glib_none().0,

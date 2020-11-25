@@ -648,7 +648,7 @@ pub trait TreeViewExt: 'static {
 
     fn get_reorderable(&self) -> bool;
 
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
+    //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
 
     fn get_rubber_banding(&self) -> bool;
 
@@ -656,7 +656,7 @@ pub trait TreeViewExt: 'static {
 
     fn get_search_entry(&self) -> Option<Editable>;
 
-    //fn get_search_equal_func(&self) -> Option<Box_<dyn Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>>;
+    //fn get_search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static;
 
     fn get_selection(&self) -> TreeSelection;
 
@@ -1398,7 +1398,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
+    //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static {
     //    unsafe { TODO: call ffi:gtk_tree_view_get_row_separator_func() }
     //}
 
@@ -1422,7 +1422,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn get_search_equal_func(&self) -> Option<Box_<dyn Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>> {
+    //fn get_search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static {
     //    unsafe { TODO: call ffi:gtk_tree_view_get_search_equal_func() }
     //}
 

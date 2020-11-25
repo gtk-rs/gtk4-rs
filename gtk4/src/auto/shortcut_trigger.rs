@@ -32,7 +32,7 @@ pub trait ShortcutTriggerExt: 'static {
 
     fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool;
 
-    fn to_label(&self, display: &gdk::Display) -> Option<glib::GString>;
+    fn to_label(&self, display: &gdk::Display) -> glib::GString;
 
     fn to_string(&self) -> glib::GString;
 
@@ -59,7 +59,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
-    fn to_label(&self, display: &gdk::Display) -> Option<glib::GString> {
+    fn to_label(&self, display: &gdk::Display) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_label(
                 self.as_ref().to_glib_none().0,

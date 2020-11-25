@@ -41,7 +41,7 @@ impl RecentInfo {
         unsafe { from_glib(ffi::gtk_recent_info_exists(self.to_glib_none().0)) }
     }
 
-    pub fn get_added(&self) -> Option<glib::DateTime> {
+    pub fn get_added(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_added(self.to_glib_none().0)) }
     }
 
@@ -84,11 +84,11 @@ impl RecentInfo {
         }
     }
 
-    pub fn get_description(&self) -> Option<glib::GString> {
+    pub fn get_description(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_description(self.to_glib_none().0)) }
     }
 
-    pub fn get_display_name(&self) -> Option<glib::GString> {
+    pub fn get_display_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_display_name(self.to_glib_none().0)) }
     }
 
@@ -107,11 +107,11 @@ impl RecentInfo {
         }
     }
 
-    pub fn get_mime_type(&self) -> Option<glib::GString> {
+    pub fn get_mime_type(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_mime_type(self.to_glib_none().0)) }
     }
 
-    pub fn get_modified(&self) -> Option<glib::DateTime> {
+    pub fn get_modified(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_modified(self.to_glib_none().0)) }
     }
 
@@ -119,11 +119,11 @@ impl RecentInfo {
         unsafe { from_glib(ffi::gtk_recent_info_get_private_hint(self.to_glib_none().0)) }
     }
 
-    pub fn get_short_name(&self) -> Option<glib::GString> {
+    pub fn get_short_name(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_recent_info_get_short_name(self.to_glib_none().0)) }
     }
 
-    pub fn get_uri(&self) -> Option<glib::GString> {
+    pub fn get_uri(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_uri(self.to_glib_none().0)) }
     }
 
@@ -131,7 +131,7 @@ impl RecentInfo {
         unsafe { from_glib_full(ffi::gtk_recent_info_get_uri_display(self.to_glib_none().0)) }
     }
 
-    pub fn get_visited(&self) -> Option<glib::DateTime> {
+    pub fn get_visited(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_visited(self.to_glib_none().0)) }
     }
 
@@ -157,7 +157,7 @@ impl RecentInfo {
         unsafe { from_glib(ffi::gtk_recent_info_is_local(self.to_glib_none().0)) }
     }
 
-    pub fn last_application(&self) -> Option<glib::GString> {
+    pub fn last_application(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_recent_info_last_application(self.to_glib_none().0)) }
     }
 

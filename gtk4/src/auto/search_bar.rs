@@ -51,7 +51,7 @@ impl SearchBar {
         unsafe { from_glib_none(ffi::gtk_search_bar_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn get_key_capture_widget(&self) -> Option<Widget> {
+    pub fn get_key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
                 self.to_glib_none().0,

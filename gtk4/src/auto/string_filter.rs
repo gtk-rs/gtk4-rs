@@ -79,7 +79,7 @@ impl StringFilterBuilder {
 pub const NONE_STRING_FILTER: Option<&StringFilter> = None;
 
 pub trait StringFilterExt: 'static {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
+    //fn get_expression(&self) -> /*Ignored*/Expression;
 
     fn get_ignore_case(&self) -> bool;
 
@@ -105,7 +105,7 @@ pub trait StringFilterExt: 'static {
 }
 
 impl<O: IsA<StringFilter>> StringFilterExt for O {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //fn get_expression(&self) -> /*Ignored*/Expression {
     //    unsafe { TODO: call ffi:gtk_string_filter_get_expression() }
     //}
 
