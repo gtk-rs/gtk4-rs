@@ -44,7 +44,9 @@ repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
 edition = "2018"
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "3.94"
+
+[features]

@@ -8,7 +8,7 @@ edition = "2018"
 name = "gtk4-wayland"
 version = "3.94"
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "gdk4_wayland_sys"
@@ -27,4 +27,3 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = []
