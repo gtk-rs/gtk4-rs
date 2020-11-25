@@ -26,10 +26,9 @@ name = "gtk4"
 [features]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "gsk/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "gsk/embed-lgpl-docs"]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
 
 [package.metadata.docs.rs]
-features = ["dox", "embed-lgpl-docs"]
+features = ["embed-lgpl-docs"]
 
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"

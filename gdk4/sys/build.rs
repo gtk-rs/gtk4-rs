@@ -2,13 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(not(feature = "dox"))]
+#[cfg(any(not(doc), doctest))]
 use std::process;
 
-#[cfg(feature = "dox")]
+#[cfg(all(not(doctest), doc))]
 fn main() {} // prevent linking libraries to avoid documentation failure
 
-#[cfg(not(feature = "dox"))]
+#[cfg(any(not(doc), doctest))]
 fn main() {
     if let Err(s) = system_deps::Config::new().probe() {
         let _ = eprintln!("{}", s);
