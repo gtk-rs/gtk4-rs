@@ -5071,7 +5071,7 @@
     <span class="doccomment">/// `true` if the tree can be reordered.</span>
     <span class="kw">fn</span> <span class="ident">get_reorderable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt;;</span>
+    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static;</span>
 
     <span class="doccomment">/// Returns whether rubber banding is turned on for `self`. If the</span>
     <span class="doccomment">/// selection mode is `SelectionMode::Multiple`, rubber banding will allow the</span>
@@ -5098,7 +5098,7 @@
     <span class="doccomment">/// the entry currently in use as search entry.</span>
     <span class="kw">fn</span> <span class="ident">get_search_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>;
 
-    <span class="comment">//fn get_search_equal_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, i32, &amp;str, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt;;</span>
+    <span class="comment">//fn get_search_equal_func(&amp;self) -&gt; Fn(&amp;TreeModel, i32, &amp;str, &amp;TreeIter) -&gt; bool + &#39;static;</span>
 
     <span class="doccomment">/// Gets the `TreeSelection` associated with `self`.</span>
     <span class="doccomment">///</span>
@@ -6356,7 +6356,7 @@
         }
     }
 
-    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt; {</span>
+    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static {</span>
     <span class="comment">//    unsafe { TODO: call ffi:gtk_tree_view_get_row_separator_func() }</span>
     <span class="comment">//}</span>
 
@@ -6380,7 +6380,7 @@
         }
     }
 
-    <span class="comment">//fn get_search_equal_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, i32, &amp;str, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt; {</span>
+    <span class="comment">//fn get_search_equal_func(&amp;self) -&gt; Fn(&amp;TreeModel, i32, &amp;str, &amp;TreeIter) -&gt; bool + &#39;static {</span>
     <span class="comment">//    unsafe { TODO: call ffi:gtk_tree_view_get_search_equal_func() }</span>
     <span class="comment">//}</span>
 

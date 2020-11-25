@@ -57,7 +57,7 @@ is only valid until the next call to
 <code>Window::set_default_icon_name</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>the fallback icon name for windows</p>
-</div><h4 id="method.get_toplevels" class="method"><code>pub fn <a href="#method.get_toplevels" class="fnname">get_toplevels</a>() -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;ListModel&gt;</code><a class="srclink" href="../src/gtk4/auto/window.rs.html#133-136" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns a list of all existing toplevel windows.</p>
+</div><h4 id="method.get_toplevels" class="method"><code>pub fn <a href="#method.get_toplevels" class="fnname">get_toplevels</a>() -&gt; ListModel</code><a class="srclink" href="../src/gtk4/auto/window.rs.html#133-136" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns a list of all existing toplevel windows.</p>
 <p>If you want to iterate through the list and perform actions involving
 callbacks that might destroy the widgets or add new ones, be aware that
 the list of toplevels will change and emit the &quot;items-changed&quot; signal.</p>

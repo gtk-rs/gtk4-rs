@@ -19,7 +19,7 @@ At the moment this check is done only on resources pointing
 to local files.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p><code>true</code> if the resource exists</p>
-</div><h4 id="method.get_added" class="method"><code>pub fn <a href="#method.get_added" class="fnname">get_added</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;DateTime&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#74-76" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the resource
+</div><h4 id="method.get_added" class="method"><code>pub fn <a href="#method.get_added" class="fnname">get_added</a>(&amp;self) -&gt; DateTime</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#74-76" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the resource
 was added to the recently used resources list.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the number of seconds elapsed from system’s Epoch when
@@ -54,11 +54,11 @@ modified or freed</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p>a newly allocated <code>None</code>-terminated array of strings.
 Use <code>g_strfreev</code> to free it.</p>
-</div><h4 id="method.get_description" class="method"><code>pub fn <a href="#method.get_description" class="fnname">get_description</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#161-163" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the (short) description of the resource.</p>
+</div><h4 id="method.get_description" class="method"><code>pub fn <a href="#method.get_description" class="fnname">get_description</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#161-163" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the (short) description of the resource.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>the description of the resource. The returned string
 is owned by the recent manager, and should not be freed.</p>
-</div><h4 id="method.get_display_name" class="method"><code>pub fn <a href="#method.get_display_name" class="fnname">get_display_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#172-174" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the name of the resource. If none has been defined, the basename
+</div><h4 id="method.get_display_name" class="method"><code>pub fn <a href="#method.get_display_name" class="fnname">get_display_name</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#172-174" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the name of the resource. If none has been defined, the basename
 of the resource is obtained.</p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>the display name of the resource. The returned string
@@ -75,11 +75,11 @@ length might optionally be <code>None</code>.</p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
 <p>a newly allocated <code>None</code> terminated array of strings.
 Use <code>g_strfreev</code> to free it.</p>
-</div><h4 id="method.get_mime_type" class="method"><code>pub fn <a href="#method.get_mime_type" class="fnname">get_mime_type</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#214-216" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the MIME type of the resource.</p>
+</div><h4 id="method.get_mime_type" class="method"><code>pub fn <a href="#method.get_mime_type" class="fnname">get_mime_type</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#214-216" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the MIME type of the resource.</p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
 <p>the MIME type of the resource. The returned string
 is owned by the recent manager, and should not be freed.</p>
-</div><h4 id="method.get_modified" class="method"><code>pub fn <a href="#method.get_modified" class="fnname">get_modified</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;DateTime&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#225-227" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the meta-data
+</div><h4 id="method.get_modified" class="method"><code>pub fn <a href="#method.get_modified" class="fnname">get_modified</a>(&amp;self) -&gt; DateTime</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#225-227" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the meta-data
 for the resource was last modified.</p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
 <p>the number of seconds elapsed from system’s Epoch when
@@ -89,14 +89,14 @@ list that have this flag set to <code>true</code> should only be displayed by th
 applications that have registered them.</p>
 <h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
 <p><code>true</code> if the private flag was found, <code>false</code> otherwise</p>
-</div><h4 id="method.get_short_name" class="method"><code>pub fn <a href="#method.get_short_name" class="fnname">get_short_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#249-251" title="goto source code">[src]</a></h4><div class="docblock"><p>Computes a valid UTF-8 string that can be used as the
+</div><h4 id="method.get_short_name" class="method"><code>pub fn <a href="#method.get_short_name" class="fnname">get_short_name</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#249-251" title="goto source code">[src]</a></h4><div class="docblock"><p>Computes a valid UTF-8 string that can be used as the
 name of the item in a menu or list. For example, calling
 this function on an item that refers to
 “file:///foo/bar.txt” will yield “bar.txt”.</p>
 <h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
 <p>A newly-allocated string in UTF-8 encoding
 free it with <code>g_free</code></p>
-</div><h4 id="method.get_uri" class="method"><code>pub fn <a href="#method.get_uri" class="fnname">get_uri</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#259-261" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the URI of the resource.</p>
+</div><h4 id="method.get_uri" class="method"><code>pub fn <a href="#method.get_uri" class="fnname">get_uri</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#259-261" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the URI of the resource.</p>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
 <p>the URI of the resource. The returned string is
 owned by the recent manager, and should not be freed.</p>
@@ -106,7 +106,7 @@ it returns the UTF-8 encoded content of <code>RecentInfo::get_uri</code>.</p>
 <h1 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h1>
 <p>a newly allocated UTF-8 string containing the
 resource’s URI or <code>None</code>. Use <code>g_free</code> when done using it.</p>
-</div><h4 id="method.get_visited" class="method"><code>pub fn <a href="#method.get_visited" class="fnname">get_visited</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;DateTime&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#282-284" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the meta-data
+</div><h4 id="method.get_visited" class="method"><code>pub fn <a href="#method.get_visited" class="fnname">get_visited</a>(&amp;self) -&gt; DateTime</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#282-284" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the timestamp (seconds from system’s Epoch) when the meta-data
 for the resource was last visited.</p>
 <h1 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h1>
 <p>the number of seconds elapsed from system’s Epoch when
@@ -127,7 +127,7 @@ registered for the recently used item <code>self</code>.</p>
 scheme of its URI.</p>
 <h1 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h1>
 <p><code>true</code> if the resource is local</p>
-</div><h4 id="method.last_application" class="method"><code>pub fn <a href="#method.last_application" class="fnname">last_application</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#336-338" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the name of the last application that have registered the
+</div><h4 id="method.last_application" class="method"><code>pub fn <a href="#method.last_application" class="fnname">last_application</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gtk4/auto/recent_info.rs.html#336-338" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the name of the last application that have registered the
 recently used resource represented by <code>self</code>.</p>
 <h1 id="returns-20" class="section-header"><a href="#returns-20">Returns</a></h1>
 <p>an application name. Use <code>g_free</code> to free it.</p>

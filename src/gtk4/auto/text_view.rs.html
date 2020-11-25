@@ -4070,7 +4070,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `TextBuffer`</span>
-    <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextBuffer</span>;
 
     <span class="doccomment">/// Given an `iter` within a text layout, determine the positions of the</span>
     <span class="doccomment">/// strong and weak cursors if the insertion point is at that</span>
@@ -5040,7 +5040,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_text_view_get_bottom_margin</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextBuffer</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_text_view_get_buffer</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

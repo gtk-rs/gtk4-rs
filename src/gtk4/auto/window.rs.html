@@ -2687,7 +2687,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the list of toplevel widgets</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_toplevels</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ListModel</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_toplevels</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gio</span>::<span class="ident">ListModel</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_window_get_toplevels</span>()) }
     }
@@ -3319,7 +3319,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `WindowGroup` for a window or the default group</span>
-    <span class="kw">fn</span> <span class="ident">get_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WindowGroup</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowGroup</span>;
 
     <span class="doccomment">/// Returns whether the window will be hidden when the close button is clicked.</span>
     <span class="doccomment">///</span>
@@ -4042,7 +4042,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WindowGroup</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowGroup</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_window_get_group</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 

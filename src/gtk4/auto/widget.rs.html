@@ -5195,7 +5195,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the new `pango::Context`</span>
-    <span class="kw">fn</span> <span class="ident">create_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Context</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">create_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Context</span>;
 
     <span class="doccomment">/// Creates a new `pango::Layout` with the appropriate font map,</span>
     <span class="doccomment">/// font description, and base direction for drawing text for</span>
@@ -5211,7 +5211,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the new `pango::Layout`</span>
-    <span class="kw">fn</span> <span class="ident">create_pango_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Layout</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">create_pango_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Layout</span>;
 
     <span class="doccomment">/// Checks to see if a mouse drag starting at (`start_x`, `start_y`) and ending</span>
     <span class="doccomment">/// at (`current_x`, `current_y`) has passed the GTK+ drag threshold, and thus</span>
@@ -5373,7 +5373,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `gdk::Display` for the toplevel for this widget.</span>
-    <span class="kw">fn</span> <span class="ident">get_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Display</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Display</span>;
 
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -5599,7 +5599,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `pango::Context` for the widget.</span>
-    <span class="kw">fn</span> <span class="ident">get_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Context</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Context</span>;
 
     <span class="doccomment">/// Returns the parent widget of `self`.</span>
     <span class="doccomment">///</span>
@@ -5644,7 +5644,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the appropriate clipboard object.</span>
-    <span class="kw">fn</span> <span class="ident">get_primary_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Clipboard</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_primary_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Clipboard</span>;
 
     <span class="doccomment">/// Determines whether `self` is realized.</span>
     <span class="doccomment">///</span>
@@ -5719,7 +5719,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the relevant `Settings` object</span>
-    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Settings</span>;
 
     <span class="kw">fn</span> <span class="ident">get_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">Orientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
@@ -6119,7 +6119,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `gio::ListModel` tracking `self`&#39;s children</span>
-    <span class="kw">fn</span> <span class="ident">observe_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ListModel</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">observe_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gio</span>::<span class="ident">ListModel</span>;
 
     <span class="doccomment">/// Returns a `gio::ListModel` to track the ``GtkEventControllers`` of `self`.</span>
     <span class="doccomment">///</span>
@@ -6133,7 +6133,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `gio::ListModel` tracking `self`&#39;s controllers</span>
-    <span class="kw">fn</span> <span class="ident">observe_controllers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ListModel</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">observe_controllers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gio</span>::<span class="ident">ListModel</span>;
 
     <span class="doccomment">/// Finds the descendant of `self` (including `self` itself) closest</span>
     <span class="doccomment">/// to the screen at the point (`x`, `y`). The point must be given in</span>
@@ -7079,7 +7079,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">create_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Context</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Context</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_create_pango_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -7087,7 +7087,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">create_pango_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Layout</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_pango_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Layout</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_create_pango_layout</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -7208,7 +7208,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Display</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Display</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_get_display</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
@@ -7352,7 +7352,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_get_overflow</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Context</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_pango_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango</span>::<span class="ident">Context</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_get_pango_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -7385,7 +7385,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_primary_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Clipboard</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_primary_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">Clipboard</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_get_primary_clipboard</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -7429,7 +7429,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Settings</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_get_settings</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
@@ -7685,7 +7685,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">observe_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ListModel</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">observe_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gio</span>::<span class="ident">ListModel</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_observe_children</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -7693,7 +7693,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">observe_controllers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ListModel</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">observe_controllers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gio</span>::<span class="ident">ListModel</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_widget_observe_controllers</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

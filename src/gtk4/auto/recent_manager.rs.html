@@ -596,7 +596,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A unique `RecentManager`. Do not ref or</span>
     <span class="doccomment">///  unref it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RecentManager</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RecentManager</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_recent_manager_get_default</span>()) }
     }
