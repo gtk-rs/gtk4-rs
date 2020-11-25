@@ -6,6 +6,9 @@ edition = "2018"
 autobins = false
 
 
+[dependencies]
+chrono = "0.4.19"
+
 [dependencies.gtk]
 path = "../gtk4"
 package = "gtk4"
@@ -21,6 +24,12 @@ name = "basic"
 
 [[bin]]
 name = "builder_basics"
+
+[[bin]]
+name = "builders"
+
+[[bin]]
+name = "clock"
 
 [[bin]]
 name = "composite_template"
