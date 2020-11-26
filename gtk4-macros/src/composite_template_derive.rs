@@ -21,9 +21,12 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
             let ident = f.ident.as_ref().unwrap();
             let mut value_id = String::new();
 
-            if let Ok(attrs) = parse_template_child_attributes("template_child", &filtered_attrs) {
+            if let Ok(attrs) = parse_template_attributes("template_child", &filtered_attrs) {
                 attrs.into_iter().for_each(|a| match a {
-                    TemplateChildAttribute::Id(id) => value_id = id,
+                    TemplateAttribute::Id(id) => value_id = id,
+                    TemplateAttribute::Filename(_) => {
+                        abort_call_site!("Unkown template attribute 'file' for 'template_child'")
+                    }
                 });
             }
 
