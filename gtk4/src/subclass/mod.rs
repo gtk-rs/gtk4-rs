@@ -34,6 +34,7 @@ pub mod orientable;
 pub mod popover;
 pub mod print_operation;
 pub mod print_operation_preview;
+pub mod range;
 pub mod recent_manager;
 pub mod root;
 pub mod scrollable;
@@ -92,6 +93,7 @@ pub mod prelude {
     pub use super::popover::PopoverImpl;
     pub use super::print_operation::PrintOperationImpl;
     pub use super::print_operation_preview::PrintOperationPreviewImpl;
+    pub use super::range::RangeImpl;
     pub use super::recent_manager::RecentManagerImpl;
     pub use super::root::RootImpl;
     pub use super::scrollable::ScrollableImpl;
