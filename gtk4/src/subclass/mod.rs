@@ -18,6 +18,7 @@ pub mod dialog;
 pub mod drawing_area;
 pub mod editable;
 pub mod entry;
+pub mod entry_buffer;
 pub mod file_chooser;
 pub mod filter;
 pub mod flow_box_child;
@@ -75,6 +76,7 @@ pub mod prelude {
     pub use super::drawing_area::DrawingAreaImpl;
     pub use super::editable::EditableImpl;
     pub use super::entry::EntryImpl;
+    pub use super::entry_buffer::EntryBufferImpl;
     pub use super::file_chooser::FileChooserImpl;
     pub use super::filter::FilterImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
