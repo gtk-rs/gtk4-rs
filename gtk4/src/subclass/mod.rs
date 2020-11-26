@@ -24,6 +24,8 @@ pub mod recent_manager;
 pub mod scrollable;
 pub mod sorter;
 pub mod style_context;
+pub mod text_buffer;
+pub mod text_view;
 pub mod toggle_button;
 pub mod widget;
 pub mod window;
@@ -51,6 +53,8 @@ pub mod prelude {
     pub use super::scrollable::ScrollableImpl;
     pub use super::sorter::SorterImpl;
     pub use super::style_context::StyleContextImpl;
+    pub use super::text_buffer::TextBufferImpl;
+    pub use super::text_view::TextViewImpl;
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
