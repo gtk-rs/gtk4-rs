@@ -11,6 +11,7 @@ pub mod button;
 pub mod cell_renderer;
 pub mod cell_renderer_text;
 pub mod check_button;
+pub mod color_chooser;
 pub mod constraint_target;
 pub mod dialog;
 pub mod drawing_area;
@@ -66,6 +67,7 @@ pub mod prelude {
     pub use super::cell_renderer::CellRendererImpl;
     pub use super::cell_renderer_text::CellRendererTextImpl;
     pub use super::check_button::CheckButtonImpl;
+    pub use super::color_chooser::ColorChooserImpl;
     pub use super::constraint_target::ConstraintTargetImpl;
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
