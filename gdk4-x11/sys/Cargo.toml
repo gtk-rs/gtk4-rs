@@ -8,7 +8,7 @@ build = "build.rs"
 name = "gtk4-x11"
 version = "3.94"
 [package.metadata.docs.rs]
-features = []
+features = ["dox"]
 
 [lib]
 name = "gdk4_x11_sys"
@@ -31,3 +31,4 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
+dox = []
