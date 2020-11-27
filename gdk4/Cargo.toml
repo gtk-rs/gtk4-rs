@@ -19,11 +19,12 @@ exclude = [
 name = "gdk4"
 
 [features]
+dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/embed-lgpl-docs", "gio/embed-lgpl-docs"]
 
 [package.metadata.docs.rs]
-features = ["embed-lgpl-docs"]
+features = ["dox", "embed-lgpl-docs"]
 
 [build-dependencies.gtk-rs-lgpl-docs]
 version = "0.1.3"

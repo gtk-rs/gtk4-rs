@@ -26,6 +26,9 @@ git = "https://github.com/gtk-rs/gtk-rs"
 shell-words = "1.0.0"
 tempfile = "3"
 
+[features]
+dox = []
+
 [lib]
 name = "gsk4_sys"
 
@@ -41,9 +44,7 @@ repository = "https://github.com/gtk-rs/sys"
 version = "0.1.0"
 edition = "2018"
 [package.metadata.docs.rs]
-features = []
+features = ["dox"]
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "3.94"
-
-[features]

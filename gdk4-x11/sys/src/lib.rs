@@ -8,7 +8,7 @@
     clippy::type_complexity,
     clippy::unreadable_literal
 )]
-#![cfg_attr(all(not(doctest), doc), feature(doc_cfg))]
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 use gdk4_sys as gdk;
 use glib_sys as glib;
