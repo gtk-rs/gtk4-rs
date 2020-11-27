@@ -18,6 +18,7 @@ pub mod entry;
 pub mod filter;
 pub mod flow_box_child;
 pub mod frame;
+pub mod gl_area;
 pub mod layout_manager;
 pub mod list_box_row;
 pub mod media_file;
@@ -52,6 +53,7 @@ pub mod prelude {
     pub use super::filter::FilterImpl;
     pub use super::flow_box_child::FlowBoxChildImpl;
     pub use super::frame::FrameImpl;
+    pub use super::gl_area::GLAreaImpl;
     pub use super::layout_manager::LayoutManagerImpl;
     pub use super::list_box_row::ListBoxRowImpl;
     pub use super::media_file::MediaFileImpl;
