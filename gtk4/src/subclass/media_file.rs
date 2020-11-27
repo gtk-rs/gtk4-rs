@@ -1,10 +1,10 @@
-use crate::MediaFile;
-use glib::subclass::object::ObjectImpl;
+use super::media_stream::MediaStreamImpl;
+use crate::{MediaFile, MediaStream};
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 
-pub trait MediaFileImpl: MediaFileImplExt + ObjectImpl {
+pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     fn close(&self, media_file: &Self::Type) {
         self.parent_close(media_file)
     }
@@ -42,7 +42,7 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
 
 unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
     fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+        <MediaStream as IsSubclassable<T>>::override_vfuncs(class);
 
         let klass = class.as_mut();
         klass.close = Some(media_file_close::<T>);
