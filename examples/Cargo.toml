@@ -34,6 +34,9 @@ name = "css"
 name = "entry_completion"
 
 [[bin]]
+name = "entry_undo"
+
+[[bin]]
 name = "text_viewer"
 
 [[bin]]
