@@ -8,9 +8,11 @@ use gtk::prelude::*;
 
 use std::env::args;
 
-use gio::{SimpleAction};
-use glib::{Type};
-use gtk::{Application, ApplicationWindow, Box, Entry, EntryCompletion, Label, ListStore, Orientation};
+use gio::SimpleAction;
+use glib::Type;
+use gtk::{
+    Application, ApplicationWindow, Box, Entry, EntryCompletion, Label, ListStore, Orientation,
+};
 
 macro_rules! clone {
     (@param _) => ( _ );

@@ -7,8 +7,11 @@ use gtk::prelude::*;
 
 use std::env::args;
 
-use gdk::{Display};
-use gtk::{Application, ApplicationWindow, Box, Button, ComboBoxText, CssProvider, Entry, Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION};
+use gdk::Display;
+use gtk::{
+    Application, ApplicationWindow, Box, Button, ComboBoxText, CssProvider, Entry, Orientation,
+    StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
+};
 
 // Basic CSS: we change background color, we set font color to black and we set it as bold.
 const STYLE: &str = "
