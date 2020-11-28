@@ -14,17 +14,6 @@ use gtk::{
     Application, ApplicationWindow, Box, Entry, EntryCompletion, Label, ListStore, Orientation,
 };
 
-macro_rules! clone {
-    (@param _) => ( _ );
-    (@param $x:ident) => ( $x );
-    ($($n:ident),+ => move |$($p:tt),*| $body:expr) => (
-        {
-            $( let $n = $n.clone(); )+
-                move |$(clone!(@param $p),)*| $body
-        }
-    );
-}
-
 struct Data {
     description: String,
 }
@@ -107,9 +96,11 @@ fn main() {
 
     // When activated, shuts down the application
     let quit = SimpleAction::new("quit", None);
-    quit.connect_activate(clone!(application => move |_action, _parameter| {
-        application.quit();
-    }));
+    quit.connect_activate(
+        glib::clone!(@weak application => move |_action, _parameter| {
+            application.quit();
+        }),
+    );
     application.set_accels_for_action("app.quit", &["<Primary>Q"]);
     application.add_action(&quit);
 

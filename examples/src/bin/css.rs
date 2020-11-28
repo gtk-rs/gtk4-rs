@@ -9,13 +9,12 @@ use std::env::args;
 
 use gdk::Display;
 use gtk::{
-    Application, ApplicationWindow, Box, Button, ComboBoxText, CssProvider, Entry, Orientation,
-    StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
+    Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
+    Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
 };
-
 // Basic CSS: we change background color, we set font color to black and we set it as bold.
 const STYLE: &str = "
-#entry1 {
+entry.entry1 {
     background: linear-gradient(to right, #f00, #0f0);
     color: blue;
     font-weight: bold;
@@ -25,7 +24,8 @@ button {
     /* If we don't put it, the yellow background won't be visible */
     background-image: none;
 }
-#label1:hover {
+
+button.button1:hover {
     transition: 500ms;
     color: red;
     background-color: yellow;
@@ -47,16 +47,13 @@ fn build_ui(application: &Application) {
     window.set_title("CSS");
 
     // The container container.
-    let vbox = Box::new(Orientation::Vertical, 0);
+    let vbox = Box_::new(Orientation::Vertical, 0);
 
-    let label = Button::with_label("hover me!");
-    // We need to name it in order to be able to use its name as a CSS label to
-    // apply CSS on it.
-    WidgetExtManual::set_name(&label, "label1");
+    let button = Button::with_label("hover me!");
+    button.add_css_class("button1");
 
     let entry = Entry::new();
-    // We need to name it in order to apply CSS on it.
-    WidgetExtManual::set_name(&entry, "entry1");
+    entry.add_css_class("entry1");
     entry.set_text("Some text");
 
     let combo = ComboBoxText::new();
@@ -65,7 +62,7 @@ fn build_ui(application: &Application) {
     combo.append_text("option 3");
     combo.set_active(Some(0));
 
-    vbox.append(&label);
+    vbox.append(&button);
     vbox.append(&entry);
     vbox.append(&combo);
     // Then we add the container inside our window.
