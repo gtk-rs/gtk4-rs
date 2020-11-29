@@ -11,7 +11,7 @@ use std::env::args;
 use gio::SimpleAction;
 use glib::Type;
 use gtk::{
-    Application, ApplicationWindow, Box, Entry, EntryCompletion, Label, ListStore, Orientation,
+    Application, ApplicationWindow, Box as Box_, Entry, EntryCompletion, Label, ListStore, Orientation,
 };
 
 struct Data {
@@ -73,7 +73,7 @@ fn build_ui(application: &Application) {
     let input_field = Entry::new();
     input_field.set_completion(Some(&completion_countries));
 
-    let row = Box::new(Orientation::Vertical, 5);
+    let row = Box_::new(Orientation::Vertical, 5);
     row.append(&win_title);
     input_field.set_margin_top(10);
     row.append(&input_field);
