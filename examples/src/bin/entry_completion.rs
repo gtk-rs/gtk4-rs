@@ -11,7 +11,8 @@ use std::env::args;
 use gio::SimpleAction;
 use glib::Type;
 use gtk::{
-    Application, ApplicationWindow, Box as Box_, Entry, EntryCompletion, Label, ListStore, Orientation,
+    Application, ApplicationWindow, Box as Box_, Entry, EntryCompletion, Label, ListStore,
+    Orientation,
 };
 
 struct Data {
