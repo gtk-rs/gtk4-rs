@@ -5,13 +5,13 @@ use glib::Cast;
 
 use crate::{
     DirectionType, Orientation, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
-    TextDirection, Tooltip, Widget,
+    TextDirection, Tooltip, Widget, WidgetExt,
 };
 use glib::Object;
 
 pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
-    fn compute_expand(&self, widget: &Self::Type, hexpand_p: &mut bool, vexpand_p: &mut bool) {
-        self.parent_compute_expand(widget, hexpand_p, vexpand_p)
+    fn compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
+        self.parent_compute_expand(widget, hexpand, vexpand)
     }
 
     fn contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool {
@@ -124,12 +124,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
 }
 
 pub trait WidgetImplExt: ObjectSubclass {
-    fn parent_compute_expand(
-        &self,
-        widget: &Self::Type,
-        hexpand_p: &mut bool,
-        vexpand_p: &mut bool,
-    );
+    fn parent_compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool);
     fn parent_contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool;
     fn parent_direction_changed(&self, widget: &Self::Type, previous_direction: TextDirection);
     fn parent_focus(&self, widget: &Self::Type, direction_type: DirectionType) -> bool;
@@ -172,27 +167,22 @@ pub trait WidgetImplExt: ObjectSubclass {
 }
 
 impl<T: WidgetImpl> WidgetImplExt for T {
-    fn parent_compute_expand(
-        &self,
-        widget: &Self::Type,
-        hexpand_p: &mut bool,
-        vexpand_p: &mut bool,
-    ) {
+    fn parent_compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkWidgetClass;
-            let f = (*parent_class)
-                .compute_expand
-                .expect("No parent class impl for \"compute_expand\"");
-            let mut h: i32 = hexpand_p.to_glib();
-            let mut v: i32 = vexpand_p.to_glib();
-            f(
-                widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                &mut h,
-                &mut v,
-            );
-            *hexpand_p = from_glib(h);
-            *vexpand_p = from_glib(v);
+            let widget = widget.unsafe_cast_ref::<Widget>();
+            if let Some(f) = (*parent_class).compute_expand {
+                let mut hexpand_glib = hexpand.to_glib();
+                let mut vexpand_glib = vexpand.to_glib();
+                f(
+                    widget.to_glib_none().0,
+                    &mut hexpand_glib,
+                    &mut vexpand_glib,
+                );
+                *hexpand = from_glib(hexpand_glib);
+                *vexpand = from_glib(vexpand_glib);
+            }
         }
     }
 
@@ -546,10 +536,21 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
-    let mut hexpand: bool = from_glib(*hexpand_ptr);
-    let mut vexpand: bool = from_glib(*vexpand_ptr);
+
+    let widget = wrap.unsafe_cast_ref::<Widget>();
+    let mut hexpand: bool = if widget.get_hexpand_set() {
+        widget.get_hexpand()
+    } else {
+        from_glib(*hexpand_ptr)
+    };
+    let mut vexpand: bool = if widget.get_vexpand_set() {
+        widget.get_vexpand()
+    } else {
+        from_glib(*vexpand_ptr)
+    };
 
     imp.compute_expand(wrap.unsafe_cast_ref(), &mut hexpand, &mut vexpand);
+
     *hexpand_ptr = hexpand.to_glib();
     *vexpand_ptr = vexpand.to_glib();
 }
