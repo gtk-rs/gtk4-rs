@@ -68,6 +68,9 @@ pub mod prelude {
     pub use super::text_buffer::TextBufferImpl;
     pub use super::text_view::TextViewImpl;
     pub use super::toggle_button::ToggleButtonImpl;
+    pub use super::widget::CompositeTemplate;
+    pub use super::widget::TemplateChild;
+    pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
     pub use gio::subclass::prelude::*;
