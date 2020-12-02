@@ -11,7 +11,6 @@ mod imp {
     use super::*;
     use glib::subclass;
     use gtk::subclass::prelude::*;
-    use gtk::subclass::widget::*;
 
     /// The private struct, which can hold widgets and other data.
     #[derive(Debug, CompositeTemplate)]
