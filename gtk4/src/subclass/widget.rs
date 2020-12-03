@@ -957,3 +957,11 @@ where
 pub trait CompositeTemplate: WidgetImpl {
     fn bind_template_children(klass: &mut Self::Class);
 }
+
+pub trait ImplicitCompositeTemplate: CompositeTemplate {
+    fn bind_implicit_widgets(klass: &mut Self::Class);
+}
+
+pub trait CompositeTemplateWidgets {
+    fn new() -> Self;
+}

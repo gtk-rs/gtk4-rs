@@ -1,40 +1,55 @@
 use proc_macro2::{Ident, Span, TokenStream};
-use proc_macro_error::abort_call_site;
+use proc_macro_error::{abort, abort_call_site};
 use quote::quote;
 
-use std::env::current_dir;
-use std::path::Path;
+use std::env::var;
+use std::path::PathBuf;
 use std::string::ToString;
 
 use crate::ui_definitions_parser;
 use crate::ui_definitions_parser::UIDefinitions;
 use crate::util::*;
 
-fn read_template_file(filename: String) -> UIDefinitions {
-    if filename.is_empty() {
-        abort_call_site!(&r#"Usage: #[template("NAME")]"#);
-    }
-
-    match ui_definitions_parser::parse_file(&filename) {
-        Ok(template) => template,
-        Err(err) => match err {
-            ui_definitions_parser::Error::IOError(e) => {
-                let mut abs = filename.to_string();
-                let filename_path = Path::new(&filename);
-                if !filename_path.is_absolute() {
-                    if let Ok(working_dir) = current_dir() {
-                        let working_dir = working_dir.join(&filename_path);
-                        if let Some(working_dir) = working_dir.to_str() {
-                            abs = working_dir.to_string();
-                        }
-                    }
+fn read_template_file(file_path: &PathBuf, span: &Span) -> UIDefinitions {
+    if let Some(file_path_str) = file_path.to_str() {
+        match ui_definitions_parser::parse_file(&file_path) {
+            Ok(template) => template,
+            Err(err) => match err {
+                ui_definitions_parser::Error::IOError(e) => {
+                    abort!(
+                        span,
+                        "IO error when opening UI file `{}`: {}",
+                        file_path_str,
+                        e
+                    );
                 }
-                abort_call_site!("IO error when opening UI file {}: {}", abs, e);
+                ui_definitions_parser::Error::ParseError(e) => {
+                    abort!(span, "Error parsing UI XML file `{}`: {}", file_path_str, e);
+                }
+            },
+        }
+    } else {
+        abort!(span, "Can't convert the absolute filename to UTF8.");
+    }
+}
+
+fn get_absolute_template_path(filename: &str) -> Result<PathBuf, String> {
+    let path = PathBuf::from(&filename);
+
+    if path.is_absolute() {
+        Ok(path)
+    } else {
+        let manifest_dir = match var("CARGO_MANIFEST_DIR") {
+            Ok(dir) => dir,
+            Err(_) => {
+                return Err("Path is not absolute and $CARGO_MANIFEST_DIR is not set.".to_string())
             }
-            ui_definitions_parser::Error::ParseError(e) => {
-                abort_call_site!("Error parsing UI XML file: {}", e);
-            }
-        },
+        };
+
+        let mut absolute_path = PathBuf::new();
+        absolute_path.push(manifest_dir);
+        absolute_path.push(&filename);
+        Ok(absolute_path)
     }
 }
 
@@ -46,37 +61,67 @@ fn read_template_file(filename: String) -> UIDefinitions {
 /// * CompositeTemplate
 /// * ObjectSubclass
 /// * ObjectImpl
-pub fn gen_template(input: syn::ItemStruct, attrs: syn::AttributeArgs) -> TokenStream {
+pub fn gen_template(input: syn::ItemMod, attrs: syn::AttributeArgs) -> TokenStream {
+    // This reduces the number of irrelevant error messages to be emitted when something is wrong
+    proc_macro_error::set_dummy(quote!(
+        #input
+    ));
+
     let mut filename = String::new();
+    let mut filename_span = Span::call_site();
 
     if let Ok(attrs) = parse_attribute_iter(&mut attrs.iter()) {
         attrs.into_iter().for_each(|a| match a {
-            TemplateAttribute::Id(_) => {
-                abort_call_site!("Unkown template attribute 'id' for 'template'")
+            TemplateAttribute::Id(_, ident_span, _) => {
+                abort!(ident_span, "Unkown template attribute 'id' for 'template'")
             }
-            TemplateAttribute::Filename(name) => {
+            TemplateAttribute::Filename(name, _, value_span) => {
                 filename = name;
+                filename_span = value_span;
             }
         })
     };
 
     if filename.is_empty() {
-        abort_call_site!(
-            "You have to specify a file=\"filename\" attribute to the #[template] macro."
+        abort!(
+            filename_span,
+            "You have to specify a `file` attribute to the #[template] macro."
         )
     }
+
+    let file_path = get_absolute_template_path(&filename)
+        .unwrap_or_else(|err| abort!(filename_span, "{}", err));
+    let file_path_str = file_path
+        .to_str()
+        .unwrap_or_else(|| abort!(filename_span, "Error converting filename to UTF8"));
+
     // Parse the template file. This can fail in multiple ways.
-    let definitions = read_template_file(filename);
+    let definitions = read_template_file(&file_path, &filename_span);
 
     let template = match definitions.template {
         Some(ref templ) => templ,
-        None => abort_call_site!(
+        None => abort!(
+            filename_span,
             "The template file does not have a <template> attribute or the template \
             attribute is invalid"
         ),
     };
 
+    let _parent_type = match generate_type_from_class_name(&template.parent) {
+        Ok(typ) => typ,
+        Err(err) => {
+            abort_call_site!("Error parsing parent type of <template> tag: {}", err);
+        }
+    };
+
+    let mod_attrs = input.attrs;
+    let mod_ident = input.ident;
+    let orig_content = input.content.map_or(Vec::new(), |tpl| tpl.1);
+    let template_class = Ident::new(&template.klass, Span::call_site());
+    let widget_class_str = template.klass.clone() + "Widgets";
+    let widget_class = Ident::new(&widget_class_str, Span::call_site());
     let crate_ident = crate_ident_new();
+
     let mut field_idents = Vec::new();
     let mut fields = Vec::new();
     let mut child_bindings = Vec::new();
@@ -98,7 +143,8 @@ pub fn gen_template(input: syn::ItemStruct, attrs: syn::AttributeArgs) -> TokenS
                     child_bindings.push(quote!(
                         klass.bind_template_child_with_offset(
                             &#name,
-                            #crate_ident::offset_of!(Self => #name_ident),
+                            #crate_ident::offset_of!(Self => widgets) +
+                                #crate_ident::offset_of!(#widget_class => #name_ident),
                         );
                     ));
                 }
@@ -109,88 +155,38 @@ pub fn gen_template(input: syn::ItemStruct, attrs: syn::AttributeArgs) -> TokenS
         }
     }
 
-    let parent_type = match generate_type_from_class_name(&template.parent) {
-        Ok(typ) => typ,
-        Err(err) => {
-            abort_call_site!("Error parsing parent type of <template> tag: {}", err);
-        }
-    };
-
-    //abort_call_site!("{:?}", fields.collect::<Vec<TokenTree>>());
-    let struct_attrs = input.attrs;
-    let vis = input.vis;
-    let ident = input.ident;
-    let ident_string = ident.to_string();
-    let generics = input.generics;
-    let orig_fields = input.fields.iter();
-
-    let ident = quote!(#ident#generics);
-
-    if !template.klass.eq(&ident_string) {
-        abort_call_site!(
-            "The struct is called {} but the UI Definitions expect a {}",
-            ident_string,
-            template.klass.to_string()
-        );
-    }
-
     quote!(
-        #(#struct_attrs)*
-        #vis struct #ident {
-            #(#orig_fields,)*
-            #(#fields)*
-        }
+        #(#mod_attrs)*
+        mod #mod_ident {
+            #(#orig_content)*
 
-        impl #crate_ident::subclass::widget::CompositeTemplate for #ident {
-            fn bind_template_children(klass: &mut Self::Class) {
-                unsafe {
-                    #(#child_bindings)*
-                }
+            #[derive(Debug)]
+            pub struct #widget_class {
+                #(#fields)*
             }
-        }
 
-        impl ObjectSubclass for #ident {
-            const NAME: &'static str = #ident_string;
-            type Type = super::#ident;
-            type ParentType = #parent_type;
-            type Instance = glib::subclass::simple::InstanceStruct<Self>;
-            type Class = glib::subclass::simple::ClassStruct<Self>;
-
-            glib_object_subclass!();
-
-            fn new() -> Self {
-                Self {
-                    #(#field_idents: gtk::subclass::widget::TemplateChild::default()),*
+            impl CompositeTemplateWidgets for #widget_class {
+                fn new() -> Self {
+                    Self {
+                        #(#field_idents: gtk::subclass::widget::TemplateChild::default()),*
+                    }
                 }
             }
 
-            // Within class_init() you must set the template
-            // and bind it's children. The CompositeTemplate
-            // derive macro provides a convenience function
-            // bind_template_children() to bind all children
-            // at once.
-            fn class_init(klass: &mut Self::Class) {
-                let template = include_bytes!("composite_template.ui");
-                klass.set_template(template);
-                Self::bind_template_children(klass);
+            impl ImplicitCompositeTemplate for #template_class {
+                fn bind_implicit_widgets(klass: &mut Self::Class) {
+                    let template = include_bytes!(#file_path_str);
+                    klass.set_template(template);
+
+                    // Bind the regular template children if any
+                    Self::bind_template_children(klass);
+
+                    // Bind all implicit template children generated above
+                    unsafe {
+                        #(#child_bindings)*
+                    }
+                }
             }
         }
-
-        impl ObjectImpl for #ident {
-            fn constructed(&self, obj: &Self::Type) {
-                obj.init_template();
-                obj.init_label();
-                self.parent_constructed(obj);
-            }
-        }
-
-        /*impl #ident {
-            pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-            glib::Object::new(Self::static_type(), &[("application", app)])
-                .expect("Failed to create #ident_name")
-                .downcast::<#ident>()
-                .expect("Created object is of wrong type")
-            }
-        }*/
     )
 }

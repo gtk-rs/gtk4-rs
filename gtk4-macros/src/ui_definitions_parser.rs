@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::prelude::*;
 use std::iter::Iterator;
+use std::path::Path;
 /// This is an (incomplete) parser for .ui files
 use xmlparser::{ElementEnd, Token, Tokenizer};
 
@@ -268,7 +269,7 @@ pub fn parse_xml(xml: &str) -> Result<UIDefinitions, String> {
 }
 
 /// Parse the UI Definitions file from a filename
-pub fn parse_file(filename: &str) -> Result<UIDefinitions, Error> {
+pub fn parse_file(filename: &Path) -> Result<UIDefinitions, Error> {
     let mut file = File::open(&filename)?;
 
     let mut content_str = String::new();

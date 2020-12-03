@@ -2,13 +2,14 @@ use anyhow::{bail, Result};
 use itertools::Itertools;
 use proc_macro2::{Ident, Span};
 use proc_macro_crate::crate_name;
+use proc_macro_error::abort;
 use std::iter::{FromIterator, Iterator};
 use syn::{Attribute, Lit, Meta, MetaList, NestedMeta, Type};
 
 #[derive(Debug)]
 pub enum TemplateAttribute {
-    Id(String),
-    Filename(String),
+    Id(String, Span, Span),
+    Filename(String, Span, Span),
 }
 
 // find the #[@attr_name] attribute in @attrs
@@ -23,7 +24,7 @@ fn find_attribute_meta(attrs: &[Attribute], attr_name: &str) -> Result<Option<Me
     }
 }
 
-fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
+fn parse_attribute(meta: &NestedMeta) -> Result<(String, Span, String, Span)> {
     let meta = match &meta {
         NestedMeta::Meta(m) => m,
         _ => bail!("wrong meta type: not a NestedMeta::Meta"),
@@ -42,16 +43,16 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
         Some(ident) => ident,
     };
 
-    Ok((ident.to_string(), value))
+    Ok((ident.to_string(), ident.span(), value, meta.lit.span()))
 }
 
 fn parse_template_attribute(meta: &NestedMeta) -> Result<TemplateAttribute> {
-    let (ident, v) = parse_attribute(meta)?;
+    let (ident, ident_span, value, value_span) = parse_attribute(meta)?;
 
     match ident.as_ref() {
-        "id" => Ok(TemplateAttribute::Id(v)),
-        "file" => Ok(TemplateAttribute::Filename(v)),
-        s => bail!("Unknown item meta {}", s),
+        "id" => Ok(TemplateAttribute::Id(value, ident_span, value_span)),
+        "file" => Ok(TemplateAttribute::Filename(value, ident_span, value_span)),
+        s => abort!(ident_span, "Unknown template attribute `{}`", s),
     }
 }
 

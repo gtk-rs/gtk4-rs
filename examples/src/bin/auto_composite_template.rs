@@ -8,26 +8,65 @@ use glib::{glib_object_subclass, glib_wrapper};
 use gtk::gtk4_macros::*;
 use gtk::prelude::*;
 
-use gtk::subclass::prelude::*;
 use gtk::subclass::widget::*;
 
+#[template(file = "src/bin/composite_template.ui")]
 mod imp {
     use super::*;
+    use glib::subclass;
+    use gtk::subclass::prelude::*;
 
-    /// The private struct, which will hold the automatically generated widgets
-    #[template(file = "examples/src/bin/composite_template.ui")]
-    #[derive(Debug)]
-    pub struct ExApplicationWindow {}
+    /// The private struct, which can hold widgets and other data.
+    #[derive(Debug, CompositeTemplate)]
+    pub struct ExApplicationWindow {
+        #[template_widgets]
+        pub widgets: ExApplicationWindowWidgets,
+        custom_string_attr: String,
+    }
+
+    impl ObjectSubclass for ExApplicationWindow {
+        const NAME: &'static str = "ExApplicationWindow";
+        type Type = super::ExApplicationWindow;
+        type ParentType = gtk::ApplicationWindow;
+        type Instance = subclass::simple::InstanceStruct<Self>;
+        type Class = subclass::simple::ClassStruct<Self>;
+
+        glib_object_subclass!();
+
+        fn new() -> Self {
+            Self {
+                widgets: ExApplicationWindowWidgets::new(),
+                custom_string_attr: "Custom string_attr".to_string(),
+            }
+        }
+
+        // Within class_init() you must set the template
+        // and bind it's children. The CompositeTemplate
+        // derive macro provides a convenience function
+        // bind_template_children() to bind all children
+        // at once.
+        fn class_init(klass: &mut Self::Class) {
+            Self::bind_implicit_widgets(klass);
+        }
+    }
+
+    impl ObjectImpl for ExApplicationWindow {
+        fn constructed(&self, obj: &Self::Type) {
+            obj.init_template();
+            obj.init_label();
+            self.parent_constructed(obj);
+        }
+    }
+
+    impl WidgetImpl for ExApplicationWindow {}
+    impl WindowImpl for ExApplicationWindow {}
+    impl ApplicationWindowImpl for ExApplicationWindow {}
 }
 
 glib_wrapper! {
     pub struct ExApplicationWindow(ObjectSubclass<imp::ExApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
 }
-
-impl WidgetImpl for imp::ExApplicationWindow {}
-impl WindowImpl for imp::ExApplicationWindow {}
-impl ApplicationWindowImpl for imp::ExApplicationWindow {}
 
 impl ExApplicationWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
@@ -42,6 +81,7 @@ impl ExApplicationWindow {
         // the private struct.
         let self_ = imp::ExApplicationWindow::from_instance(self);
         self_
+            .widgets
             .subtitle_label
             .get()
             .set_text("This is an example window made using composite templates");

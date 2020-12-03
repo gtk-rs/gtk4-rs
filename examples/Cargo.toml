@@ -8,6 +8,7 @@ autobins = false
 
 [dependencies]
 chrono = "0.4.19"
+field-offset = "0.3.2"
 
 [dependencies.gtk]
 path = "../gtk4"
