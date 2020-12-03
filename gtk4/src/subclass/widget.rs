@@ -962,6 +962,14 @@ pub trait ImplicitCompositeTemplate: CompositeTemplate {
     fn bind_implicit_widgets(klass: &mut Self::Class);
 }
 
+pub trait CompositeTemplateContext: CompositeTemplate {
+    const CONTEXT_NAME: &'static str;
+    type ContextParentType: ObjectType
+        + FromGlibPtrFull<*mut <Self::ParentType as ObjectType>::GlibType>
+        + FromGlibPtrBorrow<*mut <Self::ParentType as ObjectType>::GlibType>
+        + FromGlibPtrNone<*mut <Self::ParentType as ObjectType>::GlibType>;
+}
+
 pub trait CompositeTemplateWidgets {
     fn new() -> Self;
 }

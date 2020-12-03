@@ -69,6 +69,9 @@ pub mod prelude {
     pub use super::text_view::TextViewImpl;
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::widget::CompositeTemplate;
+    pub use super::widget::CompositeTemplateContext;
+    pub use super::widget::CompositeTemplateWidgets;
+    pub use super::widget::ImplicitCompositeTemplate;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::WidgetImpl;

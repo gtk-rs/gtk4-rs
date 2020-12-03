@@ -25,9 +25,9 @@ mod imp {
     }
 
     impl ObjectSubclass for ExApplicationWindow {
-        const NAME: &'static str = "ExApplicationWindow";
+        const NAME: &'static str = Self::CONTEXT_NAME;
         type Type = super::ExApplicationWindow;
-        type ParentType = gtk::ApplicationWindow;
+        type ParentType = <Self as CompositeTemplateContext>::ContextParentType;
         type Instance = subclass::simple::InstanceStruct<Self>;
         type Class = subclass::simple::ClassStruct<Self>;
 

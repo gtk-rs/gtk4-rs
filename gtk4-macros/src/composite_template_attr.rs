@@ -107,7 +107,7 @@ pub fn gen_template(input: syn::ItemMod, attrs: syn::AttributeArgs) -> TokenStre
         ),
     };
 
-    let _parent_type = match generate_type_from_class_name(&template.parent) {
+    let parent_type = match generate_type_from_class_name(&template.parent) {
         Ok(typ) => typ,
         Err(err) => {
             abort_call_site!("Error parsing parent type of <template> tag: {}", err);
@@ -117,7 +117,8 @@ pub fn gen_template(input: syn::ItemMod, attrs: syn::AttributeArgs) -> TokenStre
     let mod_attrs = input.attrs;
     let mod_ident = input.ident;
     let orig_content = input.content.map_or(Vec::new(), |tpl| tpl.1);
-    let template_class = Ident::new(&template.klass, Span::call_site());
+    let template_class_str = template.klass.clone();
+    let template_class = Ident::new(&template_class_str, Span::call_site());
     let widget_class_str = template.klass.clone() + "Widgets";
     let widget_class = Ident::new(&widget_class_str, Span::call_site());
     let crate_ident = crate_ident_new();
@@ -171,6 +172,11 @@ pub fn gen_template(input: syn::ItemMod, attrs: syn::AttributeArgs) -> TokenStre
                         #(#field_idents: gtk::subclass::widget::TemplateChild::default()),*
                     }
                 }
+            }
+
+            impl CompositeTemplateContext for #template_class {
+                const CONTEXT_NAME: &'static str = #template_class_str;
+                type ContextParentType = #parent_type;
             }
 
             impl ImplicitCompositeTemplate for #template_class {
