@@ -199,7 +199,7 @@ impl Builder {
         }
     }
 
-    pub fn get_scope(&self) -> Option<BuilderScope> {
+    pub fn get_scope(&self) -> BuilderScope {
         unsafe { from_glib_none(ffi::gtk_builder_get_scope(self.to_glib_none().0)) }
     }
 

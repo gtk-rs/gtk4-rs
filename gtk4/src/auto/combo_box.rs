@@ -484,7 +484,7 @@ pub trait ComboBoxExt: 'static {
 
     fn get_popup_fixed_width(&self) -> bool;
 
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
+    //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
 
     fn popdown(&self);
 
@@ -629,7 +629,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
+    //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static {
     //    unsafe { TODO: call ffi:gtk_combo_box_get_row_separator_func() }
     //}
 
