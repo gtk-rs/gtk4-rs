@@ -2099,7 +2099,7 @@
     <span class="doccomment">/// `true` if the popup uses a fixed width</span>
     <span class="kw">fn</span> <span class="ident">get_popup_fixed_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt;;</span>
+    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static;</span>
 
     <span class="doccomment">/// Hides the menu or dropdown list of `self`.</span>
     <span class="doccomment">///</span>
@@ -2386,7 +2386,7 @@
         }
     }
 
-    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Option&lt;Box_&lt;dyn Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static&gt;&gt; {</span>
+    <span class="comment">//fn get_row_separator_func(&amp;self) -&gt; Fn(&amp;TreeModel, &amp;TreeIter) -&gt; bool + &#39;static {</span>
     <span class="comment">//    unsafe { TODO: call ffi:gtk_combo_box_get_row_separator_func() }</span>
     <span class="comment">//}</span>
 
