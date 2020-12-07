@@ -2,9 +2,9 @@
 //!
 //! This sample demonstrates how to create a widget using GTK's composite templates.
 
-use gio::prelude::*;
 use glib::subclass::prelude::*;
-use gtk::{prelude::*, CompositeTemplate};
+use gtk::prelude::*;
+use gtk::{gio, glib, CompositeTemplate};
 
 mod imp {
     use super::*;

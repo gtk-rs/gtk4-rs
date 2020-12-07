@@ -2,12 +2,11 @@
 //!
 //! This sample demonstrates how to use CSS with gtk-rs.
 
-use gio::prelude::*;
-use gtk::prelude::*;
+use gtk::{gio::prelude::*, prelude::*};
 
 use std::env::args;
 
-use gdk::Display;
+use gtk::gdk::Display;
 use gtk::{
     Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
     Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
@@ -74,7 +73,7 @@ fn build_ui(application: &Application) {
 }
 
 fn main() {
-    let application = Application::new(Some("com.github.css"), gio::ApplicationFlags::empty())
+    let application = Application::new(Some("com.github.css"), Default::default())
         .expect("Initialization failed...");
 
     application.connect_startup(|app| {

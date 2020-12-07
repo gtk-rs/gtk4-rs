@@ -4,8 +4,7 @@
 //! These allow to set construct-only properties and other construct
 //! properties when creating the widget.
 
-use gio::prelude::*;
-use gtk::prelude::*;
+use gtk::{gio::prelude::*, prelude::*};
 
 use gtk::{Align, Application, ApplicationWindowBuilder, ButtonBuilder};
 
