@@ -117,7 +117,7 @@ impl TreePath {
         unsafe { from_glib(ffi::gtk_tree_path_prev(self.to_glib_none_mut().0)) }
     }
 
-    fn to_string(&self) -> glib::GString {
+    pub fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_tree_path_to_string(mut_override(
                 self.to_glib_none().0,
@@ -162,6 +162,6 @@ impl Ord for TreePath {
 impl fmt::Display for TreePath {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.to_string())
+        f.write_str(&self.to_str())
     }
 }

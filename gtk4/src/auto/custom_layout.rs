@@ -20,10 +20,8 @@ impl CustomLayout {
     //}
 }
 
-pub const NONE_CUSTOM_LAYOUT: Option<&CustomLayout> = None;
-
 impl fmt::Display for CustomLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CustomLayout")
+        f.write_str("CustomLayout")
     }
 }

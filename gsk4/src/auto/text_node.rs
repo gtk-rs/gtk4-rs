@@ -60,6 +60,6 @@ impl TextNode {
 
 impl fmt::Display for TextNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextNode")
+        f.write_str("TextNode")
     }
 }

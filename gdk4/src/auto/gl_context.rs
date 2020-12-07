@@ -132,6 +132,6 @@ impl GLContext {
 
 impl fmt::Display for GLContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GLContext")
+        f.write_str("GLContext")
     }
 }

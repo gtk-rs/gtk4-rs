@@ -13,7 +13,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -34,7 +33,7 @@ impl CellRendererProgress {
 
     pub fn get_property_inverted(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"inverted\0".as_ptr() as *const _,
@@ -52,14 +51,14 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"inverted\0".as_ptr() as *const _,
-                Value::from(&inverted).to_glib_none().0,
+                glib::Value::from(&inverted).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_pulse(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pulse\0".as_ptr() as *const _,
@@ -77,14 +76,14 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pulse\0".as_ptr() as *const _,
-                Value::from(&pulse).to_glib_none().0,
+                glib::Value::from(&pulse).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
@@ -101,14 +100,14 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
-                Value::from(text).to_glib_none().0,
+                glib::Value::from(text).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_text_xalign(&self) -> f32 {
         unsafe {
-            let mut value = Value::from_type(<f32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-xalign\0".as_ptr() as *const _,
@@ -126,14 +125,14 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-xalign\0".as_ptr() as *const _,
-                Value::from(&text_xalign).to_glib_none().0,
+                glib::Value::from(&text_xalign).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_text_yalign(&self) -> f32 {
         unsafe {
-            let mut value = Value::from_type(<f32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-yalign\0".as_ptr() as *const _,
@@ -151,14 +150,14 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-yalign\0".as_ptr() as *const _,
-                Value::from(&text_yalign).to_glib_none().0,
+                glib::Value::from(&text_yalign).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_value(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"value\0".as_ptr() as *const _,
@@ -176,7 +175,7 @@ impl CellRendererProgress {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"value\0".as_ptr() as *const _,
-                Value::from(&value).to_glib_none().0,
+                glib::Value::from(&value).to_glib_none().0,
             );
         }
     }
@@ -552,6 +551,6 @@ impl CellRendererProgressBuilder {
 
 impl fmt::Display for CellRendererProgress {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellRendererProgress")
+        f.write_str("CellRendererProgress")
     }
 }

@@ -125,6 +125,6 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
 
 impl fmt::Display for PrintOperationPreview {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintOperationPreview")
+        f.write_str("PrintOperationPreview")
     }
 }

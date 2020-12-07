@@ -150,6 +150,6 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
 
 impl fmt::Display for ColorChooser {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ColorChooser")
+        f.write_str("ColorChooser")
     }
 }

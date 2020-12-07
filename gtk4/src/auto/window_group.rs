@@ -68,6 +68,6 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
 
 impl fmt::Display for WindowGroup {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WindowGroup")
+        f.write_str("WindowGroup")
     }
 }

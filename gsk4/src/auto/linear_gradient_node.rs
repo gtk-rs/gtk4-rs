@@ -54,6 +54,6 @@ impl LinearGradientNode {
 
 impl fmt::Display for LinearGradientNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "LinearGradientNode")
+        f.write_str("LinearGradientNode")
     }
 }

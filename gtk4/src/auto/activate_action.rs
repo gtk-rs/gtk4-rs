@@ -23,6 +23,6 @@ impl ActivateAction {
 
 impl fmt::Display for ActivateAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ActivateAction")
+        f.write_str("ActivateAction")
     }
 }

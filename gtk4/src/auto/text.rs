@@ -22,7 +22,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -244,7 +243,7 @@ impl Text {
 
     pub fn get_property_im_module(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
@@ -261,14 +260,14 @@ impl Text {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
-                Value::from(im_module).to_glib_none().0,
+                glib::Value::from(im_module).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_invisible_char_set(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"invisible-char-set\0".as_ptr() as *const _,
@@ -286,14 +285,14 @@ impl Text {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"invisible-char-set\0".as_ptr() as *const _,
-                Value::from(&invisible_char_set).to_glib_none().0,
+                glib::Value::from(&invisible_char_set).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_scroll_offset(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"scroll-offset\0".as_ptr() as *const _,
@@ -1255,6 +1254,6 @@ impl TextBuilder {
 
 impl fmt::Display for Text {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Text")
+        f.write_str("Text")
     }
 }

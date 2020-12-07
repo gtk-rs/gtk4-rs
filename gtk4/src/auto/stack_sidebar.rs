@@ -379,6 +379,6 @@ impl StackSidebarBuilder {
 
 impl fmt::Display for StackSidebar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StackSidebar")
+        f.write_str("StackSidebar")
     }
 }

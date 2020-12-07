@@ -63,6 +63,6 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
 
 impl fmt::Display for TextChildAnchor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextChildAnchor")
+        f.write_str("TextChildAnchor")
     }
 }

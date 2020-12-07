@@ -26,6 +26,6 @@ impl TouchEvent {
 
 impl fmt::Display for TouchEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TouchEvent")
+        f.write_str("TouchEvent")
     }
 }

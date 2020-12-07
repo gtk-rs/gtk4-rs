@@ -26,7 +26,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -245,7 +244,7 @@ impl Assistant {
 
     pub fn get_property_use_header_bar(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-header-bar\0".as_ptr() as *const _,
@@ -875,6 +874,6 @@ impl AssistantBuilder {
 
 impl fmt::Display for Assistant {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Assistant")
+        f.write_str("Assistant")
     }
 }

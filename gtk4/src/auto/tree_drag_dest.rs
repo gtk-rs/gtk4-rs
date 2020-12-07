@@ -47,6 +47,6 @@ impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
 
 impl fmt::Display for TreeDragDest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeDragDest")
+        f.write_str("TreeDragDest")
     }
 }

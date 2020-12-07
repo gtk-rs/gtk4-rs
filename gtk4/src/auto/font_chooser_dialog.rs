@@ -571,6 +571,6 @@ impl FontChooserDialogBuilder {
 
 impl fmt::Display for FontChooserDialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FontChooserDialog")
+        f.write_str("FontChooserDialog")
     }
 }

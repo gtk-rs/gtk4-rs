@@ -12,7 +12,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,7 +31,7 @@ impl AssistantPage {
 
     pub fn get_property_complete(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"complete\0".as_ptr() as *const _,
@@ -50,14 +49,15 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"complete\0".as_ptr() as *const _,
-                Value::from(&complete).to_glib_none().0,
+                glib::Value::from(&complete).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_page_type(&self) -> AssistantPageType {
         unsafe {
-            let mut value = Value::from_type(<AssistantPageType as StaticType>::static_type());
+            let mut value =
+                glib::Value::from_type(<AssistantPageType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"page-type\0".as_ptr() as *const _,
@@ -75,14 +75,14 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"page-type\0".as_ptr() as *const _,
-                Value::from(&page_type).to_glib_none().0,
+                glib::Value::from(&page_type).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_title(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
@@ -99,7 +99,7 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
-                Value::from(title).to_glib_none().0,
+                glib::Value::from(title).to_glib_none().0,
             );
         }
     }
@@ -237,6 +237,6 @@ impl AssistantPageBuilder {
 
 impl fmt::Display for AssistantPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AssistantPage")
+        f.write_str("AssistantPage")
     }
 }

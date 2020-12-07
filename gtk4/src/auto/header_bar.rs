@@ -498,6 +498,6 @@ impl HeaderBarBuilder {
 
 impl fmt::Display for HeaderBar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "HeaderBar")
+        f.write_str("HeaderBar")
     }
 }

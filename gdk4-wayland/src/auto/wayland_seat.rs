@@ -17,6 +17,6 @@ impl WaylandSeat {}
 
 impl fmt::Display for WaylandSeat {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandSeat")
+        f.write_str("WaylandSeat")
     }
 }

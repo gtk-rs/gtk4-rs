@@ -7,9 +7,9 @@ use glib::translate::*;
 use glib::value::FromValue;
 use glib::value::FromValueOptional;
 use glib::value::SetValue;
-use glib::value::Value;
 use glib::StaticType;
 use glib::Type;
+use std::fmt;
 
 bitflags! {
     pub struct ApplicationInhibitFlags: u32 {
@@ -17,6 +17,12 @@ bitflags! {
         const SWITCH = 2;
         const SUSPEND = 4;
         const IDLE = 8;
+    }
+}
+
+impl fmt::Display for ApplicationInhibitFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -44,19 +50,19 @@ impl StaticType for ApplicationInhibitFlags {
 }
 
 impl<'a> FromValueOptional<'a> for ApplicationInhibitFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for ApplicationInhibitFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ApplicationInhibitFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -64,6 +70,12 @@ impl SetValue for ApplicationInhibitFlags {
 bitflags! {
     pub struct BuilderClosureFlags: u32 {
         const SWAPPED = 1;
+    }
+}
+
+impl fmt::Display for BuilderClosureFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -91,19 +103,19 @@ impl StaticType for BuilderClosureFlags {
 }
 
 impl<'a> FromValueOptional<'a> for BuilderClosureFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for BuilderClosureFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for BuilderClosureFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -117,6 +129,12 @@ bitflags! {
         const FOCUSED = 16;
         const EXPANDABLE = 32;
         const EXPANDED = 64;
+    }
+}
+
+impl fmt::Display for CellRendererState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -144,19 +162,19 @@ impl StaticType for CellRendererState {
 }
 
 impl<'a> FromValueOptional<'a> for CellRendererState {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for CellRendererState {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for CellRendererState {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -184,6 +202,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for DebugFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for DebugFlags {
     type GlibType = ffi::GtkDebugFlags;
@@ -208,19 +232,19 @@ impl StaticType for DebugFlags {
 }
 
 impl<'a> FromValueOptional<'a> for DebugFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for DebugFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DebugFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -230,6 +254,12 @@ bitflags! {
         const MODAL = 1;
         const DESTROY_WITH_PARENT = 2;
         const USE_HEADER_BAR = 4;
+    }
+}
+
+impl fmt::Display for DialogFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -257,19 +287,19 @@ impl StaticType for DialogFlags {
 }
 
 impl<'a> FromValueOptional<'a> for DialogFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for DialogFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for DialogFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -282,6 +312,12 @@ bitflags! {
         const DISCRETE = 4;
         const KINETIC = 8;
         const BOTH_AXES = 3;
+    }
+}
+
+impl fmt::Display for EventControllerScrollFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -309,19 +345,19 @@ impl StaticType for EventControllerScrollFlags {
 }
 
 impl<'a> FromValueOptional<'a> for EventControllerScrollFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for EventControllerScrollFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for EventControllerScrollFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -333,6 +369,12 @@ bitflags! {
         const SIZE = 2;
         const VARIATIONS = 4;
         const FEATURES = 8;
+    }
+}
+
+impl fmt::Display for FontChooserLevel {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -360,19 +402,19 @@ impl StaticType for FontChooserLevel {
 }
 
 impl<'a> FromValueOptional<'a> for FontChooserLevel {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for FontChooserLevel {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for FontChooserLevel {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -382,6 +424,12 @@ bitflags! {
         const FORCE_REGULAR = 1;
         const FORCE_SYMBOLIC = 2;
         const PRELOAD = 4;
+    }
+}
+
+impl fmt::Display for IconLookupFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -409,19 +457,19 @@ impl StaticType for IconLookupFlags {
 }
 
 impl<'a> FromValueOptional<'a> for IconLookupFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for IconLookupFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for IconLookupFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -441,6 +489,12 @@ bitflags! {
         const EMOJI = 512;
         const NO_EMOJI = 1024;
         const PRIVATE = 2048;
+    }
+}
+
+impl fmt::Display for InputHints {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -468,19 +522,19 @@ impl StaticType for InputHints {
 }
 
 impl<'a> FromValueOptional<'a> for InputHints {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for InputHints {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for InputHints {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -490,6 +544,12 @@ bitflags! {
         const DEFAULT = 0;
         const INSENSITIVE = 1;
         const NON_TARGETABLE = 2;
+    }
+}
+
+impl fmt::Display for PickFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -517,19 +577,19 @@ impl StaticType for PickFlags {
 }
 
 impl<'a> FromValueOptional<'a> for PickFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for PickFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PickFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -539,6 +599,12 @@ bitflags! {
         const NORMAL = 1;
         const NEW_TAB = 2;
         const NEW_WINDOW = 4;
+    }
+}
+
+impl fmt::Display for PlacesOpenFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -566,19 +632,19 @@ impl StaticType for PlacesOpenFlags {
 }
 
 impl<'a> FromValueOptional<'a> for PlacesOpenFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for PlacesOpenFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PlacesOpenFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -586,6 +652,12 @@ impl SetValue for PlacesOpenFlags {
 bitflags! {
     pub struct PopoverMenuFlags: u32 {
         const NESTED = 1;
+    }
+}
+
+impl fmt::Display for PopoverMenuFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -613,19 +685,19 @@ impl StaticType for PopoverMenuFlags {
 }
 
 impl<'a> FromValueOptional<'a> for PopoverMenuFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for PopoverMenuFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for PopoverMenuFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -633,6 +705,12 @@ impl SetValue for PopoverMenuFlags {
 bitflags! {
     pub struct ShortcutActionFlags: u32 {
         const EXCLUSIVE = 1;
+    }
+}
+
+impl fmt::Display for ShortcutActionFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -660,19 +738,19 @@ impl StaticType for ShortcutActionFlags {
 }
 
 impl<'a> FromValueOptional<'a> for ShortcutActionFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for ShortcutActionFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for ShortcutActionFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -695,6 +773,12 @@ bitflags! {
         const DROP_ACTIVE = 4096;
         const FOCUS_VISIBLE = 8192;
         const FOCUS_WITHIN = 16384;
+    }
+}
+
+impl fmt::Display for StateFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -722,19 +806,19 @@ impl StaticType for StateFlags {
 }
 
 impl<'a> FromValueOptional<'a> for StateFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for StateFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for StateFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -745,6 +829,12 @@ bitflags! {
         const RECURSE = 1;
         const SHOW_STYLE = 2;
         const SHOW_CHANGE = 4;
+    }
+}
+
+impl fmt::Display for StyleContextPrintFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -772,19 +862,19 @@ impl StaticType for StyleContextPrintFlags {
 }
 
 impl<'a> FromValueOptional<'a> for StyleContextPrintFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for StyleContextPrintFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for StyleContextPrintFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -794,6 +884,12 @@ bitflags! {
         const VISIBLE_ONLY = 1;
         const TEXT_ONLY = 2;
         const CASE_INSENSITIVE = 4;
+    }
+}
+
+impl fmt::Display for TextSearchFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -821,19 +917,19 @@ impl StaticType for TextSearchFlags {
 }
 
 impl<'a> FromValueOptional<'a> for TextSearchFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for TextSearchFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TextSearchFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }
@@ -842,6 +938,12 @@ bitflags! {
     pub struct TreeModelFlags: u32 {
         const ITERS_PERSIST = 1;
         const LIST_ONLY = 2;
+    }
+}
+
+impl fmt::Display for TreeModelFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -869,19 +971,19 @@ impl StaticType for TreeModelFlags {
 }
 
 impl<'a> FromValueOptional<'a> for TreeModelFlags {
-    unsafe fn from_value_optional(value: &Value) -> Option<Self> {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
         Some(FromValue::from_value(value))
     }
 }
 
 impl<'a> FromValue<'a> for TreeModelFlags {
-    unsafe fn from_value(value: &Value) -> Self {
+    unsafe fn from_value(value: &glib::Value) -> Self {
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
 impl SetValue for TreeModelFlags {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
     }
 }

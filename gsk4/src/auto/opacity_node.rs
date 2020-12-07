@@ -37,6 +37,6 @@ impl OpacityNode {
 
 impl fmt::Display for OpacityNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "OpacityNode")
+        f.write_str("OpacityNode")
     }
 }

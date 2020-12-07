@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::Filter;
-use glib::object::IsA;
 use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
@@ -55,16 +54,11 @@ impl CustomFilter {
             ))
         }
     }
-}
 
-pub const NONE_CUSTOM_FILTER: Option<&CustomFilter> = None;
-
-pub trait CustomFilterExt: 'static {
-    fn set_filter_func(&self, match_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>);
-}
-
-impl<O: IsA<CustomFilter>> CustomFilterExt for O {
-    fn set_filter_func(&self, match_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>) {
+    pub fn set_filter_func(
+        &self,
+        match_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>,
+    ) {
         let match_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
             Box_::new(match_func);
         unsafe extern "C" fn match_func_func(
@@ -95,7 +89,7 @@ impl<O: IsA<CustomFilter>> CustomFilterExt for O {
             match_func_data;
         unsafe {
             ffi::gtk_custom_filter_set_filter_func(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 match_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
@@ -106,6 +100,6 @@ impl<O: IsA<CustomFilter>> CustomFilterExt for O {
 
 impl fmt::Display for CustomFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CustomFilter")
+        f.write_str("CustomFilter")
     }
 }

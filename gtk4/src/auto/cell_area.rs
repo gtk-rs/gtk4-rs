@@ -1048,6 +1048,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
 impl fmt::Display for CellArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellArea")
+        f.write_str("CellArea")
     }
 }

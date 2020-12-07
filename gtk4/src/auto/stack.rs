@@ -772,6 +772,6 @@ impl StackBuilder {
 
 impl fmt::Display for Stack {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Stack")
+        f.write_str("Stack")
     }
 }

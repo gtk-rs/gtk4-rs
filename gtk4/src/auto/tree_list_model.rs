@@ -5,6 +5,7 @@
 use crate::TreeListRow;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -65,6 +66,100 @@ impl TreeListModel {
             ))
         }
     }
+
+    pub fn get_autoexpand(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_list_model_get_autoexpand(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
+        unsafe {
+            from_glib_full(ffi::gtk_tree_list_model_get_child_row(
+                self.to_glib_none().0,
+                position,
+            ))
+        }
+    }
+
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_tree_list_model_get_model(self.to_glib_none().0)) }
+    }
+
+    pub fn get_passthrough(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_list_model_get_passthrough(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_row(&self, position: u32) -> Option<TreeListRow> {
+        unsafe {
+            from_glib_full(ffi::gtk_tree_list_model_get_row(
+                self.to_glib_none().0,
+                position,
+            ))
+        }
+    }
+
+    pub fn set_autoexpand(&self, autoexpand: bool) {
+        unsafe {
+            ffi::gtk_tree_list_model_set_autoexpand(self.to_glib_none().0, autoexpand.to_glib());
+        }
+    }
+
+    pub fn connect_property_autoexpand_notify<F: Fn(&TreeListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_autoexpand_trampoline<F: Fn(&TreeListModel) + 'static>(
+            this: *mut ffi::GtkTreeListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::autoexpand\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autoexpand_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_model_notify<F: Fn(&TreeListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&TreeListModel) + 'static>(
+            this: *mut ffi::GtkTreeListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -104,129 +199,8 @@ impl TreeListModelBuilder {
     }
 }
 
-pub const NONE_TREE_LIST_MODEL: Option<&TreeListModel> = None;
-
-pub trait TreeListModelExt: 'static {
-    fn get_autoexpand(&self) -> bool;
-
-    fn get_child_row(&self, position: u32) -> Option<TreeListRow>;
-
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn get_passthrough(&self) -> bool;
-
-    fn get_row(&self, position: u32) -> Option<TreeListRow>;
-
-    fn set_autoexpand(&self, autoexpand: bool);
-
-    fn connect_property_autoexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TreeListModel>> TreeListModelExt for O {
-    fn get_autoexpand(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_tree_list_model_get_autoexpand(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
-        unsafe {
-            from_glib_full(ffi::gtk_tree_list_model_get_child_row(
-                self.as_ref().to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_tree_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_passthrough(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_tree_list_model_get_passthrough(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_row(&self, position: u32) -> Option<TreeListRow> {
-        unsafe {
-            from_glib_full(ffi::gtk_tree_list_model_get_row(
-                self.as_ref().to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
-    fn set_autoexpand(&self, autoexpand: bool) {
-        unsafe {
-            ffi::gtk_tree_list_model_set_autoexpand(
-                self.as_ref().to_glib_none().0,
-                autoexpand.to_glib(),
-            );
-        }
-    }
-
-    fn connect_property_autoexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_autoexpand_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkTreeListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TreeListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::autoexpand\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_autoexpand_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkTreeListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TreeListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&TreeListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_model_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for TreeListModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeListModel")
+        f.write_str("TreeListModel")
     }
 }

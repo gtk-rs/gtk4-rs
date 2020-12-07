@@ -22,6 +22,6 @@ impl<O: IsA<BuilderScope>> BuilderScopeExt for O {}
 
 impl fmt::Display for BuilderScope {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BuilderScope")
+        f.write_str("BuilderScope")
     }
 }

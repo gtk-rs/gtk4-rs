@@ -33,6 +33,6 @@ impl TextureNode {
 
 impl fmt::Display for TextureNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextureNode")
+        f.write_str("TextureNode")
     }
 }

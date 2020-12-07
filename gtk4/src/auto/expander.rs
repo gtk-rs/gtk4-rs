@@ -682,6 +682,6 @@ impl ExpanderBuilder {
 
 impl fmt::Display for Expander {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Expander")
+        f.write_str("Expander")
     }
 }

@@ -14,7 +14,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -77,7 +76,7 @@ impl Drag {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"actions\0".as_ptr() as *const _,
-                Value::from(&actions).to_glib_none().0,
+                glib::Value::from(&actions).to_glib_none().0,
             );
         }
     }
@@ -87,7 +86,7 @@ impl Drag {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"selected-action\0".as_ptr() as *const _,
-                Value::from(&selected_action).to_glib_none().0,
+                glib::Value::from(&selected_action).to_glib_none().0,
             );
         }
     }
@@ -252,6 +251,6 @@ impl Drag {
 
 impl fmt::Display for Drag {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Drag")
+        f.write_str("Drag")
     }
 }

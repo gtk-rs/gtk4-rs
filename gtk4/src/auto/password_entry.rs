@@ -20,7 +20,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -75,7 +74,7 @@ impl PasswordEntry {
 
     pub fn get_property_activates_default(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"activates-default\0".as_ptr() as *const _,
@@ -93,14 +92,14 @@ impl PasswordEntry {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"activates-default\0".as_ptr() as *const _,
-                Value::from(&activates_default).to_glib_none().0,
+                glib::Value::from(&activates_default).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
@@ -117,7 +116,7 @@ impl PasswordEntry {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
-                Value::from(placeholder_text).to_glib_none().0,
+                glib::Value::from(placeholder_text).to_glib_none().0,
             );
         }
     }
@@ -641,6 +640,6 @@ impl PasswordEntryBuilder {
 
 impl fmt::Display for PasswordEntry {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PasswordEntry")
+        f.write_str("PasswordEntry")
     }
 }

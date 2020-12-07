@@ -18,7 +18,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -110,7 +109,7 @@ impl Calendar {
 
     pub fn get_property_day(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"day\0".as_ptr() as *const _,
@@ -128,14 +127,14 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"day\0".as_ptr() as *const _,
-                Value::from(&day).to_glib_none().0,
+                glib::Value::from(&day).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_month(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"month\0".as_ptr() as *const _,
@@ -153,14 +152,14 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"month\0".as_ptr() as *const _,
-                Value::from(&month).to_glib_none().0,
+                glib::Value::from(&month).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_year(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"year\0".as_ptr() as *const _,
@@ -178,7 +177,7 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"year\0".as_ptr() as *const _,
-                Value::from(&year).to_glib_none().0,
+                glib::Value::from(&year).to_glib_none().0,
             );
         }
     }
@@ -787,6 +786,6 @@ impl CalendarBuilder {
 
 impl fmt::Display for Calendar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Calendar")
+        f.write_str("Calendar")
     }
 }

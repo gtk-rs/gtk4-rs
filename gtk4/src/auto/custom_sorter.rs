@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::Sorter;
-use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
@@ -19,22 +18,14 @@ impl CustomSorter {
     //pub fn new(sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> CustomSorter {
     //    unsafe { TODO: call ffi:gtk_custom_sorter_new() }
     //}
-}
 
-pub const NONE_CUSTOM_SORTER: Option<&CustomSorter> = None;
-
-pub trait CustomSorterExt: 'static {
-    //fn set_sort_func(&self, sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>);
-}
-
-impl<O: IsA<CustomSorter>> CustomSorterExt for O {
-    //fn set_sort_func(&self, sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
+    //pub fn set_sort_func(&self, sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
     //    unsafe { TODO: call ffi:gtk_custom_sorter_set_sort_func() }
     //}
 }
 
 impl fmt::Display for CustomSorter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CustomSorter")
+        f.write_str("CustomSorter")
     }
 }

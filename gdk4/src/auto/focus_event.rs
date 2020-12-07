@@ -22,6 +22,6 @@ impl FocusEvent {
 
 impl fmt::Display for FocusEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FocusEvent")
+        f.write_str("FocusEvent")
     }
 }

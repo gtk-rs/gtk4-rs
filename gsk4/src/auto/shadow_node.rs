@@ -26,6 +26,6 @@ impl ShadowNode {
 
 impl fmt::Display for ShadowNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShadowNode")
+        f.write_str("ShadowNode")
     }
 }

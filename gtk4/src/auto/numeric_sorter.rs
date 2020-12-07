@@ -6,6 +6,7 @@ use crate::SortType;
 use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -27,6 +28,78 @@ impl NumericSorter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> NumericSorter {
     //    unsafe { TODO: call ffi:gtk_numeric_sorter_new() }
     //}
+
+    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //    unsafe { TODO: call ffi:gtk_numeric_sorter_get_expression() }
+    //}
+
+    pub fn get_sort_order(&self) -> SortType {
+        unsafe {
+            from_glib(ffi::gtk_numeric_sorter_get_sort_order(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
+    //    unsafe { TODO: call ffi:gtk_numeric_sorter_set_expression() }
+    //}
+
+    pub fn set_sort_order(&self, sort_order: SortType) {
+        unsafe {
+            ffi::gtk_numeric_sorter_set_sort_order(self.to_glib_none().0, sort_order.to_glib());
+        }
+    }
+
+    pub fn connect_property_expression_notify<F: Fn(&NumericSorter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expression_trampoline<F: Fn(&NumericSorter) + 'static>(
+            this: *mut ffi::GtkNumericSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::expression\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expression_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_sort_order_notify<F: Fn(&NumericSorter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sort_order_trampoline<F: Fn(&NumericSorter) + 'static>(
+            this: *mut ffi::GtkNumericSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sort-order\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sort_order_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -58,99 +131,8 @@ impl NumericSorterBuilder {
     }
 }
 
-pub const NONE_NUMERIC_SORTER: Option<&NumericSorter> = None;
-
-pub trait NumericSorterExt: 'static {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
-
-    fn get_sort_order(&self) -> SortType;
-
-    //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>);
-
-    fn set_sort_order(&self, sort_order: SortType);
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_sort_order_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<NumericSorter>> NumericSorterExt for O {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_numeric_sorter_get_expression() }
-    //}
-
-    fn get_sort_order(&self) -> SortType {
-        unsafe {
-            from_glib(ffi::gtk_numeric_sorter_get_sort_order(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    //fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call ffi:gtk_numeric_sorter_set_expression() }
-    //}
-
-    fn set_sort_order(&self, sort_order: SortType) {
-        unsafe {
-            ffi::gtk_numeric_sorter_set_sort_order(
-                self.as_ref().to_glib_none().0,
-                sort_order.to_glib(),
-            );
-        }
-    }
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkNumericSorter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<NumericSorter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&NumericSorter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::expression\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_expression_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_sort_order_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_sort_order_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkNumericSorter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<NumericSorter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&NumericSorter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::sort-order\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_sort_order_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for NumericSorter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NumericSorter")
+        f.write_str("NumericSorter")
     }
 }

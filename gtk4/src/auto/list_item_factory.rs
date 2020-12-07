@@ -19,6 +19,6 @@ pub const NONE_LIST_ITEM_FACTORY: Option<&ListItemFactory> = None;
 
 impl fmt::Display for ListItemFactory {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ListItemFactory")
+        f.write_str("ListItemFactory")
     }
 }

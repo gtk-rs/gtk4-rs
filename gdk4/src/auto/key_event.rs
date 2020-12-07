@@ -78,6 +78,6 @@ impl KeyEvent {
 
 impl fmt::Display for KeyEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "KeyEvent")
+        f.write_str("KeyEvent")
     }
 }

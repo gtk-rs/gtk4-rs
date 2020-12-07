@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::Buildable;
-use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
@@ -20,48 +19,32 @@ impl StringList {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_string_list_new(strings.to_glib_none().0)) }
     }
-}
 
-pub const NONE_STRING_LIST: Option<&StringList> = None;
-
-pub trait StringListExt: 'static {
-    fn append(&self, string: &str);
-
-    fn get_string(&self, position: u32) -> Option<glib::GString>;
-
-    fn remove(&self, position: u32);
-
-    fn splice(&self, position: u32, n_removals: u32, additions: &[&str]);
-
-    fn take(&self, string: &str);
-}
-
-impl<O: IsA<StringList>> StringListExt for O {
-    fn append(&self, string: &str) {
+    pub fn append(&self, string: &str) {
         unsafe {
-            ffi::gtk_string_list_append(self.as_ref().to_glib_none().0, string.to_glib_none().0);
+            ffi::gtk_string_list_append(self.to_glib_none().0, string.to_glib_none().0);
         }
     }
 
-    fn get_string(&self, position: u32) -> Option<glib::GString> {
+    pub fn get_string(&self, position: u32) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_string_list_get_string(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 position,
             ))
         }
     }
 
-    fn remove(&self, position: u32) {
+    pub fn remove(&self, position: u32) {
         unsafe {
-            ffi::gtk_string_list_remove(self.as_ref().to_glib_none().0, position);
+            ffi::gtk_string_list_remove(self.to_glib_none().0, position);
         }
     }
 
-    fn splice(&self, position: u32, n_removals: u32, additions: &[&str]) {
+    pub fn splice(&self, position: u32, n_removals: u32, additions: &[&str]) {
         unsafe {
             ffi::gtk_string_list_splice(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 position,
                 n_removals,
                 additions.to_glib_none().0,
@@ -69,15 +52,15 @@ impl<O: IsA<StringList>> StringListExt for O {
         }
     }
 
-    fn take(&self, string: &str) {
+    pub fn take(&self, string: &str) {
         unsafe {
-            ffi::gtk_string_list_take(self.as_ref().to_glib_none().0, string.to_glib_full());
+            ffi::gtk_string_list_take(self.to_glib_none().0, string.to_glib_full());
         }
     }
 }
 
 impl fmt::Display for StringList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StringList")
+        f.write_str("StringList")
     }
 }

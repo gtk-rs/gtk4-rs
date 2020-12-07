@@ -18,6 +18,6 @@ impl ProximityEvent {}
 
 impl fmt::Display for ProximityEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ProximityEvent")
+        f.write_str("ProximityEvent")
     }
 }

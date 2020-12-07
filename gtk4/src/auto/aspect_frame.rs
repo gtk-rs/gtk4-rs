@@ -559,6 +559,6 @@ impl AspectFrameBuilder {
 
 impl fmt::Display for AspectFrame {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AspectFrame")
+        f.write_str("AspectFrame")
     }
 }

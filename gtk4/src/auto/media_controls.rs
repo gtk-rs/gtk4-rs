@@ -13,6 +13,7 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -38,6 +39,48 @@ impl MediaControls {
                 stream.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
+        }
+    }
+
+    pub fn get_media_stream(&self) -> Option<MediaStream> {
+        unsafe {
+            from_glib_none(ffi::gtk_media_controls_get_media_stream(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
+        unsafe {
+            ffi::gtk_media_controls_set_media_stream(
+                self.to_glib_none().0,
+                stream.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_media_stream_notify<F: Fn(&MediaControls) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_media_stream_trampoline<F: Fn(&MediaControls) + 'static>(
+            this: *mut ffi::GtkMediaControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::media-stream\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_media_stream_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -340,65 +383,8 @@ impl MediaControlsBuilder {
     }
 }
 
-pub const NONE_MEDIA_CONTROLS: Option<&MediaControls> = None;
-
-pub trait MediaControlsExt: 'static {
-    fn get_media_stream(&self) -> Option<MediaStream>;
-
-    fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>);
-
-    fn connect_property_media_stream_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-}
-
-impl<O: IsA<MediaControls>> MediaControlsExt for O {
-    fn get_media_stream(&self) -> Option<MediaStream> {
-        unsafe {
-            from_glib_none(ffi::gtk_media_controls_get_media_stream(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
-        unsafe {
-            ffi::gtk_media_controls_set_media_stream(
-                self.as_ref().to_glib_none().0,
-                stream.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_media_stream_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkMediaControls,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<MediaControls>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&MediaControls::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::media-stream\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_media_stream_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for MediaControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MediaControls")
+        f.write_str("MediaControls")
     }
 }

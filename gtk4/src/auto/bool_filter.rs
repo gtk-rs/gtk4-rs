@@ -5,6 +5,7 @@
 use crate::Filter;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -26,6 +27,74 @@ impl BoolFilter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> BoolFilter {
     //    unsafe { TODO: call ffi:gtk_bool_filter_new() }
     //}
+
+    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
+    //    unsafe { TODO: call ffi:gtk_bool_filter_get_expression() }
+    //}
+
+    pub fn get_invert(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
+    }
+
+    //pub fn set_expression(&self, expression: /*Ignored*/&Expression) {
+    //    unsafe { TODO: call ffi:gtk_bool_filter_set_expression() }
+    //}
+
+    pub fn set_invert(&self, invert: bool) {
+        unsafe {
+            ffi::gtk_bool_filter_set_invert(self.to_glib_none().0, invert.to_glib());
+        }
+    }
+
+    pub fn connect_property_expression_notify<F: Fn(&BoolFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expression_trampoline<F: Fn(&BoolFilter) + 'static>(
+            this: *mut ffi::GtkBoolFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::expression\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expression_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_invert_notify<F: Fn(&BoolFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_invert_trampoline<F: Fn(&BoolFilter) + 'static>(
+            this: *mut ffi::GtkBoolFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::invert\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_invert_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -57,96 +126,8 @@ impl BoolFilterBuilder {
     }
 }
 
-pub const NONE_BOOL_FILTER: Option<&BoolFilter> = None;
-
-pub trait BoolFilterExt: 'static {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression>;
-
-    fn get_invert(&self) -> bool;
-
-    //fn set_expression(&self, expression: /*Ignored*/&Expression);
-
-    fn set_invert(&self, invert: bool);
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_invert_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<BoolFilter>> BoolFilterExt for O {
-    //fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_bool_filter_get_expression() }
-    //}
-
-    fn get_invert(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_bool_filter_get_invert(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    //fn set_expression(&self, expression: /*Ignored*/&Expression) {
-    //    unsafe { TODO: call ffi:gtk_bool_filter_set_expression() }
-    //}
-
-    fn set_invert(&self, invert: bool) {
-        unsafe {
-            ffi::gtk_bool_filter_set_invert(self.as_ref().to_glib_none().0, invert.to_glib());
-        }
-    }
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkBoolFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<BoolFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&BoolFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::expression\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_expression_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_invert_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_invert_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkBoolFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<BoolFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&BoolFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::invert\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_invert_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for BoolFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BoolFilter")
+        f.write_str("BoolFilter")
     }
 }

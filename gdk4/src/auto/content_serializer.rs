@@ -68,6 +68,6 @@ impl ContentSerializer {
 
 impl fmt::Display for ContentSerializer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ContentSerializer")
+        f.write_str("ContentSerializer")
     }
 }

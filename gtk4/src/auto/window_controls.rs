@@ -13,6 +13,7 @@ use crate::PackType;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -35,6 +36,114 @@ impl WindowControls {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_window_controls_new(side.to_glib())).unsafe_cast()
+        }
+    }
+
+    pub fn get_decoration_layout(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::gtk_window_controls_get_decoration_layout(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_empty(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_window_controls_get_empty(self.to_glib_none().0)) }
+    }
+
+    pub fn get_side(&self) -> PackType {
+        unsafe { from_glib(ffi::gtk_window_controls_get_side(self.to_glib_none().0)) }
+    }
+
+    pub fn set_decoration_layout(&self, layout: Option<&str>) {
+        unsafe {
+            ffi::gtk_window_controls_set_decoration_layout(
+                self.to_glib_none().0,
+                layout.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_side(&self, side: PackType) {
+        unsafe {
+            ffi::gtk_window_controls_set_side(self.to_glib_none().0, side.to_glib());
+        }
+    }
+
+    pub fn connect_property_decoration_layout_notify<F: Fn(&WindowControls) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_decoration_layout_trampoline<
+            F: Fn(&WindowControls) + 'static,
+        >(
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::decoration-layout\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_decoration_layout_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_empty_notify<F: Fn(&WindowControls) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_empty_trampoline<F: Fn(&WindowControls) + 'static>(
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::empty\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_empty_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_side_notify<F: Fn(&WindowControls) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_side_trampoline<F: Fn(&WindowControls) + 'static>(
+            this: *mut ffi::GtkWindowControls,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::side\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_side_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -346,147 +455,8 @@ impl WindowControlsBuilder {
     }
 }
 
-pub const NONE_WINDOW_CONTROLS: Option<&WindowControls> = None;
-
-pub trait WindowControlsExt: 'static {
-    fn get_decoration_layout(&self) -> Option<glib::GString>;
-
-    fn get_empty(&self) -> bool;
-
-    fn get_side(&self) -> PackType;
-
-    fn set_decoration_layout(&self, layout: Option<&str>);
-
-    fn set_side(&self, side: PackType);
-
-    fn connect_property_decoration_layout_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_empty_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_side_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<WindowControls>> WindowControlsExt for O {
-    fn get_decoration_layout(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gtk_window_controls_get_decoration_layout(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_empty(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_window_controls_get_empty(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_side(&self) -> PackType {
-        unsafe {
-            from_glib(ffi::gtk_window_controls_get_side(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_decoration_layout(&self, layout: Option<&str>) {
-        unsafe {
-            ffi::gtk_window_controls_set_decoration_layout(
-                self.as_ref().to_glib_none().0,
-                layout.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_side(&self, side: PackType) {
-        unsafe {
-            ffi::gtk_window_controls_set_side(self.as_ref().to_glib_none().0, side.to_glib());
-        }
-    }
-
-    fn connect_property_decoration_layout_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_decoration_layout_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkWindowControls,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<WindowControls>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&WindowControls::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::decoration-layout\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_decoration_layout_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_empty_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_empty_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkWindowControls,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<WindowControls>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&WindowControls::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::empty\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_empty_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_side_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_side_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkWindowControls,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<WindowControls>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&WindowControls::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::side\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_side_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for WindowControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WindowControls")
+        f.write_str("WindowControls")
     }
 }

@@ -5,13 +5,12 @@
 use crate::ConstraintStrength;
 use crate::ConstraintTarget;
 use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -28,6 +27,398 @@ impl ConstraintGuide {
     pub fn new() -> ConstraintGuide {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_constraint_guide_new()) }
+    }
+
+    pub fn get_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_constraint_guide_get_name(self.to_glib_none().0)) }
+    }
+
+    pub fn get_strength(&self) -> ConstraintStrength {
+        unsafe {
+            from_glib(ffi::gtk_constraint_guide_get_strength(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_max_size(&self, width: i32, height: i32) {
+        unsafe {
+            ffi::gtk_constraint_guide_set_max_size(self.to_glib_none().0, width, height);
+        }
+    }
+
+    pub fn set_min_size(&self, width: i32, height: i32) {
+        unsafe {
+            ffi::gtk_constraint_guide_set_min_size(self.to_glib_none().0, width, height);
+        }
+    }
+
+    pub fn set_name(&self, name: Option<&str>) {
+        unsafe {
+            ffi::gtk_constraint_guide_set_name(self.to_glib_none().0, name.to_glib_none().0);
+        }
+    }
+
+    pub fn set_nat_size(&self, width: i32, height: i32) {
+        unsafe {
+            ffi::gtk_constraint_guide_set_nat_size(self.to_glib_none().0, width, height);
+        }
+    }
+
+    pub fn set_strength(&self, strength: ConstraintStrength) {
+        unsafe {
+            ffi::gtk_constraint_guide_set_strength(self.to_glib_none().0, strength.to_glib());
+        }
+    }
+
+    pub fn get_property_max_height(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"max-height\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `max-height` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_max_height(&self, max_height: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"max-height\0".as_ptr() as *const _,
+                glib::Value::from(&max_height).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_max_width(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"max-width\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `max-width` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_max_width(&self, max_width: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"max-width\0".as_ptr() as *const _,
+                glib::Value::from(&max_width).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_min_height(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"min-height\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `min-height` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_min_height(&self, min_height: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"min-height\0".as_ptr() as *const _,
+                glib::Value::from(&min_height).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_min_width(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"min-width\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `min-width` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_min_width(&self, min_width: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"min-width\0".as_ptr() as *const _,
+                glib::Value::from(&min_width).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_nat_height(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"nat-height\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `nat-height` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_nat_height(&self, nat_height: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"nat-height\0".as_ptr() as *const _,
+                glib::Value::from(&nat_height).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn get_property_nat_width(&self) -> i32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"nat-width\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `nat-width` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn set_property_nat_width(&self, nat_width: i32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"nat-width\0".as_ptr() as *const _,
+                glib::Value::from(&nat_width).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_max_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::max-height\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_height_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_max_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::max-width\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_width_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_min_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_min_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::min-height\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_min_height_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_min_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_min_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::min-width\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_min_width_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_name_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_name_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_name_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_nat_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_nat_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::nat-height\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_nat_height_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_nat_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_nat_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::nat-width\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_nat_width_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_strength_notify<F: Fn(&ConstraintGuide) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_strength_trampoline<F: Fn(&ConstraintGuide) + 'static>(
+            this: *mut ffi::GtkConstraintGuide,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::strength\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_strength_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -128,462 +519,8 @@ impl ConstraintGuideBuilder {
     }
 }
 
-pub const NONE_CONSTRAINT_GUIDE: Option<&ConstraintGuide> = None;
-
-pub trait ConstraintGuideExt: 'static {
-    fn get_name(&self) -> Option<glib::GString>;
-
-    fn get_strength(&self) -> ConstraintStrength;
-
-    fn set_max_size(&self, width: i32, height: i32);
-
-    fn set_min_size(&self, width: i32, height: i32);
-
-    fn set_name(&self, name: Option<&str>);
-
-    fn set_nat_size(&self, width: i32, height: i32);
-
-    fn set_strength(&self, strength: ConstraintStrength);
-
-    fn get_property_max_height(&self) -> i32;
-
-    fn set_property_max_height(&self, max_height: i32);
-
-    fn get_property_max_width(&self) -> i32;
-
-    fn set_property_max_width(&self, max_width: i32);
-
-    fn get_property_min_height(&self) -> i32;
-
-    fn set_property_min_height(&self, min_height: i32);
-
-    fn get_property_min_width(&self) -> i32;
-
-    fn set_property_min_width(&self, min_width: i32);
-
-    fn get_property_nat_height(&self) -> i32;
-
-    fn set_property_nat_height(&self, nat_height: i32);
-
-    fn get_property_nat_width(&self) -> i32;
-
-    fn set_property_nat_width(&self, nat_width: i32);
-
-    fn connect_property_max_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_max_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_min_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_min_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_nat_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_nat_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_strength_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ConstraintGuide>> ConstraintGuideExt for O {
-    fn get_name(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gtk_constraint_guide_get_name(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_strength(&self) -> ConstraintStrength {
-        unsafe {
-            from_glib(ffi::gtk_constraint_guide_get_strength(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_max_size(&self, width: i32, height: i32) {
-        unsafe {
-            ffi::gtk_constraint_guide_set_max_size(self.as_ref().to_glib_none().0, width, height);
-        }
-    }
-
-    fn set_min_size(&self, width: i32, height: i32) {
-        unsafe {
-            ffi::gtk_constraint_guide_set_min_size(self.as_ref().to_glib_none().0, width, height);
-        }
-    }
-
-    fn set_name(&self, name: Option<&str>) {
-        unsafe {
-            ffi::gtk_constraint_guide_set_name(
-                self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_nat_size(&self, width: i32, height: i32) {
-        unsafe {
-            ffi::gtk_constraint_guide_set_nat_size(self.as_ref().to_glib_none().0, width, height);
-        }
-    }
-
-    fn set_strength(&self, strength: ConstraintStrength) {
-        unsafe {
-            ffi::gtk_constraint_guide_set_strength(
-                self.as_ref().to_glib_none().0,
-                strength.to_glib(),
-            );
-        }
-    }
-
-    fn get_property_max_height(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-height` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_max_height(&self, max_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                Value::from(&max_height).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_max_width(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-width` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_max_width(&self, max_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-width\0".as_ptr() as *const _,
-                Value::from(&max_width).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_min_height(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"min-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `min-height` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_min_height(&self, min_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"min-height\0".as_ptr() as *const _,
-                Value::from(&min_height).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_min_width(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"min-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `min-width` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_min_width(&self, min_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"min-width\0".as_ptr() as *const _,
-                Value::from(&min_width).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_nat_height(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"nat-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `nat-height` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_nat_height(&self, nat_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"nat-height\0".as_ptr() as *const _,
-                Value::from(&nat_height).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_nat_width(&self) -> i32 {
-        unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"nat-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `nat-width` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_nat_width(&self, nat_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"nat-width\0".as_ptr() as *const _,
-                Value::from(&nat_width).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_max_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_height_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::max-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_max_height_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_max_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::max-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_max_width_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_min_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_min_height_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::min-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_min_height_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_min_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_min_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::min-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_min_width_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_name_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_name_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_nat_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_nat_height_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::nat-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_nat_height_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_nat_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_nat_width_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::nat-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_nat_width_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_strength_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_strength_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkConstraintGuide,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ConstraintGuide>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&ConstraintGuide::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::strength\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_strength_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for ConstraintGuide {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ConstraintGuide")
+        f.write_str("ConstraintGuide")
     }
 }

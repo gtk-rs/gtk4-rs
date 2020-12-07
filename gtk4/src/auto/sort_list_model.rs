@@ -5,6 +5,7 @@
 use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -33,6 +34,150 @@ impl SortListModel {
                 model.map(|p| p.as_ref()).to_glib_full(),
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
+        }
+    }
+
+    pub fn get_incremental(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_sort_list_model_get_incremental(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_sort_list_model_get_model(self.to_glib_none().0)) }
+    }
+
+    pub fn get_pending(&self) -> u32 {
+        unsafe { ffi::gtk_sort_list_model_get_pending(self.to_glib_none().0) }
+    }
+
+    pub fn get_sorter(&self) -> Option<Sorter> {
+        unsafe { from_glib_none(ffi::gtk_sort_list_model_get_sorter(self.to_glib_none().0)) }
+    }
+
+    pub fn set_incremental(&self, incremental: bool) {
+        unsafe {
+            ffi::gtk_sort_list_model_set_incremental(self.to_glib_none().0, incremental.to_glib());
+        }
+    }
+
+    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            ffi::gtk_sort_list_model_set_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
+        unsafe {
+            ffi::gtk_sort_list_model_set_sorter(
+                self.to_glib_none().0,
+                sorter.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_incremental_notify<F: Fn(&SortListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_incremental_trampoline<F: Fn(&SortListModel) + 'static>(
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::incremental\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_incremental_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_model_notify<F: Fn(&SortListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&SortListModel) + 'static>(
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_pending_notify<F: Fn(&SortListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_pending_trampoline<F: Fn(&SortListModel) + 'static>(
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::pending\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_pending_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_sorter_notify<F: Fn(&SortListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&SortListModel) + 'static>(
+            this: *mut ffi::GtkSortListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sorter\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sorter_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -83,187 +228,8 @@ impl SortListModelBuilder {
     }
 }
 
-pub const NONE_SORT_LIST_MODEL: Option<&SortListModel> = None;
-
-pub trait SortListModelExt: 'static {
-    fn get_incremental(&self) -> bool;
-
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn get_pending(&self) -> u32;
-
-    fn get_sorter(&self) -> Option<Sorter>;
-
-    fn set_incremental(&self, incremental: bool);
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
-
-    fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>);
-
-    fn connect_property_incremental_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_pending_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<SortListModel>> SortListModelExt for O {
-    fn get_incremental(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_sort_list_model_get_incremental(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_sort_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_pending(&self) -> u32 {
-        unsafe { ffi::gtk_sort_list_model_get_pending(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_sorter(&self) -> Option<Sorter> {
-        unsafe {
-            from_glib_none(ffi::gtk_sort_list_model_get_sorter(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_incremental(&self, incremental: bool) {
-        unsafe {
-            ffi::gtk_sort_list_model_set_incremental(
-                self.as_ref().to_glib_none().0,
-                incremental.to_glib(),
-            );
-        }
-    }
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
-        unsafe {
-            ffi::gtk_sort_list_model_set_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
-        unsafe {
-            ffi::gtk_sort_list_model_set_sorter(
-                self.as_ref().to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_incremental_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_incremental_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSortListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SortListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SortListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::incremental\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_incremental_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSortListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SortListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SortListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_model_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_pending_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pending_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSortListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SortListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SortListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::pending\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_pending_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_sorter_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSortListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SortListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SortListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::sorter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_sorter_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for SortListModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SortListModel")
+        f.write_str("SortListModel")
     }
 }

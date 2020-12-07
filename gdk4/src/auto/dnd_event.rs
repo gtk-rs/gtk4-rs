@@ -23,6 +23,6 @@ impl DNDEvent {
 
 impl fmt::Display for DNDEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DNDEvent")
+        f.write_str("DNDEvent")
     }
 }

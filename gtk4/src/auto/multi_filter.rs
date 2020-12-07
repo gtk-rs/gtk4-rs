@@ -43,6 +43,6 @@ impl<O: IsA<MultiFilter>> MultiFilterExt for O {
 
 impl fmt::Display for MultiFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MultiFilter")
+        f.write_str("MultiFilter")
     }
 }

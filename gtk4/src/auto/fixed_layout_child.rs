@@ -7,6 +7,7 @@ use crate::LayoutManager;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -21,6 +22,50 @@ glib::glib_wrapper! {
 
     match fn {
         get_type => || ffi::gtk_fixed_layout_child_get_type(),
+    }
+}
+
+impl FixedLayoutChild {
+    pub fn get_transform(&self) -> Option<gsk::Transform> {
+        unsafe {
+            from_glib_none(ffi::gtk_fixed_layout_child_get_transform(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_transform(&self, transform: &gsk::Transform) {
+        unsafe {
+            ffi::gtk_fixed_layout_child_set_transform(
+                self.to_glib_none().0,
+                transform.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_transform_notify<F: Fn(&FixedLayoutChild) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transform_trampoline<F: Fn(&FixedLayoutChild) + 'static>(
+            this: *mut ffi::GtkFixedLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::transform\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_transform_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -70,61 +115,8 @@ impl FixedLayoutChildBuilder {
     }
 }
 
-pub const NONE_FIXED_LAYOUT_CHILD: Option<&FixedLayoutChild> = None;
-
-pub trait FixedLayoutChildExt: 'static {
-    fn get_transform(&self) -> Option<gsk::Transform>;
-
-    fn set_transform(&self, transform: &gsk::Transform);
-
-    fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<FixedLayoutChild>> FixedLayoutChildExt for O {
-    fn get_transform(&self) -> Option<gsk::Transform> {
-        unsafe {
-            from_glib_none(ffi::gtk_fixed_layout_child_get_transform(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_transform(&self, transform: &gsk::Transform) {
-        unsafe {
-            ffi::gtk_fixed_layout_child_set_transform(
-                self.as_ref().to_glib_none().0,
-                transform.to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_transform_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkFixedLayoutChild,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FixedLayoutChild>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FixedLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::transform\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_transform_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for FixedLayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FixedLayoutChild")
+        f.write_str("FixedLayoutChild")
     }
 }

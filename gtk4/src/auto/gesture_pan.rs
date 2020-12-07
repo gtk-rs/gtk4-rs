@@ -192,6 +192,6 @@ impl GesturePanBuilder {
 
 impl fmt::Display for GesturePan {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GesturePan")
+        f.write_str("GesturePan")
     }
 }

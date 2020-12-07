@@ -27,6 +27,13 @@ impl ShortcutAction {
     }
 }
 
+impl fmt::Display for ShortcutAction {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&ShortcutActionExt::to_str(self))
+    }
+}
+
 pub const NONE_SHORTCUT_ACTION: Option<&ShortcutAction> = None;
 
 pub trait ShortcutActionExt: 'static {
@@ -39,7 +46,7 @@ pub trait ShortcutActionExt: 'static {
 
     fn print(&self, string: &mut glib::String);
 
-    fn to_string(&self) -> glib::GString;
+    fn to_str(&self) -> glib::GString;
 }
 
 impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
@@ -68,17 +75,11 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         }
     }
 
-    fn to_string(&self) -> glib::GString {
+    fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_action_to_string(
                 self.as_ref().to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for ShortcutAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutAction")
     }
 }

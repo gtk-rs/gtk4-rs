@@ -20,7 +20,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -59,7 +58,7 @@ impl LockButton {
 
     pub fn get_property_text_lock(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-lock\0".as_ptr() as *const _,
@@ -76,14 +75,14 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-lock\0".as_ptr() as *const _,
-                Value::from(text_lock).to_glib_none().0,
+                glib::Value::from(text_lock).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_text_unlock(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-unlock\0".as_ptr() as *const _,
@@ -100,14 +99,14 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-unlock\0".as_ptr() as *const _,
-                Value::from(text_unlock).to_glib_none().0,
+                glib::Value::from(text_unlock).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tooltip_lock(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-lock\0".as_ptr() as *const _,
@@ -124,14 +123,14 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-lock\0".as_ptr() as *const _,
-                Value::from(tooltip_lock).to_glib_none().0,
+                glib::Value::from(tooltip_lock).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tooltip_not_authorized(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-not-authorized\0".as_ptr() as *const _,
@@ -148,14 +147,14 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-not-authorized\0".as_ptr() as *const _,
-                Value::from(tooltip_not_authorized).to_glib_none().0,
+                glib::Value::from(tooltip_not_authorized).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tooltip_unlock(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-unlock\0".as_ptr() as *const _,
@@ -172,7 +171,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-unlock\0".as_ptr() as *const _,
-                Value::from(tooltip_unlock).to_glib_none().0,
+                glib::Value::from(tooltip_unlock).to_glib_none().0,
             );
         }
     }
@@ -729,6 +728,6 @@ impl LockButtonBuilder {
 
 impl fmt::Display for LockButton {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "LockButton")
+        f.write_str("LockButton")
     }
 }

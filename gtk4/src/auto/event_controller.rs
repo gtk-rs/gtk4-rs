@@ -263,6 +263,6 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
 impl fmt::Display for EventController {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EventController")
+        f.write_str("EventController")
     }
 }

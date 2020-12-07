@@ -34,6 +34,6 @@ impl ConfigureEvent {
 
 impl fmt::Display for ConfigureEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ConfigureEvent")
+        f.write_str("ConfigureEvent")
     }
 }

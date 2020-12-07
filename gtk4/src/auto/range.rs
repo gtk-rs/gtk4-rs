@@ -899,6 +899,6 @@ impl<O: IsA<Range>> RangeExt for O {
 
 impl fmt::Display for Range {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Range")
+        f.write_str("Range")
     }
 }

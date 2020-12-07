@@ -234,6 +234,6 @@ impl Default for PageSetup {
 
 impl fmt::Display for PageSetup {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PageSetup")
+        f.write_str("PageSetup")
     }
 }

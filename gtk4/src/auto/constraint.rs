@@ -64,6 +64,58 @@ impl Constraint {
             ))
         }
     }
+
+    pub fn get_constant(&self) -> f64 {
+        unsafe { ffi::gtk_constraint_get_constant(self.to_glib_none().0) }
+    }
+
+    pub fn get_multiplier(&self) -> f64 {
+        unsafe { ffi::gtk_constraint_get_multiplier(self.to_glib_none().0) }
+    }
+
+    pub fn get_relation(&self) -> ConstraintRelation {
+        unsafe { from_glib(ffi::gtk_constraint_get_relation(self.to_glib_none().0)) }
+    }
+
+    pub fn get_source(&self) -> Option<ConstraintTarget> {
+        unsafe { from_glib_none(ffi::gtk_constraint_get_source(self.to_glib_none().0)) }
+    }
+
+    pub fn get_source_attribute(&self) -> ConstraintAttribute {
+        unsafe {
+            from_glib(ffi::gtk_constraint_get_source_attribute(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_strength(&self) -> i32 {
+        unsafe { ffi::gtk_constraint_get_strength(self.to_glib_none().0) }
+    }
+
+    pub fn get_target(&self) -> Option<ConstraintTarget> {
+        unsafe { from_glib_none(ffi::gtk_constraint_get_target(self.to_glib_none().0)) }
+    }
+
+    pub fn get_target_attribute(&self) -> ConstraintAttribute {
+        unsafe {
+            from_glib(ffi::gtk_constraint_get_target_attribute(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn is_attached(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_constraint_is_attached(self.to_glib_none().0)) }
+    }
+
+    pub fn is_constant(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_constraint_is_constant(self.to_glib_none().0)) }
+    }
+
+    pub fn is_required(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_constraint_is_required(self.to_glib_none().0)) }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -157,112 +209,8 @@ impl ConstraintBuilder {
     }
 }
 
-pub const NONE_CONSTRAINT: Option<&Constraint> = None;
-
-pub trait ConstraintExt: 'static {
-    fn get_constant(&self) -> f64;
-
-    fn get_multiplier(&self) -> f64;
-
-    fn get_relation(&self) -> ConstraintRelation;
-
-    fn get_source(&self) -> Option<ConstraintTarget>;
-
-    fn get_source_attribute(&self) -> ConstraintAttribute;
-
-    fn get_strength(&self) -> i32;
-
-    fn get_target(&self) -> Option<ConstraintTarget>;
-
-    fn get_target_attribute(&self) -> ConstraintAttribute;
-
-    fn is_attached(&self) -> bool;
-
-    fn is_constant(&self) -> bool;
-
-    fn is_required(&self) -> bool;
-}
-
-impl<O: IsA<Constraint>> ConstraintExt for O {
-    fn get_constant(&self) -> f64 {
-        unsafe { ffi::gtk_constraint_get_constant(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_multiplier(&self) -> f64 {
-        unsafe { ffi::gtk_constraint_get_multiplier(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_relation(&self) -> ConstraintRelation {
-        unsafe {
-            from_glib(ffi::gtk_constraint_get_relation(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_source(&self) -> Option<ConstraintTarget> {
-        unsafe {
-            from_glib_none(ffi::gtk_constraint_get_source(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_source_attribute(&self) -> ConstraintAttribute {
-        unsafe {
-            from_glib(ffi::gtk_constraint_get_source_attribute(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_strength(&self) -> i32 {
-        unsafe { ffi::gtk_constraint_get_strength(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_target(&self) -> Option<ConstraintTarget> {
-        unsafe {
-            from_glib_none(ffi::gtk_constraint_get_target(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_target_attribute(&self) -> ConstraintAttribute {
-        unsafe {
-            from_glib(ffi::gtk_constraint_get_target_attribute(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn is_attached(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_constraint_is_attached(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn is_constant(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_constraint_is_constant(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn is_required(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_constraint_is_required(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-}
-
 impl fmt::Display for Constraint {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Constraint")
+        f.write_str("Constraint")
     }
 }

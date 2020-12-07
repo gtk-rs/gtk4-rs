@@ -12,6 +12,7 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -33,6 +34,44 @@ impl WindowHandle {
     pub fn new() -> WindowHandle {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_window_handle_new()).unsafe_cast() }
+    }
+
+    pub fn get_child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(ffi::gtk_window_handle_get_child(self.to_glib_none().0)) }
+    }
+
+    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+        unsafe {
+            ffi::gtk_window_handle_set_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_child_notify<F: Fn(&WindowHandle) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<F: Fn(&WindowHandle) + 'static>(
+            this: *mut ffi::GtkWindowHandle,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -340,61 +379,8 @@ impl WindowHandleBuilder {
     }
 }
 
-pub const NONE_WINDOW_HANDLE: Option<&WindowHandle> = None;
-
-pub trait WindowHandleExt: 'static {
-    fn get_child(&self) -> Option<Widget>;
-
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
-
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<WindowHandle>> WindowHandleExt for O {
-    fn get_child(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_window_handle_get_child(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
-        unsafe {
-            ffi::gtk_window_handle_set_child(
-                self.as_ref().to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkWindowHandle,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<WindowHandle>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&WindowHandle::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_child_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for WindowHandle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WindowHandle")
+        f.write_str("WindowHandle")
     }
 }

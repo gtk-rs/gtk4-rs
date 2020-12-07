@@ -533,6 +533,6 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
 impl fmt::Display for DrawingArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DrawingArea")
+        f.write_str("DrawingArea")
     }
 }

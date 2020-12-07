@@ -11,7 +11,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -200,7 +199,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn get_property_filename(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"filename\0".as_ptr() as *const _,
@@ -214,7 +213,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     fn get_property_size(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
@@ -277,6 +276,6 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
 impl fmt::Display for RecentManager {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RecentManager")
+        f.write_str("RecentManager")
     }
 }

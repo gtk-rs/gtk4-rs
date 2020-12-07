@@ -16,10 +16,8 @@ glib::glib_wrapper! {
 
 impl ConstraintLayoutChild {}
 
-pub const NONE_CONSTRAINT_LAYOUT_CHILD: Option<&ConstraintLayoutChild> = None;
-
 impl fmt::Display for ConstraintLayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ConstraintLayoutChild")
+        f.write_str("ConstraintLayoutChild")
     }
 }

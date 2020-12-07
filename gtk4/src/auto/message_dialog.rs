@@ -26,7 +26,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -72,7 +71,7 @@ impl MessageDialog {
 
     pub fn get_property_message_type(&self) -> MessageType {
         unsafe {
-            let mut value = Value::from_type(<MessageType as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<MessageType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"message-type\0".as_ptr() as *const _,
@@ -90,14 +89,14 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"message-type\0".as_ptr() as *const _,
-                Value::from(&message_type).to_glib_none().0,
+                glib::Value::from(&message_type).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_secondary_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-text\0".as_ptr() as *const _,
@@ -114,14 +113,14 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-text\0".as_ptr() as *const _,
-                Value::from(secondary_text).to_glib_none().0,
+                glib::Value::from(secondary_text).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_secondary_use_markup(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-use-markup\0".as_ptr() as *const _,
@@ -139,14 +138,14 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-use-markup\0".as_ptr() as *const _,
-                Value::from(&secondary_use_markup).to_glib_none().0,
+                glib::Value::from(&secondary_use_markup).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
@@ -163,14 +162,14 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
-                Value::from(text).to_glib_none().0,
+                glib::Value::from(text).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_use_markup(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-markup\0".as_ptr() as *const _,
@@ -188,7 +187,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-markup\0".as_ptr() as *const _,
-                Value::from(&use_markup).to_glib_none().0,
+                glib::Value::from(&use_markup).to_glib_none().0,
             );
         }
     }
@@ -871,6 +870,6 @@ impl MessageDialogBuilder {
 
 impl fmt::Display for MessageDialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MessageDialog")
+        f.write_str("MessageDialog")
     }
 }

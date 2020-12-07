@@ -72,7 +72,7 @@ impl CssProvider {
         }
     }
 
-    pub fn to_string(&self) -> glib::GString {
+    pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }
 
@@ -116,7 +116,8 @@ impl Default for CssProvider {
 }
 
 impl fmt::Display for CssProvider {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CssProvider")
+        f.write_str(&self.to_str())
     }
 }

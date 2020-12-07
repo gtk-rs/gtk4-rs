@@ -201,6 +201,6 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
 
 impl fmt::Display for MediaFile {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MediaFile")
+        f.write_str("MediaFile")
     }
 }

@@ -28,10 +28,8 @@ impl Default for FixedLayout {
     }
 }
 
-pub const NONE_FIXED_LAYOUT: Option<&FixedLayout> = None;
-
 impl fmt::Display for FixedLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FixedLayout")
+        f.write_str("FixedLayout")
     }
 }

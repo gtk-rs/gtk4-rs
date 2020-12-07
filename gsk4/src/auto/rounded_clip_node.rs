@@ -38,6 +38,6 @@ impl RoundedClipNode {
 
 impl fmt::Display for RoundedClipNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RoundedClipNode")
+        f.write_str("RoundedClipNode")
     }
 }

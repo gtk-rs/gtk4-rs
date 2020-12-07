@@ -23,6 +23,6 @@ impl NothingAction {
 
 impl fmt::Display for NothingAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NothingAction")
+        f.write_str("NothingAction")
     }
 }

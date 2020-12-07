@@ -9,7 +9,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::fmt;
 
 glib::glib_wrapper! {
@@ -37,7 +36,7 @@ impl X11DeviceXI2 {
 
     pub fn get_property_device_id(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"device-id\0".as_ptr() as *const _,
@@ -137,6 +136,6 @@ impl X11DeviceXI2Builder {
 
 impl fmt::Display for X11DeviceXI2 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11DeviceXI2")
+        f.write_str("X11DeviceXI2")
     }
 }

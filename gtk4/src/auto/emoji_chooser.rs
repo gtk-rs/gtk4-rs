@@ -69,6 +69,6 @@ impl Default for EmojiChooser {
 
 impl fmt::Display for EmojiChooser {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EmojiChooser")
+        f.write_str("EmojiChooser")
     }
 }

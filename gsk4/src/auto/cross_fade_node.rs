@@ -54,6 +54,6 @@ impl CrossFadeNode {
 
 impl fmt::Display for CrossFadeNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CrossFadeNode")
+        f.write_str("CrossFadeNode")
     }
 }

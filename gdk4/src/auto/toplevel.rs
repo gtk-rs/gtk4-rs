@@ -16,7 +16,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -276,7 +275,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_decorated(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"decorated\0".as_ptr() as *const _,
@@ -291,7 +290,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_deletable(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"deletable\0".as_ptr() as *const _,
@@ -306,7 +305,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_fullscreen_mode(&self) -> FullscreenMode {
         unsafe {
-            let mut value = Value::from_type(<FullscreenMode as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<FullscreenMode as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreen-mode\0".as_ptr() as *const _,
@@ -324,14 +323,14 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreen-mode\0".as_ptr() as *const _,
-                Value::from(&fullscreen_mode).to_glib_none().0,
+                glib::Value::from(&fullscreen_mode).to_glib_none().0,
             );
         }
     }
 
     //fn get_property_icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
     //    unsafe {
-    //        let mut value = Value::from_type(</*Unknown type*/ as StaticType>::static_type());
+    //        let mut value = glib::Value::from_type(</*Unknown type*/ as StaticType>::static_type());
     //        glib::gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut glib::gobject_ffi::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
     //        value.get().expect("Return Value for property `icon-list` getter").unwrap()
     //    }
@@ -339,7 +338,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_modal(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"modal\0".as_ptr() as *const _,
@@ -354,7 +353,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_shortcuts_inhibited(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"shortcuts-inhibited\0".as_ptr() as *const _,
@@ -369,7 +368,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_startup_id(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"startup-id\0".as_ptr() as *const _,
@@ -383,7 +382,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_title(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
@@ -397,7 +396,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn get_property_transient_for(&self) -> Option<Surface> {
         unsafe {
-            let mut value = Value::from_type(<Surface as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<Surface as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"transient-for\0".as_ptr() as *const _,
@@ -665,6 +664,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
 impl fmt::Display for Toplevel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Toplevel")
+        f.write_str("Toplevel")
     }
 }

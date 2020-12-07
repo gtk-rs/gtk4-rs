@@ -65,6 +65,6 @@ impl CallbackAction {
 
 impl fmt::Display for CallbackAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CallbackAction")
+        f.write_str("CallbackAction")
     }
 }

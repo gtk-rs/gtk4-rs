@@ -4,6 +4,7 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -34,6 +35,114 @@ impl SliceListModel {
                 offset,
                 size,
             ))
+        }
+    }
+
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_slice_list_model_get_model(self.to_glib_none().0)) }
+    }
+
+    pub fn get_offset(&self) -> u32 {
+        unsafe { ffi::gtk_slice_list_model_get_offset(self.to_glib_none().0) }
+    }
+
+    pub fn get_size(&self) -> u32 {
+        unsafe { ffi::gtk_slice_list_model_get_size(self.to_glib_none().0) }
+    }
+
+    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            ffi::gtk_slice_list_model_set_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_offset(&self, offset: u32) {
+        unsafe {
+            ffi::gtk_slice_list_model_set_offset(self.to_glib_none().0, offset);
+        }
+    }
+
+    pub fn set_size(&self, size: u32) {
+        unsafe {
+            ffi::gtk_slice_list_model_set_size(self.to_glib_none().0, size);
+        }
+    }
+
+    pub fn connect_property_model_notify<F: Fn(&SliceListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&SliceListModel) + 'static>(
+            this: *mut ffi::GtkSliceListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_offset_notify<F: Fn(&SliceListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_offset_trampoline<F: Fn(&SliceListModel) + 'static>(
+            this: *mut ffi::GtkSliceListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::offset\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_offset_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_size_notify<F: Fn(&SliceListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_trampoline<F: Fn(&SliceListModel) + 'static>(
+            this: *mut ffi::GtkSliceListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::size\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_size_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -84,141 +193,8 @@ impl SliceListModelBuilder {
     }
 }
 
-pub const NONE_SLICE_LIST_MODEL: Option<&SliceListModel> = None;
-
-pub trait SliceListModelExt: 'static {
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn get_offset(&self) -> u32;
-
-    fn get_size(&self) -> u32;
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
-
-    fn set_offset(&self, offset: u32);
-
-    fn set_size(&self, size: u32);
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<SliceListModel>> SliceListModelExt for O {
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_slice_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_offset(&self) -> u32 {
-        unsafe { ffi::gtk_slice_list_model_get_offset(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_size(&self) -> u32 {
-        unsafe { ffi::gtk_slice_list_model_get_size(self.as_ref().to_glib_none().0) }
-    }
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
-        unsafe {
-            ffi::gtk_slice_list_model_set_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_offset(&self, offset: u32) {
-        unsafe {
-            ffi::gtk_slice_list_model_set_offset(self.as_ref().to_glib_none().0, offset);
-        }
-    }
-
-    fn set_size(&self, size: u32) {
-        unsafe {
-            ffi::gtk_slice_list_model_set_size(self.as_ref().to_glib_none().0, size);
-        }
-    }
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSliceListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SliceListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_model_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_offset_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSliceListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SliceListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::offset\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_offset_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkSliceListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SliceListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&SliceListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_size_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for SliceListModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SliceListModel")
+        f.write_str("SliceListModel")
     }
 }

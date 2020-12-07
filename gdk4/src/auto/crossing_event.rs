@@ -32,6 +32,6 @@ impl CrossingEvent {
 
 impl fmt::Display for CrossingEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CrossingEvent")
+        f.write_str("CrossingEvent")
     }
 }

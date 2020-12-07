@@ -59,6 +59,6 @@ impl<O: IsA<ListBase>> ListBaseExt for O {
 
 impl fmt::Display for ListBase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ListBase")
+        f.write_str("ListBase")
     }
 }

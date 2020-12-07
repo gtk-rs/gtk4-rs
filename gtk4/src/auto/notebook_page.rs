@@ -11,7 +11,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -31,7 +30,7 @@ impl NotebookPage {
 
     pub fn get_property_detachable(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"detachable\0".as_ptr() as *const _,
@@ -49,14 +48,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"detachable\0".as_ptr() as *const _,
-                Value::from(&detachable).to_glib_none().0,
+                glib::Value::from(&detachable).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_menu(&self) -> Option<Widget> {
         unsafe {
-            let mut value = Value::from_type(<Widget as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu\0".as_ptr() as *const _,
@@ -70,7 +69,7 @@ impl NotebookPage {
 
     pub fn get_property_menu_label(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu-label\0".as_ptr() as *const _,
@@ -87,14 +86,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu-label\0".as_ptr() as *const _,
-                Value::from(menu_label).to_glib_none().0,
+                glib::Value::from(menu_label).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_position(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position\0".as_ptr() as *const _,
@@ -112,14 +111,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position\0".as_ptr() as *const _,
-                Value::from(&position).to_glib_none().0,
+                glib::Value::from(&position).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_reorderable(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"reorderable\0".as_ptr() as *const _,
@@ -137,14 +136,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"reorderable\0".as_ptr() as *const _,
-                Value::from(&reorderable).to_glib_none().0,
+                glib::Value::from(&reorderable).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tab(&self) -> Option<Widget> {
         unsafe {
-            let mut value = Value::from_type(<Widget as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab\0".as_ptr() as *const _,
@@ -156,7 +155,7 @@ impl NotebookPage {
 
     pub fn get_property_tab_expand(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-expand\0".as_ptr() as *const _,
@@ -174,14 +173,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-expand\0".as_ptr() as *const _,
-                Value::from(&tab_expand).to_glib_none().0,
+                glib::Value::from(&tab_expand).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tab_fill(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-fill\0".as_ptr() as *const _,
@@ -199,14 +198,14 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-fill\0".as_ptr() as *const _,
-                Value::from(&tab_fill).to_glib_none().0,
+                glib::Value::from(&tab_fill).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tab_label(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-label\0".as_ptr() as *const _,
@@ -223,7 +222,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-label\0".as_ptr() as *const _,
-                Value::from(tab_label).to_glib_none().0,
+                glib::Value::from(tab_label).to_glib_none().0,
             );
         }
     }
@@ -515,6 +514,6 @@ impl NotebookPageBuilder {
 
 impl fmt::Display for NotebookPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NotebookPage")
+        f.write_str("NotebookPage")
     }
 }

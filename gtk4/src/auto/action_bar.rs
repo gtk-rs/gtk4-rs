@@ -409,6 +409,6 @@ impl ActionBarBuilder {
 
 impl fmt::Display for ActionBar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ActionBar")
+        f.write_str("ActionBar")
     }
 }

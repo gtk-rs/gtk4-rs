@@ -89,6 +89,6 @@ impl AlternativeTriggerBuilder {
 
 impl fmt::Display for AlternativeTrigger {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AlternativeTrigger")
+        f.write_str("AlternativeTrigger")
     }
 }

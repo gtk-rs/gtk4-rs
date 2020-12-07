@@ -321,6 +321,6 @@ impl TreeSelectionBuilder {
 
 impl fmt::Display for TreeSelection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeSelection")
+        f.write_str("TreeSelection")
     }
 }

@@ -11,7 +11,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -302,7 +301,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
 
     fn get_property_register_session(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"register-session\0".as_ptr() as *const _,
@@ -320,14 +319,14 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"register-session\0".as_ptr() as *const _,
-                Value::from(&register_session).to_glib_none().0,
+                glib::Value::from(&register_session).to_glib_none().0,
             );
         }
     }
 
     fn get_property_screensaver_active(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"screensaver-active\0".as_ptr() as *const _,
@@ -525,6 +524,6 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
 
 impl fmt::Display for Application {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Application")
+        f.write_str("Application")
     }
 }

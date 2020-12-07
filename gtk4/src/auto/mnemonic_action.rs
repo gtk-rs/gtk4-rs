@@ -23,6 +23,6 @@ impl MnemonicAction {
 
 impl fmt::Display for MnemonicAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MnemonicAction")
+        f.write_str("MnemonicAction")
     }
 }

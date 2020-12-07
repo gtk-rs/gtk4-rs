@@ -430,6 +430,6 @@ impl Surface {
 
 impl fmt::Display for Surface {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Surface")
+        f.write_str("Surface")
     }
 }

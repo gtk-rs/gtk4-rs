@@ -30,6 +30,6 @@ impl Default for CairoRenderer {
 
 impl fmt::Display for CairoRenderer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CairoRenderer")
+        f.write_str("CairoRenderer")
     }
 }

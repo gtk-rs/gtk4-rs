@@ -133,6 +133,6 @@ impl CursorBuilder {
 
 impl fmt::Display for Cursor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Cursor")
+        f.write_str("Cursor")
     }
 }

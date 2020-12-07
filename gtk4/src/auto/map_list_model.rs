@@ -4,12 +4,12 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -65,70 +65,16 @@ impl MapListModel {
             ))
         }
     }
-}
 
-#[derive(Clone, Default)]
-pub struct MapListModelBuilder {
-    model: Option<gio::ListModel>,
-}
-
-impl MapListModelBuilder {
-    pub fn new() -> Self {
-        Self::default()
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_map_list_model_get_model(self.to_glib_none().0)) }
     }
 
-    pub fn build(self) -> MapListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        let ret = glib::Object::new(MapListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<MapListModel>()
-            .expect("downcast");
-        ret
+    pub fn has_map(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_map_list_model_has_map(self.to_glib_none().0)) }
     }
 
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-}
-
-pub const NONE_MAP_LIST_MODEL: Option<&MapListModel> = None;
-
-pub trait MapListModelExt: 'static {
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn has_map(&self) -> bool;
-
-    fn set_map_func(&self, map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>);
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
-
-    fn get_property_has_map(&self) -> bool;
-
-    fn connect_property_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<MapListModel>> MapListModelExt for O {
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_map_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn has_map(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_map_list_model_has_map(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_map_func(
+    pub fn set_map_func(
         &self,
         map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
     ) {
@@ -162,7 +108,7 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
             map_func_data;
         unsafe {
             ffi::gtk_map_list_model_set_map_func(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 map_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
@@ -170,20 +116,20 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
         }
     }
 
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_map_list_model_set_model(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    fn get_property_has_map(&self) -> bool {
+    pub fn get_property_has_map(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"has-map\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
@@ -194,16 +140,17 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
         }
     }
 
-    fn connect_property_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_map_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_has_map_notify<F: Fn(&MapListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_map_trampoline<F: Fn(&MapListModel) + 'static>(
             this: *mut ffi::GtkMapListModel,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<MapListModel>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&MapListModel::from_glib_borrow(this).unsafe_cast_ref())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -211,7 +158,7 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
                 self.as_ptr() as *mut _,
                 b"notify::has-map\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_has_map_trampoline::<Self, F> as *const (),
+                    notify_has_map_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -219,8 +166,36 @@ impl<O: IsA<MapListModel>> MapListModelExt for O {
     }
 }
 
+#[derive(Clone, Default)]
+pub struct MapListModelBuilder {
+    model: Option<gio::ListModel>,
+}
+
+impl MapListModelBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> MapListModel {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref model) = self.model {
+            properties.push(("model", model));
+        }
+        let ret = glib::Object::new(MapListModel::static_type(), &properties)
+            .expect("object new")
+            .downcast::<MapListModel>()
+            .expect("downcast");
+        ret
+    }
+
+    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+        self.model = Some(model.clone().upcast());
+        self
+    }
+}
+
 impl fmt::Display for MapListModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MapListModel")
+        f.write_str("MapListModel")
     }
 }

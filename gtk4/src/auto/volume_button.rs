@@ -22,7 +22,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -43,7 +42,7 @@ impl VolumeButton {
 
     pub fn get_property_use_symbolic(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-symbolic\0".as_ptr() as *const _,
@@ -61,7 +60,7 @@ impl VolumeButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-symbolic\0".as_ptr() as *const _,
-                Value::from(&use_symbolic).to_glib_none().0,
+                glib::Value::from(&use_symbolic).to_glib_none().0,
             );
         }
     }
@@ -434,6 +433,6 @@ impl VolumeButtonBuilder {
 
 impl fmt::Display for VolumeButton {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "VolumeButton")
+        f.write_str("VolumeButton")
     }
 }

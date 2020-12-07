@@ -121,6 +121,6 @@ impl BuilderListItemFactoryBuilder {
 
 impl fmt::Display for BuilderListItemFactory {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BuilderListItemFactory")
+        f.write_str("BuilderListItemFactory")
     }
 }

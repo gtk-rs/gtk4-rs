@@ -146,6 +146,6 @@ impl<O: IsA<Event>> EventExt for O {
 
 impl fmt::Display for Event {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Event")
+        f.write_str("Event")
     }
 }

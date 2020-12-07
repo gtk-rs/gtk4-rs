@@ -313,6 +313,6 @@ impl StackPageBuilder {
 
 impl fmt::Display for StackPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StackPage")
+        f.write_str("StackPage")
     }
 }

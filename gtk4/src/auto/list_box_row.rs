@@ -598,6 +598,6 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
 
 impl fmt::Display for ListBoxRow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ListBoxRow")
+        f.write_str("ListBoxRow")
     }
 }

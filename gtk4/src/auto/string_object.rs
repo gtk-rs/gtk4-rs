@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -24,35 +23,22 @@ impl StringObject {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_string_object_new(string.to_glib_none().0)) }
     }
-}
 
-pub const NONE_STRING_OBJECT: Option<&StringObject> = None;
-
-pub trait StringObjectExt: 'static {
-    fn get_string(&self) -> glib::GString;
-
-    fn connect_property_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<StringObject>> StringObjectExt for O {
-    fn get_string(&self) -> glib::GString {
-        unsafe {
-            from_glib_none(ffi::gtk_string_object_get_string(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    pub fn get_string(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::gtk_string_object_get_string(self.to_glib_none().0)) }
     }
 
-    fn connect_property_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_string_trampoline<P, F: Fn(&P) + 'static>(
+    pub fn connect_property_string_notify<F: Fn(&StringObject) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_string_trampoline<F: Fn(&StringObject) + 'static>(
             this: *mut ffi::GtkStringObject,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StringObject>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
-            f(&StringObject::from_glib_borrow(this).unsafe_cast_ref())
+            f(&from_glib_borrow(this))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -60,7 +46,7 @@ impl<O: IsA<StringObject>> StringObjectExt for O {
                 self.as_ptr() as *mut _,
                 b"notify::string\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_string_trampoline::<Self, F> as *const (),
+                    notify_string_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -70,6 +56,6 @@ impl<O: IsA<StringObject>> StringObjectExt for O {
 
 impl fmt::Display for StringObject {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StringObject")
+        f.write_str("StringObject")
     }
 }

@@ -25,6 +25,13 @@ impl ShortcutTrigger {
     }
 }
 
+impl fmt::Display for ShortcutTrigger {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&ShortcutTriggerExt::to_str(self))
+    }
+}
+
 pub const NONE_SHORTCUT_TRIGGER: Option<&ShortcutTrigger> = None;
 
 pub trait ShortcutTriggerExt: 'static {
@@ -34,7 +41,7 @@ pub trait ShortcutTriggerExt: 'static {
 
     fn to_label(&self, display: &gdk::Display) -> glib::GString;
 
-    fn to_string(&self) -> glib::GString;
+    fn to_str(&self) -> glib::GString;
 
     fn trigger<P: IsA<gdk::Event>>(&self, event: &P, enable_mnemonics: bool) -> gdk::KeyMatch;
 }
@@ -68,7 +75,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
-    fn to_string(&self) -> glib::GString {
+    fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_string(
                 self.as_ref().to_glib_none().0,
@@ -84,11 +91,5 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
                 enable_mnemonics.to_glib(),
             ))
         }
-    }
-}
-
-impl fmt::Display for ShortcutTrigger {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutTrigger")
     }
 }

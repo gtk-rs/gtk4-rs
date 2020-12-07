@@ -486,6 +486,6 @@ impl SwitchBuilder {
 
 impl fmt::Display for Switch {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Switch")
+        f.write_str("Switch")
     }
 }

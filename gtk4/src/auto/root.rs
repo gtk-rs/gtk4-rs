@@ -44,6 +44,6 @@ impl<O: IsA<Root>> RootExt for O {
 
 impl fmt::Display for Root {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Root")
+        f.write_str("Root")
     }
 }

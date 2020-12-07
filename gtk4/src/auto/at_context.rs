@@ -10,7 +10,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -53,7 +52,7 @@ impl ATContext {
 
     pub fn get_property_display(&self) -> Option<gdk::Display> {
         unsafe {
-            let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
@@ -89,6 +88,6 @@ impl ATContext {
 
 impl fmt::Display for ATContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ATContext")
+        f.write_str("ATContext")
     }
 }

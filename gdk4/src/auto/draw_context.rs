@@ -104,6 +104,6 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
 
 impl fmt::Display for DrawContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DrawContext")
+        f.write_str("DrawContext")
     }
 }

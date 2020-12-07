@@ -180,6 +180,6 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
 
 impl fmt::Display for CellLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellLayout")
+        f.write_str("CellLayout")
     }
 }

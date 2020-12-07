@@ -23,6 +23,6 @@ impl NeverTrigger {
 
 impl fmt::Display for NeverTrigger {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NeverTrigger")
+        f.write_str("NeverTrigger")
     }
 }

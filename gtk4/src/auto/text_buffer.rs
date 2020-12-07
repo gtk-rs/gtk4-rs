@@ -14,7 +14,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -1039,7 +1038,8 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats> {
         unsafe {
-            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
+            let mut value =
+                glib::Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"copy-target-list\0".as_ptr() as *const _,
@@ -1053,7 +1053,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"cursor-position\0".as_ptr() as *const _,
@@ -1068,7 +1068,8 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
     fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats> {
         unsafe {
-            let mut value = Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
+            let mut value =
+                glib::Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"paste-target-list\0".as_ptr() as *const _,
@@ -1687,6 +1688,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
 
 impl fmt::Display for TextBuffer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextBuffer")
+        f.write_str("TextBuffer")
     }
 }

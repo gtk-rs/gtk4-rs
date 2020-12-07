@@ -511,6 +511,6 @@ impl ComboBoxTextBuilder {
 
 impl fmt::Display for ComboBoxText {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ComboBoxText")
+        f.write_str("ComboBoxText")
     }
 }

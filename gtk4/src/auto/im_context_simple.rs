@@ -32,6 +32,6 @@ pub const NONE_IM_CONTEXT_SIMPLE: Option<&IMContextSimple> = None;
 
 impl fmt::Display for IMContextSimple {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IMContextSimple")
+        f.write_str("IMContextSimple")
     }
 }

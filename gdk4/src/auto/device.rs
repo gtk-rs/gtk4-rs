@@ -13,7 +13,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -105,7 +104,7 @@ impl Device {
 
     pub fn get_property_has_bidi_layouts(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"has-bidi-layouts\0".as_ptr() as *const _,
@@ -120,7 +119,7 @@ impl Device {
 
     pub fn get_property_n_axes(&self) -> u32 {
         unsafe {
-            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"n-axes\0".as_ptr() as *const _,
@@ -138,14 +137,14 @@ impl Device {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"seat\0".as_ptr() as *const _,
-                Value::from(seat).to_glib_none().0,
+                glib::Value::from(seat).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_tool(&self) -> Option<DeviceTool> {
         unsafe {
-            let mut value = Value::from_type(<DeviceTool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<DeviceTool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tool\0".as_ptr() as *const _,
@@ -425,6 +424,6 @@ impl Device {
 
 impl fmt::Display for Device {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Device")
+        f.write_str("Device")
     }
 }

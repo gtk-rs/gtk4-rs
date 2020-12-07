@@ -188,6 +188,6 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
 impl fmt::Display for Paintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Paintable")
+        f.write_str("Paintable")
     }
 }

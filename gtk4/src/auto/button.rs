@@ -718,6 +718,6 @@ impl<O: IsA<Button>> ButtonExt for O {
 
 impl fmt::Display for Button {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Button")
+        f.write_str("Button")
     }
 }

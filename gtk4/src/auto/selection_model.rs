@@ -184,6 +184,6 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
 
 impl fmt::Display for SelectionModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SelectionModel")
+        f.write_str("SelectionModel")
     }
 }

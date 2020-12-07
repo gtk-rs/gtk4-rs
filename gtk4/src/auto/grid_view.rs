@@ -696,6 +696,6 @@ impl GridViewBuilder {
 
 impl fmt::Display for GridView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GridView")
+        f.write_str("GridView")
     }
 }

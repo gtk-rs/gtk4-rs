@@ -116,6 +116,6 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
 
 impl fmt::Display for LayoutManager {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "LayoutManager")
+        f.write_str("LayoutManager")
     }
 }

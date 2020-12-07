@@ -62,6 +62,6 @@ impl SignalActionBuilder {
 
 impl fmt::Display for SignalAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SignalAction")
+        f.write_str("SignalAction")
     }
 }

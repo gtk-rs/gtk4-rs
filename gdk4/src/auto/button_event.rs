@@ -22,6 +22,6 @@ impl ButtonEvent {
 
 impl fmt::Display for ButtonEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ButtonEvent")
+        f.write_str("ButtonEvent")
     }
 }
