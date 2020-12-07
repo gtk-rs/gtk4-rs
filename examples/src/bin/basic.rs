@@ -3,8 +3,7 @@
 //! This sample demonstrates how to create a toplevel `window`, set its title, size and
 //! position, how to add a `button` to this `window` and how to connect signals with
 //! actions.
-
-use gtk::{gio::prelude::*, prelude::*};
+use gtk::prelude::*;
 
 use std::env::args;
 

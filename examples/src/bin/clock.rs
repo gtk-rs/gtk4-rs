@@ -5,11 +5,10 @@
 
 use chrono::Local;
 use gtk::glib;
-use gtk::{gio::prelude::*, prelude::*};
+use gtk::prelude::*;
+use gtk::{Application, ApplicationWindow, Label};
 
 use std::env::args;
-
-use gtk::{Application, ApplicationWindow, Label};
 
 fn current_time() -> String {
     return format!("{}", Local::now().format("%Y-%m-%d %H:%M:%S"));
