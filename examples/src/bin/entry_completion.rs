@@ -3,13 +3,12 @@
 //! This example demonstrates how to build a list of items and use them
 //! to autocomplete a field as the user types in something.
 
-use gio::prelude::*;
-use gtk::prelude::*;
+use gtk::{gio::prelude::*, prelude::*};
 
 use std::env::args;
 
-use gio::SimpleAction;
-use glib::Type;
+use gtk::gio::SimpleAction;
+use gtk::glib::{clone, Type};
 use gtk::{
     Application, ApplicationWindow, Box as Box_, Entry, EntryCompletion, Label, ListStore,
     Orientation,
@@ -97,11 +96,9 @@ fn main() {
 
     // When activated, shuts down the application
     let quit = SimpleAction::new("quit", None);
-    quit.connect_activate(
-        glib::clone!(@weak application => move |_action, _parameter| {
-            application.quit();
-        }),
-    );
+    quit.connect_activate(clone!(@weak application => move |_action, _parameter| {
+        application.quit();
+    }));
     application.set_accels_for_action("app.quit", &["<Primary>Q"]);
     application.add_action(&quit);
 

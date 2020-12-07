@@ -4,8 +4,7 @@
 //! position, how to add a `button` to this `window` and how to connect signals with
 //! actions.
 
-use gio::prelude::*;
-use gtk::prelude::*;
+use gtk::{gio::prelude::*, prelude::*};
 
 use std::env::args;
 

@@ -4,8 +4,8 @@
 //! a periodic task, implementing a clock in this example.
 
 use chrono::Local;
-use gio::prelude::*;
-use gtk::prelude::*;
+use gtk::glib;
+use gtk::{gio::prelude::*, prelude::*};
 
 use std::env::args;
 
