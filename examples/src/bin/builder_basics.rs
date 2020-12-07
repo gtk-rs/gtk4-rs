@@ -2,8 +2,7 @@
 //!
 //! This sample demonstrates how to use the builder with an imported UI file
 
-use gtk::{gio::prelude::*, prelude::*};
-
+use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 
 use std::env::args;
