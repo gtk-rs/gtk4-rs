@@ -12,6 +12,16 @@
 #![allow(deprecated)]
 
 pub use ffi;
+// Re-export gtk dependencies
+pub use cairo;
+pub use gdk;
+pub use gdk_pixbuf;
+pub use gio;
+pub use glib;
+pub use graphene;
+pub use gsk;
+pub use pango;
+
 #[macro_use]
 #[doc(hidden)]
 #[allow(unused_imports)]
