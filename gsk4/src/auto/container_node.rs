@@ -42,6 +42,6 @@ impl ContainerNode {
 
 impl fmt::Display for ContainerNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ContainerNode")
+        f.write_str("ContainerNode")
     }
 }

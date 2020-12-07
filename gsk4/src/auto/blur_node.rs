@@ -37,6 +37,6 @@ impl BlurNode {
 
 impl fmt::Display for BlurNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BlurNode")
+        f.write_str("BlurNode")
     }
 }

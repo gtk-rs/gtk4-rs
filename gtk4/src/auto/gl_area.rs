@@ -767,6 +767,6 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
 impl fmt::Display for GLArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GLArea")
+        f.write_str("GLArea")
     }
 }

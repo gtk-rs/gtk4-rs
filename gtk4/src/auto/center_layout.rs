@@ -24,6 +24,84 @@ impl CenterLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_center_layout_new()).unsafe_cast() }
     }
+
+    pub fn get_baseline_position(&self) -> BaselinePosition {
+        unsafe {
+            from_glib(ffi::gtk_center_layout_get_baseline_position(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_center_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(ffi::gtk_center_layout_get_center_widget(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_end_widget(&self) -> Option<Widget> {
+        unsafe { from_glib_none(ffi::gtk_center_layout_get_end_widget(self.to_glib_none().0)) }
+    }
+
+    pub fn get_orientation(&self) -> Orientation {
+        unsafe {
+            from_glib(ffi::gtk_center_layout_get_orientation(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_start_widget(&self) -> Option<Widget> {
+        unsafe {
+            from_glib_none(ffi::gtk_center_layout_get_start_widget(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_baseline_position(&self, baseline_position: BaselinePosition) {
+        unsafe {
+            ffi::gtk_center_layout_set_baseline_position(
+                self.to_glib_none().0,
+                baseline_position.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_center_widget<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            ffi::gtk_center_layout_set_center_widget(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_end_widget<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            ffi::gtk_center_layout_set_end_widget(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_orientation(&self, orientation: Orientation) {
+        unsafe {
+            ffi::gtk_center_layout_set_orientation(self.to_glib_none().0, orientation.to_glib());
+        }
+    }
+
+    pub fn set_start_widget<P: IsA<Widget>>(&self, widget: &P) {
+        unsafe {
+            ffi::gtk_center_layout_set_start_widget(
+                self.to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+            );
+        }
+    }
 }
 
 impl Default for CenterLayout {
@@ -32,119 +110,8 @@ impl Default for CenterLayout {
     }
 }
 
-pub const NONE_CENTER_LAYOUT: Option<&CenterLayout> = None;
-
-pub trait CenterLayoutExt: 'static {
-    fn get_baseline_position(&self) -> BaselinePosition;
-
-    fn get_center_widget(&self) -> Option<Widget>;
-
-    fn get_end_widget(&self) -> Option<Widget>;
-
-    fn get_orientation(&self) -> Orientation;
-
-    fn get_start_widget(&self) -> Option<Widget>;
-
-    fn set_baseline_position(&self, baseline_position: BaselinePosition);
-
-    fn set_center_widget<P: IsA<Widget>>(&self, widget: &P);
-
-    fn set_end_widget<P: IsA<Widget>>(&self, widget: &P);
-
-    fn set_orientation(&self, orientation: Orientation);
-
-    fn set_start_widget<P: IsA<Widget>>(&self, widget: &P);
-}
-
-impl<O: IsA<CenterLayout>> CenterLayoutExt for O {
-    fn get_baseline_position(&self) -> BaselinePosition {
-        unsafe {
-            from_glib(ffi::gtk_center_layout_get_baseline_position(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_center_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_layout_get_center_widget(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_end_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_layout_get_end_widget(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_orientation(&self) -> Orientation {
-        unsafe {
-            from_glib(ffi::gtk_center_layout_get_orientation(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_start_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_center_layout_get_start_widget(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_baseline_position(&self, baseline_position: BaselinePosition) {
-        unsafe {
-            ffi::gtk_center_layout_set_baseline_position(
-                self.as_ref().to_glib_none().0,
-                baseline_position.to_glib(),
-            );
-        }
-    }
-
-    fn set_center_widget<P: IsA<Widget>>(&self, widget: &P) {
-        unsafe {
-            ffi::gtk_center_layout_set_center_widget(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_end_widget<P: IsA<Widget>>(&self, widget: &P) {
-        unsafe {
-            ffi::gtk_center_layout_set_end_widget(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_orientation(&self, orientation: Orientation) {
-        unsafe {
-            ffi::gtk_center_layout_set_orientation(
-                self.as_ref().to_glib_none().0,
-                orientation.to_glib(),
-            );
-        }
-    }
-
-    fn set_start_widget<P: IsA<Widget>>(&self, widget: &P) {
-        unsafe {
-            ffi::gtk_center_layout_set_start_widget(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-            );
-        }
-    }
-}
-
 impl fmt::Display for CenterLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CenterLayout")
+        f.write_str("CenterLayout")
     }
 }

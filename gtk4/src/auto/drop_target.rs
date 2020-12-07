@@ -370,6 +370,6 @@ impl DropTargetBuilder {
 
 impl fmt::Display for DropTarget {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DropTarget")
+        f.write_str("DropTarget")
     }
 }

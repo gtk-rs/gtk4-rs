@@ -58,6 +58,6 @@ impl MnemonicTriggerBuilder {
 
 impl fmt::Display for MnemonicTrigger {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MnemonicTrigger")
+        f.write_str("MnemonicTrigger")
     }
 }

@@ -32,6 +32,6 @@ impl<O: IsA<Buildable>> BuildableExt for O {
 
 impl fmt::Display for Buildable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Buildable")
+        f.write_str("Buildable")
     }
 }

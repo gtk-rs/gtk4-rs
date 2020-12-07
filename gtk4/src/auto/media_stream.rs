@@ -8,7 +8,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -325,7 +324,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
     fn get_property_has_audio(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"has-audio\0".as_ptr() as *const _,
@@ -340,7 +339,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
     fn get_property_has_video(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"has-video\0".as_ptr() as *const _,
@@ -355,7 +354,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
     fn get_property_prepared(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"prepared\0".as_ptr() as *const _,
@@ -373,14 +372,14 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"prepared\0".as_ptr() as *const _,
-                Value::from(&prepared).to_glib_none().0,
+                glib::Value::from(&prepared).to_glib_none().0,
             );
         }
     }
 
     fn get_property_seekable(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"seekable\0".as_ptr() as *const _,
@@ -395,7 +394,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
     fn get_property_seeking(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"seeking\0".as_ptr() as *const _,
@@ -723,6 +722,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
 impl fmt::Display for MediaStream {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MediaStream")
+        f.write_str("MediaStream")
     }
 }

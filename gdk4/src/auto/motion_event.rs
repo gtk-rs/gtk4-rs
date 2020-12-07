@@ -18,6 +18,6 @@ impl MotionEvent {}
 
 impl fmt::Display for MotionEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MotionEvent")
+        f.write_str("MotionEvent")
     }
 }

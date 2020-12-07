@@ -41,6 +41,6 @@ impl MemoryTexture {
 
 impl fmt::Display for MemoryTexture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "MemoryTexture")
+        f.write_str("MemoryTexture")
     }
 }

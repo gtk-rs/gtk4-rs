@@ -12,7 +12,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -33,7 +32,7 @@ impl CellRendererSpinner {
 
     pub fn get_property_active(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"active\0".as_ptr() as *const _,
@@ -51,14 +50,14 @@ impl CellRendererSpinner {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"active\0".as_ptr() as *const _,
-                Value::from(&active).to_glib_none().0,
+                glib::Value::from(&active).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_pulse(&self) -> u32 {
         unsafe {
-            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pulse\0".as_ptr() as *const _,
@@ -76,14 +75,14 @@ impl CellRendererSpinner {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pulse\0".as_ptr() as *const _,
-                Value::from(&pulse).to_glib_none().0,
+                glib::Value::from(&pulse).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_size(&self) -> IconSize {
         unsafe {
-            let mut value = Value::from_type(<IconSize as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
@@ -101,7 +100,7 @@ impl CellRendererSpinner {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"size\0".as_ptr() as *const _,
-                Value::from(&size).to_glib_none().0,
+                glib::Value::from(&size).to_glib_none().0,
             );
         }
     }
@@ -362,6 +361,6 @@ impl CellRendererSpinnerBuilder {
 
 impl fmt::Display for CellRendererSpinner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellRendererSpinner")
+        f.write_str("CellRendererSpinner")
     }
 }

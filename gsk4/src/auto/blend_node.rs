@@ -47,6 +47,6 @@ impl BlendNode {
 
 impl fmt::Display for BlendNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BlendNode")
+        f.write_str("BlendNode")
     }
 }

@@ -17,6 +17,6 @@ impl X11Drag {}
 
 impl fmt::Display for X11Drag {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11Drag")
+        f.write_str("X11Drag")
     }
 }

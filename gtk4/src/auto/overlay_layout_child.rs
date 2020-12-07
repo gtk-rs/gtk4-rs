@@ -7,6 +7,7 @@ use crate::LayoutManager;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -21,6 +22,91 @@ glib::glib_wrapper! {
 
     match fn {
         get_type => || ffi::gtk_overlay_layout_child_get_type(),
+    }
+}
+
+impl OverlayLayoutChild {
+    pub fn get_clip_overlay(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_overlay_layout_child_get_clip_overlay(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_measure(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_overlay_layout_child_get_measure(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_clip_overlay(&self, clip_overlay: bool) {
+        unsafe {
+            ffi::gtk_overlay_layout_child_set_clip_overlay(
+                self.to_glib_none().0,
+                clip_overlay.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_measure(&self, measure: bool) {
+        unsafe {
+            ffi::gtk_overlay_layout_child_set_measure(self.to_glib_none().0, measure.to_glib());
+        }
+    }
+
+    pub fn connect_property_clip_overlay_notify<F: Fn(&OverlayLayoutChild) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_clip_overlay_trampoline<
+            F: Fn(&OverlayLayoutChild) + 'static,
+        >(
+            this: *mut ffi::GtkOverlayLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::clip-overlay\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_clip_overlay_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_measure_notify<F: Fn(&OverlayLayoutChild) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_measure_trampoline<F: Fn(&OverlayLayoutChild) + 'static>(
+            this: *mut ffi::GtkOverlayLayoutChild,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::measure\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_measure_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 }
 
@@ -79,112 +165,8 @@ impl OverlayLayoutChildBuilder {
     }
 }
 
-pub const NONE_OVERLAY_LAYOUT_CHILD: Option<&OverlayLayoutChild> = None;
-
-pub trait OverlayLayoutChildExt: 'static {
-    fn get_clip_overlay(&self) -> bool;
-
-    fn get_measure(&self) -> bool;
-
-    fn set_clip_overlay(&self, clip_overlay: bool);
-
-    fn set_measure(&self, measure: bool);
-
-    fn connect_property_clip_overlay_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_measure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<OverlayLayoutChild>> OverlayLayoutChildExt for O {
-    fn get_clip_overlay(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_overlay_layout_child_get_clip_overlay(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_measure(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_overlay_layout_child_get_measure(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_clip_overlay(&self, clip_overlay: bool) {
-        unsafe {
-            ffi::gtk_overlay_layout_child_set_clip_overlay(
-                self.as_ref().to_glib_none().0,
-                clip_overlay.to_glib(),
-            );
-        }
-    }
-
-    fn set_measure(&self, measure: bool) {
-        unsafe {
-            ffi::gtk_overlay_layout_child_set_measure(
-                self.as_ref().to_glib_none().0,
-                measure.to_glib(),
-            );
-        }
-    }
-
-    fn connect_property_clip_overlay_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_clip_overlay_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkOverlayLayoutChild,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<OverlayLayoutChild>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&OverlayLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::clip-overlay\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_clip_overlay_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_measure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_measure_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkOverlayLayoutChild,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<OverlayLayoutChild>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&OverlayLayoutChild::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::measure\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_measure_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for OverlayLayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "OverlayLayoutChild")
+        f.write_str("OverlayLayoutChild")
     }
 }

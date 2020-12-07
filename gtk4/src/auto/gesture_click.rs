@@ -150,6 +150,6 @@ impl Default for GestureClick {
 
 impl fmt::Display for GestureClick {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GestureClick")
+        f.write_str("GestureClick")
     }
 }

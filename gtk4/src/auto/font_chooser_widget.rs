@@ -20,7 +20,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -41,7 +40,7 @@ impl FontChooserWidget {
 
     pub fn get_property_tweak_action(&self) -> Option<gio::Action> {
         unsafe {
-            let mut value = Value::from_type(<gio::Action as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gio::Action as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tweak-action\0".as_ptr() as *const _,
@@ -430,6 +429,6 @@ impl FontChooserWidgetBuilder {
 
 impl fmt::Display for FontChooserWidget {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FontChooserWidget")
+        f.write_str("FontChooserWidget")
     }
 }

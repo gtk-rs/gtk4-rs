@@ -37,6 +37,6 @@ impl DebugNode {
 
 impl fmt::Display for DebugNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DebugNode")
+        f.write_str("DebugNode")
     }
 }

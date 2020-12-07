@@ -8,7 +8,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::fmt;
 
 glib::glib_wrapper! {
@@ -45,7 +44,7 @@ impl IconPaintable {
 
     pub fn get_property_is_symbolic(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"is-symbolic\0".as_ptr() as *const _,
@@ -107,6 +106,6 @@ impl IconPaintableBuilder {
 
 impl fmt::Display for IconPaintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IconPaintable")
+        f.write_str("IconPaintable")
     }
 }

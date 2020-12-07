@@ -4,12 +4,12 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -30,6 +30,229 @@ impl DirectoryList {
                 attributes.to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             ))
+        }
+    }
+
+    pub fn get_attributes(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::gtk_directory_list_get_attributes(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_error(&self) -> Option<glib::Error> {
+        unsafe { from_glib_none(ffi::gtk_directory_list_get_error(self.to_glib_none().0)) }
+    }
+
+    pub fn get_file(&self) -> Option<gio::File> {
+        unsafe { from_glib_none(ffi::gtk_directory_list_get_file(self.to_glib_none().0)) }
+    }
+
+    pub fn get_io_priority(&self) -> i32 {
+        unsafe { ffi::gtk_directory_list_get_io_priority(self.to_glib_none().0) }
+    }
+
+    pub fn get_monitored(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_directory_list_get_monitored(self.to_glib_none().0)) }
+    }
+
+    pub fn is_loading(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_directory_list_is_loading(self.to_glib_none().0)) }
+    }
+
+    pub fn set_attributes(&self, attributes: Option<&str>) {
+        unsafe {
+            ffi::gtk_directory_list_set_attributes(
+                self.to_glib_none().0,
+                attributes.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+        unsafe {
+            ffi::gtk_directory_list_set_file(
+                self.to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_io_priority(&self, io_priority: i32) {
+        unsafe {
+            ffi::gtk_directory_list_set_io_priority(self.to_glib_none().0, io_priority);
+        }
+    }
+
+    pub fn set_monitored(&self, monitored: bool) {
+        unsafe {
+            ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.to_glib());
+        }
+    }
+
+    pub fn get_property_loading(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"loading\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `loading` getter")
+                .unwrap()
+        }
+    }
+
+    pub fn connect_property_attributes_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::attributes\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_attributes_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_error_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_error_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::error\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_error_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_file_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_file_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::file\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_io_priority_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_io_priority_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::io-priority\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_io_priority_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_loading_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_loading_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::loading\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_loading_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_monitored_notify<F: Fn(&DirectoryList) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_monitored_trampoline<F: Fn(&DirectoryList) + 'static>(
+            this: *mut ffi::GtkDirectoryList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::monitored\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_monitored_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -89,284 +312,8 @@ impl DirectoryListBuilder {
     }
 }
 
-pub const NONE_DIRECTORY_LIST: Option<&DirectoryList> = None;
-
-pub trait DirectoryListExt: 'static {
-    fn get_attributes(&self) -> Option<glib::GString>;
-
-    fn get_error(&self) -> Option<glib::Error>;
-
-    fn get_file(&self) -> Option<gio::File>;
-
-    fn get_io_priority(&self) -> i32;
-
-    fn get_monitored(&self) -> bool;
-
-    fn is_loading(&self) -> bool;
-
-    fn set_attributes(&self, attributes: Option<&str>);
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
-
-    fn set_io_priority(&self, io_priority: i32);
-
-    fn set_monitored(&self, monitored: bool);
-
-    fn get_property_loading(&self) -> bool;
-
-    fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_monitored_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DirectoryList>> DirectoryListExt for O {
-    fn get_attributes(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gtk_directory_list_get_attributes(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_error(&self) -> Option<glib::Error> {
-        unsafe {
-            from_glib_none(ffi::gtk_directory_list_get_error(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_file(&self) -> Option<gio::File> {
-        unsafe {
-            from_glib_none(ffi::gtk_directory_list_get_file(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_io_priority(&self) -> i32 {
-        unsafe { ffi::gtk_directory_list_get_io_priority(self.as_ref().to_glib_none().0) }
-    }
-
-    fn get_monitored(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_directory_list_get_monitored(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn is_loading(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_directory_list_is_loading(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_attributes(&self, attributes: Option<&str>) {
-        unsafe {
-            ffi::gtk_directory_list_set_attributes(
-                self.as_ref().to_glib_none().0,
-                attributes.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
-        unsafe {
-            ffi::gtk_directory_list_set_file(
-                self.as_ref().to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_io_priority(&self, io_priority: i32) {
-        unsafe {
-            ffi::gtk_directory_list_set_io_priority(self.as_ref().to_glib_none().0, io_priority);
-        }
-    }
-
-    fn set_monitored(&self, monitored: bool) {
-        unsafe {
-            ffi::gtk_directory_list_set_monitored(
-                self.as_ref().to_glib_none().0,
-                monitored.to_glib(),
-            );
-        }
-    }
-
-    fn get_property_loading(&self) -> bool {
-        unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"loading\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `loading` getter")
-                .unwrap()
-        }
-    }
-
-    fn connect_property_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_attributes_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::error\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_error_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_file_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_io_priority_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::io-priority\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_io_priority_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_loading_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::loading\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_loading_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_monitored_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_monitored_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkDirectoryList,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DirectoryList>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&DirectoryList::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::monitored\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_monitored_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for DirectoryList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DirectoryList")
+        f.write_str("DirectoryList")
     }
 }

@@ -14,7 +14,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -35,7 +34,7 @@ impl CellRendererSpin {
 
     pub fn get_property_adjustment(&self) -> Option<Adjustment> {
         unsafe {
-            let mut value = Value::from_type(<Adjustment as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<Adjustment as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"adjustment\0".as_ptr() as *const _,
@@ -52,14 +51,14 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"adjustment\0".as_ptr() as *const _,
-                Value::from(adjustment).to_glib_none().0,
+                glib::Value::from(adjustment).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_climb_rate(&self) -> f64 {
         unsafe {
-            let mut value = Value::from_type(<f64 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"climb-rate\0".as_ptr() as *const _,
@@ -77,14 +76,14 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"climb-rate\0".as_ptr() as *const _,
-                Value::from(&climb_rate).to_glib_none().0,
+                glib::Value::from(&climb_rate).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_digits(&self) -> u32 {
         unsafe {
-            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"digits\0".as_ptr() as *const _,
@@ -102,7 +101,7 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"digits\0".as_ptr() as *const _,
-                Value::from(&digits).to_glib_none().0,
+                glib::Value::from(&digits).to_glib_none().0,
             );
         }
     }
@@ -777,6 +776,6 @@ impl CellRendererSpinBuilder {
 
 impl fmt::Display for CellRendererSpin {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellRendererSpin")
+        f.write_str("CellRendererSpin")
     }
 }

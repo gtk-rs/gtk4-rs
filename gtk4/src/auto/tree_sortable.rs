@@ -71,6 +71,6 @@ impl<O: IsA<TreeSortable>> TreeSortableExt for O {
 
 impl fmt::Display for TreeSortable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeSortable")
+        f.write_str("TreeSortable")
     }
 }

@@ -26,7 +26,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -632,7 +631,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
 
     fn get_property_use_header_bar(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"use-header-bar\0".as_ptr() as *const _,
@@ -706,6 +705,6 @@ impl<O: IsA<Dialog>> DialogExt for O {
 
 impl fmt::Display for Dialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Dialog")
+        f.write_str("Dialog")
     }
 }

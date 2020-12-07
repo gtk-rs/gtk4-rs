@@ -68,6 +68,6 @@ impl InsetShadowNode {
 
 impl fmt::Display for InsetShadowNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "InsetShadowNode")
+        f.write_str("InsetShadowNode")
     }
 }

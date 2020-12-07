@@ -22,6 +22,6 @@ impl CairoContext {
 
 impl fmt::Display for CairoContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CairoContext")
+        f.write_str("CairoContext")
     }
 }

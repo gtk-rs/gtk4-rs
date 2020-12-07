@@ -6,6 +6,7 @@ use crate::ShortcutAction;
 use crate::ShortcutTrigger;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -40,6 +41,117 @@ impl Shortcut {
     //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
     //}
+
+    pub fn get_action(&self) -> Option<ShortcutAction> {
+        unsafe { from_glib_none(ffi::gtk_shortcut_get_action(self.to_glib_none().0)) }
+    }
+
+    pub fn get_arguments(&self) -> Option<glib::Variant> {
+        unsafe { from_glib_none(ffi::gtk_shortcut_get_arguments(self.to_glib_none().0)) }
+    }
+
+    pub fn get_trigger(&self) -> Option<ShortcutTrigger> {
+        unsafe { from_glib_none(ffi::gtk_shortcut_get_trigger(self.to_glib_none().0)) }
+    }
+
+    pub fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>) {
+        unsafe {
+            ffi::gtk_shortcut_set_action(
+                self.to_glib_none().0,
+                action.map(|p| p.as_ref()).to_glib_full(),
+            );
+        }
+    }
+
+    pub fn set_arguments(&self, args: Option<&glib::Variant>) {
+        unsafe {
+            ffi::gtk_shortcut_set_arguments(self.to_glib_none().0, args.to_glib_none().0);
+        }
+    }
+
+    pub fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>) {
+        unsafe {
+            ffi::gtk_shortcut_set_trigger(
+                self.to_glib_none().0,
+                trigger.map(|p| p.as_ref()).to_glib_full(),
+            );
+        }
+    }
+
+    pub fn connect_property_action_notify<F: Fn(&Shortcut) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_action_trampoline<F: Fn(&Shortcut) + 'static>(
+            this: *mut ffi::GtkShortcut,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::action\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_action_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_arguments_notify<F: Fn(&Shortcut) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_arguments_trampoline<F: Fn(&Shortcut) + 'static>(
+            this: *mut ffi::GtkShortcut,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::arguments\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_arguments_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_trigger_notify<F: Fn(&Shortcut) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_trigger_trampoline<F: Fn(&Shortcut) + 'static>(
+            this: *mut ffi::GtkShortcut,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::trigger\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_trigger_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -88,148 +200,8 @@ impl ShortcutBuilder {
     }
 }
 
-pub const NONE_SHORTCUT: Option<&Shortcut> = None;
-
-pub trait ShortcutExt: 'static {
-    fn get_action(&self) -> Option<ShortcutAction>;
-
-    fn get_arguments(&self) -> Option<glib::Variant>;
-
-    fn get_trigger(&self) -> Option<ShortcutTrigger>;
-
-    fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>);
-
-    fn set_arguments(&self, args: Option<&glib::Variant>);
-
-    fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>);
-
-    fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_arguments_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_trigger_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Shortcut>> ShortcutExt for O {
-    fn get_action(&self) -> Option<ShortcutAction> {
-        unsafe { from_glib_none(ffi::gtk_shortcut_get_action(self.as_ref().to_glib_none().0)) }
-    }
-
-    fn get_arguments(&self) -> Option<glib::Variant> {
-        unsafe {
-            from_glib_none(ffi::gtk_shortcut_get_arguments(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_trigger(&self) -> Option<ShortcutTrigger> {
-        unsafe {
-            from_glib_none(ffi::gtk_shortcut_get_trigger(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>) {
-        unsafe {
-            ffi::gtk_shortcut_set_action(
-                self.as_ref().to_glib_none().0,
-                action.map(|p| p.as_ref()).to_glib_full(),
-            );
-        }
-    }
-
-    fn set_arguments(&self, args: Option<&glib::Variant>) {
-        unsafe {
-            ffi::gtk_shortcut_set_arguments(self.as_ref().to_glib_none().0, args.to_glib_none().0);
-        }
-    }
-
-    fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>) {
-        unsafe {
-            ffi::gtk_shortcut_set_trigger(
-                self.as_ref().to_glib_none().0,
-                trigger.map(|p| p.as_ref()).to_glib_full(),
-            );
-        }
-    }
-
-    fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_action_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkShortcut,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Shortcut>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Shortcut::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::action\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_action_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_arguments_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_arguments_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkShortcut,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Shortcut>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Shortcut::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::arguments\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_arguments_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_trigger_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_trigger_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkShortcut,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Shortcut>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Shortcut::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::trigger\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_trigger_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for Shortcut {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Shortcut")
+        f.write_str("Shortcut")
     }
 }

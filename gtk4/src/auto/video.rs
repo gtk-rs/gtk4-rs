@@ -13,6 +13,7 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -73,6 +74,158 @@ impl Video {
                 resource_path.to_glib_none().0,
             ))
             .unsafe_cast()
+        }
+    }
+
+    pub fn get_autoplay(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_video_get_autoplay(self.to_glib_none().0)) }
+    }
+
+    pub fn get_file(&self) -> Option<gio::File> {
+        unsafe { from_glib_none(ffi::gtk_video_get_file(self.to_glib_none().0)) }
+    }
+
+    pub fn get_loop(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_video_get_loop(self.to_glib_none().0)) }
+    }
+
+    pub fn get_media_stream(&self) -> Option<MediaStream> {
+        unsafe { from_glib_none(ffi::gtk_video_get_media_stream(self.to_glib_none().0)) }
+    }
+
+    pub fn set_autoplay(&self, autoplay: bool) {
+        unsafe {
+            ffi::gtk_video_set_autoplay(self.to_glib_none().0, autoplay.to_glib());
+        }
+    }
+
+    pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+        unsafe {
+            ffi::gtk_video_set_file(
+                self.to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_filename(&self, filename: Option<&str>) {
+        unsafe {
+            ffi::gtk_video_set_filename(self.to_glib_none().0, filename.to_glib_none().0);
+        }
+    }
+
+    pub fn set_loop(&self, loop_: bool) {
+        unsafe {
+            ffi::gtk_video_set_loop(self.to_glib_none().0, loop_.to_glib());
+        }
+    }
+
+    pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
+        unsafe {
+            ffi::gtk_video_set_media_stream(
+                self.to_glib_none().0,
+                stream.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_resource(&self, resource_path: Option<&str>) {
+        unsafe {
+            ffi::gtk_video_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
+        }
+    }
+
+    pub fn connect_property_autoplay_notify<F: Fn(&Video) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_autoplay_trampoline<F: Fn(&Video) + 'static>(
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::autoplay\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_autoplay_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_file_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_file_trampoline<F: Fn(&Video) + 'static>(
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::file\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_loop_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_loop_trampoline<F: Fn(&Video) + 'static>(
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::loop\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_loop_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_media_stream_notify<F: Fn(&Video) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_media_stream_trampoline<F: Fn(&Video) + 'static>(
+            this: *mut ffi::GtkVideo,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::media-stream\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_media_stream_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -408,207 +561,8 @@ impl VideoBuilder {
     }
 }
 
-pub const NONE_VIDEO: Option<&Video> = None;
-
-pub trait VideoExt: 'static {
-    fn get_autoplay(&self) -> bool;
-
-    fn get_file(&self) -> Option<gio::File>;
-
-    fn get_loop(&self) -> bool;
-
-    fn get_media_stream(&self) -> Option<MediaStream>;
-
-    fn set_autoplay(&self, autoplay: bool);
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
-
-    fn set_filename(&self, filename: Option<&str>);
-
-    fn set_loop(&self, loop_: bool);
-
-    fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>);
-
-    fn set_resource(&self, resource_path: Option<&str>);
-
-    fn connect_property_autoplay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_media_stream_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-}
-
-impl<O: IsA<Video>> VideoExt for O {
-    fn get_autoplay(&self) -> bool {
-        unsafe { from_glib(ffi::gtk_video_get_autoplay(self.as_ref().to_glib_none().0)) }
-    }
-
-    fn get_file(&self) -> Option<gio::File> {
-        unsafe { from_glib_none(ffi::gtk_video_get_file(self.as_ref().to_glib_none().0)) }
-    }
-
-    fn get_loop(&self) -> bool {
-        unsafe { from_glib(ffi::gtk_video_get_loop(self.as_ref().to_glib_none().0)) }
-    }
-
-    fn get_media_stream(&self) -> Option<MediaStream> {
-        unsafe {
-            from_glib_none(ffi::gtk_video_get_media_stream(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_autoplay(&self, autoplay: bool) {
-        unsafe {
-            ffi::gtk_video_set_autoplay(self.as_ref().to_glib_none().0, autoplay.to_glib());
-        }
-    }
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
-        unsafe {
-            ffi::gtk_video_set_file(
-                self.as_ref().to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_filename(&self, filename: Option<&str>) {
-        unsafe {
-            ffi::gtk_video_set_filename(self.as_ref().to_glib_none().0, filename.to_glib_none().0);
-        }
-    }
-
-    fn set_loop(&self, loop_: bool) {
-        unsafe {
-            ffi::gtk_video_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
-        }
-    }
-
-    fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
-        unsafe {
-            ffi::gtk_video_set_media_stream(
-                self.as_ref().to_glib_none().0,
-                stream.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_resource(&self, resource_path: Option<&str>) {
-        unsafe {
-            ffi::gtk_video_set_resource(
-                self.as_ref().to_glib_none().0,
-                resource_path.to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_autoplay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_autoplay_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkVideo,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Video>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Video::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::autoplay\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_autoplay_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkVideo,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Video>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Video::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_file_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkVideo,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Video>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Video::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::loop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_loop_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_media_stream_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_media_stream_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkVideo,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Video>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Video::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::media-stream\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_media_stream_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for Video {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Video")
+        f.write_str("Video")
     }
 }

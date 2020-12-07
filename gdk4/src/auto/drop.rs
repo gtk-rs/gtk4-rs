@@ -150,6 +150,6 @@ impl Drop {
 
 impl fmt::Display for Drop {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Drop")
+        f.write_str("Drop")
     }
 }

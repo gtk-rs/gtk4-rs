@@ -140,6 +140,6 @@ impl FileFilterBuilder {
 
 impl fmt::Display for FileFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FileFilter")
+        f.write_str("FileFilter")
     }
 }

@@ -28,10 +28,8 @@ impl Default for BinLayout {
     }
 }
 
-pub const NONE_BIN_LAYOUT: Option<&BinLayout> = None;
-
 impl fmt::Display for BinLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "BinLayout")
+        f.write_str("BinLayout")
     }
 }

@@ -116,6 +116,6 @@ impl<O: IsA<Actionable>> ActionableExt for O {
 
 impl fmt::Display for Actionable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Actionable")
+        f.write_str("Actionable")
     }
 }

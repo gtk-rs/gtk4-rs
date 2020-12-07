@@ -15,7 +15,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -232,7 +231,7 @@ impl EntryCompletion {
 
     pub fn get_property_cell_area(&self) -> Option<CellArea> {
         unsafe {
-            let mut value = Value::from_type(<CellArea as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"cell-area\0".as_ptr() as *const _,
@@ -689,6 +688,6 @@ impl EntryCompletionBuilder {
 
 impl fmt::Display for EntryCompletion {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EntryCompletion")
+        f.write_str("EntryCompletion")
     }
 }

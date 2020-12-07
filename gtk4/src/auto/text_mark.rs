@@ -129,6 +129,6 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
 
 impl fmt::Display for TextMark {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TextMark")
+        f.write_str("TextMark")
     }
 }

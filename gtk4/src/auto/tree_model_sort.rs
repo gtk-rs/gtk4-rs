@@ -160,6 +160,6 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
 
 impl fmt::Display for TreeModelSort {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeModelSort")
+        f.write_str("TreeModelSort")
     }
 }

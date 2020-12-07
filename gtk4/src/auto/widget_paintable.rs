@@ -5,6 +5,7 @@
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -29,6 +30,44 @@ impl WidgetPaintable {
             from_glib_full(ffi::gtk_widget_paintable_new(
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             ))
+        }
+    }
+
+    pub fn get_widget(&self) -> Option<Widget> {
+        unsafe { from_glib_none(ffi::gtk_widget_paintable_get_widget(self.to_glib_none().0)) }
+    }
+
+    pub fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
+        unsafe {
+            ffi::gtk_widget_paintable_set_widget(
+                self.to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_widget_notify<F: Fn(&WidgetPaintable) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_widget_trampoline<F: Fn(&WidgetPaintable) + 'static>(
+            this: *mut ffi::GtkWidgetPaintable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::widget\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -61,61 +100,8 @@ impl WidgetPaintableBuilder {
     }
 }
 
-pub const NONE_WIDGET_PAINTABLE: Option<&WidgetPaintable> = None;
-
-pub trait WidgetPaintableExt: 'static {
-    fn get_widget(&self) -> Option<Widget>;
-
-    fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
-
-    fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<WidgetPaintable>> WidgetPaintableExt for O {
-    fn get_widget(&self) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_widget_paintable_get_widget(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
-        unsafe {
-            ffi::gtk_widget_paintable_set_widget(
-                self.as_ref().to_glib_none().0,
-                widget.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_widget_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkWidgetPaintable,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<WidgetPaintable>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&WidgetPaintable::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_widget_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for WidgetPaintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WidgetPaintable")
+        f.write_str("WidgetPaintable")
     }
 }

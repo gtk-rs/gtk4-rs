@@ -214,6 +214,6 @@ impl GestureLongPressBuilder {
 
 impl fmt::Display for GestureLongPress {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GestureLongPress")
+        f.write_str("GestureLongPress")
     }
 }

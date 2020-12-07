@@ -235,6 +235,6 @@ impl EventControllerScrollBuilder {
 
 impl fmt::Display for EventControllerScroll {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EventControllerScroll")
+        f.write_str("EventControllerScroll")
     }
 }

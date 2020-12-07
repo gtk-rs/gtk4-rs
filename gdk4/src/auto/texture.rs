@@ -82,6 +82,6 @@ impl<O: IsA<Texture>> TextureExt for O {
 
 impl fmt::Display for Texture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Texture")
+        f.write_str("Texture")
     }
 }

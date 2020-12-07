@@ -30,6 +30,6 @@ impl X11Monitor {
 
 impl fmt::Display for X11Monitor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11Monitor")
+        f.write_str("X11Monitor")
     }
 }

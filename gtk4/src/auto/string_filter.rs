@@ -6,6 +6,7 @@ use crate::Filter;
 use crate::StringFilterMatchMode;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -27,6 +28,148 @@ impl StringFilter {
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringFilter {
     //    unsafe { TODO: call ffi:gtk_string_filter_new() }
     //}
+
+    //pub fn get_expression(&self) -> /*Ignored*/Expression {
+    //    unsafe { TODO: call ffi:gtk_string_filter_get_expression() }
+    //}
+
+    pub fn get_ignore_case(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_string_filter_get_ignore_case(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_match_mode(&self) -> StringFilterMatchMode {
+        unsafe { from_glib(ffi::gtk_string_filter_get_match_mode(self.to_glib_none().0)) }
+    }
+
+    pub fn get_search(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_string_filter_get_search(self.to_glib_none().0)) }
+    }
+
+    //pub fn set_expression(&self, expression: /*Ignored*/&Expression) {
+    //    unsafe { TODO: call ffi:gtk_string_filter_set_expression() }
+    //}
+
+    pub fn set_ignore_case(&self, ignore_case: bool) {
+        unsafe {
+            ffi::gtk_string_filter_set_ignore_case(self.to_glib_none().0, ignore_case.to_glib());
+        }
+    }
+
+    pub fn set_match_mode(&self, mode: StringFilterMatchMode) {
+        unsafe {
+            ffi::gtk_string_filter_set_match_mode(self.to_glib_none().0, mode.to_glib());
+        }
+    }
+
+    pub fn set_search(&self, search: Option<&str>) {
+        unsafe {
+            ffi::gtk_string_filter_set_search(self.to_glib_none().0, search.to_glib_none().0);
+        }
+    }
+
+    pub fn connect_property_expression_notify<F: Fn(&StringFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_expression_trampoline<F: Fn(&StringFilter) + 'static>(
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::expression\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_expression_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_ignore_case_notify<F: Fn(&StringFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_ignore_case_trampoline<F: Fn(&StringFilter) + 'static>(
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::ignore-case\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_ignore_case_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_match_mode_notify<F: Fn(&StringFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_match_mode_trampoline<F: Fn(&StringFilter) + 'static>(
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::match-mode\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_match_mode_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_search_notify<F: Fn(&StringFilter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_trampoline<F: Fn(&StringFilter) + 'static>(
+            this: *mut ffi::GtkStringFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::search\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_search_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -76,190 +219,8 @@ impl StringFilterBuilder {
     }
 }
 
-pub const NONE_STRING_FILTER: Option<&StringFilter> = None;
-
-pub trait StringFilterExt: 'static {
-    //fn get_expression(&self) -> /*Ignored*/Expression;
-
-    fn get_ignore_case(&self) -> bool;
-
-    fn get_match_mode(&self) -> StringFilterMatchMode;
-
-    fn get_search(&self) -> Option<glib::GString>;
-
-    //fn set_expression(&self, expression: /*Ignored*/&Expression);
-
-    fn set_ignore_case(&self, ignore_case: bool);
-
-    fn set_match_mode(&self, mode: StringFilterMatchMode);
-
-    fn set_search(&self, search: Option<&str>);
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_match_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<StringFilter>> StringFilterExt for O {
-    //fn get_expression(&self) -> /*Ignored*/Expression {
-    //    unsafe { TODO: call ffi:gtk_string_filter_get_expression() }
-    //}
-
-    fn get_ignore_case(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_string_filter_get_ignore_case(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_match_mode(&self) -> StringFilterMatchMode {
-        unsafe {
-            from_glib(ffi::gtk_string_filter_get_match_mode(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_search(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gtk_string_filter_get_search(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    //fn set_expression(&self, expression: /*Ignored*/&Expression) {
-    //    unsafe { TODO: call ffi:gtk_string_filter_set_expression() }
-    //}
-
-    fn set_ignore_case(&self, ignore_case: bool) {
-        unsafe {
-            ffi::gtk_string_filter_set_ignore_case(
-                self.as_ref().to_glib_none().0,
-                ignore_case.to_glib(),
-            );
-        }
-    }
-
-    fn set_match_mode(&self, mode: StringFilterMatchMode) {
-        unsafe {
-            ffi::gtk_string_filter_set_match_mode(self.as_ref().to_glib_none().0, mode.to_glib());
-        }
-    }
-
-    fn set_search(&self, search: Option<&str>) {
-        unsafe {
-            ffi::gtk_string_filter_set_search(
-                self.as_ref().to_glib_none().0,
-                search.to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_expression_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkStringFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StringFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&StringFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::expression\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_expression_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ignore_case_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkStringFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StringFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&StringFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::ignore-case\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_ignore_case_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_match_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_match_mode_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkStringFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StringFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&StringFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::match-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_match_mode_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_search_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkStringFilter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StringFilter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&StringFilter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::search\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_search_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for StringFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StringFilter")
+        f.write_str("StringFilter")
     }
 }

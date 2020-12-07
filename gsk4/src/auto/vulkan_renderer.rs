@@ -30,6 +30,6 @@ impl Default for VulkanRenderer {
 
 impl fmt::Display for VulkanRenderer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "VulkanRenderer")
+        f.write_str("VulkanRenderer")
     }
 }

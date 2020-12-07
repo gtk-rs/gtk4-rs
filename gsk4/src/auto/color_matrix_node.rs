@@ -54,6 +54,6 @@ impl ColorMatrixNode {
 
 impl fmt::Display for ColorMatrixNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ColorMatrixNode")
+        f.write_str("ColorMatrixNode")
     }
 }

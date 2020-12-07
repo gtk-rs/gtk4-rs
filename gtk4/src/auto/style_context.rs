@@ -323,6 +323,6 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
 impl fmt::Display for StyleContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StyleContext")
+        f.write_str("StyleContext")
     }
 }

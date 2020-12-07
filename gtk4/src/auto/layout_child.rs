@@ -44,6 +44,6 @@ impl<O: IsA<LayoutChild>> LayoutChildExt for O {
 
 impl fmt::Display for LayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "LayoutChild")
+        f.write_str("LayoutChild")
     }
 }

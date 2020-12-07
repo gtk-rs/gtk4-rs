@@ -265,6 +265,6 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
 
 impl fmt::Display for GestureSingle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GestureSingle")
+        f.write_str("GestureSingle")
     }
 }

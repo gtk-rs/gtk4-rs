@@ -19,7 +19,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -650,7 +649,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_allow_async(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"allow-async\0".as_ptr() as *const _,
@@ -665,7 +664,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_current_page(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"current-page\0".as_ptr() as *const _,
@@ -680,7 +679,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_custom_tab_label(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"custom-tab-label\0".as_ptr() as *const _,
@@ -694,7 +693,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_export_filename(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"export-filename\0".as_ptr() as *const _,
@@ -708,7 +707,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_job_name(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"job-name\0".as_ptr() as *const _,
@@ -722,7 +721,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_n_pages(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"n-pages\0".as_ptr() as *const _,
@@ -737,7 +736,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_show_progress(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"show-progress\0".as_ptr() as *const _,
@@ -752,7 +751,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_track_print_status(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"track-print-status\0".as_ptr() as *const _,
@@ -767,7 +766,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_unit(&self) -> Unit {
         unsafe {
-            let mut value = Value::from_type(<Unit as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<Unit as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"unit\0".as_ptr() as *const _,
@@ -782,7 +781,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     fn get_property_use_full_page(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"use-full-page\0".as_ptr() as *const _,
@@ -1614,6 +1613,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
 impl fmt::Display for PrintOperation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintOperation")
+        f.write_str("PrintOperation")
     }
 }

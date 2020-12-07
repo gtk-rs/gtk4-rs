@@ -325,6 +325,6 @@ impl DragSourceBuilder {
 
 impl fmt::Display for DragSource {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DragSource")
+        f.write_str("DragSource")
     }
 }

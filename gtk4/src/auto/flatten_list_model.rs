@@ -4,6 +4,7 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -28,6 +29,53 @@ impl FlattenListModel {
             from_glib_full(ffi::gtk_flatten_list_model_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
+        }
+    }
+
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_flatten_list_model_get_model(self.to_glib_none().0)) }
+    }
+
+    pub fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
+                self.to_glib_none().0,
+                position,
+            ))
+        }
+    }
+
+    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            ffi::gtk_flatten_list_model_set_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_model_notify<F: Fn(&FlattenListModel) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&FlattenListModel) + 'static>(
+            this: *mut ffi::GtkFlattenListModel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -60,72 +108,8 @@ impl FlattenListModelBuilder {
     }
 }
 
-pub const NONE_FLATTEN_LIST_MODEL: Option<&FlattenListModel> = None;
-
-pub trait FlattenListModelExt: 'static {
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel>;
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<FlattenListModel>> FlattenListModelExt for O {
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_flatten_list_model_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
-                self.as_ref().to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
-        unsafe {
-            ffi::gtk_flatten_list_model_set_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkFlattenListModel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FlattenListModel>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&FlattenListModel::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_model_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for FlattenListModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FlattenListModel")
+        f.write_str("FlattenListModel")
     }
 }

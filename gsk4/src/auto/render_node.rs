@@ -92,6 +92,6 @@ impl<O: IsA<RenderNode>> RenderNodeExt for O {
 
 impl fmt::Display for RenderNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "RenderNode")
+        f.write_str("RenderNode")
     }
 }

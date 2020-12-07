@@ -28,10 +28,8 @@ impl Default for OverlayLayout {
     }
 }
 
-pub const NONE_OVERLAY_LAYOUT: Option<&OverlayLayout> = None;
-
 impl fmt::Display for OverlayLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "OverlayLayout")
+        f.write_str("OverlayLayout")
     }
 }

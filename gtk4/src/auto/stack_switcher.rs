@@ -379,6 +379,6 @@ impl StackSwitcherBuilder {
 
 impl fmt::Display for StackSwitcher {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "StackSwitcher")
+        f.write_str("StackSwitcher")
     }
 }

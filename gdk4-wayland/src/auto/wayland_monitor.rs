@@ -17,6 +17,6 @@ impl WaylandMonitor {}
 
 impl fmt::Display for WaylandMonitor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandMonitor")
+        f.write_str("WaylandMonitor")
     }
 }

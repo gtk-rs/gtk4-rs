@@ -971,6 +971,6 @@ impl SpinButtonBuilder {
 
 impl fmt::Display for SpinButton {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SpinButton")
+        f.write_str("SpinButton")
     }
 }

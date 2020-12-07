@@ -547,6 +547,6 @@ impl FileChooserDialogBuilder {
 
 impl fmt::Display for FileChooserDialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FileChooserDialog")
+        f.write_str("FileChooserDialog")
     }
 }

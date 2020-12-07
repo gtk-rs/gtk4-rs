@@ -179,6 +179,6 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
 
 impl fmt::Display for GestureDrag {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GestureDrag")
+        f.write_str("GestureDrag")
     }
 }

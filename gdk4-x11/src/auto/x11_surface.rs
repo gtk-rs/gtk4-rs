@@ -112,6 +112,6 @@ impl X11Surface {
 
 impl fmt::Display for X11Surface {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11Surface")
+        f.write_str("X11Surface")
     }
 }

@@ -405,6 +405,6 @@ impl Default for Snapshot {
 
 impl fmt::Display for Snapshot {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Snapshot")
+        f.write_str("Snapshot")
     }
 }

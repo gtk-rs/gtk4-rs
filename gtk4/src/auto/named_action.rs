@@ -58,6 +58,6 @@ impl NamedActionBuilder {
 
 impl fmt::Display for NamedAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NamedAction")
+        f.write_str("NamedAction")
     }
 }

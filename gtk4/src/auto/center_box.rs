@@ -433,6 +433,6 @@ impl CenterBoxBuilder {
 
 impl fmt::Display for CenterBox {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CenterBox")
+        f.write_str("CenterBox")
     }
 }

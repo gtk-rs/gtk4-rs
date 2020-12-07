@@ -22,6 +22,6 @@ impl<O: IsA<ShortcutManager>> ShortcutManagerExt for O {}
 
 impl fmt::Display for ShortcutManager {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutManager")
+        f.write_str("ShortcutManager")
     }
 }

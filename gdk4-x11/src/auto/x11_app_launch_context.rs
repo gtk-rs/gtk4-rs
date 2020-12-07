@@ -17,6 +17,6 @@ impl X11AppLaunchContext {}
 
 impl fmt::Display for X11AppLaunchContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11AppLaunchContext")
+        f.write_str("X11AppLaunchContext")
     }
 }

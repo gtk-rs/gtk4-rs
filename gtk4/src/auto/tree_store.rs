@@ -237,6 +237,6 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
 
 impl fmt::Display for TreeStore {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeStore")
+        f.write_str("TreeStore")
     }
 }

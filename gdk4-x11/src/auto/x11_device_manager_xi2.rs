@@ -8,7 +8,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::fmt;
 
 glib::glib_wrapper! {
@@ -22,7 +21,7 @@ glib::glib_wrapper! {
 impl X11DeviceManagerXI2 {
     pub fn get_property_display(&self) -> Option<gdk::Display> {
         unsafe {
-            let mut value = Value::from_type(<gdk::Display as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
@@ -36,7 +35,7 @@ impl X11DeviceManagerXI2 {
 
     pub fn get_property_major(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"major\0".as_ptr() as *const _,
@@ -51,7 +50,7 @@ impl X11DeviceManagerXI2 {
 
     pub fn get_property_minor(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"minor\0".as_ptr() as *const _,
@@ -66,7 +65,7 @@ impl X11DeviceManagerXI2 {
 
     pub fn get_property_opcode(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"opcode\0".as_ptr() as *const _,
@@ -137,6 +136,6 @@ impl X11DeviceManagerXI2Builder {
 
 impl fmt::Display for X11DeviceManagerXI2 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "X11DeviceManagerXI2")
+        f.write_str("X11DeviceManagerXI2")
     }
 }

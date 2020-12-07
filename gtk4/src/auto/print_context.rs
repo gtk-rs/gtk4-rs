@@ -107,6 +107,6 @@ impl PrintContext {
 
 impl fmt::Display for PrintContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PrintContext")
+        f.write_str("PrintContext")
     }
 }

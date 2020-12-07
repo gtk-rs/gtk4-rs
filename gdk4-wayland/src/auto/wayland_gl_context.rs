@@ -17,6 +17,6 @@ impl WaylandGLContext {}
 
 impl fmt::Display for WaylandGLContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandGLContext")
+        f.write_str("WaylandGLContext")
     }
 }

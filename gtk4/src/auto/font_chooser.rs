@@ -488,6 +488,6 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
 
 impl fmt::Display for FontChooser {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "FontChooser")
+        f.write_str("FontChooser")
     }
 }

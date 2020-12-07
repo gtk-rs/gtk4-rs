@@ -393,6 +393,6 @@ impl ScrollbarBuilder {
 
 impl fmt::Display for Scrollbar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Scrollbar")
+        f.write_str("Scrollbar")
     }
 }

@@ -20,7 +20,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -180,7 +179,7 @@ impl Image {
 
     pub fn get_property_file(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"file\0".as_ptr() as *const _,
@@ -197,7 +196,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"file\0".as_ptr() as *const _,
-                Value::from(file).to_glib_none().0,
+                glib::Value::from(file).to_glib_none().0,
             );
         }
     }
@@ -207,7 +206,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gicon\0".as_ptr() as *const _,
-                Value::from(gicon).to_glib_none().0,
+                glib::Value::from(gicon).to_glib_none().0,
             );
         }
     }
@@ -217,7 +216,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-name\0".as_ptr() as *const _,
-                Value::from(icon_name).to_glib_none().0,
+                glib::Value::from(icon_name).to_glib_none().0,
             );
         }
     }
@@ -227,14 +226,14 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"paintable\0".as_ptr() as *const _,
-                Value::from(paintable).to_glib_none().0,
+                glib::Value::from(paintable).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_resource(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"resource\0".as_ptr() as *const _,
@@ -251,14 +250,14 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"resource\0".as_ptr() as *const _,
-                Value::from(resource).to_glib_none().0,
+                glib::Value::from(resource).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_use_fallback(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-fallback\0".as_ptr() as *const _,
@@ -276,7 +275,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-fallback\0".as_ptr() as *const _,
-                Value::from(&use_fallback).to_glib_none().0,
+                glib::Value::from(&use_fallback).to_glib_none().0,
             );
         }
     }
@@ -870,6 +869,6 @@ impl ImageBuilder {
 
 impl fmt::Display for Image {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Image")
+        f.write_str("Image")
     }
 }

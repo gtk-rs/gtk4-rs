@@ -53,6 +53,6 @@ impl PadEvent {
 
 impl fmt::Display for PadEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PadEvent")
+        f.write_str("PadEvent")
     }
 }

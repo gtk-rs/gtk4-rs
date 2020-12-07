@@ -32,6 +32,6 @@ impl ColorNode {
 
 impl fmt::Display for ColorNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ColorNode")
+        f.write_str("ColorNode")
     }
 }

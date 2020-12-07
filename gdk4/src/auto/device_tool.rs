@@ -93,6 +93,6 @@ impl DeviceToolBuilder {
 
 impl fmt::Display for DeviceTool {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DeviceTool")
+        f.write_str("DeviceTool")
     }
 }

@@ -10,7 +10,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -224,7 +223,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     fn get_property_minimum_height(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"minimum-height\0".as_ptr() as *const _,
@@ -239,7 +238,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     fn get_property_minimum_width(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"minimum-width\0".as_ptr() as *const _,
@@ -254,7 +253,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     fn get_property_natural_height(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"natural-height\0".as_ptr() as *const _,
@@ -269,7 +268,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     fn get_property_natural_width(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"natural-width\0".as_ptr() as *const _,
@@ -393,6 +392,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
 impl fmt::Display for CellAreaContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "CellAreaContext")
+        f.write_str("CellAreaContext")
     }
 }

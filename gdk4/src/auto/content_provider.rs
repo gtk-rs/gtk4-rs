@@ -9,7 +9,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -218,7 +217,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn get_property_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"formats\0".as_ptr() as *const _,
@@ -232,7 +231,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     fn get_property_storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
-            let mut value = Value::from_type(<ContentFormats as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"storable-formats\0".as_ptr() as *const _,
@@ -321,6 +320,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
 impl fmt::Display for ContentProvider {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ContentProvider")
+        f.write_str("ContentProvider")
     }
 }

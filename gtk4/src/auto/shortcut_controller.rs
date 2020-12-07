@@ -16,7 +16,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -45,11 +44,11 @@ impl ShortcutController {
         }
     }
 
-    pub fn add_shortcut<P: IsA<Shortcut>>(&self, shortcut: &P) {
+    pub fn add_shortcut(&self, shortcut: &Shortcut) {
         unsafe {
             ffi::gtk_shortcut_controller_add_shortcut(
                 self.to_glib_none().0,
-                shortcut.as_ref().to_glib_full(),
+                shortcut.to_glib_full(),
             );
         }
     }
@@ -70,11 +69,11 @@ impl ShortcutController {
         }
     }
 
-    pub fn remove_shortcut<P: IsA<Shortcut>>(&self, shortcut: &P) {
+    pub fn remove_shortcut(&self, shortcut: &Shortcut) {
         unsafe {
             ffi::gtk_shortcut_controller_remove_shortcut(
                 self.to_glib_none().0,
-                shortcut.as_ref().to_glib_none().0,
+                shortcut.to_glib_none().0,
             );
         }
     }
@@ -96,7 +95,8 @@ impl ShortcutController {
 
     pub fn get_property_mnemonic_modifiers(&self) -> gdk::ModifierType {
         unsafe {
-            let mut value = Value::from_type(<gdk::ModifierType as StaticType>::static_type());
+            let mut value =
+                glib::Value::from_type(<gdk::ModifierType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"mnemonic-modifiers\0".as_ptr() as *const _,
@@ -114,7 +114,7 @@ impl ShortcutController {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"mnemonic-modifiers\0".as_ptr() as *const _,
-                Value::from(&mnemonic_modifiers).to_glib_none().0,
+                glib::Value::from(&mnemonic_modifiers).to_glib_none().0,
             );
         }
     }
@@ -253,6 +253,6 @@ impl ShortcutControllerBuilder {
 
 impl fmt::Display for ShortcutController {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutController")
+        f.write_str("ShortcutController")
     }
 }

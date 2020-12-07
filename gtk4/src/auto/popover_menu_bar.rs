@@ -403,6 +403,6 @@ impl PopoverMenuBarBuilder {
 
 impl fmt::Display for PopoverMenuBar {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PopoverMenuBar")
+        f.write_str("PopoverMenuBar")
     }
 }

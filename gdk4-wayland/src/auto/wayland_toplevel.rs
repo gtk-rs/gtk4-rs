@@ -73,6 +73,6 @@ impl WaylandToplevel {
 
 impl fmt::Display for WaylandToplevel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandToplevel")
+        f.write_str("WaylandToplevel")
     }
 }

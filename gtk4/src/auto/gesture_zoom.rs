@@ -65,6 +65,6 @@ impl Default for GestureZoom {
 
 impl fmt::Display for GestureZoom {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GestureZoom")
+        f.write_str("GestureZoom")
     }
 }

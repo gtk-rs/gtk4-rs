@@ -29,6 +29,6 @@ impl GLTexture {
 
 impl fmt::Display for GLTexture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GLTexture")
+        f.write_str("GLTexture")
     }
 }

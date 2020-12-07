@@ -90,6 +90,6 @@ impl<O: IsA<Sorter>> SorterExt for O {
 
 impl fmt::Display for Sorter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Sorter")
+        f.write_str("Sorter")
     }
 }

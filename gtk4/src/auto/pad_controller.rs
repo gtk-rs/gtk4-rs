@@ -12,7 +12,6 @@ use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::fmt;
 
 glib::glib_wrapper! {
@@ -56,7 +55,7 @@ impl PadController {
 
     pub fn get_property_action_group(&self) -> Option<gio::ActionGroup> {
         unsafe {
-            let mut value = Value::from_type(<gio::ActionGroup as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gio::ActionGroup as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"action-group\0".as_ptr() as *const _,
@@ -70,7 +69,7 @@ impl PadController {
 
     pub fn get_property_pad(&self) -> Option<gdk::Device> {
         unsafe {
-            let mut value = Value::from_type(<gdk::Device as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gdk::Device as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pad\0".as_ptr() as *const _,
@@ -147,6 +146,6 @@ impl PadControllerBuilder {
 
 impl fmt::Display for PadController {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PadController")
+        f.write_str("PadController")
     }
 }

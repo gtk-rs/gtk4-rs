@@ -38,6 +38,6 @@ impl TransformNode {
 
 impl fmt::Display for TransformNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TransformNode")
+        f.write_str("TransformNode")
     }
 }

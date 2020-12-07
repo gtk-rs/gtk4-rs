@@ -414,6 +414,6 @@ impl<O: IsA<Fixed>> FixedExt for O {
 
 impl fmt::Display for Fixed {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fixed")
+        f.write_str("Fixed")
     }
 }

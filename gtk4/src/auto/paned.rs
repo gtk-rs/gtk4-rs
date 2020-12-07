@@ -22,7 +22,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -123,7 +122,7 @@ impl Paned {
 
     pub fn get_property_max_position(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-position\0".as_ptr() as *const _,
@@ -138,7 +137,7 @@ impl Paned {
 
     pub fn get_property_min_position(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"min-position\0".as_ptr() as *const _,
@@ -153,7 +152,7 @@ impl Paned {
 
     pub fn get_property_position_set(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position-set\0".as_ptr() as *const _,
@@ -171,7 +170,7 @@ impl Paned {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position-set\0".as_ptr() as *const _,
-                Value::from(&position_set).to_glib_none().0,
+                glib::Value::from(&position_set).to_glib_none().0,
             );
         }
     }
@@ -1054,6 +1053,6 @@ impl PanedBuilder {
 
 impl fmt::Display for Paned {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Paned")
+        f.write_str("Paned")
     }
 }

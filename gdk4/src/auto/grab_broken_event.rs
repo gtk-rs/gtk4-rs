@@ -35,6 +35,6 @@ impl GrabBrokenEvent {
 
 impl fmt::Display for GrabBrokenEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "GrabBrokenEvent")
+        f.write_str("GrabBrokenEvent")
     }
 }

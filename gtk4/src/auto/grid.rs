@@ -792,6 +792,6 @@ impl<O: IsA<Grid>> GridExt for O {
 
 impl fmt::Display for Grid {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Grid")
+        f.write_str("Grid")
     }
 }

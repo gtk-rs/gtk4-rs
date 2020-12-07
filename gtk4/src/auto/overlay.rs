@@ -438,6 +438,6 @@ impl OverlayBuilder {
 
 impl fmt::Display for Overlay {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Overlay")
+        f.write_str("Overlay")
     }
 }

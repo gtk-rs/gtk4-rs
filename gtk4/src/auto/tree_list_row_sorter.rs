@@ -5,6 +5,7 @@
 use crate::Sorter;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -29,6 +30,48 @@ impl TreeListRowSorter {
             from_glib_full(ffi::gtk_tree_list_row_sorter_new(
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
+        }
+    }
+
+    pub fn get_sorter(&self) -> Option<Sorter> {
+        unsafe {
+            from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
+        unsafe {
+            ffi::gtk_tree_list_row_sorter_set_sorter(
+                self.to_glib_none().0,
+                sorter.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_sorter_notify<F: Fn(&TreeListRowSorter) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&TreeListRowSorter) + 'static>(
+            this: *mut ffi::GtkTreeListRowSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sorter\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sorter_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -61,61 +104,8 @@ impl TreeListRowSorterBuilder {
     }
 }
 
-pub const NONE_TREE_LIST_ROW_SORTER: Option<&TreeListRowSorter> = None;
-
-pub trait TreeListRowSorterExt: 'static {
-    fn get_sorter(&self) -> Option<Sorter>;
-
-    fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>);
-
-    fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TreeListRowSorter>> TreeListRowSorterExt for O {
-    fn get_sorter(&self) -> Option<Sorter> {
-        unsafe {
-            from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
-        unsafe {
-            ffi::gtk_tree_list_row_sorter_set_sorter(
-                self.as_ref().to_glib_none().0,
-                sorter.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_sorter_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkTreeListRowSorter,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TreeListRowSorter>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&TreeListRowSorter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::sorter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_sorter_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for TreeListRowSorter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeListRowSorter")
+        f.write_str("TreeListRowSorter")
     }
 }

@@ -1315,6 +1315,6 @@ impl LabelBuilder {
 
 impl fmt::Display for Label {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Label")
+        f.write_str("Label")
     }
 }

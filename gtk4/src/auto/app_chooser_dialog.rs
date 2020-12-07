@@ -26,7 +26,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -99,7 +98,7 @@ impl AppChooserDialog {
 
     pub fn get_property_gfile(&self) -> Option<gio::File> {
         unsafe {
-            let mut value = Value::from_type(<gio::File as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<gio::File as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gfile\0".as_ptr() as *const _,
@@ -635,6 +634,6 @@ impl AppChooserDialogBuilder {
 
 impl fmt::Display for AppChooserDialog {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AppChooserDialog")
+        f.write_str("AppChooserDialog")
     }
 }

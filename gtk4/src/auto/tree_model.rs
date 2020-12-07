@@ -482,6 +482,6 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
 
 impl fmt::Display for TreeModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "TreeModel")
+        f.write_str("TreeModel")
     }
 }

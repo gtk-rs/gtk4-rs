@@ -31,6 +31,6 @@ impl Default for AnyFilter {
 
 impl fmt::Display for AnyFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "AnyFilter")
+        f.write_str("AnyFilter")
     }
 }

@@ -73,6 +73,6 @@ impl Tooltip {
 
 impl fmt::Display for Tooltip {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Tooltip")
+        f.write_str("Tooltip")
     }
 }

@@ -144,6 +144,6 @@ impl Default for SignalListItemFactory {
 
 impl fmt::Display for SignalListItemFactory {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "SignalListItemFactory")
+        f.write_str("SignalListItemFactory")
     }
 }

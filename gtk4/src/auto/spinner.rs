@@ -390,6 +390,6 @@ impl SpinnerBuilder {
 
 impl fmt::Display for Spinner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Spinner")
+        f.write_str("Spinner")
     }
 }

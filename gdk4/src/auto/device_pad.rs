@@ -56,6 +56,6 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
 
 impl fmt::Display for DevicePad {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "DevicePad")
+        f.write_str("DevicePad")
     }
 }

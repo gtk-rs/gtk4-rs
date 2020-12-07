@@ -5,6 +5,7 @@
 use crate::SelectionModel;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -29,6 +30,44 @@ impl NoSelection {
             from_glib_full(ffi::gtk_no_selection_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
+        }
+    }
+
+    pub fn get_model(&self) -> Option<gio::ListModel> {
+        unsafe { from_glib_none(ffi::gtk_no_selection_get_model(self.to_glib_none().0)) }
+    }
+
+    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+        unsafe {
+            ffi::gtk_no_selection_set_model(
+                self.to_glib_none().0,
+                model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn connect_property_model_notify<F: Fn(&NoSelection) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_model_trampoline<F: Fn(&NoSelection) + 'static>(
+            this: *mut ffi::GtkNoSelection,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::model\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_model_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -61,61 +100,8 @@ impl NoSelectionBuilder {
     }
 }
 
-pub const NONE_NO_SELECTION: Option<&NoSelection> = None;
-
-pub trait NoSelectionExt: 'static {
-    fn get_model(&self) -> Option<gio::ListModel>;
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>);
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<NoSelection>> NoSelectionExt for O {
-    fn get_model(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_no_selection_get_model(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
-        unsafe {
-            ffi::gtk_no_selection_set_model(
-                self.as_ref().to_glib_none().0,
-                model.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkNoSelection,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<NoSelection>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&NoSelection::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_model_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for NoSelection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "NoSelection")
+        f.write_str("NoSelection")
     }
 }

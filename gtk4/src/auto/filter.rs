@@ -87,6 +87,6 @@ impl<O: IsA<Filter>> FilterExt for O {
 
 impl fmt::Display for Filter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Filter")
+        f.write_str("Filter")
     }
 }

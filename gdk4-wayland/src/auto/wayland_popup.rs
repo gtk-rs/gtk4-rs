@@ -18,6 +18,6 @@ impl WaylandPopup {}
 
 impl fmt::Display for WaylandPopup {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandPopup")
+        f.write_str("WaylandPopup")
     }
 }

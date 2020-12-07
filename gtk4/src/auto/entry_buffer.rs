@@ -9,7 +9,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -107,7 +106,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
     fn get_property_length(&self) -> u32 {
         unsafe {
-            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"length\0".as_ptr() as *const _,
@@ -122,7 +121,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
     fn get_property_max_length(&self) -> i32 {
         unsafe {
-            let mut value = Value::from_type(<i32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"max-length\0".as_ptr() as *const _,
@@ -140,14 +139,14 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"max-length\0".as_ptr() as *const _,
-                Value::from(&max_length).to_glib_none().0,
+                glib::Value::from(&max_length).to_glib_none().0,
             );
         }
     }
 
     fn get_property_text(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
@@ -164,7 +163,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
-                Value::from(text).to_glib_none().0,
+                glib::Value::from(text).to_glib_none().0,
             );
         }
     }
@@ -244,6 +243,6 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
 impl fmt::Display for EntryBuffer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EntryBuffer")
+        f.write_str("EntryBuffer")
     }
 }

@@ -24,7 +24,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -275,7 +274,7 @@ impl Notebook {
 
     pub fn get_property_enable_popup(&self) -> bool {
         unsafe {
-            let mut value = Value::from_type(<bool as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"enable-popup\0".as_ptr() as *const _,
@@ -293,7 +292,7 @@ impl Notebook {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"enable-popup\0".as_ptr() as *const _,
-                Value::from(&enable_popup).to_glib_none().0,
+                glib::Value::from(&enable_popup).to_glib_none().0,
             );
         }
     }
@@ -303,7 +302,7 @@ impl Notebook {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"page\0".as_ptr() as *const _,
-                Value::from(&page).to_glib_none().0,
+                glib::Value::from(&page).to_glib_none().0,
             );
         }
     }
@@ -1192,6 +1191,6 @@ impl NotebookBuilder {
 
 impl fmt::Display for Notebook {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Notebook")
+        f.write_str("Notebook")
     }
 }

@@ -11,7 +11,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -231,7 +230,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     fn get_property_input_hints(&self) -> InputHints {
         unsafe {
-            let mut value = Value::from_type(<InputHints as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<InputHints as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"input-hints\0".as_ptr() as *const _,
@@ -249,14 +248,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"input-hints\0".as_ptr() as *const _,
-                Value::from(&input_hints).to_glib_none().0,
+                glib::Value::from(&input_hints).to_glib_none().0,
             );
         }
     }
 
     fn get_property_input_purpose(&self) -> InputPurpose {
         unsafe {
-            let mut value = Value::from_type(<InputPurpose as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<InputPurpose as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"input-purpose\0".as_ptr() as *const _,
@@ -274,7 +273,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"input-purpose\0".as_ptr() as *const _,
-                Value::from(&input_purpose).to_glib_none().0,
+                glib::Value::from(&input_purpose).to_glib_none().0,
             );
         }
     }
@@ -493,6 +492,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
 impl fmt::Display for IMContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IMContext")
+        f.write_str("IMContext")
     }
 }

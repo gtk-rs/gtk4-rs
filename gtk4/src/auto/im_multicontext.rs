@@ -58,6 +58,6 @@ impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
 
 impl fmt::Display for IMMulticontext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "IMMulticontext")
+        f.write_str("IMMulticontext")
     }
 }

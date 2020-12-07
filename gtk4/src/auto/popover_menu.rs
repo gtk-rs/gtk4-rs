@@ -23,7 +23,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -95,7 +94,7 @@ impl PopoverMenu {
 
     pub fn get_property_visible_submenu(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"visible-submenu\0".as_ptr() as *const _,
@@ -112,7 +111,7 @@ impl PopoverMenu {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"visible-submenu\0".as_ptr() as *const _,
-                Value::from(visible_submenu).to_glib_none().0,
+                glib::Value::from(visible_submenu).to_glib_none().0,
             );
         }
     }
@@ -549,6 +548,6 @@ impl PopoverMenuBuilder {
 
 impl fmt::Display for PopoverMenu {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "PopoverMenu")
+        f.write_str("PopoverMenu")
     }
 }

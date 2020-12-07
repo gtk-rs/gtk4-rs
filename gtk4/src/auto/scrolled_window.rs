@@ -25,7 +25,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -280,7 +279,7 @@ impl ScrolledWindow {
 
     pub fn get_property_hscrollbar_policy(&self) -> PolicyType {
         unsafe {
-            let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"hscrollbar-policy\0".as_ptr() as *const _,
@@ -298,14 +297,14 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"hscrollbar-policy\0".as_ptr() as *const _,
-                Value::from(&hscrollbar_policy).to_glib_none().0,
+                glib::Value::from(&hscrollbar_policy).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_vscrollbar_policy(&self) -> PolicyType {
         unsafe {
-            let mut value = Value::from_type(<PolicyType as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"vscrollbar-policy\0".as_ptr() as *const _,
@@ -323,14 +322,14 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"vscrollbar-policy\0".as_ptr() as *const _,
-                Value::from(&vscrollbar_policy).to_glib_none().0,
+                glib::Value::from(&vscrollbar_policy).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_window_placement(&self) -> CornerType {
         unsafe {
-            let mut value = Value::from_type(<CornerType as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<CornerType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"window-placement\0".as_ptr() as *const _,
@@ -348,7 +347,7 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"window-placement\0".as_ptr() as *const _,
-                Value::from(&window_placement).to_glib_none().0,
+                glib::Value::from(&window_placement).to_glib_none().0,
             );
         }
     }
@@ -1317,6 +1316,6 @@ impl ScrolledWindowBuilder {
 
 impl fmt::Display for ScrolledWindow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ScrolledWindow")
+        f.write_str("ScrolledWindow")
     }
 }

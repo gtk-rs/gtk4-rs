@@ -247,6 +247,6 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
 
 impl fmt::Display for Scrollable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Scrollable")
+        f.write_str("Scrollable")
     }
 }

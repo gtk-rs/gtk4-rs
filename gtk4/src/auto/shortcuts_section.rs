@@ -22,7 +22,6 @@ use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use glib::Value;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -38,7 +37,7 @@ glib::glib_wrapper! {
 impl ShortcutsSection {
     pub fn get_property_max_height(&self) -> u32 {
         unsafe {
-            let mut value = Value::from_type(<u32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-height\0".as_ptr() as *const _,
@@ -56,14 +55,14 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-height\0".as_ptr() as *const _,
-                Value::from(&max_height).to_glib_none().0,
+                glib::Value::from(&max_height).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_section_name(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"section-name\0".as_ptr() as *const _,
@@ -80,14 +79,14 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"section-name\0".as_ptr() as *const _,
-                Value::from(section_name).to_glib_none().0,
+                glib::Value::from(section_name).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_title(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
@@ -104,14 +103,14 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
-                Value::from(title).to_glib_none().0,
+                glib::Value::from(title).to_glib_none().0,
             );
         }
     }
 
     pub fn get_property_view_name(&self) -> Option<glib::GString> {
         unsafe {
-            let mut value = Value::from_type(<glib::GString as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"view-name\0".as_ptr() as *const _,
@@ -128,7 +127,7 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"view-name\0".as_ptr() as *const _,
-                Value::from(view_name).to_glib_none().0,
+                glib::Value::from(view_name).to_glib_none().0,
             );
         }
     }
@@ -597,6 +596,6 @@ impl ShortcutsSectionBuilder {
 
 impl fmt::Display for ShortcutsSection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ShortcutsSection")
+        f.write_str("ShortcutsSection")
     }
 }

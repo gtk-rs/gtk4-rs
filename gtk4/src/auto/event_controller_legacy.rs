@@ -64,6 +64,6 @@ impl Default for EventControllerLegacy {
 
 impl fmt::Display for EventControllerLegacy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "EventControllerLegacy")
+        f.write_str("EventControllerLegacy")
     }
 }

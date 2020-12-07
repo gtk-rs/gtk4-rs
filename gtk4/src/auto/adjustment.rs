@@ -473,6 +473,6 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
 impl fmt::Display for Adjustment {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Adjustment")
+        f.write_str("Adjustment")
     }
 }

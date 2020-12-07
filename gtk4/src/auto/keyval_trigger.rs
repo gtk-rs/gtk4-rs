@@ -77,6 +77,6 @@ impl KeyvalTriggerBuilder {
 
 impl fmt::Display for KeyvalTrigger {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "KeyvalTrigger")
+        f.write_str("KeyvalTrigger")
     }
 }

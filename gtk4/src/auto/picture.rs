@@ -12,6 +12,7 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -80,6 +81,212 @@ impl Picture {
                 resource_path.to_glib_none().0,
             ))
             .unsafe_cast()
+        }
+    }
+
+    pub fn get_alternative_text(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_picture_get_alternative_text(self.to_glib_none().0)) }
+    }
+
+    pub fn get_can_shrink(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
+    }
+
+    pub fn get_file(&self) -> Option<gio::File> {
+        unsafe { from_glib_none(ffi::gtk_picture_get_file(self.to_glib_none().0)) }
+    }
+
+    pub fn get_keep_aspect_ratio(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    pub fn get_paintable(&self) -> Option<gdk::Paintable> {
+        unsafe { from_glib_none(ffi::gtk_picture_get_paintable(self.to_glib_none().0)) }
+    }
+
+    pub fn set_alternative_text(&self, alternative_text: Option<&str>) {
+        unsafe {
+            ffi::gtk_picture_set_alternative_text(
+                self.to_glib_none().0,
+                alternative_text.to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::gtk_picture_set_can_shrink(self.to_glib_none().0, can_shrink.to_glib());
+        }
+    }
+
+    pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+        unsafe {
+            ffi::gtk_picture_set_file(
+                self.to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_filename(&self, filename: Option<&str>) {
+        unsafe {
+            ffi::gtk_picture_set_filename(self.to_glib_none().0, filename.to_glib_none().0);
+        }
+    }
+
+    pub fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
+        unsafe {
+            ffi::gtk_picture_set_keep_aspect_ratio(
+                self.to_glib_none().0,
+                keep_aspect_ratio.to_glib(),
+            );
+        }
+    }
+
+    pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+        unsafe {
+            ffi::gtk_picture_set_paintable(
+                self.to_glib_none().0,
+                paintable.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
+        unsafe {
+            ffi::gtk_picture_set_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
+        }
+    }
+
+    pub fn set_resource(&self, resource_path: Option<&str>) {
+        unsafe {
+            ffi::gtk_picture_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
+        }
+    }
+
+    pub fn connect_property_alternative_text_notify<F: Fn(&Picture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_alternative_text_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::alternative-text\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_alternative_text_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_can_shrink_notify<F: Fn(&Picture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_shrink_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_file_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_file_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::file\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_keep_aspect_ratio_notify<F: Fn(&Picture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_keep_aspect_ratio_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::keep-aspect-ratio\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_keep_aspect_ratio_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    pub fn connect_property_paintable_notify<F: Fn(&Picture) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&Picture) + 'static>(
+            this: *mut ffi::GtkPicture,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::paintable\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_paintable_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }
@@ -424,284 +631,8 @@ impl PictureBuilder {
     }
 }
 
-pub const NONE_PICTURE: Option<&Picture> = None;
-
-pub trait PictureExt: 'static {
-    fn get_alternative_text(&self) -> Option<glib::GString>;
-
-    fn get_can_shrink(&self) -> bool;
-
-    fn get_file(&self) -> Option<gio::File>;
-
-    fn get_keep_aspect_ratio(&self) -> bool;
-
-    fn get_paintable(&self) -> Option<gdk::Paintable>;
-
-    fn set_alternative_text(&self, alternative_text: Option<&str>);
-
-    fn set_can_shrink(&self, can_shrink: bool);
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
-
-    fn set_filename(&self, filename: Option<&str>);
-
-    fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool);
-
-    fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>);
-
-    fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>);
-
-    fn set_resource(&self, resource_path: Option<&str>);
-
-    fn connect_property_alternative_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_keep_aspect_ratio_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Picture>> PictureExt for O {
-    fn get_alternative_text(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gtk_picture_get_alternative_text(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_can_shrink(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_picture_get_can_shrink(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_file(&self) -> Option<gio::File> {
-        unsafe { from_glib_none(ffi::gtk_picture_get_file(self.as_ref().to_glib_none().0)) }
-    }
-
-    fn get_keep_aspect_ratio(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn get_paintable(&self) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_none(ffi::gtk_picture_get_paintable(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn set_alternative_text(&self, alternative_text: Option<&str>) {
-        unsafe {
-            ffi::gtk_picture_set_alternative_text(
-                self.as_ref().to_glib_none().0,
-                alternative_text.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_can_shrink(&self, can_shrink: bool) {
-        unsafe {
-            ffi::gtk_picture_set_can_shrink(self.as_ref().to_glib_none().0, can_shrink.to_glib());
-        }
-    }
-
-    fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
-        unsafe {
-            ffi::gtk_picture_set_file(
-                self.as_ref().to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_filename(&self, filename: Option<&str>) {
-        unsafe {
-            ffi::gtk_picture_set_filename(
-                self.as_ref().to_glib_none().0,
-                filename.to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
-        unsafe {
-            ffi::gtk_picture_set_keep_aspect_ratio(
-                self.as_ref().to_glib_none().0,
-                keep_aspect_ratio.to_glib(),
-            );
-        }
-    }
-
-    fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
-        unsafe {
-            ffi::gtk_picture_set_paintable(
-                self.as_ref().to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        unsafe {
-            ffi::gtk_picture_set_pixbuf(self.as_ref().to_glib_none().0, pixbuf.to_glib_none().0);
-        }
-    }
-
-    fn set_resource(&self, resource_path: Option<&str>) {
-        unsafe {
-            ffi::gtk_picture_set_resource(
-                self.as_ref().to_glib_none().0,
-                resource_path.to_glib_none().0,
-            );
-        }
-    }
-
-    fn connect_property_alternative_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_alternative_text_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkPicture,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Picture>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Picture::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::alternative-text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_alternative_text_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_can_shrink_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkPicture,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Picture>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Picture::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::can-shrink\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_can_shrink_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_file_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkPicture,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Picture>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Picture::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_file_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_keep_aspect_ratio_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_keep_aspect_ratio_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkPicture,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Picture>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Picture::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::keep-aspect-ratio\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_keep_aspect_ratio_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_paintable_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkPicture,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Picture>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Picture::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::paintable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_paintable_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-}
-
 impl fmt::Display for Picture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Picture")
+        f.write_str("Picture")
     }
 }

@@ -19,6 +19,6 @@ pub const NONE_WAYLAND_SURFACE: Option<&WaylandSurface> = None;
 
 impl fmt::Display for WaylandSurface {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "WaylandSurface")
+        f.write_str("WaylandSurface")
     }
 }

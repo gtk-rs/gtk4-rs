@@ -787,6 +787,6 @@ impl ColumnViewBuilder {
 
 impl fmt::Display for ColumnView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "ColumnView")
+        f.write_str("ColumnView")
     }
 }
