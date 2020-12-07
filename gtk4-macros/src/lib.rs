@@ -1,3 +1,4 @@
+mod attribute_parser;
 mod composite_template_derive;
 mod util;
 
