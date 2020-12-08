@@ -18,7 +18,7 @@ fn current_time() -> String {
 fn build_ui(application: &Application) {
     let window = ApplicationWindow::new(application);
 
-    window.set_title("Clock Example");
+    window.set_title(Some("Clock Example"));
     window.set_default_size(260, 40);
 
     let time = current_time();

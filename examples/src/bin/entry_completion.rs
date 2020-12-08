@@ -48,7 +48,7 @@ fn create_list_model() -> ListStore {
 fn build_ui(application: &Application) {
     // create the main window
     let window = ApplicationWindow::new(application);
-    window.set_title("Entry with autocompletion");
+    window.set_title(Some("Entry with autocompletion"));
     window.set_default_size(840, 480);
 
     // Create a title label

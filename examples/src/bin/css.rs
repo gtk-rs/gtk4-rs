@@ -44,7 +44,7 @@ combobox box arrow {
 fn build_ui(application: &Application) {
     let window = ApplicationWindow::new(application);
 
-    window.set_title("CSS");
+    window.set_title(Some("CSS"));
 
     // The container container.
     let vbox = Box_::new(Orientation::Vertical, 0);
