@@ -9,6 +9,7 @@ use crate::EventType;
 use crate::ModifierType;
 use crate::Seat;
 use crate::Surface;
+use crate::TimeCoord;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
@@ -37,8 +38,8 @@ pub trait EventExt: 'static {
     #[doc(alias = "gdk_event_get_event_type")]
     fn get_event_type(&self) -> EventType;
 
-    //#[doc(alias = "gdk_event_get_history")]
-    //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord>;
+    #[doc(alias = "gdk_event_get_history")]
+    fn get_history(&self) -> Vec<TimeCoord>;
 
     #[doc(alias = "gdk_event_get_modifier_state")]
     fn get_modifier_state(&self) -> ModifierType;
@@ -96,9 +97,19 @@ impl<O: IsA<Event>> EventExt for O {
         }
     }
 
-    //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord> {
-    //    unsafe { TODO: call ffi:gdk_event_get_history() }
-    //}
+    fn get_history(&self) -> Vec<TimeCoord> {
+        unsafe {
+            let mut out_n_coords = mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_container_num(
+                ffi::gdk_event_get_history(
+                    self.as_ref().to_glib_none().0,
+                    out_n_coords.as_mut_ptr(),
+                ),
+                out_n_coords.assume_init() as usize,
+            );
+            ret
+        }
+    }
 
     fn get_modifier_state(&self) -> ModifierType {
         unsafe {

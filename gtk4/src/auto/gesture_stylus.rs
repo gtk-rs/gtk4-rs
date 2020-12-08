@@ -14,6 +14,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
 use std::mem::transmute;
+use std::ptr;
 
 glib::glib_wrapper! {
     pub struct GestureStylus(Object<ffi::GtkGestureStylus, ffi::GtkGestureStylusClass>) @extends GestureSingle, Gesture, EventController;
@@ -53,10 +54,26 @@ impl GestureStylus {
         }
     }
 
-    //#[doc(alias = "gtk_gesture_stylus_get_backlog")]
-    //pub fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
-    //    unsafe { TODO: call ffi:gtk_gesture_stylus_get_backlog() }
-    //}
+    #[doc(alias = "gtk_gesture_stylus_get_backlog")]
+    pub fn get_backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
+        unsafe {
+            let mut backlog = ptr::null_mut();
+            let mut n_elems = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gtk_gesture_stylus_get_backlog(
+                self.to_glib_none().0,
+                &mut backlog,
+                n_elems.as_mut_ptr(),
+            ));
+            if ret {
+                Some(FromGlibContainer::from_glib_full_num(
+                    backlog,
+                    n_elems.assume_init() as usize,
+                ))
+            } else {
+                None
+            }
+        }
+    }
 
     #[doc(alias = "gtk_gesture_stylus_get_device_tool")]
     pub fn get_device_tool(&self) -> Option<gdk::DeviceTool> {

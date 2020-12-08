@@ -73,13 +73,13 @@ generate = [
 ]
 
 manual = [
-    # "Gdk.TimeCoord",
     "cairo.Content",
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
     "Gdk.KeymapKey",
     "Gdk.RGBA",
+    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
     "Gio.AppLaunchContext",
     "Gio.Cancellable",
