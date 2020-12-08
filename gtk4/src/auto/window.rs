@@ -691,7 +691,7 @@ pub trait GtkWindowExt: 'static {
     fn set_startup_id(&self, startup_id: &str);
 
     #[doc(alias = "gtk_window_set_title")]
-    fn set_title(&self, title: &str);
+    fn set_title(&self, title: Option<&str>);
 
     #[doc(alias = "gtk_window_set_titlebar")]
     fn set_titlebar<P: IsA<Widget>>(&self, titlebar: Option<&P>);
@@ -1131,7 +1131,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_title(&self, title: &str) {
+    fn set_title(&self, title: Option<&str>) {
         unsafe {
             ffi::gtk_window_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
         }

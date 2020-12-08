@@ -43,6 +43,11 @@ impl InsetShadowNode {
         unsafe { ffi::gsk_inset_shadow_node_get_blur_radius(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gsk_inset_shadow_node_get_color")]
+    pub fn get_color(&self) -> Option<gdk::RGBA> {
+        unsafe { from_glib_none(ffi::gsk_inset_shadow_node_get_color(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gsk_inset_shadow_node_get_dx")]
     pub fn get_dx(&self) -> f32 {
         unsafe { ffi::gsk_inset_shadow_node_get_dx(self.to_glib_none().0) }
@@ -53,23 +58,18 @@ impl InsetShadowNode {
         unsafe { ffi::gsk_inset_shadow_node_get_dy(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "gsk_inset_shadow_node_get_spread")]
-    pub fn get_spread(&self) -> f32 {
-        unsafe { ffi::gsk_inset_shadow_node_get_spread(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gsk_inset_shadow_node_peek_color")]
-    pub fn peek_color(&self) -> Option<gdk::RGBA> {
-        unsafe { from_glib_none(ffi::gsk_inset_shadow_node_peek_color(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gsk_inset_shadow_node_peek_outline")]
-    pub fn peek_outline(&self) -> Option<RoundedRect> {
+    #[doc(alias = "gsk_inset_shadow_node_get_outline")]
+    pub fn get_outline(&self) -> Option<RoundedRect> {
         unsafe {
-            from_glib_none(ffi::gsk_inset_shadow_node_peek_outline(
+            from_glib_none(ffi::gsk_inset_shadow_node_get_outline(
                 self.to_glib_none().0,
             ))
         }
+    }
+
+    #[doc(alias = "gsk_inset_shadow_node_get_spread")]
+    pub fn get_spread(&self) -> f32 {
+        unsafe { ffi::gsk_inset_shadow_node_get_spread(self.to_glib_none().0) }
     }
 }
 

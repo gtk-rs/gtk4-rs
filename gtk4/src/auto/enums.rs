@@ -198,6 +198,16 @@ pub enum AccessibleProperty {
     __Unknown(i32),
 }
 
+impl AccessibleProperty {
+    #[doc(alias = "gtk_accessible_property_init_value")]
+    pub fn init_value(self, value: &mut glib::Value) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::gtk_accessible_property_init_value(self.to_glib(), value.to_glib_none_mut().0);
+        }
+    }
+}
+
 impl fmt::Display for AccessibleProperty {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -335,6 +345,16 @@ pub enum AccessibleRelation {
     SetSize,
     #[doc(hidden)]
     __Unknown(i32),
+}
+
+impl AccessibleRelation {
+    #[doc(alias = "gtk_accessible_relation_init_value")]
+    pub fn init_value(self, value: &mut glib::Value) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::gtk_accessible_relation_init_value(self.to_glib(), value.to_glib_none_mut().0);
+        }
+    }
 }
 
 impl fmt::Display for AccessibleRelation {
@@ -917,6 +937,16 @@ pub enum AccessibleState {
     Selected,
     #[doc(hidden)]
     __Unknown(i32),
+}
+
+impl AccessibleState {
+    #[doc(alias = "gtk_accessible_state_init_value")]
+    pub fn init_value(self, value: &mut glib::Value) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::gtk_accessible_state_init_value(self.to_glib(), value.to_glib_none_mut().0);
+        }
+    }
 }
 
 impl fmt::Display for AccessibleState {
@@ -4007,86 +4037,6 @@ impl SetValue for License {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
-pub enum MenuDirectionType {
-    Parent,
-    Child,
-    Next,
-    Prev,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for MenuDirectionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MenuDirectionType::{}",
-            match *self {
-                MenuDirectionType::Parent => "Parent",
-                MenuDirectionType::Child => "Child",
-                MenuDirectionType::Next => "Next",
-                MenuDirectionType::Prev => "Prev",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for MenuDirectionType {
-    type GlibType = ffi::GtkMenuDirectionType;
-
-    fn to_glib(&self) -> ffi::GtkMenuDirectionType {
-        match *self {
-            MenuDirectionType::Parent => ffi::GTK_MENU_DIR_PARENT,
-            MenuDirectionType::Child => ffi::GTK_MENU_DIR_CHILD,
-            MenuDirectionType::Next => ffi::GTK_MENU_DIR_NEXT,
-            MenuDirectionType::Prev => ffi::GTK_MENU_DIR_PREV,
-            MenuDirectionType::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<ffi::GtkMenuDirectionType> for MenuDirectionType {
-    unsafe fn from_glib(value: ffi::GtkMenuDirectionType) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => MenuDirectionType::Parent,
-            1 => MenuDirectionType::Child,
-            2 => MenuDirectionType::Next,
-            3 => MenuDirectionType::Prev,
-            value => MenuDirectionType::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for MenuDirectionType {
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_menu_direction_type_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for MenuDirectionType {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for MenuDirectionType {
-    unsafe fn from_value(value: &glib::Value) -> Self {
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for MenuDirectionType {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-#[non_exhaustive]
 pub enum MessageType {
     Info,
     Warning,
@@ -5120,78 +5070,6 @@ impl<'a> FromValue<'a> for PolicyType {
 }
 
 impl SetValue for PolicyType {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-#[non_exhaustive]
-pub enum PopoverConstraint {
-    None,
-    Window,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for PopoverConstraint {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PopoverConstraint::{}",
-            match *self {
-                PopoverConstraint::None => "None",
-                PopoverConstraint::Window => "Window",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for PopoverConstraint {
-    type GlibType = ffi::GtkPopoverConstraint;
-
-    fn to_glib(&self) -> ffi::GtkPopoverConstraint {
-        match *self {
-            PopoverConstraint::None => ffi::GTK_POPOVER_CONSTRAINT_NONE,
-            PopoverConstraint::Window => ffi::GTK_POPOVER_CONSTRAINT_WINDOW,
-            PopoverConstraint::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<ffi::GtkPopoverConstraint> for PopoverConstraint {
-    unsafe fn from_glib(value: ffi::GtkPopoverConstraint) -> Self {
-        skip_assert_initialized!();
-        match value {
-            0 => PopoverConstraint::None,
-            1 => PopoverConstraint::Window,
-            value => PopoverConstraint::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for PopoverConstraint {
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_popover_constraint_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for PopoverConstraint {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for PopoverConstraint {
-    unsafe fn from_value(value: &glib::Value) -> Self {
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for PopoverConstraint {
     unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }
@@ -7741,84 +7619,6 @@ impl<'a> FromValue<'a> for SystemSetting {
 }
 
 impl SetValue for SystemSetting {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
-#[non_exhaustive]
-pub enum TextBufferTargetInfo {
-    BufferContents,
-    RichText,
-    Text,
-    #[doc(hidden)]
-    __Unknown(i32),
-}
-
-impl fmt::Display for TextBufferTargetInfo {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextBufferTargetInfo::{}",
-            match *self {
-                TextBufferTargetInfo::BufferContents => "BufferContents",
-                TextBufferTargetInfo::RichText => "RichText",
-                TextBufferTargetInfo::Text => "Text",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for TextBufferTargetInfo {
-    type GlibType = ffi::GtkTextBufferTargetInfo;
-
-    fn to_glib(&self) -> ffi::GtkTextBufferTargetInfo {
-        match *self {
-            TextBufferTargetInfo::BufferContents => {
-                ffi::GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS
-            }
-            TextBufferTargetInfo::RichText => ffi::GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT,
-            TextBufferTargetInfo::Text => ffi::GTK_TEXT_BUFFER_TARGET_INFO_TEXT,
-            TextBufferTargetInfo::__Unknown(value) => value,
-        }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<ffi::GtkTextBufferTargetInfo> for TextBufferTargetInfo {
-    unsafe fn from_glib(value: ffi::GtkTextBufferTargetInfo) -> Self {
-        skip_assert_initialized!();
-        match value {
-            -1 => TextBufferTargetInfo::BufferContents,
-            -2 => TextBufferTargetInfo::RichText,
-            -3 => TextBufferTargetInfo::Text,
-            value => TextBufferTargetInfo::__Unknown(value),
-        }
-    }
-}
-
-impl StaticType for TextBufferTargetInfo {
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_text_buffer_target_info_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for TextBufferTargetInfo {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for TextBufferTargetInfo {
-    unsafe fn from_value(value: &glib::Value) -> Self {
-        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for TextBufferTargetInfo {
     unsafe fn set_value(value: &mut glib::Value, this: &Self) {
         glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
     }

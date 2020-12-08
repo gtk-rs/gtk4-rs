@@ -4,7 +4,6 @@
 
 use glib::translate::*;
 use std::cmp;
-use std::fmt;
 use std::mem;
 
 glib::glib_wrapper! {
@@ -133,7 +132,7 @@ impl TreePath {
     }
 
     #[doc(alias = "gtk_tree_path_to_string")]
-    pub fn to_str(&self) -> glib::GString {
+    pub fn to_str(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_tree_path_to_string(mut_override(
                 self.to_glib_none().0,
@@ -173,12 +172,5 @@ impl Ord for TreePath {
     #[inline]
     fn cmp(&self, other: &Self) -> cmp::Ordering {
         self.compare(other).cmp(&0)
-    }
-}
-
-impl fmt::Display for TreePath {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.to_str())
     }
 }

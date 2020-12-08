@@ -43,10 +43,10 @@ impl TreeExpander {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_tree_expander_get_item")]
-    //pub fn get_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi:gtk_tree_expander_get_item() }
-    //}
+    #[doc(alias = "gtk_tree_expander_get_item")]
+    pub fn get_item(&self) -> Option<glib::Object> {
+        unsafe { from_glib_full(ffi::gtk_tree_expander_get_item(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_tree_expander_get_list_row")]
     pub fn get_list_row(&self) -> Option<TreeListRow> {

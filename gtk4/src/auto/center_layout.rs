@@ -78,21 +78,21 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_set_center_widget")]
-    pub fn set_center_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn set_center_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
             ffi::gtk_center_layout_set_center_widget(
                 self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gtk_center_layout_set_end_widget")]
-    pub fn set_end_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn set_end_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
             ffi::gtk_center_layout_set_end_widget(
                 self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -105,11 +105,11 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_set_start_widget")]
-    pub fn set_start_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn set_start_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
             ffi::gtk_center_layout_set_start_widget(
                 self.to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
+                widget.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
