@@ -2,10 +2,6 @@
 //!
 //! A simple text file viewer
 
-extern crate gio;
-extern crate glib;
-extern crate gtk;
-
 use std::env::args;
 use std::fs::File;
 use std::io::prelude::*;
@@ -18,20 +14,6 @@ use gtk::{
     Application, ApplicationWindow, Builder, Button, FileChooserAction, FileChooserDialog,
     ResponseType, TextView,
 };
-
-// upgrade weak reference or return
-#[macro_export]
-macro_rules! upgrade_weak {
-    ($x:ident, $r:expr) => {{
-        match $x.upgrade() {
-            Some(o) => o,
-            None => return $r,
-        }
-    }};
-    ($x:ident) => {
-        upgrade_weak!($x, ())
-    };
-}
 
 pub fn build_ui(application: &Application) {
     let ui_src = include_str!("ui/text_viewer.ui");
@@ -49,11 +31,7 @@ pub fn build_ui(application: &Application) {
         .get_object("text_view")
         .expect("Couldn't get text_view");
 
-    let window_weak = window.downgrade();
-    let text_view_weak = text_view.downgrade();
-    open_button.connect_clicked(move |_| {
-        let window = upgrade_weak!(window_weak);
-        let text_view = upgrade_weak!(text_view_weak);
+    open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 
         // TODO move this to a impl?
         let file_chooser = FileChooserDialog::new(
@@ -83,7 +61,7 @@ pub fn build_ui(application: &Application) {
         });
 
         file_chooser.show();
-    });
+    }));
 
     window.show();
 }
