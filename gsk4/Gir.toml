@@ -74,7 +74,7 @@ name = "Gsk.BorderNode"
 status = "generate"
 manual_traits = ["BorderNodeManualExt"]
     [[object.function]]
-    name = "peek_widths"
+    name = "get_widths"
     # manual, needs fixed-size=4 in gir file
     ignore = true
 
@@ -116,7 +116,7 @@ status = "generate"
     # manual, uses &[&Shadow] instead of a &[Shadow]
     ignore = true
     [[object.function]]
-    name = "peek_shadow"
+    name = "get_shadow"
     # manual, needs an assertion that the i < n_shadows
     ignore = true
 
