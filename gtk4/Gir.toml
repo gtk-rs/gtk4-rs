@@ -191,7 +191,6 @@ ignore = [
 ]
 
 manual = [
-    # "Gdk.TimeCoord",
     # "GObject.ObjectClass",
     # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
@@ -229,6 +228,7 @@ manual = [
     "Gdk.Surface",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",
+    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
     "Gio.Action",
     "Gio.ActionGroup",
