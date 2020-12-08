@@ -23,6 +23,8 @@ generate = [
     "Gsk.CrossFadeNode",
     "Gsk.DebugNode",
     "Gsk.GLRenderer",
+    "Gsk.GLShaderNode",
+    "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
@@ -32,6 +34,7 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
+    "Gsk.ShaderArgsBuilder",
     "Gsk.TextNode",
     "Gsk.TextureNode",
     "Gsk.Transform",
@@ -40,7 +43,6 @@ generate = [
 ]
 
 manual = [
-    # "Pango.GlyphInfo", # missing from pango
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
@@ -56,12 +58,14 @@ manual = [
     "Graphene.Point3D",
     "Graphene.Rect",
     "Graphene.Size",
+    "Graphene.Vec2",
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.ColorStop",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Pango.Font",
+    "Pango.GlyphInfo",
     "Pango.GlyphString",
 ]
 
@@ -84,7 +88,29 @@ status = "generate"
 cfg_condition = "feature = \"broadway\""
 
 [[object]]
+name = "Gsk.ConicGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
+
+[[object]]
+name = "Gsk.GLShader"
+status = "generate"
+generate_builder = true
+
+[[object]]
 name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
+[[object]]
+name = "Gsk.RadialGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
@@ -107,6 +133,15 @@ status = "generate"
     name = "new"
     # manual, uses &[&ColorStop] instead of a &[ColorStop]
     ignore = true
+
+[[object]]
+name = "Gsk.RepeatingRadialGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    # manual, uses &[&ColorStop] instead of a &[ColorStop]
+    ignore = true
+
 
 [[object]]
 name = "Gsk.ShadowNode"

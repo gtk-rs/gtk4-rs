@@ -222,6 +222,102 @@ impl SetValue for Corner {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+pub enum GLUniformType {
+    None,
+    Float,
+    Int,
+    Uint,
+    Bool,
+    Vec2,
+    Vec3,
+    Vec4,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for GLUniformType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "GLUniformType::{}",
+            match *self {
+                GLUniformType::None => "None",
+                GLUniformType::Float => "Float",
+                GLUniformType::Int => "Int",
+                GLUniformType::Uint => "Uint",
+                GLUniformType::Bool => "Bool",
+                GLUniformType::Vec2 => "Vec2",
+                GLUniformType::Vec3 => "Vec3",
+                GLUniformType::Vec4 => "Vec4",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl ToGlib for GLUniformType {
+    type GlibType = ffi::GskGLUniformType;
+
+    fn to_glib(&self) -> ffi::GskGLUniformType {
+        match *self {
+            GLUniformType::None => ffi::GSK_GL_UNIFORM_TYPE_NONE,
+            GLUniformType::Float => ffi::GSK_GL_UNIFORM_TYPE_FLOAT,
+            GLUniformType::Int => ffi::GSK_GL_UNIFORM_TYPE_INT,
+            GLUniformType::Uint => ffi::GSK_GL_UNIFORM_TYPE_UINT,
+            GLUniformType::Bool => ffi::GSK_GL_UNIFORM_TYPE_BOOL,
+            GLUniformType::Vec2 => ffi::GSK_GL_UNIFORM_TYPE_VEC2,
+            GLUniformType::Vec3 => ffi::GSK_GL_UNIFORM_TYPE_VEC3,
+            GLUniformType::Vec4 => ffi::GSK_GL_UNIFORM_TYPE_VEC4,
+            GLUniformType::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
+    unsafe fn from_glib(value: ffi::GskGLUniformType) -> Self {
+        skip_assert_initialized!();
+        match value {
+            0 => GLUniformType::None,
+            1 => GLUniformType::Float,
+            2 => GLUniformType::Int,
+            3 => GLUniformType::Uint,
+            4 => GLUniformType::Bool,
+            5 => GLUniformType::Vec2,
+            6 => GLUniformType::Vec3,
+            7 => GLUniformType::Vec4,
+            value => GLUniformType::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for GLUniformType {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
+    }
+}
+
+impl<'a> FromValueOptional<'a> for GLUniformType {
+    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
+        Some(FromValue::from_value(value))
+    }
+}
+
+impl<'a> FromValue<'a> for GLUniformType {
+    unsafe fn from_value(value: &glib::Value) -> Self {
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl SetValue for GLUniformType {
+    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
+        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 pub enum RenderNodeType {
     NotARenderNode,
     ContainerNode,
