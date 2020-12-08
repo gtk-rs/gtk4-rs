@@ -8,6 +8,7 @@ use graphene::{Point, Rect};
 use gsk::ColorStop;
 
 impl Snapshot {
+    #[doc(alias = "gtk_snapshot_append_linear_gradient")]
     pub fn append_linear_gradient(
         &self,
         bounds: &Rect,
@@ -28,6 +29,7 @@ impl Snapshot {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_append_radial_gradient")]
     pub fn append_radial_gradient(
         &self,
         bounds: &graphene::Rect,
@@ -54,6 +56,28 @@ impl Snapshot {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_append_conic_gradient")]
+    pub fn append_conic_gradient(
+        &self,
+        bounds: &graphene::Rect,
+        center: &graphene::Point,
+        rotation: f32,
+        stops: &[gsk::ColorStop],
+    ) {
+        let n_stops = stops.len() as usize;
+        unsafe {
+            ffi::gtk_snapshot_append_conic_gradient(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+                center.to_glib_none().0,
+                rotation,
+                stops.to_glib_none().0,
+                n_stops,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_snapshot_append_repeating_radial_gradient")]
     pub fn append_repeating_radial_gradient(
         &self,
         bounds: &graphene::Rect,
@@ -80,6 +104,7 @@ impl Snapshot {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_append_repeating_linear_gradient")]
     pub fn append_repeating_linear_gradient(
         &self,
         bounds: &Rect,
