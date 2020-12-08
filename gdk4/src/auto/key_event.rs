@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl KeyEvent {
+    #[doc(alias = "gdk_key_event_get_consumed_modifiers")]
     pub fn get_consumed_modifiers(&self) -> ModifierType {
         unsafe {
             from_glib(ffi::gdk_key_event_get_consumed_modifiers(
@@ -26,22 +27,27 @@ impl KeyEvent {
         }
     }
 
+    #[doc(alias = "gdk_key_event_get_keycode")]
     pub fn get_keycode(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_key_event_get_keyval")]
     pub fn get_keyval(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_key_event_get_layout")]
     pub fn get_layout(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_key_event_get_level")]
     pub fn get_level(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_key_event_get_match")]
     pub fn get_match(&self) -> Option<(u32, ModifierType)> {
         unsafe {
             let mut keyval = mem::MaybeUninit::uninit();
@@ -61,10 +67,12 @@ impl KeyEvent {
         }
     }
 
+    #[doc(alias = "gdk_key_event_is_modifier")]
     pub fn is_modifier(&self) -> bool {
         unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_key_event_matches")]
     pub fn matches(&self, keyval: u32, modifiers: ModifierType) -> KeyMatch {
         unsafe {
             from_glib(ffi::gdk_key_event_matches(

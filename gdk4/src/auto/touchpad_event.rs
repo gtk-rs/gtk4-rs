@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl TouchpadEvent {
+    #[doc(alias = "gdk_touchpad_event_get_deltas")]
     pub fn get_deltas(&self) -> (f64, f64) {
         unsafe {
             let mut dx = mem::MaybeUninit::uninit();
@@ -32,6 +33,7 @@ impl TouchpadEvent {
         }
     }
 
+    #[doc(alias = "gdk_touchpad_event_get_gesture_phase")]
     pub fn get_gesture_phase(&self) -> TouchpadGesturePhase {
         unsafe {
             from_glib(ffi::gdk_touchpad_event_get_gesture_phase(
@@ -40,14 +42,17 @@ impl TouchpadEvent {
         }
     }
 
+    #[doc(alias = "gdk_touchpad_event_get_n_fingers")]
     pub fn get_n_fingers(&self) -> u32 {
         unsafe { ffi::gdk_touchpad_event_get_n_fingers(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_touchpad_event_get_pinch_angle_delta")]
     pub fn get_pinch_angle_delta(&self) -> f64 {
         unsafe { ffi::gdk_touchpad_event_get_pinch_angle_delta(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_touchpad_event_get_pinch_scale")]
     pub fn get_pinch_scale(&self) -> f64 {
         unsafe { ffi::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
     }

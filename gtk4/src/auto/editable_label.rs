@@ -25,6 +25,7 @@ glib::glib_wrapper! {
 }
 
 impl EditableLabel {
+    #[doc(alias = "gtk_editable_label_new")]
     pub fn new(str: &str) -> EditableLabel {
         assert_initialized_main_thread!();
         unsafe {
@@ -32,16 +33,19 @@ impl EditableLabel {
         }
     }
 
+    #[doc(alias = "gtk_editable_label_get_editing")]
     pub fn get_editing(&self) -> bool {
         unsafe { from_glib(ffi::gtk_editable_label_get_editing(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_editable_label_start_editing")]
     pub fn start_editing(&self) {
         unsafe {
             ffi::gtk_editable_label_start_editing(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_editable_label_stop_editing")]
     pub fn stop_editing(&self, commit: bool) {
         unsafe {
             ffi::gtk_editable_label_stop_editing(self.to_glib_none().0, commit.to_glib());

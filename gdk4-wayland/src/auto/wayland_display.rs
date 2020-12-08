@@ -14,6 +14,7 @@ glib::glib_wrapper! {
 }
 
 impl WaylandDisplay {
+    #[doc(alias = "gdk_wayland_display_get_startup_notification_id")]
     pub fn get_startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_wayland_display_get_startup_notification_id(
@@ -22,6 +23,7 @@ impl WaylandDisplay {
         }
     }
 
+    #[doc(alias = "gdk_wayland_display_query_registry")]
     pub fn query_registry(&self, global: &str) -> bool {
         unsafe {
             from_glib(ffi::gdk_wayland_display_query_registry(
@@ -31,6 +33,7 @@ impl WaylandDisplay {
         }
     }
 
+    #[doc(alias = "gdk_wayland_display_set_cursor_theme")]
     pub fn set_cursor_theme(&self, theme: &str, size: i32) {
         unsafe {
             ffi::gdk_wayland_display_set_cursor_theme(
@@ -41,6 +44,7 @@ impl WaylandDisplay {
         }
     }
 
+    #[doc(alias = "gdk_wayland_display_set_startup_notification_id")]
     pub fn set_startup_notification_id(&self, startup_id: &str) {
         unsafe {
             ffi::gdk_wayland_display_set_startup_notification_id(

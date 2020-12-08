@@ -37,17 +37,20 @@ glib::glib_wrapper! {
 }
 
 impl Notebook {
+    #[doc(alias = "gtk_notebook_new")]
     pub fn new() -> Notebook {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_notebook_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_notebook_detach_tab")]
     pub fn detach_tab<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_notebook_detach_tab(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_action_widget")]
     pub fn get_action_widget(&self, pack_type: PackType) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_action_widget(
@@ -57,10 +60,12 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_group_name")]
     pub fn get_group_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_notebook_get_group_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_menu_label")]
     pub fn get_menu_label<P: IsA<Widget>>(&self, child: &P) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_menu_label(
@@ -70,6 +75,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_menu_label_text")]
     pub fn get_menu_label_text<P: IsA<Widget>>(&self, child: &P) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_menu_label_text(
@@ -79,6 +85,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_page")]
     pub fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<NotebookPage> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_page(
@@ -88,22 +95,27 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_pages")]
     pub fn get_pages(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_full(ffi::gtk_notebook_get_pages(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_scrollable")]
     pub fn get_scrollable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_scrollable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_show_border")]
     pub fn get_show_border(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_border(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_show_tabs")]
     pub fn get_show_tabs(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_tabs(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_tab_detachable")]
     pub fn get_tab_detachable<P: IsA<Widget>>(&self, child: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_notebook_get_tab_detachable(
@@ -113,6 +125,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_tab_label")]
     pub fn get_tab_label<P: IsA<Widget>>(&self, child: &P) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_tab_label(
@@ -122,6 +135,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_tab_label_text")]
     pub fn get_tab_label_text<P: IsA<Widget>>(&self, child: &P) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_tab_label_text(
@@ -131,10 +145,12 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_get_tab_pos")]
     pub fn get_tab_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_notebook_get_tab_pos(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_notebook_get_tab_reorderable")]
     pub fn get_tab_reorderable<P: IsA<Widget>>(&self, child: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_notebook_get_tab_reorderable(
@@ -144,30 +160,35 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_next_page")]
     pub fn next_page(&self) {
         unsafe {
             ffi::gtk_notebook_next_page(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_popup_disable")]
     pub fn popup_disable(&self) {
         unsafe {
             ffi::gtk_notebook_popup_disable(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_popup_enable")]
     pub fn popup_enable(&self) {
         unsafe {
             ffi::gtk_notebook_popup_enable(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_prev_page")]
     pub fn prev_page(&self) {
         unsafe {
             ffi::gtk_notebook_prev_page(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_action_widget")]
     pub fn set_action_widget<P: IsA<Widget>>(&self, widget: &P, pack_type: PackType) {
         unsafe {
             ffi::gtk_notebook_set_action_widget(
@@ -178,12 +199,14 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_group_name")]
     pub fn set_group_name(&self, group_name: Option<&str>) {
         unsafe {
             ffi::gtk_notebook_set_group_name(self.to_glib_none().0, group_name.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_menu_label")]
     pub fn set_menu_label<P: IsA<Widget>, Q: IsA<Widget>>(
         &self,
         child: &P,
@@ -198,6 +221,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_menu_label_text")]
     pub fn set_menu_label_text<P: IsA<Widget>>(&self, child: &P, menu_text: &str) {
         unsafe {
             ffi::gtk_notebook_set_menu_label_text(
@@ -208,24 +232,28 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_scrollable")]
     pub fn set_scrollable(&self, scrollable: bool) {
         unsafe {
             ffi::gtk_notebook_set_scrollable(self.to_glib_none().0, scrollable.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_show_border")]
     pub fn set_show_border(&self, show_border: bool) {
         unsafe {
             ffi::gtk_notebook_set_show_border(self.to_glib_none().0, show_border.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_show_tabs")]
     pub fn set_show_tabs(&self, show_tabs: bool) {
         unsafe {
             ffi::gtk_notebook_set_show_tabs(self.to_glib_none().0, show_tabs.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_tab_detachable")]
     pub fn set_tab_detachable<P: IsA<Widget>>(&self, child: &P, detachable: bool) {
         unsafe {
             ffi::gtk_notebook_set_tab_detachable(
@@ -236,6 +264,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_tab_label")]
     pub fn set_tab_label<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: Option<&Q>) {
         unsafe {
             ffi::gtk_notebook_set_tab_label(
@@ -246,6 +275,7 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_tab_label_text")]
     pub fn set_tab_label_text<P: IsA<Widget>>(&self, child: &P, tab_text: &str) {
         unsafe {
             ffi::gtk_notebook_set_tab_label_text(
@@ -256,12 +286,14 @@ impl Notebook {
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_tab_pos")]
     pub fn set_tab_pos(&self, pos: PositionType) {
         unsafe {
             ffi::gtk_notebook_set_tab_pos(self.to_glib_none().0, pos.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_notebook_set_tab_reorderable")]
     pub fn set_tab_reorderable<P: IsA<Widget>>(&self, child: &P, reorderable: bool) {
         unsafe {
             ffi::gtk_notebook_set_tab_reorderable(

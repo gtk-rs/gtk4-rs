@@ -31,11 +31,13 @@ glib::glib_wrapper! {
 }
 
 impl HeaderBar {
+    #[doc(alias = "gtk_header_bar_new")]
     pub fn new() -> HeaderBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_header_bar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_header_bar_get_decoration_layout")]
     pub fn get_decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_header_bar_get_decoration_layout(
@@ -44,6 +46,7 @@ impl HeaderBar {
         }
     }
 
+    #[doc(alias = "gtk_header_bar_get_show_title_buttons")]
     pub fn get_show_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_header_bar_get_show_title_buttons(
@@ -52,28 +55,33 @@ impl HeaderBar {
         }
     }
 
+    #[doc(alias = "gtk_header_bar_get_title_widget")]
     pub fn get_title_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_header_bar_pack_end")]
     pub fn pack_end<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_header_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_header_bar_pack_start")]
     pub fn pack_start<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_header_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_header_bar_remove")]
     pub fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_header_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_header_bar_set_decoration_layout")]
     pub fn set_decoration_layout(&self, layout: Option<&str>) {
         unsafe {
             ffi::gtk_header_bar_set_decoration_layout(
@@ -83,12 +91,14 @@ impl HeaderBar {
         }
     }
 
+    #[doc(alias = "gtk_header_bar_set_show_title_buttons")]
     pub fn set_show_title_buttons(&self, setting: bool) {
         unsafe {
             ffi::gtk_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_header_bar_set_title_widget")]
     pub fn set_title_widget<P: IsA<Widget>>(&self, title_widget: Option<&P>) {
         unsafe {
             ffi::gtk_header_bar_set_title_widget(

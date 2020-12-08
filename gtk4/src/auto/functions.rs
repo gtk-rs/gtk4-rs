@@ -22,11 +22,13 @@ use std::boxed::Box as Box_;
 use std::mem;
 use std::ptr;
 
+#[doc(alias = "gtk_accelerator_get_default_mod_mask")]
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_accelerator_get_default_mod_mask()) }
 }
 
+#[doc(alias = "gtk_accelerator_get_label")]
 pub fn accelerator_get_label(
     accelerator_key: u32,
     accelerator_mods: gdk::ModifierType,
@@ -40,6 +42,7 @@ pub fn accelerator_get_label(
     }
 }
 
+#[doc(alias = "gtk_accelerator_get_label_with_keycode")]
 pub fn accelerator_get_label_with_keycode(
     display: Option<&gdk::Display>,
     accelerator_key: u32,
@@ -57,6 +60,7 @@ pub fn accelerator_get_label_with_keycode(
     }
 }
 
+#[doc(alias = "gtk_accelerator_name")]
 pub fn accelerator_name(
     accelerator_key: u32,
     accelerator_mods: gdk::ModifierType,
@@ -70,6 +74,7 @@ pub fn accelerator_name(
     }
 }
 
+#[doc(alias = "gtk_accelerator_name_with_keycode")]
 pub fn accelerator_name_with_keycode(
     display: Option<&gdk::Display>,
     accelerator_key: u32,
@@ -87,6 +92,7 @@ pub fn accelerator_name_with_keycode(
     }
 }
 
+#[doc(alias = "gtk_accelerator_parse")]
 pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
@@ -107,20 +113,24 @@ pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> 
     }
 }
 
+//#[doc(alias = "gtk_accelerator_parse_with_keycode")]
 //pub fn accelerator_parse_with_keycode(accelerator: &str, display: Option<&gdk::Display>, accelerator_codes: Vec<u32>) -> Option<(u32, gdk::ModifierType)> {
 //    unsafe { TODO: call ffi:gtk_accelerator_parse_with_keycode() }
 //}
 
+#[doc(alias = "gtk_accelerator_valid")]
 pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_accelerator_valid(keyval, modifiers.to_glib())) }
 }
 
+#[doc(alias = "gtk_css_parser_warning_quark")]
 pub fn css_parser_warning_quark() -> glib::Quark {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_css_parser_warning_quark()) }
 }
 
+#[doc(alias = "gtk_disable_setlocale")]
 pub fn disable_setlocale() {
     assert_initialized_main_thread!();
     unsafe {
@@ -128,25 +138,30 @@ pub fn disable_setlocale() {
     }
 }
 
+//#[doc(alias = "gtk_distribute_natural_allocation")]
 //pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 
+#[doc(alias = "gtk_get_debug_flags")]
 pub fn get_debug_flags() -> DebugFlags {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_get_debug_flags()) }
 }
 
+#[doc(alias = "gtk_get_default_language")]
 pub fn get_default_language() -> Option<pango::Language> {
     assert_initialized_main_thread!();
     unsafe { from_glib_none(ffi::gtk_get_default_language()) }
 }
 
+#[doc(alias = "gtk_get_locale_direction")]
 pub fn get_locale_direction() -> TextDirection {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_get_locale_direction()) }
 }
 
+#[doc(alias = "gtk_hsv_to_rgb")]
 pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
@@ -161,6 +176,7 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
     }
 }
 
+#[doc(alias = "gtk_im_modules_init")]
 pub fn im_modules_init() {
     assert_initialized_main_thread!();
     unsafe {
@@ -168,10 +184,12 @@ pub fn im_modules_init() {
     }
 }
 
+//#[doc(alias = "gtk_param_spec_expression")]
 //pub fn param_spec_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> /*Ignored*/Option<glib::ParamSpec> {
 //    unsafe { TODO: call ffi:gtk_param_spec_expression() }
 //}
 
+#[doc(alias = "gtk_print_run_page_setup_dialog")]
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     parent: Option<&P>,
     page_setup: Option<&PageSetup>,
@@ -187,6 +205,7 @@ pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     }
 }
 
+#[doc(alias = "gtk_print_run_page_setup_dialog_async")]
 pub fn print_run_page_setup_dialog_async<
     P: IsA<Window>,
     Q: FnOnce(&PageSetup) + Send + Sync + 'static,
@@ -222,6 +241,7 @@ pub fn print_run_page_setup_dialog_async<
     }
 }
 
+#[doc(alias = "gtk_render_activity")]
 pub fn render_activity<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -243,6 +263,7 @@ pub fn render_activity<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_arrow")]
 pub fn render_arrow<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -264,6 +285,7 @@ pub fn render_arrow<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_background")]
 pub fn render_background<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -285,6 +307,7 @@ pub fn render_background<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_check")]
 pub fn render_check<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -306,6 +329,7 @@ pub fn render_check<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_expander")]
 pub fn render_expander<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -327,6 +351,7 @@ pub fn render_expander<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_focus")]
 pub fn render_focus<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -348,6 +373,7 @@ pub fn render_focus<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_frame")]
 pub fn render_frame<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -369,6 +395,7 @@ pub fn render_frame<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_handle")]
 pub fn render_handle<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -390,6 +417,7 @@ pub fn render_handle<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_icon")]
 pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(
     context: &P,
     cr: &cairo::Context,
@@ -409,6 +437,7 @@ pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(
     }
 }
 
+#[doc(alias = "gtk_render_layout")]
 pub fn render_layout<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -428,6 +457,7 @@ pub fn render_layout<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_line")]
 pub fn render_line<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -449,6 +479,7 @@ pub fn render_line<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_render_option")]
 pub fn render_option<P: IsA<StyleContext>>(
     context: &P,
     cr: &cairo::Context,
@@ -470,6 +501,7 @@ pub fn render_option<P: IsA<StyleContext>>(
     }
 }
 
+#[doc(alias = "gtk_rgb_to_hsv")]
 pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     assert_initialized_main_thread!();
     unsafe {
@@ -484,6 +516,7 @@ pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
     }
 }
 
+#[doc(alias = "gtk_set_debug_flags")]
 pub fn set_debug_flags(flags: DebugFlags) {
     assert_initialized_main_thread!();
     unsafe {
@@ -491,10 +524,12 @@ pub fn set_debug_flags(flags: DebugFlags) {
     }
 }
 
+//#[doc(alias = "gtk_show_about_dialog")]
 //pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call ffi:gtk_show_about_dialog() }
 //}
 
+#[doc(alias = "gtk_show_uri")]
 pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
     assert_initialized_main_thread!();
     unsafe {
@@ -506,6 +541,7 @@ pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
     }
 }
 
+#[doc(alias = "gtk_test_accessible_assertion_message_role")]
 pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
     domain: &str,
     file: &str,
@@ -531,18 +567,22 @@ pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
     }
 }
 
+//#[doc(alias = "gtk_test_accessible_check_property")]
 //pub fn test_accessible_check_property<P: IsA<Accessible>>(accessible: &P, property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_property() }
 //}
 
+//#[doc(alias = "gtk_test_accessible_check_relation")]
 //pub fn test_accessible_check_relation<P: IsA<Accessible>>(accessible: &P, relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_relation() }
 //}
 
+//#[doc(alias = "gtk_test_accessible_check_state")]
 //pub fn test_accessible_check_state<P: IsA<Accessible>>(accessible: &P, state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_state() }
 //}
 
+#[doc(alias = "gtk_test_accessible_has_property")]
 pub fn test_accessible_has_property<P: IsA<Accessible>>(
     accessible: &P,
     property: AccessibleProperty,
@@ -556,6 +596,7 @@ pub fn test_accessible_has_property<P: IsA<Accessible>>(
     }
 }
 
+#[doc(alias = "gtk_test_accessible_has_relation")]
 pub fn test_accessible_has_relation<P: IsA<Accessible>>(
     accessible: &P,
     relation: AccessibleRelation,
@@ -569,6 +610,7 @@ pub fn test_accessible_has_relation<P: IsA<Accessible>>(
     }
 }
 
+#[doc(alias = "gtk_test_accessible_has_role")]
 pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: AccessibleRole) -> bool {
     skip_assert_initialized!();
     unsafe {
@@ -579,6 +621,7 @@ pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: Access
     }
 }
 
+#[doc(alias = "gtk_test_accessible_has_state")]
 pub fn test_accessible_has_state<P: IsA<Accessible>>(
     accessible: &P,
     state: AccessibleState,
@@ -592,14 +635,17 @@ pub fn test_accessible_has_state<P: IsA<Accessible>>(
     }
 }
 
+//#[doc(alias = "gtk_test_init")]
 //pub fn test_init(argvp: /*Unimplemented*/Vec<glib::GString>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
 //    unsafe { TODO: call ffi:gtk_test_init() }
 //}
 
+//#[doc(alias = "gtk_test_list_all_types")]
 //pub fn test_list_all_types() -> /*Unimplemented*/CArray TypeId { ns_id: 0, id: 30 } {
 //    unsafe { TODO: call ffi:gtk_test_list_all_types() }
 //}
 
+#[doc(alias = "gtk_test_register_all_types")]
 pub fn test_register_all_types() {
     assert_initialized_main_thread!();
     unsafe {
@@ -607,6 +653,7 @@ pub fn test_register_all_types() {
     }
 }
 
+#[doc(alias = "gtk_test_widget_wait_for_draw")]
 pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
     skip_assert_initialized!();
     unsafe {
@@ -614,6 +661,7 @@ pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
     }
 }
 
+#[doc(alias = "gtk_tree_create_row_drag_content")]
 pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(
     tree_model: &P,
     path: &mut TreePath,
@@ -627,6 +675,7 @@ pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(
     }
 }
 
+#[doc(alias = "gtk_tree_get_row_drag_data")]
 pub fn tree_get_row_drag_data(
     value: &glib::Value,
 ) -> Option<(Option<TreeModel>, Option<TreePath>)> {
@@ -647,18 +696,22 @@ pub fn tree_get_row_drag_data(
     }
 }
 
+//#[doc(alias = "gtk_value_dup_expression")]
 //pub fn value_dup_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
 //    unsafe { TODO: call ffi:gtk_value_dup_expression() }
 //}
 
+//#[doc(alias = "gtk_value_get_expression")]
 //pub fn value_get_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
 //    unsafe { TODO: call ffi:gtk_value_get_expression() }
 //}
 
+//#[doc(alias = "gtk_value_set_expression")]
 //pub fn value_set_expression(value: &mut glib::Value, expression: /*Ignored*/&Expression) {
 //    unsafe { TODO: call ffi:gtk_value_set_expression() }
 //}
 
+//#[doc(alias = "gtk_value_take_expression")]
 //pub fn value_take_expression(value: &mut glib::Value, expression: /*Ignored*/Option<&Expression>) {
 //    unsafe { TODO: call ffi:gtk_value_take_expression() }
 //}

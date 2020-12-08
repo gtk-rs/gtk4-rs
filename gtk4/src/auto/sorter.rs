@@ -25,11 +25,14 @@ glib::glib_wrapper! {
 pub const NONE_SORTER: Option<&Sorter> = None;
 
 pub trait SorterExt: 'static {
+    #[doc(alias = "gtk_sorter_changed")]
     fn changed(&self, change: SorterChange);
 
+    #[doc(alias = "gtk_sorter_compare")]
     fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(&self, item1: &P, item2: &Q)
         -> Ordering;
 
+    #[doc(alias = "gtk_sorter_get_order")]
     fn get_order(&self) -> SorterOrder;
 
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId;

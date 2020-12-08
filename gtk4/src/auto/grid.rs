@@ -35,6 +35,7 @@ glib::glib_wrapper! {
 }
 
 impl Grid {
+    #[doc(alias = "gtk_grid_new")]
     pub fn new() -> Grid {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_grid_new()).unsafe_cast() }
@@ -393,8 +394,10 @@ impl GridBuilder {
 pub const NONE_GRID: Option<&Grid> = None;
 
 pub trait GridExt: 'static {
+    #[doc(alias = "gtk_grid_attach")]
     fn attach<P: IsA<Widget>>(&self, child: &P, column: i32, row: i32, width: i32, height: i32);
 
+    #[doc(alias = "gtk_grid_attach_next_to")]
     fn attach_next_to<P: IsA<Widget>, Q: IsA<Widget>>(
         &self,
         child: &P,
@@ -404,44 +407,64 @@ pub trait GridExt: 'static {
         height: i32,
     );
 
+    #[doc(alias = "gtk_grid_get_baseline_row")]
     fn get_baseline_row(&self) -> i32;
 
+    #[doc(alias = "gtk_grid_get_child_at")]
     fn get_child_at(&self, column: i32, row: i32) -> Option<Widget>;
 
+    #[doc(alias = "gtk_grid_get_column_homogeneous")]
     fn get_column_homogeneous(&self) -> bool;
 
+    #[doc(alias = "gtk_grid_get_column_spacing")]
     fn get_column_spacing(&self) -> u32;
 
+    #[doc(alias = "gtk_grid_get_row_baseline_position")]
     fn get_row_baseline_position(&self, row: i32) -> BaselinePosition;
 
+    #[doc(alias = "gtk_grid_get_row_homogeneous")]
     fn get_row_homogeneous(&self) -> bool;
 
+    #[doc(alias = "gtk_grid_get_row_spacing")]
     fn get_row_spacing(&self) -> u32;
 
+    #[doc(alias = "gtk_grid_insert_column")]
     fn insert_column(&self, position: i32);
 
+    #[doc(alias = "gtk_grid_insert_next_to")]
     fn insert_next_to<P: IsA<Widget>>(&self, sibling: &P, side: PositionType);
 
+    #[doc(alias = "gtk_grid_insert_row")]
     fn insert_row(&self, position: i32);
 
+    #[doc(alias = "gtk_grid_query_child")]
     fn query_child<P: IsA<Widget>>(&self, child: &P) -> (i32, i32, i32, i32);
 
+    #[doc(alias = "gtk_grid_remove")]
     fn remove<P: IsA<Widget>>(&self, child: &P);
 
+    #[doc(alias = "gtk_grid_remove_column")]
     fn remove_column(&self, position: i32);
 
+    #[doc(alias = "gtk_grid_remove_row")]
     fn remove_row(&self, position: i32);
 
+    #[doc(alias = "gtk_grid_set_baseline_row")]
     fn set_baseline_row(&self, row: i32);
 
+    #[doc(alias = "gtk_grid_set_column_homogeneous")]
     fn set_column_homogeneous(&self, homogeneous: bool);
 
+    #[doc(alias = "gtk_grid_set_column_spacing")]
     fn set_column_spacing(&self, spacing: u32);
 
+    #[doc(alias = "gtk_grid_set_row_baseline_position")]
     fn set_row_baseline_position(&self, row: i32, pos: BaselinePosition);
 
+    #[doc(alias = "gtk_grid_set_row_homogeneous")]
     fn set_row_homogeneous(&self, homogeneous: bool);
 
+    #[doc(alias = "gtk_grid_set_row_spacing")]
     fn set_row_spacing(&self, spacing: u32);
 
     fn connect_property_baseline_row_notify<F: Fn(&Self) + 'static>(&self, f: F)

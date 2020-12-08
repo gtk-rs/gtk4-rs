@@ -25,11 +25,13 @@ glib::glib_wrapper! {
 }
 
 impl RecentManager {
+    #[doc(alias = "gtk_recent_manager_new")]
     pub fn new() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_recent_manager_new()) }
     }
 
+    #[doc(alias = "gtk_recent_manager_get_default")]
     pub fn get_default() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }
@@ -73,20 +75,28 @@ impl RecentManagerBuilder {
 pub const NONE_RECENT_MANAGER: Option<&RecentManager> = None;
 
 pub trait RecentManagerExt: 'static {
+    #[doc(alias = "gtk_recent_manager_add_full")]
     fn add_full(&self, uri: &str, recent_data: &RecentData) -> bool;
 
+    #[doc(alias = "gtk_recent_manager_add_item")]
     fn add_item(&self, uri: &str) -> bool;
 
+    #[doc(alias = "gtk_recent_manager_get_items")]
     fn get_items(&self) -> Vec<RecentInfo>;
 
+    #[doc(alias = "gtk_recent_manager_has_item")]
     fn has_item(&self, uri: &str) -> bool;
 
+    #[doc(alias = "gtk_recent_manager_lookup_item")]
     fn lookup_item(&self, uri: &str) -> Result<Option<RecentInfo>, glib::Error>;
 
+    #[doc(alias = "gtk_recent_manager_move_item")]
     fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_recent_manager_purge_items")]
     fn purge_items(&self) -> Result<i32, glib::Error>;
 
+    #[doc(alias = "gtk_recent_manager_remove_item")]
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error>;
 
     fn get_property_filename(&self) -> Option<glib::GString>;

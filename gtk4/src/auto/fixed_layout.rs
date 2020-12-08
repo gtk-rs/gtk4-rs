@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl FixedLayout {
+    #[doc(alias = "gtk_fixed_layout_new")]
     pub fn new() -> FixedLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_fixed_layout_new()).unsafe_cast() }

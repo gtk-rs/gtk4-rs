@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl BoxLayout {
+    #[doc(alias = "gtk_box_layout_new")]
     pub fn new(orientation: Orientation) -> BoxLayout {
         assert_initialized_main_thread!();
         unsafe {
@@ -34,6 +35,7 @@ impl BoxLayout {
         }
     }
 
+    #[doc(alias = "gtk_box_layout_get_baseline_position")]
     pub fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_box_layout_get_baseline_position(
@@ -42,26 +44,31 @@ impl BoxLayout {
         }
     }
 
+    #[doc(alias = "gtk_box_layout_get_homogeneous")]
     pub fn get_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_box_layout_get_homogeneous(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_box_layout_get_spacing")]
     pub fn get_spacing(&self) -> u32 {
         unsafe { ffi::gtk_box_layout_get_spacing(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_box_layout_set_baseline_position")]
     pub fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
             ffi::gtk_box_layout_set_baseline_position(self.to_glib_none().0, position.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_box_layout_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::gtk_box_layout_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_box_layout_set_spacing")]
     pub fn set_spacing(&self, spacing: u32) {
         unsafe {
             ffi::gtk_box_layout_set_spacing(self.to_glib_none().0, spacing);

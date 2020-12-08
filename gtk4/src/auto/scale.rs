@@ -36,6 +36,7 @@ glib::glib_wrapper! {
 }
 
 impl Scale {
+    #[doc(alias = "gtk_scale_new")]
     pub fn new<P: IsA<Adjustment>>(orientation: Orientation, adjustment: Option<&P>) -> Scale {
         assert_initialized_main_thread!();
         unsafe {
@@ -47,6 +48,7 @@ impl Scale {
         }
     }
 
+    #[doc(alias = "gtk_scale_new_with_range")]
     pub fn with_range(orientation: Orientation, min: f64, max: f64, step: f64) -> Scale {
         assert_initialized_main_thread!();
         unsafe {
@@ -452,30 +454,43 @@ impl ScaleBuilder {
 pub const NONE_SCALE: Option<&Scale> = None;
 
 pub trait ScaleExt: 'static {
+    #[doc(alias = "gtk_scale_add_mark")]
     fn add_mark(&self, value: f64, position: PositionType, markup: Option<&str>);
 
+    #[doc(alias = "gtk_scale_clear_marks")]
     fn clear_marks(&self);
 
+    #[doc(alias = "gtk_scale_get_digits")]
     fn get_digits(&self) -> i32;
 
+    #[doc(alias = "gtk_scale_get_draw_value")]
     fn get_draw_value(&self) -> bool;
 
+    #[doc(alias = "gtk_scale_get_has_origin")]
     fn get_has_origin(&self) -> bool;
 
+    #[doc(alias = "gtk_scale_get_layout")]
     fn get_layout(&self) -> Option<pango::Layout>;
 
+    #[doc(alias = "gtk_scale_get_layout_offsets")]
     fn get_layout_offsets(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_scale_get_value_pos")]
     fn get_value_pos(&self) -> PositionType;
 
+    #[doc(alias = "gtk_scale_set_digits")]
     fn set_digits(&self, digits: i32);
 
+    #[doc(alias = "gtk_scale_set_draw_value")]
     fn set_draw_value(&self, draw_value: bool);
 
+    #[doc(alias = "gtk_scale_set_format_value_func")]
     fn set_format_value_func(&self, func: Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>);
 
+    #[doc(alias = "gtk_scale_set_has_origin")]
     fn set_has_origin(&self, has_origin: bool);
 
+    #[doc(alias = "gtk_scale_set_value_pos")]
     fn set_value_pos(&self, pos: PositionType);
 
     fn connect_property_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

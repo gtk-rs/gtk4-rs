@@ -31,6 +31,7 @@ glib::glib_wrapper! {
 }
 
 impl FlowBoxChild {
+    #[doc(alias = "gtk_flow_box_child_new")]
     pub fn new() -> FlowBoxChild {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_flow_box_child_new()).unsafe_cast() }
@@ -344,14 +345,19 @@ impl FlowBoxChildBuilder {
 pub const NONE_FLOW_BOX_CHILD: Option<&FlowBoxChild> = None;
 
 pub trait FlowBoxChildExt: 'static {
+    #[doc(alias = "gtk_flow_box_child_changed")]
     fn changed(&self);
 
+    #[doc(alias = "gtk_flow_box_child_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_flow_box_child_get_index")]
     fn get_index(&self) -> i32;
 
+    #[doc(alias = "gtk_flow_box_child_is_selected")]
     fn is_selected(&self) -> bool;
 
+    #[doc(alias = "gtk_flow_box_child_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

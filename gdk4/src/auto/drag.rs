@@ -27,44 +27,54 @@ glib::glib_wrapper! {
 }
 
 impl Drag {
+    #[doc(alias = "gdk_drag_drop_done")]
     pub fn drop_done(&self, success: bool) {
         unsafe {
             ffi::gdk_drag_drop_done(self.to_glib_none().0, success.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_drag_get_actions")]
     pub fn get_actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_actions(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_content")]
     pub fn get_content(&self) -> Option<ContentProvider> {
         unsafe { from_glib_none(ffi::gdk_drag_get_content(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_device")]
     pub fn get_device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drag_get_device(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_display")]
     pub fn get_display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drag_get_display(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_drag_surface")]
     pub fn get_drag_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_drag_surface(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_formats")]
     pub fn get_formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drag_get_formats(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_selected_action")]
     pub fn get_selected_action(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_selected_action(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_surface")]
     pub fn get_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_surface(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_set_hotspot")]
     pub fn set_hotspot(&self, hot_x: i32, hot_y: i32) {
         unsafe {
             ffi::gdk_drag_set_hotspot(self.to_glib_none().0, hot_x, hot_y);
@@ -91,6 +101,7 @@ impl Drag {
         }
     }
 
+    #[doc(alias = "gdk_drag_begin")]
     pub fn begin<P: IsA<ContentProvider>>(
         surface: &Surface,
         device: &Device,

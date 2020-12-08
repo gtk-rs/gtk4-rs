@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 }
 
 impl Box {
+    #[doc(alias = "gtk_box_new")]
     pub fn new(orientation: Orientation, spacing: i32) -> Box {
         assert_initialized_main_thread!();
         unsafe {
@@ -369,26 +370,37 @@ impl BoxBuilder {
 pub const NONE_BOX: Option<&Box> = None;
 
 pub trait BoxExt: 'static {
+    #[doc(alias = "gtk_box_append")]
     fn append<P: IsA<Widget>>(&self, child: &P);
 
+    #[doc(alias = "gtk_box_get_baseline_position")]
     fn get_baseline_position(&self) -> BaselinePosition;
 
+    #[doc(alias = "gtk_box_get_homogeneous")]
     fn get_homogeneous(&self) -> bool;
 
+    #[doc(alias = "gtk_box_get_spacing")]
     fn get_spacing(&self) -> i32;
 
+    #[doc(alias = "gtk_box_insert_child_after")]
     fn insert_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>);
 
+    #[doc(alias = "gtk_box_prepend")]
     fn prepend<P: IsA<Widget>>(&self, child: &P);
 
+    #[doc(alias = "gtk_box_remove")]
     fn remove<P: IsA<Widget>>(&self, child: &P);
 
+    #[doc(alias = "gtk_box_reorder_child_after")]
     fn reorder_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>);
 
+    #[doc(alias = "gtk_box_set_baseline_position")]
     fn set_baseline_position(&self, position: BaselinePosition);
 
+    #[doc(alias = "gtk_box_set_homogeneous")]
     fn set_homogeneous(&self, homogeneous: bool);
 
+    #[doc(alias = "gtk_box_set_spacing")]
     fn set_spacing(&self, spacing: i32);
 
     fn connect_property_baseline_position_notify<F: Fn(&Self) + 'static>(

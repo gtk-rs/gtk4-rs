@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl TreeListModel {
+    #[doc(alias = "gtk_tree_list_model_new")]
     pub fn new<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
         root: &P,
         passthrough: bool,
@@ -67,6 +68,7 @@ impl TreeListModel {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_model_get_autoexpand")]
     pub fn get_autoexpand(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_autoexpand(
@@ -75,6 +77,7 @@ impl TreeListModel {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_model_get_child_row")]
     pub fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_child_row(
@@ -84,10 +87,12 @@ impl TreeListModel {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_model_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_model_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_model_get_passthrough")]
     pub fn get_passthrough(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_passthrough(
@@ -96,6 +101,7 @@ impl TreeListModel {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_model_get_row")]
     pub fn get_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_row(
@@ -105,6 +111,7 @@ impl TreeListModel {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_model_set_autoexpand")]
     pub fn set_autoexpand(&self, autoexpand: bool) {
         unsafe {
             ffi::gtk_tree_list_model_set_autoexpand(self.to_glib_none().0, autoexpand.to_glib());

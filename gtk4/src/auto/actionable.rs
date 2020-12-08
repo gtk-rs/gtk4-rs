@@ -26,16 +26,22 @@ glib::glib_wrapper! {
 pub const NONE_ACTIONABLE: Option<&Actionable> = None;
 
 pub trait ActionableExt: 'static {
+    #[doc(alias = "gtk_actionable_get_action_name")]
     fn get_action_name(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_actionable_get_action_target_value")]
     fn get_action_target_value(&self) -> Option<glib::Variant>;
 
+    #[doc(alias = "gtk_actionable_set_action_name")]
     fn set_action_name(&self, action_name: Option<&str>);
 
+    //#[doc(alias = "gtk_actionable_set_action_target")]
     //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    #[doc(alias = "gtk_actionable_set_action_target_value")]
     fn set_action_target_value(&self, target_value: Option<&glib::Variant>);
 
+    #[doc(alias = "gtk_actionable_set_detailed_action_name")]
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

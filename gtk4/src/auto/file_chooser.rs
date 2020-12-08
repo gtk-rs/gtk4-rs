@@ -25,52 +25,76 @@ glib::glib_wrapper! {
 pub const NONE_FILE_CHOOSER: Option<&FileChooser> = None;
 
 pub trait FileChooserExt: 'static {
+    #[doc(alias = "gtk_file_chooser_add_filter")]
     fn add_filter(&self, filter: &FileFilter);
 
+    #[doc(alias = "gtk_file_chooser_add_shortcut_folder")]
     fn add_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_file_chooser_get_action")]
     fn get_action(&self) -> FileChooserAction;
 
+    #[doc(alias = "gtk_file_chooser_get_choice")]
     fn get_choice(&self, id: &str) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_file_chooser_get_create_folders")]
     fn get_create_folders(&self) -> bool;
 
+    #[doc(alias = "gtk_file_chooser_get_current_folder")]
     fn get_current_folder(&self) -> Option<gio::File>;
 
+    #[doc(alias = "gtk_file_chooser_get_current_name")]
     fn get_current_name(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_file_chooser_get_file")]
     fn get_file(&self) -> Option<gio::File>;
 
+    #[doc(alias = "gtk_file_chooser_get_files")]
     fn get_files(&self) -> Option<gio::ListModel>;
 
+    #[doc(alias = "gtk_file_chooser_get_filter")]
     fn get_filter(&self) -> Option<FileFilter>;
 
+    #[doc(alias = "gtk_file_chooser_get_filters")]
     fn get_filters(&self) -> Option<gio::ListModel>;
 
+    #[doc(alias = "gtk_file_chooser_get_select_multiple")]
     fn get_select_multiple(&self) -> bool;
 
+    #[doc(alias = "gtk_file_chooser_get_shortcut_folders")]
     fn get_shortcut_folders(&self) -> Option<gio::ListModel>;
 
+    #[doc(alias = "gtk_file_chooser_remove_choice")]
     fn remove_choice(&self, id: &str);
 
+    #[doc(alias = "gtk_file_chooser_remove_filter")]
     fn remove_filter(&self, filter: &FileFilter);
 
+    #[doc(alias = "gtk_file_chooser_remove_shortcut_folder")]
     fn remove_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_file_chooser_set_action")]
     fn set_action(&self, action: FileChooserAction);
 
+    #[doc(alias = "gtk_file_chooser_set_choice")]
     fn set_choice(&self, id: &str, option: &str);
 
+    #[doc(alias = "gtk_file_chooser_set_create_folders")]
     fn set_create_folders(&self, create_folders: bool);
 
+    #[doc(alias = "gtk_file_chooser_set_current_folder")]
     fn set_current_folder<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_file_chooser_set_current_name")]
     fn set_current_name<P: AsRef<std::path::Path>>(&self, name: P);
 
+    #[doc(alias = "gtk_file_chooser_set_file")]
     fn set_file<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_file_chooser_set_filter")]
     fn set_filter(&self, filter: &FileFilter);
 
+    #[doc(alias = "gtk_file_chooser_set_select_multiple")]
     fn set_select_multiple(&self, select_multiple: bool);
 
     fn connect_property_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

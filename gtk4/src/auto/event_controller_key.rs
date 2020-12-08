@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl EventControllerKey {
+    #[doc(alias = "gtk_event_controller_key_new")]
     pub fn new() -> EventControllerKey {
         assert_initialized_main_thread!();
         unsafe {
@@ -31,6 +32,7 @@ impl EventControllerKey {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_key_forward")]
     pub fn forward<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_event_controller_key_forward(
@@ -40,10 +42,12 @@ impl EventControllerKey {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_key_get_group")]
     pub fn get_group(&self) -> u32 {
         unsafe { ffi::gtk_event_controller_key_get_group(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_event_controller_key_get_im_context")]
     pub fn get_im_context(&self) -> Option<IMContext> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_key_get_im_context(
@@ -52,6 +56,7 @@ impl EventControllerKey {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_key_set_im_context")]
     pub fn set_im_context<P: IsA<IMContext>>(&self, im_context: &P) {
         unsafe {
             ffi::gtk_event_controller_key_set_im_context(

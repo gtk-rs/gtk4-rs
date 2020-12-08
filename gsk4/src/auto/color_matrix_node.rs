@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl ColorMatrixNode {
+    #[doc(alias = "gsk_color_matrix_node_new")]
     pub fn new<P: IsA<RenderNode>>(
         child: &P,
         color_matrix: &graphene::Matrix,
@@ -31,10 +32,12 @@ impl ColorMatrixNode {
         }
     }
 
+    #[doc(alias = "gsk_color_matrix_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_color_matrix_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_color_matrix_node_peek_color_matrix")]
     pub fn peek_color_matrix(&self) -> Option<graphene::Matrix> {
         unsafe {
             from_glib_none(ffi::gsk_color_matrix_node_peek_color_matrix(
@@ -43,6 +46,7 @@ impl ColorMatrixNode {
         }
     }
 
+    #[doc(alias = "gsk_color_matrix_node_peek_color_offset")]
     pub fn peek_color_offset(&self) -> Option<graphene::Vec4> {
         unsafe {
             from_glib_none(ffi::gsk_color_matrix_node_peek_color_offset(

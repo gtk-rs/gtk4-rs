@@ -27,10 +27,13 @@ glib::glib_wrapper! {
 pub const NONE_CELL_EDITABLE: Option<&CellEditable> = None;
 
 pub trait CellEditableExt: 'static {
+    #[doc(alias = "gtk_cell_editable_editing_done")]
     fn editing_done(&self);
 
+    #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self);
 
+    #[doc(alias = "gtk_cell_editable_start_editing")]
     fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>);
 
     fn get_property_editing_canceled(&self) -> bool;

@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl ContentProvider {
+    #[doc(alias = "gdk_content_provider_new_for_bytes")]
     pub fn new_for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
@@ -34,6 +35,7 @@ impl ContentProvider {
         }
     }
 
+    #[doc(alias = "gdk_content_provider_new_for_value")]
     pub fn new_for_value(value: &glib::Value) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
@@ -43,10 +45,12 @@ impl ContentProvider {
         }
     }
 
+    //#[doc(alias = "gdk_content_provider_new_typed")]
     //pub fn new_typed(type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ContentProvider {
     //    unsafe { TODO: call ffi:gdk_content_provider_new_typed() }
     //}
 
+    #[doc(alias = "gdk_content_provider_new_union")]
     pub fn new_union(providers: &[ContentProvider]) -> ContentProvider {
         assert_initialized_main_thread!();
         let n_providers = providers.len() as usize;
@@ -62,14 +66,19 @@ impl ContentProvider {
 pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
 
 pub trait ContentProviderExt: 'static {
+    #[doc(alias = "gdk_content_provider_content_changed")]
     fn content_changed(&self);
 
+    #[doc(alias = "gdk_content_provider_get_value")]
     fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gdk_content_provider_ref_formats")]
     fn ref_formats(&self) -> Option<ContentFormats>;
 
+    #[doc(alias = "gdk_content_provider_ref_storable_formats")]
     fn ref_storable_formats(&self) -> Option<ContentFormats>;
 
+    #[doc(alias = "gdk_content_provider_write_mime_type_async")]
     fn write_mime_type_async<
         P: IsA<gio::OutputStream>,
         Q: IsA<gio::Cancellable>,

@@ -33,11 +33,13 @@ glib::glib_wrapper! {
 }
 
 impl SearchEntry {
+    #[doc(alias = "gtk_search_entry_new")]
     pub fn new() -> SearchEntry {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_search_entry_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_search_entry_get_key_capture_widget")]
     pub fn get_key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_entry_get_key_capture_widget(
@@ -46,6 +48,7 @@ impl SearchEntry {
         }
     }
 
+    #[doc(alias = "gtk_search_entry_set_key_capture_widget")]
     pub fn set_key_capture_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
             ffi::gtk_search_entry_set_key_capture_widget(

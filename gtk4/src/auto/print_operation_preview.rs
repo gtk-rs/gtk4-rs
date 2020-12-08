@@ -24,10 +24,13 @@ glib::glib_wrapper! {
 pub const NONE_PRINT_OPERATION_PREVIEW: Option<&PrintOperationPreview> = None;
 
 pub trait PrintOperationPreviewExt: 'static {
+    #[doc(alias = "gtk_print_operation_preview_end_preview")]
     fn end_preview(&self);
 
+    #[doc(alias = "gtk_print_operation_preview_is_selected")]
     fn is_selected(&self, page_nr: i32) -> bool;
 
+    #[doc(alias = "gtk_print_operation_preview_render_page")]
     fn render_page(&self, page_nr: i32);
 
     fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(

@@ -28,36 +28,44 @@ glib::glib_wrapper! {
 }
 
 impl Drop {
+    #[doc(alias = "gdk_drop_finish")]
     pub fn finish(&self, action: DragAction) {
         unsafe {
             ffi::gdk_drop_finish(self.to_glib_none().0, action.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_drop_get_actions")]
     pub fn get_actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drop_get_actions(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_get_device")]
     pub fn get_device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_get_display")]
     pub fn get_display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_get_drag")]
     pub fn get_drag(&self) -> Option<Drag> {
         unsafe { from_glib_none(ffi::gdk_drop_get_drag(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_get_formats")]
     pub fn get_formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_get_surface")]
     pub fn get_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drop_read_value_async")]
     pub fn read_value_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
@@ -115,6 +123,7 @@ impl Drop {
         }))
     }
 
+    #[doc(alias = "gdk_drop_status")]
     pub fn status(&self, actions: DragAction, preferred: DragAction) {
         unsafe {
             ffi::gdk_drop_status(

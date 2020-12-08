@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl RepeatNode {
+    #[doc(alias = "gsk_repeat_node_new")]
     pub fn new<P: IsA<RenderNode>>(
         bounds: &graphene::Rect,
         child: &P,
@@ -31,10 +32,12 @@ impl RepeatNode {
         }
     }
 
+    #[doc(alias = "gsk_repeat_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_repeat_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_repeat_node_peek_child_bounds")]
     pub fn peek_child_bounds(&self) -> Option<graphene::Rect> {
         unsafe {
             from_glib_none(ffi::gsk_repeat_node_peek_child_bounds(

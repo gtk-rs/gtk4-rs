@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl SignalListItemFactory {
+    #[doc(alias = "gtk_signal_list_item_factory_new")]
     pub fn new() -> SignalListItemFactory {
         assert_initialized_main_thread!();
         unsafe {

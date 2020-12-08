@@ -39,6 +39,7 @@ glib::glib_wrapper! {
 }
 
 impl ListView {
+    #[doc(alias = "gtk_list_view_new")]
     pub fn new<P: IsA<SelectionModel>, Q: IsA<ListItemFactory>>(
         model: Option<&P>,
         factory: Option<&Q>,
@@ -53,6 +54,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_get_enable_rubberband")]
     pub fn get_enable_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_enable_rubberband(
@@ -61,14 +63,17 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_get_factory")]
     pub fn get_factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_list_view_get_factory(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_view_get_model")]
     pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_list_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_view_get_show_separators")]
     pub fn get_show_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_show_separators(
@@ -77,6 +82,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_get_single_click_activate")]
     pub fn get_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_single_click_activate(
@@ -85,6 +91,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
             ffi::gtk_list_view_set_enable_rubberband(
@@ -94,6 +101,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_set_factory")]
     pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
             ffi::gtk_list_view_set_factory(
@@ -103,6 +111,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_set_model")]
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_list_view_set_model(
@@ -112,6 +121,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_set_show_separators")]
     pub fn set_show_separators(&self, show_separators: bool) {
         unsafe {
             ffi::gtk_list_view_set_show_separators(
@@ -121,6 +131,7 @@ impl ListView {
         }
     }
 
+    #[doc(alias = "gtk_list_view_set_single_click_activate")]
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
             ffi::gtk_list_view_set_single_click_activate(

@@ -15,10 +15,12 @@ glib::glib_wrapper! {
 }
 
 impl ShadowNode {
+    #[doc(alias = "gsk_shadow_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_shadow_node_get_n_shadows")]
     pub fn get_n_shadows(&self) -> usize {
         unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
     }

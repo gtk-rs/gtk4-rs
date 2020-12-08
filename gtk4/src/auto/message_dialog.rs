@@ -39,22 +39,27 @@ glib::glib_wrapper! {
 }
 
 impl MessageDialog {
+    //#[doc(alias = "gtk_message_dialog_new")]
     //pub fn new<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, type_: MessageType, buttons: ButtonsType, message_format: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> MessageDialog {
     //    unsafe { TODO: call ffi:gtk_message_dialog_new() }
     //}
 
+    //#[doc(alias = "gtk_message_dialog_new_with_markup")]
     //pub fn with_markup<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, type_: MessageType, buttons: ButtonsType, message_format: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> MessageDialog {
     //    unsafe { TODO: call ffi:gtk_message_dialog_new_with_markup() }
     //}
 
+    //#[doc(alias = "gtk_message_dialog_format_secondary_markup")]
     //pub fn format_secondary_markup(&self, message_format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gtk_message_dialog_format_secondary_markup() }
     //}
 
+    //#[doc(alias = "gtk_message_dialog_format_secondary_text")]
     //pub fn format_secondary_text(&self, message_format: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gtk_message_dialog_format_secondary_text() }
     //}
 
+    #[doc(alias = "gtk_message_dialog_get_message_area")]
     pub fn get_message_area(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_message_dialog_get_message_area(
@@ -63,6 +68,7 @@ impl MessageDialog {
         }
     }
 
+    #[doc(alias = "gtk_message_dialog_set_markup")]
     pub fn set_markup(&self, str: &str) {
         unsafe {
             ffi::gtk_message_dialog_set_markup(self.to_glib_none().0, str.to_glib_none().0);

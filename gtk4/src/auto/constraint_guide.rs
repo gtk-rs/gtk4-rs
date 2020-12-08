@@ -24,15 +24,18 @@ glib::glib_wrapper! {
 }
 
 impl ConstraintGuide {
+    #[doc(alias = "gtk_constraint_guide_new")]
     pub fn new() -> ConstraintGuide {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_constraint_guide_new()) }
     }
 
+    #[doc(alias = "gtk_constraint_guide_get_name")]
     pub fn get_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_constraint_guide_get_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_guide_get_strength")]
     pub fn get_strength(&self) -> ConstraintStrength {
         unsafe {
             from_glib(ffi::gtk_constraint_guide_get_strength(
@@ -41,30 +44,35 @@ impl ConstraintGuide {
         }
     }
 
+    #[doc(alias = "gtk_constraint_guide_set_max_size")]
     pub fn set_max_size(&self, width: i32, height: i32) {
         unsafe {
             ffi::gtk_constraint_guide_set_max_size(self.to_glib_none().0, width, height);
         }
     }
 
+    #[doc(alias = "gtk_constraint_guide_set_min_size")]
     pub fn set_min_size(&self, width: i32, height: i32) {
         unsafe {
             ffi::gtk_constraint_guide_set_min_size(self.to_glib_none().0, width, height);
         }
     }
 
+    #[doc(alias = "gtk_constraint_guide_set_name")]
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_constraint_guide_set_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_constraint_guide_set_nat_size")]
     pub fn set_nat_size(&self, width: i32, height: i32) {
         unsafe {
             ffi::gtk_constraint_guide_set_nat_size(self.to_glib_none().0, width, height);
         }
     }
 
+    #[doc(alias = "gtk_constraint_guide_set_strength")]
     pub fn set_strength(&self, strength: ConstraintStrength) {
         unsafe {
             ffi::gtk_constraint_guide_set_strength(self.to_glib_none().0, strength.to_glib());

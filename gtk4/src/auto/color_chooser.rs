@@ -22,12 +22,16 @@ glib::glib_wrapper! {
 pub const NONE_COLOR_CHOOSER: Option<&ColorChooser> = None;
 
 pub trait ColorChooserExt: 'static {
+    #[doc(alias = "gtk_color_chooser_get_rgba")]
     fn get_rgba(&self) -> gdk::RGBA;
 
+    #[doc(alias = "gtk_color_chooser_get_use_alpha")]
     fn get_use_alpha(&self) -> bool;
 
+    #[doc(alias = "gtk_color_chooser_set_rgba")]
     fn set_rgba(&self, color: &gdk::RGBA);
 
+    #[doc(alias = "gtk_color_chooser_set_use_alpha")]
     fn set_use_alpha(&self, use_alpha: bool);
 
     fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId;

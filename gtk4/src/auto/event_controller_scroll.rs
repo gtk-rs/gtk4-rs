@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl EventControllerScroll {
+    #[doc(alias = "gtk_event_controller_scroll_new")]
     pub fn new(flags: EventControllerScrollFlags) -> EventControllerScroll {
         assert_initialized_main_thread!();
         unsafe {
@@ -34,6 +35,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_scroll_get_flags")]
     pub fn get_flags(&self) -> EventControllerScrollFlags {
         unsafe {
             from_glib(ffi::gtk_event_controller_scroll_get_flags(
@@ -42,6 +44,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_scroll_set_flags")]
     pub fn set_flags(&self, flags: EventControllerScrollFlags) {
         unsafe {
             ffi::gtk_event_controller_scroll_set_flags(self.to_glib_none().0, flags.to_glib());

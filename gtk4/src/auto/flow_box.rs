@@ -38,11 +38,13 @@ glib::glib_wrapper! {
 }
 
 impl FlowBox {
+    #[doc(alias = "gtk_flow_box_new")]
     pub fn new() -> FlowBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_flow_box_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_flow_box_bind_model")]
     pub fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
         &self,
         model: Option<&P>,
@@ -83,6 +85,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_get_activate_on_single_click")]
     pub fn get_activate_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_flow_box_get_activate_on_single_click(
@@ -91,6 +94,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_get_child_at_index")]
     pub fn get_child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_index(
@@ -100,6 +104,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_get_child_at_pos")]
     pub fn get_child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_pos(
@@ -110,26 +115,32 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_get_column_spacing")]
     pub fn get_column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_column_spacing(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_flow_box_get_homogeneous")]
     pub fn get_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_flow_box_get_homogeneous(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_flow_box_get_max_children_per_line")]
     pub fn get_max_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_max_children_per_line(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_flow_box_get_min_children_per_line")]
     pub fn get_min_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_min_children_per_line(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_flow_box_get_row_spacing")]
     pub fn get_row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_row_spacing(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_flow_box_get_selected_children")]
     pub fn get_selected_children(&self) -> Vec<FlowBoxChild> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_flow_box_get_selected_children(
@@ -138,10 +149,12 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_get_selection_mode")]
     pub fn get_selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_flow_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_flow_box_insert")]
     pub fn insert<P: IsA<Widget>>(&self, widget: &P, position: i32) {
         unsafe {
             ffi::gtk_flow_box_insert(
@@ -152,36 +165,42 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_invalidate_filter")]
     pub fn invalidate_filter(&self) {
         unsafe {
             ffi::gtk_flow_box_invalidate_filter(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_invalidate_sort")]
     pub fn invalidate_sort(&self) {
         unsafe {
             ffi::gtk_flow_box_invalidate_sort(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_remove")]
     pub fn remove<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_flow_box_remove(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_select_all")]
     pub fn select_all(&self) {
         unsafe {
             ffi::gtk_flow_box_select_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_select_child")]
     pub fn select_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
         unsafe {
             ffi::gtk_flow_box_select_child(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&FlowBox, &FlowBoxChild)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&FlowBox, &FlowBoxChild)>(
@@ -205,18 +224,21 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_activate_on_single_click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_flow_box_set_activate_on_single_click(self.to_glib_none().0, single.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_column_spacing")]
     pub fn set_column_spacing(&self, spacing: u32) {
         unsafe {
             ffi::gtk_flow_box_set_column_spacing(self.to_glib_none().0, spacing);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_filter_func")]
     pub fn set_filter_func(
         &self,
         filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>,
@@ -259,6 +281,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_hadjustment")]
     pub fn set_hadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
         unsafe {
             ffi::gtk_flow_box_set_hadjustment(
@@ -268,36 +291,42 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::gtk_flow_box_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_max_children_per_line")]
     pub fn set_max_children_per_line(&self, n_children: u32) {
         unsafe {
             ffi::gtk_flow_box_set_max_children_per_line(self.to_glib_none().0, n_children);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_min_children_per_line")]
     pub fn set_min_children_per_line(&self, n_children: u32) {
         unsafe {
             ffi::gtk_flow_box_set_min_children_per_line(self.to_glib_none().0, n_children);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_row_spacing")]
     pub fn set_row_spacing(&self, spacing: u32) {
         unsafe {
             ffi::gtk_flow_box_set_row_spacing(self.to_glib_none().0, spacing);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_selection_mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
             ffi::gtk_flow_box_set_selection_mode(self.to_glib_none().0, mode.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_sort_func")]
     pub fn set_sort_func(
         &self,
         sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
@@ -345,6 +374,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_set_vadjustment")]
     pub fn set_vadjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
         unsafe {
             ffi::gtk_flow_box_set_vadjustment(
@@ -354,12 +384,14 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "gtk_flow_box_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {
             ffi::gtk_flow_box_unselect_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_flow_box_unselect_child")]
     pub fn unselect_child<P: IsA<FlowBoxChild>>(&self, child: &P) {
         unsafe {
             ffi::gtk_flow_box_unselect_child(

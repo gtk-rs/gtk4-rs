@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl KeyvalTrigger {
+    #[doc(alias = "gtk_keyval_trigger_new")]
     pub fn new(keyval: u32, modifiers: gdk::ModifierType) -> KeyvalTrigger {
         assert_initialized_main_thread!();
         unsafe {
@@ -29,10 +30,12 @@ impl KeyvalTrigger {
         }
     }
 
+    #[doc(alias = "gtk_keyval_trigger_get_keyval")]
     pub fn get_keyval(&self) -> u32 {
         unsafe { ffi::gtk_keyval_trigger_get_keyval(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_keyval_trigger_get_modifiers")]
     pub fn get_modifiers(&self) -> gdk::ModifierType {
         unsafe { from_glib(ffi::gtk_keyval_trigger_get_modifiers(self.to_glib_none().0)) }
     }

@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl Renderer {
+    #[doc(alias = "gsk_renderer_new_for_surface")]
     pub fn new_for_surface(surface: &gdk::Surface) -> Option<Renderer> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_renderer_new_for_surface(surface.to_glib_none().0)) }
@@ -32,20 +33,26 @@ impl Renderer {
 pub const NONE_RENDERER: Option<&Renderer> = None;
 
 pub trait RendererExt: 'static {
+    #[doc(alias = "gsk_renderer_get_surface")]
     fn get_surface(&self) -> Option<gdk::Surface>;
 
+    #[doc(alias = "gsk_renderer_is_realized")]
     fn is_realized(&self) -> bool;
 
+    #[doc(alias = "gsk_renderer_realize")]
     fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gsk_renderer_render")]
     fn render<P: IsA<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);
 
+    #[doc(alias = "gsk_renderer_render_texture")]
     fn render_texture<P: IsA<RenderNode>>(
         &self,
         root: &P,
         viewport: Option<&graphene::Rect>,
     ) -> Option<gdk::Texture>;
 
+    #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
 
     fn get_property_realized(&self) -> bool;

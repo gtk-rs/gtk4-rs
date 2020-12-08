@@ -32,11 +32,13 @@ glib::glib_wrapper! {
 }
 
 impl ColorButton {
+    #[doc(alias = "gtk_color_button_new")]
     pub fn new() -> ColorButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_color_button_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_color_button_new_with_rgba")]
     pub fn with_rgba(rgba: &gdk::RGBA) -> ColorButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -45,20 +47,24 @@ impl ColorButton {
         }
     }
 
+    #[doc(alias = "gtk_color_button_get_modal")]
     pub fn get_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_color_button_get_title")]
     pub fn get_title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_color_button_get_title(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_color_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_color_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_color_button_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_color_button_set_title(self.to_glib_none().0, title.to_glib_none().0);

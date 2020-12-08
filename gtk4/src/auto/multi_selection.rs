@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl MultiSelection {
+    #[doc(alias = "gtk_multi_selection_new")]
     pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> MultiSelection {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,10 +34,12 @@ impl MultiSelection {
         }
     }
 
+    #[doc(alias = "gtk_multi_selection_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_multi_selection_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_multi_selection_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_multi_selection_set_model(

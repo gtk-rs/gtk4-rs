@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 }
 
 impl FontChooserWidget {
+    #[doc(alias = "gtk_font_chooser_widget_new")]
     pub fn new() -> FontChooserWidget {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_font_chooser_widget_new()).unsafe_cast() }

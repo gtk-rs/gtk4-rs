@@ -27,6 +27,7 @@ glib::glib_wrapper! {
 }
 
 impl CellRendererSpin {
+    #[doc(alias = "gtk_cell_renderer_spin_new")]
     pub fn new() -> CellRendererSpin {
         assert_initialized_main_thread!();
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spin_new()).unsafe_cast() }

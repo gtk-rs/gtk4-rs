@@ -32,6 +32,7 @@ glib::glib_wrapper! {
 }
 
 impl MediaControls {
+    #[doc(alias = "gtk_media_controls_new")]
     pub fn new<P: IsA<MediaStream>>(stream: Option<&P>) -> MediaControls {
         assert_initialized_main_thread!();
         unsafe {
@@ -42,6 +43,7 @@ impl MediaControls {
         }
     }
 
+    #[doc(alias = "gtk_media_controls_get_media_stream")]
     pub fn get_media_stream(&self) -> Option<MediaStream> {
         unsafe {
             from_glib_none(ffi::gtk_media_controls_get_media_stream(
@@ -50,6 +52,7 @@ impl MediaControls {
         }
     }
 
+    #[doc(alias = "gtk_media_controls_set_media_stream")]
     pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
         unsafe {
             ffi::gtk_media_controls_set_media_stream(

@@ -30,6 +30,7 @@ glib::glib_wrapper! {
 }
 
 impl Frame {
+    #[doc(alias = "gtk_frame_new")]
     pub fn new(label: Option<&str>) -> Frame {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_frame_new(label.to_glib_none().0)).unsafe_cast() }
@@ -364,20 +365,28 @@ impl FrameBuilder {
 pub const NONE_FRAME: Option<&Frame> = None;
 
 pub trait FrameExt: 'static {
+    #[doc(alias = "gtk_frame_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_frame_get_label")]
     fn get_label(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_frame_get_label_align")]
     fn get_label_align(&self) -> f32;
 
+    #[doc(alias = "gtk_frame_get_label_widget")]
     fn get_label_widget(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_frame_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "gtk_frame_set_label")]
     fn set_label(&self, label: Option<&str>);
 
+    #[doc(alias = "gtk_frame_set_label_align")]
     fn set_label_align(&self, xalign: f32);
 
+    #[doc(alias = "gtk_frame_set_label_widget")]
     fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>);
 
     fn get_property_label_xalign(&self) -> f32;

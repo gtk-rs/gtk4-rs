@@ -42,7 +42,7 @@ impl ToGlib for AnchorHints {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkAnchorHints> for AnchorHints {
-    fn from_glib(value: ffi::GdkAnchorHints) -> AnchorHints {
+    unsafe fn from_glib(value: ffi::GdkAnchorHints) -> AnchorHints {
         skip_assert_initialized!();
         AnchorHints::from_bits_truncate(value)
     }
@@ -105,7 +105,7 @@ impl ToGlib for AxisFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkAxisFlags> for AxisFlags {
-    fn from_glib(value: ffi::GdkAxisFlags) -> AxisFlags {
+    unsafe fn from_glib(value: ffi::GdkAxisFlags) -> AxisFlags {
         skip_assert_initialized!();
         AxisFlags::from_bits_truncate(value)
     }
@@ -145,6 +145,7 @@ bitflags! {
 }
 
 impl DragAction {
+    #[doc(alias = "gdk_drag_action_is_unique")]
     pub fn is_unique(self) -> bool {
         assert_initialized_main_thread!();
         unsafe { from_glib(ffi::gdk_drag_action_is_unique(self.to_glib())) }
@@ -168,7 +169,7 @@ impl ToGlib for DragAction {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDragAction> for DragAction {
-    fn from_glib(value: ffi::GdkDragAction) -> DragAction {
+    unsafe fn from_glib(value: ffi::GdkDragAction) -> DragAction {
         skip_assert_initialized!();
         DragAction::from_bits_truncate(value)
     }
@@ -228,7 +229,7 @@ impl ToGlib for FrameClockPhase {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkFrameClockPhase> for FrameClockPhase {
-    fn from_glib(value: ffi::GdkFrameClockPhase) -> FrameClockPhase {
+    unsafe fn from_glib(value: ffi::GdkFrameClockPhase) -> FrameClockPhase {
         skip_assert_initialized!();
         FrameClockPhase::from_bits_truncate(value)
     }
@@ -292,7 +293,7 @@ impl ToGlib for ModifierType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkModifierType> for ModifierType {
-    fn from_glib(value: ffi::GdkModifierType) -> ModifierType {
+    unsafe fn from_glib(value: ffi::GdkModifierType) -> ModifierType {
         skip_assert_initialized!();
         ModifierType::from_bits_truncate(value)
     }
@@ -346,7 +347,7 @@ impl ToGlib for PaintableFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkPaintableFlags> for PaintableFlags {
-    fn from_glib(value: ffi::GdkPaintableFlags) -> PaintableFlags {
+    unsafe fn from_glib(value: ffi::GdkPaintableFlags) -> PaintableFlags {
         skip_assert_initialized!();
         PaintableFlags::from_bits_truncate(value)
     }
@@ -406,7 +407,7 @@ impl ToGlib for SeatCapabilities {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkSeatCapabilities> for SeatCapabilities {
-    fn from_glib(value: ffi::GdkSeatCapabilities) -> SeatCapabilities {
+    unsafe fn from_glib(value: ffi::GdkSeatCapabilities) -> SeatCapabilities {
         skip_assert_initialized!();
         SeatCapabilities::from_bits_truncate(value)
     }
@@ -475,7 +476,7 @@ impl ToGlib for ToplevelState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkToplevelState> for ToplevelState {
-    fn from_glib(value: ffi::GdkToplevelState) -> ToplevelState {
+    unsafe fn from_glib(value: ffi::GdkToplevelState) -> ToplevelState {
         skip_assert_initialized!();
         ToplevelState::from_bits_truncate(value)
     }

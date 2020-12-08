@@ -25,6 +25,7 @@ glib::glib_wrapper! {
 }
 
 impl DropTargetAsync {
+    #[doc(alias = "gtk_drop_target_async_new")]
     pub fn new(formats: Option<&gdk::ContentFormats>, actions: gdk::DragAction) -> DropTargetAsync {
         assert_initialized_main_thread!();
         unsafe {
@@ -35,6 +36,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "gtk_drop_target_async_get_actions")]
     pub fn get_actions(&self) -> gdk::DragAction {
         unsafe {
             from_glib(ffi::gtk_drop_target_async_get_actions(
@@ -43,6 +45,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "gtk_drop_target_async_get_formats")]
     pub fn get_formats(&self) -> Option<gdk::ContentFormats> {
         unsafe {
             from_glib_full(ffi::gtk_drop_target_async_get_formats(
@@ -51,18 +54,21 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "gtk_drop_target_async_reject_drop")]
     pub fn reject_drop(&self, drop: &gdk::Drop) {
         unsafe {
             ffi::gtk_drop_target_async_reject_drop(self.to_glib_none().0, drop.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_drop_target_async_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_drop_target_async_set_formats")]
     pub fn set_formats(&self, formats: Option<&gdk::ContentFormats>) {
         unsafe {
             ffi::gtk_drop_target_async_set_formats(self.to_glib_none().0, formats.to_glib_none().0);

@@ -19,6 +19,7 @@ glib::glib_wrapper! {
 }
 
 impl PopupLayout {
+    #[doc(alias = "gdk_popup_layout_new")]
     pub fn new(
         anchor_rect: &Rectangle,
         rect_anchor: Gravity,
@@ -34,10 +35,12 @@ impl PopupLayout {
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_copy")]
     pub fn copy(&self) -> Option<PopupLayout> {
         unsafe { from_glib_full(ffi::gdk_popup_layout_copy(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_popup_layout_equal")]
     fn equal(&self, other: &PopupLayout) -> bool {
         unsafe {
             from_glib(ffi::gdk_popup_layout_equal(
@@ -47,6 +50,7 @@ impl PopupLayout {
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_get_anchor_hints")]
     pub fn get_anchor_hints(&self) -> AnchorHints {
         unsafe {
             from_glib(ffi::gdk_popup_layout_get_anchor_hints(
@@ -55,14 +59,17 @@ impl PopupLayout {
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_get_anchor_rect")]
     pub fn get_anchor_rect(&self) -> Option<Rectangle> {
         unsafe { from_glib_none(ffi::gdk_popup_layout_get_anchor_rect(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_popup_layout_get_rect_anchor")]
     pub fn get_rect_anchor(&self) -> Gravity {
         unsafe { from_glib(ffi::gdk_popup_layout_get_rect_anchor(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_popup_layout_get_surface_anchor")]
     pub fn get_surface_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_layout_get_surface_anchor(
@@ -71,12 +78,14 @@ impl PopupLayout {
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_set_anchor_hints")]
     pub fn set_anchor_hints(&self, anchor_hints: AnchorHints) {
         unsafe {
             ffi::gdk_popup_layout_set_anchor_hints(self.to_glib_none().0, anchor_hints.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_set_anchor_rect")]
     pub fn set_anchor_rect(&self, anchor_rect: &Rectangle) {
         unsafe {
             ffi::gdk_popup_layout_set_anchor_rect(
@@ -86,18 +95,21 @@ impl PopupLayout {
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_set_offset")]
     pub fn set_offset(&self, dx: i32, dy: i32) {
         unsafe {
             ffi::gdk_popup_layout_set_offset(self.to_glib_none().0, dx, dy);
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_set_rect_anchor")]
     pub fn set_rect_anchor(&self, anchor: Gravity) {
         unsafe {
             ffi::gdk_popup_layout_set_rect_anchor(self.to_glib_none().0, anchor.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_popup_layout_set_surface_anchor")]
     pub fn set_surface_anchor(&self, anchor: Gravity) {
         unsafe {
             ffi::gdk_popup_layout_set_surface_anchor(self.to_glib_none().0, anchor.to_glib());

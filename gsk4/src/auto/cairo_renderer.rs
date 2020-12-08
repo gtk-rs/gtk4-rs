@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl CairoRenderer {
+    #[doc(alias = "gsk_cairo_renderer_new")]
     pub fn new() -> CairoRenderer {
         assert_initialized_main_thread!();
         unsafe { Renderer::from_glib_full(ffi::gsk_cairo_renderer_new()).unsafe_cast() }

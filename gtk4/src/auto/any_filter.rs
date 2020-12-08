@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl AnyFilter {
+    #[doc(alias = "gtk_any_filter_new")]
     pub fn new() -> AnyFilter {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_any_filter_new()) }

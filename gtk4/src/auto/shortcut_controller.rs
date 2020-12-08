@@ -29,11 +29,13 @@ glib::glib_wrapper! {
 }
 
 impl ShortcutController {
+    #[doc(alias = "gtk_shortcut_controller_new")]
     pub fn new() -> ShortcutController {
         assert_initialized_main_thread!();
         unsafe { EventController::from_glib_full(ffi::gtk_shortcut_controller_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_new_for_model")]
     pub fn new_for_model<P: IsA<gio::ListModel>>(model: &P) -> ShortcutController {
         assert_initialized_main_thread!();
         unsafe {
@@ -44,6 +46,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_add_shortcut")]
     pub fn add_shortcut(&self, shortcut: &Shortcut) {
         unsafe {
             ffi::gtk_shortcut_controller_add_shortcut(
@@ -53,6 +56,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_get_mnemonics_modifiers")]
     pub fn get_mnemonics_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_mnemonics_modifiers(
@@ -61,6 +65,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_get_scope")]
     pub fn get_scope(&self) -> ShortcutScope {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_scope(
@@ -69,6 +74,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_remove_shortcut")]
     pub fn remove_shortcut(&self, shortcut: &Shortcut) {
         unsafe {
             ffi::gtk_shortcut_controller_remove_shortcut(
@@ -78,6 +84,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_set_mnemonics_modifiers")]
     pub fn set_mnemonics_modifiers(&self, modifiers: gdk::ModifierType) {
         unsafe {
             ffi::gtk_shortcut_controller_set_mnemonics_modifiers(
@@ -87,6 +94,7 @@ impl ShortcutController {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_controller_set_scope")]
     pub fn set_scope(&self, scope: ShortcutScope) {
         unsafe {
             ffi::gtk_shortcut_controller_set_scope(self.to_glib_none().0, scope.to_glib());

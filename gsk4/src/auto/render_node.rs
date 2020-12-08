@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl RenderNode {
+    //#[doc(alias = "gsk_render_node_deserialize")]
     //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Unimplemented*/Fundamental: Pointer, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
     //    unsafe { TODO: call ffi:gsk_render_node_deserialize() }
     //}
@@ -25,14 +26,19 @@ impl RenderNode {
 pub const NONE_RENDER_NODE: Option<&RenderNode> = None;
 
 pub trait RenderNodeExt: 'static {
+    #[doc(alias = "gsk_render_node_draw")]
     fn draw(&self, cr: &cairo::Context);
 
+    #[doc(alias = "gsk_render_node_get_bounds")]
     fn get_bounds(&self) -> graphene::Rect;
 
+    #[doc(alias = "gsk_render_node_get_node_type")]
     fn get_node_type(&self) -> RenderNodeType;
 
+    #[doc(alias = "gsk_render_node_serialize")]
     fn serialize(&self) -> Option<glib::Bytes>;
 
+    #[doc(alias = "gsk_render_node_write_to_file")]
     fn write_to_file(&self, filename: &str) -> Result<(), glib::Error>;
 }
 

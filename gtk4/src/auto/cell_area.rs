@@ -37,6 +37,7 @@ glib::glib_wrapper! {
 pub const NONE_CELL_AREA: Option<&CellArea> = None;
 
 pub trait CellAreaExt: 'static {
+    #[doc(alias = "gtk_cell_area_activate")]
     fn activate<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
@@ -46,6 +47,7 @@ pub trait CellAreaExt: 'static {
         edit_only: bool,
     ) -> bool;
 
+    #[doc(alias = "gtk_cell_area_activate_cell")]
     fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: IsA<gdk::Event>>(
         &self,
         widget: &P,
@@ -55,16 +57,20 @@ pub trait CellAreaExt: 'static {
         flags: CellRendererState,
     ) -> bool;
 
+    #[doc(alias = "gtk_cell_area_add")]
     fn add<P: IsA<CellRenderer>>(&self, renderer: &P);
 
+    #[doc(alias = "gtk_cell_area_add_focus_sibling")]
     fn add_focus_sibling<P: IsA<CellRenderer>, Q: IsA<CellRenderer>>(
         &self,
         renderer: &P,
         sibling: &Q,
     );
 
+    //#[doc(alias = "gtk_cell_area_add_with_properties")]
     //fn add_with_properties<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    #[doc(alias = "gtk_cell_area_apply_attributes")]
     fn apply_attributes<P: IsA<TreeModel>>(
         &self,
         tree_model: &P,
@@ -73,24 +79,34 @@ pub trait CellAreaExt: 'static {
         is_expanded: bool,
     );
 
+    #[doc(alias = "gtk_cell_area_attribute_connect")]
     fn attribute_connect<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str, column: i32);
 
+    #[doc(alias = "gtk_cell_area_attribute_disconnect")]
     fn attribute_disconnect<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str);
 
+    #[doc(alias = "gtk_cell_area_attribute_get_column")]
     fn attribute_get_column<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str) -> i32;
 
+    //#[doc(alias = "gtk_cell_area_cell_get")]
     //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_cell_area_cell_get_valist")]
     //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    //#[doc(alias = "gtk_cell_area_cell_set")]
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_cell_area_cell_set_valist")]
     //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    #[doc(alias = "gtk_cell_area_copy_context")]
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext>;
 
+    #[doc(alias = "gtk_cell_area_create_context")]
     fn create_context(&self) -> Option<CellAreaContext>;
 
+    #[doc(alias = "gtk_cell_area_event")]
     fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<gdk::Event>>(
         &self,
         context: &P,
@@ -100,10 +116,13 @@ pub trait CellAreaExt: 'static {
         flags: CellRendererState,
     ) -> i32;
 
+    #[doc(alias = "gtk_cell_area_focus")]
     fn focus(&self, direction: DirectionType) -> bool;
 
+    #[doc(alias = "gtk_cell_area_foreach")]
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P);
 
+    #[doc(alias = "gtk_cell_area_foreach_alloc")]
     fn foreach_alloc<
         P: IsA<CellAreaContext>,
         Q: IsA<Widget>,
@@ -117,6 +136,7 @@ pub trait CellAreaExt: 'static {
         callback: R,
     );
 
+    #[doc(alias = "gtk_cell_area_get_cell_allocation")]
     fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
         &self,
         context: &P,
@@ -125,6 +145,7 @@ pub trait CellAreaExt: 'static {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_cell_area_get_cell_at_position")]
     fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
@@ -134,24 +155,32 @@ pub trait CellAreaExt: 'static {
         y: i32,
     ) -> (CellRenderer, gdk::Rectangle);
 
+    #[doc(alias = "gtk_cell_area_get_current_path_string")]
     fn get_current_path_string(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_cell_area_get_edit_widget")]
     fn get_edit_widget(&self) -> Option<CellEditable>;
 
+    #[doc(alias = "gtk_cell_area_get_edited_cell")]
     fn get_edited_cell(&self) -> Option<CellRenderer>;
 
+    #[doc(alias = "gtk_cell_area_get_focus_cell")]
     fn get_focus_cell(&self) -> Option<CellRenderer>;
 
+    #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
     fn get_focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer>;
 
+    #[doc(alias = "gtk_cell_area_get_focus_siblings")]
     fn get_focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer>;
 
+    #[doc(alias = "gtk_cell_area_get_preferred_height")]
     fn get_preferred_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_get_preferred_height_for_width")]
     fn get_preferred_height_for_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
@@ -159,12 +188,14 @@ pub trait CellAreaExt: 'static {
         width: i32,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_get_preferred_width")]
     fn get_preferred_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_get_preferred_width_for_height")]
     fn get_preferred_width_for_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
@@ -172,32 +203,40 @@ pub trait CellAreaExt: 'static {
         height: i32,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_get_request_mode")]
     fn get_request_mode(&self) -> SizeRequestMode;
 
+    #[doc(alias = "gtk_cell_area_has_renderer")]
     fn has_renderer<P: IsA<CellRenderer>>(&self, renderer: &P) -> bool;
 
+    #[doc(alias = "gtk_cell_area_inner_cell_area")]
     fn inner_cell_area<P: IsA<Widget>>(
         &self,
         widget: &P,
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_cell_area_is_activatable")]
     fn is_activatable(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_area_is_focus_sibling")]
     fn is_focus_sibling<P: IsA<CellRenderer>, Q: IsA<CellRenderer>>(
         &self,
         renderer: &P,
         sibling: &Q,
     ) -> bool;
 
+    #[doc(alias = "gtk_cell_area_remove")]
     fn remove<P: IsA<CellRenderer>>(&self, renderer: &P);
 
+    #[doc(alias = "gtk_cell_area_remove_focus_sibling")]
     fn remove_focus_sibling<P: IsA<CellRenderer>, Q: IsA<CellRenderer>>(
         &self,
         renderer: &P,
         sibling: &Q,
     );
 
+    #[doc(alias = "gtk_cell_area_request_renderer")]
     fn request_renderer<P: IsA<CellRenderer>, Q: IsA<Widget>>(
         &self,
         renderer: &P,
@@ -206,8 +245,10 @@ pub trait CellAreaExt: 'static {
         for_size: i32,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_set_focus_cell")]
     fn set_focus_cell<P: IsA<CellRenderer>>(&self, renderer: &P);
 
+    #[doc(alias = "gtk_cell_area_snapshot")]
     fn snapshot<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
@@ -219,6 +260,7 @@ pub trait CellAreaExt: 'static {
         paint_focus: bool,
     );
 
+    #[doc(alias = "gtk_cell_area_stop_editing")]
     fn stop_editing(&self, canceled: bool);
 
     fn connect_add_editable<

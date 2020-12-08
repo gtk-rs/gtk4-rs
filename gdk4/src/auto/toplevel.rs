@@ -31,8 +31,10 @@ glib::glib_wrapper! {
 pub const NONE_TOPLEVEL: Option<&Toplevel> = None;
 
 pub trait ToplevelExt: 'static {
+    #[doc(alias = "gdk_toplevel_begin_move")]
     fn begin_move(&self, device: &Device, button: i32, x: f64, y: f64, timestamp: u32);
 
+    #[doc(alias = "gdk_toplevel_begin_resize")]
     fn begin_resize(
         &self,
         edge: SurfaceEdge,
@@ -43,36 +45,52 @@ pub trait ToplevelExt: 'static {
         timestamp: u32,
     );
 
+    #[doc(alias = "gdk_toplevel_focus")]
     fn focus(&self, timestamp: u32);
 
+    #[doc(alias = "gdk_toplevel_get_state")]
     fn get_state(&self) -> ToplevelState;
 
+    #[doc(alias = "gdk_toplevel_inhibit_system_shortcuts")]
     fn inhibit_system_shortcuts<P: IsA<Event>>(&self, event: Option<&P>);
 
+    #[doc(alias = "gdk_toplevel_lower")]
     fn lower(&self) -> bool;
 
+    #[doc(alias = "gdk_toplevel_minimize")]
     fn minimize(&self) -> bool;
 
+    #[doc(alias = "gdk_toplevel_present")]
     fn present(&self, layout: &ToplevelLayout) -> bool;
 
+    #[doc(alias = "gdk_toplevel_restore_system_shortcuts")]
     fn restore_system_shortcuts(&self);
 
+    #[doc(alias = "gdk_toplevel_set_decorated")]
     fn set_decorated(&self, decorated: bool);
 
+    #[doc(alias = "gdk_toplevel_set_deletable")]
     fn set_deletable(&self, deletable: bool);
 
+    #[doc(alias = "gdk_toplevel_set_icon_list")]
     fn set_icon_list(&self, surfaces: &[Texture]);
 
+    #[doc(alias = "gdk_toplevel_set_modal")]
     fn set_modal(&self, modal: bool);
 
+    #[doc(alias = "gdk_toplevel_set_startup_id")]
     fn set_startup_id(&self, startup_id: &str);
 
+    #[doc(alias = "gdk_toplevel_set_title")]
     fn set_title(&self, title: &str);
 
+    #[doc(alias = "gdk_toplevel_set_transient_for")]
     fn set_transient_for(&self, parent: &Surface);
 
+    #[doc(alias = "gdk_toplevel_show_window_menu")]
     fn show_window_menu<P: IsA<Event>>(&self, event: &P) -> bool;
 
+    #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
 
     fn get_property_decorated(&self) -> bool;

@@ -19,8 +19,10 @@ glib::glib_wrapper! {
 pub const NONE_MULTI_FILTER: Option<&MultiFilter> = None;
 
 pub trait MultiFilterExt: 'static {
+    #[doc(alias = "gtk_multi_filter_append")]
     fn append<P: IsA<Filter>>(&self, filter: &P);
 
+    #[doc(alias = "gtk_multi_filter_remove")]
     fn remove(&self, position: u32);
 }
 

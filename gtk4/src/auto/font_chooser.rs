@@ -23,45 +23,64 @@ glib::glib_wrapper! {
 pub const NONE_FONT_CHOOSER: Option<&FontChooser> = None;
 
 pub trait FontChooserExt: 'static {
+    #[doc(alias = "gtk_font_chooser_get_font")]
     fn get_font(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_desc")]
     fn get_font_desc(&self) -> Option<pango::FontDescription>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_face")]
     fn get_font_face(&self) -> Option<pango::FontFace>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_family")]
     fn get_font_family(&self) -> Option<pango::FontFamily>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_features")]
     fn get_font_features(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_map")]
     fn get_font_map(&self) -> Option<pango::FontMap>;
 
+    #[doc(alias = "gtk_font_chooser_get_font_size")]
     fn get_font_size(&self) -> i32;
 
+    #[doc(alias = "gtk_font_chooser_get_language")]
     fn get_language(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_font_chooser_get_level")]
     fn get_level(&self) -> FontChooserLevel;
 
+    #[doc(alias = "gtk_font_chooser_get_preview_text")]
     fn get_preview_text(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_font_chooser_get_show_preview_entry")]
     fn get_show_preview_entry(&self) -> bool;
 
+    #[doc(alias = "gtk_font_chooser_set_filter_func")]
     fn set_filter_func(
         &self,
         filter: Option<Box_<dyn Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>>,
     );
 
+    #[doc(alias = "gtk_font_chooser_set_font")]
     fn set_font(&self, fontname: &str);
 
+    #[doc(alias = "gtk_font_chooser_set_font_desc")]
     fn set_font_desc(&self, font_desc: &pango::FontDescription);
 
+    #[doc(alias = "gtk_font_chooser_set_font_map")]
     fn set_font_map<P: IsA<pango::FontMap>>(&self, fontmap: Option<&P>);
 
+    #[doc(alias = "gtk_font_chooser_set_language")]
     fn set_language(&self, language: &str);
 
+    #[doc(alias = "gtk_font_chooser_set_level")]
     fn set_level(&self, level: FontChooserLevel);
 
+    #[doc(alias = "gtk_font_chooser_set_preview_text")]
     fn set_preview_text(&self, text: &str);
 
+    #[doc(alias = "gtk_font_chooser_set_show_preview_entry")]
     fn set_show_preview_entry(&self, show_preview_entry: bool);
 
     fn connect_font_activated<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;

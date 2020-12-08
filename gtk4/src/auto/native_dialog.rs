@@ -24,24 +24,34 @@ glib::glib_wrapper! {
 pub const NONE_NATIVE_DIALOG: Option<&NativeDialog> = None;
 
 pub trait NativeDialogExt: 'static {
+    #[doc(alias = "gtk_native_dialog_destroy")]
     fn destroy(&self);
 
+    #[doc(alias = "gtk_native_dialog_get_modal")]
     fn get_modal(&self) -> bool;
 
+    #[doc(alias = "gtk_native_dialog_get_title")]
     fn get_title(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_native_dialog_get_transient_for")]
     fn get_transient_for(&self) -> Option<Window>;
 
+    #[doc(alias = "gtk_native_dialog_get_visible")]
     fn get_visible(&self) -> bool;
 
+    #[doc(alias = "gtk_native_dialog_hide")]
     fn hide(&self);
 
+    #[doc(alias = "gtk_native_dialog_set_modal")]
     fn set_modal(&self, modal: bool);
 
+    #[doc(alias = "gtk_native_dialog_set_title")]
     fn set_title(&self, title: &str);
 
+    #[doc(alias = "gtk_native_dialog_set_transient_for")]
     fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>);
 
+    #[doc(alias = "gtk_native_dialog_show")]
     fn show(&self);
 
     fn set_property_visible(&self, visible: bool);

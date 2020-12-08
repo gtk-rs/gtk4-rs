@@ -27,6 +27,7 @@ glib::glib_wrapper! {
 }
 
 impl EmojiChooser {
+    #[doc(alias = "gtk_emoji_chooser_new")]
     pub fn new() -> EmojiChooser {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_emoji_chooser_new()).unsafe_cast() }

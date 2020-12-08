@@ -30,6 +30,7 @@ glib::glib_wrapper! {
 }
 
 impl DrawingArea {
+    #[doc(alias = "gtk_drawing_area_new")]
     pub fn new() -> DrawingArea {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_drawing_area_new()).unsafe_cast() }
@@ -352,14 +353,19 @@ impl DrawingAreaBuilder {
 pub const NONE_DRAWING_AREA: Option<&DrawingArea> = None;
 
 pub trait DrawingAreaExt: 'static {
+    #[doc(alias = "gtk_drawing_area_get_content_height")]
     fn get_content_height(&self) -> i32;
 
+    #[doc(alias = "gtk_drawing_area_get_content_width")]
     fn get_content_width(&self) -> i32;
 
+    #[doc(alias = "gtk_drawing_area_set_content_height")]
     fn set_content_height(&self, height: i32);
 
+    #[doc(alias = "gtk_drawing_area_set_content_width")]
     fn set_content_width(&self, width: i32);
 
+    #[doc(alias = "gtk_drawing_area_set_draw_func")]
     fn set_draw_func(
         &self,
         draw_func: Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,

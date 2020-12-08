@@ -32,23 +32,28 @@ glib::glib_wrapper! {
 }
 
 impl TreeExpander {
+    #[doc(alias = "gtk_tree_expander_new")]
     pub fn new() -> TreeExpander {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_tree_expander_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_tree_expander_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_tree_expander_get_item")]
     //pub fn get_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
     //    unsafe { TODO: call ffi:gtk_tree_expander_get_item() }
     //}
 
+    #[doc(alias = "gtk_tree_expander_get_list_row")]
     pub fn get_list_row(&self) -> Option<TreeListRow> {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_list_row(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_expander_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_tree_expander_set_child(
@@ -58,6 +63,7 @@ impl TreeExpander {
         }
     }
 
+    #[doc(alias = "gtk_tree_expander_set_list_row")]
     pub fn set_list_row(&self, list_row: Option<&TreeListRow>) {
         unsafe {
             ffi::gtk_tree_expander_set_list_row(self.to_glib_none().0, list_row.to_glib_none().0);

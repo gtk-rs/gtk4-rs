@@ -19,26 +19,31 @@ glib::glib_wrapper! {
 }
 
 impl X11Display {
+    //#[doc(alias = "gdk_x11_display_broadcast_startup_message")]
     //pub fn broadcast_startup_message(&self, message_type: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gdk_x11_display_broadcast_startup_message() }
     //}
 
+    #[doc(alias = "gdk_x11_display_error_trap_pop")]
     pub fn error_trap_pop(&self) -> i32 {
         unsafe { ffi::gdk_x11_display_error_trap_pop(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_display_error_trap_pop_ignored")]
     pub fn error_trap_pop_ignored(&self) {
         unsafe {
             ffi::gdk_x11_display_error_trap_pop_ignored(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_display_error_trap_push")]
     pub fn error_trap_push(&self) {
         unsafe {
             ffi::gdk_x11_display_error_trap_push(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_display_get_default_group")]
     pub fn get_default_group(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_default_group(
@@ -47,6 +52,7 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_get_glx_version")]
     pub fn get_glx_version(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
@@ -66,6 +72,7 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_get_primary_monitor")]
     pub fn get_primary_monitor(&self) -> Option<gdk::Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_primary_monitor(
@@ -74,10 +81,12 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_get_screen")]
     pub fn get_screen(&self) -> Option<X11Screen> {
         unsafe { from_glib_none(ffi::gdk_x11_display_get_screen(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_x11_display_get_startup_notification_id")]
     pub fn get_startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_startup_notification_id(
@@ -86,24 +95,29 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_get_user_time")]
     pub fn get_user_time(&self) -> u32 {
         unsafe { ffi::gdk_x11_display_get_user_time(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_display_get_xcursor")]
     pub fn get_xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
         unsafe { ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_display_get_xrootwindow")]
     pub fn get_xrootwindow(&self) -> xlib::Window {
         unsafe { ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_display_grab")]
     pub fn grab(&self) {
         unsafe {
             ffi::gdk_x11_display_grab(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_display_set_cursor_theme")]
     pub fn set_cursor_theme(&self, theme: Option<&str>, size: i32) {
         unsafe {
             ffi::gdk_x11_display_set_cursor_theme(
@@ -114,6 +128,7 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_set_startup_notification_id")]
     pub fn set_startup_notification_id(&self, startup_id: &str) {
         unsafe {
             ffi::gdk_x11_display_set_startup_notification_id(
@@ -123,12 +138,14 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_set_surface_scale")]
     pub fn set_surface_scale(&self, scale: i32) {
         unsafe {
             ffi::gdk_x11_display_set_surface_scale(self.to_glib_none().0, scale);
         }
     }
 
+    #[doc(alias = "gdk_x11_display_string_to_compound_text")]
     pub fn string_to_compound_text(&self, str: &str) -> (i32, glib::GString, i32, Vec<u8>) {
         unsafe {
             let mut encoding = ptr::null();
@@ -153,12 +170,14 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_ungrab")]
     pub fn ungrab(&self) {
         unsafe {
             ffi::gdk_x11_display_ungrab(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_display_utf8_to_compound_text")]
     pub fn utf8_to_compound_text(&self, str: &str) -> Option<(glib::GString, i32, Vec<u8>)> {
         unsafe {
             let mut encoding = ptr::null();
@@ -186,11 +205,13 @@ impl X11Display {
         }
     }
 
+    #[doc(alias = "gdk_x11_display_open")]
     pub fn open(display_name: Option<&str>) -> Option<gdk::Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_x11_display_open(display_name.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_x11_display_set_program_class")]
     pub fn set_program_class<P: IsA<gdk::Display>>(display: &P, program_class: &str) {
         assert_initialized_main_thread!();
         unsafe {

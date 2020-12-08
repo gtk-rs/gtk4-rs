@@ -19,6 +19,7 @@ glib::glib_wrapper! {
 }
 
 impl AlternativeTrigger {
+    #[doc(alias = "gtk_alternative_trigger_new")]
     pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutTrigger>>(
         first: &P,
         second: &Q,
@@ -33,6 +34,7 @@ impl AlternativeTrigger {
         }
     }
 
+    #[doc(alias = "gtk_alternative_trigger_get_first")]
     pub fn get_first(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(ffi::gtk_alternative_trigger_get_first(
@@ -41,6 +43,7 @@ impl AlternativeTrigger {
         }
     }
 
+    #[doc(alias = "gtk_alternative_trigger_get_second")]
     pub fn get_second(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(ffi::gtk_alternative_trigger_get_second(

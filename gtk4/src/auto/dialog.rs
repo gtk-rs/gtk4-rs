@@ -39,11 +39,13 @@ glib::glib_wrapper! {
 }
 
 impl Dialog {
+    #[doc(alias = "gtk_dialog_new")]
     pub fn new() -> Dialog {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_dialog_new()).unsafe_cast() }
     }
 
+    //#[doc(alias = "gtk_dialog_new_with_buttons")]
     //pub fn with_buttons<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>, flags: DialogFlags, first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Dialog {
     //    unsafe { TODO: call ffi:gtk_dialog_new_with_buttons() }
     //}
@@ -527,22 +529,31 @@ impl DialogBuilder {
 pub const NONE_DIALOG: Option<&Dialog> = None;
 
 pub trait DialogExt: 'static {
+    #[doc(alias = "gtk_dialog_add_action_widget")]
     fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType);
 
+    #[doc(alias = "gtk_dialog_add_button")]
     fn add_button(&self, button_text: &str, response_id: ResponseType) -> Widget;
 
+    //#[doc(alias = "gtk_dialog_add_buttons")]
     //fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    #[doc(alias = "gtk_dialog_get_content_area")]
     fn get_content_area(&self) -> Box;
 
+    #[doc(alias = "gtk_dialog_get_header_bar")]
     fn get_header_bar(&self) -> HeaderBar;
 
+    #[doc(alias = "gtk_dialog_get_widget_for_response")]
     fn get_widget_for_response(&self, response_id: ResponseType) -> Option<Widget>;
 
+    #[doc(alias = "gtk_dialog_response")]
     fn response(&self, response_id: ResponseType);
 
+    #[doc(alias = "gtk_dialog_set_default_response")]
     fn set_default_response(&self, response_id: ResponseType);
 
+    #[doc(alias = "gtk_dialog_set_response_sensitive")]
     fn set_response_sensitive(&self, response_id: ResponseType, setting: bool);
 
     fn get_property_use_header_bar(&self) -> i32;

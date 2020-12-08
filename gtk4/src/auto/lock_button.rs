@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 }
 
 impl LockButton {
+    #[doc(alias = "gtk_lock_button_new")]
     pub fn new<P: IsA<gio::Permission>>(permission: Option<&P>) -> LockButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -43,10 +44,12 @@ impl LockButton {
         }
     }
 
+    #[doc(alias = "gtk_lock_button_get_permission")]
     pub fn get_permission(&self) -> Option<gio::Permission> {
         unsafe { from_glib_none(ffi::gtk_lock_button_get_permission(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_lock_button_set_permission")]
     pub fn set_permission<P: IsA<gio::Permission>>(&self, permission: Option<&P>) {
         unsafe {
             ffi::gtk_lock_button_set_permission(

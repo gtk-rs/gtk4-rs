@@ -24,10 +24,13 @@ glib::glib_wrapper! {
 pub const NONE_FILTER: Option<&Filter> = None;
 
 pub trait FilterExt: 'static {
+    #[doc(alias = "gtk_filter_changed")]
     fn changed(&self, change: FilterChange);
 
+    #[doc(alias = "gtk_filter_get_strictness")]
     fn get_strictness(&self) -> FilterMatch;
 
+    #[doc(alias = "gtk_filter_match")]
     fn match_<P: IsA<glib::Object>>(&self, item: &P) -> bool;
 
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId;

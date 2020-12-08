@@ -24,36 +24,44 @@ glib::glib_wrapper! {
 }
 
 impl ListItem {
+    #[doc(alias = "gtk_list_item_get_activatable")]
     pub fn get_activatable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_activatable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_get_item")]
     pub fn get_item(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_item(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_get_position")]
     pub fn get_position(&self) -> u32 {
         unsafe { ffi::gtk_list_item_get_position(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_list_item_get_selectable")]
     pub fn get_selectable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_selectable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_get_selected")]
     pub fn get_selected(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_selected(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_set_activatable")]
     pub fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_list_item_set_activatable(self.to_glib_none().0, activatable.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_list_item_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_list_item_set_child(
@@ -63,6 +71,7 @@ impl ListItem {
         }
     }
 
+    #[doc(alias = "gtk_list_item_set_selectable")]
     pub fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_list_item_set_selectable(self.to_glib_none().0, selectable.to_glib());

@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl FlattenListModel {
+    #[doc(alias = "gtk_flatten_list_model_new")]
     pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> FlattenListModel {
         assert_initialized_main_thread!();
         unsafe {
@@ -32,10 +33,12 @@ impl FlattenListModel {
         }
     }
 
+    #[doc(alias = "gtk_flatten_list_model_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_flatten_list_model_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_flatten_list_model_get_model_for_item")]
     pub fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
         unsafe {
             from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
@@ -45,6 +48,7 @@ impl FlattenListModel {
         }
     }
 
+    #[doc(alias = "gtk_flatten_list_model_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_flatten_list_model_set_model(

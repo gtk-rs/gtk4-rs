@@ -29,15 +29,18 @@ glib::glib_wrapper! {
 }
 
 impl CellAreaBox {
+    #[doc(alias = "gtk_cell_area_box_new")]
     pub fn new() -> CellAreaBox {
         assert_initialized_main_thread!();
         unsafe { CellArea::from_glib_none(ffi::gtk_cell_area_box_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_cell_area_box_get_spacing")]
     pub fn get_spacing(&self) -> i32 {
         unsafe { ffi::gtk_cell_area_box_get_spacing(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_cell_area_box_pack_end")]
     pub fn pack_end<P: IsA<CellRenderer>>(
         &self,
         renderer: &P,
@@ -56,6 +59,7 @@ impl CellAreaBox {
         }
     }
 
+    #[doc(alias = "gtk_cell_area_box_pack_start")]
     pub fn pack_start<P: IsA<CellRenderer>>(
         &self,
         renderer: &P,
@@ -74,6 +78,7 @@ impl CellAreaBox {
         }
     }
 
+    #[doc(alias = "gtk_cell_area_box_set_spacing")]
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {
             ffi::gtk_cell_area_box_set_spacing(self.to_glib_none().0, spacing);

@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl ActivateAction {
+    #[doc(alias = "gtk_activate_action_get")]
     pub fn get() -> Option<ShortcutAction> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_activate_action_get()) }

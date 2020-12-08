@@ -20,22 +20,27 @@ glib::glib_wrapper! {
 }
 
 impl X11Screen {
+    #[doc(alias = "gdk_x11_screen_get_current_desktop")]
     pub fn get_current_desktop(&self) -> u32 {
         unsafe { ffi::gdk_x11_screen_get_current_desktop(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_screen_get_monitor_output")]
     pub fn get_monitor_output(&self, monitor_num: i32) -> xlib::XID {
         unsafe { ffi::gdk_x11_screen_get_monitor_output(self.to_glib_none().0, monitor_num) }
     }
 
+    #[doc(alias = "gdk_x11_screen_get_number_of_desktops")]
     pub fn get_number_of_desktops(&self) -> u32 {
         unsafe { ffi::gdk_x11_screen_get_number_of_desktops(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_screen_get_screen_number")]
     pub fn get_screen_number(&self) -> i32 {
         unsafe { ffi::gdk_x11_screen_get_screen_number(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_screen_get_window_manager_name")]
     pub fn get_window_manager_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_x11_screen_get_window_manager_name(
@@ -44,6 +49,7 @@ impl X11Screen {
         }
     }
 
+    #[doc(alias = "gdk_x11_screen_supports_net_wm_hint")]
     pub fn supports_net_wm_hint(&self, property_name: &str) -> bool {
         unsafe {
             from_glib(ffi::gdk_x11_screen_supports_net_wm_hint(

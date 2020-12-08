@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl TreeModelSort {
+    #[doc(alias = "gtk_tree_model_sort_new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(child_model: &P) -> TreeModelSort {
         skip_assert_initialized!();
         unsafe {
@@ -64,20 +65,28 @@ impl TreeModelSortBuilder {
 pub const NONE_TREE_MODEL_SORT: Option<&TreeModelSort> = None;
 
 pub trait TreeModelSortExt: 'static {
+    #[doc(alias = "gtk_tree_model_sort_clear_cache")]
     fn clear_cache(&self);
 
+    #[doc(alias = "gtk_tree_model_sort_convert_child_iter_to_iter")]
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_sort_convert_child_path_to_path")]
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
 
+    #[doc(alias = "gtk_tree_model_sort_convert_iter_to_child_iter")]
     fn convert_iter_to_child_iter(&self, sorted_iter: &TreeIter) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_model_sort_convert_path_to_child_path")]
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath>;
 
+    #[doc(alias = "gtk_tree_model_sort_get_model")]
     fn get_model(&self) -> TreeModel;
 
+    #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_model_sort_reset_default_sort_func")]
     fn reset_default_sort_func(&self);
 }
 

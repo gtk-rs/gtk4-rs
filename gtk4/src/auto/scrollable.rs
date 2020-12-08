@@ -25,22 +25,31 @@ glib::glib_wrapper! {
 pub const NONE_SCROLLABLE: Option<&Scrollable> = None;
 
 pub trait ScrollableExt: 'static {
+    #[doc(alias = "gtk_scrollable_get_border")]
     fn get_border(&self) -> Option<Border>;
 
+    #[doc(alias = "gtk_scrollable_get_hadjustment")]
     fn get_hadjustment(&self) -> Option<Adjustment>;
 
+    #[doc(alias = "gtk_scrollable_get_hscroll_policy")]
     fn get_hscroll_policy(&self) -> ScrollablePolicy;
 
+    #[doc(alias = "gtk_scrollable_get_vadjustment")]
     fn get_vadjustment(&self) -> Option<Adjustment>;
 
+    #[doc(alias = "gtk_scrollable_get_vscroll_policy")]
     fn get_vscroll_policy(&self) -> ScrollablePolicy;
 
+    #[doc(alias = "gtk_scrollable_set_hadjustment")]
     fn set_hadjustment<P: IsA<Adjustment>>(&self, hadjustment: Option<&P>);
 
+    #[doc(alias = "gtk_scrollable_set_hscroll_policy")]
     fn set_hscroll_policy(&self, policy: ScrollablePolicy);
 
+    #[doc(alias = "gtk_scrollable_set_vadjustment")]
     fn set_vadjustment<P: IsA<Adjustment>>(&self, vadjustment: Option<&P>);
 
+    #[doc(alias = "gtk_scrollable_set_vscroll_policy")]
     fn set_vscroll_policy(&self, policy: ScrollablePolicy);
 
     fn connect_property_hadjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

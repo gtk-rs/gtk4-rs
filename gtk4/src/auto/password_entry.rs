@@ -33,11 +33,13 @@ glib::glib_wrapper! {
 }
 
 impl PasswordEntry {
+    #[doc(alias = "gtk_password_entry_new")]
     pub fn new() -> PasswordEntry {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_password_entry_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_password_entry_get_extra_menu")]
     pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_password_entry_get_extra_menu(
@@ -46,6 +48,7 @@ impl PasswordEntry {
         }
     }
 
+    #[doc(alias = "gtk_password_entry_get_show_peek_icon")]
     pub fn get_show_peek_icon(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_password_entry_get_show_peek_icon(
@@ -54,6 +57,7 @@ impl PasswordEntry {
         }
     }
 
+    #[doc(alias = "gtk_password_entry_set_extra_menu")]
     pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_password_entry_set_extra_menu(
@@ -63,6 +67,7 @@ impl PasswordEntry {
         }
     }
 
+    #[doc(alias = "gtk_password_entry_set_show_peek_icon")]
     pub fn set_show_peek_icon(&self, show_peek_icon: bool) {
         unsafe {
             ffi::gtk_password_entry_set_show_peek_icon(

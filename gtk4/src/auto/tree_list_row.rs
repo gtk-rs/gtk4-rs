@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl TreeListRow {
+    #[doc(alias = "gtk_tree_list_row_get_child_row")]
     pub fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_row_get_child_row(
@@ -31,34 +32,42 @@ impl TreeListRow {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_children")]
     pub fn get_children(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_row_get_children(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_depth")]
     pub fn get_depth(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_depth(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_expanded")]
     pub fn get_expanded(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_get_expanded(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_item")]
     pub fn get_item(&self) -> Option<glib::Object> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_item(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_parent")]
     pub fn get_parent(&self) -> Option<TreeListRow> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_parent(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_get_position")]
     pub fn get_position(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_position(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_is_expandable")]
     pub fn is_expandable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_is_expandable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_list_row_set_expanded")]
     pub fn set_expanded(&self, expanded: bool) {
         unsafe {
             ffi::gtk_tree_list_row_set_expanded(self.to_glib_none().0, expanded.to_glib());

@@ -24,14 +24,17 @@ glib::glib_wrapper! {
 }
 
 impl StringSorter {
+    //#[doc(alias = "gtk_string_sorter_new")]
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringSorter {
     //    unsafe { TODO: call ffi:gtk_string_sorter_new() }
     //}
 
+    //#[doc(alias = "gtk_string_sorter_get_expression")]
     //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
     //    unsafe { TODO: call ffi:gtk_string_sorter_get_expression() }
     //}
 
+    #[doc(alias = "gtk_string_sorter_get_ignore_case")]
     pub fn get_ignore_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_sorter_get_ignore_case(
@@ -40,10 +43,12 @@ impl StringSorter {
         }
     }
 
+    //#[doc(alias = "gtk_string_sorter_set_expression")]
     //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
     //    unsafe { TODO: call ffi:gtk_string_sorter_set_expression() }
     //}
 
+    #[doc(alias = "gtk_string_sorter_set_ignore_case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
             ffi::gtk_string_sorter_set_ignore_case(self.to_glib_none().0, ignore_case.to_glib());

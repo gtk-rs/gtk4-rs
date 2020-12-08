@@ -33,71 +33,85 @@ glib::glib_wrapper! {
 }
 
 impl ProgressBar {
+    #[doc(alias = "gtk_progress_bar_new")]
     pub fn new() -> ProgressBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_progress_bar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_ellipsize")]
     pub fn get_ellipsize(&self) -> pango::EllipsizeMode {
         unsafe { from_glib(ffi::gtk_progress_bar_get_ellipsize(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_fraction")]
     pub fn get_fraction(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_fraction(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_inverted")]
     pub fn get_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_inverted(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_pulse_step")]
     pub fn get_pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_pulse_step(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_show_text")]
     pub fn get_show_text(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_show_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_progress_bar_get_text")]
     pub fn get_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_progress_bar_get_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_progress_bar_pulse")]
     pub fn pulse(&self) {
         unsafe {
             ffi::gtk_progress_bar_pulse(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_ellipsize")]
     pub fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
         unsafe {
             ffi::gtk_progress_bar_set_ellipsize(self.to_glib_none().0, mode.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_fraction")]
     pub fn set_fraction(&self, fraction: f64) {
         unsafe {
             ffi::gtk_progress_bar_set_fraction(self.to_glib_none().0, fraction);
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
             ffi::gtk_progress_bar_set_inverted(self.to_glib_none().0, inverted.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_pulse_step")]
     pub fn set_pulse_step(&self, fraction: f64) {
         unsafe {
             ffi::gtk_progress_bar_set_pulse_step(self.to_glib_none().0, fraction);
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_show_text")]
     pub fn set_show_text(&self, show_text: bool) {
         unsafe {
             ffi::gtk_progress_bar_set_show_text(self.to_glib_none().0, show_text.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_progress_bar_set_text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_progress_bar_set_text(self.to_glib_none().0, text.to_glib_none().0);

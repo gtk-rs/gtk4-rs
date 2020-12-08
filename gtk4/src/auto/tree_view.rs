@@ -47,11 +47,13 @@ glib::glib_wrapper! {
 }
 
 impl TreeView {
+    #[doc(alias = "gtk_tree_view_new")]
     pub fn new() -> TreeView {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_tree_view_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_tree_view_new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> TreeView {
         skip_assert_initialized!();
         unsafe {
@@ -550,30 +552,43 @@ impl TreeViewBuilder {
 pub const NONE_TREE_VIEW: Option<&TreeView> = None;
 
 pub trait TreeViewExt: 'static {
+    #[doc(alias = "gtk_tree_view_append_column")]
     fn append_column(&self, column: &TreeViewColumn) -> i32;
 
+    #[doc(alias = "gtk_tree_view_collapse_all")]
     fn collapse_all(&self);
 
+    #[doc(alias = "gtk_tree_view_collapse_row")]
     fn collapse_row(&self, path: &TreePath) -> bool;
 
+    #[doc(alias = "gtk_tree_view_columns_autosize")]
     fn columns_autosize(&self);
 
+    #[doc(alias = "gtk_tree_view_convert_bin_window_to_tree_coords")]
     fn convert_bin_window_to_tree_coords(&self, bx: i32, by: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_convert_bin_window_to_widget_coords")]
     fn convert_bin_window_to_widget_coords(&self, bx: i32, by: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_convert_tree_to_bin_window_coords")]
     fn convert_tree_to_bin_window_coords(&self, tx: i32, ty: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_convert_tree_to_widget_coords")]
     fn convert_tree_to_widget_coords(&self, tx: i32, ty: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_convert_widget_to_bin_window_coords")]
     fn convert_widget_to_bin_window_coords(&self, wx: i32, wy: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_convert_widget_to_tree_coords")]
     fn convert_widget_to_tree_coords(&self, wx: i32, wy: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_tree_view_create_row_drag_icon")]
     fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable>;
 
+    #[doc(alias = "gtk_tree_view_enable_model_drag_dest")]
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
 
+    #[doc(alias = "gtk_tree_view_enable_model_drag_source")]
     fn enable_model_drag_source(
         &self,
         start_button_mask: gdk::ModifierType,
@@ -581,88 +596,122 @@ pub trait TreeViewExt: 'static {
         actions: gdk::DragAction,
     );
 
+    #[doc(alias = "gtk_tree_view_expand_all")]
     fn expand_all(&self);
 
+    #[doc(alias = "gtk_tree_view_expand_row")]
     fn expand_row(&self, path: &TreePath, open_all: bool) -> bool;
 
+    #[doc(alias = "gtk_tree_view_expand_to_path")]
     fn expand_to_path(&self, path: &TreePath);
 
+    #[doc(alias = "gtk_tree_view_get_activate_on_single_click")]
     fn get_activate_on_single_click(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_background_area")]
     fn get_background_area(
         &self,
         path: Option<&TreePath>,
         column: Option<&TreeViewColumn>,
     ) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_tree_view_get_cell_area")]
     fn get_cell_area(
         &self,
         path: Option<&TreePath>,
         column: Option<&TreeViewColumn>,
     ) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_tree_view_get_column")]
     fn get_column(&self, n: i32) -> Option<TreeViewColumn>;
 
+    #[doc(alias = "gtk_tree_view_get_columns")]
     fn get_columns(&self) -> Vec<TreeViewColumn>;
 
+    #[doc(alias = "gtk_tree_view_get_cursor")]
     fn get_cursor(&self) -> (Option<TreePath>, Option<TreeViewColumn>);
 
+    #[doc(alias = "gtk_tree_view_get_dest_row_at_pos")]
     fn get_dest_row_at_pos(
         &self,
         drag_x: i32,
         drag_y: i32,
     ) -> Option<(Option<TreePath>, TreeViewDropPosition)>;
 
+    #[doc(alias = "gtk_tree_view_get_drag_dest_row")]
     fn get_drag_dest_row(&self) -> (Option<TreePath>, TreeViewDropPosition);
 
+    #[doc(alias = "gtk_tree_view_get_enable_search")]
     fn get_enable_search(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_enable_tree_lines")]
     fn get_enable_tree_lines(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_expander_column")]
     fn get_expander_column(&self) -> Option<TreeViewColumn>;
 
+    #[doc(alias = "gtk_tree_view_get_fixed_height_mode")]
     fn get_fixed_height_mode(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_grid_lines")]
     fn get_grid_lines(&self) -> TreeViewGridLines;
 
+    #[doc(alias = "gtk_tree_view_get_headers_clickable")]
     fn get_headers_clickable(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_headers_visible")]
     fn get_headers_visible(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_hover_expand")]
     fn get_hover_expand(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_hover_selection")]
     fn get_hover_selection(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_level_indentation")]
     fn get_level_indentation(&self) -> i32;
 
+    #[doc(alias = "gtk_tree_view_get_model")]
     fn get_model(&self) -> Option<TreeModel>;
 
+    #[doc(alias = "gtk_tree_view_get_n_columns")]
     fn get_n_columns(&self) -> u32;
 
+    #[doc(alias = "gtk_tree_view_get_path_at_pos")]
     fn get_path_at_pos(
         &self,
         x: i32,
         y: i32,
     ) -> Option<(Option<TreePath>, Option<TreeViewColumn>, i32, i32)>;
 
+    #[doc(alias = "gtk_tree_view_get_reorderable")]
     fn get_reorderable(&self) -> bool;
 
+    //#[doc(alias = "gtk_tree_view_get_row_separator_func")]
     //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
 
+    #[doc(alias = "gtk_tree_view_get_rubber_banding")]
     fn get_rubber_banding(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_search_column")]
     fn get_search_column(&self) -> i32;
 
+    #[doc(alias = "gtk_tree_view_get_search_entry")]
     fn get_search_entry(&self) -> Option<Editable>;
 
+    //#[doc(alias = "gtk_tree_view_get_search_equal_func")]
     //fn get_search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static;
 
+    #[doc(alias = "gtk_tree_view_get_selection")]
     fn get_selection(&self) -> TreeSelection;
 
+    #[doc(alias = "gtk_tree_view_get_show_expanders")]
     fn get_show_expanders(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_get_tooltip_column")]
     fn get_tooltip_column(&self) -> i32;
 
+    #[doc(alias = "gtk_tree_view_get_tooltip_context")]
     fn get_tooltip_context(
         &self,
         x: &mut i32,
@@ -670,14 +719,19 @@ pub trait TreeViewExt: 'static {
         keyboard_tip: bool,
     ) -> Option<(Option<TreeModel>, TreePath, TreeIter)>;
 
+    #[doc(alias = "gtk_tree_view_get_visible_range")]
     fn get_visible_range(&self) -> Option<(TreePath, TreePath)>;
 
+    #[doc(alias = "gtk_tree_view_get_visible_rect")]
     fn get_visible_rect(&self) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_tree_view_insert_column")]
     fn insert_column(&self, column: &TreeViewColumn, position: i32) -> i32;
 
+    //#[doc(alias = "gtk_tree_view_insert_column_with_attributes")]
     //fn insert_column_with_attributes<P: IsA<CellRenderer>>(&self, position: i32, title: &str, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> i32;
 
+    #[doc(alias = "gtk_tree_view_insert_column_with_data_func")]
     fn insert_column_with_data_func<
         P: IsA<CellRenderer>,
         Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
@@ -689,24 +743,32 @@ pub trait TreeViewExt: 'static {
         func: Q,
     ) -> i32;
 
+    #[doc(alias = "gtk_tree_view_is_blank_at_pos")]
     fn is_blank_at_pos(
         &self,
         x: i32,
         y: i32,
     ) -> Option<(Option<TreePath>, Option<TreeViewColumn>, i32, i32)>;
 
+    #[doc(alias = "gtk_tree_view_is_rubber_banding_active")]
     fn is_rubber_banding_active(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_view_map_expanded_rows")]
     fn map_expanded_rows<P: FnMut(&TreeView, &TreePath)>(&self, func: P);
 
+    #[doc(alias = "gtk_tree_view_move_column_after")]
     fn move_column_after(&self, column: &TreeViewColumn, base_column: Option<&TreeViewColumn>);
 
+    #[doc(alias = "gtk_tree_view_remove_column")]
     fn remove_column(&self, column: &TreeViewColumn) -> i32;
 
+    #[doc(alias = "gtk_tree_view_row_activated")]
     fn row_activated(&self, path: &TreePath, column: &TreeViewColumn);
 
+    #[doc(alias = "gtk_tree_view_row_expanded")]
     fn row_expanded(&self, path: &TreePath) -> bool;
 
+    #[doc(alias = "gtk_tree_view_scroll_to_cell")]
     fn scroll_to_cell(
         &self,
         path: Option<&TreePath>,
@@ -716,10 +778,13 @@ pub trait TreeViewExt: 'static {
         col_align: f32,
     );
 
+    #[doc(alias = "gtk_tree_view_scroll_to_point")]
     fn scroll_to_point(&self, tree_x: i32, tree_y: i32);
 
+    #[doc(alias = "gtk_tree_view_set_activate_on_single_click")]
     fn set_activate_on_single_click(&self, single: bool);
 
+    #[doc(alias = "gtk_tree_view_set_column_drag_function")]
     fn set_column_drag_function(
         &self,
         func: Option<
@@ -730,6 +795,7 @@ pub trait TreeViewExt: 'static {
         >,
     );
 
+    #[doc(alias = "gtk_tree_view_set_cursor")]
     fn set_cursor(
         &self,
         path: &TreePath,
@@ -737,6 +803,7 @@ pub trait TreeViewExt: 'static {
         start_editing: bool,
     );
 
+    #[doc(alias = "gtk_tree_view_set_cursor_on_cell")]
     fn set_cursor_on_cell<P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
@@ -745,50 +812,70 @@ pub trait TreeViewExt: 'static {
         start_editing: bool,
     );
 
+    #[doc(alias = "gtk_tree_view_set_drag_dest_row")]
     fn set_drag_dest_row(&self, path: Option<&TreePath>, pos: TreeViewDropPosition);
 
+    #[doc(alias = "gtk_tree_view_set_enable_search")]
     fn set_enable_search(&self, enable_search: bool);
 
+    #[doc(alias = "gtk_tree_view_set_enable_tree_lines")]
     fn set_enable_tree_lines(&self, enabled: bool);
 
+    #[doc(alias = "gtk_tree_view_set_expander_column")]
     fn set_expander_column(&self, column: Option<&TreeViewColumn>);
 
+    #[doc(alias = "gtk_tree_view_set_fixed_height_mode")]
     fn set_fixed_height_mode(&self, enable: bool);
 
+    #[doc(alias = "gtk_tree_view_set_grid_lines")]
     fn set_grid_lines(&self, grid_lines: TreeViewGridLines);
 
+    #[doc(alias = "gtk_tree_view_set_headers_clickable")]
     fn set_headers_clickable(&self, setting: bool);
 
+    #[doc(alias = "gtk_tree_view_set_headers_visible")]
     fn set_headers_visible(&self, headers_visible: bool);
 
+    #[doc(alias = "gtk_tree_view_set_hover_expand")]
     fn set_hover_expand(&self, expand: bool);
 
+    #[doc(alias = "gtk_tree_view_set_hover_selection")]
     fn set_hover_selection(&self, hover: bool);
 
+    #[doc(alias = "gtk_tree_view_set_level_indentation")]
     fn set_level_indentation(&self, indentation: i32);
 
+    #[doc(alias = "gtk_tree_view_set_model")]
     fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>);
 
+    #[doc(alias = "gtk_tree_view_set_reorderable")]
     fn set_reorderable(&self, reorderable: bool);
 
+    #[doc(alias = "gtk_tree_view_set_row_separator_func")]
     fn set_row_separator_func(
         &self,
         func: Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>,
     );
 
+    #[doc(alias = "gtk_tree_view_set_rubber_banding")]
     fn set_rubber_banding(&self, enable: bool);
 
+    #[doc(alias = "gtk_tree_view_set_search_column")]
     fn set_search_column(&self, column: i32);
 
+    #[doc(alias = "gtk_tree_view_set_search_entry")]
     fn set_search_entry<P: IsA<Editable>>(&self, entry: Option<&P>);
 
+    #[doc(alias = "gtk_tree_view_set_search_equal_func")]
     fn set_search_equal_func<P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>(
         &self,
         search_equal_func: P,
     );
 
+    #[doc(alias = "gtk_tree_view_set_show_expanders")]
     fn set_show_expanders(&self, enabled: bool);
 
+    #[doc(alias = "gtk_tree_view_set_tooltip_cell")]
     fn set_tooltip_cell<P: IsA<CellRenderer>>(
         &self,
         tooltip: &Tooltip,
@@ -797,12 +884,16 @@ pub trait TreeViewExt: 'static {
         cell: Option<&P>,
     );
 
+    #[doc(alias = "gtk_tree_view_set_tooltip_column")]
     fn set_tooltip_column(&self, column: i32);
 
+    #[doc(alias = "gtk_tree_view_set_tooltip_row")]
     fn set_tooltip_row(&self, tooltip: &Tooltip, path: &TreePath);
 
+    #[doc(alias = "gtk_tree_view_unset_rows_drag_dest")]
     fn unset_rows_drag_dest(&self);
 
+    #[doc(alias = "gtk_tree_view_unset_rows_drag_source")]
     fn unset_rows_drag_source(&self);
 
     fn get_property_enable_grid_lines(&self) -> TreeViewGridLines;

@@ -37,7 +37,7 @@ impl ToGlib for ApplicationInhibitFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
-    fn from_glib(value: ffi::GtkApplicationInhibitFlags) -> ApplicationInhibitFlags {
+    unsafe fn from_glib(value: ffi::GtkApplicationInhibitFlags) -> ApplicationInhibitFlags {
         skip_assert_initialized!();
         ApplicationInhibitFlags::from_bits_truncate(value)
     }
@@ -90,7 +90,7 @@ impl ToGlib for BuilderClosureFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkBuilderClosureFlags> for BuilderClosureFlags {
-    fn from_glib(value: ffi::GtkBuilderClosureFlags) -> BuilderClosureFlags {
+    unsafe fn from_glib(value: ffi::GtkBuilderClosureFlags) -> BuilderClosureFlags {
         skip_assert_initialized!();
         BuilderClosureFlags::from_bits_truncate(value)
     }
@@ -149,7 +149,7 @@ impl ToGlib for CellRendererState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
-    fn from_glib(value: ffi::GtkCellRendererState) -> CellRendererState {
+    unsafe fn from_glib(value: ffi::GtkCellRendererState) -> CellRendererState {
         skip_assert_initialized!();
         CellRendererState::from_bits_truncate(value)
     }
@@ -219,7 +219,7 @@ impl ToGlib for DebugFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDebugFlags> for DebugFlags {
-    fn from_glib(value: ffi::GtkDebugFlags) -> DebugFlags {
+    unsafe fn from_glib(value: ffi::GtkDebugFlags) -> DebugFlags {
         skip_assert_initialized!();
         DebugFlags::from_bits_truncate(value)
     }
@@ -274,7 +274,7 @@ impl ToGlib for DialogFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
-    fn from_glib(value: ffi::GtkDialogFlags) -> DialogFlags {
+    unsafe fn from_glib(value: ffi::GtkDialogFlags) -> DialogFlags {
         skip_assert_initialized!();
         DialogFlags::from_bits_truncate(value)
     }
@@ -332,7 +332,7 @@ impl ToGlib for EventControllerScrollFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkEventControllerScrollFlags> for EventControllerScrollFlags {
-    fn from_glib(value: ffi::GtkEventControllerScrollFlags) -> EventControllerScrollFlags {
+    unsafe fn from_glib(value: ffi::GtkEventControllerScrollFlags) -> EventControllerScrollFlags {
         skip_assert_initialized!();
         EventControllerScrollFlags::from_bits_truncate(value)
     }
@@ -389,7 +389,7 @@ impl ToGlib for FontChooserLevel {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
-    fn from_glib(value: ffi::GtkFontChooserLevel) -> FontChooserLevel {
+    unsafe fn from_glib(value: ffi::GtkFontChooserLevel) -> FontChooserLevel {
         skip_assert_initialized!();
         FontChooserLevel::from_bits_truncate(value)
     }
@@ -444,7 +444,7 @@ impl ToGlib for IconLookupFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkIconLookupFlags> for IconLookupFlags {
-    fn from_glib(value: ffi::GtkIconLookupFlags) -> IconLookupFlags {
+    unsafe fn from_glib(value: ffi::GtkIconLookupFlags) -> IconLookupFlags {
         skip_assert_initialized!();
         IconLookupFlags::from_bits_truncate(value)
     }
@@ -509,7 +509,7 @@ impl ToGlib for InputHints {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkInputHints> for InputHints {
-    fn from_glib(value: ffi::GtkInputHints) -> InputHints {
+    unsafe fn from_glib(value: ffi::GtkInputHints) -> InputHints {
         skip_assert_initialized!();
         InputHints::from_bits_truncate(value)
     }
@@ -564,7 +564,7 @@ impl ToGlib for PickFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPickFlags> for PickFlags {
-    fn from_glib(value: ffi::GtkPickFlags) -> PickFlags {
+    unsafe fn from_glib(value: ffi::GtkPickFlags) -> PickFlags {
         skip_assert_initialized!();
         PickFlags::from_bits_truncate(value)
     }
@@ -619,7 +619,7 @@ impl ToGlib for PlacesOpenFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPlacesOpenFlags> for PlacesOpenFlags {
-    fn from_glib(value: ffi::GtkPlacesOpenFlags) -> PlacesOpenFlags {
+    unsafe fn from_glib(value: ffi::GtkPlacesOpenFlags) -> PlacesOpenFlags {
         skip_assert_initialized!();
         PlacesOpenFlags::from_bits_truncate(value)
     }
@@ -672,7 +672,7 @@ impl ToGlib for PopoverMenuFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
-    fn from_glib(value: ffi::GtkPopoverMenuFlags) -> PopoverMenuFlags {
+    unsafe fn from_glib(value: ffi::GtkPopoverMenuFlags) -> PopoverMenuFlags {
         skip_assert_initialized!();
         PopoverMenuFlags::from_bits_truncate(value)
     }
@@ -725,7 +725,7 @@ impl ToGlib for ShortcutActionFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkShortcutActionFlags> for ShortcutActionFlags {
-    fn from_glib(value: ffi::GtkShortcutActionFlags) -> ShortcutActionFlags {
+    unsafe fn from_glib(value: ffi::GtkShortcutActionFlags) -> ShortcutActionFlags {
         skip_assert_initialized!();
         ShortcutActionFlags::from_bits_truncate(value)
     }
@@ -793,7 +793,7 @@ impl ToGlib for StateFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkStateFlags> for StateFlags {
-    fn from_glib(value: ffi::GtkStateFlags) -> StateFlags {
+    unsafe fn from_glib(value: ffi::GtkStateFlags) -> StateFlags {
         skip_assert_initialized!();
         StateFlags::from_bits_truncate(value)
     }
@@ -849,7 +849,7 @@ impl ToGlib for StyleContextPrintFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
-    fn from_glib(value: ffi::GtkStyleContextPrintFlags) -> StyleContextPrintFlags {
+    unsafe fn from_glib(value: ffi::GtkStyleContextPrintFlags) -> StyleContextPrintFlags {
         skip_assert_initialized!();
         StyleContextPrintFlags::from_bits_truncate(value)
     }
@@ -904,7 +904,7 @@ impl ToGlib for TextSearchFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextSearchFlags> for TextSearchFlags {
-    fn from_glib(value: ffi::GtkTextSearchFlags) -> TextSearchFlags {
+    unsafe fn from_glib(value: ffi::GtkTextSearchFlags) -> TextSearchFlags {
         skip_assert_initialized!();
         TextSearchFlags::from_bits_truncate(value)
     }
@@ -958,7 +958,7 @@ impl ToGlib for TreeModelFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
-    fn from_glib(value: ffi::GtkTreeModelFlags) -> TreeModelFlags {
+    unsafe fn from_glib(value: ffi::GtkTreeModelFlags) -> TreeModelFlags {
         skip_assert_initialized!();
         TreeModelFlags::from_bits_truncate(value)
     }

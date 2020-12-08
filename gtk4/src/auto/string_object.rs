@@ -19,11 +19,13 @@ glib::glib_wrapper! {
 }
 
 impl StringObject {
+    #[doc(alias = "gtk_string_object_new")]
     pub fn new(string: &str) -> StringObject {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_string_object_new(string.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_string_object_get_string")]
     pub fn get_string(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_string_object_get_string(self.to_glib_none().0)) }
     }

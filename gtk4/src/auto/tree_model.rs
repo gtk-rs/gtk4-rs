@@ -25,50 +25,73 @@ glib::glib_wrapper! {
 pub const NONE_TREE_MODEL: Option<&TreeModel> = None;
 
 pub trait TreeModelExt: 'static {
+    #[doc(alias = "gtk_tree_model_foreach")]
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
 
+    //#[doc(alias = "gtk_tree_model_get")]
     //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    #[doc(alias = "gtk_tree_model_get_column_type")]
     fn get_column_type(&self, index_: i32) -> glib::types::Type;
 
+    #[doc(alias = "gtk_tree_model_get_flags")]
     fn get_flags(&self) -> TreeModelFlags;
 
+    #[doc(alias = "gtk_tree_model_get_iter")]
     fn get_iter(&self, path: &TreePath) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_get_iter_first")]
     fn get_iter_first(&self) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_get_iter_from_string")]
     fn get_iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_get_n_columns")]
     fn get_n_columns(&self) -> i32;
 
+    #[doc(alias = "gtk_tree_model_get_path")]
     fn get_path(&self, iter: &TreeIter) -> TreePath;
 
+    #[doc(alias = "gtk_tree_model_get_string_from_iter")]
     fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
+    //#[doc(alias = "gtk_tree_model_get_valist")]
     //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    #[doc(alias = "gtk_tree_model_get_value")]
     fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
 
+    #[doc(alias = "gtk_tree_model_iter_children")]
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_iter_has_child")]
     fn iter_has_child(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_model_iter_n_children")]
     fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32;
 
+    #[doc(alias = "gtk_tree_model_iter_next")]
     fn iter_next(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_model_iter_nth_child")]
     fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_iter_parent")]
     fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_iter_previous")]
     fn iter_previous(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_model_row_changed")]
     fn row_changed(&self, path: &TreePath, iter: &TreeIter);
 
+    #[doc(alias = "gtk_tree_model_row_deleted")]
     fn row_deleted(&self, path: &TreePath);
 
+    #[doc(alias = "gtk_tree_model_row_has_child_toggled")]
     fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter);
 
+    #[doc(alias = "gtk_tree_model_row_inserted")]
     fn row_inserted(&self, path: &TreePath, iter: &TreeIter);
 
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(

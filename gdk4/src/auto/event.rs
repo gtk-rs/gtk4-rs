@@ -25,28 +25,40 @@ glib::glib_wrapper! {
 pub const NONE_EVENT: Option<&Event> = None;
 
 pub trait EventExt: 'static {
+    #[doc(alias = "gdk_event_get_axis")]
     fn get_axis(&self, axis_use: AxisUse) -> Option<f64>;
 
+    #[doc(alias = "gdk_event_get_device")]
     fn get_device(&self) -> Option<Device>;
 
+    #[doc(alias = "gdk_event_get_display")]
     fn get_display(&self) -> Option<Display>;
 
+    #[doc(alias = "gdk_event_get_event_type")]
     fn get_event_type(&self) -> EventType;
 
+    //#[doc(alias = "gdk_event_get_history")]
     //fn get_history(&self) -> /*Ignored*/Vec<TimeCoord>;
 
+    #[doc(alias = "gdk_event_get_modifier_state")]
     fn get_modifier_state(&self) -> ModifierType;
 
+    #[doc(alias = "gdk_event_get_pointer_emulated")]
     fn get_pointer_emulated(&self) -> bool;
 
+    #[doc(alias = "gdk_event_get_position")]
     fn get_position(&self) -> Option<(f64, f64)>;
 
+    #[doc(alias = "gdk_event_get_seat")]
     fn get_seat(&self) -> Option<Seat>;
 
+    #[doc(alias = "gdk_event_get_surface")]
     fn get_surface(&self) -> Option<Surface>;
 
+    #[doc(alias = "gdk_event_get_time")]
     fn get_time(&self) -> u32;
 
+    #[doc(alias = "gdk_event_triggers_context_menu")]
     fn triggers_context_menu(&self) -> bool;
 }
 

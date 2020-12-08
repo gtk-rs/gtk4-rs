@@ -32,11 +32,13 @@ glib::glib_wrapper! {
 }
 
 impl ToggleButton {
+    #[doc(alias = "gtk_toggle_button_new")]
     pub fn new() -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_toggle_button_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_toggle_button_new_with_label")]
     pub fn with_label(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -47,6 +49,7 @@ impl ToggleButton {
         }
     }
 
+    #[doc(alias = "gtk_toggle_button_new_with_mnemonic")]
     pub fn with_mnemonic(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -428,12 +431,16 @@ impl ToggleButtonBuilder {
 pub const NONE_TOGGLE_BUTTON: Option<&ToggleButton> = None;
 
 pub trait ToggleButtonExt: 'static {
+    #[doc(alias = "gtk_toggle_button_get_active")]
     fn get_active(&self) -> bool;
 
+    #[doc(alias = "gtk_toggle_button_set_active")]
     fn set_active(&self, is_active: bool);
 
+    #[doc(alias = "gtk_toggle_button_set_group")]
     fn set_group<P: IsA<ToggleButton>>(&self, group: Option<&P>);
 
+    #[doc(alias = "gtk_toggle_button_toggled")]
     fn toggled(&self);
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

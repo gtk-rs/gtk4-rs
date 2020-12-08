@@ -31,16 +31,19 @@ glib::glib_wrapper! {
 }
 
 impl ComboBoxText {
+    #[doc(alias = "gtk_combo_box_text_new")]
     pub fn new() -> ComboBoxText {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_text_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_combo_box_text_new_with_entry")]
     pub fn with_entry() -> ComboBoxText {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_text_new_with_entry()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_combo_box_text_append")]
     pub fn append(&self, id: Option<&str>, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_append(
@@ -51,12 +54,14 @@ impl ComboBoxText {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_append_text")]
     pub fn append_text(&self, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_append_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_get_active_text")]
     pub fn get_active_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_combo_box_text_get_active_text(
@@ -65,6 +70,7 @@ impl ComboBoxText {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_insert")]
     pub fn insert(&self, position: i32, id: Option<&str>, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_insert(
@@ -76,6 +82,7 @@ impl ComboBoxText {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_insert_text")]
     pub fn insert_text(&self, position: i32, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_insert_text(
@@ -86,6 +93,7 @@ impl ComboBoxText {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_prepend")]
     pub fn prepend(&self, id: Option<&str>, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_prepend(
@@ -96,18 +104,21 @@ impl ComboBoxText {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_prepend_text")]
     pub fn prepend_text(&self, text: &str) {
         unsafe {
             ffi::gtk_combo_box_text_prepend_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_remove")]
     pub fn remove(&self, position: i32) {
         unsafe {
             ffi::gtk_combo_box_text_remove(self.to_glib_none().0, position);
         }
     }
 
+    #[doc(alias = "gtk_combo_box_text_remove_all")]
     pub fn remove_all(&self) {
         unsafe {
             ffi::gtk_combo_box_text_remove_all(self.to_glib_none().0);

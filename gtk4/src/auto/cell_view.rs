@@ -38,11 +38,13 @@ glib::glib_wrapper! {
 }
 
 impl CellView {
+    #[doc(alias = "gtk_cell_view_new")]
     pub fn new() -> CellView {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_cell_view_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_cell_view_new_with_context")]
     pub fn with_context<P: IsA<CellArea>, Q: IsA<CellAreaContext>>(
         area: &P,
         context: &Q,
@@ -57,6 +59,7 @@ impl CellView {
         }
     }
 
+    #[doc(alias = "gtk_cell_view_new_with_markup")]
     pub fn with_markup(markup: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -65,6 +68,7 @@ impl CellView {
         }
     }
 
+    #[doc(alias = "gtk_cell_view_new_with_text")]
     pub fn with_text(text: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -73,6 +77,7 @@ impl CellView {
         }
     }
 
+    #[doc(alias = "gtk_cell_view_new_with_texture")]
     pub fn with_texture<P: IsA<gdk::Texture>>(texture: &P) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -83,40 +88,48 @@ impl CellView {
         }
     }
 
+    #[doc(alias = "gtk_cell_view_get_displayed_row")]
     pub fn get_displayed_row(&self) -> Option<TreePath> {
         unsafe { from_glib_full(ffi::gtk_cell_view_get_displayed_row(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_cell_view_get_draw_sensitive")]
     pub fn get_draw_sensitive(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_draw_sensitive(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_cell_view_get_fit_model")]
     pub fn get_fit_model(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_fit_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_cell_view_get_model")]
     pub fn get_model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_cell_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_cell_view_set_displayed_row")]
     pub fn set_displayed_row(&self, path: &mut TreePath) {
         unsafe {
             ffi::gtk_cell_view_set_displayed_row(self.to_glib_none().0, path.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gtk_cell_view_set_draw_sensitive")]
     pub fn set_draw_sensitive(&self, draw_sensitive: bool) {
         unsafe {
             ffi::gtk_cell_view_set_draw_sensitive(self.to_glib_none().0, draw_sensitive.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_cell_view_set_fit_model")]
     pub fn set_fit_model(&self, fit_model: bool) {
         unsafe {
             ffi::gtk_cell_view_set_fit_model(self.to_glib_none().0, fit_model.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_cell_view_set_model")]
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_cell_view_set_model(

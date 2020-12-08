@@ -33,10 +33,12 @@ glib::glib_wrapper! {
 }
 
 impl DragIcon {
+    #[doc(alias = "gtk_drag_icon_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drag_icon_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_drag_icon_set_child(
@@ -46,6 +48,7 @@ impl DragIcon {
         }
     }
 
+    #[doc(alias = "gtk_drag_icon_create_widget_for_value")]
     pub fn create_widget_for_value(value: &glib::Value) -> Option<Widget> {
         assert_initialized_main_thread!();
         unsafe {
@@ -55,11 +58,13 @@ impl DragIcon {
         }
     }
 
+    #[doc(alias = "gtk_drag_icon_get_for_drag")]
     pub fn get_for_drag(drag: &gdk::Drag) -> Option<Widget> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_for_drag(drag.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drag_icon_set_from_paintable")]
     pub fn set_from_paintable<P: IsA<gdk::Paintable>>(
         drag: &gdk::Drag,
         paintable: &P,

@@ -83,7 +83,7 @@ impl ToGlib for AxisUse {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkAxisUse> for AxisUse {
-    fn from_glib(value: ffi::GdkAxisUse) -> Self {
+    unsafe fn from_glib(value: ffi::GdkAxisUse) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AxisUse::Ignore,
@@ -187,7 +187,7 @@ impl ToGlib for CrossingMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
-    fn from_glib(value: ffi::GdkCrossingMode) -> Self {
+    unsafe fn from_glib(value: ffi::GdkCrossingMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CrossingMode::Normal,
@@ -269,7 +269,7 @@ impl ToGlib for DevicePadFeature {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
-    fn from_glib(value: ffi::GdkDevicePadFeature) -> Self {
+    unsafe fn from_glib(value: ffi::GdkDevicePadFeature) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DevicePadFeature::Button,
@@ -360,7 +360,7 @@ impl ToGlib for DeviceToolType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
-    fn from_glib(value: ffi::GdkDeviceToolType) -> Self {
+    unsafe fn from_glib(value: ffi::GdkDeviceToolType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DeviceToolType::Unknown,
@@ -441,7 +441,7 @@ impl ToGlib for DragCancelReason {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
-    fn from_glib(value: ffi::GdkDragCancelReason) -> Self {
+    unsafe fn from_glib(value: ffi::GdkDragCancelReason) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DragCancelReason::NoTarget,
@@ -598,7 +598,7 @@ impl ToGlib for EventType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkEventType> for EventType {
-    fn from_glib(value: ffi::GdkEventType) -> Self {
+    unsafe fn from_glib(value: ffi::GdkEventType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EventType::Delete,
@@ -698,7 +698,7 @@ impl ToGlib for FullscreenMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
-    fn from_glib(value: ffi::GdkFullscreenMode) -> Self {
+    unsafe fn from_glib(value: ffi::GdkFullscreenMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FullscreenMode::CurrentMonitor,
@@ -779,7 +779,7 @@ impl ToGlib for GLError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkGLError> for GLError {
-    fn from_glib(value: ffi::GdkGLError) -> Self {
+    unsafe fn from_glib(value: ffi::GdkGLError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => GLError::NotAvailable,
@@ -902,7 +902,7 @@ impl ToGlib for Gravity {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkGravity> for Gravity {
-    fn from_glib(value: ffi::GdkGravity) -> Self {
+    unsafe fn from_glib(value: ffi::GdkGravity) -> Self {
         skip_assert_initialized!();
         match value {
             1 => Gravity::NorthWest,
@@ -997,7 +997,7 @@ impl ToGlib for InputSource {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkInputSource> for InputSource {
-    fn from_glib(value: ffi::GdkInputSource) -> Self {
+    unsafe fn from_glib(value: ffi::GdkInputSource) -> Self {
         skip_assert_initialized!();
         match value {
             0 => InputSource::Mouse,
@@ -1077,7 +1077,7 @@ impl ToGlib for KeyMatch {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
-    fn from_glib(value: ffi::GdkKeyMatch) -> Self {
+    unsafe fn from_glib(value: ffi::GdkKeyMatch) -> Self {
         skip_assert_initialized!();
         match value {
             0 => KeyMatch::None,
@@ -1174,7 +1174,7 @@ impl ToGlib for MemoryFormat {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
-    fn from_glib(value: ffi::GdkMemoryFormat) -> Self {
+    unsafe fn from_glib(value: ffi::GdkMemoryFormat) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MemoryFormat::B8g8r8a8Premultiplied,
@@ -1266,7 +1266,7 @@ impl ToGlib for NotifyType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkNotifyType> for NotifyType {
-    fn from_glib(value: ffi::GdkNotifyType) -> Self {
+    unsafe fn from_glib(value: ffi::GdkNotifyType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NotifyType::Ancestor,
@@ -1351,7 +1351,7 @@ impl ToGlib for ScrollDirection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
-    fn from_glib(value: ffi::GdkScrollDirection) -> Self {
+    unsafe fn from_glib(value: ffi::GdkScrollDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollDirection::Up,
@@ -1438,7 +1438,7 @@ impl ToGlib for SubpixelLayout {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
-    fn from_glib(value: ffi::GdkSubpixelLayout) -> Self {
+    unsafe fn from_glib(value: ffi::GdkSubpixelLayout) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SubpixelLayout::Unknown,
@@ -1532,7 +1532,7 @@ impl ToGlib for SurfaceEdge {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
-    fn from_glib(value: ffi::GdkSurfaceEdge) -> Self {
+    unsafe fn from_glib(value: ffi::GdkSurfaceEdge) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SurfaceEdge::NorthWest,
@@ -1616,7 +1616,7 @@ impl ToGlib for TouchpadGesturePhase {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
-    fn from_glib(value: ffi::GdkTouchpadGesturePhase) -> Self {
+    unsafe fn from_glib(value: ffi::GdkTouchpadGesturePhase) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TouchpadGesturePhase::Begin,
@@ -1690,7 +1690,7 @@ impl ToGlib for VulkanError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkVulkanError> for VulkanError {
-    fn from_glib(value: ffi::GdkVulkanError) -> Self {
+    unsafe fn from_glib(value: ffi::GdkVulkanError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => VulkanError::Unsupported,

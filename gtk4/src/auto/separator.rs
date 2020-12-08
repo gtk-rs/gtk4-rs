@@ -28,6 +28,7 @@ glib::glib_wrapper! {
 }
 
 impl Separator {
+    #[doc(alias = "gtk_separator_new")]
     pub fn new(orientation: Orientation) -> Separator {
         assert_initialized_main_thread!();
         unsafe {

@@ -33,25 +33,30 @@ glib::glib_wrapper! {
 }
 
 impl Switch {
+    #[doc(alias = "gtk_switch_new")]
     pub fn new() -> Switch {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_switch_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_switch_get_active")]
     pub fn get_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_switch_get_active(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_switch_get_state")]
     pub fn get_state(&self) -> bool {
         unsafe { from_glib(ffi::gtk_switch_get_state(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_switch_set_active")]
     pub fn set_active(&self, is_active: bool) {
         unsafe {
             ffi::gtk_switch_set_active(self.to_glib_none().0, is_active.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_switch_set_state")]
     pub fn set_state(&self, state: bool) {
         unsafe {
             ffi::gtk_switch_set_state(self.to_glib_none().0, state.to_glib());

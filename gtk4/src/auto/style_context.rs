@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl StyleContext {
+    #[doc(alias = "gtk_style_context_add_provider_for_display")]
     pub fn add_provider_for_display<P: IsA<StyleProvider>>(
         display: &gdk::Display,
         provider: &P,
@@ -41,6 +42,7 @@ impl StyleContext {
         }
     }
 
+    #[doc(alias = "gtk_style_context_remove_provider_for_display")]
     pub fn remove_provider_for_display<P: IsA<StyleProvider>>(
         display: &gdk::Display,
         provider: &P,
@@ -86,42 +88,61 @@ impl StyleContextBuilder {
 pub const NONE_STYLE_CONTEXT: Option<&StyleContext> = None;
 
 pub trait StyleContextExt: 'static {
+    #[doc(alias = "gtk_style_context_add_class")]
     fn add_class(&self, class_name: &str);
 
+    #[doc(alias = "gtk_style_context_add_provider")]
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32);
 
+    #[doc(alias = "gtk_style_context_get_border")]
     fn get_border(&self) -> Border;
 
+    #[doc(alias = "gtk_style_context_get_color")]
     fn get_color(&self) -> gdk::RGBA;
 
+    #[doc(alias = "gtk_style_context_get_display")]
     fn get_display(&self) -> gdk::Display;
 
+    #[doc(alias = "gtk_style_context_get_margin")]
     fn get_margin(&self) -> Border;
 
+    #[doc(alias = "gtk_style_context_get_padding")]
     fn get_padding(&self) -> Border;
 
+    #[doc(alias = "gtk_style_context_get_scale")]
     fn get_scale(&self) -> i32;
 
+    #[doc(alias = "gtk_style_context_get_state")]
     fn get_state(&self) -> StateFlags;
 
+    #[doc(alias = "gtk_style_context_has_class")]
     fn has_class(&self, class_name: &str) -> bool;
 
+    #[doc(alias = "gtk_style_context_lookup_color")]
     fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA>;
 
+    #[doc(alias = "gtk_style_context_remove_class")]
     fn remove_class(&self, class_name: &str);
 
+    #[doc(alias = "gtk_style_context_remove_provider")]
     fn remove_provider<P: IsA<StyleProvider>>(&self, provider: &P);
 
+    #[doc(alias = "gtk_style_context_restore")]
     fn restore(&self);
 
+    #[doc(alias = "gtk_style_context_save")]
     fn save(&self);
 
+    #[doc(alias = "gtk_style_context_set_display")]
     fn set_display(&self, display: &gdk::Display);
 
+    #[doc(alias = "gtk_style_context_set_scale")]
     fn set_scale(&self, scale: i32);
 
+    #[doc(alias = "gtk_style_context_set_state")]
     fn set_state(&self, flags: StateFlags);
 
+    #[doc(alias = "gtk_style_context_to_string")]
     fn to_string(&self, flags: StyleContextPrintFlags) -> glib::GString;
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

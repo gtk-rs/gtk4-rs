@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl BlurNode {
+    #[doc(alias = "gsk_blur_node_new")]
     pub fn new<P: IsA<RenderNode>>(child: &P, radius: f32) -> BlurNode {
         skip_assert_initialized!();
         unsafe {
@@ -26,10 +27,12 @@ impl BlurNode {
         }
     }
 
+    #[doc(alias = "gsk_blur_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_blur_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_blur_node_get_radius")]
     pub fn get_radius(&self) -> f32 {
         unsafe { ffi::gsk_blur_node_get_radius(self.to_glib_none().0) }
     }

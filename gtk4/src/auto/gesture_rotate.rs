@@ -22,11 +22,13 @@ glib::glib_wrapper! {
 }
 
 impl GestureRotate {
+    #[doc(alias = "gtk_gesture_rotate_new")]
     pub fn new() -> GestureRotate {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_rotate_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_gesture_rotate_get_angle_delta")]
     pub fn get_angle_delta(&self) -> f64 {
         unsafe { ffi::gtk_gesture_rotate_get_angle_delta(self.to_glib_none().0) }
     }

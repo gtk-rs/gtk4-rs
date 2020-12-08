@@ -32,6 +32,7 @@ glib::glib_wrapper! {
 }
 
 impl AppChooserButton {
+    #[doc(alias = "gtk_app_chooser_button_new")]
     pub fn new(content_type: &str) -> AppChooserButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -42,6 +43,7 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_append_custom_item")]
     pub fn append_custom_item<P: IsA<gio::Icon>>(&self, name: &str, label: &str, icon: &P) {
         unsafe {
             ffi::gtk_app_chooser_button_append_custom_item(
@@ -53,12 +55,14 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_append_separator")]
     pub fn append_separator(&self) {
         unsafe {
             ffi::gtk_app_chooser_button_append_separator(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_get_heading")]
     pub fn get_heading(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_button_get_heading(
@@ -67,10 +71,12 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_get_modal")]
     pub fn get_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_app_chooser_button_get_modal(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_get_show_default_item")]
     pub fn get_show_default_item(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_button_get_show_default_item(
@@ -79,6 +85,7 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_get_show_dialog_item")]
     pub fn get_show_dialog_item(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_button_get_show_dialog_item(
@@ -87,6 +94,7 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_set_active_custom_item")]
     pub fn set_active_custom_item(&self, name: &str) {
         unsafe {
             ffi::gtk_app_chooser_button_set_active_custom_item(
@@ -96,6 +104,7 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_set_heading")]
     pub fn set_heading(&self, heading: &str) {
         unsafe {
             ffi::gtk_app_chooser_button_set_heading(
@@ -105,12 +114,14 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_set_show_default_item")]
     pub fn set_show_default_item(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_default_item(
@@ -120,6 +131,7 @@ impl AppChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_button_set_show_dialog_item")]
     pub fn set_show_dialog_item(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_dialog_item(

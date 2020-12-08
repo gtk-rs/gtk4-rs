@@ -36,17 +36,20 @@ glib::glib_wrapper! {
 }
 
 impl ListBox {
+    #[doc(alias = "gtk_list_box_new")]
     pub fn new() -> ListBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_list_box_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_list_box_append")]
     pub fn append<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_list_box_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_bind_model")]
     pub fn bind_model<P: IsA<gio::ListModel>>(
         &self,
         model: Option<&P>,
@@ -93,6 +96,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_drag_highlight_row")]
     pub fn drag_highlight_row<P: IsA<ListBoxRow>>(&self, row: &P) {
         unsafe {
             ffi::gtk_list_box_drag_highlight_row(
@@ -102,12 +106,14 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_drag_unhighlight_row")]
     pub fn drag_unhighlight_row(&self) {
         unsafe {
             ffi::gtk_list_box_drag_unhighlight_row(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_get_activate_on_single_click")]
     pub fn get_activate_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_get_activate_on_single_click(
@@ -116,10 +122,12 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_get_adjustment")]
     pub fn get_adjustment(&self) -> Option<Adjustment> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_adjustment(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_box_get_row_at_index")]
     pub fn get_row_at_index(&self, index_: i32) -> Option<ListBoxRow> {
         unsafe {
             from_glib_none(ffi::gtk_list_box_get_row_at_index(
@@ -129,14 +137,17 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_get_row_at_y")]
     pub fn get_row_at_y(&self, y: i32) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_row_at_y(self.to_glib_none().0, y)) }
     }
 
+    #[doc(alias = "gtk_list_box_get_selected_row")]
     pub fn get_selected_row(&self) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_selected_row(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_box_get_selected_rows")]
     pub fn get_selected_rows(&self) -> Vec<ListBoxRow> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_list_box_get_selected_rows(
@@ -145,14 +156,17 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_get_selection_mode")]
     pub fn get_selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_list_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_box_get_show_separators")]
     pub fn get_show_separators(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_box_get_show_separators(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_box_insert")]
     pub fn insert<P: IsA<Widget>>(&self, child: &P, position: i32) {
         unsafe {
             ffi::gtk_list_box_insert(
@@ -163,42 +177,49 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_invalidate_filter")]
     pub fn invalidate_filter(&self) {
         unsafe {
             ffi::gtk_list_box_invalidate_filter(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_invalidate_headers")]
     pub fn invalidate_headers(&self) {
         unsafe {
             ffi::gtk_list_box_invalidate_headers(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_invalidate_sort")]
     pub fn invalidate_sort(&self) {
         unsafe {
             ffi::gtk_list_box_invalidate_sort(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_prepend")]
     pub fn prepend<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_list_box_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_remove")]
     pub fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_list_box_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_select_all")]
     pub fn select_all(&self) {
         unsafe {
             ffi::gtk_list_box_select_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_select_row")]
     pub fn select_row<P: IsA<ListBoxRow>>(&self, row: Option<&P>) {
         unsafe {
             ffi::gtk_list_box_select_row(
@@ -208,6 +229,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&ListBox, &ListBoxRow)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&ListBox, &ListBoxRow)>(
@@ -231,12 +253,14 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_activate_on_single_click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_list_box_set_activate_on_single_click(self.to_glib_none().0, single.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_adjustment")]
     pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
             ffi::gtk_list_box_set_adjustment(
@@ -246,6 +270,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_filter_func")]
     pub fn set_filter_func(
         &self,
         filter_func: Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>>,
@@ -288,6 +313,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_header_func")]
     pub fn set_header_func(
         &self,
         update_header: Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>,
@@ -333,6 +359,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_placeholder")]
     pub fn set_placeholder<P: IsA<Widget>>(&self, placeholder: Option<&P>) {
         unsafe {
             ffi::gtk_list_box_set_placeholder(
@@ -342,18 +369,21 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_selection_mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
             ffi::gtk_list_box_set_selection_mode(self.to_glib_none().0, mode.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_show_separators")]
     pub fn set_show_separators(&self, show_separators: bool) {
         unsafe {
             ffi::gtk_list_box_set_show_separators(self.to_glib_none().0, show_separators.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_list_box_set_sort_func")]
     pub fn set_sort_func(
         &self,
         sort_func: Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>>,
@@ -398,12 +428,14 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "gtk_list_box_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {
             ffi::gtk_list_box_unselect_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_list_box_unselect_row")]
     pub fn unselect_row<P: IsA<ListBoxRow>>(&self, row: &P) {
         unsafe {
             ffi::gtk_list_box_unselect_row(self.to_glib_none().0, row.as_ref().to_glib_none().0);

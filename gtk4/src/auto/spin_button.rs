@@ -41,6 +41,7 @@ glib::glib_wrapper! {
 }
 
 impl SpinButton {
+    #[doc(alias = "gtk_spin_button_new")]
     pub fn new<P: IsA<Adjustment>>(
         adjustment: Option<&P>,
         climb_rate: f64,
@@ -57,6 +58,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_new_with_range")]
     pub fn with_range(min: f64, max: f64, step: f64) -> SpinButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -65,6 +67,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_configure")]
     pub fn configure<P: IsA<Adjustment>>(
         &self,
         adjustment: Option<&P>,
@@ -81,18 +84,22 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_get_adjustment")]
     pub fn get_adjustment(&self) -> Adjustment {
         unsafe { from_glib_none(ffi::gtk_spin_button_get_adjustment(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_climb_rate")]
     pub fn get_climb_rate(&self) -> f64 {
         unsafe { ffi::gtk_spin_button_get_climb_rate(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_digits")]
     pub fn get_digits(&self) -> u32 {
         unsafe { ffi::gtk_spin_button_get_digits(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_increments")]
     pub fn get_increments(&self) -> (f64, f64) {
         unsafe {
             let mut step = mem::MaybeUninit::uninit();
@@ -108,10 +115,12 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_get_numeric")]
     pub fn get_numeric(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_numeric(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_range")]
     pub fn get_range(&self) -> (f64, f64) {
         unsafe {
             let mut min = mem::MaybeUninit::uninit();
@@ -127,6 +136,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_get_snap_to_ticks")]
     pub fn get_snap_to_ticks(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_snap_to_ticks(
@@ -135,6 +145,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_get_update_policy")]
     pub fn get_update_policy(&self) -> SpinButtonUpdatePolicy {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_update_policy(
@@ -143,18 +154,22 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_get_value")]
     pub fn get_value(&self) -> f64 {
         unsafe { ffi::gtk_spin_button_get_value(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_value_as_int")]
     pub fn get_value_as_int(&self) -> i32 {
         unsafe { ffi::gtk_spin_button_get_value_as_int(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_spin_button_get_wrap")]
     pub fn get_wrap(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_wrap(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_spin_button_set_adjustment")]
     pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
         unsafe {
             ffi::gtk_spin_button_set_adjustment(
@@ -164,66 +179,77 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_climb_rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
         unsafe {
             ffi::gtk_spin_button_set_climb_rate(self.to_glib_none().0, climb_rate);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_digits")]
     pub fn set_digits(&self, digits: u32) {
         unsafe {
             ffi::gtk_spin_button_set_digits(self.to_glib_none().0, digits);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_increments")]
     pub fn set_increments(&self, step: f64, page: f64) {
         unsafe {
             ffi::gtk_spin_button_set_increments(self.to_glib_none().0, step, page);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_numeric")]
     pub fn set_numeric(&self, numeric: bool) {
         unsafe {
             ffi::gtk_spin_button_set_numeric(self.to_glib_none().0, numeric.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_range")]
     pub fn set_range(&self, min: f64, max: f64) {
         unsafe {
             ffi::gtk_spin_button_set_range(self.to_glib_none().0, min, max);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_snap_to_ticks")]
     pub fn set_snap_to_ticks(&self, snap_to_ticks: bool) {
         unsafe {
             ffi::gtk_spin_button_set_snap_to_ticks(self.to_glib_none().0, snap_to_ticks.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_update_policy")]
     pub fn set_update_policy(&self, policy: SpinButtonUpdatePolicy) {
         unsafe {
             ffi::gtk_spin_button_set_update_policy(self.to_glib_none().0, policy.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_value")]
     pub fn set_value(&self, value: f64) {
         unsafe {
             ffi::gtk_spin_button_set_value(self.to_glib_none().0, value);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_set_wrap")]
     pub fn set_wrap(&self, wrap: bool) {
         unsafe {
             ffi::gtk_spin_button_set_wrap(self.to_glib_none().0, wrap.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_spin_button_spin")]
     pub fn spin(&self, direction: SpinType, increment: f64) {
         unsafe {
             ffi::gtk_spin_button_spin(self.to_glib_none().0, direction.to_glib(), increment);
         }
     }
 
+    #[doc(alias = "gtk_spin_button_update")]
     pub fn update(&self) {
         unsafe {
             ffi::gtk_spin_button_update(self.to_glib_none().0);

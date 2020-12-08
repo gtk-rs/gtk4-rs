@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl CairoContext {
+    #[doc(alias = "gdk_cairo_context_cairo_create")]
     pub fn cairo_create(&self) -> Option<cairo::Context> {
         unsafe { from_glib_full(ffi::gdk_cairo_context_cairo_create(self.to_glib_none().0)) }
     }

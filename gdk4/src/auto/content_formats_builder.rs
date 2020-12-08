@@ -17,11 +17,13 @@ glib::glib_wrapper! {
 }
 
 impl ContentFormatsBuilder {
+    #[doc(alias = "gdk_content_formats_builder_new")]
     pub fn new() -> ContentFormatsBuilder {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_builder_new()) }
     }
 
+    #[doc(alias = "gdk_content_formats_builder_add_formats")]
     pub fn add_formats(&self, formats: &ContentFormats) {
         unsafe {
             ffi::gdk_content_formats_builder_add_formats(
@@ -31,12 +33,14 @@ impl ContentFormatsBuilder {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_builder_add_gtype")]
     pub fn add_gtype(&self, type_: glib::types::Type) {
         unsafe {
             ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_content_formats_builder_add_mime_type")]
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {
             ffi::gdk_content_formats_builder_add_mime_type(
@@ -46,6 +50,7 @@ impl ContentFormatsBuilder {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_builder_free_to_formats")]
     pub fn free_to_formats(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_builder_free_to_formats(
@@ -54,6 +59,7 @@ impl ContentFormatsBuilder {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_builder_to_formats")]
     pub fn to_formats(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_builder_to_formats(

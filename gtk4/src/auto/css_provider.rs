@@ -22,11 +22,13 @@ glib::glib_wrapper! {
 }
 
 impl CssProvider {
+    #[doc(alias = "gtk_css_provider_new")]
     pub fn new() -> CssProvider {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_css_provider_new()) }
     }
 
+    #[doc(alias = "gtk_css_provider_load_from_data")]
     pub fn load_from_data(&self, data: &[u8]) {
         let length = data.len() as isize;
         unsafe {
@@ -38,6 +40,7 @@ impl CssProvider {
         }
     }
 
+    #[doc(alias = "gtk_css_provider_load_from_file")]
     pub fn load_from_file<P: IsA<gio::File>>(&self, file: &P) {
         unsafe {
             ffi::gtk_css_provider_load_from_file(
@@ -47,12 +50,14 @@ impl CssProvider {
         }
     }
 
+    #[doc(alias = "gtk_css_provider_load_from_path")]
     pub fn load_from_path(&self, path: &str) {
         unsafe {
             ffi::gtk_css_provider_load_from_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_css_provider_load_from_resource")]
     pub fn load_from_resource(&self, resource_path: &str) {
         unsafe {
             ffi::gtk_css_provider_load_from_resource(
@@ -62,6 +67,7 @@ impl CssProvider {
         }
     }
 
+    #[doc(alias = "gtk_css_provider_load_named")]
     pub fn load_named(&self, name: &str, variant: Option<&str>) {
         unsafe {
             ffi::gtk_css_provider_load_named(
@@ -72,6 +78,7 @@ impl CssProvider {
         }
     }
 
+    #[doc(alias = "gtk_css_provider_to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }

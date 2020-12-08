@@ -17,17 +17,20 @@ glib::glib_wrapper! {
 }
 
 impl MultiSorter {
+    #[doc(alias = "gtk_multi_sorter_new")]
     pub fn new() -> MultiSorter {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_multi_sorter_new()) }
     }
 
+    #[doc(alias = "gtk_multi_sorter_append")]
     pub fn append<P: IsA<Sorter>>(&self, sorter: &P) {
         unsafe {
             ffi::gtk_multi_sorter_append(self.to_glib_none().0, sorter.as_ref().to_glib_full());
         }
     }
 
+    #[doc(alias = "gtk_multi_sorter_remove")]
     pub fn remove(&self, position: u32) {
         unsafe {
             ffi::gtk_multi_sorter_remove(self.to_glib_none().0, position);

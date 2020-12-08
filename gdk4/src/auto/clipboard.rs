@@ -29,22 +29,27 @@ glib::glib_wrapper! {
 }
 
 impl Clipboard {
+    #[doc(alias = "gdk_clipboard_get_content")]
     pub fn get_content(&self) -> Option<ContentProvider> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_content(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_clipboard_get_display")]
     pub fn get_display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_display(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_clipboard_get_formats")]
     pub fn get_formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_formats(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_clipboard_is_local")]
     pub fn is_local(&self) -> bool {
         unsafe { from_glib(ffi::gdk_clipboard_is_local(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_clipboard_read_text_async")]
     pub fn read_text_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<glib::GString>, glib::Error>) + Send + 'static,
@@ -100,6 +105,7 @@ impl Clipboard {
         }))
     }
 
+    #[doc(alias = "gdk_clipboard_read_texture_async")]
     pub fn read_texture_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<Texture>, glib::Error>) + Send + 'static,
@@ -152,6 +158,7 @@ impl Clipboard {
         }))
     }
 
+    #[doc(alias = "gdk_clipboard_read_value_async")]
     pub fn read_value_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
@@ -210,10 +217,12 @@ impl Clipboard {
         }))
     }
 
+    //#[doc(alias = "gdk_clipboard_set")]
     //pub fn set(&self, type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gdk_clipboard_set() }
     //}
 
+    #[doc(alias = "gdk_clipboard_set_content")]
     pub fn set_content<P: IsA<ContentProvider>>(&self, provider: Option<&P>) -> bool {
         unsafe {
             from_glib(ffi::gdk_clipboard_set_content(
@@ -223,12 +232,14 @@ impl Clipboard {
         }
     }
 
+    #[doc(alias = "gdk_clipboard_set_text")]
     pub fn set_text(&self, text: &str) {
         unsafe {
             ffi::gdk_clipboard_set_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_clipboard_set_texture")]
     pub fn set_texture<P: IsA<Texture>>(&self, texture: &P) {
         unsafe {
             ffi::gdk_clipboard_set_texture(
@@ -238,16 +249,19 @@ impl Clipboard {
         }
     }
 
+    //#[doc(alias = "gdk_clipboard_set_valist")]
     //pub fn set_valist(&self, type_: glib::types::Type, args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call ffi:gdk_clipboard_set_valist() }
     //}
 
+    #[doc(alias = "gdk_clipboard_set_value")]
     pub fn set_value(&self, value: &glib::Value) {
         unsafe {
             ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_clipboard_store_async")]
     pub fn store_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,

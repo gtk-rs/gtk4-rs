@@ -22,16 +22,22 @@ glib::glib_wrapper! {
 pub const NONE_LAYOUT_MANAGER: Option<&LayoutManager> = None;
 
 pub trait LayoutManagerExt: 'static {
+    #[doc(alias = "gtk_layout_manager_allocate")]
     fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32);
 
+    #[doc(alias = "gtk_layout_manager_get_layout_child")]
     fn get_layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
 
+    #[doc(alias = "gtk_layout_manager_get_request_mode")]
     fn get_request_mode(&self) -> SizeRequestMode;
 
+    #[doc(alias = "gtk_layout_manager_get_widget")]
     fn get_widget(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_layout_manager_layout_changed")]
     fn layout_changed(&self);
 
+    #[doc(alias = "gtk_layout_manager_measure")]
     fn measure<P: IsA<Widget>>(
         &self,
         widget: &P,

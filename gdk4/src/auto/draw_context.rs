@@ -24,14 +24,19 @@ glib::glib_wrapper! {
 pub const NONE_DRAW_CONTEXT: Option<&DrawContext> = None;
 
 pub trait DrawContextExt: 'static {
+    #[doc(alias = "gdk_draw_context_begin_frame")]
     fn begin_frame(&self, region: &cairo::Region);
 
+    #[doc(alias = "gdk_draw_context_end_frame")]
     fn end_frame(&self);
 
+    #[doc(alias = "gdk_draw_context_get_display")]
     fn get_display(&self) -> Option<Display>;
 
+    #[doc(alias = "gdk_draw_context_get_surface")]
     fn get_surface(&self) -> Option<Surface>;
 
+    #[doc(alias = "gdk_draw_context_is_in_frame")]
     fn is_in_frame(&self) -> bool;
 
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

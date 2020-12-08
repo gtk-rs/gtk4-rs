@@ -38,6 +38,7 @@ glib::glib_wrapper! {
 }
 
 impl ColumnView {
+    #[doc(alias = "gtk_column_view_new")]
     pub fn new<P: IsA<SelectionModel>>(model: Option<&P>) -> ColumnView {
         assert_initialized_main_thread!();
         unsafe {
@@ -48,16 +49,19 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_append_column")]
     pub fn append_column(&self, column: &ColumnViewColumn) {
         unsafe {
             ffi::gtk_column_view_append_column(self.to_glib_none().0, column.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_column_view_get_columns")]
     pub fn get_columns(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_column_view_get_columns(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_get_enable_rubberband")]
     pub fn get_enable_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_enable_rubberband(
@@ -66,14 +70,17 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_get_model")]
     pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_get_reorderable")]
     pub fn get_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_get_show_column_separators")]
     pub fn get_show_column_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_column_separators(
@@ -82,6 +89,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_get_show_row_separators")]
     pub fn get_show_row_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_row_separators(
@@ -90,6 +98,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_get_single_click_activate")]
     pub fn get_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_single_click_activate(
@@ -98,10 +107,12 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_get_sorter")]
     pub fn get_sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_insert_column")]
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
         unsafe {
             ffi::gtk_column_view_insert_column(
@@ -112,12 +123,14 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_remove_column")]
     pub fn remove_column(&self, column: &ColumnViewColumn) {
         unsafe {
             ffi::gtk_column_view_remove_column(self.to_glib_none().0, column.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
             ffi::gtk_column_view_set_enable_rubberband(
@@ -127,6 +140,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_model")]
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_column_view_set_model(
@@ -136,12 +150,14 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_show_column_separators")]
     pub fn set_show_column_separators(&self, show_column_separators: bool) {
         unsafe {
             ffi::gtk_column_view_set_show_column_separators(
@@ -151,6 +167,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_show_row_separators")]
     pub fn set_show_row_separators(&self, show_row_separators: bool) {
         unsafe {
             ffi::gtk_column_view_set_show_row_separators(
@@ -160,6 +177,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_set_single_click_activate")]
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
             ffi::gtk_column_view_set_single_click_activate(
@@ -169,6 +187,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "gtk_column_view_sort_by_column")]
     pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
         unsafe {
             ffi::gtk_column_view_sort_by_column(

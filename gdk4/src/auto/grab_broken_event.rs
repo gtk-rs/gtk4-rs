@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl GrabBrokenEvent {
+    #[doc(alias = "gdk_grab_broken_event_get_grab_surface")]
     pub fn get_grab_surface(&self) -> Option<Surface> {
         unsafe {
             from_glib_none(ffi::gdk_grab_broken_event_get_grab_surface(
@@ -24,6 +25,7 @@ impl GrabBrokenEvent {
         }
     }
 
+    #[doc(alias = "gdk_grab_broken_event_get_implicit")]
     pub fn get_implicit(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_grab_broken_event_get_implicit(

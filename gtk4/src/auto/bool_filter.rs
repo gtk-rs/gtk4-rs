@@ -24,22 +24,27 @@ glib::glib_wrapper! {
 }
 
 impl BoolFilter {
+    //#[doc(alias = "gtk_bool_filter_new")]
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> BoolFilter {
     //    unsafe { TODO: call ffi:gtk_bool_filter_new() }
     //}
 
+    //#[doc(alias = "gtk_bool_filter_get_expression")]
     //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
     //    unsafe { TODO: call ffi:gtk_bool_filter_get_expression() }
     //}
 
+    #[doc(alias = "gtk_bool_filter_get_invert")]
     pub fn get_invert(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_bool_filter_set_expression")]
     //pub fn set_expression(&self, expression: /*Ignored*/&Expression) {
     //    unsafe { TODO: call ffi:gtk_bool_filter_set_expression() }
     //}
 
+    #[doc(alias = "gtk_bool_filter_set_invert")]
     pub fn set_invert(&self, invert: bool) {
         unsafe {
             ffi::gtk_bool_filter_set_invert(self.to_glib_none().0, invert.to_glib());

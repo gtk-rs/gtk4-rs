@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl MemoryTexture {
+    #[doc(alias = "gdk_memory_texture_new")]
     pub fn new(
         width: i32,
         height: i32,

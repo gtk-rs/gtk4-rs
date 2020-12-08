@@ -26,18 +26,22 @@ glib::glib_wrapper! {
 }
 
 impl StackPage {
+    #[doc(alias = "gtk_stack_page_get_child")]
     pub fn get_child(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_get_icon_name")]
     pub fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_get_name")]
     pub fn get_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_get_needs_attention")]
     pub fn get_needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_stack_page_get_needs_attention(
@@ -46,48 +50,57 @@ impl StackPage {
         }
     }
 
+    #[doc(alias = "gtk_stack_page_get_title")]
     pub fn get_title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_title(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_get_use_underline")]
     pub fn get_use_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_use_underline(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_get_visible")]
     pub fn get_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_visible(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_page_set_icon_name")]
     pub fn set_icon_name(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_icon_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_stack_page_set_name")]
     pub fn set_name(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_name(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_stack_page_set_needs_attention")]
     pub fn set_needs_attention(&self, setting: bool) {
         unsafe {
             ffi::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_page_set_title")]
     pub fn set_title(&self, setting: &str) {
         unsafe {
             ffi::gtk_stack_page_set_title(self.to_glib_none().0, setting.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_stack_page_set_use_underline")]
     pub fn set_use_underline(&self, setting: bool) {
         unsafe {
             ffi::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_page_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());

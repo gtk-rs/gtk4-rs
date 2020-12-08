@@ -26,38 +26,55 @@ glib::glib_wrapper! {
 pub const NONE_GESTURE: Option<&Gesture> = None;
 
 pub trait GestureExt: 'static {
+    #[doc(alias = "gtk_gesture_get_bounding_box")]
     fn get_bounding_box(&self) -> Option<gdk::Rectangle>;
 
+    #[doc(alias = "gtk_gesture_get_bounding_box_center")]
     fn get_bounding_box_center(&self) -> Option<(f64, f64)>;
 
+    #[doc(alias = "gtk_gesture_get_device")]
     fn get_device(&self) -> Option<gdk::Device>;
 
+    #[doc(alias = "gtk_gesture_get_group")]
     fn get_group(&self) -> Vec<Gesture>;
 
+    #[doc(alias = "gtk_gesture_get_last_event")]
     fn get_last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event>;
 
+    #[doc(alias = "gtk_gesture_get_last_updated_sequence")]
     fn get_last_updated_sequence(&self) -> Option<gdk::EventSequence>;
 
+    #[doc(alias = "gtk_gesture_get_point")]
     fn get_point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)>;
 
+    #[doc(alias = "gtk_gesture_get_sequence_state")]
     fn get_sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState;
 
+    #[doc(alias = "gtk_gesture_get_sequences")]
     fn get_sequences(&self) -> Vec<gdk::EventSequence>;
 
+    #[doc(alias = "gtk_gesture_group")]
     fn group<P: IsA<Gesture>>(&self, gesture: &P);
 
+    #[doc(alias = "gtk_gesture_handles_sequence")]
     fn handles_sequence(&self, sequence: Option<&gdk::EventSequence>) -> bool;
 
+    #[doc(alias = "gtk_gesture_is_active")]
     fn is_active(&self) -> bool;
 
+    #[doc(alias = "gtk_gesture_is_grouped_with")]
     fn is_grouped_with<P: IsA<Gesture>>(&self, other: &P) -> bool;
 
+    #[doc(alias = "gtk_gesture_is_recognized")]
     fn is_recognized(&self) -> bool;
 
+    #[doc(alias = "gtk_gesture_set_sequence_state")]
     fn set_sequence_state(&self, sequence: &gdk::EventSequence, state: EventSequenceState) -> bool;
 
+    #[doc(alias = "gtk_gesture_set_state")]
     fn set_state(&self, state: EventSequenceState) -> bool;
 
+    #[doc(alias = "gtk_gesture_ungroup")]
     fn ungroup(&self);
 
     fn get_property_n_points(&self) -> u32;

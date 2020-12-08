@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl CallbackAction {
+    #[doc(alias = "gtk_callback_action_new")]
     pub fn new(
         callback: Option<Box_<dyn Fn(&Widget, &glib::Variant) -> bool + 'static>>,
     ) -> CallbackAction {

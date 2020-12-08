@@ -20,11 +20,13 @@ glib::glib_wrapper! {
 }
 
 impl Transform {
+    #[doc(alias = "gsk_transform_new")]
     pub fn new() -> Transform {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_transform_new()) }
     }
 
+    #[doc(alias = "gsk_transform_equal")]
     fn equal(&self, second: &Transform) -> bool {
         unsafe {
             from_glib(ffi::gsk_transform_equal(
@@ -34,14 +36,17 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_get_category")]
     pub fn get_category(&self) -> TransformCategory {
         unsafe { from_glib(ffi::gsk_transform_get_category(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_transform_invert")]
     pub fn invert(&self) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_invert(self.to_glib_full())) }
     }
 
+    #[doc(alias = "gsk_transform_matrix")]
     pub fn matrix(&self, matrix: &graphene::Matrix) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_matrix(
@@ -51,20 +56,24 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_perspective")]
     pub fn perspective(&self, depth: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_perspective(self.to_glib_full(), depth)) }
     }
 
+    #[doc(alias = "gsk_transform_print")]
     pub fn print(&self, string: &mut glib::String) {
         unsafe {
             ffi::gsk_transform_print(self.to_glib_none().0, string.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gsk_transform_rotate")]
     pub fn rotate(&self, angle: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_rotate(self.to_glib_full(), angle)) }
     }
 
+    #[doc(alias = "gsk_transform_rotate_3d")]
     pub fn rotate_3d(&self, angle: f32, axis: &graphene::Vec3) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_rotate_3d(
@@ -75,6 +84,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_scale")]
     pub fn scale(&self, factor_x: f32, factor_y: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_scale(
@@ -85,6 +95,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_scale_3d")]
     pub fn scale_3d(&self, factor_x: f32, factor_y: f32, factor_z: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_scale_3d(
@@ -96,6 +107,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_to_2d")]
     pub fn to_2d(&self) -> (f32, f32, f32, f32, f32, f32) {
         unsafe {
             let mut out_xx = mem::MaybeUninit::uninit();
@@ -123,6 +135,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_to_affine")]
     pub fn to_affine(&self) -> (f32, f32, f32, f32) {
         unsafe {
             let mut out_scale_x = mem::MaybeUninit::uninit();
@@ -144,6 +157,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_to_matrix")]
     pub fn to_matrix(&self) -> graphene::Matrix {
         unsafe {
             let mut out_matrix = graphene::Matrix::uninitialized();
@@ -152,10 +166,12 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gsk_transform_to_string(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_transform_to_translate")]
     pub fn to_translate(&self) -> (f32, f32) {
         unsafe {
             let mut out_dx = mem::MaybeUninit::uninit();
@@ -171,6 +187,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_transform")]
     pub fn transform(&self, other: Option<&Transform>) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_transform(
@@ -180,6 +197,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_transform_bounds")]
     pub fn transform_bounds(&self, rect: &graphene::Rect) -> graphene::Rect {
         unsafe {
             let mut out_rect = graphene::Rect::uninitialized();
@@ -192,6 +210,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_transform_point")]
     pub fn transform_point(&self, point: &graphene::Point) -> graphene::Point {
         unsafe {
             let mut out_point = graphene::Point::uninitialized();
@@ -204,6 +223,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_translate")]
     pub fn translate(&self, point: &graphene::Point) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_translate(
@@ -213,6 +233,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_translate_3d")]
     pub fn translate_3d(&self, point: &graphene::Point3D) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_translate_3d(
@@ -222,6 +243,7 @@ impl Transform {
         }
     }
 
+    #[doc(alias = "gsk_transform_parse")]
     pub fn parse(string: &str) -> Option<Transform> {
         assert_initialized_main_thread!();
         unsafe {

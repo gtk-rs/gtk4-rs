@@ -25,6 +25,7 @@ glib::glib_wrapper! {
 }
 
 impl CellRendererText {
+    #[doc(alias = "gtk_cell_renderer_text_new")]
     pub fn new() -> CellRendererText {
         assert_initialized_main_thread!();
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_text_new()).unsafe_cast() }
@@ -599,6 +600,7 @@ impl CellRendererTextBuilder {
 pub const NONE_CELL_RENDERER_TEXT: Option<&CellRendererText> = None;
 
 pub trait CellRendererTextExt: 'static {
+    #[doc(alias = "gtk_cell_renderer_text_set_fixed_height_from_font")]
     fn set_fixed_height_from_font(&self, number_of_rows: i32);
 
     fn get_property_align_set(&self) -> bool;

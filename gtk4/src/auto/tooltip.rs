@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl Tooltip {
+    #[doc(alias = "gtk_tooltip_set_custom")]
     pub fn set_custom<P: IsA<Widget>>(&self, custom_widget: Option<&P>) {
         unsafe {
             ffi::gtk_tooltip_set_custom(
@@ -25,6 +26,7 @@ impl Tooltip {
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_icon")]
     pub fn set_icon<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             ffi::gtk_tooltip_set_icon(
@@ -34,6 +36,7 @@ impl Tooltip {
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_icon_from_gicon")]
     pub fn set_icon_from_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             ffi::gtk_tooltip_set_icon_from_gicon(
@@ -43,6 +46,7 @@ impl Tooltip {
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_icon_from_icon_name")]
     pub fn set_icon_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_tooltip_set_icon_from_icon_name(
@@ -52,18 +56,21 @@ impl Tooltip {
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_markup")]
     pub fn set_markup(&self, markup: Option<&str>) {
         unsafe {
             ffi::gtk_tooltip_set_markup(self.to_glib_none().0, markup.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_tooltip_set_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_tooltip_set_tip_area")]
     pub fn set_tip_area(&self, rect: &gdk::Rectangle) {
         unsafe {
             ffi::gtk_tooltip_set_tip_area(self.to_glib_none().0, rect.to_glib_none().0);

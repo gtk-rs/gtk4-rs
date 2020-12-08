@@ -35,6 +35,7 @@ glib::glib_wrapper! {
 }
 
 impl FileChooserButton {
+    #[doc(alias = "gtk_file_chooser_button_new")]
     pub fn new(title: &str, action: FileChooserAction) -> FileChooserButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -46,6 +47,7 @@ impl FileChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_new_with_dialog")]
     pub fn with_dialog<P: IsA<Dialog>>(dialog: &P) -> FileChooserButton {
         skip_assert_initialized!();
         unsafe {
@@ -56,6 +58,7 @@ impl FileChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_get_modal")]
     pub fn get_modal(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_button_get_modal(
@@ -64,6 +67,7 @@ impl FileChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_get_title")]
     pub fn get_title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_button_get_title(
@@ -72,22 +76,26 @@ impl FileChooserButton {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_get_width_chars")]
     pub fn get_width_chars(&self) -> i32 {
         unsafe { ffi::gtk_file_chooser_button_get_width_chars(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::gtk_file_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::gtk_file_chooser_button_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_button_set_width_chars")]
     pub fn set_width_chars(&self, n_chars: i32) {
         unsafe {
             ffi::gtk_file_chooser_button_set_width_chars(self.to_glib_none().0, n_chars);

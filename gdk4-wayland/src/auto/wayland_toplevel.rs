@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl WaylandToplevel {
+    #[doc(alias = "gdk_wayland_toplevel_export_handle")]
     pub fn export_handle<P: Fn(&WaylandToplevel, &str) + 'static>(&self, callback: P) -> bool {
         let callback_data: Box_<P> = Box_::new(callback);
         unsafe extern "C" fn callback_func<P: Fn(&WaylandToplevel, &str) + 'static>(
@@ -46,6 +47,7 @@ impl WaylandToplevel {
         }
     }
 
+    #[doc(alias = "gdk_wayland_toplevel_set_application_id")]
     pub fn set_application_id(&self, application_id: &str) {
         unsafe {
             ffi::gdk_wayland_toplevel_set_application_id(
@@ -55,6 +57,7 @@ impl WaylandToplevel {
         }
     }
 
+    #[doc(alias = "gdk_wayland_toplevel_set_transient_for_exported")]
     pub fn set_transient_for_exported(&self, parent_handle_str: &str) -> bool {
         unsafe {
             from_glib(ffi::gdk_wayland_toplevel_set_transient_for_exported(
@@ -64,6 +67,7 @@ impl WaylandToplevel {
         }
     }
 
+    #[doc(alias = "gdk_wayland_toplevel_unexport_handle")]
     pub fn unexport_handle(&self) {
         unsafe {
             ffi::gdk_wayland_toplevel_unexport_handle(self.to_glib_none().0);

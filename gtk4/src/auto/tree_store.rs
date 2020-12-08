@@ -21,10 +21,12 @@ glib::glib_wrapper! {
 }
 
 impl TreeStore {
+    //#[doc(alias = "gtk_tree_store_new")]
     //pub fn new(n_columns: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeStore {
     //    unsafe { TODO: call ffi:gtk_tree_store_new() }
     //}
 
+    //#[doc(alias = "gtk_tree_store_newv")]
     //pub fn newv(types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }) -> TreeStore {
     //    unsafe { TODO: call ffi:gtk_tree_store_newv() }
     //}
@@ -33,44 +35,64 @@ impl TreeStore {
 pub const NONE_TREE_STORE: Option<&TreeStore> = None;
 
 pub trait TreeStoreExt: 'static {
+    #[doc(alias = "gtk_tree_store_append")]
     fn append(&self, parent: Option<&TreeIter>) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_store_clear")]
     fn clear(&self);
 
+    #[doc(alias = "gtk_tree_store_insert")]
     fn insert(&self, parent: Option<&TreeIter>, position: i32) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_store_insert_after")]
     fn insert_after(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_store_insert_before")]
     fn insert_before(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter;
 
+    //#[doc(alias = "gtk_tree_store_insert_with_values")]
     //fn insert_with_values(&self, parent: Option<&TreeIter>, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter;
 
+    //#[doc(alias = "gtk_tree_store_insert_with_valuesv")]
     //fn insert_with_valuesv(&self, parent: Option<&TreeIter>, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_store_is_ancestor")]
     fn is_ancestor(&self, iter: &TreeIter, descendant: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_store_iter_depth")]
     fn iter_depth(&self, iter: &TreeIter) -> i32;
 
+    #[doc(alias = "gtk_tree_store_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_tree_store_move_after")]
     fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>);
 
+    #[doc(alias = "gtk_tree_store_move_before")]
     fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>);
 
+    #[doc(alias = "gtk_tree_store_prepend")]
     fn prepend(&self, parent: Option<&TreeIter>) -> TreeIter;
 
+    //#[doc(alias = "gtk_tree_store_remove")]
     //fn remove(&self, iter: /*Unimplemented*/TreeIter) -> bool;
 
+    //#[doc(alias = "gtk_tree_store_reorder")]
     //fn reorder(&self, parent: Option<&TreeIter>, new_order: &[i32]);
 
+    //#[doc(alias = "gtk_tree_store_set")]
     //fn set(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_tree_store_set_column_types")]
     //fn set_column_types(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 });
 
+    //#[doc(alias = "gtk_tree_store_set_valist")]
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    //#[doc(alias = "gtk_tree_store_set_valuesv")]
     //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: &[&glib::Value]);
 
+    #[doc(alias = "gtk_tree_store_swap")]
     fn swap(&self, a: &TreeIter, b: &TreeIter);
 }
 

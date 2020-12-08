@@ -25,6 +25,7 @@ glib::glib_wrapper! {
 }
 
 impl Shortcut {
+    #[doc(alias = "gtk_shortcut_new")]
     pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(
         trigger: Option<&P>,
         action: Option<&Q>,
@@ -38,22 +39,27 @@ impl Shortcut {
         }
     }
 
+    //#[doc(alias = "gtk_shortcut_new_with_arguments")]
     //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
     //}
 
+    #[doc(alias = "gtk_shortcut_get_action")]
     pub fn get_action(&self) -> Option<ShortcutAction> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_action(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_shortcut_get_arguments")]
     pub fn get_arguments(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_arguments(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_shortcut_get_trigger")]
     pub fn get_trigger(&self) -> Option<ShortcutTrigger> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_trigger(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_shortcut_set_action")]
     pub fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>) {
         unsafe {
             ffi::gtk_shortcut_set_action(
@@ -63,12 +69,14 @@ impl Shortcut {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_set_arguments")]
     pub fn set_arguments(&self, args: Option<&glib::Variant>) {
         unsafe {
             ffi::gtk_shortcut_set_arguments(self.to_glib_none().0, args.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_shortcut_set_trigger")]
     pub fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>) {
         unsafe {
             ffi::gtk_shortcut_set_trigger(

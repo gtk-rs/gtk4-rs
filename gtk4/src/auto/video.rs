@@ -32,11 +32,13 @@ glib::glib_wrapper! {
 }
 
 impl Video {
+    #[doc(alias = "gtk_video_new")]
     pub fn new() -> Video {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_video_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_video_new_for_file")]
     pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -47,6 +49,7 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_new_for_filename")]
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -57,6 +60,7 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_new_for_media_stream")]
     pub fn new_for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -67,6 +71,7 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_new_for_resource")]
     pub fn new_for_resource(resource_path: Option<&str>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -77,28 +82,34 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_get_autoplay")]
     pub fn get_autoplay(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_autoplay(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_video_get_file")]
     pub fn get_file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_video_get_file(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_video_get_loop")]
     pub fn get_loop(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_loop(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_video_get_media_stream")]
     pub fn get_media_stream(&self) -> Option<MediaStream> {
         unsafe { from_glib_none(ffi::gtk_video_get_media_stream(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_video_set_autoplay")]
     pub fn set_autoplay(&self, autoplay: bool) {
         unsafe {
             ffi::gtk_video_set_autoplay(self.to_glib_none().0, autoplay.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_video_set_file")]
     pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
             ffi::gtk_video_set_file(
@@ -108,18 +119,21 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_set_filename")]
     pub fn set_filename(&self, filename: Option<&str>) {
         unsafe {
             ffi::gtk_video_set_filename(self.to_glib_none().0, filename.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_video_set_loop")]
     pub fn set_loop(&self, loop_: bool) {
         unsafe {
             ffi::gtk_video_set_loop(self.to_glib_none().0, loop_.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_video_set_media_stream")]
     pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
         unsafe {
             ffi::gtk_video_set_media_stream(
@@ -129,6 +143,7 @@ impl Video {
         }
     }
 
+    #[doc(alias = "gtk_video_set_resource")]
     pub fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
             ffi::gtk_video_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);

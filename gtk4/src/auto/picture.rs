@@ -31,11 +31,13 @@ glib::glib_wrapper! {
 }
 
 impl Picture {
+    #[doc(alias = "gtk_picture_new")]
     pub fn new() -> Picture {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_picture_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_picture_new_for_file")]
     pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -46,6 +48,7 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_new_for_filename")]
     pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -56,6 +59,7 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_new_for_paintable")]
     pub fn new_for_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -66,6 +70,7 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_new_for_pixbuf")]
     pub fn new_for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -74,6 +79,7 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_new_for_resource")]
     pub fn new_for_resource(resource_path: Option<&str>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -84,18 +90,22 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_get_alternative_text")]
     pub fn get_alternative_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_picture_get_alternative_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_picture_get_can_shrink")]
     pub fn get_can_shrink(&self) -> bool {
         unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_picture_get_file")]
     pub fn get_file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_picture_get_file(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_picture_get_keep_aspect_ratio")]
     pub fn get_keep_aspect_ratio(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
@@ -104,10 +114,12 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_get_paintable")]
     pub fn get_paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_picture_get_paintable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_picture_set_alternative_text")]
     pub fn set_alternative_text(&self, alternative_text: Option<&str>) {
         unsafe {
             ffi::gtk_picture_set_alternative_text(
@@ -117,12 +129,14 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_set_can_shrink")]
     pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
             ffi::gtk_picture_set_can_shrink(self.to_glib_none().0, can_shrink.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_picture_set_file")]
     pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
             ffi::gtk_picture_set_file(
@@ -132,12 +146,14 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_set_filename")]
     pub fn set_filename(&self, filename: Option<&str>) {
         unsafe {
             ffi::gtk_picture_set_filename(self.to_glib_none().0, filename.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_picture_set_keep_aspect_ratio")]
     pub fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
         unsafe {
             ffi::gtk_picture_set_keep_aspect_ratio(
@@ -147,6 +163,7 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_set_paintable")]
     pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             ffi::gtk_picture_set_paintable(
@@ -156,12 +173,14 @@ impl Picture {
         }
     }
 
+    #[doc(alias = "gtk_picture_set_pixbuf")]
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             ffi::gtk_picture_set_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_picture_set_resource")]
     pub fn set_resource(&self, resource_path: Option<&str>) {
         unsafe {
             ffi::gtk_picture_set_resource(self.to_glib_none().0, resource_path.to_glib_none().0);

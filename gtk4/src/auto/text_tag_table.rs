@@ -22,11 +22,13 @@ glib::glib_wrapper! {
 }
 
 impl TextTagTable {
+    #[doc(alias = "gtk_text_tag_table_new")]
     pub fn new() -> TextTagTable {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_text_tag_table_new()) }
     }
 
+    #[doc(alias = "gtk_text_tag_table_add")]
     pub fn add<P: IsA<TextTag>>(&self, tag: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_tag_table_add(
@@ -36,6 +38,7 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "gtk_text_tag_table_foreach")]
     pub fn foreach<P: FnMut(&TextTag)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TextTag)>(
@@ -57,10 +60,12 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "gtk_text_tag_table_get_size")]
     pub fn get_size(&self) -> i32 {
         unsafe { ffi::gtk_text_tag_table_get_size(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_tag_table_lookup")]
     pub fn lookup(&self, name: &str) -> Option<TextTag> {
         unsafe {
             from_glib_none(ffi::gtk_text_tag_table_lookup(
@@ -70,6 +75,7 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "gtk_text_tag_table_remove")]
     pub fn remove<P: IsA<TextTag>>(&self, tag: &P) {
         unsafe {
             ffi::gtk_text_tag_table_remove(self.to_glib_none().0, tag.as_ref().to_glib_none().0);

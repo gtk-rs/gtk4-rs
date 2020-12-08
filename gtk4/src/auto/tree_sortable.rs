@@ -23,8 +23,10 @@ glib::glib_wrapper! {
 pub const NONE_TREE_SORTABLE: Option<&TreeSortable> = None;
 
 pub trait TreeSortableExt: 'static {
+    #[doc(alias = "gtk_tree_sortable_has_default_sort_func")]
     fn has_default_sort_func(&self) -> bool;
 
+    #[doc(alias = "gtk_tree_sortable_sort_column_changed")]
     fn sort_column_changed(&self);
 
     fn connect_sort_column_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

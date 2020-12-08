@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl ContentFormats {
+    #[doc(alias = "gdk_content_formats_new")]
     pub fn new(mime_types: &[&str]) -> ContentFormats {
         assert_initialized_main_thread!();
         let n_mime_types = mime_types.len() as u32;
@@ -29,11 +30,13 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_new_for_gtype")]
     pub fn new_for_gtype(type_: glib::types::Type) -> ContentFormats {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.to_glib())) }
     }
 
+    #[doc(alias = "gdk_content_formats_contain_gtype")]
     pub fn contain_gtype(&self, type_: glib::types::Type) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_contain_gtype(
@@ -43,6 +46,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_contain_mime_type")]
     pub fn contain_mime_type(&self, mime_type: &str) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_contain_mime_type(
@@ -52,6 +56,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_get_mime_types")]
     pub fn get_mime_types(&self) -> (Vec<glib::GString>, usize) {
         unsafe {
             let mut n_mime_types = mem::MaybeUninit::uninit();
@@ -65,6 +70,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_match")]
     pub fn match_(&self, second: &ContentFormats) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_match(
@@ -74,6 +80,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_match_gtype")]
     pub fn match_gtype(&self, second: &ContentFormats) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gdk_content_formats_match_gtype(
@@ -83,6 +90,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_match_mime_type")]
     pub fn match_mime_type(&self, second: &ContentFormats) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_content_formats_match_mime_type(
@@ -92,16 +100,19 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_print")]
     pub fn print(&self, string: &mut glib::String) {
         unsafe {
             ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gdk_content_formats_to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gdk_content_formats_to_string(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_content_formats_union")]
     pub fn union(&self, second: &ContentFormats) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union(
@@ -111,6 +122,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_union_deserialize_gtypes")]
     pub fn union_deserialize_gtypes(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_gtypes(
@@ -119,6 +131,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_union_deserialize_mime_types")]
     pub fn union_deserialize_mime_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_mime_types(
@@ -127,6 +140,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_union_serialize_gtypes")]
     pub fn union_serialize_gtypes(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_gtypes(
@@ -135,6 +149,7 @@ impl ContentFormats {
         }
     }
 
+    #[doc(alias = "gdk_content_formats_union_serialize_mime_types")]
     pub fn union_serialize_mime_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_mime_types(

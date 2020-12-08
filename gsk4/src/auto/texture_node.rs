@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl TextureNode {
+    #[doc(alias = "gsk_texture_node_new")]
     pub fn new<P: IsA<gdk::Texture>>(texture: &P, bounds: &graphene::Rect) -> TextureNode {
         assert_initialized_main_thread!();
         unsafe {
@@ -26,6 +27,7 @@ impl TextureNode {
         }
     }
 
+    #[doc(alias = "gsk_texture_node_get_texture")]
     pub fn get_texture(&self) -> Option<gdk::Texture> {
         unsafe { from_glib_none(ffi::gsk_texture_node_get_texture(self.to_glib_none().0)) }
     }

@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl ConfigureEvent {
+    #[doc(alias = "gdk_configure_event_get_size")]
     pub fn get_size(&self) -> (i32, i32) {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();

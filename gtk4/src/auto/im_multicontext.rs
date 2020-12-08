@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl IMMulticontext {
+    #[doc(alias = "gtk_im_multicontext_new")]
     pub fn new() -> IMMulticontext {
         assert_initialized_main_thread!();
         unsafe { IMContext::from_glib_full(ffi::gtk_im_multicontext_new()).unsafe_cast() }
@@ -32,8 +33,10 @@ impl Default for IMMulticontext {
 pub const NONE_IM_MULTICONTEXT: Option<&IMMulticontext> = None;
 
 pub trait IMMulticontextExt: 'static {
+    #[doc(alias = "gtk_im_multicontext_get_context_id")]
     fn get_context_id(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_im_multicontext_set_context_id")]
     fn set_context_id(&self, context_id: &str);
 }
 

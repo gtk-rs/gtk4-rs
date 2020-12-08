@@ -25,18 +25,25 @@ glib::glib_wrapper! {
 pub const NONE_POPUP: Option<&Popup> = None;
 
 pub trait PopupExt: 'static {
+    #[doc(alias = "gdk_popup_get_autohide")]
     fn get_autohide(&self) -> bool;
 
+    #[doc(alias = "gdk_popup_get_parent")]
     fn get_parent(&self) -> Option<Surface>;
 
+    #[doc(alias = "gdk_popup_get_position_x")]
     fn get_position_x(&self) -> i32;
 
+    #[doc(alias = "gdk_popup_get_position_y")]
     fn get_position_y(&self) -> i32;
 
+    #[doc(alias = "gdk_popup_get_rect_anchor")]
     fn get_rect_anchor(&self) -> Gravity;
 
+    #[doc(alias = "gdk_popup_get_surface_anchor")]
     fn get_surface_anchor(&self) -> Gravity;
 
+    #[doc(alias = "gdk_popup_present")]
     fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool;
 
     fn connect_popup_layout_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

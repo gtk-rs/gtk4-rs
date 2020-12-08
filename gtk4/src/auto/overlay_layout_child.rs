@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl OverlayLayoutChild {
+    #[doc(alias = "gtk_overlay_layout_child_get_clip_overlay")]
     pub fn get_clip_overlay(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_layout_child_get_clip_overlay(
@@ -34,6 +35,7 @@ impl OverlayLayoutChild {
         }
     }
 
+    #[doc(alias = "gtk_overlay_layout_child_get_measure")]
     pub fn get_measure(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_layout_child_get_measure(
@@ -42,6 +44,7 @@ impl OverlayLayoutChild {
         }
     }
 
+    #[doc(alias = "gtk_overlay_layout_child_set_clip_overlay")]
     pub fn set_clip_overlay(&self, clip_overlay: bool) {
         unsafe {
             ffi::gtk_overlay_layout_child_set_clip_overlay(
@@ -51,6 +54,7 @@ impl OverlayLayoutChild {
         }
     }
 
+    #[doc(alias = "gtk_overlay_layout_child_set_measure")]
     pub fn set_measure(&self, measure: bool) {
         unsafe {
             ffi::gtk_overlay_layout_child_set_measure(self.to_glib_none().0, measure.to_glib());

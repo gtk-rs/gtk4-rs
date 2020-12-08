@@ -28,8 +28,10 @@ glib::glib_wrapper! {
 pub const NONE_IM_CONTEXT: Option<&IMContext> = None;
 
 pub trait IMContextExt: 'static {
+    #[doc(alias = "gtk_im_context_delete_surrounding")]
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
+    #[doc(alias = "gtk_im_context_filter_key")]
     fn filter_key(
         &self,
         press: bool,
@@ -41,24 +43,34 @@ pub trait IMContextExt: 'static {
         group: i32,
     ) -> bool;
 
+    #[doc(alias = "gtk_im_context_filter_keypress")]
     fn filter_keypress<P: IsA<gdk::Event>>(&self, event: &P) -> bool;
 
+    #[doc(alias = "gtk_im_context_focus_in")]
     fn focus_in(&self);
 
+    #[doc(alias = "gtk_im_context_focus_out")]
     fn focus_out(&self);
 
+    #[doc(alias = "gtk_im_context_get_preedit_string")]
     fn get_preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
 
+    #[doc(alias = "gtk_im_context_get_surrounding")]
     fn get_surrounding(&self) -> Option<(glib::GString, i32)>;
 
+    #[doc(alias = "gtk_im_context_reset")]
     fn reset(&self);
 
+    #[doc(alias = "gtk_im_context_set_client_widget")]
     fn set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
 
+    #[doc(alias = "gtk_im_context_set_cursor_location")]
     fn set_cursor_location(&self, area: &gdk::Rectangle);
 
+    #[doc(alias = "gtk_im_context_set_surrounding")]
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
+    #[doc(alias = "gtk_im_context_set_use_preedit")]
     fn set_use_preedit(&self, use_preedit: bool);
 
     fn get_property_input_hints(&self) -> InputHints;

@@ -28,35 +28,42 @@ glib::glib_wrapper! {
 }
 
 impl DragSource {
+    #[doc(alias = "gtk_drag_source_new")]
     pub fn new() -> DragSource {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_drag_source_new()) }
     }
 
+    #[doc(alias = "gtk_drag_source_drag_cancel")]
     pub fn drag_cancel(&self) {
         unsafe {
             ffi::gtk_drag_source_drag_cancel(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_drag_source_get_actions")]
     pub fn get_actions(&self) -> gdk::DragAction {
         unsafe { from_glib(ffi::gtk_drag_source_get_actions(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drag_source_get_content")]
     pub fn get_content(&self) -> Option<gdk::ContentProvider> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_content(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drag_source_get_drag")]
     pub fn get_drag(&self) -> Option<gdk::Drag> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_drag(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drag_source_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drag_source_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_drag_source_set_content")]
     pub fn set_content<P: IsA<gdk::ContentProvider>>(&self, content: Option<&P>) {
         unsafe {
             ffi::gtk_drag_source_set_content(
@@ -66,6 +73,7 @@ impl DragSource {
         }
     }
 
+    #[doc(alias = "gtk_drag_source_set_icon")]
     pub fn set_icon<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>, hot_x: i32, hot_y: i32) {
         unsafe {
             ffi::gtk_drag_source_set_icon(

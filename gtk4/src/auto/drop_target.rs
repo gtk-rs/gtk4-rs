@@ -25,51 +25,62 @@ glib::glib_wrapper! {
 }
 
 impl DropTarget {
+    #[doc(alias = "gtk_drop_target_new")]
     pub fn new(type_: glib::types::Type, actions: gdk::DragAction) -> DropTarget {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_drop_target_new(type_.to_glib(), actions.to_glib())) }
     }
 
+    #[doc(alias = "gtk_drop_target_get_actions")]
     pub fn get_actions(&self) -> gdk::DragAction {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drop_target_get_drop")]
     pub fn get_drop(&self) -> Option<gdk::Drop> {
         unsafe { from_glib_none(ffi::gtk_drop_target_get_drop(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drop_target_get_formats")]
     pub fn get_formats(&self) -> Option<gdk::ContentFormats> {
         unsafe { from_glib_full(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_drop_target_get_gtypes")]
     //pub fn get_gtypes(&self) -> /*Unimplemented*/Option<CArray TypeId { ns_id: 0, id: 30 }> {
     //    unsafe { TODO: call ffi:gtk_drop_target_get_gtypes() }
     //}
 
+    #[doc(alias = "gtk_drop_target_get_preload")]
     pub fn get_preload(&self) -> bool {
         unsafe { from_glib(ffi::gtk_drop_target_get_preload(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drop_target_get_value")]
     pub fn get_value(&self) -> Option<glib::Value> {
         unsafe { from_glib_none(ffi::gtk_drop_target_get_value(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_drop_target_reject")]
     pub fn reject(&self) {
         unsafe {
             ffi::gtk_drop_target_reject(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_drop_target_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
 
+    //#[doc(alias = "gtk_drop_target_set_gtypes")]
     //pub fn set_gtypes(&self, types: /*Unimplemented*/Option<&CArray TypeId { ns_id: 0, id: 30 }>) {
     //    unsafe { TODO: call ffi:gtk_drop_target_set_gtypes() }
     //}
 
+    #[doc(alias = "gtk_drop_target_set_preload")]
     pub fn set_preload(&self, preload: bool) {
         unsafe {
             ffi::gtk_drop_target_set_preload(self.to_glib_none().0, preload.to_glib());

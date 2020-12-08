@@ -21,10 +21,12 @@ glib::glib_wrapper! {
 }
 
 impl ListStore {
+    //#[doc(alias = "gtk_list_store_new")]
     //pub fn new(n_columns: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ListStore {
     //    unsafe { TODO: call ffi:gtk_list_store_new() }
     //}
 
+    //#[doc(alias = "gtk_list_store_newv")]
     //pub fn newv(types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }) -> ListStore {
     //    unsafe { TODO: call ffi:gtk_list_store_newv() }
     //}
@@ -33,40 +35,58 @@ impl ListStore {
 pub const NONE_LIST_STORE: Option<&ListStore> = None;
 
 pub trait GtkListStoreExt: 'static {
+    #[doc(alias = "gtk_list_store_append")]
     fn append(&self) -> TreeIter;
 
+    #[doc(alias = "gtk_list_store_clear")]
     fn clear(&self);
 
+    #[doc(alias = "gtk_list_store_insert")]
     fn insert(&self, position: i32) -> TreeIter;
 
+    #[doc(alias = "gtk_list_store_insert_after")]
     fn insert_after(&self, sibling: Option<&TreeIter>) -> TreeIter;
 
+    #[doc(alias = "gtk_list_store_insert_before")]
     fn insert_before(&self, sibling: Option<&TreeIter>) -> TreeIter;
 
+    //#[doc(alias = "gtk_list_store_insert_with_values")]
     //fn insert_with_values(&self, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter;
 
+    //#[doc(alias = "gtk_list_store_insert_with_valuesv")]
     //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter;
 
+    #[doc(alias = "gtk_list_store_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
+    #[doc(alias = "gtk_list_store_move_after")]
     fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>);
 
+    #[doc(alias = "gtk_list_store_move_before")]
     fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>);
 
+    #[doc(alias = "gtk_list_store_prepend")]
     fn prepend(&self) -> TreeIter;
 
+    #[doc(alias = "gtk_list_store_remove")]
     fn remove(&self, iter: &TreeIter) -> bool;
 
+    //#[doc(alias = "gtk_list_store_reorder")]
     //fn reorder(&self, new_order: &[i32]);
 
+    //#[doc(alias = "gtk_list_store_set")]
     //fn set(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_list_store_set_column_types")]
     //fn set_column_types(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 });
 
+    //#[doc(alias = "gtk_list_store_set_valist")]
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    //#[doc(alias = "gtk_list_store_set_valuesv")]
     //fn set_valuesv(&self, iter: &TreeIter, columns: &[i32], values: &[&glib::Value]);
 
+    #[doc(alias = "gtk_list_store_swap")]
     fn swap(&self, a: &TreeIter, b: &TreeIter);
 }
 

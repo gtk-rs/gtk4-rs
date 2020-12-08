@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl SortListModel {
+    #[doc(alias = "gtk_sort_list_model_new")]
     pub fn new<P: IsA<gio::ListModel>, Q: IsA<Sorter>>(
         model: Option<&P>,
         sorter: Option<&Q>,
@@ -37,6 +38,7 @@ impl SortListModel {
         }
     }
 
+    #[doc(alias = "gtk_sort_list_model_get_incremental")]
     pub fn get_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_sort_list_model_get_incremental(
@@ -45,24 +47,29 @@ impl SortListModel {
         }
     }
 
+    #[doc(alias = "gtk_sort_list_model_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_sort_list_model_get_pending")]
     pub fn get_pending(&self) -> u32 {
         unsafe { ffi::gtk_sort_list_model_get_pending(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_sort_list_model_get_sorter")]
     pub fn get_sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_sorter(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_sort_list_model_set_incremental")]
     pub fn set_incremental(&self, incremental: bool) {
         unsafe {
             ffi::gtk_sort_list_model_set_incremental(self.to_glib_none().0, incremental.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_sort_list_model_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_sort_list_model_set_model(
@@ -72,6 +79,7 @@ impl SortListModel {
         }
     }
 
+    #[doc(alias = "gtk_sort_list_model_set_sorter")]
     pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
         unsafe {
             ffi::gtk_sort_list_model_set_sorter(

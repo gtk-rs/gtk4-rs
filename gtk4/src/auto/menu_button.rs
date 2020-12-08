@@ -33,35 +33,43 @@ glib::glib_wrapper! {
 }
 
 impl MenuButton {
+    #[doc(alias = "gtk_menu_button_new")]
     pub fn new() -> MenuButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_menu_button_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_menu_button_get_direction")]
     pub fn get_direction(&self) -> ArrowType {
         unsafe { from_glib(ffi::gtk_menu_button_get_direction(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_has_frame")]
     pub fn get_has_frame(&self) -> bool {
         unsafe { from_glib(ffi::gtk_menu_button_get_has_frame(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_icon_name")]
     pub fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_icon_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_label")]
     pub fn get_label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_label(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_menu_model")]
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_menu_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_popover")]
     pub fn get_popover(&self) -> Option<Popover> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_menu_button_get_use_underline")]
     pub fn get_use_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_menu_button_get_use_underline(
@@ -70,18 +78,21 @@ impl MenuButton {
         }
     }
 
+    #[doc(alias = "gtk_menu_button_popdown")]
     pub fn popdown(&self) {
         unsafe {
             ffi::gtk_menu_button_popdown(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_menu_button_popup")]
     pub fn popup(&self) {
         unsafe {
             ffi::gtk_menu_button_popup(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_create_popup_func")]
     pub fn set_create_popup_func(&self, func: Option<Box_<dyn Fn(&MenuButton) + 'static>>) {
         let func_data: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> = Box_::new(func);
         unsafe extern "C" fn func_func(
@@ -117,30 +128,35 @@ impl MenuButton {
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_direction")]
     pub fn set_direction(&self, direction: ArrowType) {
         unsafe {
             ffi::gtk_menu_button_set_direction(self.to_glib_none().0, direction.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_has_frame")]
     pub fn set_has_frame(&self, has_frame: bool) {
         unsafe {
             ffi::gtk_menu_button_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_icon_name")]
     pub fn set_icon_name(&self, icon_name: &str) {
         unsafe {
             ffi::gtk_menu_button_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_label")]
     pub fn set_label(&self, label: &str) {
         unsafe {
             ffi::gtk_menu_button_set_label(self.to_glib_none().0, label.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_menu_model")]
     pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
         unsafe {
             ffi::gtk_menu_button_set_menu_model(
@@ -150,6 +166,7 @@ impl MenuButton {
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_popover")]
     pub fn set_popover<P: IsA<Widget>>(&self, popover: Option<&P>) {
         unsafe {
             ffi::gtk_menu_button_set_popover(
@@ -159,6 +176,7 @@ impl MenuButton {
         }
     }
 
+    #[doc(alias = "gtk_menu_button_set_use_underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::gtk_menu_button_set_use_underline(self.to_glib_none().0, use_underline.to_glib());

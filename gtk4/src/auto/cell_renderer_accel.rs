@@ -27,6 +27,7 @@ glib::glib_wrapper! {
 }
 
 impl CellRendererAccel {
+    #[doc(alias = "gtk_cell_renderer_accel_new")]
     pub fn new() -> CellRendererAccel {
         assert_initialized_main_thread!();
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_accel_new()).unsafe_cast() }

@@ -32,11 +32,13 @@ glib::glib_wrapper! {
 }
 
 impl SearchBar {
+    #[doc(alias = "gtk_search_bar_new")]
     pub fn new() -> SearchBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_search_bar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_search_bar_connect_entry")]
     pub fn connect_entry<P: IsA<Editable>>(&self, entry: &P) {
         unsafe {
             ffi::gtk_search_bar_connect_entry(
@@ -46,10 +48,12 @@ impl SearchBar {
         }
     }
 
+    #[doc(alias = "gtk_search_bar_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_search_bar_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_search_bar_get_key_capture_widget")]
     pub fn get_key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
@@ -58,10 +62,12 @@ impl SearchBar {
         }
     }
 
+    #[doc(alias = "gtk_search_bar_get_search_mode")]
     pub fn get_search_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_search_bar_get_search_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_search_bar_get_show_close_button")]
     pub fn get_show_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_search_bar_get_show_close_button(
@@ -70,6 +76,7 @@ impl SearchBar {
         }
     }
 
+    #[doc(alias = "gtk_search_bar_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_search_bar_set_child(
@@ -79,6 +86,7 @@ impl SearchBar {
         }
     }
 
+    #[doc(alias = "gtk_search_bar_set_key_capture_widget")]
     pub fn set_key_capture_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
         unsafe {
             ffi::gtk_search_bar_set_key_capture_widget(
@@ -88,12 +96,14 @@ impl SearchBar {
         }
     }
 
+    #[doc(alias = "gtk_search_bar_set_search_mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
             ffi::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_search_bar_set_show_close_button")]
     pub fn set_show_close_button(&self, visible: bool) {
         unsafe {
             ffi::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.to_glib());
