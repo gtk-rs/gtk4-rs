@@ -714,8 +714,8 @@ pub trait TreeViewExt: 'static {
     #[doc(alias = "gtk_tree_view_get_tooltip_context")]
     fn get_tooltip_context(
         &self,
-        x: &mut i32,
-        y: &mut i32,
+        x: i32,
+        y: i32,
         keyboard_tip: bool,
     ) -> Option<(Option<TreeModel>, TreePath, TreeIter)>;
 
@@ -1538,8 +1538,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn get_tooltip_context(
         &self,
-        x: &mut i32,
-        y: &mut i32,
+        x: i32,
+        y: i32,
         keyboard_tip: bool,
     ) -> Option<(Option<TreeModel>, TreePath, TreeIter)> {
         unsafe {

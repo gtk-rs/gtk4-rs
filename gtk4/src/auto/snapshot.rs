@@ -48,6 +48,27 @@ impl Snapshot {
         }
     }
 
+    #[doc(alias = "gtk_snapshot_append_conic_gradient")]
+    pub fn append_conic_gradient(
+        &self,
+        bounds: &graphene::Rect,
+        center: &graphene::Point,
+        rotation: f32,
+        stops: &[&gsk::ColorStop],
+    ) {
+        let n_stops = stops.len() as usize;
+        unsafe {
+            ffi::gtk_snapshot_append_conic_gradient(
+                self.to_glib_none().0,
+                bounds.to_glib_none().0,
+                center.to_glib_none().0,
+                rotation,
+                stops.to_glib_none().0,
+                n_stops,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_append_inset_shadow")]
     pub fn append_inset_shadow(
         &self,

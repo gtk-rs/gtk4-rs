@@ -1307,13 +1307,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkMenuDirectionType",
-        Layout {
-            size: size_of::<GtkMenuDirectionType>(),
-            alignment: align_of::<GtkMenuDirectionType>(),
-        },
-    ),
-    (
         "GtkMessageDialog",
         Layout {
             size: size_of::<GtkMessageDialog>(),
@@ -1517,13 +1510,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "GtkPlacesOpenFlags",
-        Layout {
-            size: size_of::<GtkPlacesOpenFlags>(),
-            alignment: align_of::<GtkPlacesOpenFlags>(),
-        },
-    ),
-    (
         "GtkPolicyType",
         Layout {
             size: size_of::<GtkPolicyType>(),
@@ -1542,13 +1528,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkPopoverClass>(),
             alignment: align_of::<GtkPopoverClass>(),
-        },
-    ),
-    (
-        "GtkPopoverConstraint",
-        Layout {
-            size: size_of::<GtkPopoverConstraint>(),
-            alignment: align_of::<GtkPopoverConstraint>(),
         },
     ),
     (
@@ -2032,13 +2011,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkTextBufferClass>(),
             alignment: align_of::<GtkTextBufferClass>(),
-        },
-    ),
-    (
-        "GtkTextBufferTargetInfo",
-        Layout {
-            size: size_of::<GtkTextBufferTargetInfo>(),
-            alignment: align_of::<GtkTextBufferTargetInfo>(),
         },
     ),
     (
@@ -2794,10 +2766,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_LIMIT_SAME_NATIVE", "1"),
     ("GTK_MAX_COMPOSE_LEN", "7"),
     ("GTK_MEDIA_FILE_EXTENSION_POINT_NAME", "gtk-media-file"),
-    ("(gint) GTK_MENU_DIR_CHILD", "1"),
-    ("(gint) GTK_MENU_DIR_NEXT", "2"),
-    ("(gint) GTK_MENU_DIR_PARENT", "0"),
-    ("(gint) GTK_MENU_DIR_PREV", "3"),
     ("(gint) GTK_MESSAGE_ERROR", "3"),
     ("(gint) GTK_MESSAGE_INFO", "0"),
     ("(gint) GTK_MESSAGE_OTHER", "4"),
@@ -2884,15 +2852,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_PICK_DEFAULT", "0"),
     ("(guint) GTK_PICK_INSENSITIVE", "1"),
     ("(guint) GTK_PICK_NON_TARGETABLE", "2"),
-    ("(guint) GTK_PLACES_OPEN_NEW_TAB", "2"),
-    ("(guint) GTK_PLACES_OPEN_NEW_WINDOW", "4"),
-    ("(guint) GTK_PLACES_OPEN_NORMAL", "1"),
     ("(gint) GTK_POLICY_ALWAYS", "0"),
     ("(gint) GTK_POLICY_AUTOMATIC", "1"),
     ("(gint) GTK_POLICY_EXTERNAL", "3"),
     ("(gint) GTK_POLICY_NEVER", "2"),
-    ("(gint) GTK_POPOVER_CONSTRAINT_NONE", "0"),
-    ("(gint) GTK_POPOVER_CONSTRAINT_WINDOW", "1"),
     ("(guint) GTK_POPOVER_MENU_NESTED", "1"),
     ("(gint) GTK_POS_BOTTOM", "3"),
     ("(gint) GTK_POS_LEFT", "0"),
@@ -3124,9 +3087,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_SYSTEM_SETTING_FONT_CONFIG", "2"),
     ("(gint) GTK_SYSTEM_SETTING_FONT_NAME", "1"),
     ("(gint) GTK_SYSTEM_SETTING_ICON_THEME", "4"),
-    ("(gint) GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS", "-1"),
-    ("(gint) GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT", "-2"),
-    ("(gint) GTK_TEXT_BUFFER_TARGET_INFO_TEXT", "-3"),
     ("(gint) GTK_TEXT_DIR_LTR", "1"),
     ("(gint) GTK_TEXT_DIR_NONE", "0"),
     ("(gint) GTK_TEXT_DIR_RTL", "2"),

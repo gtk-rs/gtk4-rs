@@ -324,11 +324,7 @@ pub trait TextBufferExt: 'static {
     #[doc(alias = "gtk_text_buffer_undo")]
     fn undo(&self);
 
-    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats>;
-
     fn get_property_cursor_position(&self) -> i32;
-
-    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats>;
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
         &self,
@@ -380,11 +376,6 @@ pub trait TextBufferExt: 'static {
 
     fn connect_property_can_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
     fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -393,11 +384,6 @@ pub trait TextBufferExt: 'static {
     fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_has_selection_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -1107,21 +1093,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_property_copy_target_list(&self) -> Option<gdk::ContentFormats> {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"copy-target-list\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `copy-target-list` getter")
-        }
-    }
-
     fn get_property_cursor_position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -1134,21 +1105,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
                 .get()
                 .expect("Return Value for property `cursor-position` getter")
                 .unwrap()
-        }
-    }
-
-    fn get_property_paste_target_list(&self) -> Option<gdk::ContentFormats> {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk::ContentFormats as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"paste-target-list\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `paste-target-list` getter")
         }
     }
 
@@ -1600,33 +1556,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn connect_property_copy_target_list_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_copy_target_list_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkTextBuffer,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextBuffer>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::copy-target-list\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_copy_target_list_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -1699,33 +1628,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
                 b"notify::has-selection\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_has_selection_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_property_paste_target_list_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_paste_target_list_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GtkTextBuffer,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextBuffer>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&TextBuffer::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::paste-target-list\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_paste_target_list_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

@@ -345,8 +345,8 @@ impl IconView {
     #[doc(alias = "gtk_icon_view_get_tooltip_context")]
     pub fn get_tooltip_context(
         &self,
-        x: &mut i32,
-        y: &mut i32,
+        x: i32,
+        y: i32,
         keyboard_tip: bool,
     ) -> Option<(TreeModel, TreePath, TreeIter)> {
         unsafe {

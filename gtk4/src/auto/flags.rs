@@ -595,61 +595,6 @@ impl SetValue for PickFlags {
 }
 
 bitflags! {
-    pub struct PlacesOpenFlags: u32 {
-        const NORMAL = 1;
-        const NEW_TAB = 2;
-        const NEW_WINDOW = 4;
-    }
-}
-
-impl fmt::Display for PlacesOpenFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
-#[doc(hidden)]
-impl ToGlib for PlacesOpenFlags {
-    type GlibType = ffi::GtkPlacesOpenFlags;
-
-    fn to_glib(&self) -> ffi::GtkPlacesOpenFlags {
-        self.bits()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlib<ffi::GtkPlacesOpenFlags> for PlacesOpenFlags {
-    unsafe fn from_glib(value: ffi::GtkPlacesOpenFlags) -> PlacesOpenFlags {
-        skip_assert_initialized!();
-        PlacesOpenFlags::from_bits_truncate(value)
-    }
-}
-
-impl StaticType for PlacesOpenFlags {
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_places_open_flags_get_type()) }
-    }
-}
-
-impl<'a> FromValueOptional<'a> for PlacesOpenFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
-}
-
-impl<'a> FromValue<'a> for PlacesOpenFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
-        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
-    }
-}
-
-impl SetValue for PlacesOpenFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
-    }
-}
-
-bitflags! {
     pub struct PopoverMenuFlags: u32 {
         const NESTED = 1;
     }
