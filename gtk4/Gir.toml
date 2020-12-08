@@ -385,12 +385,6 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_program_name"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Actionable"
@@ -400,12 +394,6 @@ manual_traits = ["ActionableExtManual"]
     #value glib.Variant
     name = "action-target"
     ignore = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_action_target_value"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ActionBar"
@@ -446,12 +434,6 @@ generate_builder = true
 name = "Gtk.AppChooserWidget"
 status = "generate"
 generate_builder = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_default_text"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Application"
@@ -461,16 +443,6 @@ trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
     ignore = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_menu_by_id"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
-    name = "get_menubar"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ApplicationWindow"
@@ -710,9 +682,6 @@ generate_builder = true
 [[object]]
 name = "Gtk.CenterLayout"
 status = "generate"
-# remove_after_upstream_fix
-# <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.CheckButton"
@@ -748,23 +717,11 @@ generate_builder = true
 name = "Gtk.ColumnView"
 status = "generate"
 generate_builder = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-    [[object.function]]
-    name = "get_sorter"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ColumnViewColumn"
 status = "generate"
 generate_builder = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-    [[object.function]]
-    name = "get_sorter"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ComboBox"
@@ -788,12 +745,6 @@ manual_traits = ["ComboBoxExtManual"]
     name = "active"
     #manual Option
     generate = ["notify"]
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-    [[object.function]]
-    name = "get_model"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ComboBoxText"
@@ -854,9 +805,6 @@ trust_return_value_nullability = false
 name = "Gtk.DragSource"
 status = "generate"
 generate_builder = true
-# remove_after_upstream_fix
-# <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.DrawingArea"
@@ -917,12 +865,6 @@ manual_traits = ["EntryExtManual"]
         [[object.function.parameter]]
         name = "tabs"
         const = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_completion"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.EntryBuffer"
@@ -1156,12 +1098,6 @@ generate_builder = true
 name = "Gtk.HeaderBar"
 status = "generate"
 generate_builder = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2888>
-    [[object.function]]
-    name = "get_decoration_layout"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.IconPaintable"
@@ -1240,12 +1176,6 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
-    # remove_after_upstream_fix
-    # <https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2873>
-    [[object.function]]
-    name = "get_extra_menu"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.LayoutChild"
