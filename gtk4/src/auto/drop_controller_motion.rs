@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl DropControllerMotion {
+    #[doc(alias = "gtk_drop_controller_motion_new")]
     pub fn new() -> DropControllerMotion {
         assert_initialized_main_thread!();
         unsafe {
@@ -29,6 +30,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "gtk_drop_controller_motion_contains_pointer")]
     pub fn contains_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_drop_controller_motion_contains_pointer(
@@ -37,6 +39,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "gtk_drop_controller_motion_get_drop")]
     pub fn get_drop(&self) -> Option<gdk::Drop> {
         unsafe {
             from_glib_none(ffi::gtk_drop_controller_motion_get_drop(
@@ -45,6 +48,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "gtk_drop_controller_motion_is_pointer")]
     pub fn is_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_drop_controller_motion_is_pointer(

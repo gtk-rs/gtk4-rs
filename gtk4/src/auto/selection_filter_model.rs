@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl SelectionFilterModel {
+    #[doc(alias = "gtk_selection_filter_model_new")]
     pub fn new<P: IsA<SelectionModel>>(model: Option<&P>) -> SelectionFilterModel {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,6 +34,7 @@ impl SelectionFilterModel {
         }
     }
 
+    #[doc(alias = "gtk_selection_filter_model_get_model")]
     pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe {
             from_glib_none(ffi::gtk_selection_filter_model_get_model(
@@ -41,6 +43,7 @@ impl SelectionFilterModel {
         }
     }
 
+    #[doc(alias = "gtk_selection_filter_model_set_model")]
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_selection_filter_model_set_model(

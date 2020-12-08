@@ -31,27 +31,32 @@ glib::glib_wrapper! {
 }
 
 impl Spinner {
+    #[doc(alias = "gtk_spinner_new")]
     pub fn new() -> Spinner {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_spinner_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_spinner_get_spinning")]
     pub fn get_spinning(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spinner_get_spinning(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_spinner_set_spinning")]
     pub fn set_spinning(&self, spinning: bool) {
         unsafe {
             ffi::gtk_spinner_set_spinning(self.to_glib_none().0, spinning.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_spinner_start")]
     pub fn start(&self) {
         unsafe {
             ffi::gtk_spinner_start(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_spinner_stop")]
     pub fn stop(&self) {
         unsafe {
             ffi::gtk_spinner_stop(self.to_glib_none().0);

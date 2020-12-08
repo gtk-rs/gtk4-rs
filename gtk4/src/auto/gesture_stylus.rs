@@ -24,15 +24,18 @@ glib::glib_wrapper! {
 }
 
 impl GestureStylus {
+    #[doc(alias = "gtk_gesture_stylus_new")]
     pub fn new() -> GestureStylus {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_stylus_new()).unsafe_cast() }
     }
 
+    //#[doc(alias = "gtk_gesture_stylus_get_axes")]
     //pub fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 11, id: 4 }, values: Vec<f64>) -> bool {
     //    unsafe { TODO: call ffi:gtk_gesture_stylus_get_axes() }
     //}
 
+    #[doc(alias = "gtk_gesture_stylus_get_axis")]
     pub fn get_axis(&self, axis: gdk::AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
@@ -50,10 +53,12 @@ impl GestureStylus {
         }
     }
 
+    //#[doc(alias = "gtk_gesture_stylus_get_backlog")]
     //pub fn get_backlog(&self, backlog: /*Ignored*/Vec<gdk::TimeCoord>) -> Option<u32> {
     //    unsafe { TODO: call ffi:gtk_gesture_stylus_get_backlog() }
     //}
 
+    #[doc(alias = "gtk_gesture_stylus_get_device_tool")]
     pub fn get_device_tool(&self) -> Option<gdk::DeviceTool> {
         unsafe {
             from_glib_none(ffi::gtk_gesture_stylus_get_device_tool(

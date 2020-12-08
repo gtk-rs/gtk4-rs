@@ -35,6 +35,7 @@ glib::glib_wrapper! {
 }
 
 impl Popover {
+    #[doc(alias = "gtk_popover_new")]
     pub fn new() -> Popover {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_popover_new()).unsafe_cast() }
@@ -411,42 +412,61 @@ impl PopoverBuilder {
 pub const NONE_POPOVER: Option<&Popover> = None;
 
 pub trait PopoverExt: 'static {
+    #[doc(alias = "gtk_popover_get_autohide")]
     fn get_autohide(&self) -> bool;
 
+    #[doc(alias = "gtk_popover_get_cascade_popdown")]
     fn get_cascade_popdown(&self) -> bool;
 
+    #[doc(alias = "gtk_popover_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_popover_get_has_arrow")]
     fn get_has_arrow(&self) -> bool;
 
+    #[doc(alias = "gtk_popover_get_mnemonics_visible")]
     fn get_mnemonics_visible(&self) -> bool;
 
+    #[doc(alias = "gtk_popover_get_offset")]
     fn get_offset(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_popover_get_pointing_to")]
     fn get_pointing_to(&self) -> Option<gdk::Rectangle>;
 
+    #[doc(alias = "gtk_popover_get_position")]
     fn get_position(&self) -> PositionType;
 
+    #[doc(alias = "gtk_popover_popdown")]
     fn popdown(&self);
 
+    #[doc(alias = "gtk_popover_popup")]
     fn popup(&self);
 
+    #[doc(alias = "gtk_popover_set_autohide")]
     fn set_autohide(&self, autohide: bool);
 
+    #[doc(alias = "gtk_popover_set_cascade_popdown")]
     fn set_cascade_popdown(&self, cascade_popdown: bool);
 
+    #[doc(alias = "gtk_popover_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "gtk_popover_set_default_widget")]
     fn set_default_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
 
+    #[doc(alias = "gtk_popover_set_has_arrow")]
     fn set_has_arrow(&self, has_arrow: bool);
 
+    #[doc(alias = "gtk_popover_set_mnemonics_visible")]
     fn set_mnemonics_visible(&self, mnemonics_visible: bool);
 
+    #[doc(alias = "gtk_popover_set_offset")]
     fn set_offset(&self, x_offset: i32, y_offset: i32);
 
+    #[doc(alias = "gtk_popover_set_pointing_to")]
     fn set_pointing_to(&self, rect: &gdk::Rectangle);
 
+    #[doc(alias = "gtk_popover_set_position")]
     fn set_position(&self, position: PositionType);
 
     fn get_property_default_widget(&self) -> Option<Widget>;

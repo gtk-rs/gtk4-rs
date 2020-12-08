@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl ColorNode {
+    #[doc(alias = "gsk_color_node_new")]
     pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> ColorNode {
         assert_initialized_main_thread!();
         unsafe {
@@ -25,6 +26,7 @@ impl ColorNode {
         }
     }
 
+    #[doc(alias = "gsk_color_node_peek_color")]
     pub fn peek_color(&self) -> Option<gdk::RGBA> {
         unsafe { from_glib_none(ffi::gsk_color_node_peek_color(self.to_glib_none().0)) }
     }

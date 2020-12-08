@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl FocusEvent {
+    #[doc(alias = "gdk_focus_event_get_in")]
     pub fn get_in(&self) -> bool {
         unsafe { from_glib(ffi::gdk_focus_event_get_in(self.to_glib_none().0)) }
     }

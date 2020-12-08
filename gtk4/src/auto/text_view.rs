@@ -48,11 +48,13 @@ glib::glib_wrapper! {
 }
 
 impl TextView {
+    #[doc(alias = "gtk_text_view_new")]
     pub fn new() -> TextView {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_text_view_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_text_view_new_with_buffer")]
     pub fn with_buffer<P: IsA<TextBuffer>>(buffer: &P) -> TextView {
         skip_assert_initialized!();
         unsafe {
@@ -587,14 +589,19 @@ impl TextViewBuilder {
 pub const NONE_TEXT_VIEW: Option<&TextView> = None;
 
 pub trait TextViewExt: 'static {
+    #[doc(alias = "gtk_text_view_add_child_at_anchor")]
     fn add_child_at_anchor<P: IsA<Widget>, Q: IsA<TextChildAnchor>>(&self, child: &P, anchor: &Q);
 
+    #[doc(alias = "gtk_text_view_add_overlay")]
     fn add_overlay<P: IsA<Widget>>(&self, child: &P, xpos: i32, ypos: i32);
 
+    #[doc(alias = "gtk_text_view_backward_display_line")]
     fn backward_display_line(&self, iter: &mut TextIter) -> bool;
 
+    #[doc(alias = "gtk_text_view_backward_display_line_start")]
     fn backward_display_line_start(&self, iter: &mut TextIter) -> bool;
 
+    #[doc(alias = "gtk_text_view_buffer_to_window_coords")]
     fn buffer_to_window_coords(
         &self,
         win: TextWindowType,
@@ -602,84 +609,124 @@ pub trait TextViewExt: 'static {
         buffer_y: i32,
     ) -> (i32, i32);
 
+    #[doc(alias = "gtk_text_view_forward_display_line")]
     fn forward_display_line(&self, iter: &mut TextIter) -> bool;
 
+    #[doc(alias = "gtk_text_view_forward_display_line_end")]
     fn forward_display_line_end(&self, iter: &mut TextIter) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_accepts_tab")]
     fn get_accepts_tab(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_bottom_margin")]
     fn get_bottom_margin(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_buffer")]
     fn get_buffer(&self) -> TextBuffer;
 
+    #[doc(alias = "gtk_text_view_get_cursor_locations")]
     fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
 
+    #[doc(alias = "gtk_text_view_get_cursor_visible")]
     fn get_cursor_visible(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_editable")]
     fn get_editable(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_extra_menu")]
     fn get_extra_menu(&self) -> Option<gio::MenuModel>;
 
+    #[doc(alias = "gtk_text_view_get_gutter")]
     fn get_gutter(&self, win: TextWindowType) -> Option<Widget>;
 
+    #[doc(alias = "gtk_text_view_get_indent")]
     fn get_indent(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_input_hints")]
     fn get_input_hints(&self) -> InputHints;
 
+    #[doc(alias = "gtk_text_view_get_input_purpose")]
     fn get_input_purpose(&self) -> InputPurpose;
 
+    #[doc(alias = "gtk_text_view_get_iter_at_location")]
     fn get_iter_at_location(&self, x: i32, y: i32) -> Option<TextIter>;
 
+    #[doc(alias = "gtk_text_view_get_iter_at_position")]
     fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
 
+    #[doc(alias = "gtk_text_view_get_iter_location")]
     fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_text_view_get_justification")]
     fn get_justification(&self) -> Justification;
 
+    #[doc(alias = "gtk_text_view_get_left_margin")]
     fn get_left_margin(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_line_at_y")]
     fn get_line_at_y(&self, y: i32) -> (TextIter, i32);
 
+    #[doc(alias = "gtk_text_view_get_line_yrange")]
     fn get_line_yrange(&self, iter: &TextIter) -> (i32, i32);
 
+    #[doc(alias = "gtk_text_view_get_monospace")]
     fn get_monospace(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_overwrite")]
     fn get_overwrite(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_get_pixels_above_lines")]
     fn get_pixels_above_lines(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_pixels_below_lines")]
     fn get_pixels_below_lines(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_pixels_inside_wrap")]
     fn get_pixels_inside_wrap(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_right_margin")]
     fn get_right_margin(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_tabs")]
     fn get_tabs(&self) -> Option<pango::TabArray>;
 
+    #[doc(alias = "gtk_text_view_get_top_margin")]
     fn get_top_margin(&self) -> i32;
 
+    #[doc(alias = "gtk_text_view_get_visible_rect")]
     fn get_visible_rect(&self) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_text_view_get_wrap_mode")]
     fn get_wrap_mode(&self) -> WrapMode;
 
+    #[doc(alias = "gtk_text_view_im_context_filter_keypress")]
     fn im_context_filter_keypress<P: IsA<gdk::Event>>(&self, event: &P) -> bool;
 
+    #[doc(alias = "gtk_text_view_move_mark_onscreen")]
     fn move_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P) -> bool;
 
+    #[doc(alias = "gtk_text_view_move_overlay")]
     fn move_overlay<P: IsA<Widget>>(&self, child: &P, xpos: i32, ypos: i32);
 
+    #[doc(alias = "gtk_text_view_move_visually")]
     fn move_visually(&self, iter: &mut TextIter, count: i32) -> bool;
 
+    #[doc(alias = "gtk_text_view_place_cursor_onscreen")]
     fn place_cursor_onscreen(&self) -> bool;
 
+    #[doc(alias = "gtk_text_view_remove")]
     fn remove<P: IsA<Widget>>(&self, child: &P);
 
+    #[doc(alias = "gtk_text_view_reset_cursor_blink")]
     fn reset_cursor_blink(&self);
 
+    #[doc(alias = "gtk_text_view_reset_im_context")]
     fn reset_im_context(&self);
 
+    #[doc(alias = "gtk_text_view_scroll_mark_onscreen")]
     fn scroll_mark_onscreen<P: IsA<TextMark>>(&self, mark: &P);
 
+    #[doc(alias = "gtk_text_view_scroll_to_iter")]
     fn scroll_to_iter(
         &self,
         iter: &mut TextIter,
@@ -689,6 +736,7 @@ pub trait TextViewExt: 'static {
         yalign: f64,
     ) -> bool;
 
+    #[doc(alias = "gtk_text_view_scroll_to_mark")]
     fn scroll_to_mark<P: IsA<TextMark>>(
         &self,
         mark: &P,
@@ -698,50 +746,73 @@ pub trait TextViewExt: 'static {
         yalign: f64,
     );
 
+    #[doc(alias = "gtk_text_view_set_accepts_tab")]
     fn set_accepts_tab(&self, accepts_tab: bool);
 
+    #[doc(alias = "gtk_text_view_set_bottom_margin")]
     fn set_bottom_margin(&self, bottom_margin: i32);
 
+    #[doc(alias = "gtk_text_view_set_buffer")]
     fn set_buffer<P: IsA<TextBuffer>>(&self, buffer: Option<&P>);
 
+    #[doc(alias = "gtk_text_view_set_cursor_visible")]
     fn set_cursor_visible(&self, setting: bool);
 
+    #[doc(alias = "gtk_text_view_set_editable")]
     fn set_editable(&self, setting: bool);
 
+    #[doc(alias = "gtk_text_view_set_extra_menu")]
     fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>);
 
+    #[doc(alias = "gtk_text_view_set_gutter")]
     fn set_gutter<P: IsA<Widget>>(&self, win: TextWindowType, widget: Option<&P>);
 
+    #[doc(alias = "gtk_text_view_set_indent")]
     fn set_indent(&self, indent: i32);
 
+    #[doc(alias = "gtk_text_view_set_input_hints")]
     fn set_input_hints(&self, hints: InputHints);
 
+    #[doc(alias = "gtk_text_view_set_input_purpose")]
     fn set_input_purpose(&self, purpose: InputPurpose);
 
+    #[doc(alias = "gtk_text_view_set_justification")]
     fn set_justification(&self, justification: Justification);
 
+    #[doc(alias = "gtk_text_view_set_left_margin")]
     fn set_left_margin(&self, left_margin: i32);
 
+    #[doc(alias = "gtk_text_view_set_monospace")]
     fn set_monospace(&self, monospace: bool);
 
+    #[doc(alias = "gtk_text_view_set_overwrite")]
     fn set_overwrite(&self, overwrite: bool);
 
+    #[doc(alias = "gtk_text_view_set_pixels_above_lines")]
     fn set_pixels_above_lines(&self, pixels_above_lines: i32);
 
+    #[doc(alias = "gtk_text_view_set_pixels_below_lines")]
     fn set_pixels_below_lines(&self, pixels_below_lines: i32);
 
+    #[doc(alias = "gtk_text_view_set_pixels_inside_wrap")]
     fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32);
 
+    #[doc(alias = "gtk_text_view_set_right_margin")]
     fn set_right_margin(&self, right_margin: i32);
 
+    #[doc(alias = "gtk_text_view_set_tabs")]
     fn set_tabs(&self, tabs: &pango::TabArray);
 
+    #[doc(alias = "gtk_text_view_set_top_margin")]
     fn set_top_margin(&self, top_margin: i32);
 
+    #[doc(alias = "gtk_text_view_set_wrap_mode")]
     fn set_wrap_mode(&self, wrap_mode: WrapMode);
 
+    #[doc(alias = "gtk_text_view_starts_display_line")]
     fn starts_display_line(&self, iter: &TextIter) -> bool;
 
+    #[doc(alias = "gtk_text_view_window_to_buffer_coords")]
     fn window_to_buffer_coords(
         &self,
         win: TextWindowType,

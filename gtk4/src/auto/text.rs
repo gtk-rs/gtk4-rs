@@ -35,11 +35,13 @@ glib::glib_wrapper! {
 }
 
 impl Text {
+    #[doc(alias = "gtk_text_new")]
     pub fn new() -> Text {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_text_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_text_new_with_buffer")]
     pub fn with_buffer<P: IsA<EntryBuffer>>(buffer: &P) -> Text {
         skip_assert_initialized!();
         unsafe {
@@ -50,18 +52,22 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_get_activates_default")]
     pub fn get_activates_default(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_activates_default(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_attributes")]
     pub fn get_attributes(&self) -> Option<pango::AttrList> {
         unsafe { from_glib_none(ffi::gtk_text_get_attributes(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_buffer")]
     pub fn get_buffer(&self) -> Option<EntryBuffer> {
         unsafe { from_glib_none(ffi::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_enable_emoji_completion")]
     pub fn get_enable_emoji_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_enable_emoji_completion(
@@ -70,18 +76,22 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_get_extra_menu")]
     pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_input_hints")]
     pub fn get_input_hints(&self) -> InputHints {
         unsafe { from_glib(ffi::gtk_text_get_input_hints(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_input_purpose")]
     pub fn get_input_purpose(&self) -> InputPurpose {
         unsafe { from_glib(ffi::gtk_text_get_input_purpose(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_invisible_char")]
     pub fn get_invisible_char(&self) -> char {
         unsafe {
             std::convert::TryFrom::try_from(ffi::gtk_text_get_invisible_char(self.to_glib_none().0))
@@ -89,18 +99,22 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_get_max_length")]
     pub fn get_max_length(&self) -> i32 {
         unsafe { ffi::gtk_text_get_max_length(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_get_overwrite_mode")]
     pub fn get_overwrite_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_overwrite_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_placeholder_text")]
     pub fn get_placeholder_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_text_get_placeholder_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_propagate_text_width")]
     pub fn get_propagate_text_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_propagate_text_width(
@@ -109,22 +123,27 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_get_tabs")]
     pub fn get_tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(ffi::gtk_text_get_tabs(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_text_length")]
     pub fn get_text_length(&self) -> u16 {
         unsafe { ffi::gtk_text_get_text_length(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_get_truncate_multiline")]
     pub fn get_truncate_multiline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_truncate_multiline(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_get_visibility")]
     pub fn get_visibility(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_visibility(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_grab_focus_without_selecting")]
     pub fn grab_focus_without_selecting(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_grab_focus_without_selecting(
@@ -133,24 +152,28 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_set_activates_default")]
     pub fn set_activates_default(&self, activates: bool) {
         unsafe {
             ffi::gtk_text_set_activates_default(self.to_glib_none().0, activates.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_set_attributes")]
     pub fn set_attributes(&self, attrs: Option<&pango::AttrList>) {
         unsafe {
             ffi::gtk_text_set_attributes(self.to_glib_none().0, attrs.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_text_set_buffer")]
     pub fn set_buffer<P: IsA<EntryBuffer>>(&self, buffer: &P) {
         unsafe {
             ffi::gtk_text_set_buffer(self.to_glib_none().0, buffer.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_text_set_enable_emoji_completion")]
     pub fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
         unsafe {
             ffi::gtk_text_set_enable_emoji_completion(
@@ -160,6 +183,7 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_set_extra_menu")]
     pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_text_set_extra_menu(
@@ -169,42 +193,49 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_set_input_hints")]
     pub fn set_input_hints(&self, hints: InputHints) {
         unsafe {
             ffi::gtk_text_set_input_hints(self.to_glib_none().0, hints.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_set_input_purpose")]
     pub fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
             ffi::gtk_text_set_input_purpose(self.to_glib_none().0, purpose.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_set_invisible_char")]
     pub fn set_invisible_char(&self, ch: char) {
         unsafe {
             ffi::gtk_text_set_invisible_char(self.to_glib_none().0, ch.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_set_max_length")]
     pub fn set_max_length(&self, length: i32) {
         unsafe {
             ffi::gtk_text_set_max_length(self.to_glib_none().0, length);
         }
     }
 
+    #[doc(alias = "gtk_text_set_overwrite_mode")]
     pub fn set_overwrite_mode(&self, overwrite: bool) {
         unsafe {
             ffi::gtk_text_set_overwrite_mode(self.to_glib_none().0, overwrite.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_set_placeholder_text")]
     pub fn set_placeholder_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_text_set_placeholder_text(self.to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_text_set_propagate_text_width")]
     pub fn set_propagate_text_width(&self, propagate_text_width: bool) {
         unsafe {
             ffi::gtk_text_set_propagate_text_width(
@@ -214,12 +245,14 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_set_tabs")]
     pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
             ffi::gtk_text_set_tabs(self.to_glib_none().0, mut_override(tabs.to_glib_none().0));
         }
     }
 
+    #[doc(alias = "gtk_text_set_truncate_multiline")]
     pub fn set_truncate_multiline(&self, truncate_multiline: bool) {
         unsafe {
             ffi::gtk_text_set_truncate_multiline(
@@ -229,12 +262,14 @@ impl Text {
         }
     }
 
+    #[doc(alias = "gtk_text_set_visibility")]
     pub fn set_visibility(&self, visible: bool) {
         unsafe {
             ffi::gtk_text_set_visibility(self.to_glib_none().0, visible.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_unset_invisible_char")]
     pub fn unset_invisible_char(&self) {
         unsafe {
             ffi::gtk_text_unset_invisible_char(self.to_glib_none().0);

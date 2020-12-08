@@ -31,11 +31,13 @@ glib::glib_wrapper! {
 }
 
 impl Statusbar {
+    #[doc(alias = "gtk_statusbar_new")]
     pub fn new() -> Statusbar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_statusbar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_statusbar_get_context_id")]
     pub fn get_context_id(&self, context_description: &str) -> u32 {
         unsafe {
             ffi::gtk_statusbar_get_context_id(
@@ -45,22 +47,26 @@ impl Statusbar {
         }
     }
 
+    #[doc(alias = "gtk_statusbar_pop")]
     pub fn pop(&self, context_id: u32) {
         unsafe {
             ffi::gtk_statusbar_pop(self.to_glib_none().0, context_id);
         }
     }
 
+    #[doc(alias = "gtk_statusbar_push")]
     pub fn push(&self, context_id: u32, text: &str) -> u32 {
         unsafe { ffi::gtk_statusbar_push(self.to_glib_none().0, context_id, text.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_statusbar_remove")]
     pub fn remove(&self, context_id: u32, message_id: u32) {
         unsafe {
             ffi::gtk_statusbar_remove(self.to_glib_none().0, context_id, message_id);
         }
     }
 
+    #[doc(alias = "gtk_statusbar_remove_all")]
     pub fn remove_all(&self, context_id: u32) {
         unsafe {
             ffi::gtk_statusbar_remove_all(self.to_glib_none().0, context_id);

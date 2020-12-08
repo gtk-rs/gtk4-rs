@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl ShortcutTrigger {
+    #[doc(alias = "gtk_shortcut_trigger_parse_string")]
     pub fn parse_string(string: &str) -> Option<ShortcutTrigger> {
         assert_initialized_main_thread!();
         unsafe {
@@ -35,14 +36,19 @@ impl fmt::Display for ShortcutTrigger {
 pub const NONE_SHORTCUT_TRIGGER: Option<&ShortcutTrigger> = None;
 
 pub trait ShortcutTriggerExt: 'static {
+    #[doc(alias = "gtk_shortcut_trigger_print")]
     fn print(&self, string: &mut glib::String);
 
+    #[doc(alias = "gtk_shortcut_trigger_print_label")]
     fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool;
 
+    #[doc(alias = "gtk_shortcut_trigger_to_label")]
     fn to_label(&self, display: &gdk::Display) -> glib::GString;
 
+    #[doc(alias = "gtk_shortcut_trigger_to_string")]
     fn to_str(&self) -> glib::GString;
 
+    #[doc(alias = "gtk_shortcut_trigger_trigger")]
     fn trigger<P: IsA<gdk::Event>>(&self, event: &P, enable_mnemonics: bool) -> gdk::KeyMatch;
 }
 

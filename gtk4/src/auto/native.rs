@@ -20,6 +20,7 @@ glib::glib_wrapper! {
 }
 
 impl Native {
+    #[doc(alias = "gtk_native_get_for_surface")]
     pub fn get_for_surface(surface: &gdk::Surface) -> Option<Native> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_native_get_for_surface(surface.to_glib_none().0)) }
@@ -29,12 +30,16 @@ impl Native {
 pub const NONE_NATIVE: Option<&Native> = None;
 
 pub trait NativeExt: 'static {
+    #[doc(alias = "gtk_native_check_resize")]
     fn check_resize(&self);
 
+    #[doc(alias = "gtk_native_get_renderer")]
     fn get_renderer(&self) -> Option<gsk::Renderer>;
 
+    #[doc(alias = "gtk_native_get_surface")]
     fn get_surface(&self) -> Option<gdk::Surface>;
 
+    #[doc(alias = "gtk_native_get_surface_transform")]
     fn get_surface_transform(&self) -> (f64, f64);
 }
 

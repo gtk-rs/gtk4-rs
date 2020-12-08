@@ -35,15 +35,18 @@ glib::glib_wrapper! {
 }
 
 impl InfoBar {
+    #[doc(alias = "gtk_info_bar_new")]
     pub fn new() -> InfoBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_info_bar_new()).unsafe_cast() }
     }
 
+    //#[doc(alias = "gtk_info_bar_new_with_buttons")]
     //pub fn with_buttons(first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> InfoBar {
     //    unsafe { TODO: call ffi:gtk_info_bar_new_with_buttons() }
     //}
 
+    #[doc(alias = "gtk_info_bar_add_action_widget")]
     pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
         unsafe {
             ffi::gtk_info_bar_add_action_widget(
@@ -54,6 +57,7 @@ impl InfoBar {
         }
     }
 
+    #[doc(alias = "gtk_info_bar_add_button")]
     pub fn add_button(&self, button_text: &str, response_id: ResponseType) -> Button {
         unsafe {
             from_glib_none(ffi::gtk_info_bar_add_button(
@@ -64,24 +68,29 @@ impl InfoBar {
         }
     }
 
+    //#[doc(alias = "gtk_info_bar_add_buttons")]
     //pub fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gtk_info_bar_add_buttons() }
     //}
 
+    #[doc(alias = "gtk_info_bar_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_info_bar_add_child(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_info_bar_get_message_type")]
     pub fn get_message_type(&self) -> MessageType {
         unsafe { from_glib(ffi::gtk_info_bar_get_message_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_info_bar_get_revealed")]
     pub fn get_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_info_bar_get_show_close_button")]
     pub fn get_show_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_info_bar_get_show_close_button(
@@ -90,6 +99,7 @@ impl InfoBar {
         }
     }
 
+    #[doc(alias = "gtk_info_bar_remove_action_widget")]
     pub fn remove_action_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_info_bar_remove_action_widget(
@@ -99,30 +109,35 @@ impl InfoBar {
         }
     }
 
+    #[doc(alias = "gtk_info_bar_remove_child")]
     pub fn remove_child<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_info_bar_remove_child(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_info_bar_response")]
     pub fn response(&self, response_id: ResponseType) {
         unsafe {
             ffi::gtk_info_bar_response(self.to_glib_none().0, response_id.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_info_bar_set_default_response")]
     pub fn set_default_response(&self, response_id: ResponseType) {
         unsafe {
             ffi::gtk_info_bar_set_default_response(self.to_glib_none().0, response_id.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_info_bar_set_message_type")]
     pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
             ffi::gtk_info_bar_set_message_type(self.to_glib_none().0, message_type.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_info_bar_set_response_sensitive")]
     pub fn set_response_sensitive(&self, response_id: ResponseType, setting: bool) {
         unsafe {
             ffi::gtk_info_bar_set_response_sensitive(
@@ -133,12 +148,14 @@ impl InfoBar {
         }
     }
 
+    #[doc(alias = "gtk_info_bar_set_revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
             ffi::gtk_info_bar_set_revealed(self.to_glib_none().0, revealed.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_info_bar_set_show_close_button")]
     pub fn set_show_close_button(&self, setting: bool) {
         unsafe {
             ffi::gtk_info_bar_set_show_close_button(self.to_glib_none().0, setting.to_glib());

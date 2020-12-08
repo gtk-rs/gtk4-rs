@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl WindowGroup {
+    #[doc(alias = "gtk_window_group_new")]
     pub fn new() -> WindowGroup {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_window_group_new()) }
@@ -31,10 +32,13 @@ impl Default for WindowGroup {
 pub const NONE_WINDOW_GROUP: Option<&WindowGroup> = None;
 
 pub trait WindowGroupExt: 'static {
+    #[doc(alias = "gtk_window_group_add_window")]
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
+    #[doc(alias = "gtk_window_group_list_windows")]
     fn list_windows(&self) -> Vec<Window>;
 
+    #[doc(alias = "gtk_window_group_remove_window")]
     fn remove_window<P: IsA<Window>>(&self, window: &P);
 }
 

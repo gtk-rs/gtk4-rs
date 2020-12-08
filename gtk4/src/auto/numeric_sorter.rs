@@ -25,14 +25,17 @@ glib::glib_wrapper! {
 }
 
 impl NumericSorter {
+    //#[doc(alias = "gtk_numeric_sorter_new")]
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> NumericSorter {
     //    unsafe { TODO: call ffi:gtk_numeric_sorter_new() }
     //}
 
+    //#[doc(alias = "gtk_numeric_sorter_get_expression")]
     //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
     //    unsafe { TODO: call ffi:gtk_numeric_sorter_get_expression() }
     //}
 
+    #[doc(alias = "gtk_numeric_sorter_get_sort_order")]
     pub fn get_sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_numeric_sorter_get_sort_order(
@@ -41,10 +44,12 @@ impl NumericSorter {
         }
     }
 
+    //#[doc(alias = "gtk_numeric_sorter_set_expression")]
     //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
     //    unsafe { TODO: call ffi:gtk_numeric_sorter_set_expression() }
     //}
 
+    #[doc(alias = "gtk_numeric_sorter_set_sort_order")]
     pub fn set_sort_order(&self, sort_order: SortType) {
         unsafe {
             ffi::gtk_numeric_sorter_set_sort_order(self.to_glib_none().0, sort_order.to_glib());

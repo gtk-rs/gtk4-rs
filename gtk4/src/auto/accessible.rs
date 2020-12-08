@@ -26,24 +26,34 @@ glib::glib_wrapper! {
 pub const NONE_ACCESSIBLE: Option<&Accessible> = None;
 
 pub trait AccessibleExt: 'static {
+    #[doc(alias = "gtk_accessible_get_accessible_role")]
     fn get_accessible_role(&self) -> AccessibleRole;
 
+    #[doc(alias = "gtk_accessible_reset_property")]
     fn reset_property(&self, property: AccessibleProperty);
 
+    #[doc(alias = "gtk_accessible_reset_relation")]
     fn reset_relation(&self, relation: AccessibleRelation);
 
+    #[doc(alias = "gtk_accessible_reset_state")]
     fn reset_state(&self, state: AccessibleState);
 
+    //#[doc(alias = "gtk_accessible_update_property")]
     //fn update_property(&self, first_property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_accessible_update_property_value")]
     //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]);
 
+    //#[doc(alias = "gtk_accessible_update_relation")]
     //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_accessible_update_relation_value")]
     //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]);
 
+    //#[doc(alias = "gtk_accessible_update_state")]
     //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_accessible_update_state_value")]
     //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]);
 
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole);

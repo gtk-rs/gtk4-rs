@@ -31,6 +31,7 @@ glib::glib_wrapper! {
 }
 
 impl GLArea {
+    #[doc(alias = "gtk_gl_area_new")]
     pub fn new() -> GLArea {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_gl_area_new()).unsafe_cast() }
@@ -371,36 +372,52 @@ impl GLAreaBuilder {
 pub const NONE_GL_AREA: Option<&GLArea> = None;
 
 pub trait GLAreaExt: 'static {
+    #[doc(alias = "gtk_gl_area_attach_buffers")]
     fn attach_buffers(&self);
 
+    #[doc(alias = "gtk_gl_area_get_auto_render")]
     fn get_auto_render(&self) -> bool;
 
+    #[doc(alias = "gtk_gl_area_get_context")]
     fn get_context(&self) -> Option<gdk::GLContext>;
 
+    #[doc(alias = "gtk_gl_area_get_error")]
     fn get_error(&self) -> Option<glib::Error>;
 
+    #[doc(alias = "gtk_gl_area_get_has_depth_buffer")]
     fn get_has_depth_buffer(&self) -> bool;
 
+    #[doc(alias = "gtk_gl_area_get_has_stencil_buffer")]
     fn get_has_stencil_buffer(&self) -> bool;
 
+    #[doc(alias = "gtk_gl_area_get_required_version")]
     fn get_required_version(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_gl_area_get_use_es")]
     fn get_use_es(&self) -> bool;
 
+    #[doc(alias = "gtk_gl_area_make_current")]
     fn make_current(&self);
 
+    #[doc(alias = "gtk_gl_area_queue_render")]
     fn queue_render(&self);
 
+    #[doc(alias = "gtk_gl_area_set_auto_render")]
     fn set_auto_render(&self, auto_render: bool);
 
+    #[doc(alias = "gtk_gl_area_set_error")]
     fn set_error(&self, error: Option<&glib::Error>);
 
+    #[doc(alias = "gtk_gl_area_set_has_depth_buffer")]
     fn set_has_depth_buffer(&self, has_depth_buffer: bool);
 
+    #[doc(alias = "gtk_gl_area_set_has_stencil_buffer")]
     fn set_has_stencil_buffer(&self, has_stencil_buffer: bool);
 
+    #[doc(alias = "gtk_gl_area_set_required_version")]
     fn set_required_version(&self, major: i32, minor: i32);
 
+    #[doc(alias = "gtk_gl_area_set_use_es")]
     fn set_use_es(&self, use_es: bool);
 
     fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(

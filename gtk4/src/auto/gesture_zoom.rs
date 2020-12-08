@@ -22,11 +22,13 @@ glib::glib_wrapper! {
 }
 
 impl GestureZoom {
+    #[doc(alias = "gtk_gesture_zoom_new")]
     pub fn new() -> GestureZoom {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_zoom_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_gesture_zoom_get_scale_delta")]
     pub fn get_scale_delta(&self) -> f64 {
         unsafe { ffi::gtk_gesture_zoom_get_scale_delta(self.to_glib_none().0) }
     }

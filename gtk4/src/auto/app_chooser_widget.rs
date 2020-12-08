@@ -32,6 +32,7 @@ glib::glib_wrapper! {
 }
 
 impl AppChooserWidget {
+    #[doc(alias = "gtk_app_chooser_widget_new")]
     pub fn new(content_type: &str) -> AppChooserWidget {
         assert_initialized_main_thread!();
         unsafe {
@@ -42,6 +43,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
     pub fn get_default_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_widget_get_default_text(
@@ -50,6 +52,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_show_all")]
     pub fn get_show_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_all(
@@ -58,6 +61,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_show_default")]
     pub fn get_show_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_default(
@@ -66,6 +70,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_show_fallback")]
     pub fn get_show_fallback(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_fallback(
@@ -74,6 +79,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_show_other")]
     pub fn get_show_other(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_other(
@@ -82,6 +88,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_get_show_recommended")]
     pub fn get_show_recommended(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_recommended(
@@ -90,6 +97,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_default_text")]
     pub fn set_default_text(&self, text: &str) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_default_text(
@@ -99,30 +107,35 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_show_all")]
     pub fn set_show_all(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_all(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_show_default")]
     pub fn set_show_default(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_default(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_show_fallback")]
     pub fn set_show_fallback(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_fallback(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_show_other")]
     pub fn set_show_other(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_other(self.to_glib_none().0, setting.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_app_chooser_widget_set_show_recommended")]
     pub fn set_show_recommended(&self, setting: bool) {
         unsafe {
             ffi::gtk_app_chooser_widget_set_show_recommended(

@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl OverlayLayout {
+    #[doc(alias = "gtk_overlay_layout_new")]
     pub fn new() -> OverlayLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_overlay_layout_new()).unsafe_cast() }

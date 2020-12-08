@@ -53,24 +53,34 @@ impl TreeModelFilterBuilder {
 pub const NONE_TREE_MODEL_FILTER: Option<&TreeModelFilter> = None;
 
 pub trait TreeModelFilterExt: 'static {
+    #[doc(alias = "gtk_tree_model_filter_clear_cache")]
     fn clear_cache(&self);
 
+    #[doc(alias = "gtk_tree_model_filter_convert_child_iter_to_iter")]
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_tree_model_filter_convert_child_path_to_path")]
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
 
+    #[doc(alias = "gtk_tree_model_filter_convert_iter_to_child_iter")]
     fn convert_iter_to_child_iter(&self, filter_iter: &TreeIter) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_model_filter_convert_path_to_child_path")]
     fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath>;
 
+    #[doc(alias = "gtk_tree_model_filter_get_model")]
     fn get_model(&self) -> Option<TreeModel>;
 
+    #[doc(alias = "gtk_tree_model_filter_refilter")]
     fn refilter(&self);
 
+    //#[doc(alias = "gtk_tree_model_filter_set_modify_func")]
     //fn set_modify_func<P: Fn(&TreeModel, &TreeIter, &glib::Value, i32) + 'static>(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }, func: P);
 
+    #[doc(alias = "gtk_tree_model_filter_set_visible_column")]
     fn set_visible_column(&self, column: i32);
 
+    #[doc(alias = "gtk_tree_model_filter_set_visible_func")]
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
     fn get_property_child_model(&self) -> Option<TreeModel>;

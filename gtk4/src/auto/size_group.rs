@@ -26,21 +26,25 @@ glib::glib_wrapper! {
 }
 
 impl SizeGroup {
+    #[doc(alias = "gtk_size_group_new")]
     pub fn new(mode: SizeGroupMode) -> SizeGroup {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_size_group_new(mode.to_glib())) }
     }
 
+    #[doc(alias = "gtk_size_group_add_widget")]
     pub fn add_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_size_group_add_widget(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_size_group_get_mode")]
     pub fn get_mode(&self) -> SizeGroupMode {
         unsafe { from_glib(ffi::gtk_size_group_get_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_size_group_get_widgets")]
     pub fn get_widgets(&self) -> Vec<Widget> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_size_group_get_widgets(
@@ -49,6 +53,7 @@ impl SizeGroup {
         }
     }
 
+    #[doc(alias = "gtk_size_group_remove_widget")]
     pub fn remove_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_size_group_remove_widget(
@@ -58,6 +63,7 @@ impl SizeGroup {
         }
     }
 
+    #[doc(alias = "gtk_size_group_set_mode")]
     pub fn set_mode(&self, mode: SizeGroupMode) {
         unsafe {
             ffi::gtk_size_group_set_mode(self.to_glib_none().0, mode.to_glib());

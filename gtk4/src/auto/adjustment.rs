@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl Adjustment {
+    #[doc(alias = "gtk_adjustment_new")]
     pub fn new(
         value: f64,
         lower: f64,
@@ -120,8 +121,10 @@ impl AdjustmentBuilder {
 pub const NONE_ADJUSTMENT: Option<&Adjustment> = None;
 
 pub trait AdjustmentExt: 'static {
+    #[doc(alias = "gtk_adjustment_clamp_page")]
     fn clamp_page(&self, lower: f64, upper: f64);
 
+    #[doc(alias = "gtk_adjustment_configure")]
     fn configure(
         &self,
         value: f64,
@@ -132,30 +135,43 @@ pub trait AdjustmentExt: 'static {
         page_size: f64,
     );
 
+    #[doc(alias = "gtk_adjustment_get_lower")]
     fn get_lower(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_minimum_increment")]
     fn get_minimum_increment(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_page_increment")]
     fn get_page_increment(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_page_size")]
     fn get_page_size(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_step_increment")]
     fn get_step_increment(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_upper")]
     fn get_upper(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_get_value")]
     fn get_value(&self) -> f64;
 
+    #[doc(alias = "gtk_adjustment_set_lower")]
     fn set_lower(&self, lower: f64);
 
+    #[doc(alias = "gtk_adjustment_set_page_increment")]
     fn set_page_increment(&self, page_increment: f64);
 
+    #[doc(alias = "gtk_adjustment_set_page_size")]
     fn set_page_size(&self, page_size: f64);
 
+    #[doc(alias = "gtk_adjustment_set_step_increment")]
     fn set_step_increment(&self, step_increment: f64);
 
+    #[doc(alias = "gtk_adjustment_set_upper")]
     fn set_upper(&self, upper: f64);
 
+    #[doc(alias = "gtk_adjustment_set_value")]
     fn set_value(&self, value: f64);
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

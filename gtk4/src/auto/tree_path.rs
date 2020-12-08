@@ -19,20 +19,24 @@ glib::glib_wrapper! {
 }
 
 impl TreePath {
+    #[doc(alias = "gtk_tree_path_new")]
     pub fn new() -> TreePath {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_tree_path_new()) }
     }
 
+    #[doc(alias = "gtk_tree_path_new_first")]
     pub fn new_first() -> TreePath {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_tree_path_new_first()) }
     }
 
+    //#[doc(alias = "gtk_tree_path_new_from_indices")]
     //pub fn from_indices(first_index: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreePath {
     //    unsafe { TODO: call ffi:gtk_tree_path_new_from_indices() }
     //}
 
+    #[doc(alias = "gtk_tree_path_new_from_indicesv")]
     pub fn from_indicesv(indices: &[i32]) -> TreePath {
         assert_initialized_main_thread!();
         let length = indices.len() as usize;
@@ -44,31 +48,37 @@ impl TreePath {
         }
     }
 
+    #[doc(alias = "gtk_tree_path_new_from_string")]
     pub fn from_string(path: &str) -> Option<TreePath> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_tree_path_new_from_string(path.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_path_append_index")]
     pub fn append_index(&mut self, index_: i32) {
         unsafe {
             ffi::gtk_tree_path_append_index(self.to_glib_none_mut().0, index_);
         }
     }
 
+    #[doc(alias = "gtk_tree_path_compare")]
     fn compare(&self, b: &TreePath) -> i32 {
         unsafe { ffi::gtk_tree_path_compare(self.to_glib_none().0, b.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_tree_path_down")]
     pub fn down(&mut self) {
         unsafe {
             ffi::gtk_tree_path_down(self.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gtk_tree_path_get_depth")]
     pub fn get_depth(&self) -> i32 {
         unsafe { ffi::gtk_tree_path_get_depth(mut_override(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
     pub fn get_indices_with_depth(&mut self) -> Vec<i32> {
         unsafe {
             let mut depth = mem::MaybeUninit::uninit();
@@ -83,6 +93,7 @@ impl TreePath {
         }
     }
 
+    #[doc(alias = "gtk_tree_path_is_ancestor")]
     pub fn is_ancestor(&self, descendant: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_path_is_ancestor(
@@ -92,6 +103,7 @@ impl TreePath {
         }
     }
 
+    #[doc(alias = "gtk_tree_path_is_descendant")]
     pub fn is_descendant(&self, ancestor: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_path_is_descendant(
@@ -101,22 +113,26 @@ impl TreePath {
         }
     }
 
+    #[doc(alias = "gtk_tree_path_next")]
     pub fn next(&mut self) {
         unsafe {
             ffi::gtk_tree_path_next(self.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gtk_tree_path_prepend_index")]
     pub fn prepend_index(&mut self, index_: i32) {
         unsafe {
             ffi::gtk_tree_path_prepend_index(self.to_glib_none_mut().0, index_);
         }
     }
 
+    #[doc(alias = "gtk_tree_path_prev")]
     pub fn prev(&mut self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_path_prev(self.to_glib_none_mut().0)) }
     }
 
+    #[doc(alias = "gtk_tree_path_to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_tree_path_to_string(mut_override(
@@ -125,6 +141,7 @@ impl TreePath {
         }
     }
 
+    #[doc(alias = "gtk_tree_path_up")]
     pub fn up(&mut self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_path_up(self.to_glib_none_mut().0)) }
     }

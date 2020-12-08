@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl ColumnViewColumn {
+    #[doc(alias = "gtk_column_view_column_new")]
     pub fn new<P: IsA<ListItemFactory>>(
         title: Option<&str>,
         factory: Option<&P>,
@@ -39,6 +40,7 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_column_view")]
     pub fn get_column_view(&self) -> Option<ColumnView> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_column_view(
@@ -47,6 +49,7 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_expand")]
     pub fn get_expand(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_expand(
@@ -55,6 +58,7 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_factory")]
     pub fn get_factory(&self) -> Option<ListItemFactory> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_factory(
@@ -63,10 +67,12 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_fixed_width")]
     pub fn get_fixed_width(&self) -> i32 {
         unsafe { ffi::gtk_column_view_column_get_fixed_width(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_header_menu")]
     pub fn get_header_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_header_menu(
@@ -75,6 +81,7 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_resizable")]
     pub fn get_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_resizable(
@@ -83,6 +90,7 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_sorter")]
     pub fn get_sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_sorter(
@@ -91,10 +99,12 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_title")]
     pub fn get_title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_column_view_column_get_title(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_column_get_visible")]
     pub fn get_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_visible(
@@ -103,12 +113,14 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_expand")]
     pub fn set_expand(&self, expand: bool) {
         unsafe {
             ffi::gtk_column_view_column_set_expand(self.to_glib_none().0, expand.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_factory")]
     pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
             ffi::gtk_column_view_column_set_factory(
@@ -118,12 +130,14 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_fixed_width")]
     pub fn set_fixed_width(&self, fixed_width: i32) {
         unsafe {
             ffi::gtk_column_view_column_set_fixed_width(self.to_glib_none().0, fixed_width);
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_header_menu")]
     pub fn set_header_menu<P: IsA<gio::MenuModel>>(&self, menu: Option<&P>) {
         unsafe {
             ffi::gtk_column_view_column_set_header_menu(
@@ -133,12 +147,14 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_resizable")]
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
             ffi::gtk_column_view_column_set_resizable(self.to_glib_none().0, resizable.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_sorter")]
     pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
         unsafe {
             ffi::gtk_column_view_column_set_sorter(
@@ -148,12 +164,14 @@ impl ColumnViewColumn {
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_title")]
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             ffi::gtk_column_view_column_set_title(self.to_glib_none().0, title.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_column_view_column_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_column_view_column_set_visible(self.to_glib_none().0, visible.to_glib());

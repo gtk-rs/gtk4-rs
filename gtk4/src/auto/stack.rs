@@ -34,11 +34,13 @@ glib::glib_wrapper! {
 }
 
 impl Stack {
+    #[doc(alias = "gtk_stack_new")]
     pub fn new() -> Stack {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_stack_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_stack_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_child(
@@ -48,6 +50,7 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_add_named")]
     pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: Option<&str>) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_named(
@@ -58,6 +61,7 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_add_titled")]
     pub fn add_titled<P: IsA<Widget>>(
         &self,
         child: &P,
@@ -74,6 +78,7 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_get_child_by_name")]
     pub fn get_child_by_name(&self, name: &str) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_child_by_name(
@@ -83,14 +88,17 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_get_hhomogeneous")]
     pub fn get_hhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_hhomogeneous(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_interpolate_size")]
     pub fn get_interpolate_size(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_interpolate_size(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_page")]
     pub fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_page(
@@ -100,70 +108,84 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_get_pages")]
     pub fn get_pages(&self) -> SelectionModel {
         unsafe { from_glib_full(ffi::gtk_stack_get_pages(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_transition_duration")]
     pub fn get_transition_duration(&self) -> u32 {
         unsafe { ffi::gtk_stack_get_transition_duration(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_stack_get_transition_running")]
     pub fn get_transition_running(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_transition_running(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_transition_type")]
     pub fn get_transition_type(&self) -> StackTransitionType {
         unsafe { from_glib(ffi::gtk_stack_get_transition_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_vhomogeneous")]
     pub fn get_vhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_vhomogeneous(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_visible_child")]
     pub fn get_visible_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_stack_get_visible_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_get_visible_child_name")]
     pub fn get_visible_child_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_get_visible_child_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_remove")]
     pub fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_stack_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_stack_set_hhomogeneous")]
     pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
         unsafe {
             ffi::gtk_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_set_interpolate_size")]
     pub fn set_interpolate_size(&self, interpolate_size: bool) {
         unsafe {
             ffi::gtk_stack_set_interpolate_size(self.to_glib_none().0, interpolate_size.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_set_transition_duration")]
     pub fn set_transition_duration(&self, duration: u32) {
         unsafe {
             ffi::gtk_stack_set_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
+    #[doc(alias = "gtk_stack_set_transition_type")]
     pub fn set_transition_type(&self, transition: StackTransitionType) {
         unsafe {
             ffi::gtk_stack_set_transition_type(self.to_glib_none().0, transition.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_set_vhomogeneous")]
     pub fn set_vhomogeneous(&self, vhomogeneous: bool) {
         unsafe {
             ffi::gtk_stack_set_vhomogeneous(self.to_glib_none().0, vhomogeneous.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_stack_set_visible_child")]
     pub fn set_visible_child<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_stack_set_visible_child(
@@ -173,6 +195,7 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_set_visible_child_full")]
     pub fn set_visible_child_full(&self, name: &str, transition: StackTransitionType) {
         unsafe {
             ffi::gtk_stack_set_visible_child_full(
@@ -183,6 +206,7 @@ impl Stack {
         }
     }
 
+    #[doc(alias = "gtk_stack_set_visible_child_name")]
     pub fn set_visible_child_name(&self, name: &str) {
         unsafe {
             ffi::gtk_stack_set_visible_child_name(self.to_glib_none().0, name.to_glib_none().0);

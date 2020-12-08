@@ -37,16 +37,19 @@ glib::glib_wrapper! {
 }
 
 impl ComboBox {
+    #[doc(alias = "gtk_combo_box_new")]
     pub fn new() -> ComboBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_combo_box_new_with_entry")]
     pub fn with_entry() -> ComboBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_new_with_entry()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_combo_box_new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
@@ -57,6 +60,7 @@ impl ComboBox {
         }
     }
 
+    #[doc(alias = "gtk_combo_box_new_with_model_and_entry")]
     pub fn with_model_and_entry<P: IsA<TreeModel>>(model: &P) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
@@ -465,48 +469,70 @@ impl ComboBoxBuilder {
 pub const NONE_COMBO_BOX: Option<&ComboBox> = None;
 
 pub trait ComboBoxExt: 'static {
+    #[doc(alias = "gtk_combo_box_get_active_id")]
     fn get_active_id(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_combo_box_get_active_iter")]
     fn get_active_iter(&self) -> Option<TreeIter>;
 
+    #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
     fn get_button_sensitivity(&self) -> SensitivityType;
 
+    #[doc(alias = "gtk_combo_box_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_combo_box_get_entry_text_column")]
     fn get_entry_text_column(&self) -> i32;
 
+    #[doc(alias = "gtk_combo_box_get_has_entry")]
     fn get_has_entry(&self) -> bool;
 
+    #[doc(alias = "gtk_combo_box_get_id_column")]
     fn get_id_column(&self) -> i32;
 
+    #[doc(alias = "gtk_combo_box_get_model")]
     fn get_model(&self) -> Option<TreeModel>;
 
+    #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
     fn get_popup_fixed_width(&self) -> bool;
 
+    //#[doc(alias = "gtk_combo_box_get_row_separator_func")]
     //fn get_row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
 
+    #[doc(alias = "gtk_combo_box_popdown")]
     fn popdown(&self);
 
+    #[doc(alias = "gtk_combo_box_popup")]
     fn popup(&self);
 
+    #[doc(alias = "gtk_combo_box_popup_for_device")]
     fn popup_for_device(&self, device: &gdk::Device);
 
+    #[doc(alias = "gtk_combo_box_set_active_id")]
     fn set_active_id(&self, active_id: Option<&str>) -> bool;
 
+    #[doc(alias = "gtk_combo_box_set_active_iter")]
     fn set_active_iter(&self, iter: Option<&TreeIter>);
 
+    #[doc(alias = "gtk_combo_box_set_button_sensitivity")]
     fn set_button_sensitivity(&self, sensitivity: SensitivityType);
 
+    #[doc(alias = "gtk_combo_box_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "gtk_combo_box_set_entry_text_column")]
     fn set_entry_text_column(&self, text_column: i32);
 
+    #[doc(alias = "gtk_combo_box_set_id_column")]
     fn set_id_column(&self, id_column: i32);
 
+    #[doc(alias = "gtk_combo_box_set_model")]
     fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>);
 
+    #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
     fn set_popup_fixed_width(&self, fixed: bool);
 
+    #[doc(alias = "gtk_combo_box_set_row_separator_func")]
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
     fn get_property_has_frame(&self) -> bool;

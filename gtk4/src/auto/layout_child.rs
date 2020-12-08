@@ -19,8 +19,10 @@ glib::glib_wrapper! {
 pub const NONE_LAYOUT_CHILD: Option<&LayoutChild> = None;
 
 pub trait LayoutChildExt: 'static {
+    #[doc(alias = "gtk_layout_child_get_child_widget")]
     fn get_child_widget(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_layout_child_get_layout_manager")]
     fn get_layout_manager(&self) -> Option<LayoutManager>;
 }
 

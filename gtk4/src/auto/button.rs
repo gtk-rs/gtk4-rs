@@ -32,11 +32,13 @@ glib::glib_wrapper! {
 }
 
 impl Button {
+    #[doc(alias = "gtk_button_new")]
     pub fn new() -> Button {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_button_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_button_new_from_icon_name")]
     pub fn from_icon_name(icon_name: Option<&str>) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -47,6 +49,7 @@ impl Button {
         }
     }
 
+    #[doc(alias = "gtk_button_new_with_label")]
     pub fn with_label(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -55,6 +58,7 @@ impl Button {
         }
     }
 
+    #[doc(alias = "gtk_button_new_with_mnemonic")]
     pub fn with_mnemonic(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -416,24 +420,34 @@ impl ButtonBuilder {
 pub const NONE_BUTTON: Option<&Button> = None;
 
 pub trait ButtonExt: 'static {
+    #[doc(alias = "gtk_button_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_button_get_has_frame")]
     fn get_has_frame(&self) -> bool;
 
+    #[doc(alias = "gtk_button_get_icon_name")]
     fn get_icon_name(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_button_get_label")]
     fn get_label(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_button_get_use_underline")]
     fn get_use_underline(&self) -> bool;
 
+    #[doc(alias = "gtk_button_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "gtk_button_set_has_frame")]
     fn set_has_frame(&self, has_frame: bool);
 
+    #[doc(alias = "gtk_button_set_icon_name")]
     fn set_icon_name(&self, icon_name: &str);
 
+    #[doc(alias = "gtk_button_set_label")]
     fn set_label(&self, label: &str);
 
+    #[doc(alias = "gtk_button_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

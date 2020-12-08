@@ -61,8 +61,10 @@ impl EntryBufferBuilder {
 pub const NONE_ENTRY_BUFFER: Option<&EntryBuffer> = None;
 
 pub trait EntryBufferExt: 'static {
+    #[doc(alias = "gtk_entry_buffer_emit_deleted_text")]
     fn emit_deleted_text(&self, position: u32, n_chars: u32);
 
+    #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
     fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
 
     fn get_property_length(&self) -> u32;

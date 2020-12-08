@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 pub const NONE_BUILDABLE: Option<&Buildable> = None;
 
 pub trait BuildableExt: 'static {
+    #[doc(alias = "gtk_buildable_get_buildable_id")]
     fn get_buildable_id(&self) -> Option<glib::GString>;
 }
 

@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl DirectoryList {
+    #[doc(alias = "gtk_directory_list_new")]
     pub fn new<P: IsA<gio::File>>(attributes: Option<&str>, file: Option<&P>) -> DirectoryList {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,6 +34,7 @@ impl DirectoryList {
         }
     }
 
+    #[doc(alias = "gtk_directory_list_get_attributes")]
     pub fn get_attributes(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_directory_list_get_attributes(
@@ -41,26 +43,32 @@ impl DirectoryList {
         }
     }
 
+    #[doc(alias = "gtk_directory_list_get_error")]
     pub fn get_error(&self) -> Option<glib::Error> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_error(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_directory_list_get_file")]
     pub fn get_file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_file(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_directory_list_get_io_priority")]
     pub fn get_io_priority(&self) -> i32 {
         unsafe { ffi::gtk_directory_list_get_io_priority(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_directory_list_get_monitored")]
     pub fn get_monitored(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_get_monitored(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_directory_list_is_loading")]
     pub fn is_loading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_is_loading(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_directory_list_set_attributes")]
     pub fn set_attributes(&self, attributes: Option<&str>) {
         unsafe {
             ffi::gtk_directory_list_set_attributes(
@@ -70,6 +78,7 @@ impl DirectoryList {
         }
     }
 
+    #[doc(alias = "gtk_directory_list_set_file")]
     pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
         unsafe {
             ffi::gtk_directory_list_set_file(
@@ -79,12 +88,14 @@ impl DirectoryList {
         }
     }
 
+    #[doc(alias = "gtk_directory_list_set_io_priority")]
     pub fn set_io_priority(&self, io_priority: i32) {
         unsafe {
             ffi::gtk_directory_list_set_io_priority(self.to_glib_none().0, io_priority);
         }
     }
 
+    #[doc(alias = "gtk_directory_list_set_monitored")]
     pub fn set_monitored(&self, monitored: bool) {
         unsafe {
             ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.to_glib());

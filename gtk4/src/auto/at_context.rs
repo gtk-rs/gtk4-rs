@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl ATContext {
+    #[doc(alias = "gtk_at_context_create")]
     pub fn create<P: IsA<Accessible>>(
         accessible_role: AccessibleRole,
         accessible: &P,
@@ -38,10 +39,12 @@ impl ATContext {
         }
     }
 
+    #[doc(alias = "gtk_at_context_get_accessible")]
     pub fn get_accessible(&self) -> Option<Accessible> {
         unsafe { from_glib_none(ffi::gtk_at_context_get_accessible(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_at_context_get_accessible_role")]
     pub fn get_accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_at_context_get_accessible_role(

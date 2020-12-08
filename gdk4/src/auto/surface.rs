@@ -31,6 +31,7 @@ glib::glib_wrapper! {
 }
 
 impl Surface {
+    #[doc(alias = "gdk_surface_new_popup")]
     pub fn new_popup(parent: &Surface, autohide: bool) -> Surface {
         skip_assert_initialized!();
         unsafe {
@@ -41,21 +42,25 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_new_toplevel")]
     pub fn new_toplevel(display: &Display) -> Surface {
         skip_assert_initialized!();
         unsafe { from_glib_full(ffi::gdk_surface_new_toplevel(display.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_beep")]
     pub fn beep(&self) {
         unsafe {
             ffi::gdk_surface_beep(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_create_cairo_context")]
     pub fn create_cairo_context(&self) -> Option<CairoContext> {
         unsafe { from_glib_full(ffi::gdk_surface_create_cairo_context(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_create_gl_context")]
     pub fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -68,6 +73,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_create_vulkan_context")]
     pub fn create_vulkan_context(&self) -> Result<VulkanContext, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -80,16 +86,19 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_destroy")]
     pub fn destroy(&self) {
         unsafe {
             ffi::gdk_surface_destroy(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_get_cursor")]
     pub fn get_cursor(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_surface_get_cursor(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_get_device_cursor")]
     pub fn get_device_cursor(&self, device: &Device) -> Option<Cursor> {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_device_cursor(
@@ -99,6 +108,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_get_device_position")]
     pub fn get_device_position(&self, device: &Device) -> Option<(f64, f64, ModifierType)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -122,52 +132,63 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_get_display")]
     pub fn get_display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_surface_get_display(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_get_frame_clock")]
     pub fn get_frame_clock(&self) -> Option<FrameClock> {
         unsafe { from_glib_none(ffi::gdk_surface_get_frame_clock(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_get_height")]
     pub fn get_height(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_height(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_surface_get_mapped")]
     pub fn get_mapped(&self) -> bool {
         unsafe { from_glib(ffi::gdk_surface_get_mapped(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_get_scale_factor")]
     pub fn get_scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_scale_factor(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_surface_get_width")]
     pub fn get_width(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_width(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_surface_hide")]
     pub fn hide(&self) {
         unsafe {
             ffi::gdk_surface_hide(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_is_destroyed")]
     pub fn is_destroyed(&self) -> bool {
         unsafe { from_glib(ffi::gdk_surface_is_destroyed(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_surface_queue_render")]
     pub fn queue_render(&self) {
         unsafe {
             ffi::gdk_surface_queue_render(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_set_cursor")]
     pub fn set_cursor(&self, cursor: Option<&Cursor>) {
         unsafe {
             ffi::gdk_surface_set_cursor(self.to_glib_none().0, cursor.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_set_device_cursor")]
     pub fn set_device_cursor(&self, device: &Device, cursor: &Cursor) {
         unsafe {
             ffi::gdk_surface_set_device_cursor(
@@ -178,12 +199,14 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_set_input_region")]
     pub fn set_input_region(&self, region: &mut cairo::Region) {
         unsafe {
             ffi::gdk_surface_set_input_region(self.to_glib_none().0, region.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gdk_surface_set_opaque_region")]
     pub fn set_opaque_region(&self, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gdk_surface_set_opaque_region(
@@ -193,6 +216,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_set_shadow_width")]
     pub fn set_shadow_width(&self, left: i32, right: i32, top: i32, bottom: i32) {
         unsafe {
             ffi::gdk_surface_set_shadow_width(self.to_glib_none().0, left, right, top, bottom);

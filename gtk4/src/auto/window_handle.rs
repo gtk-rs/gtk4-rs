@@ -31,15 +31,18 @@ glib::glib_wrapper! {
 }
 
 impl WindowHandle {
+    #[doc(alias = "gtk_window_handle_new")]
     pub fn new() -> WindowHandle {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_window_handle_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_window_handle_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_window_handle_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_window_handle_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_window_handle_set_child(

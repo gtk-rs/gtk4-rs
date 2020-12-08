@@ -24,11 +24,13 @@ glib::glib_wrapper! {
 }
 
 impl GestureSwipe {
+    #[doc(alias = "gtk_gesture_swipe_new")]
     pub fn new() -> GestureSwipe {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_swipe_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_gesture_swipe_get_velocity")]
     pub fn get_velocity(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut velocity_x = mem::MaybeUninit::uninit();

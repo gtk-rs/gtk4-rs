@@ -21,6 +21,7 @@ glib::glib_wrapper! {
 }
 
 impl EventControllerLegacy {
+    #[doc(alias = "gtk_event_controller_legacy_new")]
     pub fn new() -> EventControllerLegacy {
         assert_initialized_main_thread!();
         unsafe {

@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 }
 
 impl Rectangle {
+    #[doc(alias = "gdk_rectangle_contains_point")]
     pub fn contains_point(&self, x: i32, y: i32) -> bool {
         unsafe {
             from_glib(ffi::gdk_rectangle_contains_point(
@@ -28,6 +29,7 @@ impl Rectangle {
         }
     }
 
+    #[doc(alias = "gdk_rectangle_equal")]
     fn equal(&self, rect2: &Rectangle) -> bool {
         unsafe {
             from_glib(ffi::gdk_rectangle_equal(
@@ -37,6 +39,7 @@ impl Rectangle {
         }
     }
 
+    #[doc(alias = "gdk_rectangle_intersect")]
     pub fn intersect(&self, src2: &Rectangle) -> Option<Rectangle> {
         unsafe {
             let mut dest = Rectangle::uninitialized();
@@ -53,6 +56,7 @@ impl Rectangle {
         }
     }
 
+    #[doc(alias = "gdk_rectangle_union")]
     pub fn union(&self, src2: &Rectangle) -> Rectangle {
         unsafe {
             let mut dest = Rectangle::uninitialized();

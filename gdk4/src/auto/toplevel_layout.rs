@@ -17,15 +17,18 @@ glib::glib_wrapper! {
 }
 
 impl ToplevelLayout {
+    #[doc(alias = "gdk_toplevel_layout_new")]
     pub fn new() -> ToplevelLayout {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_toplevel_layout_new()) }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_copy")]
     pub fn copy(&self) -> Option<ToplevelLayout> {
         unsafe { from_glib_full(ffi::gdk_toplevel_layout_copy(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_equal")]
     fn equal(&self, other: &ToplevelLayout) -> bool {
         unsafe {
             from_glib(ffi::gdk_toplevel_layout_equal(
@@ -35,6 +38,7 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_get_fullscreen")]
     pub fn get_fullscreen(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_toplevel_layout_get_fullscreen(
@@ -43,6 +47,7 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_get_fullscreen_monitor")]
     pub fn get_fullscreen_monitor(&self) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_toplevel_layout_get_fullscreen_monitor(
@@ -51,6 +56,7 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_get_maximized")]
     pub fn get_maximized(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_toplevel_layout_get_maximized(
@@ -59,6 +65,7 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_get_resizable")]
     pub fn get_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_toplevel_layout_get_resizable(
@@ -67,6 +74,7 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_set_fullscreen")]
     pub fn set_fullscreen(&self, fullscreen: bool, monitor: Option<&Monitor>) {
         unsafe {
             ffi::gdk_toplevel_layout_set_fullscreen(
@@ -77,12 +85,14 @@ impl ToplevelLayout {
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_set_maximized")]
     pub fn set_maximized(&self, maximized: bool) {
         unsafe {
             ffi::gdk_toplevel_layout_set_maximized(self.to_glib_none().0, maximized.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_toplevel_layout_set_resizable")]
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
             ffi::gdk_toplevel_layout_set_resizable(self.to_glib_none().0, resizable.to_glib());

@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl EventControllerFocus {
+    #[doc(alias = "gtk_event_controller_focus_new")]
     pub fn new() -> EventControllerFocus {
         assert_initialized_main_thread!();
         unsafe {
@@ -29,6 +30,7 @@ impl EventControllerFocus {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_focus_contains_focus")]
     pub fn contains_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_event_controller_focus_contains_focus(
@@ -37,6 +39,7 @@ impl EventControllerFocus {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_focus_is_focus")]
     pub fn is_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_event_controller_focus_is_focus(

@@ -20,11 +20,13 @@ glib::glib_wrapper! {
 }
 
 impl CenterLayout {
+    #[doc(alias = "gtk_center_layout_new")]
     pub fn new() -> CenterLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_center_layout_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_center_layout_get_baseline_position")]
     pub fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_baseline_position(
@@ -33,6 +35,7 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_get_center_widget")]
     pub fn get_center_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_center_layout_get_center_widget(
@@ -41,10 +44,12 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_get_end_widget")]
     pub fn get_end_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_center_layout_get_end_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_center_layout_get_orientation")]
     pub fn get_orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_orientation(
@@ -53,6 +58,7 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_get_start_widget")]
     pub fn get_start_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_center_layout_get_start_widget(
@@ -61,6 +67,7 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_set_baseline_position")]
     pub fn set_baseline_position(&self, baseline_position: BaselinePosition) {
         unsafe {
             ffi::gtk_center_layout_set_baseline_position(
@@ -70,6 +77,7 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_set_center_widget")]
     pub fn set_center_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_center_layout_set_center_widget(
@@ -79,6 +87,7 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_set_end_widget")]
     pub fn set_end_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_center_layout_set_end_widget(
@@ -88,12 +97,14 @@ impl CenterLayout {
         }
     }
 
+    #[doc(alias = "gtk_center_layout_set_orientation")]
     pub fn set_orientation(&self, orientation: Orientation) {
         unsafe {
             ffi::gtk_center_layout_set_orientation(self.to_glib_none().0, orientation.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_center_layout_set_start_widget")]
     pub fn set_start_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_center_layout_set_start_widget(

@@ -17,30 +17,36 @@ glib::glib_wrapper! {
 }
 
 impl X11Surface {
+    #[doc(alias = "gdk_x11_surface_get_desktop")]
     pub fn get_desktop(&self) -> u32 {
         unsafe { ffi::gdk_x11_surface_get_desktop(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_surface_get_group")]
     pub fn get_group(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gdk_x11_surface_get_group(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_x11_surface_get_xid")]
     pub fn get_xid(&self) -> xlib::Window {
         unsafe { ffi::gdk_x11_surface_get_xid(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_x11_surface_move_to_current_desktop")]
     pub fn move_to_current_desktop(&self) {
         unsafe {
             ffi::gdk_x11_surface_move_to_current_desktop(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_move_to_desktop")]
     pub fn move_to_desktop(&self, desktop: u32) {
         unsafe {
             ffi::gdk_x11_surface_move_to_desktop(self.to_glib_none().0, desktop);
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_frame_sync_enabled")]
     pub fn set_frame_sync_enabled(&self, frame_sync_enabled: bool) {
         unsafe {
             ffi::gdk_x11_surface_set_frame_sync_enabled(
@@ -50,18 +56,21 @@ impl X11Surface {
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_group")]
     pub fn set_group<P: IsA<gdk::Surface>>(&self, leader: &P) {
         unsafe {
             ffi::gdk_x11_surface_set_group(self.to_glib_none().0, leader.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_skip_pager_hint")]
     pub fn set_skip_pager_hint(&self, skips_pager: bool) {
         unsafe {
             ffi::gdk_x11_surface_set_skip_pager_hint(self.to_glib_none().0, skips_pager.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_skip_taskbar_hint")]
     pub fn set_skip_taskbar_hint(&self, skips_taskbar: bool) {
         unsafe {
             ffi::gdk_x11_surface_set_skip_taskbar_hint(
@@ -71,24 +80,28 @@ impl X11Surface {
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_theme_variant")]
     pub fn set_theme_variant(&self, variant: &str) {
         unsafe {
             ffi::gdk_x11_surface_set_theme_variant(self.to_glib_none().0, variant.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_urgency_hint")]
     pub fn set_urgency_hint(&self, urgent: bool) {
         unsafe {
             ffi::gdk_x11_surface_set_urgency_hint(self.to_glib_none().0, urgent.to_glib());
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_user_time")]
     pub fn set_user_time(&self, timestamp: u32) {
         unsafe {
             ffi::gdk_x11_surface_set_user_time(self.to_glib_none().0, timestamp);
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_set_utf8_property")]
     pub fn set_utf8_property(&self, name: &str, value: Option<&str>) {
         unsafe {
             ffi::gdk_x11_surface_set_utf8_property(
@@ -99,6 +112,7 @@ impl X11Surface {
         }
     }
 
+    #[doc(alias = "gdk_x11_surface_lookup_for_display")]
     pub fn lookup_for_display(display: &X11Display, window: xlib::Window) -> Option<X11Surface> {
         skip_assert_initialized!();
         unsafe {

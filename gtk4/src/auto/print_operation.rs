@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 }
 
 impl PrintOperation {
+    #[doc(alias = "gtk_print_operation_new")]
     pub fn new() -> PrintOperation {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_print_operation_new()) }
@@ -202,66 +203,95 @@ impl PrintOperationBuilder {
 pub const NONE_PRINT_OPERATION: Option<&PrintOperation> = None;
 
 pub trait PrintOperationExt: 'static {
+    #[doc(alias = "gtk_print_operation_cancel")]
     fn cancel(&self);
 
+    #[doc(alias = "gtk_print_operation_draw_page_finish")]
     fn draw_page_finish(&self);
 
+    #[doc(alias = "gtk_print_operation_get_default_page_setup")]
     fn get_default_page_setup(&self) -> Option<PageSetup>;
 
+    #[doc(alias = "gtk_print_operation_get_embed_page_setup")]
     fn get_embed_page_setup(&self) -> bool;
 
+    #[doc(alias = "gtk_print_operation_get_error")]
     fn get_error(&self) -> Result<(), glib::Error>;
 
+    #[doc(alias = "gtk_print_operation_get_has_selection")]
     fn get_has_selection(&self) -> bool;
 
+    #[doc(alias = "gtk_print_operation_get_n_pages_to_print")]
     fn get_n_pages_to_print(&self) -> i32;
 
+    #[doc(alias = "gtk_print_operation_get_print_settings")]
     fn get_print_settings(&self) -> Option<PrintSettings>;
 
+    #[doc(alias = "gtk_print_operation_get_status")]
     fn get_status(&self) -> PrintStatus;
 
+    #[doc(alias = "gtk_print_operation_get_status_string")]
     fn get_status_string(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_print_operation_get_support_selection")]
     fn get_support_selection(&self) -> bool;
 
+    #[doc(alias = "gtk_print_operation_is_finished")]
     fn is_finished(&self) -> bool;
 
+    #[doc(alias = "gtk_print_operation_run")]
     fn run<P: IsA<Window>>(
         &self,
         action: PrintOperationAction,
         parent: Option<&P>,
     ) -> Result<PrintOperationResult, glib::Error>;
 
+    #[doc(alias = "gtk_print_operation_set_allow_async")]
     fn set_allow_async(&self, allow_async: bool);
 
+    #[doc(alias = "gtk_print_operation_set_current_page")]
     fn set_current_page(&self, current_page: i32);
 
+    #[doc(alias = "gtk_print_operation_set_custom_tab_label")]
     fn set_custom_tab_label(&self, label: Option<&str>);
 
+    #[doc(alias = "gtk_print_operation_set_default_page_setup")]
     fn set_default_page_setup(&self, default_page_setup: Option<&PageSetup>);
 
+    #[doc(alias = "gtk_print_operation_set_defer_drawing")]
     fn set_defer_drawing(&self);
 
+    #[doc(alias = "gtk_print_operation_set_embed_page_setup")]
     fn set_embed_page_setup(&self, embed: bool);
 
+    #[doc(alias = "gtk_print_operation_set_export_filename")]
     fn set_export_filename<P: AsRef<std::path::Path>>(&self, filename: P);
 
+    #[doc(alias = "gtk_print_operation_set_has_selection")]
     fn set_has_selection(&self, has_selection: bool);
 
+    #[doc(alias = "gtk_print_operation_set_job_name")]
     fn set_job_name(&self, job_name: &str);
 
+    #[doc(alias = "gtk_print_operation_set_n_pages")]
     fn set_n_pages(&self, n_pages: i32);
 
+    #[doc(alias = "gtk_print_operation_set_print_settings")]
     fn set_print_settings(&self, print_settings: Option<&PrintSettings>);
 
+    #[doc(alias = "gtk_print_operation_set_show_progress")]
     fn set_show_progress(&self, show_progress: bool);
 
+    #[doc(alias = "gtk_print_operation_set_support_selection")]
     fn set_support_selection(&self, support_selection: bool);
 
+    #[doc(alias = "gtk_print_operation_set_track_print_status")]
     fn set_track_print_status(&self, track_status: bool);
 
+    #[doc(alias = "gtk_print_operation_set_unit")]
     fn set_unit(&self, unit: Unit);
 
+    #[doc(alias = "gtk_print_operation_set_use_full_page")]
     fn set_use_full_page(&self, full_page: bool);
 
     fn get_property_allow_async(&self) -> bool;

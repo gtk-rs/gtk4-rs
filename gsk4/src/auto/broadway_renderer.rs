@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl BroadwayRenderer {
+    #[doc(alias = "gsk_broadway_renderer_new")]
     pub fn new() -> BroadwayRenderer {
         assert_initialized_main_thread!();
         unsafe { Renderer::from_glib_full(ffi::gsk_broadway_renderer_new()).unsafe_cast() }

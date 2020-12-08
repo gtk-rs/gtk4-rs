@@ -22,24 +22,34 @@ glib::glib_wrapper! {
 pub const NONE_CELL_LAYOUT: Option<&CellLayout> = None;
 
 pub trait CellLayoutExt: 'static {
+    #[doc(alias = "gtk_cell_layout_add_attribute")]
     fn add_attribute<P: IsA<CellRenderer>>(&self, cell: &P, attribute: &str, column: i32);
 
+    #[doc(alias = "gtk_cell_layout_clear")]
     fn clear(&self);
 
+    #[doc(alias = "gtk_cell_layout_clear_attributes")]
     fn clear_attributes<P: IsA<CellRenderer>>(&self, cell: &P);
 
+    #[doc(alias = "gtk_cell_layout_get_area")]
     fn get_area(&self) -> Option<CellArea>;
 
+    #[doc(alias = "gtk_cell_layout_get_cells")]
     fn get_cells(&self) -> Vec<CellRenderer>;
 
+    #[doc(alias = "gtk_cell_layout_pack_end")]
     fn pack_end<P: IsA<CellRenderer>>(&self, cell: &P, expand: bool);
 
+    #[doc(alias = "gtk_cell_layout_pack_start")]
     fn pack_start<P: IsA<CellRenderer>>(&self, cell: &P, expand: bool);
 
+    #[doc(alias = "gtk_cell_layout_reorder")]
     fn reorder<P: IsA<CellRenderer>>(&self, cell: &P, position: i32);
 
+    //#[doc(alias = "gtk_cell_layout_set_attributes")]
     //fn set_attributes<P: IsA<CellRenderer>>(&self, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
     fn set_cell_data_func<P: IsA<CellRenderer>>(
         &self,
         cell: &P,

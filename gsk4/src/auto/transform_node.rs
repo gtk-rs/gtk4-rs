@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl TransformNode {
+    #[doc(alias = "gsk_transform_node_new")]
     pub fn new<P: IsA<RenderNode>>(child: &P, transform: &Transform) -> TransformNode {
         skip_assert_initialized!();
         unsafe {
@@ -27,10 +28,12 @@ impl TransformNode {
         }
     }
 
+    #[doc(alias = "gsk_transform_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_transform_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_transform_node_get_transform")]
     pub fn get_transform(&self) -> Option<Transform> {
         unsafe { from_glib_none(ffi::gsk_transform_node_get_transform(self.to_glib_none().0)) }
     }

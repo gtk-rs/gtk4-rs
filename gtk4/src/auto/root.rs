@@ -22,8 +22,10 @@ glib::glib_wrapper! {
 pub const NONE_ROOT: Option<&Root> = None;
 
 pub trait RootExt: 'static {
+    #[doc(alias = "gtk_root_get_focus")]
     fn get_focus(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_root_set_focus")]
     fn set_focus<P: IsA<Widget>>(&self, focus: Option<&P>);
 }
 

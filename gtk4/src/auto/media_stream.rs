@@ -23,64 +23,94 @@ glib::glib_wrapper! {
 pub const NONE_MEDIA_STREAM: Option<&MediaStream> = None;
 
 pub trait MediaStreamExt: 'static {
+    #[doc(alias = "gtk_media_stream_ended")]
     fn ended(&self);
 
+    //#[doc(alias = "gtk_media_stream_error")]
     //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
+    //#[doc(alias = "gtk_media_stream_error_valist")]
     //fn error_valist(&self, domain: glib::Quark, code: i32, format: &str, args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
+    #[doc(alias = "gtk_media_stream_get_duration")]
     fn get_duration(&self) -> i64;
 
+    #[doc(alias = "gtk_media_stream_get_ended")]
     fn get_ended(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_get_error")]
     fn get_error(&self) -> Option<glib::Error>;
 
+    #[doc(alias = "gtk_media_stream_get_loop")]
     fn get_loop(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_get_muted")]
     fn get_muted(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_get_playing")]
     fn get_playing(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_get_timestamp")]
     fn get_timestamp(&self) -> i64;
 
+    #[doc(alias = "gtk_media_stream_get_volume")]
     fn get_volume(&self) -> f64;
 
+    #[doc(alias = "gtk_media_stream_has_audio")]
     fn has_audio(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_has_video")]
     fn has_video(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_is_prepared")]
     fn is_prepared(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_is_seekable")]
     fn is_seekable(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_is_seeking")]
     fn is_seeking(&self) -> bool;
 
+    #[doc(alias = "gtk_media_stream_pause")]
     fn pause(&self);
 
+    #[doc(alias = "gtk_media_stream_play")]
     fn play(&self);
 
+    #[doc(alias = "gtk_media_stream_prepared")]
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
+    #[doc(alias = "gtk_media_stream_realize")]
     fn realize(&self, surface: &gdk::Surface);
 
+    #[doc(alias = "gtk_media_stream_seek")]
     fn seek(&self, timestamp: i64);
 
+    #[doc(alias = "gtk_media_stream_seek_failed")]
     fn seek_failed(&self);
 
+    #[doc(alias = "gtk_media_stream_seek_success")]
     fn seek_success(&self);
 
+    #[doc(alias = "gtk_media_stream_set_loop")]
     fn set_loop(&self, loop_: bool);
 
+    #[doc(alias = "gtk_media_stream_set_muted")]
     fn set_muted(&self, muted: bool);
 
+    #[doc(alias = "gtk_media_stream_set_playing")]
     fn set_playing(&self, playing: bool);
 
+    #[doc(alias = "gtk_media_stream_set_volume")]
     fn set_volume(&self, volume: f64);
 
+    #[doc(alias = "gtk_media_stream_unprepared")]
     fn unprepared(&self);
 
+    #[doc(alias = "gtk_media_stream_unrealize")]
     fn unrealize(&self, surface: &gdk::Surface);
 
+    #[doc(alias = "gtk_media_stream_update")]
     fn update(&self, timestamp: i64);
 
     fn get_property_has_audio(&self) -> bool;

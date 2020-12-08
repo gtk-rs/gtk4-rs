@@ -21,11 +21,13 @@ glib::glib_wrapper! {
 }
 
 impl MediaFile {
+    #[doc(alias = "gtk_media_file_new")]
     pub fn new() -> MediaFile {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_media_file_new()) }
     }
 
+    #[doc(alias = "gtk_media_file_new_for_file")]
     pub fn new_for_file<P: IsA<gio::File>>(file: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
@@ -35,6 +37,7 @@ impl MediaFile {
         }
     }
 
+    #[doc(alias = "gtk_media_file_new_for_filename")]
     pub fn new_for_filename(filename: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
@@ -44,6 +47,7 @@ impl MediaFile {
         }
     }
 
+    #[doc(alias = "gtk_media_file_new_for_input_stream")]
     pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
@@ -53,6 +57,7 @@ impl MediaFile {
         }
     }
 
+    #[doc(alias = "gtk_media_file_new_for_resource")]
     pub fn new_for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
@@ -72,18 +77,25 @@ impl Default for MediaFile {
 pub const NONE_MEDIA_FILE: Option<&MediaFile> = None;
 
 pub trait MediaFileExt: 'static {
+    #[doc(alias = "gtk_media_file_clear")]
     fn clear(&self);
 
+    #[doc(alias = "gtk_media_file_get_file")]
     fn get_file(&self) -> Option<gio::File>;
 
+    #[doc(alias = "gtk_media_file_get_input_stream")]
     fn get_input_stream(&self) -> Option<gio::InputStream>;
 
+    #[doc(alias = "gtk_media_file_set_file")]
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
 
+    #[doc(alias = "gtk_media_file_set_filename")]
     fn set_filename(&self, filename: Option<&str>);
 
+    #[doc(alias = "gtk_media_file_set_input_stream")]
     fn set_input_stream<P: IsA<gio::InputStream>>(&self, stream: Option<&P>);
 
+    #[doc(alias = "gtk_media_file_set_resource")]
     fn set_resource(&self, resource_path: Option<&str>);
 
     fn connect_property_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 }
 
 impl LinkButton {
+    #[doc(alias = "gtk_link_button_new")]
     pub fn new(uri: &str) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -40,6 +41,7 @@ impl LinkButton {
         }
     }
 
+    #[doc(alias = "gtk_link_button_new_with_label")]
     pub fn with_label(uri: &str, label: Option<&str>) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -51,20 +53,24 @@ impl LinkButton {
         }
     }
 
+    #[doc(alias = "gtk_link_button_get_uri")]
     pub fn get_uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_link_button_get_uri(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_link_button_get_visited")]
     pub fn get_visited(&self) -> bool {
         unsafe { from_glib(ffi::gtk_link_button_get_visited(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_link_button_set_uri")]
     pub fn set_uri(&self, uri: &str) {
         unsafe {
             ffi::gtk_link_button_set_uri(self.to_glib_none().0, uri.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_link_button_set_visited")]
     pub fn set_visited(&self, visited: bool) {
         unsafe {
             ffi::gtk_link_button_set_visited(self.to_glib_none().0, visited.to_glib());

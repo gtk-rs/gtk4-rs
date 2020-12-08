@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl SingleSelection {
+    #[doc(alias = "gtk_single_selection_new")]
     pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> SingleSelection {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,6 +34,7 @@ impl SingleSelection {
         }
     }
 
+    #[doc(alias = "gtk_single_selection_get_autoselect")]
     pub fn get_autoselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_autoselect(
@@ -41,6 +43,7 @@ impl SingleSelection {
         }
     }
 
+    #[doc(alias = "gtk_single_selection_get_can_unselect")]
     pub fn get_can_unselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_can_unselect(
@@ -49,24 +52,29 @@ impl SingleSelection {
         }
     }
 
+    #[doc(alias = "gtk_single_selection_get_model")]
     pub fn get_model(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_single_selection_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_single_selection_get_selected")]
     pub fn get_selected(&self) -> u32 {
         unsafe { ffi::gtk_single_selection_get_selected(self.to_glib_none().0) }
     }
 
+    //#[doc(alias = "gtk_single_selection_get_selected_item")]
     //pub fn get_selected_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
     //    unsafe { TODO: call ffi:gtk_single_selection_get_selected_item() }
     //}
 
+    #[doc(alias = "gtk_single_selection_set_autoselect")]
     pub fn set_autoselect(&self, autoselect: bool) {
         unsafe {
             ffi::gtk_single_selection_set_autoselect(self.to_glib_none().0, autoselect.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_single_selection_set_can_unselect")]
     pub fn set_can_unselect(&self, can_unselect: bool) {
         unsafe {
             ffi::gtk_single_selection_set_can_unselect(
@@ -76,6 +84,7 @@ impl SingleSelection {
         }
     }
 
+    #[doc(alias = "gtk_single_selection_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_single_selection_set_model(
@@ -85,6 +94,7 @@ impl SingleSelection {
         }
     }
 
+    #[doc(alias = "gtk_single_selection_set_selected")]
     pub fn set_selected(&self, position: u32) {
         unsafe {
             ffi::gtk_single_selection_set_selected(self.to_glib_none().0, position);

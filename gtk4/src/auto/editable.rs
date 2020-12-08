@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl Editable {
+    //#[doc(alias = "gtk_editable_install_properties")]
     //pub fn install_properties(object_class: /*Ignored*/&mut glib::ObjectClass, first_prop: u32) -> u32 {
     //    unsafe { TODO: call ffi:gtk_editable_install_properties() }
     //}
@@ -34,50 +35,73 @@ impl Editable {
 pub const NONE_EDITABLE: Option<&Editable> = None;
 
 pub trait EditableExt: 'static {
+    #[doc(alias = "gtk_editable_delete_selection")]
     fn delete_selection(&self);
 
+    #[doc(alias = "gtk_editable_delete_text")]
     fn delete_text(&self, start_pos: i32, end_pos: i32);
 
+    #[doc(alias = "gtk_editable_finish_delegate")]
     fn finish_delegate(&self);
 
+    #[doc(alias = "gtk_editable_get_alignment")]
     fn get_alignment(&self) -> f32;
 
+    #[doc(alias = "gtk_editable_get_chars")]
     fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_editable_get_delegate")]
     fn get_delegate(&self) -> Option<Editable>;
 
+    #[doc(alias = "gtk_editable_get_editable")]
     fn get_editable(&self) -> bool;
 
+    #[doc(alias = "gtk_editable_get_enable_undo")]
     fn get_enable_undo(&self) -> bool;
 
+    #[doc(alias = "gtk_editable_get_max_width_chars")]
     fn get_max_width_chars(&self) -> i32;
 
+    #[doc(alias = "gtk_editable_get_position")]
     fn get_position(&self) -> i32;
 
+    #[doc(alias = "gtk_editable_get_selection_bounds")]
     fn get_selection_bounds(&self) -> Option<(i32, i32)>;
 
+    #[doc(alias = "gtk_editable_get_text")]
     fn get_text(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_editable_get_width_chars")]
     fn get_width_chars(&self) -> i32;
 
+    #[doc(alias = "gtk_editable_init_delegate")]
     fn init_delegate(&self);
 
+    #[doc(alias = "gtk_editable_insert_text")]
     fn insert_text(&self, text: &str, position: &mut i32);
 
+    #[doc(alias = "gtk_editable_select_region")]
     fn select_region(&self, start_pos: i32, end_pos: i32);
 
+    #[doc(alias = "gtk_editable_set_alignment")]
     fn set_alignment(&self, xalign: f32);
 
+    #[doc(alias = "gtk_editable_set_editable")]
     fn set_editable(&self, is_editable: bool);
 
+    #[doc(alias = "gtk_editable_set_enable_undo")]
     fn set_enable_undo(&self, enable_undo: bool);
 
+    #[doc(alias = "gtk_editable_set_max_width_chars")]
     fn set_max_width_chars(&self, n_chars: i32);
 
+    #[doc(alias = "gtk_editable_set_position")]
     fn set_position(&self, position: i32);
 
+    #[doc(alias = "gtk_editable_set_text")]
     fn set_text(&self, text: &str);
 
+    #[doc(alias = "gtk_editable_set_width_chars")]
     fn set_width_chars(&self, n_chars: i32);
 
     fn get_property_cursor_position(&self) -> i32;

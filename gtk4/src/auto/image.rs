@@ -33,11 +33,13 @@ glib::glib_wrapper! {
 }
 
 impl Image {
+    #[doc(alias = "gtk_image_new")]
     pub fn new() -> Image {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_image_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_image_new_from_file")]
     pub fn from_file<P: AsRef<std::path::Path>>(filename: P) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -48,6 +50,7 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_new_from_gicon")]
     pub fn from_gicon<P: IsA<gio::Icon>>(icon: &P) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -58,6 +61,7 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_new_from_icon_name")]
     pub fn from_icon_name(icon_name: Option<&str>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -68,6 +72,7 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_new_from_paintable")]
     pub fn from_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -78,6 +83,7 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_new_from_pixbuf")]
     pub fn from_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -86,6 +92,7 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_new_from_resource")]
     pub fn from_resource(resource_path: &str) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -96,54 +103,65 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_clear")]
     pub fn clear(&self) {
         unsafe {
             ffi::gtk_image_clear(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_get_gicon")]
     pub fn get_gicon(&self) -> Option<gio::Icon> {
         unsafe { from_glib_none(ffi::gtk_image_get_gicon(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_image_get_icon_name")]
     pub fn get_icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_image_get_icon_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_image_get_icon_size")]
     pub fn get_icon_size(&self) -> IconSize {
         unsafe { from_glib(ffi::gtk_image_get_icon_size(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_image_get_paintable")]
     pub fn get_paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_image_get_paintable(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_image_get_pixel_size")]
     pub fn get_pixel_size(&self) -> i32 {
         unsafe { ffi::gtk_image_get_pixel_size(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_image_get_storage_type")]
     pub fn get_storage_type(&self) -> ImageType {
         unsafe { from_glib(ffi::gtk_image_get_storage_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_image_set_from_file")]
     pub fn set_from_file<P: AsRef<std::path::Path>>(&self, filename: P) {
         unsafe {
             ffi::gtk_image_set_from_file(self.to_glib_none().0, filename.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_set_from_gicon")]
     pub fn set_from_gicon<P: IsA<gio::Icon>>(&self, icon: &P) {
         unsafe {
             ffi::gtk_image_set_from_gicon(self.to_glib_none().0, icon.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_set_from_icon_name")]
     pub fn set_from_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_set_from_paintable")]
     pub fn set_from_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             ffi::gtk_image_set_from_paintable(
@@ -153,24 +171,28 @@ impl Image {
         }
     }
 
+    #[doc(alias = "gtk_image_set_from_pixbuf")]
     pub fn set_from_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             ffi::gtk_image_set_from_pixbuf(self.to_glib_none().0, pixbuf.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_set_from_resource")]
     pub fn set_from_resource(&self, resource_path: Option<&str>) {
         unsafe {
             ffi::gtk_image_set_from_resource(self.to_glib_none().0, resource_path.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_image_set_icon_size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
         unsafe {
             ffi::gtk_image_set_icon_size(self.to_glib_none().0, icon_size.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_image_set_pixel_size")]
     pub fn set_pixel_size(&self, pixel_size: i32) {
         unsafe {
             ffi::gtk_image_set_pixel_size(self.to_glib_none().0, pixel_size);

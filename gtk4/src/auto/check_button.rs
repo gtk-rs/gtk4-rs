@@ -31,11 +31,13 @@ glib::glib_wrapper! {
 }
 
 impl CheckButton {
+    #[doc(alias = "gtk_check_button_new")]
     pub fn new() -> CheckButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_check_button_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_check_button_new_with_label")]
     pub fn with_label(label: Option<&str>) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -44,6 +46,7 @@ impl CheckButton {
         }
     }
 
+    #[doc(alias = "gtk_check_button_new_with_mnemonic")]
     pub fn with_mnemonic(label: Option<&str>) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -407,22 +410,31 @@ impl CheckButtonBuilder {
 pub const NONE_CHECK_BUTTON: Option<&CheckButton> = None;
 
 pub trait CheckButtonExt: 'static {
+    #[doc(alias = "gtk_check_button_get_active")]
     fn get_active(&self) -> bool;
 
+    #[doc(alias = "gtk_check_button_get_inconsistent")]
     fn get_inconsistent(&self) -> bool;
 
+    #[doc(alias = "gtk_check_button_get_label")]
     fn get_label(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "gtk_check_button_get_use_underline")]
     fn get_use_underline(&self) -> bool;
 
+    #[doc(alias = "gtk_check_button_set_active")]
     fn set_active(&self, setting: bool);
 
+    #[doc(alias = "gtk_check_button_set_group")]
     fn set_group<P: IsA<CheckButton>>(&self, group: Option<&P>);
 
+    #[doc(alias = "gtk_check_button_set_inconsistent")]
     fn set_inconsistent(&self, inconsistent: bool);
 
+    #[doc(alias = "gtk_check_button_set_label")]
     fn set_label(&self, label: Option<&str>);
 
+    #[doc(alias = "gtk_check_button_set_use_underline")]
     fn set_use_underline(&self, setting: bool);
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

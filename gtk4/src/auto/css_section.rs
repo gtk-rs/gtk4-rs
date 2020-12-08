@@ -19,6 +19,7 @@ glib::glib_wrapper! {
 }
 
 impl CssSection {
+    #[doc(alias = "gtk_css_section_new")]
     pub fn new<P: IsA<gio::File>>(
         file: Option<&P>,
         start: &CssLocation,
@@ -34,18 +35,22 @@ impl CssSection {
         }
     }
 
+    #[doc(alias = "gtk_css_section_get_end_location")]
     pub fn get_end_location(&self) -> Option<CssLocation> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_end_location(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_css_section_get_file")]
     pub fn get_file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_file(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_css_section_get_parent")]
     pub fn get_parent(&self) -> Option<CssSection> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_parent(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_css_section_get_start_location")]
     pub fn get_start_location(&self) -> Option<CssLocation> {
         unsafe {
             from_glib_none(ffi::gtk_css_section_get_start_location(
@@ -54,12 +59,14 @@ impl CssSection {
         }
     }
 
+    #[doc(alias = "gtk_css_section_print")]
     pub fn print(&self, string: &mut glib::String) {
         unsafe {
             ffi::gtk_css_section_print(self.to_glib_none().0, string.to_glib_none_mut().0);
         }
     }
 
+    #[doc(alias = "gtk_css_section_to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_section_to_string(self.to_glib_none().0)) }
     }

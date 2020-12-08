@@ -27,15 +27,18 @@ glib::glib_wrapper! {
 }
 
 impl GestureLongPress {
+    #[doc(alias = "gtk_gesture_long_press_new")]
     pub fn new() -> GestureLongPress {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_long_press_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_gesture_long_press_get_delay_factor")]
     pub fn get_delay_factor(&self) -> f64 {
         unsafe { ffi::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_gesture_long_press_set_delay_factor")]
     pub fn set_delay_factor(&self, delay_factor: f64) {
         unsafe {
             ffi::gtk_gesture_long_press_set_delay_factor(self.to_glib_none().0, delay_factor);

@@ -18,6 +18,7 @@ glib::glib_wrapper! {
 pub const NONE_DRAG_SURFACE: Option<&DragSurface> = None;
 
 pub trait DragSurfaceExt: 'static {
+    #[doc(alias = "gdk_drag_surface_present")]
     fn present(&self, width: i32, height: i32) -> bool;
 }
 

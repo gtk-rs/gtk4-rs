@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl FixedLayoutChild {
+    #[doc(alias = "gtk_fixed_layout_child_get_transform")]
     pub fn get_transform(&self) -> Option<gsk::Transform> {
         unsafe {
             from_glib_none(ffi::gtk_fixed_layout_child_get_transform(
@@ -34,6 +35,7 @@ impl FixedLayoutChild {
         }
     }
 
+    #[doc(alias = "gtk_fixed_layout_child_set_transform")]
     pub fn set_transform(&self, transform: &gsk::Transform) {
         unsafe {
             ffi::gtk_fixed_layout_child_set_transform(

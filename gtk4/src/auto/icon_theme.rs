@@ -26,17 +26,20 @@ glib::glib_wrapper! {
 }
 
 impl IconTheme {
+    #[doc(alias = "gtk_icon_theme_new")]
     pub fn new() -> IconTheme {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_icon_theme_new()) }
     }
 
+    #[doc(alias = "gtk_icon_theme_add_resource_path")]
     pub fn add_resource_path(&self, path: &str) {
         unsafe {
             ffi::gtk_icon_theme_add_resource_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_add_search_path")]
     pub fn add_search_path<P: AsRef<std::path::Path>>(&self, path: P) {
         unsafe {
             ffi::gtk_icon_theme_add_search_path(
@@ -46,10 +49,12 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_display")]
     pub fn get_display(&self) -> Option<gdk::Display> {
         unsafe { from_glib_none(ffi::gtk_icon_theme_get_display(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_icon_names")]
     pub fn get_icon_names(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_icon_names(
@@ -58,6 +63,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_resource_path")]
     pub fn get_resource_path(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
@@ -66,6 +72,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_search_path")]
     pub fn get_search_path(&self) -> Vec<std::path::PathBuf> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_search_path(
@@ -74,10 +81,12 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_theme_name")]
     pub fn get_theme_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_icon_theme_has_icon")]
     pub fn has_icon(&self, icon_name: &str) -> bool {
         unsafe {
             from_glib(ffi::gtk_icon_theme_has_icon(
@@ -87,6 +96,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_lookup_by_gicon")]
     pub fn lookup_by_gicon<P: IsA<gio::Icon>>(
         &self,
         icon: &P,
@@ -107,6 +117,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_lookup_icon")]
     pub fn lookup_icon(
         &self,
         icon_name: &str,
@@ -129,12 +140,14 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_set_search_path")]
     pub fn set_search_path(&self, path: &[&std::path::Path]) {
         unsafe {
             ffi::gtk_icon_theme_set_search_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_set_theme_name")]
     pub fn set_theme_name(&self, theme_name: Option<&str>) {
         unsafe {
             ffi::gtk_icon_theme_set_theme_name(self.to_glib_none().0, theme_name.to_glib_none().0);
@@ -161,6 +174,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_get_for_display")]
     pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {

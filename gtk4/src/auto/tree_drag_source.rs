@@ -18,10 +18,13 @@ glib::glib_wrapper! {
 pub const NONE_TREE_DRAG_SOURCE: Option<&TreeDragSource> = None;
 
 pub trait TreeDragSourceExt: 'static {
+    #[doc(alias = "gtk_tree_drag_source_drag_data_delete")]
     fn drag_data_delete(&self, path: &mut TreePath) -> bool;
 
+    #[doc(alias = "gtk_tree_drag_source_drag_data_get")]
     fn drag_data_get(&self, path: &mut TreePath) -> Option<gdk::ContentProvider>;
 
+    #[doc(alias = "gtk_tree_drag_source_row_draggable")]
     fn row_draggable(&self, path: &mut TreePath) -> bool;
 }
 

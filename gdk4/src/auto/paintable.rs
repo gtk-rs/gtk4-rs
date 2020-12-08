@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl Paintable {
+    #[doc(alias = "gdk_paintable_new_empty")]
     pub fn new_empty(intrinsic_width: i32, intrinsic_height: i32) -> Option<Paintable> {
         assert_initialized_main_thread!();
         unsafe {
@@ -37,6 +38,7 @@ impl Paintable {
 pub const NONE_PAINTABLE: Option<&Paintable> = None;
 
 pub trait PaintableExt: 'static {
+    #[doc(alias = "gdk_paintable_compute_concrete_size")]
     fn compute_concrete_size(
         &self,
         specified_width: f64,
@@ -45,20 +47,28 @@ pub trait PaintableExt: 'static {
         default_height: f64,
     ) -> (f64, f64);
 
+    #[doc(alias = "gdk_paintable_get_current_image")]
     fn get_current_image(&self) -> Option<Paintable>;
 
+    #[doc(alias = "gdk_paintable_get_flags")]
     fn get_flags(&self) -> PaintableFlags;
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_aspect_ratio")]
     fn get_intrinsic_aspect_ratio(&self) -> f64;
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_height")]
     fn get_intrinsic_height(&self) -> i32;
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_width")]
     fn get_intrinsic_width(&self) -> i32;
 
+    #[doc(alias = "gdk_paintable_invalidate_contents")]
     fn invalidate_contents(&self);
 
+    #[doc(alias = "gdk_paintable_invalidate_size")]
     fn invalidate_size(&self);
 
+    #[doc(alias = "gdk_paintable_snapshot")]
     fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

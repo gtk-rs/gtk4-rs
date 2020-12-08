@@ -110,20 +110,28 @@ impl GestureSingleBuilder {
 pub const NONE_GESTURE_SINGLE: Option<&GestureSingle> = None;
 
 pub trait GestureSingleExt: 'static {
+    #[doc(alias = "gtk_gesture_single_get_button")]
     fn get_button(&self) -> u32;
 
+    #[doc(alias = "gtk_gesture_single_get_current_button")]
     fn get_current_button(&self) -> u32;
 
+    #[doc(alias = "gtk_gesture_single_get_current_sequence")]
     fn get_current_sequence(&self) -> Option<gdk::EventSequence>;
 
+    #[doc(alias = "gtk_gesture_single_get_exclusive")]
     fn get_exclusive(&self) -> bool;
 
+    #[doc(alias = "gtk_gesture_single_get_touch_only")]
     fn get_touch_only(&self) -> bool;
 
+    #[doc(alias = "gtk_gesture_single_set_button")]
     fn set_button(&self, button: u32);
 
+    #[doc(alias = "gtk_gesture_single_set_exclusive")]
     fn set_exclusive(&self, exclusive: bool);
 
+    #[doc(alias = "gtk_gesture_single_set_touch_only")]
     fn set_touch_only(&self, touch_only: bool);
 
     fn connect_property_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

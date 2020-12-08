@@ -32,31 +32,38 @@ glib::glib_wrapper! {
 }
 
 impl Revealer {
+    #[doc(alias = "gtk_revealer_new")]
     pub fn new() -> Revealer {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_revealer_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_revealer_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_revealer_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_revealer_get_child_revealed")]
     pub fn get_child_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_child_revealed(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_revealer_get_reveal_child")]
     pub fn get_reveal_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_reveal_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_revealer_get_transition_duration")]
     pub fn get_transition_duration(&self) -> u32 {
         unsafe { ffi::gtk_revealer_get_transition_duration(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_revealer_get_transition_type")]
     pub fn get_transition_type(&self) -> RevealerTransitionType {
         unsafe { from_glib(ffi::gtk_revealer_get_transition_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_revealer_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_revealer_set_child(
@@ -66,18 +73,21 @@ impl Revealer {
         }
     }
 
+    #[doc(alias = "gtk_revealer_set_reveal_child")]
     pub fn set_reveal_child(&self, reveal_child: bool) {
         unsafe {
             ffi::gtk_revealer_set_reveal_child(self.to_glib_none().0, reveal_child.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_revealer_set_transition_duration")]
     pub fn set_transition_duration(&self, duration: u32) {
         unsafe {
             ffi::gtk_revealer_set_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
+    #[doc(alias = "gtk_revealer_set_transition_type")]
     pub fn set_transition_type(&self, transition: RevealerTransitionType) {
         unsafe {
             ffi::gtk_revealer_set_transition_type(self.to_glib_none().0, transition.to_glib());

@@ -56,7 +56,7 @@ impl ToGlib for AccessibleAutocomplete {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleAutocomplete> for AccessibleAutocomplete {
-    fn from_glib(value: ffi::GtkAccessibleAutocomplete) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleAutocomplete) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleAutocomplete::None,
@@ -136,7 +136,7 @@ impl ToGlib for AccessibleInvalidState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleInvalidState> for AccessibleInvalidState {
-    fn from_glib(value: ffi::GtkAccessibleInvalidState) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleInvalidState) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleInvalidState::False,
@@ -261,7 +261,7 @@ impl ToGlib for AccessibleProperty {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleProperty> for AccessibleProperty {
-    fn from_glib(value: ffi::GtkAccessibleProperty) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleProperty) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleProperty::Autocomplete,
@@ -398,7 +398,7 @@ impl ToGlib for AccessibleRelation {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleRelation> for AccessibleRelation {
-    fn from_glib(value: ffi::GtkAccessibleRelation) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleRelation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleRelation::ActiveDescendant,
@@ -714,7 +714,7 @@ impl ToGlib for AccessibleRole {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
-    fn from_glib(value: ffi::GtkAccessibleRole) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleRole) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleRole::Alert,
@@ -868,7 +868,7 @@ impl ToGlib for AccessibleSort {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleSort> for AccessibleSort {
-    fn from_glib(value: ffi::GtkAccessibleSort) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleSort) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleSort::None,
@@ -960,7 +960,7 @@ impl ToGlib for AccessibleState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
-    fn from_glib(value: ffi::GtkAccessibleState) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleState) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleState::Busy,
@@ -1041,7 +1041,7 @@ impl ToGlib for AccessibleTristate {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessibleTristate> for AccessibleTristate {
-    fn from_glib(value: ffi::GtkAccessibleTristate) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAccessibleTristate) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AccessibleTristate::False,
@@ -1123,7 +1123,7 @@ impl ToGlib for Align {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAlign> for Align {
-    fn from_glib(value: ffi::GtkAlign) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAlign) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Align::Fill,
@@ -1207,7 +1207,7 @@ impl ToGlib for ArrowType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkArrowType> for ArrowType {
-    fn from_glib(value: ffi::GtkArrowType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkArrowType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ArrowType::Up,
@@ -1294,7 +1294,7 @@ impl ToGlib for AssistantPageType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
-    fn from_glib(value: ffi::GtkAssistantPageType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkAssistantPageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => AssistantPageType::Content,
@@ -1373,7 +1373,7 @@ impl ToGlib for BaselinePosition {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkBaselinePosition> for BaselinePosition {
-    fn from_glib(value: ffi::GtkBaselinePosition) -> Self {
+    unsafe fn from_glib(value: ffi::GtkBaselinePosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BaselinePosition::Top,
@@ -1470,7 +1470,7 @@ impl ToGlib for BorderStyle {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkBorderStyle> for BorderStyle {
-    fn from_glib(value: ffi::GtkBorderStyle) -> Self {
+    unsafe fn from_glib(value: ffi::GtkBorderStyle) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BorderStyle::None,
@@ -1589,7 +1589,7 @@ impl ToGlib for BuilderError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkBuilderError> for BuilderError {
-    fn from_glib(value: ffi::GtkBuilderError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkBuilderError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BuilderError::InvalidTypeFunction,
@@ -1720,7 +1720,7 @@ impl ToGlib for ButtonsType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkButtonsType> for ButtonsType {
-    fn from_glib(value: ffi::GtkButtonsType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkButtonsType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ButtonsType::None,
@@ -1796,7 +1796,7 @@ impl ToGlib for CellRendererAccelMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
-    fn from_glib(value: ffi::GtkCellRendererAccelMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkCellRendererAccelMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CellRendererAccelMode::Gtk,
@@ -1871,7 +1871,7 @@ impl ToGlib for CellRendererMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
-    fn from_glib(value: ffi::GtkCellRendererMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkCellRendererMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CellRendererMode::Inert,
@@ -1974,7 +1974,7 @@ impl ToGlib for ConstraintAttribute {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkConstraintAttribute> for ConstraintAttribute {
-    fn from_glib(value: ffi::GtkConstraintAttribute) -> Self {
+    unsafe fn from_glib(value: ffi::GtkConstraintAttribute) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ConstraintAttribute::None,
@@ -2059,7 +2059,7 @@ impl ToGlib for ConstraintRelation {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkConstraintRelation> for ConstraintRelation {
-    fn from_glib(value: ffi::GtkConstraintRelation) -> Self {
+    unsafe fn from_glib(value: ffi::GtkConstraintRelation) -> Self {
         skip_assert_initialized!();
         match value {
             -1 => ConstraintRelation::Le,
@@ -2138,7 +2138,7 @@ impl ToGlib for ConstraintStrength {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkConstraintStrength> for ConstraintStrength {
-    fn from_glib(value: ffi::GtkConstraintStrength) -> Self {
+    unsafe fn from_glib(value: ffi::GtkConstraintStrength) -> Self {
         skip_assert_initialized!();
         match value {
             1001001000 => ConstraintStrength::Required,
@@ -2230,7 +2230,7 @@ impl ToGlib for ConstraintVflParserError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkConstraintVflParserError> for ConstraintVflParserError {
-    fn from_glib(value: ffi::GtkConstraintVflParserError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkConstraintVflParserError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ConstraintVflParserError::Symbol,
@@ -2337,7 +2337,7 @@ impl ToGlib for CornerType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCornerType> for CornerType {
-    fn from_glib(value: ffi::GtkCornerType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkCornerType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CornerType::TopLeft,
@@ -2420,7 +2420,7 @@ impl ToGlib for CssParserError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCssParserError> for CssParserError {
-    fn from_glib(value: ffi::GtkCssParserError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkCssParserError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CssParserError::Failed,
@@ -2498,7 +2498,7 @@ impl ToGlib for CssParserWarning {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCssParserWarning> for CssParserWarning {
-    fn from_glib(value: ffi::GtkCssParserWarning) -> Self {
+    unsafe fn from_glib(value: ffi::GtkCssParserWarning) -> Self {
         skip_assert_initialized!();
         match value {
             0 => CssParserWarning::Deprecated,
@@ -2565,7 +2565,7 @@ impl ToGlib for DeleteType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDeleteType> for DeleteType {
-    fn from_glib(value: ffi::GtkDeleteType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkDeleteType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DeleteType::Chars,
@@ -2655,7 +2655,7 @@ impl ToGlib for DirectionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDirectionType> for DirectionType {
-    fn from_glib(value: ffi::GtkDirectionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkDirectionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => DirectionType::TabForward,
@@ -2752,7 +2752,7 @@ impl ToGlib for EditableProperties {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
-    fn from_glib(value: ffi::GtkEditableProperties) -> Self {
+    unsafe fn from_glib(value: ffi::GtkEditableProperties) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EditableProperties::PropText,
@@ -2831,7 +2831,7 @@ impl ToGlib for EntryIconPosition {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkEntryIconPosition> for EntryIconPosition {
-    fn from_glib(value: ffi::GtkEntryIconPosition) -> Self {
+    unsafe fn from_glib(value: ffi::GtkEntryIconPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EntryIconPosition::Primary,
@@ -2906,7 +2906,7 @@ impl ToGlib for EventSequenceState {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkEventSequenceState> for EventSequenceState {
-    fn from_glib(value: ffi::GtkEventSequenceState) -> Self {
+    unsafe fn from_glib(value: ffi::GtkEventSequenceState) -> Self {
         skip_assert_initialized!();
         match value {
             0 => EventSequenceState::None,
@@ -2982,7 +2982,7 @@ impl ToGlib for FileChooserAction {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFileChooserAction> for FileChooserAction {
-    fn from_glib(value: ffi::GtkFileChooserAction) -> Self {
+    unsafe fn from_glib(value: ffi::GtkFileChooserAction) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FileChooserAction::Open,
@@ -3061,7 +3061,7 @@ impl ToGlib for FileChooserError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
-    fn from_glib(value: ffi::GtkFileChooserError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkFileChooserError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FileChooserError::Nonexistent,
@@ -3161,7 +3161,7 @@ impl ToGlib for FilterChange {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFilterChange> for FilterChange {
-    fn from_glib(value: ffi::GtkFilterChange) -> Self {
+    unsafe fn from_glib(value: ffi::GtkFilterChange) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FilterChange::Different,
@@ -3237,7 +3237,7 @@ impl ToGlib for FilterMatch {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFilterMatch> for FilterMatch {
-    fn from_glib(value: ffi::GtkFilterMatch) -> Self {
+    unsafe fn from_glib(value: ffi::GtkFilterMatch) -> Self {
         skip_assert_initialized!();
         match value {
             0 => FilterMatch::Some,
@@ -3313,7 +3313,7 @@ impl ToGlib for IconSize {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkIconSize> for IconSize {
-    fn from_glib(value: ffi::GtkIconSize) -> Self {
+    unsafe fn from_glib(value: ffi::GtkIconSize) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconSize::Inherit,
@@ -3386,7 +3386,7 @@ impl ToGlib for IconThemeError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkIconThemeError> for IconThemeError {
-    fn from_glib(value: ffi::GtkIconThemeError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkIconThemeError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconThemeError::NotFound,
@@ -3491,7 +3491,7 @@ impl ToGlib for IconViewDropPosition {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
-    fn from_glib(value: ffi::GtkIconViewDropPosition) -> Self {
+    unsafe fn from_glib(value: ffi::GtkIconViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => IconViewDropPosition::NoDrop,
@@ -3573,7 +3573,7 @@ impl ToGlib for ImageType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkImageType> for ImageType {
-    fn from_glib(value: ffi::GtkImageType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkImageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ImageType::Empty,
@@ -3674,7 +3674,7 @@ impl ToGlib for InputPurpose {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkInputPurpose> for InputPurpose {
-    fn from_glib(value: ffi::GtkInputPurpose) -> Self {
+    unsafe fn from_glib(value: ffi::GtkInputPurpose) -> Self {
         skip_assert_initialized!();
         match value {
             0 => InputPurpose::FreeForm,
@@ -3761,7 +3761,7 @@ impl ToGlib for Justification {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkJustification> for Justification {
-    fn from_glib(value: ffi::GtkJustification) -> Self {
+    unsafe fn from_glib(value: ffi::GtkJustification) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Justification::Left,
@@ -3835,7 +3835,7 @@ impl ToGlib for LevelBarMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkLevelBarMode> for LevelBarMode {
-    fn from_glib(value: ffi::GtkLevelBarMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkLevelBarMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => LevelBarMode::Continuous,
@@ -3955,7 +3955,7 @@ impl ToGlib for License {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkLicense> for License {
-    fn from_glib(value: ffi::GtkLicense) -> Self {
+    unsafe fn from_glib(value: ffi::GtkLicense) -> Self {
         skip_assert_initialized!();
         match value {
             0 => License::Unknown,
@@ -4049,7 +4049,7 @@ impl ToGlib for MenuDirectionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkMenuDirectionType> for MenuDirectionType {
-    fn from_glib(value: ffi::GtkMenuDirectionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkMenuDirectionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MenuDirectionType::Parent,
@@ -4132,7 +4132,7 @@ impl ToGlib for MessageType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkMessageType> for MessageType {
-    fn from_glib(value: ffi::GtkMessageType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkMessageType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MessageType::Info,
@@ -4231,7 +4231,7 @@ impl ToGlib for MovementStep {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkMovementStep> for MovementStep {
-    fn from_glib(value: ffi::GtkMovementStep) -> Self {
+    unsafe fn from_glib(value: ffi::GtkMovementStep) -> Self {
         skip_assert_initialized!();
         match value {
             0 => MovementStep::LogicalPositions,
@@ -4311,7 +4311,7 @@ impl ToGlib for NotebookTab {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkNotebookTab> for NotebookTab {
-    fn from_glib(value: ffi::GtkNotebookTab) -> Self {
+    unsafe fn from_glib(value: ffi::GtkNotebookTab) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NotebookTab::First,
@@ -4401,7 +4401,7 @@ impl ToGlib for NumberUpLayout {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkNumberUpLayout> for NumberUpLayout {
-    fn from_glib(value: ffi::GtkNumberUpLayout) -> Self {
+    unsafe fn from_glib(value: ffi::GtkNumberUpLayout) -> Self {
         skip_assert_initialized!();
         match value {
             0 => NumberUpLayout::Lrtb,
@@ -4482,7 +4482,7 @@ impl ToGlib for Ordering {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkOrdering> for Ordering {
-    fn from_glib(value: ffi::GtkOrdering) -> Self {
+    unsafe fn from_glib(value: ffi::GtkOrdering) -> Self {
         skip_assert_initialized!();
         match value {
             -1 => Ordering::Smaller,
@@ -4555,7 +4555,7 @@ impl ToGlib for Orientation {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkOrientation> for Orientation {
-    fn from_glib(value: ffi::GtkOrientation) -> Self {
+    unsafe fn from_glib(value: ffi::GtkOrientation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Orientation::Horizontal,
@@ -4627,7 +4627,7 @@ impl ToGlib for Overflow {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkOverflow> for Overflow {
-    fn from_glib(value: ffi::GtkOverflow) -> Self {
+    unsafe fn from_glib(value: ffi::GtkOverflow) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Overflow::Visible,
@@ -4699,7 +4699,7 @@ impl ToGlib for PackType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPackType> for PackType {
-    fn from_glib(value: ffi::GtkPackType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPackType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PackType::Start,
@@ -4774,7 +4774,7 @@ impl ToGlib for PadActionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPadActionType> for PadActionType {
-    fn from_glib(value: ffi::GtkPadActionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPadActionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PadActionType::Button,
@@ -4853,7 +4853,7 @@ impl ToGlib for PageOrientation {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPageOrientation> for PageOrientation {
-    fn from_glib(value: ffi::GtkPageOrientation) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPageOrientation) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PageOrientation::Portrait,
@@ -4930,7 +4930,7 @@ impl ToGlib for PageSet {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPageSet> for PageSet {
-    fn from_glib(value: ffi::GtkPageSet) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPageSet) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PageSet::All,
@@ -5009,7 +5009,7 @@ impl ToGlib for PanDirection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPanDirection> for PanDirection {
-    fn from_glib(value: ffi::GtkPanDirection) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPanDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PanDirection::Left,
@@ -5089,7 +5089,7 @@ impl ToGlib for PolicyType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPolicyType> for PolicyType {
-    fn from_glib(value: ffi::GtkPolicyType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPolicyType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PolicyType::Always,
@@ -5163,7 +5163,7 @@ impl ToGlib for PopoverConstraint {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPopoverConstraint> for PopoverConstraint {
-    fn from_glib(value: ffi::GtkPopoverConstraint) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPopoverConstraint) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PopoverConstraint::None,
@@ -5241,7 +5241,7 @@ impl ToGlib for PositionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPositionType> for PositionType {
-    fn from_glib(value: ffi::GtkPositionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPositionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PositionType::Left,
@@ -5318,7 +5318,7 @@ impl ToGlib for PrintDuplex {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintDuplex> for PrintDuplex {
-    fn from_glib(value: ffi::GtkPrintDuplex) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintDuplex) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintDuplex::Simplex,
@@ -5397,7 +5397,7 @@ impl ToGlib for PrintError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintError> for PrintError {
-    fn from_glib(value: ffi::GtkPrintError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintError::General,
@@ -5500,7 +5500,7 @@ impl ToGlib for PrintOperationAction {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintOperationAction> for PrintOperationAction {
-    fn from_glib(value: ffi::GtkPrintOperationAction) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintOperationAction) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintOperationAction::PrintDialog,
@@ -5580,7 +5580,7 @@ impl ToGlib for PrintOperationResult {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintOperationResult> for PrintOperationResult {
-    fn from_glib(value: ffi::GtkPrintOperationResult) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintOperationResult) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintOperationResult::Error,
@@ -5660,7 +5660,7 @@ impl ToGlib for PrintPages {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintPages> for PrintPages {
-    fn from_glib(value: ffi::GtkPrintPages) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintPages) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintPages::All,
@@ -5740,7 +5740,7 @@ impl ToGlib for PrintQuality {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintQuality> for PrintQuality {
-    fn from_glib(value: ffi::GtkPrintQuality) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintQuality) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintQuality::Low,
@@ -5835,7 +5835,7 @@ impl ToGlib for PrintStatus {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintStatus> for PrintStatus {
-    fn from_glib(value: ffi::GtkPrintStatus) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPrintStatus) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PrintStatus::Initial,
@@ -5914,7 +5914,7 @@ impl ToGlib for PropagationLimit {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPropagationLimit> for PropagationLimit {
-    fn from_glib(value: ffi::GtkPropagationLimit) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPropagationLimit) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PropagationLimit::None,
@@ -5992,7 +5992,7 @@ impl ToGlib for PropagationPhase {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPropagationPhase> for PropagationPhase {
-    fn from_glib(value: ffi::GtkPropagationPhase) -> Self {
+    unsafe fn from_glib(value: ffi::GtkPropagationPhase) -> Self {
         skip_assert_initialized!();
         match value {
             0 => PropagationPhase::None,
@@ -6081,7 +6081,7 @@ impl ToGlib for RecentManagerError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkRecentManagerError> for RecentManagerError {
-    fn from_glib(value: ffi::GtkRecentManagerError) -> Self {
+    unsafe fn from_glib(value: ffi::GtkRecentManagerError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RecentManagerError::NotFound,
@@ -6208,7 +6208,7 @@ impl ToGlib for RevealerTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
-    fn from_glib(value: ffi::GtkRevealerTransitionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkRevealerTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RevealerTransitionType::None,
@@ -6300,7 +6300,7 @@ impl ToGlib for ScrollStep {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkScrollStep> for ScrollStep {
-    fn from_glib(value: ffi::GtkScrollStep) -> Self {
+    unsafe fn from_glib(value: ffi::GtkScrollStep) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollStep::Steps,
@@ -6418,7 +6418,7 @@ impl ToGlib for ScrollType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkScrollType> for ScrollType {
-    fn from_glib(value: ffi::GtkScrollType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkScrollType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollType::None,
@@ -6504,7 +6504,7 @@ impl ToGlib for ScrollablePolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkScrollablePolicy> for ScrollablePolicy {
-    fn from_glib(value: ffi::GtkScrollablePolicy) -> Self {
+    unsafe fn from_glib(value: ffi::GtkScrollablePolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScrollablePolicy::Minimum,
@@ -6582,7 +6582,7 @@ impl ToGlib for SelectionMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSelectionMode> for SelectionMode {
-    fn from_glib(value: ffi::GtkSelectionMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSelectionMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SelectionMode::None,
@@ -6659,7 +6659,7 @@ impl ToGlib for SensitivityType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSensitivityType> for SensitivityType {
-    fn from_glib(value: ffi::GtkSensitivityType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSensitivityType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SensitivityType::Auto,
@@ -6735,7 +6735,7 @@ impl ToGlib for ShortcutScope {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkShortcutScope> for ShortcutScope {
-    fn from_glib(value: ffi::GtkShortcutScope) -> Self {
+    unsafe fn from_glib(value: ffi::GtkShortcutScope) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ShortcutScope::Local,
@@ -6838,7 +6838,7 @@ impl ToGlib for ShortcutType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkShortcutType> for ShortcutType {
-    fn from_glib(value: ffi::GtkShortcutType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkShortcutType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ShortcutType::Accelerator,
@@ -6924,7 +6924,7 @@ impl ToGlib for SizeGroupMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSizeGroupMode> for SizeGroupMode {
-    fn from_glib(value: ffi::GtkSizeGroupMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSizeGroupMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SizeGroupMode::None,
@@ -7001,7 +7001,7 @@ impl ToGlib for SizeRequestMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSizeRequestMode> for SizeRequestMode {
-    fn from_glib(value: ffi::GtkSizeRequestMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSizeRequestMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SizeRequestMode::HeightForWidth,
@@ -7074,7 +7074,7 @@ impl ToGlib for SortType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSortType> for SortType {
-    fn from_glib(value: ffi::GtkSortType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSortType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SortType::Ascending,
@@ -7152,7 +7152,7 @@ impl ToGlib for SorterChange {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSorterChange> for SorterChange {
-    fn from_glib(value: ffi::GtkSorterChange) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSorterChange) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SorterChange::Different,
@@ -7229,7 +7229,7 @@ impl ToGlib for SorterOrder {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSorterOrder> for SorterOrder {
-    fn from_glib(value: ffi::GtkSorterOrder) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSorterOrder) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SorterOrder::Partial,
@@ -7302,7 +7302,7 @@ impl ToGlib for SpinButtonUpdatePolicy {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
-    fn from_glib(value: ffi::GtkSpinButtonUpdatePolicy) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSpinButtonUpdatePolicy) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SpinButtonUpdatePolicy::Always,
@@ -7389,7 +7389,7 @@ impl ToGlib for SpinType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSpinType> for SpinType {
-    fn from_glib(value: ffi::GtkSpinType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSpinType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SpinType::StepForward,
@@ -7531,7 +7531,7 @@ impl ToGlib for StackTransitionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkStackTransitionType> for StackTransitionType {
-    fn from_glib(value: ffi::GtkStackTransitionType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkStackTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => StackTransitionType::None,
@@ -7627,7 +7627,7 @@ impl ToGlib for StringFilterMatchMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkStringFilterMatchMode> for StringFilterMatchMode {
-    fn from_glib(value: ffi::GtkStringFilterMatchMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkStringFilterMatchMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => StringFilterMatchMode::Exact,
@@ -7709,7 +7709,7 @@ impl ToGlib for SystemSetting {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSystemSetting> for SystemSetting {
-    fn from_glib(value: ffi::GtkSystemSetting) -> Self {
+    unsafe fn from_glib(value: ffi::GtkSystemSetting) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SystemSetting::Dpi,
@@ -7789,7 +7789,7 @@ impl ToGlib for TextBufferTargetInfo {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextBufferTargetInfo> for TextBufferTargetInfo {
-    fn from_glib(value: ffi::GtkTextBufferTargetInfo) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTextBufferTargetInfo) -> Self {
         skip_assert_initialized!();
         match value {
             -1 => TextBufferTargetInfo::BufferContents,
@@ -7865,7 +7865,7 @@ impl ToGlib for TextDirection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextDirection> for TextDirection {
-    fn from_glib(value: ffi::GtkTextDirection) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTextDirection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextDirection::None,
@@ -7938,7 +7938,7 @@ impl ToGlib for TextExtendSelection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextExtendSelection> for TextExtendSelection {
-    fn from_glib(value: ffi::GtkTextExtendSelection) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTextExtendSelection) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextExtendSelection::Word,
@@ -8010,7 +8010,7 @@ impl ToGlib for TextViewLayer {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextViewLayer> for TextViewLayer {
-    fn from_glib(value: ffi::GtkTextViewLayer) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTextViewLayer) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TextViewLayer::BelowText,
@@ -8094,7 +8094,7 @@ impl ToGlib for TextWindowType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTextWindowType> for TextWindowType {
-    fn from_glib(value: ffi::GtkTextWindowType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTextWindowType) -> Self {
         skip_assert_initialized!();
         match value {
             1 => TextWindowType::Widget,
@@ -8173,7 +8173,7 @@ impl ToGlib for TreeViewColumnSizing {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
-    fn from_glib(value: ffi::GtkTreeViewColumnSizing) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTreeViewColumnSizing) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewColumnSizing::GrowOnly,
@@ -8252,7 +8252,7 @@ impl ToGlib for TreeViewDropPosition {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
-    fn from_glib(value: ffi::GtkTreeViewDropPosition) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTreeViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewDropPosition::Before,
@@ -8332,7 +8332,7 @@ impl ToGlib for TreeViewGridLines {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
-    fn from_glib(value: ffi::GtkTreeViewGridLines) -> Self {
+    unsafe fn from_glib(value: ffi::GtkTreeViewGridLines) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TreeViewGridLines::None,
@@ -8412,7 +8412,7 @@ impl ToGlib for Unit {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkUnit> for Unit {
-    fn from_glib(value: ffi::GtkUnit) -> Self {
+    unsafe fn from_glib(value: ffi::GtkUnit) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Unit::None,
@@ -8492,7 +8492,7 @@ impl ToGlib for WrapMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkWrapMode> for WrapMode {
-    fn from_glib(value: ffi::GtkWrapMode) -> Self {
+    unsafe fn from_glib(value: ffi::GtkWrapMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => WrapMode::None,

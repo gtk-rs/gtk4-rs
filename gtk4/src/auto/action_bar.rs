@@ -31,37 +31,44 @@ glib::glib_wrapper! {
 }
 
 impl ActionBar {
+    #[doc(alias = "gtk_action_bar_new")]
     pub fn new() -> ActionBar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_action_bar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_action_bar_get_center_widget")]
     pub fn get_center_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_action_bar_get_center_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_action_bar_get_revealed")]
     pub fn get_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_action_bar_get_revealed(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_action_bar_pack_end")]
     pub fn pack_end<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_action_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_action_bar_pack_start")]
     pub fn pack_start<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_action_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_action_bar_remove")]
     pub fn remove<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_action_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_action_bar_set_center_widget")]
     pub fn set_center_widget<P: IsA<Widget>>(&self, center_widget: Option<&P>) {
         unsafe {
             ffi::gtk_action_bar_set_center_widget(
@@ -71,6 +78,7 @@ impl ActionBar {
         }
     }
 
+    #[doc(alias = "gtk_action_bar_set_revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
             ffi::gtk_action_bar_set_revealed(self.to_glib_none().0, revealed.to_glib());

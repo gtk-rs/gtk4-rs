@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl GestureClick {
+    #[doc(alias = "gtk_gesture_click_new")]
     pub fn new() -> GestureClick {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_click_new()).unsafe_cast() }

@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl VulkanRenderer {
+    #[doc(alias = "gsk_vulkan_renderer_new")]
     pub fn new() -> VulkanRenderer {
         assert_initialized_main_thread!();
         unsafe { Renderer::from_glib_full(ffi::gsk_vulkan_renderer_new()).unsafe_cast() }

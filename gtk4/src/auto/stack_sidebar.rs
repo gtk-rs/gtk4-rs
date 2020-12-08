@@ -32,15 +32,18 @@ glib::glib_wrapper! {
 }
 
 impl StackSidebar {
+    #[doc(alias = "gtk_stack_sidebar_new")]
     pub fn new() -> StackSidebar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_stack_sidebar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_stack_sidebar_get_stack")]
     pub fn get_stack(&self) -> Option<Stack> {
         unsafe { from_glib_none(ffi::gtk_stack_sidebar_get_stack(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_stack_sidebar_set_stack")]
     pub fn set_stack(&self, stack: &Stack) {
         unsafe {
             ffi::gtk_stack_sidebar_set_stack(self.to_glib_none().0, stack.to_glib_none().0);

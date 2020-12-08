@@ -18,11 +18,13 @@ glib::glib_wrapper! {
 }
 
 impl NamedAction {
+    #[doc(alias = "gtk_named_action_new")]
     pub fn new(name: &str) -> NamedAction {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_named_action_new(name.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_named_action_get_action_name")]
     pub fn get_action_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_named_action_get_action_name(self.to_glib_none().0)) }
     }

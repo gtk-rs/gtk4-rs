@@ -33,6 +33,7 @@ glib::glib_wrapper! {
 pub const NONE_CELL_RENDERER: Option<&CellRenderer> = None;
 
 pub trait CellRendererExt: 'static {
+    #[doc(alias = "gtk_cell_renderer_activate")]
     fn activate<P: IsA<gdk::Event>, Q: IsA<Widget>>(
         &self,
         event: &P,
@@ -43,6 +44,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     ) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
     fn get_aligned_area<P: IsA<Widget>>(
         &self,
         widget: &P,
@@ -50,55 +52,78 @@ pub trait CellRendererExt: 'static {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[doc(alias = "gtk_cell_renderer_get_alignment")]
     fn get_alignment(&self) -> (f32, f32);
 
+    #[doc(alias = "gtk_cell_renderer_get_fixed_size")]
     fn get_fixed_size(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_is_expanded")]
     fn get_is_expanded(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_get_is_expander")]
     fn get_is_expander(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_get_padding")]
     fn get_padding(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_preferred_height")]
     fn get_preferred_height<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_preferred_height_for_width")]
     fn get_preferred_height_for_width<P: IsA<Widget>>(&self, widget: &P, width: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_preferred_size")]
     fn get_preferred_size<P: IsA<Widget>>(&self, widget: &P) -> (Requisition, Requisition);
 
+    #[doc(alias = "gtk_cell_renderer_get_preferred_width")]
     fn get_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_preferred_width_for_height")]
     fn get_preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32)
         -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_renderer_get_request_mode")]
     fn get_request_mode(&self) -> SizeRequestMode;
 
+    #[doc(alias = "gtk_cell_renderer_get_sensitive")]
     fn get_sensitive(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_get_state")]
     fn get_state<P: IsA<Widget>>(
         &self,
         widget: Option<&P>,
         cell_state: CellRendererState,
     ) -> StateFlags;
 
+    #[doc(alias = "gtk_cell_renderer_get_visible")]
     fn get_visible(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_is_activatable")]
     fn is_activatable(&self) -> bool;
 
+    #[doc(alias = "gtk_cell_renderer_set_alignment")]
     fn set_alignment(&self, xalign: f32, yalign: f32);
 
+    #[doc(alias = "gtk_cell_renderer_set_fixed_size")]
     fn set_fixed_size(&self, width: i32, height: i32);
 
+    #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
     fn set_is_expanded(&self, is_expander: bool);
 
+    #[doc(alias = "gtk_cell_renderer_set_is_expander")]
     fn set_is_expander(&self, is_expander: bool);
 
+    #[doc(alias = "gtk_cell_renderer_set_padding")]
     fn set_padding(&self, xpad: i32, ypad: i32);
 
+    #[doc(alias = "gtk_cell_renderer_set_sensitive")]
     fn set_sensitive(&self, sensitive: bool);
 
+    #[doc(alias = "gtk_cell_renderer_set_visible")]
     fn set_visible(&self, visible: bool);
 
+    #[doc(alias = "gtk_cell_renderer_snapshot")]
     fn snapshot<P: IsA<Widget>>(
         &self,
         snapshot: &Snapshot,
@@ -108,6 +133,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     );
 
+    #[doc(alias = "gtk_cell_renderer_start_editing")]
     fn start_editing<P: IsA<gdk::Event>, Q: IsA<Widget>>(
         &self,
         event: Option<&P>,
@@ -118,6 +144,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     ) -> Option<CellEditable>;
 
+    #[doc(alias = "gtk_cell_renderer_stop_editing")]
     fn stop_editing(&self, canceled: bool);
 
     fn set_property_cell_background(&self, cell_background: Option<&str>);

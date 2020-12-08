@@ -31,21 +31,25 @@ glib::glib_wrapper! {
 }
 
 impl Calendar {
+    #[doc(alias = "gtk_calendar_new")]
     pub fn new() -> Calendar {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_calendar_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_calendar_clear_marks")]
     pub fn clear_marks(&self) {
         unsafe {
             ffi::gtk_calendar_clear_marks(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_calendar_get_date")]
     pub fn get_date(&self) -> glib::DateTime {
         unsafe { from_glib_full(ffi::gtk_calendar_get_date(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_calendar_get_day_is_marked")]
     pub fn get_day_is_marked(&self, day: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_day_is_marked(
@@ -55,14 +59,17 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "gtk_calendar_get_show_day_names")]
     pub fn get_show_day_names(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_day_names(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_calendar_get_show_heading")]
     pub fn get_show_heading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_heading(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_calendar_get_show_week_numbers")]
     pub fn get_show_week_numbers(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_show_week_numbers(
@@ -71,36 +78,42 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "gtk_calendar_mark_day")]
     pub fn mark_day(&self, day: u32) {
         unsafe {
             ffi::gtk_calendar_mark_day(self.to_glib_none().0, day);
         }
     }
 
+    #[doc(alias = "gtk_calendar_select_day")]
     pub fn select_day(&self, date: &glib::DateTime) {
         unsafe {
             ffi::gtk_calendar_select_day(self.to_glib_none().0, date.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_calendar_set_show_day_names")]
     pub fn set_show_day_names(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_day_names(self.to_glib_none().0, value.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_calendar_set_show_heading")]
     pub fn set_show_heading(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_heading(self.to_glib_none().0, value.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_calendar_set_show_week_numbers")]
     pub fn set_show_week_numbers(&self, value: bool) {
         unsafe {
             ffi::gtk_calendar_set_show_week_numbers(self.to_glib_none().0, value.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_calendar_unmark_day")]
     pub fn unmark_day(&self, day: u32) {
         unsafe {
             ffi::gtk_calendar_unmark_day(self.to_glib_none().0, day);

@@ -35,7 +35,7 @@ impl ToGlib for SortColumn {
 #[doc(hidden)]
 impl FromGlib<i32> for SortColumn {
     #[inline]
-    fn from_glib(val: i32) -> SortColumn {
+    unsafe fn from_glib(val: i32) -> SortColumn {
         skip_assert_initialized!();
         match val {
             ffi::GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID => SortColumn::Default,

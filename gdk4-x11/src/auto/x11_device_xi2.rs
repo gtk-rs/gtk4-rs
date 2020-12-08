@@ -20,6 +20,7 @@ glib::glib_wrapper! {
 }
 
 impl X11DeviceXI2 {
+    #[doc(alias = "gdk_x11_device_xi2_get_device_type")]
     pub fn get_device_type(&self) -> X11DeviceType {
         unsafe {
             from_glib(ffi::gdk_x11_device_xi2_get_device_type(
@@ -28,6 +29,7 @@ impl X11DeviceXI2 {
         }
     }
 
+    #[doc(alias = "gdk_x11_device_xi2_set_device_type")]
     pub fn set_device_type(&self, type_: X11DeviceType) {
         unsafe {
             ffi::gdk_x11_device_xi2_set_device_type(self.to_glib_none().0, type_.to_glib());

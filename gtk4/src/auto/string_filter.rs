@@ -25,14 +25,17 @@ glib::glib_wrapper! {
 }
 
 impl StringFilter {
+    //#[doc(alias = "gtk_string_filter_new")]
     //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringFilter {
     //    unsafe { TODO: call ffi:gtk_string_filter_new() }
     //}
 
+    //#[doc(alias = "gtk_string_filter_get_expression")]
     //pub fn get_expression(&self) -> /*Ignored*/Expression {
     //    unsafe { TODO: call ffi:gtk_string_filter_get_expression() }
     //}
 
+    #[doc(alias = "gtk_string_filter_get_ignore_case")]
     pub fn get_ignore_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_filter_get_ignore_case(
@@ -41,30 +44,36 @@ impl StringFilter {
         }
     }
 
+    #[doc(alias = "gtk_string_filter_get_match_mode")]
     pub fn get_match_mode(&self) -> StringFilterMatchMode {
         unsafe { from_glib(ffi::gtk_string_filter_get_match_mode(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_string_filter_get_search")]
     pub fn get_search(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_string_filter_get_search(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_string_filter_set_expression")]
     //pub fn set_expression(&self, expression: /*Ignored*/&Expression) {
     //    unsafe { TODO: call ffi:gtk_string_filter_set_expression() }
     //}
 
+    #[doc(alias = "gtk_string_filter_set_ignore_case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
             ffi::gtk_string_filter_set_ignore_case(self.to_glib_none().0, ignore_case.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_string_filter_set_match_mode")]
     pub fn set_match_mode(&self, mode: StringFilterMatchMode) {
         unsafe {
             ffi::gtk_string_filter_set_match_mode(self.to_glib_none().0, mode.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_string_filter_set_search")]
     pub fn set_search(&self, search: Option<&str>) {
         unsafe {
             ffi::gtk_string_filter_set_search(self.to_glib_none().0, search.to_glib_none().0);

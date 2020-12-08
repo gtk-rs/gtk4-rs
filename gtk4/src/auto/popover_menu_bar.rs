@@ -31,6 +31,7 @@ glib::glib_wrapper! {
 }
 
 impl PopoverMenuBar {
+    #[doc(alias = "gtk_popover_menu_bar_new_from_model")]
     pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenuBar {
         assert_initialized_main_thread!();
         unsafe {
@@ -41,6 +42,7 @@ impl PopoverMenuBar {
         }
     }
 
+    #[doc(alias = "gtk_popover_menu_bar_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_bar_add_child(
@@ -51,6 +53,7 @@ impl PopoverMenuBar {
         }
     }
 
+    #[doc(alias = "gtk_popover_menu_bar_get_menu_model")]
     pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_popover_menu_bar_get_menu_model(
@@ -59,6 +62,7 @@ impl PopoverMenuBar {
         }
     }
 
+    #[doc(alias = "gtk_popover_menu_bar_remove_child")]
     pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_bar_remove_child(
@@ -68,6 +72,7 @@ impl PopoverMenuBar {
         }
     }
 
+    #[doc(alias = "gtk_popover_menu_bar_set_menu_model")]
     pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_popover_menu_bar_set_menu_model(

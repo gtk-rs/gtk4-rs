@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl ButtonEvent {
+    #[doc(alias = "gdk_button_event_get_button")]
     pub fn get_button(&self) -> u32 {
         unsafe { ffi::gdk_button_event_get_button(self.to_glib_none().0) }
     }

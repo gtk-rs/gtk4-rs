@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl ContainerNode {
+    #[doc(alias = "gsk_container_node_new")]
     pub fn new(children: &[RenderNode]) -> ContainerNode {
         assert_initialized_main_thread!();
         let n_children = children.len() as u32;
@@ -26,6 +27,7 @@ impl ContainerNode {
         }
     }
 
+    #[doc(alias = "gsk_container_node_get_child")]
     pub fn get_child(&self, idx: u32) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_container_node_get_child(
@@ -35,6 +37,7 @@ impl ContainerNode {
         }
     }
 
+    #[doc(alias = "gsk_container_node_get_n_children")]
     pub fn get_n_children(&self) -> u32 {
         unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
     }

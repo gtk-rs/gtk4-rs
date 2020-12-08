@@ -36,6 +36,7 @@ glib::glib_wrapper! {
 }
 
 impl ApplicationWindow {
+    #[doc(alias = "gtk_application_window_new")]
     pub fn new<P: IsA<Application>>(application: &P) -> ApplicationWindow {
         skip_assert_initialized!();
         unsafe {
@@ -519,14 +520,19 @@ impl ApplicationWindowBuilder {
 pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
 
 pub trait ApplicationWindowExt: 'static {
+    #[doc(alias = "gtk_application_window_get_help_overlay")]
     fn get_help_overlay(&self) -> Option<ShortcutsWindow>;
 
+    #[doc(alias = "gtk_application_window_get_id")]
     fn get_id(&self) -> u32;
 
+    #[doc(alias = "gtk_application_window_get_show_menubar")]
     fn get_show_menubar(&self) -> bool;
 
+    #[doc(alias = "gtk_application_window_set_help_overlay")]
     fn set_help_overlay(&self, help_overlay: Option<&ShortcutsWindow>);
 
+    #[doc(alias = "gtk_application_window_set_show_menubar")]
     fn set_show_menubar(&self, show_menubar: bool);
 
     fn connect_property_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F)

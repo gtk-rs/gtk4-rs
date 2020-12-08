@@ -23,8 +23,10 @@ glib::glib_wrapper! {
 pub const NONE_ORIENTABLE: Option<&Orientable> = None;
 
 pub trait OrientableExt: 'static {
+    #[doc(alias = "gtk_orientable_get_orientation")]
     fn get_orientation(&self) -> Orientation;
 
+    #[doc(alias = "gtk_orientable_set_orientation")]
     fn set_orientation(&self, orientation: Orientation);
 
     fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

@@ -24,6 +24,7 @@ glib::glib_wrapper! {
 }
 
 impl TreeListRowSorter {
+    #[doc(alias = "gtk_tree_list_row_sorter_new")]
     pub fn new<P: IsA<Sorter>>(sorter: Option<&P>) -> TreeListRowSorter {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,6 +34,7 @@ impl TreeListRowSorter {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_row_sorter_get_sorter")]
     pub fn get_sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
@@ -41,6 +43,7 @@ impl TreeListRowSorter {
         }
     }
 
+    #[doc(alias = "gtk_tree_list_row_sorter_set_sorter")]
     pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
         unsafe {
             ffi::gtk_tree_list_row_sorter_set_sorter(

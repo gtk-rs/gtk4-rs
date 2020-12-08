@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl DNDEvent {
+    #[doc(alias = "gdk_dnd_event_get_drop")]
     pub fn get_drop(&self) -> Option<Drop> {
         unsafe { from_glib_none(ffi::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
     }

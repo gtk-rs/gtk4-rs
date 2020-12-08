@@ -39,6 +39,7 @@ glib::glib_wrapper! {
 }
 
 impl GridView {
+    #[doc(alias = "gtk_grid_view_new")]
     pub fn new<P: IsA<SelectionModel>, Q: IsA<ListItemFactory>>(
         model: Option<&P>,
         factory: Option<&Q>,
@@ -53,6 +54,7 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_get_enable_rubberband")]
     pub fn get_enable_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_view_get_enable_rubberband(
@@ -61,22 +63,27 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_get_factory")]
     pub fn get_factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_grid_view_get_factory(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_grid_view_get_max_columns")]
     pub fn get_max_columns(&self) -> u32 {
         unsafe { ffi::gtk_grid_view_get_max_columns(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_grid_view_get_min_columns")]
     pub fn get_min_columns(&self) -> u32 {
         unsafe { ffi::gtk_grid_view_get_min_columns(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_grid_view_get_model")]
     pub fn get_model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_grid_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_grid_view_get_single_click_activate")]
     pub fn get_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_view_get_single_click_activate(
@@ -85,6 +92,7 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
             ffi::gtk_grid_view_set_enable_rubberband(
@@ -94,6 +102,7 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_factory")]
     pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
         unsafe {
             ffi::gtk_grid_view_set_factory(
@@ -103,18 +112,21 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_max_columns")]
     pub fn set_max_columns(&self, max_columns: u32) {
         unsafe {
             ffi::gtk_grid_view_set_max_columns(self.to_glib_none().0, max_columns);
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_min_columns")]
     pub fn set_min_columns(&self, min_columns: u32) {
         unsafe {
             ffi::gtk_grid_view_set_min_columns(self.to_glib_none().0, min_columns);
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_model")]
     pub fn set_model<P: IsA<SelectionModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_grid_view_set_model(
@@ -124,6 +136,7 @@ impl GridView {
         }
     }
 
+    #[doc(alias = "gtk_grid_view_set_single_click_activate")]
     pub fn set_single_click_activate(&self, single_click_activate: bool) {
         unsafe {
             ffi::gtk_grid_view_set_single_click_activate(

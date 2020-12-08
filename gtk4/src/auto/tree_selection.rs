@@ -28,18 +28,22 @@ glib::glib_wrapper! {
 }
 
 impl TreeSelection {
+    #[doc(alias = "gtk_tree_selection_count_selected_rows")]
     pub fn count_selected_rows(&self) -> i32 {
         unsafe { ffi::gtk_tree_selection_count_selected_rows(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_tree_selection_get_mode")]
     pub fn get_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_tree_selection_get_mode(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_tree_selection_get_select_function")]
     //pub fn get_select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
     //    unsafe { TODO: call ffi:gtk_tree_selection_get_select_function() }
     //}
 
+    #[doc(alias = "gtk_tree_selection_get_selected")]
     pub fn get_selected(&self) -> Option<(TreeModel, TreeIter)> {
         unsafe {
             let mut model = ptr::null_mut();
@@ -57,6 +61,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_get_selected_rows")]
     pub fn get_selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
         unsafe {
             let mut model = ptr::null_mut();
@@ -67,14 +72,17 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_get_tree_view")]
     pub fn get_tree_view(&self) -> Option<TreeView> {
         unsafe { from_glib_none(ffi::gtk_tree_selection_get_tree_view(self.to_glib_none().0)) }
     }
 
+    //#[doc(alias = "gtk_tree_selection_get_user_data")]
     //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
     //    unsafe { TODO: call ffi:gtk_tree_selection_get_user_data() }
     //}
 
+    #[doc(alias = "gtk_tree_selection_iter_is_selected")]
     pub fn iter_is_selected(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_selection_iter_is_selected(
@@ -84,6 +92,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_path_is_selected")]
     pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_selection_path_is_selected(
@@ -93,12 +102,14 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_select_all")]
     pub fn select_all(&self) {
         unsafe {
             ffi::gtk_tree_selection_select_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_select_iter")]
     pub fn select_iter(&self, iter: &TreeIter) {
         unsafe {
             ffi::gtk_tree_selection_select_iter(
@@ -108,6 +119,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_select_path")]
     pub fn select_path(&self, path: &TreePath) {
         unsafe {
             ffi::gtk_tree_selection_select_path(
@@ -117,6 +129,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_select_range")]
     pub fn select_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
             ffi::gtk_tree_selection_select_range(
@@ -127,6 +140,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(
@@ -152,12 +166,14 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_set_mode")]
     pub fn set_mode(&self, type_: SelectionMode) {
         unsafe {
             ffi::gtk_tree_selection_set_mode(self.to_glib_none().0, type_.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_set_select_function")]
     pub fn set_select_function(
         &self,
         func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
@@ -210,12 +226,14 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {
             ffi::gtk_tree_selection_unselect_all(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_unselect_iter")]
     pub fn unselect_iter(&self, iter: &TreeIter) {
         unsafe {
             ffi::gtk_tree_selection_unselect_iter(
@@ -225,6 +243,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_unselect_path")]
     pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
             ffi::gtk_tree_selection_unselect_path(
@@ -234,6 +253,7 @@ impl TreeSelection {
         }
     }
 
+    #[doc(alias = "gtk_tree_selection_unselect_range")]
     pub fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
             ffi::gtk_tree_selection_unselect_range(

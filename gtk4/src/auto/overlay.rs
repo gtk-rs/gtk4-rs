@@ -31,21 +31,25 @@ glib::glib_wrapper! {
 }
 
 impl Overlay {
+    #[doc(alias = "gtk_overlay_new")]
     pub fn new() -> Overlay {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_overlay_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_overlay_add_overlay")]
     pub fn add_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_overlay_add_overlay(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_overlay_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_overlay_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_overlay_get_clip_overlay")]
     pub fn get_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_clip_overlay(
@@ -55,6 +59,7 @@ impl Overlay {
         }
     }
 
+    #[doc(alias = "gtk_overlay_get_measure_overlay")]
     pub fn get_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_measure_overlay(
@@ -64,6 +69,7 @@ impl Overlay {
         }
     }
 
+    #[doc(alias = "gtk_overlay_remove_overlay")]
     pub fn remove_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {
             ffi::gtk_overlay_remove_overlay(
@@ -73,6 +79,7 @@ impl Overlay {
         }
     }
 
+    #[doc(alias = "gtk_overlay_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_overlay_set_child(
@@ -82,6 +89,7 @@ impl Overlay {
         }
     }
 
+    #[doc(alias = "gtk_overlay_set_clip_overlay")]
     pub fn set_clip_overlay<P: IsA<Widget>>(&self, widget: &P, clip_overlay: bool) {
         unsafe {
             ffi::gtk_overlay_set_clip_overlay(
@@ -92,6 +100,7 @@ impl Overlay {
         }
     }
 
+    #[doc(alias = "gtk_overlay_set_measure_overlay")]
     pub fn set_measure_overlay<P: IsA<Widget>>(&self, widget: &P, measure: bool) {
         unsafe {
             ffi::gtk_overlay_set_measure_overlay(

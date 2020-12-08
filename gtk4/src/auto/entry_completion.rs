@@ -28,11 +28,13 @@ glib::glib_wrapper! {
 }
 
 impl EntryCompletion {
+    #[doc(alias = "gtk_entry_completion_new")]
     pub fn new() -> EntryCompletion {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_entry_completion_new()) }
     }
 
+    #[doc(alias = "gtk_entry_completion_new_with_area")]
     pub fn with_area<P: IsA<CellArea>>(area: &P) -> EntryCompletion {
         skip_assert_initialized!();
         unsafe {
@@ -42,12 +44,14 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_complete")]
     pub fn complete(&self) {
         unsafe {
             ffi::gtk_entry_completion_complete(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_compute_prefix")]
     pub fn compute_prefix(&self, key: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_entry_completion_compute_prefix(
@@ -57,6 +61,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_completion_prefix")]
     pub fn get_completion_prefix(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_entry_completion_get_completion_prefix(
@@ -65,6 +70,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_inline_completion")]
     pub fn get_inline_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_inline_completion(
@@ -73,6 +79,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_inline_selection")]
     pub fn get_inline_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_inline_selection(
@@ -81,14 +88,17 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_minimum_key_length")]
     pub fn get_minimum_key_length(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_minimum_key_length(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_model")]
     pub fn get_model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_entry_completion_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_popup_completion")]
     pub fn get_popup_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_completion(
@@ -97,6 +107,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_popup_set_width")]
     pub fn get_popup_set_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_set_width(
@@ -105,6 +116,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_popup_single_match")]
     pub fn get_popup_single_match(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_completion_get_popup_single_match(
@@ -113,16 +125,19 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_get_text_column")]
     pub fn get_text_column(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_text_column(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_completion_insert_prefix")]
     pub fn insert_prefix(&self) {
         unsafe {
             ffi::gtk_entry_completion_insert_prefix(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_inline_completion")]
     pub fn set_inline_completion(&self, inline_completion: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_inline_completion(
@@ -132,6 +147,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_inline_selection")]
     pub fn set_inline_selection(&self, inline_selection: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_inline_selection(
@@ -141,6 +157,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_match_func")]
     pub fn set_match_func<P: Fn(&EntryCompletion, &str, &TreeIter) -> bool + 'static>(
         &self,
         func: P,
@@ -181,12 +198,14 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_minimum_key_length")]
     pub fn set_minimum_key_length(&self, length: i32) {
         unsafe {
             ffi::gtk_entry_completion_set_minimum_key_length(self.to_glib_none().0, length);
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_model")]
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_entry_completion_set_model(
@@ -196,6 +215,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_popup_completion")]
     pub fn set_popup_completion(&self, popup_completion: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_completion(
@@ -205,6 +225,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_popup_set_width")]
     pub fn set_popup_set_width(&self, popup_set_width: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_set_width(
@@ -214,6 +235,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_popup_single_match")]
     pub fn set_popup_single_match(&self, popup_single_match: bool) {
         unsafe {
             ffi::gtk_entry_completion_set_popup_single_match(
@@ -223,6 +245,7 @@ impl EntryCompletion {
         }
     }
 
+    #[doc(alias = "gtk_entry_completion_set_text_column")]
     pub fn set_text_column(&self, column: i32) {
         unsafe {
             ffi::gtk_entry_completion_set_text_column(self.to_glib_none().0, column);

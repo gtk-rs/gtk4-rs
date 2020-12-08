@@ -35,6 +35,7 @@ glib::glib_wrapper! {
 }
 
 impl VolumeButton {
+    #[doc(alias = "gtk_volume_button_new")]
     pub fn new() -> VolumeButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_volume_button_new()).unsafe_cast() }

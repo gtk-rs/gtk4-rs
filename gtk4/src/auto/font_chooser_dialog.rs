@@ -34,6 +34,7 @@ glib::glib_wrapper! {
 }
 
 impl FontChooserDialog {
+    #[doc(alias = "gtk_font_chooser_dialog_new")]
     pub fn new<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>) -> FontChooserDialog {
         assert_initialized_main_thread!();
         unsafe {

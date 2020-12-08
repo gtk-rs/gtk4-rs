@@ -34,11 +34,13 @@ glib::glib_wrapper! {
 }
 
 impl CenterBox {
+    #[doc(alias = "gtk_center_box_new")]
     pub fn new() -> CenterBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_center_box_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_center_box_get_baseline_position")]
     pub fn get_baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_center_box_get_baseline_position(
@@ -47,24 +49,29 @@ impl CenterBox {
         }
     }
 
+    #[doc(alias = "gtk_center_box_get_center_widget")]
     pub fn get_center_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_center_box_get_center_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_center_box_get_end_widget")]
     pub fn get_end_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_center_box_get_end_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_center_box_get_start_widget")]
     pub fn get_start_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_center_box_get_start_widget(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_center_box_set_baseline_position")]
     pub fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
             ffi::gtk_center_box_set_baseline_position(self.to_glib_none().0, position.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_center_box_set_center_widget")]
     pub fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_center_box_set_center_widget(
@@ -74,6 +81,7 @@ impl CenterBox {
         }
     }
 
+    #[doc(alias = "gtk_center_box_set_end_widget")]
     pub fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_center_box_set_end_widget(
@@ -83,6 +91,7 @@ impl CenterBox {
         }
     }
 
+    #[doc(alias = "gtk_center_box_set_start_widget")]
     pub fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_center_box_set_start_widget(

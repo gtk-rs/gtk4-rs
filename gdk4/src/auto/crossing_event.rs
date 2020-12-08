@@ -17,14 +17,17 @@ glib::glib_wrapper! {
 }
 
 impl CrossingEvent {
+    #[doc(alias = "gdk_crossing_event_get_detail")]
     pub fn get_detail(&self) -> NotifyType {
         unsafe { from_glib(ffi::gdk_crossing_event_get_detail(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_crossing_event_get_focus")]
     pub fn get_focus(&self) -> bool {
         unsafe { from_glib(ffi::gdk_crossing_event_get_focus(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_crossing_event_get_mode")]
     pub fn get_mode(&self) -> CrossingMode {
         unsafe { from_glib(ffi::gdk_crossing_event_get_mode(self.to_glib_none().0)) }
     }

@@ -25,6 +25,7 @@ glib::glib_wrapper! {
 }
 
 impl TextTag {
+    #[doc(alias = "gtk_text_tag_new")]
     pub fn new(name: Option<&str>) -> TextTag {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_text_tag_new(name.to_glib_none().0)) }
@@ -782,10 +783,13 @@ impl TextTagBuilder {
 pub const NONE_TEXT_TAG: Option<&TextTag> = None;
 
 pub trait TextTagExt: 'static {
+    #[doc(alias = "gtk_text_tag_changed")]
     fn changed(&self, size_changed: bool);
 
+    #[doc(alias = "gtk_text_tag_get_priority")]
     fn get_priority(&self) -> i32;
 
+    #[doc(alias = "gtk_text_tag_set_priority")]
     fn set_priority(&self, priority: i32);
 
     fn get_property_accumulative_margin(&self) -> bool;

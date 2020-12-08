@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl MapListModel {
+    #[doc(alias = "gtk_map_list_model_new")]
     pub fn new<P: IsA<gio::ListModel>>(
         model: Option<&P>,
         map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
@@ -66,14 +67,17 @@ impl MapListModel {
         }
     }
 
+    #[doc(alias = "gtk_map_list_model_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_map_list_model_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_map_list_model_has_map")]
     pub fn has_map(&self) -> bool {
         unsafe { from_glib(ffi::gtk_map_list_model_has_map(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_map_list_model_set_map_func")]
     pub fn set_map_func(
         &self,
         map_func: Option<Box_<dyn Fn(&glib::Object) -> glib::Object + 'static>>,
@@ -116,6 +120,7 @@ impl MapListModel {
         }
     }
 
+    #[doc(alias = "gtk_map_list_model_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_map_list_model_set_model(

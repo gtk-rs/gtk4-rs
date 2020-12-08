@@ -92,7 +92,7 @@ impl ToGlib for BlendMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskBlendMode> for BlendMode {
-    fn from_glib(value: ffi::GskBlendMode) -> Self {
+    unsafe fn from_glib(value: ffi::GskBlendMode) -> Self {
         skip_assert_initialized!();
         match value {
             0 => BlendMode::Default,
@@ -184,7 +184,7 @@ impl ToGlib for Corner {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskCorner> for Corner {
-    fn from_glib(value: ffi::GskCorner) -> Self {
+    unsafe fn from_glib(value: ffi::GskCorner) -> Self {
         skip_assert_initialized!();
         match value {
             0 => Corner::TopLeft,
@@ -327,7 +327,7 @@ impl ToGlib for RenderNodeType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
-    fn from_glib(value: ffi::GskRenderNodeType) -> Self {
+    unsafe fn from_glib(value: ffi::GskRenderNodeType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => RenderNodeType::NotARenderNode,
@@ -425,7 +425,7 @@ impl ToGlib for ScalingFilter {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
-    fn from_glib(value: ffi::GskScalingFilter) -> Self {
+    unsafe fn from_glib(value: ffi::GskScalingFilter) -> Self {
         skip_assert_initialized!();
         match value {
             0 => ScalingFilter::Linear,
@@ -501,7 +501,7 @@ impl ToGlib for SerializationError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskSerializationError> for SerializationError {
-    fn from_glib(value: ffi::GskSerializationError) -> Self {
+    unsafe fn from_glib(value: ffi::GskSerializationError) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SerializationError::UnsupportedFormat,
@@ -611,7 +611,7 @@ impl ToGlib for TransformCategory {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
-    fn from_glib(value: ffi::GskTransformCategory) -> Self {
+    unsafe fn from_glib(value: ffi::GskTransformCategory) -> Self {
         skip_assert_initialized!();
         match value {
             0 => TransformCategory::Unknown,

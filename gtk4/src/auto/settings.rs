@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl Settings {
+    #[doc(alias = "gtk_settings_reset_property")]
     pub fn reset_property(&self, name: &str) {
         unsafe {
             ffi::gtk_settings_reset_property(self.to_glib_none().0, name.to_glib_none().0);
@@ -1288,11 +1289,13 @@ impl Settings {
         }
     }
 
+    #[doc(alias = "gtk_settings_get_default")]
     pub fn get_default() -> Option<Settings> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_settings_get_default()) }
     }
 
+    #[doc(alias = "gtk_settings_get_for_display")]
     pub fn get_for_display(display: &gdk::Display) -> Settings {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_settings_get_for_display(display.to_glib_none().0)) }

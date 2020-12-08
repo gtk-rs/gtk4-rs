@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl CustomFilter {
+    #[doc(alias = "gtk_custom_filter_new")]
     pub fn new(match_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>) -> CustomFilter {
         assert_initialized_main_thread!();
         let match_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>> =
@@ -55,6 +56,7 @@ impl CustomFilter {
         }
     }
 
+    #[doc(alias = "gtk_custom_filter_set_filter_func")]
     pub fn set_filter_func(
         &self,
         match_func: Option<Box_<dyn Fn(&glib::Object) -> bool + 'static>>,

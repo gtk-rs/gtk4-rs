@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl PadController {
+    #[doc(alias = "gtk_pad_controller_new")]
     pub fn new<P: IsA<gio::ActionGroup>>(group: &P, pad: Option<&gdk::Device>) -> PadController {
         assert_initialized_main_thread!();
         unsafe {
@@ -33,6 +34,7 @@ impl PadController {
         }
     }
 
+    #[doc(alias = "gtk_pad_controller_set_action")]
     pub fn set_action(
         &self,
         type_: PadActionType,

@@ -30,18 +30,21 @@ glib::glib_wrapper! {
 }
 
 impl Display {
+    #[doc(alias = "gdk_display_beep")]
     pub fn beep(&self) {
         unsafe {
             ffi::gdk_display_beep(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_close")]
     pub fn close(&self) {
         unsafe {
             ffi::gdk_display_close(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_device_is_grabbed")]
     pub fn device_is_grabbed(&self, device: &Device) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_device_is_grabbed(
@@ -51,12 +54,14 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_flush")]
     pub fn flush(&self) {
         unsafe {
             ffi::gdk_display_flush(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_get_app_launch_context")]
     pub fn get_app_launch_context(&self) -> AppLaunchContext {
         unsafe {
             from_glib_full(ffi::gdk_display_get_app_launch_context(
@@ -65,14 +70,17 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_get_clipboard")]
     pub fn get_clipboard(&self) -> Clipboard {
         unsafe { from_glib_none(ffi::gdk_display_get_clipboard(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_get_default_seat")]
     pub fn get_default_seat(&self) -> Seat {
         unsafe { from_glib_none(ffi::gdk_display_get_default_seat(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_get_monitor_at_surface")]
     pub fn get_monitor_at_surface(&self, surface: &Surface) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
@@ -82,14 +90,17 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_get_monitors")]
     pub fn get_monitors(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gdk_display_get_monitors(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_get_name")]
     pub fn get_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_display_get_name(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_get_primary_clipboard")]
     pub fn get_primary_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(ffi::gdk_display_get_primary_clipboard(
@@ -98,6 +109,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_get_setting")]
     pub fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_get_setting(
@@ -108,6 +120,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_get_startup_notification_id")]
     pub fn get_startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_startup_notification_id(
@@ -116,18 +129,22 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_is_closed")]
     pub fn is_closed(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_closed(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_is_composited")]
     pub fn is_composited(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_composited(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_is_rgba")]
     pub fn is_rgba(&self) -> bool {
         unsafe { from_glib(ffi::gdk_display_is_rgba(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_display_list_seats")]
     pub fn list_seats(&self) -> Vec<Seat> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_display_list_seats(
@@ -136,6 +153,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_notify_startup_complete")]
     pub fn notify_startup_complete(&self, startup_id: &str) {
         unsafe {
             ffi::gdk_display_notify_startup_complete(
@@ -145,12 +163,14 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_put_event")]
     pub fn put_event<P: IsA<Event>>(&self, event: &P) {
         unsafe {
             ffi::gdk_display_put_event(self.to_glib_none().0, event.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_supports_input_shapes")]
     pub fn supports_input_shapes(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_supports_input_shapes(
@@ -159,12 +179,14 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_sync")]
     pub fn sync(&self) {
         unsafe {
             ffi::gdk_display_sync(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_display_translate_key")]
     pub fn translate_key(
         &self,
         keycode: u32,
@@ -243,11 +265,13 @@ impl Display {
         }
     }
 
+    #[doc(alias = "gdk_display_get_default")]
     pub fn get_default() -> Option<Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_get_default()) }
     }
 
+    #[doc(alias = "gdk_display_open")]
     pub fn open(display_name: &str) -> Option<Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_open(display_name.to_glib_none().0)) }

@@ -39,11 +39,13 @@ glib::glib_wrapper! {
 }
 
 impl Assistant {
+    #[doc(alias = "gtk_assistant_new")]
     pub fn new() -> Assistant {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_assistant_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "gtk_assistant_add_action_widget")]
     pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_assistant_add_action_widget(
@@ -53,26 +55,31 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_append_page")]
     pub fn append_page<P: IsA<Widget>>(&self, page: &P) -> i32 {
         unsafe {
             ffi::gtk_assistant_append_page(self.to_glib_none().0, page.as_ref().to_glib_none().0)
         }
     }
 
+    #[doc(alias = "gtk_assistant_commit")]
     pub fn commit(&self) {
         unsafe {
             ffi::gtk_assistant_commit(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_current_page")]
     pub fn get_current_page(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_current_page(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_assistant_get_n_pages")]
     pub fn get_n_pages(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_n_pages(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_assistant_get_nth_page")]
     pub fn get_nth_page(&self, page_num: i32) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_nth_page(
@@ -82,6 +89,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_page")]
     pub fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<AssistantPage> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page(
@@ -91,6 +99,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_page_complete")]
     pub fn get_page_complete<P: IsA<Widget>>(&self, page: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_assistant_get_page_complete(
@@ -100,6 +109,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_page_title")]
     pub fn get_page_title<P: IsA<Widget>>(&self, page: &P) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page_title(
@@ -109,6 +119,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_page_type")]
     pub fn get_page_type<P: IsA<Widget>>(&self, page: &P) -> AssistantPageType {
         unsafe {
             from_glib(ffi::gtk_assistant_get_page_type(
@@ -118,10 +129,12 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_get_pages")]
     pub fn get_pages(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_full(ffi::gtk_assistant_get_pages(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_assistant_insert_page")]
     pub fn insert_page<P: IsA<Widget>>(&self, page: &P, position: i32) -> i32 {
         unsafe {
             ffi::gtk_assistant_insert_page(
@@ -132,24 +145,28 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_next_page")]
     pub fn next_page(&self) {
         unsafe {
             ffi::gtk_assistant_next_page(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_assistant_prepend_page")]
     pub fn prepend_page<P: IsA<Widget>>(&self, page: &P) -> i32 {
         unsafe {
             ffi::gtk_assistant_prepend_page(self.to_glib_none().0, page.as_ref().to_glib_none().0)
         }
     }
 
+    #[doc(alias = "gtk_assistant_previous_page")]
     pub fn previous_page(&self) {
         unsafe {
             ffi::gtk_assistant_previous_page(self.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_assistant_remove_action_widget")]
     pub fn remove_action_widget<P: IsA<Widget>>(&self, child: &P) {
         unsafe {
             ffi::gtk_assistant_remove_action_widget(
@@ -159,18 +176,21 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_remove_page")]
     pub fn remove_page(&self, page_num: i32) {
         unsafe {
             ffi::gtk_assistant_remove_page(self.to_glib_none().0, page_num);
         }
     }
 
+    #[doc(alias = "gtk_assistant_set_current_page")]
     pub fn set_current_page(&self, page_num: i32) {
         unsafe {
             ffi::gtk_assistant_set_current_page(self.to_glib_none().0, page_num);
         }
     }
 
+    #[doc(alias = "gtk_assistant_set_forward_page_func")]
     pub fn set_forward_page_func(&self, page_func: Option<Box_<dyn Fn(i32) -> i32 + 'static>>) {
         let page_func_data: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> = Box_::new(page_func);
         unsafe extern "C" fn page_func_func(
@@ -206,6 +226,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_set_page_complete")]
     pub fn set_page_complete<P: IsA<Widget>>(&self, page: &P, complete: bool) {
         unsafe {
             ffi::gtk_assistant_set_page_complete(
@@ -216,6 +237,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_set_page_title")]
     pub fn set_page_title<P: IsA<Widget>>(&self, page: &P, title: &str) {
         unsafe {
             ffi::gtk_assistant_set_page_title(
@@ -226,6 +248,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_set_page_type")]
     pub fn set_page_type<P: IsA<Widget>>(&self, page: &P, type_: AssistantPageType) {
         unsafe {
             ffi::gtk_assistant_set_page_type(
@@ -236,6 +259,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "gtk_assistant_update_buttons_state")]
     pub fn update_buttons_state(&self) {
         unsafe {
             ffi::gtk_assistant_update_buttons_state(self.to_glib_none().0);

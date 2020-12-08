@@ -31,6 +31,7 @@ glib::glib_wrapper! {
 }
 
 impl AspectFrame {
+    #[doc(alias = "gtk_aspect_frame_new")]
     pub fn new(xalign: f32, yalign: f32, ratio: f32, obey_child: bool) -> AspectFrame {
         assert_initialized_main_thread!();
         unsafe {
@@ -44,26 +45,32 @@ impl AspectFrame {
         }
     }
 
+    #[doc(alias = "gtk_aspect_frame_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_aspect_frame_get_obey_child")]
     pub fn get_obey_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_aspect_frame_get_obey_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_aspect_frame_get_ratio")]
     pub fn get_ratio(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_aspect_frame_get_xalign")]
     pub fn get_xalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_aspect_frame_get_yalign")]
     pub fn get_yalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_aspect_frame_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_aspect_frame_set_child(
@@ -73,24 +80,28 @@ impl AspectFrame {
         }
     }
 
+    #[doc(alias = "gtk_aspect_frame_set_obey_child")]
     pub fn set_obey_child(&self, obey_child: bool) {
         unsafe {
             ffi::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.to_glib());
         }
     }
 
+    #[doc(alias = "gtk_aspect_frame_set_ratio")]
     pub fn set_ratio(&self, ratio: f32) {
         unsafe {
             ffi::gtk_aspect_frame_set_ratio(self.to_glib_none().0, ratio);
         }
     }
 
+    #[doc(alias = "gtk_aspect_frame_set_xalign")]
     pub fn set_xalign(&self, xalign: f32) {
         unsafe {
             ffi::gtk_aspect_frame_set_xalign(self.to_glib_none().0, xalign);
         }
     }
 
+    #[doc(alias = "gtk_aspect_frame_set_yalign")]
     pub fn set_yalign(&self, yalign: f32) {
         unsafe {
             ffi::gtk_aspect_frame_set_yalign(self.to_glib_none().0, yalign);

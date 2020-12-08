@@ -32,6 +32,7 @@ glib::glib_wrapper! {
 }
 
 impl ListBoxRow {
+    #[doc(alias = "gtk_list_box_row_new")]
     pub fn new() -> ListBoxRow {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_list_box_row_new()).unsafe_cast() }
@@ -372,26 +373,37 @@ impl ListBoxRowBuilder {
 pub const NONE_LIST_BOX_ROW: Option<&ListBoxRow> = None;
 
 pub trait ListBoxRowExt: 'static {
+    #[doc(alias = "gtk_list_box_row_changed")]
     fn changed(&self);
 
+    #[doc(alias = "gtk_list_box_row_get_activatable")]
     fn get_activatable(&self) -> bool;
 
+    #[doc(alias = "gtk_list_box_row_get_child")]
     fn get_child(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_list_box_row_get_header")]
     fn get_header(&self) -> Option<Widget>;
 
+    #[doc(alias = "gtk_list_box_row_get_index")]
     fn get_index(&self) -> i32;
 
+    #[doc(alias = "gtk_list_box_row_get_selectable")]
     fn get_selectable(&self) -> bool;
 
+    #[doc(alias = "gtk_list_box_row_is_selected")]
     fn is_selected(&self) -> bool;
 
+    #[doc(alias = "gtk_list_box_row_set_activatable")]
     fn set_activatable(&self, activatable: bool);
 
+    #[doc(alias = "gtk_list_box_row_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "gtk_list_box_row_set_header")]
     fn set_header<P: IsA<Widget>>(&self, header: Option<&P>);
 
+    #[doc(alias = "gtk_list_box_row_set_selectable")]
     fn set_selectable(&self, selectable: bool);
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;

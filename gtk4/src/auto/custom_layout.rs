@@ -15,6 +15,7 @@ glib::glib_wrapper! {
 }
 
 impl CustomLayout {
+    //#[doc(alias = "gtk_custom_layout_new")]
     //pub fn new<P: FnMut(&Widget, &Orientation, i32, i32, i32, i32, i32), Q: FnMut(&Widget, i32, i32, i32)>(request_mode: Option<&mut dyn (FnMut(&Widget) -> SizeRequestMode)>, measure: P, allocate: Q) -> CustomLayout {
     //    unsafe { TODO: call ffi:gtk_custom_layout_new() }
     //}

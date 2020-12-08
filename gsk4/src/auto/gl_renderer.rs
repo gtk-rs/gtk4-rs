@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl GLRenderer {
+    #[doc(alias = "gsk_gl_renderer_new")]
     pub fn new() -> GLRenderer {
         assert_initialized_main_thread!();
         unsafe { Renderer::from_glib_full(ffi::gsk_gl_renderer_new()).unsafe_cast() }

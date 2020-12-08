@@ -46,7 +46,7 @@ impl ToGlib for X11DeviceType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkX11DeviceType> for X11DeviceType {
-    fn from_glib(value: ffi::GdkX11DeviceType) -> Self {
+    unsafe fn from_glib(value: ffi::GdkX11DeviceType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => X11DeviceType::Logical,

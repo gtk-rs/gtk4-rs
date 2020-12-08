@@ -23,6 +23,7 @@ glib::glib_wrapper! {
 }
 
 impl SliceListModel {
+    #[doc(alias = "gtk_slice_list_model_new")]
     pub fn new<P: IsA<gio::ListModel>>(
         model: Option<&P>,
         offset: u32,
@@ -38,18 +39,22 @@ impl SliceListModel {
         }
     }
 
+    #[doc(alias = "gtk_slice_list_model_get_model")]
     pub fn get_model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_slice_list_model_get_model(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_slice_list_model_get_offset")]
     pub fn get_offset(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_offset(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_slice_list_model_get_size")]
     pub fn get_size(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_size(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_slice_list_model_set_model")]
     pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
         unsafe {
             ffi::gtk_slice_list_model_set_model(
@@ -59,12 +64,14 @@ impl SliceListModel {
         }
     }
 
+    #[doc(alias = "gtk_slice_list_model_set_offset")]
     pub fn set_offset(&self, offset: u32) {
         unsafe {
             ffi::gtk_slice_list_model_set_offset(self.to_glib_none().0, offset);
         }
     }
 
+    #[doc(alias = "gtk_slice_list_model_set_size")]
     pub fn set_size(&self, size: u32) {
         unsafe {
             ffi::gtk_slice_list_model_set_size(self.to_glib_none().0, size);

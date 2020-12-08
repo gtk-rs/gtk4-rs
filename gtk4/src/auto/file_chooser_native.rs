@@ -28,6 +28,7 @@ glib::glib_wrapper! {
 }
 
 impl FileChooserNative {
+    #[doc(alias = "gtk_file_chooser_native_new")]
     pub fn new<P: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&P>,
@@ -47,6 +48,7 @@ impl FileChooserNative {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_native_get_accept_label")]
     pub fn get_accept_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_accept_label(
@@ -55,6 +57,7 @@ impl FileChooserNative {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_native_get_cancel_label")]
     pub fn get_cancel_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_cancel_label(
@@ -63,6 +66,7 @@ impl FileChooserNative {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_native_set_accept_label")]
     pub fn set_accept_label(&self, accept_label: Option<&str>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_accept_label(
@@ -72,6 +76,7 @@ impl FileChooserNative {
         }
     }
 
+    #[doc(alias = "gtk_file_chooser_native_set_cancel_label")]
     pub fn set_cancel_label(&self, cancel_label: Option<&str>) {
         unsafe {
             ffi::gtk_file_chooser_native_set_cancel_label(

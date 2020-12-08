@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl ShortcutAction {
+    #[doc(alias = "gtk_shortcut_action_parse_string")]
     pub fn parse_string(string: &str) -> Option<ShortcutAction> {
         assert_initialized_main_thread!();
         unsafe {
@@ -37,6 +38,7 @@ impl fmt::Display for ShortcutAction {
 pub const NONE_SHORTCUT_ACTION: Option<&ShortcutAction> = None;
 
 pub trait ShortcutActionExt: 'static {
+    #[doc(alias = "gtk_shortcut_action_activate")]
     fn activate<P: IsA<Widget>>(
         &self,
         flags: ShortcutActionFlags,
@@ -44,8 +46,10 @@ pub trait ShortcutActionExt: 'static {
         args: Option<&glib::Variant>,
     ) -> bool;
 
+    #[doc(alias = "gtk_shortcut_action_print")]
     fn print(&self, string: &mut glib::String);
 
+    #[doc(alias = "gtk_shortcut_action_to_string")]
     fn to_str(&self) -> glib::GString;
 }
 

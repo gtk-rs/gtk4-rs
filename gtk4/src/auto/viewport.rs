@@ -34,6 +34,7 @@ glib::glib_wrapper! {
 }
 
 impl Viewport {
+    #[doc(alias = "gtk_viewport_new")]
     pub fn new<P: IsA<Adjustment>, Q: IsA<Adjustment>>(
         hadjustment: Option<&P>,
         vadjustment: Option<&Q>,
@@ -48,14 +49,17 @@ impl Viewport {
         }
     }
 
+    #[doc(alias = "gtk_viewport_get_child")]
     pub fn get_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_viewport_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_viewport_get_scroll_to_focus")]
     pub fn get_scroll_to_focus(&self) -> bool {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_viewport_set_child")]
     pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
         unsafe {
             ffi::gtk_viewport_set_child(
@@ -65,6 +69,7 @@ impl Viewport {
         }
     }
 
+    #[doc(alias = "gtk_viewport_set_scroll_to_focus")]
     pub fn set_scroll_to_focus(&self, scroll_to_focus: bool) {
         unsafe {
             ffi::gtk_viewport_set_scroll_to_focus(self.to_glib_none().0, scroll_to_focus.to_glib());

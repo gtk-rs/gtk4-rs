@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl BinLayout {
+    #[doc(alias = "gtk_bin_layout_new")]
     pub fn new() -> BinLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_bin_layout_new()).unsafe_cast() }

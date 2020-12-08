@@ -21,6 +21,7 @@ glib::glib_wrapper! {
 }
 
 impl Constraint {
+    #[doc(alias = "gtk_constraint_new")]
     pub fn new<P: IsA<ConstraintTarget>, Q: IsA<ConstraintTarget>>(
         target: Option<&P>,
         target_attribute: ConstraintAttribute,
@@ -46,6 +47,7 @@ impl Constraint {
         }
     }
 
+    #[doc(alias = "gtk_constraint_new_constant")]
     pub fn new_constant<P: IsA<ConstraintTarget>>(
         target: Option<&P>,
         target_attribute: ConstraintAttribute,
@@ -65,22 +67,27 @@ impl Constraint {
         }
     }
 
+    #[doc(alias = "gtk_constraint_get_constant")]
     pub fn get_constant(&self) -> f64 {
         unsafe { ffi::gtk_constraint_get_constant(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_constraint_get_multiplier")]
     pub fn get_multiplier(&self) -> f64 {
         unsafe { ffi::gtk_constraint_get_multiplier(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_constraint_get_relation")]
     pub fn get_relation(&self) -> ConstraintRelation {
         unsafe { from_glib(ffi::gtk_constraint_get_relation(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_get_source")]
     pub fn get_source(&self) -> Option<ConstraintTarget> {
         unsafe { from_glib_none(ffi::gtk_constraint_get_source(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_get_source_attribute")]
     pub fn get_source_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_source_attribute(
@@ -89,14 +96,17 @@ impl Constraint {
         }
     }
 
+    #[doc(alias = "gtk_constraint_get_strength")]
     pub fn get_strength(&self) -> i32 {
         unsafe { ffi::gtk_constraint_get_strength(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_constraint_get_target")]
     pub fn get_target(&self) -> Option<ConstraintTarget> {
         unsafe { from_glib_none(ffi::gtk_constraint_get_target(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_get_target_attribute")]
     pub fn get_target_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_target_attribute(
@@ -105,14 +115,17 @@ impl Constraint {
         }
     }
 
+    #[doc(alias = "gtk_constraint_is_attached")]
     pub fn is_attached(&self) -> bool {
         unsafe { from_glib(ffi::gtk_constraint_is_attached(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_is_constant")]
     pub fn is_constant(&self) -> bool {
         unsafe { from_glib(ffi::gtk_constraint_is_constant(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_constraint_is_required")]
     pub fn is_required(&self) -> bool {
         unsafe { from_glib(ffi::gtk_constraint_is_required(self.to_glib_none().0)) }
     }

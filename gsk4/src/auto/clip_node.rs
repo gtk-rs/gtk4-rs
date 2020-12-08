@@ -16,6 +16,7 @@ glib::glib_wrapper! {
 }
 
 impl ClipNode {
+    #[doc(alias = "gsk_clip_node_new")]
     pub fn new<P: IsA<RenderNode>>(child: &P, clip: &graphene::Rect) -> ClipNode {
         skip_assert_initialized!();
         unsafe {
@@ -26,10 +27,12 @@ impl ClipNode {
         }
     }
 
+    #[doc(alias = "gsk_clip_node_get_child")]
     pub fn get_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_clip_node_get_child(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_clip_node_peek_clip")]
     pub fn peek_clip(&self) -> Option<graphene::Rect> {
         unsafe { from_glib_none(ffi::gsk_clip_node_peek_clip(self.to_glib_none().0)) }
     }

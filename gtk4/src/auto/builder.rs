@@ -26,11 +26,13 @@ glib::glib_wrapper! {
 }
 
 impl Builder {
+    #[doc(alias = "gtk_builder_new")]
     pub fn new() -> Builder {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_builder_new()) }
     }
 
+    #[doc(alias = "gtk_builder_new_from_resource")]
     pub fn from_resource(resource_path: &str) -> Builder {
         assert_initialized_main_thread!();
         unsafe {
@@ -40,6 +42,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_new_from_string")]
     pub fn from_string(string: &str) -> Builder {
         assert_initialized_main_thread!();
         let length = string.len() as isize;
@@ -51,6 +54,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_add_from_resource")]
     pub fn add_from_resource(&self, resource_path: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -67,6 +71,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_add_from_string")]
     pub fn add_from_string(&self, buffer: &str) -> Result<(), glib::Error> {
         let length = buffer.len() as isize;
         unsafe {
@@ -85,6 +90,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_add_objects_from_resource")]
     pub fn add_objects_from_resource(
         &self,
         resource_path: &str,
@@ -106,6 +112,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_add_objects_from_string")]
     pub fn add_objects_from_string(
         &self,
         buffer: &str,
@@ -129,6 +136,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_create_closure")]
     pub fn create_closure<P: IsA<glib::Object>>(
         &self,
         function_name: &str,
@@ -152,6 +160,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_expose_object")]
     pub fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P) {
         unsafe {
             ffi::gtk_builder_expose_object(
@@ -162,6 +171,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_extend_with_template")]
     pub fn extend_with_template<P: IsA<glib::Object>>(
         &self,
         object: &P,
@@ -187,10 +197,12 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_get_current_object")]
     pub fn get_current_object(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_builder_get_current_object(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_builder_get_objects")]
     pub fn get_objects(&self) -> Vec<glib::Object> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_builder_get_objects(
@@ -199,10 +211,12 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_get_scope")]
     pub fn get_scope(&self) -> BuilderScope {
         unsafe { from_glib_none(ffi::gtk_builder_get_scope(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_builder_get_translation_domain")]
     pub fn get_translation_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_get_translation_domain(
@@ -211,6 +225,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_get_type_from_name")]
     pub fn get_type_from_name(&self, type_name: &str) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gtk_builder_get_type_from_name(
@@ -220,6 +235,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_set_current_object")]
     pub fn set_current_object<P: IsA<glib::Object>>(&self, current_object: Option<&P>) {
         unsafe {
             ffi::gtk_builder_set_current_object(
@@ -229,6 +245,7 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_set_scope")]
     pub fn set_scope<P: IsA<BuilderScope>>(&self, scope: Option<&P>) {
         unsafe {
             ffi::gtk_builder_set_scope(
@@ -238,16 +255,19 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_set_translation_domain")]
     pub fn set_translation_domain(&self, domain: Option<&str>) {
         unsafe {
             ffi::gtk_builder_set_translation_domain(self.to_glib_none().0, domain.to_glib_none().0);
         }
     }
 
+    //#[doc(alias = "gtk_builder_value_from_string")]
     //pub fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, glib::Error> {
     //    unsafe { TODO: call ffi:gtk_builder_value_from_string() }
     //}
 
+    #[doc(alias = "gtk_builder_value_from_string_type")]
     pub fn value_from_string_type(
         &self,
         type_: glib::types::Type,

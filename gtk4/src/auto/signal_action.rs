@@ -18,11 +18,13 @@ glib::glib_wrapper! {
 }
 
 impl SignalAction {
+    #[doc(alias = "gtk_signal_action_new")]
     pub fn new(signal_name: &str) -> SignalAction {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_signal_action_new(signal_name.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_signal_action_get_signal_name")]
     pub fn get_signal_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_signal_action_get_signal_name(

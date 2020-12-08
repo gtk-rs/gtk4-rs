@@ -54,24 +54,34 @@ impl CellAreaContextBuilder {
 pub const NONE_CELL_AREA_CONTEXT: Option<&CellAreaContext> = None;
 
 pub trait CellAreaContextExt: 'static {
+    #[doc(alias = "gtk_cell_area_context_allocate")]
     fn allocate(&self, width: i32, height: i32);
 
+    #[doc(alias = "gtk_cell_area_context_get_allocation")]
     fn get_allocation(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_context_get_area")]
     fn get_area(&self) -> Option<CellArea>;
 
+    #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
     fn get_preferred_height(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
     fn get_preferred_height_for_width(&self, width: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
     fn get_preferred_width(&self) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
     fn get_preferred_width_for_height(&self, height: i32) -> (i32, i32);
 
+    #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
     fn push_preferred_height(&self, minimum_height: i32, natural_height: i32);
 
+    #[doc(alias = "gtk_cell_area_context_push_preferred_width")]
     fn push_preferred_width(&self, minimum_width: i32, natural_width: i32);
 
+    #[doc(alias = "gtk_cell_area_context_reset")]
     fn reset(&self);
 
     fn get_property_minimum_height(&self) -> i32;
