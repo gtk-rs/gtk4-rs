@@ -1743,6 +1743,10 @@ trust_return_value_nullability = false
     name = "append_repeating_radial_gradient"
     #manual
     ignore = true
+    [[object.function]]
+    name = "append_conic_gradient"
+    #manual
+    ignore = true
 
 [[object]]
 name = "Gtk.SortListModel"
