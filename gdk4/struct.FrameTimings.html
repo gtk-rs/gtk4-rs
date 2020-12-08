@@ -7,7 +7,7 @@ use <code>FrameClock::get_timings</code> or <code>FrameClock::get_current_timing
 The information in <code>FrameTimings</code> is useful for precise synchronization
 of video with the event or audio streams, and for measuring
 quality metrics for the application’s display, such as latency and jitter.</p>
-</div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="../gdk4/struct.FrameTimings.html" title="struct gdk4::FrameTimings">FrameTimings</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#24-108" title="goto source code">[src]</a></h3><div class="impl-items"><h4 id="method.get_complete" class="method"><code>pub fn <a href="#method.get_complete" class="fnname">get_complete</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#39-41" title="goto source code">[src]</a></h4><div class="docblock"><p>The timing information in a <code>FrameTimings</code> is filled in
+</div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="../gdk4/struct.FrameTimings.html" title="struct gdk4::FrameTimings">FrameTimings</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#24-114" title="goto source code">[src]</a></h3><div class="impl-items"><h4 id="method.get_complete" class="method"><code>pub fn <a href="#method.get_complete" class="fnname">get_complete</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#40-42" title="goto source code">[src]</a></h4><div class="docblock"><p>The timing information in a <code>FrameTimings</code> is filled in
 incrementally as the frame as drawn and passed off to the
 window system for processing and display to the user. The
 accessor functions for <code>FrameTimings</code> can return 0 to
@@ -19,17 +19,17 @@ will become available and be stored in the <code>FrameTimings</code>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p><code>true</code> if all information that will be available
 for the frame has been filled in.</p>
-</div><h4 id="method.get_frame_counter" class="method"><code>pub fn <a href="#method.get_frame_counter" class="fnname">get_frame_counter</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#49-51" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the frame counter value of the <code>FrameClock</code> when this
+</div><h4 id="method.get_frame_counter" class="method"><code>pub fn <a href="#method.get_frame_counter" class="fnname">get_frame_counter</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#51-53" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the frame counter value of the <code>FrameClock</code> when this
 this frame was drawn.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>the frame counter value for this frame</p>
-</div><h4 id="method.get_frame_time" class="method"><code>pub fn <a href="#method.get_frame_time" class="fnname">get_frame_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#61-63" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the frame time for the frame. This is the time value
+</div><h4 id="method.get_frame_time" class="method"><code>pub fn <a href="#method.get_frame_time" class="fnname">get_frame_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#64-66" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the frame time for the frame. This is the time value
 that is typically used to time animations for the frame. See
 <code>FrameClock::get_frame_time</code>.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the frame time for the frame, in the timescale
 of <code>g_get_monotonic_time</code></p>
-</div><h4 id="method.get_predicted_presentation_time" class="method"><code>pub fn <a href="#method.get_predicted_presentation_time" class="fnname">get_predicted_presentation_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#80-82" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the predicted time at which this frame will be displayed. Although
+</div><h4 id="method.get_predicted_presentation_time" class="method"><code>pub fn <a href="#method.get_predicted_presentation_time" class="fnname">get_predicted_presentation_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#84-86" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the predicted time at which this frame will be displayed. Although
 no predicted time may be available, if one is available, it will
 be available while the frame is being generated, in contrast to
 <code>FrameTimings::get_presentation_time</code>, which is only available
@@ -42,13 +42,13 @@ may want this information for Audio/Video synchronization.</p>
 <p>The predicted time at which the frame will be presented,
 in the timescale of <code>g_get_monotonic_time</code>, or 0 if no predicted
 presentation time is available.</p>
-</div><h4 id="method.get_presentation_time" class="method"><code>pub fn <a href="#method.get_presentation_time" class="fnname">get_presentation_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#92-94" title="goto source code">[src]</a></h4><div class="docblock"><p>Reurns the presentation time. This is the time at which the frame
+</div><h4 id="method.get_presentation_time" class="method"><code>pub fn <a href="#method.get_presentation_time" class="fnname">get_presentation_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#97-99" title="goto source code">[src]</a></h4><div class="docblock"><p>Reurns the presentation time. This is the time at which the frame
 became visible to the user.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>the time the frame was displayed to the user, in the
 timescale of <code>g_get_monotonic_time</code>, or 0 if no presentation
 time is available. See <code>FrameTimings::get_complete</code></p>
-</div><h4 id="method.get_refresh_interval" class="method"><code>pub fn <a href="#method.get_refresh_interval" class="fnname">get_refresh_interval</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#105-107" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the natural interval between presentation times for
+</div><h4 id="method.get_refresh_interval" class="method"><code>pub fn <a href="#method.get_refresh_interval" class="fnname">get_refresh_interval</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></code><a class="srclink" href="../src/gdk4/auto/frame_timings.rs.html#111-113" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the natural interval between presentation times for
 the display that this frame was displayed on. Frame presentation
 usually happens during the “vertical blanking interval”.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>

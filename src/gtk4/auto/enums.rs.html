@@ -9223,7 +9223,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleAutocomplete</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleAutocomplete</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleAutocomplete</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleAutocomplete</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleAutocomplete</span>::<span class="prelude-val">None</span>,
@@ -9303,7 +9303,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleInvalidState</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleInvalidState</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleInvalidState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleInvalidState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleInvalidState</span>::<span class="ident">False</span>,
@@ -9428,7 +9428,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleProperty</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleProperty</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleProperty</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleProperty</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleProperty</span>::<span class="ident">Autocomplete</span>,
@@ -9565,7 +9565,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleRelation</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleRelation</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleRelation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleRelation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleRelation</span>::<span class="ident">ActiveDescendant</span>,
@@ -9881,7 +9881,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleRole</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleRole</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleRole</span>::<span class="ident">Alert</span>,
@@ -10035,7 +10035,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleSort</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleSort</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleSort</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleSort</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleSort</span>::<span class="prelude-val">None</span>,
@@ -10127,7 +10127,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleState</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleState</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleState</span>::<span class="ident">Busy</span>,
@@ -10208,7 +10208,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAccessibleTristate</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AccessibleTristate</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleTristate</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAccessibleTristate</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AccessibleTristate</span>::<span class="ident">False</span>,
@@ -10315,7 +10315,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAlign</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Align</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAlign</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAlign</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Align</span>::<span class="ident">Fill</span>,
@@ -10405,7 +10405,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkArrowType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArrowType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkArrowType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkArrowType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ArrowType</span>::<span class="ident">Up</span>,
@@ -10516,7 +10516,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkAssistantPageType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AssistantPageType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAssistantPageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkAssistantPageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AssistantPageType</span>::<span class="ident">Content</span>,
@@ -10604,7 +10604,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBaselinePosition</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BaselinePosition</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBaselinePosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBaselinePosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">BaselinePosition</span>::<span class="ident">Top</span>,
@@ -10712,7 +10712,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBorderStyle</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BorderStyle</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBorderStyle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBorderStyle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">BorderStyle</span>::<span class="prelude-val">None</span>,
@@ -10856,7 +10856,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBuilderError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BuilderError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBuilderError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBuilderError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">BuilderError</span>::<span class="ident">InvalidTypeFunction</span>,
@@ -11000,7 +11000,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkButtonsType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ButtonsType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkButtonsType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkButtonsType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ButtonsType</span>::<span class="prelude-val">None</span>,
@@ -11082,7 +11082,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCellRendererAccelMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CellRendererAccelMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererAccelMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererAccelMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CellRendererAccelMode</span>::<span class="ident">Gtk</span>,
@@ -11164,7 +11164,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCellRendererMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CellRendererMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CellRendererMode</span>::<span class="ident">Inert</span>,
@@ -11267,7 +11267,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkConstraintAttribute</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ConstraintAttribute</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintAttribute</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintAttribute</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ConstraintAttribute</span>::<span class="prelude-val">None</span>,
@@ -11352,7 +11352,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkConstraintRelation</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ConstraintRelation</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintRelation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintRelation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ConstraintRelation</span>::<span class="ident">Le</span>,
@@ -11431,7 +11431,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkConstraintStrength</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ConstraintStrength</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintStrength</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintStrength</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">1001001000</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ConstraintStrength</span>::<span class="ident">Required</span>,
@@ -11523,7 +11523,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkConstraintVflParserError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ConstraintVflParserError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintVflParserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkConstraintVflParserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ConstraintVflParserError</span>::<span class="ident">Symbol</span>,
@@ -11641,7 +11641,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCornerType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CornerType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCornerType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCornerType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CornerType</span>::<span class="ident">TopLeft</span>,
@@ -11724,7 +11724,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCssParserError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CssParserError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCssParserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCssParserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CssParserError</span>::<span class="ident">Failed</span>,
@@ -11802,7 +11802,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCssParserWarning</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CssParserWarning</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCssParserWarning</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCssParserWarning</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CssParserWarning</span>::<span class="ident">Deprecated</span>,
@@ -11884,7 +11884,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkDeleteType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DeleteType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDeleteType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDeleteType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DeleteType</span>::<span class="ident">Chars</span>,
@@ -11981,7 +11981,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkDirectionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DirectionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DirectionType</span>::<span class="ident">TabForward</span>,
@@ -12078,7 +12078,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkEditableProperties</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EditableProperties</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEditableProperties</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEditableProperties</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EditableProperties</span>::<span class="ident">PropText</span>,
@@ -12160,7 +12160,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkEntryIconPosition</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EntryIconPosition</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EntryIconPosition</span>::<span class="ident">Primary</span>,
@@ -12239,7 +12239,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkEventSequenceState</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EventSequenceState</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEventSequenceState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEventSequenceState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventSequenceState</span>::<span class="prelude-val">None</span>,
@@ -12325,7 +12325,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkFileChooserAction</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FileChooserAction</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFileChooserAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFileChooserAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FileChooserAction</span>::<span class="ident">Open</span>,
@@ -12411,7 +12411,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkFileChooserError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FileChooserError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFileChooserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFileChooserError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FileChooserError</span>::<span class="ident">Nonexistent</span>,
@@ -12511,7 +12511,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkFilterChange</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FilterChange</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFilterChange</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFilterChange</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FilterChange</span>::<span class="ident">Different</span>,
@@ -12587,7 +12587,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkFilterMatch</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FilterMatch</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFilterMatch</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFilterMatch</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FilterMatch</span>::<span class="prelude-val">Some</span>,
@@ -12674,7 +12674,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkIconSize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IconSize</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconSize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconSize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">IconSize</span>::<span class="ident">Inherit</span>,
@@ -12750,7 +12750,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkIconThemeError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IconThemeError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconThemeError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconThemeError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">IconThemeError</span>::<span class="ident">NotFound</span>,
@@ -12862,7 +12862,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkIconViewDropPosition</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IconViewDropPosition</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconViewDropPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconViewDropPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">IconViewDropPosition</span>::<span class="ident">NoDrop</span>,
@@ -12958,7 +12958,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkImageType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ImageType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkImageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkImageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ImageType</span>::<span class="ident">Empty</span>,
@@ -13087,7 +13087,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkInputPurpose</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">InputPurpose</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkInputPurpose</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkInputPurpose</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">InputPurpose</span>::<span class="ident">FreeForm</span>,
@@ -13180,7 +13180,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkJustification</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Justification</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkJustification</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkJustification</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Justification</span>::<span class="ident">Left</span>,
@@ -13259,7 +13259,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkLevelBarMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LevelBarMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkLevelBarMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkLevelBarMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LevelBarMode</span>::<span class="ident">Continuous</span>,
@@ -13398,7 +13398,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkLicense</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">License</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkLicense</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkLicense</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">License</span>::<span class="ident">Unknown</span>,
@@ -13497,7 +13497,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkMenuDirectionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MenuDirectionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMenuDirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMenuDirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MenuDirectionType</span>::<span class="ident">Parent</span>,
@@ -13586,7 +13586,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkMessageType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MessageType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMessageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMessageType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MessageType</span>::<span class="ident">Info</span>,
@@ -13695,7 +13695,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkMovementStep</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MovementStep</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMovementStep</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkMovementStep</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">MovementStep</span>::<span class="ident">LogicalPositions</span>,
@@ -13775,7 +13775,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkNotebookTab</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NotebookTab</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkNotebookTab</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkNotebookTab</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NotebookTab</span>::<span class="ident">First</span>,
@@ -13875,7 +13875,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkNumberUpLayout</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NumberUpLayout</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkNumberUpLayout</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkNumberUpLayout</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NumberUpLayout</span>::<span class="ident">Lrtb</span>,
@@ -13956,7 +13956,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkOrdering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOrdering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOrdering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Smaller</span>,
@@ -14034,7 +14034,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkOrientation</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Orientation</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOrientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOrientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Orientation</span>::<span class="ident">Horizontal</span>,
@@ -14113,7 +14113,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkOverflow</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Overflow</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOverflow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkOverflow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Overflow</span>::<span class="ident">Visible</span>,
@@ -14188,7 +14188,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPackType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PackType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPackType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPackType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PackType</span>::<span class="ident">Start</span>,
@@ -14267,7 +14267,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPadActionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PadActionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPadActionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPadActionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PadActionType</span>::<span class="ident">Button</span>,
@@ -14351,7 +14351,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPageOrientation</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PageOrientation</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPageOrientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPageOrientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PageOrientation</span>::<span class="ident">Portrait</span>,
@@ -14432,7 +14432,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPageSet</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PageSet</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPageSet</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPageSet</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PageSet</span>::<span class="ident">All</span>,
@@ -14516,7 +14516,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPanDirection</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PanDirection</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPanDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPanDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PanDirection</span>::<span class="ident">Left</span>,
@@ -14607,7 +14607,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPolicyType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PolicyType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPolicyType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPolicyType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PolicyType</span>::<span class="ident">Always</span>,
@@ -14687,7 +14687,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPopoverConstraint</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PopoverConstraint</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPopoverConstraint</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPopoverConstraint</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PopoverConstraint</span>::<span class="prelude-val">None</span>,
@@ -14772,7 +14772,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPositionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PositionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPositionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPositionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PositionType</span>::<span class="ident">Left</span>,
@@ -14853,7 +14853,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintDuplex</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintDuplex</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintDuplex</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintDuplex</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintDuplex</span>::<span class="ident">Simplex</span>,
@@ -14939,7 +14939,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintError</span>::<span class="ident">General</span>,
@@ -15050,7 +15050,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintOperationAction</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintOperationAction</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintOperationAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintOperationAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintOperationAction</span>::<span class="ident">PrintDialog</span>,
@@ -15137,7 +15137,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintOperationResult</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintOperationResult</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintOperationResult</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintOperationResult</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintOperationResult</span>::<span class="ident">Error</span>,
@@ -15222,7 +15222,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintPages</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintPages</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintPages</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintPages</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintPages</span>::<span class="ident">All</span>,
@@ -15307,7 +15307,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintQuality</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintQuality</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintQuality</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintQuality</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintQuality</span>::<span class="ident">Low</span>,
@@ -15419,7 +15419,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPrintStatus</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PrintStatus</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintStatus</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPrintStatus</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PrintStatus</span>::<span class="ident">Initial</span>,
@@ -15498,7 +15498,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPropagationLimit</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PropagationLimit</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PropagationLimit</span>::<span class="prelude-val">None</span>,
@@ -15591,7 +15591,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPropagationPhase</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PropagationPhase</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">PropagationPhase</span>::<span class="prelude-val">None</span>,
@@ -15693,7 +15693,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkRecentManagerError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RecentManagerError</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkRecentManagerError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkRecentManagerError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RecentManagerError</span>::<span class="ident">NotFound</span>,
@@ -15832,7 +15832,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkRevealerTransitionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RevealerTransitionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkRevealerTransitionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkRevealerTransitionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RevealerTransitionType</span>::<span class="prelude-val">None</span>,
@@ -15930,7 +15930,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkScrollStep</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ScrollStep</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollStep</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollStep</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ScrollStep</span>::<span class="ident">Steps</span>,
@@ -16065,7 +16065,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkScrollType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ScrollType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ScrollType</span>::<span class="prelude-val">None</span>,
@@ -16155,7 +16155,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkScrollablePolicy</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ScrollablePolicy</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollablePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkScrollablePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ScrollablePolicy</span>::<span class="ident">Minimum</span>,
@@ -16246,7 +16246,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSelectionMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SelectionMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSelectionMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSelectionMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SelectionMode</span>::<span class="prelude-val">None</span>,
@@ -16329,7 +16329,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSensitivityType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SensitivityType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSensitivityType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSensitivityType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SensitivityType</span>::<span class="ident">Auto</span>,
@@ -16405,7 +16405,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkShortcutScope</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ShortcutScope</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutScope</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutScope</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ShortcutScope</span>::<span class="ident">Local</span>,
@@ -16522,7 +16522,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkShortcutType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ShortcutType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ShortcutType</span>::<span class="ident">Accelerator</span>,
@@ -16614,7 +16614,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSizeGroupMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SizeGroupMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSizeGroupMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSizeGroupMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SizeGroupMode</span>::<span class="prelude-val">None</span>,
@@ -16696,7 +16696,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSizeRequestMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SizeRequestMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSizeRequestMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSizeRequestMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>::<span class="ident">HeightForWidth</span>,
@@ -16772,7 +16772,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSortType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SortType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSortType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSortType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SortType</span>::<span class="ident">Ascending</span>,
@@ -16850,7 +16850,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSorterChange</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SorterChange</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSorterChange</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSorterChange</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SorterChange</span>::<span class="ident">Different</span>,
@@ -16927,7 +16927,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSorterOrder</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SorterOrder</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSorterOrder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSorterOrder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SorterOrder</span>::<span class="ident">Partial</span>,
@@ -17008,7 +17008,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSpinButtonUpdatePolicy</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SpinButtonUpdatePolicy</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSpinButtonUpdatePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSpinButtonUpdatePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SpinButtonUpdatePolicy</span>::<span class="ident">Always</span>,
@@ -17104,7 +17104,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSpinType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SpinType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSpinType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSpinType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SpinType</span>::<span class="ident">StepForward</span>,
@@ -17273,7 +17273,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkStackTransitionType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StackTransitionType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStackTransitionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStackTransitionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">StackTransitionType</span>::<span class="prelude-val">None</span>,
@@ -17369,7 +17369,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkStringFilterMatchMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StringFilterMatchMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStringFilterMatchMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStringFilterMatchMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">StringFilterMatchMode</span>::<span class="ident">Exact</span>,
@@ -17451,7 +17451,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSystemSetting</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SystemSetting</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSystemSetting</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkSystemSetting</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemSetting</span>::<span class="ident">Dpi</span>,
@@ -17540,7 +17540,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextBufferTargetInfo</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextBufferTargetInfo</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextBufferTargetInfo</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextBufferTargetInfo</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TextBufferTargetInfo</span>::<span class="ident">BufferContents</span>,
@@ -17620,7 +17620,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextDirection</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextDirection</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TextDirection</span>::<span class="prelude-val">None</span>,
@@ -17699,7 +17699,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextExtendSelection</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextExtendSelection</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextExtendSelection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextExtendSelection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TextExtendSelection</span>::<span class="ident">Word</span>,
@@ -17775,7 +17775,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextViewLayer</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextViewLayer</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextViewLayer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextViewLayer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TextViewLayer</span>::<span class="ident">BelowText</span>,
@@ -17866,7 +17866,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextWindowType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextWindowType</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextWindowType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextWindowType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TextWindowType</span>::<span class="ident">Widget</span>,
@@ -17951,7 +17951,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTreeViewColumnSizing</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TreeViewColumnSizing</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewColumnSizing</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewColumnSizing</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TreeViewColumnSizing</span>::<span class="ident">GrowOnly</span>,
@@ -18035,7 +18035,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTreeViewDropPosition</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TreeViewDropPosition</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewDropPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewDropPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TreeViewDropPosition</span>::<span class="ident">Before</span>,
@@ -18120,7 +18120,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTreeViewGridLines</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TreeViewGridLines</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewGridLines</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeViewGridLines</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">TreeViewGridLines</span>::<span class="prelude-val">None</span>,
@@ -18205,7 +18205,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkUnit</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Unit</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkUnit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkUnit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Unit</span>::<span class="prelude-val">None</span>,
@@ -18293,7 +18293,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkWrapMode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WrapMode</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkWrapMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkWrapMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">WrapMode</span>::<span class="prelude-val">None</span>,

@@ -1030,7 +1030,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkApplicationInhibitFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ApplicationInhibitFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkApplicationInhibitFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ApplicationInhibitFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkApplicationInhibitFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ApplicationInhibitFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">ApplicationInhibitFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1083,7 +1083,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBuilderClosureFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BuilderClosureFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBuilderClosureFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BuilderClosureFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkBuilderClosureFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BuilderClosureFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">BuilderClosureFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1142,7 +1142,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCellRendererState</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CellRendererState</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererState</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkCellRendererState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererState</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">CellRendererState</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1212,7 +1212,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkDebugFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DebugFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDebugFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DebugFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDebugFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DebugFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">DebugFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1267,7 +1267,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkDialogFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DialogFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDialogFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DialogFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkDialogFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DialogFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">DialogFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1325,7 +1325,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkEventControllerScrollFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EventControllerScrollFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEventControllerScrollFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventControllerScrollFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkEventControllerScrollFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventControllerScrollFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">EventControllerScrollFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1382,7 +1382,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkFontChooserLevel</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontChooserLevel</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFontChooserLevel</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontChooserLevel</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkFontChooserLevel</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontChooserLevel</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">FontChooserLevel</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1437,7 +1437,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkIconLookupFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IconLookupFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconLookupFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconLookupFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkIconLookupFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconLookupFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">IconLookupFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1502,7 +1502,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkInputHints</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">InputHints</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkInputHints</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputHints</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkInputHints</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InputHints</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">InputHints</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1557,7 +1557,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPickFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PickFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPickFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PickFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPickFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PickFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">PickFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1612,7 +1612,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPlacesOpenFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PlacesOpenFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPlacesOpenFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PlacesOpenFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPlacesOpenFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PlacesOpenFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">PlacesOpenFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1665,7 +1665,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPopoverMenuFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PopoverMenuFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPopoverMenuFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PopoverMenuFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkPopoverMenuFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PopoverMenuFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">PopoverMenuFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1718,7 +1718,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkShortcutActionFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ShortcutActionFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutActionFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShortcutActionFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkShortcutActionFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShortcutActionFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">ShortcutActionFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1786,7 +1786,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkStateFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StateFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStateFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StateFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStateFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StateFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">StateFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1842,7 +1842,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkStyleContextPrintFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StyleContextPrintFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStyleContextPrintFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleContextPrintFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkStyleContextPrintFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleContextPrintFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">StyleContextPrintFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1897,7 +1897,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextSearchFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TextSearchFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextSearchFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextSearchFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTextSearchFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextSearchFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">TextSearchFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
@@ -1951,7 +1951,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTreeModelFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TreeModelFlags</span> {
-    <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeModelFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeModelFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GtkTreeModelFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeModelFlags</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">TreeModelFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
