@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="title" translatable="yes">Text File Viewer</property>
+    <property name="default_width">400</property>
+    <property name="default_height">480</property>
+    <child>
+      <object class="GtkBox" id="v_box">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox">
+            <child>
+              <object class="GtkButton" id="open_button">
+                <property name="visible">1</property>
+                <property name="label" translatable="yes">Open</property>
+                <property name="icon-name">document-open-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Open</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolled_window">
+            <property name="can_focus">1</property>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <child>
+              <object class="GtkTextView" id="text_view">
+                <property name="can_focus">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

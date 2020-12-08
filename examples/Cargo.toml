@@ -43,3 +43,6 @@ name = "css"
 
 [[bin]]
 name = "entry_completion"
+
+[[bin]]
+name = "text_viewer"
