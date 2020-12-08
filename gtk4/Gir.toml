@@ -108,7 +108,6 @@ generate = [
     "Gtk.ListBase",
     "Gtk.ListItemFactory",
     "Gtk.MediaFile",
-    "Gtk.MenuDirectionType",
     "Gtk.MessageType",
     "Gtk.MovementStep",
     "Gtk.MultiFilter",
@@ -127,9 +126,7 @@ generate = [
     "Gtk.PageSet",
     "Gtk.PanDirection",
     "Gtk.PickFlags",
-    "Gtk.PlacesOpenFlags",
     "Gtk.PolicyType",
-    "Gtk.PopoverConstraint",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
     "Gtk.PrintDuplex",
@@ -170,7 +167,6 @@ generate = [
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SystemSetting",
-    "Gtk.TextBufferTargetInfo",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",
@@ -1020,12 +1016,6 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "add_choice"
     ignore = true  #strange type of options and option_labels
-
-[[object]]
-name = "Gtk.FileChooserButton"
-status = "generate"
-generate_builder = true
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.FileChooserDialog"
