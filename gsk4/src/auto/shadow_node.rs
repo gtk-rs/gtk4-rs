@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use crate::Shadow;
 use glib::translate::*;
 use std::fmt;
 
@@ -24,11 +23,6 @@ impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_get_n_shadows")]
     pub fn get_n_shadows(&self) -> usize {
         unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gsk_shadow_node_get_shadow")]
-    pub fn get_shadow(&self, i: usize) -> Option<Shadow> {
-        unsafe { from_glib_none(ffi::gsk_shadow_node_get_shadow(self.to_glib_none().0, i)) }
     }
 }
 

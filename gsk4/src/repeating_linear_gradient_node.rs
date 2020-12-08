@@ -3,6 +3,7 @@ use glib::translate::*;
 use graphene::{Point, Rect};
 
 impl RepeatingLinearGradientNode {
+    #[doc(alias = "gsk_repeating_linear_gradient_node_new")]
     pub fn new(
         bounds: &Rect,
         start: &Point,
