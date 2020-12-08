@@ -33,6 +33,9 @@ pub use self::color_matrix_node::ColorMatrixNode;
 mod color_node;
 pub use self::color_node::ColorNode;
 
+mod conic_gradient_node;
+pub use self::conic_gradient_node::ConicGradientNode;
+
 mod container_node;
 pub use self::container_node::ContainerNode;
 
@@ -45,6 +48,13 @@ pub use self::debug_node::DebugNode;
 mod gl_renderer;
 pub use self::gl_renderer::GLRenderer;
 
+mod gl_shader;
+pub use self::gl_shader::GLShader;
+pub use self::gl_shader::GLShaderBuilder;
+
+mod gl_shader_node;
+pub use self::gl_shader_node::GLShaderNode;
+
 mod inset_shadow_node;
 pub use self::inset_shadow_node::InsetShadowNode;
 
@@ -56,6 +66,9 @@ pub use self::opacity_node::OpacityNode;
 
 mod outset_shadow_node;
 pub use self::outset_shadow_node::OutsetShadowNode;
+
+mod radial_gradient_node;
+pub use self::radial_gradient_node::RadialGradientNode;
 
 mod render_node;
 pub use self::render_node::RenderNodeExt;
@@ -70,6 +83,9 @@ pub use self::repeat_node::RepeatNode;
 
 mod repeating_linear_gradient_node;
 pub use self::repeating_linear_gradient_node::RepeatingLinearGradientNode;
+
+mod repeating_radial_gradient_node;
+pub use self::repeating_radial_gradient_node::RepeatingRadialGradientNode;
 
 mod rounded_clip_node;
 pub use self::rounded_clip_node::RoundedClipNode;
@@ -93,12 +109,16 @@ mod vulkan_renderer;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "vulkan")))]
 pub use self::vulkan_renderer::VulkanRenderer;
 
+mod shader_args_builder;
+pub use self::shader_args_builder::ShaderArgsBuilder;
+
 mod transform;
 pub use self::transform::Transform;
 
 mod enums;
 pub use self::enums::BlendMode;
 pub use self::enums::Corner;
+pub use self::enums::GLUniformType;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;

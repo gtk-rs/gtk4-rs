@@ -6,6 +6,7 @@ use crate::RenderNode;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
+use std::mem;
 
 glib::glib_wrapper! {
     pub struct TextNode(Object<ffi::GskTextNode>) @extends RenderNode;
@@ -44,10 +45,17 @@ impl TextNode {
         unsafe { from_glib_none(ffi::gsk_text_node_get_font(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gsk_text_node_get_glyphs")]
-    //pub fn get_glyphs(&self) -> /*Ignored*/Vec<pango::GlyphInfo> {
-    //    unsafe { TODO: call ffi:gsk_text_node_get_glyphs() }
-    //}
+    #[doc(alias = "gsk_text_node_get_glyphs")]
+    pub fn get_glyphs(&self) -> Vec<pango::GlyphInfo> {
+        unsafe {
+            let mut n_glyphs = mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_none_num(
+                ffi::gsk_text_node_get_glyphs(self.to_glib_none().0, n_glyphs.as_mut_ptr()),
+                n_glyphs.assume_init() as usize,
+            );
+            ret
+        }
+    }
 
     #[doc(alias = "gsk_text_node_get_num_glyphs")]
     pub fn get_num_glyphs(&self) -> u32 {

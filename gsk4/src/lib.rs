@@ -39,8 +39,11 @@ pub use auto::*;
 
 mod border_node;
 mod color_stop;
+mod conic_gradient_node;
 mod linear_gradient_node;
+mod radial_gradient_node;
 mod repeating_linear_gradient_node;
+mod repeating_radial_gradient_node;
 mod rounded_rect;
 mod shadow;
 mod shadow_node;
