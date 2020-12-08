@@ -46,7 +46,7 @@ impl ToGlib for ResponseType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkResponseType> for ResponseType {
-    fn from_glib(value: ffi::GtkResponseType) -> Self {
+    unsafe fn from_glib(value: ffi::GtkResponseType) -> Self {
         skip_assert_initialized!();
         match value {
             -1 => ResponseType::None,
