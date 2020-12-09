@@ -17,10 +17,12 @@ mod imp {
     pub struct ExApplicationWindow {
         // The #[template_child] attribute tells the CompositeTemplate macro
         // that a field is meant to be a child within the template.
-        #[template_child(id = "headerbar")]
+        #[template_child]
         pub headerbar: TemplateChild<gtk::HeaderBar>,
-        #[template_child(id = "label")]
+        #[template_child]
         pub label: TemplateChild<gtk::Label>,
+        // You can specify the optional `id` argument if the id is not the same
+        // as the identifier
         #[template_child(id = "subtitle_label")]
         pub subtitle: TemplateChild<gtk::Label>,
     }

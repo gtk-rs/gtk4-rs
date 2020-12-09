@@ -1,31 +1,29 @@
 use proc_macro2::TokenStream;
-use proc_macro_error::abort_call_site;
+use proc_macro_error::{abort, abort_call_site};
 use quote::quote;
 use syn::Data;
 
 use std::string::ToString;
 
+use crate::attribute_parser::*;
 use crate::util::*;
 
 fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
     let crate_ident = crate_ident_new();
+    let attributed_fields = match parse_fields(&fields) {
+        Ok(fields) => fields,
+        Err(err) => abort!(err.span(), err.to_string()),
+    };
 
-    let recurse = fields.iter().map(|f| {
-        let filtered_attrs = f
-            .attrs
-            .clone()
-            .into_iter()
-            .filter(|a| a.path.is_ident("template_child"))
-            .collect::<Vec<syn::Attribute>>();
-        if !filtered_attrs.is_empty() {
-            let ident = f.ident.as_ref().unwrap();
-            let mut value_id = String::new();
-
-            if let Ok(attrs) = parse_template_child_attributes("template_child", &filtered_attrs) {
-                attrs.into_iter().for_each(|a| match a {
-                    TemplateChildAttribute::Id(id) => value_id = id,
-                });
-            }
+    let recurse = attributed_fields.iter().map(|field| match field.attr.ty {
+        FieldAttributeType::TemplateChild => {
+            let mut value_id = &field.ident.to_string();
+            let ident = &field.ident;
+            field.attr.args.iter().for_each(|arg| match arg {
+                FieldAttributeArg::Id(value) => {
+                    value_id = &value;
+                }
+            });
 
             quote! {
                 klass.bind_template_child_with_offset(
@@ -33,8 +31,6 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
                     #crate_ident::offset_of!(Self => #ident),
                 );
             }
-        } else {
-            quote! {}
         }
     });
 
