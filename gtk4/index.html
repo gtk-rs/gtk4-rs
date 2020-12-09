@@ -226,13 +226,7 @@ interface are <code>FileChooserWidget</code>, <code>FileChooserDialog</code>, an
 implements the <code>FileChooser</code> interface unless you are trying to
 adapt an existing file selector to expose a standard programming
 interface.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.FileChooserButton.html" title="gtk4::FileChooserButton struct">FileChooserButton</a></td><td class="docblock-short"><p>The <code>FileChooserButton</code> is a widget that lets the user select a
-file. It implements the <code>FileChooser</code> interface. Visually, it is a
-file name with a button to bring up a <code>FileChooserDialog</code>.
-The user can then use that dialog to change the file associated with
-that button. This widget does not support setting the
-<code>FileChooser:select-multiple</code> property to <code>true</code>.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.FileChooserButtonBuilder.html" title="gtk4::FileChooserButtonBuilder struct">FileChooserButtonBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.FileChooserDialog.html" title="gtk4::FileChooserDialog struct">FileChooserDialog</a></td><td class="docblock-short"><p><code>FileChooserDialog</code> is a dialog box suitable for use with
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.FileChooserDialog.html" title="gtk4::FileChooserDialog struct">FileChooserDialog</a></td><td class="docblock-short"><p><code>FileChooserDialog</code> is a dialog box suitable for use with
 “File/Open” or “File/Save as” commands. This widget works by
 putting a <code>FileChooserWidget</code> inside a <code>Dialog</code>. It exposes
 the <code>FileChooser</code> interface, so you can use all of the
@@ -466,7 +460,7 @@ to the clipboard, and it shows a warning when Caps Lock is engaged.</p>
 are provided to make pictures simple to use. For example, if you want to load
 an image from a file, and then display that, there’s a convenience function
 to do this:</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.PictureBuilder.html" title="gtk4::PictureBuilder struct">PictureBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PlacesOpenFlags.html" title="gtk4::PlacesOpenFlags struct">PlacesOpenFlags</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Popover.html" title="gtk4::Popover struct">Popover</a></td><td class="docblock-short"><p><code>Popover</code> is a bubble-like context window, primarily meant to
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PictureBuilder.html" title="gtk4::PictureBuilder struct">PictureBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Popover.html" title="gtk4::Popover struct">Popover</a></td><td class="docblock-short"><p><code>Popover</code> is a bubble-like context window, primarily meant to
 provide context-dependent information or options. Popovers are
 attached to a widget, passed at construction time on <code>Popover::new</code>,
 or updated afterwards through <code>PopoverExt::set_relative_to</code>, by
@@ -772,7 +766,6 @@ which keys should be presented to the user.</p>
 Note that this enumeration could be extended with additional modes
 in the future.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.License.html" title="gtk4::License enum">License</a></td><td class="docblock-short"><p>The type of license for an application.</p>
-</td></tr><tr class="module-item"><td><a class="enum" href="enum.MenuDirectionType.html" title="gtk4::MenuDirectionType enum">MenuDirectionType</a></td><td class="docblock-short"><p>An enumeration representing directional movements within a menu.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.MessageType.html" title="gtk4::MessageType enum">MessageType</a></td><td class="docblock-short"><p>The type of message being displayed in the dialog.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.MovementStep.html" title="gtk4::MovementStep enum">MovementStep</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.NotebookTab.html" title="gtk4::NotebookTab enum">NotebookTab</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.NumberUpLayout.html" title="gtk4::NumberUpLayout enum">NumberUpLayout</a></td><td class="docblock-short"><p>Used to determine the layout of pages on a sheet when printing
 multiple pages per sheet.</p>
@@ -789,8 +782,6 @@ property, but implements it only partially.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.PanDirection.html" title="gtk4::PanDirection enum">PanDirection</a></td><td class="docblock-short"><p>Describes the panning direction of a <code>GesturePan</code></p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.PolicyType.html" title="gtk4::PolicyType enum">PolicyType</a></td><td class="docblock-short"><p>Determines how the size should be computed to achieve the one of the
 visibility mode for the scrollbars.</p>
-</td></tr><tr class="module-item"><td><a class="enum" href="enum.PopoverConstraint.html" title="gtk4::PopoverConstraint enum">PopoverConstraint</a></td><td class="docblock-short"><p>Describes constraints to positioning of popovers. More values
-may be added to this enumeration in the future.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.PositionType.html" title="gtk4::PositionType enum">PositionType</a></td><td class="docblock-short"><p>Describes which edge of a widget a certain feature is positioned at, e.g. the
 tabs of a <code>Notebook</code>, the handle of a <code>GtkHandleBox</code> or the label of a
 <code>Scale</code>.</p>
@@ -831,10 +822,7 @@ See <code>SpinButtonExt::set_update_policy</code>.</p>
 change to make in <code>SpinButtonExt::spin</code>.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.StackTransitionType.html" title="gtk4::StackTransitionType enum">StackTransitionType</a></td><td class="docblock-short"><p>These enumeration values describe the possible transitions
 between pages in a <code>Stack</code> widget.</p>
-</td></tr><tr class="module-item"><td><a class="enum" href="enum.StringFilterMatchMode.html" title="gtk4::StringFilterMatchMode enum">StringFilterMatchMode</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.SystemSetting.html" title="gtk4::SystemSetting enum">SystemSetting</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.TextBufferTargetInfo.html" title="gtk4::TextBufferTargetInfo enum">TextBufferTargetInfo</a></td><td class="docblock-short"><p>These values are used as “info” for the targets contained in the
-lists returned by <code>gtk_text_buffer_get_copy_target_list</code> and
-<code>gtk_text_buffer_get_paste_target_list</code>.</p>
-</td></tr><tr class="module-item"><td><a class="enum" href="enum.TextDirection.html" title="gtk4::TextDirection enum">TextDirection</a></td><td class="docblock-short"><p>Reading directions for text.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.StringFilterMatchMode.html" title="gtk4::StringFilterMatchMode enum">StringFilterMatchMode</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.SystemSetting.html" title="gtk4::SystemSetting enum">SystemSetting</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="enum" href="enum.TextDirection.html" title="gtk4::TextDirection enum">TextDirection</a></td><td class="docblock-short"><p>Reading directions for text.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.TextExtendSelection.html" title="gtk4::TextExtendSelection enum">TextExtendSelection</a></td><td class="docblock-short"><p>Granularity types that extend the text selection. Use the
 <code>TextView::extend-selection</code> signal to customize the selection.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.TextViewLayer.html" title="gtk4::TextViewLayer enum">TextViewLayer</a></td><td class="docblock-short"><p>Used to reference the layers of <code>TextView</code> for the purpose of customized

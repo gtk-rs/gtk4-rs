@@ -72,77 +72,91 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2013-2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
 <span class="comment">// Licensed under the MIT license, see the LICENSE file or &lt;https://opensource.org/licenses/MIT&gt;</span>
-<span class="comment">/*
 
-use glib::translate::*;
-#[repr(C)]
-pub struct TimeCoord(ffi::GdkTimeCoord);
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">AxisFlags</span>;
+<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 
-impl TimeCoord {
-    pub fn new(time: u32, axes: [f64; 128]) -&gt; TimeCoord {
-        assert_initialized_main_thread!();
-        TimeCoord(ffi::GdkTimeCoord { time, axes })
+<span class="doccomment">/// A `TimeCoord` stores a single event in a motion history.</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TimeCoord</span>(<span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>);
+
+<span class="kw">impl</span> <span class="ident">TimeCoord</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">time</span>: <span class="ident">u32</span>, <span class="ident">axes</span>: [<span class="ident">f64</span>; <span class="number">12</span>], <span class="ident">flags</span>: <span class="ident">AxisFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TimeCoord</span> {
+        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="ident">TimeCoord</span>(<span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span> {
+            <span class="ident">time</span>,
+            <span class="ident">axes</span>,
+            <span class="ident">flags</span>: <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
+        })
     }
 
-    pub fn get_time(&amp;self) -&gt; u32 {
-        self.0.time
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">time</span>
     }
-    pub fn get_axes(&amp;self) -&gt; &amp;[f64; 128] {
-        &amp;self.0.axes
-    }
-}
 
-#[doc(hidden)]
-impl GlibPtrDefault for TimeCoord {
-    type GlibType = *mut ffi::GdkTimeCoord;
-}
-#[doc(hidden)]
-impl FromGlibPtrNone&lt;*mut ffi::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_none(ptr: *mut ffi::GdkTimeCoord) -&gt; Self {
-        TimeCoord(*ptr)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">f64</span>; <span class="number">12</span>] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">axes</span>
     }
-}
 
-#[doc(hidden)]
-impl FromGlibPtrFull&lt;*mut ffi::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_full(ptr: *mut ffi::GdkTimeCoord) -&gt; Self {
-        let res = from_glib_none(ptr);
-        glib::ffi::g_free(ptr as *mut _);
-        res
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AxisFlags</span> {
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">flags</span>) }
     }
 }
 
-#[doc(hidden)]
-impl FromGlibContainerAsVec&lt;ffi::GdkTimeCoord, *mut ffi::GdkTimeCoord&gt; for TimeCoord {
-    unsafe fn from_glib_none_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
-        if num == 0 || ptr.is_null() {
-            return Vec::new();
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+<span class="kw">impl</span> <span class="ident">GlibPtrDefault</span> <span class="kw">for</span> <span class="ident">TimeCoord</span> {
+    <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>;
+}
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+<span class="kw">impl</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TimeCoord</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">TimeCoord</span>(<span class="kw-2">*</span><span class="ident">ptr</span>)
+    }
+}
+
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+<span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TimeCoord</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_glib_none</span>(<span class="ident">ptr</span>);
+        <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">g_free</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="ident">res</span>
+    }
+}
+
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+<span class="kw">impl</span> <span class="ident">FromGlibContainerAsVec</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>, <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TimeCoord</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>, <span class="ident">num</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="ident">num</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
+            <span class="kw">return</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
         }
 
-        let mut res = Vec::with_capacity(num);
-        for i in 0..num {
-            res.push(from_glib_none(ptr.add(i)));
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">num</span>);
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num</span> {
+            <span class="ident">res</span>.<span class="ident">push</span>(<span class="ident">from_glib_none</span>(<span class="ident">ptr</span>.<span class="ident">add</span>(<span class="ident">i</span>)));
         }
-        res
+        <span class="ident">res</span>
     }
 
-    unsafe fn from_glib_container_num_as_vec(
-        ptr: *mut ffi::GdkTimeCoord,
-        num: usize,
-    ) -&gt; Vec&lt;Self&gt; {
-        let res = FromGlibContainerAsVec::from_glib_none_num_as_vec(ptr, num);
-        glib::ffi::g_free(ptr as *mut _);
-        res
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_container_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>, <span class="ident">num</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">FromGlibContainerAsVec</span>::<span class="ident">from_glib_none_num_as_vec</span>(<span class="ident">ptr</span>, <span class="ident">num</span>);
+        <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">g_free</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="ident">res</span>
     }
 
-    unsafe fn from_glib_full_num_as_vec(ptr: *mut ffi::GdkTimeCoord, num: usize) -&gt; Vec&lt;Self&gt; {
-        FromGlibContainerAsVec::from_glib_container_num_as_vec(ptr, num)
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkTimeCoord</span>, <span class="ident">num</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="ident">FromGlibContainerAsVec</span>::<span class="ident">from_glib_container_num_as_vec</span>(<span class="ident">ptr</span>, <span class="ident">num</span>)
     }
 }
-*/</span>
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "gdk4";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

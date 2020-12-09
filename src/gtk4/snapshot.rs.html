@@ -125,6 +125,31 @@
 <span id="122">122</span>
 <span id="123">123</span>
 <span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019, The Gtk-rs Project Developers.</span>
 <span class="comment">// See the COPYRIGHT file at the top-level directory of this distribution.</span>
@@ -147,6 +172,7 @@
     <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_linear_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_linear_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>,
@@ -167,6 +193,7 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
@@ -193,6 +220,28 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_conic_gradient&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_conic_gradient</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
+        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Point</span>,
+        <span class="ident">rotation</span>: <span class="ident">f32</span>,
+        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk</span>::<span class="ident">ColorStop</span>],
+    ) {
+        <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
+        <span class="kw">unsafe</span> {
+            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_conic_gradient</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">rotation</span>,
+                <span class="ident">stops</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">n_stops</span>,
+            );
+        }
+    }
+
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_repeating_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
@@ -230,6 +279,7 @@
     <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_linear_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_repeating_linear_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>,
