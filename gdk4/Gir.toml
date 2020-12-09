@@ -15,7 +15,6 @@ generate = [
     "Gdk.AxisUse",
     "Gdk.ButtonEvent",
     "Gdk.CairoContext",
-    "Gdk.ConfigureEvent",
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
     "Gdk.CrossingEvent",
