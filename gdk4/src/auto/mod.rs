@@ -16,9 +16,6 @@ mod clipboard;
 pub use self::clipboard::Clipboard;
 pub use self::clipboard::ClipboardBuilder;
 
-mod configure_event;
-pub use self::configure_event::ConfigureEvent;
-
 mod content_deserializer;
 pub use self::content_deserializer::ContentDeserializer;
 

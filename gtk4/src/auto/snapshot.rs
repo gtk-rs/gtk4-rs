@@ -23,7 +23,7 @@ impl Snapshot {
     }
 
     //#[doc(alias = "gtk_snapshot_append_border")]
-    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 80 }; 4) {
+    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 79 }; 4) {
     //    unsafe { TODO: call ffi:gtk_snapshot_append_border() }
     //}
 

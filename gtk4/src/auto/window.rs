@@ -105,8 +105,10 @@ pub struct WindowBuilder {
     display: Option<gdk::Display>,
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
+    fullscreen: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
+    maximized: Option<bool>,
     mnemonics_visible: Option<bool>,
     modal: Option<bool>,
     resizable: Option<bool>,
@@ -185,11 +187,17 @@ impl WindowBuilder {
         if let Some(ref focus_widget) = self.focus_widget {
             properties.push(("focus-widget", focus_widget));
         }
+        if let Some(ref fullscreen) = self.fullscreen {
+            properties.push(("fullscreen", fullscreen));
+        }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
         }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
+        }
+        if let Some(ref maximized) = self.maximized {
+            properties.push(("maximized", maximized));
         }
         if let Some(ref mnemonics_visible) = self.mnemonics_visible {
             properties.push(("mnemonics-visible", mnemonics_visible));
@@ -361,6 +369,11 @@ impl WindowBuilder {
         self
     }
 
+    pub fn fullscreen(mut self, fullscreen: bool) -> Self {
+        self.fullscreen = Some(fullscreen);
+        self
+    }
+
     pub fn hide_on_close(mut self, hide_on_close: bool) -> Self {
         self.hide_on_close = Some(hide_on_close);
         self
@@ -368,6 +381,11 @@ impl WindowBuilder {
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
         self.icon_name = Some(icon_name.to_string());
+        self
+    }
+
+    pub fn maximized(mut self, maximized: bool) -> Self {
+        self.maximized = Some(maximized);
         self
     }
 
@@ -609,9 +627,6 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "gtk_window_get_resizable")]
     fn get_resizable(&self) -> bool;
 
-    #[doc(alias = "gtk_window_get_size")]
-    fn get_size(&self) -> (i32, i32);
-
     #[doc(alias = "gtk_window_get_title")]
     fn get_title(&self) -> Option<glib::GString>;
 
@@ -627,6 +642,9 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "gtk_window_is_active")]
     fn is_active(&self) -> bool;
 
+    #[doc(alias = "gtk_window_is_fullscreen")]
+    fn is_fullscreen(&self) -> bool;
+
     #[doc(alias = "gtk_window_is_maximized")]
     fn is_maximized(&self) -> bool;
 
@@ -641,9 +659,6 @@ pub trait GtkWindowExt: 'static {
 
     #[doc(alias = "gtk_window_present_with_time")]
     fn present_with_time(&self, timestamp: u32);
-
-    #[doc(alias = "gtk_window_resize")]
-    fn resize(&self, width: i32, height: i32);
 
     #[doc(alias = "gtk_window_set_application")]
     fn set_application<P: IsA<Application>>(&self, application: Option<&P>);
@@ -720,9 +735,15 @@ pub trait GtkWindowExt: 'static {
 
     fn set_property_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>);
 
+    fn get_property_fullscreen(&self) -> bool;
+
+    fn set_property_fullscreen(&self, fullscreen: bool);
+
     fn get_property_is_active(&self) -> bool;
 
-    fn get_property_is_maximized(&self) -> bool;
+    fn get_property_maximized(&self) -> bool;
+
+    fn set_property_maximized(&self, maximized: bool);
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -784,6 +805,8 @@ pub trait GtkWindowExt: 'static {
     fn connect_property_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
 
+    fn connect_property_fullscreen_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -793,8 +816,7 @@ pub trait GtkWindowExt: 'static {
 
     fn connect_property_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_is_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    fn connect_property_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -950,21 +972,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_size(&self) -> (i32, i32) {
-        unsafe {
-            let mut width = mem::MaybeUninit::uninit();
-            let mut height = mem::MaybeUninit::uninit();
-            ffi::gtk_window_get_size(
-                self.as_ref().to_glib_none().0,
-                width.as_mut_ptr(),
-                height.as_mut_ptr(),
-            );
-            let width = width.assume_init();
-            let height = height.assume_init();
-            (width, height)
-        }
-    }
-
     fn get_title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_window_get_title(self.as_ref().to_glib_none().0)) }
     }
@@ -987,6 +994,14 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_window_is_active(self.as_ref().to_glib_none().0)) }
+    }
+
+    fn is_fullscreen(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_window_is_fullscreen(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     fn is_maximized(&self) -> bool {
@@ -1014,12 +1029,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     fn present_with_time(&self, timestamp: u32) {
         unsafe {
             ffi::gtk_window_present_with_time(self.as_ref().to_glib_none().0, timestamp);
-        }
-    }
-
-    fn resize(&self, width: i32, height: i32) {
-        unsafe {
-            ffi::gtk_window_resize(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
@@ -1247,6 +1256,31 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
+    fn get_property_fullscreen(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"fullscreen\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `fullscreen` getter")
+                .unwrap()
+        }
+    }
+
+    fn set_property_fullscreen(&self, fullscreen: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"fullscreen\0".as_ptr() as *const _,
+                glib::Value::from(&fullscreen).to_glib_none().0,
+            );
+        }
+    }
+
     fn get_property_is_active(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -1262,18 +1296,28 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_property_is_maximized(&self) -> bool {
+    fn get_property_maximized(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"is-maximized\0".as_ptr() as *const _,
+                b"maximized\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
             value
                 .get()
-                .expect("Return Value for property `is-maximized` getter")
+                .expect("Return Value for property `maximized` getter")
                 .unwrap()
+        }
+    }
+
+    fn set_property_maximized(&self, maximized: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"maximized\0".as_ptr() as *const _,
+                glib::Value::from(&maximized).to_glib_none().0,
+            );
         }
     }
 
@@ -1718,6 +1762,30 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
+    fn connect_property_fullscreen_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fullscreen_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) where
+            P: IsA<Window>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::fullscreen\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_fullscreen_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -1793,11 +1861,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_is_maximized_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_maximized_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_maximized_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -1811,9 +1876,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::is-maximized\0".as_ptr() as *const _,
+                b"notify::maximized\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_is_maximized_trampoline::<Self, F> as *const (),
+                    notify_maximized_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

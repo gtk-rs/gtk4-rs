@@ -13268,6 +13268,7 @@ extern "C" {
     pub fn gtk_popover_get_position(popover: *mut GtkPopover) -> GtkPositionType;
     pub fn gtk_popover_popdown(popover: *mut GtkPopover);
     pub fn gtk_popover_popup(popover: *mut GtkPopover);
+    pub fn gtk_popover_present(popover: *mut GtkPopover);
     pub fn gtk_popover_set_autohide(popover: *mut GtkPopover, autohide: gboolean);
     pub fn gtk_popover_set_cascade_popdown(popover: *mut GtkPopover, cascade_popdown: gboolean);
     pub fn gtk_popover_set_child(popover: *mut GtkPopover, child: *mut GtkWidget);
@@ -16476,18 +16477,17 @@ extern "C" {
     pub fn gtk_window_get_mnemonics_visible(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_modal(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_resizable(window: *mut GtkWindow) -> gboolean;
-    pub fn gtk_window_get_size(window: *mut GtkWindow, width: *mut c_int, height: *mut c_int);
     pub fn gtk_window_get_title(window: *mut GtkWindow) -> *const c_char;
     pub fn gtk_window_get_titlebar(window: *mut GtkWindow) -> *mut GtkWidget;
     pub fn gtk_window_get_transient_for(window: *mut GtkWindow) -> *mut GtkWindow;
     pub fn gtk_window_has_group(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_is_active(window: *mut GtkWindow) -> gboolean;
+    pub fn gtk_window_is_fullscreen(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_is_maximized(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_maximize(window: *mut GtkWindow);
     pub fn gtk_window_minimize(window: *mut GtkWindow);
     pub fn gtk_window_present(window: *mut GtkWindow);
     pub fn gtk_window_present_with_time(window: *mut GtkWindow, timestamp: u32);
-    pub fn gtk_window_resize(window: *mut GtkWindow, width: c_int, height: c_int);
     pub fn gtk_window_set_application(window: *mut GtkWindow, application: *mut GtkApplication);
     pub fn gtk_window_set_child(window: *mut GtkWindow, child: *mut GtkWidget);
     pub fn gtk_window_set_decorated(window: *mut GtkWindow, setting: gboolean);
@@ -16892,7 +16892,6 @@ extern "C" {
     //=========================================================================
     pub fn gtk_native_get_type() -> GType;
     pub fn gtk_native_get_for_surface(surface: *mut gdk::GdkSurface) -> *mut GtkNative;
-    pub fn gtk_native_check_resize(self_: *mut GtkNative);
     pub fn gtk_native_get_renderer(self_: *mut GtkNative) -> *mut gsk::GskRenderer;
     pub fn gtk_native_get_surface(self_: *mut GtkNative) -> *mut gdk::GdkSurface;
     pub fn gtk_native_get_surface_transform(
@@ -16900,6 +16899,8 @@ extern "C" {
         x: *mut c_double,
         y: *mut c_double,
     );
+    pub fn gtk_native_realize(self_: *mut GtkNative);
+    pub fn gtk_native_unrealize(self_: *mut GtkNative);
 
     //=========================================================================
     // GtkOrientable

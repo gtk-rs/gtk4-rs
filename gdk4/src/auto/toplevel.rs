@@ -61,7 +61,7 @@ pub trait ToplevelExt: 'static {
     fn minimize(&self) -> bool;
 
     #[doc(alias = "gdk_toplevel_present")]
-    fn present(&self, layout: &ToplevelLayout) -> bool;
+    fn present(&self, layout: &ToplevelLayout);
 
     #[doc(alias = "gdk_toplevel_restore_system_shortcuts")]
     fn restore_system_shortcuts(&self);
@@ -208,12 +208,9 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         unsafe { from_glib(ffi::gdk_toplevel_minimize(self.as_ref().to_glib_none().0)) }
     }
 
-    fn present(&self, layout: &ToplevelLayout) -> bool {
+    fn present(&self, layout: &ToplevelLayout) {
         unsafe {
-            from_glib(ffi::gdk_toplevel_present(
-                self.as_ref().to_glib_none().0,
-                layout.to_glib_none().0,
-            ))
+            ffi::gdk_toplevel_present(self.as_ref().to_glib_none().0, layout.to_glib_none().0);
         }
     }
 

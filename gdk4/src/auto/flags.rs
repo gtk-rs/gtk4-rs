@@ -439,23 +439,22 @@ impl SetValue for SeatCapabilities {
 
 bitflags! {
     pub struct ToplevelState: u32 {
-        const WITHDRAWN = 1;
-        const MINIMIZED = 2;
-        const MAXIMIZED = 4;
-        const STICKY = 8;
-        const FULLSCREEN = 16;
-        const ABOVE = 32;
-        const BELOW = 64;
-        const FOCUSED = 128;
-        const TILED = 256;
-        const TOP_TILED = 512;
-        const TOP_RESIZABLE = 1024;
-        const RIGHT_TILED = 2048;
-        const RIGHT_RESIZABLE = 4096;
-        const BOTTOM_TILED = 8192;
-        const BOTTOM_RESIZABLE = 16384;
-        const LEFT_TILED = 32768;
-        const LEFT_RESIZABLE = 65536;
+        const MINIMIZED = 1;
+        const MAXIMIZED = 2;
+        const STICKY = 4;
+        const FULLSCREEN = 8;
+        const ABOVE = 16;
+        const BELOW = 32;
+        const FOCUSED = 64;
+        const TILED = 128;
+        const TOP_TILED = 256;
+        const TOP_RESIZABLE = 512;
+        const RIGHT_TILED = 1024;
+        const RIGHT_RESIZABLE = 2048;
+        const BOTTOM_TILED = 4096;
+        const BOTTOM_RESIZABLE = 8192;
+        const LEFT_TILED = 16384;
+        const LEFT_RESIZABLE = 32768;
     }
 }
 

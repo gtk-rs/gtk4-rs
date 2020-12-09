@@ -5,14 +5,9 @@
 use crate::Gravity;
 use crate::PopupLayout;
 use crate::Surface;
-use glib::object::Cast;
 use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib::glib_wrapper! {
     pub struct Popup(Interface<ffi::GdkPopup>) @requires Surface;
@@ -45,8 +40,6 @@ pub trait PopupExt: 'static {
 
     #[doc(alias = "gdk_popup_present")]
     fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool;
-
-    fn connect_popup_layout_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Popup>> PopupExt for O {
@@ -90,29 +83,6 @@ impl<O: IsA<Popup>> PopupExt for O {
                 height,
                 layout.to_glib_none().0,
             ))
-        }
-    }
-
-    fn connect_popup_layout_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn popup_layout_changed_trampoline<P, F: Fn(&P) + 'static>(
-            this: *mut ffi::GdkPopup,
-            f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Popup>,
-        {
-            let f: &F = &*(f as *const F);
-            f(&Popup::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"popup-layout-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    popup_layout_changed_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
         }
     }
 }
