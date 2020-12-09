@@ -4,8 +4,8 @@ use glib::translate::*;
 use glib::Cast;
 
 use crate::{
-    DirectionType, Orientation, SizeRequestMode, Snapshot, StateFlags, SystemSetting,
-    TextDirection, Tooltip, Widget, WidgetExt,
+    DirectionType, LayoutManager, Orientation, SizeRequestMode, Snapshot, StateFlags,
+    SystemSetting, TextDirection, Tooltip, Widget, WidgetExt,
 };
 use glib::Object;
 
@@ -892,6 +892,16 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 false as glib::ffi::gboolean,
                 0,
             );
+        }
+    }
+
+    fn set_layout_manager_type<T: IsA<LayoutManager>>(&mut self) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_layout_manager_type(widget_class, T::static_type().to_glib());
         }
     }
 
