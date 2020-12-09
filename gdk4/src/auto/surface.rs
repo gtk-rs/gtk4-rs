@@ -181,6 +181,13 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "gdk_surface_request_layout")]
+    pub fn request_layout(&self) {
+        unsafe {
+            ffi::gdk_surface_request_layout(self.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gdk_surface_set_cursor")]
     pub fn set_cursor(&self, cursor: Option<&Cursor>) {
         unsafe {
@@ -213,13 +220,6 @@ impl Surface {
                 self.to_glib_none().0,
                 mut_override(region.to_glib_none().0),
             );
-        }
-    }
-
-    #[doc(alias = "gdk_surface_set_shadow_width")]
-    pub fn set_shadow_width(&self, left: i32, right: i32, top: i32, bottom: i32) {
-        unsafe {
-            ffi::gdk_surface_set_shadow_width(self.to_glib_none().0, left, right, top, bottom);
         }
     }
 
@@ -273,6 +273,29 @@ impl Surface {
         }
     }
 
+    pub fn connect_layout<F: Fn(&Surface, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn layout_trampoline<F: Fn(&Surface, i32, i32) + 'static>(
+            this: *mut ffi::GdkSurface,
+            width: libc::c_int,
+            height: libc::c_int,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this), width, height)
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"layout\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    layout_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     pub fn connect_leave_monitor<F: Fn(&Surface, &Monitor) + 'static>(
         &self,
         f: F,
@@ -319,32 +342,6 @@ impl Surface {
                 b"render\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     render_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    pub fn connect_size_changed<F: Fn(&Surface, i32, i32) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn size_changed_trampoline<F: Fn(&Surface, i32, i32) + 'static>(
-            this: *mut ffi::GdkSurface,
-            width: libc::c_int,
-            height: libc::c_int,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), width, height)
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"size-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    size_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

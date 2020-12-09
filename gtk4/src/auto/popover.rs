@@ -442,6 +442,9 @@ pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_popup")]
     fn popup(&self);
 
+    #[doc(alias = "gtk_popover_present")]
+    fn present(&self);
+
     #[doc(alias = "gtk_popover_set_autohide")]
     fn set_autohide(&self, autohide: bool);
 
@@ -587,6 +590,12 @@ impl<O: IsA<Popover>> PopoverExt for O {
     fn popup(&self) {
         unsafe {
             ffi::gtk_popover_popup(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn present(&self) {
+        unsafe {
+            ffi::gtk_popover_present(self.as_ref().to_glib_none().0);
         }
     }
 

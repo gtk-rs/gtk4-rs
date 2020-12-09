@@ -83,27 +83,26 @@ pub const GDK_KEY_RELEASE: GdkEventType = 5;
 pub const GDK_ENTER_NOTIFY: GdkEventType = 6;
 pub const GDK_LEAVE_NOTIFY: GdkEventType = 7;
 pub const GDK_FOCUS_CHANGE: GdkEventType = 8;
-pub const GDK_CONFIGURE: GdkEventType = 9;
-pub const GDK_PROXIMITY_IN: GdkEventType = 10;
-pub const GDK_PROXIMITY_OUT: GdkEventType = 11;
-pub const GDK_DRAG_ENTER: GdkEventType = 12;
-pub const GDK_DRAG_LEAVE: GdkEventType = 13;
-pub const GDK_DRAG_MOTION: GdkEventType = 14;
-pub const GDK_DROP_START: GdkEventType = 15;
-pub const GDK_SCROLL: GdkEventType = 16;
-pub const GDK_GRAB_BROKEN: GdkEventType = 17;
-pub const GDK_TOUCH_BEGIN: GdkEventType = 18;
-pub const GDK_TOUCH_UPDATE: GdkEventType = 19;
-pub const GDK_TOUCH_END: GdkEventType = 20;
-pub const GDK_TOUCH_CANCEL: GdkEventType = 21;
-pub const GDK_TOUCHPAD_SWIPE: GdkEventType = 22;
-pub const GDK_TOUCHPAD_PINCH: GdkEventType = 23;
-pub const GDK_PAD_BUTTON_PRESS: GdkEventType = 24;
-pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 25;
-pub const GDK_PAD_RING: GdkEventType = 26;
-pub const GDK_PAD_STRIP: GdkEventType = 27;
-pub const GDK_PAD_GROUP_MODE: GdkEventType = 28;
-pub const GDK_EVENT_LAST: GdkEventType = 29;
+pub const GDK_PROXIMITY_IN: GdkEventType = 9;
+pub const GDK_PROXIMITY_OUT: GdkEventType = 10;
+pub const GDK_DRAG_ENTER: GdkEventType = 11;
+pub const GDK_DRAG_LEAVE: GdkEventType = 12;
+pub const GDK_DRAG_MOTION: GdkEventType = 13;
+pub const GDK_DROP_START: GdkEventType = 14;
+pub const GDK_SCROLL: GdkEventType = 15;
+pub const GDK_GRAB_BROKEN: GdkEventType = 16;
+pub const GDK_TOUCH_BEGIN: GdkEventType = 17;
+pub const GDK_TOUCH_UPDATE: GdkEventType = 18;
+pub const GDK_TOUCH_END: GdkEventType = 19;
+pub const GDK_TOUCH_CANCEL: GdkEventType = 20;
+pub const GDK_TOUCHPAD_SWIPE: GdkEventType = 21;
+pub const GDK_TOUCHPAD_PINCH: GdkEventType = 22;
+pub const GDK_PAD_BUTTON_PRESS: GdkEventType = 23;
+pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 24;
+pub const GDK_PAD_RING: GdkEventType = 25;
+pub const GDK_PAD_STRIP: GdkEventType = 26;
+pub const GDK_PAD_GROUP_MODE: GdkEventType = 27;
+pub const GDK_EVENT_LAST: GdkEventType = 28;
 
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
@@ -2556,23 +2555,22 @@ pub const GDK_SEAT_CAPABILITY_ALL_POINTING: GdkSeatCapabilities = 7;
 pub const GDK_SEAT_CAPABILITY_ALL: GdkSeatCapabilities = 15;
 
 pub type GdkToplevelState = c_uint;
-pub const GDK_TOPLEVEL_STATE_WITHDRAWN: GdkToplevelState = 1;
-pub const GDK_TOPLEVEL_STATE_MINIMIZED: GdkToplevelState = 2;
-pub const GDK_TOPLEVEL_STATE_MAXIMIZED: GdkToplevelState = 4;
-pub const GDK_TOPLEVEL_STATE_STICKY: GdkToplevelState = 8;
-pub const GDK_TOPLEVEL_STATE_FULLSCREEN: GdkToplevelState = 16;
-pub const GDK_TOPLEVEL_STATE_ABOVE: GdkToplevelState = 32;
-pub const GDK_TOPLEVEL_STATE_BELOW: GdkToplevelState = 64;
-pub const GDK_TOPLEVEL_STATE_FOCUSED: GdkToplevelState = 128;
-pub const GDK_TOPLEVEL_STATE_TILED: GdkToplevelState = 256;
-pub const GDK_TOPLEVEL_STATE_TOP_TILED: GdkToplevelState = 512;
-pub const GDK_TOPLEVEL_STATE_TOP_RESIZABLE: GdkToplevelState = 1024;
-pub const GDK_TOPLEVEL_STATE_RIGHT_TILED: GdkToplevelState = 2048;
-pub const GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE: GdkToplevelState = 4096;
-pub const GDK_TOPLEVEL_STATE_BOTTOM_TILED: GdkToplevelState = 8192;
-pub const GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE: GdkToplevelState = 16384;
-pub const GDK_TOPLEVEL_STATE_LEFT_TILED: GdkToplevelState = 32768;
-pub const GDK_TOPLEVEL_STATE_LEFT_RESIZABLE: GdkToplevelState = 65536;
+pub const GDK_TOPLEVEL_STATE_MINIMIZED: GdkToplevelState = 1;
+pub const GDK_TOPLEVEL_STATE_MAXIMIZED: GdkToplevelState = 2;
+pub const GDK_TOPLEVEL_STATE_STICKY: GdkToplevelState = 4;
+pub const GDK_TOPLEVEL_STATE_FULLSCREEN: GdkToplevelState = 8;
+pub const GDK_TOPLEVEL_STATE_ABOVE: GdkToplevelState = 16;
+pub const GDK_TOPLEVEL_STATE_BELOW: GdkToplevelState = 32;
+pub const GDK_TOPLEVEL_STATE_FOCUSED: GdkToplevelState = 64;
+pub const GDK_TOPLEVEL_STATE_TILED: GdkToplevelState = 128;
+pub const GDK_TOPLEVEL_STATE_TOP_TILED: GdkToplevelState = 256;
+pub const GDK_TOPLEVEL_STATE_TOP_RESIZABLE: GdkToplevelState = 512;
+pub const GDK_TOPLEVEL_STATE_RIGHT_TILED: GdkToplevelState = 1024;
+pub const GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE: GdkToplevelState = 2048;
+pub const GDK_TOPLEVEL_STATE_BOTTOM_TILED: GdkToplevelState = 4096;
+pub const GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE: GdkToplevelState = 8192;
+pub const GDK_TOPLEVEL_STATE_LEFT_TILED: GdkToplevelState = 16384;
+pub const GDK_TOPLEVEL_STATE_LEFT_RESIZABLE: GdkToplevelState = 32768;
 
 // Callbacks
 pub type GdkContentDeserializeFunc = Option<unsafe extern "C" fn(*mut GdkContentDeserializer)>;
@@ -2909,16 +2907,6 @@ pub struct GdkClipboard(c_void);
 impl ::std::fmt::Debug for GdkClipboard {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkClipboard @ {:?}", self as *const _))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct GdkConfigureEvent(c_void);
-
-impl ::std::fmt::Debug for GdkConfigureEvent {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkConfigureEvent @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -3659,6 +3647,13 @@ extern "C" {
         min_width: c_int,
         min_height: c_int,
     );
+    pub fn gdk_toplevel_size_set_shadow_width(
+        size: *mut GdkToplevelSize,
+        left: c_int,
+        right: c_int,
+        top: c_int,
+        bottom: c_int,
+    );
     pub fn gdk_toplevel_size_set_size(size: *mut GdkToplevelSize, width: c_int, height: c_int);
 
     //=========================================================================
@@ -3768,16 +3763,6 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-
-    //=========================================================================
-    // GdkConfigureEvent
-    //=========================================================================
-    pub fn gdk_configure_event_get_type() -> GType;
-    pub fn gdk_configure_event_get_size(
-        event: *mut GdkConfigureEvent,
-        width: *mut c_int,
-        height: *mut c_int,
-    );
 
     //=========================================================================
     // GdkContentDeserializer
@@ -4403,6 +4388,7 @@ extern "C" {
     pub fn gdk_surface_hide(surface: *mut GdkSurface);
     pub fn gdk_surface_is_destroyed(surface: *mut GdkSurface) -> gboolean;
     pub fn gdk_surface_queue_render(surface: *mut GdkSurface);
+    pub fn gdk_surface_request_layout(surface: *mut GdkSurface);
     pub fn gdk_surface_set_cursor(surface: *mut GdkSurface, cursor: *mut GdkCursor);
     pub fn gdk_surface_set_device_cursor(
         surface: *mut GdkSurface,
@@ -4416,13 +4402,6 @@ extern "C" {
     pub fn gdk_surface_set_opaque_region(
         surface: *mut GdkSurface,
         region: *mut cairo::cairo_region_t,
-    );
-    pub fn gdk_surface_set_shadow_width(
-        surface: *mut GdkSurface,
-        left: c_int,
-        right: c_int,
-        top: c_int,
-        bottom: c_int,
     );
     pub fn gdk_surface_translate_coordinates(
         from: *mut GdkSurface,
@@ -4573,10 +4552,7 @@ extern "C" {
     pub fn gdk_toplevel_inhibit_system_shortcuts(toplevel: *mut GdkToplevel, event: *mut GdkEvent);
     pub fn gdk_toplevel_lower(toplevel: *mut GdkToplevel) -> gboolean;
     pub fn gdk_toplevel_minimize(toplevel: *mut GdkToplevel) -> gboolean;
-    pub fn gdk_toplevel_present(
-        toplevel: *mut GdkToplevel,
-        layout: *mut GdkToplevelLayout,
-    ) -> gboolean;
+    pub fn gdk_toplevel_present(toplevel: *mut GdkToplevel, layout: *mut GdkToplevelLayout);
     pub fn gdk_toplevel_restore_system_shortcuts(toplevel: *mut GdkToplevel);
     pub fn gdk_toplevel_set_decorated(toplevel: *mut GdkToplevel, decorated: gboolean);
     pub fn gdk_toplevel_set_deletable(toplevel: *mut GdkToplevel, deletable: gboolean);

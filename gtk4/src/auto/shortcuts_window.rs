@@ -209,8 +209,10 @@ pub struct ShortcutsWindowBuilder {
     display: Option<gdk::Display>,
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
+    fullscreen: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
+    maximized: Option<bool>,
     mnemonics_visible: Option<bool>,
     modal: Option<bool>,
     resizable: Option<bool>,
@@ -295,11 +297,17 @@ impl ShortcutsWindowBuilder {
         if let Some(ref focus_widget) = self.focus_widget {
             properties.push(("focus-widget", focus_widget));
         }
+        if let Some(ref fullscreen) = self.fullscreen {
+            properties.push(("fullscreen", fullscreen));
+        }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
         }
         if let Some(ref icon_name) = self.icon_name {
             properties.push(("icon-name", icon_name));
+        }
+        if let Some(ref maximized) = self.maximized {
+            properties.push(("maximized", maximized));
         }
         if let Some(ref mnemonics_visible) = self.mnemonics_visible {
             properties.push(("mnemonics-visible", mnemonics_visible));
@@ -481,6 +489,11 @@ impl ShortcutsWindowBuilder {
         self
     }
 
+    pub fn fullscreen(mut self, fullscreen: bool) -> Self {
+        self.fullscreen = Some(fullscreen);
+        self
+    }
+
     pub fn hide_on_close(mut self, hide_on_close: bool) -> Self {
         self.hide_on_close = Some(hide_on_close);
         self
@@ -488,6 +501,11 @@ impl ShortcutsWindowBuilder {
 
     pub fn icon_name(mut self, icon_name: &str) -> Self {
         self.icon_name = Some(icon_name.to_string());
+        self
+    }
+
+    pub fn maximized(mut self, maximized: bool) -> Self {
+        self.maximized = Some(maximized);
         self
     }
 

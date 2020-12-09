@@ -30,9 +30,6 @@ impl Native {
 pub const NONE_NATIVE: Option<&Native> = None;
 
 pub trait NativeExt: 'static {
-    #[doc(alias = "gtk_native_check_resize")]
-    fn check_resize(&self);
-
     #[doc(alias = "gtk_native_get_renderer")]
     fn get_renderer(&self) -> Option<gsk::Renderer>;
 
@@ -44,12 +41,6 @@ pub trait NativeExt: 'static {
 }
 
 impl<O: IsA<Native>> NativeExt for O {
-    fn check_resize(&self) {
-        unsafe {
-            ffi::gtk_native_check_resize(self.as_ref().to_glib_none().0);
-        }
-    }
-
     fn get_renderer(&self) -> Option<gsk::Renderer> {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
