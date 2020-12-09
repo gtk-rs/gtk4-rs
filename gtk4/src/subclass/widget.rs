@@ -895,6 +895,16 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    fn set_css_name(&mut self, name: &str) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_css_name(widget_class, name.to_glib_none().0);
+        }
+    }
+
     #[allow(clippy::missing_safety_doc)]
     unsafe fn bind_template_child_with_offset<T>(
         &mut self,
