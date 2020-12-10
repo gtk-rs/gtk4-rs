@@ -849,10 +849,7 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     fn set_template_bytes(&mut self, template: &glib::Bytes) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_template(widget_class, template.to_glib_none().0);
         }
     }
@@ -869,10 +866,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
     fn set_template_from_resource(&mut self, resource_name: &str) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_template_from_resource(
                 widget_class,
                 resource_name.to_glib_none().0,
@@ -882,10 +876,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
     fn bind_template_child(&mut self, name: &str) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_bind_template_child_full(
                 widget_class,
                 name.to_glib_none().0,
@@ -897,73 +888,49 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
     fn add_shortcut(&mut self, shortcut: &Shortcut) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
         }
     }
 
     fn set_layout_manager_type<T: IsA<LayoutManager>>(&mut self) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_layout_manager_type(widget_class, T::static_type().to_glib());
         }
     }
 
     fn get_layout_manager_type(&self) -> glib::Type {
         unsafe {
-            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
             from_glib(ffi::gtk_widget_class_get_layout_manager_type(widget_class))
         }
     }
 
     fn set_css_name(&mut self, name: &str) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_css_name(widget_class, name.to_glib_none().0);
         }
     }
 
     fn get_css_name(&self) -> glib::GString {
         unsafe {
-            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
-
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
             from_glib_none(ffi::gtk_widget_class_get_css_name(widget_class))
         }
     }
 
     fn set_accessible_role(&mut self, role: AccessibleRole) {
         unsafe {
-            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
-
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_accessible_role(widget_class, role.to_glib());
         }
     }
 
     fn get_accessible_role(&self) -> AccessibleRole {
         unsafe {
-            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
-            let widget_class =
-                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                    as *mut ffi::GtkWidgetClass;
-
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
             from_glib(ffi::gtk_widget_class_get_accessible_role(widget_class))
         }
     }
@@ -976,10 +943,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     ) where
         T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
     {
-        let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
-        let widget_class =
-            glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
-                as *mut ffi::GtkWidgetClass;
+        let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
         let private_offset = <Self::Type as ObjectSubclass>::type_data()
             .as_ref()
             .private_offset;
