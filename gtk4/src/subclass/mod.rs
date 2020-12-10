@@ -38,6 +38,7 @@ pub mod range;
 pub mod recent_manager;
 pub mod root;
 pub mod scale;
+pub mod scale_button;
 pub mod scrollable;
 pub mod selection_model;
 pub mod shortcut_manager;
@@ -98,6 +99,7 @@ pub mod prelude {
     pub use super::recent_manager::RecentManagerImpl;
     pub use super::root::RootImpl;
     pub use super::scale::ScaleImpl;
+    pub use super::scale_button::ScaleButtonImpl;
     pub use super::scrollable::ScrollableImpl;
     pub use super::selection_model::SelectionModelImpl;
     pub use super::shortcut_manager::ShortcutManagerImpl;
