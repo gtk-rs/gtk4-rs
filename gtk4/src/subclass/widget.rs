@@ -4,8 +4,8 @@ use glib::translate::*;
 use glib::Cast;
 
 use crate::{
-    DirectionType, LayoutManager, Orientation, SizeRequestMode, Snapshot, StateFlags,
-    SystemSetting, TextDirection, Tooltip, Widget, WidgetExt,
+    AccessibleRole, DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot,
+    StateFlags, SystemSetting, TextDirection, Tooltip, Widget, WidgetExt,
 };
 use glib::Object;
 
@@ -895,6 +895,16 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    fn add_shortcut(&mut self, shortcut: &Shortcut) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
+        }
+    }
+
     fn set_layout_manager_type<T: IsA<LayoutManager>>(&mut self) {
         unsafe {
             let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
@@ -905,6 +915,16 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    fn get_layout_manager_type(&self) -> glib::Type {
+        unsafe {
+            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+            from_glib(ffi::gtk_widget_class_get_layout_manager_type(widget_class))
+        }
+    }
+
     fn set_css_name(&mut self, name: &str) {
         unsafe {
             let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
@@ -912,6 +932,39 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
                     as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_css_name(widget_class, name.to_glib_none().0);
+        }
+    }
+
+    fn get_css_name(&self) -> glib::GString {
+        unsafe {
+            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+
+            from_glib_none(ffi::gtk_widget_class_get_css_name(widget_class))
+        }
+    }
+
+    fn set_accessible_role(&mut self, role: AccessibleRole) {
+        unsafe {
+            let type_class = self as *mut _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+
+            ffi::gtk_widget_class_set_accessible_role(widget_class, role.to_glib());
+        }
+    }
+
+    fn get_accessible_role(&self) -> AccessibleRole {
+        unsafe {
+            let type_class = self as *const _ as *mut glib::gobject_ffi::GTypeClass;
+            let widget_class =
+                glib::gobject_ffi::g_type_check_class_cast(type_class, ffi::gtk_widget_get_type())
+                    as *mut ffi::GtkWidgetClass;
+
+            from_glib(ffi::gtk_widget_class_get_accessible_role(widget_class))
         }
     }
 
