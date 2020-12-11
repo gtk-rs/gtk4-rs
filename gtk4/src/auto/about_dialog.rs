@@ -771,7 +771,7 @@ pub struct AboutDialogBuilder {
     display: Option<gdk::Display>,
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
-    fullscreen: Option<bool>,
+    fullscreened: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     maximized: Option<bool>,
@@ -901,8 +901,8 @@ impl AboutDialogBuilder {
         if let Some(ref focus_widget) = self.focus_widget {
             properties.push(("focus-widget", focus_widget));
         }
-        if let Some(ref fullscreen) = self.fullscreen {
-            properties.push(("fullscreen", fullscreen));
+        if let Some(ref fullscreened) = self.fullscreened {
+            properties.push(("fullscreened", fullscreened));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -1163,8 +1163,8 @@ impl AboutDialogBuilder {
         self
     }
 
-    pub fn fullscreen(mut self, fullscreen: bool) -> Self {
-        self.fullscreen = Some(fullscreen);
+    pub fn fullscreened(mut self, fullscreened: bool) -> Self {
+        self.fullscreened = Some(fullscreened);
         self
     }
 

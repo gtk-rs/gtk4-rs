@@ -105,7 +105,7 @@ pub struct WindowBuilder {
     display: Option<gdk::Display>,
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
-    fullscreen: Option<bool>,
+    fullscreened: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     maximized: Option<bool>,
@@ -187,8 +187,8 @@ impl WindowBuilder {
         if let Some(ref focus_widget) = self.focus_widget {
             properties.push(("focus-widget", focus_widget));
         }
-        if let Some(ref fullscreen) = self.fullscreen {
-            properties.push(("fullscreen", fullscreen));
+        if let Some(ref fullscreened) = self.fullscreened {
+            properties.push(("fullscreened", fullscreened));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -369,8 +369,8 @@ impl WindowBuilder {
         self
     }
 
-    pub fn fullscreen(mut self, fullscreen: bool) -> Self {
-        self.fullscreen = Some(fullscreen);
+    pub fn fullscreened(mut self, fullscreened: bool) -> Self {
+        self.fullscreened = Some(fullscreened);
         self
     }
 
@@ -735,9 +735,9 @@ pub trait GtkWindowExt: 'static {
 
     fn set_property_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>);
 
-    fn get_property_fullscreen(&self) -> bool;
+    fn get_property_fullscreened(&self) -> bool;
 
-    fn set_property_fullscreen(&self, fullscreen: bool);
+    fn set_property_fullscreened(&self, fullscreened: bool);
 
     fn get_property_is_active(&self) -> bool;
 
@@ -805,7 +805,8 @@ pub trait GtkWindowExt: 'static {
     fn connect_property_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
 
-    fn connect_property_fullscreen_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    fn connect_property_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F)
+        -> SignalHandlerId;
 
     fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1256,27 +1257,27 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn get_property_fullscreen(&self) -> bool {
+    fn get_property_fullscreened(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreen\0".as_ptr() as *const _,
+                b"fullscreened\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
             value
                 .get()
-                .expect("Return Value for property `fullscreen` getter")
+                .expect("Return Value for property `fullscreened` getter")
                 .unwrap()
         }
     }
 
-    fn set_property_fullscreen(&self, fullscreen: bool) {
+    fn set_property_fullscreened(&self, fullscreened: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreen\0".as_ptr() as *const _,
-                glib::Value::from(&fullscreen).to_glib_none().0,
+                b"fullscreened\0".as_ptr() as *const _,
+                glib::Value::from(&fullscreened).to_glib_none().0,
             );
         }
     }
@@ -1762,8 +1763,11 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_fullscreen_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_fullscreen_trampoline<P, F: Fn(&P) + 'static>(
+    fn connect_property_fullscreened_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_fullscreened_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -1777,9 +1781,9 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::fullscreen\0".as_ptr() as *const _,
+                b"notify::fullscreened\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_fullscreen_trampoline::<Self, F> as *const (),
+                    notify_fullscreened_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
