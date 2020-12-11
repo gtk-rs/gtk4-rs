@@ -998,7 +998,7 @@
     <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Display</span><span class="op">&gt;</span>,
     <span class="ident">focus_visible</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">focus_widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    <span class="ident">fullscreen</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
+    <span class="ident">fullscreened</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">hide_on_close</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="ident">maximized</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
@@ -1086,8 +1086,8 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">focus_widget</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">focus_widget</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;focus-widget&quot;</span>, <span class="ident">focus_widget</span>));
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">fullscreen</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fullscreen</span> {
-            <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;fullscreen&quot;</span>, <span class="ident">fullscreen</span>));
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">fullscreened</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fullscreened</span> {
+            <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;fullscreened&quot;</span>, <span class="ident">fullscreened</span>));
         }
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">hide_on_close</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">hide_on_close</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;hide-on-close&quot;</span>, <span class="ident">hide_on_close</span>));
@@ -1278,8 +1278,8 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fullscreen</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fullscreen</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fullscreen</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">fullscreen</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fullscreened</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fullscreened</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">fullscreened</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">fullscreened</span>);
         <span class="self">self</span>
     }
 
