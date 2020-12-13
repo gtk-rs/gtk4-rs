@@ -45,4 +45,7 @@ name = "css"
 name = "entry_completion"
 
 [[bin]]
+name = "text_viewer"
+
+[[bin]]
 name = "widget_subclass"
