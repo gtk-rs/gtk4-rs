@@ -15,15 +15,6 @@ mod imp {
         child: RefCell<WeakRef<gtk::Widget>>,
     }
 
-    impl Drop for Button {
-        fn drop(&mut self) {
-            // Child widgets need to be manually unparented.
-            if let Some(child) = self.child.get_mut().upgrade() {
-                child.unparent();
-            }
-        }
-    }
-
     impl ObjectSubclass for Button {
         const NAME: &'static str = "ExButton";
         type Type = super::Button;
@@ -67,6 +58,13 @@ mod imp {
                 println!("Button pressed!");
             });
             obj.add_controller(&gesture);
+        }
+
+        fn dispose(&self, _obj: &Self::Type) {
+            // Child widgets need to be manually unparented.
+            if let Some(child) = self.child.borrow().upgrade() {
+                child.unparent();
+            }
         }
     }
 
