@@ -7,12 +7,23 @@ use gtk::prelude::*;
 
 mod imp {
     use super::*;
-    use glib::{glib_object_subclass, WeakRef};
+    use glib::glib_object_subclass;
     use gtk::subclass::prelude::*;
 
     #[derive(Debug)]
     pub struct Button {
-        child: RefCell<WeakRef<gtk::Widget>>,
+        /// Reference to the child widget.
+        ///
+        /// In our case it's a text label for the button. Since this example only uses a
+        /// `gtk::Label`, the type could've been `Option<gtk::Label>`. However, a real button might
+        /// switch between a label widget and an icon widget, and in general your widget can contain
+        /// arbitrary children. Thus we used `Option<gtk::Widget>` to show how to handle any widget
+        /// and to make the example easier to tweak and play with.
+        ///
+        /// Widgets automatically store strong references to their children, added in `set_parent()`
+        /// and removed in `unparent()`. Therefore, this field could be a `WeakRef<gtk::Widget>`.
+        /// Using a strong reference is just a little clearer.
+        child: RefCell<Option<gtk::Widget>>,
     }
 
     impl ObjectSubclass for Button {
@@ -34,7 +45,7 @@ mod imp {
 
         fn new() -> Self {
             Self {
-                child: RefCell::new(WeakRef::new()),
+                child: RefCell::new(None),
             }
         }
     }
@@ -46,7 +57,7 @@ mod imp {
             // Create the child label.
             let child = gtk::Label::new(Some("Hello world!"));
             child.set_parent(obj);
-            *self.child.borrow_mut() = child.upcast::<gtk::Widget>().downgrade();
+            *self.child.borrow_mut() = Some(child.upcast::<gtk::Widget>());
 
             // Make it look like a GTK button with a label (as opposed to an icon).
             obj.add_css_class("text-button");
@@ -61,8 +72,8 @@ mod imp {
         }
 
         fn dispose(&self, _obj: &Self::Type) {
-            // Child widgets need to be manually unparented.
-            if let Some(child) = self.child.borrow().upgrade() {
+            // Child widgets need to be manually unparented in `dispose()`.
+            if let Some(child) = self.child.borrow_mut().take() {
                 child.unparent();
             }
         }
