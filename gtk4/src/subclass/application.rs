@@ -62,7 +62,22 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
         let klass = class.as_mut();
         klass.window_added = Some(application_window_added::<T>);
         klass.window_removed = Some(application_window_removed::<T>);
+
+        // Chain our startup handler in here
+        let parent_klass = &mut class.as_mut().parent_class;
+        parent_klass.startup = Some(application_startup::<T>);
     }
+}
+
+unsafe extern "C" fn application_startup<T: ObjectSubclass>(ptr: *mut gio::ffi::GApplication)
+where
+    T: GtkApplicationImpl,
+{
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.get_impl();
+    let wrap: Borrowed<gio::Application> = from_glib_borrow(ptr);
+    crate::rt::set_initialized();
+    imp.startup(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
