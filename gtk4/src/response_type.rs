@@ -1,3 +1,5 @@
+// Take a look at the license at the top of the repository in the LICENSE file.
+
 use glib::translate::{from_glib, FromGlib, ToGlib, ToGlibPtr, ToGlibPtrMut};
 use glib::value::{FromValue, FromValueOptional, SetValue};
 use glib::{StaticType, Type, Value};

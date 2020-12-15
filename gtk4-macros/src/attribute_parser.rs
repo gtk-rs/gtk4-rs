@@ -1,3 +1,5 @@
+// Take a look at the license at the top of the repository in the LICENSE file.
+
 use proc_macro2::Span;
 use syn::parse::Error;
 use syn::spanned::Spanned;
