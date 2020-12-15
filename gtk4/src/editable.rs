@@ -1,3 +1,5 @@
+// Take a look at the license at the top of the repository in the LICENSE file.
+
 use crate::Editable;
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};

@@ -1,6 +1,5 @@
-// Copyright 2013-2018, The Gtk-rs Project Developers.
-// See the COPYRIGHT file at the top-level directory of this distribution.
-// Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
+// Take a look at the license at the top of the repository in the LICENSE file.
+
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::let_unit_value)]
 #![allow(clippy::new_without_default)]

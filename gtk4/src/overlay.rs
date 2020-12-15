@@ -1,3 +1,5 @@
+// Take a look at the license at the top of the repository in the LICENSE file.
+
 use crate::{Overlay, Widget};
 use glib::object::Cast;
 use glib::signal::{connect_raw, SignalHandlerId};

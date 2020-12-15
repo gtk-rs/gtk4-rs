@@ -136,3 +136,22 @@ jobs:
         working-directory: checker
       - run: ./check_init_asserts ../${{matrix.crate}}
         working-directory: checker
+
+  checker-macros:
+    name: gtk-rs macro checker
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        crate:
+          - gtk4-macros
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: gtk-rs/checker
+          ref: master
+          path: checker
+      - working-directory: checker
+        run: cargo build --release
+      - run: cargo run -- --no-manual-traits ../${{matrix.crate}}
+        working-directory: checker
