@@ -4,7 +4,6 @@
 
 use gio::prelude::*;
 use glib::subclass::prelude::*;
-use glib::{glib_object_subclass, glib_wrapper};
 use gtk::{prelude::*, CompositeTemplate};
 
 mod imp {
@@ -34,7 +33,7 @@ mod imp {
         type Instance = subclass::simple::InstanceStruct<Self>;
         type Class = subclass::simple::ClassStruct<Self>;
 
-        glib_object_subclass!();
+        glib::object_subclass!();
 
         fn new() -> Self {
             Self {
@@ -73,7 +72,7 @@ mod imp {
     impl ApplicationWindowImpl for ExApplicationWindow {}
 }
 
-glib_wrapper! {
+glib::wrapper! {
     pub struct ExApplicationWindow(ObjectSubclass<imp::ExApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
 }

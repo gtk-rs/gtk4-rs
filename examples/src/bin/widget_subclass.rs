@@ -2,12 +2,10 @@ use std::cell::RefCell;
 use std::env;
 
 use gio::prelude::*;
-use glib::glib_wrapper;
 use gtk::prelude::*;
 
 mod imp {
     use super::*;
-    use glib::glib_object_subclass;
     use gtk::subclass::prelude::*;
 
     #[derive(Debug)]
@@ -33,7 +31,7 @@ mod imp {
         type Instance = glib::subclass::simple::InstanceStruct<Self>;
         type Class = glib::subclass::simple::ClassStruct<Self>;
 
-        glib_object_subclass!();
+        glib::object_subclass!();
 
         fn class_init(klass: &mut Self::Class) {
             // The layout manager determines how child widgets are laid out.
@@ -82,7 +80,7 @@ mod imp {
     impl WidgetImpl for Button {}
 }
 
-glib_wrapper! {
+glib::wrapper! {
     pub struct Button(ObjectSubclass<imp::Button>)
         @extends gtk::Widget;
 }
