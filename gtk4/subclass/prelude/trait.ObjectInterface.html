@@ -19,7 +19,7 @@ with the type system.</p>
 <p>This must be unique in the whole process.</p>
 </div></div><span class="loading-content">Loading content...</span><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.get_type" class="method"><code>pub fn <a href="#tymethod.get_type" class="fnname">get_type</a>() -&gt; Type</code></h3><div class="docblock"><p>Returns the <code>glib::Type</code> ID of the interface.</p>
 <p>This will register the type with the type system on the first call and is usually generated
-by the <a href="../../macro.glib_object_interface.html"><code>glib_object_interface!</code></a> macro.</p>
+by the <a href="../../macro.glib_object_interface.html"><code>object_interface!</code></a> macro.</p>
 </div></div><span class="loading-content">Loading content...</span><h2 id="provided-methods" class="small-section-header">Provided methods<a href="#provided-methods" class="anchor"></a></h2><div class="methods"><h3 id="method.type_init" class="method"><code>pub fn <a href="#method.type_init" class="fnname">type_init</a>(_type_: &amp;mut InitializingType&lt;Self&gt;)</code></h3><div class="docblock"><p>Additional type initialization.</p>
 <p>This is called right after the type was registered and allows
 interfaces to do additional type-specific initialization, e.g.

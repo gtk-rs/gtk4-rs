@@ -270,7 +270,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">pin</span>::<span class="ident">Pin</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
 
-<span class="ident">glib</span>::<span class="macro">glib_wrapper</span><span class="macro">!</span> {
+<span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
     <span class="doccomment">/// The `Drop` struct contains only private fields and</span>
     <span class="doccomment">/// should not be accessed directly.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Drop</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkDrop</span><span class="op">&gt;</span>);

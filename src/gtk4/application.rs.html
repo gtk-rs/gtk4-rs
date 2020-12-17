@@ -106,7 +106,7 @@
                 <span class="ident">application_id</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
             ))
-            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">glib</span>::<span class="macro">glib_bool_error</span><span class="macro">!</span>(<span class="string">&quot;Failed to create application&quot;</span>))
+            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">glib</span>::<span class="macro">bool_error</span><span class="macro">!</span>(<span class="string">&quot;Failed to create application&quot;</span>))
         }
     }
 }
