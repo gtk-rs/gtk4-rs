@@ -42,6 +42,7 @@ mod drop;
 mod functions;
 mod keymap_key;
 mod popup_layout;
+mod rectangle;
 mod rgba;
 mod surface;
 mod time_coord;
@@ -54,6 +55,7 @@ pub use functions::*;
 
 pub use keymap_key::KeymapKey;
 pub use popup_layout::PopupLayoutExtManual;
+pub use rectangle::Rectangle;
 pub use rgba::{RgbaParseError, RGBA};
 pub use surface::SurfaceExtManual;
 pub use time_coord::TimeCoord;
