@@ -72,10 +72,7 @@ impl AlternativeTriggerBuilder {
         if let Some(ref second) = self.second {
             properties.push(("second", second));
         }
-        let ret = glib::Object::new(AlternativeTrigger::static_type(), &properties)
-            .expect("object new")
-            .downcast::<AlternativeTrigger>()
-            .expect("downcast");
+        let ret = glib::Object::new::<AlternativeTrigger>(&properties).expect("object new");
         ret
     }
 

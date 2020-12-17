@@ -293,10 +293,7 @@ impl WindowControlsBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(WindowControls::static_type(), &properties)
-            .expect("object new")
-            .downcast::<WindowControls>()
-            .expect("downcast");
+        let ret = glib::Object::new::<WindowControls>(&properties).expect("object new");
         ret
     }
 

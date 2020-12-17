@@ -182,10 +182,7 @@ impl DrawingAreaBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(DrawingArea::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DrawingArea>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DrawingArea>(&properties).expect("object new");
         ret
     }
 

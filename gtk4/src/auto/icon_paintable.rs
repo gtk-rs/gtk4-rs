@@ -85,10 +85,7 @@ impl IconPaintableBuilder {
         if let Some(ref is_symbolic) = self.is_symbolic {
             properties.push(("is-symbolic", is_symbolic));
         }
-        let ret = glib::Object::new(IconPaintable::static_type(), &properties)
-            .expect("object new")
-            .downcast::<IconPaintable>()
-            .expect("downcast");
+        let ret = glib::Object::new::<IconPaintable>(&properties).expect("object new");
         ret
     }
 

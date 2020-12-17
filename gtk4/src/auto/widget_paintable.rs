@@ -90,10 +90,7 @@ impl WidgetPaintableBuilder {
         if let Some(ref widget) = self.widget {
             properties.push(("widget", widget));
         }
-        let ret = glib::Object::new(WidgetPaintable::static_type(), &properties)
-            .expect("object new")
-            .downcast::<WidgetPaintable>()
-            .expect("downcast");
+        let ret = glib::Object::new::<WidgetPaintable>(&properties).expect("object new");
         ret
     }
 

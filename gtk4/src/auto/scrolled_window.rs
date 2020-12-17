@@ -1113,10 +1113,7 @@ impl ScrolledWindowBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(ScrolledWindow::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ScrolledWindow>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ScrolledWindow>(&properties).expect("object new");
         ret
     }
 

@@ -302,10 +302,7 @@ impl DropTargetAsyncBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(DropTargetAsync::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DropTargetAsync>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DropTargetAsync>(&properties).expect("object new");
         ret
     }
 

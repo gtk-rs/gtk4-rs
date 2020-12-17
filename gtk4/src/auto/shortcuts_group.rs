@@ -412,10 +412,7 @@ impl ShortcutsGroupBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(ShortcutsGroup::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ShortcutsGroup>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ShortcutsGroup>(&properties).expect("object new");
         ret
     }
 

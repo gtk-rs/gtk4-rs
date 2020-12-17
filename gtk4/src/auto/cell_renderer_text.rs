@@ -289,10 +289,7 @@ impl CellRendererTextBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new(CellRendererText::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellRendererText>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellRendererText>(&properties).expect("object new");
         ret
     }
 

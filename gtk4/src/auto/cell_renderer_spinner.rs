@@ -267,10 +267,7 @@ impl CellRendererSpinnerBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new(CellRendererSpinner::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellRendererSpinner>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellRendererSpinner>(&properties).expect("object new");
         ret
     }
 

@@ -72,10 +72,7 @@ impl StyleContextBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        let ret = glib::Object::new(StyleContext::static_type(), &properties)
-            .expect("object new")
-            .downcast::<StyleContext>()
-            .expect("downcast");
+        let ret = glib::Object::new::<StyleContext>(&properties).expect("object new");
         ret
     }
 

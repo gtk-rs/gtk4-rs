@@ -461,10 +461,7 @@ impl LevelBarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(LevelBar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<LevelBar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<LevelBar>(&properties).expect("object new");
         ret
     }
 

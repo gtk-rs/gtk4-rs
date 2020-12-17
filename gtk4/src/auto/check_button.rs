@@ -219,10 +219,7 @@ impl CheckButtonBuilder {
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        let ret = glib::Object::new(CheckButton::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CheckButton>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CheckButton>(&properties).expect("object new");
         ret
     }
 

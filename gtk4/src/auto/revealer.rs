@@ -373,10 +373,7 @@ impl RevealerBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Revealer::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Revealer>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Revealer>(&properties).expect("object new");
         ret
     }
 

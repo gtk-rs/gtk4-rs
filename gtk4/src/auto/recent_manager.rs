@@ -59,10 +59,7 @@ impl RecentManagerBuilder {
         if let Some(ref filename) = self.filename {
             properties.push(("filename", filename));
         }
-        let ret = glib::Object::new(RecentManager::static_type(), &properties)
-            .expect("object new")
-            .downcast::<RecentManager>()
-            .expect("downcast");
+        let ret = glib::Object::new::<RecentManager>(&properties).expect("object new");
         ret
     }
 

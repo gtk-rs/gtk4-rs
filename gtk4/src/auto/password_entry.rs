@@ -435,10 +435,7 @@ impl PasswordEntryBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new(PasswordEntry::static_type(), &properties)
-            .expect("object new")
-            .downcast::<PasswordEntry>()
-            .expect("downcast");
+        let ret = glib::Object::new::<PasswordEntry>(&properties).expect("object new");
         ret
     }
 

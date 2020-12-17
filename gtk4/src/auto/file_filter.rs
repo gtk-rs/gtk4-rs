@@ -134,10 +134,7 @@ impl FileFilterBuilder {
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
-        let ret = glib::Object::new(FileFilter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FileFilter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FileFilter>(&properties).expect("object new");
         ret
     }
 

@@ -186,10 +186,7 @@ impl MapListModelBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new(MapListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<MapListModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<MapListModel>(&properties).expect("object new");
         ret
     }
 

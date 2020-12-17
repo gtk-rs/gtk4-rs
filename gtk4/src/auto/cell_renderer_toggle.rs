@@ -322,10 +322,7 @@ impl CellRendererToggleBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new(CellRendererToggle::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellRendererToggle>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellRendererToggle>(&properties).expect("object new");
         ret
     }
 

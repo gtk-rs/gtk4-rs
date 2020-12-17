@@ -94,10 +94,7 @@ impl SelectionFilterModelBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new(SelectionFilterModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SelectionFilterModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SelectionFilterModel>(&properties).expect("object new");
         ret
     }
 

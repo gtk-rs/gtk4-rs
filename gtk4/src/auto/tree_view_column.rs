@@ -1015,10 +1015,7 @@ impl TreeViewColumnBuilder {
         if let Some(ref widget) = self.widget {
             properties.push(("widget", widget));
         }
-        let ret = glib::Object::new(TreeViewColumn::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeViewColumn>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeViewColumn>(&properties).expect("object new");
         ret
     }
 

@@ -467,10 +467,7 @@ impl PictureBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Picture::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Picture>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Picture>(&properties).expect("object new");
         ret
     }
 

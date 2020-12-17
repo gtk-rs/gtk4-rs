@@ -40,10 +40,7 @@ impl EntryBufferBuilder {
         if let Some(ref text) = self.text {
             properties.push(("text", text));
         }
-        let ret = glib::Object::new(EntryBuffer::static_type(), &properties)
-            .expect("object new")
-            .downcast::<EntryBuffer>()
-            .expect("downcast");
+        let ret = glib::Object::new::<EntryBuffer>(&properties).expect("object new");
         ret
     }
 

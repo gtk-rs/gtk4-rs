@@ -367,10 +367,7 @@ impl TextTagBuilder {
         if let Some(ref wrap_mode_set) = self.wrap_mode_set {
             properties.push(("wrap-mode-set", wrap_mode_set));
         }
-        let ret = glib::Object::new(TextTag::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TextTag>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TextTag>(&properties).expect("object new");
         ret
     }
 

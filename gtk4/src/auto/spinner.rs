@@ -230,10 +230,7 @@ impl SpinnerBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Spinner::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Spinner>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Spinner>(&properties).expect("object new");
         ret
     }
 

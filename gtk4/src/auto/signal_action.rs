@@ -49,10 +49,7 @@ impl SignalActionBuilder {
         if let Some(ref signal_name) = self.signal_name {
             properties.push(("signal-name", signal_name));
         }
-        let ret = glib::Object::new(SignalAction::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SignalAction>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SignalAction>(&properties).expect("object new");
         ret
     }
 

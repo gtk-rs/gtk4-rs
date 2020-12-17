@@ -252,10 +252,7 @@ impl ListItemBuilder {
         if let Some(ref selectable) = self.selectable {
             properties.push(("selectable", selectable));
         }
-        let ret = glib::Object::new(ListItem::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ListItem>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ListItem>(&properties).expect("object new");
         ret
     }
 

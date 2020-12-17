@@ -286,10 +286,7 @@ impl TreeViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new(TreeView::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeView>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeView>(&properties).expect("object new");
         ret
     }
 

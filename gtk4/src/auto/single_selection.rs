@@ -254,10 +254,7 @@ impl SingleSelectionBuilder {
         if let Some(ref selected) = self.selected {
             properties.push(("selected", selected));
         }
-        let ret = glib::Object::new(SingleSelection::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SingleSelection>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SingleSelection>(&properties).expect("object new");
         ret
     }
 

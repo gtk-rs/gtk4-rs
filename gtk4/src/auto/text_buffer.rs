@@ -57,10 +57,7 @@ impl TextBufferBuilder {
         if let Some(ref text) = self.text {
             properties.push(("text", text));
         }
-        let ret = glib::Object::new(TextBuffer::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TextBuffer>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TextBuffer>(&properties).expect("object new");
         ret
     }
 

@@ -389,10 +389,7 @@ impl SearchBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(SearchBar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SearchBar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SearchBar>(&properties).expect("object new");
         ret
     }
 

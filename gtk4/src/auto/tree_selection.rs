@@ -326,10 +326,7 @@ impl TreeSelectionBuilder {
         if let Some(ref mode) = self.mode {
             properties.push(("mode", mode));
         }
-        let ret = glib::Object::new(TreeSelection::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeSelection>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeSelection>(&properties).expect("object new");
         ret
     }
 

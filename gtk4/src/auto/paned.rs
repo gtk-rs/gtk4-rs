@@ -860,10 +860,7 @@ impl PanedBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Paned::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Paned>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Paned>(&properties).expect("object new");
         ret
     }
 

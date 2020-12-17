@@ -219,10 +219,7 @@ impl WindowHandleBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(WindowHandle::static_type(), &properties)
-            .expect("object new")
-            .downcast::<WindowHandle>()
-            .expect("downcast");
+        let ret = glib::Object::new::<WindowHandle>(&properties).expect("object new");
         ret
     }
 

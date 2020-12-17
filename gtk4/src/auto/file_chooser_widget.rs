@@ -676,10 +676,7 @@ impl FileChooserWidgetBuilder {
         if let Some(ref select_multiple) = self.select_multiple {
             properties.push(("select-multiple", select_multiple));
         }
-        let ret = glib::Object::new(FileChooserWidget::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FileChooserWidget>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FileChooserWidget>(&properties).expect("object new");
         ret
     }
 

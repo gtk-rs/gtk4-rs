@@ -37,10 +37,7 @@ impl TreeModelFilterBuilder {
         if let Some(ref child_model) = self.child_model {
             properties.push(("child-model", child_model));
         }
-        let ret = glib::Object::new(TreeModelFilter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeModelFilter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeModelFilter>(&properties).expect("object new");
         ret
     }
 

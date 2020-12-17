@@ -213,10 +213,7 @@ impl SortListModelBuilder {
         if let Some(ref sorter) = self.sorter {
             properties.push(("sorter", sorter));
         }
-        let ret = glib::Object::new(SortListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SortListModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SortListModel>(&properties).expect("object new");
         ret
     }
 

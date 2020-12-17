@@ -117,10 +117,7 @@ impl PrintOperationBuilder {
         if let Some(ref use_full_page) = self.use_full_page {
             properties.push(("use-full-page", use_full_page));
         }
-        let ret = glib::Object::new(PrintOperation::static_type(), &properties)
-            .expect("object new")
-            .downcast::<PrintOperation>()
-            .expect("downcast");
+        let ret = glib::Object::new::<PrintOperation>(&properties).expect("object new");
         ret
     }
 

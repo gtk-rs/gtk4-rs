@@ -576,10 +576,7 @@ impl CellRendererAccelBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new(CellRendererAccel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellRendererAccel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellRendererAccel>(&properties).expect("object new");
         ret
     }
 

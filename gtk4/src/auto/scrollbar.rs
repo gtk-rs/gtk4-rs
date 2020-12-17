@@ -226,10 +226,7 @@ impl ScrollbarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Scrollbar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Scrollbar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Scrollbar>(&properties).expect("object new");
         ret
     }
 

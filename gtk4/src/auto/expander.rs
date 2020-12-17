@@ -503,10 +503,7 @@ impl ExpanderBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Expander::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Expander>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Expander>(&properties).expect("object new");
         ret
     }
 

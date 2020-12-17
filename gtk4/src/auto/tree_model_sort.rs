@@ -49,10 +49,7 @@ impl TreeModelSortBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new(TreeModelSort::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeModelSort>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeModelSort>(&properties).expect("object new");
         ret
     }
 

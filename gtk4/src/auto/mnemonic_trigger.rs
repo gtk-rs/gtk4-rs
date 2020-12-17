@@ -45,10 +45,7 @@ impl MnemonicTriggerBuilder {
         if let Some(ref keyval) = self.keyval {
             properties.push(("keyval", keyval));
         }
-        let ret = glib::Object::new(MnemonicTrigger::static_type(), &properties)
-            .expect("object new")
-            .downcast::<MnemonicTrigger>()
-            .expect("downcast");
+        let ret = glib::Object::new::<MnemonicTrigger>(&properties).expect("object new");
         ret
     }
 

@@ -111,10 +111,7 @@ impl SizeGroupBuilder {
         if let Some(ref mode) = self.mode {
             properties.push(("mode", mode));
         }
-        let ret = glib::Object::new(SizeGroup::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SizeGroup>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SizeGroup>(&properties).expect("object new");
         ret
     }
 

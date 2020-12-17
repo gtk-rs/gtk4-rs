@@ -94,10 +94,7 @@ impl TreeListRowSorterBuilder {
         if let Some(ref sorter) = self.sorter {
             properties.push(("sorter", sorter));
         }
-        let ret = glib::Object::new(TreeListRowSorter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeListRowSorter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeListRowSorter>(&properties).expect("object new");
         ret
     }
 

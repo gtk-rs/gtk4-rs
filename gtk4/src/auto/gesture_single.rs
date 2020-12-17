@@ -64,10 +64,7 @@ impl GestureSingleBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(GestureSingle::static_type(), &properties)
-            .expect("object new")
-            .downcast::<GestureSingle>()
-            .expect("downcast");
+        let ret = glib::Object::new::<GestureSingle>(&properties).expect("object new");
         ret
     }
 

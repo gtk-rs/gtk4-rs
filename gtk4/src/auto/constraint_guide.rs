@@ -479,10 +479,7 @@ impl ConstraintGuideBuilder {
         if let Some(ref strength) = self.strength {
             properties.push(("strength", strength));
         }
-        let ret = glib::Object::new(ConstraintGuide::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ConstraintGuide>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ConstraintGuide>(&properties).expect("object new");
         ret
     }
 

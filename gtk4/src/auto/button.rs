@@ -229,10 +229,7 @@ impl ButtonBuilder {
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        let ret = glib::Object::new(Button::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Button>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Button>(&properties).expect("object new");
         ret
     }
 

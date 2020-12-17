@@ -188,10 +188,7 @@ impl FileChooserNativeBuilder {
         if let Some(ref select_multiple) = self.select_multiple {
             properties.push(("select-multiple", select_multiple));
         }
-        let ret = glib::Object::new(FileChooserNative::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FileChooserNative>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FileChooserNative>(&properties).expect("object new");
         ret
     }
 

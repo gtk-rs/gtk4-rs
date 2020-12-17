@@ -67,10 +67,7 @@ impl DeviceToolBuilder {
         if let Some(ref tool_type) = self.tool_type {
             properties.push(("tool-type", tool_type));
         }
-        let ret = glib::Object::new(DeviceTool::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DeviceTool>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DeviceTool>(&properties).expect("object new");
         ret
     }
 

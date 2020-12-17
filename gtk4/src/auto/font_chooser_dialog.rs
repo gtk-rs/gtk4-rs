@@ -290,10 +290,7 @@ impl FontChooserDialogBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        let ret = glib::Object::new(FontChooserDialog::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FontChooserDialog>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FontChooserDialog>(&properties).expect("object new");
         ret
     }
 

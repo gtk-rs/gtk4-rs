@@ -208,10 +208,7 @@ impl EventControllerScrollBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(EventControllerScroll::static_type(), &properties)
-            .expect("object new")
-            .downcast::<EventControllerScroll>()
-            .expect("downcast");
+        let ret = glib::Object::new::<EventControllerScroll>(&properties).expect("object new");
         ret
     }
 

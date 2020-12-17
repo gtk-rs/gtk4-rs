@@ -249,10 +249,7 @@ impl VolumeButtonBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(VolumeButton::static_type(), &properties)
-            .expect("object new")
-            .downcast::<VolumeButton>()
-            .expect("downcast");
+        let ret = glib::Object::new::<VolumeButton>(&properties).expect("object new");
         ret
     }
 

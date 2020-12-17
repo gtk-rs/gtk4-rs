@@ -404,10 +404,7 @@ impl CellViewBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(CellView::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellView>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellView>(&properties).expect("object new");
         ret
     }
 

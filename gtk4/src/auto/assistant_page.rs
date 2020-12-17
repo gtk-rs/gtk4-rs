@@ -208,10 +208,7 @@ impl AssistantPageBuilder {
         if let Some(ref title) = self.title {
             properties.push(("title", title));
         }
-        let ret = glib::Object::new(AssistantPage::static_type(), &properties)
-            .expect("object new")
-            .downcast::<AssistantPage>()
-            .expect("downcast");
+        let ret = glib::Object::new::<AssistantPage>(&properties).expect("object new");
         ret
     }
 

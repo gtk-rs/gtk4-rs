@@ -276,10 +276,7 @@ impl FileChooserDialogBuilder {
         if let Some(ref select_multiple) = self.select_multiple {
             properties.push(("select-multiple", select_multiple));
         }
-        let ret = glib::Object::new(FileChooserDialog::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FileChooserDialog>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FileChooserDialog>(&properties).expect("object new");
         ret
     }
 

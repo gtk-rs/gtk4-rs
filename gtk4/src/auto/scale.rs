@@ -238,10 +238,7 @@ impl ScaleBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Scale::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Scale>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Scale>(&properties).expect("object new");
         ret
     }
 

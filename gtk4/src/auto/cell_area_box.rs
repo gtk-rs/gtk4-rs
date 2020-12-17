@@ -140,10 +140,7 @@ impl CellAreaBoxBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(CellAreaBox::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellAreaBox>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellAreaBox>(&properties).expect("object new");
         ret
     }
 

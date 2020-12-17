@@ -118,10 +118,7 @@ impl BoolFilterBuilder {
         if let Some(ref invert) = self.invert {
             properties.push(("invert", invert));
         }
-        let ret = glib::Object::new(BoolFilter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<BoolFilter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<BoolFilter>(&properties).expect("object new");
         ret
     }
 

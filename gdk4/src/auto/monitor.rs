@@ -386,10 +386,7 @@ impl MonitorBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        let ret = glib::Object::new(Monitor::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Monitor>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Monitor>(&properties).expect("object new");
         ret
     }
 

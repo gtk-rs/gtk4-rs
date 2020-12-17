@@ -307,10 +307,7 @@ impl WindowBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Window::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Window>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Window>(&properties).expect("object new");
         ret
     }
 

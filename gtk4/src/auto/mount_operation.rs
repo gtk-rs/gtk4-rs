@@ -87,10 +87,7 @@ impl MountOperationBuilder {
         if let Some(ref username) = self.username {
             properties.push(("username", username));
         }
-        let ret = glib::Object::new(MountOperation::static_type(), &properties)
-            .expect("object new")
-            .downcast::<MountOperation>()
-            .expect("downcast");
+        let ret = glib::Object::new::<MountOperation>(&properties).expect("object new");
         ret
     }
 

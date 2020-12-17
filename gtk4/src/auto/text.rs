@@ -1014,10 +1014,7 @@ impl TextBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new(Text::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Text>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Text>(&properties).expect("object new");
         ret
     }
 
