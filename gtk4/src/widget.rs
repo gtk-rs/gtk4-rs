@@ -1,6 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::prelude::WidgetExt;
 use crate::Widget;
+
 use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;
 use glib::ObjectExt;
@@ -81,6 +83,18 @@ impl TickCallbackId {
             unsafe {
                 ffi::gtk_widget_remove_tick_callback(widget.to_glib_none().0, self.id);
             }
+        }
+    }
+}
+
+pub trait InitializingWidgetExt {
+    fn init_template(&self);
+}
+
+impl<T: IsA<Widget>> InitializingWidgetExt for glib::subclass::InitializingObject<T> {
+    fn init_template(&self) {
+        unsafe {
+            self.as_ref().init_template();
         }
     }
 }
