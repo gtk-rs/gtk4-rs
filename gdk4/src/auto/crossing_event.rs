@@ -8,7 +8,7 @@ use crate::NotifyType;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CrossingEvent(Object<ffi::GdkCrossingEvent>) @extends Event;
 
     match fn {

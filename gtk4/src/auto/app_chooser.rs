@@ -10,7 +10,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct AppChooser(Interface<ffi::GtkAppChooser>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {

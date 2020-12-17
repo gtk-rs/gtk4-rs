@@ -8,7 +8,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TransformNode(Object<ffi::GskTransformNode>) @extends RenderNode;
 
     match fn {

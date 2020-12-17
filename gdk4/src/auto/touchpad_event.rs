@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TouchpadEvent(Object<ffi::GdkTouchpadEvent>) @extends Event;
 
     match fn {

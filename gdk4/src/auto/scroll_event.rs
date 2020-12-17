@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ScrollEvent(Object<ffi::GdkScrollEvent>) @extends Event;
 
     match fn {

@@ -6,7 +6,7 @@ use crate::DrawContext;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CairoContext(Object<ffi::GdkCairoContext>) @extends DrawContext;
 
     match fn {

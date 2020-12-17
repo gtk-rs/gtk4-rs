@@ -12,7 +12,7 @@ use glib::ToValue;
 use std::fmt;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLShader(Object<ffi::GskGLShader, ffi::GskGLShaderClass>);
 
     match fn {

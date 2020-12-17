@@ -12,7 +12,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Constraint(Object<ffi::GtkConstraint, ffi::GtkConstraintClass>);
 
     match fn {

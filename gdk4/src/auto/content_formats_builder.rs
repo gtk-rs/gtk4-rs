@@ -5,7 +5,7 @@
 use crate::ContentFormats;
 use glib::translate::*;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ContentFormatsBuilder(Shared<ffi::GdkContentFormatsBuilder>);
 

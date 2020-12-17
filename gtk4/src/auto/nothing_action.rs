@@ -6,7 +6,7 @@ use crate::ShortcutAction;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct NothingAction(Object<ffi::GtkNothingAction, ffi::GtkNothingActionClass>) @extends ShortcutAction;
 
     match fn {

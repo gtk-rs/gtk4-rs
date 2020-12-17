@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct FixedLayout(Object<ffi::GtkFixedLayout, ffi::GtkFixedLayoutClass>) @extends LayoutManager;
 
     match fn {

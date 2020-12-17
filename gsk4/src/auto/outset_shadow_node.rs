@@ -7,7 +7,7 @@ use crate::RoundedRect;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct OutsetShadowNode(Object<ffi::GskOutsetShadowNode>) @extends RenderNode;
 
     match fn {

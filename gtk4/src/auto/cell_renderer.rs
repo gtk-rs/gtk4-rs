@@ -22,7 +22,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CellRenderer(Object<ffi::GtkCellRenderer, ffi::GtkCellRendererClass>);
 
     match fn {

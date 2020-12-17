@@ -15,7 +15,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GestureDrag(Object<ffi::GtkGestureDrag, ffi::GtkGestureDragClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {

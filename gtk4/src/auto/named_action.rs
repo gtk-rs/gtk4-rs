@@ -9,7 +9,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct NamedAction(Object<ffi::GtkNamedAction, ffi::GtkNamedActionClass>) @extends ShortcutAction;
 
     match fn {

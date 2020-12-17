@@ -8,7 +8,7 @@ use std::fmt;
 use std::mem;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLContext(Object<ffi::GdkGLContext>) @extends DrawContext;
 
     match fn {

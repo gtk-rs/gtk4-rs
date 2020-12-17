@@ -35,7 +35,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {

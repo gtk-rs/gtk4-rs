@@ -6,7 +6,7 @@ use crate::Event;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ButtonEvent(Object<ffi::GdkButtonEvent>) @extends Event;
 
     match fn {

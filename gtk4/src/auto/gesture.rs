@@ -15,7 +15,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Gesture(Object<ffi::GtkGesture, ffi::GtkGestureClass>) @extends EventController;
 
     match fn {

@@ -11,7 +11,7 @@ use std::fmt;
 use std::mem::transmute;
 use x11::xlib;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11Screen(Object<ffi::GdkX11Screen, ffi::GdkX11ScreenClass>);
 
     match fn {

@@ -22,7 +22,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLArea(Object<ffi::GtkGLArea, ffi::GtkGLAreaClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {

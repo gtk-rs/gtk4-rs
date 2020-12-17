@@ -28,7 +28,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Window(Object<ffi::GtkWindow, ffi::GtkWindowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {

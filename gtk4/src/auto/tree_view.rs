@@ -38,7 +38,7 @@ use std::mem;
 use std::mem::transmute;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {

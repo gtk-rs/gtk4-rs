@@ -4,7 +4,7 @@
 
 use glib::translate::*;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct FrameTimings(Shared<ffi::GdkFrameTimings>);
 

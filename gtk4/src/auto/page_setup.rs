@@ -9,7 +9,7 @@ use glib::translate::*;
 use std::fmt;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct PageSetup(Object<ffi::GtkPageSetup>);
 
     match fn {

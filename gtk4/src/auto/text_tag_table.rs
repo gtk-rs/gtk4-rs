@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TextTagTable(Object<ffi::GtkTextTagTable>) @implements Buildable;
 
     match fn {

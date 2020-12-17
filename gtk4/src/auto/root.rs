@@ -11,7 +11,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Root(Interface<ffi::GtkRoot>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {

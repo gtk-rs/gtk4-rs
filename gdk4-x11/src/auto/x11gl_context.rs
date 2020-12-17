@@ -5,7 +5,7 @@
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11GLContext(Object<ffi::GdkX11GLContext, ffi::GdkX11GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
 
     match fn {

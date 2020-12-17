@@ -7,7 +7,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct PadEvent(Object<ffi::GdkPadEvent>) @extends Event;
 
     match fn {

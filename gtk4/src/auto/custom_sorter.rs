@@ -6,7 +6,7 @@ use crate::Sorter;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CustomSorter(Object<ffi::GtkCustomSorter, ffi::GtkCustomSorterClass>) @extends Sorter;
 
     match fn {

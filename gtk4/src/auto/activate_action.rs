@@ -6,7 +6,7 @@ use crate::ShortcutAction;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ActivateAction(Object<ffi::GtkActivateAction, ffi::GtkActivateActionClass>) @extends ShortcutAction;
 
     match fn {

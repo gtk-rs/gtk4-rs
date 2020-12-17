@@ -14,7 +14,7 @@ use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TreeModelFilter(Object<ffi::GtkTreeModelFilter, ffi::GtkTreeModelFilterClass>) @implements TreeDragSource, TreeModel;
 
     match fn {

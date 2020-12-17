@@ -6,7 +6,7 @@ use crate::LayoutChild;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ConstraintLayoutChild(Object<ffi::GtkConstraintLayoutChild, ffi::GtkConstraintLayoutChildClass>) @extends LayoutChild;
 
     match fn {

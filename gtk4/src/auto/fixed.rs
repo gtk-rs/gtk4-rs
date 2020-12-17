@@ -18,7 +18,7 @@ use glib::ToValue;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Fixed(Object<ffi::GtkFixed, ffi::GtkFixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {

@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GestureRotate(Object<ffi::GtkGestureRotate, ffi::GtkGestureRotateClass>) @extends Gesture, EventController;
 
     match fn {

@@ -7,7 +7,7 @@ use crate::RoundedRect;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BorderNode(Object<ffi::GskBorderNode>) @extends RenderNode;
 
     match fn {

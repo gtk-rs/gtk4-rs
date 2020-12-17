@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct OverlayLayout(Object<ffi::GtkOverlayLayout, ffi::GtkOverlayLayoutClass>) @extends LayoutManager;
 
     match fn {

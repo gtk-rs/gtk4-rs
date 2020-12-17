@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct IMContextSimple(Object<ffi::GtkIMContextSimple, ffi::GtkIMContextSimpleClass>) @extends IMContext;
 
     match fn {

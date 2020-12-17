@@ -7,7 +7,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BlurNode(Object<ffi::GskBlurNode>) @extends RenderNode;
 
     match fn {

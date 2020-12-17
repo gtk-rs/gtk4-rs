@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CairoRenderer(Object<ffi::GskCairoRenderer, ffi::GskCairoRendererClass>) @extends Renderer;
 
     match fn {

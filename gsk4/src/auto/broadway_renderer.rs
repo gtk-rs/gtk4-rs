@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BroadwayRenderer(Object<ffi::GskBroadwayRenderer, ffi::GskBroadwayRendererClass>) @extends Renderer;
 
     match fn {

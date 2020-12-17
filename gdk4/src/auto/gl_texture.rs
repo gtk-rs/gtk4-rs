@@ -7,7 +7,7 @@ use crate::Texture;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLTexture(Object<ffi::GdkGLTexture, ffi::GdkGLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {

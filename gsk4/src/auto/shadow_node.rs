@@ -6,7 +6,7 @@ use crate::RenderNode;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ShadowNode(Object<ffi::GskShadowNode>) @extends RenderNode;
 
     match fn {

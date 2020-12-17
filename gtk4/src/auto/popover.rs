@@ -26,7 +26,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Popover(Object<ffi::GtkPopover, ffi::GtkPopoverClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {

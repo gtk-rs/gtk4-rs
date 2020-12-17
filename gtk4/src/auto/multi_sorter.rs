@@ -8,7 +8,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct MultiSorter(Object<ffi::GtkMultiSorter, ffi::GtkMultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
 
     match fn {

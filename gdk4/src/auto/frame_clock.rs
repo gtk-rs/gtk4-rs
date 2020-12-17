@@ -13,7 +13,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct FrameClock(Object<ffi::GdkFrameClock, ffi::GdkFrameClockClass>);
 
     match fn {

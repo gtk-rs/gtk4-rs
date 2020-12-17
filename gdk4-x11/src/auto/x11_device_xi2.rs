@@ -10,7 +10,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11DeviceXI2(Object<ffi::GdkX11DeviceXI2, ffi::GdkX11DeviceXI2Class>) @extends gdk::Device;
 
     match fn {

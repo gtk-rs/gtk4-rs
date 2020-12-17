@@ -9,7 +9,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Popup(Interface<ffi::GdkPopup>) @requires Surface;
 
     match fn {

@@ -6,7 +6,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct ContentFormats(Shared<ffi::GdkContentFormats>);
 

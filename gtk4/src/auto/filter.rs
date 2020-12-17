@@ -13,7 +13,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Filter(Object<ffi::GtkFilter, ffi::GtkFilterClass>);
 
     match fn {

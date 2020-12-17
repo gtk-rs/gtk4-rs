@@ -26,7 +26,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {

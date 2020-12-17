@@ -6,7 +6,7 @@ use crate::LayoutManager;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CustomLayout(Object<ffi::GtkCustomLayout, ffi::GtkCustomLayoutClass>) @extends LayoutManager;
 
     match fn {

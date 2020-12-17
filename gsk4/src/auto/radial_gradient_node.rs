@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct RadialGradientNode(Object<ffi::GskRadialGradientNode>) @extends RenderNode;
 
     match fn {

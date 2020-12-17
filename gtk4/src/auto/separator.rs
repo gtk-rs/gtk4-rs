@@ -19,7 +19,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Separator(Object<ffi::GtkSeparator>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {

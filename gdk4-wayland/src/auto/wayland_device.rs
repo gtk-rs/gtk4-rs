@@ -5,7 +5,7 @@
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct WaylandDevice(Object<ffi::GdkWaylandDevice, ffi::GdkWaylandDeviceClass>) @extends gdk::Device;
 
     match fn {

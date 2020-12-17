@@ -12,7 +12,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ListStore(Object<ffi::GtkListStore, ffi::GtkListStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
 
     match fn {

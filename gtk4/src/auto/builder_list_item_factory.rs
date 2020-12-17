@@ -11,7 +11,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BuilderListItemFactory(Object<ffi::GtkBuilderListItemFactory, ffi::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {

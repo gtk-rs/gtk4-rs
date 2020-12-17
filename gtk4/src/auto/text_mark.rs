@@ -10,7 +10,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TextMark(Object<ffi::GtkTextMark, ffi::GtkTextMarkClass>);
 
     match fn {

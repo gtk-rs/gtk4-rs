@@ -20,7 +20,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ShortcutController(Object<ffi::GtkShortcutController, ffi::GtkShortcutControllerClass>) @extends EventController, @implements gio::ListModel, Buildable;
 
     match fn {

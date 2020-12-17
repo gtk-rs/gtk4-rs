@@ -11,7 +11,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct LayoutManager(Object<ffi::GtkLayoutManager, ffi::GtkLayoutManagerClass>);
 
     match fn {

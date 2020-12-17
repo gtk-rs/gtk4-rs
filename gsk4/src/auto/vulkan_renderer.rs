@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct VulkanRenderer(Object<ffi::GskVulkanRenderer, ffi::GskVulkanRendererClass>) @extends Renderer;
 
     match fn {

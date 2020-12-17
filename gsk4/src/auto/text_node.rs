@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TextNode(Object<ffi::GskTextNode>) @extends RenderNode;
 
     match fn {

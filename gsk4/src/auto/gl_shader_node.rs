@@ -7,7 +7,7 @@ use crate::RenderNode;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLShaderNode(Object<ffi::GskGLShaderNode>) @extends RenderNode;
 
     match fn {

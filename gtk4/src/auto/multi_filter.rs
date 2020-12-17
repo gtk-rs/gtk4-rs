@@ -8,7 +8,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct MultiFilter(Object<ffi::GtkMultiFilter, ffi::GtkMultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
 
     match fn {

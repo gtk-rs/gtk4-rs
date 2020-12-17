@@ -5,7 +5,7 @@
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct WaylandDisplay(Object<ffi::GdkWaylandDisplay, ffi::GdkWaylandDisplayClass>) @extends gdk::Display;
 
     match fn {

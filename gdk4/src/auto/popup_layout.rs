@@ -7,7 +7,7 @@ use crate::Gravity;
 use crate::Rectangle;
 use glib::translate::*;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
     pub struct PopupLayout(Shared<ffi::GdkPopupLayout>);
 

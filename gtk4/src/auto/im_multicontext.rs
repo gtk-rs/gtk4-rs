@@ -8,7 +8,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct IMMulticontext(Object<ffi::GtkIMMulticontext, ffi::GtkIMMulticontextClass>) @extends IMContext;
 
     match fn {

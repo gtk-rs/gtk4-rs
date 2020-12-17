@@ -27,7 +27,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ShortcutsGroup(Object<ffi::GtkShortcutsGroup, ffi::GtkShortcutsGroupClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {

@@ -5,7 +5,7 @@
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ContentSerializer(Object<ffi::GdkContentSerializer>);
 
     match fn {

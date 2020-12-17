@@ -14,7 +14,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Paintable(Interface<ffi::GdkPaintable>);
 
     match fn {

@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use x11::xlib;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11Surface(Object<ffi::GdkX11Surface, ffi::GdkX11SurfaceClass>) @extends gdk::Surface;
 
     match fn {

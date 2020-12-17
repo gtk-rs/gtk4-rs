@@ -17,7 +17,7 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Editable(Interface<ffi::GtkEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
