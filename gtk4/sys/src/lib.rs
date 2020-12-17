@@ -3235,7 +3235,6 @@ pub struct GtkNativeDialogClass {
 impl ::std::fmt::Debug for GtkNativeDialogClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkNativeDialogClass @ {:?}", self as *const _))
-            .field("parent_class", &self.parent_class)
             .field("response", &self.response)
             .field("show", &self.show)
             .field("hide", &self.hide)
@@ -10069,7 +10068,7 @@ extern "C" {
         width: c_int,
         height: c_int,
     );
-    pub fn gtk_cell_renderer_set_is_expanded(cell: *mut GtkCellRenderer, is_expander: gboolean);
+    pub fn gtk_cell_renderer_set_is_expanded(cell: *mut GtkCellRenderer, is_expanded: gboolean);
     pub fn gtk_cell_renderer_set_is_expander(cell: *mut GtkCellRenderer, is_expander: gboolean);
     pub fn gtk_cell_renderer_set_padding(cell: *mut GtkCellRenderer, xpad: c_int, ypad: c_int);
     pub fn gtk_cell_renderer_set_sensitive(cell: *mut GtkCellRenderer, sensitive: gboolean);

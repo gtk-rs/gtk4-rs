@@ -3618,11 +3618,17 @@ extern "C" {
         layout: *mut GdkToplevelLayout,
         other: *mut GdkToplevelLayout,
     ) -> gboolean;
-    pub fn gdk_toplevel_layout_get_fullscreen(layout: *mut GdkToplevelLayout) -> gboolean;
+    pub fn gdk_toplevel_layout_get_fullscreen(
+        layout: *mut GdkToplevelLayout,
+        fullscreen: *mut gboolean,
+    ) -> gboolean;
     pub fn gdk_toplevel_layout_get_fullscreen_monitor(
         layout: *mut GdkToplevelLayout,
     ) -> *mut GdkMonitor;
-    pub fn gdk_toplevel_layout_get_maximized(layout: *mut GdkToplevelLayout) -> gboolean;
+    pub fn gdk_toplevel_layout_get_maximized(
+        layout: *mut GdkToplevelLayout,
+        maximized: *mut gboolean,
+    ) -> gboolean;
     pub fn gdk_toplevel_layout_get_resizable(layout: *mut GdkToplevelLayout) -> gboolean;
     pub fn gdk_toplevel_layout_ref(layout: *mut GdkToplevelLayout) -> *mut GdkToplevelLayout;
     pub fn gdk_toplevel_layout_set_fullscreen(
