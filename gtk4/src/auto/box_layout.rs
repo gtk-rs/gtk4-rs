@@ -178,10 +178,7 @@ impl BoxLayoutBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(BoxLayout::static_type(), &properties)
-            .expect("object new")
-            .downcast::<BoxLayout>()
-            .expect("downcast");
+        let ret = glib::Object::new::<BoxLayout>(&properties).expect("object new");
         ret
     }
 

@@ -172,10 +172,7 @@ impl SeparatorBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Separator::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Separator>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Separator>(&properties).expect("object new");
         ret
     }
 

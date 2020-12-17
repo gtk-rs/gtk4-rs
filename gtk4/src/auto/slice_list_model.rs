@@ -177,10 +177,7 @@ impl SliceListModelBuilder {
         if let Some(ref size) = self.size {
             properties.push(("size", size));
         }
-        let ret = glib::Object::new(SliceListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SliceListModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SliceListModel>(&properties).expect("object new");
         ret
     }
 

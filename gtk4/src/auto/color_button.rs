@@ -350,10 +350,7 @@ impl ColorButtonBuilder {
         if let Some(ref use_alpha) = self.use_alpha {
             properties.push(("use-alpha", use_alpha));
         }
-        let ret = glib::Object::new(ColorButton::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ColorButton>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ColorButton>(&properties).expect("object new");
         ret
     }
 

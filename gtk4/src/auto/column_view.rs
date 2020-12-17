@@ -596,10 +596,7 @@ impl ColumnViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new(ColumnView::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ColumnView>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ColumnView>(&properties).expect("object new");
         ret
     }
 

@@ -485,10 +485,7 @@ impl SearchEntryBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new(SearchEntry::static_type(), &properties)
-            .expect("object new")
-            .downcast::<SearchEntry>()
-            .expect("downcast");
+        let ret = glib::Object::new::<SearchEntry>(&properties).expect("object new");
         ret
     }
 

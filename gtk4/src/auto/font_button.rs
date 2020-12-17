@@ -397,10 +397,7 @@ impl FontButtonBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        let ret = glib::Object::new(FontButton::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FontButton>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FontButton>(&properties).expect("object new");
         ret
     }
 

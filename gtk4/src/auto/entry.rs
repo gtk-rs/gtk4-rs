@@ -365,10 +365,7 @@ impl EntryBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new(Entry::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Entry>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Entry>(&properties).expect("object new");
         ret
     }
 

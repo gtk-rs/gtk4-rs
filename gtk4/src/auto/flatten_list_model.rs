@@ -99,10 +99,7 @@ impl FlattenListModelBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new(FlattenListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FlattenListModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FlattenListModel>(&properties).expect("object new");
         ret
     }
 

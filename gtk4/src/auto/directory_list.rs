@@ -295,10 +295,7 @@ impl DirectoryListBuilder {
         if let Some(ref monitored) = self.monitored {
             properties.push(("monitored", monitored));
         }
-        let ret = glib::Object::new(DirectoryList::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DirectoryList>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DirectoryList>(&properties).expect("object new");
         ret
     }
 

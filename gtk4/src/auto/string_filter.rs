@@ -205,10 +205,7 @@ impl StringFilterBuilder {
         if let Some(ref search) = self.search {
             properties.push(("search", search));
         }
-        let ret = glib::Object::new(StringFilter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<StringFilter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<StringFilter>(&properties).expect("object new");
         ret
     }
 

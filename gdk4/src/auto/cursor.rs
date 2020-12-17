@@ -105,10 +105,7 @@ impl CursorBuilder {
         if let Some(ref texture) = self.texture {
             properties.push(("texture", texture));
         }
-        let ret = glib::Object::new(Cursor::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Cursor>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Cursor>(&properties).expect("object new");
         ret
     }
 

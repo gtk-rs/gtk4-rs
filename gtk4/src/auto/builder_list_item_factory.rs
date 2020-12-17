@@ -101,10 +101,7 @@ impl BuilderListItemFactoryBuilder {
         if let Some(ref scope) = self.scope {
             properties.push(("scope", scope));
         }
-        let ret = glib::Object::new(BuilderListItemFactory::static_type(), &properties)
-            .expect("object new")
-            .downcast::<BuilderListItemFactory>()
-            .expect("downcast");
+        let ret = glib::Object::new::<BuilderListItemFactory>(&properties).expect("object new");
         ret
     }
 

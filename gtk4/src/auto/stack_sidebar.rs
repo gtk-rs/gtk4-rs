@@ -217,10 +217,7 @@ impl StackSidebarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(StackSidebar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<StackSidebar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<StackSidebar>(&properties).expect("object new");
         ret
     }
 

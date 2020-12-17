@@ -50,10 +50,7 @@ impl TextMarkBuilder {
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
-        let ret = glib::Object::new(TextMark::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TextMark>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TextMark>(&properties).expect("object new");
         ret
     }
 

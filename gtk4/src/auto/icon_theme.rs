@@ -364,10 +364,7 @@ impl IconThemeBuilder {
         if let Some(ref theme_name) = self.theme_name {
             properties.push(("theme-name", theme_name));
         }
-        let ret = glib::Object::new(IconTheme::static_type(), &properties)
-            .expect("object new")
-            .downcast::<IconTheme>()
-            .expect("downcast");
+        let ret = glib::Object::new::<IconTheme>(&properties).expect("object new");
         ret
     }
 

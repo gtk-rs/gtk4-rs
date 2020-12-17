@@ -238,10 +238,7 @@ impl ColorChooserWidgetBuilder {
         if let Some(ref use_alpha) = self.use_alpha {
             properties.push(("use-alpha", use_alpha));
         }
-        let ret = glib::Object::new(ColorChooserWidget::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ColorChooserWidget>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ColorChooserWidget>(&properties).expect("object new");
         ret
     }
 

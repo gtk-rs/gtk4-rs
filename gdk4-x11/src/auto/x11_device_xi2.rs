@@ -76,10 +76,7 @@ impl X11DeviceXI2Builder {
         if let Some(ref vendor_id) = self.vendor_id {
             properties.push(("vendor-id", vendor_id));
         }
-        let ret = glib::Object::new(X11DeviceXI2::static_type(), &properties)
-            .expect("object new")
-            .downcast::<X11DeviceXI2>()
-            .expect("downcast");
+        let ret = glib::Object::new::<X11DeviceXI2>(&properties).expect("object new");
         ret
     }
 

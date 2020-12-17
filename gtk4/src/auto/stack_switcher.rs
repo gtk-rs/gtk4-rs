@@ -217,10 +217,7 @@ impl StackSwitcherBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(StackSwitcher::static_type(), &properties)
-            .expect("object new")
-            .downcast::<StackSwitcher>()
-            .expect("downcast");
+        let ret = glib::Object::new::<StackSwitcher>(&properties).expect("object new");
         ret
     }
 

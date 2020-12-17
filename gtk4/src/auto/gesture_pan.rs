@@ -145,10 +145,7 @@ impl GesturePanBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(GesturePan::static_type(), &properties)
-            .expect("object new")
-            .downcast::<GesturePan>()
-            .expect("downcast");
+        let ret = glib::Object::new::<GesturePan>(&properties).expect("object new");
         ret
     }
 

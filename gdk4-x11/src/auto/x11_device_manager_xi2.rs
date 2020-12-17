@@ -106,10 +106,7 @@ impl X11DeviceManagerXI2Builder {
         if let Some(ref opcode) = self.opcode {
             properties.push(("opcode", opcode));
         }
-        let ret = glib::Object::new(X11DeviceManagerXI2::static_type(), &properties)
-            .expect("object new")
-            .downcast::<X11DeviceManagerXI2>()
-            .expect("downcast");
+        let ret = glib::Object::new::<X11DeviceManagerXI2>(&properties).expect("object new");
         ret
     }
 

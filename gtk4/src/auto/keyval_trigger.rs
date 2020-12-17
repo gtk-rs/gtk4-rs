@@ -60,10 +60,7 @@ impl KeyvalTriggerBuilder {
         if let Some(ref modifiers) = self.modifiers {
             properties.push(("modifiers", modifiers));
         }
-        let ret = glib::Object::new(KeyvalTrigger::static_type(), &properties)
-            .expect("object new")
-            .downcast::<KeyvalTrigger>()
-            .expect("downcast");
+        let ret = glib::Object::new::<KeyvalTrigger>(&properties).expect("object new");
         ret
     }
 

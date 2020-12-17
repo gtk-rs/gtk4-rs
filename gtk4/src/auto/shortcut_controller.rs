@@ -221,10 +221,7 @@ impl ShortcutControllerBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(ShortcutController::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ShortcutController>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ShortcutController>(&properties).expect("object new");
         ret
     }
 

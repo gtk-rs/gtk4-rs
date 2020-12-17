@@ -396,10 +396,7 @@ impl BuilderBuilder {
         if let Some(ref translation_domain) = self.translation_domain {
             properties.push(("translation-domain", translation_domain));
         }
-        let ret = glib::Object::new(Builder::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Builder>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Builder>(&properties).expect("object new");
         ret
     }
 

@@ -90,10 +90,7 @@ impl NoSelectionBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new(NoSelection::static_type(), &properties)
-            .expect("object new")
-            .downcast::<NoSelection>()
-            .expect("downcast");
+        let ret = glib::Object::new::<NoSelection>(&properties).expect("object new");
         ret
     }
 

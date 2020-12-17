@@ -483,10 +483,7 @@ impl CellRendererComboBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new(CellRendererCombo::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellRendererCombo>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellRendererCombo>(&properties).expect("object new");
         ret
     }
 

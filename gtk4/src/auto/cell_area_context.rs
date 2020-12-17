@@ -38,10 +38,7 @@ impl CellAreaContextBuilder {
         if let Some(ref area) = self.area {
             properties.push(("area", area));
         }
-        let ret = glib::Object::new(CellAreaContext::static_type(), &properties)
-            .expect("object new")
-            .downcast::<CellAreaContext>()
-            .expect("downcast");
+        let ret = glib::Object::new::<CellAreaContext>(&properties).expect("object new");
         ret
     }
 

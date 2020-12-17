@@ -167,10 +167,7 @@ impl GestureLongPressBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(GestureLongPress::static_type(), &properties)
-            .expect("object new")
-            .downcast::<GestureLongPress>()
-            .expect("downcast");
+        let ret = glib::Object::new::<GestureLongPress>(&properties).expect("object new");
         ret
     }
 

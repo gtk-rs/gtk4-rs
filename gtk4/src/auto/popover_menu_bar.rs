@@ -243,10 +243,7 @@ impl PopoverMenuBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(PopoverMenuBar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<PopoverMenuBar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<PopoverMenuBar>(&properties).expect("object new");
         ret
     }
 

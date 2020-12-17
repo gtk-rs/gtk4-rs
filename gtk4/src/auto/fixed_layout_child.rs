@@ -94,10 +94,7 @@ impl FixedLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new(FixedLayoutChild::static_type(), &properties)
-            .expect("object new")
-            .downcast::<FixedLayoutChild>()
-            .expect("downcast");
+        let ret = glib::Object::new::<FixedLayoutChild>(&properties).expect("object new");
         ret
     }
 

@@ -332,10 +332,7 @@ impl ColorChooserDialogBuilder {
         if let Some(ref use_alpha) = self.use_alpha {
             properties.push(("use-alpha", use_alpha));
         }
-        let ret = glib::Object::new(ColorChooserDialog::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ColorChooserDialog>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ColorChooserDialog>(&properties).expect("object new");
         ret
     }
 

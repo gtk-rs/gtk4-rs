@@ -230,10 +230,7 @@ impl TreeListRowBuilder {
         if let Some(ref expanded) = self.expanded {
             properties.push(("expanded", expanded));
         }
-        let ret = glib::Object::new(TreeListRow::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeListRow>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeListRow>(&properties).expect("object new");
         ret
     }
 

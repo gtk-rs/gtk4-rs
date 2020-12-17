@@ -203,10 +203,7 @@ impl GridBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Grid::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Grid>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Grid>(&properties).expect("object new");
         ret
     }
 

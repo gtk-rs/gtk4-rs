@@ -278,10 +278,7 @@ impl DragSourceBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(DragSource::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DragSource>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DragSource>(&properties).expect("object new");
         ret
     }
 

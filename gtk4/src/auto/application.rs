@@ -62,10 +62,7 @@ impl ApplicationBuilder {
         if let Some(ref resource_base_path) = self.resource_base_path {
             properties.push(("resource-base-path", resource_base_path));
         }
-        let ret = glib::Object::new(Application::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Application>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Application>(&properties).expect("object new");
         ret
     }
 

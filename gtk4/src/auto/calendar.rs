@@ -609,10 +609,7 @@ impl CalendarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Calendar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Calendar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Calendar>(&properties).expect("object new");
         ret
     }
 

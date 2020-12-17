@@ -188,10 +188,7 @@ impl TreeListModelBuilder {
         if let Some(ref passthrough) = self.passthrough {
             properties.push(("passthrough", passthrough));
         }
-        let ret = glib::Object::new(TreeListModel::static_type(), &properties)
-            .expect("object new")
-            .downcast::<TreeListModel>()
-            .expect("downcast");
+        let ret = glib::Object::new::<TreeListModel>(&properties).expect("object new");
         ret
     }
 

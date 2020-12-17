@@ -123,10 +123,7 @@ impl NumericSorterBuilder {
         if let Some(ref sort_order) = self.sort_order {
             properties.push(("sort-order", sort_order));
         }
-        let ret = glib::Object::new(NumericSorter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<NumericSorter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<NumericSorter>(&properties).expect("object new");
         ret
     }
 

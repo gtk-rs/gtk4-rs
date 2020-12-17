@@ -372,10 +372,7 @@ impl AppChooserDialogBuilder {
         if let Some(ref content_type) = self.content_type {
             properties.push(("content-type", content_type));
         }
-        let ret = glib::Object::new(AppChooserDialog::static_type(), &properties)
-            .expect("object new")
-            .downcast::<AppChooserDialog>()
-            .expect("downcast");
+        let ret = glib::Object::new::<AppChooserDialog>(&properties).expect("object new");
         ret
     }
 

@@ -447,10 +447,7 @@ impl ColumnViewColumnBuilder {
         if let Some(ref visible) = self.visible {
             properties.push(("visible", visible));
         }
-        let ret = glib::Object::new(ColumnViewColumn::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ColumnViewColumn>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ColumnViewColumn>(&properties).expect("object new");
         ret
     }
 

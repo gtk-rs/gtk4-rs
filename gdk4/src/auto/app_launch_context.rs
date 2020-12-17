@@ -78,10 +78,7 @@ impl AppLaunchContextBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        let ret = glib::Object::new(AppLaunchContext::static_type(), &properties)
-            .expect("object new")
-            .downcast::<AppLaunchContext>()
-            .expect("downcast");
+        let ret = glib::Object::new::<AppLaunchContext>(&properties).expect("object new");
         ret
     }
 

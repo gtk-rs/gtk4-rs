@@ -210,10 +210,7 @@ impl GridLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new(GridLayoutChild::static_type(), &properties)
-            .expect("object new")
-            .downcast::<GridLayoutChild>()
-            .expect("downcast");
+        let ret = glib::Object::new::<GridLayoutChild>(&properties).expect("object new");
         ret
     }
 

@@ -194,10 +194,7 @@ impl RangeBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(Range::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Range>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Range>(&properties).expect("object new");
         ret
     }
 

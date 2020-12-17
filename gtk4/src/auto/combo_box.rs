@@ -253,10 +253,7 @@ impl ComboBoxBuilder {
         if let Some(ref editing_canceled) = self.editing_canceled {
             properties.push(("editing-canceled", editing_canceled));
         }
-        let ret = glib::Object::new(ComboBox::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ComboBox>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ComboBox>(&properties).expect("object new");
         ret
     }
 

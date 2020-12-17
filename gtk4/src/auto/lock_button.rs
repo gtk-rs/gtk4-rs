@@ -511,10 +511,7 @@ impl LockButtonBuilder {
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        let ret = glib::Object::new(LockButton::static_type(), &properties)
-            .expect("object new")
-            .downcast::<LockButton>()
-            .expect("downcast");
+        let ret = glib::Object::new::<LockButton>(&properties).expect("object new");
         ret
     }
 

@@ -434,10 +434,7 @@ impl ProgressBarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(ProgressBar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ProgressBar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ProgressBar>(&properties).expect("object new");
         ret
     }
 

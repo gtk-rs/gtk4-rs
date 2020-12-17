@@ -174,10 +174,7 @@ impl ConstraintBuilder {
         if let Some(ref target_attribute) = self.target_attribute {
             properties.push(("target-attribute", target_attribute));
         }
-        let ret = glib::Object::new(Constraint::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Constraint>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Constraint>(&properties).expect("object new");
         ret
     }
 

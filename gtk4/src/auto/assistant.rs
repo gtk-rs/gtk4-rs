@@ -646,10 +646,7 @@ impl AssistantBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Assistant::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Assistant>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Assistant>(&properties).expect("object new");
         ret
     }
 

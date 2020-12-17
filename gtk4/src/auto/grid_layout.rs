@@ -285,10 +285,7 @@ impl GridLayoutBuilder {
         if let Some(ref row_spacing) = self.row_spacing {
             properties.push(("row-spacing", row_spacing));
         }
-        let ret = glib::Object::new(GridLayout::static_type(), &properties)
-            .expect("object new")
-            .downcast::<GridLayout>()
-            .expect("downcast");
+        let ret = glib::Object::new::<GridLayout>(&properties).expect("object new");
         ret
     }
 

@@ -185,10 +185,7 @@ impl ShortcutBuilder {
         if let Some(ref trigger) = self.trigger {
             properties.push(("trigger", trigger));
         }
-        let ret = glib::Object::new(Shortcut::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Shortcut>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Shortcut>(&properties).expect("object new");
         ret
     }
 

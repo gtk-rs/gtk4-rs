@@ -396,10 +396,7 @@ impl ShortcutsSectionBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new(ShortcutsSection::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ShortcutsSection>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ShortcutsSection>(&properties).expect("object new");
         ret
     }
 

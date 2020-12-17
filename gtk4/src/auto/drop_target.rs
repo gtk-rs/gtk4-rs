@@ -346,10 +346,7 @@ impl DropTargetBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new(DropTarget::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DropTarget>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DropTarget>(&properties).expect("object new");
         ret
     }
 

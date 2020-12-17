@@ -184,10 +184,7 @@ impl BookmarkListBuilder {
         if let Some(ref io_priority) = self.io_priority {
             properties.push(("io-priority", io_priority));
         }
-        let ret = glib::Object::new(BookmarkList::static_type(), &properties)
-            .expect("object new")
-            .downcast::<BookmarkList>()
-            .expect("downcast");
+        let ret = glib::Object::new::<BookmarkList>(&properties).expect("object new");
         ret
     }
 

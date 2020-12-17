@@ -271,10 +271,7 @@ impl StatusbarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(Statusbar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Statusbar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Statusbar>(&properties).expect("object new");
         ret
     }
 

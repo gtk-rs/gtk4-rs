@@ -80,10 +80,7 @@ impl AdjustmentBuilder {
         if let Some(ref value) = self.value {
             properties.push(("value", value));
         }
-        let ret = glib::Object::new(Adjustment::static_type(), &properties)
-            .expect("object new")
-            .downcast::<Adjustment>()
-            .expect("downcast");
+        let ret = glib::Object::new::<Adjustment>(&properties).expect("object new");
         ret
     }
 

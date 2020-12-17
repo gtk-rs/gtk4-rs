@@ -135,10 +135,7 @@ impl DisplayManagerBuilder {
         if let Some(ref default_display) = self.default_display {
             properties.push(("default-display", default_display));
         }
-        let ret = glib::Object::new(DisplayManager::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DisplayManager>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DisplayManager>(&properties).expect("object new");
         ret
     }
 

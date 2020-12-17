@@ -511,10 +511,7 @@ impl AppChooserWidgetBuilder {
         if let Some(ref content_type) = self.content_type {
             properties.push(("content-type", content_type));
         }
-        let ret = glib::Object::new(AppChooserWidget::static_type(), &properties)
-            .expect("object new")
-            .downcast::<AppChooserWidget>()
-            .expect("downcast");
+        let ret = glib::Object::new::<AppChooserWidget>(&properties).expect("object new");
         ret
     }
 

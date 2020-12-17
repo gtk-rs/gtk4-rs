@@ -122,10 +122,7 @@ impl StringSorterBuilder {
         if let Some(ref ignore_case) = self.ignore_case {
             properties.push(("ignore-case", ignore_case));
         }
-        let ret = glib::Object::new(StringSorter::static_type(), &properties)
-            .expect("object new")
-            .downcast::<StringSorter>()
-            .expect("downcast");
+        let ret = glib::Object::new::<StringSorter>(&properties).expect("object new");
         ret
     }
 

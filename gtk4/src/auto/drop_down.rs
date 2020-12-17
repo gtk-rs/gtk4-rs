@@ -460,10 +460,7 @@ impl DropDownBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(DropDown::static_type(), &properties)
-            .expect("object new")
-            .downcast::<DropDown>()
-            .expect("downcast");
+        let ret = glib::Object::new::<DropDown>(&properties).expect("object new");
         ret
     }
 

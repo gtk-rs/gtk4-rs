@@ -252,10 +252,7 @@ impl ActionBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new(ActionBar::static_type(), &properties)
-            .expect("object new")
-            .downcast::<ActionBar>()
-            .expect("downcast");
+        let ret = glib::Object::new::<ActionBar>(&properties).expect("object new");
         ret
     }
 

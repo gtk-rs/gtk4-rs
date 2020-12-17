@@ -656,10 +656,7 @@ impl EntryCompletionBuilder {
         if let Some(ref text_column) = self.text_column {
             properties.push(("text-column", text_column));
         }
-        let ret = glib::Object::new(EntryCompletion::static_type(), &properties)
-            .expect("object new")
-            .downcast::<EntryCompletion>()
-            .expect("downcast");
+        let ret = glib::Object::new::<EntryCompletion>(&properties).expect("object new");
         ret
     }
 

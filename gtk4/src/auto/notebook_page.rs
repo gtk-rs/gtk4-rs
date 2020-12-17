@@ -455,10 +455,7 @@ impl NotebookPageBuilder {
         if let Some(ref tab_label) = self.tab_label {
             properties.push(("tab-label", tab_label));
         }
-        let ret = glib::Object::new(NotebookPage::static_type(), &properties)
-            .expect("object new")
-            .downcast::<NotebookPage>()
-            .expect("downcast");
+        let ret = glib::Object::new::<NotebookPage>(&properties).expect("object new");
         ret
     }
 
