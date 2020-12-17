@@ -80,10 +80,7 @@ glib_wrapper! {
 
 impl ExApplicationWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-        glib::Object::new(Self::static_type(), &[("application", app)])
-            .expect("Failed to create ExApplicationWindow")
-            .downcast::<ExApplicationWindow>()
-            .expect("Created object is of wrong type")
+        glib::Object::new(&[("application", app)]).expect("Failed to create ExApplicationWindow")
     }
 
     pub fn init_label(&self) {

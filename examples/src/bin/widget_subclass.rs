@@ -89,10 +89,7 @@ glib_wrapper! {
 
 impl Button {
     pub fn new() -> Self {
-        glib::Object::new(Self::static_type(), &[])
-            .unwrap()
-            .downcast()
-            .unwrap()
+        glib::Object::new(&[]).expect("Failed to create Button")
     }
 }
 
