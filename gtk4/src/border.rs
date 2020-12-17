@@ -4,7 +4,7 @@ use glib::translate::*;
 use std::fmt;
 use std::ops;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct Border(Boxed<ffi::GtkBorder>);
 
