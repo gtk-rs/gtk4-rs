@@ -77,6 +77,7 @@ manual = [
     "cairo.Region",
     "cairo.Surface",
     "Gdk.KeymapKey",
+    "Gdk.Rectangle",
     "Gdk.RGBA",
     "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
@@ -426,12 +427,6 @@ manual_traits = ["PopupLayoutExtManual"]
     name = "get_offset"
     # invalid mutability, manual
     ignore = true
-
-[[object]]
-name = "Gdk.Rectangle"
-status = "generate"
-init_function_expression = "|_ptr| ()"
-clear_function_expression = "|_ptr| ()"
 
 [[object]]
 name = "Gdk.Surface"
