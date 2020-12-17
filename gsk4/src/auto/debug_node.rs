@@ -7,7 +7,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct DebugNode(Object<ffi::GskDebugNode>) @extends RenderNode;
 
     match fn {

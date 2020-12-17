@@ -10,7 +10,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ConstraintLayout(Object<ffi::GtkConstraintLayout, ffi::GtkConstraintLayoutClass>) @extends LayoutManager, @implements Buildable;
 
     match fn {

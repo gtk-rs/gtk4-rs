@@ -23,7 +23,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ColorChooserWidget(Object<ffi::GtkColorChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
 
     match fn {

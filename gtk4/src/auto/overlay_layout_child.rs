@@ -17,7 +17,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct OverlayLayoutChild(Object<ffi::GtkOverlayLayoutChild, ffi::GtkOverlayLayoutChildClass>) @extends LayoutChild;
 
     match fn {

@@ -16,7 +16,7 @@ use std::fmt;
 use std::mem;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct PrintSettings(Object<ffi::GtkPrintSettings>);
 
     match fn {

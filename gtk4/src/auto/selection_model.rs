@@ -12,7 +12,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct SelectionModel(Interface<ffi::GtkSelectionModel>) @requires gio::ListModel;
 
     match fn {

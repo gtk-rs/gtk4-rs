@@ -9,7 +9,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct KeyEvent(Object<ffi::GdkKeyEvent>) @extends Event;
 
     match fn {

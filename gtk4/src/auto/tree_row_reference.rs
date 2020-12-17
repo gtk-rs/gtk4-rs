@@ -7,7 +7,7 @@ use crate::TreePath;
 use glib::object::IsA;
 use glib::translate::*;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct TreeRowReference(Boxed<ffi::GtkTreeRowReference>);
 

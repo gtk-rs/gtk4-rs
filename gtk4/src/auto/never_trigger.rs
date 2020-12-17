@@ -6,7 +6,7 @@ use crate::ShortcutTrigger;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct NeverTrigger(Object<ffi::GtkNeverTrigger, ffi::GtkNeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {

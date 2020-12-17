@@ -7,7 +7,7 @@ use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct WaylandToplevel(Object<ffi::GdkWaylandToplevel>) @extends WaylandSurface, gdk::Surface, @implements gdk::Toplevel;
 
     match fn {

@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CallbackAction(Object<ffi::GtkCallbackAction, ffi::GtkCallbackActionClass>) @extends ShortcutAction;
 
     match fn {

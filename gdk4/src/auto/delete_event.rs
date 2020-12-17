@@ -6,7 +6,7 @@ use crate::Event;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct DeleteEvent(Object<ffi::GdkDeleteEvent>) @extends Event;
 
     match fn {

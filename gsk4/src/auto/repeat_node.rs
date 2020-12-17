@@ -7,7 +7,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct RepeatNode(Object<ffi::GskRepeatNode>) @extends RenderNode;
 
     match fn {

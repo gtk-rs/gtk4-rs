@@ -7,7 +7,7 @@ use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CustomFilter(Object<ffi::GtkCustomFilter, ffi::GtkCustomFilterClass>) @extends Filter;
 
     match fn {

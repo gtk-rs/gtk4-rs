@@ -10,7 +10,7 @@ use std::mem;
 use std::ptr;
 use x11::xlib;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11Display(Object<ffi::GdkX11Display, ffi::GdkX11DisplayClass>) @extends gdk::Display;
 
     match fn {

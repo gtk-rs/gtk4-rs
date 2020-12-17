@@ -7,7 +7,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ColorMatrixNode(Object<ffi::GskColorMatrixNode>) @extends RenderNode;
 
     match fn {

@@ -17,7 +17,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct SizeGroup(Object<ffi::GtkSizeGroup>) @implements Buildable;
 
     match fn {

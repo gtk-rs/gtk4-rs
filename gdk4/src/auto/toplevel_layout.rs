@@ -6,7 +6,7 @@ use crate::Monitor;
 use glib::translate::*;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
     pub struct ToplevelLayout(Shared<ffi::GdkToplevelLayout>);
 

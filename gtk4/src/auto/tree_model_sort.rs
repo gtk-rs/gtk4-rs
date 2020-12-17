@@ -14,7 +14,7 @@ use glib::StaticType;
 use glib::ToValue;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TreeModelSort(Object<ffi::GtkTreeModelSort, ffi::GtkTreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
 
     match fn {

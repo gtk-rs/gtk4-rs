@@ -6,7 +6,7 @@ use crate::Unit;
 use glib::translate::*;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
     pub struct PaperSize(Boxed<ffi::GtkPaperSize>);
 

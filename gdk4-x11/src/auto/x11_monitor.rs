@@ -6,7 +6,7 @@ use glib::translate::*;
 use std::fmt;
 use x11::xlib;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct X11Monitor(Object<ffi::GdkX11Monitor, ffi::GdkX11MonitorClass>) @extends gdk::Monitor;
 
     match fn {

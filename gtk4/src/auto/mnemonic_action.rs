@@ -6,7 +6,7 @@ use crate::ShortcutAction;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct MnemonicAction(Object<ffi::GtkMnemonicAction, ffi::GtkMnemonicActionClass>) @extends ShortcutAction;
 
     match fn {

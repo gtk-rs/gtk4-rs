@@ -11,7 +11,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::cmp;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     #[derive(Debug, Hash)]
     pub struct TextIter(Boxed<ffi::GtkTextIter>);
 

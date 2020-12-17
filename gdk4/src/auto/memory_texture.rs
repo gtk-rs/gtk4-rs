@@ -9,7 +9,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {

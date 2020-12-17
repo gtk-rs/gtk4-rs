@@ -22,7 +22,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ActionBar(Object<ffi::GtkActionBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {

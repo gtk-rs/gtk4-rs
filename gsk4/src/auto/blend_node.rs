@@ -8,7 +8,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BlendNode(Object<ffi::GskBlendNode>) @extends RenderNode;
 
     match fn {

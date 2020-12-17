@@ -6,7 +6,7 @@ use crate::Buildable;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct StringList(Object<ffi::GtkStringList, ffi::GtkStringListClass>) @implements gio::ListModel, Buildable;
 
     match fn {

@@ -6,7 +6,7 @@ use crate::WaylandSurface;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct WaylandPopup(Object<ffi::GdkWaylandPopup>) @extends WaylandSurface, gdk::Surface, @implements gdk::Popup;
 
     match fn {

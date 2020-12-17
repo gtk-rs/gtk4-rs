@@ -15,7 +15,7 @@ use std::mem::transmute;
 use std::pin::Pin;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ContentProvider(Object<ffi::GdkContentProvider, ffi::GdkContentProviderClass>);
 
     match fn {

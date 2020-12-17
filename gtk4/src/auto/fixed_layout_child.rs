@@ -17,7 +17,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct FixedLayoutChild(Object<ffi::GtkFixedLayoutChild, ffi::GtkFixedLayoutChildClass>) @extends LayoutChild;
 
     match fn {

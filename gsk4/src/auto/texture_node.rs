@@ -7,7 +7,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct TextureNode(Object<ffi::GskTextureNode>) @extends RenderNode;
 
     match fn {

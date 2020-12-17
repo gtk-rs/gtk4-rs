@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GLRenderer(Object<ffi::GskGLRenderer, ffi::GskGLRendererClass>) @extends Renderer;
 
     match fn {

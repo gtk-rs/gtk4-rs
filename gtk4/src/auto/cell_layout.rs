@@ -11,7 +11,7 @@ use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CellLayout(Interface<ffi::GtkCellLayout>);
 
     match fn {

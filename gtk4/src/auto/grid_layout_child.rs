@@ -17,7 +17,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct GridLayoutChild(Object<ffi::GtkGridLayoutChild, ffi::GtkGridLayoutChildClass>) @extends LayoutChild;
 
     match fn {

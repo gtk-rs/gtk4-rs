@@ -11,7 +11,7 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Native(Interface<ffi::GtkNative>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {

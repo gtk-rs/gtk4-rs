@@ -8,7 +8,7 @@ use glib::translate::*;
 use std::fmt;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Texture(Object<ffi::GdkTexture, ffi::GdkTextureClass>) @implements Paintable;
 
     match fn {

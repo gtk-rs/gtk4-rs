@@ -7,7 +7,7 @@ use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct BinLayout(Object<ffi::GtkBinLayout, ffi::GtkBinLayoutClass>) @extends LayoutManager;
 
     match fn {

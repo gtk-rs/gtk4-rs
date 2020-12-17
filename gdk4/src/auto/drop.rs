@@ -19,7 +19,7 @@ use std::mem::transmute;
 use std::pin::Pin;
 use std::ptr;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct Drop(Object<ffi::GdkDrop>);
 
     match fn {

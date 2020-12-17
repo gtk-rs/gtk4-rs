@@ -5,7 +5,7 @@
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct ListItemFactory(Object<ffi::GtkListItemFactory, ffi::GtkListItemFactoryClass>);
 
     match fn {

@@ -6,7 +6,7 @@ use crate::RenderNode;
 use glib::translate::*;
 use std::fmt;
 
-glib::glib_wrapper! {
+glib::wrapper! {
     pub struct CairoNode(Object<ffi::GskCairoNode>) @extends RenderNode;
 
     match fn {
