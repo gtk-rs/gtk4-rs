@@ -87,12 +87,12 @@ impl GestureStylus {
     pub fn connect_down<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn down_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureStylus,
-            object: libc::c_double,
-            p0: libc::c_double,
+            x: libc::c_double,
+            y: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object, p0)
+            f(&from_glib_borrow(this), x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -113,12 +113,12 @@ impl GestureStylus {
     ) -> SignalHandlerId {
         unsafe extern "C" fn motion_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureStylus,
-            object: libc::c_double,
-            p0: libc::c_double,
+            x: libc::c_double,
+            y: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object, p0)
+            f(&from_glib_borrow(this), x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -139,12 +139,12 @@ impl GestureStylus {
     ) -> SignalHandlerId {
         unsafe extern "C" fn proximity_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureStylus,
-            object: libc::c_double,
-            p0: libc::c_double,
+            x: libc::c_double,
+            y: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object, p0)
+            f(&from_glib_borrow(this), x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -162,12 +162,12 @@ impl GestureStylus {
     pub fn connect_up<F: Fn(&GestureStylus, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn up_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureStylus,
-            object: libc::c_double,
-            p0: libc::c_double,
+            x: libc::c_double,
+            y: libc::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object, p0)
+            f(&from_glib_borrow(this), x, y)
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

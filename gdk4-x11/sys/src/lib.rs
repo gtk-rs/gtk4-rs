@@ -186,11 +186,6 @@ extern "C" {
     // GdkX11DeviceXI2
     //=========================================================================
     pub fn gdk_x11_device_xi2_get_type() -> GType;
-    pub fn gdk_x11_device_xi2_get_device_type(device: *mut GdkX11DeviceXI2) -> GdkX11DeviceType;
-    pub fn gdk_x11_device_xi2_set_device_type(
-        device: *mut GdkX11DeviceXI2,
-        type_: GdkX11DeviceType,
-    );
 
     //=========================================================================
     // GdkX11Display

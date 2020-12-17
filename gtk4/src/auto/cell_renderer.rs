@@ -109,7 +109,7 @@ pub trait CellRendererExt: 'static {
     fn set_fixed_size(&self, width: i32, height: i32);
 
     #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
-    fn set_is_expanded(&self, is_expander: bool);
+    fn set_is_expanded(&self, is_expanded: bool);
 
     #[doc(alias = "gtk_cell_renderer_set_is_expander")]
     fn set_is_expander(&self, is_expander: bool);
@@ -479,11 +479,11 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn set_is_expanded(&self, is_expander: bool) {
+    fn set_is_expanded(&self, is_expanded: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_is_expanded(
                 self.as_ref().to_glib_none().0,
-                is_expander.to_glib(),
+                is_expanded.to_glib(),
             );
         }
     }

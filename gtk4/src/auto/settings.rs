@@ -114,9 +114,9 @@ impl Settings {
         }
     }
 
-    pub fn get_property_gtk_cursor_aspect_ratio(&self) -> f32 {
+    pub fn get_property_gtk_cursor_aspect_ratio(&self) -> f64 {
         unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
+            let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-aspect-ratio\0".as_ptr() as *const _,
@@ -129,7 +129,7 @@ impl Settings {
         }
     }
 
-    pub fn set_property_gtk_cursor_aspect_ratio(&self, gtk_cursor_aspect_ratio: f32) {
+    pub fn set_property_gtk_cursor_aspect_ratio(&self, gtk_cursor_aspect_ratio: f64) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -2582,7 +2582,7 @@ pub struct SettingsBuilder {
     gtk_alternative_button_order: Option<bool>,
     gtk_alternative_sort_arrows: Option<bool>,
     gtk_application_prefer_dark_theme: Option<bool>,
-    gtk_cursor_aspect_ratio: Option<f32>,
+    gtk_cursor_aspect_ratio: Option<f64>,
     gtk_cursor_blink: Option<bool>,
     gtk_cursor_blink_time: Option<i32>,
     gtk_cursor_blink_timeout: Option<i32>,
@@ -2822,7 +2822,7 @@ impl SettingsBuilder {
         self
     }
 
-    pub fn gtk_cursor_aspect_ratio(mut self, gtk_cursor_aspect_ratio: f32) -> Self {
+    pub fn gtk_cursor_aspect_ratio(mut self, gtk_cursor_aspect_ratio: f64) -> Self {
         self.gtk_cursor_aspect_ratio = Some(gtk_cursor_aspect_ratio);
         self
     }
