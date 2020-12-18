@@ -1,7 +1,7 @@
 [package]
 name = "gdk4-wayland"
 version = "0.1.0"
-authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
+authors = ["The Gtk-rs Project Developers"]
 edition = "2018"
 build = "build.rs"
 
