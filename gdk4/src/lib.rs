@@ -9,7 +9,12 @@
 #![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 
+pub use cairo;
 pub use ffi;
+pub use gdk_pixbuf;
+pub use gio;
+pub use glib;
+pub use pango;
 
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
