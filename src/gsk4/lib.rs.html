@@ -54,6 +54,11 @@
 <span id="51">51</span>
 <span id="52">52</span>
 <span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -67,7 +72,12 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">too_many_arguments</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cairo</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">graphene</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pango</span>;
 
 <span class="comment">// GSK 4 has no runtime to initialize</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">assert_initialized_main_thread</span> {

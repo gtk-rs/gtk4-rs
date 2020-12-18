@@ -53,7 +53,7 @@ by user interaction such as key presses or pointer
 movements. See <code>X11Surface::set_user_time</code>.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>the timestamp of the last user interaction</p>
-</div><h4 id="method.get_xcursor" class="method"><code>pub fn <a href="#method.get_xcursor" class="fnname">get_xcursor</a>(&amp;self, cursor: &amp;<a class="struct" href="../gdk4/auto/cursor/struct.Cursor.html" title="struct gdk4::auto::cursor::Cursor">Cursor</a>) -&gt; <a class="type" href="../gdk4_x11/xlib/type.Cursor.html" title="type gdk4_x11::xlib::Cursor">Cursor</a></code><a class="srclink" href="../src/gdk4_x11/auto/x11_display.rs.html#186-188" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the X cursor belonging to a <code>gdk::Cursor</code>, potentially
+</div><h4 id="method.get_xcursor" class="method"><code>pub fn <a href="#method.get_xcursor" class="fnname">get_xcursor</a>(&amp;self, cursor: &amp;<a class="struct" href="../gdk4/auto/cursor/struct.Cursor.html" title="struct gdk4::auto::cursor::Cursor">Cursor</a>) -&gt; Cursor</code><a class="srclink" href="../src/gdk4_x11/auto/x11_display.rs.html#186-188" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the X cursor belonging to a <code>gdk::Cursor</code>, potentially
 creating the cursor.</p>
 <p>Be aware that the returned cursor may not be unique to <code>cursor</code>.
 It may for example be shared with its fallback cursor. On old
@@ -63,7 +63,7 @@ may even fall back to a few default cursors.</p>
 <p>a <code>gdk::Cursor</code>.</p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>an Xlib Cursor.</p>
-</div><h4 id="method.get_xrootwindow" class="method"><code>pub fn <a href="#method.get_xrootwindow" class="fnname">get_xrootwindow</a>(&amp;self) -&gt; <a class="type" href="../gdk4_x11/xlib/type.Window.html" title="type gdk4_x11::xlib::Window">Window</a></code><a class="srclink" href="../src/gdk4_x11/auto/x11_display.rs.html#196-198" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the root X window used by <code>gdk::Display</code>.</p>
+</div><h4 id="method.get_xrootwindow" class="method"><code>pub fn <a href="#method.get_xrootwindow" class="fnname">get_xrootwindow</a>(&amp;self) -&gt; Window</code><a class="srclink" href="../src/gdk4_x11/auto/x11_display.rs.html#196-198" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the root X window used by <code>gdk::Display</code>.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
 <p>an X Window</p>
 </div><h4 id="method.grab" class="method"><code>pub fn <a href="#method.grab" class="fnname">grab</a>(&amp;self)</code><a class="srclink" href="../src/gdk4_x11/auto/x11_display.rs.html#205-209" title="goto source code">[src]</a></h4><div class="docblock"><p>Call XGrabServer() on <code>self</code>.
