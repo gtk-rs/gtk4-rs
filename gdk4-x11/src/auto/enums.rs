@@ -7,9 +7,13 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GdkX11DeviceType")]
 pub enum X11DeviceType {
+    #[doc(alias = "GDK_X11_DEVICE_TYPE_LOGICAL")]
     Logical,
+    #[doc(alias = "GDK_X11_DEVICE_TYPE_PHYSICAL")]
     Physical,
+    #[doc(alias = "GDK_X11_DEVICE_TYPE_FLOATING")]
     Floating,
     #[doc(hidden)]
     __Unknown(i32),
