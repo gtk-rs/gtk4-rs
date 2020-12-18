@@ -3,7 +3,7 @@
 #![allow(deprecated)]
 
 pub use ffi;
-pub use x11::xlib;
+pub use x11;
 #[macro_use]
 mod rt;
 
