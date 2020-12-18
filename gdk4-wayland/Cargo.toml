@@ -3,6 +3,20 @@ name = "gdk4-wayland"
 version = "0.1.0"
 authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
 edition = "2018"
+build = "build.rs"
+
+[features]
+purge-lgpl-docs = ["gtk-rs-lgpl-docs"]
+embed-lgpl-docs = ["gtk-rs-lgpl-docs"]
+dox = ["ffi/dox"]
+
+[package.metadata.docs.rs]
+features = ["dox", "embed-lgpl-docs"]
+
+[build-dependencies.gtk-rs-lgpl-docs]
+version = "0.1.3"
+optional = true
+git = "https://github.com/gtk-rs/lgpl-docs"
 
 [dependencies]
 libc = "0.2"
