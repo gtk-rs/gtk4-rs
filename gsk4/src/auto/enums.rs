@@ -14,22 +14,39 @@ use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskBlendMode")]
 pub enum BlendMode {
+    #[doc(alias = "GSK_BLEND_MODE_DEFAULT")]
     Default,
+    #[doc(alias = "GSK_BLEND_MODE_MULTIPLY")]
     Multiply,
+    #[doc(alias = "GSK_BLEND_MODE_SCREEN")]
     Screen,
+    #[doc(alias = "GSK_BLEND_MODE_OVERLAY")]
     Overlay,
+    #[doc(alias = "GSK_BLEND_MODE_DARKEN")]
     Darken,
+    #[doc(alias = "GSK_BLEND_MODE_LIGHTEN")]
     Lighten,
+    #[doc(alias = "GSK_BLEND_MODE_COLOR_DODGE")]
     ColorDodge,
+    #[doc(alias = "GSK_BLEND_MODE_COLOR_BURN")]
     ColorBurn,
+    #[doc(alias = "GSK_BLEND_MODE_HARD_LIGHT")]
     HardLight,
+    #[doc(alias = "GSK_BLEND_MODE_SOFT_LIGHT")]
     SoftLight,
+    #[doc(alias = "GSK_BLEND_MODE_DIFFERENCE")]
     Difference,
+    #[doc(alias = "GSK_BLEND_MODE_EXCLUSION")]
     Exclusion,
+    #[doc(alias = "GSK_BLEND_MODE_COLOR")]
     Color,
+    #[doc(alias = "GSK_BLEND_MODE_HUE")]
     Hue,
+    #[doc(alias = "GSK_BLEND_MODE_SATURATION")]
     Saturation,
+    #[doc(alias = "GSK_BLEND_MODE_LUMINOSITY")]
     Luminosity,
     #[doc(hidden)]
     __Unknown(i32),
@@ -142,10 +159,15 @@ impl SetValue for BlendMode {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskCorner")]
 pub enum Corner {
+    #[doc(alias = "GSK_CORNER_TOP_LEFT")]
     TopLeft,
+    #[doc(alias = "GSK_CORNER_TOP_RIGHT")]
     TopRight,
+    #[doc(alias = "GSK_CORNER_BOTTOM_RIGHT")]
     BottomRight,
+    #[doc(alias = "GSK_CORNER_BOTTOM_LEFT")]
     BottomLeft,
     #[doc(hidden)]
     __Unknown(i32),
@@ -222,14 +244,23 @@ impl SetValue for Corner {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskGLUniformType")]
 pub enum GLUniformType {
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_NONE")]
     None,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_FLOAT")]
     Float,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_INT")]
     Int,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_UINT")]
     Uint,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_BOOL")]
     Bool,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_VEC2")]
     Vec2,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_VEC3")]
     Vec3,
+    #[doc(alias = "GSK_GL_UNIFORM_TYPE_VEC4")]
     Vec4,
     #[doc(hidden)]
     __Unknown(i32),
@@ -318,32 +349,59 @@ impl SetValue for GLUniformType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskRenderNodeType")]
 pub enum RenderNodeType {
+    #[doc(alias = "GSK_NOT_A_RENDER_NODE")]
     NotARenderNode,
+    #[doc(alias = "GSK_CONTAINER_NODE")]
     ContainerNode,
+    #[doc(alias = "GSK_CAIRO_NODE")]
     CairoNode,
+    #[doc(alias = "GSK_COLOR_NODE")]
     ColorNode,
+    #[doc(alias = "GSK_LINEAR_GRADIENT_NODE")]
     LinearGradientNode,
+    #[doc(alias = "GSK_REPEATING_LINEAR_GRADIENT_NODE")]
     RepeatingLinearGradientNode,
+    #[doc(alias = "GSK_RADIAL_GRADIENT_NODE")]
     RadialGradientNode,
+    #[doc(alias = "GSK_REPEATING_RADIAL_GRADIENT_NODE")]
     RepeatingRadialGradientNode,
+    #[doc(alias = "GSK_CONIC_GRADIENT_NODE")]
     ConicGradientNode,
+    #[doc(alias = "GSK_BORDER_NODE")]
     BorderNode,
+    #[doc(alias = "GSK_TEXTURE_NODE")]
     TextureNode,
+    #[doc(alias = "GSK_INSET_SHADOW_NODE")]
     InsetShadowNode,
+    #[doc(alias = "GSK_OUTSET_SHADOW_NODE")]
     OutsetShadowNode,
+    #[doc(alias = "GSK_TRANSFORM_NODE")]
     TransformNode,
+    #[doc(alias = "GSK_OPACITY_NODE")]
     OpacityNode,
+    #[doc(alias = "GSK_COLOR_MATRIX_NODE")]
     ColorMatrixNode,
+    #[doc(alias = "GSK_REPEAT_NODE")]
     RepeatNode,
+    #[doc(alias = "GSK_CLIP_NODE")]
     ClipNode,
+    #[doc(alias = "GSK_ROUNDED_CLIP_NODE")]
     RoundedClipNode,
+    #[doc(alias = "GSK_SHADOW_NODE")]
     ShadowNode,
+    #[doc(alias = "GSK_BLEND_NODE")]
     BlendNode,
+    #[doc(alias = "GSK_CROSS_FADE_NODE")]
     CrossFadeNode,
+    #[doc(alias = "GSK_TEXT_NODE")]
     TextNode,
+    #[doc(alias = "GSK_BLUR_NODE")]
     BlurNode,
+    #[doc(alias = "GSK_DEBUG_NODE")]
     DebugNode,
+    #[doc(alias = "GSK_GL_SHADER_NODE")]
     GlShaderNode,
     #[doc(hidden)]
     __Unknown(i32),
@@ -486,9 +544,13 @@ impl SetValue for RenderNodeType {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskScalingFilter")]
 pub enum ScalingFilter {
+    #[doc(alias = "GSK_SCALING_FILTER_LINEAR")]
     Linear,
+    #[doc(alias = "GSK_SCALING_FILTER_NEAREST")]
     Nearest,
+    #[doc(alias = "GSK_SCALING_FILTER_TRILINEAR")]
     Trilinear,
     #[doc(hidden)]
     __Unknown(i32),
@@ -562,9 +624,13 @@ impl SetValue for ScalingFilter {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskSerializationError")]
 pub enum SerializationError {
+    #[doc(alias = "GSK_SERIALIZATION_UNSUPPORTED_FORMAT")]
     UnsupportedFormat,
+    #[doc(alias = "GSK_SERIALIZATION_UNSUPPORTED_VERSION")]
     UnsupportedVersion,
+    #[doc(alias = "GSK_SERIALIZATION_INVALID_DATA")]
     InvalidData,
     #[doc(hidden)]
     __Unknown(i32),
@@ -660,13 +726,21 @@ impl SetValue for SerializationError {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GskTransformCategory")]
 pub enum TransformCategory {
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_UNKNOWN")]
     Unknown,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_ANY")]
     Any,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_3D")]
     _3d,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_2D")]
     _2d,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_2D_AFFINE")]
     _2dAffine,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_2D_TRANSLATE")]
     _2dTranslate,
+    #[doc(alias = "GSK_TRANSFORM_CATEGORY_IDENTITY")]
     Identity,
     #[doc(hidden)]
     __Unknown(i32),
