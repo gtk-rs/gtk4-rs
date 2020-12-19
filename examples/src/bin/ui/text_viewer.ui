@@ -2,8 +2,8 @@
 <interface>
   <object class="GtkApplicationWindow" id="window">
     <property name="title" translatable="yes">Text File Viewer</property>
-    <property name="default_width">400</property>
-    <property name="default_height">480</property>
+    <property name="default-width">400</property>
+    <property name="default-height">480</property>
     <child>
       <object class="GtkBox" id="v_box">
         <property name="orientation">vertical</property>

@@ -2,8 +2,8 @@
 <interface>
   <object class="GtkApplicationWindow" id="window">
     <property name="title" translatable="yes">Builder Basics</property>
-    <property name="default_width">320</property>
-    <property name="default_height">240</property>
+    <property name="default-width">320</property>
+    <property name="default-height">240</property>
     <child>
       <object class="GtkButton" id="button">
         <property name="label" translatable="yes">Big Useless Button</property>
