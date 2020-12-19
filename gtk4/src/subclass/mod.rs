@@ -25,6 +25,7 @@ pub mod native_dialog;
 pub mod popover;
 pub mod recent_manager;
 pub mod scrollable;
+pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
 pub mod style_context;
@@ -67,6 +68,7 @@ pub mod prelude {
     pub use super::popover::PopoverImpl;
     pub use super::recent_manager::RecentManagerImpl;
     pub use super::scrollable::ScrollableImpl;
+    pub use super::selection_model::SelectionModelImpl;
     pub use super::shortcut_manager::ShortcutManagerImpl;
     pub use super::sorter::SorterImpl;
     pub use super::style_context::StyleContextImpl;
