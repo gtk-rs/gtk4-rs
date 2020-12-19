@@ -23,8 +23,7 @@
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="GtkTextView" id="text_view">
-              </object>
+              <object class="GtkTextView" id="text_view"/>
             </child>
           </object>
         </child>

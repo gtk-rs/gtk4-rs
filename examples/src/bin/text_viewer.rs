@@ -33,7 +33,6 @@ pub fn build_ui(application: &Application) {
 
     open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 
-        // TODO move this to a impl?
         let file_chooser = FileChooserDialog::new(
             Some("Open File"),
             Some(&window),
