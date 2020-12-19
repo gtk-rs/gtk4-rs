@@ -1,9 +1,8 @@
 use std::cell::RefCell;
 use std::env;
 
-use glib::subclass::prelude::*;
+use gtk::glib;
 use gtk::prelude::*;
-use gtk::{gio, glib};
 
 mod imp {
     use super::*;
