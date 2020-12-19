@@ -3,7 +3,11 @@
 #![allow(deprecated)]
 
 pub use ffi;
+pub use gdk;
+pub use gio;
+pub use glib;
 pub use x11;
+
 #[macro_use]
 mod rt;
 
