@@ -4,6 +4,7 @@ use crate::PopupLayout;
 use glib::translate::*;
 
 pub trait PopupLayoutExtManual {
+    #[doc(alias = "gdk_popup_layout_get_offset")]
     fn get_offset(&self) -> (i32, i32);
 }
 

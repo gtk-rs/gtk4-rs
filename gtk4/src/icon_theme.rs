@@ -4,6 +4,7 @@ use crate::IconTheme;
 use glib::translate::*;
 
 pub trait IconThemeExtManual {
+    #[doc(alias = "gtk_icon_theme_set_resource_path")]
     fn set_resource_path(&self, path: &str);
 }
 

@@ -10,6 +10,7 @@ use std::ptr;
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
 
+#[doc(alias = "gdk_pango_layout_line_get_clip_region")]
 pub fn pango_layout_line_get_clip_region(
     line: &pango::LayoutLine,
     x_origin: i32,
@@ -30,6 +31,7 @@ pub fn pango_layout_line_get_clip_region(
     }
 }
 
+#[doc(alias = "gdk_pango_layout_get_clip_region")]
 pub fn pango_layout_get_clip_region(
     layout: &pango::Layout,
     x_origin: i32,
@@ -182,6 +184,7 @@ pub fn content_register_deserializer<
     }
 }
 
+#[doc(alias = "gdk_content_register_serializer")]
 pub fn content_register_serializer<
     T: 'static,
     P: Fn(&ContentSerializer, &mut Option<T>) + 'static,

@@ -7,6 +7,7 @@ use libc::c_char;
 use std::ptr;
 
 impl FileChooserDialog {
+    #[doc(alias = "gtk_file_chooser_dialog_new")]
     pub fn new<T: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&T>,

@@ -7,6 +7,7 @@ use glib::{ToValue, Type, Value};
 use libc::c_int;
 
 impl TreeStore {
+    #[doc(alias = "gtk_tree_store_newv")]
     pub fn new(column_types: &[Type]) -> TreeStore {
         assert_initialized_main_thread!();
         unsafe {
@@ -20,6 +21,7 @@ impl TreeStore {
 }
 
 pub trait TreeStoreExtManual: 'static {
+    #[doc(alias = "gtk_tree_store_insert_with_values")]
     fn insert_with_values(
         &self,
         parent: Option<&TreeIter>,
@@ -28,10 +30,13 @@ pub trait TreeStoreExtManual: 'static {
         values: &[&dyn ToValue],
     ) -> TreeIter;
 
+    #[doc(alias = "gtk_tree_store_reorder")]
     fn reorder(&self, parent: &TreeIter, new_order: &[u32]);
 
+    #[doc(alias = "gtk_tree_store_set")]
     fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&dyn ToValue]);
 
+    #[doc(alias = "gtk_tree_store_set_value")]
     fn set_value(&self, iter: &TreeIter, column: u32, value: &Value);
 }
 

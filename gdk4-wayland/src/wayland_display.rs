@@ -8,7 +8,10 @@ use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
 pub trait WaylandDisplayManualExt {
+    #[doc(alias = "gdk_wayland_display_get_wl_compositor")]
     fn get_wl_compositor(&self) -> WlCompositor;
+
+    #[doc(alias = "gdk_wayland_display_get_wl_display")]
     fn get_wl_display(&self) -> WlDisplay;
 }
 

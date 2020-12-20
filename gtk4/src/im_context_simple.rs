@@ -6,6 +6,7 @@ use glib::IsA;
 use std::path::Path;
 
 pub trait IMContextSimpleExtManual: 'static {
+    #[doc(alias = "gtk_im_context_simple_add_compose_file")]
     fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P);
     //fn add_table(&self, data: &[u16], max_seq_len: u32, n_seqs: u32);
 }

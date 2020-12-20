@@ -10,6 +10,7 @@ use glib::ObjectExt;
 use glib::Continue;
 
 pub trait WidgetExtManual: 'static {
+    #[doc(alias = "gtk_widget_add_tick_callback")]
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
         &self,
         callback: P,
@@ -78,6 +79,7 @@ pub struct TickCallbackId {
 }
 
 impl TickCallbackId {
+    #[doc(alias = "gtk_widget_remove_tick_callback")]
     pub fn remove(self) {
         if let Some(widget) = self.widget.upgrade() {
             unsafe {

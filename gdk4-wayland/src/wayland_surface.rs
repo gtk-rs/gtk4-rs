@@ -8,6 +8,7 @@ use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
 pub trait WaylandSurfaceManualExt {
+    #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     fn get_wl_surface(&self) -> WlSurface;
 }
 

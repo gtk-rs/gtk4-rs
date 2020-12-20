@@ -5,10 +5,13 @@ use glib::translate::*;
 use glib::IsA;
 
 pub trait ConstraintGuideExtManual {
+    #[doc(alias = "gtk_constraint_guide_get_max_size")]
     fn get_max_size(&self, width: i32, height: i32);
 
+    #[doc(alias = "gtk_constraint_guide_get_min_size")]
     fn get_min_size(&self, width: i32, height: i32);
 
+    #[doc(alias = "gtk_constraint_guide_get_nat_size")]
     fn get_nat_size(&self, width: i32, height: i32);
 }
 

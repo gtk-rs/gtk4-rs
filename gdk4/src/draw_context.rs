@@ -5,6 +5,7 @@ use glib::translate::*;
 use glib::IsA;
 
 pub trait DrawContextExtManual: 'static {
+    #[doc(alias = "gdk_draw_context_get_frame_region")]
     fn get_frame_region(&self) -> Option<cairo::Region>;
 }
 

@@ -12,6 +12,7 @@ use std::slice;
 use std::str;
 
 impl Editable {
+    #[doc(alias = "gtk_editable_delegate_get_property")]
     pub fn delegate_get_property<P: IsA<Editable> + IsA<glib::Object>>(
         object: &P,
         prop_id: u32,
@@ -29,6 +30,7 @@ impl Editable {
         }
     }
 
+    #[doc(alias = "gtk_editable_delegate_set_property")]
     pub fn delegate_set_property<P: IsA<Editable> + IsA<glib::Object>>(
         object: &P,
         prop_id: u32,

@@ -6,6 +6,7 @@ use glib::translate::*;
 use libc::{c_int, c_uint};
 
 impl EntryBuffer {
+    #[doc(alias = "gtk_entry_buffer_new")]
     pub fn new(initial_chars: Option<&str>) -> EntryBuffer {
         assert_initialized_main_thread!();
         unsafe {
@@ -18,13 +19,28 @@ impl EntryBuffer {
 }
 
 pub trait EntryBufferExtManual: 'static {
+    #[doc(alias = "gtk_entry_buffer_delete_text")]
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16;
+
+    #[doc(alias = "gtk_entry_buffer_get_bytes")]
     fn get_bytes(&self) -> usize;
+
+    #[doc(alias = "gtk_entry_buffer_get_length")]
     fn get_length(&self) -> u16;
+
+    #[doc(alias = "gtk_entry_buffer_get_max_length")]
     fn get_max_length(&self) -> Option<u16>;
+
+    #[doc(alias = "gtk_entry_buffer_get_text")]
     fn get_text(&self) -> String;
+
+    #[doc(alias = "gtk_entry_buffer_insert_text")]
     fn insert_text(&self, position: u16, chars: &str) -> u16;
+
+    #[doc(alias = "gtk_entry_buffer_set_max_length")]
     fn set_max_length(&self, max_length: Option<u16>);
+
+    #[doc(alias = "gtk_entry_buffer_set_text")]
     fn set_text(&self, chars: &str);
 }
 

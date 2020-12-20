@@ -8,6 +8,7 @@ use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
 pub trait WaylandSeatManualExt {
+    #[doc(alias = "gdk_wayland_seat_get_wl_seat")]
     fn get_wl_seat(&self) -> WlSeat;
 }
 

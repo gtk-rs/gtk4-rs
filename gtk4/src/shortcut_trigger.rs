@@ -5,10 +5,13 @@ use glib::translate::*;
 use glib::IsA;
 
 pub trait ShortcutTriggerExtManual {
+    #[doc(alias = "gtk_shortcut_trigger_compare")]
     fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> i32;
 
+    #[doc(alias = "gtk_shortcut_trigger_equal")]
     fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool;
 
+    #[doc(alias = "gtk_shortcut_trigger_hash")]
     fn hash(&self) -> u32;
 }
 

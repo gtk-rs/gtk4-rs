@@ -8,8 +8,13 @@ use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
 pub trait WaylandDeviceManualExt {
+    #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
     fn get_wl_keyboard(&self) -> WlKeyboard;
+
+    #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
     fn get_wl_pointer(&self) -> WlPointer;
+
+    #[doc(alias = "gdk_wayland_device_get_wl_seat")]
     fn get_wl_seat(&self) -> WlSeat;
 }
 
