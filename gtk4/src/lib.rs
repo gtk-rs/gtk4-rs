@@ -83,6 +83,7 @@ mod entry_buffer;
 mod entry_completion;
 mod enums;
 mod file_chooser_dialog;
+mod flow_box;
 mod icon_theme;
 mod im_context_simple;
 mod list_box;

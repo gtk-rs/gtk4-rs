@@ -1005,6 +1005,14 @@ trust_return_value_nullability = false
 name = "Gtk.FlowBox"
 status = "generate"
 generate_builder = true
+manual_traits = ["FlowBoxExtManual"]
+    [[object.function]]
+    name = "bind_model"
+        [[object.function.parameter]]
+        name = "create_widget_func"
+        # we add a manual unbind() function instead
+        nullable = false
+
 
 [[object]]
 name = "Gtk.FlowBoxChild"
