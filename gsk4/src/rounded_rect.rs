@@ -43,6 +43,7 @@ impl RoundedRect {
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_init")]
     pub fn init(
         &mut self,
         bounds: Rect,
@@ -63,34 +64,40 @@ impl RoundedRect {
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_init_from_rect")]
     pub fn init_from_rect(&mut self, bounds: Rect, radius: f32) {
         unsafe {
             ffi::gsk_rounded_rect_init_from_rect(&mut self.0, bounds.to_glib_none().0, radius);
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_normalize")]
     pub fn normalize(&mut self) {
         unsafe {
             ffi::gsk_rounded_rect_normalize(&mut self.0);
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_offset")]
     pub fn offset(&mut self, dx: f32, dy: f32) {
         unsafe {
             ffi::gsk_rounded_rect_offset(&mut self.0, dx, dy);
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_shrink")]
     pub fn shrink(&mut self, top: f32, right: f32, bottom: f32, left: f32) {
         unsafe {
             ffi::gsk_rounded_rect_shrink(&mut self.0, top, right, bottom, left);
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_is_rectilinear")]
     pub fn is_rectilinear(&self) -> bool {
         unsafe { from_glib(ffi::gsk_rounded_rect_is_rectilinear(&self.0)) }
     }
 
+    #[doc(alias = "gsk_rounded_rect_contains_point")]
     pub fn contains_point(&self, point: Point) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_contains_point(
@@ -100,6 +107,7 @@ impl RoundedRect {
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_contains_rect")]
     pub fn contains_rect(&self, rect: Rect) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_contains_rect(
@@ -109,6 +117,7 @@ impl RoundedRect {
         }
     }
 
+    #[doc(alias = "gsk_rounded_rect_intersects_rect")]
     pub fn intersects_rect(&self, rect: Rect) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_intersects_rect(
