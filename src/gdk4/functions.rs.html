@@ -315,6 +315,9 @@
 <span id="312">312</span>
 <span id="313">313</span>
 <span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -328,6 +331,7 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GRange</span>(<span class="kw">pub</span> <span class="ident">i32</span>, <span class="kw">pub</span> <span class="ident">i32</span>);
 
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_line_get_clip_region&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_line_get_clip_region</span>(
     <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">pango</span>::<span class="ident">LayoutLine</span>,
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
@@ -348,6 +352,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_get_clip_region&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_get_clip_region</span>(
     <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango</span>::<span class="ident">Layout</span>,
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
@@ -500,6 +505,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_register_serializer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_register_serializer</span><span class="op">&lt;</span>
     <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
     <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentSerializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,

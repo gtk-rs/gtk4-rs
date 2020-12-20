@@ -46,6 +46,8 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -54,6 +56,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SurfaceExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_similar_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_similar_surface</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">content</span>: <span class="ident">cairo</span>::<span class="ident">Content</span>,
@@ -61,6 +64,7 @@
         <span class="ident">height</span>: <span class="ident">i32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo</span>::<span class="ident">Surface</span><span class="op">&gt;</span>;
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_translate_coordinates&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">translate_coordinates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">to</span>: <span class="kw-2">&amp;</span><span class="ident">Surface</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 }
 
