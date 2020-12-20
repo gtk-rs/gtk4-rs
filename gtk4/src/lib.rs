@@ -77,6 +77,7 @@ mod combo_box;
 mod constraint_guide;
 mod css_location;
 mod dialog;
+mod drawing_area;
 mod editable;
 mod entry;
 mod entry_buffer;

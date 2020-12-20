@@ -810,6 +810,13 @@ generate_builder = true
 name = "Gtk.DrawingArea"
 status = "generate"
 generate_builder = true
+manual_traits = ["DrawingAreaExtManual"]
+    [[object.function]]
+    name = "set_draw_func"
+        [[object.function.parameter]]
+        name = "draw_func"
+        # we add manual unset_draw_func
+        nullable = false
 
 [[object]]
 name = "Gtk.DropDown"

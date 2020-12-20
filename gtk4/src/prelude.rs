@@ -9,6 +9,7 @@ pub use crate::builder::BuilderExtManual;
 pub use crate::color_chooser::ColorChooserExtManual;
 pub use crate::combo_box::ComboBoxExtManual;
 pub use crate::dialog::DialogExtManual;
+pub use crate::drawing_area::DrawingAreaExtManual;
 pub use crate::editable::EditableExtManual;
 pub use crate::entry::EntryExtManual;
 pub use crate::entry_buffer::EntryBufferExtManual;
