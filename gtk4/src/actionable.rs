@@ -6,6 +6,7 @@ use glib::translate::*;
 use libc::c_char;
 
 pub trait ActionableExtManual: 'static {
+    #[doc(alias = "gtk_actionable_set_action_target")]
     fn set_action_target(&self, string: &str);
 }
 

@@ -7,6 +7,7 @@ use glib::Object;
 use std::path::Path;
 
 impl Builder {
+    #[doc(alias = "gtk_builder_new_from_file")]
     pub fn new_from_file<T: AsRef<Path>>(file_path: T) -> Builder {
         assert_initialized_main_thread!();
         unsafe {
@@ -18,7 +19,10 @@ impl Builder {
 }
 
 pub trait BuilderExtManual: 'static {
+    #[doc(alias = "gtk_builder_get_object")]
     fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
+
+    #[doc(alias = "gtk_builder_add_from_file")]
     fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error>;
 }
 

@@ -5,6 +5,7 @@ use glib::object::IsA;
 use glib::translate::*;
 
 impl TreeModelSort {
+    #[doc(alias = "gtk_tree_model_sort_new_with_model")]
     pub fn new<T: IsA<TreeModel>>(child_model: &T) -> TreeModelSort {
         skip_assert_initialized!();
         unsafe {

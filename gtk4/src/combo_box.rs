@@ -5,7 +5,10 @@ use glib::object::IsA;
 use glib::translate::*;
 
 pub trait ComboBoxExtManual: 'static {
+    #[doc(alias = "gtk_combo_box_set_active")]
     fn set_active(&self, index_: Option<u32>);
+
+    #[doc(alias = "gtk_combo_box_get_active")]
     fn get_active(&self) -> Option<u32>;
 }
 

@@ -8,6 +8,7 @@ use std::ptr;
 use crate::{ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 
 impl MessageDialog {
+    #[doc(alias = "gtk_message_dialog_new")]
     pub fn new<T: IsA<Window>>(
         parent: Option<&T>,
         flags: DialogFlags,

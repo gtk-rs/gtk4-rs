@@ -4,6 +4,7 @@ use crate::{PadActionEntry, PadController};
 use glib::translate::*;
 
 impl PadController {
+    #[doc(alias = "gtk_pad_controller_set_action_entries")]
     pub fn set_action_entries(&self, entries: &[PadActionEntry]) {
         let n_entries = entries.len() as i32;
         let entry_strings = entries

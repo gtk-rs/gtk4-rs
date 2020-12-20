@@ -6,6 +6,7 @@ use glib::translate::*;
 use crate::{TreeModel, TreeModelFilter, TreePath};
 
 impl TreeModelFilter {
+    #[doc(alias = "gtk_tree_model_filter_new")]
     pub fn new<T: IsA<TreeModel>>(child_model: &T, root: Option<&TreePath>) -> TreeModelFilter {
         skip_assert_initialized!();
         unsafe {

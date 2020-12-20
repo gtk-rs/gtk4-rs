@@ -7,6 +7,7 @@ use glib::IsA;
 use std::ptr;
 
 impl Dialog {
+    #[doc(alias = "gtk_dialog_new_with_buttons")]
     pub fn new_with_buttons<T: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&T>,
@@ -30,7 +31,10 @@ impl Dialog {
 }
 
 pub trait DialogExtManual: 'static {
+    #[doc(alias = "gtk_dialog_add_buttons")]
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);
+
+    #[doc(alias = "gtk_dialog_get_response_for_widget")]
     fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType;
 }
 

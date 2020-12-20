@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::slice;
 
 impl TreePath {
+    #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
     pub fn get_indices(&self) -> Vec<i32> {
         unsafe {
             let mut count = 0;

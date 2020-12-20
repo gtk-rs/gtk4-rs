@@ -6,6 +6,7 @@ use glib::IsA;
 use std::convert::TryFrom;
 
 pub trait EntryExtManual: 'static {
+    #[doc(alias = "gtk_entry_get_invisible_char")]
     fn get_invisible_char(&self) -> Option<char>;
 }
 
