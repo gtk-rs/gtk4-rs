@@ -33,7 +33,7 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 
 [dependencies]
 libc = "0.2"
-bitflags = "1.0"
+bitflags = "1.2"
 ffi = { package = "gdk4-sys", path = "./sys" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
