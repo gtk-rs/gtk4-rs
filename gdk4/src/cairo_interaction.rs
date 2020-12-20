@@ -6,6 +6,7 @@ use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
 
 pub trait GdkCairoSurfaceExt {
+    #[doc(alias = "gdk_cairo_region_create_from_surface")]
     fn create_region(&self) -> Option<Region>;
 }
 
@@ -24,6 +25,7 @@ pub trait GdkCairoContextExt {
     ///
     /// It's the responsibility of the caller to ensure that source
     /// is a valid GL resource.
+    #[doc(alias = "gdk_cairo_draw_from_gl")]
     unsafe fn draw_from_gl(
         &self,
         surface: &Surface,
@@ -36,12 +38,16 @@ pub trait GdkCairoContextExt {
         height: i32,
     );
 
+    #[doc(alias = "gdk_cairo_set_source_rgba")]
     fn set_source_rgba(&self, rgba: &RGBA);
 
+    #[doc(alias = "gdk_cairo_set_source_pixbuf")]
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64);
 
+    #[doc(alias = "gdk_cairo_rectangle")]
     fn rectangle(&self, rectangle: &Rectangle);
 
+    #[doc(alias = "gdk_cairo_add_region")]
     fn add_region(&self, region: &Region);
 }
 

@@ -5,6 +5,7 @@ use glib::object::IsA;
 use glib::translate::*;
 
 pub trait SurfaceExtManual: 'static {
+    #[doc(alias = "gdk_surface_create_similar_surface")]
     fn create_similar_surface(
         &self,
         content: cairo::Content,
@@ -12,6 +13,7 @@ pub trait SurfaceExtManual: 'static {
         height: i32,
     ) -> Option<cairo::Surface>;
 
+    #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool;
 }
 

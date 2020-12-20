@@ -9,6 +9,7 @@ use std::pin::Pin;
 use std::ptr;
 
 impl Clipboard {
+    #[doc(alias = "gdk_clipboard_read_async")]
     pub fn read_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
