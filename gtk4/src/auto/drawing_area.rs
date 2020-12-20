@@ -363,10 +363,7 @@ pub trait DrawingAreaExt: 'static {
     fn set_content_width(&self, width: i32);
 
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
-    fn set_draw_func(
-        &self,
-        draw_func: Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
-    );
+    fn set_draw_func<P: Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>(&self, draw_func: P);
 
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -402,14 +399,14 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
-    fn set_draw_func(
+    fn set_draw_func<P: Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>(
         &self,
-        draw_func: Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
+        draw_func: P,
     ) {
-        let draw_func_data: Box_<
-            Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
-        > = Box_::new(draw_func);
-        unsafe extern "C" fn draw_func_func(
+        let draw_func_data: Box_<P> = Box_::new(draw_func);
+        unsafe extern "C" fn draw_func_func<
+            P: Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static,
+        >(
             drawing_area: *mut ffi::GtkDrawingArea,
             cr: *mut cairo::ffi::cairo_t,
             width: libc::c_int,
@@ -418,28 +415,19 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         ) {
             let drawing_area = from_glib_borrow(drawing_area);
             let cr = from_glib_borrow(cr);
-            let callback: &Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>> =
-                &*(user_data as *mut _);
-            if let Some(ref callback) = *callback {
-                callback(&drawing_area, &cr, width, height)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            (*callback)(&drawing_area, &cr, width, height);
         }
-        let draw_func = if draw_func_data.is_some() {
-            Some(draw_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<
-                Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
-            > = Box_::from_raw(data as *mut _);
+        let draw_func = Some(draw_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<
+            P: Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static,
+        >(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&DrawingArea, &cairo::Context, i32, i32) + 'static>>,
-        > = draw_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = draw_func_data;
         unsafe {
             ffi::gtk_drawing_area_set_draw_func(
                 self.as_ref().to_glib_none().0,
