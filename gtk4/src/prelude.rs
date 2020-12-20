@@ -14,6 +14,7 @@ pub use crate::entry::EntryExtManual;
 pub use crate::entry_buffer::EntryBufferExtManual;
 pub use crate::entry_completion::EntryCompletionExtManual;
 pub use crate::im_context_simple::IMContextSimpleExtManual;
+pub use crate::list_box::ListBoxExtManual;
 pub use crate::list_store::GtkListStoreExtManual;
 pub use crate::notebook::NotebookExtManual;
 pub use crate::overlay::OverlayExtManual;

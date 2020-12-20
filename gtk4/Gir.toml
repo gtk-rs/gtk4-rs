@@ -1206,6 +1206,13 @@ name = "Gtk.ListBox"
 status = "generate"
 generate_builder = true
 trust_return_value_nullability = false
+manual_traits = ["ListBoxExtManual"]
+    [[object.function]]
+    name = "bind_model"
+        [[object.function.parameter]]
+        name = "create_widget_func"
+        # we add a manual unbind() function instead
+        nullable = false
 
 [[object]]
 name = "Gtk.ListBoxRow"

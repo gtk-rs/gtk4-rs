@@ -50,41 +50,35 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_bind_model")]
-    pub fn bind_model<P: IsA<gio::ListModel>>(
+    pub fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
         &self,
         model: Option<&P>,
-        create_widget_func: Option<Box_<dyn Fn(&glib::Object) -> Widget + 'static>>,
+        create_widget_func: Q,
     ) {
-        let create_widget_func_data: Box_<Option<Box_<dyn Fn(&glib::Object) -> Widget + 'static>>> =
-            Box_::new(create_widget_func);
-        unsafe extern "C" fn create_widget_func_func<P: IsA<gio::ListModel>>(
+        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<
+            P: IsA<gio::ListModel>,
+            Q: Fn(&glib::Object) -> Widget + 'static,
+        >(
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
-            let callback: &Option<Box_<dyn Fn(&glib::Object) -> Widget + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&item)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &Q = &*(user_data as *mut _);
+            let res = (*callback)(&item);
             res.to_glib_full()
         }
-        let create_widget_func = if create_widget_func_data.is_some() {
-            Some(create_widget_func_func::<P> as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn user_data_free_func_func<P: IsA<gio::ListModel>>(
+        let create_widget_func = Some(create_widget_func_func::<P, Q> as _);
+        unsafe extern "C" fn user_data_free_func_func<
+            P: IsA<gio::ListModel>,
+            Q: Fn(&glib::Object) -> Widget + 'static,
+        >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<Option<Box_<dyn Fn(&glib::Object) -> Widget + 'static>>> =
-                Box_::from_raw(data as *mut _);
+            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call4 = Some(user_data_free_func_func::<P> as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&glib::Object) -> Widget + 'static>>> =
-            create_widget_func_data;
+        let destroy_call4 = Some(user_data_free_func_func::<P, Q> as _);
+        let super_callback0: Box_<Q> = create_widget_func_data;
         unsafe {
             ffi::gtk_list_box_bind_model(
                 self.to_glib_none().0,

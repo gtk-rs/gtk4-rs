@@ -85,6 +85,7 @@ mod enums;
 mod file_chooser_dialog;
 mod icon_theme;
 mod im_context_simple;
+mod list_box;
 mod list_store;
 mod message_dialog;
 mod notebook;
