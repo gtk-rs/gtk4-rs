@@ -8,6 +8,7 @@ use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
 pub trait WaylandMonitorManualExt {
+    #[doc(alias = "gdk_wayland_monitor_get_wl_output")]
     fn get_wl_output(&self) -> WlOutput;
 }
 
