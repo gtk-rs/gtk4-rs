@@ -35,6 +35,11 @@ pub mod widget;
 pub mod window;
 
 pub mod prelude {
+    #[doc(hidden)]
+    pub use gio::subclass::prelude::*;
+    #[doc(hidden)]
+    pub use glib::subclass::prelude::*;
+
     pub use super::actionable::ActionableImpl;
     pub use super::adjustment::AdjustmentImpl;
     pub use super::application::GtkApplicationImpl;
@@ -71,6 +76,4 @@ pub mod prelude {
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::WidgetImpl;
     pub use super::window::WindowImpl;
-    pub use gio::subclass::prelude::*;
-    pub use glib::subclass::prelude::*;
 }
