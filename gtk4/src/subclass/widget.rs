@@ -1,15 +1,21 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::prelude::*;
-use glib::subclass::prelude::*;
-use glib::translate::*;
-use glib::Cast;
-
 use crate::{
-    AccessibleRole, DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot,
-    StateFlags, SystemSetting, TextDirection, Tooltip, Widget, WidgetExt,
+    AccessibleRole, BuilderScope, DirectionType, LayoutManager, Orientation, Shortcut,
+    SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
+    WidgetExt,
 };
-use glib::Object;
+use glib::prelude::*;
+use glib::subclass::{prelude::*, SignalId};
+use glib::translate::*;
+use glib::{Cast, GString, IsA, Object, Variant};
+use std::boxed::Box as Box_;
+use std::collections::HashMap;
+
+#[derive(Debug, Default)]
+struct Actions(pub(crate) HashMap<String, glib::ffi::gpointer>);
+unsafe impl Sync for Actions {}
+unsafe impl Send for Actions {}
 
 pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     fn compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
@@ -502,6 +508,12 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
         <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
+        unsafe {
+            let mut data = T::type_data();
+            let data = data.as_mut();
+            // Used to store actions for `install_action`
+            data.set_class_data(Widget::static_type(), Actions::default());
+        }
 
         klass.compute_expand = Some(widget_compute_expand::<T>);
         klass.contains = Some(widget_contains::<T>);
@@ -880,6 +892,81 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_install_action")]
+    fn install_action<
+        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
+            + 'static,
+    >(
+        &mut self,
+        action_name: &str,
+        parameter_type: Option<&str>,
+        activate: F,
+    ) {
+        unsafe {
+            // We store the activate callbacks in a HashMap<action_name, activate>
+            // so that we can retrieve f later on the activate_trampoline call
+            let mut data = <Self::Type as ObjectSubclassType>::type_data();
+            let data = data.as_mut();
+
+            let f: Box_<F> = Box_::new(activate);
+
+            let actions = data
+                .get_class_data_mut::<Actions>(Widget::static_type())
+                .expect("Something bad happened at class_init, the actions class_data is missing");
+            let callback_ptr = Box_::into_raw(f) as glib::ffi::gpointer;
+            actions.0.insert(action_name.to_string(), callback_ptr);
+
+            unsafe extern "C" fn activate_trampoline<F, S>(
+                this: *mut ffi::GtkWidget,
+                action_name: *const libc::c_char,
+                parameter: *mut glib::ffi::GVariant,
+            ) where
+                S: ClassStruct,
+                <S as ClassStruct>::Type: ObjectSubclass,
+                F: Fn(&<<S as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
+                    + 'static,
+            {
+                let action_name = GString::from_glib_borrow(action_name);
+
+                let data = <S::Type as ObjectSubclassType>::type_data();
+                let actions = data
+                    .as_ref()
+                    .get_class_data::<Actions>(Widget::static_type())
+                    .unwrap();
+                let activate_callback =
+                    *actions.0.get(&action_name.to_string()).unwrap_or_else(|| {
+                        panic!("Action name '{}' was not found", action_name.as_str());
+                    });
+
+                let widget = Widget::from_glib_borrow(this);
+
+                let f: &F = &*(activate_callback as *const F);
+                f(
+                    &widget.unsafe_cast_ref(),
+                    &action_name,
+                    Option::<Variant>::from_glib_borrow(parameter)
+                        .as_ref()
+                        .as_ref(),
+                )
+            }
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            let callback = activate_trampoline::<F, Self>;
+            ffi::gtk_widget_class_install_action(
+                widget_class,
+                action_name.to_glib_none().0,
+                parameter_type.to_glib_none().0,
+                Some(callback),
+            );
+        }
+    }
+
+    fn set_template_scope<S: IsA<BuilderScope>>(&mut self, scope: &S) {
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_template_scope(widget_class, scope.as_ref().to_glib_none().0);
+        }
+    }
+
     fn bind_template_child(&mut self, name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -896,6 +983,47 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_add_shortcut(widget_class, shortcut.to_glib_none().0);
+        }
+    }
+
+    fn install_property_action(&mut self, action_name: &str, property_name: &str) {
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_install_property_action(
+                widget_class,
+                action_name.to_glib_none().0,
+                property_name.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_widget_class_get_activate_signal")]
+    fn get_activate_signal(&self) -> Option<SignalId> {
+        unsafe {
+            let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+            let signal_id = ffi::gtk_widget_class_get_activate_signal(widget_class);
+            if signal_id == 0 {
+                None
+            } else {
+                Some(from_glib(signal_id))
+            }
+        }
+    }
+
+    fn set_activate_signal(&mut self, signal_id: SignalId) {
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_activate_signal(widget_class, signal_id.to_glib())
+        }
+    }
+
+    fn set_activate_signal_from_name(&mut self, signal_name: &str) {
+        unsafe {
+            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
+            ffi::gtk_widget_class_set_activate_signal_from_name(
+                widget_class,
+                signal_name.to_glib_none().0,
+            );
         }
     }
 
