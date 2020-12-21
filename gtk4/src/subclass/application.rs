@@ -1,14 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use gio::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
 use crate::{Application, Window};
 
-pub trait GtkApplicationImpl:
-    ObjectImpl + GtkApplicationImplExt + gio::subclass::ApplicationImpl
-{
+pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationImpl {
     fn window_added(&self, application: &Self::Type, window: &Window) {
         self.parent_window_added(application, window)
     }
