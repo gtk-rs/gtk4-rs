@@ -38,6 +38,7 @@ mod auto;
 
 mod alias;
 pub mod prelude;
+pub mod subclass;
 
 mod cairo_interaction;
 mod clipboard;

@@ -36,6 +36,8 @@ pub mod window;
 
 pub mod prelude {
     #[doc(hidden)]
+    pub use gdk::subclass::prelude::*;
+    #[doc(hidden)]
     pub use gio::subclass::prelude::*;
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;

@@ -31,6 +31,9 @@ name = "composite_template"
 name = "css"
 
 [[bin]]
+name = "custom_paintable"
+
+[[bin]]
 name = "entry_completion"
 
 [[bin]]
