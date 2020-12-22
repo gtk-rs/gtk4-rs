@@ -6,10 +6,10 @@ min_cfg_version = "3.94"
 single_version_file = "."
 
 external_libraries = [
-   "GLib",
-   "GObject",
-   "Gio",
-   "GdkPixbuf",
-   "Pango",
-   "Cairo",
+    "GLib",
+    "GObject",
+    "Gio",
+    "GdkPixbuf",
+    "Pango",
+    "Cairo",
 ]

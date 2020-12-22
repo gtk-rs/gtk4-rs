@@ -6,21 +6,21 @@ min_cfg_version = "3.94"
 single_version_file = "."
 
 external_libraries = [
-   "GLib",
-   "GObject",
-   "Gio",
-   "GdkPixbuf",
-   "Pango",
-   "Cairo",
-   "Graphene",
+    "GLib",
+    "GObject",
+    "Gio",
+    "GdkPixbuf",
+    "Pango",
+    "Cairo",
+    "Graphene",
 ]
 
 ignore = [
-	"Gtk.BINARY_AGE",
-	"Gtk.INTERFACE_AGE",
-	"Gtk.MAJOR_VERSION",
-	"Gtk.MICRO_VERSION",
-	"Gtk.MINOR_VERSION",
+    "Gtk.BINARY_AGE",
+    "Gtk.INTERFACE_AGE",
+    "Gtk.MAJOR_VERSION",
+    "Gtk.MICRO_VERSION",
+    "Gtk.MINOR_VERSION",
 ]
 
 [external_libraries]

@@ -6,7 +6,7 @@ min_cfg_version = "3.94"
 single_version_file = "."
 
 external_libraries = [
-   "GLib",
+    "GLib",
 ]
 
 [external_libraries]
