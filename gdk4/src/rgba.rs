@@ -13,10 +13,10 @@ pub struct RgbaParseError;
 #[derive(Clone, Copy, Debug)]
 #[repr(C)]
 pub struct RGBA {
-    pub red: f64,
-    pub green: f64,
-    pub blue: f64,
-    pub alpha: f64,
+    pub red: f32,
+    pub green: f32,
+    pub blue: f32,
+    pub alpha: f32,
 }
 
 impl RGBA {
@@ -25,50 +25,50 @@ impl RGBA {
     pub fn black() -> RGBA {
         skip_assert_initialized!();
         RGBA {
-            red: 0f64,
-            green: 0f64,
-            blue: 0f64,
-            alpha: 1f64,
+            red: 0f32,
+            green: 0f32,
+            blue: 0f32,
+            alpha: 1f32,
         }
     }
 
     pub fn blue() -> RGBA {
         skip_assert_initialized!();
         RGBA {
-            red: 0f64,
-            green: 0f64,
-            blue: 1f64,
-            alpha: 1f64,
+            red: 0f32,
+            green: 0f32,
+            blue: 1f32,
+            alpha: 1f32,
         }
     }
 
     pub fn green() -> RGBA {
         skip_assert_initialized!();
         RGBA {
-            red: 0f64,
-            green: 1f64,
-            blue: 0f64,
-            alpha: 1f64,
+            red: 0f32,
+            green: 1f32,
+            blue: 0f32,
+            alpha: 1f32,
         }
     }
 
     pub fn red() -> RGBA {
         skip_assert_initialized!();
         RGBA {
-            red: 1f64,
-            green: 0f64,
-            blue: 0f64,
-            alpha: 1f64,
+            red: 1f32,
+            green: 0f32,
+            blue: 0f32,
+            alpha: 1f32,
         }
     }
 
     pub fn white() -> RGBA {
         skip_assert_initialized!();
         RGBA {
-            red: 1f64,
-            green: 1f64,
-            blue: 1f64,
-            alpha: 1f64,
+            red: 1f32,
+            green: 1f32,
+            blue: 1f32,
+            alpha: 1f32,
         }
     }
 }
