@@ -242,10 +242,10 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RGBA</span> {
-    <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">f64</span>,
-    <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">f64</span>,
-    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">f64</span>,
-    <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">f64</span>,
+    <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">f32</span>,
+    <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">f32</span>,
+    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">f32</span>,
+    <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">f32</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">RGBA</span> {
@@ -254,50 +254,50 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">black</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">RGBA</span> {
-            <span class="ident">red</span>: <span class="number">0f64</span>,
-            <span class="ident">green</span>: <span class="number">0f64</span>,
-            <span class="ident">blue</span>: <span class="number">0f64</span>,
-            <span class="ident">alpha</span>: <span class="number">1f64</span>,
+            <span class="ident">red</span>: <span class="number">0f32</span>,
+            <span class="ident">green</span>: <span class="number">0f32</span>,
+            <span class="ident">blue</span>: <span class="number">0f32</span>,
+            <span class="ident">alpha</span>: <span class="number">1f32</span>,
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blue</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">RGBA</span> {
-            <span class="ident">red</span>: <span class="number">0f64</span>,
-            <span class="ident">green</span>: <span class="number">0f64</span>,
-            <span class="ident">blue</span>: <span class="number">1f64</span>,
-            <span class="ident">alpha</span>: <span class="number">1f64</span>,
+            <span class="ident">red</span>: <span class="number">0f32</span>,
+            <span class="ident">green</span>: <span class="number">0f32</span>,
+            <span class="ident">blue</span>: <span class="number">1f32</span>,
+            <span class="ident">alpha</span>: <span class="number">1f32</span>,
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">green</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">RGBA</span> {
-            <span class="ident">red</span>: <span class="number">0f64</span>,
-            <span class="ident">green</span>: <span class="number">1f64</span>,
-            <span class="ident">blue</span>: <span class="number">0f64</span>,
-            <span class="ident">alpha</span>: <span class="number">1f64</span>,
+            <span class="ident">red</span>: <span class="number">0f32</span>,
+            <span class="ident">green</span>: <span class="number">1f32</span>,
+            <span class="ident">blue</span>: <span class="number">0f32</span>,
+            <span class="ident">alpha</span>: <span class="number">1f32</span>,
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">red</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">RGBA</span> {
-            <span class="ident">red</span>: <span class="number">1f64</span>,
-            <span class="ident">green</span>: <span class="number">0f64</span>,
-            <span class="ident">blue</span>: <span class="number">0f64</span>,
-            <span class="ident">alpha</span>: <span class="number">1f64</span>,
+            <span class="ident">red</span>: <span class="number">1f32</span>,
+            <span class="ident">green</span>: <span class="number">0f32</span>,
+            <span class="ident">blue</span>: <span class="number">0f32</span>,
+            <span class="ident">alpha</span>: <span class="number">1f32</span>,
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">white</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
         <span class="ident">RGBA</span> {
-            <span class="ident">red</span>: <span class="number">1f64</span>,
-            <span class="ident">green</span>: <span class="number">1f64</span>,
-            <span class="ident">blue</span>: <span class="number">1f64</span>,
-            <span class="ident">alpha</span>: <span class="number">1f64</span>,
+            <span class="ident">red</span>: <span class="number">1f32</span>,
+            <span class="ident">green</span>: <span class="number">1f32</span>,
+            <span class="ident">blue</span>: <span class="number">1f32</span>,
+            <span class="ident">alpha</span>: <span class="number">1f32</span>,
         }
     }
 }
