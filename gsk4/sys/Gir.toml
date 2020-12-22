@@ -6,11 +6,11 @@ min_cfg_version = "3.94"
 single_version_file = "."
 
 external_libraries = [
-   "GLib",
-   "GObject",
-   "Pango",
-   "Cairo",
-   "Graphene",
+    "GLib",
+    "GObject",
+    "Pango",
+    "Cairo",
+    "Graphene",
 ]
 
 [external_libraries]
