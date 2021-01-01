@@ -3,6 +3,7 @@
 use crate::CustomSorter;
 use crate::Ordering;
 use glib::translate::*;
+use std::ptr;
 
 impl CustomSorter {
     #[doc(alias = "gtk_custom_sorter_new")]
@@ -32,6 +33,12 @@ impl CustomSorter {
                 Box::into_raw(Box::new(sort_func)) as *mut _,
                 Some(destroy_closure::<F>),
             )
+        }
+    }
+
+    pub fn unset_sort_func(&self) {
+        unsafe {
+            ffi::gtk_custom_sorter_set_sort_func(self.to_glib_none().0, None, ptr::null_mut(), None)
         }
     }
 }
