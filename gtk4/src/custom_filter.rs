@@ -21,13 +21,13 @@ impl CustomFilter {
     }
 
     #[doc(alias = "gtk_custom_filter_set_filter_func")]
-    fn set_filter_func<F>(&self, filter_func: F)
+    pub fn set_filter_func<F>(&self, filter_func: F)
     where
         F: Fn(&glib::Object) -> bool + 'static,
     {
         unsafe {
             ffi::gtk_custom_filter_set_filter_func(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 Some(trampoline::<F>),
                 Box::into_raw(Box::new(filter_func)) as *mut _,
                 Some(destroy_closure::<F>),
@@ -35,10 +35,10 @@ impl CustomFilter {
         }
     }
 
-    fn unset_filter_func(&self) {
+    pub fn unset_filter_func(&self) {
         unsafe {
             ffi::gtk_custom_filter_set_filter_func(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 None,
                 ptr::null_mut(),
                 None,

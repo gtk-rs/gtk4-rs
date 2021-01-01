@@ -76,6 +76,7 @@ mod color_chooser;
 mod combo_box;
 mod constraint_guide;
 mod css_location;
+mod custom_filter;
 mod custom_sorter;
 mod dialog;
 mod drawing_area;
