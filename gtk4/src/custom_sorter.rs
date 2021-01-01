@@ -43,6 +43,13 @@ impl CustomSorter {
     }
 }
 
+impl Default for CustomSorter {
+    fn default() -> Self {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_full(ffi::gtk_custom_sorter_new(None, ptr::null_mut(), None)) }
+    }
+}
+
 unsafe extern "C" fn destroy_closure<F: Fn(&glib::Object, &glib::Object) -> Ordering + 'static>(
     ptr: glib::ffi::gpointer,
 ) {
