@@ -779,6 +779,9 @@ trust_return_value_nullability = false
 name = "Gtk.CustomSorter"
 status = "generate"
     [[object.function]]
+    name = "new"
+    manual = true
+    [[object.function]]
     name = "set_sort_func"
     manual = true
 
