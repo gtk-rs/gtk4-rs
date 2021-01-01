@@ -64,7 +64,6 @@ generate = [
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
     "Gtk.CssProvider",
-    "Gtk.CustomFilter",
     "Gtk.CustomLayout",
     "Gtk.DebugFlags",
     "Gtk.DeleteType",
@@ -774,6 +773,16 @@ manual_traits = ["ConstraintGuideExtManual"]
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.CustomFilter"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+    [[object.function]]
+    name = "set_filter_func"
+    manual = true
 
 [[object]]
 name = "Gtk.CustomSorter"
