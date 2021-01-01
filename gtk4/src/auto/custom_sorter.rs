@@ -19,11 +19,6 @@ impl CustomSorter {
     //pub fn new(sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> CustomSorter {
     //    unsafe { TODO: call ffi:gtk_custom_sorter_new() }
     //}
-
-    //#[doc(alias = "gtk_custom_sorter_set_sort_func")]
-    //pub fn set_sort_func(&self, sort_func: /*Unimplemented*/Fn(/*Unimplemented*/Option<Fundamental: Pointer>, /*Unimplemented*/Option<Fundamental: Pointer>) -> i32, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) {
-    //    unsafe { TODO: call ffi:gtk_custom_sorter_set_sort_func() }
-    //}
 }
 
 impl fmt::Display for CustomSorter {
