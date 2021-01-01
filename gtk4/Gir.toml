@@ -66,7 +66,6 @@ generate = [
     "Gtk.CssProvider",
     "Gtk.CustomFilter",
     "Gtk.CustomLayout",
-    "Gtk.CustomSorter",
     "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
@@ -775,6 +774,13 @@ manual_traits = ["ConstraintGuideExtManual"]
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.CustomSorter"
+status = "generate"
+    [[object.function]]
+    name = "set_sort_func"
+    manual = true
 
 [[object]]
 name = "Gtk.Dialog"
