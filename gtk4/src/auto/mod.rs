@@ -252,9 +252,6 @@ pub use self::css_provider::CssProvider;
 mod custom_filter;
 pub use self::custom_filter::CustomFilter;
 
-mod custom_layout;
-pub use self::custom_layout::CustomLayout;
-
 mod custom_sorter;
 pub use self::custom_sorter::CustomSorter;
 

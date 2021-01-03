@@ -60,7 +60,6 @@ generate = [
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
     "Gtk.CssProvider",
-    "Gtk.CustomLayout",
     "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
@@ -182,6 +181,7 @@ generate = [
 ignore = [
     "Gtk.BuilderCScope", # not useful for rust
     "Gtk.CClosureExpression", # not useful for rust,
+    "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
     "Gtk.WidgetClass", # manual with subclassing
 ]
 
