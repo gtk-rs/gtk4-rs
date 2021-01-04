@@ -40,6 +40,9 @@ name = "entry_completion"
 name = "entry_undo"
 
 [[bin]]
+name = "orientable_subclass"
+
+[[bin]]
 name = "text_viewer"
 
 [[bin]]
