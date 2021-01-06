@@ -37,7 +37,6 @@ generate = [
     "Gsk.ShaderArgsBuilder",
     "Gsk.TextNode",
     "Gsk.TextureNode",
-    "Gsk.Transform",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
 ]
@@ -147,13 +146,22 @@ status = "generate"
 name = "Gsk.ShadowNode"
 status = "generate"
     [[object.function]]
-    name = "new" 
+    name = "new"
     # manual, uses &[&Shadow] instead of a &[Shadow]
     ignore = true
     [[object.function]]
     name = "get_shadow"
     # manual, needs an assertion that the i < n_shadows
     ignore = true
+
+[[object]]
+name = "Gsk.Transform"
+status = "generate"
+    [[object.function]]
+    name = "equal"
+        [[object.function.parameter]]
+            name = "second"
+            nullable = false
 
 [[object]]
 name = "Gsk.VulkanRenderer"
