@@ -687,9 +687,9 @@
 <span class="kw">impl</span> <span class="ident">Box</span> {
     <span class="doccomment">/// Creates a new `Box`.</span>
     <span class="doccomment">/// ## `orientation`</span>
-    <span class="doccomment">/// the box’s orientation.</span>
+    <span class="doccomment">/// the box’s orientation</span>
     <span class="doccomment">/// ## `spacing`</span>
-    <span class="doccomment">/// the number of pixels to place by default between children.</span>
+    <span class="doccomment">/// the number of pixels to place by default between children</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1070,7 +1070,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the `Widget` to insert</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// the sibling to move `child` after, or `None`</span>
+    <span class="doccomment">/// the sibling after which to insert `child`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_box_insert_child_after&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_child_after</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Q</span><span class="op">&gt;</span>);
 

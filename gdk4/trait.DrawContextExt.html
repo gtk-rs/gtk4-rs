@@ -26,7 +26,7 @@ needs to be drawn and depending on implementation, windowing system and
 hardware in use, it might be necessary to draw a larger region. Drawing
 implementation must use <code>DrawContext::get_frame_region</code> to query the
 region that must be drawn.</p>
-<p>When using GTK+, the widget system automatically places calls to
+<p>When using GTK, the widget system automatically places calls to
 <code>DrawContextExt::begin_frame</code> and <code>DrawContextExt::end_frame</code> via the
 use of <code>GskRenderers</code>, so application code does not need to call these
 functions explicitly.</p>
