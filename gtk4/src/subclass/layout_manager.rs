@@ -29,6 +29,8 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
         self.parent_create_layout_child(layout_manager, widget, for_child)
     }
 
+    fn layout_child_type() -> glib::Type;
+
     fn get_request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
         self.parent_get_request_mode(layout_manager, widget)
     }
@@ -243,6 +245,7 @@ unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
         let klass = class.as_mut();
         klass.allocate = Some(layout_manager_allocate::<T>);
         klass.create_layout_child = Some(layout_manager_create_layout_child::<T>);
+        klass.layout_child_type = T::layout_child_type().to_glib();
         klass.get_request_mode = Some(layout_manager_get_request_mode::<T>);
         klass.measure = Some(layout_manager_measure::<T>);
         klass.root = Some(layout_manager_root::<T>);
