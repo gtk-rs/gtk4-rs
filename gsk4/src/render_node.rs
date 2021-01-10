@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::RenderNodeType;
+use crate::{ParseLocation, RenderNodeType};
 use glib::translate::*;
 use glib::{StaticType, Type};
 use std::fmt;
@@ -26,10 +26,49 @@ impl StaticType for RenderNode {
 }
 
 impl RenderNode {
-    //#[doc(alias = "gsk_render_node_deserialize")]
-    //pub fn deserialize(bytes: &glib::Bytes, error_func: /*Unimplemented*/FnMut(/*Ignored*/ParseLocation, /*Ignored*/ParseLocation, &glib::Error), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> Option<RenderNode> {
-    //    unsafe { TODO: call ffi:gsk_render_node_deserialize() }
-    //}
+    #[doc(alias = "gsk_render_node_deserialize")]
+    pub fn deserialize(bytes: &glib::Bytes) -> Option<RenderNode> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gsk_render_node_deserialize(
+                bytes.to_glib_none().0,
+                None,
+                std::ptr::null_mut(),
+            ))
+        }
+    }
+
+    #[doc(alias = "gsk_render_node_deserialize")]
+    pub fn deserialize_with_error_func<P: FnMut(&ParseLocation, &ParseLocation, &glib::Error)>(
+        bytes: &glib::Bytes,
+        error_func: P,
+    ) -> Option<RenderNode> {
+        assert_initialized_main_thread!();
+        let error_func_data: P = error_func;
+        unsafe extern "C" fn error_func_func<
+            P: FnMut(&ParseLocation, &ParseLocation, &glib::Error),
+        >(
+            start: *const ffi::GskParseLocation,
+            end: *const ffi::GskParseLocation,
+            error: *const glib::ffi::GError,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let start = from_glib_borrow(start);
+            let end = from_glib_borrow(end);
+            let error = from_glib_borrow(error);
+            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            (*callback)(&start, &end, &error);
+        }
+        let error_func = Some(error_func_func::<P> as _);
+        let super_callback0: &P = &error_func_data;
+        unsafe {
+            from_glib_full(ffi::gsk_render_node_deserialize(
+                bytes.to_glib_none().0,
+                error_func,
+                super_callback0 as *const _ as usize as *mut _,
+            ))
+        }
+    }
 
     pub fn downcast<T: IsRenderNode>(self) -> Result<T, RenderNode> {
         unsafe {

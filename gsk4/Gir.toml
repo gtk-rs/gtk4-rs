@@ -59,6 +59,7 @@ manual = [
     "Gsk.LinearGradientNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
+    "Gsk.ParseLocation",
     "Gsk.RadialGradientNode",
     "Gsk.RenderNode",
     "Gsk.RepeatingLinearGradientNode",
