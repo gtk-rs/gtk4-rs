@@ -190,10 +190,22 @@ impl Snapshot {
         }
     }
 
-    //#[doc(alias = "gtk_snapshot_push_gl_shader")]
-    //pub fn push_gl_shader(&self, shader: /*Ignored*/&gsk::GLShader, bounds: &graphene::Rect, take_args: &glib::Bytes) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_gl_shader() }
-    //}
+    #[doc(alias = "gtk_snapshot_push_gl_shader")]
+    pub fn push_gl_shader(
+        &self,
+        shader: &gsk::GLShader,
+        bounds: &graphene::Rect,
+        take_args: &glib::Bytes,
+    ) {
+        unsafe {
+            ffi::gtk_snapshot_push_gl_shader(
+                self.to_glib_none().0,
+                shader.to_glib_none().0,
+                bounds.to_glib_none().0,
+                take_args.to_glib_full(),
+            );
+        }
+    }
 
     #[doc(alias = "gtk_snapshot_push_opacity")]
     pub fn push_opacity(&self, opacity: f64) {
