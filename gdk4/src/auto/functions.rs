@@ -50,12 +50,6 @@ pub fn set_allowed_backends(backends: &str) {
     }
 }
 
-#[doc(alias = "gdk_toplevel_size_get_type")]
-pub fn toplevel_size_get_type() -> glib::types::Type {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gdk_toplevel_size_get_type()) }
-}
-
 #[doc(alias = "gdk_unicode_to_keyval")]
 pub fn unicode_to_keyval(wc: u32) -> u32 {
     assert_initialized_main_thread!();
