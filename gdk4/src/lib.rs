@@ -59,6 +59,7 @@ mod surface;
 mod texture;
 mod time_coord;
 mod toplevel;
+mod toplevel_size;
 
 pub use self::auto::functions::*;
 pub use auto::*;
@@ -73,6 +74,7 @@ pub use rectangle::Rectangle;
 pub use rgba::{RgbaParseError, RGBA};
 pub use surface::SurfaceExtManual;
 pub use time_coord::TimeCoord;
+pub use toplevel_size::ToplevelSize;
 
 // This is the priority that the idle handler processing surface updates is given in the glib::MainLoop.
 #[doc(alias = "GDK_PRIORITY_REDRAW")]
