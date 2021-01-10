@@ -113,6 +113,7 @@ mod tree_sortable;
 mod tree_store;
 mod widget;
 
+pub use application::ApplicationBuilder;
 pub use border::Border;
 pub use css_location::CssLocation;
 pub use pad_action_entry::PadActionEntry;
