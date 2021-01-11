@@ -111,11 +111,6 @@ impl Label {
         unsafe { ffi::gtk_label_get_max_width_chars(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "gtk_label_get_mnemonic_keyval")]
-    pub fn get_mnemonic_keyval(&self) -> u32 {
-        unsafe { ffi::gtk_label_get_mnemonic_keyval(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gtk_label_get_mnemonic_widget")]
     pub fn get_mnemonic_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_label_get_mnemonic_widget(self.to_glib_none().0)) }

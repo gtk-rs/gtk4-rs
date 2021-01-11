@@ -3,11 +3,9 @@
 // DO NOT EDIT
 
 use crate::Event;
-use crate::KeyMatch;
 use crate::ModifierType;
 use glib::translate::*;
 use std::fmt;
-use std::mem;
 
 glib::wrapper! {
     pub struct KeyEvent(Object<ffi::GdkKeyEvent>) @extends Event;
@@ -42,40 +40,9 @@ impl KeyEvent {
         unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "gdk_key_event_get_match")]
-    pub fn get_match(&self) -> Option<(u32, ModifierType)> {
-        unsafe {
-            let mut keyval = mem::MaybeUninit::uninit();
-            let mut modifiers = mem::MaybeUninit::uninit();
-            let ret = from_glib(ffi::gdk_key_event_get_match(
-                self.to_glib_none().0,
-                keyval.as_mut_ptr(),
-                modifiers.as_mut_ptr(),
-            ));
-            let keyval = keyval.assume_init();
-            let modifiers = modifiers.assume_init();
-            if ret {
-                Some((keyval, from_glib(modifiers)))
-            } else {
-                None
-            }
-        }
-    }
-
     #[doc(alias = "gdk_key_event_is_modifier")]
     pub fn is_modifier(&self) -> bool {
         unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_key_event_matches")]
-    pub fn matches(&self, keyval: u32, modifiers: ModifierType) -> KeyMatch {
-        unsafe {
-            from_glib(ffi::gdk_key_event_matches(
-                self.to_glib_none().0,
-                keyval,
-                modifiers.to_glib(),
-            ))
-        }
     }
 }
 

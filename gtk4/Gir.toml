@@ -375,6 +375,9 @@ trust_return_value_nullability = false
     name = "show_uri_full"
     # TODO: manual
     ignore = true
+    [[object.function]]
+    name = "accelerator_valid"
+    manual = true # to make use of gdk::keys::Key
 
 [[object]]
 name = "Gtk.AboutDialog"
@@ -954,12 +957,6 @@ manual_traits = ["EntryCompletionExtManual"]
 name = "Gtk.EventController"
 status = "generate"
 trust_return_value_nullability = false
-    [[object.signal]]
-    name = "key-pressed"
-    manual = true # to make use of gdk::keys::Key
-    [[object.signal]]
-    name = "key-released"
-    manual = true # to make use of gdk::keys::Key
 
 
 [[object]]
@@ -968,7 +965,10 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.signal]]
     name = "key-pressed"
-    inhibit = true
+    manual = true # to make use of gdk::keys::Key
+    [[object.signal]]
+    name = "key-released"
+    manual = true # to make use of gdk::keys::Key
     [[object.signal]]
     name = "modifiers"
     inhibit = true
@@ -1206,8 +1206,7 @@ generate_builder = true
 
 [[object]]
 name = "Gtk.KeyvalTrigger"
-status = "generate"
-generate_builder = true
+status = "manual" # to make use of gdk::keys::Key
 
 [[object]]
 name = "Gtk.Label"
@@ -1216,6 +1215,9 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+    [[object.function]]
+    name = "get_mnemonic_keyval"
+    manual = true # to make use of gdk::keys::Key
 
 [[object]]
 name = "Gtk.LayoutChild"
@@ -1341,8 +1343,7 @@ trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.MnemonicTrigger"
-status = "generate"
-generate_builder = true
+status = "manual" # to make use of gdk::keys::Key # to make use of gdk::keys::Key
 
 [[object]]
 name = "Gtk.MountOperation"
