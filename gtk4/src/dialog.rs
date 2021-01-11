@@ -74,12 +74,12 @@ pub trait DialogExtManual: 'static {
     ///    .text("What is your answer?")
     ///    .build();
     ///
-    /// dialog.run(|obj, answer| {
+    /// dialog.run_async(|obj, answer| {
     ///     obj.close();
     ///     println!("Answer: {:?}", answer);
     /// });
     /// ```
-    fn run<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F);
+    fn run_async<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F);
 }
 
 impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
@@ -122,7 +122,7 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
         })
     }
 
-    fn run<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F) {
+    fn run_async<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F) {
         let response_handler = Rc::new(RefCell::new(None));
         let response_handler_clone = response_handler.clone();
         let f = RefCell::new(Some(f));
