@@ -45,15 +45,19 @@ pub trait DialogExtManual: 'static {
     /// Shows the dialog and returns a `Future` that resolves to the
     /// `ResponseType` on response.
     ///
-    /// ```ignore
-    /// let dialog = gtk::MessageDialogBuilder::new()
-    ///    .buttons(gtk::ButtonsType::OkCancel)
+    /// ```no_run
+    /// use gtk4::prelude::*;
+    ///
+    /// # async fn run() {
+    /// let dialog = gtk4::MessageDialogBuilder::new()
+    ///    .buttons(gtk4::ButtonsType::OkCancel)
     ///    .text("What is your answer?")
     ///    .build();
     ///
     /// let answer = dialog.run_future().await;
     /// dialog.close();
     /// println!("Answer: {:?}", answer);
+    /// # }
     /// ```
     fn run_future<'a>(&'a self) -> Pin<Box<dyn Future<Output = ResponseType> + 'a>>;
 
