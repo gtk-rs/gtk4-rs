@@ -356,7 +356,6 @@ pub use self::file_chooser_dialog::FileChooserDialogBuilder;
 
 mod file_chooser_native;
 pub use self::file_chooser_native::FileChooserNative;
-pub use self::file_chooser_native::FileChooserNativeBuilder;
 
 mod file_chooser_widget;
 pub use self::file_chooser_widget::FileChooserWidget;

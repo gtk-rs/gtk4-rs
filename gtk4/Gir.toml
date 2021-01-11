@@ -999,7 +999,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.FileChooserNative"
 status = "generate"
-generate_builder = true
+generate_builder = false # generated manually
 
 [[object]]
 name = "Gtk.FileChooserWidget"
