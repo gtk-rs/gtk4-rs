@@ -4,10 +4,11 @@ use crate::{Dialog, DialogExt, DialogFlags, ResponseType, Widget, WidgetExt, Win
 use glib::object::Cast;
 use glib::translate::*;
 use glib::{IsA, ObjectExt};
-use std::cell::Cell;
+use std::cell::{Cell, RefCell};
 use std::future::Future;
 use std::pin::Pin;
 use std::ptr;
+use std::rc::Rc;
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]
@@ -55,6 +56,26 @@ pub trait DialogExtManual: 'static {
     /// println!("Answer: {:?}", answer);
     /// ```
     fn run_future<'a>(&'a self) -> Pin<Box<dyn Future<Output = ResponseType> + 'a>>;
+
+    // rustdoc-stripper-ignore-next
+    /// Shows the dialog and calls the callback when a response has been received.
+    ///
+    /// **Important**: this function isn't blocking.
+    ///
+    /// ```no_run
+    /// use gtk4::prelude::*;
+    ///
+    /// let dialog = gtk4::MessageDialogBuilder::new()
+    ///    .buttons(gtk4::ButtonsType::OkCancel)
+    ///    .text("What is your answer?")
+    ///    .build();
+    ///
+    /// dialog.run(|obj, answer| {
+    ///     obj.close();
+    ///     println!("Answer: {:?}", answer);
+    /// });
+    /// ```
+    fn run<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F);
 }
 
 impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
@@ -95,5 +116,18 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
                 ResponseType::None
             }
         })
+    }
+
+    fn run<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F) {
+        let response_handler = Rc::new(RefCell::new(None));
+        let response_handler_clone = response_handler.clone();
+        let f = RefCell::new(Some(f));
+        *response_handler.borrow_mut() = Some(self.connect_response(move |s, response_type| {
+            if let Some(handler) = response_handler_clone.borrow_mut().take() {
+                s.disconnect(handler);
+            }
+            (*f.borrow_mut()).take().expect("cannot get callback")(s, response_type);
+        }));
+        self.show();
     }
 }
