@@ -126,6 +126,12 @@
 <span id="123">123</span>
 <span id="124">124</span>
 <span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -214,13 +220,18 @@
 <span class="kw">mod</span> <span class="ident">entry_buffer</span>;
 <span class="kw">mod</span> <span class="ident">entry_completion</span>;
 <span class="kw">mod</span> <span class="ident">enums</span>;
+<span class="kw">mod</span> <span class="ident">event_controller_key</span>;
 <span class="kw">mod</span> <span class="ident">file_chooser_dialog</span>;
 <span class="kw">mod</span> <span class="ident">flow_box</span>;
+<span class="kw">mod</span> <span class="ident">functions</span>;
 <span class="kw">mod</span> <span class="ident">icon_theme</span>;
 <span class="kw">mod</span> <span class="ident">im_context_simple</span>;
+<span class="kw">mod</span> <span class="ident">keyval_trigger</span>;
+<span class="kw">mod</span> <span class="ident">label</span>;
 <span class="kw">mod</span> <span class="ident">list_box</span>;
 <span class="kw">mod</span> <span class="ident">list_store</span>;
 <span class="kw">mod</span> <span class="ident">message_dialog</span>;
+<span class="kw">mod</span> <span class="ident">mnemonic_trigger</span>;
 <span class="kw">mod</span> <span class="ident">notebook</span>;
 <span class="kw">mod</span> <span class="ident">overlay</span>;
 <span class="kw">mod</span> <span class="ident">pad_action_entry</span>;
@@ -245,6 +256,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">application</span>::<span class="ident">ApplicationBuilder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">border</span>::<span class="ident">Border</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">css_location</span>::<span class="ident">CssLocation</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pad_action_entry</span>::<span class="ident">PadActionEntry</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">page_range</span>::<span class="ident">PageRange</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">recent_data</span>::<span class="ident">RecentData</span>;
