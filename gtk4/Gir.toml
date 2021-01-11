@@ -436,7 +436,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.Application"
 status = "generate"
-generate_builder = true
+generate_builder = false # generated manually
 trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
