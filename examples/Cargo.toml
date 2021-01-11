@@ -34,6 +34,9 @@ name = "css"
 name = "custom_paintable"
 
 [[bin]]
+name = "dialog"
+
+[[bin]]
 name = "entry_completion"
 
 [[bin]]
