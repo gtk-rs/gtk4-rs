@@ -514,10 +514,6 @@ mod info_bar;
 pub use self::info_bar::InfoBar;
 pub use self::info_bar::InfoBarBuilder;
 
-mod keyval_trigger;
-pub use self::keyval_trigger::KeyvalTrigger;
-pub use self::keyval_trigger::KeyvalTriggerBuilder;
-
 mod label;
 pub use self::label::Label;
 pub use self::label::LabelBuilder;
@@ -596,10 +592,6 @@ pub use self::message_dialog::MessageDialogBuilder;
 
 mod mnemonic_action;
 pub use self::mnemonic_action::MnemonicAction;
-
-mod mnemonic_trigger;
-pub use self::mnemonic_trigger::MnemonicTrigger;
-pub use self::mnemonic_trigger::MnemonicTriggerBuilder;
 
 mod mount_operation;
 pub use self::mount_operation::MountOperationBuilder;

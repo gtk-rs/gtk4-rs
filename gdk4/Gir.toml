@@ -446,6 +446,12 @@ status = "generate"
     [[object.function]]
     name = "get_keyval"
     manual = true # to return a Key instead of a u32
+    [[object.function]]
+    name = "get_match"
+    manual = true # to return a Key instead of a u32
+    [[object.function]]
+    name = "matches"
+    manual = true # to return a Key instead of a u32
 
 [[object]]
 name = "Gdk.Monitor"

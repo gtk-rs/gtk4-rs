@@ -118,12 +118,6 @@ pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> 
 //    unsafe { TODO: call ffi:gtk_accelerator_parse_with_keycode() }
 //}
 
-#[doc(alias = "gtk_accelerator_valid")]
-pub fn accelerator_valid(keyval: u32, modifiers: gdk::ModifierType) -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gtk_accelerator_valid(keyval, modifiers.to_glib())) }
-}
-
 #[doc(alias = "gtk_css_parser_warning_quark")]
 pub fn css_parser_warning_quark() -> glib::Quark {
     assert_initialized_main_thread!();

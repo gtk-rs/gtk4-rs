@@ -27,11 +27,11 @@ impl Display {
                 level.as_mut_ptr(),
                 consumed.as_mut_ptr(),
             ));
-            let keyval: Key = keyval.assume_init().into();
-            let effective_group = effective_group.assume_init();
-            let level = level.assume_init();
-            let consumed = consumed.assume_init();
             if ret {
+                let keyval: Key = keyval.assume_init().into();
+                let effective_group = effective_group.assume_init();
+                let level = level.assume_init();
+                let consumed = consumed.assume_init();
                 Some((keyval, effective_group, level, from_glib(consumed)))
             } else {
                 None
