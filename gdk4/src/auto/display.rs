@@ -5,11 +5,9 @@
 use crate::AppLaunchContext;
 use crate::Clipboard;
 use crate::Device;
-use crate::Event;
 use crate::Monitor;
 use crate::Seat;
 use crate::Surface;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -158,13 +156,6 @@ impl Display {
                 self.to_glib_none().0,
                 startup_id.to_glib_none().0,
             );
-        }
-    }
-
-    #[doc(alias = "gdk_display_put_event")]
-    pub fn put_event<P: IsA<Event>>(&self, event: &P) {
-        unsafe {
-            ffi::gdk_display_put_event(self.to_glib_none().0, event.as_ref().to_glib_none().0);
         }
     }
 

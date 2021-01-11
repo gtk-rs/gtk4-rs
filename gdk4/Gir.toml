@@ -13,24 +13,19 @@ generate = [
     "Gdk.AnchorHints",
     "Gdk.AxisFlags",
     "Gdk.AxisUse",
-    "Gdk.ButtonEvent",
     "Gdk.CairoContext",
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
-    "Gdk.CrossingEvent",
     "Gdk.CrossingMode",
-    "Gdk.DeleteEvent",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
-    "Gdk.DNDEvent",
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
     "Gdk.DragSurface",
     "Gdk.EventSequence",
     "Gdk.EventType",
-    "Gdk.FocusEvent",
     "Gdk.FrameClock",
     "Gdk.FrameClockPhase",
     "Gdk.FrameTimings",
@@ -38,33 +33,25 @@ generate = [
     "Gdk.GLContext",
     "Gdk.GLError",
     "Gdk.GLTexture",
-    "Gdk.GrabBrokenEvent",
     "Gdk.Gravity",
     "Gdk.InputSource",
     "Gdk.KeyMatch",
     "Gdk.MemoryFormat",
     "Gdk.MemoryTexture",
     "Gdk.ModifierType",
-    "Gdk.MotionEvent",
     "Gdk.NotifyType",
-    "Gdk.PadEvent",
     "Gdk.Paintable",
     "Gdk.PaintableFlags",
     "Gdk.Popup",
-    "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
-    "Gdk.ScrollEvent",
     "Gdk.Seat",
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",
-    "Gdk.Toplevel",
     "Gdk.ToplevelLayout",
     "Gdk.ToplevelState",
-    "Gdk.TouchEvent",
-    "Gdk.TouchpadEvent",
     "Gdk.TouchpadGesturePhase",
     "Gdk.VulkanContext",
     "Gdk.VulkanError",
@@ -75,10 +62,24 @@ manual = [
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.ButtonEvent",
+    "Gdk.CrossingEvent",
+    "Gdk.DeleteEvent",
+    "Gdk.DNDEvent",
+    "Gdk.Event", # Fundemental type, manual
+    "Gdk.FocusEvent",
+    "Gdk.GrabBrokenEvent",
+    "Gdk.KeyEvent",
     "Gdk.KeymapKey",
+    "Gdk.MotionEvent",
+    "Gdk.PadEvent",
+    "Gdk.ProximityEvent",
     "Gdk.Rectangle",
     "Gdk.RGBA",
+    "Gdk.ScrollEvent",
     "Gdk.TimeCoord",
+    "Gdk.TouchEvent",
+    "Gdk.TouchpadEvent",
     "GdkPixbuf.Pixbuf",
     "Gio.AppLaunchContext",
     "Gio.Cancellable",
@@ -137,6 +138,15 @@ status = "generate"
     name = "content_deserialize_async"
     #manual: out
     ignore = true
+    [[object.function]]
+    name = "events_get_angle"
+    manual = true # event is a fundemental type
+    [[object.function]]
+    name = "events_get_center"
+    manual = true # event is a fundemental type
+    [[object.function]]
+    name = "events_get_distance"
+    manual = true # event is a fundemental type
     [[object.function]]
     name = "keyval_convert_case"
     manual = true # manually handled by keys::Key
@@ -298,6 +308,9 @@ status = "generate"
     [[object.function]]
     name = "map_keyval"
     ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    [[object.function]]
+    name = "put_event"
+    manual = true # event is a fundemental type
 
 [[object]]
 name = "Gdk.DisplayManager"
@@ -319,139 +332,6 @@ status = "generate"
     [[object.function]]
     name = "read_async"
     ignore = true # const ptr
-
-[[object]]
-name = "Gdk.Event"
-status = "generate"
-    [[object.function]]
-    name = "get_axes"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_button"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_click_count"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_crossing_detail"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_crossing_mode"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_device_tool"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_drop"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_event_sequence"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_focus_in"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_grab_surface"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_key_group"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_key_is_modifier"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_keycode"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_keyval"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_motion_history"
-    #manual: requires GDK_MOTION_NOTIFY
-    ignore = true
-    [[object.function]]
-    name = "get_pad_axis_value"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_pad_button"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_pad_group_mode"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_scancode"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_scroll_deltas"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_scroll_direction"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touch_emulating_pointer"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touchpad_angle_delta"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touchpad_deltas"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touchpad_gesture_n_fingers"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touchpad_gesture_phase"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "get_touchpad_scale"
-    #manual: type-specific
-    ignore = true
-    [[object.function]]
-    name = "new"
-    # disabled for now: applications are not supposed to create events
-    ignore = true
-    [[object.function]]
-    pattern = "set_.+"
-    # applications should not use setters
-    ignore = true
-
-[[object]]
-name = "Gdk.KeyEvent"
-status = "generate"
-    [[object.function]]
-    name = "get_keyval"
-    manual = true # to return a Key instead of a u32
-    [[object.function]]
-    name = "get_match"
-    manual = true # to return a Key instead of a u32
-    [[object.function]]
-    name = "matches"
-    manual = true # to return a Key instead of a u32
 
 [[object]]
 name = "Gdk.Monitor"
@@ -484,3 +364,14 @@ manual_traits = ["SurfaceExtManual"]
     name = "translate_coordinates"
     # mutability issue, manual
     ignore = true
+
+[[object]]
+name = "Gdk.Toplevel"
+status = "generate"
+manual_traits = ["ToplevelExtManual"]
+    [[object.function]]
+    name = "inhibit_system_shortcuts"
+    manual = true # event is a fundemental type
+    [[object.function]]
+    name = "show_window_menu"
+    manual = true # event is a fundemental type
