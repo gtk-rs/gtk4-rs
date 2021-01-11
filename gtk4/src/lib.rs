@@ -85,6 +85,7 @@ mod entry;
 mod entry_buffer;
 mod entry_completion;
 mod enums;
+mod event_controller_key;
 mod file_chooser_dialog;
 mod flow_box;
 mod icon_theme;

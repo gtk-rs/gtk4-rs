@@ -41,7 +41,6 @@ generate = [
     "Gdk.GrabBrokenEvent",
     "Gdk.Gravity",
     "Gdk.InputSource",
-    "Gdk.KeyEvent",
     "Gdk.KeyMatch",
     "Gdk.MemoryFormat",
     "Gdk.MemoryTexture",
@@ -138,6 +137,30 @@ status = "generate"
     name = "content_deserialize_async"
     #manual: out
     ignore = true
+    [[object.function]]
+    name = "keyval_convert_case"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_from_name"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_is_lower"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_is_upper"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_name"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_to_lower"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_to_unicode"
+    manual = true # manually handled by keys::Key
+    [[object.function]]
+    name = "keyval_to_upper"
+    manual = true # manually handled by keys::Key
 
 
 [[object]]
@@ -266,6 +289,9 @@ status = "generate"
     name = "get_primary_monitor"
         [object.function.return]
         nullable = false
+    [[object.function]]
+    name = "translate_key"
+    manual = true # to return a Key instead of a u32
     [[object.function]]
     name = "map_keycode"
     ignore = true # requires FromGlibPtrArrayContainerAsVec first
@@ -413,6 +439,13 @@ status = "generate"
     pattern = "set_.+"
     # applications should not use setters
     ignore = true
+
+[[object]]
+name = "Gdk.KeyEvent"
+status = "generate"
+    [[object.function]]
+    name = "get_keyval"
+    manual = true # to return a Key instead of a u32
 
 [[object]]
 name = "Gdk.Monitor"

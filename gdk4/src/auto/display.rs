@@ -6,7 +6,6 @@ use crate::AppLaunchContext;
 use crate::Clipboard;
 use crate::Device;
 use crate::Event;
-use crate::ModifierType;
 use crate::Monitor;
 use crate::Seat;
 use crate::Surface;
@@ -18,7 +17,6 @@ use glib::translate::*;
 use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -183,40 +181,6 @@ impl Display {
     pub fn sync(&self) {
         unsafe {
             ffi::gdk_display_sync(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "gdk_display_translate_key")]
-    pub fn translate_key(
-        &self,
-        keycode: u32,
-        state: ModifierType,
-        group: i32,
-    ) -> Option<(u32, i32, i32, ModifierType)> {
-        unsafe {
-            let mut keyval = mem::MaybeUninit::uninit();
-            let mut effective_group = mem::MaybeUninit::uninit();
-            let mut level = mem::MaybeUninit::uninit();
-            let mut consumed = mem::MaybeUninit::uninit();
-            let ret = from_glib(ffi::gdk_display_translate_key(
-                self.to_glib_none().0,
-                keycode,
-                state.to_glib(),
-                group,
-                keyval.as_mut_ptr(),
-                effective_group.as_mut_ptr(),
-                level.as_mut_ptr(),
-                consumed.as_mut_ptr(),
-            ));
-            let keyval = keyval.assume_init();
-            let effective_group = effective_group.assume_init();
-            let level = level.assume_init();
-            let consumed = consumed.assume_init();
-            if ret {
-                Some((keyval, effective_group, level, from_glib(consumed)))
-            } else {
-                None
-            }
         }
     }
 
