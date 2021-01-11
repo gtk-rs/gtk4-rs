@@ -32,11 +32,6 @@ impl KeyEvent {
         unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "gdk_key_event_get_keyval")]
-    pub fn get_keyval(&self) -> u32 {
-        unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gdk_key_event_get_layout")]
     pub fn get_layout(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }

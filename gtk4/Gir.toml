@@ -954,6 +954,13 @@ manual_traits = ["EntryCompletionExtManual"]
 name = "Gtk.EventController"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.signal]]
+    name = "key-pressed"
+    manual = true # to make use of gdk::keys::Key
+    [[object.signal]]
+    name = "key-released"
+    manual = true # to make use of gdk::keys::Key
+
 
 [[object]]
 name = "Gtk.EventControllerKey"

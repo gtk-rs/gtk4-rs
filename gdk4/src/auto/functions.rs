@@ -77,61 +77,6 @@ pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     unsafe { from_glib_none(ffi::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
-#[doc(alias = "gdk_keyval_convert_case")]
-pub fn keyval_convert_case(symbol: u32) -> (u32, u32) {
-    assert_initialized_main_thread!();
-    unsafe {
-        let mut lower = mem::MaybeUninit::uninit();
-        let mut upper = mem::MaybeUninit::uninit();
-        ffi::gdk_keyval_convert_case(symbol, lower.as_mut_ptr(), upper.as_mut_ptr());
-        let lower = lower.assume_init();
-        let upper = upper.assume_init();
-        (lower, upper)
-    }
-}
-
-#[doc(alias = "gdk_keyval_from_name")]
-pub fn keyval_from_name(keyval_name: &str) -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::gdk_keyval_from_name(keyval_name.to_glib_none().0) }
-}
-
-#[doc(alias = "gdk_keyval_is_lower")]
-pub fn keyval_is_lower(keyval: u32) -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gdk_keyval_is_lower(keyval)) }
-}
-
-#[doc(alias = "gdk_keyval_is_upper")]
-pub fn keyval_is_upper(keyval: u32) -> bool {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gdk_keyval_is_upper(keyval)) }
-}
-
-#[doc(alias = "gdk_keyval_name")]
-pub fn keyval_name(keyval: u32) -> Option<glib::GString> {
-    assert_initialized_main_thread!();
-    unsafe { from_glib_none(ffi::gdk_keyval_name(keyval)) }
-}
-
-#[doc(alias = "gdk_keyval_to_lower")]
-pub fn keyval_to_lower(keyval: u32) -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::gdk_keyval_to_lower(keyval) }
-}
-
-#[doc(alias = "gdk_keyval_to_unicode")]
-pub fn keyval_to_unicode(keyval: u32) -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::gdk_keyval_to_unicode(keyval) }
-}
-
-#[doc(alias = "gdk_keyval_to_upper")]
-pub fn keyval_to_upper(keyval: u32) -> u32 {
-    assert_initialized_main_thread!();
-    unsafe { ffi::gdk_keyval_to_upper(keyval) }
-}
-
 #[doc(alias = "gdk_pixbuf_get_from_surface")]
 pub fn pixbuf_get_from_surface(
     surface: &cairo::Surface,
