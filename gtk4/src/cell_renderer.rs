@@ -6,9 +6,9 @@ use glib::IsA;
 
 pub trait CellRendererExtManual {
     #[doc(alias = "gtk_cell_renderer_activate")]
-    fn activate<Q: IsA<Widget>>(
+    fn activate<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
         &self,
-        event: &gdk::Event,
+        event: &R,
         widget: &Q,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -17,9 +17,9 @@ pub trait CellRendererExtManual {
     ) -> bool;
 
     #[doc(alias = "gtk_cell_renderer_start_editing")]
-    fn start_editing<Q: IsA<Widget>>(
+    fn start_editing<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
         &self,
-        event: Option<&gdk::Event>,
+        event: Option<&R>,
         widget: &Q,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -29,9 +29,9 @@ pub trait CellRendererExtManual {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
-    fn activate<Q: IsA<Widget>>(
+    fn activate<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
         &self,
-        event: &gdk::Event,
+        event: &R,
         widget: &Q,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -41,7 +41,7 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_activate(
                 self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,
@@ -51,9 +51,9 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
         }
     }
 
-    fn start_editing<Q: IsA<Widget>>(
+    fn start_editing<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
         &self,
-        event: Option<&gdk::Event>,
+        event: Option<&R>,
         widget: &Q,
         path: &str,
         background_area: &gdk::Rectangle,
@@ -63,7 +63,7 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
         unsafe {
             from_glib_none(ffi::gtk_cell_renderer_start_editing(
                 self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
+                event.map(|e| e.as_ref()).to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,

@@ -40,9 +40,9 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_put_event")]
-    pub fn put_event(&self, event: &Event) {
+    pub fn put_event<P: AsRef<Event>>(&self, event: &P) {
         unsafe {
-            ffi::gdk_display_put_event(self.to_glib_none().0, event.to_glib_none().0);
+            ffi::gdk_display_put_event(self.to_glib_none().0, event.as_ref().to_glib_none().0);
         }
     }
 }
