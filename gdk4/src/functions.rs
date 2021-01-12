@@ -1,75 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ContentDeserializer, ContentSerializer, Event};
+use crate::{ContentDeserializer, ContentSerializer};
 use glib::object::IsA;
 use glib::translate::*;
 use std::future;
-use std::mem;
 use std::pin::Pin;
 use std::ptr;
-
-#[doc(alias = "gdk_events_get_angle")]
-pub fn events_get_angle<P: AsRef<Event>, Q: AsRef<Event>>(event1: P, event2: Q) -> Option<f64> {
-    skip_assert_initialized!();
-    unsafe {
-        let mut angle = mem::MaybeUninit::uninit();
-        let ret = from_glib(ffi::gdk_events_get_angle(
-            event1.as_ref().to_glib_none().0,
-            event2.as_ref().to_glib_none().0,
-            angle.as_mut_ptr(),
-        ));
-        if ret {
-            let angle = angle.assume_init();
-            Some(angle)
-        } else {
-            None
-        }
-    }
-}
-
-#[doc(alias = "gdk_events_get_center")]
-pub fn events_get_center<P: AsRef<Event>, Q: AsRef<Event>>(
-    event1: P,
-    event2: Q,
-) -> Option<(f64, f64)> {
-    skip_assert_initialized!();
-    unsafe {
-        let mut x = mem::MaybeUninit::uninit();
-        let mut y = mem::MaybeUninit::uninit();
-        let ret = from_glib(ffi::gdk_events_get_center(
-            event1.as_ref().to_glib_none().0,
-            event2.as_ref().to_glib_none().0,
-            x.as_mut_ptr(),
-            y.as_mut_ptr(),
-        ));
-        if ret {
-            let x = x.assume_init();
-            let y = y.assume_init();
-            Some((x, y))
-        } else {
-            None
-        }
-    }
-}
-
-#[doc(alias = "gdk_events_get_distance")]
-pub fn events_get_distance<P: AsRef<Event>, Q: AsRef<Event>>(event1: P, event2: Q) -> Option<f64> {
-    skip_assert_initialized!();
-    unsafe {
-        let mut distance = mem::MaybeUninit::uninit();
-        let ret = from_glib(ffi::gdk_events_get_distance(
-            event1.as_ref().to_glib_none().0,
-            event2.as_ref().to_glib_none().0,
-            distance.as_mut_ptr(),
-        ));
-        if ret {
-            let distance = distance.assume_init();
-            Some(distance)
-        } else {
-            None
-        }
-    }
-}
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
