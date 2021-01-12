@@ -33,6 +33,7 @@ pub mod text_buffer;
 pub mod text_view;
 pub mod toggle_button;
 pub mod tree_drag_dest;
+pub mod tree_drag_source;
 pub mod widget;
 pub mod window;
 
@@ -77,6 +78,7 @@ pub mod prelude {
     pub use super::text_view::TextViewImpl;
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::tree_drag_dest::TreeDragDestImpl;
+    pub use super::tree_drag_source::TreeDragSourceImpl;
     pub use super::widget::CompositeTemplate;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
