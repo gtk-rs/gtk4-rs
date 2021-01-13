@@ -980,6 +980,27 @@ where
     }
 }
 
+impl<T> std::ops::Deref for TemplateChild<T>
+where
+    T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    type Target = T;
+
+    /// # Safety
+    ///
+    /// Since the template child may not be properly bound,
+    /// this cast is potentially dangerous if, for example,
+    /// the template child isn't bound or is of the wrong type.
+    /// The caller is responsible for ensuring that the template
+    /// child is bound and of the right type.
+    fn deref(&self) -> &Self::Target {
+        unsafe {
+            assert!(!self.ptr.is_null());
+            &*(&self.ptr as *const _ as *const T)
+        }
+    }
+}
+
 impl<T> TemplateChild<T>
 where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,

@@ -88,7 +88,6 @@ impl ExApplicationWindow {
         let self_ = imp::ExApplicationWindow::from_instance(self);
         self_
             .subtitle
-            .get()
             .set_text("This is an example window made using composite templates");
     }
 }
