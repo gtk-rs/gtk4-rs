@@ -107,6 +107,8 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -156,8 +158,8 @@
 <span class="kw">mod</span> <span class="ident">display</span>;
 <span class="kw">mod</span> <span class="ident">draw_context</span>;
 <span class="kw">mod</span> <span class="ident">drop</span>;
+<span class="kw">mod</span> <span class="ident">event</span>;
 <span class="kw">mod</span> <span class="ident">functions</span>;
-<span class="kw">mod</span> <span class="ident">key_event</span>;
 <span class="kw">mod</span> <span class="ident">keymap_key</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">keys</span>;
 <span class="kw">mod</span> <span class="ident">popup_layout</span>;
@@ -165,6 +167,7 @@
 <span class="kw">mod</span> <span class="ident">rgba</span>;
 <span class="kw">mod</span> <span class="ident">surface</span>;
 <span class="kw">mod</span> <span class="ident">time_coord</span>;
+<span class="kw">mod</span> <span class="ident">toplevel</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">auto</span>::<span class="ident">functions</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">auto</span>::<span class="kw-2">*</span>;
@@ -172,6 +175,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">alias</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">keymap_key</span>::<span class="ident">KeymapKey</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">popup_layout</span>::<span class="ident">PopupLayoutExtManual</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rectangle</span>::<span class="ident">Rectangle</span>;
