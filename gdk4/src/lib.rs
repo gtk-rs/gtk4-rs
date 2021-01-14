@@ -46,8 +46,8 @@ mod content_deserializer;
 mod display;
 mod draw_context;
 mod drop;
+mod event;
 mod functions;
-mod key_event;
 mod keymap_key;
 pub mod keys;
 mod popup_layout;
@@ -55,6 +55,7 @@ mod rectangle;
 mod rgba;
 mod surface;
 mod time_coord;
+mod toplevel;
 
 pub use self::auto::functions::*;
 pub use auto::*;
@@ -62,6 +63,7 @@ pub use auto::*;
 pub use alias::*;
 pub use functions::*;
 
+pub use event::*;
 pub use keymap_key::KeymapKey;
 pub use popup_layout::PopupLayoutExtManual;
 pub use rectangle::Rectangle;

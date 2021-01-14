@@ -2,6 +2,7 @@
 
 use crate::AxisFlags;
 use glib::translate::*;
+use std::fmt;
 
 #[repr(C)]
 pub struct TimeCoord(ffi::GdkTimeCoord);
@@ -26,6 +27,22 @@ impl TimeCoord {
 
     pub fn get_flags(&self) -> AxisFlags {
         unsafe { from_glib(self.0.flags) }
+    }
+}
+
+impl fmt::Display for TimeCoord {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("TimeCoord")
+            .field("time", &self.get_time())
+            .field("axes", &self.get_axes())
+            .field("flags", &self.get_flags())
+            .finish()
+    }
+}
+
+impl fmt::Debug for TimeCoord {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_fmt(format_args!("{}", self))
     }
 }
 

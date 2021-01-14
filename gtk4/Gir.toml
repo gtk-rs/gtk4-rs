@@ -47,7 +47,6 @@ generate = [
     "Gtk.BuilderScope",
     "Gtk.ButtonsType",
     "Gtk.CallbackAction",
-    "Gtk.CellEditable",
     "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
@@ -545,10 +544,17 @@ generate_builder = true
 name = "Gtk.CellArea"
 status = "generate"
 generate_builder = false
+manual_traits = ["CellAreaExtManual"]
 trust_return_value_nullability = false
     [[object.function]]
     pattern = "cell_[gs]et_property"
     ignore = true
+    [[object.function]]
+    pattern = "activate_cell"
+    manual = true # to handlndle gdk::Event
+    [[object.function]]
+    pattern = "event"
+    manual = true # to handlndle gdk::Event
     [[object.function]]
     name = "apply_attributes"
         [[object.function.parameter]]
@@ -577,13 +583,28 @@ generate_builder = true
 trust_return_value_nullability = false
 
 [[object]]
+name = "Gtk.CellEditable"
+status = "generate"
+manual_traits = ["CellEditableExtManual"]
+    [[object.function]]
+    name = "start_editing"
+    manual = true # to handle gdk::Event
+
+[[object]]
 name = "Gtk.CellRenderer"
 status = "generate"
+manual_traits = ["CellRendererExtManual"]
+    [[object.function]]
+    name = "activate"
+    manual = true # to handle gdk::Event
     [[object.signal]]
     name = "editing-started"
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
+    [[object.function]]
+    name = "start_editing"
+    manual = true # to handle gdk::Event
 
 [[object]]
 name = "Gtk.CellRendererAccel"
@@ -1176,11 +1197,10 @@ generate_builder = true
 [[object]]
 name = "Gtk.IMContext"
 status = "generate"
+manual_traits = ["IMContextExtManual"]
     [[object.function]]
     name = "filter_keypress"
-        [[object.function.parameter]]
-        name = "event"
-        const = true
+    manual = true # to handle gdk::Event
 
 [[object]]
 name = "Gtk.IMContextSimple"
@@ -1742,14 +1762,16 @@ status = "generate"
 manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "equal"
-    # manual, complains about the trait IsA<T> being so generic
-    ignore = true
+    manual = true # complains about the trait IsA<T> being so generic
     [[object.function]]
     name = "hash"
-    ignore = true
+    manual = true # complains about the trait IsA<T> being so generic
     [[object.function]]
     name = "compare"
-    ignore = true
+    manual = true # complains about the trait IsA<T> being so generic
+    [[object.function]]
+    name = "trigger"
+    manual = true # to handle gdk::Event
 
 [[object]]
 name = "Gtk.SignalAction"
@@ -2005,6 +2027,7 @@ generate_builder = true
 name = "Gtk.TextView"
 status = "generate"
 generate_builder = true
+manual_traits = ["TextViewExtManual"]
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_extra_menu"
@@ -2012,9 +2035,7 @@ generate_builder = true
         nullable = true
     [[object.function]]
     name = "im_context_filter_keypress"
-        [[object.function.parameter]]
-        name = "event"
-        const = true
+    manual = true # to handle gdk::Event
     [[object.signal]]
     name = "extend-selection"
     inhibit = true

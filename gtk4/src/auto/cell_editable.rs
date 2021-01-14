@@ -33,9 +33,6 @@ pub trait CellEditableExt: 'static {
     #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self);
 
-    #[doc(alias = "gtk_cell_editable_start_editing")]
-    fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>);
-
     fn get_property_editing_canceled(&self) -> bool;
 
     fn set_property_editing_canceled(&self, editing_canceled: bool);
@@ -60,15 +57,6 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
     fn remove_widget(&self) {
         unsafe {
             ffi::gtk_cell_editable_remove_widget(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn start_editing<P: IsA<gdk::Event>>(&self, event: Option<&P>) {
-        unsafe {
-            ffi::gtk_cell_editable_start_editing(
-                self.as_ref().to_glib_none().0,
-                event.map(|p| p.as_ref()).to_glib_none().0,
-            );
         }
     }
 

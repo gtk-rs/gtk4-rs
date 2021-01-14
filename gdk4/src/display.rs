@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{keys::Key, Display, ModifierType};
+use crate::{keys::Key, Display, Event, ModifierType};
 use glib::translate::*;
 use std::mem;
 
@@ -36,6 +36,13 @@ impl Display {
             } else {
                 None
             }
+        }
+    }
+
+    #[doc(alias = "gdk_display_put_event")]
+    pub fn put_event<P: AsRef<Event>>(&self, event: &P) {
+        unsafe {
+            ffi::gdk_display_put_event(self.to_glib_none().0, event.as_ref().to_glib_none().0);
         }
     }
 }
