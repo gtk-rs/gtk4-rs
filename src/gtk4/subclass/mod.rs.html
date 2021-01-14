@@ -102,6 +102,12 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -134,6 +140,8 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">native_dialog</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">orientable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">popover</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">print_operation</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">print_operation_preview</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">recent_manager</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">root</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">scrollable</span>;
@@ -146,6 +154,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">toggle_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_drag_dest</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_drag_source</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
 
@@ -186,6 +195,8 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">native_dialog</span>::<span class="ident">NativeDialogImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">orientable</span>::<span class="ident">OrientableImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">popover</span>::<span class="ident">PopoverImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">print_operation</span>::<span class="ident">PrintOperationImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">print_operation_preview</span>::<span class="ident">PrintOperationPreviewImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">recent_manager</span>::<span class="ident">RecentManagerImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">root</span>::<span class="ident">RootImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">scrollable</span>::<span class="ident">ScrollableImpl</span>;
@@ -198,6 +209,7 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">toggle_button</span>::<span class="ident">ToggleButtonImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">tree_drag_dest</span>::<span class="ident">TreeDragDestImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">tree_drag_source</span>::<span class="ident">TreeDragSourceImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">tree_view</span>::<span class="ident">TreeViewImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">widget</span>::<span class="ident">CompositeTemplate</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">widget</span>::<span class="ident">TemplateChild</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">widget</span>::<span class="ident">WidgetClassSubclassExt</span>;
