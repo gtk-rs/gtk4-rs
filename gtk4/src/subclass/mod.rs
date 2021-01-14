@@ -29,6 +29,8 @@ pub mod native;
 pub mod native_dialog;
 pub mod orientable;
 pub mod popover;
+pub mod print_operation;
+pub mod print_operation_preview;
 pub mod recent_manager;
 pub mod root;
 pub mod scrollable;
@@ -41,6 +43,7 @@ pub mod text_view;
 pub mod toggle_button;
 pub mod tree_drag_dest;
 pub mod tree_drag_source;
+pub mod tree_view;
 pub mod widget;
 pub mod window;
 
@@ -81,6 +84,8 @@ pub mod prelude {
     pub use super::native_dialog::NativeDialogImpl;
     pub use super::orientable::OrientableImpl;
     pub use super::popover::PopoverImpl;
+    pub use super::print_operation::PrintOperationImpl;
+    pub use super::print_operation_preview::PrintOperationPreviewImpl;
     pub use super::recent_manager::RecentManagerImpl;
     pub use super::root::RootImpl;
     pub use super::scrollable::ScrollableImpl;
@@ -93,6 +98,7 @@ pub mod prelude {
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::tree_drag_dest::TreeDragDestImpl;
     pub use super::tree_drag_source::TreeDragSourceImpl;
+    pub use super::tree_view::TreeViewImpl;
     pub use super::widget::CompositeTemplate;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
