@@ -974,6 +974,8 @@ where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
 {
     fn default() -> Self {
+        T::static_type();
+
         Self {
             ptr: std::ptr::null_mut(),
         }
