@@ -1646,16 +1646,6 @@ generate_builder = true
 name = "Gtk.Shortcut"
 status = "generate"
 generate_builder = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_action"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_trigger"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.ShortcutController"
@@ -1804,20 +1794,10 @@ generate_builder = true
 name = "Gtk.StringFilter"
 status = "generate"
 generate_builder = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_search"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.StringList"
 status = "generate"
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_string"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.StringObject"
@@ -1848,16 +1828,6 @@ generate_builder = true
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_buffer"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_extra_menu"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_placeholder_text"
         [object.function.return]
         nullable = true
 
@@ -1999,11 +1969,6 @@ generate_builder = true
 [[object]]
 name = "Gtk.TreeModel"
 status = "generate"
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_string_from_iter"
-        [object.function.return]
-        nullable = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -2283,21 +2248,6 @@ generate_builder = true
         [[object.function.parameter]]
         name = "path"
         const = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_expander_column"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "create_row_drag_icon"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_search_entry"
-        [object.function.return]
-        nullable = true
     [[object.signal]]
     pattern = ".+"
         [[object.signal.parameter]]
@@ -2355,11 +2305,6 @@ manual_traits = ["WidgetExtManual"]
         nullable = true
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
-    name = "get_name"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
     name = "get_template_child"
         [object.function.return]
         nullable = true
@@ -2400,11 +2345,6 @@ status = "generate"
 generate_builder = true
 trait_name = "GtkWindowExt"
 manual_traits = ["GtkWindowExtManual"]
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_default_icon_name"
-        [object.function.return]
-        nullable = true
     [[object.signal]]
     name = "close-request"
     inhibit = true
