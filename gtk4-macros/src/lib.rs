@@ -8,7 +8,7 @@ use proc_macro::TokenStream;
 use proc_macro_error::proc_macro_error;
 use syn::{parse_macro_input, DeriveInput};
 
-#[proc_macro_derive(CompositeTemplate, attributes(template_child))]
+#[proc_macro_derive(CompositeTemplate, attributes(template, template_child))]
 #[proc_macro_error]
 pub fn composite_template_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);

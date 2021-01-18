@@ -10,6 +10,21 @@ use std::string::ToString;
 use crate::attribute_parser::*;
 use crate::util::*;
 
+fn gen_set_template(source: TemplateSource) -> TokenStream {
+    match source {
+        TemplateSource::File(file) => quote! {
+            let t = include_bytes!(#file);
+            klass.set_template(t);
+        },
+        TemplateSource::Resource(resource) => quote! {
+            klass.set_template_from_resource(&#resource);
+        },
+        TemplateSource::String(template) => quote! {
+            klass.set_template(&#template);
+        },
+    }
+}
+
 fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
     let crate_ident = crate_ident_new();
     let attributed_fields = match parse_fields(&fields) {
@@ -45,6 +60,16 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let name = &input.ident;
     let crate_ident = crate_ident_new();
 
+    let source = match parse_template_source(&input) {
+        Ok(v) => v,
+        Err(e) => abort_call_site!(
+            "{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
+            e
+        ),
+    };
+
+    let set_template = gen_set_template(source);
+
     let fields = match input.data {
         Data::Struct(ref s) => &s.fields,
         _ => abort_call_site!("derive(CompositeTemplate) only supports structs"),
@@ -54,7 +79,9 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
 
     quote! {
         impl #crate_ident::subclass::widget::CompositeTemplate for #name {
-            fn bind_template_children(klass: &mut Self::Class) {
+            fn bind_template(klass: &mut Self::Class) {
+                #set_template
+
                 unsafe {
                     #template_children
                 }
