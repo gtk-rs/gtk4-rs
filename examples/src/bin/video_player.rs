@@ -12,6 +12,7 @@ mod imp {
     use gtk::subclass::prelude::*;
 
     #[derive(Debug, CompositeTemplate)]
+    #[template(file = "ui/video_player.ui")]
     pub struct VideoPlayerWindow {
         #[template_child(id = "video")]
         pub video: TemplateChild<gtk::Video>,
@@ -54,9 +55,7 @@ mod imp {
         }
 
         fn class_init(klass: &mut Self::Class) {
-            let template = include_bytes!("ui/video_player.ui");
-            klass.set_template(template);
-            Self::bind_template_children(klass);
+            Self::bind_template(klass);
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self::Type>) {

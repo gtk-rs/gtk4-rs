@@ -1,9 +1,81 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use anyhow::{bail, Result};
 use proc_macro2::Span;
 use syn::parse::Error;
 use syn::spanned::Spanned;
-use syn::{Attribute, Field, Fields, Ident, Lit, Meta, MetaNameValue, NestedMeta, Type};
+use syn::{
+    Attribute, DeriveInput, Field, Fields, Ident, Lit, Meta, MetaList, MetaNameValue, NestedMeta,
+    Type,
+};
+
+pub enum TemplateSource {
+    File(String),
+    Resource(String),
+    String(String),
+}
+
+pub fn parse_template_source(input: &DeriveInput) -> Result<TemplateSource> {
+    let meta = match find_attribute_meta(&input.attrs, "template")? {
+        Some(meta) => meta,
+        _ => bail!("Missing 'template' attribute"),
+    };
+
+    let meta = match meta.nested.iter().find(|n| match n {
+        NestedMeta::Meta(m) => {
+            let p = m.path();
+            p.is_ident("file") || p.is_ident("resource") || p.is_ident("string")
+        }
+        _ => false,
+    }) {
+        Some(meta) => meta,
+        _ => bail!("Invalid meta, specify one of 'file', 'resource', or 'string'"),
+    };
+
+    let (ident, v) = parse_attribute(meta)?;
+
+    match ident.as_ref() {
+        "file" => Ok(TemplateSource::File(v)),
+        "resource" => Ok(TemplateSource::Resource(v)),
+        "string" => Ok(TemplateSource::String(v)),
+        s => bail!("Unknown enum meta {}", s),
+    }
+}
+
+// find the #[@attr_name] attribute in @attrs
+fn find_attribute_meta(attrs: &[Attribute], attr_name: &str) -> Result<Option<MetaList>> {
+    let meta = match attrs.iter().find(|a| a.path.is_ident(attr_name)) {
+        Some(a) => a.parse_meta(),
+        _ => return Ok(None),
+    };
+    match meta? {
+        Meta::List(n) => Ok(Some(n)),
+        _ => bail!("wrong meta type"),
+    }
+}
+
+// parse a single meta like: ident = "value"
+fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
+    let meta = match &meta {
+        NestedMeta::Meta(m) => m,
+        _ => bail!("wrong meta type"),
+    };
+    let meta = match meta {
+        Meta::NameValue(n) => n,
+        _ => bail!("wrong meta type"),
+    };
+    let value = match &meta.lit {
+        Lit::Str(s) => s.value(),
+        _ => bail!("wrong meta type"),
+    };
+
+    let ident = match meta.path.get_ident() {
+        None => bail!("missing ident"),
+        Some(ident) => ident,
+    };
+
+    Ok((ident.to_string(), value))
+}
 
 pub enum FieldAttributeArg {
     Id(String),
