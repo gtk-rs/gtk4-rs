@@ -60,6 +60,7 @@ pub mod text_view;
 pub mod toggle_button;
 pub mod tree_drag_dest;
 pub mod tree_drag_source;
+pub mod tree_model;
 pub mod tree_model_filter;
 pub mod tree_view;
 pub mod widget;
@@ -134,6 +135,7 @@ pub mod prelude {
     pub use super::toggle_button::{ToggleButtonImpl, ToggleButtonImplExt};
     pub use super::tree_drag_dest::{TreeDragDestImpl, TreeDragDestImplExt};
     pub use super::tree_drag_source::{TreeDragSourceImpl, TreeDragSourceImplExt};
+    pub use super::tree_model::{TreeModelImpl, TreeModelImplExt};
     pub use super::tree_model_filter::{TreeModelFilterImpl, TreeModelFilterImplExt};
     pub use super::tree_view::{TreeViewImpl, TreeViewImplExt};
     pub use super::widget::CompositeTemplate;
