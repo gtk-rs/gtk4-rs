@@ -62,6 +62,7 @@ pub mod tree_drag_dest;
 pub mod tree_drag_source;
 pub mod tree_model;
 pub mod tree_model_filter;
+pub mod tree_sortable;
 pub mod tree_view;
 pub mod widget;
 pub mod window;
@@ -137,6 +138,7 @@ pub mod prelude {
     pub use super::tree_drag_source::{TreeDragSourceImpl, TreeDragSourceImplExt};
     pub use super::tree_model::{TreeModelImpl, TreeModelImplExt};
     pub use super::tree_model_filter::{TreeModelFilterImpl, TreeModelFilterImplExt};
+    pub use super::tree_sortable::{TreeSortableImpl, TreeSortableImplExt};
     pub use super::tree_view::{TreeViewImpl, TreeViewImplExt};
     pub use super::widget::CompositeTemplate;
     pub use super::widget::TemplateChild;
