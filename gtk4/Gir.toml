@@ -49,7 +49,6 @@ generate = [
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
     "Gtk.CellRendererState",
-    "Gtk.Clipboard",
     "Gtk.ConstraintAttribute",
     "Gtk.ConstraintLayout",
     "Gtk.ConstraintLayoutChild",
@@ -176,14 +175,14 @@ generate = [
     "Gtk.TreeViewDropPosition",
     "Gtk.TreeViewGridLines",
     "Gtk.Unit",
-    "Gtk.WindowGeometryInfo",
     "Gtk.WindowGroup",
     "Gtk.WrapMode",
 ]
 
 ignore = [
     "Gtk.BuilderCScope", # not useful for rust
-    "Gtk.CClosureExpression", # not useful for rust
+    "Gtk.CClosureExpression", # not useful for rust,
+    "Gtk.WidgetClass", # manual with subclassing
 ]
 
 manual = [
@@ -355,9 +354,11 @@ name = "Gtk.Actionable"
 status = "generate"
 manual_traits = ["ActionableExtManual"]
     [[object.property]]
-    #value glib.Variant
     name = "action-target"
-    ignore = true
+    generate = ["notify"] # ignore get/set
+    [[object.function]]
+    name = "set_action_target"
+    manual = true # the target is defined as str
 
 [[object]]
 name = "Gtk.ActionBar"
@@ -402,7 +403,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.Application"
 status = "generate"
-generate_builder = false # generated manually
+ignore_builder = true # generated manually
 trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
@@ -1115,7 +1116,7 @@ generate_builder = true
 trust_return_value_nullability = false
     [[object.function]]
     name = "get_icon_sizes"
-    ignore = true
+    ignore = true # TODO: implement me
     # TODO gtk3 ignored some more array functions
     [[object.function]]
     name = "set_resource_path"
@@ -1152,11 +1153,11 @@ status = "generate"
 manual_traits = ["IMContextSimpleExtManual"]
     [[object.function]]
     name = "add_compose_file"
-    ignore = true
+    manual = true # use AsRef<Path>
     doc_trait_name = "IMContextSimpleExtManual"
     [[object.function]]
     name = "add_table"
-    ignore = true # We don't understand API
+    ignore = true #TODO: We don't understand API
 
 [[object]]
 name = "Gtk.IMMulticontext"
@@ -1171,6 +1172,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.KeyvalTrigger"
 status = "manual" # to make use of gdk::keys::Key
+ignore_builder = true
 
 [[object]]
 name = "Gtk.Label"
@@ -1308,6 +1310,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.MnemonicTrigger"
 status = "manual" # to make use of gdk::keys::Key # to make use of gdk::keys::Key
+ignore_builder = true
 
 [[object]]
 name = "Gtk.MountOperation"
@@ -1436,7 +1439,7 @@ status = "generate"
 generate_builder = true
     [[object.function]]
     name = "set_action_entries"
-    ignore = true
+    manual = true
 
 [[object]]
 name = "Gtk.PageSetup"
@@ -2228,7 +2231,7 @@ status = "generate"
 manual_traits = ["TreeSortableExtManual"]
     [[object.function]]
     pattern = "[gs]et_sort_column_id"
-    ignore = true
+    manual = true # make use of SortColumn
     doc_trait_name = "TreeSortableExtManual"
     [[object.function]]
     pattern = "set_sort_func"
