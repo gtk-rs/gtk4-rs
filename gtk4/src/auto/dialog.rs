@@ -550,9 +550,6 @@ pub trait DialogExt: 'static {
     #[doc(alias = "gtk_dialog_add_button")]
     fn add_button(&self, button_text: &str, response_id: ResponseType) -> Widget;
 
-    //#[doc(alias = "gtk_dialog_add_buttons")]
-    //fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_dialog_get_content_area")]
     fn get_content_area(&self) -> Box;
 
@@ -600,10 +597,6 @@ impl<O: IsA<Dialog>> DialogExt for O {
             ))
         }
     }
-
-    //fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_dialog_add_buttons() }
-    //}
 
     fn get_content_area(&self) -> Box {
         unsafe {
