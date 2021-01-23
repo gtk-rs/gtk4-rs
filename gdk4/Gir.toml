@@ -17,6 +17,7 @@ generate = [
     "Gdk.ContentFormatsBuilder",
     "Gdk.ContentProvider",
     "Gdk.CrossingMode",
+    "Gdk.Device",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
@@ -116,28 +117,22 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "pango_layout_get_clip_region"
-    #manual
-    ignore = true
+    manual = true
     [[object.function]]
     name = "pango_layout_line_get_clip_region"
-    #manual
-    ignore = true
+    manual = true
     [[object.function]]
     name = "content_register_deserializer"
-    #manual: unsafe
-    ignore = true
+    manual = true
     [[object.function]]
     name = "content_register_serializer"
-    #manual: unsafe
-    ignore = true
+    manual = true
     [[object.function]]
     name = "content_serialize_async"
-    #manual: init assert
-    ignore = true
+    manual = true # init assert
     [[object.function]]
     name = "content_deserialize_async"
-    #manual: out
-    ignore = true
+    manual = true
     [[object.function]]
     name = "events_get_angle"
     manual = true # event is a fundemental type
@@ -184,7 +179,7 @@ status = "generate"
 generate_builder = true
     [[object.function]]
     name = "read_async"
-    ignore = true #array
+    manual = true # array
 
 [[object]]
 name = "Gdk.ContentDeserializer"
@@ -199,25 +194,24 @@ status = "generate"
         nullable = false
     [[object.function]]
     name = "get_task_data"
-    ignore = true #unsafe
+    ignore = true # unsafe
     [[object.function]]
     name = "get_user_data"
-    ignore = true #unsafe
+    ignore = true # unsafe
     [[object.function]]
     name = "get_value"
         [object.function.return]
         nullable = false
     [[object.function]]
     name = "set_task_data"
-    ignore = true #unsafe
+    ignore = true # unsafe
 
 [[object]]
 name = "Gdk.ContentFormats"
 status = "generate"
     [[object.function]]
-    # gir error
     name = "get_gtypes"
-    ignore = true
+    ignore = true # TODO: figure this out
 
 [[object]]
 name = "Gdk.ContentSerializer"
@@ -232,10 +226,10 @@ status = "generate"
         nullable = false
     [[object.function]]
     name = "get_task_data"
-    ignore = true #unsafe
+    ignore = true # unsafe
     [[object.function]]
     name = "get_user_data"
-    ignore = true #unsafe
+    ignore = true # unsafe
     [[object.function]]
     name = "get_value"
         [object.function.return]
@@ -248,16 +242,6 @@ status = "generate"
 name = "Gdk.Cursor"
 status = "generate"
 generate_builder = true
-
-[[object]]
-name = "Gdk.Device"
-status = "generate"
-    [[object.function]]
-    name = "get_history"
-    ignore = true # need to call "free_history" function by hand
-    [[object.function]]
-    name = "free_history"
-    ignore = true # cannot be used as is
 
 [[object]]
 name = "Gdk.DeviceTool"
@@ -304,10 +288,10 @@ status = "generate"
     manual = true # to return a Key instead of a u32
     [[object.function]]
     name = "map_keycode"
-    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
     [[object.function]]
     name = "map_keyval"
-    ignore = true # requires FromGlibPtrArrayContainerAsVec first
+    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
     [[object.function]]
     name = "put_event"
     manual = true # event is a fundemental type
@@ -323,15 +307,14 @@ status = "generate"
 manual_traits = ["DrawContextExtManual"]
     [[object.function]]
     name = "get_frame_region"
-    #manual
-    ignore = true
+    manual = true
 
 [[object]]
 name = "Gdk.Drop"
 status = "generate"
     [[object.function]]
     name = "read_async"
-    ignore = true # const ptr
+    manual = true # const ptr
 
 [[object]]
 name = "Gdk.Monitor"
@@ -344,8 +327,7 @@ status = "generate"
 manual_traits = ["PopupLayoutExtManual"]
     [[object.function]]
     name = "get_offset"
-    # invalid mutability, manual
-    ignore = true
+    manual = true # invalid mutability
 
 [[object]]
 name = "Gdk.Surface"
@@ -353,8 +335,7 @@ status = "generate"
 manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "create_similar_surface"
-    #manual
-    ignore = true
+    manual = true
     [[object.function]]
     name = "set_opaque_region"
         [[object.function.parameter]]
@@ -362,8 +343,7 @@ manual_traits = ["SurfaceExtManual"]
         const = true
     [[object.function]]
     name = "translate_coordinates"
-    # mutability issue, manual
-    ignore = true
+    manual = true # mutability issue
 
 [[object]]
 name = "Gdk.Toplevel"
