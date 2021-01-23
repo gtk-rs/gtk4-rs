@@ -813,7 +813,8 @@ status = "generate"
 generate_builder = true
     [[object.signal]]
     name = "drop"
-    ignore = true # manual, to be done
+    # manual: FromGlibPtrBorrow<*mut GValue>` is not implemented for `Value`
+    ignore = true
 
 [[object]]
 name = "Gtk.DropTargetAsync"
