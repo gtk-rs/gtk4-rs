@@ -11,8 +11,6 @@ single_version_file = true
 trust_return_value_nullability = true
 
 generate = [
-    # "Gtk.BuilderCScope", not useful 
-    # "Gtk.CClosureExpression", not useful
     # "Gtk.ClosureExpression",
     # "Gtk.ConstantExpression",
     # "Gtk.Expression",
@@ -183,8 +181,9 @@ generate = [
     "Gtk.WrapMode",
 ]
 
-# TODO
 ignore = [
+    "Gtk.BuilderCScope", # not useful for rust
+    "Gtk.CClosureExpression", # not useful for rust
 ]
 
 manual = [
@@ -315,30 +314,6 @@ trust_return_value_nullability = false
         name = "selection_data"
         const = true
     [[object.function]]
-    name = "selection_add_targets"
-    #array as pointer
-    ignore = true
-    [[object.function]]
-    name = "targets_include_image"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "targets_include_text"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "targets_include_uri"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "target_table_free"
-    #array as pointer
-    ignore = true
-    [[object.function]]
-    name = "target_table_new_from_list"
-    #array as pointer
-    ignore = true
-    [[object.function]]
     name = "init"
     #manual
     ignore = true
@@ -348,12 +323,7 @@ trust_return_value_nullability = false
     ignore = true
     [[object.function]]
     name = "is_initialized"
-    #manual
-    ignore = true
-    [[object.function]]
-    name = "main_quit"
-    #manual
-    ignore = true
+    manual = true
     [[object.function]]
     pattern = "get_(major|minor|micro)_version"
     #manual skip_assert_initialized
@@ -442,7 +412,7 @@ generate_builder = false # generated manually
 trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
-    ignore = true
+    manual = true
 
 [[object]]
 name = "Gtk.ApplicationWindow"
@@ -511,11 +481,6 @@ manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
     #path
-    ignore = true
-    doc_trait_name = "BuilderExtManual"
-    [[object.function]]
-    name = "connect_signals_full"
-    #manual: connect object and swapped signal not supported
     ignore = true
     doc_trait_name = "BuilderExtManual"
     [[object.function]]
@@ -663,18 +628,6 @@ generate_builder = true
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
-
-    # TODO
-    # [[object.property]]
-    # name = "font-desc"
-    # #value pango::FontDescription
-    # ignore = true
-
-    # TODO
-    # [[object.property]]
-    # name = "attributes"
-    # #value pango::AttrList
-    # ignore = true
 
 [[object]]
 name = "Gtk.CellRendererToggle"
@@ -825,10 +778,6 @@ generate_builder = true
 manual_traits = ["DialogExtManual"]
     [[object.function]]
     name = "get_response_for_widget"
-    ignore = true
-    doc_trait_name = "DialogExtManual"
-    [[object.function]]
-    name = "run"
     ignore = true
     doc_trait_name = "DialogExtManual"
 
@@ -1799,24 +1748,24 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
     name = "append_linear_gradient"
-    #manual
-    ignore = true
+    # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
     [[object.function]]
     name = "append_radial_gradient"
-    #manual
-    ignore = true
+    # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
     [[object.function]]
     name = "append_repeating_linear_gradient"
-    #manual
-    ignore = true
+    # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
     [[object.function]]
     name = "append_repeating_radial_gradient"
-    #manual
-    ignore = true
+    # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
     [[object.function]]
     name = "append_conic_gradient"
-    #manual
-    ignore = true
+    # use &[ColorStop] instead of &[&ColorStop]
+    manual = true
 
 [[object]]
 name = "Gtk.SortListModel"
@@ -2006,17 +1955,6 @@ trust_return_value_nullability = false
 name = "Gtk.TextTag"
 status = "generate"
 generate_builder = true
-    # TODO
-    # [[object.property]]
-    # name = "font-desc"
-    # #value pango::FontDescription
-    # ignore = true
-
-    # TODO
-    # [[object.property]]
-    # name = "tabs"
-    # #value pango::TabArray
-    # ignore = true
 
 [[object]]
 name = "Gtk.TextTagTable"
@@ -2428,11 +2366,11 @@ status = "generate"
 manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "add_tick_callback"
-    ignore = true
+    manual = true
     doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "remove_tick_callback"
-    ignore = true
+    manual = true
     doc_trait_name = "WidgetExtManual"
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
@@ -2486,21 +2424,11 @@ status = "generate"
 generate_builder = true
 trait_name = "GtkWindowExt"
 manual_traits = ["GtkWindowExtManual"]
-    [[object.function]]
-    name = "activate_key"
-        [[object.function.parameter]]
-        name = "event"
-        const = true
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_default_icon_name"
         [object.function.return]
         nullable = true
-    [[object.function]]
-    name = "propagate_key_event"
-        [[object.function.parameter]]
-        name = "event"
-        const = true
     [[object.signal]]
     name = "close-request"
     inhibit = true
