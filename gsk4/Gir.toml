@@ -78,8 +78,8 @@ status = "generate"
 manual_traits = ["BorderNodeManualExt"]
     [[object.function]]
     name = "get_widths"
-    # manual, needs fixed-size=4 in gir file
-    ignore = true
+    # gir fails to generate a fixed-size=4 array
+    manual = true
 
 [[object]]
 name = "Gsk.BroadwayRenderer"
@@ -91,8 +91,8 @@ name = "Gsk.ConicGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&ColorStop] instead of a &[ColorStop]
-    ignore = true
+    # uses &[&ColorStop] instead of a &[ColorStop]
+    manual = true
 
 
 [[object]]
@@ -105,16 +105,16 @@ name = "Gsk.LinearGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&ColorStop] instead of a &[ColorStop]
-    ignore = true
+    # uses &[&ColorStop] instead of a &[ColorStop]
+    manual = true
 
 [[object]]
 name = "Gsk.RadialGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&ColorStop] instead of a &[ColorStop]
-    ignore = true
+    # uses &[&ColorStop] instead of a &[ColorStop]
+    manual = true
 
 [[object]]
 name = "Gsk.RenderNode"
@@ -130,16 +130,16 @@ name = "Gsk.RepeatingLinearGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&ColorStop] instead of a &[ColorStop]
-    ignore = true
+    # uses &[&ColorStop] instead of a &[ColorStop]
+    manual = true
 
 [[object]]
 name = "Gsk.RepeatingRadialGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&ColorStop] instead of a &[ColorStop]
-    ignore = true
+    # uses &[&ColorStop] instead of a &[ColorStop]
+    manual = true
 
 
 [[object]]
@@ -147,12 +147,12 @@ name = "Gsk.ShadowNode"
 status = "generate"
     [[object.function]]
     name = "new"
-    # manual, uses &[&Shadow] instead of a &[Shadow]
-    ignore = true
+    # uses &[&Shadow] instead of a &[Shadow]
+    manual = true
     [[object.function]]
     name = "get_shadow"
-    # manual, needs an assertion that the i < n_shadows
-    ignore = true
+    # needs an assertion that the i < n_shadows
+    manual = true
 
 [[object]]
 name = "Gsk.Transform"
