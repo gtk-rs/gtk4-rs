@@ -674,8 +674,7 @@ status = "generate"
 manual_traits = ["ColorChooserExtManual"]
     [[object.function]]
     name = "add_palette"
-    #array with size
-    ignore = true
+    manual = true # array with size
     doc_trait_name = "ColorChooserExtManual"
 
 [[object]]
@@ -707,19 +706,15 @@ manual_traits = ["ComboBoxExtManual"]
     name = "set_active_iter"
         [[object.function.parameter]]
         name = "iter"
-        const = true
+        const = true # iter shouldn't be mutable here
     [[object.function]]
     name = "set_active"
-    ignore = true
+    manual = true # use Option<u32> so we can allow -1 to unselect the active item 
     doc_trait_name = "ComboBoxExtManual"
     [[object.function]]
     name = "get_active"
-    ignore = true
+    manual = true # use Option<u32>
     doc_trait_name = "ComboBoxExtManual"
-    [[object.property]]
-    name = "active"
-    #manual Option
-    generate = ["notify"]
 
 [[object]]
 name = "Gtk.ComboBoxText"
@@ -738,13 +733,13 @@ generate_builder = true
 manual_traits = ["ConstraintGuideExtManual"]
     [[object.function]]
     name = "get_max_size"
-    ignore = true
+    manual = true # missing inout annotation
     [[object.function]]
-    name = "get_min_size"
-    ignore = true
+    name = "get_min_size" # missing inout annotation
+    manual = true
     [[object.function]]
-    name = "get_nat_size"
-    ignore = true
+    name = "get_nat_size" # missing inout annotation
+    manual = true
 
 [[object]]
 name = "Gtk.CssSection"
