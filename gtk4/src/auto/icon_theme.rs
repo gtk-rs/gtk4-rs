@@ -164,16 +164,6 @@ impl IconTheme {
         }
     }
 
-    pub fn set_property_resource_path(&self, resource_path: &[&str]) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"resource-path\0".as_ptr() as *const _,
-                glib::Value::from(resource_path).to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "gtk_icon_theme_get_for_display")]
     pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
