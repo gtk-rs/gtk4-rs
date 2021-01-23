@@ -83,6 +83,7 @@ mod custom_filter;
 mod custom_sorter;
 mod dialog;
 mod drawing_area;
+mod drop_target;
 mod editable;
 mod entry;
 mod entry_buffer;
