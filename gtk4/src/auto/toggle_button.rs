@@ -107,6 +107,7 @@ pub struct ToggleButtonBuilder {
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
     action_name: Option<String>,
+    action_target: Option<glib::Variant>,
 }
 
 impl ToggleButtonBuilder {
@@ -229,6 +230,9 @@ impl ToggleButtonBuilder {
         }
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
+        }
+        if let Some(ref action_target) = self.action_target {
+            properties.push(("action-target", action_target));
         }
         let ret = glib::Object::new::<ToggleButton>(&properties).expect("object new");
         ret
@@ -421,6 +425,11 @@ impl ToggleButtonBuilder {
 
     pub fn action_name(mut self, action_name: &str) -> Self {
         self.action_name = Some(action_name.to_string());
+        self
+    }
+
+    pub fn action_target(mut self, action_target: &glib::Variant) -> Self {
+        self.action_target = Some(action_target.clone());
         self
     }
 }

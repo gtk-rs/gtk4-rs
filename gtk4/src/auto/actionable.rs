@@ -35,9 +35,6 @@ pub trait ActionableExt: 'static {
     #[doc(alias = "gtk_actionable_set_action_name")]
     fn set_action_name(&self, action_name: Option<&str>);
 
-    //#[doc(alias = "gtk_actionable_set_action_target")]
-    //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_actionable_set_action_target_value")]
     fn set_action_target_value(&self, target_value: Option<&glib::Variant>);
 
@@ -45,6 +42,11 @@ pub trait ActionableExt: 'static {
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
     fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 }
 
 impl<O: IsA<Actionable>> ActionableExt for O {
@@ -72,10 +74,6 @@ impl<O: IsA<Actionable>> ActionableExt for O {
             );
         }
     }
-
-    //fn set_action_target(&self, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_actionable_set_action_target() }
-    //}
 
     fn set_action_target_value(&self, target_value: Option<&glib::Variant>) {
         unsafe {
@@ -113,6 +111,33 @@ impl<O: IsA<Actionable>> ActionableExt for O {
                 b"notify::action-name\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkActionable,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) where
+            P: IsA<Actionable>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Actionable::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::action-target\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_action_target_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
