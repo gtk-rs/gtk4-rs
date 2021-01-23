@@ -331,10 +331,6 @@ trust_return_value_nullability = false
     name = "check_version"
     manual = true # to use skip_assert_initialized
     [[object.function]]
-    pattern = "drag_.+"
-    #manual trait
-    ignore = true
-    [[object.function]]
     name = "show_uri_full"
     ignore = true # TODO: implement me
     [[object.function]]
@@ -475,13 +471,11 @@ generate_builder = true
 manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
-    #path
-    ignore = true
+    manual = true # use AsRef<Path>
     doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "get_object"
-    #downcast
-    ignore = true
+    manual = true # add dynamic casting
     doc_trait_name = "BuilderExtManual"
 
 [[object]]
@@ -508,7 +502,7 @@ manual_traits = ["CellAreaExtManual"]
 trust_return_value_nullability = false
     [[object.function]]
     pattern = "cell_[gs]et_property"
-    ignore = true
+    ignore = true # TODO: figure out this
     [[object.function]]
     pattern = "activate_cell"
     manual = true # to handlndle gdk::Event
@@ -828,16 +822,12 @@ status = "generate"
 trust_return_value_nullability = false
 manual_traits = ["EditableExtManual"]
     [[object.function]]
-    name = "delegate_get_property"
-    ignore = true #manual
-    doc_trait_name = "EditableExtManual"
-    [[object.function]]
-    name = "delegate_set_property"
-    ignore = true #manual
+    pattern = "delegate_(get|set)_property"
+    manual = true
     doc_trait_name = "EditableExtManual"
     [[object.signal]]
-    pattern = "insert-text"
-    ignore = true #out #manual
+    name = "insert-text"
+    ignore = true # manual
     doc_trait_name = "EditableExtManual"
 
 [[object]]
@@ -864,40 +854,39 @@ name = "Gtk.EntryBuffer"
 status = "generate"
 generate_builder = true
 manual_traits = ["EntryBufferExtManual"]
-    #manual
     [[object.function]]
     name = "new"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "delete_text"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "get_bytes"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "get_length"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "get_max_length"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "get_text"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "insert_text"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "set_max_length"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "set_text"
-    ignore = true
+    manual = true
     [[object.signal]]
     name = "deleted-text"
-    ignore = true
+    ignore = true # TODO: implement me
     [[object.signal]]
     name = "inserted-text"
-    ignore = true
+    ignore = true # TODO: implement me
 
 [[object]]
 name = "Gtk.EntryCompletion"
@@ -915,7 +904,7 @@ manual_traits = ["EntryCompletionExtManual"]
     inhibit = true
     [[object.function]]
     name = "get_entry"
-    ignore = true
+    manual = true # upcast to Entry
     doc_trait_name = "EntryCompletionExtManual"
 
 [[object]]
@@ -1251,7 +1240,7 @@ manual_traits = ["GtkListStoreExtManual"]
         const = true
     [[object.function]]
     name = "set_value"
-    ignore = true
+    manual = true
     doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "swap"
@@ -1288,8 +1277,7 @@ name = "Gtk.MediaStream"
 status = "generate"
     [[object.function]]
     name = "gerror"
-    # TODO: figure out error's ownership
-    ignore = true
+    ignore = true # TODO: figure out error's ownership
 
 [[object]]
 name = "Gtk.MenuButton"
@@ -1690,8 +1678,7 @@ status = "generate"
 generate_builder = true
     [[object.signal]]
     name = "change-current-page"
-    #manual
-    ignore = true
+    ignore = true # manual
 
 [[object]]
 name = "Gtk.ShortcutsShortcut"
@@ -1876,8 +1863,7 @@ generate_builder = true
 
     [[object.signal]]
     pattern = ".+"
-    #manual
-    ignore = true
+    ignore = true # manual
     [[object.function]]
     name = "set_tabs"
         [[object.function.parameter]]
@@ -1896,7 +1882,7 @@ manual_traits = ["TextBufferExtManual"]
         const = true
     [[object.signal]]
     name = "insert-text"
-    ignore = true
+    ignore = true # manual
     doc_trait_name = "TextBufferExtManual"
 
 [[object]]
@@ -2028,8 +2014,7 @@ status = "generate"
         const = true
     [[object.function]]
     name = "filter_new"
-    # Replaced by TreeModelFilter::new
-    ignore = true
+    ignore = true # Replaced by TreeModelFilter::new
     [[object.function]]
     name = "iter_children"
         [[object.function.parameter]]
@@ -2052,7 +2037,7 @@ status = "generate"
         const = true
     [[object.function]]
     name = 'ref_node'
-    ignore = true
+    ignore = true  # unsafe
     [[object.function]]
     name = "rows_reordered"
     ignore = true
@@ -2061,11 +2046,10 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "sort_new_with_model"
-    # Replaced by TreeModelSort::new
-    ignore = true
+    ignore = true # Replaced by TreeModelSort::new
     [[object.function]]
     name = 'unref_node'
-    ignore = true
+    ignore = true # unsafe
 
 [[object]]
 name = "Gtk.TreeModelFilter"
@@ -2094,8 +2078,7 @@ trust_return_value_nullability = false
         const = true
     [[object.property]]
     name = "virtual-root"
-    #value recordboxed
-    ignore = true
+    ignore = true # value recordboxed
 
 [[object]]
 name = "Gtk.TreeModelSort"
@@ -2280,7 +2263,7 @@ manual_traits = ["TreeStoreExtManual"]
         const = true
     [[object.function]]
     name = "set_value"
-    ignore = true
+    manual = true
     doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "swap"

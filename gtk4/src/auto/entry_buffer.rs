@@ -64,16 +64,6 @@ pub trait EntryBufferExt: 'static {
     #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
     fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
 
-    fn get_property_length(&self) -> u32;
-
-    fn get_property_max_length(&self) -> i32;
-
-    fn set_property_max_length(&self, max_length: i32);
-
-    fn get_property_text(&self) -> Option<glib::GString>;
-
-    fn set_property_text(&self, text: Option<&str>);
-
     fn connect_property_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -99,70 +89,6 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
                 position,
                 chars.to_glib_none().0,
                 n_chars,
-            );
-        }
-    }
-
-    fn get_property_length(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"length\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `length` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_max_length(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-length\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-length` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_max_length(&self, max_length: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"max-length\0".as_ptr() as *const _,
-                glib::Value::from(&max_length).to_glib_none().0,
-            );
-        }
-    }
-
-    fn get_property_text(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text` getter")
-        }
-    }
-
-    fn set_property_text(&self, text: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                glib::Value::from(text).to_glib_none().0,
             );
         }
     }
