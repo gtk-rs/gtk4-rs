@@ -2,7 +2,7 @@
 girs_dir = "gir-files"
 library = "GdkX11"
 version = "4.0"
-min_cfg_version = "3.94"
+min_cfg_version = "4.0.0"
 target_path = "."
 work_mode = "normal"
 single_version_file = true
