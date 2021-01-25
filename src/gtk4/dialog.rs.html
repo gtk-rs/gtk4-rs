@@ -192,6 +192,12 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -275,6 +281,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DialogExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Adds more buttons, same as calling `DialogExt::add_button`</span>
+    <span class="doccomment">/// repeatedly. The variable argument list should be `None`-terminated</span>
+    <span class="doccomment">/// as with `Dialog::new_with_buttons`. Each button must have both</span>
+    <span class="doccomment">/// text and response ID.</span>
+    <span class="doccomment">/// ## `first_button_text`</span>
+    <span class="doccomment">/// button text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_add_buttons&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_buttons</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buttons</span>: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">ResponseType</span>)]);
 
