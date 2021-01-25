@@ -4,6 +4,7 @@
 
 use glib::subclass::prelude::*;
 use gtk::prelude::*;
+use gtk::subclass::widget::WidgetImplExt;
 use gtk::{gio, glib, CompositeTemplate};
 
 mod imp {
@@ -25,6 +26,8 @@ mod imp {
         // as the identifier
         #[template_child(id = "subtitle_label")]
         pub subtitle: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub menubutton: TemplateChild<super::ExMenuButton>,
     }
 
     impl ObjectSubclass for ExApplicationWindow {
@@ -42,6 +45,7 @@ mod imp {
                 headerbar: TemplateChild::default(),
                 label: TemplateChild::default(),
                 subtitle: TemplateChild::default(),
+                menubutton: TemplateChild::default(),
             }
         }
 
@@ -68,11 +72,86 @@ mod imp {
     impl WidgetImpl for ExApplicationWindow {}
     impl WindowImpl for ExApplicationWindow {}
     impl ApplicationWindowImpl for ExApplicationWindow {}
+
+    #[derive(Debug, CompositeTemplate)]
+    #[template(file = "composite_template_child.ui")]
+    pub struct ExMenuButton {
+        #[template_child]
+        pub toggle: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        pub popover: TemplateChild<gtk::Popover>,
+    }
+
+    impl ObjectSubclass for ExMenuButton {
+        const NAME: &'static str = "ExMenuButton";
+        type Type = super::ExMenuButton;
+        type ParentType = gtk::Widget;
+        type Interfaces = ();
+        type Instance = subclass::simple::InstanceStruct<Self>;
+        type Class = subclass::simple::ClassStruct<Self>;
+
+        glib::object_subclass!();
+
+        fn new() -> Self {
+            Self {
+                toggle: TemplateChild::default(),
+                popover: TemplateChild::default(),
+            }
+        }
+
+        fn class_init(klass: &mut Self::Class) {
+            Self::bind_template(klass);
+        }
+
+        fn instance_init(obj: &glib::subclass::InitializingObject<Self::Type>) {
+            obj.init_template();
+        }
+    }
+
+    impl ObjectImpl for ExMenuButton {
+        fn constructed(&self, obj: &Self::Type) {
+            self.parent_constructed(obj);
+
+            let popover = &*self.popover;
+            self.toggle
+                .connect_toggled(glib::clone!(@weak popover => move |toggle| {
+                    if toggle.get_active() {
+                        popover.popup();
+                    }
+                }));
+
+            let toggle = &*self.toggle;
+            self.popover
+                .connect_closed(glib::clone!(@weak toggle => move |_| {
+                    toggle.set_active(false);
+                }));
+        }
+
+        // Needed for direct subclasses of GtkWidget;
+        // Here you need to unparent all direct children
+        // of your template.
+        fn dispose(&self, obj: &Self::Type) {
+            while let Some(child) = obj.get_first_child() {
+                child.unparent();
+            }
+        }
+    }
+
+    impl WidgetImpl for ExMenuButton {
+        fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
+            self.parent_size_allocate(widget, width, height, baseline);
+            self.popover.present();
+        }
+    }
 }
 
 glib::wrapper! {
     pub struct ExApplicationWindow(ObjectSubclass<imp::ExApplicationWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
+}
+
+glib::wrapper! {
+    pub struct ExMenuButton(ObjectSubclass<imp::ExMenuButton>) @extends gtk::Widget;
 }
 
 impl ExApplicationWindow {

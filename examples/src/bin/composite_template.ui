@@ -7,6 +7,11 @@
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="show_title_buttons">True</property>
+        <child type="end">
+          <object class="ExMenuButton" id="menubutton">
+            <property name="halign">center</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
