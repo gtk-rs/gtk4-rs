@@ -28,6 +28,7 @@ mod imp {
         const NAME: &'static str = "ExButton";
         type Type = super::Button;
         type ParentType = gtk::Widget;
+        type Interfaces = ();
         type Instance = glib::subclass::simple::InstanceStruct<Self>;
         type Class = glib::subclass::simple::ClassStruct<Self>;
 

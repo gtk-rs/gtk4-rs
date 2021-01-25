@@ -17,14 +17,11 @@ mod imp {
         const NAME: &'static str = "CustomPaintable";
         type Type = super::CustomPaintable;
         type ParentType = glib::Object;
+        type Interfaces = (gdk::Paintable,);
         type Instance = subclass::simple::InstanceStruct<Self>;
         type Class = subclass::simple::ClassStruct<Self>;
 
         glib::object_subclass!();
-
-        fn type_init(type_: &mut subclass::InitializingType<Self>) {
-            type_.add_interface::<gdk::Paintable>();
-        }
 
         fn new() -> Self {
             Self {}
