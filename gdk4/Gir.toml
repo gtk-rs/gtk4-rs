@@ -381,3 +381,6 @@ manual_traits = ["ToplevelExtManual"]
     [[object.function]]
     name = "show_window_menu"
     manual = true # event is a fundemental type
+    [[object.signal]]
+    name = "compute-size"
+    ignore = true # manual
