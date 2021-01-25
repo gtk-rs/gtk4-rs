@@ -8,6 +8,7 @@ pub mod application_window;
 pub mod box_;
 pub mod builder_scope;
 pub mod button;
+pub mod cell_editable;
 pub mod cell_renderer;
 pub mod cell_renderer_text;
 pub mod check_button;
@@ -76,6 +77,7 @@ pub mod prelude {
     pub use super::box_::BoxImpl;
     pub use super::builder_scope::{BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::{ButtonImpl, ButtonImplExt};
+    pub use super::cell_editable::{CellEditableImpl, CellEditableImplExt};
     pub use super::cell_renderer::{CellRendererImpl, CellRendererImplExt};
     pub use super::cell_renderer_text::{CellRendererTextImpl, CellRendererTextImplExt};
     pub use super::check_button::{CheckButtonImpl, CheckButtonImplExt};
