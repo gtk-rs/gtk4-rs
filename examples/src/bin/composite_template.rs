@@ -31,6 +31,7 @@ mod imp {
         const NAME: &'static str = "ExApplicationWindow";
         type Type = super::ExApplicationWindow;
         type ParentType = gtk::ApplicationWindow;
+        type Interfaces = ();
         type Instance = subclass::simple::InstanceStruct<Self>;
         type Class = subclass::simple::ClassStruct<Self>;
 

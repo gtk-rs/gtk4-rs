@@ -23,6 +23,7 @@ mod imp {
         const NAME: &'static str = "VideoPlayerWindow";
         type Type = super::VideoPlayerWindow;
         type ParentType = gtk::ApplicationWindow;
+        type Interfaces = ();
         type Instance = subclass::simple::InstanceStruct<Self>;
         type Class = subclass::simple::ClassStruct<Self>;
 

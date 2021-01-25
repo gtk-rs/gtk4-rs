@@ -16,41 +16,19 @@ mod imp {
         orientation: RefCell<gtk::Orientation>,
     }
 
-    // Every widget that implements Orientable has to define a "orientation"
-    // property like below, gtk::Orientation::Horizontal is a placeholder
-    // for the initial value.
-    //
-    // glib::ParamFlags::CONSTRUCT allows us to set that property the moment
-    // we create a new instance of the widget
-    static PROPERTIES: [glib::subclass::Property; 1] =
-        [glib::subclass::Property("orientation", |name| {
-            glib::ParamSpec::enum_(
-                name,
-                "orientation",
-                "Orientation",
-                gtk::Orientation::static_type(),
-                gtk::Orientation::Horizontal.to_glib(),
-                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
-            )
-        })];
-
     impl ObjectSubclass for CustomOrientable {
         const NAME: &'static str = "ExCustomOrientable";
         type Type = super::CustomOrientable;
         type ParentType = gtk::Widget;
+        type Interfaces = (gtk::Orientable,);
         type Instance = glib::subclass::simple::InstanceStruct<Self>;
         type Class = glib::subclass::simple::ClassStruct<Self>;
 
         glib::object_subclass!();
 
-        fn type_init(type_: &mut glib::subclass::InitializingType<Self>) {
-            type_.add_interface::<gtk::Orientable>();
-        }
-
         fn class_init(klass: &mut Self::Class) {
             // The layout manager determines how child widgets are laid out.
             klass.set_layout_manager_type::<gtk::BoxLayout>();
-            klass.install_properties(&PROPERTIES);
         }
 
         fn new() -> Self {
@@ -95,11 +73,36 @@ mod imp {
             }
         }
 
-        fn set_property(&self, obj: &Self::Type, id: usize, value: &glib::Value) {
-            let prop = &PROPERTIES[id];
+        // Every widget that implements Orientable has to define a "orientation"
+        // property like below, gtk::Orientation::Horizontal is a placeholder
+        // for the initial value.
+        //
+        // glib::ParamFlags::CONSTRUCT allows us to set that property the moment
+        // we create a new instance of the widget
+        fn properties() -> &'static [glib::ParamSpec] {
+            use once_cell::sync::Lazy;
+            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
+                vec![glib::ParamSpec::enum_(
+                    "orientation",
+                    "orientation",
+                    "Orientation",
+                    gtk::Orientation::static_type(),
+                    gtk::Orientation::Horizontal.to_glib(),
+                    glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
+                )]
+            });
+            PROPERTIES.as_ref()
+        }
 
-            match *prop {
-                glib::subclass::Property("orientation", ..) => {
+        fn set_property(
+            &self,
+            obj: &Self::Type,
+            _id: usize,
+            value: &glib::Value,
+            pspec: &glib::ParamSpec,
+        ) {
+            match pspec.get_name() {
+                "orientation" => {
                     let orientation = value.get().unwrap().unwrap();
                     self.orientation.replace(orientation);
                     // We have to set the value in our layout manager as well.
@@ -114,11 +117,14 @@ mod imp {
             }
         }
 
-        fn get_property(&self, _obj: &Self::Type, id: usize) -> glib::Value {
-            let prop = &PROPERTIES[id];
-
-            match *prop {
-                glib::subclass::Property("orientation", ..) => self.orientation.borrow().to_value(),
+        fn get_property(
+            &self,
+            _obj: &Self::Type,
+            _id: usize,
+            pspec: &glib::ParamSpec,
+        ) -> glib::Value {
+            match pspec.get_name() {
+                "orientation" => self.orientation.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
