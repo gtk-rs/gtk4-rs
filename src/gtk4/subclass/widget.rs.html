@@ -1020,6 +1020,8 @@
 <span id="1017">1017</span>
 <span id="1018">1018</span>
 <span id="1019">1019</span>
+<span id="1020">1020</span>
+<span id="1021">1021</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -1997,6 +1999,8 @@
     <span class="ident">T</span>: <span class="ident">ObjectType</span> <span class="op">+</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">ObjectType</span><span class="op">&gt;</span>::<span class="ident">GlibType</span><span class="op">&gt;</span>,
 {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">T</span>::<span class="ident">static_type</span>();
+
         <span class="self">Self</span> {
             <span class="ident">ptr</span>: <span class="ident">std</span>::<span class="ident">ptr</span>::<span class="ident">null_mut</span>(),
         }
