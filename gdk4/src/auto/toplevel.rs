@@ -106,8 +106,6 @@ pub trait ToplevelExt: 'static {
 
     fn get_property_transient_for(&self) -> Option<Surface>;
 
-    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -397,10 +395,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
                 .expect("Return Value for property `transient-for` getter")
         }
     }
-
-    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Out size: Gdk.ToplevelSize
-    //}
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P, F: Fn(&P) + 'static>(
