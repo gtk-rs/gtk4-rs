@@ -53,15 +53,15 @@ name = "GdkX11.X11Display"
 status = "generate"
     [[object.function]]
     name = "get_xdisplay"
-    # x11 types don't implement glib traits
+    # TODO: x11 types don't implement glib traits
     manual = true
     [[object.function]]
     name = "get_xscreen"
-    # x11 types don't implement glib traits
+    # TODO: x11 types don't implement glib traits
     manual = true
     [[object.function]]
     name = "text_property_to_text_list"
-    # requires a manual implementation
+    # TODO: requires a manual implementation
     manual = true
 
 
@@ -70,5 +70,5 @@ name = "GdkX11.X11Screen"
 status = "generate"
     [[object.function]]
     name = "get_xscreen"
-    # x11 types don't implement glib traits
+    # TODO: x11 types don't implement glib traits
     manual = true
