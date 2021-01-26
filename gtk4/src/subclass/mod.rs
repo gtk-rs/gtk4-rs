@@ -10,6 +10,7 @@ pub mod builder_scope;
 pub mod button;
 pub mod cell_area_context;
 pub mod cell_editable;
+pub mod cell_layout;
 pub mod cell_renderer;
 pub mod cell_renderer_text;
 pub mod check_button;
@@ -82,6 +83,7 @@ pub mod prelude {
     pub use super::button::{ButtonImpl, ButtonImplExt};
     pub use super::cell_area_context::{CellAreaContextImpl, CellAreaContextImplExt};
     pub use super::cell_editable::{CellEditableImpl, CellEditableImplExt};
+    pub use super::cell_layout::{CellLayoutImpl, CellLayoutImplExt};
     pub use super::cell_renderer::{CellRendererImpl, CellRendererImplExt};
     pub use super::cell_renderer_text::{CellRendererTextImpl, CellRendererTextImplExt};
     pub use super::check_button::{CheckButtonImpl, CheckButtonImplExt};
