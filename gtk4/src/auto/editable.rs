@@ -48,7 +48,7 @@ pub trait EditableExt: 'static {
     fn get_alignment(&self) -> f32;
 
     #[doc(alias = "gtk_editable_get_chars")]
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<glib::GString>;
+    fn get_chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_delegate")]
     fn get_delegate(&self) -> Option<Editable>;
@@ -69,7 +69,7 @@ pub trait EditableExt: 'static {
     fn get_selection_bounds(&self) -> Option<(i32, i32)>;
 
     #[doc(alias = "gtk_editable_get_text")]
-    fn get_text(&self) -> Option<glib::GString>;
+    fn get_text(&self) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_width_chars")]
     fn get_width_chars(&self) -> i32;
@@ -165,7 +165,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         unsafe { ffi::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> Option<glib::GString> {
+    fn get_chars(&self, start_pos: i32, end_pos: i32) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_editable_get_chars(
                 self.as_ref().to_glib_none().0,
@@ -226,7 +226,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_text(&self) -> Option<glib::GString> {
+    fn get_text(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_editable_get_text(self.as_ref().to_glib_none().0)) }
     }
 

@@ -819,7 +819,6 @@ generate_builder = true
 [[object]]
 name = "Gtk.Editable"
 status = "generate"
-trust_return_value_nullability = false
 manual_traits = ["EditableExtManual"]
     [[object.function]]
     pattern = "delegate_(get|set)_property"
@@ -2300,11 +2299,6 @@ manual_traits = ["WidgetExtManual"]
     doc_trait_name = "WidgetExtManual"
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
-    name = "get_css_name"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
     name = "get_template_child"
         [object.function.return]
         nullable = true
@@ -2313,6 +2307,15 @@ manual_traits = ["WidgetExtManual"]
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    name = "get_name"
+    rename = "get_widget_name"
+        # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3124
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "set_name"
+    rename = "set_widget_name"
     [[object.signal]]
     name = "drag-data-get"
         [[object.signal.parameter]]

@@ -15,8 +15,6 @@ pub trait WidgetExtManual: 'static {
         &self,
         callback: P,
     ) -> TickCallbackId;
-
-    fn set_name(&self, name: &str);
 }
 
 impl<O: IsA<Widget>> WidgetExtManual for O {
@@ -63,12 +61,6 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
         TickCallbackId {
             id,
             widget: self.upcast_ref().downgrade(),
-        }
-    }
-
-    fn set_name(&self, name: &str) {
-        unsafe {
-            ffi::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
     }
 }
