@@ -59,6 +59,13 @@ impl Widget {
     }
 }
 
+impl fmt::Display for Widget {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&WidgetExt::get_widget_name(self))
+    }
+}
+
 pub const NONE_WIDGET: Option<&Widget> = None;
 
 pub trait WidgetExt: 'static {
@@ -160,7 +167,7 @@ pub trait WidgetExt: 'static {
     fn get_css_classes(&self) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_widget_get_css_name")]
-    fn get_css_name(&self) -> Option<glib::GString>;
+    fn get_css_name(&self) -> glib::GString;
 
     #[doc(alias = "gtk_widget_get_cursor")]
     fn get_cursor(&self) -> Option<gdk::Cursor>;
@@ -229,7 +236,7 @@ pub trait WidgetExt: 'static {
     fn get_margin_top(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_name")]
-    fn get_name(&self) -> Option<glib::GString>;
+    fn get_widget_name(&self) -> glib::GString;
 
     #[doc(alias = "gtk_widget_get_native")]
     fn get_native(&self) -> Option<Native>;
@@ -480,7 +487,7 @@ pub trait WidgetExt: 'static {
     fn set_margin_top(&self, margin: i32);
 
     #[doc(alias = "gtk_widget_set_name")]
-    fn set_name(&self, name: &str);
+    fn set_widget_name(&self, name: &str);
 
     #[doc(alias = "gtk_widget_set_opacity")]
     fn set_opacity(&self, opacity: f64);
@@ -970,7 +977,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_css_name(&self) -> Option<glib::GString> {
+    fn get_css_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_css_name(self.as_ref().to_glib_none().0)) }
     }
 
@@ -1106,7 +1113,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { ffi::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_name(&self) -> Option<glib::GString> {
+    fn get_widget_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_name(self.as_ref().to_glib_none().0)) }
     }
 
@@ -1691,7 +1698,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_name(&self, name: &str) {
+    fn set_widget_name(&self, name: &str) {
         unsafe {
             ffi::gtk_widget_set_name(self.as_ref().to_glib_none().0, name.to_glib_none().0);
         }
@@ -3146,11 +3153,5 @@ impl<O: IsA<Widget>> WidgetExt for O {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for Widget {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Widget")
     }
 }
