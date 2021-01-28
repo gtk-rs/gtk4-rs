@@ -79,6 +79,12 @@ pub struct TickCallbackId {
     widget: WeakRef<Widget>,
 }
 
+impl PartialEq for TickCallbackId {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
+    }
+}
+
 impl TickCallbackId {
     #[doc(alias = "gtk_widget_remove_tick_callback")]
     pub fn remove(self) {
