@@ -73,6 +73,7 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
     }
 }
 
+#[derive(Debug)]
 pub struct TickCallbackId {
     id: u32,
     widget: WeakRef<Widget>,
