@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["gdk4"] = [{"text":"impl SetValueOptional for Rectangle","synthetic":false,"types":[]},{"text":"impl SetValueOptional for RGBA","synthetic":false,"types":[]}];
+implementors["gdk4"] = [{"text":"impl SetValueOptional for <a class=\"struct\" href=\"gdk4/struct.Rectangle.html\" title=\"struct gdk4::Rectangle\">Rectangle</a>","synthetic":false,"types":["gdk4::rectangle::Rectangle"]},{"text":"impl SetValueOptional for <a class=\"struct\" href=\"gdk4/struct.RGBA.html\" title=\"struct gdk4::RGBA\">RGBA</a>","synthetic":false,"types":["gdk4::rgba::RGBA"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

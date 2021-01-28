@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["gdk4"] = [{"text":"impl FromGlib&lt;u32&gt; for Key","synthetic":false,"types":[]}];
+implementors["gdk4"] = [{"text":"impl FromGlib&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.u32.html\">u32</a>&gt; for <a class=\"struct\" href=\"gdk4/keys/struct.Key.html\" title=\"struct gdk4::keys::Key\">Key</a>","synthetic":false,"types":["gdk4::keys::Key"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
