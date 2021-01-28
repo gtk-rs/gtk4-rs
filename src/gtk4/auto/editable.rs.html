@@ -905,7 +905,7 @@
     <span class="doccomment">///  string. This string is allocated by the `Editable`</span>
     <span class="doccomment">///  implementation and should be freed by the caller.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_get_chars&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_chars</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start_pos</span>: <span class="ident">i32</span>, <span class="ident">end_pos</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_chars</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start_pos</span>: <span class="ident">i32</span>, <span class="ident">end_pos</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">GString</span>;
 
     <span class="doccomment">/// Gets the `Editable` that `self` is delegating its</span>
     <span class="doccomment">/// implementation to. Typically, the delegate is a `Text` widget.</span>
@@ -978,7 +978,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a pointer to the contents of the editable.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_get_text&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">GString</span>;
 
     <span class="doccomment">/// Gets the value set by `Editable::set_width_chars`.</span>
     <span class="doccomment">///</span>
@@ -1172,7 +1172,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_editable_get_alignment</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_chars</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start_pos</span>: <span class="ident">i32</span>, <span class="ident">end_pos</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_chars</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start_pos</span>: <span class="ident">i32</span>, <span class="ident">end_pos</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">GString</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_editable_get_chars</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1233,7 +1233,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">GString</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_editable_get_text</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
