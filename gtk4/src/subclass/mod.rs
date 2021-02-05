@@ -7,6 +7,7 @@ pub mod app_chooser;
 pub mod application;
 pub mod application_window;
 pub mod box_;
+pub mod builder_scope;
 pub mod button;
 pub mod cell_renderer;
 pub mod cell_renderer_text;
@@ -68,6 +69,7 @@ pub mod prelude {
     pub use super::application::GtkApplicationImpl;
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
+    pub use super::builder_scope::BuilderScopeImpl;
     pub use super::button::ButtonImpl;
     pub use super::cell_renderer::CellRendererImpl;
     pub use super::cell_renderer_text::CellRendererTextImpl;
