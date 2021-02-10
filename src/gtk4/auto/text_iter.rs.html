@@ -1658,7 +1658,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextIter</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkTextIter</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">copy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_text_iter_copy</span>(<span class="ident">mut_override</span>(<span class="ident">ptr</span>)),
+        <span class="ident">copy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_text_iter_copy</span>(<span class="ident">ptr</span>),
         <span class="ident">free</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_text_iter_free</span>(<span class="ident">ptr</span>),
         <span class="ident">init</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">_ptr</span><span class="op">|</span> (),
         <span class="ident">clear</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">_ptr</span><span class="op">|</span> (),
