@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::LayoutChild;
-use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {

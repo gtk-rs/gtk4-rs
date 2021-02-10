@@ -20,7 +20,7 @@ libc = "0.2"
 git = "https://github.com/gtk-rs/gtk-rs.git"
 
 [build-dependencies]
-system-deps = "2.0"
+system-deps = "3"
 
 [dev-dependencies]
 shell-words = "1.0.0"

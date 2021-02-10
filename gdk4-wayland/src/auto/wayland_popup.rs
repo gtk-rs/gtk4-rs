@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::WaylandSurface;
-use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
