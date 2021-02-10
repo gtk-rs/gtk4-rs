@@ -27,26 +27,36 @@ jobs:
       # gsk4
       - name: "gsk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gsk4/Cargo.toml --features "broadway, vulkan"
+      - name: "gsk4/sys: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gsk4/sys/Cargo.toml
       - name: "gsk4: build"
         run: cargo build --manifest-path gsk4/Cargo.toml --features "broadway, vulkan"
       # gdk4
       - name: "gdk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gdk4/Cargo.toml
+      - name: "gdk4/sys: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gdk4/sys/Cargo.toml
       - name: "gdk4: build"
         run: cargo build --manifest-path gdk4/Cargo.toml
       # gdk4-x11
       - name: "gdk4-x11: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gdk4-x11/Cargo.toml
+      # - name: "gdk4-x11/sys: tests"
+      #   run: xvfb-run --auto-servernum cargo test --manifest-path gdk4-x11/sys/Cargo.toml
       - name: "gdk4-x11: build"
         run: cargo build --manifest-path gdk4-x11/Cargo.toml
       # gdk4-wayland
       - name: "gdk4-wayland: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gdk4-wayland/Cargo.toml
+      - name: "gdk4-wayland/sys: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path gdk4-wayland/sys/Cargo.toml
       - name: "gdk4-wayland: build"
         run: cargo build --manifest-path gdk4-wayland/Cargo.toml
       # gtk4
       - name: "gtk4: tests"
         run: xvfb-run --auto-servernum cargo test --manifest-path gtk4/Cargo.toml
+      # - name: "gtk4/sys: tests"
+      #   run: xvfb-run --auto-servernum cargo test --manifest-path gtk4/sys/Cargo.toml
       - name: "gtk4: build"
         run: cargo build --manifest-path gtk4/Cargo.toml
 
@@ -106,7 +116,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: 'recursive'
+          submodules: "recursive"
       - run: python3 generator.py --yes
       - run: git diff -R --exit-code
 
