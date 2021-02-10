@@ -16,11 +16,6 @@ glib::wrapper! {
 }
 
 impl GLTexture {
-    //#[doc(alias = "gdk_gl_texture_new")]
-    //pub fn new(context: &GLContext, id: u32, width: i32, height: i32, data: /*Unimplemented*/Option<Fundamental: Pointer>) -> GLTexture {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_new() }
-    //}
-
     #[doc(alias = "gdk_gl_texture_release")]
     pub fn release(&self) {
         unsafe {

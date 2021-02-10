@@ -33,7 +33,6 @@ generate = [
     "Gdk.FullscreenMode",
     "Gdk.GLContext",
     "Gdk.GLError",
-    "Gdk.GLTexture",
     "Gdk.Gravity",
     "Gdk.InputSource",
     "Gdk.KeyMatch",
@@ -315,6 +314,13 @@ status = "generate"
     [[object.function]]
     name = "read_async"
     manual = true # const ptr
+
+[[object]]
+name = "Gdk.GLTexture"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Gdk.Monitor"

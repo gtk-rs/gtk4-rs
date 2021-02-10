@@ -48,6 +48,7 @@ mod draw_context;
 mod drop;
 mod event;
 mod functions;
+mod gl_texture;
 mod keymap_key;
 pub mod keys;
 mod popup_layout;
