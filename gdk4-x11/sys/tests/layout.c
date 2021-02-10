@@ -7,6 +7,6 @@
 #include <stdio.h>
 
 int main() {
-    printf("%zu\n%zu", sizeof(ABI_TYPE_NAME), alignof(ABI_TYPE_NAME));
+    printf("%s;%zu;%zu\n", "GdkX11DeviceType", sizeof(GdkX11DeviceType), alignof(GdkX11DeviceType));
     return 0;
 }

@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct TextIter(Boxed<ffi::GtkTextIter>);
 
     match fn {
-        copy => |ptr| ffi::gtk_text_iter_copy(mut_override(ptr)),
+        copy => |ptr| ffi::gtk_text_iter_copy(ptr),
         free => |ptr| ffi::gtk_text_iter_free(ptr),
         init => |_ptr| (),
         clear => |_ptr| (),
