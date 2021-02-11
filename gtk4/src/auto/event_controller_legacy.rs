@@ -29,12 +29,14 @@ impl EventControllerLegacy {
         }
     }
 
-    pub fn connect_event<F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static>(
+    pub fn connect_event<
+        F: Fn(&EventControllerLegacy, &gdk::Event) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn event_trampoline<
-            F: Fn(&EventControllerLegacy, &gdk::Event) -> bool + 'static,
+            F: Fn(&EventControllerLegacy, &gdk::Event) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut ffi::GtkEventControllerLegacy,
             event: *mut gdk::ffi::GdkEvent,

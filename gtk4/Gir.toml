@@ -70,7 +70,6 @@ generate = [
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
     "Gtk.EventControllerFocus",
-    "Gtk.EventControllerLegacy",
     "Gtk.EventControllerMotion",
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
@@ -911,7 +910,6 @@ name = "Gtk.EventController"
 status = "generate"
 trust_return_value_nullability = false
 
-
 [[object]]
 name = "Gtk.EventControllerKey"
 status = "generate"
@@ -927,9 +925,19 @@ trust_return_value_nullability = false
     inhibit = true
 
 [[object]]
+name = "Gtk.EventControllerLegacy"
+status = "generate"
+    [[object.signal]]
+    name = "event"
+    inhibit = true
+
+[[object]]
 name = "Gtk.EventControllerScroll"
 status = "generate"
 generate_builder = true
+    [[object.signal]]
+    name = "scroll"
+    inhibit = true
 
 [[object]]
 name = "Gtk.Expander"
