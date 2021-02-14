@@ -1,19 +1,45 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::BorderNode;
+use crate::{RenderNodeType, RoundedRect};
 use glib::translate::*;
-use glib::IsA;
 
-pub trait BorderNodeManualExt {
-    fn get_widths(&self) -> &[f32; 4];
-}
+define_render_node!(
+    BorderNode,
+    ffi::GskBorderNode,
+    ffi::gsk_border_node_get_type,
+    RenderNodeType::BorderNode
+);
 
-impl<O: IsA<BorderNode>> BorderNodeManualExt for O {
-    #[doc(alias = "gsk_border_node_get_widths")]
-    fn get_widths(&self) -> &[f32; 4] {
+impl BorderNode {
+    #[doc(alias = "gsk_border_node_new")]
+    pub fn new(
+        outline: &RoundedRect,
+        border_width: &[f32; 4],
+        border_color: &[gdk::RGBA; 4],
+    ) -> BorderNode {
         unsafe {
-            (ffi::gsk_border_node_get_widths(self.as_ref().to_glib_none().0) as *const &[f32; 4])
-                .read()
+            from_glib_full(ffi::gsk_border_node_new(
+                outline.to_glib_none().0,
+                border_width.as_ptr() as *const [f32; 4],
+                border_color.as_ptr() as *const [gdk::ffi::GdkRGBA; 4],
+            ))
         }
+    }
+
+    #[doc(alias = "gsk_border_node_get_colors")]
+    pub fn get_colors(&self) -> &[gdk::RGBA; 4] {
+        unsafe {
+            &*(ffi::gsk_border_node_get_colors(self.to_glib_none().0) as *const [gdk::RGBA; 4])
+        }
+    }
+
+    #[doc(alias = "gsk_border_node_get_outline")]
+    pub fn get_outline(&self) -> RoundedRect {
+        unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gsk_border_node_get_widths")]
+    pub fn get_widths(&self) -> &[f32; 4] {
+        unsafe { &*ffi::gsk_border_node_get_widths(self.to_glib_none().0) }
     }
 }

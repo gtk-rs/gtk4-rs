@@ -1,8 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ColorStop, RepeatingLinearGradientNode};
+use crate::{ColorStop, RenderNodeType};
 use glib::translate::*;
 use graphene::{Point, Rect};
+
+define_render_node!(
+    RepeatingLinearGradientNode,
+    ffi::GskRepeatingLinearGradientNode,
+    ffi::gsk_repeating_linear_gradient_node_get_type,
+    RenderNodeType::RepeatingLinearGradientNode
+);
 
 impl RepeatingLinearGradientNode {
     #[doc(alias = "gsk_repeating_linear_gradient_node_new")]

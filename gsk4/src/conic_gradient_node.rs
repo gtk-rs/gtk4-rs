@@ -1,7 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ColorStop, ConicGradientNode};
+use crate::{ColorStop, RenderNodeType};
 use glib::translate::*;
+use std::mem;
+
+define_render_node!(
+    ConicGradientNode,
+    ffi::GskConicGradientNode,
+    ffi::gsk_conic_gradient_node_get_type,
+    RenderNodeType::ConicGradientNode
+);
 
 impl ConicGradientNode {
     #[doc(alias = "gsk_conic_gradient_node_new")]
@@ -22,5 +30,39 @@ impl ConicGradientNode {
                 n_color_stops,
             ))
         }
+    }
+
+    #[doc(alias = "gsk_conic_gradient_node_get_center")]
+    pub fn get_center(&self) -> graphene::Point {
+        unsafe {
+            from_glib_none(ffi::gsk_conic_gradient_node_get_center(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gsk_conic_gradient_node_get_color_stops")]
+    pub fn get_color_stops(&self) -> Vec<ColorStop> {
+        unsafe {
+            let mut n_stops = mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_none_num(
+                ffi::gsk_conic_gradient_node_get_color_stops(
+                    self.to_glib_none().0,
+                    n_stops.as_mut_ptr(),
+                ),
+                n_stops.assume_init() as usize,
+            );
+            ret
+        }
+    }
+
+    #[doc(alias = "gsk_conic_gradient_node_get_n_color_stops")]
+    pub fn get_n_color_stops(&self) -> usize {
+        unsafe { ffi::gsk_conic_gradient_node_get_n_color_stops(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "gsk_conic_gradient_node_get_rotation")]
+    pub fn get_rotation(&self) -> f32 {
+        unsafe { ffi::gsk_conic_gradient_node_get_rotation(self.to_glib_none().0) }
     }
 }
