@@ -1,16 +1,16 @@
-# gdk4-x11
+# gdk4-wayland
 
 [Project site](https://gtk-rs.org/)
 
-Rust bindings of __GDK 4's X11 backend__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+Rust bindings of __GDK 4's Wayland backend__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
-__Required Rust version__: 1.48+.
+__Required Rust version__: 1.48+
 
 ## Documentation
 
 - [Stable Version] TODO
-- [Development Version](https://gtk-rs.org/gtk4-rs/gdk4_x11/)
-- [The C API](hhttps://docs.gtk.org/gdk4-x11/)
+- [Development Version](https://gtk-rs.org/gtk4-rs/gdk4_wayland/)
+- [The C API](https://docs.gtk.org/gdk4-wayland/)
 - [GTK Installation instructions](https://www.gtk.org/docs/installations/)
 
 
@@ -45,4 +45,4 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 
 ## License
 
-The Rust bindings of __gdk4-x11__ are available under the MIT License, please refer to it.
+The Rust bindings of __gdk4-wayland__ are available under the MIT License, please refer to it.

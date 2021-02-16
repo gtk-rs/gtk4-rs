@@ -1,49 +1,67 @@
-# gtk4-rs
+# gtk4-rs ![CI](https://github.com/gtk-rs/gtk4-rs/workflows/CI/badge.svg)
 
-The `gtk4-rs` are a group of crates that aims to provide gtk4 bindings.
+A group of crates that aims to provide complete [GTK](https://gtk.org/) 4 bindings. This repository contains all the "core" crates of GTK 4.
 
-This repository contains all the "core" crates of gtk 4. For more
-information about each crate, please refer to their `README.md` file in their directory.
+- [GTK](./gtk4)
+- [GDK](./gdk4): An intermediate layer which isolates GTK from the details of the windowing system.
+  - [GDK Wayland](./gdk4-wayland): Wayland backend specific functions.
+  - [GDK X11](./gdk4-x11): X backend specific functions.
+- [GSK](./gsk4): An intermediate layer which isolates GTK from the details of the OpenGL or Vulkan implementation.
+
+The GTK 4 crates also depends on other libraries part of the platform like:
+
+- [GLib](https://github.com/gtk-rs/gtk-rs/tree/master/glib)
+- [Gio](https://github.com/gtk-rs/gtk-rs/tree/master/gio)
+- [Graphene](https://github.com/gtk-rs/gtk-rs/tree/master/graphene)
+- [Cairo](https://github.com/gtk-rs/gtk-rs/tree/master/cairo)
+- [Pango](https://github.com/gtk-rs/gtk-rs/tree/master/pango)
+
+Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs](https://github.com/gtk-rs/gtk-rs) repository.
+
+For more information about each crate, please refer to their `README.md` file in their directory.
+
+__Required Rust version__: 1.48+
 
 ## Documentation
 
 ### Development Branch
 
- * [gtk](https://gtk-rs.org/gtk4-rs/gtk4/)
- * [gdk](https://gtk-rs.org/gtk4-rs/gdk4/)
- * [gsk](https://gtk-rs.org/gtk4-rs/gsk4/)
+- [GTK](https://gtk-rs.org/gtk4-rs/gtk4/)
+- [GDK](https://gtk-rs.org/gtk4-rs/gdk4/)
+- [GSK](https://gtk-rs.org/gtk4-rs/gsk4/)
+- [GDK Wayland](https://gtk-rs.org/gtk4-rs/gdk4_wayland/)
+- [GDK X11](https://gtk-rs.org/gtk4-rs/gdk4_x11/)
+- [GTK Macros](https://gtk-rs.org/gtk4-rs/gtk4_macros/)
 
-## Regenerating
+## Contributing
 
-To regenerate crates using [gir], please use the `generator.py`
-file as follows:
+The bindings are composed of two parts:
+
+- Automatically generated ones using [gir]
+- Manual parts
+
+The automatic ones can be generated using the `generator.py` script
 
 ```bash
-$ python3 generator.py
+python3 generator.py
 ```
 
-## Development
-
-
-This repository is structured as follows:
+All the crates except `gtk4-macros` follow this structure
 
 ```text
-- crate/
-   |
-   |-- README.md
-   |-- Gir.toml
-   |-- Cargo.toml
-   |-- src/
-   |-- sys/
+   ./crate 
+   ├── Gir.toml
+   ├── README.md
+   ├── src
+   │   ├── auto
+   ├── sys
+   └── tests
 ```
 
-The `crate` is a "top" directory (so "gdk4" or "gtk4" in here for example). I listed some
-import files, let's quickly explain them:
-
- * `README.md`: Explanations about the crate itself and eventually some details.
- * `Gir.toml`: Used by [gir] to generate most of the crates' code.
- * `Cargo.toml`: File describing the crate, used by `cargo` and `Rust`.
- * `src`: Contains the source code of the crate.
- * `sys`: Contains the 1:1 bindings of the C API.
+- `README.md`: Explanations about the crate itself and eventually some details.
+- `Gir.toml`: Used by [gir] to generate most of the code.
+- `src`: Contains the source code of the crate.
+- `src/auto`: Contains the automatically generated part of the source code.
+- `sys`: Contains the 1:1 bindings of the C API.
 
 [gir]: https://github.com/gtk-rs/gir
