@@ -1,14 +1,47 @@
-# gdk4 ![CI](https://github.com/gtk-rs/gdk4/workflows/CI/badge.svg)
+# gdk4
 
-Gdk 4 bindings for Rust.
+[Project site](https://gtk-rs.org/)
 
-- [Gtk-rs project site](https://gtk-rs.org/)
+Rust bindings of __GDK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
-- [Online documentation](https://gtk-rs.github.io/gdk4/gdk4)
+__Required Rust version__: 1.48+
 
-- [Readme](https://github.com/gtk-rs/gtk/blob/master/README.md) in our
-  [main repo](https://github.com/gtk-rs/gtk)
+## Documentation
+
+- [Stable Version] TODO
+- [Development Version](https://gtk-rs.org/gtk4-rs/gdk4/)
+- [The C API](https://docs.gtk.org/gdk4/)
+- [GTK Installation instructions](https://www.gtk.org/docs/installations/)
+
+
+## Using
+
+We recommend using [crates from crates.io](https://crates.io/keywords/gtk-rs),
+as [demonstrated here](https://gtk-rs.org/#using).
+
+If you want to track the bleeding edge, use the git dependency instead:
+
+```toml
+[dependencies]
+gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
+```
+
+Avoid mixing versioned and git crates like this:
+
+```toml
+# This will not compile
+[dependencies]
+gtk = {version = "0.1", package = "gtk4"}
+gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
+```
+
+### See Also
+
+- [glib](https://crates.io/crates/glib)
+- [gio](https://crates.io/crates/gio)
+- [gsk4](https://crates.io/crates/gsk4)
+- [gtk4](https://crates.io/crates/gtk4)
 
 ## License
 
-MIT
+The Rust bindings of __gdk4__ are available under the MIT License, please refer to it.
