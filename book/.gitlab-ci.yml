@@ -12,7 +12,7 @@ pages:
   script:
     - mdbook build -d public
   only:
-    - master
+    - main
   artifacts:
     paths:
       - public
