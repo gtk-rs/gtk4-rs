@@ -1,31 +1,41 @@
-# Basics
+# GTK-RS Book
 
-- [Setup the build environment](./basics_1.md)
-- [Getting Started](./basics_2.md)
-- [Basics](./basics_3.md)
-- [Widgets gallery](./basics_4.md)
-- [Intoduction to GObject](./basics_5)
-- [Subclassing](./basics_6.md)
-- [Properties & signals](./basics_7.md)
-- [Actions](./basics_8.md)
-- [Todo App](./basics_9.md)
-- [GtkBuilder](./basics_10.md)
-- [Templates](./basics_11.md)
+- [Introduction](basics/introduction.md)
+- [Getting Started](basics/getting_started.md)
+    - [Installation](basics/installation.md)
+    - [Hello, World!](basics/hello_world.md)
+- [Basics](basics/basics.md)
+    - [The main loop, callbacks and reference counting](basics/main_loop.md)
+    - [Widgets](basics/widgets.md)
+- [Introduction to GObject](basics/gobject.md)
+    - [Subclassing](basics/subclassing.md)
+    - [Properties & signals](basics/properties_signals.md)
+    - [Actions](basics/actions.md)
+- [Building a simple Todo App](basics/build_todo.md)
+- [Interface Builder](interface_builder.md)
+    - [GtkBuilder](basics/gtk_builder.md)
+    - [Templates](basics/templates.md)
+- [Internationalization](basics/i18n.md)
+- [Accessibility](basics/a11y.md)
+- [Finishing up the Todo App](basics/finish_to.md)
 
-# Go Further
+# Useful Libraries
 
-- [GtkSourceView](./discover_sourceview.md)
-- [GStreamer](./discover_gstreamer.md)
-- [Webkit2Gtk](./discover_webkit2gtk.md)
-- [Libadwaita](./discover_libadwaita.md)
+- [GtkSourceView](libs/sourceview.md)
+- [GStreamer](libs/gstreamer.md)
+- [Zbus and Ashpd](libs/zbus_ashpd.md)
+- [Webkit2Gtk](libs/webkit2gtk.md)
+- [Libadwaita](libs/libadwaita.md)
+
 # Build & deploy
 
-- [Meson](./build_meson.md)
-- [Flatpak](./build_flatpak.md)
-- [fenv](./build_fenv.md)
-- [Gitlab CI](./build_gitlab_ci.md)
-- [Github Actions](./build_github_ci.md)
+- [Meson](build/meson.md)
+- [Flatpak](build/flatpak.md)
+- [fenv](build/fenv.md)
+- [Gitlab CI](build/gitlab_ci.md)
+- [Github Actions](build/github_ci.md)
 
 # IDE
 
-- [GNOME Builder](./ide_builder.md)
+- [GNOME Builder](ide/builder.md)
+- [VS Code](ide/vscode.md)
