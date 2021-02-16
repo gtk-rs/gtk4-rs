@@ -1,0 +1,6 @@
+[book]
+authors = ["Bilal Elmoussaoui"]
+language = "en"
+multilingual = false
+src = "src"
+title = "gtk4-rs"
