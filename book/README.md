@@ -1,7 +1,9 @@
 # The GTK-Rust Book
 
-At the moment it is deployed [here](https://hofer-julian.pages.gitlab.gnome.org/gtk-rs-book)
+At the moment, it is deployed [here](https://hofer-julian.pages.gitlab.gnome.org/gtk-rs-book).
 
+
+## Build instructions
 
 1. Install mdbook
 
