@@ -1,5 +1,12 @@
 stages:
+  - lint
   - deploy
+
+codespell:
+  stage: lint
+  image: "docker.io/bilelmoussaoui/codespell"
+  script:
+    - codespell -S "*.png,*.po,.git,*.jpg" -f
 
 pages:
   stage: deploy
