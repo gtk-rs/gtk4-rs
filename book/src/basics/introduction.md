@@ -10,8 +10,8 @@ With this combination you don't have to worry about hitting bottlenecks mid-proj
 Additionally, with Rust you'll have nice things like:
  - Thread safety
  - Memory safety
- - Sane dependency management
- - Excellent third party libraries, which profit from the same points as mentioned above
+ - Sensible dependency management
+ - Excellent third party libraries, which benefit from the same points as mentioned above
 
 
 ## Who This Book Is For
@@ -31,7 +31,7 @@ back. However, if you are using it as a reference for a certain topic,
 you might find it useful to just jump into it.
 
 There are two kinds of chapters in this book: concept chapters and project
-chapters. In concept chapters, you’ll learn about an aspect of Rust. In project
+chapters. In concept chapters, you’ll learn about an aspect of GTK development. In project
 chapters, we’ll build small programs together, applying what you’ve learned so
 far. 
 
