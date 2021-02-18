@@ -2,9 +2,6 @@
 
 - [Introduction](basics/introduction.md)
 - [Installation](basics/installation.md)
-    - [Linux](basics/linux.md)
-    - [macOS]()
-    - [Windows]()
 - [Hello, World!]()
 - [Introduction to GObject]()
     - [Reference Counting]()
