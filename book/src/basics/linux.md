@@ -37,5 +37,5 @@ cargo new my-gtk-project
 
 Add the following line to your `Cargo.toml` and you are ready to go!
 ```toml
-gtk4-rs = "0.1"
+gtk = { version = "0.1", package = "gtk4" }
 ```
