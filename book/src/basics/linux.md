@@ -15,17 +15,21 @@ For other workflows, we recommend the fenv CLI tool.
 
 ## Package manager
 
+**TODO: Check if these instructions actually work**
+
 If you just want to follow the examples in the book you can also the package manager of your distribution.
-This of course requires that your distribution already packages gtk4.
+This of course requires that your distribution already packages GTK-4.
 
 If you use Fedora, execute:
 ```bash
-sudo dnf install gtk4-devel
+sudo dnf install rust cargo gtk4-devel
 ```
 
 If you use Debian or a derivative such as Ubuntu, execute:
 ```bash
-sudo apt install libgtk-4-dev
+sudo apt install rustc cargo libgtk-4-dev
 ```
+
+
 
 **TO-DO: How to add gtk4 to Cargo.toml as soon as it is released**
