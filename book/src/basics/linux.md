@@ -17,17 +17,12 @@ For other workflows, we recommend the [fenv](../build/fenv.html) CLI tool.
 
 ## Package manager
 
-If you just want to follow the examples in the book you can also the package manager of your distribution.
-This of course requires that your distribution already packages GTK-4.
+You can also build on the host system if you prefer to do so.
+First follow the instructions on the [GTK website](https://www.gtk.org/docs/installations/) to install GTK-4.
 
-If you use Fedora, execute:
+Then install Rust with the `rustup` tool
 ```bash
-sudo dnf install rust cargo gtk4-devel
-```
-
-If you use Debian or a derivative such as Ubuntu, execute:
-```bash
-sudo apt install rustc cargo libgtk-4-dev
+$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
 Now create a new project with
@@ -37,5 +32,7 @@ cargo new my-gtk-project
 
 Add the following line to your `Cargo.toml` and you are ready to go!
 ```toml
-gtk = { version = "0.1", package = "gtk4" }
+[dependencies.gtk]
+version = "0.1"
+package = "gtk4"
 ```
