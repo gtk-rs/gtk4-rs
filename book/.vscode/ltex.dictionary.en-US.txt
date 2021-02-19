@@ -1,0 +1,12 @@
+GObject
+Subclassing
+Paintables
+GtkBuilder
+GtkSourceView
+GStreamer
+Zbus
+Ashpd
+Libadwaita
+Flatpak
+fenv
+Gitlab

@@ -1,3 +1,5 @@
+Let's begin by installing all necessary tools.
+
 ## Flatpak (Linux only)
 
 We recommend to use Flatpak for developing and packaging.
