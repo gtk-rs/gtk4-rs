@@ -11,7 +11,7 @@ fn manage_docs() {
     const IGNORES: &'static [&'static str] = &["lib.rs"];
     lgpl_docs::purge(PATH, IGNORES);
     if cfg!(feature = "embed-lgpl-docs") {
-        lgpl_docs::embed(lgpl_docs::Library::Gsk4, PATH, IGNORES);
+        lgpl_docs::embed(lgpl_docs::Library::Gdk4Wayland, PATH, IGNORES);
     }
 }
 
