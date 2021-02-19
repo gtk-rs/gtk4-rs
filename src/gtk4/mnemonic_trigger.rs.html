@@ -34,22 +34,6 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -67,28 +51,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">MnemonicTrigger</span> {
-    <span class="doccomment">/// Creates a `ShortcutTrigger` that will trigger whenever the key with</span>
-    <span class="doccomment">/// the given `keyval` is pressed and mnemonics have been activated.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Mnemonics are activated by calling code when a key event with the right</span>
-    <span class="doccomment">/// modifiers is detected.</span>
-    <span class="doccomment">/// ## `keyval`</span>
-    <span class="doccomment">/// The keyval to trigger for</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `ShortcutTrigger`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mnemonic_trigger_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">keyval</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MnemonicTrigger</span> {
         <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_mnemonic_trigger_new</span>(<span class="ident">keyval</span>.<span class="ident">to_glib</span>())) }
     }
 
-    <span class="doccomment">/// Gets the keyval that must be pressed to succeed triggering `self`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// the keyval</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mnemonic_trigger_get_keyval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Key</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_mnemonic_trigger_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }

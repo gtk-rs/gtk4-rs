@@ -27,25 +27,6 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -53,25 +34,6 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">impl</span> <span class="ident">ConicGradientNode</span> {
-    <span class="doccomment">/// Creates a `RenderNode` that draws a conic gradient. The conic gradient</span>
-    <span class="doccomment">/// starts around `center` in the direction of `rotation`. A rotation of 0 means</span>
-    <span class="doccomment">/// that the gradient points up. Color stops are then added clockwise.</span>
-    <span class="doccomment">/// ## `bounds`</span>
-    <span class="doccomment">/// the bounds of the node</span>
-    <span class="doccomment">/// ## `center`</span>
-    <span class="doccomment">/// the center of the gradient</span>
-    <span class="doccomment">/// ## `rotation`</span>
-    <span class="doccomment">/// the rotation of the gradient in degrees</span>
-    <span class="doccomment">/// ## `color_stops`</span>
-    <span class="doccomment">/// a pointer to an array of `ColorStop` defining the gradient</span>
-    <span class="doccomment">///  The offsets of all color steps must be increasing. The first stop&#39;s offset must be &gt;= 0 and the last</span>
-    <span class="doccomment">///  stop&#39;s offset must be &lt;= 1.</span>
-    <span class="doccomment">/// ## `n_color_stops`</span>
-    <span class="doccomment">/// the number of elements in `color_stops`</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `RenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_conic_gradient_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
