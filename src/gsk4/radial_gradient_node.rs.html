@@ -33,6 +33,31 @@
 <span id="30">30</span>
 <span id="31">31</span>
 <span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -40,6 +65,31 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">impl</span> <span class="ident">RadialGradientNode</span> {
+    <span class="doccomment">/// Creates a `RenderNode` that draws a radial gradient. The radial gradient</span>
+    <span class="doccomment">/// starts around `center`. The size of the gradient is dictated by `hradius`</span>
+    <span class="doccomment">/// in horizontal orientation and by `vradius` in vertial orientation.</span>
+    <span class="doccomment">/// ## `bounds`</span>
+    <span class="doccomment">/// the bounds of the node</span>
+    <span class="doccomment">/// ## `center`</span>
+    <span class="doccomment">/// the center of the gradient</span>
+    <span class="doccomment">/// ## `hradius`</span>
+    <span class="doccomment">/// the horizontal radius</span>
+    <span class="doccomment">/// ## `vradius`</span>
+    <span class="doccomment">/// the vertical radius</span>
+    <span class="doccomment">/// ## `start`</span>
+    <span class="doccomment">/// a percentage &gt;= 0 that defines the start of the gradient around `center`</span>
+    <span class="doccomment">/// ## `end`</span>
+    <span class="doccomment">/// a percentage &gt;= 0 that defines the end of the gradient around `center`</span>
+    <span class="doccomment">/// ## `color_stops`</span>
+    <span class="doccomment">/// a pointer to an array of `ColorStop` defining the gradient</span>
+    <span class="doccomment">///  The offsets of all color steps must be increasing. The first stop&#39;s offset must be &gt;= 0 and the last</span>
+    <span class="doccomment">///  stop&#39;s offset must be &lt;= 1.</span>
+    <span class="doccomment">/// ## `n_color_stops`</span>
+    <span class="doccomment">/// the number of elements in `color_stops`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// A new `RenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_radial_gradient_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,

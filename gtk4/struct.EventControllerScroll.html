@@ -16,7 +16,7 @@ flags given at creation time, or modified at a later point through
 conditions of the widget changed).</p>
 <p>The controller can be set up to emit motion for either/both vertical
 and horizontal scroll events through <code>EventControllerScrollFlags::Vertical</code>,
-<code>EventControllerScrollFlags::Horizontal</code> and <code>GTK_EVENT_CONTROLLER_SCROLL_BOTH</code>.
+<code>EventControllerScrollFlags::Horizontal</code> and <code>EventControllerScrollFlags::BothAxes</code>.
 If any axis is disabled, the respective <code>EventControllerScroll::scroll</code>
 delta will be 0. Vertical scroll events will be translated to horizontal
 motion for the devices incapable of horizontal scrolling.</p>

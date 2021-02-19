@@ -31,7 +31,7 @@
 <p><a href="struct.GLArea.html"><code>GLArea</code></a></p>
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.attach_buffers" class="method"><code>fn <a href="#tymethod.attach_buffers" class="fnname">attach_buffers</a>(&amp;self)</code><a class="srclink" href="../src/gtk4/auto/gl_area.rs.html#501" title="goto source code">[src]</a></h3><div class="docblock"><p>Ensures that the <code>self</code> framebuffer object is made the current draw
 and read target, and that all the required buffers for the <code>self</code>
-are created and bound to the frambuffer.</p>
+are created and bound to the framebuffer.</p>
 <p>This function is automatically called before emitting the
 <code>GLArea::render</code> signal, and doesn't normally need to be called
 by application code.</p>
@@ -78,7 +78,7 @@ useful if drawing the widget is faster.</p>
 around and will be used for drawing the widget the next time,
 unless the window is resized. In order to force a rendering
 <code>GLAreaExt::queue_render</code> must be called. This mode is useful when
-the scene changes seldomly, but takes a long time to redraw.</p>
+the scene changes seldom, but takes a long time to redraw.</p>
 <h2 id="auto_render" class="section-header"><a href="#auto_render"><code>auto_render</code></a></h2>
 <p>a boolean</p>
 </div><h3 id="tymethod.set_error" class="method"><code>fn <a href="#tymethod.set_error" class="fnname">set_error</a>(&amp;self, error: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;Error&gt;)</code><a class="srclink" href="../src/gtk4/auto/gl_area.rs.html#600" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets an error on the area which will be shown instead of the

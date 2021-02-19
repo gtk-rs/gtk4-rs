@@ -114,7 +114,7 @@ how to write such a function, see the <code>ListStore</code> documentation.</p>
 GtkTreeModel *list_store;
 GtkTreeIter iter;
 gboolean valid;
-gint row_count = 0;
+int row_count = 0;
 
 // make a new list_store
 list_store = gtk_list_store_new (N_COLUMNS,
@@ -131,8 +131,8 @@ valid = gtk_tree_model_get_iter_first (list_store,
                                        &amp;iter);
 while (valid)
  {
-   gchar *str_data;
-   gint   int_data;
+   char *str_data;
+   int    int_data;
 
    // Make sure you terminate calls to gtk_tree_model_get() with a “-1” value
    gtk_tree_model_get (list_store, &amp;iter,

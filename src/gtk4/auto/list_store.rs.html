@@ -476,7 +476,7 @@
     <span class="doccomment">/// can use all of the methods available there. It also implements the</span>
     <span class="doccomment">/// `TreeSortable` interface so it can be sorted by the view.</span>
     <span class="doccomment">/// Finally, it also implements the tree</span>
-    <span class="doccomment">/// [drag and drop][gtk3-`TreeView`-drag-and-drop]</span>
+    <span class="doccomment">/// [drag and drop][gtk4-`TreeView`-drag-and-drop]</span>
     <span class="doccomment">/// interfaces.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `ListStore` can accept most GObject types as a column type, though</span>
@@ -503,7 +503,7 @@
     <span class="doccomment">///   GtkListStore *list_store;</span>
     <span class="doccomment">///   GtkTreePath *path;</span>
     <span class="doccomment">///   GtkTreeIter iter;</span>
-    <span class="doccomment">///   gint i;</span>
+    <span class="doccomment">///   int i;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   list_store = gtk_list_store_new (N_COLUMNS,</span>
     <span class="doccomment">///                                    G_TYPE_STRING,</span>
@@ -512,7 +512,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///   for (i = 0; i &lt; 10; i++)</span>
     <span class="doccomment">///     {</span>
-    <span class="doccomment">///       gchar *some_data;</span>
+    <span class="doccomment">///       char *some_data;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///       some_data = get_some_data (i);</span>
     <span class="doccomment">///</span>
@@ -543,13 +543,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Performance Considerations</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Internally, the `ListStore` was implemented with a linked list with</span>
-    <span class="doccomment">/// a tail pointer prior to GTK+ 2.6. As a result, it was fast at data</span>
-    <span class="doccomment">/// insertion and deletion, and not fast at random data access. The</span>
-    <span class="doccomment">/// `ListStore` sets the `TreeModelFlags::ItersPersist` flag, which means</span>
-    <span class="doccomment">/// that ``GtkTreeIters`` can be cached while the row exists. Thus, if</span>
-    <span class="doccomment">/// access to a particular row is needed often and your code is expected to</span>
-    <span class="doccomment">/// run on older versions of GTK+, it is worth keeping the iter around.</span>
+    <span class="doccomment">/// Internally, the `ListStore` was originally implemented with a linked list</span>
+    <span class="doccomment">/// with a tail pointer. As a result, it was fast at data insertion and deletion,</span>
+    <span class="doccomment">/// and not fast at random data access. The `ListStore` sets the</span>
+    <span class="doccomment">/// `TreeModelFlags::ItersPersist` flag, which means that ``GtkTreeIters`` can be</span>
+    <span class="doccomment">/// cached while the row exists. Thus, if access to a particular row is needed</span>
+    <span class="doccomment">/// often and your code is expected to run on older versions of GTK, it is worth</span>
+    <span class="doccomment">/// keeping the iter around.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Atomic Operations</span>
     <span class="doccomment">///</span>

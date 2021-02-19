@@ -2241,11 +2241,11 @@
 
 <span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
     <span class="doccomment">/// `PrintOperation` is the high-level, portable printing API.</span>
-    <span class="doccomment">/// It looks a bit different than other GTK+ dialogs such as the</span>
+    <span class="doccomment">/// It looks a bit different than other GTK dialogs such as the</span>
     <span class="doccomment">/// `FileChooser`, since some platforms don’t expose enough</span>
     <span class="doccomment">/// infrastructure to implement a good print dialog. On such</span>
     <span class="doccomment">/// platforms, `PrintOperation` uses the native print dialog.</span>
-    <span class="doccomment">/// On platforms which do not provide a native print dialog, GTK+</span>
+    <span class="doccomment">/// On platforms which do not provide a native print dialog, GTK</span>
     <span class="doccomment">/// uses its own, see ``GtkPrintUnixDialog``.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The typical way to use the high-level printing API is to create</span>
@@ -2656,7 +2656,7 @@
     <span class="doccomment">///                          &quot;Error printing file:\n%s&quot;,</span>
     <span class="doccomment">///                          error-&gt;message);</span>
     <span class="doccomment">///    g_signal_connect (error_dialog, &quot;response&quot;,</span>
-    <span class="doccomment">///                      G_CALLBACK (gtk_widget_destroy), NULL);</span>
+    <span class="doccomment">///                      G_CALLBACK (gtk_window_destroy), NULL);</span>
     <span class="doccomment">///    gtk_widget_show (error_dialog);</span>
     <span class="doccomment">///    g_error_free (error);</span>
     <span class="doccomment">///  }</span>
@@ -2743,7 +2743,7 @@
     <span class="kw">fn</span> <span class="ident">set_embed_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">embed</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets up the `PrintOperation` to generate a file instead</span>
-    <span class="doccomment">/// of showing the print dialog. The indended use of this function</span>
+    <span class="doccomment">/// of showing the print dialog. The intended use of this function</span>
     <span class="doccomment">/// is for implementing “Export to PDF” actions. Currently, PDF</span>
     <span class="doccomment">/// is the only supported format.</span>
     <span class="doccomment">///</span>
@@ -2768,7 +2768,7 @@
     <span class="doccomment">/// Sets the name of the print job. The name is used to identify</span>
     <span class="doccomment">/// the job (e.g. in monitoring applications like eggcups).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you don’t set a job name, GTK+ picks a default one by</span>
+    <span class="doccomment">/// If you don’t set a job name, GTK picks a default one by</span>
     <span class="doccomment">/// numbering successive print jobs.</span>
     <span class="doccomment">/// ## `job_name`</span>
     <span class="doccomment">/// a string that identifies the print job</span>
@@ -2779,7 +2779,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be set to a positive number</span>
     <span class="doccomment">/// before the rendering starts. It may be set in a</span>
-    <span class="doccomment">/// `PrintOperation::begin-print` signal hander.</span>
+    <span class="doccomment">/// `PrintOperation::begin-print` signal handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the page numbers passed to the</span>
     <span class="doccomment">/// `PrintOperation::request-page-setup`</span>
@@ -2866,7 +2866,7 @@
     <span class="doccomment">/// Used as the label of the tab containing custom widgets.</span>
     <span class="doccomment">/// Note that this property may be ignored on some platforms.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If this is `None`, GTK+ uses a default label.</span>
+    <span class="doccomment">/// If this is `None`, GTK uses a default label.</span>
     <span class="kw">fn</span> <span class="ident">get_property_custom_tab_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The name of a file to generate instead of showing the print dialog.</span>
@@ -2883,7 +2883,7 @@
     <span class="doccomment">/// A string used to identify the job (e.g. in monitoring</span>
     <span class="doccomment">/// applications like eggcups).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you don&#39;t set a job name, GTK+ picks a default one</span>
+    <span class="doccomment">/// If you don&#39;t set a job name, GTK picks a default one</span>
     <span class="doccomment">/// by numbering successive print jobs.</span>
     <span class="kw">fn</span> <span class="ident">get_property_job_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>;
 
@@ -2891,7 +2891,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be set to a positive number</span>
     <span class="doccomment">/// before the rendering starts. It may be set in a</span>
-    <span class="doccomment">/// `PrintOperation::begin-print` signal hander.</span>
+    <span class="doccomment">/// `PrintOperation::begin-print` signal handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the page numbers passed to the</span>
     <span class="doccomment">/// `PrintOperation::request-page-setup` and</span>
@@ -2987,13 +2987,13 @@
     <span class="doccomment">/// static void</span>
     <span class="doccomment">/// draw_page (GtkPrintOperation *operation,</span>
     <span class="doccomment">///            GtkPrintContext   *context,</span>
-    <span class="doccomment">///            gint               page_nr,</span>
+    <span class="doccomment">///            int                page_nr,</span>
     <span class="doccomment">///            gpointer           user_data)</span>
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   cairo_t *cr;</span>
     <span class="doccomment">///   PangoLayout *layout;</span>
-    <span class="doccomment">///   gdouble width, text_height;</span>
-    <span class="doccomment">///   gint layout_height;</span>
+    <span class="doccomment">///   double width, text_height;</span>
+    <span class="doccomment">///   int layout_height;</span>
     <span class="doccomment">///   PangoFontDescription *desc;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   cr = gtk_print_context_get_cairo_context (context);</span>
@@ -3015,7 +3015,7 @@
     <span class="doccomment">///   pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   pango_layout_get_size (layout, NULL, &amp;layout_height);</span>
-    <span class="doccomment">///   text_height = (gdouble)layout_height / PANGO_SCALE;</span>
+    <span class="doccomment">///   text_height = (double)layout_height / PANGO_SCALE;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);</span>
     <span class="doccomment">///   pango_cairo_show_layout (cr, layout);</span>

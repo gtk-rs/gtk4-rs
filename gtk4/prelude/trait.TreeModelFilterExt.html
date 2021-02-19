@@ -66,7 +66,7 @@ if not.</p>
 <code>TreeModelFilterExt::set_visible_column</code> can only be called
 once for a given filter model.</p>
 <h2 id="column" class="section-header"><a href="#column"><code>column</code></a></h2>
-<p>A <code>gint</code> which is the column containing the visible information</p>
+<p>A <code>int</code> which is the column containing the visible information</p>
 </div><h3 id="tymethod.set_visible_func" class="method"><code>fn <a href="#tymethod.set_visible_func" class="fnname">set_visible_func</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../../gtk4/struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../../gtk4/struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;func: P<br>)</code><a class="srclink" href="../../src/gtk4/auto/tree_model_filter.rs.html#258" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the visible function used when filtering the <code>self</code> to be <code>func</code>.
 The function should return <code>true</code> if the given row should be visible and
 <code>false</code> otherwise.</p>
@@ -83,7 +83,7 @@ visible_func (GtkTreeModel *model,
               gpointer      data)
 {
   // Visible if row is non-empty and first column is “HI”
-  gchar *str;
+  char *str;
   gboolean visible = FALSE;
 
   gtk_tree_model_get (model, iter, 0, &amp;str, -1);

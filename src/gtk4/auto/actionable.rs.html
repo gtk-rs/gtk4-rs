@@ -269,7 +269,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`ActionableExt`](trait.ActionableExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`ActionableExtManual`](prelude/trait.ActionableExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Actionable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkActionable</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -283,7 +283,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`CheckMenuItem`](struct.CheckMenuItem.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`LockButton`](struct.LockButton.html), [`MenuButton`](struct.MenuButton.html), [`MenuItem`](struct.MenuItem.html), [`MenuToolButton`](struct.MenuToolButton.html), [`ModelButton`](struct.ModelButton.html), [`RadioButton`](struct.RadioButton.html), [`RadioMenuItem`](struct.RadioMenuItem.html), [`RadioToolButton`](struct.RadioToolButton.html), [`ScaleButton`](struct.ScaleButton.html), [`SeparatorMenuItem`](struct.SeparatorMenuItem.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html), [`ToggleToolButton`](struct.ToggleToolButton.html), [`ToolButton`](struct.ToolButton.html), [`VolumeButton`](struct.VolumeButton.html)</span>
+<span class="doccomment">/// [`Actionable`](struct.Actionable.html), [`Button`](struct.Button.html), [`CheckButton`](struct.CheckButton.html), [`LinkButton`](struct.LinkButton.html), [`ListBoxRow`](struct.ListBoxRow.html), [`LockButton`](struct.LockButton.html), [`Switch`](struct.Switch.html), [`ToggleButton`](struct.ToggleButton.html)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the action name for `self`.</span>
     <span class="doccomment">///</span>

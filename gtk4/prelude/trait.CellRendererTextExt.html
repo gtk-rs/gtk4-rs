@@ -145,7 +145,7 @@
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.set_fixed_height_from_font" class="method"><code>fn <a href="#tymethod.set_fixed_height_from_font" class="fnname">set_fixed_height_from_font</a>(&amp;self, number_of_rows: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a class="srclink" href="../../src/gtk4/auto/cell_renderer_text.rs.html#636" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the height of a renderer to explicitly be determined by the “font” and
 “y_pad” property set on it. Further changes in these properties do not
 affect the height, so they must be accompanied by a subsequent call to this
-function. Using this function is unflexible, and should really only be used
+function. Using this function is inflexible, and should really only be used
 if calculating the size of a cell is too slow (ie, a massive number of cells
 displayed). If <code>number_of_rows</code> is -1, then the fixed height is unset, and
 the height is determined by the properties again.</p>

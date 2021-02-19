@@ -448,7 +448,7 @@
     <span class="doccomment">/// or its parents. Usually, having a dependency on the state of any child</span>
     <span class="doccomment">/// node is not possible, unless references are taken on these explicitly.</span>
     <span class="doccomment">/// When no such reference exists, no signals may be received for these child</span>
-    <span class="doccomment">/// nodes (see reference couting rule number 3 in the `TreeModel` section).</span>
+    <span class="doccomment">/// nodes (see reference counting rule number 3 in the `TreeModel` section).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Determining the visibility state of a given node based on the state</span>
     <span class="doccomment">/// of its child nodes is a frequently occurring use case. Therefore,</span>
@@ -602,7 +602,7 @@
     <span class="doccomment">/// `TreeModelFilterExt::set_visible_column` can only be called</span>
     <span class="doccomment">/// once for a given filter model.</span>
     <span class="doccomment">/// ## `column`</span>
-    <span class="doccomment">/// A `gint` which is the column containing the visible information</span>
+    <span class="doccomment">/// A `int` which is the column containing the visible information</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_set_visible_column&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_visible_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column</span>: <span class="ident">i32</span>);
 
@@ -627,7 +627,7 @@
     <span class="doccomment">///               gpointer      data)</span>
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   // Visible if row is non-empty and first column is “HI”</span>
-    <span class="doccomment">///   gchar *str;</span>
+    <span class="doccomment">///   char *str;</span>
     <span class="doccomment">///   gboolean visible = FALSE;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   gtk_tree_model_get (model, iter, 0, &amp;str, -1);</span>

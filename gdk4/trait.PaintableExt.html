@@ -53,19 +53,19 @@ contents of <code>self</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>The <code>PaintableFlags</code> for this paintable.</p>
 </div><h3 id="tymethod.get_intrinsic_aspect_ratio" class="method"><code>fn <a href="#tymethod.get_intrinsic_aspect_ratio" class="fnname">get_intrinsic_aspect_ratio</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code><a class="srclink" href="../src/gdk4/auto/paintable.rs.html#182" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the preferred aspect ratio the <code>self</code> would like to be displayed at.
-The aspect ration is the width divided by the height, so a value of 0.5 means
+The aspect ratio is the width divided by the height, so a value of 0.5 means
 that the <code>self</code> prefers to be displayed twice as high as it is wide.
 Consumers of this interface can use this to preserve aspect ratio when displaying
-this paintable.</p>
+the paintable.</p>
 <p>This is a purely informational value and does not in any way limit the values
 that may be passed to <code>Paintable::snapshot</code>.</p>
-<p>Usually when a <code>self</code> returns non-0 values from
+<p>Usually when a <code>self</code> returns nonzero values from
 <code>Paintable::get_intrinsic_width</code> and <code>Paintable::get_intrinsic_height</code>
 the aspect ratio should conform to those values, though that is not required.</p>
-<p>If the <code>self</code> does not have a preferred aspect ratio, it returns 0.0.
+<p>If the <code>self</code> does not have a preferred aspect ratio, it returns 0.
 Negative values are never returned.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>the intrinsic aspect ratio of <code>self</code> or 0.0 if none.</p>
+<p>the intrinsic aspect ratio of <code>self</code> or 0 if none.</p>
 </div><h3 id="tymethod.get_intrinsic_height" class="method"><code>fn <a href="#tymethod.get_intrinsic_height" class="fnname">get_intrinsic_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../src/gdk4/auto/paintable.rs.html#198" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the preferred height the <code>self</code> would like to be displayed at.
 Consumers of this interface can use this to reserve enough space to draw
 the paintable.</p>
@@ -86,14 +86,14 @@ values are never returned.</p>
 <p>the intrinsic width of <code>self</code> or 0 if none.</p>
 </div><h3 id="tymethod.invalidate_contents" class="method"><code>fn <a href="#tymethod.invalidate_contents" class="fnname">invalidate_contents</a>(&amp;self)</code><a class="srclink" href="../src/gdk4/auto/paintable.rs.html#225" title="goto source code">[src]</a></h3><div class="docblock"><p>Called by implementations of <code>Paintable</code> to invalidate their contents.
 Unless the contents are invalidated, implementations must guarantee that
-multiple calls to <code>Paintable</code>::snapshot produce the same output.</p>
-<p>This function will emit the <code>Paintable</code>::invalidate-contents signal.</p>
+multiple calls of <code>Paintable::snapshot</code> produce the same output.</p>
+<p>This function will emit the <code>Paintable::invalidate-contents</code> signal.</p>
 <p>If a <code>self</code> reports the <code>PaintableFlags::Contents</code> flag,
 it must not call this function.</p>
 </div><h3 id="tymethod.invalidate_size" class="method"><code>fn <a href="#tymethod.invalidate_size" class="fnname">invalidate_size</a>(&amp;self)</code><a class="srclink" href="../src/gdk4/auto/paintable.rs.html#236" title="goto source code">[src]</a></h3><div class="docblock"><p>Called by implementations of <code>Paintable</code> to invalidate their size.
-As long as the size is not invalidated, <code>self</code> must return the same values
-for its width, height and intrinsic height.</p>
-<p>This function will emit the <code>Paintable</code>::invalidate-size signal.</p>
+As long as the size is not invalidated, <code>self</code> must return the same
+values for its intrinsic width, height and aspect ratio.</p>
+<p>This function will emit the <code>Paintable::invalidate-size</code> signal.</p>
 <p>If a <code>self</code> reports the <code>PaintableFlags::Size</code> flag,
 it must not call this function.</p>
 </div><h3 id="tymethod.snapshot" class="method"><code>fn <a href="#tymethod.snapshot" class="fnname">snapshot</a>(&amp;self, snapshot: &amp;<a class="struct" href="../gdk4/struct.Snapshot.html" title="struct gdk4::Snapshot">Snapshot</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code><a class="srclink" href="../src/gdk4/auto/paintable.rs.html#248" title="goto source code">[src]</a></h3><div class="docblock"><p>Snapshots the given paintable with the given <code>width</code> and <code>height</code> at the

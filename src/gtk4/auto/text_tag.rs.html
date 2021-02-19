@@ -6407,7 +6407,7 @@
     <span class="kw">fn</span> <span class="ident">get_priority</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
     <span class="doccomment">/// Sets the priority of a `TextTag`. Valid priorities</span>
-    <span class="doccomment">/// start at 0 and go to one less than `TextTagTableExt::get_size`.</span>
+    <span class="doccomment">/// start at 0 and go to one less than `TextTagTable::get_size`.</span>
     <span class="doccomment">/// Each tag in a table has a unique priority; setting the priority</span>
     <span class="doccomment">/// of one tag shifts the priorities of all the other tags in the</span>
     <span class="doccomment">/// table to maintain a unique priority for each tag. Higher priority</span>
@@ -6730,11 +6730,11 @@
     <span class="kw">fn</span> <span class="ident">set_property_strikethrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">strikethrough</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// This property modifies the color of strikeouts. If not set, strikeouts</span>
-    <span class="doccomment">/// will use the forground color.</span>
+    <span class="doccomment">/// will use the foreground color.</span>
     <span class="kw">fn</span> <span class="ident">get_property_strikethrough_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">RGBA</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// This property modifies the color of strikeouts. If not set, strikeouts</span>
-    <span class="doccomment">/// will use the forground color.</span>
+    <span class="doccomment">/// will use the foreground color.</span>
     <span class="kw">fn</span> <span class="ident">set_property_strikethrough_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">strikethrough_rgba</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">RGBA</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// If the `TextTag:strikethrough-rgba` property has been set.</span>
@@ -6768,7 +6768,7 @@
     <span class="kw">fn</span> <span class="ident">set_property_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">underline</span>: <span class="ident">pango</span>::<span class="ident">Underline</span>);
 
     <span class="doccomment">/// This property modifies the color of underlines. If not set, underlines</span>
-    <span class="doccomment">/// will use the forground color.</span>
+    <span class="doccomment">/// will use the foreground color.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `TextTag:underline` is set to `pango::Underline::Error`, an alternate</span>
     <span class="doccomment">/// color may be applied instead of the foreground. Setting this property</span>
@@ -6776,7 +6776,7 @@
     <span class="kw">fn</span> <span class="ident">get_property_underline_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">RGBA</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// This property modifies the color of underlines. If not set, underlines</span>
-    <span class="doccomment">/// will use the forground color.</span>
+    <span class="doccomment">/// will use the foreground color.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `TextTag:underline` is set to `pango::Underline::Error`, an alternate</span>
     <span class="doccomment">/// color may be applied instead of the foreground. Setting this property</span>

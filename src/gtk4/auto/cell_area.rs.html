@@ -1833,7 +1833,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// As outlined in</span>
     <span class="doccomment">/// [`Widget`’s geometry management section][geometry-management],</span>
-    <span class="doccomment">/// GTK+ uses a height-for-width</span>
+    <span class="doccomment">/// GTK uses a height-for-width</span>
     <span class="doccomment">/// geometry management system to compute the sizes of widgets and user</span>
     <span class="doccomment">/// interfaces. `CellArea` uses the same semantics to calculate the</span>
     <span class="doccomment">/// size of an area for an arbitrary number of `TreeModel` rows.</span>
@@ -1870,8 +1870,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// GtkTreeIter iter;</span>
-    <span class="doccomment">/// gint        minimum_width;</span>
-    <span class="doccomment">/// gint        natural_width;</span>
+    <span class="doccomment">/// int         minimum_width;</span>
+    <span class="doccomment">/// int         natural_width;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// valid = gtk_tree_model_get_iter_first (model, &amp;iter);</span>
     <span class="doccomment">/// while (valid)</span>
@@ -1896,7 +1896,7 @@
     <span class="doccomment">/// exceedingly large amount of rows. The `CellLayout` widget in</span>
     <span class="doccomment">/// that case would calculate the required width of the rows in an</span>
     <span class="doccomment">/// idle or timeout source (see `g_timeout_add`) and when the widget</span>
-    <span class="doccomment">/// is requested its actual width in `WidgetClass.get_preferred_width`()</span>
+    <span class="doccomment">/// is requested its actual width in `WidgetClass.measure`()</span>
     <span class="doccomment">/// it can simply consult the width accumulated so far in the</span>
     <span class="doccomment">/// `CellAreaContext` object.</span>
     <span class="doccomment">///</span>
@@ -1907,8 +1907,8 @@
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// static void</span>
     <span class="doccomment">/// foo_get_preferred_width (GtkWidget       *widget,</span>
-    <span class="doccomment">///                          gint            *minimum_size,</span>
-    <span class="doccomment">///                          gint            *natural_size)</span>
+    <span class="doccomment">///                          int             *minimum_size,</span>
+    <span class="doccomment">///                          int             *natural_size)</span>
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   Foo        *foo  = FOO (widget);</span>
     <span class="doccomment">///   FooPrivate *priv = foo-&gt;priv;</span>
@@ -1938,10 +1938,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// GtkTreeIter iter;</span>
-    <span class="doccomment">/// gint        minimum_height;</span>
-    <span class="doccomment">/// gint        natural_height;</span>
-    <span class="doccomment">/// gint        full_minimum_height = 0;</span>
-    <span class="doccomment">/// gint        full_natural_height = 0;</span>
+    <span class="doccomment">/// int         minimum_height;</span>
+    <span class="doccomment">/// int         natural_height;</span>
+    <span class="doccomment">/// int         full_minimum_height = 0;</span>
+    <span class="doccomment">/// int         full_natural_height = 0;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// valid = gtk_tree_model_get_iter_first (model, &amp;iter);</span>
     <span class="doccomment">/// while (valid)</span>
@@ -1974,7 +1974,7 @@
     <span class="doccomment">/// synchronously. The reasoning here is that any layouting widget is</span>
     <span class="doccomment">/// at least capable of synchronously calculating enough height to fill</span>
     <span class="doccomment">/// the screen height (or scrolled window height) in response to a single</span>
-    <span class="doccomment">/// call to `WidgetClass.get_preferred_height_for_width`(). Returning</span>
+    <span class="doccomment">/// call to `WidgetClass.measure`(). Returning</span>
     <span class="doccomment">/// a perfect height for width that is larger than the screen area is</span>
     <span class="doccomment">/// inconsequential since after the layouting receives an allocation</span>
     <span class="doccomment">/// from a scrolled window it simply continues to drive the scrollbar</span>
@@ -1983,9 +1983,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Rendering Areas</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Once area sizes have been aquired at least for the rows in the</span>
+    <span class="doccomment">/// Once area sizes have been acquired at least for the rows in the</span>
     <span class="doccomment">/// visible area of the layouting widget they can be rendered at</span>
-    <span class="doccomment">/// `WidgetClass.draw`() time.</span>
+    <span class="doccomment">/// `WidgetClass.snapshot`() time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A crude example of how to render all the rows at the root level</span>
     <span class="doccomment">/// runs as follows:</span>
@@ -1995,8 +1995,8 @@
     <span class="doccomment">/// GtkAllocation allocation;</span>
     <span class="doccomment">/// GdkRectangle  cell_area = { 0, };</span>
     <span class="doccomment">/// GtkTreeIter   iter;</span>
-    <span class="doccomment">/// gint          minimum_width;</span>
-    <span class="doccomment">/// gint          natural_width;</span>
+    <span class="doccomment">/// int           minimum_width;</span>
+    <span class="doccomment">/// int           natural_width;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// gtk_widget_get_allocation (widget, &amp;allocation);</span>
     <span class="doccomment">/// cell_area.width = allocation.width;</span>
@@ -2021,12 +2021,12 @@
     <span class="doccomment">/// give every row its minimum or natural height or, if the model content</span>
     <span class="doccomment">/// is expected to fit inside the layouting widget without scrolling, it</span>
     <span class="doccomment">/// would make sense to calculate the allocation for each row at</span>
-    <span class="doccomment">/// `Widget::size-allocate` time using `gtk_distribute_natural_allocation`.</span>
+    <span class="doccomment">/// the time the widget is allocated using `gtk_distribute_natural_allocation`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Handling Events and Driving Keyboard Focus</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Passing events to the area is as simple as handling events on any</span>
-    <span class="doccomment">/// normal widget and then passing them to the `CellAreaExt::event`</span>
+    <span class="doccomment">/// normal widget and then passing them to the `CellArea::event`</span>
     <span class="doccomment">/// API as they come in. Usually `CellArea` is only interested in</span>
     <span class="doccomment">/// button events, however some customized derived areas can be implemented</span>
     <span class="doccomment">/// who are interested in handling other events. Handling an event can</span>
@@ -2061,7 +2061,7 @@
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   Foo        *foo  = FOO (widget);</span>
     <span class="doccomment">///   FooPrivate *priv = foo-&gt;priv;</span>
-    <span class="doccomment">///   gint        focus_row;</span>
+    <span class="doccomment">///   int         focus_row;</span>
     <span class="doccomment">///   gboolean    have_focus = FALSE;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   focus_row = priv-&gt;focus_row;</span>
@@ -2117,15 +2117,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Cell Properties</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `CellArea` introduces cell properties for ``GtkCellRenderers``</span>
-    <span class="doccomment">/// in very much the same way that `Container` introduces</span>
-    <span class="doccomment">/// [child properties][child-properties]</span>
-    <span class="doccomment">/// for ``GtkWidgets``. This provides some general interfaces for defining</span>
-    <span class="doccomment">/// the relationship cell areas have with their cells. For instance in a</span>
-    <span class="doccomment">/// `CellAreaBox` a cell might “expand” and receive extra space when</span>
-    <span class="doccomment">/// the area is allocated more than its full natural request, or a cell</span>
-    <span class="doccomment">/// might be configured to “align” with adjacent rows which were requested</span>
-    <span class="doccomment">/// and rendered with the same `CellAreaContext`.</span>
+    <span class="doccomment">/// The `CellArea` introduces cell properties for ``GtkCellRenderers``.</span>
+    <span class="doccomment">/// This provides some general interfaces for defining the relationship</span>
+    <span class="doccomment">/// cell areas have with their cells. For instance in a `CellAreaBox`</span>
+    <span class="doccomment">/// a cell might “expand” and receive extra space when the area is allocated</span>
+    <span class="doccomment">/// more than its full natural request, or a cell might be configured to “align”</span>
+    <span class="doccomment">/// with adjacent rows which were requested and rendered with the same</span>
+    <span class="doccomment">/// `CellAreaContext`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Use `CellAreaClass::install_cell_property` to install cell</span>
     <span class="doccomment">/// properties for a cell area class and `CellAreaClass::find_cell_property`</span>
@@ -2137,9 +2135,11 @@
     <span class="doccomment">/// the value of a cell property, use `CellArea::cell_get_property`,</span>
     <span class="doccomment">/// `CellAreaExt::cell_get` or `CellAreaExt::cell_get_valist`.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellAreaExt`](trait.CellAreaExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html)</span>
+    <span class="doccomment">/// [`CellAreaExt`](trait.CellAreaExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`CellLayoutExt`](trait.CellLayoutExt.html), [`CellAreaExtManual`](prelude/trait.CellAreaExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellArea</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCellArea</span>, <span class="ident">ffi</span>::<span class="ident">GtkCellAreaClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>, <span class="ident">CellLayout</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

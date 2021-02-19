@@ -799,7 +799,7 @@
 <span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
     <span class="doccomment">/// `ScaleButton` provides a button which pops up a scale widget.</span>
     <span class="doccomment">/// This kind of widget is commonly used for volume controls in multimedia</span>
-    <span class="doccomment">/// applications, and GTK+ provides a `VolumeButton` subclass that</span>
+    <span class="doccomment">/// applications, and GTK provides a `VolumeButton` subclass that</span>
     <span class="doccomment">/// is tailored for this use case.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
@@ -809,7 +809,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ScaleButtonExt`](trait.ScaleButtonExt.html), [`ButtonExt`](trait.ButtonExt.html), [`BinExt`](trait.BinExt.html), [`ContainerExt`](trait.ContainerExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ActionableExt`](trait.ActionableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`ScaleButtonExt`](trait.ScaleButtonExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ScaleButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkScaleButton</span>, <span class="ident">ffi</span>::<span class="ident">GtkScaleButtonClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1263,7 +1263,7 @@
     <span class="kw">fn</span> <span class="ident">get_property_icons</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The ::popdown signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
     <span class="doccomment">/// which gets emitted to popdown the scale widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default binding for this signal is Escape.</span>
@@ -1272,7 +1272,7 @@
     <span class="kw">fn</span> <span class="ident">emit_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// The ::popup signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`BindingSignal`]</span>
+    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
     <span class="doccomment">/// which gets emitted to popup the scale widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are Space, Enter and Return.</span>

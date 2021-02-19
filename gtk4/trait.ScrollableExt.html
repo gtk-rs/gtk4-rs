@@ -17,11 +17,11 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_property_vscroll_policy_notify" class="fnname">connect_property_vscroll_policy_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; SignalHandlerId;
 }</pre></div><div class="docblock"><p>Trait containing all <code>Scrollable</code> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
-<p><a href="struct.IconView.html"><code>IconView</code></a>, <a href="struct.Scrollable.html"><code>Scrollable</code></a>, <a href="struct.TextView.html"><code>TextView</code></a>, <a href="struct.TreeView.html"><code>TreeView</code></a>, <a href="struct.Viewport.html"><code>Viewport</code></a></p>
+<p><a href="struct.ColumnView.html"><code>ColumnView</code></a>, <a href="struct.GridView.html"><code>GridView</code></a>, <a href="struct.IconView.html"><code>IconView</code></a>, <a href="struct.ListBase.html"><code>ListBase</code></a>, <a href="struct.ListView.html"><code>ListView</code></a>, <a href="struct.Scrollable.html"><code>Scrollable</code></a>, <a href="struct.TextView.html"><code>TextView</code></a>, <a href="struct.TreeView.html"><code>TreeView</code></a>, <a href="struct.Viewport.html"><code>Viewport</code></a></p>
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.get_border" class="method"><code>fn <a href="#tymethod.get_border" class="fnname">get_border</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gtk4/struct.Border.html" title="struct gtk4::Border">Border</a>&gt;</code><a class="srclink" href="../src/gtk4/auto/scrollable.rs.html#76" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the size of a non-scrolling border around the
 outside of the scrollable. An example for this would
-be treeview headers. GTK+ can use this information to
-display overlayed graphics, like the overshoot indication,
+be treeview headers. GTK can use this information to
+display overlaid graphics, like the overshoot indication,
 at the right position.</p>
 <h2 id="border" class="section-header"><a href="#border"><code>border</code></a></h2>
 <p>return location for the results</p>

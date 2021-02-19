@@ -6,7 +6,7 @@
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="../gsk4/struct.BroadwayRenderer.html" title="struct gsk4::BroadwayRenderer">BroadwayRenderer</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gsk4/auto/broadway_renderer.rs.html#23-41" title="goto source code">[src]</a></h3><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="../gsk4/struct.BroadwayRenderer.html" title="struct gsk4::BroadwayRenderer">BroadwayRenderer</a></code><a class="srclink" href="../src/gsk4/auto/broadway_renderer.rs.html#37-40" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new Broadway renderer.</p>
 <p>The Broadway renderer is the default renderer for the broadway backend.
 It will only work with broadway surfaces, otherwise it will fail the
-call to <code>gdk_renderer_realize</code>.</p>
+call to <code>RendererExt::realize</code>.</p>
 <p>This function is only available when GTK was compiled with Broadway
 support.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>

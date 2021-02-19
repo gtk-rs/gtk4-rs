@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["RenderNodeExt",""],["RendererExt","Trait containing all `Renderer` methods."]]});
+initSidebarItems({"trait":[["RenderNodeExt","Trait containing all `RenderNode` methods."],["RendererExt","Trait containing all `Renderer` methods."]]});

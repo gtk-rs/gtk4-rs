@@ -21,7 +21,7 @@ in the given <code>file</code> from the <code>start</code> location to the
 this section</p>
 </div><h4 id="method.get_file" class="method"><code>pub fn <a href="#method.get_file" class="fnname">get_file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;File&gt;</code><a class="srclink" href="../src/gtk4/auto/css_section.rs.html#74-76" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the file that <code>self</code> was parsed from. If no such file exists,
 for example because the CSS was loaded via
-<code>CssProviderExt::load_from_data</code>(), then <code>None</code> is returned.</p>
+<code>CssProvider::load_from_data</code>(), then <code>None</code> is returned.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the <code>gio::File</code> that <code>self</code> was parsed from
 or <code>None</code> if <code>self</code> was parsed from other data</p>
@@ -29,7 +29,7 @@ or <code>None</code> if <code>self</code> was parsed from other data</p>
 the section that contains this <code>self</code>. A special case are sections of
 type <code>GTK_CSS_SECTION_DOCUMENT</code>. Their parent will either be <code>None</code>
 if they are the original CSS document that was loaded by
-<code>CssProviderExt::load_from_file</code> or a section of type
+<code>CssProvider::load_from_file</code> or a section of type
 <code>GTK_CSS_SECTION_IMPORT</code> if it was loaded with an import rule from
 a different file.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>

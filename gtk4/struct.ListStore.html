@@ -6,7 +6,7 @@ widget. It implements the <code>TreeModel</code> interface, and consequentialy,
 can use all of the methods available there. It also implements the
 <code>TreeSortable</code> interface so it can be sorted by the view.
 Finally, it also implements the tree
-[drag and drop][gtk3-<code>TreeView</code>-drag-and-drop]
+[drag and drop][gtk4-<code>TreeView</code>-drag-and-drop]
 interfaces.</p>
 <p>The <code>ListStore</code> can accept most GObject types as a column type, though
 it can’t accept all custom types. Internally, it will keep a copy of
@@ -29,7 +29,7 @@ application writer to call <code>TreeModel::row_changed</code> to emit the
   GtkListStore *list_store;
   GtkTreePath *path;
   GtkTreeIter iter;
-  gint i;
+  int i;
 
   list_store = gtk_list_store_new (N_COLUMNS,
                                    G_TYPE_STRING,
@@ -38,7 +38,7 @@ application writer to call <code>TreeModel::row_changed</code> to emit the
 
   for (i = 0; i &lt; 10; i++)
     {
-      gchar *some_data;
+      char *some_data;
 
       some_data = get_some_data (i);
 
@@ -67,13 +67,13 @@ application writer to call <code>TreeModel::row_changed</code> to emit the
 }
 </code></pre>
 <h1 id="performance-considerations" class="section-header"><a href="#performance-considerations">Performance Considerations</a></h1>
-<p>Internally, the <code>ListStore</code> was implemented with a linked list with
-a tail pointer prior to GTK+ 2.6. As a result, it was fast at data
-insertion and deletion, and not fast at random data access. The
-<code>ListStore</code> sets the <code>TreeModelFlags::ItersPersist</code> flag, which means
-that <code>GtkTreeIters</code> can be cached while the row exists. Thus, if
-access to a particular row is needed often and your code is expected to
-run on older versions of GTK+, it is worth keeping the iter around.</p>
+<p>Internally, the <code>ListStore</code> was originally implemented with a linked list
+with a tail pointer. As a result, it was fast at data insertion and deletion,
+and not fast at random data access. The <code>ListStore</code> sets the
+<code>TreeModelFlags::ItersPersist</code> flag, which means that <code>GtkTreeIters</code> can be
+cached while the row exists. Thus, if access to a particular row is needed
+often and your code is expected to run on older versions of GTK, it is worth
+keeping the iter around.</p>
 <h1 id="atomic-operations" class="section-header"><a href="#atomic-operations">Atomic Operations</a></h1>
 <p>It is important to note that only the methods
 <code>GtkListStoreExt::insert_with_values</code> and <code>GtkListStoreExt::insert_with_valuesv</code>

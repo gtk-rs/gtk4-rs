@@ -200,7 +200,7 @@
 
     <span class="doccomment">/// Gets the file that `self` was parsed from. If no such file exists,</span>
     <span class="doccomment">/// for example because the CSS was loaded via</span>
-    <span class="doccomment">/// `CssProviderExt::load_from_data`(), then `None` is returned.</span>
+    <span class="doccomment">/// `CssProvider::load_from_data`(), then `None` is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -215,7 +215,7 @@
     <span class="doccomment">/// the section that contains this `self`. A special case are sections of</span>
     <span class="doccomment">/// type `GTK_CSS_SECTION_DOCUMENT`. Their parent will either be `None`</span>
     <span class="doccomment">/// if they are the original CSS document that was loaded by</span>
-    <span class="doccomment">/// `CssProviderExt::load_from_file` or a section of type</span>
+    <span class="doccomment">/// `CssProvider::load_from_file` or a section of type</span>
     <span class="doccomment">/// `GTK_CSS_SECTION_IMPORT` if it was loaded with an import rule from</span>
     <span class="doccomment">/// a different file.</span>
     <span class="doccomment">///</span>

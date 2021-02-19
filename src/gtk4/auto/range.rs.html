@@ -1156,7 +1156,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`BuildableExt`](trait.BuildableExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`RangeExt`](trait.RangeExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`OrientableExt`](trait.OrientableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Range</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkRange</span>, <span class="ident">ffi</span>::<span class="ident">GtkRangeClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1746,12 +1746,12 @@
     <span class="doccomment">/// type of scroll event that occurred and the resultant new value.</span>
     <span class="doccomment">/// The application can handle the event itself and return `true` to</span>
     <span class="doccomment">/// prevent further processing. Or, by returning `false`, it can pass</span>
-    <span class="doccomment">/// the event to other handlers until the default GTK+ handler is</span>
+    <span class="doccomment">/// the event to other handlers until the default GTK handler is</span>
     <span class="doccomment">/// reached.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The value parameter is unrounded. An application that overrides</span>
     <span class="doccomment">/// the `Range`::change-value signal is responsible for clamping the</span>
-    <span class="doccomment">/// value to the desired number of decimal digits; the default GTK+</span>
+    <span class="doccomment">/// value to the desired number of decimal digits; the default GTK</span>
     <span class="doccomment">/// handler clamps the value based on `Range:round-digits`.</span>
     <span class="doccomment">/// ## `scroll`</span>
     <span class="doccomment">/// the type of scroll action that was performed</span>

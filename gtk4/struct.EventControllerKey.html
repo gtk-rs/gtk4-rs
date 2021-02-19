@@ -20,7 +20,7 @@ signals.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>whether the <code>widget</code> handled the event</p>
 </div><h4 id="method.get_group" class="method"><code>pub fn <a href="#method.get_group" class="fnname">get_group</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a class="srclink" href="../src/gtk4/auto/event_controller_key.rs.html#77-79" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the key group of the current event of this <code>self</code>.
-See <code>gdk::Event::get_key_group</code>.</p>
+See <code>gdk_key_event_get_group</code>.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the key group</p>
 </div><h4 id="method.get_im_context" class="method"><code>pub fn <a href="#method.get_im_context" class="fnname">get_im_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gtk4/struct.IMContext.html" title="struct gtk4::IMContext">IMContext</a>&gt;</code><a class="srclink" href="../src/gtk4/auto/event_controller_key.rs.html#87-93" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the input method context of the key <code>self</code>.</p>
@@ -32,7 +32,7 @@ See <code>gdk::Event::get_key_group</code>.</p>
 </div><h4 id="method.connect_im_update" class="method"><code>pub fn <a href="#method.connect_im_update" class="fnname">connect_im_update</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../gtk4/struct.EventControllerKey.html" title="struct gtk4::EventControllerKey">EventControllerKey</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; SignalHandlerId</code><a class="srclink" href="../src/gtk4/auto/event_controller_key.rs.html#112-131" title="goto source code">[src]</a></h4><div class="docblock"><p>This signal is emitted whenever the input method context filters away a
 keypress and prevents the <code>controller</code> receiving it. See
 <code>EventControllerKey::set_im_context</code> and
-<code>IMContextExt::filter_keypress</code>.</p>
+<code>IMContext::filter_keypress</code>.</p>
 </div><h4 id="method.connect_modifiers" class="method"><code>pub fn <a href="#method.connect_modifiers" class="fnname">connect_modifiers</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../gtk4/struct.EventControllerKey.html" title="struct gtk4::EventControllerKey">EventControllerKey</a>, <a class="struct" href="../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>) -&gt; Inhibit + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; SignalHandlerId</code><a class="srclink" href="../src/gtk4/auto/event_controller_key.rs.html#137-164" title="goto source code">[src]</a></h4><div class="docblock"><p>This signal is emitted whenever the state of modifier keys and pointer
 buttons change.</p>
 <h2 id="keyval" class="section-header"><a href="#keyval"><code>keyval</code></a></h2>

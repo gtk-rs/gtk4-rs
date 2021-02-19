@@ -1099,7 +1099,7 @@
     <span class="doccomment">/// GtkTreeModel *list_store;</span>
     <span class="doccomment">/// GtkTreeIter iter;</span>
     <span class="doccomment">/// gboolean valid;</span>
-    <span class="doccomment">/// gint row_count = 0;</span>
+    <span class="doccomment">/// int row_count = 0;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// // make a new list_store</span>
     <span class="doccomment">/// list_store = gtk_list_store_new (N_COLUMNS,</span>
@@ -1116,8 +1116,8 @@
     <span class="doccomment">///                                        &amp;iter);</span>
     <span class="doccomment">/// while (valid)</span>
     <span class="doccomment">///  {</span>
-    <span class="doccomment">///    gchar *str_data;</span>
-    <span class="doccomment">///    gint   int_data;</span>
+    <span class="doccomment">///    char *str_data;</span>
+    <span class="doccomment">///    int    int_data;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///    // Make sure you terminate calls to gtk_tree_model_get() with a “-1” value</span>
     <span class="doccomment">///    gtk_tree_model_get (list_store, &amp;iter,</span>

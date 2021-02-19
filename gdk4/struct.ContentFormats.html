@@ -12,7 +12,7 @@ The details of how data is passed is described in the documentation of
 the actual implementations.</p>
 <p>A <code>ContentFormats</code> describes a set of possible formats content can be
 exchanged in. It is assumed that this set is ordered. <code>GTypes</code> are more
-important than mime types. Order between different <code>Gtypes</code> or mime types
+important than mime types. Order between different <code>GTypes</code> or mime types
 is the order they were added in, most important first. Functions that
 care about order, such as <code>ContentFormats::union</code> will describe in
 their documentation how they interpret that order, though in general the
@@ -77,7 +77,7 @@ returned.</p>
 </div><h4 id="method.print" class="method"><code>pub fn <a href="#method.print" class="fnname">print</a>(&amp;self, string: &amp;mut String)</code><a class="srclink" href="../src/gdk4/auto/content_formats.rs.html#203-207" title="goto source code">[src]</a></h4><div class="docblock"><p>Prints the given <code>self</code> into a string for human consumption.
 This is meant for debugging and logging.</p>
 <p>The form of the representation may change at any time and is
-not guranteed to stay identical.</p>
+not guaranteed to stay identical.</p>
 <h2 id="string" class="section-header"><a href="#string"><code>string</code></a></h2>
 <p>a <code>glib::String</code> to print into</p>
 </div><h4 id="method.to_str" class="method"><code>pub fn <a href="#method.to_str" class="fnname">to_str</a>(&amp;self) -&gt; GString</code><a class="srclink" href="../src/gdk4/auto/content_formats.rs.html#210-212" title="goto source code">[src]</a></h4><h4 id="method.union" class="method"><code>pub fn <a href="#method.union" class="fnname">union</a>(&amp;self, second: &amp;<a class="struct" href="../gdk4/struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a>&gt;</code><a class="srclink" href="../src/gdk4/auto/content_formats.rs.html#223-230" title="goto source code">[src]</a></h4><div class="docblock"><p>Append all missing types from <code>second</code> to <code>self</code>, in the order

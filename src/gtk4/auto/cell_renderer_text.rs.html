@@ -3330,7 +3330,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)</span>
+    <span class="doccomment">/// [`CellRendererTextExt`](trait.CellRendererTextExt.html), [`CellRendererExt`](trait.CellRendererExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`CellRendererExtManual`](prelude/trait.CellRendererExtManual.html)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererText</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkCellRendererText</span>, <span class="ident">ffi</span>::<span class="ident">GtkCellRendererTextClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -3930,7 +3930,7 @@
     <span class="doccomment">/// Sets the height of a renderer to explicitly be determined by the “font” and</span>
     <span class="doccomment">/// “y_pad” property set on it. Further changes in these properties do not</span>
     <span class="doccomment">/// affect the height, so they must be accompanied by a subsequent call to this</span>
-    <span class="doccomment">/// function. Using this function is unflexible, and should really only be used</span>
+    <span class="doccomment">/// function. Using this function is inflexible, and should really only be used</span>
     <span class="doccomment">/// if calculating the size of a cell is too slow (ie, a massive number of cells</span>
     <span class="doccomment">/// displayed). If `number_of_rows` is -1, then the fixed height is unset, and</span>
     <span class="doccomment">/// the height is determined by the properties again.</span>

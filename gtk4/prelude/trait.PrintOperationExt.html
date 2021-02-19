@@ -175,7 +175,7 @@ if (res == GTK_PRINT_OPERATION_RESULT_ERROR)
                          &quot;Error printing file:\n%s&quot;,
                          error-&gt;message);
    g_signal_connect (error_dialog, &quot;response&quot;,
-                     G_CALLBACK (gtk_widget_destroy), NULL);
+                     G_CALLBACK (gtk_window_destroy), NULL);
    gtk_widget_show (error_dialog);
    g_error_free (error);
  }
@@ -230,7 +230,7 @@ Selected page setup is stored as default page setup in <code>PrintOperation</cod
 <h2 id="embed" class="section-header"><a href="#embed"><code>embed</code></a></h2>
 <p><code>true</code> to embed page setup selection in the <code>GtkPrintUnixDialog</code></p>
 </div><h3 id="tymethod.set_export_filename" class="method"><code>fn <a href="#tymethod.set_export_filename" class="fnname">set_export_filename</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;&gt;(&amp;self, filename: P)</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#541" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets up the <code>PrintOperation</code> to generate a file instead
-of showing the print dialog. The indended use of this function
+of showing the print dialog. The intended use of this function
 is for implementing “Export to PDF” actions. Currently, PDF
 is the only supported format.</p>
 <p>“Print to PDF” support is independent of this and is done
@@ -246,14 +246,14 @@ will draw by <code>PrintOperationExt::set_n_pages</code> in a callback of
 <p><code>true</code> indicates that a selection exists</p>
 </div><h3 id="tymethod.set_job_name" class="method"><code>fn <a href="#tymethod.set_job_name" class="fnname">set_job_name</a>(&amp;self, job_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#561" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the name of the print job. The name is used to identify
 the job (e.g. in monitoring applications like eggcups).</p>
-<p>If you don’t set a job name, GTK+ picks a default one by
+<p>If you don’t set a job name, GTK picks a default one by
 numbering successive print jobs.</p>
 <h2 id="job_name" class="section-header"><a href="#job_name"><code>job_name</code></a></h2>
 <p>a string that identifies the print job</p>
 </div><h3 id="tymethod.set_n_pages" class="method"><code>fn <a href="#tymethod.set_n_pages" class="fnname">set_n_pages</a>(&amp;self, n_pages: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#577" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the number of pages in the document.</p>
 <p>This must be set to a positive number
 before the rendering starts. It may be set in a
-<code>PrintOperation::begin-print</code> signal hander.</p>
+<code>PrintOperation::begin-print</code> signal handler.</p>
 <p>Note that the page numbers passed to the
 <code>PrintOperation::request-page-setup</code>
 and <code>PrintOperation::draw-page</code> signals are 0-based, i.e. if
@@ -308,7 +308,7 @@ the user will be able to select to print only the current page.</p>
 <p>Note that this only makes sense for pre-paginated documents.</p>
 </div><h3 id="tymethod.get_property_custom_tab_label" class="method"><code>fn <a href="#tymethod.get_property_custom_tab_label" class="fnname">get_property_custom_tab_label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#655" title="goto source code">[src]</a></h3><div class="docblock"><p>Used as the label of the tab containing custom widgets.
 Note that this property may be ignored on some platforms.</p>
-<p>If this is <code>None</code>, GTK+ uses a default label.</p>
+<p>If this is <code>None</code>, GTK uses a default label.</p>
 </div><h3 id="tymethod.get_property_export_filename" class="method"><code>fn <a href="#tymethod.get_property_export_filename" class="fnname">get_property_export_filename</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#666" title="goto source code">[src]</a></h3><div class="docblock"><p>The name of a file to generate instead of showing the print dialog.
 Currently, PDF is the only supported format.</p>
 <p>The intended use of this property is for implementing
@@ -318,12 +318,12 @@ by letting the user pick the “Print to PDF” item from the
 list of printers in the print dialog.</p>
 </div><h3 id="tymethod.get_property_job_name" class="method"><code>fn <a href="#tymethod.get_property_job_name" class="fnname">get_property_job_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;GString&gt;</code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#673" title="goto source code">[src]</a></h3><div class="docblock"><p>A string used to identify the job (e.g. in monitoring
 applications like eggcups).</p>
-<p>If you don't set a job name, GTK+ picks a default one
+<p>If you don't set a job name, GTK picks a default one
 by numbering successive print jobs.</p>
 </div><h3 id="tymethod.get_property_n_pages" class="method"><code>fn <a href="#tymethod.get_property_n_pages" class="fnname">get_property_n_pages</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#686" title="goto source code">[src]</a></h3><div class="docblock"><p>The number of pages in the document.</p>
 <p>This must be set to a positive number
 before the rendering starts. It may be set in a
-<code>PrintOperation::begin-print</code> signal hander.</p>
+<code>PrintOperation::begin-print</code> signal handler.</p>
 <p>Note that the page numbers passed to the
 <code>PrintOperation::request-page-setup</code> and
 <code>PrintOperation::draw-page</code> signals are 0-based, i.e. if
@@ -388,13 +388,13 @@ from <code>context</code> using <code>PrintContext::get_cairo_context</code>.</p
 <pre><code class="language-C">static void
 draw_page (GtkPrintOperation *operation,
            GtkPrintContext   *context,
-           gint               page_nr,
+           int                page_nr,
            gpointer           user_data)
 {
   cairo_t *cr;
   PangoLayout *layout;
-  gdouble width, text_height;
-  gint layout_height;
+  double width, text_height;
+  int layout_height;
   PangoFontDescription *desc;
 
   cr = gtk_print_context_get_cairo_context (context);
@@ -416,7 +416,7 @@ draw_page (GtkPrintOperation *operation,
   pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
 
   pango_layout_get_size (layout, NULL, &amp;layout_height);
-  text_height = (gdouble)layout_height / PANGO_SCALE;
+  text_height = (double)layout_height / PANGO_SCALE;
 
   cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);
   pango_cairo_show_layout (cr, layout);

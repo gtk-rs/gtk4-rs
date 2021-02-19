@@ -169,11 +169,11 @@ performed on a range. It allows an application to determine the
 type of scroll event that occurred and the resultant new value.
 The application can handle the event itself and return <code>true</code> to
 prevent further processing. Or, by returning <code>false</code>, it can pass
-the event to other handlers until the default GTK+ handler is
+the event to other handlers until the default GTK handler is
 reached.</p>
 <p>The value parameter is unrounded. An application that overrides
 the <code>Range</code>::change-value signal is responsible for clamping the
-value to the desired number of decimal digits; the default GTK+
+value to the desired number of decimal digits; the default GTK
 handler clamps the value based on <code>Range:round-digits</code>.</p>
 <h2 id="scroll" class="section-header"><a href="#scroll"><code>scroll</code></a></h2>
 <p>the type of scroll action that was performed</p>

@@ -124,14 +124,14 @@
 <span class="doccomment">/// [`ListStore`](struct.ListStore.html), [`TreeDragDest`](struct.TreeDragDest.html), [`TreeStore`](struct.TreeStore.html)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragDestExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Asks the `TreeDragDest` to insert a row before the path `dest`,</span>
-    <span class="doccomment">/// deriving the contents of the row from `selection_data`. If `dest` is</span>
+    <span class="doccomment">/// deriving the contents of the row from `value`. If `dest` is</span>
     <span class="doccomment">/// outside the tree so that inserting before it is impossible, `false`</span>
     <span class="doccomment">/// will be returned. Also, `false` may be returned if the new row is</span>
     <span class="doccomment">/// not created for some model-specific reason. Should robustly handle</span>
     <span class="doccomment">/// a `dest` no longer found in the model!</span>
     <span class="doccomment">/// ## `dest`</span>
     <span class="doccomment">/// row to drop in front of</span>
-    <span class="doccomment">/// ## `selection_data`</span>
+    <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// data to drop</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -142,13 +142,13 @@
 
     <span class="doccomment">/// Determines whether a drop is possible before the given `dest_path`,</span>
     <span class="doccomment">/// at the same depth as `dest_path`. i.e., can we drop the data in</span>
-    <span class="doccomment">/// `selection_data` at that location. `dest_path` does not have to</span>
+    <span class="doccomment">/// `value` at that location. `dest_path` does not have to</span>
     <span class="doccomment">/// exist; the return value will almost certainly be `false` if the</span>
     <span class="doccomment">/// parent of `dest_path` doesn’t exist, though.</span>
     <span class="doccomment">/// ## `dest_path`</span>
     <span class="doccomment">/// destination row</span>
-    <span class="doccomment">/// ## `selection_data`</span>
-    <span class="doccomment">/// the data being dragged</span>
+    <span class="doccomment">/// ## `value`</span>
+    <span class="doccomment">/// the data being dropped</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
