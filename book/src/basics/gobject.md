@@ -8,7 +8,7 @@ Let's see in a real life example why this is something we want to have.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , compile_fail
+```rust , no_run, compile_fail
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Box, Button, Orientation};
 
@@ -96,23 +96,23 @@ And that's what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust , no_run
-#use std::{cell::RefCell, rc::Rc};
+# use std::{cell::RefCell, rc::Rc};
 #
-#use gtk::prelude::*;
-#use gtk::Application;
-#use gtk::{self, ApplicationWindow, Box, Button, Orientation};
+# use gtk::prelude::*;
+# use gtk::Application;
+# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
 #
-#fn main() {
+# fn main() {
 #    // Create a new application
 #    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
 #    app.run(&std::env::args().collect::<Vec<_>>());
-#}
+# }
 #
-#// When the application is launched…
-#fn on_activate(application: &Application) {
+# // When the application is launched…
+# fn on_activate(application: &Application) {
 #    // … create a new window
 #    let window = ApplicationWindow::new(application);
 #
@@ -135,7 +135,7 @@ And that's what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html
 #    gtk_box.append(&button_increase);
 #    gtk_box.append(&button_decrease);
 #    window.present();
-#}
+# }
 ```
 
 It not very nice though to spam the scope with temporary variables like `number_copy_1` and `number_copy_2`.
@@ -144,24 +144,24 @@ We can improve it by using the `glib::clone!` macro.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust , no_run
-#use std::{cell::RefCell, rc::Rc};
+# use std::{cell::RefCell, rc::Rc};
 #
-#use glib::clone;
-#use gtk::prelude::*;
-#use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-#use gtk::{glib, Application};
+# use glib::clone;
+# use gtk::prelude::*;
+# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
+# use gtk::{glib, Application};
 #
-#fn main() {
+# fn main() {
 #    // Create a new application
 #    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
 #    app.run(&std::env::args().collect::<Vec<_>>());
-#}
+# }
 #
-#// When the application is launched…
-#fn on_activate(application: &Application) {
+# // When the application is launched…
+# fn on_activate(application: &Application) {
 #    // … create a new window …
 #    let window = ApplicationWindow::new(application);
 #
@@ -187,7 +187,7 @@ We can improve it by using the `glib::clone!` macro.
 #    gtk_box.append(&button_increase);
 #    gtk_box.append(&button_decrease);
 #    window.present();
-#}
+# }
 ```
 
 Since GObjects are reference-counted and mutable, we can even pass the corresponding buttons to the closures.
@@ -196,15 +196,15 @@ If we now click on one button, the other button's label gets changed.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust , no_run
-#use std::{cell::RefCell, rc::Rc};
+# use std::{cell::RefCell, rc::Rc};
 #
-#use glib::clone;
-#use gtk::prelude::*;
-#use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-#use gtk::{glib, Application};
+# use glib::clone;
+# use gtk::prelude::*;
+# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
+# use gtk::{glib, Application};
 #
-#// When the application is launched…
-#fn on_activate(application: &Application) {
+# // When the application is launched…
+# fn on_activate(application: &Application) {
 #    // … create a new window …
 #    let window = ApplicationWindow::new(application);
 #
@@ -229,16 +229,16 @@ If we now click on one button, the other button's label gets changed.
 #    gtk_box.append(&button_increase);
 #    gtk_box.append(&button_decrease);
 #    window.present();
-#}
+# }
 #
-#fn main() {
+# fn main() {
 #    // Create a new application
 #    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
 #    app.run(&std::env::args().collect::<Vec<_>>());
-#}
+# }
 ```
 Expand the code, copy and try it on your own machine.
 It will work fine.
@@ -253,24 +253,24 @@ We don't want our apps to senselessly allocating memory, so let's use weak refer
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust , no_run
-#use std::{cell::RefCell, rc::Rc};
+# use std::{cell::RefCell, rc::Rc};
 #
-#use glib::clone;
-#use gtk::prelude::*;
-#use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-#use gtk::{glib, Application};
+# use glib::clone;
+# use gtk::prelude::*;
+# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
+# use gtk::{glib, Application};
 #
-#fn main() {
+# fn main() {
 #    // Create a new application
 #    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
 #    app.run(&std::env::args().collect::<Vec<_>>());
-#}
+# }
 #
-#// When the application is launched…
-#fn on_activate(application: &Application) {
+# // When the application is launched…
+# fn on_activate(application: &Application) {
 #    // … create a new window …
 #    let window = ApplicationWindow::new(application);
 #
@@ -300,7 +300,7 @@ We don't want our apps to senselessly allocating memory, so let's use weak refer
 #    gtk_box.append(&button_increase);
 #    gtk_box.append(&button_decrease);
 #    window.present();
-#}
+# }
 ```
 
 The reference cycle is broken.
