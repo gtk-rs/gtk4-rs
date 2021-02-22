@@ -734,7 +734,7 @@ impl<O: IsA<Range>> RangeExt for O {
     fn emit_move_slider(&self, step: ScrollType) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-slider", &[&step])
+                .emit_by_name("move-slider", &[&step])
                 .unwrap()
         };
     }

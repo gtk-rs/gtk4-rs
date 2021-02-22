@@ -485,7 +485,7 @@ impl ListBox {
     pub fn emit_activate_cursor_row(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("activate-cursor-row", &[])
+                .emit_by_name("activate-cursor-row", &[])
                 .unwrap()
         };
     }
@@ -529,7 +529,7 @@ impl ListBox {
     pub fn emit_move_cursor(&self, object: MovementStep, p0: i32, p1: bool, p2: bool) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-cursor", &[&object, &p0, &p1, &p2])
+                .emit_by_name("move-cursor", &[&object, &p0, &p1, &p2])
                 .unwrap()
         };
     }
@@ -615,7 +615,7 @@ impl ListBox {
     pub fn emit_select_all(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-all", &[])
+                .emit_by_name("select-all", &[])
                 .unwrap()
         };
     }
@@ -668,7 +668,7 @@ impl ListBox {
     pub fn emit_toggle_cursor_row(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("toggle-cursor-row", &[])
+                .emit_by_name("toggle-cursor-row", &[])
                 .unwrap()
         };
     }
@@ -697,7 +697,7 @@ impl ListBox {
     pub fn emit_unselect_all(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("unselect-all", &[])
+                .emit_by_name("unselect-all", &[])
                 .unwrap()
         };
     }

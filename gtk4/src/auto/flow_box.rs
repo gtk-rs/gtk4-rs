@@ -453,7 +453,7 @@ impl FlowBox {
     pub fn emit_activate_cursor_child(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("activate-cursor-child", &[])
+                .emit_by_name("activate-cursor-child", &[])
                 .unwrap()
         };
     }
@@ -531,7 +531,7 @@ impl FlowBox {
     ) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-cursor", &[&step, &count, &extend, &modify])
+                .emit_by_name("move-cursor", &[&step, &count, &extend, &modify])
                 .unwrap()
         };
         res.unwrap()
@@ -564,7 +564,7 @@ impl FlowBox {
     pub fn emit_select_all(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-all", &[])
+                .emit_by_name("select-all", &[])
                 .unwrap()
         };
     }
@@ -617,7 +617,7 @@ impl FlowBox {
     pub fn emit_toggle_cursor_child(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("toggle-cursor-child", &[])
+                .emit_by_name("toggle-cursor-child", &[])
                 .unwrap()
         };
     }
@@ -646,7 +646,7 @@ impl FlowBox {
     pub fn emit_unselect_all(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("unselect-all", &[])
+                .emit_by_name("unselect-all", &[])
                 .unwrap()
         };
     }

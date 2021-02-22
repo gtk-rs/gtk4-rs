@@ -2165,7 +2165,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     fn emit_move_focus(&self, direction: DirectionType) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-focus", &[&direction])
+                .emit_by_name("move-focus", &[&direction])
                 .unwrap()
         };
     }
