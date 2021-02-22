@@ -27,7 +27,9 @@ impl ShortcutsSection {
         let stash: Stash<*mut ffi::GtkShortcutsSection, _> = self.to_glib_none();
         let gobject =
             unsafe { glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject) };
-        let res = gobject.emit("change-current-page", &[&object]).unwrap();
+        let res = gobject
+            .emit_by_name("change-current-page", &[&object])
+            .unwrap();
         res.unwrap()
             .get()
             .expect("Return Value for `emit_change_current_page`")
