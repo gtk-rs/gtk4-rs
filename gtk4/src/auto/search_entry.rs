@@ -131,7 +131,7 @@ impl SearchEntry {
     pub fn emit_activate(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("activate", &[])
+                .emit_by_name("activate", &[])
                 .unwrap()
         };
     }
@@ -160,7 +160,7 @@ impl SearchEntry {
     pub fn emit_next_match(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("next-match", &[])
+                .emit_by_name("next-match", &[])
                 .unwrap()
         };
     }
@@ -189,7 +189,7 @@ impl SearchEntry {
     pub fn emit_previous_match(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("previous-match", &[])
+                .emit_by_name("previous-match", &[])
                 .unwrap()
         };
     }
@@ -260,7 +260,7 @@ impl SearchEntry {
     pub fn emit_stop_search(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("stop-search", &[])
+                .emit_by_name("stop-search", &[])
                 .unwrap()
         };
     }

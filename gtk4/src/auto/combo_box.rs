@@ -914,7 +914,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     fn emit_move_active(&self, scroll_type: ScrollType) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-active", &[&scroll_type])
+                .emit_by_name("move-active", &[&scroll_type])
                 .unwrap()
         };
     }
@@ -946,7 +946,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     fn emit_popdown(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("popdown", &[])
+                .emit_by_name("popdown", &[])
                 .unwrap()
         };
         res.unwrap()
@@ -981,7 +981,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     fn emit_popup(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("popup", &[])
+                .emit_by_name("popup", &[])
                 .unwrap()
         };
     }

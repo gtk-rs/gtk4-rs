@@ -536,7 +536,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
     fn emit_activate(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("activate", &[])
+                .emit_by_name("activate", &[])
                 .unwrap()
         };
     }

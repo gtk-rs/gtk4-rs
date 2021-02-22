@@ -518,7 +518,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     fn emit_popdown(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("popdown", &[])
+                .emit_by_name("popdown", &[])
                 .unwrap()
         };
     }
@@ -549,7 +549,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     fn emit_popup(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("popup", &[])
+                .emit_by_name("popup", &[])
                 .unwrap()
         };
     }

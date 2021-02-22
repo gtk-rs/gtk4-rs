@@ -689,7 +689,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
     fn emit_close(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("close", &[])
+                .emit_by_name("close", &[])
                 .unwrap()
         };
     }

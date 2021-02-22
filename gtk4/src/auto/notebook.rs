@@ -369,7 +369,7 @@ impl Notebook {
     pub fn emit_change_current_page(&self, object: i32) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("change-current-page", &[&object])
+                .emit_by_name("change-current-page", &[&object])
                 .unwrap()
         };
         res.unwrap()
@@ -437,7 +437,7 @@ impl Notebook {
     pub fn emit_focus_tab(&self, object: NotebookTab) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("focus-tab", &[&object])
+                .emit_by_name("focus-tab", &[&object])
                 .unwrap()
         };
         res.unwrap()
@@ -476,7 +476,7 @@ impl Notebook {
     pub fn emit_move_focus_out(&self, object: DirectionType) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-focus-out", &[&object])
+                .emit_by_name("move-focus-out", &[&object])
                 .unwrap()
         };
     }
@@ -590,7 +590,7 @@ impl Notebook {
     pub fn emit_reorder_tab(&self, object: DirectionType, p0: bool) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("reorder-tab", &[&object, &p0])
+                .emit_by_name("reorder-tab", &[&object, &p0])
                 .unwrap()
         };
         res.unwrap()
@@ -627,7 +627,7 @@ impl Notebook {
     pub fn emit_select_page(&self, object: bool) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-page", &[&object])
+                .emit_by_name("select-page", &[&object])
                 .unwrap()
         };
         res.unwrap()

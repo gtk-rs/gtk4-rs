@@ -368,7 +368,7 @@ impl Assistant {
     pub fn emit_escape(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("escape", &[])
+                .emit_by_name("escape", &[])
                 .unwrap()
         };
     }

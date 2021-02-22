@@ -2277,7 +2277,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_expand_collapse_cursor_row(&self, object: bool, p0: bool, p1: bool) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("expand-collapse-cursor-row", &[&object, &p0, &p1])
+                .emit_by_name("expand-collapse-cursor-row", &[&object, &p0, &p1])
                 .unwrap()
         };
         res.unwrap()
@@ -2336,7 +2336,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     ) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-cursor", &[&step, &direction, &extend, &modify])
+                .emit_by_name("move-cursor", &[&step, &direction, &extend, &modify])
                 .unwrap()
         };
         res.unwrap()
@@ -2383,7 +2383,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("row-activated", &[&path, &column])
+                .emit_by_name("row-activated", &[&path, &column])
                 .unwrap()
         };
     }
@@ -2482,7 +2482,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_select_all(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-all", &[])
+                .emit_by_name("select-all", &[])
                 .unwrap()
         };
         res.unwrap()
@@ -2521,7 +2521,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_select_cursor_parent(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-cursor-parent", &[])
+                .emit_by_name("select-cursor-parent", &[])
                 .unwrap()
         };
         res.unwrap()
@@ -2565,7 +2565,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_select_cursor_row(&self, object: bool) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("select-cursor-row", &[&object])
+                .emit_by_name("select-cursor-row", &[&object])
                 .unwrap()
         };
         res.unwrap()
@@ -2604,7 +2604,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_start_interactive_search(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("start-interactive-search", &[])
+                .emit_by_name("start-interactive-search", &[])
                 .unwrap()
         };
         res.unwrap()
@@ -2718,7 +2718,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_toggle_cursor_row(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("toggle-cursor-row", &[])
+                .emit_by_name("toggle-cursor-row", &[])
                 .unwrap()
         };
         res.unwrap()
@@ -2754,7 +2754,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     fn emit_unselect_all(&self) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("unselect-all", &[])
+                .emit_by_name("unselect-all", &[])
                 .unwrap()
         };
         res.unwrap()

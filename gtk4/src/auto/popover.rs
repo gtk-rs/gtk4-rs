@@ -702,7 +702,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
     fn emit_activate_default(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("activate-default", &[])
+                .emit_by_name("activate-default", &[])
                 .unwrap()
         };
     }

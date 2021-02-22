@@ -468,7 +468,7 @@ impl ScrolledWindow {
     pub fn emit_move_focus_out(&self, direction_type: DirectionType) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("move-focus-out", &[&direction_type])
+                .emit_by_name("move-focus-out", &[&direction_type])
                 .unwrap()
         };
     }
@@ -509,7 +509,7 @@ impl ScrolledWindow {
     pub fn emit_scroll_child(&self, scroll: ScrollType, horizontal: bool) -> bool {
         let res = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("scroll-child", &[&scroll, &horizontal])
+                .emit_by_name("scroll-child", &[&scroll, &horizontal])
                 .unwrap()
         };
         res.unwrap()

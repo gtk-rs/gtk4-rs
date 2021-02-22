@@ -109,7 +109,7 @@ impl FileChooserWidget {
     pub fn emit_desktop_folder(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("desktop-folder", &[])
+                .emit_by_name("desktop-folder", &[])
                 .unwrap()
         };
     }
@@ -141,7 +141,7 @@ impl FileChooserWidget {
     pub fn emit_down_folder(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("down-folder", &[])
+                .emit_by_name("down-folder", &[])
                 .unwrap()
         };
     }
@@ -173,7 +173,7 @@ impl FileChooserWidget {
     pub fn emit_home_folder(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("home-folder", &[])
+                .emit_by_name("home-folder", &[])
                 .unwrap()
         };
     }
@@ -211,7 +211,7 @@ impl FileChooserWidget {
     pub fn emit_location_popup(&self, path: &str) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("location-popup", &[&path])
+                .emit_by_name("location-popup", &[&path])
                 .unwrap()
         };
     }
@@ -245,7 +245,7 @@ impl FileChooserWidget {
     pub fn emit_location_popup_on_paste(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("location-popup-on-paste", &[])
+                .emit_by_name("location-popup-on-paste", &[])
                 .unwrap()
         };
     }
@@ -279,7 +279,7 @@ impl FileChooserWidget {
     pub fn emit_location_toggle_popup(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("location-toggle-popup", &[])
+                .emit_by_name("location-toggle-popup", &[])
                 .unwrap()
         };
     }
@@ -311,7 +311,7 @@ impl FileChooserWidget {
     pub fn emit_places_shortcut(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("places-shortcut", &[])
+                .emit_by_name("places-shortcut", &[])
                 .unwrap()
         };
     }
@@ -344,7 +344,7 @@ impl FileChooserWidget {
     pub fn emit_quick_bookmark(&self, bookmark_index: i32) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("quick-bookmark", &[&bookmark_index])
+                .emit_by_name("quick-bookmark", &[&bookmark_index])
                 .unwrap()
         };
     }
@@ -376,7 +376,7 @@ impl FileChooserWidget {
     pub fn emit_recent_shortcut(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("recent-shortcut", &[])
+                .emit_by_name("recent-shortcut", &[])
                 .unwrap()
         };
     }
@@ -408,7 +408,7 @@ impl FileChooserWidget {
     pub fn emit_search_shortcut(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("search-shortcut", &[])
+                .emit_by_name("search-shortcut", &[])
                 .unwrap()
         };
     }
@@ -440,7 +440,7 @@ impl FileChooserWidget {
     pub fn emit_show_hidden(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("show-hidden", &[])
+                .emit_by_name("show-hidden", &[])
                 .unwrap()
         };
     }
@@ -469,7 +469,7 @@ impl FileChooserWidget {
     pub fn emit_up_folder(&self) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit("up-folder", &[])
+                .emit_by_name("up-folder", &[])
                 .unwrap()
         };
     }
