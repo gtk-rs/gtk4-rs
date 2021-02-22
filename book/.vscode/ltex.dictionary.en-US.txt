@@ -13,3 +13,6 @@ Gitlab
 management
 deallocated
 RefCell
+GObjects
+Rc
+GObjects

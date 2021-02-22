@@ -4,11 +4,11 @@ As mentioned in the section before, GObject is the base class all widgets inheri
 That means all GObjects share a set of common features.
 Within this section, we will focus on their memory management.
 GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
-Let's see in a real life example why this is something we want to have.
+Let us see in a real life example why this is something we want to have.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , no_run, compile_fail
+```rust ,no_run,compile_fail
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Box, Button, Orientation};
 
@@ -86,16 +86,16 @@ help: to force the closure to take ownership of `number` (and any other referenc
    |                                     ^^^^^^^^
 ```
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
-The compiler can't know when the user presses a button, so references must live forever.
+The compiler cannot know when the user presses a button, so references must live forever.
 Our `number` gets immediately deallocated though after it reaches the end of its scope.
 The error message is also suggesting, that we could take ownership of `number`, but is there a way that both closures can take ownership of the same object?
-Yes! That's exactly what [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) is there for.
+Yes! That is exactly what [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) is there for.
 We still have to move the borrow check from compile to run time.
-And that's what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is there for.
+And that is what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is there for.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , no_run
+```rust ,no_run
 # use std::{cell::RefCell, rc::Rc};
 #
 # use gtk::prelude::*;
@@ -143,7 +143,7 @@ We can improve it by using the `glib::clone!` macro.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , no_run
+```rust ,no_run
 # use std::{cell::RefCell, rc::Rc};
 #
 # use glib::clone;
@@ -195,7 +195,7 @@ If we now click on one button, the other button's label gets changed.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , no_run
+```rust ,no_run
 # use std::{cell::RefCell, rc::Rc};
 #
 # use glib::clone;
@@ -248,11 +248,11 @@ Of course we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
 If this leads to a circle, none of the objects in this cycle ever get deallocated.
-We don't want our apps to senselessly allocating memory, so let's use weak references for the buttons instead.
+We do not want our apps to senselessly allocating memory, so let us use weak references for the buttons instead.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust , no_run
+```rust ,no_run
 # use std::{cell::RefCell, rc::Rc};
 #
 # use glib::clone;
