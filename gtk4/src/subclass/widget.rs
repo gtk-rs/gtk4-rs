@@ -865,6 +865,7 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 }
 
 pub unsafe trait WidgetClassSubclassExt: ClassStruct {
+    #[doc(alias = "gtk_widget_class_set_template")]
     fn set_template_bytes(&mut self, template: &glib::Bytes) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -882,6 +883,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         self.set_template_bytes(&template_bytes);
     }
 
+    #[doc(alias = "gtk_widget_class_set_template_from_resource")]
     fn set_template_from_resource(&mut self, resource_name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -960,6 +962,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_template_scope")]
     fn set_template_scope<S: IsA<BuilderScope>>(&mut self, scope: &S) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -967,6 +970,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_bind_template_child_full")]
     fn bind_template_child(&mut self, name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -979,6 +983,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_add_shortcut")]
     fn add_shortcut(&mut self, shortcut: &Shortcut) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -986,6 +991,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_install_property_action")]
     fn install_property_action(&mut self, action_name: &str, property_name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1010,6 +1016,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_activate_signal")]
     fn set_activate_signal(&mut self, signal_id: SignalId) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1017,6 +1024,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_activate_signal_from_name")]
     fn set_activate_signal_from_name(&mut self, signal_name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1027,6 +1035,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_layout_manager_type")]
     fn set_layout_manager_type<T: IsA<LayoutManager>>(&mut self) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1034,6 +1043,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_get_layout_manager_type")]
     fn get_layout_manager_type(&self) -> glib::Type {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1041,6 +1051,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_css_name")]
     fn set_css_name(&mut self, name: &str) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1048,6 +1059,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_get_css_name")]
     fn get_css_name(&self) -> glib::GString {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1055,6 +1067,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_set_accessible_role")]
     fn set_accessible_role(&mut self, role: AccessibleRole) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
@@ -1062,6 +1075,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
+    #[doc(alias = "gtk_widget_class_get_accessible_role")]
     fn get_accessible_role(&self) -> AccessibleRole {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1070,6 +1084,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[allow(clippy::missing_safety_doc)]
+    #[doc(alias = "gtk_widget_class_bind_template_child_full")]
     unsafe fn bind_template_child_with_offset<T>(
         &mut self,
         name: &str,
