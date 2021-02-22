@@ -10,3 +10,4 @@ Libadwaita
 Flatpak
 fenv
 Gitlab
+managment

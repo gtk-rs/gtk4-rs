@@ -1,5 +1,6 @@
 stages:
   - lint
+  - test
   - deploy
 
 codespell:
@@ -7,6 +8,16 @@ codespell:
   image: "docker.io/bilelmoussaoui/codespell"
   script:
     - codespell -S "*.png,*.po,.git,*.jpg" -f
+
+doctests:
+  stage: test
+  image: "docker.io/bilelmoussaoui/gtk4"
+  before_script:
+    - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable
+    - source $HOME/.cargo/env
+  script:
+    - cd tests
+    - xvfb-run -a -s "-screen 0 1024x768x24" cargo test
 
 pages:
   stage: deploy
