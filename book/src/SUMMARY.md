@@ -5,7 +5,7 @@
 - [Hello World!]()
 - [Getting Started](basics/getting_started.md)
     - [Widgets](basics/widgets.md)
-    - [GObjects and their memory managment](basics/gobject.md)
+    - [GObjects and their memory management](basics/gobject.md)
     - [The main loop]()
 - [Extend our App]()
 - [GObject Concepts]()

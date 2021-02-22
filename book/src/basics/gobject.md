@@ -1,8 +1,8 @@
-# GObjects and their memory managment
+# GObjects and their memory management
 
 As mentioned in the section before, GObject is the base class all widgets inherit of.
 That means all GObjects share a set of common features.
-For now we will will focus on their memory managment.
+For now we will will focus on their memory management.
 GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
 Let's see in a real life example why this is something we want to have.
 Here we have an integer variable, which gets increased by pressing one button and decreased when pressing the other one.
