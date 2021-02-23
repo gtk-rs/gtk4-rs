@@ -16,3 +16,5 @@ RefCell
 GObjects
 Rc
 GObjects
+async
+gtk-rs

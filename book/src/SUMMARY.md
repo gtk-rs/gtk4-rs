@@ -6,7 +6,7 @@
 - [Getting Started](basics/getting_started.md)
     - [Widgets](basics/widgets.md)
     - [Memory management of GObjects](basics/gobject.md)
-    - [The main loop]()
+    - [The main event loop](basics/main_loop.md)
 - [Extend our App]()
 - [GObject Concepts]()
     - [Reference Counting]()
