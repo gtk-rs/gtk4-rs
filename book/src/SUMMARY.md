@@ -2,7 +2,7 @@
 
 [Introduction](basics/introduction.md)
 - [Installation](basics/installation.md)
-- [Hello World!]()
+- [Hello World!](basics/hello_world.md)
 - [Getting Started](basics/getting_started.md)
     - [Widgets](basics/widgets.md)
     - [Memory management of GObjects](basics/gobject.md)

@@ -18,7 +18,7 @@ Let us give you one example.
 <span class="filename">Filename: src/main.rs</span>
 
 
-```rust ,no-run
+```rust ,no_run
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button};
 
@@ -58,7 +58,7 @@ You probably won't force the thread to sleep within your callback,
 but it is not unusual that you want to run a slightly longer operation after an event is triggered.
 For that we just need to spawn a new thread and let the operation run there.
 
-```rust ,no-run
+```rust ,no_run
 # use gtk::prelude::*;
 # use gtk::{self, Application, ApplicationWindow, Button};
 # 
