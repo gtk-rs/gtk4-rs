@@ -55,7 +55,7 @@ fn on_activate(application: &Application) {
 
 After we press the button, the GUI is completely frozen.
 We can't even move the window.
-The `sleep` call is an artifical example,
+The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.
 
