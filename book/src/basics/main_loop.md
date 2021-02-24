@@ -1,7 +1,7 @@
 # The main event loop
 
 We now got comfortable using callbacks, but how do they actually work?
-All of this happens asynchronously, so there must be something managing the events and the scheduling responses.
+All of this happens asynchronously, so there must be something managing the events and scheduling the responses.
 Unsurprisingly, this is called the main event loop.
 
 <div style="text-align:center"><img src="https://developer.gnome.org/glib/stable/mainloop-states.gif" /></div>
@@ -11,11 +11,13 @@ You can even spawn [async functions](http://gtk-rs.org/docs/glib/struct.MainCont
 It does all of that within the same thread.
 Quickly iterating between all tasks gives the illusion of parallelism.
 That is why you can move the window at the same time as a progress bar is growing.
-But you surely saw GUIs that froze, at least for a few seconds.
-That happens when a single task takes too long.
-Let us give you one example.
 
-<span class="filename">Filename: src/main.rs</span><span class="filename">Filename: src/main.rs</span>
+
+However, you surely saw GUIs that became unresponsive, at least for a few seconds.
+That happens when a single task takes too long.
+Let us look at one example.
+
+<span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
 use gtk::prelude::*;
@@ -53,8 +55,8 @@ fn on_activate(application: &Application) {
 
 After we press the button, the GUI is completely frozen.
 We can't even move the window.
-You probably won't force the thread to sleep within your callback,
-but it is not unusual that you want to run a slightly longer operation after an event is triggered.
+The `sleep` call is an artifical example,
+but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.
 
 ```rust ,no_run
@@ -80,7 +82,7 @@ For that we just need to spawn a new thread and let the operation run there.
 # 
     // Connect callback
     button.connect_clicked(move |_| {
-        // The long running operation works now in a separate thread
+        // The long running operation runs now in a separate thread
         std::thread::spawn(move || {
             let ten_seconds = std::time::Duration::from_secs(10);
             std::thread::sleep(ten_seconds);
@@ -93,5 +95,5 @@ For that we just need to spawn a new thread and let the operation run there.
 # }
 ```
 
-If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before testing other workarounds.
-Luckily Rust's safety guarantees allow you to stop worrying about the nasty bugs concurrency tends to bring.
+If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
+Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs, concurrency tends to bring.

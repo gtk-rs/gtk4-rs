@@ -3,6 +3,7 @@
 As mentioned in the section before, GObject is the base class all widgets inherit of.
 That means all GObjects share a set of common features.
 Within this section, we will focus on their memory management.
+
 GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
 Let us see in a real life example why this is something we want to have.
 
@@ -30,6 +31,7 @@ fn on_activate(application: &gtk::Application) {
     let button_increase = Button::with_label("Increase");
     let button_decrease = Button::with_label("Decrease");
 
+    // A mutable integer
     let mut number = 0;
 
     // Connect callbacks
@@ -48,7 +50,7 @@ fn on_activate(application: &gtk::Application) {
 The idea of this code is that we have a simple app with two buttons.
 If we click on one button, an integer number gets increased, if we press the other one, it gets decreased.
 The Rust compiler refuses to compile it though.
-For once the famous borrow checker kicked in:
+For once the borrow checker kicked in:
 ```console
 error[E0499]: cannot borrow `number` as mutable more than once at a time
   --> src/main.rs:27:37
@@ -87,11 +89,12 @@ help: to force the closure to take ownership of `number` (and any other referenc
 ```
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
 The compiler cannot know when the user presses a button, so references must live forever.
-Our `number` gets immediately deallocated though after it reaches the end of its scope.
-The error message is also suggesting, that we could take ownership of `number`, but is there a way that both closures can take ownership of the same object?
-Yes! That is exactly what [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) is there for.
-We still have to move the borrow check from compile to run time.
-And that is what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is there for.
+And Our `number` gets immediately deallocated after it reaches the end of its scope.
+The error message is also suggesting, that we could take ownership of `number`, but is there a way that both closures could take ownership of the same object?
+
+Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
+With multiple owners we have to move the borrow check from compile time to run time.
+For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -138,8 +141,8 @@ And that is what [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.htm
 # }
 ```
 
-It not very nice though to spam the scope with temporary variables like `number_copy_1` and `number_copy_2`.
-We can improve it by using the `glib::clone!` macro.
+It not very nice though to fill the scope with temporary variables like `number_copy_1` and `number_copy_2`.
+We can improve that by using the `glib::clone!` macro.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -190,7 +193,7 @@ We can improve it by using the `glib::clone!` macro.
 # }
 ```
 
-Since GObjects are reference-counted and mutable, we can even pass the corresponding buttons to the closures.
+Since GObjects are reference-counted and mutable as well, so we can pass the buttons the same way as we did with `number`.
 If we now click on one button, the other button's label gets changed.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -212,7 +215,9 @@ If we now click on one button, the other button's label gets changed.
 #    let button_decrease = Button::with_label("Decrease");
 #
 #    let number = Rc::new(RefCell::new(0));
-
+#
+    // Connect callbacks
+    // When a button is clicked, `number` and label of the other button will be changed
     button_increase.connect_clicked(clone!(@strong number, @strong button_decrease => 
         move |_| {
             *number.borrow_mut() += 1;
@@ -242,13 +247,14 @@ If we now click on one button, the other button's label gets changed.
 ```
 Expand the code, copy and try it on your own machine.
 It will work fine.
+
 But whoops!
 Didn't we forget about one annoyance of reference-counted systems?
 Of course we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
-If this leads to a circle, none of the objects in this cycle ever get deallocated.
-We do not want our apps to senselessly allocating memory, so let us use weak references for the buttons instead.
+If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
+We obviously do not want our apps to keep allocating memory, so let us use weak references for the buttons instead.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -280,7 +286,7 @@ We do not want our apps to senselessly allocating memory, so let us use weak ref
 #
 #    // Reference-counted object with inner mutability
 #    let number = Rc::new(RefCell::new(0));
-
+#
     // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
     button_increase.connect_clicked(clone!(@strong number, @weak button_decrease => 
@@ -304,9 +310,9 @@ We do not want our apps to senselessly allocating memory, so let us use weak ref
 ```
 
 The reference cycle is broken.
-If we now click on one button and the other button is not there anymore, the closure simply does not get called.
+If we now click on one button and the other button is not there anymore, the closure will simply not be get called.
 Most of the time, this is the behavior you will want.
 Notice however that we kept the strong reference to `number`.
 If we had only used weak references, `number` would have been dropped and the closure would have never been called.
-Unlike with tricky-to-debug memory cycles, you would have immediately noticed that after testing your app.
+Unlike with tricky-to-debug reference cycles, you would have immediately noticed that after testing your app.
 That is why we recommend to default to weak references.
