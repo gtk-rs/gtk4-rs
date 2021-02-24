@@ -15,8 +15,7 @@ But you surely saw GUIs that froze, at least for a few seconds.
 That happens when a single task takes too long.
 Let us give you one example.
 
-<span class="filename">Filename: src/main.rs</span>
-
+<span class="filename">Filename: src/main.rs</span><span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
 use gtk::prelude::*;
