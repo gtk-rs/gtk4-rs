@@ -14,7 +14,7 @@ Additionally, with Rust you'll have nice things like:
  - Excellent third party libraries, which benefit from the same points as mentioned above
 
 
-## Who This Book Is For
+## Who this Book is for
 
 This book assumes that you know your way around Rust code.
 If this is not already the case, reading [The Rust Programming Language](https://doc.rust-lang.org/stable/book/) is an enjoyable way to get you to that stage.
@@ -24,7 +24,7 @@ might find that reading [A half hour to learn Rust](https://fasterthanli.me/arti
 Luckily, this together with the wish to develop graphical applications is all that's necessary to benefit from this book. 
 
 
-## How to Use This Book
+## How to use this Book
 
 In general, this book assumes that you’re reading it in sequence from front to
 back. However, if you are using it as a reference for a certain topic,
