@@ -6,7 +6,7 @@
 - [Widgets](widgets.md)
 - [The Main Event Loop](main_event_loop.md)
 - [GObject Concepts](gobject_concepts.md)
-    - [Memory management](gobject_memory_managment.md)
+    - [Memory management](gobject_memory_management.md)
     - [Subclassing]()
     - [Properties & Signals]()
     - [Actions]()
