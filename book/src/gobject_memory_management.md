@@ -86,7 +86,7 @@ help: to force the closure to take ownership of `number` (and any other referenc
 ```
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
 The compiler cannot know when the user presses a button, so references must live forever.
-And uur `number` gets immediately deallocated after it reaches the end of its scope.
+And our `number` gets immediately deallocated after it reaches the end of its scope.
 The error message is also suggesting that we could take ownership of `number`... But is there actually a way that both closures could take ownership of the same object?
 
 Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
