@@ -86,11 +86,11 @@ help: to force the closure to take ownership of `number` (and any other referenc
 ```
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
 The compiler cannot know when the user presses a button, so references must live forever.
-And Our `number` gets immediately deallocated after it reaches the end of its scope.
-The error message is also suggesting, that we could take ownership of `number`, but is there a way that both closures could take ownership of the same object?
+And uur `number` gets immediately deallocated after it reaches the end of its scope.
+The error message is also suggesting that we could take ownership of `number`... But is there actually a way that both closures could take ownership of the same object?
 
 Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
-With multiple owners we have to move the borrow check from compile time to run time.
+With multiple owners we have to move the borrow check from compile time to run time, but we also want to be able to update the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html).
 For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -125,9 +125,8 @@ For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefC
 
     // Connect callbacks, when a button is clicked `number` will be changed
     let number_copy_1 = number.clone();
-    let number_copy_2 = number.clone();
     button_increase.connect_clicked(move |_| *number_copy_1.borrow_mut() += 1);
-    button_decrease.connect_clicked(move |_| *number_copy_2.borrow_mut() -= 1);
+    button_decrease.connect_clicked(move |_| *number.borrow_mut() -= 1);
 #
 #    // Add buttons
 #    let gtk_box = Box::new(Orientation::Vertical, 0);
@@ -138,7 +137,7 @@ For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefC
 # }
 ```
 
-It not very nice though to fill the scope with temporary variables like `number_copy_1` and `number_copy_2`.
+It not very nice though to fill the scope with temporary variables like `number_copy_1`.
 We can improve that by using the `glib::clone!` macro.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -177,9 +176,9 @@ We can improve that by using the `glib::clone!` macro.
     button_increase.connect_clicked(clone!(@strong number => move |_| {
         *number.borrow_mut() += 1;
     }));
-    button_decrease.connect_clicked(clone!(@strong number => move |_| {
+    button_decrease.connect_clicked(move |_| {
         *number.borrow_mut() -= 1;
-    }));
+    });
 #
 #    // Add buttons
 #    let gtk_box = Box::new(Orientation::Vertical, 0);
@@ -220,7 +219,7 @@ If we now click on one button, the other button's label gets changed.
             *number.borrow_mut() += 1;
             button_decrease.set_label(&number.borrow().to_string());
     }));
-    button_decrease.connect_clicked(clone!(@strong number, @strong button_increase => 
+    button_decrease.connect_clicked(clone!(@strong button_increase => 
         move |_| {
             *number.borrow_mut() -= 1;
             button_increase.set_label(&number.borrow().to_string());
@@ -291,7 +290,7 @@ We obviously do not want our apps to keep allocating memory, so let us use weak 
             *number.borrow_mut() += 1;
             button_decrease.set_label(&number.borrow().to_string());
     }));
-    button_decrease.connect_clicked(clone!(@strong number, @weak button_increase =>
+    button_decrease.connect_clicked(clone!(@weak button_increase =>
         move |_| {
             *number.borrow_mut() -= 1;
             button_increase.set_label(&number.borrow().to_string());
