@@ -20,7 +20,7 @@ struct Data {
 }
 
 fn create_list_model() -> ListStore {
-    let col_types: [Type; 1] = [Type::String];
+    let col_types: [Type; 1] = [Type::STRING];
 
     let data: [Data; 4] = [
         Data {
