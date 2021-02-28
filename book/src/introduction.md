@@ -35,4 +35,8 @@ chapters. In concept chapters, you’ll learn about an aspect of GTK development
 chapters, we’ll build small programs together, applying what you’ve learned so
 far. 
 
-*The GTK-Rust book is heavily inspired by [The Rust Programming Language](https://doc.rust-lang.org/stable/book/)*
+## License
+
+The book itself is licensed under the [Creative Commons Attribution 3.0 Unported license](https://creativecommons.org/licenses/by/3.0/).
+One exception are the code snippets which are licensed under the [MIT license](https://gitlab.gnome.org/Hofer-Julian/gtk-rs-book/-/blob/main/LICENSE).
+
