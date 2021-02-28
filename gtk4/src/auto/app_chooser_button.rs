@@ -164,6 +164,7 @@ impl AppChooserButton {
 
     pub fn connect_custom_item_activated<F: Fn(&AppChooserButton, &str) + 'static>(
         &self,
+        detail: Option<&str>,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn custom_item_activated_trampoline<
@@ -181,9 +182,14 @@ impl AppChooserButton {
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
+            let detailed_signal_name =
+                detail.map(|name| format!("custom-item-activated::{}\0", name));
+            let signal_name: &[u8] = detailed_signal_name
+                .as_ref()
+                .map_or(&b"custom-item-activated\0"[..], |n| n.as_bytes());
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"custom-item-activated\0".as_ptr() as *const _,
+                signal_name.as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     custom_item_activated_trampoline::<F> as *const (),
                 )),
