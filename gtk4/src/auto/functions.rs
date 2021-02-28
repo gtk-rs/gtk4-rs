@@ -126,7 +126,7 @@ pub fn css_parser_warning_quark() -> glib::Quark {
 
 #[doc(alias = "gtk_disable_setlocale")]
 pub fn disable_setlocale() {
-    assert_initialized_main_thread!();
+    assert_not_initialized!();
     unsafe {
         ffi::gtk_disable_setlocale();
     }
