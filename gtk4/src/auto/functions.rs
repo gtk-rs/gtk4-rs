@@ -118,6 +118,22 @@ pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> 
 //    unsafe { TODO: call ffi:gtk_accelerator_parse_with_keycode() }
 //}
 
+#[doc(alias = "gtk_check_version")]
+pub fn check_version(
+    required_major: u32,
+    required_minor: u32,
+    required_micro: u32,
+) -> Option<glib::GString> {
+    skip_assert_initialized!();
+    unsafe {
+        from_glib_none(ffi::gtk_check_version(
+            required_major,
+            required_minor,
+            required_micro,
+        ))
+    }
+}
+
 #[doc(alias = "gtk_css_parser_warning_quark")]
 pub fn css_parser_warning_quark() -> glib::Quark {
     assert_initialized_main_thread!();
@@ -137,6 +153,12 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 
+#[doc(alias = "gtk_get_binary_age")]
+pub fn get_binary_age() -> u32 {
+    skip_assert_initialized!();
+    unsafe { ffi::gtk_get_binary_age() }
+}
+
 #[doc(alias = "gtk_get_debug_flags")]
 pub fn get_debug_flags() -> DebugFlags {
     assert_initialized_main_thread!();
@@ -149,10 +171,34 @@ pub fn get_default_language() -> Option<pango::Language> {
     unsafe { from_glib_none(ffi::gtk_get_default_language()) }
 }
 
+#[doc(alias = "gtk_get_interface_age")]
+pub fn get_interface_age() -> u32 {
+    skip_assert_initialized!();
+    unsafe { ffi::gtk_get_interface_age() }
+}
+
 #[doc(alias = "gtk_get_locale_direction")]
 pub fn get_locale_direction() -> TextDirection {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_get_locale_direction()) }
+}
+
+#[doc(alias = "gtk_get_major_version")]
+pub fn get_major_version() -> u32 {
+    skip_assert_initialized!();
+    unsafe { ffi::gtk_get_major_version() }
+}
+
+#[doc(alias = "gtk_get_micro_version")]
+pub fn get_micro_version() -> u32 {
+    skip_assert_initialized!();
+    unsafe { ffi::gtk_get_micro_version() }
+}
+
+#[doc(alias = "gtk_get_minor_version")]
+pub fn get_minor_version() -> u32 {
+    skip_assert_initialized!();
+    unsafe { ffi::gtk_get_minor_version() }
 }
 
 #[doc(alias = "gtk_hsv_to_rgb")]

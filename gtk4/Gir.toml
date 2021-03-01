@@ -322,13 +322,13 @@ trust_return_value_nullability = false
     manual = true
     [[object.function]]
     pattern = "get_(major|minor|micro)_version"
-    manual = true # to use skip_assert_initialized
+    assertion = "skip"
     [[object.function]]
     pattern = "get_(binary|interface)_age"
-    manual = true # to use skip_assert_initialized
+    assertion = "skip"
     [[object.function]]
     name = "check_version"
-    manual = true # to use skip_assert_initialized
+    assertion = "skip"
     [[object.function]]
     name = "show_uri_full"
     ignore = true # TODO: implement me
