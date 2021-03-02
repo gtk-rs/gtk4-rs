@@ -17,7 +17,7 @@
     - [Paintables]()
     - [GTK Media Support]()
     - [Shaders]()
-    - [Custom Widgets](basics/custom_widgets.md)
+    - [Custom Widgets](custom_widgets.md)
 - [Building a Simple To-do App]()
 - [Interface Builder]()
     - [GtkBuilder]()
@@ -33,16 +33,3 @@
 - [Zbus and Ashpd]()
 - [Webkit2Gtk]()
 - [Libadwaita]()
-
-# Build & deploy
-
-- [Meson]()
-- [Flatpak]()
-- [fenv](build/fenv.md)
-- [Gitlab CI]()
-- [Github Actions]()
-
-# IDE
-
-- [GNOME Builder](ide/builder.md)
-- [VS Code](ide/vscode.md)
