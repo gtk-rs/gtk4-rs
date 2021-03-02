@@ -37,7 +37,7 @@ And indeed, the trait `ButtonExt` includes the method [`connect_clicked`](https:
 
 ```rust ,no_run
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
