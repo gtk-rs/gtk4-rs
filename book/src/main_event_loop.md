@@ -25,7 +25,7 @@ use gtk::{self, Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+    let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
     // Run the application
@@ -65,7 +65,7 @@ For that we just need to spawn a new thread and let the operation run there.
 # 
 # fn main() {
 #     // Create a new application
-#     let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+#     let app = Application::new(Some("org.gtk.example"), Default::default())
 #         .expect("Initialization failed...");
 #     app.connect_activate(|app| on_activate(app));
 #     // Run the application

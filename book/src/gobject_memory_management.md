@@ -12,7 +12,7 @@ use gtk::{self, Application, ApplicationWindow, Box, Button, Orientation};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+    let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
     // Run the application
@@ -104,7 +104,7 @@ For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefC
 #
 # fn main() {
 #    // Create a new application
-#    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+#    let app = Application::new(Some("org.gtk.example"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
@@ -152,7 +152,7 @@ We can improve that by using the `glib::clone!` macro.
 #
 # fn main() {
 #    // Create a new application
-#    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+#    let app = Application::new(Some("org.gtk.example"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
@@ -234,7 +234,7 @@ If we now click on one button, the other button's label gets changed.
 #
 # fn main() {
 #    // Create a new application
-#    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+#    let app = Application::new(Some("org.gtk.example"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application
@@ -264,7 +264,7 @@ We obviously do not want our apps to keep allocating memory, so let us use weak 
 #
 # fn main() {
 #    // Create a new application
-#    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+#    let app = Application::new(Some("org.gtk.example"), Default::default())
 #        .expect("Initialization failed...");
 #    app.connect_activate(|app| on_activate(app));
 #    // Run the application

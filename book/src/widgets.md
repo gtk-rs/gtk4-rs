@@ -41,7 +41,7 @@ use gtk::{self, Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gnome.gitlab.booktests.Devel"), Default::default())
+    let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
     // Run the application
@@ -58,8 +58,8 @@ fn on_activate(application: &Application) {
 
     // Connect callback
     button.connect_clicked(move |button| {
-        // Set the label to "Hello" after the button is pressed
-        button.set_label("Hello");
+        // Set the label to "Hello World!" after the button is pressed
+        button.set_label("Hello World!");
     });
 
     // Add button
