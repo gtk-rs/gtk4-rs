@@ -15,4 +15,3 @@ doc-comment = "0.3.3"
 [dependencies.gtk]
 package = "gtk4"
 git = "https://github.com/gtk-rs/gtk4-rs"
-rev = "63014057741052de7ecc39c7c6f3c2711c97961f"
