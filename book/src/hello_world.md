@@ -70,3 +70,5 @@ fn on_activate(application: &Application) {
     window.present();
 }
 ```
+
+<div style="text-align:center"><img src="images/hello_world.png" /></div>
