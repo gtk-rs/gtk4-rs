@@ -4,3 +4,6 @@
 {"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QOf course we did: reference cycles.\\E$"}
 {"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QLuckily Rust's safety guarantees allow you to stop worrying about the nasty bugs concurrency tends to bring.\\E$"}
 {"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QOne kind of widget might be able to contain other widgets, it might present information and it might react to interaction.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QIn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q we create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QIn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q we create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QWe run it with \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and it blocks the terminal, but seemingly nothing happens.\\E$"}

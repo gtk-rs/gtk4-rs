@@ -59,6 +59,8 @@ The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.
 
+<span class="filename">Filename: src/main.rs</span>
+
 ```rust ,no_run
 # use gtk::prelude::*;
 # use gtk::{self, Application, ApplicationWindow, Button};

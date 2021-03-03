@@ -1,6 +1,6 @@
 [book]
-authors = ["Bilal Elmoussaoui", "Hofer Julian", "Christopher Davis"]
+authors = ["Julian Hofer"]
 language = "en"
 multilingual = false
 src = "src"
-title = "gtk4-rs"
+title = "GUI development with Rust and GTK 4"

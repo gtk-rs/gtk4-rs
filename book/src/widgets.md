@@ -6,7 +6,7 @@ There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
 The [Widget Gallery](https://developer.gnome.org/gtk4/stable/ch08.html) is useful to find out which widget fits your needs.
-Let's say we want a button.
+Let us say we want to create our “Hello World” app again, and we wanted to have a button.
 We have quite a bit of choice here, but let's take the most simple one.
 Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 
@@ -37,35 +37,36 @@ And indeed, the trait `ButtonExt` includes the method [`connect_clicked`](https:
 
 ```rust ,no_run
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+# use gtk::{Application, ApplicationWindow, Button};
+# 
+# fn main() {
+#     // Create a new application
+#     let app = Application::new(Some("org.gtk.example"), Default::default())
+#         .expect("Initialization failed...");
+#     app.connect_activate(|app| on_activate(app));
+#     
+#     // Run the application
+#     app.run(&std::env::args().collect::<Vec<_>>());
+# }
+# 
+# // When the application is launched…
+# fn on_activate(application: &Application) {
+#     // … create a new window …
+#     let window = ApplicationWindow::new(application);
 
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default())
-        .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
-    // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
-}
+// Create a button
+let button = Button::with_label("Run stuff");
 
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
-    let window = ApplicationWindow::new(application);
+// Connect callback
+button.connect_clicked(move |button| {
+    // Set the label to "Hello World!" after the button has been clicked on
+    button.set_label("Hello World!");
+});
 
-    // Create a button
-    let button = Button::with_label("Run stuff");
-
-    // Connect callback
-    button.connect_clicked(move |button| {
-        // Set the label to "Hello World!" after the button is pressed
-        button.set_label("Hello World!");
-    });
-
-    // Add button
-    window.set_child(Some(&button));
-    window.present();
-}
+#     // Add button
+#     window.set_child(Some(&button));
+#     window.present();
+# }
 ```
 
 Please note that Rust requires bringing traits into scope, before using one of its methods.
