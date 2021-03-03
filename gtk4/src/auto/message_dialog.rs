@@ -39,11 +39,6 @@ glib::wrapper! {
 }
 
 impl MessageDialog {
-    //#[doc(alias = "gtk_message_dialog_new")]
-    //pub fn new<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, type_: MessageType, buttons: ButtonsType, message_format: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> MessageDialog {
-    //    unsafe { TODO: call ffi:gtk_message_dialog_new() }
-    //}
-
     //#[doc(alias = "gtk_message_dialog_new_with_markup")]
     //pub fn with_markup<P: IsA<Window>>(parent: Option<&P>, flags: DialogFlags, type_: MessageType, buttons: ButtonsType, message_format: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> MessageDialog {
     //    unsafe { TODO: call ffi:gtk_message_dialog_new_with_markup() }
