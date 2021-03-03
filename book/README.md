@@ -7,8 +7,8 @@ At the moment, it is deployed [here](https://hofer-julian.pages.gitlab.gnome.org
 
 1. Install mdbook
 
-```
-cargo install mdbook
+```bash
+$ cargo install mdbook
 ```
 
 2. Building
@@ -19,11 +19,13 @@ To view the book, type:
 $ mdbook serve
 ```
 
+## Tests
 
 To run the tests:
 
 ```bash
-$ mdbook test
+$ cd tests
+$ cargo test
 ```
 
 ## License
