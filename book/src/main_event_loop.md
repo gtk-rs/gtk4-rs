@@ -4,7 +4,7 @@ We now got comfortable using callbacks, but how do they actually work?
 All of this happens asynchronously, so there must be something managing the events and scheduling the responses.
 Unsurprisingly, this is called the main event loop.
 
-<div style="text-align:center"><img src="https://developer.gnome.org/glib/stable/mainloop-states.gif" /></div>
+<div style="text-align:center"><img src="images/main_event_loop_states.gif" /></div>
 
 The main loop manages all kinds of events — from mouse clicks and keyboard presses to file events.
 You can even spawn [async functions](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local) on it.
