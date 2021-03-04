@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::ptr;
 
 pub trait FlowBoxExtManual: 'static {
+    #[doc(alias = "gtk_flow_box_bind_model")]
     fn unbind_model(&self);
 }
 

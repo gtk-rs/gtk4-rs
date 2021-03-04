@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::ptr;
 
 pub trait ListBoxExtManual: 'static {
+    #[doc(alias = "gtk_list_box_bind_model")]
     fn unbind_model(&self);
 }
 

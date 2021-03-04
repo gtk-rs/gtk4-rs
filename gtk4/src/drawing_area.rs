@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::ptr;
 
 pub trait DrawingAreaExtManual: 'static {
+    #[doc(alias = "gtk_drawing_area_set_draw_func")]
     fn unset_draw_func(&self);
 }
 impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
