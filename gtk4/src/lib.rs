@@ -90,6 +90,7 @@ mod entry_buffer;
 mod entry_completion;
 mod enums;
 mod event_controller_key;
+mod expression;
 mod file_chooser_dialog;
 mod flow_box;
 mod functions;
@@ -127,6 +128,10 @@ mod widget;
 pub use application::ApplicationBuilder;
 pub use border::Border;
 pub use css_location::CssLocation;
+pub use expression::{
+    ClosureExpression, ConstantExpression, Expression, ExpressionWatch, ObjectExpression,
+    PropertyExpression, NONE_EXPRESSION,
+};
 pub use functions::*;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;

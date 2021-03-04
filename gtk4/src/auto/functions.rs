@@ -224,11 +224,6 @@ pub fn im_modules_init() {
     }
 }
 
-//#[doc(alias = "gtk_param_spec_expression")]
-//pub fn param_spec_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> /*Ignored*/Option<glib::ParamSpec> {
-//    unsafe { TODO: call ffi:gtk_param_spec_expression() }
-//}
-
 #[doc(alias = "gtk_print_run_page_setup_dialog")]
 pub fn print_run_page_setup_dialog<P: IsA<Window>>(
     parent: Option<&P>,

@@ -11,14 +11,6 @@ single_version_file = true
 trust_return_value_nullability = true
 
 generate = [
-    # "Gtk.ClosureExpression",
-    # "Gtk.ConstantExpression",
-    # "Gtk.Expression",
-    # "Gtk.ExpressionNotify",
-    # "Gtk.ExpressionWatch",
-    # "Gtk.ObjectExpression",
-    # "Gtk.ParamSpecExpression",
-    # "Gtk.PropertyExpression",
     # "Gtk.RequestedSize", a record
     "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
@@ -181,6 +173,7 @@ ignore = [
     "Gtk.BuilderCScope", # not useful for rust
     "Gtk.CClosureExpression", # not useful for rust,
     "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
+    "Gtk.ParamSpecExpression",
     "Gtk.WidgetClass", # manual with subclassing
 ]
 
@@ -267,6 +260,12 @@ manual = [
     "Gsk.Shadow",
     "Gsk.Transform",
     "Gtk.Border",
+    # "Gtk.ClosureExpression",
+    # "Gtk.ConstantExpression",
+    # "Gtk.Expression",
+    # "Gtk.ExpressionWatch",
+    # "Gtk.ObjectExpression",
+    # "Gtk.PropertyExpression",
     "Gtk.CssLocation",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
@@ -338,6 +337,13 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "disable_setlocale"
     assertion = "not-initialized"
+    [[object.function]]
+    name = "param_spec_expression"
+    ignore = true # handled with an extension trait of glib::ParamSpec
+    [[object.function]]
+    name = "value_(dup|get|take|set)_expression"
+    ignore = true
+
 
 [[object]]
 name = "Gtk.AboutDialog"
