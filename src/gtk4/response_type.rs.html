@@ -135,6 +135,17 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -150,26 +161,37 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ResponseType</span> {
     <span class="doccomment">/// Returned if an action widget has no response id,</span>
     <span class="doccomment">///  or if the dialog gets programmatically hidden or destroyed</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// Generic response id, not used by GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_REJECT&quot;</span>)]</span>
     <span class="ident">Reject</span>,
     <span class="doccomment">/// Generic response id, not used by GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_ACCEPT&quot;</span>)]</span>
     <span class="ident">Accept</span>,
     <span class="doccomment">/// Returned if the dialog is deleted</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_DELETE_EVENT&quot;</span>)]</span>
     <span class="ident">DeleteEvent</span>,
     <span class="doccomment">/// Returned by OK buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_OK&quot;</span>)]</span>
     <span class="prelude-val">Ok</span>,
     <span class="doccomment">/// Returned by Cancel buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_CANCEL&quot;</span>)]</span>
     <span class="ident">Cancel</span>,
     <span class="doccomment">/// Returned by Close buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_CLOSE&quot;</span>)]</span>
     <span class="ident">Close</span>,
     <span class="doccomment">/// Returned by Yes buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_YES&quot;</span>)]</span>
     <span class="ident">Yes</span>,
     <span class="doccomment">/// Returned by No buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_NO&quot;</span>)]</span>
     <span class="ident">No</span>,
     <span class="doccomment">/// Returned by Apply buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_APPLY&quot;</span>)]</span>
     <span class="ident">Apply</span>,
     <span class="doccomment">/// Returned by Help buttons in GTK dialogs</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_HELP&quot;</span>)]</span>
     <span class="ident">Help</span>,
     <span class="ident">Other</span>(<span class="ident">u16</span>),
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>

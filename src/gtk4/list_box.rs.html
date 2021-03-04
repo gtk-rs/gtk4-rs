@@ -25,6 +25,7 @@
 <span id="22">22</span>
 <span id="23">23</span>
 <span id="24">24</span>
+<span id="25">25</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -34,6 +35,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ListBoxExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_bind_model&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unbind_model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 

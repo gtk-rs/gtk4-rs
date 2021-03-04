@@ -227,6 +227,12 @@
 <span id="224">224</span>
 <span id="225">225</span>
 <span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -240,6 +246,7 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SortColumn</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID&quot;</span>)]</span>
     <span class="ident">Default</span>,
     <span class="ident">Index</span>(<span class="ident">u32</span>),
 }
@@ -304,6 +311,7 @@
     <span class="doccomment">/// User data to pass to `sort_func`, or `None`</span>
     <span class="doccomment">/// ## `destroy`</span>
     <span class="doccomment">/// Destroy notifier of `user_data`, or `None`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_set_default_sort_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
@@ -318,6 +326,7 @@
     <span class="doccomment">/// User data to pass to `sort_func`, or `None`</span>
     <span class="doccomment">/// ## `destroy`</span>
     <span class="doccomment">/// Destroy notifier of `user_data`, or `None`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_set_sort_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
@@ -334,6 +343,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if the sort column is not one of the special sort</span>
     <span class="doccomment">///  column ids.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_get_sort_column_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
     <span class="doccomment">/// Sets the current sort column to be `sort_column_id`. The `self` will</span>
     <span class="doccomment">/// resort itself to reflect this change, after emitting a</span>
@@ -348,7 +358,9 @@
     <span class="doccomment">/// the sort column id to set</span>
     <span class="doccomment">/// ## `order`</span>
     <span class="doccomment">/// The sort order of the column</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_set_sort_column_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">order</span>: <span class="ident">SortType</span>);
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_set_sort_column_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_unsorted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 
