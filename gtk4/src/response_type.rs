@@ -7,16 +7,27 @@ use std::fmt;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ResponseType {
+    #[doc(alias = "GTK_RESPONSE_NONE")]
     None,
+    #[doc(alias = "GTK_RESPONSE_REJECT")]
     Reject,
+    #[doc(alias = "GTK_RESPONSE_ACCEPT")]
     Accept,
+    #[doc(alias = "GTK_RESPONSE_DELETE_EVENT")]
     DeleteEvent,
+    #[doc(alias = "GTK_RESPONSE_OK")]
     Ok,
+    #[doc(alias = "GTK_RESPONSE_CANCEL")]
     Cancel,
+    #[doc(alias = "GTK_RESPONSE_CLOSE")]
     Close,
+    #[doc(alias = "GTK_RESPONSE_YES")]
     Yes,
+    #[doc(alias = "GTK_RESPONSE_NO")]
     No,
+    #[doc(alias = "GTK_RESPONSE_APPLY")]
     Apply,
+    #[doc(alias = "GTK_RESPONSE_HELP")]
     Help,
     Other(u16),
     #[doc(hidden)]

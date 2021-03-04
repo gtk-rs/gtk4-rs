@@ -10,6 +10,7 @@ use crate::{SortType, TreeIter, TreeModel, TreeSortable};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum SortColumn {
+    #[doc(alias = "GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID")]
     Default,
     Index(u32),
 }
@@ -59,14 +60,19 @@ impl fmt::Display for SortColumn {
 }
 
 pub trait TreeSortableExtManual: 'static {
+    #[doc(alias = "gtk_tree_sortable_set_default_sort_func")]
     fn set_default_sort_func<F>(&self, sort_func: F)
     where
         F: Fn(&Self, &TreeIter, &TreeIter) -> Ordering + 'static;
+    #[doc(alias = "gtk_tree_sortable_set_sort_func")]
     fn set_sort_func<F>(&self, sort_column_id: SortColumn, sort_func: F)
     where
         F: Fn(&Self, &TreeIter, &TreeIter) -> Ordering + 'static;
+    #[doc(alias = "gtk_tree_sortable_get_sort_column_id")]
     fn get_sort_column_id(&self) -> Option<(SortColumn, SortType)>;
+    #[doc(alias = "gtk_tree_sortable_set_sort_column_id")]
     fn set_sort_column_id(&self, sort_column_id: SortColumn, order: SortType);
+    #[doc(alias = "gtk_tree_sortable_set_sort_column_id")]
     fn set_unsorted(&self);
 }
 
