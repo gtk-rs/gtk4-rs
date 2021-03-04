@@ -20,7 +20,17 @@ pub struct RGBA {
 }
 
 impl RGBA {
-    // TODO: is_clear, is_opaque
+    #[doc(alias = "gdk_rgba_is_opaque")]
+    pub fn is_opaque(&self) -> bool {
+        skip_assert_initialized!();
+        unsafe { from_glib(ffi::gdk_rgba_is_opaque(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gdk_rgba_is_clear")]
+    pub fn is_clear(&self) -> bool {
+        skip_assert_initialized!();
+        unsafe { from_glib(ffi::gdk_rgba_is_clear(self.to_glib_none().0)) }
+    }
 
     pub fn black() -> RGBA {
         skip_assert_initialized!();
