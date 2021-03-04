@@ -52,6 +52,7 @@ pub fn pango_layout_get_clip_region(
     }
 }
 
+#[doc(alias = "gdk_content_deserialize_async")]
 pub fn content_deserialize_async<
     P: IsA<gio::InputStream>,
     Q: IsA<gio::Cancellable>,
@@ -125,6 +126,7 @@ pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'stat
     }))
 }
 
+#[doc(alias = "gdk_content_register_deserializer")]
 pub fn content_register_deserializer<
     T: 'static,
     P: Fn(&ContentDeserializer, &mut Option<T>) + 'static,
@@ -243,6 +245,7 @@ pub fn content_register_serializer<
     }
 }
 
+#[doc(alias = "gdk_content_serialize_async")]
 pub fn content_serialize_async<
     P: IsA<gio::OutputStream>,
     Q: IsA<gio::Cancellable>,

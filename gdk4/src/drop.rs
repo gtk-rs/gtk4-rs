@@ -10,6 +10,7 @@ use std::pin::Pin;
 use std::ptr;
 
 impl Drop {
+    #[doc(alias = "gdk_drop_read_async")]
     pub fn read_async<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
