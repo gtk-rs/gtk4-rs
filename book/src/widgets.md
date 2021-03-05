@@ -13,7 +13,7 @@ Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 <div style="text-align:center"><img src="images/widgets_button.png" /></div>
 
 
-The [GTK documentation](https://developer.gnome.org/gtk3/stable/GtkButton.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
+The [GTK documentation](https://developer.gnome.org/gtk4/stable/GtkButton.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
 
 ```console
 GObject
