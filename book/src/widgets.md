@@ -16,15 +16,13 @@ Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 The [GTK documentation](https://developer.gnome.org/gtk3/stable/GtkButton.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
 
 ```console
- GObject
-  ╰── GtkWidget
-       ╰── GtkContainer
-            ╰── GtkBin
-                 ╰── GtkButton
+GObject
+╰── GtkWidget
+    ╰── GtkButton
 ```
 
 A GtkButton is part of an inheritance tree with GObject at the top.
-Additionally, the GtkButton implements the interfaces `GtkBuildable`, `GtkActionable` and `GtkActivatable`.
+Additionally, the GtkButton implements the interfaces `GtkAccessible` `GtkBuildable`, `GtkConstraintTarget`, `GtkActionable`.
 
 Now let us compare that with the [gtk-rs docs](https://gtk-rs.org/gtk4-rs/gtk4/index.html).
 Gtk-rs symbols are already namespaced, so we search for `Button` instead of `GtkButton`.
