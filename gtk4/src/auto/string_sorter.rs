@@ -2,9 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Expression;
 use crate::Sorter;
 use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -24,15 +24,10 @@ glib::wrapper! {
 }
 
 impl StringSorter {
-    //#[doc(alias = "gtk_string_sorter_new")]
-    //pub fn new(expression: /*Ignored*/Option<&Expression>) -> StringSorter {
-    //    unsafe { TODO: call ffi:gtk_string_sorter_new() }
-    //}
-
-    //#[doc(alias = "gtk_string_sorter_get_expression")]
-    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_string_sorter_get_expression() }
-    //}
+    #[doc(alias = "gtk_string_sorter_get_expression")]
+    pub fn get_expression(&self) -> Option<Expression> {
+        unsafe { from_glib_none(ffi::gtk_string_sorter_get_expression(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_string_sorter_get_ignore_case")]
     pub fn get_ignore_case(&self) -> bool {
@@ -42,11 +37,6 @@ impl StringSorter {
             ))
         }
     }
-
-    //#[doc(alias = "gtk_string_sorter_set_expression")]
-    //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call ffi:gtk_string_sorter_set_expression() }
-    //}
 
     #[doc(alias = "gtk_string_sorter_set_ignore_case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
@@ -108,7 +98,7 @@ impl StringSorter {
 
 #[derive(Clone, Default)]
 pub struct StringSorterBuilder {
-    //expression: /*Unknown type*/,
+    expression: Option<Expression>,
     ignore_case: Option<bool>,
 }
 
@@ -119,11 +109,19 @@ impl StringSorterBuilder {
 
     pub fn build(self) -> StringSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
         if let Some(ref ignore_case) = self.ignore_case {
             properties.push(("ignore-case", ignore_case));
         }
         let ret = glib::Object::new::<StringSorter>(&properties).expect("object new");
         ret
+    }
+
+    pub fn expression(mut self, expression: &Expression) -> Self {
+        self.expression = Some(expression.clone());
+        self
     }
 
     pub fn ignore_case(mut self, ignore_case: bool) -> Self {

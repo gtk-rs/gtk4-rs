@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Expression;
 use crate::SortType;
 use crate::Sorter;
 use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -25,15 +25,14 @@ glib::wrapper! {
 }
 
 impl NumericSorter {
-    //#[doc(alias = "gtk_numeric_sorter_new")]
-    //pub fn new(expression: /*Ignored*/Option<&Expression>) -> NumericSorter {
-    //    unsafe { TODO: call ffi:gtk_numeric_sorter_new() }
-    //}
-
-    //#[doc(alias = "gtk_numeric_sorter_get_expression")]
-    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_numeric_sorter_get_expression() }
-    //}
+    #[doc(alias = "gtk_numeric_sorter_get_expression")]
+    pub fn get_expression(&self) -> Option<Expression> {
+        unsafe {
+            from_glib_none(ffi::gtk_numeric_sorter_get_expression(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "gtk_numeric_sorter_get_sort_order")]
     pub fn get_sort_order(&self) -> SortType {
@@ -43,11 +42,6 @@ impl NumericSorter {
             ))
         }
     }
-
-    //#[doc(alias = "gtk_numeric_sorter_set_expression")]
-    //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call ffi:gtk_numeric_sorter_set_expression() }
-    //}
 
     #[doc(alias = "gtk_numeric_sorter_set_sort_order")]
     pub fn set_sort_order(&self, sort_order: SortType) {
@@ -109,7 +103,7 @@ impl NumericSorter {
 
 #[derive(Clone, Default)]
 pub struct NumericSorterBuilder {
-    //expression: /*Unknown type*/,
+    expression: Option<Expression>,
     sort_order: Option<SortType>,
 }
 
@@ -120,11 +114,19 @@ impl NumericSorterBuilder {
 
     pub fn build(self) -> NumericSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
         if let Some(ref sort_order) = self.sort_order {
             properties.push(("sort-order", sort_order));
         }
         let ret = glib::Object::new::<NumericSorter>(&properties).expect("object new");
         ret
+    }
+
+    pub fn expression(mut self, expression: &Expression) -> Self {
+        self.expression = Some(expression.clone());
+        self
     }
 
     pub fn sort_order(mut self, sort_order: SortType) -> Self {

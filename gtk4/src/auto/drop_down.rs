@@ -7,6 +7,7 @@ use crate::AccessibleRole;
 use crate::Align;
 use crate::Buildable;
 use crate::ConstraintTarget;
+use crate::Expression;
 use crate::LayoutManager;
 use crate::ListItemFactory;
 use crate::Overflow;
@@ -32,11 +33,6 @@ glib::wrapper! {
 }
 
 impl DropDown {
-    //#[doc(alias = "gtk_drop_down_new")]
-    //pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>, expression: /*Ignored*/Option<&Expression>) -> DropDown {
-    //    unsafe { TODO: call ffi:gtk_drop_down_new() }
-    //}
-
     #[doc(alias = "gtk_drop_down_new_from_strings")]
     pub fn from_strings(strings: &[&str]) -> DropDown {
         assert_initialized_main_thread!();
@@ -53,10 +49,10 @@ impl DropDown {
         unsafe { from_glib(ffi::gtk_drop_down_get_enable_search(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_drop_down_get_expression")]
-    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_drop_down_get_expression() }
-    //}
+    #[doc(alias = "gtk_drop_down_get_expression")]
+    pub fn get_expression(&self) -> Option<Expression> {
+        unsafe { from_glib_none(ffi::gtk_drop_down_get_expression(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_drop_down_get_factory")]
     pub fn get_factory(&self) -> Option<ListItemFactory> {
@@ -89,11 +85,6 @@ impl DropDown {
             ffi::gtk_drop_down_set_enable_search(self.to_glib_none().0, enable_search.to_glib());
         }
     }
-
-    //#[doc(alias = "gtk_drop_down_set_expression")]
-    //pub fn set_expression(&self, expression: /*Ignored*/Option<&Expression>) {
-    //    unsafe { TODO: call ffi:gtk_drop_down_set_expression() }
-    //}
 
     #[doc(alias = "gtk_drop_down_set_factory")]
     pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
@@ -311,7 +302,7 @@ impl DropDown {
 #[derive(Clone, Default)]
 pub struct DropDownBuilder {
     enable_search: Option<bool>,
-    //expression: /*Unknown type*/,
+    expression: Option<Expression>,
     factory: Option<ListItemFactory>,
     list_factory: Option<ListItemFactory>,
     model: Option<gio::ListModel>,
@@ -357,6 +348,9 @@ impl DropDownBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_search) = self.enable_search {
             properties.push(("enable-search", enable_search));
+        }
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
         }
         if let Some(ref factory) = self.factory {
             properties.push(("factory", factory));
@@ -466,6 +460,11 @@ impl DropDownBuilder {
 
     pub fn enable_search(mut self, enable_search: bool) -> Self {
         self.enable_search = Some(enable_search);
+        self
+    }
+
+    pub fn expression(mut self, expression: &Expression) -> Self {
+        self.expression = Some(expression.clone());
         self
     }
 

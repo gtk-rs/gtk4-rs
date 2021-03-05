@@ -730,23 +730,3 @@ pub fn tree_get_row_drag_data(
         }
     }
 }
-
-//#[doc(alias = "gtk_value_dup_expression")]
-//pub fn value_dup_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
-//    unsafe { TODO: call ffi:gtk_value_dup_expression() }
-//}
-
-//#[doc(alias = "gtk_value_get_expression")]
-//pub fn value_get_expression(value: &glib::Value) -> /*Ignored*/Option<Expression> {
-//    unsafe { TODO: call ffi:gtk_value_get_expression() }
-//}
-
-//#[doc(alias = "gtk_value_set_expression")]
-//pub fn value_set_expression(value: &mut glib::Value, expression: /*Ignored*/&Expression) {
-//    unsafe { TODO: call ffi:gtk_value_set_expression() }
-//}
-
-//#[doc(alias = "gtk_value_take_expression")]
-//pub fn value_take_expression(value: &mut glib::Value, expression: /*Ignored*/Option<&Expression>) {
-//    unsafe { TODO: call ffi:gtk_value_take_expression() }
-//}

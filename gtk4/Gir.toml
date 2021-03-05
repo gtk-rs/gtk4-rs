@@ -260,15 +260,14 @@ manual = [
     "Gsk.Shadow",
     "Gsk.Transform",
     "Gtk.Border",
-    # "Gtk.ClosureExpression",
-    # "Gtk.ConstantExpression",
-    # "Gtk.Expression",
-    # "Gtk.ExpressionWatch",
-    # "Gtk.ObjectExpression",
-    # "Gtk.PropertyExpression",
+    "Gtk.ClosureExpression",
+    "Gtk.ConstantExpression",
     "Gtk.CssLocation",
+    "Gtk.ExpressionWatch",
+    "Gtk.ObjectExpression",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
+    "Gtk.PropertyExpression",
     "Gtk.RecentData",
     "Gtk.Requisition",
     "Gtk.ResponseType",
@@ -341,7 +340,7 @@ trust_return_value_nullability = false
     name = "param_spec_expression"
     ignore = true # handled with an extension trait of glib::ParamSpec
     [[object.function]]
-    name = "value_(dup|get|take|set)_expression"
+    pattern = "value_(dup|get|take|set)_expression"
     ignore = true
 
 
@@ -455,6 +454,12 @@ trust_return_value_nullability = false
 name = "Gtk.BoolFilter"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true # use AsRef<Expression>
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression>
 trust_return_value_nullability = false
 
 [[object]]
@@ -809,6 +814,12 @@ manual_traits = ["DrawingAreaExtManual"]
 name = "Gtk.DropDown"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true # use AsRef<Expression>
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.DropTarget"
@@ -952,6 +963,12 @@ generate_builder = true
 name = "Gtk.Expander"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "Gtk.Expression"
+status = "manual"
+# Workaround IsA<Expression> in the generated builders to not rewrite them manually
+final_type = true
 
 [[object]]
 name = "Gtk.FileChooser"
@@ -1431,6 +1448,12 @@ trust_return_value_nullability = false
 name = "Gtk.NumericSorter"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true # use AsRef<Expression>
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.Overlay"
@@ -1816,6 +1839,12 @@ generate_builder = true
 name = "Gtk.StringFilter"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true # use AsRef<Expression>
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.StringList"
@@ -1829,6 +1858,12 @@ status = "generate"
 name = "Gtk.StringSorter"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true # use AsRef<Expression>
+    [[object.function]]
+    name = "set_expression"
+    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.StyleContext"
