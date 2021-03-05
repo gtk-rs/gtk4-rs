@@ -2,9 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::Expression;
 use crate::Filter;
 use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -24,25 +24,15 @@ glib::wrapper! {
 }
 
 impl BoolFilter {
-    //#[doc(alias = "gtk_bool_filter_new")]
-    //pub fn new(expression: /*Ignored*/Option<&Expression>) -> BoolFilter {
-    //    unsafe { TODO: call ffi:gtk_bool_filter_new() }
-    //}
-
-    //#[doc(alias = "gtk_bool_filter_get_expression")]
-    //pub fn get_expression(&self) -> /*Ignored*/Option<Expression> {
-    //    unsafe { TODO: call ffi:gtk_bool_filter_get_expression() }
-    //}
+    #[doc(alias = "gtk_bool_filter_get_expression")]
+    pub fn get_expression(&self) -> Expression {
+        unsafe { from_glib_none(ffi::gtk_bool_filter_get_expression(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_bool_filter_get_invert")]
     pub fn get_invert(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
     }
-
-    //#[doc(alias = "gtk_bool_filter_set_expression")]
-    //pub fn set_expression(&self, expression: /*Ignored*/&Expression) {
-    //    unsafe { TODO: call ffi:gtk_bool_filter_set_expression() }
-    //}
 
     #[doc(alias = "gtk_bool_filter_set_invert")]
     pub fn set_invert(&self, invert: bool) {
@@ -104,7 +94,7 @@ impl BoolFilter {
 
 #[derive(Clone, Default)]
 pub struct BoolFilterBuilder {
-    //expression: /*Unknown type*/,
+    expression: Option<Expression>,
     invert: Option<bool>,
 }
 
@@ -115,11 +105,19 @@ impl BoolFilterBuilder {
 
     pub fn build(self) -> BoolFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref expression) = self.expression {
+            properties.push(("expression", expression));
+        }
         if let Some(ref invert) = self.invert {
             properties.push(("invert", invert));
         }
         let ret = glib::Object::new::<BoolFilter>(&properties).expect("object new");
         ret
+    }
+
+    pub fn expression(mut self, expression: &Expression) -> Self {
+        self.expression = Some(expression.clone());
+        self
     }
 
     pub fn invert(mut self, invert: bool) -> Self {
