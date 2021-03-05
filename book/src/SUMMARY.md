@@ -22,8 +22,9 @@
 - [Interface Builder]()
     - [GtkBuilder]()
     - [Templates]()
-- [Internationalization]()
+- [Shortcuts]()
 - [Accessibility]()
+- [Internationalization]()
 - [Finishing up the To-do App]()
 
 # Useful Libraries
