@@ -437,3 +437,41 @@ impl ConstantExpression {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use glib::StaticType;
+
+    use super::*;
+
+    #[test]
+    fn test_expressions() {
+        crate::init().unwrap();
+
+        let _pspec = glib::ParamSpec::expression(
+            "expression",
+            "Expression",
+            "Some Expression",
+            glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
+        );
+
+        let _prop_expr = PropertyExpression::new(
+            crate::StringObject::static_type(),
+            NONE_EXPRESSION,
+            "string",
+        );
+
+        let obj = crate::IconTheme::new();
+        let expr = ObjectExpression::new(&obj);
+        assert_eq!(expr.get_object().unwrap(), obj);
+
+        let expr1 = ConstantExpression::new(&23);
+        assert_eq!(expr1.get_value().get_some::<i32>().unwrap(), 23);
+        let expr2 = ConstantExpression::for_value(&"hello".to_value());
+        assert_eq!(expr2.get_value().get::<String>().unwrap().unwrap(), "hello");
+        let expr1 = ConstantExpression::new(&23);
+        assert_eq!(expr1.get_value().get_some::<i32>().unwrap(), 23);
+        let expr2 = ConstantExpression::for_value(&"hello".to_value());
+        assert_eq!(expr2.get_value().get::<String>().unwrap().unwrap(), "hello");
+    }
+}
