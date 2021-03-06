@@ -94,6 +94,13 @@ mod imp {
 #     window.present();
 # }
 ```
+Choose whatever `NAME` you want, it has to be unique though, Rust namespaces have no effect in this case.
+`Type` refers to the actual GObject we will create in part two.
+`ParentType` is the GObject we inherit of.
+After that we would have the option to override the virtual methods of our ancestors.
+Since we only want to have a plain button for now, we override nothing but still add the empty `impl`.
+
+Now we create the GObject we will actually use in the end.
 
 ```rust ,no_run
 # use gtk::glib;
@@ -184,6 +191,13 @@ impl CustomButton {
 # }
 ```
 
+`glib::wrapper!` does the hard work of subclassing for us.
+We only have to include the information, where the implementation is (in our case `imp::CustomButton`)
+and which ancestor objects we extend.
+Please note that we don't have to specify `glib::Object` here, since this is *always* the base class.
+
+Nothing is stopping us anymore to replace `gtk::Button` with our `CustomButton`.
+
 ```rust ,no_run
 # use gtk::glib;
 # use gtk::prelude::*;
@@ -271,6 +285,7 @@ fn on_activate(application: &Application) {
     window.present();
 }
 ```
+And our "Hello World" app behaves still completely the same.
 
 
 
