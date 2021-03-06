@@ -14,6 +14,8 @@ Additionally, with Rust you'll have nice things like:
  - Sensible dependency management
  - Excellent third party libraries, which benefit from the same points as mentioned above
 
+The `gtk-rs` project provides bindings to many GTK-related libraries which we will be using throughout this book.
+
 
 ## Who this book is for
 

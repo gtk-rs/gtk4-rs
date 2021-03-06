@@ -96,5 +96,5 @@ There is now a button and if we click on it, its label becomes â€œHello World!â€
 
 <div style="text-align:center"><img src="images/hello_world_button.png" /></div>
 
-Wasn't that hard to create our first gtk-rs app, right?
+Wasn't that hard to create our first `gtk-rs` app, right?
 Let us now get a better understanding of what we did here.

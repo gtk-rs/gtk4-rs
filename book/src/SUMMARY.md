@@ -1,4 +1,4 @@
-# GTK-RS Book
+# GUI development with Rust and GTK 4
 
 [Introduction](introduction.md)
 - [Installation](installation.md)
