@@ -8,7 +8,6 @@ use gtk::{gio, glib, prelude::*, CompositeTemplate};
 
 mod imp {
     use super::*;
-    use glib::subclass;
     use gtk::subclass::prelude::*;
 
     #[derive(Debug, CompositeTemplate)]
@@ -19,15 +18,11 @@ mod imp {
         pub dialog: gtk::FileChooserNative,
     }
 
+    #[glib::object_subclass]
     impl ObjectSubclass for VideoPlayerWindow {
         const NAME: &'static str = "VideoPlayerWindow";
         type Type = super::VideoPlayerWindow;
         type ParentType = gtk::ApplicationWindow;
-        type Interfaces = ();
-        type Instance = subclass::simple::InstanceStruct<Self>;
-        type Class = subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
 
         fn new() -> Self {
             let dialog = gtk::FileChooserNative::new(

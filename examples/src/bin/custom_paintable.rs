@@ -10,22 +10,15 @@ use std::env::args;
 
 mod imp {
     use super::*;
-    use glib::subclass;
+    #[derive(Default)]
     pub struct CustomPaintable {}
 
+    #[glib::object_subclass]
     impl ObjectSubclass for CustomPaintable {
         const NAME: &'static str = "CustomPaintable";
         type Type = super::CustomPaintable;
         type ParentType = glib::Object;
         type Interfaces = (gdk::Paintable,);
-        type Instance = subclass::simple::InstanceStruct<Self>;
-        type Class = subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
-
-        fn new() -> Self {
-            Self {}
-        }
     }
 
     impl ObjectImpl for CustomPaintable {}
