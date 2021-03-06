@@ -7,7 +7,7 @@
 - [The Main Event Loop](main_event_loop.md)
 - [GObject Concepts](gobject_concepts.md)
     - [Memory management](gobject_memory_management.md)
-    - [Subclassing]()
+    - [Subclassing](gobject_subclassing.md)
     - [Properties & Signals]()
     - [Actions]()
     - [Models]()

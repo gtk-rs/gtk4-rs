@@ -18,3 +18,4 @@ Rc
 GObjects
 async
 gtk-rs
+subclassing
