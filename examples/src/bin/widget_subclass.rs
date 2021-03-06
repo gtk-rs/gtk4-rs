@@ -8,7 +8,7 @@ mod imp {
     use super::*;
     use gtk::subclass::prelude::*;
 
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Button {
         /// Reference to the child widget.
         ///
@@ -24,15 +24,11 @@ mod imp {
         child: RefCell<Option<gtk::Widget>>,
     }
 
+    #[glib::object_subclass]
     impl ObjectSubclass for Button {
         const NAME: &'static str = "ExButton";
         type Type = super::Button;
         type ParentType = gtk::Widget;
-        type Interfaces = ();
-        type Instance = glib::subclass::simple::InstanceStruct<Self>;
-        type Class = glib::subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
 
         fn class_init(klass: &mut Self::Class) {
             // The layout manager determines how child widgets are laid out.
@@ -40,12 +36,6 @@ mod imp {
 
             // Make it look like a GTK button.
             klass.set_css_name("button");
-        }
-
-        fn new() -> Self {
-            Self {
-                child: RefCell::new(None),
-            }
         }
     }
 

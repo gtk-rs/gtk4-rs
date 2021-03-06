@@ -16,15 +16,12 @@ mod imp {
         orientation: RefCell<gtk::Orientation>,
     }
 
+    #[glib::object_subclass]
     impl ObjectSubclass for CustomOrientable {
         const NAME: &'static str = "ExCustomOrientable";
         type Type = super::CustomOrientable;
         type ParentType = gtk::Widget;
         type Interfaces = (gtk::Orientable,);
-        type Instance = glib::subclass::simple::InstanceStruct<Self>;
-        type Class = glib::subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
 
         fn class_init(klass: &mut Self::Class) {
             // The layout manager determines how child widgets are laid out.

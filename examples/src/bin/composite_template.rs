@@ -9,11 +9,10 @@ use gtk::{gio, glib, CompositeTemplate};
 
 mod imp {
     use super::*;
-    use glib::subclass;
     use gtk::subclass::prelude::*;
 
     /// The private struct, which can hold widgets and other data.
-    #[derive(Debug, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(file = "composite_template.ui")]
     pub struct ExApplicationWindow {
         // The #[template_child] attribute tells the CompositeTemplate macro
@@ -30,24 +29,11 @@ mod imp {
         pub menubutton: TemplateChild<super::ExMenuButton>,
     }
 
+    #[glib::object_subclass]
     impl ObjectSubclass for ExApplicationWindow {
         const NAME: &'static str = "ExApplicationWindow";
         type Type = super::ExApplicationWindow;
         type ParentType = gtk::ApplicationWindow;
-        type Interfaces = ();
-        type Instance = subclass::simple::InstanceStruct<Self>;
-        type Class = subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
-
-        fn new() -> Self {
-            Self {
-                headerbar: TemplateChild::default(),
-                label: TemplateChild::default(),
-                subtitle: TemplateChild::default(),
-                menubutton: TemplateChild::default(),
-            }
-        }
 
         // Within class_init() you must set the template.
         // The CompositeTemplate derive macro provides a convenience function
@@ -73,7 +59,7 @@ mod imp {
     impl WindowImpl for ExApplicationWindow {}
     impl ApplicationWindowImpl for ExApplicationWindow {}
 
-    #[derive(Debug, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(file = "composite_template_child.ui")]
     pub struct ExMenuButton {
         #[template_child]
@@ -82,22 +68,11 @@ mod imp {
         pub popover: TemplateChild<gtk::Popover>,
     }
 
+    #[glib::object_subclass]
     impl ObjectSubclass for ExMenuButton {
         const NAME: &'static str = "ExMenuButton";
         type Type = super::ExMenuButton;
         type ParentType = gtk::Widget;
-        type Interfaces = ();
-        type Instance = subclass::simple::InstanceStruct<Self>;
-        type Class = subclass::simple::ClassStruct<Self>;
-
-        glib::object_subclass!();
-
-        fn new() -> Self {
-            Self {
-                toggle: TemplateChild::default(),
-                popover: TemplateChild::default(),
-            }
-        }
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
