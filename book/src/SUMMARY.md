@@ -17,7 +17,6 @@
     - [Paintables]()
     - [GTK Media Support]()
     - [Shaders]()
-    - [Custom Widgets](custom_widgets.md)
 - [Building a Simple To-do App]()
 - [Interface Builder]()
     - [GtkBuilder]()

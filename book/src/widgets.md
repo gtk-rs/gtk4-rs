@@ -1,12 +1,12 @@
 # Widgets
 
 Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those do not fit you can even create custom ones (see Section 7.5).
+GTK offers many-preexisting ones and if those do not fit you can even create custom ones (see Section 5.2).
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
 The [Widget Gallery](https://developer.gnome.org/gtk4/stable/ch08.html) is useful to find out which widget fits your needs.
-Let us say we want to create our “Hello World” app again, and we wanted to have a button.
+Let us say we want to create our “Hello World!” app again, and we wanted to have a button.
 We have quite a bit of choice here, but let's take the most simple one.
 Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 

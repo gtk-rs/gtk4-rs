@@ -54,7 +54,7 @@ That's better!
 <div style="text-align:center"><img src="images/hello_world_empty.png" /></div>
 
 Normally we expect to be able to interact with the user interface.
-Also, the name of the chapter suggests that the phrase “Hello World” will be involved.
+Also, the name of the chapter suggests that the phrase “Hello World!” will be involved.
 
 <span class="filename">Filename: src/main.rs</span>
 
