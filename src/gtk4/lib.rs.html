@@ -138,6 +138,16 @@
 <span id="135">135</span>
 <span id="136">136</span>
 <span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -211,6 +221,7 @@
 
 <span class="kw">mod</span> <span class="ident">actionable</span>;
 <span class="kw">mod</span> <span class="ident">application</span>;
+<span class="kw">mod</span> <span class="ident">bool_filter</span>;
 <span class="kw">mod</span> <span class="ident">border</span>;
 <span class="kw">mod</span> <span class="ident">builder</span>;
 <span class="kw">mod</span> <span class="ident">cell_area</span>;
@@ -224,6 +235,7 @@
 <span class="kw">mod</span> <span class="ident">custom_sorter</span>;
 <span class="kw">mod</span> <span class="ident">dialog</span>;
 <span class="kw">mod</span> <span class="ident">drawing_area</span>;
+<span class="kw">mod</span> <span class="ident">drop_down</span>;
 <span class="kw">mod</span> <span class="ident">drop_target</span>;
 <span class="kw">mod</span> <span class="ident">editable</span>;
 <span class="kw">mod</span> <span class="ident">entry</span>;
@@ -231,6 +243,7 @@
 <span class="kw">mod</span> <span class="ident">entry_completion</span>;
 <span class="kw">mod</span> <span class="ident">enums</span>;
 <span class="kw">mod</span> <span class="ident">event_controller_key</span>;
+<span class="kw">mod</span> <span class="ident">expression</span>;
 <span class="kw">mod</span> <span class="ident">file_chooser_dialog</span>;
 <span class="kw">mod</span> <span class="ident">flow_box</span>;
 <span class="kw">mod</span> <span class="ident">functions</span>;
@@ -244,6 +257,7 @@
 <span class="kw">mod</span> <span class="ident">message_dialog</span>;
 <span class="kw">mod</span> <span class="ident">mnemonic_trigger</span>;
 <span class="kw">mod</span> <span class="ident">notebook</span>;
+<span class="kw">mod</span> <span class="ident">numeric_sorter</span>;
 <span class="kw">mod</span> <span class="ident">overlay</span>;
 <span class="kw">mod</span> <span class="ident">pad_action_entry</span>;
 <span class="kw">mod</span> <span class="ident">pad_controller</span>;
@@ -255,6 +269,8 @@
 <span class="kw">mod</span> <span class="ident">shortcuts_section</span>;
 <span class="kw">mod</span> <span class="ident">snapshot</span>;
 <span class="kw">mod</span> <span class="ident">spin_button</span>;
+<span class="kw">mod</span> <span class="ident">string_filter</span>;
+<span class="kw">mod</span> <span class="ident">string_sorter</span>;
 <span class="kw">mod</span> <span class="ident">text</span>;
 <span class="kw">mod</span> <span class="ident">text_buffer</span>;
 <span class="kw">mod</span> <span class="ident">text_view</span>;
@@ -268,6 +284,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">application</span>::<span class="ident">ApplicationBuilder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">border</span>::<span class="ident">Border</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">css_location</span>::<span class="ident">CssLocation</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression</span>::{
+    <span class="ident">ClosureExpression</span>, <span class="ident">ConstantExpression</span>, <span class="ident">Expression</span>, <span class="ident">ExpressionWatch</span>, <span class="ident">ObjectExpression</span>,
+    <span class="ident">PropertyExpression</span>, <span class="ident">NONE_EXPRESSION</span>,
+};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pad_action_entry</span>::<span class="ident">PadActionEntry</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">page_range</span>::<span class="ident">PageRange</span>;
