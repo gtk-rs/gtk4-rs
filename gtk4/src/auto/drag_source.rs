@@ -110,9 +110,40 @@ impl DragSource {
         }
     }
 
-    //pub fn connect_drag_cancel<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored reason: Gdk.DragCancelReason
-    //}
+    pub fn connect_drag_cancel<
+        F: Fn(&DragSource, &gdk::Drag, gdk::DragCancelReason) -> bool + 'static,
+    >(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn drag_cancel_trampoline<
+            F: Fn(&DragSource, &gdk::Drag, gdk::DragCancelReason) -> bool + 'static,
+        >(
+            this: *mut ffi::GtkDragSource,
+            drag: *mut gdk::ffi::GdkDrag,
+            reason: gdk::ffi::GdkDragCancelReason,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(drag),
+                from_glib(reason),
+            )
+            .to_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"drag-cancel\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    drag_cancel_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 
     pub fn connect_drag_end<F: Fn(&DragSource, &gdk::Drag, bool) + 'static>(
         &self,
