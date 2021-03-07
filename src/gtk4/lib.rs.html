@@ -148,6 +148,19 @@
 <span id="145">145</span>
 <span id="146">146</span>
 <span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -187,12 +200,25 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gtk4_macros</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_FALLBACK&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_FALLBACK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_STYLE_PROVIDER_PRIORITY_FALLBACK</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_THEME&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_THEME</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_STYLE_PROVIDER_PRIORITY_THEME</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_SETTINGS&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_SETTINGS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_STYLE_PROVIDER_PRIORITY_SETTINGS</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_APPLICATION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_APPLICATION</span>: <span class="ident">u32</span> <span class="op">=</span>
     <span class="ident">ffi</span>::<span class="ident">GTK_STYLE_PROVIDER_PRIORITY_APPLICATION</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_USER&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_USER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_STYLE_PROVIDER_PRIORITY_USER</span> <span class="kw">as</span> <span class="ident">u32</span>;
+
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_VALUE_UNDEFINED&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACCESSIBLE_VALUE_UNDEFINED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_ACCESSIBLE_VALUE_UNDEFINED</span> <span class="kw">as</span> <span class="ident">i32</span>;
+
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRIORITY_RESIZE&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIORITY_RESIZE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_PRIORITY_RESIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_VIEW_PRIORITY_VALIDATE&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TEXT_VIEW_PRIORITY_VALIDATE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">GTK_TEXT_VIEW_PRIORITY_VALIDATE</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;
