@@ -10,7 +10,7 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     container:
-      image: docker.io/bilelmoussaoui/gtk4
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     strategy:
       matrix:
         rust:
@@ -85,7 +85,7 @@ jobs:
     name: clippy
     runs-on: ubuntu-20.04
     container:
-      image: docker.io/bilelmoussaoui/gtk4
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
