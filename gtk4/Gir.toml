@@ -198,6 +198,7 @@ manual = [
     "Gdk.Display",
     "Gdk.Drag",
     "Gdk.DragAction",
+    "Gdk.DragCancelReason",
     "Gdk.Drop",
     "Gdk.Event",
     "Gdk.EventSequence",
