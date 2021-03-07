@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     name: build
     container:
-      image: docker.io/bilelmoussaoui/gtk4
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
         with:
