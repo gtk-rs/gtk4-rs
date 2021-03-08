@@ -12,7 +12,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct CellLayout(Interface<ffi::GtkCellLayout>);
+    pub struct CellLayout(Interface<ffi::GtkCellLayout, ffi::GtkCellLayoutIface>);
 
     match fn {
         get_type => || ffi::gtk_cell_layout_get_type(),

@@ -17,7 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct CellEditable(Interface<ffi::GtkCellEditable>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+    pub struct CellEditable(Interface<ffi::GtkCellEditable, ffi::GtkCellEditableIface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || ffi::gtk_cell_editable_get_type(),

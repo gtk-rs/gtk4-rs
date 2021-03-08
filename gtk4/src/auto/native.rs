@@ -12,7 +12,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
-    pub struct Native(Interface<ffi::GtkNative>) @requires Widget, Accessible, Buildable, ConstraintTarget;
+    pub struct Native(Interface<ffi::GtkNative, ffi::GtkNativeInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || ffi::gtk_native_get_type(),

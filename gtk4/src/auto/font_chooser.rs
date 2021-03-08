@@ -13,7 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct FontChooser(Interface<ffi::GtkFontChooser>);
+    pub struct FontChooser(Interface<ffi::GtkFontChooser, ffi::GtkFontChooserIface>);
 
     match fn {
         get_type => || ffi::gtk_font_chooser_get_type(),

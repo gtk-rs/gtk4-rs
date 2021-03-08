@@ -10,7 +10,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct Popup(Interface<ffi::GdkPopup>) @requires Surface;
+    pub struct Popup(Interface<ffi::GdkPopup, ffi::GdkPopupInterface>) @requires Surface;
 
     match fn {
         get_type => || ffi::gdk_popup_get_type(),

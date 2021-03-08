@@ -15,7 +15,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Paintable(Interface<ffi::GdkPaintable>);
+    pub struct Paintable(Interface<ffi::GdkPaintable, ffi::GdkPaintableInterface>);
 
     match fn {
         get_type => || ffi::gdk_paintable_get_type(),

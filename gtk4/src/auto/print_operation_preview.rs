@@ -14,7 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct PrintOperationPreview(Interface<ffi::GtkPrintOperationPreview>);
+    pub struct PrintOperationPreview(Interface<ffi::GtkPrintOperationPreview, ffi::GtkPrintOperationPreviewIface>);
 
     match fn {
         get_type => || ffi::gtk_print_operation_preview_get_type(),

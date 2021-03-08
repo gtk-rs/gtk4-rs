@@ -13,7 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct SelectionModel(Interface<ffi::GtkSelectionModel>) @requires gio::ListModel;
+    pub struct SelectionModel(Interface<ffi::GtkSelectionModel, ffi::GtkSelectionModelInterface>) @requires gio::ListModel;
 
     match fn {
         get_type => || ffi::gtk_selection_model_get_type(),

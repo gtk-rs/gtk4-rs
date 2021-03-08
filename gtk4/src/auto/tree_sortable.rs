@@ -13,7 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct TreeSortable(Interface<ffi::GtkTreeSortable>) @requires TreeModel;
+    pub struct TreeSortable(Interface<ffi::GtkTreeSortable, ffi::GtkTreeSortableIface>) @requires TreeModel;
 
     match fn {
         get_type => || ffi::gtk_tree_sortable_get_type(),

@@ -9,7 +9,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct DevicePad(Interface<ffi::GdkDevicePad>) @requires Device;
+    pub struct DevicePad(Interface<ffi::GdkDevicePad, ffi::GdkDevicePadInterface>) @requires Device;
 
     match fn {
         get_type => || ffi::gdk_device_pad_get_type(),

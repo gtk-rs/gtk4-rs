@@ -20,7 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Toplevel(Interface<ffi::GdkToplevel>) @requires Surface;
+    pub struct Toplevel(Interface<ffi::GdkToplevel, ffi::GdkToplevelInterface>) @requires Surface;
 
     match fn {
         get_type => || ffi::gdk_toplevel_get_type(),
