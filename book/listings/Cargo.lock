@@ -277,14 +277,28 @@ dependencies = [
 ]
 
 [[package]]
-name = "gobject_concepts"
+name = "gobject_memory_management_1"
 version = "0.1.0"
 dependencies = [
  "gtk4",
 ]
 
 [[package]]
-name = "gobject_memory_management"
+name = "gobject_memory_management_2"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
+name = "gobject_memory_management_3"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
+name = "gobject_memory_management_4"
 version = "0.1.0"
 dependencies = [
  "gtk4",
@@ -465,7 +479,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "03b07a082330a35e43f63177cc01689da34fbffa0105e1246cf0311472cac73a"
 
 [[package]]
-name = "main_event_loop"
+name = "main_event_loop_1"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
+name = "main_event_loop_2"
 version = "0.1.0"
 dependencies = [
  "gtk4",
@@ -736,6 +757,13 @@ name = "version_check"
 version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5a972e5669d67ba988ce3dc826706fb0a8b01471c088cb0b6110b805cc36aed"
+
+[[package]]
+name = "widgets"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
 
 [[package]]
 name = "winapi"

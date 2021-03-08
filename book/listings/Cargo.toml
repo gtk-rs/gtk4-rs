@@ -1,12 +1,16 @@
 [workspace]
 
 members = [
-    "gobject_concepts",
-    "gobject_memory_management",
+    "gobject_memory_management_1",
+    "gobject_memory_management_2",
+    "gobject_memory_management_3",
+    "gobject_memory_management_4",
     "gobject_subclassing_1",
     "gobject_subclassing_2",
     "hello_world_1",
     "hello_world_2",
     "hello_world_3",
-    "main_event_loop",
+    "main_event_loop_1",
+    "main_event_loop_2",
+    "widgets"
 ]

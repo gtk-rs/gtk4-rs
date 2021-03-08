@@ -20,37 +20,7 @@ Let us look at one example.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
-use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button};
-
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-        .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
-    // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
-}
-
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
-    let window = ApplicationWindow::new(application);
-
-    // Create a button
-    let button = Button::with_label("Run stuff");
-
-    // Connect callback
-    button.connect_clicked(move |_| {
-        // GUI is blocked for 10 seconds after the button is pressed
-        let ten_seconds = std::time::Duration::from_secs(10);
-        std::thread::sleep(ten_seconds);
-    });
-
-    // Add button
-    window.set_child(Some(&button));
-    window.present();
-}
+{{#rustdoc_include ../listings/main_event_loop_1/src/main.rs}}
 ```
 
 After we press the button, the GUI is completely frozen.
@@ -62,39 +32,7 @@ For that we just need to spawn a new thread and let the operation run there.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
-# use gtk::prelude::*;
-# use gtk::{self, Application, ApplicationWindow, Button};
-# 
-# fn main() {
-#     // Create a new application
-#     let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-#         .expect("Initialization failed...");
-#     app.connect_activate(|app| on_activate(app));
-#     // Run the application
-#     app.run(&std::env::args().collect::<Vec<_>>());
-# }
-# 
-# // When the application is launched…
-# fn on_activate(application: &Application) {
-#     // … create a new window …
-#     let window = ApplicationWindow::new(application);
-# 
-#     // Create a button
-#     let button = Button::with_label("Run stuff");
-# 
-    // Connect callback
-    button.connect_clicked(move |_| {
-        // The long running operation runs now in a separate thread
-        std::thread::spawn(move || {
-            let ten_seconds = std::time::Duration::from_secs(10);
-            std::thread::sleep(ten_seconds);
-        });
-    });
-# 
-#     // Add button
-#     window.set_child(Some(&button));
-#     window.present();
-# }
+{{#rustdoc_include ../listings/main_event_loop_2/src/main.rs:callback}}
 ```
 
 If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
