@@ -1,0 +1,10 @@
+[workspace]
+
+members = [
+    "gobject_concepts",
+    "gobject_memory_management",
+    "gobject_subclassing_1",
+    "gobject_subclassing_2",
+    "hello_world",
+    "main_event_loop",
+]
