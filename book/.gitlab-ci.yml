@@ -11,8 +11,9 @@ codespell:
 
 rustfmt:
   image: rust:latest
-  stage: lint
+  stage: lint 
   script:
+    - cd listings
     - rustup component add rustfmt
     - rustc -Vv && cargo -Vv
     - cargo fmt --version
