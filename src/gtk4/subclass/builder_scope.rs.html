@@ -150,10 +150,6 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -228,16 +224,12 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BuilderScope</span> {
-    <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">interface_init</span>(
-        <span class="ident">iface</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
-        <span class="ident">_iface_data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
-    ) {
-        <span class="kw">let</span> <span class="ident">builder_scope_iface</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkBuilderScopeInterface</span>);
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="ident">builder_scope_iface</span>.<span class="ident">get_type_from_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_get_type_from_name</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">builder_scope_iface</span>.<span class="ident">get_type_from_function</span> <span class="op">=</span>
-            <span class="prelude-val">Some</span>(<span class="ident">builder_scope_get_type_from_function</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">builder_scope_iface</span>.<span class="ident">create_closure</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_create_closure</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_type_from_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_get_type_from_name</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_type_from_function</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_get_type_from_function</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">create_closure</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_create_closure</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 }
 

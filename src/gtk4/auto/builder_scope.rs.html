@@ -99,7 +99,7 @@
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`BuilderScopeExt`](trait.BuilderScopeExt.html)</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuilderScope</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBuilderScope</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuilderScope</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkBuilderScope</span>, <span class="ident">ffi</span>::<span class="ident">GtkBuilderScopeInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
         <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_builder_scope_get_type</span>(),

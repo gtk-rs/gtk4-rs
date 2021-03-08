@@ -170,10 +170,6 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -269,19 +265,15 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Paintable</span> {
-    <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">interface_init</span>(
-        <span class="ident">iface</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
-        <span class="ident">_iface_data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
-    ) {
-        <span class="kw">let</span> <span class="ident">paintable_iface</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>);
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="ident">paintable_iface</span>.<span class="ident">get_current_image</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_current_image</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">paintable_iface</span>.<span class="ident">get_flags</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_flags</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">paintable_iface</span>.<span class="ident">get_intrinsic_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_width</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">paintable_iface</span>.<span class="ident">get_intrinsic_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_height</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">paintable_iface</span>.<span class="ident">get_intrinsic_aspect_ratio</span> <span class="op">=</span>
-            <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_aspect_ratio</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-        <span class="ident">paintable_iface</span>.<span class="ident">snapshot</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_snapshot</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_current_image</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_current_image</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_flags</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_flags</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_intrinsic_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_width</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_intrinsic_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_height</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_intrinsic_aspect_ratio</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_intrinsic_aspect_ratio</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">snapshot</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_snapshot</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 }
 

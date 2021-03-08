@@ -443,7 +443,7 @@
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`SelectionModelExt`](trait.SelectionModelExt.html), [`gio::ListModelExt`](../gio/trait.ListModelExt.html)</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionModel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSelectionModel</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">gio</span>::<span class="ident">ListModel</span>;
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionModel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkSelectionModel</span>, <span class="ident">ffi</span>::<span class="ident">GtkSelectionModelInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">gio</span>::<span class="ident">ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
         <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_selection_model_get_type</span>(),

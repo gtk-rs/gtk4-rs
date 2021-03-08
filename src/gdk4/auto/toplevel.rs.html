@@ -828,7 +828,7 @@
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`ToplevelExt`](trait.ToplevelExt.html), [`SurfaceExt`](trait.SurfaceExt.html), [`ToplevelExtManual`](prelude/trait.ToplevelExtManual.html), [`SurfaceExtManual`](prelude/trait.SurfaceExtManual.html)</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Toplevel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkToplevel</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Surface</span>;
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Toplevel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkToplevel</span>, <span class="ident">ffi</span>::<span class="ident">GdkToplevelInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Surface</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
         <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_toplevel_get_type</span>(),
