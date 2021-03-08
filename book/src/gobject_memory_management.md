@@ -99,46 +99,9 @@ For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefC
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust ,no_run
-# use std::{cell::RefCell, rc::Rc};
-#
-# use gtk::prelude::*;
-# use gtk::Application;
-# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-#
-# fn main() {
-#    // Create a new application
-#    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-#        .expect("Initialization failed...");
-#    app.connect_activate(|app| on_activate(app));
-#    // Run the application
-#    app.run(&std::env::args().collect::<Vec<_>>());
-# }
-#
-# // When the application is launched…
-# fn on_activate(application: &Application) {
-#    // … create a new window
-#    let window = ApplicationWindow::new(application);
-#
-#    // Create two buttons
-#    let button_increase = Button::with_label("Increase");
-#    let button_decrease = Button::with_label("Decrease");
-#
-    // Reference-counted object with inner-mutability
-    let number = Rc::new(RefCell::new(0));
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_1/src/main.rs:callback}}
 
-    // Connect callbacks, when a button is clicked `number` will be changed
-    let number_copy_1 = number.clone();
-    button_increase.connect_clicked(move |_| *number_copy_1.borrow_mut() += 1);
-    button_decrease.connect_clicked(move |_| *number.borrow_mut() -= 1);
-#
-#    // Add buttons
-#    let gtk_box = Box::new(Orientation::Vertical, 0);
-#    window.set_child(Some(&gtk_box));
-#    gtk_box.append(&button_increase);
-#    gtk_box.append(&button_decrease);
-#    window.present();
-# }
 ```
 
 It not very nice though to fill the scope with temporary variables like `number_copy_1`.
@@ -146,51 +109,8 @@ We can improve that by using the `glib::clone!` macro.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust ,no_run
-# use std::{cell::RefCell, rc::Rc};
-#
-# use glib::clone;
-# use gtk::prelude::*;
-# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-# use gtk::{glib, Application};
-#
-# fn main() {
-#    // Create a new application
-#    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-#        .expect("Initialization failed...");
-#    app.connect_activate(|app| on_activate(app));
-#    // Run the application
-#    app.run(&std::env::args().collect::<Vec<_>>());
-# }
-#
-# // When the application is launched…
-# fn on_activate(application: &Application) {
-#    // … create a new window …
-#    let window = ApplicationWindow::new(application);
-#
-#    // Create two buttons
-#    let button_increase = Button::with_label("Increase");
-#    let button_decrease = Button::with_label("Decrease");
-#
-#    // Reference-counted object with inner mutability
-#    let number = Rc::new(RefCell::new(0));
-#
-#    // Connect callbacks
-#    // When a button is clicked, `number` will be changed
-    button_increase.connect_clicked(clone!(@strong number => move |_| {
-        *number.borrow_mut() += 1;
-    }));
-    button_decrease.connect_clicked(move |_| {
-        *number.borrow_mut() -= 1;
-    });
-#
-#    // Add buttons
-#    let gtk_box = Box::new(Orientation::Vertical, 0);
-#    window.set_child(Some(&gtk_box));
-#    gtk_box.append(&button_increase);
-#    gtk_box.append(&button_decrease);
-#    window.present();
-# }
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_2/src/main.rs:callback}}
 ```
 
 Since GObjects are reference-counted and mutable as well, so we can pass the buttons the same way as we did with `number`.
@@ -198,52 +118,8 @@ If we now click on one button, the other button's label gets changed.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust ,no_run
-# use std::{cell::RefCell, rc::Rc};
-#
-# use glib::clone;
-# use gtk::prelude::*;
-# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-# use gtk::{glib, Application};
-#
-# // When the application is launched…
-# fn on_activate(application: &Application) {
-#    // … create a new window …
-#    let window = ApplicationWindow::new(application);
-#
-#    let button_increase = Button::with_label("Increase");
-#    let button_decrease = Button::with_label("Decrease");
-#
-#    let number = Rc::new(RefCell::new(0));
-#
-    // Connect callbacks
-    // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @strong button_decrease => 
-        move |_| {
-            *number.borrow_mut() += 1;
-            button_decrease.set_label(&number.borrow().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@strong button_increase => 
-        move |_| {
-            *number.borrow_mut() -= 1;
-            button_increase.set_label(&number.borrow().to_string());
-    }));
-#
-#    let gtk_box = Box::new(Orientation::Vertical, 0);
-#    window.set_child(Some(&gtk_box));
-#    gtk_box.append(&button_increase);
-#    gtk_box.append(&button_decrease);
-#    window.present();
-# }
-#
-# fn main() {
-#    // Create a new application
-#    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-#        .expect("Initialization failed...");
-#    app.connect_activate(|app| on_activate(app));
-#    // Run the application
-#    app.run(&std::env::args().collect::<Vec<_>>());
-# }
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_3/src/main.rs:callback}}
 ```
 Expand the code, copy and try it on your own machine.
 It will work fine.
@@ -258,55 +134,8 @@ We obviously do not want our apps to keep allocating memory, so let us use weak 
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust ,no_run
-# use std::{cell::RefCell, rc::Rc};
-#
-# use glib::clone;
-# use gtk::prelude::*;
-# use gtk::{self, ApplicationWindow, Box, Button, Orientation};
-# use gtk::{glib, Application};
-#
-# fn main() {
-#    // Create a new application
-#    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-#        .expect("Initialization failed...");
-#    app.connect_activate(|app| on_activate(app));
-#    // Run the application
-#    app.run(&std::env::args().collect::<Vec<_>>());
-# }
-#
-# // When the application is launched…
-# fn on_activate(application: &Application) {
-#    // … create a new window …
-#    let window = ApplicationWindow::new(application);
-#
-#    // Create two buttons
-#    let button_increase = Button::with_label("Increase");
-#    let button_decrease = Button::with_label("Decrease");
-#
-#    // Reference-counted object with inner mutability
-#    let number = Rc::new(RefCell::new(0));
-#
-    // Connect callbacks
-    // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease => 
-        move |_| {
-            *number.borrow_mut() += 1;
-            button_decrease.set_label(&number.borrow().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@weak button_increase =>
-        move |_| {
-            *number.borrow_mut() -= 1;
-            button_increase.set_label(&number.borrow().to_string());
-    }));
-#
-#    // Add buttons
-#    let gtk_box = Box::new(Orientation::Vertical, 0);
-#    window.set_child(Some(&gtk_box));
-#    gtk_box.append(&button_increase);
-#    gtk_box.append(&button_decrease);
-#    window.present();
-# }
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_4/src/main.rs:callback}}
 ```
 
 The reference cycle is broken.
