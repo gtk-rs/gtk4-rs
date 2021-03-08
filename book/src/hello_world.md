@@ -5,17 +5,7 @@ Now that we got a working installation, let us get right into it!
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
-use gtk::prelude::*;
-use gtk::Application;
-
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-        .expect("Initialization failed...");
-
-    // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
-}
+{{#rustdoc_include ../listings/hello_world_1/src/main.rs}}
 ```
 We import the necessary traits from `gtk::prelude` (you will learn more about this in the next section).
 In `main` we create an `Application` instance, with an application id and the default application flags.
@@ -29,25 +19,7 @@ So let us create a window there.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
-use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
-
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-        .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
-
-    // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
-}
-
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
-    let window = ApplicationWindow::new(application);
-    window.present();
-}
+{{#rustdoc_include ../listings/hello_world_2/src/main.rs}}
 ```
 That's better!
 
@@ -58,39 +30,8 @@ Also, the name of the chapter suggests that the phrase “Hello World!” will b
 
 <span class="filename">Filename: src/main.rs</span>
 
-
 ```rust ,no_run
-use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
-
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
-        .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
-    
-    // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
-}
-
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
-    let window = ApplicationWindow::new(application);
-
-    // Create a button
-    let button = Button::with_label("Run stuff");
-
-    // Connect callback
-    button.connect_clicked(move |button| {
-        // Set the label to "Hello World!" after the button has been clicked on
-        button.set_label("Hello World!");
-    });
-
-    // Add button
-    window.set_child(Some(&button));
-    window.present();
-}
+{{#rustdoc_include ../listings/hello_world_3/src/main.rs}}
 ```
 There is now a button and if we click on it, its label becomes “Hello World!”.
 

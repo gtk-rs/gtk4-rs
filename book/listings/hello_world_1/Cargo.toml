@@ -1,5 +1,5 @@
 [package]
-name = "main_event_loop"
+name = "hello_world_1"
 version = "0.1.0"
 authors = ["Julian Hofer <julianhofer@gnome.org>"]
 edition = "2018"

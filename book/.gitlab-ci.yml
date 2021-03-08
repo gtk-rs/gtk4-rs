@@ -9,6 +9,15 @@ codespell:
   script:
     - codespell -S "*.png,*.po,.git,*.jpg" -f
 
+rustfmt:
+  image: rust:latest
+  stage: lint
+  script:
+    - rustup component add rustfmt
+    - rustc -Vv && cargo -Vv
+    - cargo fmt --version
+    - cargo fmt --all -- --color=always --check
+
 doctests:
   stage: test
   image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"

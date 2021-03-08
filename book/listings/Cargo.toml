@@ -5,6 +5,8 @@ members = [
     "gobject_memory_management",
     "gobject_subclassing_1",
     "gobject_subclassing_2",
-    "hello_world",
+    "hello_world_1",
+    "hello_world_2",
+    "hello_world_3",
     "main_event_loop",
 ]
