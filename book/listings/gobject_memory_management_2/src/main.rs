@@ -1,6 +1,6 @@
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{self, ApplicationWindow, Button, Orientation};
+use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
 use gtk::{glib, Application};
 use std::{cell::RefCell, rc::Rc};
 fn main() {
@@ -17,10 +17,27 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
+
     // Create two buttons
-    let button_increase = Button::with_label("Increase");
-    let button_decrease = Button::with_label("Decrease");
+    let button_increase = ButtonBuilder::new()
+        .label("Increase")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+    let button_decrease = ButtonBuilder::new()
+        .label("Decrease")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+
     // Reference-counted object with inner mutability
     let number = Rc::new(RefCell::new(0));
     // Connect callbacks

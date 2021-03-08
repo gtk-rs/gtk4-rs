@@ -759,7 +759,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5a972e5669d67ba988ce3dc826706fb0a8b01471c088cb0b6110b805cc36aed"
 
 [[package]]
-name = "widgets"
+name = "widgets_1"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
+name = "widgets_2"
 version = "0.1.0"
 dependencies = [
  "gtk4",

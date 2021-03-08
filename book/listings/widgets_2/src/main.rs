@@ -1,7 +1,5 @@
-// ANCHOR: prelude
 use gtk::prelude::*;
-// ANCHOR_END: prelude
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
 
 fn main() {
     // Create a new application
@@ -18,17 +16,28 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
+
     // ANCHOR: button
     // Create a button
-    let button = Button::with_label("Run stuff");
+    let button = ButtonBuilder::new()
+        .label("Run stuff")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+    // ANCHOR_END: button
 
     // Connect callback
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
     });
-    // ANCHOR_END: button
+
     // Add button
     window.set_child(Some(&button));
     window.present();

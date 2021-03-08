@@ -1,5 +1,5 @@
 [package]
-name = "widgets"
+name = "widgets_1"
 version = "0.1.0"
 authors = ["Julian Hofer <julianhofer@gnome.org>"]
 edition = "2018"

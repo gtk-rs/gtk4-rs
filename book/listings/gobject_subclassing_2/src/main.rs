@@ -1,6 +1,6 @@
 use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindowBuilder};
 use std::cell::RefCell;
 
 // ANCHOR: impl
@@ -76,10 +76,17 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
 
     // Create a button
     let button = CustomButton::new();
+    button.set_margin_top(12);
+    button.set_margin_bottom(12);
+    button.set_margin_start(12);
+    button.set_margin_end(12);
 
     // Add button
     window.set_child(Some(&button));

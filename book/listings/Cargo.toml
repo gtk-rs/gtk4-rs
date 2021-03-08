@@ -12,5 +12,6 @@ members = [
     "hello_world_3",
     "main_event_loop_1",
     "main_event_loop_2",
-    "widgets"
+    "widgets_1",
+    "widgets_2",
 ]

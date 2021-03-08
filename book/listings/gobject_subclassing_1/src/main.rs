@@ -1,6 +1,6 @@
 use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
+use gtk::{Application, ApplicationWindowBuilder};
 
 // ANCHOR: impl
 // Implementation of our custom GObject
@@ -65,10 +65,17 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
 
     // Create a button
     let button = CustomButton::with_label("Run stuff");
+    button.set_margin_top(12);
+    button.set_margin_bottom(12);
+    button.set_margin_start(12);
+    button.set_margin_end(12);
 
     // Connect callback
     button.connect_clicked(move |button| {

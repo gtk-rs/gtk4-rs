@@ -5,7 +5,7 @@ First follow the instructions on the [GTK website](https://www.gtk.org/docs/inst
 Then install Rust with [rustup](https://rustup.rs/).
 Now create a new project with:
 ```bash
-cargo new my-gtk-project
+cargo new my-gtk-app
 ```
 
 Add the following lines to your `Cargo.toml` and you are ready to go!

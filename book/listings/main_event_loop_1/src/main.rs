@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button};
+use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
 
 fn main() {
     // Create a new application
@@ -16,10 +16,19 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
 
     // Create a button
-    let button = Button::with_label("Run stuff");
+    let button = ButtonBuilder::new()
+        .label("Run stuff")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // Connect callback
     button.connect_clicked(move |_| {
