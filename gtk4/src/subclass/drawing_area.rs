@@ -37,8 +37,8 @@ impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
 }
 
 unsafe impl<T: DrawingAreaImpl> IsSubclassable<T> for DrawingArea {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.resize = Some(drawing_area_resize::<T>);

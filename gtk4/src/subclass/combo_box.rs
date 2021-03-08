@@ -48,8 +48,8 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
 }
 
 unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.changed = Some(combo_box_changed::<T>);

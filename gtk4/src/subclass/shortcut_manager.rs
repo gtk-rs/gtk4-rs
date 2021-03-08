@@ -11,14 +11,11 @@ pub trait ShortcutManagerImpl: ObjectImpl {
 }
 
 unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let shortcut_manager_iface = &mut *(iface as *mut ffi::GtkShortcutManagerInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        shortcut_manager_iface.add_controller = Some(shortcut_manager_add_controller::<T>);
-        shortcut_manager_iface.remove_controller = Some(shortcut_manager_remove_controller::<T>);
+        iface.add_controller = Some(shortcut_manager_add_controller::<T>);
+        iface.remove_controller = Some(shortcut_manager_remove_controller::<T>);
     }
 }
 

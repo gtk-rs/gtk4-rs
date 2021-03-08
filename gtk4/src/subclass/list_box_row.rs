@@ -30,8 +30,8 @@ impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {
 }
 
 unsafe impl<T: ListBoxRowImpl> IsSubclassable<T> for ListBoxRow {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.activate = Some(row_activate::<T>);

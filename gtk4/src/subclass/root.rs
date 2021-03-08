@@ -7,9 +7,5 @@ use glib::subclass::prelude::*;
 pub trait RootImpl: NativeImpl {}
 
 unsafe impl<T: RootImpl> IsImplementable<T> for Root {
-    unsafe extern "C" fn interface_init(
-        _iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-    }
+    fn interface_init(_iface: &mut glib::Class<Self>) {}
 }

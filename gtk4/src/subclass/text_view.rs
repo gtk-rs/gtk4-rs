@@ -271,8 +271,8 @@ impl<T: TextViewImpl> TextViewImplExt for T {
 }
 
 unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.backspace = Some(text_view_backspace::<T>);

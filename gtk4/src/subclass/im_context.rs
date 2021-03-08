@@ -310,8 +310,8 @@ impl<T: IMContextImpl> IMContextImplExt for T {
 }
 
 unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.commit = Some(im_context_commit::<T>);

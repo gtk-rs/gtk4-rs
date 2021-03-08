@@ -37,8 +37,8 @@ impl<T: ScaleImpl> ScaleImplExt for T {
 }
 
 unsafe impl<T: ScaleImpl> IsSubclassable<T> for Scale {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Range as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Range as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.get_layout_offsets = Some(scale_get_layout_offsets::<T>);

@@ -92,19 +92,15 @@ pub trait PaintableImpl: ObjectImpl {
 }
 
 unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let paintable_iface = &mut *(iface as *mut ffi::GdkPaintableInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        paintable_iface.get_current_image = Some(paintable_get_current_image::<T>);
-        paintable_iface.get_flags = Some(paintable_get_flags::<T>);
-        paintable_iface.get_intrinsic_width = Some(paintable_get_intrinsic_width::<T>);
-        paintable_iface.get_intrinsic_height = Some(paintable_get_intrinsic_height::<T>);
-        paintable_iface.get_intrinsic_aspect_ratio =
-            Some(paintable_get_intrinsic_aspect_ratio::<T>);
-        paintable_iface.snapshot = Some(paintable_snapshot::<T>);
+        iface.get_current_image = Some(paintable_get_current_image::<T>);
+        iface.get_flags = Some(paintable_get_flags::<T>);
+        iface.get_intrinsic_width = Some(paintable_get_intrinsic_width::<T>);
+        iface.get_intrinsic_height = Some(paintable_get_intrinsic_height::<T>);
+        iface.get_intrinsic_aspect_ratio = Some(paintable_get_intrinsic_aspect_ratio::<T>);
+        iface.snapshot = Some(paintable_snapshot::<T>);
     }
 }
 

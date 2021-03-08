@@ -8,7 +8,7 @@ use crate::{Box, Widget};
 pub trait BoxImpl: WidgetImpl {}
 
 unsafe impl<T: BoxImpl> IsSubclassable<T> for Box {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
     }
 }

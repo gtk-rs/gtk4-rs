@@ -56,19 +56,14 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
 }
 
 unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationPreview {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let print_operation_preview_iface =
-            &mut *(iface as *mut ffi::GtkPrintOperationPreviewIface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        print_operation_preview_iface.ready = Some(print_operation_preview_ready::<T>);
-        print_operation_preview_iface.got_page_size =
-            Some(print_operation_preview_got_page_size::<T>);
-        print_operation_preview_iface.render_page = Some(print_operation_preview_render_page::<T>);
-        print_operation_preview_iface.is_selected = Some(print_operation_preview_is_selected::<T>);
-        print_operation_preview_iface.end_preview = Some(print_operation_preview_end_preview::<T>);
+        iface.ready = Some(print_operation_preview_ready::<T>);
+        iface.got_page_size = Some(print_operation_preview_got_page_size::<T>);
+        iface.render_page = Some(print_operation_preview_render_page::<T>);
+        iface.is_selected = Some(print_operation_preview_is_selected::<T>);
+        iface.end_preview = Some(print_operation_preview_end_preview::<T>);
     }
 }
 

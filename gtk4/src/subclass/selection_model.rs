@@ -180,20 +180,18 @@ pub trait SelectionModelImpl: ObjectImpl + ListModelImpl {
 }
 
 unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let model_iface = &mut *(iface as *mut ffi::GtkSelectionModelInterface);
-        model_iface.get_selection_in_range = Some(model_get_selection_in_range::<T>);
-        model_iface.is_selected = Some(model_is_selected::<T>);
-        model_iface.select_all = Some(model_select_all::<T>);
-        model_iface.select_item = Some(model_select_item::<T>);
-        model_iface.select_range = Some(model_select_range::<T>);
-        model_iface.set_selection = Some(model_set_selection::<T>);
-        model_iface.unselect_all = Some(model_unselect_all::<T>);
-        model_iface.unselect_item = Some(model_unselect_item::<T>);
-        model_iface.unselect_range = Some(model_unselect_range::<T>);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
+
+        iface.get_selection_in_range = Some(model_get_selection_in_range::<T>);
+        iface.is_selected = Some(model_is_selected::<T>);
+        iface.select_all = Some(model_select_all::<T>);
+        iface.select_item = Some(model_select_item::<T>);
+        iface.select_range = Some(model_select_range::<T>);
+        iface.set_selection = Some(model_set_selection::<T>);
+        iface.unselect_all = Some(model_unselect_all::<T>);
+        iface.unselect_item = Some(model_unselect_item::<T>);
+        iface.unselect_range = Some(model_unselect_range::<T>);
     }
 }
 

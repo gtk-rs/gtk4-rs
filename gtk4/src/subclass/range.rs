@@ -113,8 +113,8 @@ impl<T: RangeImpl> RangeImplExt for T {
 }
 
 unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.adjust_bounds = Some(range_adjust_bounds::<T>);

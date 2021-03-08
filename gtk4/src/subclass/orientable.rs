@@ -6,9 +6,5 @@ use glib::subclass::prelude::*;
 pub trait OrientableImpl: ObjectImpl {}
 
 unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {
-    unsafe extern "C" fn interface_init(
-        _iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-    }
+    fn interface_init(_iface: &mut glib::Class<Self>) {}
 }

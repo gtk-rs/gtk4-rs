@@ -36,8 +36,8 @@ impl<T: FrameImpl> FrameImplExt for T {
 }
 
 unsafe impl<T: FrameImpl> IsSubclassable<T> for Frame {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.compute_child_allocation = Some(frame_compute_child_allocation::<T>);

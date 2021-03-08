@@ -6,9 +6,5 @@ use glib::subclass::prelude::*;
 pub trait AccessibleImpl: ObjectImpl {}
 
 unsafe impl<T: AccessibleImpl> IsImplementable<T> for Accessible {
-    unsafe extern "C" fn interface_init(
-        _iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-    }
+    fn interface_init(_iface: &mut glib::Class<Self>) {}
 }

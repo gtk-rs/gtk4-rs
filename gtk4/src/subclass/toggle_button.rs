@@ -33,8 +33,8 @@ impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {
 }
 
 unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Button as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Button as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.toggled = Some(toggle_button_toggled::<T>);

@@ -20,16 +20,13 @@ pub trait ColorChooserImpl: ObjectImpl {
 }
 
 unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let color_chooser_iface = &mut *(iface as *mut ffi::GtkColorChooserInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        color_chooser_iface.add_palette = Some(color_chooser_add_palette::<T>);
-        color_chooser_iface.color_activated = Some(color_chooser_color_activated::<T>);
-        color_chooser_iface.get_rgba = Some(color_chooser_get_rgba::<T>);
-        color_chooser_iface.set_rgba = Some(color_chooser_set_rgba::<T>);
+        iface.add_palette = Some(color_chooser_add_palette::<T>);
+        iface.color_activated = Some(color_chooser_color_activated::<T>);
+        iface.get_rgba = Some(color_chooser_get_rgba::<T>);
+        iface.set_rgba = Some(color_chooser_set_rgba::<T>);
     }
 }
 

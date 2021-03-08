@@ -13,16 +13,13 @@ pub trait ActionableImpl: ObjectImpl {
 }
 
 unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let actionable_iface = &mut *(iface as *mut ffi::GtkActionableInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        actionable_iface.get_action_name = Some(actionable_get_action_name::<T>);
-        actionable_iface.get_action_target_value = Some(actionable_get_action_target_value::<T>);
-        actionable_iface.set_action_name = Some(actionable_set_action_name::<T>);
-        actionable_iface.set_action_target_value = Some(actionable_set_action_target_value::<T>);
+        iface.get_action_name = Some(actionable_get_action_name::<T>);
+        iface.get_action_target_value = Some(actionable_get_action_target_value::<T>);
+        iface.set_action_name = Some(actionable_set_action_name::<T>);
+        iface.set_action_target_value = Some(actionable_set_action_target_value::<T>);
     }
 }
 

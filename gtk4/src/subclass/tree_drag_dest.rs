@@ -21,14 +21,11 @@ pub trait TreeDragDestImpl: ObjectImpl {
 }
 
 unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let tree_drag_dest_iface = &mut *(iface as *mut ffi::GtkTreeDragDestIface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        tree_drag_dest_iface.drag_data_received = Some(tree_drag_dest_drag_data_received::<T>);
-        tree_drag_dest_iface.row_drop_possible = Some(tree_drag_dest_row_drop_possible::<T>);
+        iface.drag_data_received = Some(tree_drag_dest_drag_data_received::<T>);
+        iface.row_drop_possible = Some(tree_drag_dest_row_drop_possible::<T>);
     }
 }
 
