@@ -18,20 +18,17 @@ pub trait EditableImpl: ObjectImpl {
 }
 
 unsafe impl<T: EditableImpl> IsImplementable<T> for Editable {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let editable_iface = &mut *(iface as *mut ffi::GtkEditableInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        editable_iface.insert_text = Some(editable_insert_text::<T>);
-        editable_iface.delete_text = Some(editable_delete_text::<T>);
-        editable_iface.changed = Some(editable_changed::<T>);
-        editable_iface.get_text = Some(editable_get_text::<T>);
-        editable_iface.do_insert_text = Some(editable_do_insert_text::<T>);
-        editable_iface.do_delete_text = Some(editable_do_delete_text::<T>);
-        editable_iface.get_selection_bounds = Some(editable_get_selection_bounds::<T>);
-        editable_iface.set_selection_bounds = Some(editable_set_selection_bounds::<T>);
+        iface.insert_text = Some(editable_insert_text::<T>);
+        iface.delete_text = Some(editable_delete_text::<T>);
+        iface.changed = Some(editable_changed::<T>);
+        iface.get_text = Some(editable_get_text::<T>);
+        iface.do_insert_text = Some(editable_do_insert_text::<T>);
+        iface.do_delete_text = Some(editable_do_delete_text::<T>);
+        iface.get_selection_bounds = Some(editable_get_selection_bounds::<T>);
+        iface.set_selection_bounds = Some(editable_set_selection_bounds::<T>);
     }
 }
 

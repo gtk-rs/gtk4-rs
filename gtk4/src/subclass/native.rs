@@ -7,9 +7,5 @@ use glib::subclass::prelude::*;
 pub trait NativeImpl: WidgetImpl {}
 
 unsafe impl<T: NativeImpl> IsImplementable<T> for Native {
-    unsafe extern "C" fn interface_init(
-        _iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-    }
+    fn interface_init(_iface: &mut glib::Class<Self>) {}
 }

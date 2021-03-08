@@ -141,8 +141,8 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 }
 
 unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.pause = Some(media_stream_pause::<T>);

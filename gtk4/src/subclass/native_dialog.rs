@@ -65,8 +65,8 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
 }
 
 unsafe impl<T: NativeDialogImpl> IsSubclassable<T> for NativeDialog {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.response = Some(dialog_response::<T>);

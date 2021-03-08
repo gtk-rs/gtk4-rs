@@ -421,8 +421,8 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
 }
 
 unsafe impl<T: CellRendererImpl> IsSubclassable<T> for CellRenderer {
-    fn override_vfuncs(class: &mut ::glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut ::glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
 

@@ -32,8 +32,8 @@ impl<T: RecentManagerImpl> RecentManagerImplExt for T {
 }
 
 unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.changed = Some(recent_manager_changed::<T>);

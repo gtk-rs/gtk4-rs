@@ -8,7 +8,7 @@ use crate::{ApplicationWindow, Window};
 pub trait ApplicationWindowImpl: WindowImpl + 'static {}
 
 unsafe impl<T: ApplicationWindowImpl> IsSubclassable<T> for ApplicationWindow {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Window as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Window as IsSubclassable<T>>::class_init(class);
     }
 }

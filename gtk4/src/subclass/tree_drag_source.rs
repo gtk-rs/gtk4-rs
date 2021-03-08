@@ -16,15 +16,12 @@ pub trait TreeDragSourceImpl: ObjectImpl {
 }
 
 unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let tree_drag_source_iface = &mut *(iface as *mut ffi::GtkTreeDragSourceIface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        tree_drag_source_iface.row_draggable = Some(tree_drag_source_row_draggable::<T>);
-        tree_drag_source_iface.drag_data_get = Some(tree_drag_source_drag_data_get::<T>);
-        tree_drag_source_iface.drag_data_delete = Some(tree_drag_source_drag_data_delete::<T>);
+        iface.row_draggable = Some(tree_drag_source_row_draggable::<T>);
+        iface.drag_data_get = Some(tree_drag_source_drag_data_get::<T>);
+        iface.drag_data_delete = Some(tree_drag_source_drag_data_delete::<T>);
     }
 }
 

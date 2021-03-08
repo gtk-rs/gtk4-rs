@@ -71,16 +71,12 @@ pub trait BuilderScopeImpl: ObjectImpl {
 }
 
 unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
-    unsafe extern "C" fn interface_init(
-        iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-        let builder_scope_iface = &mut *(iface as *mut ffi::GtkBuilderScopeInterface);
+    fn interface_init(iface: &mut glib::Class<Self>) {
+        let iface = iface.as_mut();
 
-        builder_scope_iface.get_type_from_name = Some(builder_scope_get_type_from_name::<T>);
-        builder_scope_iface.get_type_from_function =
-            Some(builder_scope_get_type_from_function::<T>);
-        builder_scope_iface.create_closure = Some(builder_scope_create_closure::<T>);
+        iface.get_type_from_name = Some(builder_scope_get_type_from_name::<T>);
+        iface.get_type_from_function = Some(builder_scope_get_type_from_function::<T>);
+        iface.create_closure = Some(builder_scope_create_closure::<T>);
     }
 }
 

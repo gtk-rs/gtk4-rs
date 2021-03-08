@@ -73,8 +73,8 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
 }
 
 unsafe impl<T: GLAreaImpl> IsSubclassable<T> for GLArea {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.create_context = Some(gl_area_create_context::<T>);

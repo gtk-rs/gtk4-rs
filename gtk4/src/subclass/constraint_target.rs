@@ -6,9 +6,5 @@ use glib::subclass::prelude::*;
 pub trait ConstraintTargetImpl: ObjectImpl {}
 
 unsafe impl<T: ConstraintTargetImpl> IsImplementable<T> for ConstraintTarget {
-    unsafe extern "C" fn interface_init(
-        _iface: glib::ffi::gpointer,
-        _iface_data: glib::ffi::gpointer,
-    ) {
-    }
+    fn interface_init(_iface: &mut glib::Class<Self>) {}
 }

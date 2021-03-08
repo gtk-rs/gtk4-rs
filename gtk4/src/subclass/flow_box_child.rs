@@ -30,8 +30,8 @@ impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {
 }
 
 unsafe impl<T: FlowBoxChildImpl> IsSubclassable<T> for FlowBoxChild {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.activate = Some(child_activate::<T>);

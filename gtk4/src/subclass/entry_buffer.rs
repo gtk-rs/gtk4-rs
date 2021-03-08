@@ -160,8 +160,8 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 }
 
 unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Object as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.delete_text = Some(entry_buffer_delete_text::<T>);

@@ -43,8 +43,8 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
 }
 
 unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <MediaStream as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <MediaStream as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.close = Some(media_file_close::<T>);

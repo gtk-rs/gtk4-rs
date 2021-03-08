@@ -30,8 +30,8 @@ impl<T: EntryImpl> EntryImplExt for T {
 }
 
 unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
-    fn override_vfuncs(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::override_vfuncs(class);
+    fn class_init(class: &mut glib::Class<Self>) {
+        <Widget as IsSubclassable<T>>::class_init(class);
 
         let klass = class.as_mut();
         klass.activate = Some(entry_activate::<T>);
