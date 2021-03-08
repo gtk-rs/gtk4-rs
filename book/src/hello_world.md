@@ -1,6 +1,6 @@
 # Hello World!
 
-Now that we got a working installation, let us get right into it!
+Now that we have got a working installation, let us get right into it!
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -17,12 +17,11 @@ fn main() {
     app.run(&std::env::args().collect::<Vec<_>>());
 }
 ```
-We import the necessary traits from `gtk::prelude` (you will learn more about this in the next section).
-In `main` we create an `Application` instance, with an application id and the default application flags.
-When it comes to naming your own app, it is advisable to read [this guide](https://wiki.gnome.org/HowDoI/ChooseApplicationID) first.
-Then we run the app with the given command-line parameters.
+We create an `Application` instance, with an application id and the default application flags.
+[This guide](https://wiki.gnome.org/HowDoI/ChooseApplicationID) helps you find a suitable application id for your app.
 
-We run it with `cargo run` and it blocks the terminal, but seemingly nothing happens.
+We execute `cargo run` in order to build and run it.
+The terminal is blocked, but nothing appears on ours screen.
 GTK warns us though, that it would have expected that something would be called in its `activate` step.
 So let us create a window there.
 
@@ -96,5 +95,5 @@ There is now a button and if we click on it, its label becomes â€œHello World!â€
 
 <div style="text-align:center"><img src="images/hello_world_button.png" /></div>
 
-Wasn't that hard to create our first `gtk-rs` app, right?
+Was not that hard to create our first `gtk-rs` app, right?
 Let us now get a better understanding of what we did here.

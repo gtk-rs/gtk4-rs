@@ -6,7 +6,7 @@ There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
 The [Widget Gallery](https://developer.gnome.org/gtk4/stable/ch08.html) is useful to find out which widget fits your needs.
-Let us say we want to create our “Hello World!” app again, and we wanted to have a button.
+Let us say we want to add a button to our app.
 We have quite a bit of choice here, but let's take the most simple one.
 Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 
@@ -21,13 +21,11 @@ GObject
     ╰── GtkButton
 ```
 
-A GtkButton is part of an inheritance tree with GObject at the top.
 Additionally, the GtkButton implements the interfaces `GtkAccessible` `GtkBuildable`, `GtkConstraintTarget`, `GtkActionable`.
 
-Now let us compare that with the [gtk-rs docs](https://gtk-rs.org/gtk4-rs/gtk4/index.html).
-Gtk-rs symbols are already namespaced, so we search for `Button` instead of `GtkButton`.
-The result then tells us which methods and traits it [implements](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements).
-We find that every base class and interface in the GTK docs has a corresponding trait implemented.
+Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
+The [gtk-rs documentation](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.
+We find that these traits either have a corresponding base class or interface in the GTK docs.
 Assuming that we want to connect a callback, we are mostly interested in its “button-behavior”.
 And indeed, the trait `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
 

@@ -8,3 +8,5 @@
 {"rule":"EN_A_VS_AN","sentence":"^\\QIn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q we create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
 {"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QWe run it with \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and it blocks the terminal, but seemingly nothing happens.\\E$"}
 {"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we have done this, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QWe create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}

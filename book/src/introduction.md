@@ -2,9 +2,9 @@
 
 Welcome to *GUI development with Rust and GTK 4*.
 
-GTK 4 is the newest version of a popular cross-platform widget toolkit.
-Thanks to the information provided by GObject-Introspection, GTK's API can be easily target by various programming languages.
-It even describes the ownership of its parameters!
+GTK 4 is the newest version of a popular cross-platform widget toolkit written in C.
+However, thanks to GObject-Introspection GTK's API can be easily target by various programming languages.
+The API even describes the ownership of its parameters!
 
 Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with it.
 With this combination you don't have to worry about hitting bottlenecks mid-project anymore.
@@ -24,7 +24,7 @@ If this is not already the case, reading [The Rust Programming Language](https:/
 If you have experience with another low-level language such as C or C++ you
 might find that reading [A half hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust) gives you sufficient information as well.
 
-Luckily, this together with the wish to develop graphical applications is all that's necessary to benefit from this book. 
+Luckily, this, together with the wish to develop graphical applications, is all that is necessary to benefit from this book. 
 
 
 ## How to use this book

@@ -19,3 +19,4 @@ GObjects
 async
 gtk-rs
 subclassing
+GtkButton

@@ -15,8 +15,11 @@ fn main() {
     let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
+    
+    // Get command-line arguments
+    let args: Vec<String> = std::env::args().collect();
     // Run the application
-    app.run(&std::env::args().collect::<Vec<_>>());
+    app.run(&args);
 }
 
 // When the application is launched…
