@@ -12,7 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct ColorChooser(Interface<ffi::GtkColorChooser>);
+    pub struct ColorChooser(Interface<ffi::GtkColorChooser, ffi::GtkColorChooserInterface>);
 
     match fn {
         get_type => || ffi::gtk_color_chooser_get_type(),

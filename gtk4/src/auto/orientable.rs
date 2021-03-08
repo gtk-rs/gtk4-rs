@@ -13,7 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
-    pub struct Orientable(Interface<ffi::GtkOrientable>);
+    pub struct Orientable(Interface<ffi::GtkOrientable, ffi::GtkOrientableIface>);
 
     match fn {
         get_type => || ffi::gtk_orientable_get_type(),

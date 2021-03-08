@@ -12,7 +12,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
-    pub struct Root(Interface<ffi::GtkRoot>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
+    pub struct Root(Interface<ffi::GtkRoot, ffi::GtkRootInterface>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
         get_type => || ffi::gtk_root_get_type(),
