@@ -4,7 +4,7 @@ GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
 Let's see how this works by replacing the button in our “Hello World!” app with a custom one.
 
-First we need to create an implementation struct, that holds the state and overrides the virtual methods.
+First we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module,
 since it is not supposed to be used directly.
 
@@ -14,14 +14,14 @@ since it is not supposed to be used directly.
 {{#rustdoc_include ../listings/gobject_subclassing_1/src/main.rs:impl}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
-You can choose any `NAME` you want, as long as it is unique within your application.
-`Type` refers to the actual GObject we will create afterwards.
-`ParentType` is the GObject we inherit of.
+- `NAME` can be chosen arbitrarily as long as it is unique within the project
+- `Type` refers to the actual GObject that will be created afterwards
+- `ParentType` is the GObject we inherit of
+
 After that, we would have the option to override the virtual methods of our ancestors.
 Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty `impl` though.
-
-Now we describe our custom GObject.
+Next, we describe our custom GObject.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -31,8 +31,8 @@ Now we describe our custom GObject.
 
 `glib::wrapper!` does the most of the work of subclassing for us.
 We only have to point to the implementation struct and which ancestor GObjects we extend.
-Please note that the list of ancestor GObjects, does not mention `glib::Object`.
-This is because `glib::Object` is *always* the base class in the object hierarchy.
+Please note that the list of ancestor GObjects does not mention `glib::Object`.
+This is because `glib::Object` is *always* the base class in the object hierarchy and therefore already implied.
 
 After these steps, nothing is stopping us anymore from replacing `gtk::Button` with our `CustomButton`.
 
@@ -45,7 +45,7 @@ We are able to use `CustomButton` as a drop-in replacement for `gtk::Button`.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.
 
-So let's make it a bit more interesting.
+So let's make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
 <span class="filename">Filename: src/main.rs</span>
