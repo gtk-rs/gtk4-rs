@@ -2,11 +2,35 @@
 
 use crate::DropTarget;
 use glib::signal::connect_raw;
+use glib::Type;
 use glib::{translate::*, ObjectType, SignalHandlerId};
 use std::boxed::Box as Box_;
 use std::mem::transmute;
 
 impl DropTarget {
+    #[doc(alias = "gtk_drop_target_set_gtypes")]
+    pub fn set_gtypes(&self, types: &[Type]) {
+        let types: Vec<glib::ffi::GType> = types.iter().map(|t| t.to_glib()).collect();
+        unsafe {
+            ffi::gtk_drop_target_set_gtypes(
+                self.to_glib_none().0,
+                mut_override(types.as_ptr()),
+                types.len(),
+            )
+        }
+    }
+
+    #[doc(alias = "gtk_drop_target_get_gtypes")]
+    pub fn get_gtypes(&self) -> Vec<Type> {
+        unsafe {
+            let mut n_types = std::mem::MaybeUninit::uninit();
+            let types =
+                ffi::gtk_drop_target_get_gtypes(self.to_glib_none().0, n_types.as_mut_ptr());
+
+            FromGlibContainer::from_glib_container_num(types, n_types.assume_init() as usize)
+        }
+    }
+
     pub fn connect_drop<F: Fn(&DropTarget, &glib::Value, f64, f64) -> bool + 'static>(
         &self,
         f: F,
