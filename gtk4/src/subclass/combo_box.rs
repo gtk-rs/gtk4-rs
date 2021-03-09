@@ -55,6 +55,10 @@ unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
         klass.changed = Some(combo_box_changed::<T>);
         klass.format_entry_text = Some(combo_box_format_entry_text::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn combo_box_changed<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {

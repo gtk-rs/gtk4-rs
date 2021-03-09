@@ -52,6 +52,10 @@ unsafe impl<T: PopoverImpl> IsSubclassable<T> for Popover {
         klass.activate_default = Some(popover_activate_default::<T>);
         klass.closed = Some(popover_closed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {

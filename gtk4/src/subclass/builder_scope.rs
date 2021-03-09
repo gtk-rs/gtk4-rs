@@ -78,6 +78,8 @@ unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
         iface.get_type_from_function = Some(builder_scope_get_type_from_function::<T>);
         iface.create_closure = Some(builder_scope_create_closure::<T>);
     }
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(

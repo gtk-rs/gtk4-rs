@@ -251,6 +251,10 @@ unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
         klass.root = Some(layout_manager_root::<T>);
         klass.unroot = Some(layout_manager_unroot::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn layout_manager_allocate<T: LayoutManagerImpl>(

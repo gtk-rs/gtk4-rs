@@ -36,6 +36,10 @@ unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
         let klass = class.as_mut();
         klass.activate = Some(entry_activate::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn entry_activate<T: EntryImpl>(ptr: *mut ffi::GtkEntry) {

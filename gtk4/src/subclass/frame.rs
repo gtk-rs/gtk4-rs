@@ -42,6 +42,10 @@ unsafe impl<T: FrameImpl> IsSubclassable<T> for Frame {
         let klass = class.as_mut();
         klass.compute_child_allocation = Some(frame_compute_child_allocation::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(

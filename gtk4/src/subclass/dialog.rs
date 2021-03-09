@@ -55,6 +55,10 @@ unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
         klass.response = Some(dialog_response::<T>);
         klass.close = Some(dialog_close::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Window as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) {

@@ -55,6 +55,10 @@ unsafe impl<T: FilterImpl> IsSubclassable<T> for Filter {
         klass.match_ = Some(filter_match::<T>);
         klass.get_strictness = Some(filter_get_strictness::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <glib::Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn filter_get_strictness<T: FilterImpl>(

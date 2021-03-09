@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::WidgetExt;
+use crate::subclass::prelude::WidgetImpl;
 use crate::Widget;
 
 use glib::object::{Cast, IsA, WeakRef};
@@ -92,10 +93,10 @@ pub trait InitializingWidgetExt {
     fn init_template(&self);
 }
 
-impl<T: IsA<Widget>> InitializingWidgetExt for glib::subclass::InitializingObject<T> {
+impl<T: WidgetImpl> InitializingWidgetExt for glib::subclass::InitializingObject<T> {
     fn init_template(&self) {
         unsafe {
-            self.as_ref().init_template();
+            self.as_ref().unsafe_cast_ref::<Widget>().init_template();
         }
     }
 }

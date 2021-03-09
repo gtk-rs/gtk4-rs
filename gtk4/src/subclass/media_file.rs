@@ -50,6 +50,10 @@ unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
         klass.close = Some(media_file_close::<T>);
         klass.open = Some(media_file_open::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <MediaStream as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn media_file_close<T: MediaFileImpl>(ptr: *mut ffi::GtkMediaFile) {

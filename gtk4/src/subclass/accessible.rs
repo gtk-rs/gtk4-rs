@@ -7,4 +7,6 @@ pub trait AccessibleImpl: ObjectImpl {}
 
 unsafe impl<T: AccessibleImpl> IsImplementable<T> for Accessible {
     fn interface_init(_iface: &mut glib::Class<Self>) {}
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }

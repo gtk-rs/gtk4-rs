@@ -352,6 +352,10 @@ unsafe impl<T: TextBufferImpl> IsSubclassable<T> for TextBuffer {
         klass.redo = Some(text_buffer_redo::<T>);
         klass.undo = Some(text_buffer_undo::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn text_buffer_apply_tag<T: TextBufferImpl>(

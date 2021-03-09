@@ -52,6 +52,10 @@ unsafe impl<T: AdjustmentImpl> IsSubclassable<T> for Adjustment {
         klass.changed = Some(adjustment_changed::<T>);
         klass.value_changed = Some(adjustment_value_changed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdjustment) {

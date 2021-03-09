@@ -440,6 +440,10 @@ unsafe impl<T: CellRendererImpl> IsSubclassable<T> for CellRenderer {
         klass.snapshot = Some(cell_renderer_snapshot::<T>);
         klass.start_editing = Some(cell_renderer_start_editing::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn cell_renderer_activate<T: CellRendererImpl>(

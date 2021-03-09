@@ -81,6 +81,10 @@ unsafe impl<T: GLAreaImpl> IsSubclassable<T> for GLArea {
         klass.render = Some(gl_area_render::<T>);
         klass.resize = Some(gl_area_resize::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn gl_area_create_context<T: GLAreaImpl>(

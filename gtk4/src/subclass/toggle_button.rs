@@ -39,6 +39,10 @@ unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
         let klass = class.as_mut();
         klass.toggled = Some(toggle_button_toggled::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Button as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(ptr: *mut ffi::GtkToggleButton) {

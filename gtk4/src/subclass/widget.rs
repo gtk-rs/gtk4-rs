@@ -528,6 +528,10 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
         klass.unrealize = Some(widget_unrealize::<T>);
         klass.unroot = Some(widget_unroot::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(

@@ -1,11 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use super::widget::WidgetImpl;
 use crate::Actionable;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, GString, Variant};
 
-pub trait ActionableImpl: ObjectImpl {
+pub trait ActionableImpl: WidgetImpl {
     fn get_action_name(&self, actionable: &Self::Type) -> Option<GString>;
     fn get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
     fn set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
@@ -21,6 +22,8 @@ unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
         iface.set_action_name = Some(actionable_set_action_name::<T>);
         iface.set_action_target_value = Some(actionable_set_action_target_value::<T>);
     }
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(

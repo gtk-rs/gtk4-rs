@@ -5,7 +5,7 @@ use gio::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 
-pub trait SelectionModelImpl: ObjectImpl + ListModelImpl {
+pub trait SelectionModelImpl: ListModelImpl {
     fn get_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
         unsafe {
             let type_ = ffi::gtk_selection_model_get_type();
@@ -193,6 +193,8 @@ unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
         iface.unselect_item = Some(model_unselect_item::<T>);
         iface.unselect_range = Some(model_unselect_range::<T>);
     }
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn model_get_selection_in_range<T: SelectionModelImpl>(
