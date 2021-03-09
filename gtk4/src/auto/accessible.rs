@@ -38,24 +38,6 @@ pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_reset_state")]
     fn reset_state(&self, state: AccessibleState);
 
-    //#[doc(alias = "gtk_accessible_update_property")]
-    //fn update_property(&self, first_property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    //#[doc(alias = "gtk_accessible_update_property_value")]
-    //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]);
-
-    //#[doc(alias = "gtk_accessible_update_relation")]
-    //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    //#[doc(alias = "gtk_accessible_update_relation_value")]
-    //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]);
-
-    //#[doc(alias = "gtk_accessible_update_state")]
-    //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    //#[doc(alias = "gtk_accessible_update_state_value")]
-    //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]);
-
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole);
 
     fn connect_property_accessible_role_notify<F: Fn(&Self) + 'static>(
@@ -90,30 +72,6 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
             ffi::gtk_accessible_reset_state(self.as_ref().to_glib_none().0, state.to_glib());
         }
     }
-
-    //fn update_property(&self, first_property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_property() }
-    //}
-
-    //fn update_property_value(&self, properties: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 14 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_property_value() }
-    //}
-
-    //fn update_relation(&self, first_relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_relation() }
-    //}
-
-    //fn update_relation_value(&self, relations: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 15 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_relation_value() }
-    //}
-
-    //fn update_state(&self, first_state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_state() }
-    //}
-
-    //fn update_state_value(&self, states: /*Unimplemented*/&CArray TypeId { ns_id: 1, id: 16 }, values: &[&glib::Value]) {
-    //    unsafe { TODO: call ffi:gtk_accessible_update_state_value() }
-    //}
 
     fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {
