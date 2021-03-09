@@ -2356,6 +2356,12 @@ manual_traits = ["WidgetExtManual"]
     name = "remove_tick_callback"
     manual = true
     doc_trait_name = "WidgetExtManual"
+    [[object.function]]
+    name = "activate_action_variant"
+    rename = "activate_action"
+    [[object.function]]
+    name = "activate_action"
+    ignore = true # we use activate_action_variant instead
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_template_child"
