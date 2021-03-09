@@ -2331,6 +2331,12 @@ manual_traits = ["TreeStoreExtManual"]
         [[object.function.parameter]]
         name = "b"
         const = true
+    [[object.function]]
+    pattern = "insert_with_values"
+    ignore = true
+    [[object.function]]
+    pattern = "insert_with_valuesv"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeView"
