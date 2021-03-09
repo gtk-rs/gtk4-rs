@@ -946,7 +946,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
     {
         let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-        let private_offset = <Self::Type as ObjectSubclass>::type_data()
+        let private_offset = <Self::Type as ObjectSubclassType>::type_data()
             .as_ref()
             .private_offset;
         ffi::gtk_widget_class_bind_template_child_full(
