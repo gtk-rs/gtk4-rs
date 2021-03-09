@@ -75,7 +75,6 @@ generate = [
     "Gtk.GestureClick",
     "Gtk.GestureDrag",
     "Gtk.GestureRotate",
-    "Gtk.GestureStylus",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.IconLookupFlags",
@@ -1103,6 +1102,13 @@ generate_builder = true
 name = "Gtk.GestureSingle"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "Gtk.GestureStylus"
+status = "generate"
+    [[object.function]]
+    name = "get_axes"
+    manual = true # the axes array has to be `GDK_AXIS_IGNORE` terminated
 
 [[object]]
 name = "Gtk.GLArea"

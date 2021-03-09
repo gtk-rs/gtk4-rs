@@ -31,11 +31,6 @@ impl GestureStylus {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_stylus_new()).unsafe_cast() }
     }
 
-    //#[doc(alias = "gtk_gesture_stylus_get_axes")]
-    //pub fn get_axes(&self, axes: /*Unimplemented*/&CArray TypeId { ns_id: 11, id: 4 }, values: Vec<f64>) -> bool {
-    //    unsafe { TODO: call ffi:gtk_gesture_stylus_get_axes() }
-    //}
-
     #[doc(alias = "gtk_gesture_stylus_get_axis")]
     pub fn get_axis(&self, axis: gdk::AxisUse) -> Option<f64> {
         unsafe {
