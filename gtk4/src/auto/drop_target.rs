@@ -46,11 +46,6 @@ impl DropTarget {
         unsafe { from_glib_full(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_drop_target_get_gtypes")]
-    //pub fn get_gtypes(&self) -> /*Unimplemented*/Option<CArray TypeId { ns_id: 0, id: 30 }> {
-    //    unsafe { TODO: call ffi:gtk_drop_target_get_gtypes() }
-    //}
-
     #[doc(alias = "gtk_drop_target_get_preload")]
     pub fn get_preload(&self) -> bool {
         unsafe { from_glib(ffi::gtk_drop_target_get_preload(self.to_glib_none().0)) }
@@ -74,11 +69,6 @@ impl DropTarget {
             ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.to_glib());
         }
     }
-
-    //#[doc(alias = "gtk_drop_target_set_gtypes")]
-    //pub fn set_gtypes(&self, types: /*Unimplemented*/Option<&CArray TypeId { ns_id: 0, id: 30 }>) {
-    //    unsafe { TODO: call ffi:gtk_drop_target_set_gtypes() }
-    //}
 
     #[doc(alias = "gtk_drop_target_set_preload")]
     pub fn set_preload(&self, preload: bool) {
