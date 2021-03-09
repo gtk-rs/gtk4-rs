@@ -1288,6 +1288,12 @@ manual_traits = ["GtkListStoreExtManual"]
         [[object.function.parameter]]
         name = "b"
         const = true
+    [[object.function]]
+    pattern = "new"
+    ignore = true
+    [[object.function]]
+    pattern = "newv"
+    manual = true
 
 [[object]]
 name = "Gtk.ListView"
