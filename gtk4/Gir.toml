@@ -311,6 +311,9 @@ trust_return_value_nullability = false
         name = "selection_data"
         const = true
     [[object.function]]
+    name = "show_about_dialog"
+    manual = true # uses varargs
+    [[object.function]]
     name = "init"
     manual = true
     [[object.function]]

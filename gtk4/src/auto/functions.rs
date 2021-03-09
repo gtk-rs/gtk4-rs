@@ -559,11 +559,6 @@ pub fn set_debug_flags(flags: DebugFlags) {
     }
 }
 
-//#[doc(alias = "gtk_show_about_dialog")]
-//pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-//    unsafe { TODO: call ffi:gtk_show_about_dialog() }
-//}
-
 #[doc(alias = "gtk_show_uri")]
 pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
     assert_initialized_main_thread!();
