@@ -123,6 +123,10 @@ unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
         klass.move_slider = Some(range_move_slider::<T>);
         klass.value_changed = Some(range_value_changed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn range_adjust_bounds<T: RangeImpl>(ptr: *mut ffi::GtkRange, new_value: f64) {

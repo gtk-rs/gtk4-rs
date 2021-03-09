@@ -49,7 +49,7 @@ use syn::{parse_macro_input, DeriveInput};
 ///         Self::bind_template(klass);
 ///     }
 ///
-///     fn instance_init(obj: &glib::subclass::InitializingObject<Self::Type>) {
+///     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
 ///         obj.init_template();
 ///     }
 /// }

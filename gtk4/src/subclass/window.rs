@@ -111,6 +111,10 @@ unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
         klass.enable_debugging = Some(window_enable_debugging::<T>);
         klass.close_request = Some(window_close_request::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {

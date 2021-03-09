@@ -39,6 +39,10 @@ unsafe impl<T: StyleContextImpl> IsSubclassable<T> for StyleContext {
         let klass = class.as_mut();
         klass.changed = Some(style_context_changed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn style_context_changed<T: StyleContextImpl>(ptr: *mut ffi::GtkStyleContext) {

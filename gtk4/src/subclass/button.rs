@@ -52,6 +52,10 @@ unsafe impl<T: ButtonImpl> IsSubclassable<T> for Button {
         klass.activate = Some(button_activate::<T>);
         klass.clicked = Some(button_clicked::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {

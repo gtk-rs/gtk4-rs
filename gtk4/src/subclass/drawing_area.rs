@@ -43,6 +43,10 @@ unsafe impl<T: DrawingAreaImpl> IsSubclassable<T> for DrawingArea {
         let klass = class.as_mut();
         klass.resize = Some(drawing_area_resize::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(

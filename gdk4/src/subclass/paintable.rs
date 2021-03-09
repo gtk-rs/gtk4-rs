@@ -102,6 +102,8 @@ unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
         iface.get_intrinsic_aspect_ratio = Some(paintable_get_intrinsic_aspect_ratio::<T>);
         iface.snapshot = Some(paintable_snapshot::<T>);
     }
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn paintable_get_current_image<T: PaintableImpl>(

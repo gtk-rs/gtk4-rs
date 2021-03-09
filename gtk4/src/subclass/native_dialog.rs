@@ -73,6 +73,10 @@ unsafe impl<T: NativeDialogImpl> IsSubclassable<T> for NativeDialog {
         klass.show = Some(dialog_show::<T>);
         klass.hide = Some(dialog_hide::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(

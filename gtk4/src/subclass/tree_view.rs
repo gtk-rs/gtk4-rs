@@ -384,6 +384,10 @@ unsafe impl<T: TreeViewImpl> IsSubclassable<T> for TreeView {
         klass.toggle_cursor_row = Some(tree_view_toggle_cursor_row::<T>);
         klass.unselect_all = Some(tree_view_unselect_all::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn tree_view_columns_changed<T: TreeViewImpl>(ptr: *mut ffi::GtkTreeView) {

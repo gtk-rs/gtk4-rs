@@ -38,6 +38,10 @@ unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
         let klass = class.as_mut();
         klass.changed = Some(recent_manager_changed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn recent_manager_changed<T: RecentManagerImpl>(ptr: *mut ffi::GtkRecentManager) {

@@ -331,6 +331,10 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
         klass.set_surrounding = Some(im_context_set_surrounding::<T>);
         klass.set_use_preedit = Some(im_context_set_use_preedit::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn im_context_commit<T: IMContextImpl>(

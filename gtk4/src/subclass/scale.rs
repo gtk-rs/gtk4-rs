@@ -43,6 +43,10 @@ unsafe impl<T: ScaleImpl> IsSubclassable<T> for Scale {
         let klass = class.as_mut();
         klass.get_layout_offsets = Some(scale_get_layout_offsets::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Range as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(

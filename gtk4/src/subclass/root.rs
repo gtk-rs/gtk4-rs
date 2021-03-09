@@ -8,4 +8,6 @@ pub trait RootImpl: NativeImpl {}
 
 unsafe impl<T: RootImpl> IsImplementable<T> for Root {
     fn interface_init(_iface: &mut glib::Class<Self>) {}
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }

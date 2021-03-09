@@ -42,6 +42,10 @@ unsafe impl<T: ScaleButtonImpl> IsSubclassable<T> for ScaleButton {
         let klass = class.as_mut();
         klass.value_changed = Some(scale_button_value_changed::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn scale_button_value_changed<T: ScaleButtonImpl>(

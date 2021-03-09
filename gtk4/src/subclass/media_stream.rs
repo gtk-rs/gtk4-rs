@@ -152,6 +152,10 @@ unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
         klass.unrealize = Some(media_stream_unrealize::<T>);
         klass.update_audio = Some(media_stream_update_audio::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn media_stream_pause<T: MediaStreamImpl>(ptr: *mut ffi::GtkMediaStream) {

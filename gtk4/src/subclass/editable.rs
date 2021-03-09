@@ -1,12 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use super::widget::WidgetImpl;
 use crate::Editable;
 use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, GString};
 use libc::{c_char, c_int};
 
-pub trait EditableImpl: ObjectImpl {
+pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32);
     fn delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
     fn changed(&self, editable: &Self::Type);
@@ -30,6 +31,8 @@ unsafe impl<T: EditableImpl> IsImplementable<T> for Editable {
         iface.get_selection_bounds = Some(editable_get_selection_bounds::<T>);
         iface.set_selection_bounds = Some(editable_set_selection_bounds::<T>);
     }
+
+    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn editable_insert_text<T: EditableImpl>(

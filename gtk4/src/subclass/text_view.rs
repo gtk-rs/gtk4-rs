@@ -288,6 +288,10 @@ unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
         klass.snapshot_layer = Some(text_view_snapshot_layer::<T>);
         klass.toggle_overwrite = Some(text_view_toggle_overwrite::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Widget as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn text_view_backspace<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {

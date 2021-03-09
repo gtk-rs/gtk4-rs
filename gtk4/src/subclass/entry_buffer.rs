@@ -171,6 +171,10 @@ unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
         klass.insert_text = Some(entry_buffer_insert_text::<T>);
         klass.inserted_text = Some(entry_buffer_inserted_text::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn entry_buffer_delete_text<T: EntryBufferImpl>(

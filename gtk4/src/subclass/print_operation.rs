@@ -326,6 +326,10 @@ unsafe impl<T: PrintOperationImpl> IsSubclassable<T> for PrintOperation {
         klass.status_changed = Some(print_operation_status_changed::<T>);
         klass.update_custom_widget = Some(print_operation_update_custom_widget::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn print_operation_begin_print<T: PrintOperationImpl>(

@@ -56,6 +56,10 @@ unsafe impl<T: SorterImpl> IsSubclassable<T> for Sorter {
         klass.compare = Some(sorter_compare::<T>);
         klass.get_order = Some(sorter_get_order::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <Object as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn sorter_compare<T: SorterImpl>(

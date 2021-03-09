@@ -44,6 +44,10 @@ unsafe impl<T: CellRendererTextImpl> IsSubclassable<T> for CellRendererText {
         let klass = class.as_mut();
         klass.edited = Some(cell_renderer_text_edited::<T>);
     }
+
+    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
+        <CellRenderer as IsSubclassable<T>>::instance_init(instance);
+    }
 }
 
 unsafe extern "C" fn cell_renderer_text_edited<T: CellRendererTextImpl>(
