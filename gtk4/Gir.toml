@@ -12,7 +12,6 @@ trust_return_value_nullability = true
 
 generate = [
     # "Gtk.RequestedSize", a record
-    "Gtk.Accessible",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessibleProperty",
@@ -355,6 +354,17 @@ generate_builder = true
     [[object.signal]]
     name = "activate-link"
     inhibit = true
+
+[[object]]
+name = "Gtk.Accessible"
+status = "generate"
+manual_traits = ["AccessibleExtManual"]
+    [[object.function]]
+    pattern = "update_(property|state|relation)"
+    ignore = true
+    [[object.function]]
+    pattern = "update_(property|state|relation)_value"
+    manual = true
 
 [[object]]
 name = "Gtk.Actionable"

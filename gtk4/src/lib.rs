@@ -81,6 +81,7 @@ pub use auto::functions::*;
 pub use auto::*;
 pub use rt::*;
 
+mod accessible;
 mod actionable;
 mod application;
 mod bool_filter;
