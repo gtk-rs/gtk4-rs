@@ -75,11 +75,8 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_activate")]
     fn activate(&self) -> bool;
 
-    //#[doc(alias = "gtk_widget_activate_action")]
-    //fn activate_action(&self, name: &str, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> bool;
-
     #[doc(alias = "gtk_widget_activate_action_variant")]
-    fn activate_action_variant(&self, name: &str, args: Option<&glib::Variant>) -> bool;
+    fn activate_action(&self, name: &str, args: Option<&glib::Variant>) -> bool;
 
     #[doc(alias = "gtk_widget_activate_default")]
     fn activate_default(&self);
@@ -724,11 +721,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { from_glib(ffi::gtk_widget_activate(self.as_ref().to_glib_none().0)) }
     }
 
-    //fn activate_action(&self, name: &str, format_string: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> bool {
-    //    unsafe { TODO: call ffi:gtk_widget_activate_action() }
-    //}
-
-    fn activate_action_variant(&self, name: &str, args: Option<&glib::Variant>) -> bool {
+    fn activate_action(&self, name: &str, args: Option<&glib::Variant>) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_activate_action_variant(
                 self.as_ref().to_glib_none().0,
