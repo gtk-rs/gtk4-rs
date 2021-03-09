@@ -1964,7 +1964,7 @@
         <span class="ident">T</span>: <span class="ident">ObjectType</span> <span class="op">+</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">ObjectType</span><span class="op">&gt;</span>::<span class="ident">GlibType</span><span class="op">&gt;</span>,
     {
         <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkWidgetClass</span>;
-        <span class="kw">let</span> <span class="ident">private_offset</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclass</span><span class="op">&gt;</span>::<span class="ident">type_data</span>()
+        <span class="kw">let</span> <span class="ident">private_offset</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span>::<span class="ident">type_data</span>()
             .<span class="ident">as_ref</span>()
             .<span class="ident">private_offset</span>;
         <span class="ident">ffi</span>::<span class="ident">gtk_widget_class_bind_template_child_full</span>(
