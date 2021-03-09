@@ -327,6 +327,8 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -335,7 +337,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">Cast</span>;
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SelectionModelImpl</span>: <span class="ident">ObjectImpl</span> <span class="op">+</span> <span class="ident">ListModelImpl</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SelectionModelImpl</span>: <span class="ident">ListModelImpl</span> {
     <span class="kw">fn</span> <span class="ident">get_selection_in_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_items</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Bitset</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gtk_selection_model_get_type</span>();
@@ -523,6 +525,8 @@
         <span class="ident">iface</span>.<span class="ident">unselect_item</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model_unselect_item</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">unselect_range</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model_unselect_range</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
+
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_get_selection_in_range</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(

@@ -134,10 +134,12 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">prelude</span>::<span class="ident">WidgetExt</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">subclass</span>::<span class="ident">prelude</span>::<span class="ident">WidgetImpl</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Widget</span>;
 
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>, <span class="ident">WeakRef</span>};
@@ -261,10 +263,10 @@
     <span class="kw">fn</span> <span class="ident">init_template</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">InitializingWidgetExt</span> <span class="kw">for</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span> <span class="ident">InitializingWidgetExt</span> <span class="kw">for</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">init_template</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">init_template</span>();
+            <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">init_template</span>();
         }
     }
 }

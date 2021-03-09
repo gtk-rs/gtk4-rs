@@ -47,6 +47,8 @@
 <span id="44">44</span>
 <span id="45">45</span>
 <span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -67,6 +69,8 @@
         <span class="ident">iface</span>.<span class="ident">add_controller</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">shortcut_manager_add_controller</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">remove_controller</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">shortcut_manager_remove_controller</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
+
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">shortcut_manager_add_controller</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ShortcutManagerImpl</span><span class="op">&gt;</span>(
