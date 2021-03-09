@@ -1028,7 +1028,6 @@ trust_return_value_nullability = false
 name = "Gtk.FlowBox"
 status = "generate"
 generate_builder = true
-manual_traits = ["FlowBoxExtManual"]
     [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
@@ -1240,7 +1239,6 @@ name = "Gtk.ListBox"
 status = "generate"
 generate_builder = true
 trust_return_value_nullability = false
-manual_traits = ["ListBoxExtManual"]
     [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
