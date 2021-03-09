@@ -38,12 +38,6 @@ pub trait TreeStoreExt: 'static {
     #[doc(alias = "gtk_tree_store_insert_before")]
     fn insert_before(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter;
 
-    //#[doc(alias = "gtk_tree_store_insert_with_values")]
-    //fn insert_with_values(&self, parent: Option<&TreeIter>, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter;
-
-    //#[doc(alias = "gtk_tree_store_insert_with_valuesv")]
-    //fn insert_with_valuesv(&self, parent: Option<&TreeIter>, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter;
-
     #[doc(alias = "gtk_tree_store_is_ancestor")]
     fn is_ancestor(&self, iter: &TreeIter, descendant: &TreeIter) -> bool;
 
@@ -141,14 +135,6 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
             iter
         }
     }
-
-    //fn insert_with_values(&self, parent: Option<&TreeIter>, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter {
-    //    unsafe { TODO: call ffi:gtk_tree_store_insert_with_values() }
-    //}
-
-    //fn insert_with_valuesv(&self, parent: Option<&TreeIter>, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter {
-    //    unsafe { TODO: call ffi:gtk_tree_store_insert_with_valuesv() }
-    //}
 
     fn is_ancestor(&self, iter: &TreeIter, descendant: &TreeIter) -> bool {
         unsafe {
