@@ -24,6 +24,7 @@ impl ListStore {
 
 pub trait GtkListStoreExtManual: 'static {
     #[doc(alias = "gtk_list_store_insert_with_values")]
+    #[doc(alias = "gtk_list_store_insert_with_valuesv")]
     fn insert_with_values(
         &self,
         position: Option<u32>,

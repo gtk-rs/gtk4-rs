@@ -38,12 +38,6 @@ pub trait GtkListStoreExt: 'static {
     #[doc(alias = "gtk_list_store_insert_before")]
     fn insert_before(&self, sibling: Option<&TreeIter>) -> TreeIter;
 
-    //#[doc(alias = "gtk_list_store_insert_with_values")]
-    //fn insert_with_values(&self, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter;
-
-    //#[doc(alias = "gtk_list_store_insert_with_valuesv")]
-    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter;
-
     #[doc(alias = "gtk_list_store_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
@@ -128,14 +122,6 @@ impl<O: IsA<ListStore>> GtkListStoreExt for O {
             iter
         }
     }
-
-    //fn insert_with_values(&self, position: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeIter {
-    //    unsafe { TODO: call ffi:gtk_list_store_insert_with_values() }
-    //}
-
-    //fn insert_with_valuesv(&self, position: i32, columns: &[i32], values: &[&glib::Value]) -> TreeIter {
-    //    unsafe { TODO: call ffi:gtk_list_store_insert_with_valuesv() }
-    //}
 
     fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {

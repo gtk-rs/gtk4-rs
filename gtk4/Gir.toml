@@ -1310,6 +1310,12 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     pattern = "newv"
     manual = true
+    [[object.function]]
+    pattern = "insert_with_values"
+    ignore = true
+    [[object.function]]
+    pattern = "insert_with_valuesv"
+    manual = true
 
 [[object]]
 name = "Gtk.ListView"
