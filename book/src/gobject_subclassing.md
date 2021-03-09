@@ -67,3 +67,8 @@ After a rebuild, the app now features our `CustomButton` with the label “0”.
 Every time we click on the button, the number displayed by the label increases by 1.
 
 <div style="text-align:center"><img src="images/gobject_subclassing.png" /></div>
+
+So, when do we want to inherit from GObject?
+- We want to use a certain widget, but with added state and overridden virtual functions.
+- We want to pass a Rust object to a function, but the function expects a GObject.
+- We want to add properties, signals or actions to an object.
