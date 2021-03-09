@@ -2290,6 +2290,12 @@ manual_traits = ["TreeStoreExtManual"]
     manual = true
     doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
+    pattern = "new"
+    ignore = true
+    [[object.function]]
+    pattern = "newv"
+    manual = true
+    [[object.function]]
     name = "swap"
         [[object.function.parameter]]
         name = "a"

@@ -8,6 +8,7 @@ use libc::c_int;
 
 impl TreeStore {
     #[doc(alias = "gtk_tree_store_newv")]
+    #[doc(alias = "gtk_tree_store_new")]
     pub fn new(column_types: &[Type]) -> TreeStore {
         assert_initialized_main_thread!();
         unsafe {
