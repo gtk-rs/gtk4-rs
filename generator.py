@@ -11,6 +11,7 @@ NEED_UPDATE = 1
 FAILURE = 2
 
 DEFAULT_GIR_FILES_DIRECTORY = Path("./gir-files")
+GTK4_GIR_FILES_DIRECTORY = Path("./gtk4-gir-files")
 DEFAULT_GIR_DIRECTORY = Path("./gir/")
 DEFAULT_GIR_PATH = DEFAULT_GIR_DIRECTORY / "target/release/gir"
 
@@ -79,7 +80,7 @@ def regen_crates(path, conf):
     elif path.match("Gir*.toml"):
         print('==> Regenerating "{}"...'.format(path))
 
-        args = [conf.gir_path, "-c", path, "-o", path.parent, "-d", conf.gir_files_path]
+        args = [conf.gir_path, "-c", path, "-o", path.parent, "-d", conf.gir_files_path, "-d", GTK4_GIR_FILES_DIRECTORY]
         if path.parent.name.endswith("sys"):
             args.extend(["-m", "sys"])
         error = False
