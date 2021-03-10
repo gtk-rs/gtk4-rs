@@ -114,6 +114,7 @@ mod gesture_stylus;
 mod icon_theme;
 mod im_context;
 mod im_context_simple;
+mod info_bar;
 mod keyval_trigger;
 mod label;
 mod list_box;
