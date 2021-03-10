@@ -1297,6 +1297,12 @@ manual_traits = ["GtkListStoreExtManual"]
         const = true
     [[object.function]]
     name = "set_value"
+    ignore = true
+    [[object.function]]
+    name = "set_valuesv"
+    manual = true
+    [[object.function]]
+    name = "set"
     manual = true
     doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
@@ -1319,6 +1325,9 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     pattern = "insert_with_valuesv"
     manual = true
+    [[object.function]]
+    name = "reorder"
+    manual = true # needs to assert the passed new_order = n_total_items
 
 [[object]]
 name = "Gtk.ListView"
