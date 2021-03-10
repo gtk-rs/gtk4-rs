@@ -1297,10 +1297,10 @@ manual_traits = ["GtkListStoreExtManual"]
         const = true
     [[object.function]]
     name = "set_value"
-    ignore = true
+    manual = true
     [[object.function]]
     name = "set_valuesv"
-    manual = true
+    ignore = true
     [[object.function]]
     name = "set"
     manual = true
@@ -2326,9 +2326,17 @@ manual_traits = ["TreeStoreExtManual"]
         name = "parent"
         const = true
     [[object.function]]
+    name = "set_valuesv"
+    ignore = true
+    [[object.function]]
     name = "set_value"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
+    [[object.function]]
+    name = "reorder"
+    manual = true
+    [[object.function]]
+    name = "set"
+    manual = true
     [[object.function]]
     pattern = "new"
     ignore = true
