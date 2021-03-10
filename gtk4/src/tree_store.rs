@@ -44,7 +44,7 @@ pub trait TreeStoreExtManual: 'static {
     fn set_column_types(&self, types: &[glib::Type]);
 
     #[doc(alias = "gtk_tree_store_set_value")]
-    fn set_value(&self, iter: &TreeIter, column: u32, value: &Value);
+    fn set_value(&self, iter: &TreeIter, column: u32, value: &dyn ToValue);
 }
 
 impl<O: IsA<TreeStore>> TreeStoreExtManual for O {
@@ -153,7 +153,7 @@ impl<O: IsA<TreeStore>> TreeStoreExtManual for O {
         }
     }
 
-    fn set_value(&self, iter: &TreeIter, column: u32, value: &Value) {
+    fn set_value(&self, iter: &TreeIter, column: u32, value: &dyn ToValue) {
         unsafe {
             let columns = ffi::gtk_tree_model_get_n_columns(
                 self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
@@ -163,12 +163,12 @@ impl<O: IsA<TreeStore>> TreeStoreExtManual for O {
                 self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
                 column as c_int,
             ));
-            assert!(Value::type_transformable(value.type_(), type_));
+            assert!(Value::type_transformable(value.to_value_type(), type_));
             ffi::gtk_tree_store_set_value(
                 self.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 column as c_int,
-                mut_override(value.to_glib_none().0),
+                mut_override(value.to_value().to_glib_none().0),
             );
         }
     }
