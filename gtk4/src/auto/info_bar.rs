@@ -41,11 +41,6 @@ impl InfoBar {
         unsafe { Widget::from_glib_none(ffi::gtk_info_bar_new()).unsafe_cast() }
     }
 
-    //#[doc(alias = "gtk_info_bar_new_with_buttons")]
-    //pub fn with_buttons(first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> InfoBar {
-    //    unsafe { TODO: call ffi:gtk_info_bar_new_with_buttons() }
-    //}
-
     #[doc(alias = "gtk_info_bar_add_action_widget")]
     pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
         unsafe {
@@ -67,11 +62,6 @@ impl InfoBar {
             ))
         }
     }
-
-    //#[doc(alias = "gtk_info_bar_add_buttons")]
-    //pub fn add_buttons(&self, first_button_text: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_info_bar_add_buttons() }
-    //}
 
     #[doc(alias = "gtk_info_bar_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, widget: &P) {

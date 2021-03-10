@@ -1236,6 +1236,12 @@ trust_return_value_nullability = false
 name = "Gtk.InfoBar"
 status = "generate"
 generate_builder = true
+    [[object.function]]
+    name = "new_with_buttons"
+    manual = true # work around not bindable c function by calling add_button on each button
+    [[object.function]]
+    name = "add_buttons"
+    manual = true
 
 [[object]]
 name = "Gtk.KeyvalTrigger"
