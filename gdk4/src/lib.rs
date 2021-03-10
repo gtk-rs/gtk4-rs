@@ -56,6 +56,7 @@ mod popup_layout;
 mod rectangle;
 mod rgba;
 mod surface;
+mod texture;
 mod time_coord;
 mod toplevel;
 

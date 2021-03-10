@@ -48,7 +48,6 @@ generate = [
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
-    "Gdk.Texture",
     "Gdk.ToplevelLayout",
     "Gdk.ToplevelState",
     "Gdk.TouchpadGesturePhase",
@@ -359,6 +358,14 @@ manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "translate_coordinates"
     manual = true # mutability issue
+
+[[object]]
+name = "Gdk.Texture"
+status = "generate"
+manual_traits = ["TextureExtManual"]
+    [[object.function]]
+    name = "download"
+    manual = true
 
 [[object]]
 name = "Gdk.Toplevel"
