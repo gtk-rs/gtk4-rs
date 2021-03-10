@@ -197,11 +197,6 @@ impl Snapshot {
         }
     }
 
-    //#[doc(alias = "gtk_snapshot_push_debug")]
-    //pub fn push_debug(&self, message: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_debug() }
-    //}
-
     //#[doc(alias = "gtk_snapshot_push_gl_shader")]
     //pub fn push_gl_shader(&self, shader: /*Ignored*/&gsk::GLShader, bounds: &graphene::Rect, take_args: &glib::Bytes) {
     //    unsafe { TODO: call ffi:gtk_snapshot_push_gl_shader() }
