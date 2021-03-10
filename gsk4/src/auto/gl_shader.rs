@@ -70,11 +70,6 @@ impl GLShader {
     //    unsafe { TODO: call ffi:gsk_gl_shader_format_args() }
     //}
 
-    //#[doc(alias = "gsk_gl_shader_format_args_va")]
-    //pub fn format_args_va(&self, uniforms: /*Unknown conversion*//*Unimplemented*/Unsupported) -> Option<glib::Bytes> {
-    //    unsafe { TODO: call ffi:gsk_gl_shader_format_args_va() }
-    //}
-
     #[doc(alias = "gsk_gl_shader_get_arg_bool")]
     pub fn get_arg_bool(&self, args: &glib::Bytes, idx: i32) -> bool {
         unsafe {
