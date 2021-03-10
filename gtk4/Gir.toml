@@ -2120,6 +2120,9 @@ status = "generate"
     [[object.function]]
     name = 'unref_node'
     ignore = true # unsafe
+    [[object.function]]
+    name = "get_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.TreeModelFilter"

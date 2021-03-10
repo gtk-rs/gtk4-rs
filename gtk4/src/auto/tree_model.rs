@@ -55,9 +55,6 @@ pub trait TreeModelExt: 'static {
     #[doc(alias = "gtk_tree_model_get_string_from_iter")]
     fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
-    //#[doc(alias = "gtk_tree_model_get_valist")]
-    //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
-
     #[doc(alias = "gtk_tree_model_get_value")]
     fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
 
@@ -230,10 +227,6 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             ))
         }
     }
-
-    //fn get_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi:gtk_tree_model_get_valist() }
-    //}
 
     fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
         unsafe {
