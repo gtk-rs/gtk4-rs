@@ -1365,6 +1365,9 @@ status = "generate"
     [[object.function]]
     name = "gerror"
     ignore = true # TODO: figure out error's ownership
+    [[object.function]]
+    name = "error_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.MenuButton"
