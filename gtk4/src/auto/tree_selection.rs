@@ -77,11 +77,6 @@ impl TreeSelection {
         unsafe { from_glib_none(ffi::gtk_tree_selection_get_tree_view(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_tree_selection_get_user_data")]
-    //pub fn get_user_data(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi:gtk_tree_selection_get_user_data() }
-    //}
-
     #[doc(alias = "gtk_tree_selection_iter_is_selected")]
     pub fn iter_is_selected(&self, iter: &TreeIter) -> bool {
         unsafe {
