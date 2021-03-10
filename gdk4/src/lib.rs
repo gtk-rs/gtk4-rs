@@ -43,6 +43,7 @@ pub mod subclass;
 mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
+mod content_formats;
 mod display;
 mod draw_context;
 mod drop;
