@@ -51,9 +51,6 @@ impl Texture {
 pub const NONE_TEXTURE: Option<&Texture> = None;
 
 pub trait TextureExt: 'static {
-    //#[doc(alias = "gdk_texture_download")]
-    //fn download(&self, data: &[u8], stride: usize);
-
     #[doc(alias = "gdk_texture_get_height")]
     fn get_height(&self) -> i32;
 
@@ -65,10 +62,6 @@ pub trait TextureExt: 'static {
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
-    //fn download(&self, data: &[u8], stride: usize) {
-    //    unsafe { TODO: call ffi:gdk_texture_download() }
-    //}
-
     fn get_height(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
     }
