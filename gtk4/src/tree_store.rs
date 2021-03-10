@@ -36,6 +36,7 @@ pub trait TreeStoreExtManual: 'static {
     fn reorder(&self, parent: &TreeIter, new_order: &[u32]);
 
     #[doc(alias = "gtk_tree_store_set")]
+    #[doc(alias = "gtk_tree_store_set_valuesv")]
     fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&dyn ToValue]);
 
     #[doc(alias = "gtk_tree_store_set_value")]
