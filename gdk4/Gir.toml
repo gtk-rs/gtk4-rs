@@ -15,7 +15,6 @@ generate = [
     "Gdk.AxisUse",
     "Gdk.CairoContext",
     "Gdk.ContentFormatsBuilder",
-    "Gdk.ContentProvider",
     "Gdk.CrossingMode",
     "Gdk.Device",
     "Gdk.DevicePad",
@@ -217,6 +216,13 @@ status = "generate"
     [[object.function]]
     name = "get_gtypes"
     manual = true
+
+[[object]]
+name = "Gdk.ContentProvider"
+status = "generate"
+    [[object.function]]
+    name = "new_typed"
+    ignore = true # new_for_value is what the bindings are supposed to use
 
 [[object]]
 name = "Gdk.ContentSerializer"
