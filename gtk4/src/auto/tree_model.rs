@@ -28,9 +28,6 @@ pub trait TreeModelExt: 'static {
     #[doc(alias = "gtk_tree_model_foreach")]
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
 
-    //#[doc(alias = "gtk_tree_model_get")]
-    //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_tree_model_get_column_type")]
     fn get_column_type(&self, index_: i32) -> glib::types::Type;
 
@@ -56,7 +53,7 @@ pub trait TreeModelExt: 'static {
     fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_tree_model_get_value")]
-    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
+    fn get(&self, iter: &TreeIter, column: i32) -> glib::Value;
 
     #[doc(alias = "gtk_tree_model_iter_children")]
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
@@ -137,10 +134,6 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             );
         }
     }
-
-    //fn get(&self, iter: &TreeIter, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_tree_model_get() }
-    //}
 
     fn get_column_type(&self, index_: i32) -> glib::types::Type {
         unsafe {
@@ -228,7 +221,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
+    fn get(&self, iter: &TreeIter, column: i32) -> glib::Value {
         unsafe {
             let mut value = glib::Value::uninitialized();
             ffi::gtk_tree_model_get_value(
